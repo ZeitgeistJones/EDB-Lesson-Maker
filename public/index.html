@@ -37,7 +37,7 @@
   .slide-title { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
   .slide-content { font-size: 13px; color: #64748b; line-height: 1.5; }
   .slide-content em { color: #4338ca; font-style: normal; font-weight: 600; }
-  .action-row { display: flex; gap: 10px; margin-top: 18px; }
+  .action-row { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
   .download-btn { flex: 1; padding: 16px; border-radius: 12px; border: none; background: linear-gradient(135deg, #10b981, #059669); color: #fff; font-size: 17px; font-weight: 700; cursor: pointer; font-family: inherit; }
   .download-btn:hover { opacity: 0.92; }
   .new-btn { padding: 16px 24px; border-radius: 12px; border: 2px solid #e2e8f0; background: #fff; color: #475569; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; }
@@ -115,8 +115,10 @@
     </div>
     <div id="slides-preview"></div>
     <div class="action-row">
-      <button class="download-btn" onclick="downloadPDF()">Download Lesson PDF</button>
-      <button class="download-btn" onclick="downloadEDB()">Download ClassIn Board</button>
+      <button class="download-btn" id="btn-pdf" onclick="downloadPDF()">Download Lesson PDF</button>
+      <button class="download-btn" id="btn-edb" onclick="downloadEDB()">Download ClassIn Board</button>
+      <button class="download-btn" id="btn-board-pdf" onclick="downloadBoardPreview('pdf')" style="background:linear-gradient(135deg,#0f766e,#14b8a6)">Board Preview PDF</button>
+      <button class="download-btn" id="btn-board-png" onclick="downloadBoardPreview('png')" style="background:linear-gradient(135deg,#0369a1,#0ea5e9)">Board Preview PNG</button>
       <button class="new-btn" onclick="reset()">New</button>
     </div>
   </div>
@@ -129,6 +131,7 @@
 <script src="lib/sceneBackgrounds.js"></script>
 <script src="lib/renderLessonPages.js"></script>
 <script src="lib/buildEdb.js"></script>
+<script src="lib/exportBoardPreview.js"></script>
 <script>
 let state = { level: 'Intermediate', duration: '25', lessonData: null };
 
@@ -248,7 +251,7 @@ function showPreview(d) {
 async function downloadPDF() {
   const d = state.lessonData;
   if (!d) return;
-  const btn = document.querySelector('.download-btn');
+  const btn = document.getElementById('btn-pdf');
   const original = btn.textContent;
   btn.textContent = 'Building PDF…';
   btn.disabled = true;
@@ -265,7 +268,7 @@ async function downloadPDF() {
 async function downloadEDB() {
   const d = state.lessonData;
   if (!d) return;
-  const btn = document.querySelectorAll('.download-btn')[1];
+  const btn = document.getElementById('btn-edb');
   const original = btn.textContent;
   btn.textContent = 'Building board…';
   btn.disabled = true;
@@ -310,6 +313,31 @@ async function downloadEDB() {
     alert('Could not build the board: ' + e.message);
   } finally {
     if (host && window.LessonPages) window.LessonPages.cleanup(host);
+    btn.textContent = original;
+    btn.disabled = false;
+  }
+}
+
+async function downloadBoardPreview(format) {
+  const d = state.lessonData;
+  if (!d) return;
+  if (!window.exportBoardPreview) {
+    alert('Board preview library failed to load. Refresh and try again.');
+    return;
+  }
+  const btn = document.getElementById(format === 'png' ? 'btn-board-png' : 'btn-board-pdf');
+  const original = btn.textContent;
+  btn.textContent = format === 'png' ? 'Building PNG…' : 'Building preview…';
+  btn.disabled = true;
+  try {
+    await window.exportBoardPreview(
+      d,
+      { level: state.level, duration: state.duration },
+      format
+    );
+  } catch (e) {
+    alert('Could not build board preview: ' + e.message);
+  } finally {
     btn.textContent = original;
     btn.disabled = false;
   }

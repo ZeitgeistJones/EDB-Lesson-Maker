@@ -587,6 +587,6 @@ function roundRect(ctx, x, y, w, h, r, fill, stroke) {
 
 // ── expose as a global (index.html uses classic <script> tags) ────
 window.EdbKit = {
-  Edb, buildLessonEdb, elementToPng, glyphToPng, tileToPng,
+  Edb, buildLessonEdb, elementToPng, pieceToPng, glyphToPng, tileToPng,
   BOARD_W, BOARD_H, CANVAS_H, PAGE,
 };
