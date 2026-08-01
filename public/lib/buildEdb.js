@@ -362,8 +362,10 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
   }
 
   if (plan && plan.pages.length) {
+    const bgPicks = plan.bgPicks || null;
     for (const page of plan.pages) {
       const y0 = (page.pageIndex != null ? page.pageIndex : 0) * PAGE;
+      const pick = bgPicks && bgPicks[page.pageIndex];
       for (const piece of page.locked || []) {
         if (piece.kind === 'text' && piece.text) {
           e.addText(piece.text, piece.x, y0 + piece.y, {
@@ -379,11 +381,41 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
           w: piece.w, h: piece.h, locked: true,
         });
       }
-      for (const piece of page.unlocked || []) {
+      // Scene pages: stand dock pieces on the ground plane in the clear centre band
+      const standRoles = {
+        matchPiece: 1, buildPart: 1, dressPart: 1, sortCard: 1, orderTile: 1, dockPiece: 1,
+      };
+      const standers = (page.unlocked || []).filter((p) => standRoles[p.role]);
+      const floaters = (page.unlocked || []).filter((p) => !standRoles[p.role]);
+
+      for (const piece of floaters) {
         const png = await pieceToPng(piece);
         if (png) e.addImage(png, piece.x, y0 + piece.y, {
           w: piece.w, h: piece.h, locked: false,
         });
+      }
+
+      if (standers.length && pick && pick.type === 'scene' && window.SceneBackgrounds) {
+        const n = standers.length;
+        const gap = 16;
+        const totalW = standers.reduce((s, p) => s + (p.w || 96), 0) + gap * Math.max(0, n - 1);
+        let x = Math.max(260, Math.min(1020 - totalW, Math.round((BOARD_W - totalW) / 2)));
+        for (const piece of standers) {
+          const png = await pieceToPng(piece);
+          if (!png) continue;
+          const h = piece.h || 96;
+          const w = piece.w || 96;
+          const y = y0 + window.SceneBackgrounds.standOn(pick, h);
+          e.addImage(png, x, y, { w, h, locked: false });
+          x += w + gap;
+        }
+      } else {
+        for (const piece of standers) {
+          const png = await pieceToPng(piece);
+          if (png) e.addImage(png, piece.x, y0 + piece.y, {
+            w: piece.w, h: piece.h, locked: false,
+          });
+        }
       }
     }
     return e.toBlob();
@@ -423,18 +455,37 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
   const vocabPageIndex = pages.length;
 
   if (vocab.length) {
-    const bg = activityBackground('New Words', 'Drag each picture next to its word.',
-                                  vocab.map(v => v.word));
+    const section = {
+      title: 'New Words',
+      tags: ['vocabulary', ...(vocab.map((v) => v.word))],
+      vocabulary: vocab.map((v) => v.word),
+    };
+    let pick = null;
+    let bg = null;
+    if (window.SceneBackgrounds) {
+      pick = await window.SceneBackgrounds.pickFor(section, { index: 0 });
+      bg = await window.SceneBackgrounds.loadPng(pick);
+    } else {
+      bg = activityBackground('New Words', 'Drag each picture next to its word.',
+                              vocab.map((v) => v.word));
+    }
     e.addImage(bg, 0, vocabPageIndex * PAGE, { w: BOARD_W, h: PAGE, locked: true });
 
     const shuffled = [...vocab].sort(() => Math.random() - 0.5);
+    const pieceH = 96;
+    const pieceW = 96;
+    const gap = 20;
+    const totalW = shuffled.length * pieceW + gap * Math.max(0, shuffled.length - 1);
+    let x = Math.max(260, Math.min(1020 - totalW, Math.round((BOARD_W - totalW) / 2)));
     for (let i = 0; i < shuffled.length; i++) {
       const v = shuffled[i];
-      const col = i % 3, row = Math.floor(i / 3);
       const png = (window.VocabIcons && await window.VocabIcons.loadPng(v.word))
         || glyphToPng(v.emoji || '•');
-      e.addImage(png, 720 + col * 160, vocabPageIndex * PAGE + 235 + row * 150,
-                 { w: 96, h: 96 });
+      const yLocal = (pick && window.SceneBackgrounds)
+        ? window.SceneBackgrounds.standOn(pick, pieceH)
+        : (235 + Math.floor(i / 3) * 150);
+      e.addImage(png, x, vocabPageIndex * PAGE + yLocal, { w: pieceW, h: pieceH });
+      x += pieceW + gap;
     }
   }
 
@@ -442,12 +493,34 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
   if (sentence) {
     const idx = vocabPageIndex + (vocab.length ? 1 : 0);
     const words = sentence.replace(/[.]$/, '').split(/\s+/).slice(0, 5);
-    const bg = buildBackground('Build a Sentence',
-                               'Drag the word tiles into order, then read it out loud.');
+    const section = {
+      title: 'Build a Sentence',
+      tags: ['sentence', 'review', ...words],
+      vocabulary: words,
+    };
+    let pick = null;
+    let bg = null;
+    if (window.SceneBackgrounds) {
+      pick = await window.SceneBackgrounds.pickFor(section, { index: 1 });
+      bg = await window.SceneBackgrounds.loadPng(pick);
+    } else {
+      bg = buildBackground('Build a Sentence',
+                           'Drag the word tiles into order, then read it out loud.');
+    }
     e.addImage(bg, 0, idx * PAGE, { w: BOARD_W, h: PAGE, locked: true });
 
-    [...words].sort(() => Math.random() - 0.5).forEach((word, i) => {
-      e.addImage(tileToPng(word), 104 + i * 222, idx * PAGE + 455, { w: 186, h: 54 });
+    const shuffled = [...words].sort(() => Math.random() - 0.5);
+    const pieceW = 186;
+    const pieceH = 54;
+    const gap = 16;
+    const totalW = shuffled.length * pieceW + gap * Math.max(0, shuffled.length - 1);
+    let x = Math.max(260, Math.min(1020 - totalW, Math.round((BOARD_W - totalW) / 2)));
+    shuffled.forEach((word) => {
+      const yLocal = (pick && window.SceneBackgrounds)
+        ? window.SceneBackgrounds.standOn(pick, pieceH)
+        : 455;
+      e.addImage(tileToPng(word), x, idx * PAGE + yLocal, { w: pieceW, h: pieceH });
+      x += pieceW + gap;
     });
     e.addText(`Answer: ${sentence}`, 70, idx * PAGE + 535,
               { size: 14, color: [90, 105, 120, 255], locked: true });

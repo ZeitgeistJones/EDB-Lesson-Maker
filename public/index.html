@@ -126,6 +126,7 @@
 <script src="lib/edbLayout.js"></script>
 <script src="lib/edbActivities.js"></script>
 <script src="lib/vocabIcons.js"></script>
+<script src="lib/sceneBackgrounds.js"></script>
 <script src="lib/renderLessonPages.js"></script>
 <script src="lib/buildEdb.js"></script>
 <script>
@@ -320,6 +321,26 @@ function reset() {
   document.getElementById('focus').value = '';
   showScreen('input');
 }
+
+/** Console debug: previewBackgrounds() — table of section → scene/flat picks. */
+window.previewBackgrounds = async function () {
+  const d = state.lessonData;
+  if (!d) return console.warn('generate a lesson first');
+  if (!window.SceneBackgrounds || !window.LessonPages) {
+    return console.warn('SceneBackgrounds / LessonPages not loaded');
+  }
+  const sections = window.LessonPages.buildSectionList(d);
+  const plan = await window.SceneBackgrounds.planFor(sections);
+  console.table(plan.map((p, i) => ({
+    section: sections[i].title,
+    type: p.type,
+    background: p.name,
+    score: p.score ?? '-',
+    groundY: p.groundY ?? '-',
+    why: p.reason ?? (p.runnersUp || []).join(', '),
+  })));
+  return plan;
+};
 
 document.getElementById('topic').addEventListener('keydown', e => { if (e.key === 'Enter') generate(); });
 </script>

@@ -1,0 +1,16 @@
+BOARD BACKGROUNDS
+=================
+
+SCENES (16 files: school-*, grocery-store, restaurant, cafe, clothing-store,
+bakery, post-office, hospital-room, bank, doctors-office, dentist-office)
+  Generated with OpenAI image models for this project.
+  Ownership of output sits with the account holder under OpenAI's terms.
+  Verify current terms before commercial resale.
+
+FLATS (4 files: flat_*.png)
+  Authored procedurally for this project. CC0 — public domain.
+  No attribution required, no restrictions.
+
+Board size 1280x590. Each scene declares a groundY in manifest.json:
+the pixel row where the standing surface begins. Place a piece so its
+BASE sits on that row and it will look like it's standing on the floor.

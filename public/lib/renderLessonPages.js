@@ -143,6 +143,83 @@
     return i;
   }
 
+  function applyPackBg(p, pick) {
+    if (!pick || !pick.path) return;
+    const bgImg = el('img', {
+      position: 'absolute', left: '0', top: '0', width: '100%', height: '100%',
+      objectFit: 'cover', zIndex: '0', pointerEvents: 'none',
+    });
+    bgImg.src = pick.path;
+    bgImg.alt = '';
+    p.style.background = pick.type === 'flat' ? '#f8fafc' : '#94a3b8';
+    p.insertBefore(bgImg, p.firstChild);
+    if (pick.type === 'scene') {
+      const scrim = el('div', {
+        position: 'absolute', left: '0', top: '0', width: '100%', height: '100%',
+        background: 'linear-gradient(180deg, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.32) 50%, rgba(255,255,255,0.18) 100%)',
+        zIndex: '0', pointerEvents: 'none',
+      });
+      p.insertBefore(scrim, bgImg.nextSibling);
+    }
+    Array.from(p.children).forEach((c) => {
+      if (c === bgImg || c.tagName === 'IMG' && c === bgImg) return;
+      if (c.style.position === 'absolute' && (c === bgImg || c.style.zIndex === '0')) return;
+      if (!c.style.position || c.style.position === 'static') {
+        c.style.position = 'relative';
+      }
+      if (!c.style.zIndex || c.style.zIndex === 'auto') c.style.zIndex = '1';
+    });
+  }
+
+  /** Section list for SceneBackgrounds.planFor — mirrors the render spine. */
+  function buildSectionList(lesson) {
+    const vocab = (lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v.word)).filter(Boolean);
+    const topic = lesson.title || '';
+    const sections = [
+      { title: topic || 'Title', tags: ['title', topic], vocabulary: vocab },
+      { title: 'Warm Up', tags: ['warmup', 'warm-up'], vocabulary: vocab },
+      { title: 'New Words', tags: ['vocabulary', 'words', 'matching'], vocabulary: vocab },
+      { title: 'Words in Sentences', tags: ['vocabulary', 'sentences', 'grammar'], vocabulary: vocab },
+      { title: 'Sentence Frames', tags: ['grammar', 'frames'], vocabulary: vocab },
+    ];
+
+    const storyPages = (lesson.story?.pages || []).slice(0, 2);
+    const storyCount = Math.max(2, storyPages.length || 2);
+    for (let i = 0; i < storyCount; i++) {
+      const sp = storyPages[i] || {};
+      sections.push({
+        title: sp.heading || lesson.story?.title || ('Story ' + (i + 1)),
+        tags: [sp.visualTheme, sp.visualCaption, 'story', topic].filter(Boolean),
+        vocabulary: vocab,
+        category: null,
+      });
+    }
+
+    sections.push(
+      { title: 'Reading Comprehension', tags: ['comprehension', 'reading'], vocabulary: vocab },
+      { title: 'Your Ideas', tags: ['creative', 'ideas'], vocabulary: vocab }
+    );
+
+    (lesson.speakingQuestions || []).forEach((q, i) => {
+      sections.push({
+        title: q.question || ('Speaking ' + (i + 1)),
+        tags: ['speaking', 'talk', topic],
+        vocabulary: vocab,
+      });
+    });
+
+    sections.push(
+      {
+        title: lesson.activity?.title || 'Activity',
+        tags: [lesson.activity?.title, lesson.activity?.prompt, 'activity', topic].filter(Boolean),
+        vocabulary: vocab,
+      },
+      { title: 'Wrap Up', tags: ['wrap', 'review', 'goodbye'], vocabulary: vocab }
+    );
+
+    return sections;
+  }
+
   function themeBgUrl(theme) {
     const t = String(theme || 'nature').toLowerCase();
     const known = ['park', 'school', 'home', 'city', 'beach', 'nature', 'kitchen', 'sports'];
@@ -264,12 +341,7 @@
     const p = pageShell('#fff7ed', {
       reserveDock: hasRecipe(boardPlan, pageKey), pageType: 'story',
     });
-    const bg = el('img', {
-      position: 'absolute', top: '0', left: '0', width: '100%', height: '100%',
-      objectFit: 'cover', opacity: '0.35', zIndex: '0',
-    });
-    bg.src = themeBgUrl(page?.visualTheme);
-    p.appendChild(bg);
+    // Pack scene/flat applied in render() — no legacy SVG wash here
     const content = el('div', { position: 'relative', zIndex: '1' });
     const title = index === 0
       ? `Story: ${lesson.story?.title || 'Let\'s Read!'}`
@@ -441,6 +513,16 @@
     if (window.VocabIcons && window.VocabIcons.ready) {
       await window.VocabIcons.ready();
     }
+    const sections = buildSectionList(lesson);
+    let bgPicks = null;
+    if (window.SceneBackgrounds) {
+      try {
+        bgPicks = await window.SceneBackgrounds.planFor(sections);
+      } catch (err) {
+        console.warn('Scene backgrounds unavailable', err);
+      }
+    }
+
     const host = el('div', {
       position: 'fixed', left: '-10000px', top: '0', width: W + 'px',
       pointerEvents: 'none', opacity: '0', zIndex: '-1',
@@ -451,9 +533,10 @@
     const slots = { byKey: {} };
 
     function push(node, pageKey) {
+      const idx = pageEls.length;
+      if (bgPicks && bgPicks[idx]) applyPackBg(node, bgPicks[idx]);
       host.appendChild(node);
       pageEls.push(node);
-      const idx = pageEls.length - 1;
       if (pageKey) slots.byKey[pageKey] = idx;
       return idx;
     }
@@ -488,12 +571,15 @@
     push(makeActivity(lesson, boardPlan), 'activity');
     slots.wrap = push(makeWrap(lesson, boardPlan), 'wrap');
 
-    return { pageEls, slots, host, boardPlan: boardPlan || null };
+    if (boardPlan) boardPlan.bgPicks = bgPicks;
+    return { pageEls, slots, host, boardPlan: boardPlan || null, bgPicks, sections };
   }
 
   function cleanup(host) {
     if (host && host.parentNode) host.parentNode.removeChild(host);
   }
 
-  window.LessonPages = { render, cleanup, BOARD_W: W, BOARD_H: H };
+  window.LessonPages = {
+    render, cleanup, buildSectionList, BOARD_W: W, BOARD_H: H,
+  };
 })();
