@@ -30,6 +30,21 @@
     "assets/03_vocab-icons/sun.svg",
     "assets/03_vocab-icons/tree.svg"
   ],
+  "covers": [
+    "assets/04_decoration-ui/star.svg",
+    "assets/04_decoration-ui/confetti.svg"
+  ],
+  "flaps": [
+    "assets/04_decoration-ui/star.svg"
+  ],
+  "parts": [
+    "assets/03_vocab-icons/apple.svg",
+    "assets/03_vocab-icons/book.svg",
+    "assets/03_vocab-icons/ball.svg",
+    "assets/03_vocab-icons/house.svg",
+    "assets/03_vocab-icons/sun.svg",
+    "assets/03_vocab-icons/tree.svg"
+  ],
   "visualThemes": {
     "park": "assets/02_scenes-backgrounds/park/park-bg.svg",
     "school": "assets/02_scenes-backgrounds/school/school-bg.svg",

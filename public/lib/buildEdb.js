@@ -252,33 +252,110 @@ function canvasToPng(canvas) {
   return out;
 }
 
-// ── the actual lesson → board mapping ─────────────────────────────
+function dataUrlToPng(url) {
+  const b64 = url.slice(url.indexOf(',') + 1);
+  const bin = atob(b64);
+  const out = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+  return out;
+}
+
+/** Load a path or data-URL into PNG bytes (SVGs rasterised via Image). */
+async function loadAssetPng(src, w, h) {
+  if (!src) return null;
+  if (typeof src === 'string' && src.startsWith('data:image/png')) {
+    return dataUrlToPng(src);
+  }
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const c = document.createElement('canvas');
+      c.width = w || img.naturalWidth || 128;
+      c.height = h || img.naturalHeight || 128;
+      const ctx = c.getContext('2d');
+      ctx.drawImage(img, 0, 0, c.width, c.height);
+      resolve(canvasToPng(c));
+    };
+    img.onerror = () => resolve(null);
+    img.src = src;
+  });
+}
+
+async function pieceToPng(piece) {
+  if (piece.kind === 'emoji' || (piece.emoji && !piece.asset && !piece.text)) {
+    return glyphToPng(piece.emoji || '•', Math.max(piece.w, piece.h, 96));
+  }
+  if (piece.kind === 'tile' || (piece.text && piece.kind !== 'text')) {
+    return tileToPng(piece.text || piece.label || '?', {
+      w: piece.w || 186,
+      h: piece.h || 54,
+    });
+  }
+  if (piece.asset) {
+    const png = await loadAssetPng(piece.asset, piece.w, piece.h);
+    if (png) return png;
+  }
+  if (piece.emoji) return glyphToPng(piece.emoji, Math.max(piece.w, piece.h, 96));
+  if (piece.text) {
+    return tileToPng(piece.text, { w: piece.w || 186, h: piece.h || 54 });
+  }
+  return null;
+}
 
 /**
  * Build a ClassIn board from a lesson.
  *
- * pageEls  — DOM elements, one per lesson page, already rendered by the
- *            HTML renderer. Each becomes a LOCKED full-width background.
- * lesson   — the same object buildLessonPdf receives.
- * slots    — optional { newWords, wrap } page indices for on-page overlays.
- *            When omitted, falls back to trailing activity pages (legacy).
+ * pageEls   — DOM elements, one per lesson page (locked backgrounds).
+ * boardPlan — from EdbActivities.buildBoardPlan (pages with locked/unlocked pieces).
+ *             Fourth arg may also be legacy `slots` { newWords, wrap }.
  */
-async function buildLessonEdb(lesson, meta, pageEls, slots) {
+async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
   const e = new Edb();
   const pages = pageEls || [];
+  const plan = boardPlanOrSlots && Array.isArray(boardPlanOrSlots.pages)
+    ? boardPlanOrSlots
+    : null;
+  const slots = plan ? plan.slots : boardPlanOrSlots;
 
-  // 1. page backgrounds, stacked one screen apart, locked so they
-  //    can't be dragged around by a student reaching for a sprite
   for (let i = 0; i < pages.length; i++) {
     const png = await elementToPng(pages[i]);
     e.addImage(png, 0, i * PAGE, { w: BOARD_W, h: PAGE, locked: true });
   }
 
+  if (plan && plan.pages.length) {
+    for (const page of plan.pages) {
+      const y0 = (page.pageIndex != null ? page.pageIndex : 0) * PAGE;
+      for (const piece of page.locked || []) {
+        if (piece.kind === 'text' && piece.text) {
+          e.addText(piece.text, piece.x, y0 + piece.y, {
+            size: piece.size || 14,
+            color: piece.color || [30, 41, 59, 255],
+            locked: true,
+            width: (piece.w || 400) / BOARD_W,
+          });
+          continue;
+        }
+        const png = await pieceToPng(piece);
+        if (png) e.addImage(png, piece.x, y0 + piece.y, {
+          w: piece.w, h: piece.h, locked: true,
+        });
+      }
+      for (const piece of page.unlocked || []) {
+        const png = await pieceToPng(piece);
+        if (png) e.addImage(png, piece.x, y0 + piece.y, {
+          w: piece.w, h: piece.h, locked: false,
+        });
+      }
+    }
+    return e.toBlob();
+  }
+
+  // Legacy: spine slots without full plan
   const vocab = (lesson.vocabulary || []).slice(0, 6);
   const hasSpine = pages.length > 0 && slots && Number.isInteger(slots.newWords);
 
   if (hasSpine) {
-    // Unified board: overlays live ON lesson pages (not trailing bolt-ons)
     if (vocab.length && Number.isInteger(slots.newWords)) {
       const y0 = slots.newWords * PAGE;
       const shuffled = [...vocab].sort(() => Math.random() - 0.5);

@@ -26,7 +26,7 @@
     return n;
   }
 
-  function pageShell(bg) {
+  function pageShell(bg, opts) {
     const p = el('div', {
       width: W + 'px',
       height: H + 'px',
@@ -40,7 +40,72 @@
       color: '#0f172a',
       padding: '36px 48px',
     });
+    if (opts && opts.reserveDock) {
+      // Keep bottom dock clear of chrome so unlocked pieces aren't painted over
+      p.style.paddingBottom = '130px';
+    }
     return p;
+  }
+
+  function drawDebugZones(p, pageType) {
+    if (!window.EdbLayout) return;
+    const debug = /(?:\?|&)edbDebug=1(?:&|$)/.test(location.search || '');
+    if (!debug) return;
+    const page = window.EdbLayout.createPage(pageType);
+    window.EdbLayout.debugOverlay(page).forEach((z) => {
+      const box = el('div', {
+        position: 'absolute',
+        left: z.x + 'px',
+        top: z.y + 'px',
+        width: z.w + 'px',
+        height: z.h + 'px',
+        boxSizing: 'border-box',
+        border: z.noOverlap ? '2px dashed rgba(239,68,68,0.7)' : '2px dashed rgba(34,197,94,0.7)',
+        pointerEvents: 'none',
+        zIndex: '50',
+        fontSize: '11px',
+        color: z.noOverlap ? '#b91c1c' : '#15803d',
+        padding: '2px 4px',
+        background: 'rgba(255,255,255,0.15)',
+      }, z.name);
+      p.appendChild(box);
+    });
+  }
+
+  function placeCharacter(p, pageType, index) {
+    if (!window.EdbLayout) {
+      p.appendChild(img(characterUrl(index), {
+        right: '40px', bottom: '20px', width: '200px', height: '240px',
+      }));
+      return;
+    }
+    const page = window.EdbLayout.createPage(pageType);
+    const piece = window.EdbLayout.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: characterUrl(index),
+      w: pageType === 'title' ? 280 : 200,
+      h: pageType === 'title' ? 320 : 240,
+      prefer: 'artSafe',
+      role: 'character',
+    });
+    p.appendChild(img(piece.asset, {
+      left: piece.x + 'px',
+      top: piece.y + 'px',
+      width: piece.w + 'px',
+      height: piece.h + 'px',
+    }));
+  }
+
+  function recipeHint(boardPlan, pageKey) {
+    const ids = (boardPlan?.assignments || [])
+      .filter((a) => a.pageKey === pageKey)
+      .map((a) => a.recipeId);
+    return ids.length ? ids.join(' + ') : '';
+  }
+
+  function hasRecipe(boardPlan, pageKey) {
+    return (boardPlan?.assignments || []).some((a) => a.pageKey === pageKey);
   }
 
   function header(text, color) {
@@ -86,8 +151,8 @@
     return `assets/01_characters/${names[i % names.length]}.png`;
   }
 
-  function makeTitle(lesson, meta) {
-    const p = pageShell(THEME_COLORS.title);
+  function makeTitle(lesson, meta, boardPlan) {
+    const p = pageShell(THEME_COLORS.title, { reserveDock: hasRecipe(boardPlan, 'title') });
     p.appendChild(el('div', {
       color: 'rgba(255,255,255,0.75)', fontSize: '16px', fontWeight: '600',
       textTransform: 'uppercase', letterSpacing: '0.12em', marginTop: '90px',
@@ -99,30 +164,37 @@
     p.appendChild(el('div', {
       color: 'rgba(255,255,255,0.9)', fontSize: '22px', marginTop: '18px', fontStyle: 'italic',
     }, `${meta.level || ''}  ·  ${meta.duration || ''}-minute lesson`));
-    p.appendChild(img(characterUrl(0), { right: '60px', bottom: '30px', width: '280px', height: '320px' }));
+    placeCharacter(p, 'title', 0);
     p.appendChild(img('assets/04_decoration-ui/star.svg', { right: '320px', top: '70px', width: '64px', height: '64px' }));
+    drawDebugZones(p, 'title');
     return p;
   }
 
-  function makeWarmUp(lesson) {
-    const p = pageShell(THEME_COLORS.warm);
+  function makeWarmUp(lesson, boardPlan) {
+    const p = pageShell(THEME_COLORS.warm, { reserveDock: hasRecipe(boardPlan, 'warm') });
     p.appendChild(header('Warm Up', '#e11d48'));
     p.appendChild(card(`<div style="font-size:28px;font-weight:700;color:#1e3a8a;text-align:center">${esc(lesson.warmUp?.question || '')}</div>`));
     p.appendChild(el('div', { fontSize: '14px', color: '#64748b', margin: '8px 0 6px', fontWeight: '700' }, 'Sample answer'));
     p.appendChild(card(`<div style="font-size:22px;font-style:italic;color:#be123c;text-align:center">${esc(lesson.warmUp?.sampleAnswer || '')}</div>`));
-    p.appendChild(img(characterUrl(1), { right: '40px', bottom: '20px', width: '200px', height: '240px', opacity: '0.95' }));
+    placeCharacter(p, 'warm', 1);
+    drawDebugZones(p, 'warm');
     return p;
   }
 
-  function makeVocab(lesson) {
-    const p = pageShell(THEME_COLORS.vocab);
+  function makeVocab(lesson, boardPlan) {
+    const interactive = hasRecipe(boardPlan, 'newWords');
+    const p = pageShell(THEME_COLORS.vocab, { reserveDock: interactive });
     p.appendChild(header('New Words', '#7c3aed'));
+    const hint = recipeHint(boardPlan, 'newWords');
     p.appendChild(el('div', { fontSize: '16px', color: '#64748b', marginBottom: '14px' },
-      'Say each word. Drag the matching pictures onto the board.'));
+      interactive
+        ? `Interactive: ${hint || 'drag pieces'}. Say each word, then use the pieces.`
+        : 'Say each word. Drag the matching pictures onto the board.'));
     const grid = el('div', {
       display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px',
+      maxWidth: interactive ? '700px' : '100%',
     });
-    (lesson.vocabulary || []).slice(0, 6).forEach((v, i) => {
+    (lesson.vocabulary || []).slice(0, 6).forEach((v) => {
       grid.appendChild(card(
         `<div style="display:flex;align-items:center;gap:14px">
           <div style="width:56px;height:56px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:28px">${esc(v.emoji || '•')}</div>
@@ -132,6 +204,7 @@
       ));
     });
     p.appendChild(grid);
+    drawDebugZones(p, 'vocab');
     return p;
   }
 
@@ -168,8 +241,9 @@
     return p;
   }
 
-  function makeStoryPage(lesson, page, index) {
-    const p = pageShell('#fff7ed');
+  function makeStoryPage(lesson, page, index, boardPlan) {
+    const pageKey = 'story' + index;
+    const p = pageShell('#fff7ed', { reserveDock: hasRecipe(boardPlan, pageKey) });
     const bg = el('img', {
       position: 'absolute', top: '0', left: '0', width: '100%', height: '100%',
       objectFit: 'cover', opacity: '0.35', zIndex: '0',
@@ -181,13 +255,18 @@
       ? `Story: ${lesson.story?.title || 'Let\'s Read!'}`
       : `Story (cont.): ${page?.heading || ''}`;
     content.appendChild(header(title, '#c2410c'));
+    const hint = recipeHint(boardPlan, pageKey);
+    if (hint) {
+      content.appendChild(el('div', { fontSize: '14px', color: '#9a3412', marginBottom: '8px' },
+        'Interactive: ' + hint));
+    }
     const layout = el('div', { display: 'flex', gap: '24px', alignItems: 'stretch' });
     const side = el('div', {
       width: '320px', flexShrink: '0', borderRadius: '18px', overflow: 'hidden',
-      background: 'rgba(255,255,255,0.85)', minHeight: '360px', position: 'relative',
+      background: 'rgba(255,255,255,0.85)', minHeight: '300px', position: 'relative',
     });
     side.appendChild(img(characterUrl(index + 2), {
-      left: '20px', bottom: '10px', width: '260px', height: '300px', position: 'absolute',
+      left: '20px', bottom: '10px', width: '260px', height: '280px', position: 'absolute',
     }));
     side.appendChild(el('div', {
       position: 'absolute', left: '16px', right: '16px', top: '16px',
@@ -195,12 +274,13 @@
       fontSize: '14px', fontWeight: '700', textAlign: 'center',
     }, esc(page?.visualCaption || page?.visualTheme || 'Scene')));
     const text = card(`<div style="font-size:18px;line-height:1.45;color:#1e293b">${esc(page?.text || '')}</div>`, {
-      flex: '1', marginBottom: '0', minHeight: '360px',
+      flex: '1', marginBottom: '0', minHeight: '300px',
     });
     layout.appendChild(side);
     layout.appendChild(text);
     content.appendChild(layout);
     p.appendChild(content);
+    drawDebugZones(p, 'story');
     return p;
   }
 
@@ -213,6 +293,7 @@
          <div style="font-size:15px;color:#64748b;font-style:italic">Sample: ${esc(q.sampleAnswer || '')}</div>`
       ));
     });
+    drawDebugZones(p, 'comprehension');
     return p;
   }
 
@@ -230,46 +311,58 @@
     p.appendChild(img('assets/04_decoration-ui/confetti.svg', {
       right: '50px', bottom: '40px', width: '120px', height: '120px',
     }));
+    drawDebugZones(p, 'creative');
     return p;
   }
 
-  function makeSpeaking(item, i, total) {
-    const p = pageShell(THEME_COLORS.speak);
+  function makeSpeaking(item, i, total, boardPlan) {
+    const pageKey = 'speaking:' + i;
+    const p = pageShell(THEME_COLORS.speak, { reserveDock: hasRecipe(boardPlan, pageKey) });
     p.appendChild(header("Let's Talk!", '#15803d'));
     p.appendChild(el('div', { fontSize: '14px', color: '#64748b', marginBottom: '10px' },
-      `Question ${i + 1} of ${total}`));
+      `Question ${i + 1} of ${total}` + (hasRecipe(boardPlan, pageKey) ? ' — peel the sticky after answering' : '')));
     p.appendChild(card(`<div style="font-size:26px;font-weight:800;text-align:center;color:#14532d">${esc(item.question || '')}</div>`));
     p.appendChild(el('div', { fontSize: '13px', color: '#64748b', fontWeight: '700', margin: '8px 0' }, 'Sample answer'));
     p.appendChild(card(`<div style="font-size:20px;font-style:italic;text-align:center;color:#166534">${esc(item.sampleAnswer || '')}</div>`));
+    drawDebugZones(p, 'speaking');
     return p;
   }
 
-  function makeActivity(lesson) {
-    const p = pageShell(THEME_COLORS.activity);
+  function makeActivity(lesson, boardPlan) {
+    const interactive = hasRecipe(boardPlan, 'activity');
+    const p = pageShell(THEME_COLORS.activity, { reserveDock: interactive });
     p.appendChild(header(lesson.activity?.title || 'Your Turn!', '#4338ca'));
+    const hint = recipeHint(boardPlan, 'activity');
     p.appendChild(el('div', { fontSize: '16px', color: '#64748b', marginBottom: '12px', textAlign: 'center' },
-      esc(lesson.activity?.prompt || '')));
+      esc(lesson.activity?.prompt || '') + (hint ? ` · Interactive: ${hint}` : '')));
+    const list = el('div', { maxWidth: interactive ? '680px' : '100%' });
     (lesson.activity?.templates || []).slice(0, 5).forEach((t, i) => {
-      p.appendChild(card(`<div style="font-size:20px;font-weight:700">${i + 1}. ${esc(t)}</div>`, { padding: '12px 16px' }));
+      list.appendChild(card(`<div style="font-size:20px;font-weight:700">${i + 1}. ${esc(t)}</div>`, { padding: '12px 16px' }));
     });
+    p.appendChild(list);
+    drawDebugZones(p, 'activity');
     return p;
   }
 
-  function makeWrap(lesson) {
-    const p = pageShell(THEME_COLORS.wrap);
+  function makeWrap(lesson, boardPlan) {
+    const interactive = hasRecipe(boardPlan, 'wrap');
+    const p = pageShell(THEME_COLORS.wrap, { reserveDock: interactive });
     p.appendChild(el('div', {
       color: '#fff', fontSize: '48px', fontWeight: '800', textAlign: 'center', marginTop: '40px',
     }, 'Great Job!'));
+    const hint = recipeHint(boardPlan, 'wrap');
     p.appendChild(el('div', {
       color: 'rgba(255,255,255,0.85)', fontSize: '18px', textAlign: 'center', margin: '12px 0 20px', fontStyle: 'italic',
-    }, "Today's key sentences — build one with the word tiles"));
+    }, hint
+      ? `Interactive: ${hint}`
+      : "Today's key sentences — build one with the word tiles"));
     (lesson.reviewSentences || []).slice(0, 3).forEach((s) => {
       p.appendChild(el('div', {
         color: '#fff', fontSize: '22px', textAlign: 'center', marginBottom: '10px',
       }, esc(s)));
     });
-    p.appendChild(img(characterUrl(5), { left: '40px', bottom: '20px', width: '180px', height: '220px' }));
-    p.appendChild(img('assets/04_decoration-ui/star.svg', { right: '80px', top: '60px', width: '80px', height: '80px' }));
+    placeCharacter(p, 'wrap', 5);
+    drawDebugZones(p, 'wrap');
     return p;
   }
 
@@ -281,7 +374,7 @@
       .replace(/"/g, '&quot;');
   }
 
-  function render(lesson, meta) {
+  function render(lesson, meta, boardPlan) {
     const host = el('div', {
       position: 'fixed', left: '-10000px', top: '0', width: W + 'px',
       pointerEvents: 'none', opacity: '0', zIndex: '-1',
@@ -289,41 +382,47 @@
     document.body.appendChild(host);
 
     const pageEls = [];
-    const slots = {};
+    const slots = { byKey: {} };
 
-    function push(node) {
+    function push(node, pageKey) {
       host.appendChild(node);
       pageEls.push(node);
-      return pageEls.length - 1;
+      const idx = pageEls.length - 1;
+      if (pageKey) slots.byKey[pageKey] = idx;
+      return idx;
     }
 
-    push(makeTitle(lesson, meta || {}));
-    push(makeWarmUp(lesson));
-    slots.newWords = push(makeVocab(lesson));
-    push(makeVocabSentences(lesson));
-    push(makeFrames(lesson));
+    push(makeTitle(lesson, meta || {}, boardPlan), 'title');
+    push(makeWarmUp(lesson, boardPlan), 'warm');
+    slots.newWords = push(makeVocab(lesson, boardPlan), 'newWords');
+    push(makeVocabSentences(lesson), 'vocabSentences');
+    push(makeFrames(lesson), 'frames');
 
     const storyPages = (lesson.story?.pages || []).slice(0, 2);
     if (storyPages.length === 0) {
-      push(makeStoryPage(lesson, { heading: 'Story', text: 'Read together.', visualTheme: 'nature' }, 0));
-      push(makeStoryPage(lesson, { heading: 'Story', text: 'Continue the story.', visualTheme: 'park' }, 1));
+      push(makeStoryPage(lesson, { heading: 'Story', text: 'Read together.', visualTheme: 'nature' }, 0, boardPlan), 'story0');
+      push(makeStoryPage(lesson, { heading: 'Story', text: 'Continue the story.', visualTheme: 'park' }, 1, boardPlan), 'story1');
     } else {
-      storyPages.forEach((sp, i) => push(makeStoryPage(lesson, sp, i)));
+      storyPages.forEach((sp, i) => push(makeStoryPage(lesson, sp, i, boardPlan), 'story' + i));
       if (storyPages.length === 1) {
-        push(makeStoryPage(lesson, { heading: 'Story', text: storyPages[0].text || '', visualTheme: storyPages[0].visualTheme }, 1));
+        push(makeStoryPage(lesson, {
+          heading: 'Story',
+          text: storyPages[0].text || '',
+          visualTheme: storyPages[0].visualTheme,
+        }, 1, boardPlan), 'story1');
       }
     }
 
-    push(makeComprehension(lesson));
-    push(makeCreative(lesson));
+    push(makeComprehension(lesson), 'comprehension');
+    push(makeCreative(lesson), 'creative');
 
     const speaking = lesson.speakingQuestions || [];
-    speaking.forEach((q, i) => push(makeSpeaking(q, i, speaking.length)));
+    speaking.forEach((q, i) => push(makeSpeaking(q, i, speaking.length, boardPlan), 'speaking:' + i));
 
-    push(makeActivity(lesson));
-    slots.wrap = push(makeWrap(lesson));
+    push(makeActivity(lesson, boardPlan), 'activity');
+    slots.wrap = push(makeWrap(lesson, boardPlan), 'wrap');
 
-    return { pageEls, slots, host };
+    return { pageEls, slots, host, boardPlan: boardPlan || null };
   }
 
   function cleanup(host) {
