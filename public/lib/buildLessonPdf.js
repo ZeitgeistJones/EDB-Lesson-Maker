@@ -139,7 +139,7 @@ function pageWarmUp(doc, lesson) {
   });
 }
 
-function pagesVocabulary(doc, lesson) {
+async function pagesVocabulary(doc, lesson) {
   const vocab = lesson.vocabulary.slice(0, 8);
 
   bg(doc, C.white);
@@ -150,16 +150,29 @@ function pagesVocabulary(doc, lesson) {
   const perCol = Math.ceil(vocab.length / cols);
   const cardH = Math.min(28, (H - 60) / perCol - 6);
 
-  vocab.forEach((v, i) => {
+  for (let i = 0; i < vocab.length; i++) {
+    const v = vocab[i];
     const col = i < perCol ? 0 : 1;
     const row = i % perCol;
     const x = M + col * (colW + 12);
     const y = 48 + row * (cardH + 6);
     card(doc, x, y, colW, cardH, CARDS[i % CARDS.length], 4);
-    drawText(doc, v.word, x + 8, y + cardH / 2 + 2, colW - 16, {
+
+    let textX = x + 8;
+    if (window.VocabIcons) {
+      const png = await window.VocabIcons.loadPng(v.word);
+      if (png) {
+        const iconMm = Math.min(16, cardH - 6);
+        const dataUrl = uint8ToPngDataUrl(png);
+        doc.addImage(dataUrl, 'PNG', x + 6, y + (cardH - iconMm) / 2, iconMm, iconMm);
+        textX = x + 8 + iconMm + 4;
+      }
+    }
+
+    drawText(doc, v.word, textX, y + cardH / 2 + 2, colW - (textX - x) - 8, {
       size: 20, bold: true, color: C.dark,
     });
-  });
+  }
 
   drawText(doc, 'Say each word. Have the student repeat.', M, H - 16, W - 2 * M, {
     size: 9, italic: true, color: C.gray, align: 'center',
@@ -188,6 +201,15 @@ function pagesVocabulary(doc, lesson) {
   drawText(doc, 'Read each example, then ask the student to make their own sentence.', M, H - 16, W - 2 * M, {
     size: 9, italic: true, color: C.gray, align: 'center',
   });
+}
+
+function uint8ToPngDataUrl(u8) {
+  let bin = '';
+  const chunk = 0x8000;
+  for (let i = 0; i < u8.length; i += chunk) {
+    bin += String.fromCharCode.apply(null, u8.subarray(i, i + chunk));
+  }
+  return 'data:image/png;base64,' + btoa(bin);
 }
 
 function pageSentenceFrames(doc, lesson) {
@@ -551,7 +573,7 @@ async function buildLessonPdf(lesson, meta) {
   pageWarmUp(doc, lesson);
 
   doc.addPage([W, H]);
-  pagesVocabulary(doc, lesson);
+  await pagesVocabulary(doc, lesson);
 
   doc.addPage([W, H]);
   pageSentenceFrames(doc, lesson);
@@ -575,6 +597,15 @@ async function buildLessonPdf(lesson, meta) {
   pageWrapUp(doc, lesson);
 
   const pageCount = doc.getNumberOfPages();
+  const credit = (typeof window !== 'undefined' && window.VocabIcons && window.VocabIcons.CREDIT)
+    || 'Twemoji by Twitter, Inc and other contributors';
+  for (let i = 1; i <= pageCount; i++) {
+    doc.setPage(i);
+    drawText(doc, credit, M, H - 5, W - 2 * M, {
+      size: 6, color: [160, 170, 180], align: 'center',
+    });
+  }
+
   const fileName = (lesson.title || 'Lesson').replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s+/g, '-') + '.pdf';
   doc.save(fileName);
 

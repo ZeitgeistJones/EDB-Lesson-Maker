@@ -304,6 +304,11 @@ function placeholderPng(w, h, label) {
 
 /** Asset first → emoji/tile fallback → solid placeholder (never silent-drop). */
 async function pieceToPng(piece) {
+  const word = piece.meta && piece.meta.word;
+  if (word && window.VocabIcons) {
+    const pack = await window.VocabIcons.loadPng(word);
+    if (pack) return pack;
+  }
   if (piece.asset) {
     const png = await loadAssetPng(piece.asset, piece.w, piece.h);
     if (png) return png;
@@ -333,6 +338,13 @@ async function pieceToPng(piece) {
 async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
   const e = new Edb();
   const pages = pageEls || [];
+  const MAX_PAGES = 50;   // a ClassIn board is 50 screens tall
+  if (pages.length > MAX_PAGES) {
+    throw new Error(
+      `This lesson is ${pages.length} pages. A ClassIn board holds ${MAX_PAGES}. ` +
+      `Shorten the lesson or split it into two boards.`
+    );
+  }
   const plan = boardPlanOrSlots && Array.isArray(boardPlanOrSlots.pages)
     ? boardPlanOrSlots
     : null;
@@ -385,11 +397,13 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
     if (vocab.length && Number.isInteger(slots.newWords)) {
       const y0 = slots.newWords * PAGE;
       const shuffled = [...vocab].sort(() => Math.random() - 0.5);
-      shuffled.forEach((v, i) => {
+      for (let i = 0; i < shuffled.length; i++) {
+        const v = shuffled[i];
         const col = i % 3, row = Math.floor(i / 3);
-        const png = glyphToPng(v.emoji || '•');
+        const png = (window.VocabIcons && await window.VocabIcons.loadPng(v.word))
+          || glyphToPng(v.emoji || '•');
         e.addImage(png, 780 + col * 140, y0 + 280 + row * 130, { w: 88, h: 88 });
-      });
+      }
     }
 
     const sentence = (lesson.reviewSentences || [])[0];
@@ -414,12 +428,14 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
     e.addImage(bg, 0, vocabPageIndex * PAGE, { w: BOARD_W, h: PAGE, locked: true });
 
     const shuffled = [...vocab].sort(() => Math.random() - 0.5);
-    shuffled.forEach((v, i) => {
+    for (let i = 0; i < shuffled.length; i++) {
+      const v = shuffled[i];
       const col = i % 3, row = Math.floor(i / 3);
-      const png = glyphToPng(v.emoji || '•');
+      const png = (window.VocabIcons && await window.VocabIcons.loadPng(v.word))
+        || glyphToPng(v.emoji || '•');
       e.addImage(png, 720 + col * 160, vocabPageIndex * PAGE + 235 + row * 150,
                  { w: 96, h: 96 });
-    });
+    }
   }
 
   const sentence = (lesson.reviewSentences || [])[0];

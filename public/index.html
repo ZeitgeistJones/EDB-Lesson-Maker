@@ -125,6 +125,7 @@
 <script src="lib/buildLessonPdf.js"></script>
 <script src="lib/edbLayout.js"></script>
 <script src="lib/edbActivities.js"></script>
+<script src="lib/vocabIcons.js"></script>
 <script src="lib/renderLessonPages.js"></script>
 <script src="lib/buildEdb.js"></script>
 <script>
@@ -277,7 +278,7 @@ async function downloadEDB() {
     }
     const meta = { level: state.level, duration: state.duration };
     const boardPlan = window.EdbActivities.buildBoardPlan(d, meta);
-    const rendered = window.LessonPages.render(d, meta, boardPlan);
+    const rendered = await window.LessonPages.render(d, meta, boardPlan);
     host = rendered.host;
     await Promise.all(
       [...host.querySelectorAll('img')].map((img) => {

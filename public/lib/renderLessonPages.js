@@ -189,7 +189,7 @@
     return p;
   }
 
-  function makeVocab(lesson, boardPlan) {
+  async function makeVocab(lesson, boardPlan) {
     const interactive = hasRecipe(boardPlan, 'newWords');
     const p = pageShell(THEME_COLORS.vocab, {
       reserveDock: interactive, pageType: 'vocab',
@@ -204,15 +204,23 @@
       display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px',
       maxWidth: interactive ? '700px' : '100%',
     });
-    (lesson.vocabulary || []).slice(0, 6).forEach((v) => {
+    const words = (lesson.vocabulary || []).slice(0, 6);
+    for (const v of words) {
+      let glyphHtml = `<div style="width:56px;height:56px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:28px">${esc(v.emoji || '•')}</div>`;
+      if (window.VocabIcons) {
+        const iconPath = await window.VocabIcons.pathFor(v.word);
+        if (iconPath) {
+          glyphHtml = `<img src="${esc(iconPath)}" alt="" width="56" height="56" style="width:56px;height:56px;object-fit:contain;border-radius:12px;background:#ede9fe;padding:4px;box-sizing:border-box"/>`;
+        }
+      }
       grid.appendChild(card(
         `<div style="display:flex;align-items:center;gap:14px">
-          <div style="width:56px;height:56px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:28px">${esc(v.emoji || '•')}</div>
+          ${glyphHtml}
           <div style="font-size:26px;font-weight:800">${esc(v.word || '')}</div>
         </div>`,
         { marginBottom: '0' }
       ));
-    });
+    }
     p.appendChild(grid);
     drawDebugZones(p, 'vocab');
     return p;
@@ -429,7 +437,10 @@
       .replace(/"/g, '&quot;');
   }
 
-  function render(lesson, meta, boardPlan) {
+  async function render(lesson, meta, boardPlan) {
+    if (window.VocabIcons && window.VocabIcons.ready) {
+      await window.VocabIcons.ready();
+    }
     const host = el('div', {
       position: 'fixed', left: '-10000px', top: '0', width: W + 'px',
       pointerEvents: 'none', opacity: '0', zIndex: '-1',
@@ -449,7 +460,7 @@
 
     push(makeTitle(lesson, meta || {}, boardPlan), 'title');
     push(makeWarmUp(lesson, boardPlan), 'warm');
-    slots.newWords = push(makeVocab(lesson, boardPlan), 'newWords');
+    slots.newWords = push(await makeVocab(lesson, boardPlan), 'newWords');
     push(makeVocabSentences(lesson), 'vocabSentences');
     push(makeFrames(lesson), 'frames');
 

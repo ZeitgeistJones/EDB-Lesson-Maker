@@ -5,14 +5,6 @@
  * No ClassIn scripting — mechanics are staged with layers.
  */
 (function () {
-  const ICON_PATHS = [
-    'assets/03_vocab-icons/apple.svg',
-    'assets/03_vocab-icons/book.svg',
-    'assets/03_vocab-icons/ball.svg',
-    'assets/03_vocab-icons/house.svg',
-    'assets/03_vocab-icons/sun.svg',
-    'assets/03_vocab-icons/tree.svg',
-  ];
   const CHAR_PATHS = [
     'assets/01_characters/alex.png',
     'assets/01_characters/bailey.png',
@@ -136,22 +128,12 @@
     const L = layout || window.EdbLayout;
     const vocab = vocabList(lesson);
     if (!vocab.length) return;
-    const icons = pick(ICON_PATHS, vocab.length, 1);
-    // Targets sit in targetBay as locked ghost pads (visual on bg already has words)
-    // Unlocked icons/emojis in dock
-    const items = vocab.map((v, i) => ({
+    // Pack icons resolved at export via VocabIcons + meta.word (no mixed SVG styles)
+    L.placeDockRow(page, vocab.map((v) => ({
       kind: 'emoji',
       emoji: v.emoji || '•',
       role: 'matchPiece',
       meta: { word: v.word },
-      asset: icons[i] || null,
-    }));
-    L.placeDockRow(page, items.map((it) => ({
-      kind: it.asset ? 'image' : 'emoji',
-      asset: it.asset,
-      emoji: it.emoji,
-      role: it.role,
-      meta: it.meta,
     })), { w: 96, h: 96 });
     page.notes.push('recipe:matchDock');
   }
@@ -288,10 +270,9 @@
         role: 'buildSlot',
       });
     });
-    L.placeDockRow(page, parts.map((v, i) => ({
-      kind: 'image',
+    L.placeDockRow(page, parts.map((v) => ({
+      kind: 'emoji',
       emoji: v.emoji || '•',
-      asset: ICON_PATHS[i % ICON_PATHS.length],
       role: 'buildPart',
       meta: { word: v.word },
     })), { w: 96, h: 96 });
@@ -313,13 +294,12 @@
       anchor: { x: art.x + 20, y: art.y + 20, w: 180, h: 220 },
       role: 'dressBody',
     });
-    L.placeDockRow(page, props.map((v, i) => ({
-      kind: 'image',
+    L.placeDockRow(page, props.map((v) => ({
+      kind: 'emoji',
+      emoji: v.emoji || '•',
       text: v.word,
-      emoji: v.emoji,
       role: 'dressPart',
       meta: { word: v.word },
-      asset: ICON_PATHS[i % ICON_PATHS.length],
     })), { w: 96, h: 96 });
     page.notes.push('recipe:dressUp');
   }

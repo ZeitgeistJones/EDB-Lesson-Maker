@@ -1,0 +1,16 @@
+Vocabulary icon pack
+====================
+Artwork: Twemoji by Twitter, Inc and other contributors
+License: CC BY 4.0  —  https://creativecommons.org/licenses/by/4.0/
+Source : https://github.com/jdecked/twemoji
+
+CC BY 4.0 permits commercial use and resale of derived products,
+provided the credit line above appears somewhere in the product
+(footer, About page, or a credits file shipped with the lessons).
+
+There is no ShareAlike obligation — your lesson materials remain
+yours to license however you choose.
+
+Keyword index derived from Unicode CLDR annotation data.
+No OpenMoji artwork is included (OpenMoji is CC BY-SA, deliberately
+avoided here so the ShareAlike term does not attach to your product).

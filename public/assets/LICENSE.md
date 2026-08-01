@@ -10,7 +10,7 @@ Do **not** redistribute these folders as a standalone competing stock pack.
 | Project-authored scene SVGs | `02_scenes-backgrounds/*/` | CC0 (project) | Not required | Gradient scene placeholders for Gemini `visualTheme` values | 2026-08-01 |
 | Project-authored vocab icons | `03_vocab-icons/`, `05_source-svg/openclipart/` | CC0 (project) | Not required | Simple icons; replace with OpenClipart CC0 picks as curated | 2026-08-01 |
 | Project-authored decorations | `04_decoration-ui/star.svg`, `confetti.svg` | CC0 (project) | Not required | Stand-ins for Open Doodles accents; drop official doodles into `05_source-svg/open-doodles/` when downloaded | 2026-08-01 |
-| Wikimedia Commons (partial) | `02_scenes-backgrounds/park/park-1.jpg`, `sports/sports-1.jpg` | Check Commons file page (typically free licenses) | See Commons file page if required | Rate-limits blocked full set; prefer SVG placeholders for other themes | 2026-08-01 |
+| Twemoji vocabulary pack | `07_vocab-pack/` | CC BY 4.0 | Required — "Twemoji by Twitter, Inc and other contributors" | 170 word-keyed icons, single consistent style | 2026-08-02 |
 
 ## Manual drops still recommended
 
@@ -21,3 +21,4 @@ Do **not** redistribute these folders as a standalone competing stock pack.
 ## Avoid in this bank
 
 Storyset/Freepik free (attribution), Vecteezy free (caps), unverified SVG Repo icons, Blush branded/Disney tiers.
+Wikimedia Commons (per-file licenses vary; verify individually before use).
