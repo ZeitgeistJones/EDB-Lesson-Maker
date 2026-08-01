@@ -34,9 +34,10 @@
     vocab: {
       header:    { x: 48, y: 36,  w: 700, h: 50,  noOverlap: true },
       bodyText:  { x: 48, y: 100, w: 700, h: 320, noOverlap: true },
-      artSafe:   { x: 780, y: 100, w: 450, h: 200, noOverlap: false },
-      dock:      { x: 780, y: 320, w: 450, h: 230, noOverlap: false },
-      targetBay: { x: 48, y: 100, w: 700, h: 320, noOverlap: false },
+      // Covers/targets stay in the right column — never over word cards
+      artSafe:   { x: 780, y: 80,  w: 450, h: 220, noOverlap: false },
+      targetBay: { x: 780, y: 80,  w: 450, h: 220, noOverlap: false },
+      dock:      { x: 780, y: 310, w: 450, h: 250, noOverlap: false },
       rewardPocket: { x: 1100, y: 36, w: 140, h: 90, noOverlap: false },
     },
     vocabSentences: {
@@ -81,10 +82,12 @@
     },
     speaking: {
       header:    { x: 48, y: 36,  w: 1184, h: 50, noOverlap: true },
-      bodyText:  { x: 48, y: 100, w: 1000, h: 280, noOverlap: true },
+      // Question band only — sample answer lives in targetBay under the sticky
+      bodyText:  { x: 48, y: 100, w: 1000, h: 180, noOverlap: true },
       artSafe:   { x: 1060, y: 140, w: 180, h: 220, noOverlap: false },
       dock:      { x: 48, y: 420, w: 1184, h: 140, noOverlap: false },
-      targetBay: { x: 48, y: 300, w: 1000, h: 100, noOverlap: false },
+      // Must match EdbActivities.speakingCoverRect / painted sample band
+      targetBay: { x: 88, y: 300, w: 520, h: 90, noOverlap: false },
       rewardPocket: { x: 1100, y: 36, w: 140, h: 80, noOverlap: false },
     },
     activity: {
@@ -97,11 +100,14 @@
     },
     wrap: {
       header:    { x: 200, y: 40,  w: 880, h: 100, noOverlap: true },
-      bodyText:  { x: 200, y: 150, w: 880, h: 160, noOverlap: true },
-      artSafe:   { x: 40, y: 300, w: 220, h: 260, noOverlap: false },
-      dock:      { x: 280, y: 400, w: 900, h: 150, noOverlap: false },
+      bodyText:  { x: 200, y: 140, w: 880, h: 140, noOverlap: true },
+      // Above dock so character feet don't sit on tiles
+      artSafe:   { x: 40, y: 140, w: 200, h: 200, noOverlap: false },
+      dock:      { x: 280, y: 420, w: 900, h: 130, noOverlap: false },
       targetBay: { x: 280, y: 320, w: 900, h: 70, noOverlap: false },
       rewardPocket: { x: 1080, y: 40, w: 160, h: 110, noOverlap: false },
+      // Teacher answer strip — separate from rewardPocket
+      answerStrip: { x: 40, y: 545, w: 220, h: 32, noOverlap: false },
     },
   };
 
@@ -245,6 +251,22 @@
    * opts: { prefer, intentional, role, kind, asset, locked, meta, anchor }
    * If intentional + anchor provided, place overlapping the anchor.
    */
+  function clampToBoard(r, w, h) {
+    return rect(
+      Math.max(MARGIN, Math.min(W - MARGIN - w, r.x)),
+      Math.max(MARGIN, Math.min(H - MARGIN - h, r.y)),
+      w,
+      h
+    );
+  }
+
+  /** Bottom padding (px) so DOM chrome clears the dock zone. */
+  function dockReservePx(pageType) {
+    const z = (ZONE_TEMPLATES[pageType] || {}).dock;
+    if (!z) return 130;
+    return Math.max(130, H - z.y + 8);
+  }
+
   function place(page, opts) {
     const w = opts.w || 96;
     const h = opts.h || 96;
@@ -253,18 +275,17 @@
 
     let chosen = null;
 
-    if (intentional && opts.anchor) {
+    if (opts._force) {
+      chosen = clampToBoard(normalize(opts._force), w, h);
+    } else if (intentional && opts.anchor) {
       const a = normalize(opts.anchor);
       // Center piece on anchor (cover / flap / dress)
-      chosen = rect(
+      chosen = clampToBoard(rect(
         Math.round(a.x + a.w / 2 - w / 2),
         Math.round(a.y + a.h / 2 - h / 2),
         w,
         h
-      );
-      // Clamp to board
-      chosen.x = Math.max(MARGIN, Math.min(W - MARGIN - w, chosen.x));
-      chosen.y = Math.max(MARGIN, Math.min(H - MARGIN - h, chosen.y));
+      ), w, h);
       page.notes.push(`intentional:${opts.role || opts.kind || 'overlap'}`);
     } else {
       const zone = zoneRect(page, prefer) || zoneRect(page, 'artSafe') || rect(MARGIN, MARGIN, W - 2 * MARGIN, H - 2 * MARGIN);
@@ -287,8 +308,7 @@
           w,
           h
         );
-        chosen.x = Math.max(MARGIN, Math.min(W - MARGIN - w, chosen.x));
-        chosen.y = Math.max(MARGIN, Math.min(H - MARGIN - h, chosen.y));
+        chosen = clampToBoard(chosen, w, h);
       }
     }
 
@@ -326,22 +346,32 @@
 
   function placeInDock(page, items, size) {
     const dock = zoneRect(page, 'dock');
-    const w = size?.w || 100;
-    const h = size?.h || 54;
+    if (!dock || !items.length) return [];
+    let w = size?.w || 100;
+    let h = size?.h || 54;
     const gap = MIN_GAP;
+    const n = items.length;
+    const maxW = Math.floor((dock.w - gap * Math.max(0, n - 1)) / n);
+    if (maxW < w && maxW >= 40) {
+      const scale = maxW / w;
+      w = maxW;
+      h = Math.max(36, Math.floor(h * scale));
+    }
     const cols = Math.max(1, Math.floor((dock.w + gap) / (w + gap)));
+    const rowsNeeded = Math.ceil(n / cols);
+    const maxH = Math.floor((dock.h - gap * Math.max(0, rowsNeeded - 1)) / rowsNeeded);
+    if (maxH < h && maxH >= 32) h = maxH;
     return items.map((item, i) => {
       const col = i % cols;
       const row = Math.floor(i / cols);
-      const x = dock.x + col * (w + gap);
-      const y = dock.y + row * (h + gap);
+      let x = dock.x + col * (w + gap);
+      let y = dock.y + row * (h + gap);
+      x = Math.max(dock.x, Math.min(dock.x + dock.w - w, x));
+      y = Math.max(dock.y, Math.min(dock.y + dock.h - h, y));
       return place(page, Object.assign({}, item, {
         w, h,
-        intentional: false,
         prefer: 'dock',
-        // Force dock cell via anchor-like rect inside dock
         intentional: false,
-        // Direct placement override:
         _force: rect(x, y, w, h),
       }));
     });
@@ -350,16 +380,33 @@
   // Stronger dock placer that doesn't rely on score grid
   function placeDockRow(page, items, size) {
     const dock = zoneRect(page, 'dock');
-    const w = size?.w || 100;
-    const h = size?.h || 54;
+    if (!dock || !items.length) return [];
+    let w = size?.w || 100;
+    let h = size?.h || 54;
     const gap = MIN_GAP;
-    const cols = Math.max(1, Math.floor((dock.w + gap) / (w + gap)));
+    const n = items.length;
+    // Shrink to fit one row when possible
+    const maxW = Math.floor((dock.w - gap * Math.max(0, n - 1)) / n);
+    if (maxW < w && maxW >= 40) {
+      const scale = maxW / w;
+      w = maxW;
+      h = Math.max(36, Math.floor(h * scale));
+    }
+    let cols = Math.max(1, Math.floor((dock.w + gap) / (w + gap)));
+    const rowsNeeded = Math.ceil(n / cols);
+    const maxH = Math.floor((dock.h - gap * Math.max(0, rowsNeeded - 1)) / rowsNeeded);
+    if (maxH < h && maxH >= 32) h = maxH;
+    cols = Math.max(1, Math.floor((dock.w + gap) / (w + gap)));
+
     const placed = [];
     items.forEach((item, i) => {
       const col = i % cols;
       const row = Math.floor(i / cols);
       let x = dock.x + col * (w + gap);
       let y = dock.y + row * (h + gap);
+      // Clamp inside dock, then board margins
+      x = Math.max(dock.x, Math.min(dock.x + dock.w - w, x));
+      y = Math.max(dock.y, Math.min(dock.y + dock.h - h, y));
       x = Math.max(MARGIN, Math.min(W - MARGIN - w, x));
       y = Math.max(MARGIN, Math.min(H - MARGIN - h, y));
       const piece = {
@@ -398,6 +445,7 @@
   window.EdbLayout = {
     W, H, MARGIN, ZONE_TEMPLATES,
     createPage, zoneRect, place, placeDockRow, placeInDock,
+    dockReservePx, clampToBoard,
     rect, iou, intersect, center, normalize, debugOverlay, area,
   };
 })();

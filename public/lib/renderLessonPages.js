@@ -41,8 +41,12 @@
       padding: '36px 48px',
     });
     if (opts && opts.reserveDock) {
-      // Keep bottom dock clear of chrome so unlocked pieces aren't painted over
-      p.style.paddingBottom = '130px';
+      // Match dock zone height so chrome doesn't paint over pieces
+      const pageType = opts.pageType || 'warm';
+      const pad = window.EdbLayout
+        ? window.EdbLayout.dockReservePx(pageType)
+        : 130;
+      p.style.paddingBottom = pad + 'px';
     }
     return p;
   }
@@ -152,7 +156,9 @@
   }
 
   function makeTitle(lesson, meta, boardPlan) {
-    const p = pageShell(THEME_COLORS.title, { reserveDock: hasRecipe(boardPlan, 'title') });
+    const p = pageShell(THEME_COLORS.title, {
+      reserveDock: hasRecipe(boardPlan, 'title'), pageType: 'title',
+    });
     p.appendChild(el('div', {
       color: 'rgba(255,255,255,0.75)', fontSize: '16px', fontWeight: '600',
       textTransform: 'uppercase', letterSpacing: '0.12em', marginTop: '90px',
@@ -171,7 +177,9 @@
   }
 
   function makeWarmUp(lesson, boardPlan) {
-    const p = pageShell(THEME_COLORS.warm, { reserveDock: hasRecipe(boardPlan, 'warm') });
+    const p = pageShell(THEME_COLORS.warm, {
+      reserveDock: hasRecipe(boardPlan, 'warm'), pageType: 'warm',
+    });
     p.appendChild(header('Warm Up', '#e11d48'));
     p.appendChild(card(`<div style="font-size:28px;font-weight:700;color:#1e3a8a;text-align:center">${esc(lesson.warmUp?.question || '')}</div>`));
     p.appendChild(el('div', { fontSize: '14px', color: '#64748b', margin: '8px 0 6px', fontWeight: '700' }, 'Sample answer'));
@@ -183,7 +191,9 @@
 
   function makeVocab(lesson, boardPlan) {
     const interactive = hasRecipe(boardPlan, 'newWords');
-    const p = pageShell(THEME_COLORS.vocab, { reserveDock: interactive });
+    const p = pageShell(THEME_COLORS.vocab, {
+      reserveDock: interactive, pageType: 'vocab',
+    });
     p.appendChild(header('New Words', '#7c3aed'));
     const hint = recipeHint(boardPlan, 'newWords');
     p.appendChild(el('div', { fontSize: '16px', color: '#64748b', marginBottom: '14px' },
@@ -243,7 +253,9 @@
 
   function makeStoryPage(lesson, page, index, boardPlan) {
     const pageKey = 'story' + index;
-    const p = pageShell('#fff7ed', { reserveDock: hasRecipe(boardPlan, pageKey) });
+    const p = pageShell('#fff7ed', {
+      reserveDock: hasRecipe(boardPlan, pageKey), pageType: 'story',
+    });
     const bg = el('img', {
       position: 'absolute', top: '0', left: '0', width: '100%', height: '100%',
       objectFit: 'cover', opacity: '0.35', zIndex: '0',
@@ -317,20 +329,60 @@
 
   function makeSpeaking(item, i, total, boardPlan) {
     const pageKey = 'speaking:' + i;
-    const p = pageShell(THEME_COLORS.speak, { reserveDock: hasRecipe(boardPlan, pageKey) });
+    const covered = hasRecipe(boardPlan, pageKey);
+    const p = pageShell(THEME_COLORS.speak, {
+      reserveDock: covered, pageType: 'speaking',
+    });
     p.appendChild(header("Let's Talk!", '#15803d'));
     p.appendChild(el('div', { fontSize: '14px', color: '#64748b', marginBottom: '10px' },
-      `Question ${i + 1} of ${total}` + (hasRecipe(boardPlan, pageKey) ? ' — peel the sticky after answering' : '')));
+      `Question ${i + 1} of ${total}` + (covered ? ' — peel the sticky after answering' : '')));
     p.appendChild(card(`<div style="font-size:26px;font-weight:800;text-align:center;color:#14532d">${esc(item.question || '')}</div>`));
-    p.appendChild(el('div', { fontSize: '13px', color: '#64748b', fontWeight: '700', margin: '8px 0' }, 'Sample answer'));
-    p.appendChild(card(`<div style="font-size:20px;font-style:italic;text-align:center;color:#166534">${esc(item.sampleAnswer || '')}</div>`));
+    if (covered) {
+      // Sample band aligned to sticky (speaking.targetBay / speakingCoverRect)
+      const r = (window.EdbActivities && window.EdbActivities.speakingCoverRect())
+        || { x: 88, y: 300, w: 520, h: 90 };
+      p.appendChild(el('div', {
+        position: 'absolute',
+        left: r.x + 'px',
+        top: r.y + 'px',
+        width: r.w + 'px',
+        height: r.h + 'px',
+        boxSizing: 'border-box',
+        background: 'rgba(255,255,255,0.95)',
+        borderRadius: '14px',
+        padding: '12px 16px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '18px',
+        fontStyle: 'italic',
+        color: '#166534',
+        textAlign: 'center',
+        zIndex: '2',
+        boxShadow: '0 6px 18px rgba(15,23,42,0.08)',
+      }, esc(item.sampleAnswer || '')));
+      p.appendChild(el('div', {
+        position: 'absolute',
+        left: r.x + 'px',
+        top: (r.y - 22) + 'px',
+        fontSize: '12px',
+        color: '#64748b',
+        fontWeight: '700',
+        zIndex: '2',
+      }, 'Sample answer'));
+    } else {
+      p.appendChild(el('div', { fontSize: '13px', color: '#64748b', fontWeight: '700', margin: '8px 0' }, 'Sample answer'));
+      p.appendChild(card(`<div style="font-size:20px;font-style:italic;text-align:center;color:#166534">${esc(item.sampleAnswer || '')}</div>`));
+    }
     drawDebugZones(p, 'speaking');
     return p;
   }
 
   function makeActivity(lesson, boardPlan) {
     const interactive = hasRecipe(boardPlan, 'activity');
-    const p = pageShell(THEME_COLORS.activity, { reserveDock: interactive });
+    const p = pageShell(THEME_COLORS.activity, {
+      reserveDock: interactive, pageType: 'activity',
+    });
     p.appendChild(header(lesson.activity?.title || 'Your Turn!', '#4338ca'));
     const hint = recipeHint(boardPlan, 'activity');
     p.appendChild(el('div', { fontSize: '16px', color: '#64748b', marginBottom: '12px', textAlign: 'center' },
@@ -346,7 +398,9 @@
 
   function makeWrap(lesson, boardPlan) {
     const interactive = hasRecipe(boardPlan, 'wrap');
-    const p = pageShell(THEME_COLORS.wrap, { reserveDock: interactive });
+    const p = pageShell(THEME_COLORS.wrap, {
+      reserveDock: interactive, pageType: 'wrap',
+    });
     p.appendChild(el('div', {
       color: '#fff', fontSize: '48px', fontWeight: '800', textAlign: 'center', marginTop: '40px',
     }, 'Great Job!'));
@@ -361,7 +415,8 @@
         color: '#fff', fontSize: '22px', textAlign: 'center', marginBottom: '10px',
       }, esc(s)));
     });
-    placeCharacter(p, 'wrap', 5);
+    // Skip character on interactive wrap so tiles aren't baked onto the mascot
+    if (!interactive) placeCharacter(p, 'wrap', 5);
     drawDebugZones(p, 'wrap');
     return p;
   }

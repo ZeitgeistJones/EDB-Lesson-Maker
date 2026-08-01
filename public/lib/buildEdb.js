@@ -282,9 +282,34 @@ async function loadAssetPng(src, w, h) {
   });
 }
 
+function placeholderPng(w, h, label) {
+  const c = document.createElement('canvas');
+  c.width = Math.max(24, w || 96);
+  c.height = Math.max(24, h || 96);
+  const ctx = c.getContext('2d');
+  const r = 10;
+  ctx.fillStyle = '#cbd5e1';
+  ctx.beginPath();
+  ctx.moveTo(r, 0); ctx.arcTo(c.width, 0, c.width, c.height, r);
+  ctx.arcTo(c.width, c.height, 0, c.height, r); ctx.arcTo(0, c.height, 0, 0, r);
+  ctx.arcTo(0, 0, c.width, 0, r); ctx.closePath();
+  ctx.fill();
+  ctx.fillStyle = '#475569';
+  ctx.font = `700 ${Math.max(12, Math.floor(c.height * 0.22))}px Poppins, sans-serif`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(String(label || '?').slice(0, 12), c.width / 2, c.height / 2, c.width - 12);
+  return canvasToPng(c);
+}
+
+/** Asset first → emoji/tile fallback → solid placeholder (never silent-drop). */
 async function pieceToPng(piece) {
-  if (piece.kind === 'emoji' || (piece.emoji && !piece.asset && !piece.text)) {
-    return glyphToPng(piece.emoji || '•', Math.max(piece.w, piece.h, 96));
+  if (piece.asset) {
+    const png = await loadAssetPng(piece.asset, piece.w, piece.h);
+    if (png) return png;
+  }
+  if (piece.kind === 'emoji' || piece.emoji) {
+    return glyphToPng(piece.emoji || '•', Math.max(piece.w || 96, piece.h || 96, 64));
   }
   if (piece.kind === 'tile' || (piece.text && piece.kind !== 'text')) {
     return tileToPng(piece.text || piece.label || '?', {
@@ -292,15 +317,10 @@ async function pieceToPng(piece) {
       h: piece.h || 54,
     });
   }
-  if (piece.asset) {
-    const png = await loadAssetPng(piece.asset, piece.w, piece.h);
-    if (png) return png;
-  }
-  if (piece.emoji) return glyphToPng(piece.emoji, Math.max(piece.w, piece.h, 96));
-  if (piece.text) {
+  if (piece.text && piece.kind !== 'text') {
     return tileToPng(piece.text, { w: piece.w || 186, h: piece.h || 54 });
   }
-  return null;
+  return placeholderPng(piece.w, piece.h, piece.role || piece.label || '?');
 }
 
 /**
@@ -317,6 +337,12 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
     ? boardPlanOrSlots
     : null;
   const slots = plan ? plan.slots : boardPlanOrSlots;
+
+  if (plan && plan.pages.length && pages.length && plan.pages.length !== pages.length) {
+    throw new Error(
+      `Board spine mismatch: plan has ${plan.pages.length} pages but rendered ${pages.length}`
+    );
+  }
 
   for (let i = 0; i < pages.length; i++) {
     const png = await elementToPng(pages[i]);

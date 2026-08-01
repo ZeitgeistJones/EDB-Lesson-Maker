@@ -46,7 +46,43 @@
   }
 
   function vocabList(lesson) {
-    return (lesson.vocabulary || []).slice(0, 6);
+    return (lesson.vocabulary || []).filter((v) => v && (v.word || v.emoji)).slice(0, 6);
+  }
+
+  function reviewWords(lesson) {
+    const sentence = (lesson.reviewSentences || [])[0] || '';
+    return sentence.replace(/[.!?]$/, '').split(/\s+/).filter(Boolean).slice(0, 5);
+  }
+
+  /** Must match speaking.targetBay in edbLayout ZONE_TEMPLATES. */
+  function speakingCoverRect() {
+    return { x: 88, y: 300, w: 520, h: 90 };
+  }
+
+  /** Drop lowest-priority extras until unique pageKeys ≤ maxKeys. */
+  function capAssignments(assignments, maxKeys) {
+    const list = assignments.slice();
+    const uniqueCount = () => new Set(list.map((a) => a.pageKey)).size;
+    const dropPreds = [
+      (a) => a.recipeId === 'revealReward',
+      (a) => a.pageKey === 'speaking:1',
+      (a) => a.pageKey === 'story1',
+      (a) => a.pageKey === 'speaking:0',
+      (a) => a.pageKey === 'activity',
+    ];
+    while (uniqueCount() > maxKeys && list.length) {
+      let dropped = false;
+      for (const pred of dropPreds) {
+        const idx = list.findIndex(pred);
+        if (idx >= 0) {
+          list.splice(idx, 1);
+          dropped = true;
+          break;
+        }
+      }
+      if (!dropped) list.pop();
+    }
+    return list;
   }
 
   /** Canvas PNG helpers for covers/flaps/slots when no dedicated art */
@@ -99,6 +135,7 @@
   function matchDock(lesson, page, layout) {
     const L = layout || window.EdbLayout;
     const vocab = vocabList(lesson);
+    if (!vocab.length) return;
     const icons = pick(ICON_PATHS, vocab.length, 1);
     // Targets sit in targetBay as locked ghost pads (visual on bg already has words)
     // Unlocked icons/emojis in dock
@@ -122,7 +159,8 @@
   function orderLine(lesson, page, layout) {
     const L = layout || window.EdbLayout;
     const sentence = (lesson.reviewSentences || [])[0] || '';
-    const words = sentence.replace(/[.!?]$/, '').split(/\s+/).filter(Boolean).slice(0, 5);
+    const words = reviewWords(lesson);
+    if (!words.length) return;
     const bay = L.zoneRect(page, 'targetBay');
     const padW = Math.min(160, Math.floor((bay.w - 20) / Math.max(words.length, 1)) - 8);
     const padH = 54;
@@ -149,17 +187,19 @@
       meta: { word },
     })), { w: Math.min(186, padW + 20), h: 54 });
     if (sentence) {
+      // Keep answer off rewardPocket so revealReward flap doesn't cover it
+      const strip = L.zoneRect(page, 'answerStrip') || { x: 40, y: 545, w: 220, h: 32 };
       L.place(page, {
         locked: true,
         kind: 'text',
         text: 'Answer: ' + sentence,
-        prefer: 'rewardPocket',
-        w: 400, h: 28,
-        size: 14,
+        prefer: 'answerStrip',
+        w: strip.w, h: strip.h,
+        size: 12,
         color: [255, 255, 255, 220],
         role: 'answerKey',
         intentional: true,
-        anchor: L.zoneRect(page, 'rewardPocket'),
+        anchor: strip,
       });
     }
     page.notes.push('recipe:orderLine');
@@ -168,6 +208,7 @@
   function hideSeek(lesson, page, layout) {
     const L = layout || window.EdbLayout;
     const vocab = vocabList(lesson);
+    if (!vocab.length) return;
     const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
     const n = Math.min(vocab.length, 4);
     const cellW = 110;
@@ -231,6 +272,7 @@
     const L = layout || window.EdbLayout;
     const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
     const parts = vocabList(lesson).slice(0, 4);
+    if (!parts.length) return;
     const slotW = 100;
     const slotH = 100;
     parts.forEach((_, i) => {
@@ -247,7 +289,7 @@
       });
     });
     L.placeDockRow(page, parts.map((v, i) => ({
-      kind: 'emoji',
+      kind: 'image',
       emoji: v.emoji || '•',
       asset: ICON_PATHS[i % ICON_PATHS.length],
       role: 'buildPart',
@@ -258,27 +300,27 @@
 
   function dressUp(lesson, page, layout) {
     const L = layout || window.EdbLayout;
+    const props = vocabList(lesson).slice(0, 4);
+    if (!props.length) return;
     const art = L.zoneRect(page, 'artSafe');
     const body = CHAR_PATHS[hashStr(lesson.title) % CHAR_PATHS.length];
     L.place(page, {
       locked: true,
       kind: 'image',
       asset: body,
-      w: 200, h: 260,
+      w: 180, h: 220,
       intentional: true,
-      anchor: { x: art.x + 40, y: art.y + 30, w: 200, h: 260 },
+      anchor: { x: art.x + 20, y: art.y + 20, w: 180, h: 220 },
       role: 'dressBody',
     });
-    // Outfit / prop pieces from vocab + icons
-    const props = vocabList(lesson).slice(0, 4);
     L.placeDockRow(page, props.map((v, i) => ({
-      kind: 'tile',
+      kind: 'image',
       text: v.word,
       emoji: v.emoji,
       role: 'dressPart',
       meta: { word: v.word },
       asset: ICON_PATHS[i % ICON_PATHS.length],
-    })), { w: 120, h: 56 });
+    })), { w: 96, h: 96 });
     page.notes.push('recipe:dressUp');
   }
 
@@ -286,14 +328,8 @@
     const L = layout || window.EdbLayout;
     const q = ctx?.speakingItem;
     if (!q) return;
-    // Cover sits over sample-answer region (lower bodyText)
-    const body = L.zoneRect(page, 'bodyText');
-    const coverRect = {
-      x: body.x + 40,
-      y: body.y + body.h - 120,
-      w: Math.min(520, body.w - 80),
-      h: 90,
-    };
+    // Sticky covers targetBay — painted sample band uses the same rect
+    const coverRect = L.zoneRect(page, 'targetBay') || speakingCoverRect();
     L.place(page, {
       locked: false,
       kind: 'image',
@@ -328,6 +364,7 @@
       });
     });
     const cards = vocabList(lesson).slice(0, 6);
+    if (!cards.length) return;
     L.placeDockRow(page, cards.map((v) => ({
       kind: 'tile',
       text: v.word,
@@ -352,25 +389,31 @@
   /**
    * Plan activities across the lesson spine.
    * Returns { assignments: [{ pageKey, recipeId, ctx? }], seed }
-   * pageKey is a stable logical id used when rendering pages.
+   * Skips recipes when required content is empty (no empty "Interactive" docks).
    */
   function plan(lesson, meta) {
     const seed = hashStr((lesson.title || '') + '|' + (meta?.level || '') + '|' + (meta?.duration || ''));
     const pickBit = (n) => ((seed >>> n) & 1) === 1;
-
+    const vocab = vocabList(lesson);
+    const hasVocab = vocab.length > 0;
+    const hasSentence = reviewWords(lesson).length > 0;
     const assignments = [];
 
-    // New Words
-    assignments.push({
-      pageKey: 'newWords',
-      recipeId: pickBit(0) ? 'hideSeek' : 'matchDock',
-    });
+    // New Words — hideSeek needs ≥3 words; thin vocab always matchDock
+    if (hasVocab) {
+      const recipeId = vocab.length < 3
+        ? 'matchDock'
+        : (pickBit(0) ? 'hideSeek' : 'matchDock');
+      assignments.push({ pageKey: 'newWords', recipeId });
+    }
 
     // Story page 2
-    assignments.push({
-      pageKey: 'story1',
-      recipeId: pickBit(1) ? 'buildScene' : 'hideSeek',
-    });
+    if (hasVocab) {
+      assignments.push({
+        pageKey: 'story1',
+        recipeId: pickBit(1) ? 'buildScene' : 'hideSeek',
+      });
+    }
 
     // Speaking — cover answers on first 1–2 questions
     const speaking = lesson.speakingQuestions || [];
@@ -386,25 +429,32 @@
     }
 
     // Activity section
-    assignments.push({
-      pageKey: 'activity',
-      recipeId: pickBit(5) ? 'dressUp' : (pickBit(6) ? 'sortBins' : 'buildScene'),
-    });
-
-    // Wrap
-    assignments.push({
-      pageKey: 'wrap',
-      recipeId: 'orderLine',
-    });
-    if (pickBit(7)) {
+    if (hasVocab) {
       assignments.push({
-        pageKey: 'wrap',
-        recipeId: 'revealReward',
+        pageKey: 'activity',
+        recipeId: pickBit(5) ? 'dressUp' : (pickBit(6) ? 'sortBins' : 'buildScene'),
       });
     }
 
-    // Cap to ~5 unique pageKeys with activity (merge wrap rewards)
-    return { assignments, seed, recipes: Object.keys(RECIPES) };
+    // Wrap — only when there is a buildable sentence
+    if (hasSentence) {
+      assignments.push({
+        pageKey: 'wrap',
+        recipeId: 'orderLine',
+      });
+      if (pickBit(7)) {
+        assignments.push({
+          pageKey: 'wrap',
+          recipeId: 'revealReward',
+        });
+      }
+    }
+
+    return {
+      assignments: capAssignments(assignments, 5),
+      seed,
+      recipes: Object.keys(RECIPES),
+    };
   }
 
   /**
@@ -494,6 +544,7 @@
     applyToPage,
     buildBoardPlan,
     pageTypeForKey,
+    speakingCoverRect,
     solidPng,
     slotGhostPng,
     stickyPng,
