@@ -76,31 +76,6 @@
     });
   }
 
-  function placeCharacter(p, pageType, index) {
-    if (!window.EdbLayout) {
-      p.appendChild(img(characterUrl(index), {
-        right: '40px', bottom: '20px', width: '200px', height: '240px',
-      }));
-      return;
-    }
-    const page = window.EdbLayout.createPage(pageType);
-    const piece = window.EdbLayout.place(page, {
-      locked: true,
-      kind: 'image',
-      asset: characterUrl(index),
-      w: pageType === 'title' ? 280 : 200,
-      h: pageType === 'title' ? 320 : 240,
-      prefer: 'artSafe',
-      role: 'character',
-    });
-    p.appendChild(img(piece.asset, {
-      left: piece.x + 'px',
-      top: piece.y + 'px',
-      width: piece.w + 'px',
-      height: piece.h + 'px',
-    }));
-  }
-
   function recipeHint(boardPlan, pageKey) {
     const ids = (boardPlan?.assignments || [])
       .filter((a) => a.pageKey === pageKey)
@@ -141,34 +116,6 @@
     i.src = src;
     i.alt = '';
     return i;
-  }
-
-  function applyPackBg(p, pick) {
-    if (!pick || !pick.path) return;
-    const bgImg = el('img', {
-      position: 'absolute', left: '0', top: '0', width: '100%', height: '100%',
-      objectFit: 'cover', zIndex: '0', pointerEvents: 'none',
-    });
-    bgImg.src = pick.path;
-    bgImg.alt = '';
-    p.style.background = pick.type === 'flat' ? '#f8fafc' : '#94a3b8';
-    p.insertBefore(bgImg, p.firstChild);
-    if (pick.type === 'scene') {
-      const scrim = el('div', {
-        position: 'absolute', left: '0', top: '0', width: '100%', height: '100%',
-        background: 'linear-gradient(180deg, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.32) 50%, rgba(255,255,255,0.18) 100%)',
-        zIndex: '0', pointerEvents: 'none',
-      });
-      p.insertBefore(scrim, bgImg.nextSibling);
-    }
-    Array.from(p.children).forEach((c) => {
-      if (c === bgImg || c.tagName === 'IMG' && c === bgImg) return;
-      if (c.style.position === 'absolute' && (c === bgImg || c.style.zIndex === '0')) return;
-      if (!c.style.position || c.style.position === 'static') {
-        c.style.position = 'relative';
-      }
-      if (!c.style.zIndex || c.style.zIndex === 'auto') c.style.zIndex = '1';
-    });
   }
 
   /** Section list for SceneBackgrounds.planFor — mirrors the render spine. */
@@ -220,18 +167,6 @@
     return sections;
   }
 
-  function themeBgUrl(theme) {
-    const t = String(theme || 'nature').toLowerCase();
-    const known = ['park', 'school', 'home', 'city', 'beach', 'nature', 'kitchen', 'sports'];
-    const key = known.includes(t) ? t : 'nature';
-    return `assets/02_scenes-backgrounds/${key}/${key}-bg.svg`;
-  }
-
-  function characterUrl(i) {
-    const names = ['alex', 'bailey', 'casey', 'drew', 'eden', 'finley', 'gray', 'harper'];
-    return `assets/01_characters/${names[i % names.length]}.png`;
-  }
-
   function makeTitle(lesson, meta, boardPlan) {
     const p = pageShell(THEME_COLORS.title, {
       reserveDock: hasRecipe(boardPlan, 'title'), pageType: 'title',
@@ -247,8 +182,6 @@
     p.appendChild(el('div', {
       color: 'rgba(255,255,255,0.9)', fontSize: '22px', marginTop: '18px', fontStyle: 'italic',
     }, `${meta.level || ''}  ·  ${meta.duration || ''}-minute lesson`));
-    placeCharacter(p, 'title', 0);
-    p.appendChild(img('assets/04_decoration-ui/star.svg', { right: '320px', top: '70px', width: '64px', height: '64px' }));
     drawDebugZones(p, 'title');
     return p;
   }
@@ -261,7 +194,6 @@
     p.appendChild(card(`<div style="font-size:28px;font-weight:700;color:#1e3a8a;text-align:center">${esc(lesson.warmUp?.question || '')}</div>`));
     p.appendChild(el('div', { fontSize: '14px', color: '#64748b', margin: '8px 0 6px', fontWeight: '700' }, 'Sample answer'));
     p.appendChild(card(`<div style="font-size:22px;font-style:italic;color:#be123c;text-align:center">${esc(lesson.warmUp?.sampleAnswer || '')}</div>`));
-    placeCharacter(p, 'warm', 1);
     drawDebugZones(p, 'warm');
     return p;
   }
@@ -336,12 +268,23 @@
     return p;
   }
 
+  function themeEmoji(theme) {
+    const t = String(theme || '').toLowerCase();
+    if (t.includes('beach')) return '🏖️';
+    if (t.includes('school')) return '🏫';
+    if (t.includes('kitchen') || t.includes('home')) return '🏠';
+    if (t.includes('city')) return '🏙️';
+    if (t.includes('sport')) return '⚽';
+    if (t.includes('park')) return '🌳';
+    if (t.includes('bakery') || t.includes('food')) return '🥐';
+    return '📖';
+  }
+
   function makeStoryPage(lesson, page, index, boardPlan) {
     const pageKey = 'story' + index;
-    const p = pageShell('#fff7ed', {
+    const p = pageShell(THEME_COLORS.story, {
       reserveDock: hasRecipe(boardPlan, pageKey), pageType: 'story',
     });
-    // Pack scene/flat applied in render() — no legacy SVG wash here
     const content = el('div', { position: 'relative', zIndex: '1' });
     const title = index === 0
       ? `Story: ${lesson.story?.title || 'Let\'s Read!'}`
@@ -354,19 +297,21 @@
     }
     const layout = el('div', { display: 'flex', gap: '24px', alignItems: 'stretch' });
     const side = el('div', {
-      width: '320px', flexShrink: '0', borderRadius: '18px', overflow: 'hidden',
-      background: 'rgba(255,255,255,0.85)', minHeight: '300px', position: 'relative',
+      width: '220px', flexShrink: '0', borderRadius: '18px',
+      background: 'linear-gradient(160deg, #ffedd5, #fed7aa)',
+      minHeight: '280px', display: 'flex', flexDirection: 'column',
+      alignItems: 'center', justifyContent: 'center', padding: '20px',
+      boxSizing: 'border-box',
     });
-    side.appendChild(img(characterUrl(index + 2), {
-      left: '20px', bottom: '10px', width: '260px', height: '280px', position: 'absolute',
-    }));
+    side.appendChild(el('div', { fontSize: '72px', lineHeight: '1', marginBottom: '12px' },
+      themeEmoji(page?.visualTheme)));
     side.appendChild(el('div', {
-      position: 'absolute', left: '16px', right: '16px', top: '16px',
       background: '#1e293b', color: '#fff', borderRadius: '10px', padding: '8px 12px',
-      fontSize: '14px', fontWeight: '700', textAlign: 'center',
+      fontSize: '14px', fontWeight: '700', textAlign: 'center', width: '100%',
+      boxSizing: 'border-box',
     }, esc(page?.visualCaption || page?.visualTheme || 'Scene')));
     const text = card(`<div style="font-size:18px;line-height:1.45;color:#1e293b">${esc(page?.text || '')}</div>`, {
-      flex: '1', marginBottom: '0', minHeight: '300px',
+      flex: '1', marginBottom: '0', minHeight: '280px',
     });
     layout.appendChild(side);
     layout.appendChild(text);
@@ -495,8 +440,6 @@
         color: '#fff', fontSize: '22px', textAlign: 'center', marginBottom: '10px',
       }, esc(s)));
     });
-    // Skip character on interactive wrap so tiles aren't baked onto the mascot
-    if (!interactive) placeCharacter(p, 'wrap', 5);
     drawDebugZones(p, 'wrap');
     return p;
   }
@@ -513,15 +456,9 @@
     if (window.VocabIcons && window.VocabIcons.ready) {
       await window.VocabIcons.ready();
     }
+    // Board/PDF page chrome stays plain cards — scene pack is for EDB piece
+    // placement / previewBackgrounds only, not tiled under every section.
     const sections = buildSectionList(lesson);
-    let bgPicks = null;
-    if (window.SceneBackgrounds) {
-      try {
-        bgPicks = await window.SceneBackgrounds.planFor(sections);
-      } catch (err) {
-        console.warn('Scene backgrounds unavailable', err);
-      }
-    }
 
     const host = el('div', {
       position: 'fixed', left: '-10000px', top: '0', width: W + 'px',
@@ -533,10 +470,9 @@
     const slots = { byKey: {} };
 
     function push(node, pageKey) {
-      const idx = pageEls.length;
-      if (bgPicks && bgPicks[idx]) applyPackBg(node, bgPicks[idx]);
       host.appendChild(node);
       pageEls.push(node);
+      const idx = pageEls.length - 1;
       if (pageKey) slots.byKey[pageKey] = idx;
       return idx;
     }
@@ -571,8 +507,7 @@
     push(makeActivity(lesson, boardPlan), 'activity');
     slots.wrap = push(makeWrap(lesson, boardPlan), 'wrap');
 
-    if (boardPlan) boardPlan.bgPicks = bgPicks;
-    return { pageEls, slots, host, boardPlan: boardPlan || null, bgPicks, sections };
+    return { pageEls, slots, host, boardPlan: boardPlan || null, sections };
   }
 
   function cleanup(host) {

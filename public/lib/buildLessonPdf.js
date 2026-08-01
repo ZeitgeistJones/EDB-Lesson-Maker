@@ -233,133 +233,35 @@ function pageSentenceFrames(doc, lesson) {
   });
 }
 
-// ── Story scene visuals (simple illustrated panels) ─────────────────
-
-function fillTriangle(doc, x1, y1, x2, y2, x3, y3, rgb) {
-  fill(doc, rgb);
-  doc.lines(
-    [[x2 - x1, y2 - y1], [x3 - x2, y3 - y2], [x1 - x3, y1 - y3]],
-    x1,
-    y1,
-    [1, 1],
-    'F',
-    true
-  );
-}
-
-function drawPerson(doc, x, y, scale, shirtRgb) {
-  const s = scale || 1;
-  fill(doc, [255, 220, 185]);
-  doc.circle(x, y - 10 * s, 5 * s, 'F');
-  fill(doc, shirtRgb || C.coral);
-  doc.roundedRect(x - 6 * s, y - 4 * s, 12 * s, 14 * s, 2, 2, 'F');
-  stroke(doc, shirtRgb || C.coral);
-  doc.setLineWidth(1.2 * s);
-  doc.line(x - 6 * s, y, x - 11 * s, y + 6 * s);
-  doc.line(x + 6 * s, y, x + 11 * s, y + 6 * s);
-  doc.line(x - 3 * s, y + 10 * s, x - 5 * s, y + 18 * s);
-  doc.line(x + 3 * s, y + 10 * s, x + 5 * s, y + 18 * s);
-}
+// ── Story scene visuals (simple themed panel + emoji, no characters) ─
 
 function drawSceneVisual(doc, x, y, w, h, theme, caption) {
   const t = String(theme || 'nature').toLowerCase();
-  card(doc, x, y, w, h, C.lavender, 6);
+  const fillRgb = t === 'beach' ? [186, 230, 253]
+    : t === 'school' ? [221, 214, 254]
+    : t === 'kitchen' || t === 'home' ? [254, 215, 170]
+    : t === 'city' ? [203, 213, 225]
+    : t === 'sports' ? [187, 247, 208]
+    : [254, 243, 199];
+  card(doc, x, y, w, h, fillRgb, 6);
 
-  // Sky / background band
-  const sky = t === 'beach' ? [135, 206, 235]
-    : t === 'night' || t === 'city' ? [120, 145, 200]
-    : t === 'kitchen' || t === 'home' || t === 'school' ? [210, 230, 255]
-    : [180, 220, 255];
-  fill(doc, sky);
-  doc.roundedRect(x + 3, y + 3, w - 6, h * 0.55, 4, 4, 'F');
+  const emoji = t.includes('beach') ? '🏖️'
+    : t.includes('school') ? '🏫'
+    : t.includes('kitchen') || t.includes('home') ? '🏠'
+    : t.includes('city') ? '🏙️'
+    : t.includes('sport') ? '⚽'
+    : t.includes('park') ? '🌳'
+    : '📖';
 
-  // Ground / floor
-  const ground = t === 'beach' ? [244, 220, 150]
-    : t === 'kitchen' || t === 'home' || t === 'school' ? [230, 215, 190]
-    : t === 'sports' ? [90, 170, 90]
-    : [120, 190, 110];
-  fill(doc, ground);
-  doc.rect(x + 3, y + 3 + h * 0.5, w - 6, h * 0.42, 'F');
+  drawText(doc, emoji, x, y + h / 2 - 4, w, {
+    size: 36, align: 'center',
+  });
 
-  const cx = x + w / 2;
-  const midY = y + h * 0.42;
-
-  if (t === 'beach') {
-    fill(doc, [255, 210, 70]);
-    doc.circle(x + w - 22, y + 18, 10, 'F');
-    fill(doc, [70, 150, 220]);
-    doc.rect(x + 3, y + 3 + h * 0.42, w - 6, 10, 'F');
-    drawPerson(doc, cx - 10, midY + 8, 1.1, C.coral);
-    drawPerson(doc, cx + 18, midY + 10, 0.95, C.blue);
-  } else if (t === 'city') {
-    fill(doc, [80, 100, 140]);
-    doc.rect(x + 12, y + 20, 18, 55, 'F');
-    doc.rect(x + 36, y + 30, 14, 45, 'F');
-    doc.rect(x + 56, y + 16, 22, 59, 'F');
-    fill(doc, [255, 230, 120]);
-    [[16, 28], [16, 40], [40, 38], [60, 24], [68, 36]].forEach(([dx, dy]) => {
-      doc.rect(x + dx, y + dy, 4, 4, 'F');
-    });
-    drawPerson(doc, cx + 20, midY + 12, 1, C.yellow);
-  } else if (t === 'school') {
-    fill(doc, [200, 90, 90]);
-    doc.rect(x + 20, y + 28, 70, 45, 'F');
-    fillTriangle(doc, x + 18, y + 28, x + 55, y + 12, x + 92, y + 28, [120, 70, 50]);
-    fill(doc, [180, 220, 255]);
-    doc.rect(x + 32, y + 40, 14, 14, 'F');
-    doc.rect(x + 58, y + 40, 14, 14, 'F');
-    drawPerson(doc, cx + 5, midY + 18, 1, C.purple);
-  } else if (t === 'home' || t === 'kitchen') {
-    fill(doc, [240, 180, 140]);
-    doc.rect(x + 25, y + 35, 65, 42, 'F');
-    fillTriangle(doc, x + 22, y + 35, x + 57, y + 14, x + 93, y + 35, [180, 70, 70]);
-    fill(doc, [120, 80, 50]);
-    doc.rect(x + 50, y + 52, 12, 25, 'F');
-    fill(doc, [160, 210, 255]);
-    doc.rect(x + 34, y + 44, 12, 12, 'F');
-    if (t === 'kitchen') {
-      fill(doc, [180, 180, 190]);
-      doc.roundedRect(x + 78, y + 55, 22, 14, 2, 2, 'F');
-    }
-    drawPerson(doc, cx - 5, midY + 16, 1, C.green);
-  } else if (t === 'sports') {
-    fill(doc, [70, 150, 70]);
-    doc.ellipse(cx, midY + 20, 40, 12, 'F');
-    fill(doc, [255, 255, 255]);
-    doc.setLineWidth(0.6);
-    stroke(doc, [255, 255, 255]);
-    doc.line(cx - 35, midY + 20, cx + 35, midY + 20);
-    drawPerson(doc, cx - 12, midY, 1.1, C.coral);
-    fill(doc, [255, 140, 40]);
-    doc.circle(cx + 18, midY + 8, 5, 'F');
-  } else if (t === 'park' || t === 'nature') {
-    fill(doc, [255, 210, 70]);
-    doc.circle(x + w - 24, y + 18, 11, 'F');
-    fill(doc, [50, 140, 70]);
-    doc.circle(x + 28, midY + 2, 16, 'F');
-    doc.circle(x + 48, midY - 6, 14, 'F');
-    fill(doc, [100, 70, 40]);
-    doc.rect(x + 25, midY + 8, 6, 22, 'F');
-    doc.rect(x + 45, midY + 4, 5, 26, 'F');
-    drawPerson(doc, cx + 15, midY + 10, 1.05, C.blue);
-    if (t === 'park') {
-      fill(doc, [160, 110, 60]);
-      doc.roundedRect(x + 70, midY + 18, 28, 8, 2, 2, 'F');
-    }
-  } else {
-    // default nature-ish
-    fill(doc, [255, 210, 70]);
-    doc.circle(x + w - 24, y + 18, 11, 'F');
-    fill(doc, [60, 160, 90]);
-    doc.circle(cx - 20, midY, 18, 'F');
-    drawPerson(doc, cx + 10, midY + 8, 1, C.coral);
-  }
-
-  // Caption bar
+  const label = String(caption || theme || 'Scene').slice(0, 28);
   fill(doc, C.navy);
-  doc.roundedRect(x + 8, y + h - 16, w - 16, 11, 2, 2, 'F');
-  drawText(doc, caption || theme || 'Scene', x + 8, y + h - 8, w - 16, {
-    size: 9, bold: true, color: C.white, align: 'center',
+  doc.roundedRect(x + 6, y + h - 22, w - 12, 14, 3, 3, 'F');
+  drawText(doc, label, x + 8, y + h - 12, w - 16, {
+    size: 8, bold: true, color: C.white, align: 'center',
   });
 }
 
