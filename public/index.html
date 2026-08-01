@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ClassIn Lesson Builder — PDF</title>
 <script src="lib/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #f8f9fb; }
@@ -115,12 +116,14 @@
     <div id="slides-preview"></div>
     <div class="action-row">
       <button class="download-btn" onclick="downloadPDF()">Download Lesson PDF</button>
+      <button class="download-btn" onclick="downloadEDB()">Download ClassIn Board</button>
       <button class="new-btn" onclick="reset()">New</button>
     </div>
   </div>
 </div>
 
 <script src="lib/buildLessonPdf.js"></script>
+<script src="lib/buildEdb.js"></script>
 <script>
 let state = { level: 'Intermediate', duration: '25', lessonData: null };
 
@@ -248,6 +251,35 @@ async function downloadPDF() {
     await buildLessonPdf(d, { level: state.level, duration: state.duration });
   } catch (e) {
     alert('Could not build the PDF: ' + e.message);
+  } finally {
+    btn.textContent = original;
+    btn.disabled = false;
+  }
+}
+
+async function downloadEDB() {
+  const d = state.lessonData;
+  if (!d) return;
+  const btn = document.querySelectorAll('.download-btn')[1];
+  const original = btn.textContent;
+  btn.textContent = 'Building board…';
+  btn.disabled = true;
+  try {
+    const blob = await window.EdbKit.buildLessonEdb(
+      d,
+      { level: state.level, duration: state.duration },
+      []                      // page backgrounds — see note below
+    );
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = (d.title || 'lesson').replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s+/g, '-') + '.edb';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (e) {
+    alert('Could not build the board: ' + e.message);
   } finally {
     btn.textContent = original;
     btn.disabled = false;
