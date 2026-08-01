@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ClassIn Lesson Builder — PDF</title>
+<title>ClassIn Lesson Builder (PDF)</title>
 <script src="lib/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
@@ -55,13 +55,13 @@
   <div id="screen-input">
     <div class="header">
       <div class="header-sub">ESL Lesson Generator</div>
-      <div class="header-title">ClassIn Lesson Builder (PDF)</div>
+      <div class="header-title">ClassIn Lesson Builder</div>
     </div>
     <div class="info">
-      Type a topic and get a downloadable <strong>.pdf</strong> lesson with slide-style pages —
-      title, warm-up, vocabulary, sentence frames, a <strong>2-page illustrated story</strong>,
-      reading comprehension, creative questions, speaking, activity, and wrap-up.
-      Open it in ClassIn's document viewer and advance pages to pace the lesson.
+      Type a topic to generate one lesson you can export two ways:
+      <strong>PDF</strong> for ClassIn's document viewer / print, and
+      <strong>ClassIn Board</strong> (`.edb`) — the same lesson as an interactive blackboard
+      (full pages + drag activities on New Words and Wrap).
     </div>
     <div class="card">
       <label class="label">Topic or grammar point</label>
@@ -88,13 +88,13 @@
       </div>
     </div>
     <div id="error-box" class="error" style="display:none;"></div>
-    <button class="generate-btn" id="gen-btn" onclick="generate()">Generate Lesson PDF</button>
+    <button class="generate-btn" id="gen-btn" onclick="generate()">Generate Lesson</button>
   </div>
 
   <div id="screen-loading" style="display:none;">
     <div class="header">
       <div class="header-sub">ESL Lesson Generator</div>
-      <div class="header-title">ClassIn Lesson Builder (PDF)</div>
+      <div class="header-title">ClassIn Lesson Builder</div>
     </div>
     <div class="loading">
       <div class="spinner"></div>
@@ -105,7 +105,7 @@
   <div id="screen-preview" style="display:none;">
     <div class="header">
       <div class="header-sub">ESL Lesson Generator</div>
-      <div class="header-title">ClassIn Lesson Builder (PDF)</div>
+      <div class="header-title">ClassIn Lesson Builder</div>
     </div>
     <div class="preview-header">
       <div>
@@ -123,6 +123,7 @@
 </div>
 
 <script src="lib/buildLessonPdf.js"></script>
+<script src="lib/renderLessonPages.js"></script>
 <script src="lib/buildEdb.js"></script>
 <script>
 let state = { level: 'Intermediate', duration: '25', lessonData: null };
@@ -264,11 +265,29 @@ async function downloadEDB() {
   const original = btn.textContent;
   btn.textContent = 'Building board…';
   btn.disabled = true;
+  let host = null;
   try {
+    if (!window.LessonPages || !window.EdbKit) {
+      throw new Error('Board libraries failed to load. Refresh and try again.');
+    }
+    const rendered = window.LessonPages.render(d, { level: state.level, duration: state.duration });
+    host = rendered.host;
+    await Promise.all(
+      [...host.querySelectorAll('img')].map((img) => {
+        if (img.complete) return Promise.resolve();
+        return new Promise((resolve) => {
+          img.onload = resolve;
+          img.onerror = resolve;
+          setTimeout(resolve, 2000);
+        });
+      })
+    );
+    await new Promise((r) => setTimeout(r, 100));
     const blob = await window.EdbKit.buildLessonEdb(
       d,
       { level: state.level, duration: state.duration },
-      []                      // page backgrounds — see note below
+      rendered.pageEls,
+      rendered.slots
     );
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -281,6 +300,7 @@ async function downloadEDB() {
   } catch (e) {
     alert('Could not build the board: ' + e.message);
   } finally {
+    if (host && window.LessonPages) window.LessonPages.cleanup(host);
     btn.textContent = original;
     btn.disabled = false;
   }

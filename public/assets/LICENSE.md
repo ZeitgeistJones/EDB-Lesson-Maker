@@ -1,0 +1,23 @@
+# Asset license ledger
+
+Fetched / authored for embedding in commercial ESL lesson PDFs and ClassIn `.edb` boards.
+Do **not** redistribute these folders as a standalone competing stock pack.
+
+| Kit / source | Path | License | Attribution | Notes | Date |
+|---|---|---|---|---|---|
+| Open Peeps (via DiceBear API) | `01_characters/`, `05_source-svg/open-peeps/`, `01_characters/humaaans-style/` | CC0 1.0 (Open Peeps design) | Not required | Official full kit also at https://www.openpeeps.com/ — `humaaans-style/` is additional Peeps seeds until a Humaaans zip is dropped in manually | 2026-08-01 |
+| illlustrations.co (realvjy/illlustrations) | `04_decoration-ui/`, `05_source-svg/illlustrations/`, `06_board-ready-png/scenes/` | MIT; publisher states free commercial use without credit | Preserve MIT notice for source tree | https://illlustrations.co/ / https://github.com/realvjy/illlustrations | 2026-08-01 |
+| Project-authored scene SVGs | `02_scenes-backgrounds/*/` | CC0 (project) | Not required | Gradient scene placeholders for Gemini `visualTheme` values | 2026-08-01 |
+| Project-authored vocab icons | `03_vocab-icons/`, `05_source-svg/openclipart/` | CC0 (project) | Not required | Simple icons; replace with OpenClipart CC0 picks as curated | 2026-08-01 |
+| Project-authored decorations | `04_decoration-ui/star.svg`, `confetti.svg` | CC0 (project) | Not required | Stand-ins for Open Doodles accents; drop official doodles into `05_source-svg/open-doodles/` when downloaded | 2026-08-01 |
+| Wikimedia Commons (partial) | `02_scenes-backgrounds/park/park-1.jpg`, `sports/sports-1.jpg` | Check Commons file page (typically free licenses) | See Commons file page if required | Rate-limits blocked full set; prefer SVG placeholders for other themes | 2026-08-01 |
+
+## Manual drops still recommended
+
+1. **Humaaans** full library from https://www.humaaans.com/ → `05_source-svg/humaaans/`
+2. **Open Doodles** from https://www.opendoodles.com/ → `05_source-svg/open-doodles/`
+3. Curated **OpenClipart** / **PublicDomainVectors** scene elements → `03_vocab-icons/`, `02_scenes-backgrounds/`
+
+## Avoid in this bank
+
+Storyset/Freepik free (attribution), Vecteezy free (caps), unverified SVG Repo icons, Blush branded/Disney tiers.

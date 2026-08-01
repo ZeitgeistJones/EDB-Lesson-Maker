@@ -5,24 +5,25 @@ lessons on ClassIn.
 
 ## How it works
 
-Each page of the PDF is designed like a presentation slide — coloured
-backgrounds, cards, large readable text. The teacher opens the PDF in ClassIn's
-document viewer and advances pages to pace the lesson. No hyperlinks, no macros,
-no compatibility concerns — just a clean document that works everywhere.
+Each page of the PDF is designed like a presentation slide. The **ClassIn Board**
+(`.edb`) is the interactive twin of that same lesson: locked page backgrounds
+for the full spine, plus drag pieces on New Words and Wrap.
 
-### Lesson structure (one page per section)
+### Lesson structure
 
 1. **Title** — lesson name, level, duration
 2. **Warm-Up** — question + sample answer
-3. **New Words** — vocabulary cards (words only)
+3. **New Words** — vocabulary (+ board: draggable emoji)
 4. **New Words — In Sentences** — words + example sentences
 5. **Sentence Frames** — fill-in-the-blank patterns
-6. **Story (2 pages)** — illustrated reading passage with scene visuals
+6. **Story (2 pages)** — illustrated reading passage
 7. **Reading Comprehension** — 3 questions + sample answers
-8. **Your Ideas!** — 2 open-ended creative questions about the story
-9. **Let's Talk!** — one page per speaking question + sample answer
-10. **Your Turn!** — guided activity with templates
-11. **Great Job!** — review sentences
+8. **Your Ideas!** — 2 open-ended creative questions
+9. **Let's Talk!** — speaking questions
+10. **Your Turn!** — guided activity
+11. **Great Job!** — review (+ board: sentence word tiles)
+
+Assets live under `public/assets/` (see `LICENSE.md`). Spec: `docs/edb-lesson-spec.md`.
 
 ## Project structure
 

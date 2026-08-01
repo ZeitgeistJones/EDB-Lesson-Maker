@@ -260,21 +260,51 @@ function canvasToPng(canvas) {
  * pageEls  — DOM elements, one per lesson page, already rendered by the
  *            HTML renderer. Each becomes a LOCKED full-width background.
  * lesson   — the same object buildLessonPdf receives.
+ * slots    — optional { newWords, wrap } page indices for on-page overlays.
+ *            When omitted, falls back to trailing activity pages (legacy).
  */
-async function buildLessonEdb(lesson, meta, pageEls) {
+async function buildLessonEdb(lesson, meta, pageEls, slots) {
   const e = new Edb();
+  const pages = pageEls || [];
 
   // 1. page backgrounds, stacked one screen apart, locked so they
   //    can't be dragged around by a student reaching for a sprite
-  for (let i = 0; i < pageEls.length; i++) {
-    const png = await elementToPng(pageEls[i]);
+  for (let i = 0; i < pages.length; i++) {
+    const png = await elementToPng(pages[i]);
     e.addImage(png, 0, i * PAGE, { w: BOARD_W, h: PAGE, locked: true });
   }
 
   const vocab = (lesson.vocabulary || []).slice(0, 6);
-  const vocabPageIndex = pageEls.length;      // extra activity pages go after
+  const hasSpine = pages.length > 0 && slots && Number.isInteger(slots.newWords);
 
-  // 2. a vocabulary drag activity on its own page
+  if (hasSpine) {
+    // Unified board: overlays live ON lesson pages (not trailing bolt-ons)
+    if (vocab.length && Number.isInteger(slots.newWords)) {
+      const y0 = slots.newWords * PAGE;
+      const shuffled = [...vocab].sort(() => Math.random() - 0.5);
+      shuffled.forEach((v, i) => {
+        const col = i % 3, row = Math.floor(i / 3);
+        const png = glyphToPng(v.emoji || '•');
+        e.addImage(png, 780 + col * 140, y0 + 280 + row * 130, { w: 88, h: 88 });
+      });
+    }
+
+    const sentence = (lesson.reviewSentences || [])[0];
+    if (sentence && Number.isInteger(slots.wrap)) {
+      const y0 = slots.wrap * PAGE;
+      const words = sentence.replace(/[.]$/, '').split(/\s+/).slice(0, 5);
+      [...words].sort(() => Math.random() - 0.5).forEach((word, i) => {
+        e.addImage(tileToPng(word), 104 + i * 222, y0 + 455, { w: 186, h: 54 });
+      });
+      e.addText(`Answer: ${sentence}`, 70, y0 + 535,
+                { size: 14, color: [255, 255, 255, 220], locked: true });
+    }
+    return e.toBlob();
+  }
+
+  // Legacy path: trailing activity pages when no rendered spine was passed
+  const vocabPageIndex = pages.length;
+
   if (vocab.length) {
     const bg = activityBackground('New Words', 'Drag each picture next to its word.',
                                   vocab.map(v => v.word));
@@ -289,7 +319,6 @@ async function buildLessonEdb(lesson, meta, pageEls) {
     });
   }
 
-  // 3. a sentence-building activity from the first review sentence
   const sentence = (lesson.reviewSentences || [])[0];
   if (sentence) {
     const idx = vocabPageIndex + (vocab.length ? 1 : 0);
