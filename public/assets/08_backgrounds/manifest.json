@@ -405,6 +405,58 @@
     "home",
     "daily"
    ]
+  },
+  "rainy-doorstep": {
+   "file": "rainy-doorstep.png",
+   "groundY": 370,
+   "category": "home-exterior",
+   "tags": [
+    "door",
+    "rain",
+    "home",
+    "weather",
+    "delivery",
+    "outside"
+   ]
+  },
+  "bus-stop": {
+   "file": "bus-stop.png",
+   "groundY": 400,
+   "category": "transport-exterior",
+   "tags": [
+    "bus",
+    "stop",
+    "wait",
+    "travel",
+    "sidewalk",
+    "transport"
+   ]
+  },
+  "city-sidewalk": {
+   "file": "city-sidewalk.png",
+   "groundY": 400,
+   "category": "outdoor-community",
+   "tags": [
+    "street",
+    "crosswalk",
+    "traffic",
+    "city",
+    "sidewalk",
+    "directions"
+   ]
+  },
+  "dining-room": {
+   "file": "dining-room.png",
+   "groundY": 360,
+   "category": "home-interior",
+   "tags": [
+    "dining",
+    "meal",
+    "home",
+    "chair",
+    "table",
+    "family"
+   ]
   }
  },
  "flats": {

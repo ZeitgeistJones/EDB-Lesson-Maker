@@ -1,8 +1,9 @@
 BOARD BACKGROUNDS
 =================
 
-SCENES (36 files: school-*, commercial, medical, transport-interior,
-outdoor-nature, outdoor-community, home-interior — see manifest.json)
+SCENES (40 files: school-*, commercial, medical, transport-interior,
+transport-exterior, outdoor-nature, outdoor-community, home-interior,
+home-exterior — see manifest.json)
   Generated with OpenAI image models for this project.
   Ownership of output sits with the account holder under OpenAI's terms.
   Verify current terms before commercial resale.
