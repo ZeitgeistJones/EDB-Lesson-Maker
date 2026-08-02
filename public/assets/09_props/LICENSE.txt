@@ -1,0 +1,12 @@
+BOARD PROPS (cutouts)
+=====================
+
+11 PNG props on black backgrounds for ClassIn collage / activity pieces.
+Generated with OpenAI image models for this project.
+Ownership of output sits with the account holder under OpenAI's terms.
+Verify current terms before commercial resale.
+
+Roles (see manifest.json): shelf, sortBin, wordCard, sticky, rewardContainer,
+cover, miniBoard, tray, speech, reward, orderPad.
+
+Not included: backpack (weak recipe fit).

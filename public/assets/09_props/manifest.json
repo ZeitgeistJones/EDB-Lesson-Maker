@@ -1,0 +1,62 @@
+{
+  "boardPieces": true,
+  "license": "Generated with OpenAI image models for this project — see LICENSE.txt",
+  "notes": "Cutouts on black. Roles map to future collage / activity recipes. Backpack omitted (weak recipe fit).",
+  "props": {
+    "bookshelf": {
+      "file": "bookshelf.png",
+      "role": "shelf",
+      "tags": ["shelf", "furniture", "build", "collage"]
+    },
+    "sorting-bin": {
+      "file": "sorting-bin.png",
+      "role": "sortBin",
+      "tags": ["bin", "sort", "tray", "activity"]
+    },
+    "flashcard-blank": {
+      "file": "flashcard-blank.png",
+      "role": "wordCard",
+      "tags": ["card", "vocab", "flashcard"]
+    },
+    "sticky-note": {
+      "file": "sticky-note.png",
+      "role": "sticky",
+      "tags": ["sticky", "note", "cue", "cover"]
+    },
+    "reward-jar": {
+      "file": "reward-jar.png",
+      "role": "rewardContainer",
+      "tags": ["jar", "reward", "prize"]
+    },
+    "cover-flap": {
+      "file": "cover-flap.png",
+      "role": "cover",
+      "tags": ["cover", "hide", "flap"]
+    },
+    "mini-whiteboard": {
+      "file": "mini-whiteboard.png",
+      "role": "miniBoard",
+      "tags": ["whiteboard", "phonics", "write"]
+    },
+    "activity-tray": {
+      "file": "activity-tray.png",
+      "role": "tray",
+      "tags": ["tray", "dock", "table"]
+    },
+    "speech-bubble": {
+      "file": "speech-bubble.png",
+      "role": "speech",
+      "tags": ["speech", "speaking", "bubble"]
+    },
+    "reward-star": {
+      "file": "reward-star.png",
+      "role": "reward",
+      "tags": ["star", "reward", "prize"]
+    },
+    "slot-pad": {
+      "file": "slot-pad.png",
+      "role": "orderPad",
+      "tags": ["slot", "pad", "order", "ghost"]
+    }
+  }
+}
