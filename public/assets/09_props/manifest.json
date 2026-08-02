@@ -1,62 +1,413 @@
 {
   "boardPieces": true,
-  "license": "Generated with OpenAI image models for this project — see LICENSE.txt",
-  "notes": "Cutouts on black. Roles map to future collage / activity recipes. Backpack omitted (weak recipe fit).",
+  "alpha": true,
+  "license": "Mixed \u2014 see LICENSE.txt. source=openai-grid: generated with OpenAI image models. source=project-vector: project-authored, regenerable via tools/assets/make_flat_props.py",
+  "notes": "Transparent cutouts, trimmed to the object with a 4% margin. Cut from black-matte grid sheets with tools/assets/cut_grid.py; prompts in docs/asset-prompts/. Roles map to edbActivities recipes.",
   "props": {
+    "activity-tray": {
+      "file": "activity-tray.png",
+      "role": "tray",
+      "tags": [
+        "tray",
+        "dock",
+        "table"
+      ],
+      "size": [
+        585,
+        263
+      ],
+      "source": "openai-grid",
+      "alpha": true
+    },
+    "answer-strip": {
+      "file": "answer-strip.png",
+      "role": "answerStrip",
+      "tags": [
+        "answer",
+        "strip",
+        "write",
+        "blank"
+      ],
+      "size": [
+        1200,
+        224
+      ],
+      "source": "project-vector",
+      "alpha": true
+    },
+    "arrow-right": {
+      "file": "arrow-right.png",
+      "role": "arrow",
+      "tags": [
+        "arrow",
+        "order",
+        "sequence",
+        "next"
+      ],
+      "size": [
+        720,
+        464
+      ],
+      "source": "project-vector",
+      "alpha": true
+    },
     "bookshelf": {
       "file": "bookshelf.png",
       "role": "shelf",
-      "tags": ["shelf", "furniture", "build", "collage"]
+      "tags": [
+        "shelf",
+        "furniture",
+        "build",
+        "collage"
+      ],
+      "size": [
+        393,
+        296
+      ],
+      "source": "openai-grid",
+      "alpha": true
     },
-    "sorting-bin": {
-      "file": "sorting-bin.png",
-      "role": "sortBin",
-      "tags": ["bin", "sort", "tray", "activity"]
-    },
-    "flashcard-blank": {
-      "file": "flashcard-blank.png",
-      "role": "wordCard",
-      "tags": ["card", "vocab", "flashcard"]
-    },
-    "sticky-note": {
-      "file": "sticky-note.png",
-      "role": "sticky",
-      "tags": ["sticky", "note", "cue", "cover"]
-    },
-    "reward-jar": {
-      "file": "reward-jar.png",
-      "role": "rewardContainer",
-      "tags": ["jar", "reward", "prize"]
+    "check-token": {
+      "file": "check-token.png",
+      "role": "correct",
+      "tags": [
+        "check",
+        "correct",
+        "feedback"
+      ],
+      "size": [
+        488,
+        488
+      ],
+      "source": "project-vector",
+      "alpha": true
     },
     "cover-flap": {
       "file": "cover-flap.png",
       "role": "cover",
-      "tags": ["cover", "hide", "flap"]
+      "tags": [
+        "cover",
+        "hide",
+        "flap"
+      ],
+      "size": [
+        606,
+        367
+      ],
+      "source": "openai-grid",
+      "alpha": true
+    },
+    "cover-tile": {
+      "file": "cover-tile.png",
+      "role": "cover",
+      "tags": [
+        "cover",
+        "hide",
+        "reveal",
+        "tile"
+      ],
+      "size": [
+        640,
+        640
+      ],
+      "source": "project-vector",
+      "alpha": true
+    },
+    "cross-token": {
+      "file": "cross-token.png",
+      "role": "incorrect",
+      "tags": [
+        "cross",
+        "wrong",
+        "feedback"
+      ],
+      "size": [
+        488,
+        488
+      ],
+      "source": "project-vector",
+      "alpha": true
+    },
+    "dock-rail": {
+      "file": "dock-rail.png",
+      "role": "dockRail",
+      "tags": [
+        "dock",
+        "rail",
+        "shelf",
+        "row"
+      ],
+      "size": [
+        1240,
+        240
+      ],
+      "source": "project-vector",
+      "alpha": true
+    },
+    "flashcard-blank": {
+      "file": "flashcard-blank.png",
+      "role": "wordCard",
+      "tags": [
+        "card",
+        "vocab",
+        "flashcard"
+      ],
+      "size": [
+        362,
+        192
+      ],
+      "source": "openai-grid",
+      "alpha": true
     },
     "mini-whiteboard": {
       "file": "mini-whiteboard.png",
       "role": "miniBoard",
-      "tags": ["whiteboard", "phonics", "write"]
+      "tags": [
+        "whiteboard",
+        "phonics",
+        "write"
+      ],
+      "size": [
+        572,
+        404
+      ],
+      "source": "openai-grid",
+      "alpha": true
     },
-    "activity-tray": {
-      "file": "activity-tray.png",
-      "role": "tray",
-      "tags": ["tray", "dock", "table"]
+    "number-token": {
+      "file": "number-token.png",
+      "role": "orderToken",
+      "tags": [
+        "token",
+        "order",
+        "number",
+        "blank"
+      ],
+      "size": [
+        472,
+        472
+      ],
+      "source": "project-vector",
+      "alpha": true
     },
-    "speech-bubble": {
-      "file": "speech-bubble.png",
-      "role": "speech",
-      "tags": ["speech", "speaking", "bubble"]
+    "portrait-card": {
+      "file": "portrait-card.png",
+      "role": "wordCard",
+      "tags": [
+        "card",
+        "portrait",
+        "vocab",
+        "flashcard"
+      ],
+      "size": [
+        544,
+        736
+      ],
+      "source": "project-vector",
+      "alpha": true
+    },
+    "prize-flap": {
+      "file": "prize-flap.png",
+      "role": "rewardFlap",
+      "tags": [
+        "reward",
+        "flap",
+        "prize",
+        "reveal"
+      ],
+      "size": [
+        720,
+        480
+      ],
+      "source": "project-vector",
+      "alpha": true
+    },
+    "reward-jar": {
+      "file": "reward-jar.png",
+      "role": "rewardContainer",
+      "tags": [
+        "jar",
+        "reward",
+        "prize"
+      ],
+      "size": [
+        463,
+        402
+      ],
+      "source": "openai-grid",
+      "alpha": true
     },
     "reward-star": {
       "file": "reward-star.png",
       "role": "reward",
-      "tags": ["star", "reward", "prize"]
+      "tags": [
+        "star",
+        "reward",
+        "prize"
+      ],
+      "size": [
+        415,
+        400
+      ],
+      "source": "openai-grid",
+      "alpha": true
     },
     "slot-pad": {
       "file": "slot-pad.png",
       "role": "orderPad",
-      "tags": ["slot", "pad", "order", "ghost"]
+      "tags": [
+        "slot",
+        "pad",
+        "order",
+        "ghost"
+      ],
+      "size": [
+        560,
+        359
+      ],
+      "source": "openai-grid",
+      "alpha": true
+    },
+    "slot-pad-wide": {
+      "file": "slot-pad-wide.png",
+      "role": "orderSlot",
+      "tags": [
+        "slot",
+        "order",
+        "sentence",
+        "ghost"
+      ],
+      "size": [
+        1040,
+        360
+      ],
+      "source": "project-vector",
+      "alpha": true
+    },
+    "sorting-bin": {
+      "file": "sorting-bin.png",
+      "role": "sortBin",
+      "tags": [
+        "bin",
+        "sort",
+        "tray",
+        "activity"
+      ],
+      "size": [
+        466,
+        213
+      ],
+      "source": "openai-grid",
+      "alpha": true
+    },
+    "sorting-bin-amber": {
+      "file": "sorting-bin-amber.png",
+      "role": "sortBin",
+      "tags": [
+        "bin",
+        "sort",
+        "tray",
+        "activity"
+      ],
+      "size": [
+        960,
+        600
+      ],
+      "source": "project-vector",
+      "alpha": true
+    },
+    "sorting-bin-green": {
+      "file": "sorting-bin-green.png",
+      "role": "sortBin",
+      "tags": [
+        "bin",
+        "sort",
+        "tray",
+        "activity"
+      ],
+      "size": [
+        960,
+        600
+      ],
+      "source": "project-vector",
+      "alpha": true
+    },
+    "speech-bubble": {
+      "file": "speech-bubble.png",
+      "role": "speech",
+      "tags": [
+        "speech",
+        "speaking",
+        "bubble"
+      ],
+      "size": [
+        561,
+        387
+      ],
+      "source": "openai-grid",
+      "alpha": true
+    },
+    "speech-bubble-square": {
+      "file": "speech-bubble-square.png",
+      "role": "speech",
+      "tags": [
+        "speech",
+        "bubble",
+        "dialogue"
+      ],
+      "size": [
+        1040,
+        668
+      ],
+      "source": "project-vector",
+      "alpha": true
+    },
+    "sticky-note": {
+      "file": "sticky-note.png",
+      "role": "sticky",
+      "tags": [
+        "sticky",
+        "note",
+        "cue",
+        "cover"
+      ],
+      "size": [
+        265,
+        209
+      ],
+      "source": "openai-grid",
+      "alpha": true
+    },
+    "thought-bubble": {
+      "file": "thought-bubble.png",
+      "role": "thought",
+      "tags": [
+        "think",
+        "bubble",
+        "speaking"
+      ],
+      "size": [
+        1000,
+        732
+      ],
+      "source": "project-vector",
+      "alpha": true
+    },
+    "word-tile": {
+      "file": "word-tile.png",
+      "role": "wordChip",
+      "tags": [
+        "chip",
+        "word",
+        "tile",
+        "drag"
+      ],
+      "size": [
+        720,
+        256
+      ],
+      "source": "project-vector",
+      "alpha": true
     }
   }
 }

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="366" viewBox="0 0 500 366">
+<defs>
+  <linearGradient id="cloud" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#ffffff"/>
+    <stop offset="1" stop-color="#f4f4f2"/>
+  </linearGradient>
+</defs>
+
+  <path d="M120 60 Q150 18 208 26 Q250 4 300 28 Q360 16 386 62
+           Q440 74 434 128 Q446 176 396 196 Q360 232 302 220
+           Q252 244 204 218 Q142 226 118 184 Q66 172 74 124 Q70 78 120 60 Z"
+        fill="url(#cloud)" stroke="#8ea39b" stroke-width="5" stroke-linejoin="round"/>
+  <circle cx="120" cy="264" r="30" fill="url(#cloud)" stroke="#8ea39b" stroke-width="5"/>
+  <circle cx="68" cy="312" r="19" fill="url(#cloud)" stroke="#8ea39b" stroke-width="5"/>
+  <circle cx="30" cy="346" r="11" fill="url(#cloud)" stroke="#8ea39b" stroke-width="5"/>
+</svg>

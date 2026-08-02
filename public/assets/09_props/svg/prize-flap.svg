@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240">
+<defs>
+  <linearGradient id="flap" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f3d9a4"/>
+    <stop offset="1" stop-color="#e3b567"/>
+  </linearGradient>
+</defs>
+
+  <path d="M12 12 H348 V214 Q348 228 334 228 H26 Q12 228 12 214 Z"
+        fill="url(#flap)" stroke="#b98c3e" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="12" y="12" width="336" height="70" fill="#ffffff" opacity="0.25"/>
+  <path d="M348 12 L272 12 L348 88 Z" fill="#f3d9a4" stroke="#b98c3e" stroke-width="3"
+        stroke-linejoin="round"/>
+  <path d="M272 12 L348 88" stroke="#b98c3e" stroke-width="3" opacity="0.5"/>
+</svg>

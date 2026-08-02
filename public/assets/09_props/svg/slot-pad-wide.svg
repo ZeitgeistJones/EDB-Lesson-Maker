@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="180" viewBox="0 0 520 180">
+<defs>
+</defs>
+
+  <rect x="8" y="8" width="504" height="164" rx="20"
+        fill="#ffffff" fill-opacity="0.10"
+        stroke="#8d99a4" stroke-width="6"
+        stroke-dasharray="26 20" stroke-linecap="round"/>
+</svg>

@@ -1,12 +1,34 @@
 BOARD PROPS (cutouts)
 =====================
 
-11 PNG props on black backgrounds for ClassIn collage / activity pieces.
-Generated with OpenAI image models for this project.
-Ownership of output sits with the account holder under OpenAI's terms.
-Verify current terms before commercial resale.
+26 transparent PNG cutouts for ClassIn collage / activity pieces.
+Two sources — see "source" on each entry in manifest.json.
 
-Roles (see manifest.json): shelf, sortBin, wordCard, sticky, rewardContainer,
-cover, miniBoard, tray, speech, reward, orderPad.
+source = openai-grid  (11 files)
+  bookshelf, sorting-bin, flashcard-blank, sticky-note, reward-jar,
+  cover-flap, mini-whiteboard, activity-tray, speech-bubble, reward-star,
+  slot-pad
+  Generated with OpenAI image models for this project, on black-matte 2x3
+  grid sheets (prompts in docs/asset-prompts/), then keyed and trimmed with
+  tools/assets/cut_grid.py.
+  Ownership of output sits with the account holder under OpenAI's terms.
+  Verify current terms before commercial resale.
 
-Not included: backpack (weak recipe fit).
+source = project-vector  (15 files)
+  sorting-bin-green, sorting-bin-amber, dock-rail, answer-strip,
+  slot-pad-wide, cover-tile, prize-flap, thought-bubble,
+  speech-bubble-square, arrow-right, check-token, cross-token,
+  number-token, word-tile, portrait-card
+  Project-authored vector art, CC0 (project). Regenerate with:
+      python3 tools/assets/make_flat_props.py -o public/assets/09_props/img \
+          --svg-dir public/assets/09_props/svg
+  SVG sources kept alongside in ../svg/.
+
+All files are RGBA with the background keyed out, trimmed to the object with
+a 4% margin. Roles (see manifest.json) map to edbActivities recipes:
+answerStrip, arrow, correct, cover, dockRail, incorrect, miniBoard, orderPad,
+orderSlot, orderToken, reward, rewardContainer, rewardFlap, shelf, sortBin,
+speech, sticky, thought, tray, wordCard, wordChip.
+
+Not included: backpack as a closed bag (weak recipe fit). An OPEN backpack is
+specified as a drop target in docs/asset-prompts/props-01-containers.md.

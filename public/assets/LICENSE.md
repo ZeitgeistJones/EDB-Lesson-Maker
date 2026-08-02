@@ -13,7 +13,8 @@ Do **not** redistribute these folders as a standalone competing stock pack.
 | Twemoji vocabulary pack | `07_vocab-pack/` | CC BY 4.0 | Required — "Twemoji by Twitter, Inc and other contributors" | 170 word-keyed icons, single consistent style | 2026-08-02 |
 | Board backgrounds (scenes) | `08_backgrounds/img/` (non-flat) | Generated with OpenAI image models for this project | Verify OpenAI terms before commercial resale | 40 place scenes with `groundY` (home, travel, street, outdoor, medical, commercial, school); clear centre band for pieces | 2026-08-02 |
 | Board backgrounds (flats) | `08_backgrounds/img/flat_*.png` | Generated with OpenAI image models for this project | Verify OpenAI terms before commercial resale | Universal teaching surfaces: whiteboard, chalkboard, cork, desk (not tinted color washes) | 2026-08-02 |
-| Board props (cutouts) | `09_props/img/` | Generated with OpenAI image models for this project | Verify OpenAI terms before commercial resale | Empty shells: shelf, bin, cards, sticky, jar, cover, tray, speech, star, slot — for collage recipes | 2026-08-02 |
+| Board props (generated) | `09_props/img/` (`source: openai-grid`) | Generated with OpenAI image models for this project | Verify OpenAI terms before commercial resale | 11 empty shells: shelf, bin, cards, sticky, jar, cover, tray, speech, star, slot. Keyed to transparent + trimmed with `tools/assets/cut_grid.py` | 2026-08-02 |
+| Board props (vector) | `09_props/img/` (`source: project-vector`), `09_props/svg/` | CC0 (project) | Not required | 15 geometric props: bin pair, dock rail, answer strip, wide slot, cover tile, prize flap, bubbles, arrow, tokens, chips, portrait card. Regenerate with `tools/assets/make_flat_props.py` | 2026-08-02 |
 
 ## Manual drops still recommended
 

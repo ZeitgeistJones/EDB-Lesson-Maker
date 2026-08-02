@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="334" viewBox="0 0 520 334">
+<defs>
+  <linearGradient id="box" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#ffffff"/>
+    <stop offset="1" stop-color="#f4f4f2"/>
+  </linearGradient>
+</defs>
+
+  <path d="M14 14 H486 Q506 14 506 34 V236 Q506 256 486 256 H150
+           L74 320 L92 256 H34 Q14 256 14 236 V34 Q14 14 34 14 Z"
+        fill="url(#box)" stroke="#8ea39b" stroke-width="5" stroke-linejoin="round"/>
+</svg>
