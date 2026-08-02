@@ -48,7 +48,7 @@
 
   /** Must match speaking.targetBay in edbLayout ZONE_TEMPLATES. */
   function speakingCoverRect() {
-    return { x: 88, y: 300, w: 520, h: 90 };
+    return { x: 88, y: 218, w: 720, h: 72 };
   }
 
   /** Drop lowest-priority extras until unique pageKeys ≤ maxKeys. */
@@ -58,7 +58,6 @@
     const dropPreds = [
       (a) => a.recipeId === 'revealReward',
       (a) => a.pageKey === 'speaking:1',
-      (a) => a.pageKey === 'story1',
       (a) => a.pageKey === 'speaking:0',
       (a) => a.pageKey === 'activity',
     ];
@@ -75,6 +74,29 @@
       if (!dropped) list.pop();
     }
     return list;
+  }
+
+  /** Speaking spine: up to 2 Qs per page, max 2 pages (4 Qs). Mirrors LessonPages. */
+  function speakingChunks(lesson) {
+    const qs = (lesson.speakingQuestions || []).slice(0, 4);
+    if (!qs.length) return [];
+    const pages = [];
+    for (let i = 0; i < qs.length; i += 2) pages.push(qs.slice(i, i + 2));
+    return pages;
+  }
+
+  function storyPageCount(lesson) {
+    const n = (lesson.story?.pages || []).length;
+    if (n <= 0) return 1;
+    return Math.min(2, n);
+  }
+
+  function includeCreative(lesson, meta) {
+    const qs = lesson.story?.creativeQuestions || [];
+    if (!qs.length) return false;
+    const dur = Number(meta?.duration);
+    if (Number.isFinite(dur) && dur <= 25) return false;
+    return true;
   }
 
   /** Canvas PNG helpers for covers/flaps/slots when no dedicated art */
@@ -369,43 +391,30 @@
   /**
    * Plan activities across the lesson spine.
    * Returns { assignments: [{ pageKey, recipeId, ctx? }], seed }
-   * Skips recipes when required content is empty (no empty "Interactive" docks).
+   * Skips recipes when required content is empty (no empty docks).
+   * Simple mode: vocab matchDock only; no story recipes; no wrap orderLine/reward;
+   * one Peek sticky on the first speaking page.
    */
   function plan(lesson, meta) {
     const seed = hashStr((lesson.title || '') + '|' + (meta?.level || '') + '|' + (meta?.duration || ''));
     const pickBit = (n) => ((seed >>> n) & 1) === 1;
     const vocab = vocabList(lesson);
     const hasVocab = vocab.length > 0;
-    const hasSentence = reviewWords(lesson).length > 0;
     const assignments = [];
 
-    // New Words — hideSeek needs ≥3 words; thin vocab always matchDock
+    // New Words — dock pieces only (hideSeek fights chrome; revisit later)
     if (hasVocab) {
-      const recipeId = vocab.length < 3
-        ? 'matchDock'
-        : (pickBit(0) ? 'hideSeek' : 'matchDock');
-      assignments.push({ pageKey: 'newWords', recipeId });
+      assignments.push({ pageKey: 'newWords', recipeId: 'matchDock' });
     }
 
-    // Story page 2
-    if (hasVocab) {
+    // Speaking — one Peek sticky over the first sample on speaking:0
+    const chunks = speakingChunks(lesson);
+    if (chunks[0] && chunks[0][0]) {
       assignments.push({
-        pageKey: 'story1',
-        recipeId: pickBit(1) ? 'buildScene' : 'hideSeek',
+        pageKey: 'speaking:0',
+        recipeId: 'coverAnswer',
+        ctx: { speakingItem: chunks[0][0], speakingIndex: 0 },
       });
-    }
-
-    // Speaking — cover answers on first 1–2 questions
-    const speaking = lesson.speakingQuestions || [];
-    const speakCount = Math.min(2, speaking.length);
-    for (let i = 0; i < speakCount; i++) {
-      if (pickBit(2 + i) || i === 0) {
-        assignments.push({
-          pageKey: 'speaking:' + i,
-          recipeId: 'coverAnswer',
-          ctx: { speakingItem: speaking[i], speakingIndex: i },
-        });
-      }
     }
 
     // Activity section
@@ -416,19 +425,7 @@
       });
     }
 
-    // Wrap — only when there is a buildable sentence
-    if (hasSentence) {
-      assignments.push({
-        pageKey: 'wrap',
-        recipeId: 'orderLine',
-      });
-      if (pickBit(7)) {
-        assignments.push({
-          pageKey: 'wrap',
-          recipeId: 'revealReward',
-        });
-      }
-    }
+    // Wrap is chrome-only for now (orderLine/reward mismatched review blanks)
 
     return {
       assignments: capAssignments(assignments, 5),
@@ -491,15 +488,13 @@
     addPage('vocabSentences', 'vocabSentences');
     addPage('frames', 'frames');
 
-    const storyPages = (lesson.story?.pages || []).slice(0, 2);
-    const storyCount = Math.max(2, storyPages.length || 2);
+    const storyCount = storyPageCount(lesson);
     for (let i = 0; i < storyCount; i++) addPage('story' + i, 'story');
 
     addPage('comprehension', 'comprehension');
-    addPage('creative', 'creative');
+    if (includeCreative(lesson, meta)) addPage('creative', 'creative');
 
-    const speaking = lesson.speakingQuestions || [];
-    speaking.forEach((_, i) => addPage('speaking:' + i, 'speaking'));
+    speakingChunks(lesson).forEach((_, i) => addPage('speaking:' + i, 'speaking'));
 
     addPage('activity', 'activity');
     addPage('wrap', 'wrap');
@@ -525,6 +520,9 @@
     buildBoardPlan,
     pageTypeForKey,
     speakingCoverRect,
+    speakingChunks,
+    storyPageCount,
+    includeCreative,
     solidPng,
     slotGhostPng,
     stickyPng,
