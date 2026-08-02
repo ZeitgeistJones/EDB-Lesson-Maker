@@ -8,9 +8,10 @@ home-exterior — see manifest.json)
   Ownership of output sits with the account holder under OpenAI's terms.
   Verify current terms before commercial resale.
 
-FLATS (4 files: flat_*.png)
-  Authored procedurally for this project. CC0 — public domain.
-  No attribution required, no restrictions.
+FLATS (4 files: flat_whiteboard, flat_chalkboard, flat_cork, flat_desk)
+  Generated with OpenAI image models for this project (same terms as scenes).
+  Universal teaching surfaces for non-location pages (vocab / phonics / drills).
+  Verify current OpenAI terms before commercial resale.
 
 Board size 1280x590. Each scene declares a groundY in manifest.json:
 the pixel row where the standing surface begins. Place a piece so its

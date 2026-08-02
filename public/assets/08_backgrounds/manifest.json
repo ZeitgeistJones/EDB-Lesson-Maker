@@ -460,21 +460,21 @@
   }
  },
  "flats": {
-  "cream": {
-   "file": "flat_cream.png",
-   "tone": "warm neutral"
+  "whiteboard": {
+   "file": "flat_whiteboard.png",
+   "tone": "clean white teaching board — universal drills / phonics"
   },
-  "mint": {
-   "file": "flat_mint.png",
-   "tone": "cool neutral"
+  "chalkboard": {
+   "file": "flat_chalkboard.png",
+   "tone": "dark green chalkboard — title / review energy"
   },
-  "sky": {
-   "file": "flat_sky.png",
-   "tone": "cool light"
+  "cork": {
+   "file": "flat_cork.png",
+   "tone": "warm cork pinboard — vocab cards / sorting"
   },
-  "grey": {
-   "file": "flat_grey.png",
-   "tone": "neutral"
+  "desk": {
+   "file": "flat_desk.png",
+   "tone": "neutral wall + desk ledge — soft workspace"
   }
  }
 }
