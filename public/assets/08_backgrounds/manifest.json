@@ -185,6 +185,226 @@
     "dental",
     "medical"
    ]
+  },
+  "bus-interior": {
+   "file": "bus-interior.png",
+   "groundY": 207,
+   "category": "transport-interior",
+   "tags": [
+    "bus",
+    "travel",
+    "public",
+    "transport"
+   ]
+  },
+  "car-interior": {
+   "file": "car-interior.png",
+   "groundY": 223,
+   "category": "transport-interior",
+   "tags": [
+    "car",
+    "taxi",
+    "travel",
+    "transport"
+   ]
+  },
+  "airplane-cabin": {
+   "file": "airplane-cabin.png",
+   "groundY": 240,
+   "category": "transport-interior",
+   "tags": [
+    "airplane",
+    "flight",
+    "travel",
+    "transport"
+   ]
+  },
+  "train-interior": {
+   "file": "train-interior.png",
+   "groundY": 270,
+   "category": "transport-interior",
+   "tags": [
+    "train",
+    "travel",
+    "journey",
+    "transport"
+   ]
+  },
+  "farm": {
+   "file": "farm.png",
+   "groundY": 215,
+   "category": "outdoor-nature",
+   "tags": [
+    "farm",
+    "animals",
+    "countryside",
+    "field"
+   ]
+  },
+  "zoo": {
+   "file": "zoo.png",
+   "groundY": 224,
+   "category": "outdoor-community",
+   "tags": [
+    "zoo",
+    "animals",
+    "outdoor"
+   ]
+  },
+  "swimming-pool": {
+   "file": "swimming-pool.png",
+   "groundY": 232,
+   "category": "outdoor-community",
+   "tags": [
+    "pool",
+    "swimming",
+    "summer",
+    "recreation"
+   ]
+  },
+  "sports-field": {
+   "file": "sports-field.png",
+   "groundY": 222,
+   "category": "outdoor-nature",
+   "tags": [
+    "sports",
+    "field",
+    "game",
+    "soccer",
+    "team"
+   ]
+  },
+  "farmers-market": {
+   "file": "farmers-market.png",
+   "groundY": 252,
+   "category": "outdoor-community",
+   "tags": [
+    "market",
+    "food",
+    "shopping",
+    "outdoor"
+   ]
+  },
+  "playground-park": {
+   "file": "playground-park.png",
+   "groundY": 220,
+   "category": "outdoor-community",
+   "tags": [
+    "playground",
+    "park",
+    "play",
+    "outdoor"
+   ]
+  },
+  "campsite": {
+   "file": "campsite.png",
+   "groundY": 219,
+   "category": "outdoor-nature",
+   "tags": [
+    "camping",
+    "nature",
+    "outdoor",
+    "travel"
+   ]
+  },
+  "beach-resort": {
+   "file": "beach-resort.png",
+   "groundY": 228,
+   "category": "outdoor-nature",
+   "tags": [
+    "beach",
+    "vacation",
+    "summer",
+    "travel"
+   ]
+  },
+  "movie-theater": {
+   "file": "movie-theater.png",
+   "groundY": 209,
+   "category": "commercial",
+   "tags": [
+    "cinema",
+    "movie",
+    "entertainment",
+    "snacks"
+   ]
+  },
+  "airport-terminal": {
+   "file": "airport-terminal.png",
+   "groundY": 225,
+   "category": "transport-interior",
+   "tags": [
+    "airport",
+    "travel",
+    "flight",
+    "waiting"
+   ]
+  },
+  "pharmacy": {
+   "file": "pharmacy.png",
+   "groundY": 207,
+   "category": "medical",
+   "tags": [
+    "pharmacy",
+    "medicine",
+    "health",
+    "shopping"
+   ]
+  },
+  "hair-salon": {
+   "file": "hair-salon.png",
+   "groundY": 213,
+   "category": "commercial",
+   "tags": [
+    "salon",
+    "haircut",
+    "beauty",
+    "shopping"
+   ]
+  },
+  "living-room": {
+   "file": "living-room.png",
+   "groundY": 213,
+   "category": "home-interior",
+   "tags": [
+    "living room",
+    "home",
+    "family",
+    "relax"
+   ]
+  },
+  "kitchen": {
+   "file": "kitchen.png",
+   "groundY": 219,
+   "category": "home-interior",
+   "tags": [
+    "kitchen",
+    "cooking",
+    "food",
+    "home"
+   ]
+  },
+  "bedroom": {
+   "file": "bedroom.png",
+   "groundY": 213,
+   "category": "home-interior",
+   "tags": [
+    "bedroom",
+    "sleep",
+    "home",
+    "daily"
+   ]
+  },
+  "bathroom": {
+   "file": "bathroom.png",
+   "groundY": 234,
+   "category": "home-interior",
+   "tags": [
+    "bathroom",
+    "hygiene",
+    "home",
+    "daily"
+   ]
   }
  },
  "flats": {
