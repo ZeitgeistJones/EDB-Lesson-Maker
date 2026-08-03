@@ -205,6 +205,7 @@ async function elementToPng(el, width = BOARD_W, height = PAGE) {
   }
   const canvas = await html2canvas(el, {
     width, height, scale: 1, backgroundColor: '#ffffff', logging: false,
+    useCORS: true,
   });
   return canvasToPng(canvas);
 }
@@ -353,6 +354,11 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
   if (plan && plan.pages.length && pages.length && plan.pages.length !== pages.length) {
     throw new Error(
       `Board spine mismatch: plan has ${plan.pages.length} pages but rendered ${pages.length}`
+    );
+  }
+  if (plan && plan.bgPicks && pages.length && plan.bgPicks.length !== pages.length) {
+    throw new Error(
+      `Background plan mismatch: ${plan.bgPicks.length} picks for ${pages.length} pages`
     );
   }
 

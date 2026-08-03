@@ -27,6 +27,7 @@
   }
 
   function pageShell(bg, opts) {
+    const pageType = (opts && opts.pageType) || '';
     const p = el('div', {
       width: W + 'px',
       height: H + 'px',
@@ -40,15 +41,55 @@
       color: '#0f172a',
       padding: '28px 44px',
     });
+    if (pageType) p.dataset.pageType = pageType;
     if (opts && opts.reserveDock) {
-      const pageType = opts.pageType || 'warm';
       const pad = window.EdbLayout
-        ? window.EdbLayout.dockReservePx(pageType)
+        ? window.EdbLayout.dockReservePx(pageType || 'warm')
         : 130;
       p.style.paddingBottom = pad + 'px';
     }
     return p;
   }
+
+  /** Full-bleed scene/flat under chrome. Uses <img> so html2canvas + waitForImages see it. */
+  function applyPackBg(pageEl, pick, opts) {
+    if (!pageEl || !pick || !pick.path) return;
+    pageEl.style.background = '#0f172a';
+    const bgImg = img(pick.path, {
+      left: '0',
+      top: '0',
+      width: W + 'px',
+      height: H + 'px',
+      objectFit: 'cover',
+      zIndex: '0',
+    });
+    pageEl.insertBefore(bgImg, pageEl.firstChild);
+
+    let wash = null;
+    if (opts && opts.dimForLightText) {
+      wash = el('div', {
+        position: 'absolute',
+        left: '0',
+        top: '0',
+        width: W + 'px',
+        height: H + 'px',
+        background: 'linear-gradient(135deg, rgba(15,23,42,0.65), rgba(30,27,75,0.55))',
+        zIndex: '0',
+        pointerEvents: 'none',
+      });
+      pageEl.insertBefore(wash, bgImg.nextSibling);
+    }
+
+    Array.from(pageEl.children).forEach((child) => {
+      if (child === bgImg || child === wash) return;
+      if (!child.style.position || child.style.position === 'static') {
+        child.style.position = 'relative';
+      }
+      if (!child.style.zIndex) child.style.zIndex = '1';
+    });
+  }
+
+  const LIGHT_TEXT_PAGES = { title: 1, frames: 1, wrap: 1 };
 
   function drawDebugZones(p, pageType) {
     if (!window.EdbLayout) return;
@@ -147,12 +188,14 @@
   function buildSectionList(lesson, meta) {
     const vocab = (lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v.word)).filter(Boolean);
     const topic = lesson.title || '';
+    // Include topic on every section so vocab/grammar pages still match place scenes
+    // (tags like "vocabulary" alone never clear the picker floor).
     const sections = [
       { title: topic || 'Title', tags: ['title', topic], vocabulary: vocab },
-      { title: 'Warm Up', tags: ['warmup', 'warm-up'], vocabulary: vocab },
-      { title: 'New Words', tags: ['vocabulary', 'words', 'matching'], vocabulary: vocab },
-      { title: 'Words in Sentences', tags: ['vocabulary', 'sentences', 'grammar'], vocabulary: vocab },
-      { title: 'Sentence Frames', tags: ['grammar', 'frames'], vocabulary: vocab },
+      { title: 'Warm Up', tags: ['warmup', 'warm-up', topic], vocabulary: vocab },
+      { title: 'New Words', tags: ['vocabulary', 'words', 'matching', topic], vocabulary: vocab },
+      { title: 'Words in Sentences', tags: ['vocabulary', 'sentences', 'grammar', topic], vocabulary: vocab },
+      { title: 'Sentence Frames', tags: ['grammar', 'frames', topic], vocabulary: vocab },
     ];
 
     const storyPages = (lesson.story?.pages || []).slice(0, 2);
@@ -168,11 +211,11 @@
     }
 
     sections.push(
-      { title: 'Reading Comprehension', tags: ['comprehension', 'reading'], vocabulary: vocab }
+      { title: 'Reading Comprehension', tags: ['comprehension', 'reading', topic], vocabulary: vocab }
     );
 
     if (includeCreative(lesson, meta)) {
-      sections.push({ title: 'Your Ideas', tags: ['creative', 'ideas'], vocabulary: vocab });
+      sections.push({ title: 'Your Ideas', tags: ['creative', 'ideas', topic], vocabulary: vocab });
     }
 
     speakingChunks(lesson).forEach((chunk, i) => {
@@ -189,7 +232,7 @@
         tags: [lesson.activity?.title, lesson.activity?.prompt, 'activity', topic].filter(Boolean),
         vocabulary: vocab,
       },
-      { title: 'Wrap Up', tags: ['wrap', 'review', 'goodbye'], vocabulary: vocab }
+      { title: 'Wrap Up', tags: ['wrap', 'review', 'goodbye', topic], vocabulary: vocab }
     );
 
     return sections;
@@ -268,7 +311,7 @@
   }
 
   function makeVocabSentences(lesson) {
-    const p = pageShell(THEME_COLORS.vocab);
+    const p = pageShell(THEME_COLORS.vocab, { pageType: 'vocabSentences' });
     p.appendChild(header('New Words — In Sentences', '#7c3aed'));
     const grid = el('div', { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' });
     (lesson.vocabulary || []).slice(0, 6).forEach((v) => {
@@ -283,7 +326,7 @@
   }
 
   function makeFrames(lesson) {
-    const p = pageShell(THEME_COLORS.frames);
+    const p = pageShell(THEME_COLORS.frames, { pageType: 'frames' });
     p.appendChild(header('Sentence Frames', '#c4b5fd'));
     p.appendChild(el('div', {
       fontSize: '18px', color: 'rgba(255,255,255,0.7)', marginBottom: '20px',
@@ -354,7 +397,7 @@
   }
 
   function makeComprehension(lesson) {
-    const p = pageShell(THEME_COLORS.comp);
+    const p = pageShell(THEME_COLORS.comp, { pageType: 'comprehension' });
     p.appendChild(header('Reading Comprehension', '#1d4ed8'));
     p.appendChild(el('div', {
       fontSize: '18px', color: '#64748b', marginBottom: '16px', fontWeight: '600',
@@ -370,7 +413,7 @@
   }
 
   function makeCreative(lesson) {
-    const p = pageShell(THEME_COLORS.creative);
+    const p = pageShell(THEME_COLORS.creative, { pageType: 'creative' });
     p.appendChild(header('Your Ideas!', '#059669'));
     p.appendChild(el('div', { fontSize: '18px', color: '#64748b', marginBottom: '16px' },
       'Open-ended — no single right answer.'));
@@ -502,6 +545,18 @@
       .replace(/"/g, '&quot;');
   }
 
+  /** Plan scene/flat picks and attach to boardPlan. Call before render for board exports. */
+  async function attachBgPicks(lesson, meta, boardPlan) {
+    if (!boardPlan) throw new Error('boardPlan required for background picks');
+    if (!window.SceneBackgrounds) {
+      throw new Error('SceneBackgrounds failed to load. Refresh and try again.');
+    }
+    const sections = buildSectionList(lesson, meta || {});
+    const bgPicks = await window.SceneBackgrounds.planFor(sections);
+    boardPlan.bgPicks = bgPicks;
+    return bgPicks;
+  }
+
   async function render(lesson, meta, boardPlan) {
     if (window.VocabIcons && window.VocabIcons.ready) {
       await window.VocabIcons.ready();
@@ -555,6 +610,21 @@
     push(makeActivity(lesson, boardPlan), 'activity');
     slots.wrap = push(makeWrap(lesson, boardPlan), 'wrap');
 
+    const bgPicks = boardPlan && boardPlan.bgPicks;
+    if (bgPicks) {
+      if (bgPicks.length !== pageEls.length) {
+        throw new Error(
+          `Background plan mismatch: ${bgPicks.length} picks for ${pageEls.length} pages`
+        );
+      }
+      pageEls.forEach((pageEl, i) => {
+        const pageType = pageEl.dataset.pageType || '';
+        applyPackBg(pageEl, bgPicks[i], {
+          dimForLightText: !!LIGHT_TEXT_PAGES[pageType],
+        });
+      });
+    }
+
     return { pageEls, slots, host, boardPlan: boardPlan || null, sections };
   }
 
@@ -563,6 +633,7 @@
   }
 
   window.LessonPages = {
-    render, cleanup, buildSectionList, BOARD_W: W, BOARD_H: H,
+    render, cleanup, buildSectionList, attachBgPicks, applyPackBg,
+    BOARD_W: W, BOARD_H: H,
   };
 })();

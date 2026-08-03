@@ -55,11 +55,22 @@
       throw new Error('Board libraries failed to load. Refresh and try again.');
     }
     const boardPlan = window.EdbActivities.buildBoardPlan(lesson, meta || {});
+    await window.LessonPages.attachBgPicks(lesson, meta || {}, boardPlan);
     const rendered = await window.LessonPages.render(lesson, meta || {}, boardPlan);
     await waitForImages(rendered.host);
 
+    const standRoles = {
+      matchPiece: 1, buildPart: 1, dressPart: 1, sortCard: 1, orderTile: 1, dockPiece: 1,
+    };
+    const bgPicks = boardPlan.bgPicks || null;
+
     const canvases = [];
     try {
+      if (bgPicks && bgPicks.length !== rendered.pageEls.length) {
+        throw new Error(
+          `Background plan mismatch: ${bgPicks.length} picks for ${rendered.pageEls.length} pages`
+        );
+      }
       for (let i = 0; i < rendered.pageEls.length; i++) {
         const bgPng = await window.EdbKit.elementToPng(rendered.pageEls[i], W, H);
         const bmp = await pngBytesToBitmap(bgPng);
@@ -75,9 +86,30 @@
         }
 
         const page = boardPlan.pages && boardPlan.pages[i];
+        const pick = bgPicks && bgPicks[i];
         if (page) {
           for (const piece of page.locked || []) await drawPiece(ctx, piece);
-          for (const piece of page.unlocked || []) await drawPiece(ctx, piece);
+
+          const unlocked = page.unlocked || [];
+          const standers = unlocked.filter((p) => standRoles[p.role]);
+          const floaters = unlocked.filter((p) => !standRoles[p.role]);
+          for (const piece of floaters) await drawPiece(ctx, piece);
+
+          if (standers.length && pick && pick.type === 'scene' && window.SceneBackgrounds) {
+            const n = standers.length;
+            const gap = 16;
+            const totalW = standers.reduce((s, p) => s + (p.w || 96), 0) + gap * Math.max(0, n - 1);
+            let x = Math.max(260, Math.min(1020 - totalW, Math.round((W - totalW) / 2)));
+            for (const piece of standers) {
+              const h = piece.h || 96;
+              const w = piece.w || 96;
+              const y = window.SceneBackgrounds.standOn(pick, h);
+              await drawPiece(ctx, Object.assign({}, piece, { x, y, w, h }));
+              x += w + gap;
+            }
+          } else {
+            for (const piece of standers) await drawPiece(ctx, piece);
+          }
         }
 
         // Page index badge for quick scanning

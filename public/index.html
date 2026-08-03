@@ -282,6 +282,7 @@ async function downloadEDB() {
     }
     const meta = { level: state.level, duration: state.duration };
     const boardPlan = window.EdbActivities.buildBoardPlan(d, meta);
+    await window.LessonPages.attachBgPicks(d, meta, boardPlan);
     const rendered = await window.LessonPages.render(d, meta, boardPlan);
     host = rendered.host;
     await Promise.all(
@@ -357,7 +358,8 @@ window.previewBackgrounds = async function () {
   if (!window.SceneBackgrounds || !window.LessonPages) {
     return console.warn('SceneBackgrounds / LessonPages not loaded');
   }
-  const sections = window.LessonPages.buildSectionList(d);
+  const meta = { level: state.level, duration: state.duration };
+  const sections = window.LessonPages.buildSectionList(d, meta);
   const plan = await window.SceneBackgrounds.planFor(sections);
   console.table(plan.map((p, i) => ({
     section: sections[i].title,
