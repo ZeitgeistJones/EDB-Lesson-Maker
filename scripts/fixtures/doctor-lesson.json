@@ -1,0 +1,53 @@
+{
+  "title": "At the Doctor's Office",
+  "warmUp": {
+    "question": "When do you go to the doctor?",
+    "sampleAnswer": "I go when I feel sick."
+  },
+  "vocabulary": [
+    { "word": "doctor", "emoji": "🩺", "sentence": "The doctor helps me." },
+    { "word": "nurse", "emoji": "👩‍⚕️", "sentence": "The nurse is kind." },
+    { "word": "sick", "emoji": "🤒", "sentence": "I feel sick today." },
+    { "word": "appointment", "emoji": "📅", "sentence": "I have an appointment." }
+  ],
+  "sentenceFrames": [
+    "I feel ____.",
+    "The doctor will ____.",
+    "Please wait for your ____."
+  ],
+  "story": {
+    "title": "A Visit to the Clinic",
+    "pages": [
+      {
+        "heading": "In the waiting room",
+        "text": "Mia sits with her mom. She feels sick.",
+        "visualTheme": "clinic",
+        "visualCaption": "Waiting room"
+      },
+      {
+        "heading": "Seeing the doctor",
+        "text": "The doctor checks Mia. The nurse smiles.",
+        "visualTheme": "doctors-office",
+        "visualCaption": "Checkup"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is Mia?", "sampleAnswer": "She is at the clinic." },
+      { "question": "How does Mia feel?", "sampleAnswer": "She feels sick." }
+    ],
+    "creativeQuestions": ["What do you bring to a doctor visit?"]
+  },
+  "speakingQuestions": [
+    { "question": "Have you been to a doctor?", "sampleAnswer": "Yes, last month." },
+    { "question": "What does a nurse do?", "sampleAnswer": "A nurse helps patients." }
+  ],
+  "activity": {
+    "title": "Role Play",
+    "prompt": "Be the doctor and the patient.",
+    "templates": ["Hello, how do you feel?", "I feel ____."]
+  },
+  "reviewSentences": [
+    "I have an appointment with the doctor.",
+    "The nurse is very kind."
+  ]
+}

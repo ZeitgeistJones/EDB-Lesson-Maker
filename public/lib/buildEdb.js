@@ -387,9 +387,10 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
           w: piece.w, h: piece.h, locked: true,
         });
       }
-      // Scene pages: stand dock pieces on the ground plane in the clear centre band
+      // Scene-building recipes: stand pieces on groundY in the clear centre band.
+      // matchDock / orderLine stay in the dock — standing them mid-board covers cards.
       const standRoles = {
-        matchPiece: 1, buildPart: 1, dressPart: 1, sortCard: 1, orderTile: 1, dockPiece: 1,
+        buildPart: 1, dressPart: 1, sortCard: 1, dockPiece: 1,
       };
       const standers = (page.unlocked || []).filter((p) => standRoles[p.role]);
       const floaters = (page.unlocked || []).filter((p) => !standRoles[p.role]);

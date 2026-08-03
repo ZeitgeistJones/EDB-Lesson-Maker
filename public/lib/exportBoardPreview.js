@@ -60,7 +60,7 @@
     await waitForImages(rendered.host);
 
     const standRoles = {
-      matchPiece: 1, buildPart: 1, dressPart: 1, sortCard: 1, orderTile: 1, dockPiece: 1,
+      buildPart: 1, dressPart: 1, sortCard: 1, dockPiece: 1,
     };
     const bgPicks = boardPlan.bgPicks || null;
 

@@ -5,10 +5,15 @@
   "type": "commonjs",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "test:bg-picks": "node scripts/smoke-bg-picks.mjs",
+    "test:board-bg": "node scripts/verify-board-visual.cjs"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
   }
 }
