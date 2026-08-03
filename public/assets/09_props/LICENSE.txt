@@ -1,12 +1,17 @@
 BOARD PROPS (cutouts)
 =====================
 
-11 PNG props on black backgrounds for ClassIn collage / activity pieces.
+PNG props on black backgrounds for ClassIn collage / activity pieces.
 Generated with OpenAI image models for this project.
 Ownership of output sits with the account holder under OpenAI's terms.
 Verify current terms before commercial resale.
 
-Roles (see manifest.json): shelf, sortBin, wordCard, sticky, rewardContainer,
-cover, miniBoard, tray, speech, reward, orderPad.
+Sets:
+  - Covers (green/blue/orange/purple) + prize flap + green bin
+  - Dress-up accessories (hat, glasses, scarf, bag, bow, cap)
+  - Speaking / feedback (mic, check, arrow, target, gift, hourglass)
+  - Furniture shells (table, chair, door, window, rug, lamp)
+  - Phonics tools (tiles, sound boxes, word strip, pencil, eraser)
+  - Earlier shells (shelf, bin, flashcard, sticky, jar, tray, speech, star, slot)
 
-Not included: backpack (weak recipe fit).
+See manifest.json for roles/tags.

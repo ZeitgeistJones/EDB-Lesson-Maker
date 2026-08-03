@@ -1,62 +1,48 @@
 {
   "boardPieces": true,
   "license": "Generated with OpenAI image models for this project — see LICENSE.txt",
-  "notes": "Cutouts on black. Roles map to future collage / activity recipes. Backpack omitted (weak recipe fit).",
+  "notes": "Cutouts on black. Roles map to collage / activity recipes. cover-flap is legacy single; prefer cover-* colors for hideSeek.",
   "props": {
-    "bookshelf": {
-      "file": "bookshelf.png",
-      "role": "shelf",
-      "tags": ["shelf", "furniture", "build", "collage"]
-    },
-    "sorting-bin": {
-      "file": "sorting-bin.png",
-      "role": "sortBin",
-      "tags": ["bin", "sort", "tray", "activity"]
-    },
-    "flashcard-blank": {
-      "file": "flashcard-blank.png",
-      "role": "wordCard",
-      "tags": ["card", "vocab", "flashcard"]
-    },
-    "sticky-note": {
-      "file": "sticky-note.png",
-      "role": "sticky",
-      "tags": ["sticky", "note", "cue", "cover"]
-    },
-    "reward-jar": {
-      "file": "reward-jar.png",
-      "role": "rewardContainer",
-      "tags": ["jar", "reward", "prize"]
-    },
-    "cover-flap": {
-      "file": "cover-flap.png",
-      "role": "cover",
-      "tags": ["cover", "hide", "flap"]
-    },
-    "mini-whiteboard": {
-      "file": "mini-whiteboard.png",
-      "role": "miniBoard",
-      "tags": ["whiteboard", "phonics", "write"]
-    },
-    "activity-tray": {
-      "file": "activity-tray.png",
-      "role": "tray",
-      "tags": ["tray", "dock", "table"]
-    },
-    "speech-bubble": {
-      "file": "speech-bubble.png",
-      "role": "speech",
-      "tags": ["speech", "speaking", "bubble"]
-    },
-    "reward-star": {
-      "file": "reward-star.png",
-      "role": "reward",
-      "tags": ["star", "reward", "prize"]
-    },
-    "slot-pad": {
-      "file": "slot-pad.png",
-      "role": "orderPad",
-      "tags": ["slot", "pad", "order", "ghost"]
-    }
+    "bookshelf": { "file": "bookshelf.png", "role": "shelf", "tags": ["shelf", "furniture", "build"] },
+    "sorting-bin": { "file": "sorting-bin.png", "role": "sortBin", "tags": ["bin", "sort"] },
+    "sorting-bin-green": { "file": "sorting-bin-green.png", "role": "sortBin", "tags": ["bin", "sort", "green"] },
+    "flashcard-blank": { "file": "flashcard-blank.png", "role": "wordCard", "tags": ["card", "vocab"] },
+    "sticky-note": { "file": "sticky-note.png", "role": "sticky", "tags": ["sticky", "cue"] },
+    "reward-jar": { "file": "reward-jar.png", "role": "rewardContainer", "tags": ["jar", "reward"] },
+    "cover-flap": { "file": "cover-flap.png", "role": "cover", "tags": ["cover", "legacy"] },
+    "cover-green": { "file": "cover-green.png", "role": "cover", "tags": ["cover", "hide"] },
+    "cover-blue": { "file": "cover-blue.png", "role": "cover", "tags": ["cover", "hide"] },
+    "cover-orange": { "file": "cover-orange.png", "role": "cover", "tags": ["cover", "hide"] },
+    "cover-purple": { "file": "cover-purple.png", "role": "cover", "tags": ["cover", "hide"] },
+    "prize-flap": { "file": "prize-flap.png", "role": "rewardFlap", "tags": ["flap", "reward"] },
+    "mini-whiteboard": { "file": "mini-whiteboard.png", "role": "miniBoard", "tags": ["whiteboard", "phonics"] },
+    "activity-tray": { "file": "activity-tray.png", "role": "tray", "tags": ["tray", "dock"] },
+    "speech-bubble": { "file": "speech-bubble.png", "role": "speech", "tags": ["speech", "speaking"] },
+    "reward-star": { "file": "reward-star.png", "role": "reward", "tags": ["star", "reward"] },
+    "slot-pad": { "file": "slot-pad.png", "role": "orderPad", "tags": ["slot", "order"] },
+    "hat-beanie": { "file": "hat-beanie.png", "role": "dressPart", "tags": ["hat", "dress"] },
+    "glasses": { "file": "glasses.png", "role": "dressPart", "tags": ["glasses", "dress"] },
+    "scarf": { "file": "scarf.png", "role": "dressPart", "tags": ["scarf", "dress"] },
+    "bag-satchel": { "file": "bag-satchel.png", "role": "dressPart", "tags": ["bag", "dress"] },
+    "bow": { "file": "bow.png", "role": "dressPart", "tags": ["bow", "dress"] },
+    "cap": { "file": "cap.png", "role": "dressPart", "tags": ["cap", "dress"] },
+    "microphone": { "file": "microphone.png", "role": "speakProp", "tags": ["mic", "speaking"] },
+    "check-badge": { "file": "check-badge.png", "role": "feedback", "tags": ["check", "correct"] },
+    "arrow-pointer": { "file": "arrow-pointer.png", "role": "pointer", "tags": ["arrow", "teach"] },
+    "target-ring": { "file": "target-ring.png", "role": "target", "tags": ["target", "ring"] },
+    "gift-box": { "file": "gift-box.png", "role": "reward", "tags": ["gift", "reward"] },
+    "hourglass": { "file": "hourglass.png", "role": "timer", "tags": ["timer", "time"] },
+    "table": { "file": "table.png", "role": "furniture", "tags": ["table", "build"] },
+    "chair": { "file": "chair.png", "role": "furniture", "tags": ["chair", "build"] },
+    "door": { "file": "door.png", "role": "furniture", "tags": ["door", "build"] },
+    "window": { "file": "window.png", "role": "furniture", "tags": ["window", "build"] },
+    "rug": { "file": "rug.png", "role": "furniture", "tags": ["rug", "build"] },
+    "lamp": { "file": "lamp.png", "role": "furniture", "tags": ["lamp", "build"] },
+    "tile-cream": { "file": "tile-cream.png", "role": "letterTile", "tags": ["tile", "phonics"] },
+    "tile-blue": { "file": "tile-blue.png", "role": "letterTile", "tags": ["tile", "phonics"] },
+    "sound-boxes": { "file": "sound-boxes.png", "role": "soundBoxes", "tags": ["phonics", "elkonin"] },
+    "word-strip": { "file": "word-strip.png", "role": "wordStrip", "tags": ["phonics", "strip"] },
+    "pencil": { "file": "pencil.png", "role": "tool", "tags": ["pencil", "write"] },
+    "eraser": { "file": "eraser.png", "role": "tool", "tags": ["eraser", "write"] }
   }
 }
