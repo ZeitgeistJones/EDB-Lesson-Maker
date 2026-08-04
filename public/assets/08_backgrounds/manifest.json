@@ -712,6 +712,201 @@
     "fishing",
     "holiday"
    ]
+  },
+  "tennis-court": {
+   "file": "tennis-court.png",
+   "groundY": 280,
+   "category": "outdoor-community",
+   "tags": [
+    "tennis",
+    "sports",
+    "court",
+    "exercise",
+    "game"
+   ]
+  },
+  "art-studio": {
+   "file": "art-studio.png",
+   "groundY": 224,
+   "category": "indoor-community",
+   "tags": [
+    "art",
+    "studio",
+    "painting",
+    "hobby",
+    "creative"
+   ]
+  },
+  "police-station": {
+   "file": "police-station.png",
+   "groundY": 265,
+   "category": "commercial",
+   "tags": [
+    "police",
+    "station",
+    "jail",
+    "security",
+    "officer"
+   ]
+  },
+  "fire-station": {
+   "file": "fire-station.png",
+   "groundY": 215,
+   "category": "commercial",
+   "tags": [
+    "fire",
+    "station",
+    "firefighter",
+    "truck",
+    "rescue"
+   ]
+  },
+  "castle-hallway": {
+   "file": "castle-hallway.png",
+   "groundY": 220,
+   "category": "indoor-community",
+   "tags": [
+    "castle",
+    "hallway",
+    "medieval",
+    "armor",
+    "king"
+   ]
+  },
+  "throne-room": {
+   "file": "throne-room.png",
+   "groundY": 232,
+   "category": "indoor-community",
+   "tags": [
+    "throne",
+    "royal",
+    "palace",
+    "king",
+    "queen",
+    "castle"
+   ]
+  },
+  "dungeon-cell": {
+   "file": "dungeon-cell.png",
+   "groundY": 209,
+   "category": "indoor-community",
+   "tags": [
+    "dungeon",
+    "prison",
+    "cell",
+    "dark",
+    "medieval"
+   ]
+  },
+  "alchemist-study": {
+   "file": "alchemist-study.png",
+   "groundY": 213,
+   "category": "indoor-community",
+   "tags": [
+    "alchemy",
+    "magic",
+    "wizard",
+    "study",
+    "potions",
+    "books"
+   ]
+  },
+  "cinema-screen": {
+   "file": "cinema-screen.png",
+   "groundY": 378,
+   "category": "commercial",
+   "tags": [
+    "cinema",
+    "movie",
+    "theater",
+    "film",
+    "screen"
+   ]
+  },
+  "arcade": {
+   "file": "arcade.png",
+   "groundY": 361,
+   "category": "commercial",
+   "tags": [
+    "arcade",
+    "games",
+    "neon",
+    "play",
+    "entertainment"
+   ]
+  },
+  "bowling-alley": {
+   "file": "bowling-alley.png",
+   "groundY": 235,
+   "category": "commercial",
+   "tags": [
+    "bowling",
+    "alley",
+    "sports",
+    "game",
+    "entertainment"
+   ]
+  },
+  "art-gallery": {
+   "file": "art-gallery.png",
+   "groundY": 353,
+   "category": "commercial",
+   "tags": [
+    "gallery",
+    "museum",
+    "art",
+    "painting",
+    "culture"
+   ]
+  },
+  "playground-sand": {
+   "file": "playground-sand.png",
+   "groundY": 266,
+   "category": "outdoor-community",
+   "tags": [
+    "playground",
+    "park",
+    "slide",
+    "swing",
+    "play",
+    "kids"
+   ]
+  },
+  "mountain-camp": {
+   "file": "mountain-camp.png",
+   "groundY": 347,
+   "category": "outdoor-nature",
+   "tags": [
+    "camping",
+    "tent",
+    "campfire",
+    "mountains",
+    "outdoors"
+   ]
+  },
+  "volcano-field": {
+   "file": "volcano-field.png",
+   "groundY": 342,
+   "category": "outdoor-nature",
+   "tags": [
+    "volcano",
+    "lava",
+    "eruption",
+    "mountain",
+    "nature"
+   ]
+  },
+  "savanna": {
+   "file": "savanna.png",
+   "groundY": 218,
+   "category": "outdoor-nature",
+   "tags": [
+    "savanna",
+    "africa",
+    "grassland",
+    "acacia",
+    "safari"
+   ]
   }
  },
  "flats": {
