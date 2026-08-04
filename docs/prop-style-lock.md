@@ -63,6 +63,33 @@ gradient or second object that reaches the frame border makes the frame
 unkeyable, and the importer will refuse it at gate C1. On a sheet, "the frame"
 means the cell: a glow that crosses into the next cell fails both of them.
 
+## Style families: `styleFamily` in the manifest
+
+The style lock above describes one art family, and it is the house style. A
+second family now exists in the pack, so every prop carries — or pointedly does
+not carry — a `styleFamily` field.
+
+- **absent** — the **matte house style**: soft muted desaturated palette, gentle
+  shading, minimal edge definition, a gentle contact shadow. This is the default
+  and the target for anything new generated from this document.
+- **`"glossy-adventure"`** — glossy game-icon art: strong specular highlights,
+  saturated colour, heavy gold trim, chunky three-quarter forms. The nine
+  travel/adventure/fantasy props imported from the August 2026 contact sheet
+  (`wizard-hat`, `suitcase-vintage`, `lantern`, `telescope`, `game-controller`,
+  `tent`, `potion-bottle`, `treasure-chest`, `camera`).
+
+**A board should draw its props from one family.** The two do not mix: put a
+matte, desaturated chair next to a lacquered gold-banded treasure chest and the
+chair reads as unfinished art rather than as a different object. Mixing them is
+the same failure as mixing in a photoreal render, only harder to spot because
+each prop is internally consistent.
+
+Absent means matte, so the 50-odd props that predate the field need no edit —
+but anything added from here on should set the field deliberately, including
+setting it to nothing when the art is matte. Classifying nine props while they
+are in front of you costs one field; discovering the need at 150 props means
+hand-sorting the whole pack from memory.
+
 ## Recolourability: one body colour, neutral everything else
 
 Give each prop **one dominant body colour**, with trim, fittings, hardware and
@@ -200,6 +227,10 @@ npm run assets:prop -- --latest --name=<slug> --role=<role> --tags=a,b,c \
   base on the scene's `groundY`, which is wrong for anything hanging or floating.
 - `--components` — how many separate shapes are legitimate. Default 1. The
   reward jar plus its detached lid is 2.
+
+There is no flag for `styleFamily`: it is a judgement about the finished art, so
+it goes into the manifest by hand after the visual pass, and only when the prop
+is not matte house style.
 
 ## Importing a sheet
 

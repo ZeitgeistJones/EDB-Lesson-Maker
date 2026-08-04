@@ -1,7 +1,7 @@
 {
   "boardPieces": true,
   "license": "Generated for this project — see LICENSE.txt",
-  "notes": "Alpha cutouts keyed from black-field generations. Roles map to collage / activity recipes. relativeScale is real-world size against the biggest props, so a pencil and a bookshelf are not both drawn at 96px. anchor says where the piece attaches: bottom rests on groundY, top hangs from above, center floats. cover-flap is legacy single; prefer cover-* colors for hideSeek.",
+  "notes": "Alpha cutouts keyed from black-field generations. Roles map to collage / activity recipes. relativeScale is real-world size against the biggest props, so a pencil and a bookshelf are not both drawn at 96px. anchor says where the piece attaches: bottom rests on groundY, top hangs from above, center floats. styleFamily names the art family; absent means the default matte house style, and a board should draw from one family. cover-flap is legacy single; prefer cover-* colors for hideSeek.",
   "props": {
     "bookshelf": { "file": "bookshelf.png", "role": "shelf", "tags": ["shelf", "furniture", "build"], "relativeScale": 1, "anchor": "bottom", "alpha": true, "aspect": 1.32, "bodyHue": 25 },
     "sorting-bin": { "file": "sorting-bin.png", "role": "sortBin", "tags": ["bin", "sort"], "relativeScale": 0.5, "anchor": "bottom", "alpha": true, "aspect": 2.2, "bodyHue": 205 },
@@ -57,6 +57,15 @@
     "magazine-file": { "file": "magazine-file.png", "role": "container", "tags": ["holder", "file", "magazine", "shelf"], "relativeScale": 0.3, "anchor": "bottom", "alpha": true, "aspect": 0.89, "bodyHue": 75 },
     "pencil-pot": { "file": "pencil-pot.png", "role": "container", "tags": ["pot", "pencils", "stationery", "desk"], "relativeScale": 0.2, "anchor": "bottom", "alpha": true, "aspect": 0.71, "bodyHue": 25 },
     "desk-mat": { "file": "desk-mat.png", "role": "furniture", "tags": ["mat", "placemat", "desk", "surface"], "relativeScale": 0.45, "anchor": "bottom", "alpha": true, "aspect": 1.79, "bodyHue": 55 },
-    "globe": { "file": "globe.png", "role": "object", "tags": ["globe", "world", "geography", "travel"], "relativeScale": 0.35, "anchor": "bottom", "alpha": true, "aspect": 0.73, "bodyHue": 35 }
+    "globe": { "file": "globe.png", "role": "object", "tags": ["globe", "world", "geography", "travel"], "relativeScale": 0.35, "anchor": "bottom", "alpha": true, "aspect": 0.73, "bodyHue": 35 },
+    "wizard-hat": { "file": "wizard-hat.png", "role": "dressPart", "tags": ["hat", "wizard", "magic", "costume"], "relativeScale": 0.3, "anchor": "bottom", "alpha": true, "aspect": 1.08, "bodyHue": 275, "styleFamily": "glossy-adventure" },
+    "suitcase-vintage": { "file": "suitcase-vintage.png", "role": "container", "tags": ["suitcase", "luggage", "travel", "vintage"], "relativeScale": 0.4, "anchor": "bottom", "alpha": true, "aspect": 1.08, "bodyHue": 175, "styleFamily": "glossy-adventure" },
+    "lantern": { "file": "lantern.png", "role": "object", "tags": ["lantern", "lamp", "light", "camping"], "relativeScale": 0.3, "anchor": "bottom", "alpha": true, "aspect": 0.54, "bodyHue": 15, "styleFamily": "glossy-adventure" },
+    "telescope": { "file": "telescope.png", "role": "object", "tags": ["telescope", "spyglass", "explore", "pirate"], "relativeScale": 0.35, "anchor": "center", "alpha": true, "aspect": 1.33, "bodyHue": 35, "styleFamily": "glossy-adventure" },
+    "game-controller": { "file": "game-controller.png", "role": "object", "tags": ["controller", "gamepad", "game", "play"], "relativeScale": 0.2, "anchor": "bottom", "alpha": true, "aspect": 1.34, "bodyHue": 35, "styleFamily": "glossy-adventure" },
+    "tent": { "file": "tent.png", "role": "object", "tags": ["tent", "camping", "outdoors", "shelter"], "relativeScale": 0.9, "anchor": "bottom", "alpha": true, "aspect": 1.42, "bodyHue": 65, "styleFamily": "glossy-adventure" },
+    "potion-bottle": { "file": "potion-bottle.png", "role": "object", "tags": ["potion", "bottle", "flask", "magic"], "relativeScale": 0.25, "anchor": "bottom", "alpha": true, "aspect": 0.68, "bodyHue": 295, "styleFamily": "glossy-adventure" },
+    "treasure-chest": { "file": "treasure-chest.png", "role": "rewardContainer", "tags": ["chest", "treasure", "reward", "pirate"], "relativeScale": 0.45, "anchor": "bottom", "alpha": true, "aspect": 1.1, "bodyHue": 25, "styleFamily": "glossy-adventure" },
+    "camera": { "file": "camera.png", "role": "object", "tags": ["camera", "photo", "travel", "holiday"], "relativeScale": 0.2, "anchor": "bottom", "alpha": true, "aspect": 1.19, "bodyHue": 175, "styleFamily": "glossy-adventure" }
   }
 }
