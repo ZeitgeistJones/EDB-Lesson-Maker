@@ -8,7 +8,7 @@
     { "word": "clumsy", "emoji": "🤸", "sentence": "He feels clumsy today." },
     { "word": "energetic", "emoji": "⚡", "sentence": "She is energetic." },
     { "word": "spacious", "emoji": "🏟️", "sentence": "The gym is spacious." },
-    { "word": "athletic", "emoji": "🏃", "sentence": "He is athletic." }
+    { "word": "athletic", "emoji": "🏀", "sentence": "He is athletic." }
   ],
   "sentenceFrames": [
     "I feel ____ at the gym.",

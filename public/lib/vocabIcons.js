@@ -17,6 +17,52 @@
       .trim();
   }
 
+  /**
+   * Abstract ESL words rarely match Twemoji filenames.
+   * Map meaning → pack key so dock art stays accurate for students.
+   */
+  const PACK_ALIASES = {
+    athletic: 'basketball',
+    sporty: 'soccer',
+    sports: 'soccer',
+    runner: 'basketball',
+    running: 'basketball',
+    gym: 'basketball',
+    doctor: 'hospital',
+    clinic: 'hospital',
+    nurse: 'hospital',
+    patient: 'hospital',
+    sick: 'hospital',
+  };
+
+  /** When pack has no art, prefer these glyphs over Gemini’s random emoji. */
+  const SAFE_EMOJI = {
+    spacious: '🏟️',
+    athletic: '🏀',
+    energetic: '⚡',
+    clumsy: '🤸',
+    diagnosis: '📋',
+    symptoms: '🤒',
+    prescription: '💊',
+    checkup: '🩺',
+    appointment: '📅',
+    fever: '🤒',
+    bandage: '🩹',
+    passport: '🛂',
+    ticket: '🎫',
+    suitcase: '🧳',
+    gate: '🚪',
+    teacher: '👩‍🏫',
+    classroom: '🏫',
+    pencil: '✏️',
+    friend: '🤝',
+  };
+
+  function emojiFor(word, fallback) {
+    const key = normalize(word);
+    return SAFE_EMOJI[key] || fallback || '•';
+  }
+
   function loadIndex() {
     if (indexCache) return Promise.resolve(indexCache);
     if (!indexPromise) {
@@ -52,8 +98,14 @@
     let hit = lookupKey(index, raw);
     if (hit) return hit;
 
-    // plural → singular (simple trailing s)
-    if (raw.length > 2 && raw.endsWith('s') && !raw.endsWith('ss')) {
+    const alias = PACK_ALIASES[raw];
+    if (alias) {
+      hit = lookupKey(index, alias);
+      if (hit) return hit;
+    }
+
+    // plural → singular (simple trailing s) — skip -ous/-ss adjectives ("spacious")
+    if (raw.length > 3 && raw.endsWith('s') && !raw.endsWith('ss') && !raw.endsWith('ous')) {
       hit = lookupKey(index, raw.slice(0, -1));
       if (hit) return hit;
     }
@@ -96,6 +148,7 @@
     pathFor,
     has,
     loadPng,
+    emojiFor,
     ready: loadIndex,
     CREDIT: 'Twemoji by Twitter, Inc and other contributors',
   };
