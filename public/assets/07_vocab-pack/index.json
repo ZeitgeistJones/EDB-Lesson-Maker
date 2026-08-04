@@ -1,682 +1,1547 @@
 {
- "apple": {
-  "file": "apple.png",
-  "emoji_name": "pie"
+ "alphabet": {
+  "file": "alphabet.png",
+  "emoji": "🔤",
+  "codepoint": "1f524"
  },
- "banana": {
-  "file": "banana.png",
-  "emoji_name": "banana"
+ "ambulance": {
+  "file": "ambulance.png",
+  "emoji": "🚑",
+  "codepoint": "1f691"
  },
- "orange": {
-  "file": "orange.png",
-  "emoji_name": "tangerine"
- },
- "grape": {
-  "file": "grape.png",
-  "emoji_name": "grapes"
- },
- "lemon": {
-  "file": "lemon.png",
-  "emoji_name": "lemon"
- },
- "strawberry": {
-  "file": "strawberry.png",
-  "emoji_name": "strawberry"
- },
- "watermelon": {
-  "file": "watermelon.png",
-  "emoji_name": "watermelon"
- },
- "peach": {
-  "file": "peach.png",
-  "emoji_name": "peach"
- },
- "cherry": {
-  "file": "cherry.png",
-  "emoji_name": "cherries"
- },
- "pear": {
-  "file": "pear.png",
-  "emoji_name": "pear"
- },
- "bread": {
-  "file": "bread.png",
-  "emoji_name": "bread"
- },
- "cheese": {
-  "file": "cheese.png",
-  "emoji_name": "cow"
- },
- "egg": {
-  "file": "egg.png",
-  "emoji_name": "egg"
- },
- "milk": {
-  "file": "milk.png",
-  "emoji_name": "cow"
- },
- "rice": {
-  "file": "rice.png",
-  "emoji_name": "rice ball"
- },
- "noodle": {
-  "file": "noodle.png",
-  "emoji_name": "steaming bowl"
- },
- "soup": {
-  "file": "soup.png",
-  "emoji_name": "pot of food"
- },
- "salad": {
-  "file": "salad.png",
-  "emoji_name": "leafy green"
- },
- "pizza": {
-  "file": "pizza.png",
-  "emoji_name": "pizza"
- },
- "sandwich": {
-  "file": "sandwich.png",
-  "emoji_name": "sandwich"
- },
- "cake": {
-  "file": "cake.png",
-  "emoji_name": "moon cake"
- },
- "cookie": {
-  "file": "cookie.png",
-  "emoji_name": "cookie"
- },
- "carrot": {
-  "file": "carrot.png",
-  "emoji_name": "carrot"
- },
- "potato": {
-  "file": "potato.png",
-  "emoji_name": "potato"
- },
- "tomato": {
-  "file": "tomato.png",
-  "emoji_name": "tomato"
- },
- "onion": {
-  "file": "onion.png",
-  "emoji_name": "onion"
- },
- "corn": {
-  "file": "corn.png",
-  "emoji_name": "hamster"
- },
- "mushroom": {
-  "file": "mushroom.png",
-  "emoji_name": "mushroom"
- },
- "dog": {
-  "file": "dog.png",
-  "emoji_name": "dog"
- },
- "cat": {
-  "file": "cat.png",
-  "emoji_name": "cat"
- },
- "bird": {
-  "file": "bird.png",
-  "emoji_name": "owl"
- },
- "fish": {
-  "file": "fish.png",
-  "emoji_name": "fish"
- },
- "horse": {
-  "file": "horse.png",
-  "emoji_name": "horse"
- },
- "cow": {
-  "file": "cow.png",
-  "emoji_name": "cow"
- },
- "pig": {
-  "file": "pig.png",
-  "emoji_name": "pig"
- },
- "sheep": {
-  "file": "sheep.png",
-  "emoji_name": "ram"
- },
- "chicken": {
-  "file": "chicken.png",
-  "emoji_name": "chicken"
- },
- "duck": {
-  "file": "duck.png",
-  "emoji_name": "duck"
- },
- "rabbit": {
-  "file": "rabbit.png",
-  "emoji_name": "rabbit"
- },
- "mouse": {
-  "file": "mouse.png",
-  "emoji_name": "mouse"
- },
- "lion": {
-  "file": "lion.png",
-  "emoji_name": "lion"
- },
- "tiger": {
-  "file": "tiger.png",
-  "emoji_name": "tiger"
- },
- "bear": {
-  "file": "bear.png",
-  "emoji_name": "bear"
- },
- "elephant": {
-  "file": "elephant.png",
-  "emoji_name": "elephant"
- },
- "monkey": {
-  "file": "monkey.png",
-  "emoji_name": "monkey"
- },
- "giraffe": {
-  "file": "giraffe.png",
-  "emoji_name": "giraffe"
- },
- "zebra": {
-  "file": "zebra.png",
-  "emoji_name": "zebra"
- },
- "panda": {
-  "file": "panda.png",
-  "emoji_name": "panda"
- },
- "fox": {
-  "file": "fox.png",
-  "emoji_name": "fox"
- },
- "wolf": {
-  "file": "wolf.png",
-  "emoji_name": "wolf"
- },
- "frog": {
-  "file": "frog.png",
-  "emoji_name": "frog"
- },
- "snake": {
-  "file": "snake.png",
-  "emoji_name": "snake"
- },
- "turtle": {
-  "file": "turtle.png",
-  "emoji_name": "turtle"
- },
- "whale": {
-  "file": "whale.png",
-  "emoji_name": "orca"
- },
- "dolphin": {
-  "file": "dolphin.png",
-  "emoji_name": "dolphin"
- },
- "shark": {
-  "file": "shark.png",
-  "emoji_name": "shark"
- },
- "octopus": {
-  "file": "octopus.png",
-  "emoji_name": "octopus"
- },
- "crab": {
-  "file": "crab.png",
-  "emoji_name": "crab"
- },
- "butterfly": {
-  "file": "butterfly.png",
-  "emoji_name": "butterfly"
- },
- "bee": {
-  "file": "bee.png",
-  "emoji_name": "honeybee"
+ "angry": {
+  "file": "angry.png",
+  "emoji": "😠",
+  "codepoint": "1f620"
  },
  "ant": {
   "file": "ant.png",
-  "emoji_name": "ant"
+  "emoji": "🐜",
+  "codepoint": "1f41c"
  },
- "spider": {
-  "file": "spider.png",
-  "emoji_name": "spider"
+ "apple": {
+  "file": "apple.png",
+  "emoji": "🍎",
+  "codepoint": "1f34e"
  },
- "tree": {
-  "file": "tree.png",
-  "emoji_name": "palm tree"
+ "appointment": {
+  "file": "appointment.png",
+  "emoji": "📅",
+  "codepoint": "1f4c5"
  },
- "flower": {
-  "file": "flower.png",
-  "emoji_name": "rose"
+ "arrival": {
+  "file": "arrival.png",
+  "emoji": "🛬",
+  "codepoint": "1f6ec"
  },
- "leaf": {
-  "file": "leaf.png",
-  "emoji_name": "herb"
+ "artist": {
+  "file": "artist.png",
+  "emoji": "🧑‍🎨",
+  "codepoint": "1f9d1-200d-1f3a8"
  },
- "grass": {
-  "file": "grass.png",
-  "emoji_name": "cow"
+ "astronaut": {
+  "file": "astronaut.png",
+  "emoji": "🧑‍🚀",
+  "codepoint": "1f9d1-200d-1f680"
  },
- "cactus": {
-  "file": "cactus.png",
-  "emoji_name": "cactus"
+ "avocado": {
+  "file": "avocado.png",
+  "emoji": "🥑",
+  "codepoint": "1f951"
  },
- "sun": {
-  "file": "sun.png",
-  "emoji_name": "sun"
- },
- "moon": {
-  "file": "moon.png",
-  "emoji_name": "new moon"
- },
- "star": {
-  "file": "star.png",
-  "emoji_name": "star"
- },
- "cloud": {
-  "file": "cloud.png",
-  "emoji_name": "fog"
- },
- "rain": {
-  "file": "rain.png",
-  "emoji_name": "cloud"
- },
- "snow": {
-  "file": "snow.png",
-  "emoji_name": "skis"
- },
- "fire": {
-  "file": "fire.png",
-  "emoji_name": "sun"
- },
- "water": {
-  "file": "water.png",
-  "emoji_name": "duck"
- },
- "wind": {
-  "file": "wind.png",
-  "emoji_name": "tornado"
- },
- "rainbow": {
-  "file": "rainbow.png",
-  "emoji_name": "rainbow"
- },
- "house": {
-  "file": "house.png",
-  "emoji_name": "hut"
- },
- "school": {
-  "file": "school.png",
-  "emoji_name": "bus"
- },
- "hospital": {
-  "file": "hospital.png",
-  "emoji_name": "hospital"
- },
- "bank": {
-  "file": "bank.png",
-  "emoji_name": "bank"
- },
- "store": {
-  "file": "store.png",
-  "emoji_name": "jar"
- },
- "park": {
-  "file": "park.png",
-  "emoji_name": "ferris wheel"
- },
- "bridge": {
-  "file": "bridge.png",
-  "emoji_name": "bridge at night"
- },
- "castle": {
-  "file": "castle.png",
-  "emoji_name": "castle"
- },
- "tent": {
-  "file": "tent.png",
-  "emoji_name": "tent"
- },
- "factory": {
-  "file": "factory.png",
-  "emoji_name": "factory"
- },
- "car": {
-  "file": "car.png",
-  "emoji_name": "taxi"
- },
- "bus": {
-  "file": "bus.png",
-  "emoji_name": "bus"
- },
- "train": {
-  "file": "train.png",
-  "emoji_name": "train"
- },
- "plane": {
-  "file": "plane.png",
-  "emoji_name": "pilot"
- },
- "boat": {
-  "file": "boat.png",
-  "emoji_name": "ship"
- },
- "ship": {
-  "file": "ship.png",
-  "emoji_name": "ship"
- },
- "bicycle": {
-  "file": "bicycle.png",
-  "emoji_name": "bicycle"
- },
- "motorcycle": {
-  "file": "motorcycle.png",
-  "emoji_name": "motorcycle"
- },
- "truck": {
-  "file": "truck.png",
-  "emoji_name": "fire engine"
- },
- "taxi": {
-  "file": "taxi.png",
-  "emoji_name": "taxi"
- },
- "rocket": {
-  "file": "rocket.png",
-  "emoji_name": "rocket"
- },
- "book": {
-  "file": "book.png",
-  "emoji_name": "books"
- },
- "pencil": {
-  "file": "pencil.png",
-  "emoji_name": "memo"
- },
- "pen": {
-  "file": "pen.png",
-  "emoji_name": "pen"
- },
- "ruler": {
-  "file": "ruler.png",
-  "emoji_name": "straight ruler"
- },
- "scissors": {
-  "file": "scissors.png",
-  "emoji_name": "scissors"
+ "baby": {
+  "file": "baby.png",
+  "emoji": "👶",
+  "codepoint": "1f476"
  },
  "backpack": {
   "file": "backpack.png",
-  "emoji_name": "backpack"
- },
- "computer": {
-  "file": "computer.png",
-  "emoji_name": "dvd"
- },
- "phone": {
-  "file": "phone.png",
-  "emoji_name": "selfie"
- },
- "camera": {
-  "file": "camera.png",
-  "emoji_name": "camera"
- },
- "clock": {
-  "file": "clock.png",
-  "emoji_name": "watch"
- },
- "watch": {
-  "file": "watch.png",
-  "emoji_name": "watch"
- },
- "key": {
-  "file": "key.png",
-  "emoji_name": "key"
- },
- "lock": {
-  "file": "lock.png",
-  "emoji_name": "key"
- },
- "door": {
-  "file": "door.png",
-  "emoji_name": "door"
- },
- "window": {
-  "file": "window.png",
-  "emoji_name": "window"
- },
- "bed": {
-  "file": "bed.png",
-  "emoji_name": "bed"
- },
- "chair": {
-  "file": "chair.png",
-  "emoji_name": "seat"
- },
- "table": {
-  "file": "table.png",
-  "emoji_name": "ping pong"
- },
- "lamp": {
-  "file": "lamp.png",
-  "emoji_name": "genie"
- },
- "mirror": {
-  "file": "mirror.png",
-  "emoji_name": "mirror"
- },
- "shirt": {
-  "file": "shirt.png",
-  "emoji_name": "necktie"
- },
- "dress": {
-  "file": "dress.png",
-  "emoji_name": "sari"
- },
- "hat": {
-  "file": "hat.png",
-  "emoji_name": "top hat"
- },
- "shoe": {
-  "file": "shoe.png",
-  "emoji_name": "flat shoe"
- },
- "glove": {
-  "file": "glove.png",
-  "emoji_name": "softball"
- },
- "coat": {
-  "file": "coat.png",
-  "emoji_name": "coat"
- },
- "glasses": {
-  "file": "glasses.png",
-  "emoji_name": "glasses"
- },
- "ring": {
-  "file": "ring.png",
-  "emoji_name": "ring"
- },
- "crown": {
-  "file": "crown.png",
-  "emoji_name": "crown"
- },
- "ball": {
-  "file": "ball.png",
-  "emoji_name": "yarn"
- },
- "soccer": {
-  "file": "soccer.png",
-  "emoji_name": "soccer ball"
- },
- "basketball": {
-  "file": "basketball.png",
-  "emoji_name": "basketball"
- },
- "football": {
-  "file": "football.png",
-  "emoji_name": "stadium"
- },
- "tennis": {
-  "file": "tennis.png",
-  "emoji_name": "tennis"
- },
- "baseball": {
-  "file": "baseball.png",
-  "emoji_name": "baseball"
- },
- "trophy": {
-  "file": "trophy.png",
-  "emoji_name": "trophy"
- },
- "medal": {
-  "file": "medal.png",
-  "emoji_name": "sports medal"
- },
- "guitar": {
-  "file": "guitar.png",
-  "emoji_name": "guitar"
- },
- "piano": {
-  "file": "piano.png",
-  "emoji_name": "musical keyboard"
- },
- "drum": {
-  "file": "drum.png",
-  "emoji_name": "drum"
- },
- "violin": {
-  "file": "violin.png",
-  "emoji_name": "violin"
- },
- "trumpet": {
-  "file": "trumpet.png",
-  "emoji_name": "trumpet"
- },
- "microphone": {
-  "file": "microphone.png",
-  "emoji_name": "microphone"
- },
- "headphone": {
-  "file": "headphone.png",
-  "emoji_name": "headphone"
- },
- "heart": {
-  "file": "heart.png",
-  "emoji_name": "kiss"
- },
- "smile": {
-  "file": "smile.png",
-  "emoji_name": "star-struck"
- },
- "eye": {
-  "file": "eye.png",
-  "emoji_name": "eye"
- },
- "ear": {
-  "file": "ear.png",
-  "emoji_name": "ear"
- },
- "nose": {
-  "file": "nose.png",
-  "emoji_name": "nose"
- },
- "mouth": {
-  "file": "mouth.png",
-  "emoji_name": "mouth"
- },
- "hand": {
-  "file": "hand.png",
-  "emoji_name": "hamsa"
- },
- "foot": {
-  "file": "foot.png",
-  "emoji_name": "leg"
- },
- "brain": {
-  "file": "brain.png",
-  "emoji_name": "brain"
- },
- "tooth": {
-  "file": "tooth.png",
-  "emoji_name": "tooth"
- },
- "map": {
-  "file": "map.png",
-  "emoji_name": "world map"
- },
- "globe": {
-  "file": "globe.png",
-  "emoji_name": "globe with meridians"
- },
- "compass": {
-  "file": "compass.png",
-  "emoji_name": "compass"
- },
- "flag": {
-  "file": "flag.png",
-  "emoji_name": "flag in hole"
- },
- "mountain": {
-  "file": "mountain.png",
-  "emoji_name": "volcano"
- },
- "volcano": {
-  "file": "volcano.png",
-  "emoji_name": "volcano"
- },
- "island": {
-  "file": "island.png",
-  "emoji_name": "desert island"
- },
- "beach": {
-  "file": "beach.png",
-  "emoji_name": "sun"
- },
- "desert": {
-  "file": "desert.png",
-  "emoji_name": "camel"
- },
- "money": {
-  "file": "money.png",
-  "emoji_name": "bank"
- },
- "gift": {
-  "file": "gift.png",
-  "emoji_name": "ribbon"
- },
- "balloon": {
-  "file": "balloon.png",
-  "emoji_name": "balloon"
- },
- "candle": {
-  "file": "candle.png",
-  "emoji_name": "candle"
- },
- "bell": {
-  "file": "bell.png",
-  "emoji_name": "bell"
- },
- "umbrella": {
-  "file": "umbrella.png",
-  "emoji_name": "umbrella"
- },
- "basket": {
-  "file": "basket.png",
-  "emoji_name": "basket"
+  "emoji": "🎒",
+  "codepoint": "1f392"
  },
  "bag": {
   "file": "bag.png",
-  "emoji_name": "luggage"
+  "emoji": "👜",
+  "codepoint": "1f45c"
+ },
+ "ball": {
+  "file": "ball.png",
+  "emoji": "🏐",
+  "codepoint": "1f3d0"
+ },
+ "balloon": {
+  "file": "balloon.png",
+  "emoji": "🎈",
+  "codepoint": "1f388"
+ },
+ "banana": {
+  "file": "banana.png",
+  "emoji": "🍌",
+  "codepoint": "1f34c"
+ },
+ "bandage": {
+  "file": "bandage.png",
+  "emoji": "🩹",
+  "codepoint": "1fa79"
+ },
+ "bank": {
+  "file": "bank.png",
+  "emoji": "🏦",
+  "codepoint": "1f3e6"
+ },
+ "baseball": {
+  "file": "baseball.png",
+  "emoji": "⚾",
+  "codepoint": "26be"
+ },
+ "basket": {
+  "file": "basket.png",
+  "emoji": "🧺",
+  "codepoint": "1f9fa"
+ },
+ "basketball": {
+  "file": "basketball.png",
+  "emoji": "🏀",
+  "codepoint": "1f3c0"
+ },
+ "bathtub": {
+  "file": "bathtub.png",
+  "emoji": "🛁",
+  "codepoint": "1f6c1"
+ },
+ "beach": {
+  "file": "beach.png",
+  "emoji": "🏖️",
+  "codepoint": "1f3d6"
+ },
+ "bear": {
+  "file": "bear.png",
+  "emoji": "🐻",
+  "codepoint": "1f43b"
+ },
+ "bed": {
+  "file": "bed.png",
+  "emoji": "🛏️",
+  "codepoint": "1f6cf"
+ },
+ "bee": {
+  "file": "bee.png",
+  "emoji": "🐝",
+  "codepoint": "1f41d"
+ },
+ "bell": {
+  "file": "bell.png",
+  "emoji": "🔔",
+  "codepoint": "1f514"
+ },
+ "bicycle": {
+  "file": "bicycle.png",
+  "emoji": "🚲",
+  "codepoint": "1f6b2"
+ },
+ "bird": {
+  "file": "bird.png",
+  "emoji": "🐦",
+  "codepoint": "1f426"
+ },
+ "boat": {
+  "file": "boat.png",
+  "emoji": "⛵",
+  "codepoint": "26f5"
+ },
+ "book": {
+  "file": "book.png",
+  "emoji": "📕",
+  "codepoint": "1f4d5"
+ },
+ "boots": {
+  "file": "boots.png",
+  "emoji": "🥾",
+  "codepoint": "1f97e"
+ },
+ "bored": {
+  "file": "bored.png",
+  "emoji": "🥱",
+  "codepoint": "1f971"
  },
  "box": {
   "file": "box.png",
-  "emoji_name": "package"
+  "emoji": "📦",
+  "codepoint": "1f4e6"
+ },
+ "brain": {
+  "file": "brain.png",
+  "emoji": "🧠",
+  "codepoint": "1f9e0"
+ },
+ "bread": {
+  "file": "bread.png",
+  "emoji": "🍞",
+  "codepoint": "1f35e"
+ },
+ "bridge": {
+  "file": "bridge.png",
+  "emoji": "🌉",
+  "codepoint": "1f309"
+ },
+ "broccoli": {
+  "file": "broccoli.png",
+  "emoji": "🥦",
+  "codepoint": "1f966"
+ },
+ "broom": {
+  "file": "broom.png",
+  "emoji": "🧹",
+  "codepoint": "1f9f9"
+ },
+ "brother": {
+  "file": "brother.png",
+  "emoji": "👦",
+  "codepoint": "1f466"
+ },
+ "bus": {
+  "file": "bus.png",
+  "emoji": "🚌",
+  "codepoint": "1f68c"
+ },
+ "butterfly": {
+  "file": "butterfly.png",
+  "emoji": "🦋",
+  "codepoint": "1f98b"
+ },
+ "cactus": {
+  "file": "cactus.png",
+  "emoji": "🌵",
+  "codepoint": "1f335"
+ },
+ "cake": {
+  "file": "cake.png",
+  "emoji": "🍰",
+  "codepoint": "1f370"
+ },
+ "calculator": {
+  "file": "calculator.png",
+  "emoji": "🧮",
+  "codepoint": "1f9ee"
+ },
+ "calendar": {
+  "file": "calendar.png",
+  "emoji": "🗓️",
+  "codepoint": "1f5d3"
+ },
+ "camel": {
+  "file": "camel.png",
+  "emoji": "🐫",
+  "codepoint": "1f42b"
+ },
+ "camera": {
+  "file": "camera.png",
+  "emoji": "📷",
+  "codepoint": "1f4f7"
+ },
+ "camping": {
+  "file": "camping.png",
+  "emoji": "🏕️",
+  "codepoint": "1f3d5"
+ },
+ "candle": {
+  "file": "candle.png",
+  "emoji": "🕯️",
+  "codepoint": "1f56f"
+ },
+ "candy": {
+  "file": "candy.png",
+  "emoji": "🍬",
+  "codepoint": "1f36c"
+ },
+ "cap": {
+  "file": "cap.png",
+  "emoji": "🧢",
+  "codepoint": "1f9e2"
+ },
+ "car": {
+  "file": "car.png",
+  "emoji": "🚗",
+  "codepoint": "1f697"
+ },
+ "carrot": {
+  "file": "carrot.png",
+  "emoji": "🥕",
+  "codepoint": "1f955"
+ },
+ "castle": {
+  "file": "castle.png",
+  "emoji": "🏰",
+  "codepoint": "1f3f0"
+ },
+ "cat": {
+  "file": "cat.png",
+  "emoji": "🐱",
+  "codepoint": "1f431"
+ },
+ "chair": {
+  "file": "chair.png",
+  "emoji": "🪑",
+  "codepoint": "1fa91"
+ },
+ "cheese": {
+  "file": "cheese.png",
+  "emoji": "🧀",
+  "codepoint": "1f9c0"
+ },
+ "chef": {
+  "file": "chef.png",
+  "emoji": "👨‍🍳",
+  "codepoint": "1f468-200d-1f373"
+ },
+ "cherry": {
+  "file": "cherry.png",
+  "emoji": "🍒",
+  "codepoint": "1f352"
+ },
+ "chess": {
+  "file": "chess.png",
+  "emoji": "♟️",
+  "codepoint": "265f"
+ },
+ "chicken": {
+  "file": "chicken.png",
+  "emoji": "🐔",
+  "codepoint": "1f414"
+ },
+ "chocolate": {
+  "file": "chocolate.png",
+  "emoji": "🍫",
+  "codepoint": "1f36b"
+ },
+ "church": {
+  "file": "church.png",
+  "emoji": "⛪",
+  "codepoint": "26ea"
+ },
+ "clean": {
+  "file": "clean.png",
+  "emoji": "🧽",
+  "codepoint": "1f9fd"
+ },
+ "clock": {
+  "file": "clock.png",
+  "emoji": "⏰",
+  "codepoint": "23f0"
+ },
+ "cloud": {
+  "file": "cloud.png",
+  "emoji": "☁️",
+  "codepoint": "2601"
+ },
+ "coat": {
+  "file": "coat.png",
+  "emoji": "🧥",
+  "codepoint": "1f9e5"
+ },
+ "coconut": {
+  "file": "coconut.png",
+  "emoji": "🥥",
+  "codepoint": "1f965"
+ },
+ "coffee": {
+  "file": "coffee.png",
+  "emoji": "☕",
+  "codepoint": "2615"
+ },
+ "cold": {
+  "file": "cold.png",
+  "emoji": "🥶",
+  "codepoint": "1f976"
+ },
+ "compass": {
+  "file": "compass.png",
+  "emoji": "🧭",
+  "codepoint": "1f9ed"
+ },
+ "computer": {
+  "file": "computer.png",
+  "emoji": "💻",
+  "codepoint": "1f4bb"
+ },
+ "confused": {
+  "file": "confused.png",
+  "emoji": "😕",
+  "codepoint": "1f615"
+ },
+ "cook": {
+  "file": "cook.png",
+  "emoji": "🍳",
+  "codepoint": "1f373"
+ },
+ "cookie": {
+  "file": "cookie.png",
+  "emoji": "🍪",
+  "codepoint": "1f36a"
+ },
+ "corn": {
+  "file": "corn.png",
+  "emoji": "🌽",
+  "codepoint": "1f33d"
+ },
+ "cow": {
+  "file": "cow.png",
+  "emoji": "🐮",
+  "codepoint": "1f42e"
+ },
+ "crab": {
+  "file": "crab.png",
+  "emoji": "🦀",
+  "codepoint": "1f980"
+ },
+ "crayon": {
+  "file": "crayon.png",
+  "emoji": "🖍️",
+  "codepoint": "1f58d"
+ },
+ "credit card": {
+  "file": "credit-card.png",
+  "emoji": "💳",
+  "codepoint": "1f4b3"
+ },
+ "crown": {
+  "file": "crown.png",
+  "emoji": "👑",
+  "codepoint": "1f451"
+ },
+ "cucumber": {
+  "file": "cucumber.png",
+  "emoji": "🥒",
+  "codepoint": "1f952"
+ },
+ "customs": {
+  "file": "customs.png",
+  "emoji": "🛃",
+  "codepoint": "1f6c3"
+ },
+ "cycling": {
+  "file": "cycling.png",
+  "emoji": "🚴",
+  "codepoint": "1f6b4"
+ },
+ "dance": {
+  "file": "dance.png",
+  "emoji": "💃",
+  "codepoint": "1f483"
+ },
+ "delayed": {
+  "file": "delayed.png",
+  "emoji": "⏳",
+  "codepoint": "23f3"
+ },
+ "departure": {
+  "file": "departure.png",
+  "emoji": "🛫",
+  "codepoint": "1f6eb"
+ },
+ "desert": {
+  "file": "desert.png",
+  "emoji": "🏜️",
+  "codepoint": "1f3dc"
+ },
+ "doctor": {
+  "file": "doctor.png",
+  "emoji": "🧑‍⚕️",
+  "codepoint": "1f9d1-200d-2695-fe0f"
+ },
+ "dog": {
+  "file": "dog.png",
+  "emoji": "🐶",
+  "codepoint": "1f436"
+ },
+ "dolphin": {
+  "file": "dolphin.png",
+  "emoji": "🐬",
+  "codepoint": "1f42c"
+ },
+ "donut": {
+  "file": "donut.png",
+  "emoji": "🍩",
+  "codepoint": "1f369"
+ },
+ "door": {
+  "file": "door.png",
+  "emoji": "🚪",
+  "codepoint": "1f6aa"
+ },
+ "dress": {
+  "file": "dress.png",
+  "emoji": "👗",
+  "codepoint": "1f457"
+ },
+ "drink": {
+  "file": "drink.png",
+  "emoji": "🥤",
+  "codepoint": "1f964"
+ },
+ "drum": {
+  "file": "drum.png",
+  "emoji": "🥁",
+  "codepoint": "1f941"
+ },
+ "duck": {
+  "file": "duck.png",
+  "emoji": "🦆",
+  "codepoint": "1f986"
+ },
+ "ear": {
+  "file": "ear.png",
+  "emoji": "👂",
+  "codepoint": "1f442"
+ },
+ "eat": {
+  "file": "eat.png",
+  "emoji": "🍽️",
+  "codepoint": "1f37d"
+ },
+ "egg": {
+  "file": "egg.png",
+  "emoji": "🥚",
+  "codepoint": "1f95a"
+ },
+ "elephant": {
+  "file": "elephant.png",
+  "emoji": "🐘",
+  "codepoint": "1f418"
+ },
+ "excited": {
+  "file": "excited.png",
+  "emoji": "🤩",
+  "codepoint": "1f929"
+ },
+ "eye": {
+  "file": "eye.png",
+  "emoji": "👁️",
+  "codepoint": "1f441"
+ },
+ "factory": {
+  "file": "factory.png",
+  "emoji": "🏭",
+  "codepoint": "1f3ed"
+ },
+ "family": {
+  "file": "family.png",
+  "emoji": "👨‍👩‍👧",
+  "codepoint": "1f468-200d-1f469-200d-1f467"
+ },
+ "farmer": {
+  "file": "farmer.png",
+  "emoji": "🧑‍🌾",
+  "codepoint": "1f9d1-200d-1f33e"
+ },
+ "father": {
+  "file": "father.png",
+  "emoji": "👨",
+  "codepoint": "1f468"
+ },
+ "fire": {
+  "file": "fire.png",
+  "emoji": "🔥",
+  "codepoint": "1f525"
+ },
+ "firefighter": {
+  "file": "firefighter.png",
+  "emoji": "🧑‍🚒",
+  "codepoint": "1f9d1-200d-1f692"
+ },
+ "fish": {
+  "file": "fish.png",
+  "emoji": "🐟",
+  "codepoint": "1f41f"
+ },
+ "fishing": {
+  "file": "fishing.png",
+  "emoji": "🎣",
+  "codepoint": "1f3a3"
+ },
+ "flag": {
+  "file": "flag.png",
+  "emoji": "🚩",
+  "codepoint": "1f6a9"
+ },
+ "flower": {
+  "file": "flower.png",
+  "emoji": "🌸",
+  "codepoint": "1f338"
+ },
+ "foot": {
+  "file": "foot.png",
+  "emoji": "🦶",
+  "codepoint": "1f9b6"
+ },
+ "football": {
+  "file": "football.png",
+  "emoji": "🏈",
+  "codepoint": "1f3c8"
+ },
+ "fox": {
+  "file": "fox.png",
+  "emoji": "🦊",
+  "codepoint": "1f98a"
+ },
+ "french fries": {
+  "file": "french-fries.png",
+  "emoji": "🍟",
+  "codepoint": "1f35f"
+ },
+ "friend": {
+  "file": "friend.png",
+  "emoji": "🤝",
+  "codepoint": "1f91d"
+ },
+ "frog": {
+  "file": "frog.png",
+  "emoji": "🐸",
+  "codepoint": "1f438"
+ },
+ "game": {
+  "file": "game.png",
+  "emoji": "🎮",
+  "codepoint": "1f3ae"
+ },
+ "gift": {
+  "file": "gift.png",
+  "emoji": "🎁",
+  "codepoint": "1f381"
+ },
+ "giraffe": {
+  "file": "giraffe.png",
+  "emoji": "🦒",
+  "codepoint": "1f992"
+ },
+ "glasses": {
+  "file": "glasses.png",
+  "emoji": "👓",
+  "codepoint": "1f453"
+ },
+ "globe": {
+  "file": "globe.png",
+  "emoji": "🌍",
+  "codepoint": "1f30d"
+ },
+ "glove": {
+  "file": "glove.png",
+  "emoji": "🧤",
+  "codepoint": "1f9e4"
+ },
+ "grandfather": {
+  "file": "grandfather.png",
+  "emoji": "👴",
+  "codepoint": "1f474"
+ },
+ "grandmother": {
+  "file": "grandmother.png",
+  "emoji": "👵",
+  "codepoint": "1f475"
+ },
+ "grape": {
+  "file": "grape.png",
+  "emoji": "🍇",
+  "codepoint": "1f347"
+ },
+ "grass": {
+  "file": "grass.png",
+  "emoji": "🌿",
+  "codepoint": "1f33f"
+ },
+ "guitar": {
+  "file": "guitar.png",
+  "emoji": "🎸",
+  "codepoint": "1f3b8"
+ },
+ "hamburger": {
+  "file": "hamburger.png",
+  "emoji": "🍔",
+  "codepoint": "1f354"
+ },
+ "hand": {
+  "file": "hand.png",
+  "emoji": "✋",
+  "codepoint": "270b"
+ },
+ "happy": {
+  "file": "happy.png",
+  "emoji": "😀",
+  "codepoint": "1f600"
+ },
+ "hat": {
+  "file": "hat.png",
+  "emoji": "🎩",
+  "codepoint": "1f3a9"
+ },
+ "headphone": {
+  "file": "headphone.png",
+  "emoji": "🎧",
+  "codepoint": "1f3a7"
+ },
+ "heart": {
+  "file": "heart.png",
+  "emoji": "❤️",
+  "codepoint": "2764"
+ },
+ "hippo": {
+  "file": "hippo.png",
+  "emoji": "🦛",
+  "codepoint": "1f99b"
+ },
+ "homework": {
+  "file": "homework.png",
+  "emoji": "📝",
+  "codepoint": "1f4dd"
+ },
+ "horse": {
+  "file": "horse.png",
+  "emoji": "🐴",
+  "codepoint": "1f434"
+ },
+ "hospital": {
+  "file": "hospital.png",
+  "emoji": "🏥",
+  "codepoint": "1f3e5"
+ },
+ "hot": {
+  "file": "hot.png",
+  "emoji": "🥵",
+  "codepoint": "1f975"
+ },
+ "hot dog": {
+  "file": "hot-dog.png",
+  "emoji": "🌭",
+  "codepoint": "1f32d"
+ },
+ "hotel": {
+  "file": "hotel.png",
+  "emoji": "🏨",
+  "codepoint": "1f3e8"
+ },
+ "house": {
+  "file": "house.png",
+  "emoji": "🏠",
+  "codepoint": "1f3e0"
+ },
+ "hurt": {
+  "file": "hurt.png",
+  "emoji": "🤕",
+  "codepoint": "1f915"
+ },
+ "ice cream": {
+  "file": "ice-cream.png",
+  "emoji": "🍦",
+  "codepoint": "1f366"
+ },
+ "injection": {
+  "file": "injection.png",
+  "emoji": "💉",
+  "codepoint": "1f489"
+ },
+ "island": {
+  "file": "island.png",
+  "emoji": "🏝️",
+  "codepoint": "1f3dd"
+ },
+ "juice": {
+  "file": "juice.png",
+  "emoji": "🧃",
+  "codepoint": "1f9c3"
+ },
+ "jump": {
+  "file": "jump.png",
+  "emoji": "🤸",
+  "codepoint": "1f938"
+ },
+ "kangaroo": {
+  "file": "kangaroo.png",
+  "emoji": "🦘",
+  "codepoint": "1f998"
+ },
+ "key": {
+  "file": "key.png",
+  "emoji": "🔑",
+  "codepoint": "1f511"
+ },
+ "kite": {
+  "file": "kite.png",
+  "emoji": "🪁",
+  "codepoint": "1fa81"
+ },
+ "kiwi": {
+  "file": "kiwi.png",
+  "emoji": "🥝",
+  "codepoint": "1f95d"
+ },
+ "koala": {
+  "file": "koala.png",
+  "emoji": "🐨",
+  "codepoint": "1f428"
+ },
+ "lamp": {
+  "file": "lamp.png",
+  "emoji": "💡",
+  "codepoint": "1f4a1"
+ },
+ "leaf": {
+  "file": "leaf.png",
+  "emoji": "🍃",
+  "codepoint": "1f343"
+ },
+ "lemon": {
+  "file": "lemon.png",
+  "emoji": "🍋",
+  "codepoint": "1f34b"
+ },
+ "library": {
+  "file": "library.png",
+  "emoji": "📚",
+  "codepoint": "1f4da"
+ },
+ "lion": {
+  "file": "lion.png",
+  "emoji": "🦁",
+  "codepoint": "1f981"
+ },
+ "lock": {
+  "file": "lock.png",
+  "emoji": "🔒",
+  "codepoint": "1f512"
+ },
+ "luggage": {
+  "file": "luggage.png",
+  "emoji": "🛄",
+  "codepoint": "1f6c4"
+ },
+ "mango": {
+  "file": "mango.png",
+  "emoji": "🥭",
+  "codepoint": "1f96d"
+ },
+ "map": {
+  "file": "map.png",
+  "emoji": "🗺️",
+  "codepoint": "1f5fa"
+ },
+ "mask": {
+  "file": "mask.png",
+  "emoji": "😷",
+  "codepoint": "1f637"
+ },
+ "meat": {
+  "file": "meat.png",
+  "emoji": "🍖",
+  "codepoint": "1f356"
+ },
+ "mechanic": {
+  "file": "mechanic.png",
+  "emoji": "🧑‍🔧",
+  "codepoint": "1f9d1-200d-1f527"
+ },
+ "medal": {
+  "file": "medal.png",
+  "emoji": "🏅",
+  "codepoint": "1f3c5"
+ },
+ "medicine": {
+  "file": "medicine.png",
+  "emoji": "💊",
+  "codepoint": "1f48a"
+ },
+ "menu": {
+  "file": "menu.png",
+  "emoji": "📋",
+  "codepoint": "1f4cb"
+ },
+ "microphone": {
+  "file": "microphone.png",
+  "emoji": "🎤",
+  "codepoint": "1f3a4"
+ },
+ "milk": {
+  "file": "milk.png",
+  "emoji": "🥛",
+  "codepoint": "1f95b"
+ },
+ "mirror": {
+  "file": "mirror.png",
+  "emoji": "🪞",
+  "codepoint": "1fa9e"
+ },
+ "money": {
+  "file": "money.png",
+  "emoji": "💰",
+  "codepoint": "1f4b0"
+ },
+ "monkey": {
+  "file": "monkey.png",
+  "emoji": "🐵",
+  "codepoint": "1f435"
+ },
+ "moon": {
+  "file": "moon.png",
+  "emoji": "🌙",
+  "codepoint": "1f319"
+ },
+ "morning": {
+  "file": "morning.png",
+  "emoji": "🌅",
+  "codepoint": "1f305"
+ },
+ "mother": {
+  "file": "mother.png",
+  "emoji": "👩",
+  "codepoint": "1f469"
+ },
+ "motorcycle": {
+  "file": "motorcycle.png",
+  "emoji": "🏍️",
+  "codepoint": "1f3cd"
+ },
+ "mountain": {
+  "file": "mountain.png",
+  "emoji": "⛰️",
+  "codepoint": "26f0"
+ },
+ "mouse": {
+  "file": "mouse.png",
+  "emoji": "🐭",
+  "codepoint": "1f42d"
+ },
+ "mouth": {
+  "file": "mouth.png",
+  "emoji": "👄",
+  "codepoint": "1f444"
+ },
+ "museum": {
+  "file": "museum.png",
+  "emoji": "🏛️",
+  "codepoint": "1f3db"
+ },
+ "mushroom": {
+  "file": "mushroom.png",
+  "emoji": "🍄",
+  "codepoint": "1f344"
+ },
+ "night": {
+  "file": "night.png",
+  "emoji": "🌃",
+  "codepoint": "1f303"
+ },
+ "noodle": {
+  "file": "noodle.png",
+  "emoji": "🍜",
+  "codepoint": "1f35c"
+ },
+ "nose": {
+  "file": "nose.png",
+  "emoji": "👃",
+  "codepoint": "1f443"
+ },
+ "notebook": {
+  "file": "notebook.png",
+  "emoji": "📓",
+  "codepoint": "1f4d3"
+ },
+ "nurse": {
+  "file": "nurse.png",
+  "emoji": "👩‍⚕️",
+  "codepoint": "1f469-200d-2695-fe0f"
+ },
+ "octopus": {
+  "file": "octopus.png",
+  "emoji": "🐙",
+  "codepoint": "1f419"
+ },
+ "onion": {
+  "file": "onion.png",
+  "emoji": "🧅",
+  "codepoint": "1f9c5"
+ },
+ "orange": {
+  "file": "orange.png",
+  "emoji": "🍊",
+  "codepoint": "1f34a"
+ },
+ "paint": {
+  "file": "paint.png",
+  "emoji": "🎨",
+  "codepoint": "1f3a8"
+ },
+ "pancake": {
+  "file": "pancake.png",
+  "emoji": "🥞",
+  "codepoint": "1f95e"
+ },
+ "panda": {
+  "file": "panda.png",
+  "emoji": "🐼",
+  "codepoint": "1f43c"
+ },
+ "pants": {
+  "file": "pants.png",
+  "emoji": "👖",
+  "codepoint": "1f456"
+ },
+ "park": {
+  "file": "park.png",
+  "emoji": "🏞️",
+  "codepoint": "1f3de"
+ },
+ "passport": {
+  "file": "passport.png",
+  "emoji": "🛂",
+  "codepoint": "1f6c2"
+ },
+ "peach": {
+  "file": "peach.png",
+  "emoji": "🍑",
+  "codepoint": "1f351"
+ },
+ "pear": {
+  "file": "pear.png",
+  "emoji": "🍐",
+  "codepoint": "1f350"
+ },
+ "pen": {
+  "file": "pen.png",
+  "emoji": "🖊️",
+  "codepoint": "1f58a"
+ },
+ "pencil": {
+  "file": "pencil.png",
+  "emoji": "✏️",
+  "codepoint": "270f"
+ },
+ "penguin": {
+  "file": "penguin.png",
+  "emoji": "🐧",
+  "codepoint": "1f427"
+ },
+ "phone": {
+  "file": "phone.png",
+  "emoji": "📱",
+  "codepoint": "1f4f1"
+ },
+ "piano": {
+  "file": "piano.png",
+  "emoji": "🎹",
+  "codepoint": "1f3b9"
+ },
+ "pig": {
+  "file": "pig.png",
+  "emoji": "🐷",
+  "codepoint": "1f437"
+ },
+ "pilot": {
+  "file": "pilot.png",
+  "emoji": "🧑‍✈️",
+  "codepoint": "1f9d1-200d-2708-fe0f"
+ },
+ "pineapple": {
+  "file": "pineapple.png",
+  "emoji": "🍍",
+  "codepoint": "1f34d"
+ },
+ "pizza": {
+  "file": "pizza.png",
+  "emoji": "🍕",
+  "codepoint": "1f355"
+ },
+ "plane": {
+  "file": "plane.png",
+  "emoji": "✈️",
+  "codepoint": "2708"
+ },
+ "plant": {
+  "file": "plant.png",
+  "emoji": "🪴",
+  "codepoint": "1fab4"
+ },
+ "police": {
+  "file": "police.png",
+  "emoji": "👮",
+  "codepoint": "1f46e"
+ },
+ "popcorn": {
+  "file": "popcorn.png",
+  "emoji": "🍿",
+  "codepoint": "1f37f"
+ },
+ "potato": {
+  "file": "potato.png",
+  "emoji": "🥔",
+  "codepoint": "1f954"
+ },
+ "puzzle": {
+  "file": "puzzle.png",
+  "emoji": "🧩",
+  "codepoint": "1f9e9"
+ },
+ "question": {
+  "file": "question.png",
+  "emoji": "❓",
+  "codepoint": "2753"
+ },
+ "rabbit": {
+  "file": "rabbit.png",
+  "emoji": "🐰",
+  "codepoint": "1f430"
+ },
+ "rain": {
+  "file": "rain.png",
+  "emoji": "🌧️",
+  "codepoint": "1f327"
+ },
+ "rainbow": {
+  "file": "rainbow.png",
+  "emoji": "🌈",
+  "codepoint": "1f308"
+ },
+ "read": {
+  "file": "read.png",
+  "emoji": "📖",
+  "codepoint": "1f4d6"
+ },
+ "receipt": {
+  "file": "receipt.png",
+  "emoji": "🧾",
+  "codepoint": "1f9fe"
+ },
+ "rice": {
+  "file": "rice.png",
+  "emoji": "🍚",
+  "codepoint": "1f35a"
+ },
+ "ring": {
+  "file": "ring.png",
+  "emoji": "💍",
+  "codepoint": "1f48d"
+ },
+ "rocket": {
+  "file": "rocket.png",
+  "emoji": "🚀",
+  "codepoint": "1f680"
+ },
+ "ruler": {
+  "file": "ruler.png",
+  "emoji": "📏",
+  "codepoint": "1f4cf"
+ },
+ "run": {
+  "file": "run.png",
+  "emoji": "🏃",
+  "codepoint": "1f3c3"
+ },
+ "sad": {
+  "file": "sad.png",
+  "emoji": "😢",
+  "codepoint": "1f622"
+ },
+ "salad": {
+  "file": "salad.png",
+  "emoji": "🥗",
+  "codepoint": "1f957"
+ },
+ "sandwich": {
+  "file": "sandwich.png",
+  "emoji": "🥪",
+  "codepoint": "1f96a"
+ },
+ "scared": {
+  "file": "scared.png",
+  "emoji": "😨",
+  "codepoint": "1f628"
+ },
+ "scarf": {
+  "file": "scarf.png",
+  "emoji": "🧣",
+  "codepoint": "1f9e3"
+ },
+ "school": {
+  "file": "school.png",
+  "emoji": "🏫",
+  "codepoint": "1f3eb"
+ },
+ "scientist": {
+  "file": "scientist.png",
+  "emoji": "🧑‍🔬",
+  "codepoint": "1f9d1-200d-1f52c"
+ },
+ "scissors": {
+  "file": "scissors.png",
+  "emoji": "✂️",
+  "codepoint": "2702"
+ },
+ "seat": {
+  "file": "seat.png",
+  "emoji": "💺",
+  "codepoint": "1f4ba"
+ },
+ "shark": {
+  "file": "shark.png",
+  "emoji": "🦈",
+  "codepoint": "1f988"
+ },
+ "sheep": {
+  "file": "sheep.png",
+  "emoji": "🐑",
+  "codepoint": "1f411"
+ },
+ "ship": {
+  "file": "ship.png",
+  "emoji": "🚢",
+  "codepoint": "1f6a2"
+ },
+ "shirt": {
+  "file": "shirt.png",
+  "emoji": "👕",
+  "codepoint": "1f455"
+ },
+ "shoe": {
+  "file": "shoe.png",
+  "emoji": "👟",
+  "codepoint": "1f45f"
+ },
+ "shopping cart": {
+  "file": "shopping-cart.png",
+  "emoji": "🛒",
+  "codepoint": "1f6d2"
+ },
+ "shower": {
+  "file": "shower.png",
+  "emoji": "🚿",
+  "codepoint": "1f6bf"
+ },
+ "shy": {
+  "file": "shy.png",
+  "emoji": "😊",
+  "codepoint": "1f60a"
+ },
+ "sick": {
+  "file": "sick.png",
+  "emoji": "🤒",
+  "codepoint": "1f912"
+ },
+ "sing": {
+  "file": "sing.png",
+  "emoji": "🎙️",
+  "codepoint": "1f399"
+ },
+ "singer": {
+  "file": "singer.png",
+  "emoji": "🧑‍🎤",
+  "codepoint": "1f9d1-200d-1f3a4"
+ },
+ "sister": {
+  "file": "sister.png",
+  "emoji": "👧",
+  "codepoint": "1f467"
+ },
+ "skateboard": {
+  "file": "skateboard.png",
+  "emoji": "🛹",
+  "codepoint": "1f6f9"
+ },
+ "sleep": {
+  "file": "sleep.png",
+  "emoji": "🛌",
+  "codepoint": "1f6cc"
+ },
+ "sleepy": {
+  "file": "sleepy.png",
+  "emoji": "😴",
+  "codepoint": "1f634"
+ },
+ "slide": {
+  "file": "slide.png",
+  "emoji": "🛝",
+  "codepoint": "1f6dd"
+ },
+ "snake": {
+  "file": "snake.png",
+  "emoji": "🐍",
+  "codepoint": "1f40d"
+ },
+ "snow": {
+  "file": "snow.png",
+  "emoji": "❄️",
+  "codepoint": "2744"
+ },
+ "soap": {
+  "file": "soap.png",
+  "emoji": "🧼",
+  "codepoint": "1f9fc"
+ },
+ "soccer": {
+  "file": "soccer.png",
+  "emoji": "⚽",
+  "codepoint": "26bd"
+ },
+ "socks": {
+  "file": "socks.png",
+  "emoji": "🧦",
+  "codepoint": "1f9e6"
+ },
+ "sofa": {
+  "file": "sofa.png",
+  "emoji": "🛋️",
+  "codepoint": "1f6cb"
+ },
+ "soup": {
+  "file": "soup.png",
+  "emoji": "🍲",
+  "codepoint": "1f372"
+ },
+ "spider": {
+  "file": "spider.png",
+  "emoji": "🕷️",
+  "codepoint": "1f577"
+ },
+ "squirrel": {
+  "file": "squirrel.png",
+  "emoji": "🐿️",
+  "codepoint": "1f43f"
+ },
+ "stairs": {
+  "file": "stairs.png",
+  "emoji": "🪜",
+  "codepoint": "1fa9c"
+ },
+ "star": {
+  "file": "star.png",
+  "emoji": "⭐",
+  "codepoint": "2b50"
+ },
+ "stethoscope": {
+  "file": "stethoscope.png",
+  "emoji": "🩺",
+  "codepoint": "1fa7a"
+ },
+ "store": {
+  "file": "store.png",
+  "emoji": "🏪",
+  "codepoint": "1f3ea"
+ },
+ "storm": {
+  "file": "storm.png",
+  "emoji": "⛈️",
+  "codepoint": "26c8"
+ },
+ "strawberry": {
+  "file": "strawberry.png",
+  "emoji": "🍓",
+  "codepoint": "1f353"
+ },
+ "student": {
+  "file": "student.png",
+  "emoji": "🧑‍🎓",
+  "codepoint": "1f9d1-200d-1f393"
+ },
+ "suitcase": {
+  "file": "suitcase.png",
+  "emoji": "🧳",
+  "codepoint": "1f9f3"
+ },
+ "sun": {
+  "file": "sun.png",
+  "emoji": "☀️",
+  "codepoint": "2600"
+ },
+ "surprised": {
+  "file": "surprised.png",
+  "emoji": "😲",
+  "codepoint": "1f632"
+ },
+ "swim": {
+  "file": "swim.png",
+  "emoji": "🏊",
+  "codepoint": "1f3ca"
+ },
+ "taxi": {
+  "file": "taxi.png",
+  "emoji": "🚕",
+  "codepoint": "1f695"
+ },
+ "tea": {
+  "file": "tea.png",
+  "emoji": "🍵",
+  "codepoint": "1f375"
+ },
+ "teacher": {
+  "file": "teacher.png",
+  "emoji": "👩‍🏫",
+  "codepoint": "1f469-200d-1f3eb"
+ },
+ "tennis": {
+  "file": "tennis.png",
+  "emoji": "🎾",
+  "codepoint": "1f3be"
+ },
+ "tent": {
+  "file": "tent.png",
+  "emoji": "⛺",
+  "codepoint": "26fa"
+ },
+ "thermometer": {
+  "file": "thermometer.png",
+  "emoji": "🌡️",
+  "codepoint": "1f321"
+ },
+ "ticket": {
+  "file": "ticket.png",
+  "emoji": "🎫",
+  "codepoint": "1f3ab"
+ },
+ "tiger": {
+  "file": "tiger.png",
+  "emoji": "🐯",
+  "codepoint": "1f42f"
+ },
+ "tired": {
+  "file": "tired.png",
+  "emoji": "😫",
+  "codepoint": "1f62b"
+ },
+ "toilet": {
+  "file": "toilet.png",
+  "emoji": "🚽",
+  "codepoint": "1f6bd"
+ },
+ "tomato": {
+  "file": "tomato.png",
+  "emoji": "🍅",
+  "codepoint": "1f345"
+ },
+ "tooth": {
+  "file": "tooth.png",
+  "emoji": "🦷",
+  "codepoint": "1f9b7"
+ },
+ "toothbrush": {
+  "file": "toothbrush.png",
+  "emoji": "🪥",
+  "codepoint": "1faa5"
+ },
+ "tractor": {
+  "file": "tractor.png",
+  "emoji": "🚜",
+  "codepoint": "1f69c"
+ },
+ "traffic light": {
+  "file": "traffic-light.png",
+  "emoji": "🚦",
+  "codepoint": "1f6a6"
+ },
+ "train": {
+  "file": "train.png",
+  "emoji": "🚆",
+  "codepoint": "1f686"
+ },
+ "tree": {
+  "file": "tree.png",
+  "emoji": "🌳",
+  "codepoint": "1f333"
+ },
+ "trophy": {
+  "file": "trophy.png",
+  "emoji": "🏆",
+  "codepoint": "1f3c6"
+ },
+ "truck": {
+  "file": "truck.png",
+  "emoji": "🚚",
+  "codepoint": "1f69a"
+ },
+ "trumpet": {
+  "file": "trumpet.png",
+  "emoji": "🎺",
+  "codepoint": "1f3ba"
+ },
+ "turtle": {
+  "file": "turtle.png",
+  "emoji": "🐢",
+  "codepoint": "1f422"
+ },
+ "umbrella": {
+  "file": "umbrella.png",
+  "emoji": "☂️",
+  "codepoint": "2602"
+ },
+ "violin": {
+  "file": "violin.png",
+  "emoji": "🎻",
+  "codepoint": "1f3bb"
+ },
+ "volcano": {
+  "file": "volcano.png",
+  "emoji": "🌋",
+  "codepoint": "1f30b"
+ },
+ "walk": {
+  "file": "walk.png",
+  "emoji": "🚶",
+  "codepoint": "1f6b6"
+ },
+ "wallet": {
+  "file": "wallet.png",
+  "emoji": "👛",
+  "codepoint": "1f45b"
+ },
+ "watch": {
+  "file": "watch.png",
+  "emoji": "⌚",
+  "codepoint": "231a"
+ },
+ "water": {
+  "file": "water.png",
+  "emoji": "💧",
+  "codepoint": "1f4a7"
+ },
+ "watermelon": {
+  "file": "watermelon.png",
+  "emoji": "🍉",
+  "codepoint": "1f349"
+ },
+ "whale": {
+  "file": "whale.png",
+  "emoji": "🐳",
+  "codepoint": "1f433"
+ },
+ "wheelchair": {
+  "file": "wheelchair.png",
+  "emoji": "🦽",
+  "codepoint": "1f9bd"
+ },
+ "wind": {
+  "file": "wind.png",
+  "emoji": "🌬️",
+  "codepoint": "1f32c"
+ },
+ "window": {
+  "file": "window.png",
+  "emoji": "🪟",
+  "codepoint": "1fa9f"
+ },
+ "wolf": {
+  "file": "wolf.png",
+  "emoji": "🐺",
+  "codepoint": "1f43a"
+ },
+ "worried": {
+  "file": "worried.png",
+  "emoji": "😟",
+  "codepoint": "1f61f"
+ },
+ "write": {
+  "file": "write.png",
+  "emoji": "✍️",
+  "codepoint": "270d"
+ },
+ "zebra": {
+  "file": "zebra.png",
+  "emoji": "🦓",
+  "codepoint": "1f993"
  }
 }

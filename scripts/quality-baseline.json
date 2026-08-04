@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T02:20:52.972Z",
+  "generatedAt": "2026-08-04T02:49:28.814Z",
   "note": "Regression baseline for board UX metrics. Refresh with: npm run quality:baseline (after a clean bake you are happy with).",
   "sourceTier": "all",
   "cases": {
@@ -97,7 +97,7 @@
       "caseMetrics": {
         "M4": 0.455,
         "M5": 0.728,
-        "M7": 1
+        "M7": 0.75
       },
       "pages": {
         "title": {
@@ -185,7 +185,7 @@
       "caseMetrics": {
         "M4": 0.455,
         "M5": 0.728,
-        "M7": 1
+        "M7": 0.75
       },
       "pages": {
         "title": {
@@ -618,7 +618,7 @@
       "caseMetrics": {
         "M4": 0.4,
         "M5": 0.75,
-        "M7": 0
+        "M7": 0.5
       },
       "pages": {
         "title": {
@@ -699,7 +699,7 @@
       "caseMetrics": {
         "M4": 0.462,
         "M5": 0.693,
-        "M7": 0.167
+        "M7": 0.75
       },
       "pages": {
         "title": {

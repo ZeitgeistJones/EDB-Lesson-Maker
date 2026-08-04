@@ -22,40 +22,54 @@
    * Map meaning → pack key so dock art stays accurate for students.
    */
   const PACK_ALIASES = {
+    // synonyms and inflections that should land on existing pack art
     athletic: 'basketball',
     sporty: 'soccer',
     sports: 'soccer',
-    runner: 'basketball',
-    running: 'basketball',
     gym: 'basketball',
-    doctor: 'hospital',
+    runner: 'run',
+    running: 'run',
+    jogging: 'run',
+    walking: 'walk',
+    swimming: 'swim',
+    dancing: 'dance',
+    reading: 'read',
+    writing: 'write',
+    cooking: 'cook',
+    eating: 'eat',
+    drinking: 'drink',
+    sleeping: 'sleep',
+    jumping: 'jump',
+    physician: 'doctor',
     clinic: 'hospital',
-    nurse: 'hospital',
-    patient: 'hospital',
-    sick: 'hospital',
+    symptoms: 'sick',
+    fever: 'thermometer',
+    checkup: 'stethoscope',
+    prescription: 'medicine',
+    airplane: 'plane',
+    aeroplane: 'plane',
+    flight: 'plane',
+    fly: 'plane',
+    'boarding pass': 'ticket',
+    seatbelt: 'seat',
+    'jet lag': 'tired',
+    gate: 'door',
+    classroom: 'school',
+    mom: 'mother',
+    mum: 'mother',
+    dad: 'father',
+    grandma: 'grandmother',
+    grandpa: 'grandfather',
   };
 
-  /** When pack has no art, prefer these glyphs over Gemini’s random emoji. */
+  /**
+   * Concepts with no pack art but a glyph that is unmistakably them, and that
+   * no pack word already uses — a shared picture makes matching unplayable.
+   * Anything else belongs in docs/asset-wishlist.md, not a near-enough guess.
+   */
   const SAFE_EMOJI = {
     spacious: '🏟️',
-    athletic: '🏀',
     energetic: '⚡',
-    clumsy: '🤸',
-    diagnosis: '📋',
-    symptoms: '🤒',
-    prescription: '💊',
-    checkup: '🩺',
-    appointment: '📅',
-    fever: '🤒',
-    bandage: '🩹',
-    passport: '🛂',
-    ticket: '🎫',
-    suitcase: '🧳',
-    gate: '🚪',
-    teacher: '👩‍🏫',
-    classroom: '🏫',
-    pencil: '✏️',
-    friend: '🤝',
   };
 
   function emojiFor(word, fallback) {

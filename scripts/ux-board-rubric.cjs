@@ -97,7 +97,7 @@ const METRICS = {
     why: 'Content stuck in the top strip leaves a big dead board — skipped on poster pages (title, wrap)',
   },
   M7: {
-    label: 'Vetted vocab art (verified pack PNG or curated glyph, not a Gemini guess)',
+    label: 'Vocab words with vetted art that is theirs alone (no Gemini guess, no picture shared with another word)',
     scope: 'case',
     worseWhen: 'lower',
     warn: 0.6,

@@ -12,10 +12,13 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 |------|------|--------------------------|----------------|------------------|--------|
 | 2026-08-03 | Better icon for abstract size/space words (`spacious`, `cramped`, `huge`) beyond stadium metaphor | gym New Words dock — stadium works for spacious but not a full abstract-size set | Twemoji pack alias or CC0 vocab PNG | Twemoji / project `03_vocab-icons` | open |
 | 2026-08-03 | Activity-page collage props (shelf toys, sortables) for EW4 | Soft S17 — activity pages still thin / low charm | Verified cutouts in `09_props` | Project OpenAI props + LICENSE ledger | open |
-| 2026-08-03 | Distinct art for `swing` vs `slide` — both currently render 🛝 | minimal fixture New Words: two different words show the same picture | Two distinct playground icons | CC0 icon set or generated prop | open |
-| 2026-08-03 | Room-quality adjectives: `cramped`, `tidy`, `cosy`, `cluttered` | abstract-words fixture — no vetted glyph, falls back to a Gemini guess | Small contrasting scene icons (tidy vs messy room) | Generated prop pair or CC0 | open |
-| 2026-08-03 | Cafeteria nouns: `tray`, `queue`, `napkin` | bad-theme fixture — unvetted glyphs | Vocab icons | Twemoji pack extension | open |
-| 2026-08-03 | Air-travel procedure words: `boarding pass`, `security`, `departure`, `arrival`, `seatbelt`, `turbulence`, `customs`, `connection`, `jet lag` | overflow fixture — 10 of 12 words unvetted; common ESL travel unit | Vocab icons | Twemoji pack extension / generated set | open |
+| 2026-08-03 | Distinct art for `swing` vs `slide` — both rendered 🛝 | minimal fixture New Words: two different words showed the same picture | Two distinct playground icons | CC0 icon set or generated prop | partly closed — `slide` now 🛝; Unicode has no swing, still needed |
+| 2026-08-03 | Room-quality adjectives: `cramped`, `tidy`, `cosy`, `cluttered` | abstract-words fixture — no vetted glyph, falls back to a Gemini guess | Contrasting mini-scene pairs (tidy vs cluttered room) | Generated — no emoji or icon set expresses these | open |
+| 2026-08-03 | Cafeteria nouns: `tray`, `queue`, `napkin`, `delicious` | bad-theme fixture — unvetted glyphs | Vocab icons | Generated — absent from Twemoji | open |
+| 2026-08-03 | Air-travel procedure words: `security`, `turbulence`, `connection` | overflow fixture — the rest of the travel unit now resolves from the rebuilt pack | Vocab icons | Generated — absent from Twemoji | open |
+| 2026-08-04 | Purpose-drawn `doctor` vs `nurse` pair | Both resolve to Twemoji health workers that differ only by hair, which is thin for a young-learner match task | Two clearly different characters | Generated, or Open Peeps composition | open |
+| 2026-08-04 | `patient`, `diagnosis`, `clumsy`, `table` | Dropped rather than aliased to a near-enough picture (patient shared the hospital building, diagnosis a clipboard, clumsy a cartwheel, table a ping-pong paddle) | Vocab icons | Generated | open |
+| 2026-08-04 | Scene backgrounds: hotel lobby, office, stadium, party room, snowy street, train platform, vet clinic | Common ESL units with no scene; picker falls back to a flat | 1536x1024 board scenes with a clear centre band | Generated — matches the existing 40-scene style | open |
 
 ## How agents append
 

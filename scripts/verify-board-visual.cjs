@@ -542,24 +542,33 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
     }
     await window.VocabIcons.ready();
     const unvetted = [];
-    const glyphOwners = {};
+    // Keyed by the artwork a student actually sees, pack file or glyph, so an
+    // alias that points three words at one picture is caught like a duplicate
+    // emoji is — a match task with two identical cards is unplayable either way.
+    const artOwners = {};
     let vetted = 0;
     for (const v of entries) {
       const packPath = await window.VocabIcons.pathFor(v.word);
       const curated = window.VocabIcons.isCurated ? window.VocabIcons.isCurated(v.word) : false;
       if (packPath || curated) vetted++;
       else unvetted.push(v.word);
-      const glyph = window.VocabIcons.emojiFor(v.word, v.emoji);
-      if (glyph && glyph !== '•') {
-        glyphOwners[glyph] = glyphOwners[glyph] || [];
-        glyphOwners[glyph].push(v.word);
+      const art = packPath
+        ? String(packPath).split('/').pop()
+        : window.VocabIcons.emojiFor(v.word, v.emoji);
+      if (art && art !== '•') {
+        artOwners[art] = artOwners[art] || [];
+        artOwners[art].push(v.word);
       }
     }
-    const duplicateGlyphs = Object.entries(glyphOwners)
+    const duplicateGlyphs = Object.entries(artOwners)
       .filter(([, ws]) => ws.length > 1)
       .map(([glyph, ws]) => ({ glyph, words: ws }));
+    // Art shared with another word is not usable art: on a match page the
+    // student sees two identical cards, so it does not count toward coverage.
+    const shared = new Set(duplicateGlyphs.flatMap((d) => d.words));
+    const usable = Math.max(0, vetted - entries.filter((v) => shared.has(v.word)).length);
     return {
-      M7: Number((vetted / entries.length).toFixed(3)),
+      M7: Number((usable / entries.length).toFixed(3)),
       unvettedWords: unvetted,
       duplicateGlyphs,
       words: entries.length,
