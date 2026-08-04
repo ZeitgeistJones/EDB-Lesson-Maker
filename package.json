@@ -7,7 +7,8 @@
     "start": "node server.js",
     "dev": "node --watch server.js",
     "test:bg-picks": "node scripts/smoke-bg-picks.mjs",
-    "test:board-bg": "node scripts/verify-board-visual.cjs"
+    "test:board-bg": "node scripts/verify-board-visual.cjs",
+    "preflight": "node scripts/preflight-boards.cjs"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

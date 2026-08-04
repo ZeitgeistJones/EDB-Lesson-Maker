@@ -293,13 +293,9 @@
     });
     const words = (lesson.vocabulary || []).slice(0, 6);
     for (const v of words) {
-      let glyphHtml = `<div style="width:64px;height:64px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:32px">${esc(v.emoji || '•')}</div>`;
-      if (window.VocabIcons) {
-        const iconPath = await window.VocabIcons.pathFor(v.word);
-        if (iconPath) {
-          glyphHtml = `<img src="${esc(iconPath)}" alt="" width="64" height="64" style="width:64px;height:64px;object-fit:contain;border-radius:12px;background:#ede9fe;padding:4px;box-sizing:border-box"/>`;
-        }
-      }
+      // Emoji only in locked chrome — VocabIcons PNGs checkerboard under html2canvas.
+      // Dock pieces still use VocabIcons via buildEdb pieceToPng.
+      const glyphHtml = `<div style="width:64px;height:64px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:32px">${esc(v.emoji || '•')}</div>`;
       grid.appendChild(card(
         `<div style="display:flex;align-items:center;gap:16px">
           ${glyphHtml}
@@ -351,15 +347,24 @@
 
   function themeEmoji(theme) {
     const t = String(theme || '').toLowerCase();
+    // Place cues first — Gemini visualTheme often lies ("beach" on a gym lesson).
+    if (t.includes('gym') || t.includes('workout') || t.includes('athletic') || t.includes('court')) return '🏀';
+    if (t.includes('doctor') || t.includes('clinic') || t.includes('hospital') || t.includes('sick') || t.includes('checkup')) return '🏥';
+    if (t.includes('airport') || t.includes('travel') || t.includes('passport')) return '✈️';
+    if (t.includes('school') || t.includes('classroom') || t.includes('teacher')) return '🏫';
+    if (t.includes('kitchen') || t.includes('cook')) return '🍳';
     if (t.includes('beach')) return '🏖️';
-    if (t.includes('school')) return '🏫';
-    if (t.includes('kitchen') || t.includes('home')) return '🏠';
-    if (t.includes('city')) return '🏙️';
+    if (t.includes('home') || t.includes('living')) return '🏠';
+    if (t.includes('city') || t.includes('street')) return '🏙️';
     if (t.includes('sport')) return '⚽';
     if (t.includes('park')) return '🌳';
     if (t.includes('bakery') || t.includes('food')) return '🥐';
-    if (t.includes('doctor') || t.includes('clinic') || t.includes('hospital') || t.includes('sick')) return '🏥';
     return '📖';
+  }
+
+  function storyArtCue(lesson, page) {
+    // Prefer lesson place language over Gemini visualTheme (often unrelated art direction).
+    return [lesson?.title, page?.visualCaption, page?.heading].filter(Boolean).join(' ');
   }
 
   function makeStoryPage(lesson, page, index, boardPlan) {
@@ -381,7 +386,7 @@
       boxSizing: 'border-box',
     });
     side.appendChild(el('div', { fontSize: '88px', lineHeight: '1', marginBottom: '14px' },
-      themeEmoji(page?.visualTheme)));
+      themeEmoji(storyArtCue(lesson, page))));
     side.appendChild(el('div', {
       background: '#1e293b', color: '#fff', borderRadius: '10px', padding: '10px 14px',
       fontSize: '16px', fontWeight: '700', textAlign: 'center', width: '100%',

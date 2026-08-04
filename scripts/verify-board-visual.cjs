@@ -30,6 +30,12 @@ const CASES = [
     meta: { level: 'B1', duration: '45' },
   },
   {
+    id: 'gym',
+    fixture: 'gym-lesson.json',
+    expectName: /gym|school|playground|sport/i,
+    meta: { level: 'B1', duration: '45' },
+  },
+  {
     id: 'travel',
     fixture: 'travel-lesson.json',
     expectName: /airport|travel|station|bus|train/i,
@@ -155,9 +161,11 @@ async function main() {
           pageCount: canvases.length,
           pickCount: picks.length,
           picks,
+          pageKeys: (boardPlan.pages || []).map((p) => p.pageKey),
           titlePick: picks[0] || null,
           vocabPick: picks[2] || null,
-          pages: pages.slice(0, 4), // title, warm, vocab, sentences — enough to judge
+          // Keep every page for UX review artifacts
+          pages: pages,
         };
       }, { lesson, meta: c.meta });
 
@@ -181,7 +189,14 @@ async function main() {
 
       const sceneCount = result.picks.filter((p) => p.type === 'scene').length;
       const flatCount = result.picks.filter((p) => p.type === 'flat').length;
+      const placeName = result.titlePick && result.titlePick.name;
       console.log(`  mix scenes=${sceneCount} flats=${flatCount}`);
+      console.log(
+        '  plan:',
+        result.picks
+          .map((p, i) => `${i}:${p.type[0]}:${p.name}`)
+          .join(' | ')
+      );
 
       if (result.pickCount !== result.pageCount) {
         failures.push(`${c.id}: pick/page length mismatch ${result.pickCount} vs ${result.pageCount}`);
@@ -194,6 +209,32 @@ async function main() {
       }
       if (flatCount < 3 || sceneCount < 2) {
         failures.push(`${c.id}: expected mixed backgrounds (flats>=3 scenes>=2), got f=${flatCount} s=${sceneCount}`);
+      }
+
+      // Place pages (not preferFlat) should reuse the title scene
+      const keys = result.pageKeys || [];
+      keys.forEach((key, i) => {
+        const pick = result.picks[i];
+        if (!pick) return;
+        const isPlace =
+          key === 'title' ||
+          key === 'activity' ||
+          String(key).startsWith('story');
+        if (isPlace) {
+          if (pick.type !== 'scene' || pick.name !== placeName) {
+            failures.push(
+              `${c.id}: place page ${key} should reuse scene ${placeName}, got ${pick.type}:${pick.name}`
+            );
+          }
+        } else if (pick.type !== 'flat') {
+          failures.push(`${c.id}: drill page ${key} should be flat, got ${pick.type}:${pick.name}`);
+        }
+      });
+
+      // Flat rotation: consecutive flats should not all be identical name when count>2
+      const flatNames = result.picks.filter((p) => p.type === 'flat').map((p) => p.name);
+      if (flatNames.length >= 3 && new Set(flatNames).size === 1) {
+        failures.push(`${c.id}: flats not rotating (all ${flatNames[0]})`);
       }
 
       // Pixel check: title corners must not look like old solid indigo chrome

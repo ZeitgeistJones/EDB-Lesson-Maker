@@ -1,0 +1,51 @@
+{
+  "title": "The Clown at the Gym",
+  "warmUp": {
+    "question": "What kind of exercises are hard in big floppy shoes?",
+    "sampleAnswer": "Running and jumping."
+  },
+  "vocabulary": [
+    { "word": "clumsy", "emoji": "🤸", "sentence": "He feels clumsy today." },
+    { "word": "energetic", "emoji": "⚡", "sentence": "She is energetic." },
+    { "word": "spacious", "emoji": "🏟️", "sentence": "The gym is spacious." },
+    { "word": "athletic", "emoji": "🏃", "sentence": "He is athletic." }
+  ],
+  "sentenceFrames": [
+    "I feel ____ at the gym.",
+    "The room is ____.",
+    "Stay ____ and try again."
+  ],
+  "story": {
+    "title": "Flippo’s Big Workout",
+    "pages": [
+      {
+        "heading": "Flippo’s Big Workout",
+        "text": "Flippo the clown walks into the gym. He feels clumsy.",
+        "visualTheme": "beach",
+        "visualCaption": "Inside the school gym"
+      },
+      {
+        "heading": "Staying Strong",
+        "text": "Flippo keeps trying. He feels athletic.",
+        "visualTheme": "kitchen",
+        "visualCaption": "Workout on the court"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where does Flippo go?", "sampleAnswer": "He goes to the gym." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "Do you like the gym?", "sampleAnswer": "Yes, I do." },
+    { "question": "What makes you energetic?", "sampleAnswer": "Sports make me energetic." }
+  ],
+  "activity": {
+    "title": "Interactive Gym Circuit",
+    "prompt": "Complete the gym sentences.",
+    "templates": ["I can ____.", "The gym is ____."]
+  },
+  "reviewSentences": [
+    "Flippo works out at the gym."
+  ]
+}
