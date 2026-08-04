@@ -293,9 +293,11 @@
     });
     const words = (lesson.vocabulary || []).slice(0, 6);
     for (const v of words) {
-      // Emoji only in locked chrome — VocabIcons PNGs checkerboard under html2canvas.
-      // Dock pieces still use VocabIcons via buildEdb pieceToPng.
-      const glyphHtml = `<div style="width:64px;height:64px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:32px">${esc(v.emoji || '•')}</div>`;
+      // Interactive matchDock: word-only cards — icons live in the dock to match.
+      // Non-interactive: emoji + word reference sheet.
+      const glyphHtml = interactive
+        ? ''
+        : `<div style="width:64px;height:64px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0">${esc(v.emoji || '•')}</div>`;
       grid.appendChild(card(
         `<div style="display:flex;align-items:center;gap:16px">
           ${glyphHtml}
