@@ -177,7 +177,11 @@ async function main() {
       console.log(`\n=== ${c.id} ===`);
       console.log(`  pages=${result.pageCount} picks=${result.pickCount}`);
       console.log(`  title → ${result.titlePick?.type}:${result.titlePick?.name} score=${result.titlePick?.score}`);
-      console.log(`  vocab → ${result.vocabPick?.type}:${result.vocabPick?.name} score=${result.vocabPick?.score}`);
+      console.log(`  vocab → ${result.vocabPick?.type}:${result.vocabPick?.name} ${result.vocabPick?.reason || ''}`);
+
+      const sceneCount = result.picks.filter((p) => p.type === 'scene').length;
+      const flatCount = result.picks.filter((p) => p.type === 'flat').length;
+      console.log(`  mix scenes=${sceneCount} flats=${flatCount}`);
 
       if (result.pickCount !== result.pageCount) {
         failures.push(`${c.id}: pick/page length mismatch ${result.pickCount} vs ${result.pageCount}`);
@@ -185,8 +189,11 @@ async function main() {
       if (!result.titlePick || result.titlePick.type !== 'scene' || !c.expectName.test(result.titlePick.name)) {
         failures.push(`${c.id}: title pick expected scene~${c.expectName}, got ${JSON.stringify(result.titlePick)}`);
       }
-      if (!result.vocabPick || result.vocabPick.type !== 'scene' || !c.expectName.test(result.vocabPick.name)) {
-        failures.push(`${c.id}: vocab pick expected scene~${c.expectName}, got ${JSON.stringify(result.vocabPick)}`);
+      if (!result.vocabPick || result.vocabPick.type !== 'flat') {
+        failures.push(`${c.id}: vocab pick expected flat (whiteboard feel), got ${JSON.stringify(result.vocabPick)}`);
+      }
+      if (flatCount < 3 || sceneCount < 2) {
+        failures.push(`${c.id}: expected mixed backgrounds (flats>=3 scenes>=2), got f=${flatCount} s=${sceneCount}`);
       }
 
       // Pixel check: title corners must not look like old solid indigo chrome
@@ -200,10 +207,8 @@ async function main() {
         console.log(`  pixel check: title corners OK (gradient-like ${gradientHits}/5)`);
       }
 
-      // Vocab page has no dark wash — compare corners to the scene file (harder signal)
-      const vocabPage = result.pages.find((p) => p.index === 2) || result.pages[2];
-      const vocabSamples = vocabPage?.samples || [];
-      if (result.vocabPick?.type === 'scene' && result.vocabPick.path && vocabSamples.length >= 4) {
+      // Title page should match the place scene file
+      if (result.titlePick?.type === 'scene' && result.titlePick.path && titleSamples.length >= 4) {
         const sceneOk = await page.evaluate(async ({ scenePath, samples }) => {
           const img = new Image();
           img.crossOrigin = 'anonymous';
@@ -217,7 +222,6 @@ async function main() {
           c.height = img.naturalHeight;
           const ctx = c.getContext('2d');
           ctx.drawImage(img, 0, 0);
-          // Same relative corners as board sample points (board is 1280×590 cover-scaled)
           const pts = [
             [8, 8],
             [c.width - 9, 8],
@@ -228,6 +232,7 @@ async function main() {
             const d = ctx.getImageData(x, y, 1, 1).data;
             return [d[0], d[1], d[2]];
           });
+          // Title uses a dark wash — compare only that samples aren't pure indigo gradient
           let err = 0;
           for (let i = 0; i < 4; i++) {
             err += Math.abs(samples[i][0] - sceneSamples[i][0]);
@@ -235,13 +240,8 @@ async function main() {
             err += Math.abs(samples[i][2] - sceneSamples[i][2]);
           }
           return { err: err / 4 };
-        }, { scenePath: result.vocabPick.path, samples: vocabSamples });
-
-        console.log(`  vocab↔scene corner MAE≈${sceneOk.err.toFixed(1)}`);
-        // Cover-scale + jpeg preview noise; still far tighter than washed title
-        if (sceneOk.err > 120) {
-          failures.push(`${c.id}: vocab corners too far from scene file (MAE ${sceneOk.err.toFixed(1)})`);
-        }
+        }, { scenePath: result.titlePick.path, samples: titleSamples });
+        console.log(`  title↔scene corner MAE≈${sceneOk.err.toFixed(1)} (wash; soft)`);
       }
 
       // matchDock pieces must stay in the dock — not parked on groundY over word cards

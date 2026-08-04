@@ -130,6 +130,20 @@
     const minScore = opts.minScore ?? 4;
     const m = await manifest();
 
+    // Drill / chrome pages: rotate flats (whiteboard, chalk, cork, desk).
+    // Place pages (title, story, activity) keep scene matching.
+    if (section.preferFlat) {
+      const flatKeys = Object.keys(m.flats);
+      const key = flatKeys[(opts.index || 0) % flatKeys.length];
+      return {
+        type: 'flat',
+        name: key,
+        file: m.flats[key].file,
+        path: `${BASE}/img/${m.flats[key].file}`,
+        reason: 'preferFlat (drill / chrome page)',
+      };
+    }
+
     const tags = [
       ...(section.tags || []),
       ...norm(section.title),
@@ -166,14 +180,24 @@
     };
   }
 
-  /** Pick for a whole lesson at once. Useful for previewing the plan. */
+  /**
+   * Pick for a whole lesson.
+   * Place pages reuse the first confident scene; drill pages rotate flats.
+   */
   async function planFor(sections, opts = {}) {
     const out = [];
-    let flatCount = 0;                    // rotate flats across FLAT pages only,
-    for (let i = 0; i < sections.length; i++) {   // not across section index, or
-      const p = await pickFor(sections[i], { ...opts, index: flatCount });  // two
-      if (p.type === 'flat') flatCount++;         // flats several pages apart end
-      out.push(p);                                // up identical.
+    let flatCount = 0;
+    let placeScene = null;
+    for (let i = 0; i < sections.length; i++) {
+      const sec = sections[i];
+      if (!sec.preferFlat && placeScene) {
+        out.push(Object.assign({}, placeScene, { reused: true }));
+        continue;
+      }
+      const p = await pickFor(sec, { ...opts, index: flatCount });
+      if (p.type === 'flat') flatCount++;
+      if (p.type === 'scene' && !placeScene) placeScene = p;
+      out.push(p);
     }
     return out;
   }

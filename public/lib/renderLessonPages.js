@@ -188,14 +188,14 @@
   function buildSectionList(lesson, meta) {
     const vocab = (lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v.word)).filter(Boolean);
     const topic = lesson.title || '';
-    // Include topic on every section so vocab/grammar pages still match place scenes
-    // (tags like "vocabulary" alone never clear the picker floor).
+    // Place pages get the topic scene; drill/chrome pages prefer rotating flats
+    // (whiteboard / chalk / cork / desk) so the board isn't one wallpaper on repeat.
     const sections = [
       { title: topic || 'Title', tags: ['title', topic], vocabulary: vocab },
-      { title: 'Warm Up', tags: ['warmup', 'warm-up', topic], vocabulary: vocab },
-      { title: 'New Words', tags: ['vocabulary', 'words', 'matching', topic], vocabulary: vocab },
-      { title: 'Words in Sentences', tags: ['vocabulary', 'sentences', 'grammar', topic], vocabulary: vocab },
-      { title: 'Sentence Frames', tags: ['grammar', 'frames', topic], vocabulary: vocab },
+      { title: 'Warm Up', tags: ['warmup', 'warm-up'], vocabulary: [], preferFlat: true },
+      { title: 'New Words', tags: ['vocabulary', 'words', 'matching'], vocabulary: [], preferFlat: true },
+      { title: 'Words in Sentences', tags: ['vocabulary', 'sentences', 'grammar'], vocabulary: [], preferFlat: true },
+      { title: 'Sentence Frames', tags: ['grammar', 'frames'], vocabulary: [], preferFlat: true },
     ];
 
     const storyPages = (lesson.story?.pages || []).slice(0, 2);
@@ -213,18 +213,19 @@
     }
 
     sections.push(
-      { title: 'Reading Comprehension', tags: ['comprehension', 'reading', topic], vocabulary: vocab }
+      { title: 'Reading Comprehension', tags: ['comprehension', 'reading'], vocabulary: [], preferFlat: true }
     );
 
     if (includeCreative(lesson, meta)) {
-      sections.push({ title: 'Your Ideas', tags: ['creative', 'ideas', topic], vocabulary: vocab });
+      sections.push({ title: 'Your Ideas', tags: ['creative', 'ideas'], vocabulary: [], preferFlat: true });
     }
 
     speakingChunks(lesson).forEach((chunk, i) => {
       sections.push({
         title: (chunk[0] && chunk[0].question) || ('Speaking ' + (i + 1)),
-        tags: ['speaking', 'talk', topic],
-        vocabulary: vocab,
+        tags: ['speaking', 'talk'],
+        vocabulary: [],
+        preferFlat: true,
       });
     });
 
@@ -234,7 +235,7 @@
         tags: [lesson.activity?.title, lesson.activity?.prompt, 'activity', topic].filter(Boolean),
         vocabulary: vocab,
       },
-      { title: 'Wrap Up', tags: ['wrap', 'review', 'goodbye', topic], vocabulary: vocab }
+      { title: 'Wrap Up', tags: ['wrap', 'review', 'goodbye'], vocabulary: [], preferFlat: true }
     );
 
     return sections;

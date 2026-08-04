@@ -86,6 +86,11 @@ function rank(tags, category) {
 
 function pickFor(section, index = 0) {
   const minScore = 4;
+  const flatKeys = Object.keys(m.flats);
+  if (section.preferFlat) {
+    const key = flatKeys[index % flatKeys.length];
+    return { type: 'flat', name: key, reason: 'preferFlat' };
+  }
   const tags = [
     ...(section.tags || []),
     ...norm(section.title),
@@ -95,12 +100,29 @@ function pickFor(section, index = 0) {
   if (ranked.length && ranked[0].score >= minScore) {
     return { type: 'scene', ...ranked[0] };
   }
-  const flatKeys = Object.keys(m.flats);
+  const key = flatKeys[index % flatKeys.length];
   return {
     type: 'flat',
-    name: flatKeys[index % flatKeys.length],
+    name: key,
     reason: ranked[0] ? `${ranked[0].name}@${ranked[0].score}` : 'none',
   };
+}
+
+function planFor(sections) {
+  const out = [];
+  let flatCount = 0;
+  let placeScene = null;
+  for (const sec of sections) {
+    if (!sec.preferFlat && placeScene) {
+      out.push({ ...placeScene, reused: true });
+      continue;
+    }
+    const p = pickFor(sec, flatCount);
+    if (p.type === 'flat') flatCount++;
+    if (p.type === 'scene' && !placeScene) placeScene = p;
+    out.push(p);
+  }
+  return out;
 }
 
 function standOn(pick, pieceHeight) {
@@ -111,15 +133,15 @@ function standOn(pick, pieceHeight) {
 function spineSections(topic, vocab) {
   return [
     { title: topic, tags: ['title', topic], vocabulary: vocab },
-    { title: 'Warm Up', tags: ['warmup', 'warm-up', topic], vocabulary: vocab },
-    { title: 'New Words', tags: ['vocabulary', 'words', 'matching', topic], vocabulary: vocab },
-    { title: 'Words in Sentences', tags: ['vocabulary', 'sentences', 'grammar', topic], vocabulary: vocab },
-    { title: 'Sentence Frames', tags: ['grammar', 'frames', topic], vocabulary: vocab },
+    { title: 'Warm Up', tags: ['warmup'], vocabulary: [], preferFlat: true },
+    { title: 'New Words', tags: ['vocabulary'], vocabulary: [], preferFlat: true },
+    { title: 'Words in Sentences', tags: ['sentences'], vocabulary: [], preferFlat: true },
+    { title: 'Sentence Frames', tags: ['frames'], vocabulary: [], preferFlat: true },
     { title: 'Story', tags: ['story', topic], vocabulary: vocab },
-    { title: 'Reading Comprehension', tags: ['comprehension', 'reading', topic], vocabulary: vocab },
-    { title: 'Speaking', tags: ['speaking', 'talk', topic], vocabulary: vocab },
+    { title: 'Reading Comprehension', tags: ['comprehension'], vocabulary: [], preferFlat: true },
+    { title: 'Speaking', tags: ['speaking'], vocabulary: [], preferFlat: true },
     { title: 'Activity', tags: ['activity', topic], vocabulary: vocab },
-    { title: 'Wrap Up', tags: ['wrap', 'review', 'goodbye', topic], vocabulary: vocab },
+    { title: 'Wrap Up', tags: ['wrap'], vocabulary: [], preferFlat: true },
   ];
 }
 
@@ -148,35 +170,58 @@ const cases = [
     vocab: ['teacher', 'classroom', 'pencil', 'friend'],
     expectScene: /school|classroom|library|hallway/i,
   },
+  {
+    label: 'gym',
+    topic: 'The Clown at the Gym',
+    vocab: ['clumsy', 'energetic', 'athletic'],
+    expectScene: /gym|school|playground|sport/i,
+  },
 ];
 
 let failed = 0;
 for (const c of cases) {
   const sections = spineSections(c.topic, c.vocab);
-  const picks = sections.map((s, i) => pickFor(s, i));
+  const picks = planFor(sections);
   if (picks.length !== sections.length) {
     console.error('FAIL length', c.label, picks.length, sections.length);
     failed++;
     continue;
   }
   const scenes = picks.filter((p) => p.type === 'scene');
+  const flats = picks.filter((p) => p.type === 'flat');
   const titlePick = picks[0];
+  const warmPick = picks[1];
   const vocabPick = picks[2];
+  const storyPick = picks[5];
+  const activityPick = picks[8];
   console.log(`\n=== ${c.label}: ${c.topic} ===`);
   console.log(
     `  title → ${titlePick.type}:${titlePick.name} score=${titlePick.score ?? '-'}`,
   );
-  console.log(
-    `  vocab → ${vocabPick.type}:${vocabPick.name} score=${vocabPick.score ?? vocabPick.reason}`,
-  );
-  console.log(`  scenes ${scenes.length}/${picks.length}:`, scenes.map((s) => s.name).join(', ') || '(none)');
+  console.log(`  warm  → ${warmPick.type}:${warmPick.name}`);
+  console.log(`  vocab → ${vocabPick.type}:${vocabPick.name}`);
+  console.log(`  story → ${storyPick.type}:${storyPick.name}`);
+  console.log(`  activity → ${activityPick.type}:${activityPick.name}`);
+  console.log(`  mix scenes=${scenes.length} flats=${flats.length}`);
 
   if (titlePick.type !== 'scene' || !c.expectScene.test(titlePick.name)) {
     console.error(`  FAIL title scene expected ~${c.expectScene}, got`, titlePick);
     failed++;
   }
-  if (vocabPick.type !== 'scene' || !c.expectScene.test(vocabPick.name)) {
-    console.error(`  FAIL vocab scene expected ~${c.expectScene}, got`, vocabPick);
+  if (warmPick.type !== 'flat' || vocabPick.type !== 'flat') {
+    console.error('  FAIL warm/vocab should be flat', warmPick, vocabPick);
+    failed++;
+  }
+  if (storyPick.type !== 'scene' || storyPick.name !== titlePick.name) {
+    console.error('  FAIL story should reuse title scene', storyPick);
+    failed++;
+  }
+  if (activityPick.type !== 'scene' || activityPick.name !== titlePick.name) {
+    console.error('  FAIL activity should reuse title scene', activityPick);
+    failed++;
+  }
+  if (flats.length < 4 || scenes.length < 3) {
+    console.error(`  FAIL expected mix flats>=4 scenes>=3 got f=${flats.length} s=${scenes.length}`);
     failed++;
   }
   // Files must exist
