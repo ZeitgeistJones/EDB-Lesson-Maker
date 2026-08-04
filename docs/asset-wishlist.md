@@ -18,7 +18,7 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-03 | Air-travel procedure words: `security`, `turbulence`, `connection` | overflow fixture — the rest of the travel unit now resolves from the rebuilt pack | Vocab icons | Generated — absent from Twemoji | open |
 | 2026-08-04 | Purpose-drawn `doctor` vs `nurse` pair | Both resolve to Twemoji health workers that differ only by hair, which is thin for a young-learner match task | Two clearly different characters | Generated, or Open Peeps composition | open |
 | 2026-08-04 | `patient`, `diagnosis`, `clumsy`, `table` | Dropped rather than aliased to a near-enough picture (patient shared the hospital building, diagnosis a clipboard, clumsy a cartwheel, table a ping-pong paddle) | Vocab icons | Generated | open |
-| 2026-08-04 | Scene backgrounds: hotel lobby, office, stadium, party room, snowy street, train platform, vet clinic | Common ESL units with no scene; picker falls back to a flat | 1536x1024 board scenes with a clear centre band | Generated — matches the existing 40-scene style | open |
+| 2026-08-04 | Scene backgrounds: hotel lobby, office, stadium, party room, snowy street, train platform, vet clinic | Common ESL units with no scene; picker falls back to a flat | 1536x1024 board scenes with a clear centre band | ChatGPT free grids → `assets:bg` | wired — plus 13 bonus scenes (water park, swamp, polar, reef, buffet, ballroom, ice rink, haunted, moon, dorm, gymnastics, river, dock) |
 
 ## How agents append
 

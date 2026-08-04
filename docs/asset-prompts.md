@@ -4,8 +4,8 @@ For generating in the ChatGPT app (free) rather than the paid API. Choose the
 **landscape** aspect ratio, save the result as PNG, and drop it into
 `assets-inbox/` — then tell the agent and it will crop, resize and register it.
 
-Four a day covers the seven missing scenes in two sittings. Order matters: a
-missing scene costs a whole page its background, so do those before word icons.
+Four a day covers a batch of scenes in a sitting. The first twenty are already
+wired (hotel through lake-dock). Use this file when adding more.
 
 ## The style anchor
 
