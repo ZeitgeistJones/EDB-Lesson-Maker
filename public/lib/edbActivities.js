@@ -334,15 +334,34 @@
     if (!q) return;
     // Sticky covers targetBay — painted sample band uses the same rect
     const coverRect = L.zoneRect(page, 'targetBay') || speakingCoverRect();
+    const PB = window.PropBank;
+    const req = PB && PB.requestFor('coverAnswer');
+    const prop = req
+      ? PB.resolve({
+          role: req.role,
+          tags: ['cover', 'hide'],
+          seed: lesson.title || '',
+          family: PB.familyFor(lesson),
+        })
+      : null;
+    // fit:'fill' — only replace the sticky when the prop covers the sample band.
+    // A letterboxed cover would leak the answer at both ends.
+    const useProp = !!(prop && PB.fillsRect && PB.fillsRect(prop, coverRect));
     L.place(page, {
       locked: false,
       kind: 'image',
-      asset: stickyPng(coverRect.w, coverRect.h),
+      asset: useProp ? prop.path : stickyPng(coverRect.w, coverRect.h),
       w: coverRect.w, h: coverRect.h,
       intentional: true,
       anchor: coverRect,
       role: 'answerCover',
-      meta: { sample: q.sampleAnswer },
+      meta: {
+        sample: q.sampleAnswer,
+        propKey: useProp ? prop.key : undefined,
+        // fillsRect already proved the art covers this rect, so the rect keeps
+        // the zone's aspect rather than the prop's — no propAspect to assert.
+        propFit: useProp ? 'fill' : undefined,
+      },
     });
     page.notes.push('recipe:coverAnswer');
   }
@@ -353,18 +372,51 @@
     const bins = ['A', 'B'];
     const binW = Math.floor((bay.w - 40) / 2);
     const binH = Math.min(180, bay.h - 20);
+    const PB = window.PropBank;
+    const req = PB && PB.requestFor('sortBins');
+    const family = req ? PB.familyFor(lesson) : null;
+    const exclude = [];
     bins.forEach((label, i) => {
-      const x = bay.x + 10 + i * (binW + 20);
-      const y = bay.y + 10;
+      const cellX = bay.x + 10 + i * (binW + 20);
+      const cellY = bay.y + 10;
+      // Two DIFFERENT bins or none: excluding bin A's prop is what makes the
+      // second miss visible instead of drawing the same bin twice.
+      const prop = req
+        ? PB.resolve({
+            role: req.role,
+            seed: lesson.title || '',
+            index: i,
+            exclude: req.distinct ? exclude : [],
+            family,
+          })
+        : null;
+      let asset = solidPng(binW, binH, i === 0 ? '#dbeafe' : '#dcfce7', 'Bin ' + label, '#1e293b');
+      let w = binW;
+      let h = binH;
+      let x = cellX;
+      let y = cellY;
+      const meta = { bin: label };
+      if (prop) {
+        // fit:'contain' — size from aspect inside the cell; letterbox is structural.
+        const sized = PB.sizeFor(prop, { maxH: binH, maxW: binW });
+        w = sized.w;
+        h = sized.h;
+        x = cellX + Math.round((binW - w) / 2);
+        y = cellY + Math.round((binH - h) / 2);
+        asset = prop.path;
+        exclude.push(prop.key);
+        meta.propKey = prop.key;
+        meta.propAspect = prop.aspect;
+      }
       L.place(page, {
         locked: true,
         kind: 'image',
-        asset: solidPng(binW, binH, i === 0 ? '#dbeafe' : '#dcfce7', 'Bin ' + label, '#1e293b'),
-        w: binW, h: binH,
+        asset,
+        w, h,
         intentional: true,
-        anchor: { x, y, w: binW, h: binH },
+        anchor: { x, y, w, h },
         role: 'sortBin',
-        meta: { bin: label },
+        meta,
       });
     });
     const cards = vocabList(lesson).slice(0, 6);

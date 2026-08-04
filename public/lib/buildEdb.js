@@ -261,7 +261,8 @@ function dataUrlToPng(url) {
   return out;
 }
 
-/** Load a path or data-URL into PNG bytes (SVGs rasterised via Image). */
+/** Load a path or data-URL into PNG bytes (SVGs rasterised via Image).
+ * Letterboxes into w×h at the image's natural aspect — never stretches. */
 async function loadAssetPng(src, w, h) {
   if (!src) return null;
   if (typeof src === 'string' && src.startsWith('data:image/png')) {
@@ -271,11 +272,16 @@ async function loadAssetPng(src, w, h) {
     const img = new Image();
     img.crossOrigin = 'anonymous';
     img.onload = () => {
+      const nw = img.naturalWidth || 128;
+      const nh = img.naturalHeight || 128;
       const c = document.createElement('canvas');
-      c.width = w || img.naturalWidth || 128;
-      c.height = h || img.naturalHeight || 128;
+      c.width = w || nw;
+      c.height = h || nh;
       const ctx = c.getContext('2d');
-      ctx.drawImage(img, 0, 0, c.width, c.height);
+      const scale = Math.min(c.width / nw, c.height / nh);
+      const dw = nw * scale;
+      const dh = nh * scale;
+      ctx.drawImage(img, Math.round((c.width - dw) / 2), Math.round((c.height - dh) / 2), dw, dh);
       resolve(canvasToPng(c));
     };
     img.onerror = () => resolve(null);
@@ -389,11 +395,10 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
       }
       // Scene-building recipes: stand pieces on groundY in the clear centre band.
       // matchDock / orderLine stay in the dock — standing them mid-board covers cards.
-      const standRoles = {
-        buildPart: 1, dressPart: 1, sortCard: 1, dockPiece: 1,
-      };
-      const standers = (page.unlocked || []).filter((p) => standRoles[p.role]);
-      const floaters = (page.unlocked || []).filter((p) => !standRoles[p.role]);
+      const SB = window.SceneBackgrounds;
+      const stands = (p) => !!(SB && SB.isStandRole(p.role));
+      const standers = (page.unlocked || []).filter(stands);
+      const floaters = (page.unlocked || []).filter((p) => !stands(p));
 
       for (const piece of floaters) {
         const png = await pieceToPng(piece);
@@ -402,19 +407,12 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
         });
       }
 
-      if (standers.length && pick && pick.type === 'scene' && window.SceneBackgrounds) {
-        const n = standers.length;
-        const gap = 16;
-        const totalW = standers.reduce((s, p) => s + (p.w || 96), 0) + gap * Math.max(0, n - 1);
-        let x = Math.max(260, Math.min(1020 - totalW, Math.round((BOARD_W - totalW) / 2)));
-        for (const piece of standers) {
-          const png = await pieceToPng(piece);
+      const row = SB ? SB.standRow(standers, pick, BOARD_W) : null;
+      if (row) {
+        for (const slot of row) {
+          const png = await pieceToPng(slot.piece);
           if (!png) continue;
-          const h = piece.h || 96;
-          const w = piece.w || 96;
-          const y = y0 + window.SceneBackgrounds.standOn(pick, h);
-          e.addImage(png, x, y, { w, h, locked: false });
-          x += w + gap;
+          e.addImage(png, slot.x, y0 + slot.y, { w: slot.w, h: slot.h, locked: false });
         }
       } else {
         for (const piece of standers) {

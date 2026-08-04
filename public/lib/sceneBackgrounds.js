@@ -272,5 +272,36 @@
     return Math.round(590 * 0.55) - Math.round(pieceHeight / 2);
   }
 
-  window.SceneBackgrounds = { manifest, rank, pickFor, planFor, loadPng, standOn, BASE };
+  /** Unlocked roles that stand on the scene floor in a centred row. */
+  const STAND_ROLES = { buildPart: 1, dressPart: 1, sortCard: 1, dockPiece: 1 };
+
+  function isStandRole(role) {
+    return !!STAND_ROLES[role];
+  }
+
+  /**
+   * Centre standers on the scene ground. Returns null when the page should keep
+   * recipe coordinates (no scene pick / empty list). Shared by .edb export and
+   * board preview so the two paths cannot drift.
+   */
+  function standRow(standers, pick, boardW) {
+    if (!standers || !standers.length || !pick || pick.type !== 'scene') return null;
+    const n = standers.length;
+    const gap = 16;
+    const totalW = standers.reduce((s, p) => s + (p.w || 96), 0) + gap * Math.max(0, n - 1);
+    let x = Math.max(260, Math.min(1020 - totalW, Math.round((boardW - totalW) / 2)));
+    const out = [];
+    for (const piece of standers) {
+      const h = piece.h || 96;
+      const w = piece.w || 96;
+      out.push({ piece, x, y: standOn(pick, h), w, h });
+      x += w + gap;
+    }
+    return out;
+  }
+
+  window.SceneBackgrounds = {
+    manifest, rank, pickFor, planFor, loadPng, standOn, standRow, isStandRole,
+    STAND_ROLES, rotate: flatOffset, BASE,
+  };
 })();

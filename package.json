@@ -18,7 +18,8 @@
     "assets:bg": "node scripts/import-background.mjs",
     "assets:ground-qa": "node scripts/qa-scene-ground.mjs",
     "assets:prop": "node scripts/import-prop.mjs",
-    "assets:prop-qa": "node scripts/qa-props.mjs"
+    "assets:prop-qa": "node scripts/qa-props.mjs",
+    "assets:prop-demand": "node scripts/prop-demand.mjs"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

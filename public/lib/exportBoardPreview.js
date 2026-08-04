@@ -45,7 +45,15 @@
     const bytes = await window.EdbKit.pieceToPng(piece);
     const bmp = await pngBytesToBitmap(bytes);
     if (!bmp) return;
-    ctx.drawImage(bmp, piece.x, piece.y, piece.w || bmp.width, piece.h || bmp.height);
+    const destW = piece.w || bmp.width;
+    const destH = piece.h || bmp.height;
+    // Letterbox at the bitmap's natural aspect inside the piece rect.
+    const scale = Math.min(destW / bmp.width, destH / bmp.height);
+    const dw = bmp.width * scale;
+    const dh = bmp.height * scale;
+    const dx = piece.x + Math.round((destW - dw) / 2);
+    const dy = piece.y + Math.round((destH - dh) / 2);
+    ctx.drawImage(bmp, dx, dy, dw, dh);
     if (bmp.close) bmp.close();
   }
 
@@ -54,14 +62,12 @@
     if (!window.LessonPages || !window.EdbActivities || !window.EdbKit) {
       throw new Error('Board libraries failed to load. Refresh and try again.');
     }
+    if (window.PropBank) await window.PropBank.ready();
     const boardPlan = window.EdbActivities.buildBoardPlan(lesson, meta || {});
     await window.LessonPages.attachBgPicks(lesson, meta || {}, boardPlan);
     const rendered = await window.LessonPages.render(lesson, meta || {}, boardPlan);
     await waitForImages(rendered.host);
 
-    const standRoles = {
-      buildPart: 1, dressPart: 1, sortCard: 1, dockPiece: 1,
-    };
     const bgPicks = boardPlan.bgPicks || null;
 
     const canvases = [];
@@ -91,21 +97,18 @@
           for (const piece of page.locked || []) await drawPiece(ctx, piece);
 
           const unlocked = page.unlocked || [];
-          const standers = unlocked.filter((p) => standRoles[p.role]);
-          const floaters = unlocked.filter((p) => !standRoles[p.role]);
+          const SB = window.SceneBackgrounds;
+          const stands = (p) => !!(SB && SB.isStandRole(p.role));
+          const standers = unlocked.filter(stands);
+          const floaters = unlocked.filter((p) => !stands(p));
           for (const piece of floaters) await drawPiece(ctx, piece);
 
-          if (standers.length && pick && pick.type === 'scene' && window.SceneBackgrounds) {
-            const n = standers.length;
-            const gap = 16;
-            const totalW = standers.reduce((s, p) => s + (p.w || 96), 0) + gap * Math.max(0, n - 1);
-            let x = Math.max(260, Math.min(1020 - totalW, Math.round((W - totalW) / 2)));
-            for (const piece of standers) {
-              const h = piece.h || 96;
-              const w = piece.w || 96;
-              const y = window.SceneBackgrounds.standOn(pick, h);
-              await drawPiece(ctx, Object.assign({}, piece, { x, y, w, h }));
-              x += w + gap;
+          const row = SB ? SB.standRow(standers, pick, W) : null;
+          if (row) {
+            for (const slot of row) {
+              await drawPiece(ctx, Object.assign({}, slot.piece, {
+                x: slot.x, y: slot.y, w: slot.w, h: slot.h,
+              }));
             }
           } else {
             for (const piece of standers) await drawPiece(ctx, piece);

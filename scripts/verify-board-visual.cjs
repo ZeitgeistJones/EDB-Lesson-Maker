@@ -158,15 +158,22 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
     }
     for (const pg of boardPlan.pages) {
       const unlocked = pg.unlocked || [];
+      const locked = pg.locked || [];
+      const allPieces = [...locked, ...unlocked];
       const header = window.EdbLayout.zoneRect(pg, 'header');
       const body = window.EdbLayout.zoneRect(pg, 'bodyText');
-      for (const p of unlocked) {
+
+      // Off-board + text-zone: locked and unlocked (locked props were previously invisible to H3).
+      for (const p of allPieces) {
         const w = p.w || 96;
         const h = p.h || 96;
         const x = p.x || 0;
         const y = p.y || 0;
         if (x < 0 || y < 0 || x + w > BOARD_W || y + h > BOARD_H) {
-          fails.push({ code: 'H3', msg: `${pg.pageKey}: piece ${p.role} off-board (${x},${y},${w},${h})` });
+          fails.push({
+            code: 'H3',
+            msg: `${pg.pageKey}: piece ${p.role} off-board (${x},${y},${w},${h})`,
+          });
         }
         const intentional = !!(p.intentional || INTENTIONAL[p.role]);
         const cx = x + w / 2;
@@ -179,7 +186,30 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
             fails.push({ code: 'H3', msg: `${pg.pageKey}: ${p.role} center in bodyText` });
           }
         }
+        // Props reach the board only through PropBank: a piece drawing 09_props
+        // art has to say which prop it is, and a piece SIZED from a prop
+        // (meta.propAspect) has to still match that aspect. Letterboxing keeps
+        // the art itself undistorted; this is what catches a piece rect that
+        // lies about the shape of what fills it.
+        const asset = typeof p.asset === 'string' ? p.asset : '';
+        if (asset.includes('09_props/') && !(p.meta && p.meta.propKey)) {
+          fails.push({
+            code: 'H7',
+            msg: `${pg.pageKey}: ${p.role} draws ${asset} with no PropBank provenance (meta.propKey)`,
+          });
+        }
+        if (p.meta && p.meta.propAspect != null) {
+          const drawn = w / Math.max(1, h);
+          if (Math.abs(drawn - p.meta.propAspect) >= 0.02) {
+            fails.push({
+              code: 'H7',
+              msg: `${pg.pageKey}: prop ${p.meta.propKey || p.role} drawn at ${drawn.toFixed(3)} but manifest aspect is ${p.meta.propAspect}`,
+            });
+          }
+        }
       }
+
+      // Unlocked-vs-unlocked IoU only — locked layers intentionally stack (covers, slots).
       for (let i = 0; i < unlocked.length; i++) {
         for (let j = i + 1; j < unlocked.length; j++) {
           const a = unlocked[i];
@@ -576,6 +606,7 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
   }
 
   // ---- build board ----
+  if (window.PropBank) await window.PropBank.ready();
   const boardPlan = window.EdbActivities.buildBoardPlan(lesson, meta);
   await window.LessonPages.attachBgPicks(lesson, meta, boardPlan);
 

@@ -129,6 +129,7 @@
 <script src="lib/edbActivities.js"></script>
 <script src="lib/vocabIcons.js"></script>
 <script src="lib/sceneBackgrounds.js"></script>
+<script src="lib/propBank.js"></script>
 <script src="lib/renderLessonPages.js"></script>
 <script src="lib/buildEdb.js"></script>
 <script src="lib/exportBoardPreview.js"></script>
@@ -281,6 +282,7 @@ async function downloadEDB() {
       throw new Error('Layout/activity libraries failed to load. Refresh and try again.');
     }
     const meta = { level: state.level, duration: state.duration };
+    if (window.PropBank) await window.PropBank.ready();
     const boardPlan = window.EdbActivities.buildBoardPlan(d, meta);
     await window.LessonPages.attachBgPicks(d, meta, boardPlan);
     const rendered = await window.LessonPages.render(d, meta, boardPlan);
