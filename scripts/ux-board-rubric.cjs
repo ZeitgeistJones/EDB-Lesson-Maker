@@ -1,6 +1,10 @@
 /**
  * Board quality rubric + agent decision policy.
  *
+ * Dual lens (required): score as Student + Teacher — see skill.
+ * Pillars: readable, navigable, accurate vocab art, varied BGs,
+ *          appropriate BGs, fun/charming.
+ *
  * Hard (H*) — bake must fail / agent must fix this iteration.
  * Soft (S*) — agent judges from strip/page JPGs; fix when clear.
  * Promote (P1) — same soft root cause twice → craft roadmap easy win.
@@ -9,27 +13,51 @@
 const MAX_ITERATIONS = 5;
 
 const HARD = {
-  H1: 'Wrong place scene (topic/clinic/gym mismatch or place page not reusing title scene)',
-  H2: 'Background rhythm broken (no scene/flat mix, flats not rotating, drill got a scene)',
-  H3: 'Layout overlap / off-board / unlocked IoU > 0.4 / piece in header|bodyText',
+  H1: 'Wrong / inappropriate place scene (topic mismatch or place page not reusing title scene)',
+  H2: 'Background variability broken (no scene/flat mix, flats not rotating, drill got a scene)',
+  H3: 'Layout overlap / off-board / unlocked IoU > 0.4 / piece in header|bodyText — hard to navigate',
   H4: 'Old solid gradient chrome still baked (scenes never applied)',
-  H5: 'matchDock answer leak — vocab cards embed the dock icons',
+  H5: 'matchDock answer leak — vocab cards embed the dock icons (dishonest for students)',
   H6: 'Page count exceeds ClassIn board limit (50)',
 };
 
 const SOFT = {
+  // Readable
   S1: 'Title readable on scene (wash strong enough, not muddy)',
+  S5: 'Cards opaque enough; text not fighting busy scenery',
+  S11: 'Title / headers not clipping into busy scenery awkwardly',
+  S13: 'Type size / contrast easy for a kid to read from a distance',
+
+  // Navigable
+  S4: 'Dock icons look intentional (aligned, not floating in empty void)',
+  S10: 'Warm-up not sparse — question card fills vertical attention',
+  S14: 'Page job is obvious in 2 seconds (teacher can run it cold)',
+
+  // Accurate vocab images
+  S15: 'Dock / match pictures clearly match the vocab word meaning',
+  S9: 'No html2canvas checkerboard behind icons',
+
+  // Background variability + appropriateness
   S2: 'Drill pages feel like classroom surfaces (chalk/cork/desk/whiteboard)',
   S3: 'Story pages feel like being there; drills feel like worksheets',
-  S4: 'Dock icons look intentional (aligned, not floating in empty void)',
-  S5: 'Cards opaque enough; text not fighting busy scenery',
   S6: 'Rhythm: scene → flat → flat → scene (not spam)',
-  S7: 'Placeholders (emoji-only art) look intentional, not broken',
   S8: 'Story side-art emoji matches place (not Gemini visualTheme lies)',
-  S9: 'No html2canvas checkerboard behind icons',
-  S10: 'Warm-up not sparse — question card fills vertical attention',
-  S11: 'Title / headers not clipping into busy scenery awkwardly',
+
+  // Fun / charming
+  S7: 'Placeholders (emoji-only art) look intentional, not broken',
   S12: 'Story text card not mostly empty whitespace',
+  S16: 'Board feels a little fun/charming — not a bland form',
+  S17: 'Activity page invites play (not only another text list)',
+  S18: 'Strip as a whole has variety — student would not say “every page is the same”',
+};
+
+const PILLARS = {
+  readable: ['S1', 'S5', 'S11', 'S13'],
+  navigable: ['S4', 'S10', 'S14', 'H3'],
+  accurateVocabArt: ['S15', 'S9', 'H5'],
+  backgroundVariability: ['S2', 'S6', 'S18', 'H2'],
+  appropriateBackgrounds: ['S3', 'S8', 'H1'],
+  funCharming: ['S7', 'S12', 'S16', 'S17'],
 };
 
 /** Easy-win promotion order when P1 fires (from docs/edb-craft-roadmap.md). */
@@ -55,6 +83,13 @@ function decide({ hardFailures, softFindings, priorSoftRoots, iteration }) {
 
   const clearSoft = (softFindings || []).filter((f) => f.clearFix);
   if (clearSoft.length) {
+    // Prefer clarity/honesty pillars before pure charm
+    const priority = ['S15', 'S13', 'S14', 'S18', 'S16', 'S17', 'S10', 'S12', 'S11'];
+    clearSoft.sort((a, b) => {
+      const ia = priority.indexOf(a.code);
+      const ib = priority.indexOf(b.code);
+      return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+    });
     return {
       action: 'fix_soft',
       codes: clearSoft.map((f) => f.code),
@@ -95,14 +130,14 @@ function decide({ hardFailures, softFindings, priorSoftRoots, iteration }) {
   if (!(softFindings || []).length) {
     return {
       action: 'clean',
-      message: 'Hard + soft clean — commit and summarize',
+      message: 'Hard + soft clean (student + teacher lenses) — commit and summarize',
       stop: true,
     };
   }
 
   return {
     action: 'note_soft',
-    message: 'Soft findings unclear — note in report; do not thrash. Re-bake once more only if a clear fix appears.',
+    message: 'Soft findings unclear — note in report; do not thrash.',
     findings: softFindings,
     stop: false,
   };
@@ -111,6 +146,7 @@ function decide({ hardFailures, softFindings, priorSoftRoots, iteration }) {
 module.exports = {
   HARD,
   SOFT,
+  PILLARS,
   EW_ORDER,
   EW_BLURB,
   MAX_ITERATIONS,

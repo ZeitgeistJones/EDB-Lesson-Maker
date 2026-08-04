@@ -2,14 +2,44 @@
 name: board-quality-loop
 description: >-
   Autonomous ClassIn board quality loop: bake fixtures, enforce hard layout/background
-  rules, visually judge full board strips against the UX rubric, fix code, and re-bake
-  up to 5 iterations. Use when the user says quality loop, preflight and fix, take the
-  wheel on boards, or asks to improve board UX automatically.
+  rules, visually judge full board strips as both teacher and student (readable,
+  navigable, accurate vocab art, varied/appropriate backgrounds, fun/charming), fix
+  code, and re-bake up to 5 iterations. Use when the user says quality loop, preflight
+  and fix, take the wheel on boards, or asks to improve board UX automatically.
 ---
 
 # Board quality loop
 
 Take the wheel on board quality. Do not ask the user to screenshot ClassIn first.
+
+## Dual lens (required on every vision pass)
+
+Judge **every** strip/page twice before scoring:
+
+### Student (kid in ClassIn)
+- Can I read the words fast without squinting?
+- Do I know what to do next without the teacher explaining the UI?
+- Do the dock pictures clearly mean the vocab words (not random/wrong)?
+- Does this page feel fun — like a place or a game board — not a boring form?
+
+### Teacher (standing in front of class)
+- Can I glance and run the page in under 5 seconds?
+- Is the activity honest (no answer already on the card)?
+- Do backgrounds match the topic and change enough that the lesson doesn’t feel copy-pasted?
+- Would I be embarrassed if a parent peeked at this board?
+
+If student and teacher disagree, prefer **clarity + honesty** (readable, accurate, no answer leak), then charm.
+
+## Product pillars (must score)
+
+1. **Easy to read** — big type, contrast, no text fighting scenery  
+2. **Easy to navigate** — clear page job; dock/targets obvious  
+3. **Accurate vocab images** — dock icons match the word meaning  
+4. **Background variability** — place scenes + rotating flats; not one wallpaper forever  
+5. **Appropriate backgrounds** — clinic≠street, gym≠kitchen  
+6. **Fun and charming** — warm, story, activity should delight a little; drills can be clean classroom surfaces  
+
+Map pillars → rubric codes in `scripts/ux-board-rubric.cjs` (S1–S18).
 
 ## Sacred (never)
 
@@ -28,34 +58,19 @@ Take the wheel on board quality. Do not ask the user to screenshot ClassIn first
 
 1. Run `npm run quality` (alias of preflight).
 2. Read `tmp/board-bg-verify/report.json`.
-3. **If `hardFailures` non-empty:** fix those codes first (see `scripts/ux-board-rubric.cjs`). One coherent theme per iteration. Re-run step 1.
-4. **If hard clean:** for **each** case in the report, Read:
-   - `strip.jpg` (full board)
-   - review pages listed in `cases[].reviewPages` (title, warm, vocab, story, activity)
-5. Score soft codes S1–S12. Write `uxVerdict` into `tmp/board-bg-verify/report.json`:
-   ```json
-   {
-     "uxVerdict": {
-       "iteration": 1,
-       "softFindings": [{ "code": "S10", "caseId": "gym", "clearFix": true, "root": "warm-empty", "note": "..." }],
-       "decision": { "action": "fix_soft", "message": "..." }
-     }
-   }
-   ```
-   Use `require('./scripts/ux-board-rubric.cjs').decide(...)` logic when choosing action.
-6. Apply the decision:
-   - `fix_hard` / `fix_soft` → patch code
-   - `promote_ew` → implement that EW briefly, then re-bake
-   - `clean` → commit + push (user git rules), summarize
-   - `stop_*` → stop and tell user what remains ClassIn-only
-7. Re-bake. If the **same soft root** appears again → treat as P1 next iteration.
+3. **If `hardFailures` non-empty:** fix those codes first. One coherent theme per iteration. Re-run step 1.
+4. **If hard clean:** for **each** case, Read `strip.jpg` + review pages. Apply **dual lens** + pillars.
+5. Score soft codes. Write `uxVerdict` into `tmp/board-bg-verify/report.json` including `lens: { student, teacher }`.
+6. Apply decision from `ux-board-rubric.decide(...)`.
+7. Re-bake. Same soft root twice → **P1** (next EW).
 
 ## Judgment tips
 
 - Prefer pedagogical clarity (matchDock must not show answers on cards)
 - Prefer place/worksheet rhythm over wallpaper spam
 - Prefer one high-impact fix over drive-by refactors
-- After vision pass, always land at least one clear fix on the first clean hard bake if soft clearFix exists
+- Charm without clutter — one delightful thing beats five stickers
+- After vision pass, land at least one clear fix on the first clean hard bake if `clearFix` exists
 
 ## Commands
 
