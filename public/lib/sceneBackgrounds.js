@@ -161,23 +161,43 @@
    * grocery store for a lesson about table manners. Below the floor we'd
    * rather show a clean flat than a wrong place.
    */
+  /**
+   * Rotate flats from a per-lesson starting point.
+   *
+   * Round-robin from index 0 means every lesson opens on the same surface and,
+   * once the bank grows past the number of drill pages, the flats at the end of
+   * the list are never seen. Offsetting by a hash of the lesson keeps a single
+   * lesson varied AND makes two lessons look different, while staying stable
+   * for the same input so bakes and baselines do not wobble.
+   */
+  function flatOffset(seed, count) {
+    if (!seed || count <= 1) return 0;
+    let h = 0;
+    const s = String(seed);
+    for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+    return Math.abs(h) % count;
+  }
+
+  function pickFlat(m, index, seed, reason) {
+    const flatKeys = Object.keys(m.flats);
+    const key = flatKeys[(flatOffset(seed, flatKeys.length) + (index || 0)) % flatKeys.length];
+    return {
+      type: 'flat',
+      name: key,
+      file: m.flats[key].file,
+      path: `${BASE}/img/${m.flats[key].file}`,
+      textInk: m.flats[key].textInk || 'light',
+      reason,
+    };
+  }
+
   async function pickFor(section, opts = {}) {
     const minScore = opts.minScore ?? 4;
     const m = await manifest();
 
-    // Drill / chrome pages: rotate flats (whiteboard, chalk, cork, desk).
-    // Place pages (title, story, activity) keep scene matching.
+    // Drill / chrome pages: rotate flats. Place pages keep scene matching.
     if (section.preferFlat) {
-      const flatKeys = Object.keys(m.flats);
-      const key = flatKeys[(opts.index || 0) % flatKeys.length];
-      return {
-        type: 'flat',
-        name: key,
-        file: m.flats[key].file,
-        path: `${BASE}/img/${m.flats[key].file}`,
-        textInk: m.flats[key].textInk || 'light',
-        reason: 'preferFlat (drill / chrome page)',
-      };
+      return pickFlat(m, opts.index, opts.seed, 'preferFlat (drill / chrome page)');
     }
 
     const tags = [
@@ -203,20 +223,14 @@
       };
     }
 
-    // no confident scene -> flat, chosen by section index so consecutive
-    // functional pages don't all look identical
-    const flatKeys = Object.keys(m.flats);
-    const key = flatKeys[(opts.index || 0) % flatKeys.length];
-    return {
-      type: 'flat',
-      name: key,
-      file: m.flats[key].file,
-      path: `${BASE}/img/${m.flats[key].file}`,
-      textInk: m.flats[key].textInk || 'light',
-      reason: ranked.length
+    return pickFlat(
+      m,
+      opts.index,
+      opts.seed,
+      ranked.length
         ? `best match ${ranked[0].name} scored ${ranked[0].score}, below floor of ${minScore}`
-        : 'no scene matched any tag',
-    };
+        : 'no scene matched any tag'
+    );
   }
 
   /**

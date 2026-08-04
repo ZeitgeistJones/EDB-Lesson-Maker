@@ -48,6 +48,15 @@
     "suitcase": { "file": "suitcase.png", "role": "container", "tags": ["suitcase", "travel", "luggage"], "relativeScale": 0.45, "anchor": "bottom", "alpha": true, "aspect": 0.57, "bodyHue": 195 },
     "swing": { "file": "swing.png", "role": "playPart", "tags": ["swing", "playground", "park"], "relativeScale": 0.9, "anchor": "top", "alpha": true, "aspect": 0.95, "bodyHue": 15 },
     "umbrella": { "file": "umbrella.png", "role": "object", "tags": ["umbrella", "weather", "rain"], "relativeScale": 0.5, "anchor": "bottom", "alpha": true, "aspect": 0.52, "bodyHue": 35 },
-    "reward-jar-v2": { "file": "reward-jar-v2.png", "role": "rewardContainer", "tags": ["jar", "reward", "empty"], "relativeScale": 0.3, "anchor": "bottom", "alpha": true, "aspect": 1.35, "components": 2, "bodyHue": 35 }
+    "reward-jar-v2": { "file": "reward-jar-v2.png", "role": "rewardContainer", "tags": ["jar", "reward", "empty"], "relativeScale": 0.3, "anchor": "bottom", "alpha": true, "aspect": 1.35, "components": 2, "bodyHue": 35 },
+    "desk": { "file": "desk.png", "role": "furniture", "tags": ["desk", "table", "build", "school"], "relativeScale": 0.8, "anchor": "bottom", "alpha": true, "aspect": 1.5, "bodyHue": 35 },
+    "wall-clock": { "file": "wall-clock.png", "role": "timer", "tags": ["clock", "time", "classroom"], "relativeScale": 0.3, "anchor": "center", "alpha": true, "aspect": 0.99, "bodyHue": 65 },
+    "file-folder": { "file": "file-folder.png", "role": "container", "tags": ["folder", "file", "paper", "office"], "relativeScale": 0.25, "anchor": "center", "alpha": true, "aspect": 1.25, "bodyHue": 45 },
+    "clipboard": { "file": "clipboard.png", "role": "tool", "tags": ["clipboard", "paper", "checklist", "write"], "relativeScale": 0.3, "anchor": "center", "alpha": true, "aspect": 0.7, "bodyHue": 35 },
+    "supply-caddy": { "file": "supply-caddy.png", "role": "container", "tags": ["caddy", "tote", "supplies", "sort"], "relativeScale": 0.35, "anchor": "bottom", "alpha": true, "aspect": 1.46, "bodyHue": 205 },
+    "magazine-file": { "file": "magazine-file.png", "role": "container", "tags": ["holder", "file", "magazine", "shelf"], "relativeScale": 0.3, "anchor": "bottom", "alpha": true, "aspect": 0.89, "bodyHue": 75 },
+    "pencil-pot": { "file": "pencil-pot.png", "role": "container", "tags": ["pot", "pencils", "stationery", "desk"], "relativeScale": 0.2, "anchor": "bottom", "alpha": true, "aspect": 0.71, "bodyHue": 25 },
+    "desk-mat": { "file": "desk-mat.png", "role": "furniture", "tags": ["mat", "placemat", "desk", "surface"], "relativeScale": 0.45, "anchor": "bottom", "alpha": true, "aspect": 1.79, "bodyHue": 55 },
+    "globe": { "file": "globe.png", "role": "object", "tags": ["globe", "world", "geography", "travel"], "relativeScale": 0.35, "anchor": "bottom", "alpha": true, "aspect": 0.73, "bodyHue": 35 }
   }
 }

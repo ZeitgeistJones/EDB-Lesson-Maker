@@ -12,6 +12,8 @@
  *
  * Options:
  *   --name      manifest key and output filename (default: input filename)
+ *   --flat      import as a FLAT teaching surface, not a place with a floor
+ *   --tone      one-line description of a flat's feel (used with --flat)
  *   --ground    y pixel where a standing piece's base belongs (default: guessed)
  *   --fit       stretch (default, matches the existing bank) or crop
  *   --top       0..1, where to take a crop from, only used with --fit=crop
@@ -60,6 +62,7 @@ async function main() {
   }
 
   const name = arg('name', path.basename(src, ext)).replace(/[^a-z0-9-]+/gi, '-').toLowerCase();
+  const isFlat = process.argv.includes('--flat');
   const topBias = Number(arg('top', '0.55'));
   const [gridRows, gridCols] = arg('grid', '1x1').split('x').map(Number);
   const [cellRow, cellCol] = arg('cell', '0,0').split(',').map(Number);
@@ -124,12 +127,35 @@ async function main() {
           break;
         }
       }
+
+      // For a flat, what matters instead is whether text can live on it: how
+      // bright the heading strip is, and how busy the middle is where cards go.
+      let topSum = 0;
+      const topRows = Math.round(h * 0.25);
+      for (let y = 0; y < topRows; y++) topSum += lum[y];
+      const topLum = topSum / topRows;
+
+      let mid = 0;
+      let midN = 0;
+      for (let y = Math.round(h * 0.3); y < Math.round(h * 0.8); y++) {
+        mid += lum[y];
+        midN++;
+      }
+      const midMean = mid / midN;
+      let midVar = 0;
+      for (let y = Math.round(h * 0.3); y < Math.round(h * 0.8); y++) {
+        midVar += (lum[y] - midMean) ** 2;
+      }
+      const midSd = Math.sqrt(midVar / midN);
+
       return {
         png: canvas.toDataURL('image/png'),
         source: { width: img.width, height: img.height },
         panel: { width: panelW, height: panelH },
         crop: { x: cx, y: cy, width: cw, height: ch },
         guessedGround: groundY,
+        topLum: Math.round(topLum),
+        midSd: Number(midSd.toFixed(1)),
       };
     },
     {
@@ -147,7 +173,7 @@ async function main() {
   await browser.close();
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
-  const file = `${name}.png`;
+  const file = isFlat ? `flat_${name}.png` : `${name}.png`;
   fs.writeFileSync(
     path.join(OUT_DIR, file),
     Buffer.from(result.png.split(',')[1], 'base64')
@@ -170,6 +196,32 @@ async function main() {
       `  NOTE ${upscale}x upscale — flat art survives this better than photos, but check edges for softness`
     );
   }
+  if (isFlat) {
+    // Headings are printed straight onto a flat, so the surface decides the
+    // ink: light surfaces take dark lettering, dark ones get white plus a scrim.
+    const textInk = result.topLum >= 150 ? 'dark' : 'light';
+    console.log(`Heading strip brightness ${result.topLum}/255 → textInk "${textInk}"`);
+    console.log(`Middle-band texture spread ${result.midSd}`);
+    if (result.midSd > 12) {
+      console.log('  NOTE busy middle — cards and words may struggle to read on this one');
+    }
+    if (result.topLum > 120 && result.topLum < 175) {
+      console.log('  NOTE mid-brightness surface — check the heading by eye, either ink can look weak');
+    }
+    console.log('\nPaste into public/assets/08_backgrounds/manifest.json under "flats":\n');
+    console.log(
+      JSON.stringify(
+        { [name]: { file, tone: arg('tone', 'TODO — one line on the feel'), textInk } },
+        null,
+        2
+      )
+    );
+    console.log(
+      '\nThen: npm run test:bg-picks  (picker sanity)  and  npm run quality:full  (board bake)'
+    );
+    return;
+  }
+
   if (result.guessedGround == null && !arg('ground')) {
     console.log('  NOTE no ground line found — pass --ground= after looking at the image');
   }

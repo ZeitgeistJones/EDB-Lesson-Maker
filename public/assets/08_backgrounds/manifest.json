@@ -929,6 +929,106 @@
    "file": "flat_desk.png",
    "tone": "neutral wall + desk ledge — soft workspace",
    "textInk": "light"
+  },
+  "sky-meadow": {
+   "file": "flat_sky-meadow.png",
+   "tone": "soft blue sky over a green rise — open, outdoorsy, cheerful",
+   "textInk": "dark"
+  },
+  "sunrise-plane": {
+   "file": "flat_sunrise-plane.png",
+   "tone": "teal-to-peach sunrise with a paper plane — journeys and beginnings",
+   "textInk": "dark"
+  },
+  "peach-blush": {
+   "file": "flat_peach-blush.png",
+   "tone": "warm peach wash — gentle and quiet, easy on the eyes",
+   "textInk": "dark"
+  },
+  "starry-night": {
+   "file": "flat_starry-night.png",
+   "tone": "deep violet night sky — bedtime, calm, story energy",
+   "textInk": "light"
+  },
+  "seafoam-shore": {
+   "file": "flat_seafoam-shore.png",
+   "tone": "pale mint shore with a wave and pebbles — fresh and summery",
+   "textInk": "dark"
+  },
+  "terracotta-arch": {
+   "file": "flat_terracotta-arch.png",
+   "tone": "warm clay arch with leaves — cosy mediterranean warmth",
+   "textInk": "dark"
+  },
+  "window-blue": {
+   "file": "flat_window-blue.png",
+   "tone": "pale blue with soft window light — airy and focused, morning",
+   "textInk": "dark"
+  },
+  "sage-leaves": {
+   "file": "flat_sage-leaves.png",
+   "tone": "soft sage with leaf shadows — natural and restful",
+   "textInk": "dark"
+  },
+  "warm-window": {
+   "file": "flat_warm-window.png",
+   "tone": "cream and gold arched window light — homely and welcoming",
+   "textInk": "dark"
+  },
+  "world-map": {
+   "file": "flat_world-map.png",
+   "tone": "pale green with a faint world map — travel, geography, culture",
+   "textInk": "dark"
+  },
+  "blue-alcove": {
+   "file": "flat_blue-alcove.png",
+   "tone": "soft blue alcove with a row of books — reading, library calm",
+   "textInk": "dark"
+  },
+  "dawn-clouds": {
+   "file": "flat_dawn-clouds.png",
+   "tone": "lilac and pink dawn clouds — dreamy, imaginative",
+   "textInk": "dark"
+  },
+  "soft-piano": {
+   "file": "flat_soft-piano.png",
+   "tone": "misty blue-grey with faint piano keys — music, listening, calm focus",
+   "textInk": "dark"
+  },
+  "warm-guitar": {
+   "file": "flat_warm-guitar.png",
+   "tone": "buttery cream with a guitar edge and staff lines — songs and rhythm",
+   "textInk": "dark"
+  },
+  "peach-drums": {
+   "file": "flat_peach-drums.png",
+   "tone": "warm apricot with bongos and drifting dots — beats, chants, energy",
+   "textInk": "dark"
+  },
+  "lavender-strings": {
+   "file": "flat_lavender-strings.png",
+   "tone": "mint-to-lilac wash with a violin headstock — gentle and melodic",
+   "textInk": "dark"
+  },
+  "fairy-grove": {
+   "file": "flat_fairy-grove.png",
+   "tone": "misty sage grove framed in leaves — storytime, gentle fantasy",
+   "textInk": "dark"
+  },
+  "cloud-castle": {
+   "file": "flat_cloud-castle.png",
+   "tone": "pale sky with a distant cloud castle — fairy tales, imagination",
+   "textInk": "dark"
+  },
+  "crystal-cave": {
+   "file": "flat_crystal-cave.png",
+   "tone": "warm cave mouth with glowing crystals — adventure and treasure hunts",
+   "textInk": "dark"
+  },
+  "moon-petals": {
+   "file": "flat_moon-petals.png",
+   "tone": "lilac dusk with a crescent moon and blossom — dreamy, quiet endings",
+   "textInk": "dark"
   }
  }
 }

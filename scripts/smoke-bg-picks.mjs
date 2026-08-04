@@ -74,7 +74,8 @@ for (const c of caseManifest.cases || []) {
   const vocab = (lesson.vocabulary || []).map((v) => v.word).filter(Boolean);
   const expectScene = new RegExp(c.expectScene, 'i');
   const sections = spineSections(lesson.title, vocab);
-  const picks = await SB.planFor(sections);
+  // Seeded the same way attachBgPicks does, so this tests shipping behaviour.
+  const picks = await SB.planFor(sections, { seed: lesson.title || '' });
 
   console.log(`\n=== ${c.id}: ${lesson.title} ===`);
   if (picks.length !== sections.length) {

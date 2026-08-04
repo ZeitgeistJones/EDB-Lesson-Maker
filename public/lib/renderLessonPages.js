@@ -662,7 +662,10 @@
       throw new Error('SceneBackgrounds failed to load. Refresh and try again.');
     }
     const sections = buildSectionList(lesson, meta || {});
-    const bgPicks = await window.SceneBackgrounds.planFor(sections);
+    const bgPicks = await window.SceneBackgrounds.planFor(sections, {
+      // Same lesson always lands on the same flats; different lessons do not.
+      seed: lesson.title || '',
+    });
     boardPlan.bgPicks = bgPicks;
     return bgPicks;
   }

@@ -8,12 +8,42 @@ and the same picture gets drawn as small as 96px in a dock. Forty-odd of them
 already ship. A new prop that does not match the pack is worse than no new prop,
 because it makes the whole board look assembled from scraps.
 
-Generate **one prop per image**. Never a grid, a sheet, or two props side by
-side — the importer keys one silhouette out of one frame, and the legacy props
-that were cut out of contact sheets are exactly the ones that cannot be keyed
-today (a neighbour's edge is still in the frame).
-
 Ask for **1:1 aspect ratio**. Output arrives at 1024x1024.
+
+## Two routes in
+
+Both go through the same keying, the same C1-C7 gates and the same manifest
+fields. Pick by the shape of the job, not by preference.
+
+**A 3x3 contact sheet from ChatGPT, for bulk.** Nine related props in one
+generation is the cheapest way to fill a category — all the desk objects, all
+the playground pieces — and nine props that were drawn in one pass are more
+consistent with each other than nine drawn separately. Costs a human round trip.
+
+**Native in-house generation, for targeted work.** One missing prop, or a retry
+after a gate failure. There is no human in the loop, so generate → import →
+read the gate → regenerate is a tight loop. Never wait on a sheet to fix one
+prop.
+
+### What a sheet must be
+
+- **One prop per cell**, on the same solid black field as a single generation —
+  black edge to edge across the whole sheet, no per-cell frame, border, gutter
+  line or label.
+- **Each prop has its own margin inside its own cell.** The composition rules
+  below apply per cell, not to the sheet.
+- **Nothing crosses a cell boundary.** This is the one that actually goes wrong:
+  a model asked for a 3x3 grid will happily draw a bottom row half a cell too
+  large. The importer finds the real gutters rather than assuming exact thirds,
+  so a modest drift is absorbed — but two props sharing black with no gutter
+  between them cannot be separated, and both will fail.
+- **Nine props that belong together.** A sheet's value is consistency; a sheet of
+  nine unrelated objects is nine single generations with extra steps.
+
+Sliced props come out **smaller than 512px** — a 3x3 slice of a 1024px sheet is
+only about 340px per panel, and the importer refuses to resample above the panel
+it came from rather than invent soft pixels. That is fine: a board draws a prop
+at 96-220px either way.
 
 ## The style lock
 
@@ -30,7 +60,8 @@ Paste this verbatim into every prop prompt.
 The black field is not decoration. The image model has no transparency, so
 `scripts/import-prop.mjs` keys the alpha channel out of the black. Any glow,
 gradient or second object that reaches the frame border makes the frame
-unkeyable, and the importer will refuse it at gate C1.
+unkeyable, and the importer will refuse it at gate C1. On a sheet, "the frame"
+means the cell: a glow that crosses into the next cell fails both of them.
 
 ## Recolourability: one body colour, neutral everything else
 
@@ -54,6 +85,8 @@ One hue to move, and the hardware still reads as hardware afterwards.
 recoloured without breaking the other two.
 
 ## Composition
+
+Per frame, and on a sheet the frame is one cell.
 
 - Exactly one object in the frame. Nothing else, not even a small companion item.
 - Centred.
@@ -168,6 +201,28 @@ npm run assets:prop -- --latest --name=<slug> --role=<role> --tags=a,b,c \
 - `--components` — how many separate shapes are legitimate. Default 1. The
   reward jar plus its detached lid is 2.
 
+## Importing a sheet
+
+`--sheet` walks every cell of `--grid` in one pass, reusing one browser. The
+lists are parallel and in **reading order** — left to right, then top to bottom —
+and `--names` must fill the grid exactly or the run refuses to start. `--roles`,
+`--scales` and `--anchors` fall back to the singular `--role` / `--scale` /
+`--anchor` (or their defaults) wherever the list runs short.
+
+```bash
+npm run assets:prop -- <sheet.png> --sheet --grid=3x3 \
+  --names=desk,wall-clock,file-folder,clipboard,supply-caddy,magazine-file,pencil-pot,desk-mat,globe \
+  --roles=furniture,timer,container,tool,container,container,container,furniture,object \
+  --scales=0.8,0.3,0.25,0.3,0.35,0.3,0.2,0.45,0.35 \
+  --anchors=bottom,center,center,center,bottom,bottom,bottom,bottom,bottom
+```
+
+Every panel prints its own gate block, one bad panel does not cost the other
+eight, and the manifest rows for whatever landed are printed together at the end.
+`--tags` applies to the whole run, so set per-prop tags in the manifest
+afterwards. `--grid` with `--cell=r,c` takes a single panel out of a sheet when
+that is all you want.
+
 Then look at it: `npm run assets:prop-qa -- --only=<slug>` and open
 `tmp/prop-qa.jpg`. The gates cannot see style drift or faint micro-text.
 
@@ -191,3 +246,7 @@ Observed on real generations, in rough order of how often they bite.
 - **Ambient light bleeding to the frame border.** A strongly coloured prop
   throws a wash of its own colour across the black field, which reaches the
   border and fails C1. Ask for a flat unlit black field with no glow.
+- **A sheet's bottom row drawn oversized.** Asked for a 3x3 grid, the model
+  keeps the top rows on pitch and lets the last row grow until its props nearly
+  touch. There is usually still a gutter, so the importer recovers — but if two
+  props in a row meet, that row has to be regenerated.

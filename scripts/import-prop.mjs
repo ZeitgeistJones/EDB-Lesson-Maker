@@ -18,6 +18,17 @@
  *   node scripts/import-prop.mjs --latest --name=backpack --role=container \
  *     --tags=bag,backpack,school
  *
+ * A hosted image model will also return nine props as a 3x3 contact sheet on
+ * one black field, which is nine props for one round trip instead of nine. So a
+ * sheet is a first-class input: --sheet walks every cell in one browser, taking
+ * the parallel lists in reading order, left to right and top to bottom.
+ *
+ *   node scripts/import-prop.mjs sheet.png --sheet --grid=3x3 \
+ *     --names=desk,wall-clock,file-folder,clipboard,supply-caddy,magazine-file,pencil-pot,desk-mat,globe \
+ *     --roles=furniture,timer,container,tool,container,container,container,furniture,object \
+ *     --scales=0.8,0.3,0.25,0.3,0.35,0.3,0.2,0.45,0.35 \
+ *     --anchors=bottom,center,center,center,bottom,bottom,bottom,bottom,bottom
+ *
  * The same keying converts the legacy pack in place, which is what --convert
  * does: every manifest prop that is still a black-backed PNG, in one browser.
  *
@@ -28,6 +39,13 @@
  *   --latest       take the newest PNG the image tool wrote for this project
  *   --from=DIR     look in DIR instead (with --latest, or as the file's parent)
  *   --name         manifest key and output filename (default: input filename)
+ *   --grid         RxC when the image is a contact sheet of several props
+ *   --cell         row,col (0-indexed) of the single panel to take from a grid
+ *   --sheet        take every cell of --grid in one pass, reusing the browser
+ *   --names        one slug per cell in reading order (--sheet; must fill RxC)
+ *   --roles        parallel to --names; short lists fall back to --role
+ *   --scales       parallel to --names; short lists fall back to --scale
+ *   --anchors      parallel to --names; short lists fall back to --anchor
  *   --role         manifest role, e.g. cover / tray / container
  *   --tags         comma-separated manifest tags
  *   --components   how many separate shapes are legitimate (default 1; the
@@ -94,22 +112,138 @@ function resolveSource() {
   return latest;
 }
 
-async function cutout(page, src, opts) {
+/**
+ * Where the panels of a contact sheet actually are.
+ *
+ * Cutting the sheet into exact RxC thirds assumes the generator centred every
+ * object on that pitch, and it does not. On the first sheet this was built for,
+ * equal thirds sliced the tips off the pencils, both ends off the desk mat and
+ * the top off the globe, and dragged a green sliver of one prop into its
+ * neighbour's frame. The black field makes the real cut lines cheap to find
+ * instead: a gutter is a line with nothing on it. Columns are searched inside
+ * each row band, because one row's gutter often sits where the row above still
+ * has art.
+ */
+async function panelRects(page, src, rows, cols, threshold) {
   const dataUrl = `data:image/png;base64,${fs.readFileSync(src).toString('base64')}`;
   return page.evaluate(
-    async ({ url, T, SIZE, MARGIN }) => {
+    async ({ url, T, rows: gr, cols: gc }) => {
+      const img = new Image();
+      img.src = url;
+      await img.decode();
+      const W = img.width;
+      const H = img.height;
+      const c = document.createElement('canvas');
+      c.width = W;
+      c.height = H;
+      const ctx = c.getContext('2d', { willReadFrequently: true });
+      ctx.drawImage(img, 0, 0);
+      const px = ctx.getImageData(0, 0, W, H).data;
+      const on = (x, y) => {
+        const i = (y * W + x) * 4;
+        return (px[i] > px[i + 1] ? (px[i] > px[i + 2] ? px[i] : px[i + 2]) : px[i + 1] > px[i + 2] ? px[i + 1] : px[i + 2]) > T;
+      };
+
+      const snap = (guess, span, limit, count) => {
+        const reach = Math.min(Math.round(span * 0.5), guess, limit - guess);
+        const from = guess - reach;
+        const counts = [];
+        for (let p = from; p <= guess + reach; p++) counts.push(count(p));
+
+        // Cut through the middle of the gutter nearest the guess. Hugging its
+        // first empty line instead would leave whichever prop the cut lands
+        // against no margin at all, and the framing gates would then fail for a
+        // reason that is purely about where we cut.
+        let best = null;
+        let bestDist = Infinity;
+        let run = -1;
+        for (let i = 0; i <= counts.length; i++) {
+          if (i < counts.length && counts[i] === 0) {
+            if (run < 0) run = i;
+            continue;
+          }
+          if (run >= 0) {
+            const mid = from + Math.round((run + i - 1) / 2);
+            if (Math.abs(mid - guess) < bestDist) {
+              bestDist = Math.abs(mid - guess);
+              best = mid;
+            }
+            run = -1;
+          }
+        }
+        if (best != null) return best;
+
+        // No clean gutter anywhere near: take the emptiest line and let the
+        // gates report whatever bled across.
+        let at = guess;
+        let low = Infinity;
+        counts.forEach((v, i) => {
+          const p = from + i;
+          if (v < low || (v === low && Math.abs(p - guess) < Math.abs(at - guess))) {
+            low = v;
+            at = p;
+          }
+        });
+        return at;
+      };
+
+      const rowCuts = [0];
+      for (let r = 1; r < gr; r++) {
+        rowCuts.push(
+          snap(Math.round((r * H) / gr), H / gr, H, (y) => {
+            let n = 0;
+            for (let x = 0; x < W; x++) if (on(x, y)) n++;
+            return n;
+          })
+        );
+      }
+      rowCuts.push(H);
+
+      const rects = [];
+      for (let r = 0; r < gr; r++) {
+        const y = rowCuts[r];
+        const y1 = rowCuts[r + 1];
+        const colCuts = [0];
+        for (let cx = 1; cx < gc; cx++) {
+          colCuts.push(
+            snap(Math.round((cx * W) / gc), W / gc, W, (x) => {
+              let n = 0;
+              for (let yy = y; yy < y1; yy++) if (on(x, yy)) n++;
+              return n;
+            })
+          );
+        }
+        colCuts.push(W);
+        for (let cx = 0; cx < gc; cx++) {
+          rects.push({ x: colCuts[cx], y, width: colCuts[cx + 1] - colCuts[cx], height: y1 - y });
+        }
+      }
+      return rects;
+    },
+    { url: dataUrl, T: threshold, rows, cols }
+  );
+}
+
+async function cutout(page, src, opts, rect) {
+  const dataUrl = `data:image/png;base64,${fs.readFileSync(src).toString('base64')}`;
+  return page.evaluate(
+    async ({ url, T, SIZE, MARGIN, box }) => {
       const img = new Image();
       img.src = url;
       await img.decode();
 
-      const w = img.width;
-      const h = img.height;
+      // A contact sheet is cut down to one panel first, so everything below —
+      // the black-field check, the mask, the gates — only ever sees the pixels
+      // of the prop it is actually keying.
+      const panel = box || { x: 0, y: 0, width: img.width, height: img.height };
+      const w = panel.width;
+      const h = panel.height;
       const n = w * h;
       const c = document.createElement('canvas');
       c.width = w;
       c.height = h;
       const ctx = c.getContext('2d', { willReadFrequently: true });
-      ctx.drawImage(img, 0, 0);
+      ctx.drawImage(img, panel.x, panel.y, w, h, 0, 0, w, h);
       const image = ctx.getImageData(0, 0, w, h);
       const px = image.data;
 
@@ -399,9 +533,14 @@ async function cutout(page, src, opts) {
       ctx.putImageData(image, 0, 0);
 
       // Trim to the object, then re-pad so every prop carries the same margin.
+      // The long edge is capped at the panel's own long edge: a 3x3 slice of a
+      // 1024px sheet holds ~340px, and resampling that up to the usual 512 only
+      // invents soft pixels. Sliced props come out smaller, which costs nothing
+      // because a board draws a prop at 96-220px either way.
+      const size = Math.min(SIZE, Math.max(w, h));
       const outerW = bboxW / (1 - MARGIN * 2);
       const outerH = bboxH / (1 - MARGIN * 2);
-      const scale = SIZE / Math.max(outerW, outerH);
+      const scale = size / Math.max(outerW, outerH);
       const outW = Math.round(outerW * scale);
       const outH = Math.round(outerH * scale);
       const drawW = Math.round(bboxW * scale);
@@ -426,7 +565,8 @@ async function cutout(page, src, opts) {
 
       return {
         png: out.toDataURL('image/png'),
-        source: { width: w, height: h },
+        source: { width: img.width, height: img.height },
+        panel: { width: w, height: h },
         out: { width: outW, height: outH },
         ringPurity,
         margins,
@@ -437,7 +577,7 @@ async function cutout(page, src, opts) {
         bodyHue,
       };
     },
-    { url: dataUrl, T: opts.threshold, SIZE: opts.size, MARGIN: opts.margin }
+    { url: dataUrl, T: opts.threshold, SIZE: opts.size, MARGIN: opts.margin, box: rect || null }
   );
 }
 
@@ -521,9 +661,13 @@ function serializeManifest(m) {
   return `{\n${headLines.join(',\n')},\n  "props": {\n${propLines.join(',\n')}\n  }\n}\n`;
 }
 
-/** Bank the original first: in convert mode source and destination are one file. */
+/**
+ * Bank the original first: in convert mode source and destination are one file.
+ * Sliced props all share one raw, banked under the sheet's own name rather than
+ * copied nine times.
+ */
 function writeCutout(job, r) {
-  fs.copyFileSync(job.src, rawPath(job.name));
+  fs.copyFileSync(job.src, rawPath(job.rawName || job.name));
   fs.writeFileSync(job.dest, Buffer.from(r.png.split(',')[1], 'base64'));
 }
 
@@ -547,8 +691,18 @@ async function writeManifest(dest, manifest) {
   }
 }
 
+const slug = (s) => s.replace(/[^a-z0-9-]+/gi, '-').toLowerCase();
+const csv = (name) =>
+  arg(name, '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+const ANCHORS = ['bottom', 'top', 'center'];
+
 async function main() {
   const convert = flag('convert');
+  const sheet = flag('sheet');
   const opts = {
     threshold: Number(arg('threshold', '24')),
     size: Number(arg('size', '512')),
@@ -558,6 +712,7 @@ async function main() {
   const manifestPath = path.join(ROOT, 'public', 'assets', '09_props', 'manifest.json');
   const jobs = [];
   let manifest = null;
+  let grid = null;
   let skipped = 0;
 
   if (convert) {
@@ -578,22 +733,62 @@ async function main() {
     }
     console.log(`Converting ${jobs.length} prop(s) in place.\n`);
   } else {
-    if (!['bottom', 'top', 'center'].includes(arg('anchor', 'bottom'))) {
-      console.error('--anchor must be bottom, top or center');
+    const [rows, cols] = arg('grid', '1x1').split('x').map(Number);
+    if (!Number.isInteger(rows) || !Number.isInteger(cols) || rows < 1 || cols < 1) {
+      console.error('--grid must be RxC in whole numbers, e.g. --grid=3x3');
       process.exit(1);
     }
     const src = resolveSource();
-    const name = arg('name', path.basename(src, path.extname(src)))
-      .replace(/[^a-z0-9-]+/gi, '-')
-      .toLowerCase();
-    jobs.push({
-      name,
-      src,
-      dest: path.join(OUT_DIR, `${name}.png`),
-      components: Number(arg('components', '1')),
-      relativeScale: arg('scale') ? Number(arg('scale')) : null,
-      anchor: arg('anchor', 'bottom'),
+
+    // In sheet mode the cells are the work list; otherwise there is one cell,
+    // which for a plain image is the whole frame.
+    const cells = sheet
+      ? Array.from({ length: rows * cols }, (_, i) => [Math.floor(i / cols), i % cols])
+      : [arg('cell', '0,0').split(',').map(Number)];
+    const names = sheet ? csv('names') : [arg('name', path.basename(src, path.extname(src)))];
+    if (sheet && names.length !== cells.length) {
+      console.error(
+        `--names lists ${names.length} prop(s) but --grid=${rows}x${cols} has ${cells.length} cells. ` +
+          'Name every cell in reading order, left to right then top to bottom.'
+      );
+      process.exit(1);
+    }
+    if (cells.some(([r, c]) => !(r >= 0 && r < rows && c >= 0 && c < cols))) {
+      console.error(`--cell must be row,col inside --grid=${rows}x${cols}`);
+      process.exit(1);
+    }
+
+    const roles = csv('roles');
+    const scales = csv('scales');
+    const anchors = csv('anchors');
+    // A sheet's raw is the sheet, so it is banked once rather than copied per
+    // panel; a single import keeps banking under the prop's own name.
+    const rawName = sheet ? slug(path.basename(src, path.extname(src))) : null;
+    if (rows > 1 || cols > 1) grid = { rows, cols };
+
+    cells.forEach(([row, col], i) => {
+      const anchor = anchors[i] || arg('anchor', 'bottom');
+      if (!ANCHORS.includes(anchor)) {
+        console.error(`anchor "${anchor}" for ${names[i]} must be bottom, top or center`);
+        process.exit(1);
+      }
+      const scale = scales[i] ?? arg('scale');
+      const name = slug(names[i]);
+      jobs.push({
+        name,
+        src,
+        rawName,
+        dest: path.join(OUT_DIR, `${name}.png`),
+        row,
+        col,
+        cellIndex: row * cols + col,
+        components: Number(arg('components', '1')),
+        relativeScale: scale ? Number(scale) : null,
+        anchor,
+        role: roles[i] || arg('role', 'TODO'),
+      });
     });
+    if (sheet) console.log(`Slicing ${jobs.length} panel(s) from a ${rows}x${cols} sheet.`);
   }
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -604,16 +799,26 @@ async function main() {
   const browser = await chromium.launch();
   const page = await browser.newPage();
   let converted = 0;
+  const sheetRows = [];
   try {
+    // Found once for the whole sheet, so nine panels cost one scan.
+    const rects = grid ? await panelRects(page, jobs[0].src, grid.rows, grid.cols, opts.threshold) : null;
+    if (rects && sheet) {
+      console.log(
+        `Panels: ${rects.map((b) => `${b.width}x${b.height}@${b.x},${b.y}`).join('  ')}\n`
+      );
+    }
+
     for (const job of jobs) {
-      const r = await cutout(page, job.src, opts);
+      const r = await cutout(page, job.src, opts, rects ? rects[job.cellIndex] : null);
       if (r.empty) {
-        if (!convert) {
+        if (!convert && !sheet) {
           console.log(`\nNothing above the black threshold in ${rel(job.src)} — is it an empty frame?`);
           process.exitCode = 1;
           break;
         }
         console.log(`SKIP  ${job.name} — nothing above the black threshold`);
+        if (sheet) process.exitCode = 1;
         skipped++;
         continue;
       }
@@ -650,7 +855,12 @@ async function main() {
         continue;
       }
 
-      console.log(`\n${r.source.width}x${r.source.height} in, ${r.out.width}x${r.out.height} out\n`);
+      const sliced = r.panel.width !== r.source.width || r.panel.height !== r.source.height;
+      const inDesc = sliced
+        ? `${r.source.width}x${r.source.height} sheet, ${r.panel.width}x${r.panel.height} panel ` +
+          `[${job.row},${job.col}]`
+        : `${r.source.width}x${r.source.height}`;
+      console.log(`\n${sheet ? `— ${job.name} — ` : ''}${inDesc} in, ${r.out.width}x${r.out.height} out\n`);
       for (const g of gates) console.log(`  ${g.ok ? 'PASS' : 'FAIL'}  ${g.id}  ${g.what} — ${g.got}`);
 
       if (failed.length && !flag('force')) {
@@ -659,12 +869,18 @@ async function main() {
             `or pass --force if you have looked at it and disagree.`
         );
         process.exitCode = 1;
+        // One bad panel should not cost the other eight; the run reports at the
+        // end which ones landed.
+        if (sheet) {
+          skipped++;
+          continue;
+        }
         break;
       }
 
       writeCutout(job, r);
       console.log(`\nWrote ${rel(job.dest)}`);
-      console.log(`Raw kept at ${rel(rawPath(job.name))}`);
+      console.log(`Raw kept at ${rel(rawPath(job.rawName || job.name))}`);
 
       const tags = arg('tags', '')
         .split(',')
@@ -674,7 +890,7 @@ async function main() {
       // manifest looking like its neighbours.
       const row = {
         file: path.basename(job.dest),
-        role: arg('role', 'TODO'),
+        role: job.role,
         tags: tags.length ? tags : ['TODO'],
         relativeScale: job.relativeScale ?? 0.5,
         anchor: job.anchor,
@@ -687,6 +903,10 @@ async function main() {
       if (job.relativeScale == null) {
         console.log('  NOTE no --scale given — relativeScale is a placeholder 0.5, set it deliberately');
       }
+      if (sheet) {
+        sheetRows.push(entryLine(job.name, row));
+        continue;
+      }
       console.log('\nPaste into public/assets/09_props/manifest.json under "props":\n');
       console.log(`${entryLine(job.name, row)},`);
       console.log('\nThen: npm run assets:prop-qa   (see it on light and dark boards)');
@@ -696,6 +916,14 @@ async function main() {
   }
 
   if (convert) console.log(`\n${converted} converted, ${skipped} skipped.`);
+  if (sheet) {
+    console.log(`\n${sheetRows.length} panel(s) written, ${skipped} skipped.`);
+    if (sheetRows.length) {
+      console.log('\nPaste into public/assets/09_props/manifest.json under "props":\n');
+      console.log(`${sheetRows.join(',\n')},`);
+      console.log('\nThen: npm run assets:prop-qa   (see them on light and dark boards)');
+    }
+  }
 }
 
 main().catch((err) => {

@@ -1,23 +1,38 @@
 ---
 name: prop-cutouts
 description: >-
-  Generate one ClassIn board prop at a time on a black field, key it to a real alpha
-  cutout with scripts/import-prop.mjs, map each failed gate to its specific prompt
-  correction, then look at the QA sheet as both teacher and student before writing a
-  manifest row. Use when the user asks for a new board prop, a prop cutout, more
-  collage/activity pieces, or says the prop pack is missing something.
+  Generate ClassIn board props on a black field — one at a time in-house for targeted
+  work, or nine at a time from a ChatGPT 3x3 contact sheet for bulk — key them to real
+  alpha cutouts with scripts/import-prop.mjs, map each failed gate to its specific
+  prompt correction, then look at the QA sheet as both teacher and student before
+  writing manifest rows. Use when the user asks for a new board prop, a prop cutout,
+  more collage/activity pieces, or says the prop pack is missing something.
 ---
 
 # Prop cutouts
 
-One prop per turn. Do not batch.
+## Pick the route first
 
-## Rule zero
+**Targeted work — generate in house, one prop per image.** One missing prop, or a
+retry after a gate failure. No human round trip, so generate → import → read the
+gate → regenerate is a tight loop. This is the default, and it is the only route
+for a retry.
 
-**Never request a grid, a contact sheet, or more than one prop in one image.**
-The importer keys one silhouette out of one frame. Six legacy props in this pack
-were cut out of contact sheets and none of them can be keyed today, because a
-neighbouring prop's edge is still inside the frame.
+**Bulk — ask the user for a ChatGPT 3x3 contact sheet.** Filling a whole category
+at once: nine desk objects, nine playground pieces. Nine props drawn in one pass
+also match each other better than nine drawn separately. Costs a round trip
+through the user, so never use it to fix one prop.
+
+A sheet must be one prop per cell on the same solid black field, each with its
+own margin inside its cell, and nothing crossing a cell boundary. The importer
+finds the real gutters instead of assuming exact thirds, so a row drawn slightly
+oversized still slices correctly — but two props that meet with no black between
+them cannot be separated. Sliced props land smaller than 512px by design, which
+is fine because boards draw props at 96-220px.
+
+The six legacy props in this pack that cannot be keyed today came off old contact
+sheets that had none of that structure — a neighbour's edge was already inside
+the frame. A sheet is a supported input; a crowded sheet is not.
 
 ## Procedure
 
@@ -49,6 +64,24 @@ neighbouring prop's edge is still inside the frame.
    hanging, `center` for anything floating — `SceneBackgrounds.standOn` puts a
    piece's base on `groundY`, which is wrong for a swing or a speech bubble.
 
+   For a sheet, `--sheet` walks every cell of `--grid` in one pass. The lists are
+   parallel and in **reading order**, left to right then top to bottom, and
+   `--names` must fill the grid exactly:
+
+   ```bash
+   npm run assets:prop -- <sheet.png> --sheet --grid=3x3 \
+     --names=desk,wall-clock,file-folder,clipboard,supply-caddy,magazine-file,pencil-pot,desk-mat,globe \
+     --roles=furniture,timer,container,tool,container,container,container,furniture,object \
+     --scales=0.8,0.3,0.25,0.3,0.35,0.3,0.2,0.45,0.35 \
+     --anchors=bottom,center,center,center,bottom,bottom,bottom,bottom,bottom
+   ```
+
+   `--roles`, `--scales` and `--anchors` fall back to the singular flags wherever
+   a list runs short. Each panel prints its own gate block, one bad panel does
+   not cost the other eight, and the rows for whatever landed are printed
+   together at the end. `--tags` applies to the whole run, so set per-prop tags
+   in the manifest afterwards. `--grid` with `--cell=r,c` takes one panel only.
+
 5. **Fix any failed gate at the prompt, then regenerate.** Each gate maps to one
    correction:
 
@@ -63,10 +96,16 @@ neighbouring prop's edge is still inside the frame.
    | C6 | near-black regions that keying will erase into holes | lighter trim, fittings and shadows; nothing close to black |
    | C7 | edge colour does not match the interior | usually follows a C1 failure — fix the field first |
 
+   On a sheet, C2/C3/C4 are measured against the cell the panel was cut from, so
+   a prop drawn small inside a generous cell reads as loosely framed even though
+   the art is fine. C1 and C5 failing together usually means a neighbour bled
+   across the boundary, which is a sheet defect rather than a prop defect. Read
+   the cutout before deciding, and say what you saw if you `--force`.
+
 6. **Then look at it.**
 
    ```bash
-   npm run assets:prop-qa -- --only=<slug>
+   npm run assets:prop-qa -- --only=<slug>[,<slug>...]
    ```
 
    **Actually open `tmp/prop-qa.jpg` with the Read tool.** Judge it twice:
