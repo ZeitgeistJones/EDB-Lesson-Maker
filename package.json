@@ -14,7 +14,8 @@
     "quality:status": "node scripts/quality-loop-status.cjs",
     "quality:judge": "node scripts/quality-verdict.cjs",
     "quality:baseline": "node scripts/quality-baseline.cjs",
-    "assets:icons": "node scripts/fetch-vocab-icons.mjs"
+    "assets:icons": "node scripts/fetch-vocab-icons.mjs",
+    "assets:bg": "node scripts/import-background.mjs"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

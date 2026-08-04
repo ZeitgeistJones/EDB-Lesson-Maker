@@ -5,6 +5,8 @@ node_modules/
 _edb_study_*/
 _parse_edb_*.js
 public/assets/**/_crop_demo/
+assets-inbox/*
+!assets-inbox/.gitkeep
 tmp/
 
 tmp/
