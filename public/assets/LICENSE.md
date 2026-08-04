@@ -21,6 +21,8 @@ Do **not** redistribute these folders as a standalone competing stock pack.
 2. **Open Doodles** from https://www.opendoodles.com/ → `05_source-svg/open-doodles/`
 3. Curated **OpenClipart** / **PublicDomainVectors** scene elements → `03_vocab-icons/`, `02_scenes-backgrounds/`
 
+Quality-loop gaps (preferred art we don’t have yet) live in [`docs/asset-wishlist.md`](../../docs/asset-wishlist.md) — fetch from there later; do not scrape to close rows.
+
 ## Avoid in this bank
 
 Storyset/Freepik free (attribution), Vecteezy free (caps), unverified SVG Repo icons, Blush branded/Disney tiers.

@@ -21,3 +21,11 @@ if (r.uxVerdict) {
 } else {
   console.log('uxVerdict: (none — agent should review strips)');
 }
+const wishPath = path.join(__dirname, '..', 'docs', 'asset-wishlist.md');
+if (fs.existsSync(wishPath)) {
+  const wish = fs.readFileSync(wishPath, 'utf8');
+  const openRows = (wish.match(/\|\s*open\s*\|/gi) || []).length;
+  console.log('assetWishlist:', wishPath, `(open rows ≈ ${openRows})`);
+} else {
+  console.log('assetWishlist: (missing docs/asset-wishlist.md)');
+}

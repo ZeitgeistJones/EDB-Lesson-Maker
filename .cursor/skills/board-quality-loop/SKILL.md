@@ -60,9 +60,22 @@ Map pillars → rubric codes in `scripts/ux-board-rubric.cjs` (S1–S18).
 2. Read `tmp/board-bg-verify/report.json`.
 3. **If `hardFailures` non-empty:** fix those codes first. One coherent theme per iteration. Re-run step 1.
 4. **If hard clean:** for **each** case, Read `strip.jpg` + review pages. Apply **dual lens** + pillars.
-5. Score soft codes. Write `uxVerdict` into `tmp/board-bg-verify/report.json` including `lens: { student, teacher }`.
-6. Apply decision from `ux-board-rubric.decide(...)`.
-7. Re-bake. Same soft root twice → **P1** (next EW).
+5. Score soft codes. Write `uxVerdict` into `tmp/board-bg-verify/report.json` including `lens: { student, teacher }` and any `wishlist` needs from this pass.
+6. **Asset gaps:** if you’d prefer another icon/prop/scene but don’t have a verified one, **append** a row to `docs/asset-wishlist.md` (do not scrape art; keep best legal stand-in). See Wishlist below.
+7. Apply decision from `ux-board-rubric.decide(...)`.
+8. Re-bake. Same soft root twice → **P1** (next EW).
+
+## Wishlist (fetch later)
+
+File: `docs/asset-wishlist.md`
+
+When dual-lens says the art is wrong/weak **and** no good in-repo asset exists:
+
+- Append one table row (`Need`, why/case, preferred type, suggested safe source, `Status: open`)
+- Keep the best legal stand-in (e.g. stadium for *spacious* — not a door)
+- Mirror short needs into `uxVerdict.wishlist: string[]`
+- Fetch/wire only when the user asks, or as a dedicated iteration after hard+soft clear
+- Never “solve” a gap with unverified clipart
 
 ## Judgment tips
 
@@ -71,6 +84,7 @@ Map pillars → rubric codes in `scripts/ux-board-rubric.cjs` (S1–S18).
 - Prefer one high-impact fix over drive-by refactors
 - Charm without clutter — one delightful thing beats five stickers
 - After vision pass, land at least one clear fix on the first clean hard bake if `clearFix` exists
+- Prefer wishlist + honest stand-in over a misleading substitute
 
 ## Commands
 
