@@ -1,9 +1,15 @@
 BOARD PROPS (cutouts)
 =====================
 
-PNG props on black backgrounds for ClassIn collage / activity pieces.
-Generated with OpenAI image models for this project.
-Ownership of output sits with the account holder under OpenAI's terms.
+PNG props with real alpha channels, for ClassIn collage / activity pieces.
+Each one was generated on a solid black field — the image models have no
+transparency — and then keyed to a cutout by scripts/import-prop.mjs. The
+raw black-field originals are banked in assets-inbox/raw/.
+
+Most of the pack was generated with OpenAI image models for this project;
+ownership of that output sits with the account holder under OpenAI's terms.
+The newer props (backpack, suitcase, swing, umbrella, reward-jar-v2) were
+generated with Cursor's native image model for this project.
 Verify current terms before commercial resale.
 
 Sets:
@@ -12,6 +18,12 @@ Sets:
   - Speaking / feedback (mic, check, arrow, target, gift, hourglass)
   - Furniture shells (table, chair, door, window, rug, lamp)
   - Phonics tools (tiles, sound boxes, word strip, pencil, eraser)
+  - Containers and objects (backpack, suitcase, umbrella, jar + lid, swing)
   - Earlier shells (shelf, bin, flashcard, sticky, jar, tray, speech, star, slot)
 
-See manifest.json for roles/tags.
+Six props are still black-backed rather than keyed: sorting-bin-green,
+prize-flap, tile-blue, sound-boxes, word-strip and pencil. They were cut from
+contact sheets or carry a colour wash to the frame border, so nothing above the
+black threshold can be separated cleanly. See docs/asset-wishlist.md.
+
+See manifest.json for roles, tags, aspect, relativeScale, anchor and bodyHue.

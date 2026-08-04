@@ -16,7 +16,9 @@
     "quality:baseline": "node scripts/quality-baseline.cjs",
     "assets:icons": "node scripts/fetch-vocab-icons.mjs",
     "assets:bg": "node scripts/import-background.mjs",
-    "assets:ground-qa": "node scripts/qa-scene-ground.mjs"
+    "assets:ground-qa": "node scripts/qa-scene-ground.mjs",
+    "assets:prop": "node scripts/import-prop.mjs",
+    "assets:prop-qa": "node scripts/qa-props.mjs"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

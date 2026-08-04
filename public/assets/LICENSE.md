@@ -14,6 +14,7 @@ Do **not** redistribute these folders as a standalone competing stock pack.
 | Board backgrounds (scenes) | `08_backgrounds/img/` (non-flat) | Generated with OpenAI image models for this project | Verify OpenAI terms before commercial resale | 76 place scenes with `groundY`; clear centre band for pieces. Includes free ChatGPT grid imports Aug 2026 | 2026-08-04 |
 | Board backgrounds (flats) | `08_backgrounds/img/flat_*.png` | Generated with OpenAI image models for this project | Verify OpenAI terms before commercial resale | Universal teaching surfaces: whiteboard, chalkboard, cork, desk (not tinted color washes) | 2026-08-02 |
 | Board props (cutouts) | `09_props/img/` | Generated with OpenAI image models for this project | Verify OpenAI terms before commercial resale | ~40 empty shells: covers, dress-up, speaking tokens, furniture, phonics tools, collage props | 2026-08-02 |
+| Board props (alpha cutouts) | `09_props/img/` (`alpha: true` in manifest) | Generated with Cursor's native image model for this project | Verify current terms before commercial resale | 5 new props (backpack, suitcase, swing, umbrella, reward-jar-v2) plus 35 of the OpenAI props re-keyed from their black fields to real alpha by `scripts/import-prop.mjs`; raw originals banked in `assets-inbox/raw/` | 2026-08-04 |
 
 ## Manual drops still recommended
 
