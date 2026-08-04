@@ -59,6 +59,41 @@
     bandage: ['doctor', 'medical'],
     checkup: ['doctor', 'medical', 'checkup'],
     'check-up': ['doctor', 'medical', 'checkup'],
+
+    // Home lessons: "Our Spacious New Apartment" matched no scene at all and
+    // fell back to a blank whiteboard. Nouns only — room adjectives like
+    // "spacious" describe offices and gyms too, so they stay unmapped.
+    apartment: ['home', 'living', 'room', 'family'],
+    apartments: ['home', 'living', 'room'],
+    house: ['home', 'living', 'room', 'family'],
+    home: ['home', 'living', 'room'],
+    lounge: ['living', 'room', 'home', 'relax'],
+    sofa: ['living', 'room', 'home', 'relax'],
+    couch: ['living', 'room', 'home', 'relax'],
+    furniture: ['home', 'living', 'room'],
+    rent: ['home', 'living', 'room'],
+
+    // Air travel: strong flight vocabulary (passport, customs, departure) was
+    // scoring zero because only the words "airport"/"travel" were mapped.
+    fly: ['airport', 'travel', 'flight'],
+    flying: ['airport', 'travel', 'flight'],
+    flight: ['airport', 'travel', 'flight'],
+    flights: ['airport', 'travel', 'flight'],
+    airline: ['airport', 'travel', 'flight'],
+    terminal: ['airport', 'travel'],
+    passport: ['airport', 'travel', 'flight'],
+    boarding: ['airport', 'travel', 'flight'],
+    departure: ['airport', 'travel', 'flight'],
+    departures: ['airport', 'travel', 'flight'],
+    arrival: ['airport', 'travel', 'flight'],
+    arrivals: ['airport', 'travel', 'flight'],
+    customs: ['airport', 'travel'],
+    layover: ['airport', 'travel', 'waiting'],
+    luggage: ['airport', 'travel'],
+    baggage: ['airport', 'travel'],
+    suitcase: ['airport', 'travel'],
+    seatbelt: ['airplane', 'flight', 'travel'],
+    turbulence: ['airplane', 'flight'],
   };
 
   function expandTags(tags) {
@@ -140,6 +175,7 @@
         name: key,
         file: m.flats[key].file,
         path: `${BASE}/img/${m.flats[key].file}`,
+        textInk: m.flats[key].textInk || 'light',
         reason: 'preferFlat (drill / chrome page)',
       };
     }
@@ -161,6 +197,8 @@
         path: `${BASE}/img/${best.scene.file}`,
         groundY: best.scene.groundY,
         score: best.score,
+        // Photographic scenes vary too much to trust dark chrome text on them.
+        textInk: 'light',
         runnersUp: ranked.slice(1, 3).map(r => `${r.name}(${r.score})`),
       };
     }
@@ -174,6 +212,7 @@
       name: key,
       file: m.flats[key].file,
       path: `${BASE}/img/${m.flats[key].file}`,
+      textInk: m.flats[key].textInk || 'light',
       reason: ranked.length
         ? `best match ${ranked[0].name} scored ${ranked[0].score}, below floor of ${minScore}`
         : 'no scene matched any tag',

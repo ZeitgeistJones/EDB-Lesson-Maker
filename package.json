@@ -10,7 +10,10 @@
     "test:board-bg": "node scripts/verify-board-visual.cjs",
     "preflight": "node scripts/preflight-boards.cjs",
     "quality": "node scripts/preflight-boards.cjs",
-    "quality:status": "node scripts/quality-loop-status.cjs"
+    "quality:full": "node scripts/preflight-boards.cjs --tier=all",
+    "quality:status": "node scripts/quality-loop-status.cjs",
+    "quality:judge": "node scripts/quality-verdict.cjs",
+    "quality:baseline": "node scripts/quality-baseline.cjs"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

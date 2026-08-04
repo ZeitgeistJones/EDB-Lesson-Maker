@@ -63,6 +63,11 @@
     return SAFE_EMOJI[key] || fallback || '•';
   }
 
+  /** True when a human vetted this word's glyph (not a Gemini guess). */
+  function isCurated(word) {
+    return Object.prototype.hasOwnProperty.call(SAFE_EMOJI, normalize(word));
+  }
+
   function loadIndex() {
     if (indexCache) return Promise.resolve(indexCache);
     if (!indexPromise) {
@@ -149,6 +154,7 @@
     has,
     loadPng,
     emojiFor,
+    isCurated,
     ready: loadIndex,
     CREDIT: 'Twemoji by Twitter, Inc and other contributors',
   };

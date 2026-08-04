@@ -1,0 +1,77 @@
+{
+  "_comment": "Board quality cases. tier core = npm run quality (fast). tier adversarial = npm run quality:full only. expectScene is a regex source matched against the picked title scene name.",
+  "cases": [
+    {
+      "id": "doctor",
+      "fixture": "doctor-lesson.json",
+      "tier": "core",
+      "meta": { "level": "A1", "duration": "25" },
+      "expectScene": "doctor|hospital|clinic|medical|dentist",
+      "notes": "Baseline topical lesson"
+    },
+    {
+      "id": "clown-clinic",
+      "fixture": "clown-clinic-lesson.json",
+      "tier": "core",
+      "meta": { "level": "B1", "duration": "45" },
+      "expectScene": "doctor|hospital|clinic|medical|pharmacy",
+      "notes": "Silly framing over a real place — scene must follow the place, not the joke"
+    },
+    {
+      "id": "gym",
+      "fixture": "gym-lesson.json",
+      "tier": "core",
+      "meta": { "level": "B1", "duration": "45" },
+      "expectScene": "gym|school|playground|sport",
+      "notes": "Story visualTheme lies (beach/kitchen); abstract adjectives in vocab"
+    },
+    {
+      "id": "travel",
+      "fixture": "travel-lesson.json",
+      "tier": "core",
+      "meta": { "level": "A1", "duration": "25" },
+      "expectScene": "airport|travel|station|bus|train|airplane",
+      "notes": "Transit vocabulary"
+    },
+    {
+      "id": "school",
+      "fixture": "school-lesson.json",
+      "tier": "core",
+      "meta": { "level": "A1", "duration": "25" },
+      "expectScene": "school|classroom|library|hallway",
+      "notes": "Most common real lesson shape"
+    },
+    {
+      "id": "abstract-words",
+      "fixture": "abstract-words-lesson.json",
+      "tier": "adversarial",
+      "meta": { "level": "B1", "duration": "45" },
+      "expectScene": "living|bedroom|dining|kitchen|house|home",
+      "notes": "Words with no literal picture (spacious, cramped, tidy, cosy). Expect low M7 and wishlist rows — never a misleading substitute icon."
+    },
+    {
+      "id": "bad-theme",
+      "fixture": "bad-theme-lesson.json",
+      "tier": "adversarial",
+      "meta": { "level": "A1", "duration": "25" },
+      "expectScene": "cafeteria|school|restaurant|dining|kitchen",
+      "notes": "Every story visualTheme contradicts the lesson place. Scene + side art must follow title/caption."
+    },
+    {
+      "id": "minimal",
+      "fixture": "minimal-lesson.json",
+      "tier": "adversarial",
+      "meta": { "level": "A1", "duration": "25" },
+      "expectScene": "playground|park|sports-field|campsite|beach",
+      "notes": "Layout floor: 2 vocab words, one story page, no creative questions. Pages must not look empty."
+    },
+    {
+      "id": "overflow",
+      "fixture": "overflow-lesson.json",
+      "tier": "adversarial",
+      "meta": { "level": "B1", "duration": "45" },
+      "expectScene": "airport|airplane|train|bus|travel|station",
+      "notes": "Layout ceiling: 12 vocab words, long frames/review. Page count must stay under the ClassIn limit and cards must not overflow."
+    }
+  ]
+}

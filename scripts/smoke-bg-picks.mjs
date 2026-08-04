@@ -1,135 +1,49 @@
 /**
- * Smoke: scene picks for doctor / travel / school topics + standOn math.
- * Run: node scripts/smoke-bg-picks.mjs
+ * Smoke: background picks + standOn math, run against the REAL picker.
+ *
+ *   npm run test:bg-picks
+ *
+ * This loads public/lib/sceneBackgrounds.js in a sandbox with a file-backed
+ * fetch, so the test cannot pass while the shipped picker is broken. Topics and
+ * vocabulary come from scripts/fixtures/cases.json, so the smoke test and the
+ * headless bake always judge the same lessons.
  */
 import fs from 'fs';
 import path from 'path';
+import vm from 'vm';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const m = JSON.parse(
-  fs.readFileSync(path.join(root, 'public/assets/08_backgrounds/manifest.json'), 'utf8')
-);
+const publicDir = path.join(root, 'public');
 
-function norm(s) {
-  return String(s || '')
-    .toLowerCase()
-    .replace(/[^a-z0-9 ]/g, ' ')
-    .split(/\s+/)
-    .filter(Boolean);
-}
-
-// Mirror alias expansion used in sceneBackgrounds.js
-const ALIASES = {
-  clinic: ['doctor', 'medical', 'hospital', 'checkup'],
-  clinics: ['doctor', 'medical', 'hospital'],
-  doctors: ['doctor'],
-  nurse: ['doctor', 'medical', 'hospital'],
-  nurses: ['doctor', 'medical'],
-  patient: ['doctor', 'medical', 'hospital'],
-  sick: ['doctor', 'medical', 'health'],
-  illness: ['doctor', 'medical', 'health'],
-  fever: ['doctor', 'medical', 'health'],
-  appointment: ['doctor', 'checkup', 'medical'],
-  diagnosis: ['doctor', 'medical', 'hospital'],
-  symptom: ['doctor', 'medical', 'health'],
-  symptoms: ['doctor', 'medical', 'health'],
-  prescription: ['pharmacy', 'medicine', 'doctor', 'medical'],
-  medicine: ['pharmacy', 'medical', 'health'],
-  bandage: ['doctor', 'medical'],
-  checkup: ['doctor', 'medical', 'checkup'],
-};
-
-function expandTags(tags) {
-  const out = new Set();
-  for (const raw of tags || []) {
-    for (const t of norm(raw)) {
-      out.add(t);
-      const extra = ALIASES[t];
-      if (extra) extra.forEach((x) => out.add(x));
-    }
+/** Minimal fetch that serves files out of public/ the way the browser would. */
+function fileFetch(url) {
+  const rel = String(url).replace(/^\.?\//, '');
+  const filePath = path.join(publicDir, rel);
+  if (!filePath.startsWith(publicDir) || !fs.existsSync(filePath)) {
+    return Promise.resolve({ ok: false, status: 404, json: async () => ({}) });
   }
-  return [...out];
+  const body = fs.readFileSync(filePath);
+  return Promise.resolve({
+    ok: true,
+    status: 200,
+    json: async () => JSON.parse(body.toString('utf8')),
+    arrayBuffer: async () => body.buffer.slice(body.byteOffset, body.byteOffset + body.byteLength),
+  });
 }
 
-function rank(tags, category) {
-  const want = new Set(expandTags(tags));
-  const out = [];
-  for (const [name, scene] of Object.entries(m.scenes)) {
-    let score = 0;
-    const sceneTags = new Set((scene.tags || []).flatMap(norm));
-    const nameWords = new Set(norm(name));
-    for (const t of want) {
-      if (sceneTags.has(t)) score += 3;
-      if (nameWords.has(t)) score += 2;
-    }
-    if (category && scene.category === category) score += 1;
-    if (score > 0) {
-      out.push({
-        name,
-        score,
-        groundY: scene.groundY,
-        specificity: (scene.tags || []).length,
-        file: scene.file,
-      });
-    }
-  }
-  out.sort(
-    (a, b) =>
-      b.score - a.score ||
-      a.specificity - b.specificity ||
-      a.name.localeCompare(b.name)
-  );
-  return out;
+function loadSceneBackgrounds() {
+  const code = fs.readFileSync(path.join(publicDir, 'lib', 'sceneBackgrounds.js'), 'utf8');
+  const sandbox = { window: {}, fetch: fileFetch, console, setTimeout, clearTimeout };
+  sandbox.self = sandbox;
+  vm.runInNewContext(code, sandbox, { filename: 'sceneBackgrounds.js' });
+  const SB = sandbox.window.SceneBackgrounds;
+  if (!SB || !SB.planFor) throw new Error('sceneBackgrounds.js did not attach window.SceneBackgrounds');
+  return SB;
 }
 
-function pickFor(section, index = 0) {
-  const minScore = 4;
-  const flatKeys = Object.keys(m.flats);
-  if (section.preferFlat) {
-    const key = flatKeys[index % flatKeys.length];
-    return { type: 'flat', name: key, reason: 'preferFlat' };
-  }
-  const tags = [
-    ...(section.tags || []),
-    ...norm(section.title),
-    ...(section.vocabulary || []),
-  ].filter(Boolean);
-  const ranked = rank(tags, section.category);
-  if (ranked.length && ranked[0].score >= minScore) {
-    return { type: 'scene', ...ranked[0] };
-  }
-  const key = flatKeys[index % flatKeys.length];
-  return {
-    type: 'flat',
-    name: key,
-    reason: ranked[0] ? `${ranked[0].name}@${ranked[0].score}` : 'none',
-  };
-}
-
-function planFor(sections) {
-  const out = [];
-  let flatCount = 0;
-  let placeScene = null;
-  for (const sec of sections) {
-    if (!sec.preferFlat && placeScene) {
-      out.push({ ...placeScene, reused: true });
-      continue;
-    }
-    const p = pickFor(sec, flatCount);
-    if (p.type === 'flat') flatCount++;
-    if (p.type === 'scene' && !placeScene) placeScene = p;
-    out.push(p);
-  }
-  return out;
-}
-
-function standOn(pick, pieceHeight) {
-  if (pick.type === 'scene' && pick.groundY) return pick.groundY - pieceHeight;
-  return Math.round(590 * 0.55) - Math.round(pieceHeight / 2);
-}
-
+/** The fixed page spine the board planner emits, in board order. */
 function spineSections(topic, vocab) {
   return [
     { title: topic, tags: ['title', topic], vocabulary: vocab },
@@ -145,102 +59,79 @@ function spineSections(topic, vocab) {
   ];
 }
 
-const cases = [
-  {
-    label: 'doctor',
-    topic: "At the Doctor's Office",
-    vocab: ['doctor', 'nurse', 'sick', 'appointment'],
-    expectScene: /doctor|hospital|clinic|medical/i,
-  },
-  {
-    label: 'clown-clinic',
-    topic: 'The Clown at the Clinic',
-    vocab: ['diagnosis', 'symptoms', 'prescription', 'checkup'],
-    expectScene: /doctor|hospital|clinic|medical|pharmacy/i,
-  },
-  {
-    label: 'travel',
-    topic: 'Airport Travel Day',
-    vocab: ['passport', 'ticket', 'suitcase', 'gate'],
-    expectScene: /airport|travel|station|bus|train/i,
-  },
-  {
-    label: 'school',
-    topic: 'First Day at School',
-    vocab: ['teacher', 'classroom', 'pencil', 'friend'],
-    expectScene: /school|classroom|library|hallway/i,
-  },
-  {
-    label: 'gym',
-    topic: 'The Clown at the Gym',
-    vocab: ['clumsy', 'energetic', 'athletic'],
-    expectScene: /gym|school|playground|sport/i,
-  },
-];
+const manifest = JSON.parse(
+  fs.readFileSync(path.join(publicDir, 'assets/08_backgrounds/manifest.json'), 'utf8')
+);
+const caseManifest = JSON.parse(
+  fs.readFileSync(path.join(__dirname, 'fixtures', 'cases.json'), 'utf8')
+);
 
+const SB = loadSceneBackgrounds();
 let failed = 0;
-for (const c of cases) {
-  const sections = spineSections(c.topic, c.vocab);
-  const picks = planFor(sections);
+
+for (const c of caseManifest.cases || []) {
+  const lesson = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', c.fixture), 'utf8'));
+  const vocab = (lesson.vocabulary || []).map((v) => v.word).filter(Boolean);
+  const expectScene = new RegExp(c.expectScene, 'i');
+  const sections = spineSections(lesson.title, vocab);
+  const picks = await SB.planFor(sections);
+
+  console.log(`\n=== ${c.id}: ${lesson.title} ===`);
   if (picks.length !== sections.length) {
-    console.error('FAIL length', c.label, picks.length, sections.length);
+    console.error(`  FAIL length ${picks.length} vs ${sections.length}`);
     failed++;
     continue;
   }
+
   const scenes = picks.filter((p) => p.type === 'scene');
   const flats = picks.filter((p) => p.type === 'flat');
-  const titlePick = picks[0];
-  const warmPick = picks[1];
-  const vocabPick = picks[2];
+  const [titlePick, warmPick, vocabPick] = picks;
   const storyPick = picks[5];
   const activityPick = picks[8];
-  console.log(`\n=== ${c.label}: ${c.topic} ===`);
-  console.log(
-    `  title → ${titlePick.type}:${titlePick.name} score=${titlePick.score ?? '-'}`,
-  );
-  console.log(`  warm  → ${warmPick.type}:${warmPick.name}`);
-  console.log(`  vocab → ${vocabPick.type}:${vocabPick.name}`);
-  console.log(`  story → ${storyPick.type}:${storyPick.name}`);
-  console.log(`  activity → ${activityPick.type}:${activityPick.name}`);
+
+  console.log(`  title → ${titlePick.type}:${titlePick.name} score=${titlePick.score ?? '-'}`);
+  console.log(`  vocab → ${vocabPick.type}:${vocabPick.name}   story → ${storyPick.type}:${storyPick.name}`);
   console.log(`  mix scenes=${scenes.length} flats=${flats.length}`);
 
-  if (titlePick.type !== 'scene' || !c.expectScene.test(titlePick.name)) {
-    console.error(`  FAIL title scene expected ~${c.expectScene}, got`, titlePick);
+  if (titlePick.type !== 'scene' || !expectScene.test(titlePick.name)) {
+    console.error(`  FAIL title scene expected ~/${c.expectScene}/, got ${titlePick.type}:${titlePick.name}`);
     failed++;
   }
   if (warmPick.type !== 'flat' || vocabPick.type !== 'flat') {
-    console.error('  FAIL warm/vocab should be flat', warmPick, vocabPick);
+    console.error(`  FAIL warm/vocab should be flat (${warmPick.type}/${vocabPick.type})`);
     failed++;
   }
   if (storyPick.type !== 'scene' || storyPick.name !== titlePick.name) {
-    console.error('  FAIL story should reuse title scene', storyPick);
+    console.error(`  FAIL story should reuse the title scene, got ${storyPick.type}:${storyPick.name}`);
     failed++;
   }
   if (activityPick.type !== 'scene' || activityPick.name !== titlePick.name) {
-    console.error('  FAIL activity should reuse title scene', activityPick);
+    console.error(`  FAIL activity should reuse the title scene, got ${activityPick.type}:${activityPick.name}`);
     failed++;
   }
   if (flats.length < 4 || scenes.length < 3) {
-    console.error(`  FAIL expected mix flats>=4 scenes>=3 got f=${flats.length} s=${scenes.length}`);
+    console.error(`  FAIL expected mix flats>=4 scenes>=3, got f=${flats.length} s=${scenes.length}`);
     failed++;
   }
-  // Files must exist
+
   for (const p of picks) {
-    const file =
-      p.type === 'scene'
-        ? m.scenes[p.name]?.file
-        : m.flats[p.name]?.file;
-    const fp = path.join(root, 'public/assets/08_backgrounds/img', file || '');
-    if (!file || !fs.existsSync(fp)) {
-      console.error('  FAIL missing file', p.name, file);
+    const file = p.type === 'scene' ? manifest.scenes[p.name]?.file : manifest.flats[p.name]?.file;
+    const onDisk = file && fs.existsSync(path.join(publicDir, 'assets/08_backgrounds/img', file));
+    if (!onDisk) {
+      console.error(`  FAIL missing asset for ${p.type}:${p.name} (${file || 'no file'})`);
+      failed++;
+    }
+    if (!p.path) {
+      console.error(`  FAIL pick has no path: ${p.type}:${p.name}`);
       failed++;
     }
   }
-  if (titlePick.type === 'scene') {
-    const y = standOn(titlePick, 96);
+
+  if (titlePick.type === 'scene' && titlePick.groundY) {
+    const y = SB.standOn(titlePick, 96);
     const expect = titlePick.groundY - 96;
     if (y !== expect) {
-      console.error('  FAIL standOn', y, expect);
+      console.error(`  FAIL standOn ${y} expected ${expect}`);
       failed++;
     } else {
       console.log(`  standOn(96) → ${y} (groundY ${titlePick.groundY}) OK`);
@@ -252,4 +143,4 @@ if (failed) {
   console.error(`\n${failed} failure(s)`);
   process.exit(1);
 }
-console.log('\nAll smoke checks passed.');
+console.log('\nAll smoke checks passed (real picker).');

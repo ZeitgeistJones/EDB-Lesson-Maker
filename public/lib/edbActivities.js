@@ -153,7 +153,9 @@
     // Pack icons resolved at export via VocabIcons + meta.word (no mixed SVG styles)
     L.placeDockRow(page, vocab.map((v) => ({
       kind: 'emoji',
-      emoji: v.emoji || '•',
+      emoji: (window.VocabIcons && window.VocabIcons.emojiFor)
+        ? window.VocabIcons.emojiFor(v.word, v.emoji)
+        : (v.emoji || '•'),
       role: 'matchPiece',
       meta: { word: v.word },
     })), { w: 96, h: 96 });

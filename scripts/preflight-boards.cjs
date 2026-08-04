@@ -1,11 +1,13 @@
 /**
- * Preflight / quality entry — hard bake for board quality loop.
+ * Preflight / quality entry — hard bake plus measured UX metrics.
  *
- *   npm run preflight
- *   npm run quality
+ *   npm run quality              core cases (fast)
+ *   npm run quality:full         core + adversarial cases
+ *   node scripts/preflight-boards.cjs --cases=gym,travel
  *
- * Exit 0 = hard rules passed. Agent must then run board-quality-loop skill
- * (read strips, score soft UX, fix, re-run; max 5 iterations).
+ * Exit 0 = hard rules passed. The agent must then run the board-quality-loop
+ * skill: read the review queue, judge with both lenses, submit via
+ * npm run quality:judge, and obey the printed action.
  */
 const { spawnSync } = require('child_process');
 const path = require('path');
@@ -13,6 +15,7 @@ const fs = require('fs');
 
 const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, 'tmp', 'board-bg-verify');
+const forwarded = process.argv.slice(2);
 
 function run(label, cmd, args) {
   console.log(`\n▓▓▓▓ ${label} ▓▓▓▓`);
@@ -29,26 +32,52 @@ function run(label, cmd, args) {
 }
 
 let code = 0;
-code = run('1/2  Background picks (fast)', 'npm', ['run', 'test:bg-picks']) || code;
-code = run('2/2  Headless board bake (hard rules)', 'npm', ['run', 'test:board-bg']) || code;
+code = run('1/2  Background picks (fast)', 'node', ['scripts/smoke-bg-picks.mjs']) || code;
+code =
+  run('2/2  Headless board bake (hard rules + metrics)', 'node', [
+    'scripts/verify-board-visual.cjs',
+    ...forwarded,
+  ]) || code;
 
+const reportPath = path.join(OUT, 'report.json');
 console.log('\n══════════════════════════════════════');
 if (code) {
   console.error('QUALITY HARD FAIL — fix report hardFailures, then re-run.');
-  console.error(`Report: ${path.join(OUT, 'report.json')}`);
+  console.error(`Report: ${reportPath}`);
   process.exit(code);
 }
 
 console.log('QUALITY HARD PASS');
-if (fs.existsSync(OUT)) {
-  for (const dir of fs.readdirSync(OUT)) {
-    const p = path.join(OUT, dir);
-    if (!fs.statSync(p).isDirectory()) continue;
-    const strip = path.join(p, 'strip.jpg');
-    const pages = fs.readdirSync(p).filter((f) => f.startsWith('page-') && f.endsWith('.jpg'));
-    console.log(`  ${dir}/  strip=${fs.existsSync(strip) ? 'yes' : 'no'}  pages=${pages.length}`);
+
+let report = null;
+try {
+  report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+} catch (_) {
+  /* report is optional for the footer */
+}
+
+if (report) {
+  const fails = (report.metricFlags || []).filter((f) => f.grade === 'fail');
+  const warns = (report.metricFlags || []).filter((f) => f.grade === 'warn');
+  console.log(`tier=${report.tier}  cases=${(report.caseIds || []).join(', ')}`);
+  console.log(`metrics: ${fails.length} fail / ${warns.length} warn   regressions: ${(report.regressions || []).length}`);
+  for (const c of report.cases || []) {
+    const top = (c.reviewQueue || [])[0];
+    console.log(
+      `  ${c.id}: ${c.pageCount} pages · contact=${c.contact}` +
+        (top ? `\n      start at #${top.pageIndex} ${top.pageKey} — ${(top.reasons || [])[0]}` : '')
+    );
+  }
+  if (!report.baselineUsed) {
+    console.log('\nNo regression baseline yet. After a bake you are happy with: npm run quality:baseline');
   }
 }
-console.log(`\nReport: ${path.join(OUT, 'report.json')}`);
-console.log('AGENT: run board-quality-loop skill — read strips, fix soft UX, re-run (max 5).');
+
+console.log('\nAGENT next steps (board-quality-loop skill):');
+console.log('  1. npm run quality:status            (loop memory + review queue)');
+console.log('  2. read each case contact.jpg + the queued page-*.jpg');
+console.log('  3. judge as student AND teacher, write tmp/verdict.json');
+console.log('  4. npm run quality:judge -- tmp/verdict.json   (validates + decides)');
+console.log('  5. do exactly what NEXT ACTION says; re-bake (max 5 iterations)');
+console.log(`\nReport: ${reportPath}`);
 process.exit(0);

@@ -475,20 +475,24 @@
  },
  "flats": {
   "whiteboard": {
-   "file": "flat_whiteboard.png",
-   "tone": "clean white teaching board — universal drills / phonics"
+    "file": "flat_whiteboard.png",
+    "tone": "clean white teaching board — universal drills / phonics",
+    "textInk": "dark"
   },
   "chalkboard": {
-   "file": "flat_chalkboard.png",
-   "tone": "dark green chalkboard — title / review energy"
+    "file": "flat_chalkboard.png",
+    "tone": "dark green chalkboard — title / review energy",
+    "textInk": "light"
   },
   "cork": {
-   "file": "flat_cork.png",
-   "tone": "warm cork pinboard — vocab cards / sorting"
+    "file": "flat_cork.png",
+    "tone": "warm cork pinboard — vocab cards / sorting",
+    "textInk": "light"
   },
   "desk": {
-   "file": "flat_desk.png",
-   "tone": "neutral wall + desk ledge — soft workspace"
+    "file": "flat_desk.png",
+    "tone": "neutral wall + desk ledge — soft workspace",
+    "textInk": "light"
   }
  }
 }

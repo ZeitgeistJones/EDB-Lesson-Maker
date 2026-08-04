@@ -51,6 +51,43 @@
     return p;
   }
 
+  /**
+   * Chrome text is authored for a light page. Chalkboard, cork, desk and every
+   * photographic scene are darker or busier than that, which left headings like
+   * dark green on a green chalkboard. Surfaces declare the ink they take
+   * (manifest textInk), and light-ink surfaces get a top scrim so the heading
+   * band always has something to sit on.
+   */
+  function applyInkPolicy(pageEl, pick, bgImg, hasWash) {
+    const ink = pick.textInk || (pick.type === 'flat' ? 'light' : 'light');
+    if (ink !== 'light') return null;
+
+    let scrim = null;
+    if (!hasWash) {
+      scrim = el('div', {
+        position: 'absolute',
+        left: '0',
+        top: '0',
+        width: W + 'px',
+        height: '186px',
+        background: 'linear-gradient(180deg, rgba(15,23,42,0.78) 0%, rgba(15,23,42,0.55) 55%, rgba(15,23,42,0) 100%)',
+        zIndex: '0',
+        pointerEvents: 'none',
+      });
+      pageEl.insertBefore(scrim, bgImg.nextSibling);
+    }
+
+    pageEl.querySelectorAll('[data-ink="heading"]').forEach((n) => {
+      n.style.color = '#ffffff';
+      n.style.textShadow = '0 2px 10px rgba(2,6,23,0.55)';
+    });
+    pageEl.querySelectorAll('[data-ink="hint"]').forEach((n) => {
+      n.style.color = 'rgba(255,255,255,0.92)';
+      n.style.textShadow = '0 1px 6px rgba(2,6,23,0.5)';
+    });
+    return scrim;
+  }
+
   /** Full-bleed scene/flat under chrome. Uses <img> so html2canvas + waitForImages see it. */
   function applyPackBg(pageEl, pick, opts) {
     if (!pageEl || !pick || !pick.path) return;
@@ -80,8 +117,10 @@
       pageEl.insertBefore(wash, bgImg.nextSibling);
     }
 
+    const scrim = applyInkPolicy(pageEl, pick, bgImg, !!wash);
+
     Array.from(pageEl.children).forEach((child) => {
-      if (child === bgImg || child === wash) return;
+      if (child === bgImg || child === wash || child === scrim) return;
       if (!child.style.position || child.style.position === 'static') {
         child.style.position = 'relative';
       }
@@ -152,7 +191,7 @@
   }
 
   function header(text, color) {
-    return el('div', {
+    const n = el('div', {
       fontSize: '40px',
       fontWeight: '800',
       color: color || '#17827C',
@@ -160,6 +199,21 @@
       letterSpacing: '-0.02em',
       lineHeight: '1.1',
     }, text);
+    n.dataset.ink = 'heading';
+    return n;
+  }
+
+  /** Small instruction line under a header. Sits on the raw background, so the
+   *  background policy recolours it — see applyPackBg. */
+  function hint(text, extra) {
+    const n = el('div', Object.assign({
+      fontSize: '18px',
+      color: '#64748b',
+      fontWeight: '600',
+      marginBottom: '14px',
+    }, extra || {}), text);
+    n.dataset.ink = 'hint';
+    return n;
   }
 
   function card(html, extra) {
@@ -171,6 +225,26 @@
       boxShadow: '0 8px 24px rgba(15,23,42,0.08)',
       marginBottom: '14px',
     }, extra || {}), html);
+  }
+
+  /**
+   * Drill pages with only two or three items used to sit in the top strip with
+   * a dead board underneath. This spreads the content down the page instead.
+   * Only for pages without dock pieces — those own the lower band.
+   */
+  function fillBody(p, extra) {
+    p.style.display = 'flex';
+    p.style.flexDirection = 'column';
+    const body = el('div', Object.assign({
+      flex: '1',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      gap: '14px',
+      minHeight: '0',
+    }, extra || {}));
+    p.appendChild(body);
+    return body;
   }
 
   function img(src, style) {
@@ -266,10 +340,10 @@
     });
     p.style.display = 'flex';
     p.style.flexDirection = 'column';
-    p.appendChild(header('Warm Up', '#e11d48'));
-    p.appendChild(el('div', {
-      fontSize: '18px', color: '#64748b', marginBottom: '12px', fontWeight: '600', flexShrink: '0',
-    }, 'Think, then share with your teacher.'));
+    p.appendChild(header('Warm Up', '#be123c'));
+    p.appendChild(hint('Think, then share with your teacher.', {
+      marginBottom: '12px', flexShrink: '0',
+    }));
     const stage = el('div', {
       flex: '1',
       display: 'flex',
@@ -292,7 +366,7 @@
       reserveDock: interactive, pageType: 'vocab',
     });
     p.appendChild(header('New Words', '#7c3aed'));
-    p.appendChild(el('div', { fontSize: '18px', color: '#64748b', marginBottom: '16px' },
+    p.appendChild(hint(
       interactive
         ? 'Say each word. Drag the matching pictures onto the board.'
         : 'Say each word together.'));
@@ -323,27 +397,27 @@
   function makeVocabSentences(lesson) {
     const p = pageShell(THEME_COLORS.vocab, { pageType: 'vocabSentences' });
     p.appendChild(header('New Words — In Sentences', '#7c3aed'));
-    const grid = el('div', { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' });
+    const body = fillBody(p);
+    const grid = el('div', { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' });
     (lesson.vocabulary || []).slice(0, 6).forEach((v) => {
       grid.appendChild(card(
-        `<div style="font-size:22px;font-weight:800;margin-bottom:8px">${esc(v.word || '')}</div>
-         <div style="font-size:18px;color:#334155;font-style:italic;line-height:1.35">${esc(v.sentence || '')}</div>`,
-        { marginBottom: '0', padding: '16px 18px' }
+        `<div style="font-size:24px;font-weight:800;margin-bottom:8px">${esc(v.word || '')}</div>
+         <div style="font-size:20px;color:#334155;font-style:italic;line-height:1.35">${esc(v.sentence || '')}</div>`,
+        { marginBottom: '0', padding: '18px 20px' }
       ));
     });
-    p.appendChild(grid);
+    body.appendChild(grid);
     return p;
   }
 
   function makeFrames(lesson) {
     const p = pageShell(THEME_COLORS.frames, { pageType: 'frames' });
     p.appendChild(header('Sentence Frames', '#c4b5fd'));
-    p.appendChild(el('div', {
-      fontSize: '18px', color: 'rgba(255,255,255,0.7)', marginBottom: '20px',
-    }, 'Practice out loud. Fill the blanks.'));
+    p.appendChild(hint('Practice out loud. Fill the blanks.', { marginBottom: '12px' }));
+    const body = fillBody(p, { gap: '18px' });
     (lesson.sentenceFrames || []).slice(0, 5).forEach((f, i) => {
       const row = el('div', {
-        display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '18px', color: '#fff',
+        display: 'flex', alignItems: 'center', gap: '16px', color: '#fff',
       });
       row.appendChild(el('div', {
         width: '18px', height: '18px', borderRadius: '50%',
@@ -351,7 +425,7 @@
         flexShrink: '0',
       }));
       row.appendChild(el('div', { fontSize: '32px', fontWeight: '700', lineHeight: '1.2' }, esc(f)));
-      p.appendChild(row);
+      body.appendChild(row);
     });
     return p;
   }
@@ -396,7 +470,7 @@
     const side = el('div', {
       width: '240px', flexShrink: '0', borderRadius: '18px',
       background: 'linear-gradient(160deg, #ffedd5, #fed7aa)',
-      minHeight: '280px', display: 'flex', flexDirection: 'column',
+      minHeight: '240px', display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center', padding: '24px',
       boxSizing: 'border-box',
     });
@@ -408,12 +482,15 @@
       boxSizing: 'border-box', lineHeight: '1.3',
     }, esc(page?.visualCaption || page?.visualTheme || 'Scene')));
     const storyText = String(page?.text || '');
+    // Short story beats were floating in a mostly empty card. Read-aloud text
+    // should fill the panel, so type scales up as the sentence gets shorter.
+    const textSize = storyText.length <= 80 ? 44 : storyText.length <= 160 ? 36 : 28;
     const text = card(
-      `<div style="font-size:28px;line-height:1.45;color:#1e293b;font-weight:600">${esc(storyText)}</div>`,
+      `<div style="font-size:${textSize}px;line-height:1.4;color:#1e293b;font-weight:600">${esc(storyText)}</div>`,
       {
         flex: '1',
         marginBottom: '0',
-        minHeight: storyText.length > 160 ? '280px' : '180px',
+        minHeight: storyText.length > 160 ? '280px' : '220px',
         padding: '32px 28px',
         display: 'flex',
         alignItems: 'center',
@@ -430,13 +507,13 @@
   function makeComprehension(lesson) {
     const p = pageShell(THEME_COLORS.comp, { pageType: 'comprehension' });
     p.appendChild(header('Reading Comprehension', '#1d4ed8'));
-    p.appendChild(el('div', {
-      fontSize: '18px', color: '#64748b', marginBottom: '16px', fontWeight: '600',
-    }, 'Answer in full sentences. No peeking at notes!'));
-    (lesson.story?.comprehensionQuestions || []).slice(0, 3).forEach((q, i) => {
-      p.appendChild(card(
-        `<div style="font-size:24px;font-weight:800;line-height:1.35">${i + 1}. ${esc(q.question || '')}</div>`,
-        { padding: '22px 24px' }
+    p.appendChild(hint('Answer in full sentences. No peeking at notes!', { marginBottom: '12px' }));
+    const questions = (lesson.story?.comprehensionQuestions || []).slice(0, 3);
+    const body = fillBody(p, { gap: '16px' });
+    questions.forEach((q, i) => {
+      body.appendChild(card(
+        `<div style="font-size:${questions.length <= 1 ? 34 : 26}px;font-weight:800;line-height:1.35">${i + 1}. ${esc(q.question || '')}</div>`,
+        { padding: '26px 24px', marginBottom: '0' }
       ));
     });
     drawDebugZones(p, 'comprehension');
@@ -446,13 +523,13 @@
   function makeCreative(lesson) {
     const p = pageShell(THEME_COLORS.creative, { pageType: 'creative' });
     p.appendChild(header('Your Ideas!', '#059669'));
-    p.appendChild(el('div', { fontSize: '18px', color: '#64748b', marginBottom: '16px' },
-      'Open-ended — no single right answer.'));
+    p.appendChild(hint('Open-ended — no single right answer.', { marginBottom: '12px' }));
+    const body = fillBody(p, { gap: '16px' });
     (lesson.story?.creativeQuestions || []).slice(0, 2).forEach((q, i) => {
-      p.appendChild(card(
+      body.appendChild(card(
         `<div style="font-size:16px;color:#64748b;font-weight:700;margin-bottom:10px">Idea ${i + 1}</div>
-         <div style="font-size:26px;font-weight:800;color:#134e4a;line-height:1.3">${esc(q)}</div>`,
-        { padding: '22px 24px' }
+         <div style="font-size:30px;font-weight:800;color:#134e4a;line-height:1.3">${esc(q)}</div>`,
+        { padding: '26px 24px', marginBottom: '0' }
       ));
     });
     p.appendChild(img('assets/04_decoration-ui/confetti.svg', {
@@ -473,13 +550,14 @@
     const sub = totalPages > 1
       ? `Part ${pageIndex + 1} of ${totalPages}`
       : 'Answer out loud first';
-    p.appendChild(el('div', { fontSize: '16px', color: '#64748b', marginBottom: '12px', fontWeight: '600' },
-      sub + (covered ? ' — peel the sticky after the first answer' : '')));
+    p.appendChild(hint(sub + (covered ? ' — peel the sticky after the first answer' : ''), {
+      fontSize: '16px', marginBottom: '12px',
+    }));
 
     items.forEach((item, qi) => {
       const showSticky = covered && qi === 0;
       p.appendChild(card(
-        `<div style="font-size:15px;color:#64748b;font-weight:700;margin-bottom:8px">Question ${qi + 1}</div>
+        `<div style="font-size:17px;color:#64748b;font-weight:700;margin-bottom:8px">Question ${qi + 1}</div>
          <div style="font-size:28px;font-weight:800;color:#14532d;line-height:1.25">${esc(item.question || '')}</div>`,
         { padding: '16px 20px', marginBottom: showSticky ? '8px' : '14px' }
       ));
@@ -507,15 +585,16 @@
           zIndex: '2',
           boxShadow: '0 6px 18px rgba(15,23,42,0.08)',
         }, esc(item.sampleAnswer || '')));
-        p.appendChild(el('div', {
+        // Below the sticky: above it the label collided with the question card.
+        p.appendChild(hint('Sample answer', {
           position: 'absolute',
           left: r.x + 'px',
-          top: (r.y - 22) + 'px',
-          fontSize: '13px',
-          color: '#64748b',
+          top: (r.y + r.h + 8) + 'px',
+          fontSize: '16px',
           fontWeight: '700',
+          marginBottom: '0',
           zIndex: '2',
-        }, 'Sample answer'));
+        }));
         // Spacer so following questions clear the sticky band
         p.appendChild(el('div', { height: '96px', marginBottom: '8px' }));
       }
@@ -532,9 +611,9 @@
       reserveDock: interactive, pageType: 'activity',
     });
     p.appendChild(header(lesson.activity?.title || 'Your Turn!', '#4338ca'));
-    p.appendChild(el('div', {
-      fontSize: '18px', color: '#64748b', marginBottom: '14px', textAlign: 'center', lineHeight: '1.35',
-    }, esc(lesson.activity?.prompt || 'Work with a partner.')));
+    p.appendChild(hint(esc(lesson.activity?.prompt || 'Work with a partner.'), {
+      textAlign: 'center', lineHeight: '1.35',
+    }));
     const list = el('div', { maxWidth: interactive ? '700px' : '100%' });
     (lesson.activity?.templates || []).slice(0, 5).forEach((t, i) => {
       list.appendChild(card(
