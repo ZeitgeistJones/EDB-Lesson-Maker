@@ -14,7 +14,6 @@ const http = require('http');
 
 const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, 'tmp', 'board-bg-verify');
-const PORT = Number(process.env.BOARD_BG_PORT || 3457);
 
 const CASES = [
   {
@@ -100,21 +99,26 @@ function startStaticServer() {
     res.writeHead(200, { 'Content-Type': mime[ext] || 'application/octet-stream' });
     fs.createReadStream(filePath).pipe(res);
   });
-  return new Promise((resolve) => {
-    server.listen(PORT, '127.0.0.1', () => resolve(server));
+  // Port 0 = OS picks a free port (avoids EADDRINUSE from a stuck prior run).
+  return new Promise((resolve, reject) => {
+    server.once('error', reject);
+    server.listen(0, '127.0.0.1', () => {
+      const addr = server.address();
+      resolve({ server, port: addr && addr.port });
+    });
   });
 }
 
 async function main() {
   fs.mkdirSync(OUT, { recursive: true });
   const { chromium } = await ensurePlaywright();
-  const server = await startStaticServer();
+  const { server, port } = await startStaticServer();
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 
   const failures = [];
   try {
-    await page.goto(`http://127.0.0.1:${PORT}/index.html`, { waitUntil: 'networkidle' });
+    await page.goto(`http://127.0.0.1:${port}/index.html`, { waitUntil: 'networkidle' });
     await page.waitForFunction(() =>
       window.LessonPages && window.EdbActivities && window.SceneBackgrounds && window.BoardPreview
     );
