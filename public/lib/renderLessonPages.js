@@ -264,15 +264,24 @@
     const p = pageShell(THEME_COLORS.warm, {
       reserveDock: hasRecipe(boardPlan, 'warm'), pageType: 'warm',
     });
+    p.style.display = 'flex';
+    p.style.flexDirection = 'column';
     p.appendChild(header('Warm Up', '#e11d48'));
     p.appendChild(el('div', {
-      fontSize: '18px', color: '#64748b', marginBottom: '18px', fontWeight: '600',
+      fontSize: '18px', color: '#64748b', marginBottom: '12px', fontWeight: '600', flexShrink: '0',
     }, 'Think, then share with your teacher.'));
-    p.appendChild(card(
-      `<div style="font-size:36px;font-weight:800;color:#1e3a8a;text-align:center;line-height:1.25">${esc(lesson.warmUp?.question || '')}</div>`,
-      { padding: '36px 28px', marginTop: '24px' }
+    const stage = el('div', {
+      flex: '1',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: '0',
+    });
+    stage.appendChild(card(
+      `<div style="font-size:40px;font-weight:800;color:#1e3a8a;text-align:center;line-height:1.3">${esc(lesson.warmUp?.question || '')}</div>`,
+      { padding: '44px 36px', marginBottom: '0', width: '100%', maxWidth: '980px', boxSizing: 'border-box' }
     ));
-    // Sample omitted — students answer first
+    p.appendChild(stage);
     drawDebugZones(p, 'warm');
     return p;
   }
@@ -378,12 +387,16 @@
     const title = index === 0
       ? `Story: ${lesson.story?.title || 'Let\'s Read!'}`
       : `Story (cont.): ${page?.heading || ''}`;
-    content.appendChild(header(title, '#c2410c'));
+    const titleEl = header(title, '#c2410c');
+    titleEl.style.textShadow = '0 1px 0 #fff, 0 2px 10px rgba(255,255,255,0.85)';
+    titleEl.style.position = 'relative';
+    titleEl.style.zIndex = '2';
+    content.appendChild(titleEl);
     const layout = el('div', { display: 'flex', gap: '24px', alignItems: 'stretch' });
     const side = el('div', {
       width: '240px', flexShrink: '0', borderRadius: '18px',
       background: 'linear-gradient(160deg, #ffedd5, #fed7aa)',
-      minHeight: '340px', display: 'flex', flexDirection: 'column',
+      minHeight: '280px', display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center', padding: '24px',
       boxSizing: 'border-box',
     });
@@ -394,9 +407,17 @@
       fontSize: '16px', fontWeight: '700', textAlign: 'center', width: '100%',
       boxSizing: 'border-box', lineHeight: '1.3',
     }, esc(page?.visualCaption || page?.visualTheme || 'Scene')));
+    const storyText = String(page?.text || '');
     const text = card(
-      `<div style="font-size:24px;line-height:1.5;color:#1e293b">${esc(page?.text || '')}</div>`,
-      { flex: '1', marginBottom: '0', minHeight: '340px', padding: '28px 26px' }
+      `<div style="font-size:28px;line-height:1.45;color:#1e293b;font-weight:600">${esc(storyText)}</div>`,
+      {
+        flex: '1',
+        marginBottom: '0',
+        minHeight: storyText.length > 160 ? '280px' : '180px',
+        padding: '32px 28px',
+        display: 'flex',
+        alignItems: 'center',
+      }
     );
     layout.appendChild(side);
     layout.appendChild(text);
