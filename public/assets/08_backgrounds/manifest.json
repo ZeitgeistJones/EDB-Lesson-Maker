@@ -150,7 +150,11 @@
     "hospital",
     "health",
     "care",
-    "medical"
+    "medical",
+    "clinic",
+    "patient",
+    "nurse",
+    "sick"
    ]
   },
   "bank": {
@@ -172,7 +176,15 @@
     "doctor",
     "checkup",
     "health",
-    "medical"
+    "medical",
+    "clinic",
+    "patient",
+    "nurse",
+    "sick",
+    "appointment",
+    "diagnosis",
+    "symptoms",
+    "prescription"
    ]
   },
   "dentist-office": {
@@ -348,7 +360,9 @@
     "pharmacy",
     "medicine",
     "health",
-    "shopping"
+    "shopping",
+    "prescription",
+    "medical"
    ]
   },
   "hair-salon": {

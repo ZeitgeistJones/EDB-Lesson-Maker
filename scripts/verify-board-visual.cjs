@@ -24,6 +24,12 @@ const CASES = [
     meta: { level: 'A1', duration: '25' },
   },
   {
+    id: 'clown-clinic',
+    fixture: 'clown-clinic-lesson.json',
+    expectName: /doctor|hospital|clinic|medical|pharmacy/i,
+    meta: { level: 'B1', duration: '45' },
+  },
+  {
     id: 'travel',
     fixture: 'travel-lesson.json',
     expectName: /airport|travel|station|bus|train/i,

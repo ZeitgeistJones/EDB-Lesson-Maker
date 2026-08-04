@@ -20,8 +20,41 @@ function norm(s) {
     .filter(Boolean);
 }
 
+// Mirror alias expansion used in sceneBackgrounds.js
+const ALIASES = {
+  clinic: ['doctor', 'medical', 'hospital', 'checkup'],
+  clinics: ['doctor', 'medical', 'hospital'],
+  doctors: ['doctor'],
+  nurse: ['doctor', 'medical', 'hospital'],
+  nurses: ['doctor', 'medical'],
+  patient: ['doctor', 'medical', 'hospital'],
+  sick: ['doctor', 'medical', 'health'],
+  illness: ['doctor', 'medical', 'health'],
+  fever: ['doctor', 'medical', 'health'],
+  appointment: ['doctor', 'checkup', 'medical'],
+  diagnosis: ['doctor', 'medical', 'hospital'],
+  symptom: ['doctor', 'medical', 'health'],
+  symptoms: ['doctor', 'medical', 'health'],
+  prescription: ['pharmacy', 'medicine', 'doctor', 'medical'],
+  medicine: ['pharmacy', 'medical', 'health'],
+  bandage: ['doctor', 'medical'],
+  checkup: ['doctor', 'medical', 'checkup'],
+};
+
+function expandTags(tags) {
+  const out = new Set();
+  for (const raw of tags || []) {
+    for (const t of norm(raw)) {
+      out.add(t);
+      const extra = ALIASES[t];
+      if (extra) extra.forEach((x) => out.add(x));
+    }
+  }
+  return [...out];
+}
+
 function rank(tags, category) {
-  const want = new Set(tags.flatMap(norm));
+  const want = new Set(expandTags(tags));
   const out = [];
   for (const [name, scene] of Object.entries(m.scenes)) {
     let score = 0;
@@ -96,6 +129,12 @@ const cases = [
     topic: "At the Doctor's Office",
     vocab: ['doctor', 'nurse', 'sick', 'appointment'],
     expectScene: /doctor|hospital|clinic|medical/i,
+  },
+  {
+    label: 'clown-clinic',
+    topic: 'The Clown at the Clinic',
+    vocab: ['diagnosis', 'symptoms', 'prescription', 'checkup'],
+    expectScene: /doctor|hospital|clinic|medical|pharmacy/i,
   },
   {
     label: 'travel',

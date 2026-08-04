@@ -37,6 +37,43 @@
   }
 
   /**
+   * Expand query words so common lesson phrasing hits scene tags.
+   * "clinic" alone never matched doctors-office (no clinic tag) → flats / wrong places.
+   */
+  const ALIASES = {
+    clinic: ['doctor', 'medical', 'hospital', 'checkup'],
+    clinics: ['doctor', 'medical', 'hospital'],
+    doctors: ['doctor'],
+    nurse: ['doctor', 'medical', 'hospital'],
+    nurses: ['doctor', 'medical'],
+    patient: ['doctor', 'medical', 'hospital'],
+    sick: ['doctor', 'medical', 'health'],
+    illness: ['doctor', 'medical', 'health'],
+    fever: ['doctor', 'medical', 'health'],
+    appointment: ['doctor', 'checkup', 'medical'],
+    diagnosis: ['doctor', 'medical', 'hospital'],
+    symptom: ['doctor', 'medical', 'health'],
+    symptoms: ['doctor', 'medical', 'health'],
+    prescription: ['pharmacy', 'medicine', 'doctor', 'medical'],
+    medicine: ['pharmacy', 'medical', 'health'],
+    bandage: ['doctor', 'medical'],
+    checkup: ['doctor', 'medical', 'checkup'],
+    'check-up': ['doctor', 'medical', 'checkup'],
+  };
+
+  function expandTags(tags) {
+    const out = new Set();
+    for (const raw of tags || []) {
+      for (const t of norm(raw)) {
+        out.add(t);
+        const extra = ALIASES[t];
+        if (extra) extra.forEach((x) => out.add(x));
+      }
+    }
+    return [...out];
+  }
+
+  /**
    * Score every scene against a set of tags.
    * Returns [{name, scene, score}] sorted best-first.
    *
@@ -52,7 +89,7 @@
    */
   async function rank(tags, category) {
     const m = await manifest();
-    const want = new Set(tags.flatMap(norm));
+    const want = new Set(expandTags(tags));
     const out = [];
 
     for (const [name, scene] of Object.entries(m.scenes)) {

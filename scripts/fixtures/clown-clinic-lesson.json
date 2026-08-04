@@ -1,0 +1,51 @@
+{
+  "title": "The Clown at the Clinic",
+  "warmUp": {
+    "question": "Have you ever seen a clown who was not feeling well?",
+    "sampleAnswer": "No, I have not."
+  },
+  "vocabulary": [
+    { "word": "diagnosis", "emoji": "📋", "sentence": "The doctor gives a diagnosis." },
+    { "word": "symptoms", "emoji": "🤒", "sentence": "What are your symptoms?" },
+    { "word": "prescription", "emoji": "💊", "sentence": "Here is your prescription." },
+    { "word": "checkup", "emoji": "🩺", "sentence": "I need a checkup." }
+  ],
+  "sentenceFrames": [
+    "I have a ____.",
+    "The doctor writes a ____.",
+    "My ____ are fever and a cough."
+  ],
+  "story": {
+    "title": "Chuckles the Clown's Check-up",
+    "pages": [
+      {
+        "heading": "Chuckles the Clown's Check-up",
+        "text": "Chuckles the clown walks into the clinic. He feels sick.",
+        "visualTheme": "street",
+        "visualCaption": "Hospital entrance"
+      },
+      {
+        "heading": "The Doctor's Advice",
+        "text": "The doctor writes a prescription for Chuckles.",
+        "visualTheme": "home",
+        "visualCaption": "The clown visits the clinic for a checkup."
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where does Chuckles go?", "sampleAnswer": "He goes to the clinic." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What do you do when you feel sick?", "sampleAnswer": "I go to the doctor." },
+    { "question": "Who helps you at the clinic?", "sampleAnswer": "A doctor and a nurse." }
+  ],
+  "activity": {
+    "title": "Doctor's Orders Roleplay",
+    "prompt": "Sort healthy vs sick advice.",
+    "templates": ["You should ____.", "Please take this ____."]
+  },
+  "reviewSentences": [
+    "Chuckles gets a checkup at the clinic."
+  ]
+}

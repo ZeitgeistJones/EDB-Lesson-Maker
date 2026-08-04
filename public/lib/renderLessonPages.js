@@ -202,9 +202,11 @@
     const storyCount = storyPageCount(lesson);
     for (let i = 0; i < storyCount; i++) {
       const sp = storyPages[i] || {};
+      // Prefer lesson topic + caption over Gemini visualTheme — themes like
+      // "street" / "home" were beating "clinic" and painting wrong places.
       sections.push({
         title: sp.heading || lesson.story?.title || ('Story ' + (i + 1)),
-        tags: [sp.visualTheme, sp.visualCaption, 'story', topic].filter(Boolean),
+        tags: [sp.visualCaption, 'story', topic].filter(Boolean),
         vocabulary: vocab,
         category: null,
       });
