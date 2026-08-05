@@ -1442,7 +1442,7 @@
     },
     "trampoline": {
       "file": "trampoline.png",
-      "role": "playPart",
+      "role": "hero",
       "tags": [
         "trampoline",
         "gym",
@@ -1450,7 +1450,8 @@
         "playground",
         "sport",
         "outdoors",
-        "backyard"
+        "backyard",
+        "backflip"
       ],
       "relativeScale": 0.9,
       "anchor": "bottom",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T04:15:15.530Z",
+  "generatedAt": "2026-08-05T22:47:03.000Z",
   "note": "Regression baseline for board UX metrics. Refresh with: npm run quality:baseline (after a clean bake you are happy with).",
   "sourceTier": "core",
   "cases": {
@@ -900,6 +900,101 @@
           "M2": 0,
           "M3": null,
           "M6": 12.76,
+          "M8": null
+        },
+        "wrap": {
+          "M1": 22,
+          "M2": 0,
+          "M3": null,
+          "M6": 7.01,
+          "M8": null
+        }
+      }
+    },
+    "trampoline": {
+      "tier": "core",
+      "pageCount": 12,
+      "caseMetrics": {
+        "M4": 0.5,
+        "M5": 0.875,
+        "M7": 0
+      },
+      "pages": {
+        "title": {
+          "M1": 18,
+          "M2": 0,
+          "M3": null,
+          "M6": 7,
+          "M8": null
+        },
+        "warm": {
+          "M1": 18,
+          "M2": 0,
+          "M3": 0.344,
+          "M6": 6.28,
+          "M8": 0.7
+        },
+        "newWords": {
+          "M1": 18,
+          "M2": 0,
+          "M3": null,
+          "M6": 9.41,
+          "M8": 0.632
+        },
+        "vocabSentences": {
+          "M1": 20,
+          "M2": 0,
+          "M3": null,
+          "M6": 9.07,
+          "M8": 0.836
+        },
+        "frames": {
+          "M1": 18,
+          "M2": 0,
+          "M3": null,
+          "M6": 6.33,
+          "M8": 0.709
+        },
+        "story0": {
+          "M1": 16,
+          "M2": 0,
+          "M3": 0.482,
+          "M6": 10.21,
+          "M8": null
+        },
+        "story1": {
+          "M1": 16,
+          "M2": 0,
+          "M3": 0.482,
+          "M6": 10.21,
+          "M8": null
+        },
+        "comprehension": {
+          "M1": 18,
+          "M2": 0,
+          "M3": 0.387,
+          "M6": 10.03,
+          "M8": 0.743
+        },
+        "creative": {
+          "M1": 16,
+          "M2": 0,
+          "M3": 0.472,
+          "M6": 9.24,
+          "M8": 0.802
+        },
+        "speaking:0": {
+          "M1": 16,
+          "M2": 0,
+          "M3": 0.568,
+          "M6": 5.96,
+          "M8": 0.724
+        },
+        "activity": {
+          "M1": 18,
+          "M2": 0,
+          "M3": null,
+          "M6": 10.21,
           "M8": null
         },
         "wrap": {

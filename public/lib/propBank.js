@@ -144,6 +144,17 @@
         wired: true,
       },
     ],
+    heroProp: [
+      {
+        slot: 'hero',
+        roles: ['hero', 'playPart'],
+        count: 1,
+        distinct: true,
+        themed: true,
+        fit: 'contain',
+        wired: true,
+      },
+    ],
   };
 
   /**

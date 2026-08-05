@@ -113,6 +113,13 @@
     dormant: ['volcano', 'lava', 'mountain'],
     evacuate: ['volcano', 'emergency', 'city'],
     evacuation: ['volcano', 'emergency', 'city'],
+
+    // Trampoline / backyard play — must reach park or playground scenes
+    trampoline: ['park', 'playground', 'outdoors', 'gym', 'sport'],
+    backflip: ['gym', 'sport', 'park', 'playground'],
+    bounce: ['park', 'playground', 'outdoors'],
+    spotter: ['gym', 'sport', 'park'],
+    backyard: ['home', 'park', 'outdoors', 'garden'],
   };
 
   /** Words that appear in titles but are not place signals on their own.
@@ -336,8 +343,9 @@
 
   /** Unlocked roles that stand on the scene floor in a centred row.
    *  buildPart / dockPiece stay in the dock — standing them mid-board is what
-   *  turned buildScene into a scattered emoji pile on the volcano activity. */
-  const STAND_ROLES = { dressPart: 1, sortCard: 1 };
+   *  turned buildScene into a scattered emoji pile on the volcano activity.
+   *  heroPart stands — the trampoline (etc.) belongs on the ground plane. */
+  const STAND_ROLES = { dressPart: 1, sortCard: 1, heroPart: 1 };
 
   function isStandRole(role) {
     return !!STAND_ROLES[role];

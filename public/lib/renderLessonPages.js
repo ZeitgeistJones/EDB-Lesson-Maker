@@ -579,14 +579,18 @@
 
   function themeEmoji(theme) {
     const t = String(theme || '').toLowerCase();
-    // Place cues first — Gemini visualTheme often lies ("beach" on a gym lesson).
+    // Strongest place cues first. Bare "living" in a title like
+    // "Living in the Shadow of the Crater" must not steal the home house
+    // when volcano words are also present.
+    if (/\b(volcano|volcanic|crater|lava|eruption|ash|geothermal|magma|seismic)\b/.test(t)) return '🌋';
     if (t.includes('gym') || t.includes('workout') || t.includes('athletic') || t.includes('court')) return '🏀';
     if (t.includes('doctor') || t.includes('clinic') || t.includes('hospital') || t.includes('sick') || t.includes('checkup')) return '🏥';
     if (t.includes('airport') || t.includes('travel') || t.includes('passport')) return '✈️';
     if (t.includes('school') || t.includes('classroom') || t.includes('teacher')) return '🏫';
     if (t.includes('kitchen') || t.includes('cook')) return '🍳';
     if (t.includes('beach')) return '🏖️';
-    if (t.includes('home') || t.includes('living')) return '🏠';
+    // Home only on explicit home place language — not the verb "living".
+    if (/\b(living room|home|house|apartment|bedroom)\b/.test(t)) return '🏠';
     if (t.includes('city') || t.includes('street')) return '🏙️';
     if (t.includes('sport')) return '⚽';
     if (t.includes('park')) return '🌳';

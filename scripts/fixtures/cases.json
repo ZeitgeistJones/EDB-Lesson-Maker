@@ -50,6 +50,14 @@
       "notes": "Title starts with Living… — must not steal living-room over volcano-field"
     },
     {
+      "id": "trampoline",
+      "fixture": "trampoline-lesson.json",
+      "tier": "core",
+      "meta": { "level": "A2", "duration": "30" },
+      "expectScene": "park|playground|gym|sport|home|garden",
+      "notes": "Activity must use heroProp with the trampoline, not buildScene slots"
+    },
+    {
       "id": "abstract-words",
       "fixture": "abstract-words-lesson.json",
       "tier": "adversarial",

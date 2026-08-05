@@ -144,7 +144,9 @@
   }
 
   function stickyPng(w, h) {
-    return solidPng(w, h, '#fef08a', 'Peek?', '#854d0e');
+    // Dark ink on bright yellow — never white-on-pale (was unreadable on
+    // terracotta / dawn flats when a light cover prop replaced this).
+    return solidPng(w, h, '#facc15', 'Peek?', '#422006');
   }
 
   // ── Recipes ─────────────────────────────────────────────────────
@@ -337,33 +339,19 @@
     if (!q) return;
     // Sticky covers targetBay — painted sample band uses the same rect
     const coverRect = L.zoneRect(page, 'targetBay') || speakingCoverRect();
-    const PB = window.PropBank;
-    const req = PB && PB.requestFor('coverAnswer');
-    const prop = req
-      ? PB.resolve({
-          role: req.role,
-          tags: ['cover', 'hide'],
-          seed: lesson.title || '',
-          family: PB.familyFor(lesson),
-        })
-      : null;
-    // fit:'fill' — only replace the sticky when the prop covers the sample band.
-    // A letterboxed cover would leak the answer at both ends.
-    const useProp = !!(prop && PB.fillsRect && PB.fillsRect(prop, coverRect));
+    // Always use the painted Peek sticky for speaking covers. Cover props are
+    // often pale flaps with no readable label; white/cream art under ink-policy
+    // white chrome made "Let's Talk" / Peek impossible to read on Board PNGs.
     L.place(page, {
       locked: false,
       kind: 'image',
-      asset: useProp ? prop.path : stickyPng(coverRect.w, coverRect.h),
+      asset: stickyPng(coverRect.w, coverRect.h),
       w: coverRect.w, h: coverRect.h,
       intentional: true,
       anchor: coverRect,
       role: 'answerCover',
       meta: {
         sample: q.sampleAnswer,
-        propKey: useProp ? prop.key : undefined,
-        // fillsRect already proved the art covers this rect, so the rect keeps
-        // the zone's aspect rather than the prop's — no propAspect to assert.
-        propFit: useProp ? 'fill' : undefined,
       },
     });
     page.notes.push('recipe:coverAnswer');
@@ -434,6 +422,92 @@
     page.notes.push('recipe:sortBins');
   }
 
+  const HERO_TAG_STOP = new Set([
+    'a', 'an', 'and', 'at', 'for', 'in', 'of', 'on', 'or', 'the', 'to', 'with',
+    'living', 'near', 'next', 'my', 'our', 'your', 'how', 'what', 'when', 'where',
+    'why', 'who', 'i', 'do',
+  ]);
+
+  /** Theme tokens from title + vocab for hero matching (no stopwords). */
+  function heroThemeTags(lesson) {
+    const words = [
+      ...((lesson && lesson.vocabulary) || []).flatMap((v) => {
+        const w = typeof v === 'string' ? v : v && v.word;
+        return w ? [String(w).toLowerCase()] : [];
+      }),
+      ...String((lesson && lesson.title) || '').toLowerCase().split(/\W+/).filter(Boolean),
+      ...String((lesson && lesson.activity && lesson.activity.title) || '').toLowerCase().split(/\W+/).filter(Boolean),
+    ];
+    return [...new Set(words.filter((t) => t && !HERO_TAG_STOP.has(t) && t.length > 2))];
+  }
+
+  /**
+   * Find a large interactive prop the activity page can center on.
+   * Exact word/key match first (trampoline), then a strong tag score on
+   * hero / large playPart roles. Returns null when the lesson has no hero.
+   */
+  function findHeroProp(lesson) {
+    const PB = window.PropBank;
+    if (!PB || !PB.loaded()) return null;
+    const family = PB.familyFor(lesson);
+    const seed = (lesson && lesson.title) || '';
+    const tags = heroThemeTags(lesson);
+    const isHeroSized = (p) =>
+      !!(p && (p.role === 'hero' || ((p.relativeScale == null ? 0 : p.relativeScale) >= 0.75)));
+
+    for (const t of tags) {
+      const hit = PB.resolve({ word: t, seed, family });
+      if (isHeroSized(hit)) return hit;
+    }
+    const scored = PB.resolve({
+      tags,
+      roles: ['hero', 'playPart'],
+      minScore: 5,
+      seed,
+      family,
+    });
+    return isHeroSized(scored) ? scored : null;
+  }
+
+  /** One big groundable prop + a short vocab dock — the interactive focus page. */
+  function heroProp(lesson, page, layout, ctx) {
+    const L = layout || window.EdbLayout;
+    const PB = window.PropBank;
+    const prop = (ctx && ctx.hero) || findHeroProp(lesson);
+    if (!prop || !PB) return;
+
+    const art = L.zoneRect(page, 'artSafe') || { x: 700, y: 80, w: 520, h: 340 };
+    const maxH = Math.min(300, Math.max(160, art.h - 24));
+    const sized = PB.sizeFor(prop, { maxH, maxW: Math.min(520, art.w - 16) });
+    const x = art.x + Math.max(8, Math.round((art.w - sized.w) / 2));
+    const y = art.y + Math.max(8, art.h - sized.h - 12);
+
+    L.place(page, {
+      locked: false,
+      kind: 'image',
+      asset: prop.path,
+      w: sized.w,
+      h: sized.h,
+      intentional: true,
+      anchor: { x, y, w: sized.w, h: sized.h },
+      role: 'heroPart',
+      meta: { propKey: prop.key, propAspect: prop.aspect },
+    });
+
+    const vocab = vocabList(lesson).slice(0, 4);
+    if (vocab.length) {
+      L.placeDockRow(page, vocab.map((v) => ({
+        kind: 'emoji',
+        emoji: (window.VocabIcons && window.VocabIcons.emojiFor)
+          ? window.VocabIcons.emojiFor(v.word, v.emoji)
+          : (v.emoji || '•'),
+        role: 'dockPiece',
+        meta: { word: v.word },
+      })), { w: 88, h: 88 });
+    }
+    page.notes.push('recipe:heroProp');
+  }
+
   const RECIPES = {
     matchDock,
     orderLine,
@@ -443,6 +517,7 @@
     dressUp,
     coverAnswer,
     sortBins,
+    heroProp,
   };
 
   /**
@@ -474,12 +549,21 @@
       });
     }
 
-    // Activity section
+    // Activity section — hero prop wins when the topic earns a big interactive piece
     if (hasVocab) {
-      assignments.push({
-        pageKey: 'activity',
-        recipeId: pickBit(5) ? 'dressUp' : (pickBit(6) ? 'sortBins' : 'buildScene'),
-      });
+      const hero = findHeroProp(lesson);
+      if (hero) {
+        assignments.push({
+          pageKey: 'activity',
+          recipeId: 'heroProp',
+          ctx: { hero },
+        });
+      } else {
+        assignments.push({
+          pageKey: 'activity',
+          recipeId: pickBit(5) ? 'dressUp' : (pickBit(6) ? 'sortBins' : 'buildScene'),
+        });
+      }
     }
 
     // Wrap is chrome-only for now (orderLine/reward mismatched review blanks)
@@ -521,7 +605,7 @@
     const req = PB && PB.requestFor('sceneDressing');
     if (!PB || !L || !req || !boardPlan || !boardPlan.pages || !boardPlan.bgPicks) return;
 
-    const RECIPE_OWNS_ART = { buildScene: 1, dressUp: 1, sortBins: 1 };
+    const RECIPE_OWNS_ART = { buildScene: 1, dressUp: 1, sortBins: 1, heroProp: 1 };
     const activityRecipe = (boardPlan.assignments || []).find((a) => a.pageKey === 'activity');
     if (activityRecipe && RECIPE_OWNS_ART[activityRecipe.recipeId]) return;
 
@@ -679,6 +763,7 @@
     pageTypeForKey,
     speakingCoverRect,
     speakingChunks,
+    findHeroProp,
     MAX_STORY_PAGES,
     storyPageCount,
     includeCreative,
