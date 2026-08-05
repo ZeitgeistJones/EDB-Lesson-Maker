@@ -102,6 +102,74 @@
     return true;
   }
 
+  const PHONICS_TOPIC_RE = /\b(phonics|sounds?|blends?|sound\s*boxes?|cvc)\b/i;
+
+  /** Auto A1–A2, keyword override, meta.phonics on/off wins. */
+  function wantsPhonics(lesson, meta) {
+    if (meta && (meta.phonics === true || meta.phonics === 'on')) return true;
+    if (meta && (meta.phonics === false || meta.phonics === 'off')) return false;
+    const level = String((meta && meta.level) || '');
+    const hay = [
+      lesson && lesson.title,
+      meta && meta.topic,
+      ...((lesson && lesson.vocabulary) || []).map((v) => (typeof v === 'string' ? v : v && v.word)),
+    ].filter(Boolean).join(' ');
+    if (PHONICS_TOPIC_RE.test(hay)) return true;
+    return level === 'A1' || level === 'A2';
+  }
+
+  /**
+   * Normalize Gemini phonics payload. Returns null when unusable.
+   * Enforces: 2–3 words, 3–5 graphemes each, ≤14 dock tiles with distractors.
+   */
+  function normalizePhonics(lesson) {
+    const raw = lesson && lesson.phonics;
+    if (!raw || typeof raw !== 'object') return null;
+    const rows = raw.targetWords || raw.target_words || [];
+    const words = [];
+    for (const row of rows) {
+      if (!row) continue;
+      const word = String(row.word || '').trim().toLowerCase();
+      let graphemes = (row.graphemes || []).map((g) => String(g || '').trim().toLowerCase()).filter(Boolean);
+      if (!word || !graphemes.length) continue;
+      if (graphemes.length < 3 || graphemes.length > 5) continue;
+      words.push({
+        word,
+        graphemes,
+        boxCount: graphemes.length,
+        emoji: row.emoji || '🔤',
+        topicRelevance: row.topicRelevance || row.topic_relevance || '',
+      });
+      if (words.length >= 3) break;
+    }
+    if (words.length < 2) return null;
+
+    const used = new Set(words.flatMap((w) => w.graphemes));
+    let distractors = (raw.distractors || raw.distractor_letters || [])
+      .map((d) => String(d || '').trim().toLowerCase())
+      .filter((d) => d && d.length <= 2 && !used.has(d));
+    distractors = [...new Set(distractors)].slice(0, 6);
+
+    const script = raw.teacherScript || raw.teacher_script || {};
+    const correctCount = words.reduce((n, w) => n + w.graphemes.length, 0);
+    const maxDist = Math.max(0, 14 - correctCount);
+    distractors = distractors.slice(0, maxDist);
+
+    return {
+      targetWords: words,
+      distractors,
+      teacherScript: {
+        warmup: script.warmup || 'Say the word slowly. How many sounds do you hear?',
+        modeling: script.modeling || 'Watch me drag each sound into a box.',
+        check: script.check || 'Can you point to a box with two letters?',
+      },
+    };
+  }
+
+  function includePhonics(lesson, meta) {
+    return wantsPhonics(lesson, meta) && !!normalizePhonics(lesson);
+  }
+
   /** Canvas PNG helpers for covers/flaps/slots when no dedicated art */
   function solidPng(w, h, fill, label, labelColor) {
     const c = document.createElement('canvas');
@@ -508,6 +576,106 @@
     page.notes.push('recipe:heroProp');
   }
 
+  /**
+   * Sound boxes + letter tiles (Elkonin / CVC–CVCC).
+   * Locked boxes in targetBay; unlocked grapheme tiles in dock (≤14).
+   */
+  function phonicsSoundBoxes(lesson, page, layout) {
+    const L = layout || window.EdbLayout;
+    const data = normalizePhonics(lesson);
+    if (!data) return;
+
+    const PB = window.PropBank;
+    const bay = L.zoneRect(page, 'targetBay') || { x: 430, y: 88, w: 800, h: 300 };
+    const words = data.targetWords;
+    const rowH = Math.floor((bay.h - 12) / Math.max(words.length, 1));
+    const boxH = Math.min(68, Math.max(44, rowH - 16));
+    const boxGap = 10;
+    const cueW = 56;
+
+    words.forEach((tw, wi) => {
+      const rowY = bay.y + 6 + wi * rowH;
+      L.place(page, {
+        locked: true,
+        kind: 'emoji',
+        emoji: tw.emoji || '🔤',
+        w: 48,
+        h: 48,
+        intentional: true,
+        anchor: {
+          x: bay.x + 4,
+          y: rowY + Math.max(0, Math.round((boxH - 48) / 2)),
+          w: 48,
+          h: 48,
+        },
+        role: 'phonicsCue',
+        meta: { target: tw.word },
+      });
+
+      const n = tw.boxCount;
+      const avail = bay.w - cueW - 16;
+      const boxW = Math.min(boxH, Math.floor((avail - boxGap * Math.max(0, n - 1)) / n));
+      const startX = bay.x + cueW + 8;
+
+      for (let i = 0; i < n; i++) {
+        const x = startX + i * (boxW + boxGap);
+        const y = rowY;
+        let asset = slotGhostPng(boxW, boxH, i + 1);
+        let meta = { target: tw.word, box: i, grapheme: tw.graphemes[i] };
+        if (PB && PB.loaded()) {
+          const prop = PB.resolve({
+            role: 'soundBoxes',
+            word: 'sound-box',
+            seed: tw.word + '|' + i,
+            index: i,
+          });
+          if (prop) {
+            asset = prop.path;
+            meta = Object.assign(meta, { propKey: prop.key, propAspect: prop.aspect });
+          }
+        }
+        L.place(page, {
+          locked: true,
+          kind: 'image',
+          asset,
+          w: boxW,
+          h: boxH,
+          intentional: true,
+          anchor: { x, y, w: boxW, h: boxH },
+          role: 'soundBox',
+          meta,
+        });
+      }
+    });
+
+    const tiles = [];
+    words.forEach((tw) => {
+      tw.graphemes.forEach((g) => {
+        // meta.grapheme only — never meta.word, or VocabIcons steals the tile.
+        tiles.push({
+          kind: 'tile',
+          text: g,
+          role: 'letterTile',
+          meta: { grapheme: g, target: tw.word },
+        });
+      });
+    });
+    data.distractors.forEach((d) => {
+      tiles.push({
+        kind: 'tile',
+        text: d,
+        role: 'letterTile',
+        meta: { grapheme: d, distractor: true },
+      });
+    });
+
+    const shuffled = pick(tiles, tiles.length, hashStr((lesson.title || '') + '|phonics'));
+    const maxLen = Math.max(1, ...shuffled.map((t) => String(t.text || '').length));
+    const tileW = maxLen > 1 ? 72 : 56;
+    L.placeDockRow(page, shuffled, { w: tileW, h: 56 });
+    page.notes.push('recipe:phonicsSoundBoxes');
+  }
+
   const RECIPES = {
     matchDock,
     orderLine,
@@ -518,6 +686,7 @@
     coverAnswer,
     sortBins,
     heroProp,
+    phonicsSoundBoxes,
   };
 
   /**
@@ -537,6 +706,11 @@
     // New Words — dock pieces only (hideSeek fights chrome; revisit later)
     if (hasVocab) {
       assignments.push({ pageKey: 'newWords', recipeId: 'matchDock' });
+    }
+
+    // Phonics — sound boxes + letter tiles when schema + gate allow
+    if (includePhonics(lesson, meta)) {
+      assignments.push({ pageKey: 'phonics', recipeId: 'phonicsSoundBoxes' });
     }
 
     // Speaking — one Peek sticky over the first sample on speaking:0
@@ -690,6 +864,7 @@
 
   function pageTypeForKey(pageKey) {
     if (pageKey === 'newWords') return 'vocab';
+    if (pageKey === 'phonics') return 'phonics';
     if (pageKey === 'story0' || pageKey === 'story1') return 'story';
     if (pageKey && pageKey.startsWith('speaking:')) return 'speaking';
     if (pageKey === 'activity') return 'activity';
@@ -726,6 +901,7 @@
     addPage('title', 'title');
     addPage('warm', 'warm');
     addPage('newWords', 'vocab');
+    if (includePhonics(lesson, meta)) addPage('phonics', 'phonics');
     addPage('vocabSentences', 'vocabSentences');
     addPage('frames', 'frames');
 
@@ -767,6 +943,9 @@
     MAX_STORY_PAGES,
     storyPageCount,
     includeCreative,
+    includePhonics,
+    wantsPhonics,
+    normalizePhonics,
     solidPng,
     slotGhostPng,
     stickyPng,

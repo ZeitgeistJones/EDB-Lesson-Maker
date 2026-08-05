@@ -155,6 +155,17 @@
         wired: true,
       },
     ],
+    phonicsSoundBoxes: [
+      {
+        slot: 'soundBox',
+        role: 'soundBoxes',
+        count: 5,
+        distinct: false,
+        themed: false,
+        fit: 'contain',
+        wired: true,
+      },
+    ],
   };
 
   /**

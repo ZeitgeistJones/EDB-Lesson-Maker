@@ -10,6 +10,7 @@
     title: ['#4f46e5', '#7c3aed'],
     warm: ['#fff1f2', '#fecdd3'],
     vocab: ['#f5f3ff', '#ddd6fe'],
+    phonics: ['#fffbeb', '#fde68a'],
     frames: ['#1e293b', '#334155'],
     story: ['#fff7ed', '#ffedd5'],
     comp: ['#eff6ff', '#bfdbfe'],
@@ -337,6 +338,13 @@
     return true;
   }
 
+  function includePhonics(lesson, meta) {
+    if (window.EdbActivities && window.EdbActivities.includePhonics) {
+      return window.EdbActivities.includePhonics(lesson, meta);
+    }
+    return false;
+  }
+
   function header(text, color) {
     const n = el('div', {
       fontSize: '40px',
@@ -415,9 +423,21 @@
       { title: topic || 'Title', tags: ['title', topic], vocabulary: vocab },
       { title: 'Warm Up', tags: ['warmup', 'warm-up'], vocabulary: [], preferFlat: true },
       { title: 'New Words', tags: ['vocabulary', 'words', 'matching'], vocabulary: [], preferFlat: true },
+    ];
+
+    if (includePhonics(lesson, meta)) {
+      sections.push({
+        title: 'Sound Boxes',
+        tags: ['phonics', 'sounds', 'letters'],
+        vocabulary: [],
+        preferFlat: true,
+      });
+    }
+
+    sections.push(
       { title: 'Words in Sentences', tags: ['vocabulary', 'sentences', 'grammar'], vocabulary: [], preferFlat: true },
       { title: 'Sentence Frames', tags: ['grammar', 'frames'], vocabulary: [], preferFlat: true },
-    ];
+    );
 
     const storyPages = (lesson.story?.pages || []).slice(0, MAX_STORY_PAGES);
     const storyCount = storyPageCount(lesson);
@@ -538,6 +558,58 @@
     }
     p.appendChild(grid);
     drawDebugZones(p, 'vocab');
+    return p;
+  }
+
+  function makePhonics(lesson, boardPlan) {
+    const data = window.EdbActivities && window.EdbActivities.normalizePhonics
+      ? window.EdbActivities.normalizePhonics(lesson)
+      : null;
+    const interactive = hasRecipe(boardPlan, 'phonics');
+    const p = pageShell(THEME_COLORS.phonics, {
+      reserveDock: interactive, pageType: 'phonics',
+    });
+    p.appendChild(header('Sound Boxes', '#b45309'));
+    p.appendChild(hint(
+      interactive
+        ? 'Say each sound. Drag a letter tile into every box.'
+        : 'Say the sounds in each word.',
+      { marginBottom: '10px' }
+    ));
+
+    const script = (data && data.teacherScript) || {};
+    const panel = el('div', {
+      maxWidth: '360px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '10px',
+    });
+    [
+      ['Warm-up', script.warmup],
+      ['Model', script.modeling],
+      ['Check', script.check],
+    ].forEach(([label, text]) => {
+      if (!text) return;
+      panel.appendChild(card(
+        `<div style="font-size:13px;color:#92400e;font-weight:700;margin-bottom:6px">${esc(label)}</div>
+         <div style="font-size:18px;font-weight:700;color:#78350f;line-height:1.35">${esc(text)}</div>`,
+        { padding: '12px 14px', marginBottom: '0' }
+      ));
+    });
+
+    if (data && data.targetWords) {
+      const list = data.targetWords.map((w) =>
+        `${w.emoji || ''} <strong>${esc(w.word)}</strong> (${w.boxCount} sounds)`
+      ).join('<br>');
+      panel.appendChild(card(
+        `<div style="font-size:13px;color:#92400e;font-weight:700;margin-bottom:6px">Target words</div>
+         <div style="font-size:18px;font-weight:600;color:#78350f;line-height:1.45">${list}</div>`,
+        { padding: '12px 14px', marginBottom: '0' }
+      ));
+    }
+
+    p.appendChild(panel);
+    drawDebugZones(p, 'phonics');
     return p;
   }
 
@@ -871,6 +943,9 @@
     push(makeTitle(lesson, m, boardPlan), 'title');
     push(makeWarmUp(lesson, boardPlan), 'warm');
     slots.newWords = push(await makeVocab(lesson, boardPlan), 'newWords');
+    if (includePhonics(lesson, m)) {
+      push(makePhonics(lesson, boardPlan), 'phonics');
+    }
     push(makeVocabSentences(lesson), 'vocabSentences');
     push(makeFrames(lesson), 'frames');
 

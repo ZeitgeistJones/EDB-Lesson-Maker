@@ -89,6 +89,14 @@
         <button class="opt-btn" data-val="60" onclick="pickDuration(this)">60 min<span class="sub">12 words · 3 story pages</span></button>
       </div>
     </div>
+    <div class="card">
+      <label class="label">Phonics page</label>
+      <div class="btn-row" id="phonics-row">
+        <button class="opt-btn active" data-val="auto" onclick="pickPhonics(this)">Auto<span class="sub">A1–A2 + keywords</span></button>
+        <button class="opt-btn" data-val="on" onclick="pickPhonics(this)">On<span class="sub">Always include</span></button>
+        <button class="opt-btn" data-val="off" onclick="pickPhonics(this)">Off<span class="sub">Never include</span></button>
+      </div>
+    </div>
     <div id="error-box" class="error" style="display:none;"></div>
     <button class="generate-btn" id="gen-btn" onclick="generate()">Generate Lesson</button>
   </div>
@@ -136,7 +144,7 @@
 <script src="lib/buildEdb.js"></script>
 <script src="lib/exportBoardPreview.js"></script>
 <script>
-let state = { level: 'B1', duration: '30', lessonData: null };
+let state = { level: 'B1', duration: '30', phonics: 'auto', lessonData: null };
 const MAX_STORY_PAGES = (window.EdbActivities && window.EdbActivities.MAX_STORY_PAGES) || 3;
 
 function pickLevel(btn) {
@@ -148,6 +156,17 @@ function pickDuration(btn) {
   document.querySelectorAll('#duration-row .opt-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   state.duration = btn.dataset.val;
+}
+function pickPhonics(btn) {
+  document.querySelectorAll('#phonics-row .opt-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  state.phonics = btn.dataset.val;
+}
+function lessonMeta() {
+  const meta = { level: state.level, duration: state.duration };
+  if (state.phonics === 'on') meta.phonics = 'on';
+  if (state.phonics === 'off') meta.phonics = 'off';
+  return meta;
 }
 function showScreen(name) {
   ['input', 'loading', 'preview'].forEach(s => {
@@ -175,7 +194,12 @@ async function generate() {
     const resp = await fetch('/api/generate-lesson', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ topic, level: state.level, duration: state.duration }),
+      body: JSON.stringify({
+        topic,
+        level: state.level,
+        duration: state.duration,
+        phonics: state.phonics === 'auto' ? undefined : state.phonics,
+      }),
     });
     const raw = await resp.text();
     let data;
@@ -202,7 +226,10 @@ async function generate() {
 function showPreview(d) {
   document.getElementById('preview-title').textContent = d.title;
   const storyPages = Math.min(d.story?.pages?.length || 2, MAX_STORY_PAGES);
-  const pageCount = (d.speakingQuestions?.length || 0) + 9 + storyPages;
+  const phonicsOn = window.EdbActivities && window.EdbActivities.includePhonics
+    ? window.EdbActivities.includePhonics(d, lessonMeta())
+    : !!d.phonics;
+  const pageCount = (d.speakingQuestions?.length || 0) + 9 + storyPages + (phonicsOn ? 1 : 0);
   document.getElementById('preview-meta').textContent = `${state.level} · ${state.duration} min · ~${pageCount} pages`;
 
   const c = document.getElementById('slides-preview');
@@ -212,9 +239,17 @@ function showPreview(d) {
     { title: d.title, content: 'Title page', cls: 'blue' },
     { title: 'Warm-Up', content: `"${d.warmUp.question}" — Sample: ${d.warmUp.sampleAnswer}`, cls: 'coral' },
     { title: 'New Words', content: d.vocabulary.map(v => `${v.emoji} <em>${v.word}</em>`).join(' &nbsp; '), cls: 'purple' },
+  ];
+  if (phonicsOn && d.phonics) {
+    const words = (d.phonics.targetWords || []).map(w =>
+      `${w.emoji || ''} <em>${w.word}</em> [${(w.graphemes || []).join('-')}]`
+    ).join(' · ');
+    sections.push({ title: 'Sound Boxes', content: words || 'Phonics sound boxes', cls: 'yellow' });
+  }
+  sections.push(
     { title: 'New Words — In Sentences', content: d.vocabulary.map(v => `<em>${v.word}</em>: ${v.sentence}`).join('<br>'), cls: 'purple' },
     { title: 'Sentence Frames', content: d.sentenceFrames.map(f => `<em>${f}</em>`).join('<br>'), cls: 'yellow' },
-  ];
+  );
 
   (story.pages || []).slice(0, MAX_STORY_PAGES).forEach((p, i) => {
     sections.push({
@@ -258,7 +293,7 @@ async function downloadPDF() {
   btn.textContent = 'Building PDF…';
   btn.disabled = true;
   try {
-    await buildLessonPdf(d, { level: state.level, duration: state.duration });
+    await buildLessonPdf(d, lessonMeta());
   } catch (e) {
     alert('Could not build the PDF: ' + e.message);
   } finally {
@@ -282,7 +317,7 @@ async function downloadEDB() {
     if (!window.EdbLayout || !window.EdbActivities) {
       throw new Error('Layout/activity libraries failed to load. Refresh and try again.');
     }
-    const meta = { level: state.level, duration: state.duration };
+    const meta = lessonMeta();
     if (window.PropBank) await window.PropBank.ready();
     const boardPlan = window.EdbActivities.buildBoardPlan(d, meta);
     await window.LessonPages.attachBgPicks(d, meta, boardPlan);
@@ -336,7 +371,7 @@ async function downloadBoardPreview(format) {
   try {
     await window.exportBoardPreview(
       d,
-      { level: state.level, duration: state.duration },
+      lessonMeta(),
       format
     );
   } catch (e) {
@@ -360,7 +395,7 @@ window.previewBackgrounds = async function () {
   if (!window.SceneBackgrounds || !window.LessonPages) {
     return console.warn('SceneBackgrounds / LessonPages not loaded');
   }
-  const meta = { level: state.level, duration: state.duration };
+  const meta = lessonMeta();
   const sections = window.LessonPages.buildSectionList(d, meta);
   const plan = await window.SceneBackgrounds.planFor(sections);
   console.table(plan.map((p, i) => ({

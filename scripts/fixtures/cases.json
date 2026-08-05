@@ -58,6 +58,14 @@
       "notes": "Activity must use heroProp with the trampoline, not buildScene slots"
     },
     {
+      "id": "zoo-phonics",
+      "fixture": "zoo-phonics-lesson.json",
+      "tier": "core",
+      "meta": { "level": "A1", "duration": "30", "phonics": "on" },
+      "expectScene": "zoo|safari|park|wildlife|animal",
+      "notes": "Must include phonicsSoundBoxes page with cat/fish/jump tiles (≤14)"
+    },
+    {
       "id": "abstract-words",
       "fixture": "abstract-words-lesson.json",
       "tier": "adversarial",

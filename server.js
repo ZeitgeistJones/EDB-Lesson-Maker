@@ -125,6 +125,43 @@ const LESSON_SCHEMA = {
       required: ['title', 'prompt', 'templates'],
     },
     reviewSentences: { type: 'array', items: { type: 'string' } },
+    phonics: {
+      type: 'object',
+      description: 'Optional sound-boxes page. Omit or null when not requested.',
+      properties: {
+        targetWords: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              word: { type: 'string' },
+              graphemes: {
+                type: 'array',
+                items: { type: 'string' },
+                description: 'One grapheme per sound box; digraphs stay together (sh, ch, th)',
+              },
+              topicRelevance: { type: 'string' },
+              emoji: { type: 'string' },
+            },
+            required: ['word', 'graphemes'],
+          },
+        },
+        distractors: {
+          type: 'array',
+          items: { type: 'string' },
+          description: '4–6 single letters not used as sole answers',
+        },
+        teacherScript: {
+          type: 'object',
+          properties: {
+            warmup: { type: 'string' },
+            modeling: { type: 'string' },
+            check: { type: 'string' },
+          },
+        },
+      },
+      required: ['targetWords'],
+    },
   },
   required: ['title', 'warmUp', 'vocabulary', 'sentenceFrames', 'story', 'speakingQuestions', 'activity', 'reviewSentences'],
 };
@@ -180,7 +217,7 @@ app.post('/api/generate-lesson', async (req, res) => {
     return res.status(500).json({ error: 'Server is missing GEMINI_API_KEY. Add it to your .env file and restart.' });
   }
 
-  const { topic, level, focus, duration } = req.body || {};
+  const { topic, level, focus, duration, phonics } = req.body || {};
   if (!topic || typeof topic !== 'string') {
     return res.status(400).json({ error: 'Missing "topic" in request body.' });
   }
@@ -190,6 +227,23 @@ app.post('/api/generate-lesson', async (req, res) => {
   const focusLine = focus ? `\nSpecific focus: ${focus}.` : '';
 
   const counts = DURATION_COUNTS[safeDuration];
+  const topicAsksPhonics = /\b(phonics|sounds?|blends?|sound\s*boxes?|cvc)\b/i.test(topic);
+  const wantPhonics =
+    phonics === true ||
+    phonics === 'on' ||
+    (phonics !== false && phonics !== 'off' && (safeLevel === 'A1' || safeLevel === 'A2' || topicAsksPhonics));
+
+  const phonicsBlock = wantPhonics
+    ? `
+Also generate phonics for a ClassIn sound-boxes page:
+- phonics.targetWords: EXACTLY 2 or 3 words. Prefer single-syllable, phonetically regular words drawn from (or closely related to) the lesson vocabulary/topic. Reject multisyllabic/schwa-heavy words (e.g. trampoline → use jump/flip instead).
+- Each target word needs: word, graphemes (array — ONE grapheme per sound box; digraphs/blends like sh/ch/th/ck stay as ONE entry; silent-e joins the preceding letter), topicRelevance (short why it fits the topic), optional emoji
+- graphemes length must be 3–5; box count = graphemes.length
+- phonics.distractors: 4–6 single letters that are NOT the full answer set
+- phonics.teacherScript: warmup, modeling, check — short lines a teacher can read aloud cold
+- A1: prefer 3-sound CVC. A2: allow CVCC/CCVC and common digraphs.`
+    : `
+Do NOT include a phonics object (omit it). This lesson level/topic does not need a phonics page.`;
 
   const prompt = `You are an expert ESL curriculum designer. Generate a ${safeDuration}-minute structured lesson about "${topic}" for ${CEFR_LEVELS[safeLevel]} English learners.${focusLine}
 
@@ -200,6 +254,7 @@ Also generate a short illustrated story tied to the topic:
 - story.pages: EXACTLY ${counts.storyPages} pages. Each page needs heading, text (2–4 short paragraphs suitable for ${safeLevel} learners; use some lesson vocabulary), visualTheme (exactly one of: park, school, home, city, beach, nature, kitchen, sports), and visualCaption (short scene label)
 - story.comprehensionQuestions: EXACTLY ${counts.comprehension} reading comprehension questions about the story, each with a sampleAnswer
 - story.creativeQuestions: EXACTLY 2 open-ended creative questions related to the story (imagining, personal connection, or continuing the story) — no sample answers
+${phonicsBlock}
 
 All content appropriate for ${safeLevel} ESL learners. Sentence frames and activity templates should contain a literal "___" blank.`;
 

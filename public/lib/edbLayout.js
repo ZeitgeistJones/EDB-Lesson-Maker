@@ -109,6 +109,15 @@
       // Teacher answer strip — separate from rewardPocket
       answerStrip: { x: 40, y: 545, w: 220, h: 32, noOverlap: false },
     },
+    // Sound boxes: teacher script left, locked boxes in targetBay, tiles in dock
+    phonics: {
+      header:    { x: 48, y: 28,  w: 900, h: 48,  noOverlap: true },
+      bodyText:  { x: 48, y: 88,  w: 360, h: 300, noOverlap: true },
+      artSafe:   { x: 48, y: 88,  w: 360, h: 300, noOverlap: false },
+      targetBay: { x: 430, y: 88,  w: 800, h: 300, noOverlap: false },
+      dock:      { x: 48, y: 420, w: 1184, h: 140, noOverlap: false },
+      rewardPocket: { x: 1100, y: 28, w: 140, h: 60, noOverlap: false },
+    },
   };
 
   function rect(x, y, w, h) {
