@@ -22,6 +22,7 @@ const HARD = {
   H4: 'Old solid gradient chrome still baked (scenes never applied)',
   H5: 'matchDock answer leak — vocab cards embed the dock icons (dishonest for students)',
   H6: 'Page count exceeds ClassIn board limit (50)',
+  H7: 'Prop art drawn at the wrong aspect, or 09_props art on a piece with no PropBank provenance',
 };
 
 /**
@@ -152,7 +153,7 @@ const TIERS = {
   readable: ['H4', 'S1', 'S5', 'S11', 'S13', 'S9', 'M1', 'M2', 'M6'],
   navigable: ['H3', 'H6', 'S4', 'S10', 'S14', 'M3', 'M8'],
   variety: ['H2', 'S2', 'S3', 'S6', 'S18', 'M5'],
-  charm: ['S7', 'S12', 'S16', 'S17', 'M4'],
+  charm: ['S7', 'S12', 'S16', 'S17', 'M4', 'H7'],
 };
 
 /** Product pillars as the user states them, mapped to codes for reporting. */

@@ -212,6 +212,11 @@
     return bank ? bank.all.slice() : [];
   }
 
+  /** Manifest rows the alpha filter dropped — re-keying one puts it straight in play. */
+  function skipped() {
+    return bank ? bank.skipped.slice() : [];
+  }
+
   function familyFor(lesson) {
     const words = new Set([
       ...norm(lesson && lesson.title),
@@ -392,6 +397,7 @@
     ready,
     loaded,
     all,
+    skipped,
     resolve,
     requestFor,
     familyFor,
