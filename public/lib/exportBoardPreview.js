@@ -57,14 +57,18 @@
     if (bmp.close) bmp.close();
   }
 
-  /** Build one canvas per board page (background + locked/unlocked pieces). */
-  async function renderCanvases(lesson, meta) {
+  /** Build one canvas per board page (background + locked/unlocked pieces).
+   *  boardPlanIn lets the page-matrix harness pass a plan with forced picks
+   *  so pixel output and metrics describe the same board. */
+  async function renderCanvases(lesson, meta, boardPlanIn) {
     if (!window.LessonPages || !window.EdbActivities || !window.EdbKit) {
       throw new Error('Board libraries failed to load. Refresh and try again.');
     }
     if (window.PropBank) await window.PropBank.ready();
-    const boardPlan = window.EdbActivities.buildBoardPlan(lesson, meta || {});
-    await window.LessonPages.attachBgPicks(lesson, meta || {}, boardPlan);
+    const boardPlan = boardPlanIn || window.EdbActivities.buildBoardPlan(lesson, meta || {});
+    if (!boardPlan.bgPicks) {
+      await window.LessonPages.attachBgPicks(lesson, meta || {}, boardPlan);
+    }
     const rendered = await window.LessonPages.render(lesson, meta || {}, boardPlan);
     await waitForImages(rendered.host);
 

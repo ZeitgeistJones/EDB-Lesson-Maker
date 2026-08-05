@@ -129,7 +129,7 @@ function saveJpeg(dataUrl, filePath) {
 
 /** Runs in the browser: build the board, measure it, and rasterize artifacts. */
 /* eslint-disable no-undef */
-async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UNLOCKED_IOU }) {
+async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UNLOCKED_IOU, forceBg }) {
   const INTENTIONAL = { answerCover: 1, cover: 1, rewardFlap: 1, dressPart: 1, hideTarget: 1 };
   const HEADER_MIN_PX = 30;
   const BUSY_STDDEV = 26;
@@ -610,6 +610,29 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
   const boardPlan = window.EdbActivities.buildBoardPlan(lesson, meta);
   await window.LessonPages.attachBgPicks(lesson, meta, boardPlan);
 
+  // Test seam: page-matrix.cjs forces every page onto one background so a
+  // failing condition (title over a pale flat) can be constructed on demand
+  // instead of waiting for a seed to wander onto it. Placement already ran
+  // with the real picks; only the surface underneath is swapped.
+  if (forceBg) {
+    const bgm = await (await fetch('assets/08_backgrounds/manifest.json')).json();
+    const flat = bgm.flats && bgm.flats[forceBg];
+    const scene = !flat && bgm.scenes && bgm.scenes[forceBg];
+    const entry = flat || scene;
+    if (!entry) throw new Error('forceBg not in manifest: ' + forceBg);
+    const pick = {
+      type: flat ? 'flat' : 'scene',
+      name: forceBg,
+      file: entry.file,
+      path: 'assets/08_backgrounds/img/' + entry.file,
+      textInk: entry.textInk || 'light',
+      groundY: entry.groundY,
+      score: flat ? undefined : 99,
+      reason: 'forced by page-matrix',
+    };
+    boardPlan.bgPicks = (boardPlan.bgPicks || []).map(() => Object.assign({}, pick));
+  }
+
   const picks = (boardPlan.bgPicks || []).map((p) => ({
     type: p.type,
     name: p.name,
@@ -660,8 +683,9 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
 
   const vocabArt = await vocabArtCoverage(lesson);
 
-  // Pixel pass: composited canvases
-  const canvases = await window.BoardPreview.renderCanvases(lesson, meta);
+  // Pixel pass: composited canvases. In matrix mode the forced plan is passed
+  // through so the JPGs show the same backgrounds the metrics measured.
+  const canvases = await window.BoardPreview.renderCanvases(lesson, meta, forceBg ? boardPlan : undefined);
   const hists = canvases.map((c) => histogram(c));
   let pairSum = 0;
   let pairs = 0;
@@ -1127,7 +1151,23 @@ async function main() {
   console.log(`Artifacts: ${OUT}`);
 }
 
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch((e) => {
+    console.error(e);
+    process.exit(1);
+  });
+}
+
+// page-matrix.cjs reuses the exact same in-page measurement so the two
+// harnesses cannot disagree about what "readable" means.
+module.exports = {
+  measureInPage,
+  startStaticServer,
+  ensurePlaywright,
+  saveJpeg,
+  BOARD_W,
+  BOARD_H,
+  MAX_PAGES,
+  MAX_UNLOCKED_IOU,
+  FIXTURES,
+};
