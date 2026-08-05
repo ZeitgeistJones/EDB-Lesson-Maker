@@ -537,20 +537,42 @@
       const gap = 20;
       const placed = [];
 
+      // playPart (swing etc.) only when the lesson is actually about play —
+      // otherwise the role-bucket fallback after a theme miss hangs a swing
+      // in the doctor's office.
+      const calmRoles = ['furniture', 'shelf', 'container', 'object', 'tool'];
+      const playTheme = themeTags.some((t) =>
+        /^(park|playground|swing|slide|gym|play|sport)$/.test(t)
+      );
+      const dressRoles = playTheme ? (req.roles || calmRoles) : calmRoles;
       for (let n = 0; n < count; n++) {
-        const prop = PB.resolve({
-          roles: req.roles,
+        const seed = (lesson && lesson.title) || '';
+        let prop = PB.resolve({
+          roles: dressRoles,
           tags: themeTags,
-          seed: (lesson && lesson.title) || '',
+          seed,
           index: n,
           exclude: req.distinct ? exclude : [],
           family,
-          minScore: req.themed ? 3 : 0,
+          minScore: 3,
         });
+        if (!prop) {
+          prop = PB.resolve({
+            roles: calmRoles,
+            seed,
+            index: n,
+            exclude: req.distinct ? exclude : [],
+            family,
+          });
+        }
         if (!prop) continue;
         exclude.push(prop.key);
         const sized = PB.sizeFor(prop, { maxH, maxW: Math.min(220, art.w - 16) });
-        let y = PB.yFor(prop, pick, sized.h);
+        // Always stand on the floor for scene dressing — floating anchors
+        // (folder, clipboard) land on the dress-up character otherwise.
+        let y = window.SceneBackgrounds
+          ? window.SceneBackgrounds.standOn(pick, sized.h)
+          : PB.yFor(prop, pick, sized.h);
         if (y + sized.h > dockTop - 8) y = Math.max(art.y, dockTop - 8 - sized.h);
         // Center of the piece must stay inside artSafe (H3 checks locked too).
         const minY = art.y + 4;
