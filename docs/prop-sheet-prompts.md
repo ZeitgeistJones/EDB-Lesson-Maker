@@ -109,6 +109,8 @@ npm run assets:prop -- <sheet.png> --sheet --grid=3x3 \
 
 ## Sheet 4 — Phonics / legacy repairs (props)
 
+**Status: wired** earlier.
+
 Replaces the four still-unkeyable contact-sheet crops. Extra cells fill related phonics gaps.
 
 ```

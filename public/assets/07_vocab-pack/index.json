@@ -1469,6 +1469,11 @@
   "emoji": "🏊",
   "codepoint": "1f3ca"
  },
+ "swing": {
+  "file": "swing.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "table": {
   "file": "table.png",
   "emoji": "",

@@ -13,7 +13,7 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-03 | Better icon for abstract size/space words (`spacious`, `cramped`, `huge`) beyond stadium metaphor | gym New Words dock — stadium works for spacious but not a full abstract-size set | Twemoji pack alias or CC0 vocab PNG | Twemoji / project `03_vocab-icons` | wired — Sheet V2 room scenes in `07_vocab-pack` |
 | 2026-08-03 | Activity-page collage props (shelf toys, sortables) for EW4 | Soft S17 — activity pages still thin / low charm | Verified cutouts in `09_props` | Project OpenAI props + LICENSE ledger | open |
 | 2026-08-03 | Distinct art for `swing` vs `slide` — both rendered 🛝 | minimal fixture New Words: two different words showed the same picture | Two distinct playground icons | CC0 icon set or generated prop | closed — `slide` is 🛝, `swing` is now a keyed prop in `09_props` (`swing.png`, anchor `top`) |
-| 2026-08-05 | `swing` dock icon in `07_vocab-pack` | Prop exists for scene dressing, but matchDock M7 still soft-warns (pack/curated only) | Copy/key `09_props/swing.png` into vocab pack, or a white-bg dock icon | Existing prop / ChatGPT vocab sheet | open |
+| 2026-08-05 | `swing` dock icon in `07_vocab-pack` | Prop exists for scene dressing, but matchDock M7 still soft-warns (pack/curated only) | Copy/key `09_props/swing.png` into vocab pack, or a white-bg dock icon | Existing prop / ChatGPT vocab sheet | wired — generated white-bg `swing.png` in vocab pack |
 | 2026-08-03 | Room-quality adjectives: `cramped`, `tidy`, `cosy`, `cluttered` | abstract-words fixture — no vetted glyph, falls back to a Gemini guess | Contrasting mini-scene pairs (tidy vs cluttered room) | Generated — no emoji or icon set expresses these | wired — Sheet V2 (`assets:vocab-sheet`) |
 | 2026-08-03 | Cafeteria nouns: `tray`, `queue`, `napkin`, `delicious` | bad-theme fixture — unvetted glyphs | Vocab icons | Generated — absent from Twemoji | wired — Sheet V4 |
 | 2026-08-03 | Air-travel procedure words: `security`, `turbulence`, `connection` | overflow fixture — the rest of the travel unit now resolves from the rebuilt pack | Vocab icons | Generated — absent from Twemoji | wired — Sheet V3 (+ passport, boarding-pass, suitcase, gate, runway, customs) |
@@ -28,6 +28,8 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-04 | Medical / clinic prop sheet (9) | doctor + clown-clinic scene dressing has zero medical-tagged props | Matte 3×3 sheet | `docs/prop-sheet-prompts.md` Sheet 1 | wired — 9 medical props imported |
 | 2026-08-04 | Gym / sports prop sheet (9) | gym fixture theme void | Matte 3×3 sheet | `docs/prop-sheet-prompts.md` Sheet 2 | wired — 9 gym props imported |
 | 2026-08-04 | Cafeteria prop sheet (9) | bad-theme / cafeteria coverage thin | Matte 3×3 sheet | `docs/prop-sheet-prompts.md` Sheet 3 | wired — 9 cafeteria props imported |
+| 2026-08-05 | Home scene-dressing props (matte) | demand: home/matte below tag floor | In-house 3×3 + import | Native GenerateImage sheet | wired — sofa, floor-lamp, coffee-table, house-plant, throw-pillow, picture-frame, rug, remote-control, wall-clock |
+| 2026-08-05 | Park scene-dressing props (matte) | demand: park/matte thin (only swing) | Nine parallel one-offs (sheet gens kept white-tiling) | Native GenerateImage singles | wired — slide, seesaw, sandbox, park-bench, merry-go-round, playground-ball, kite, picnic-table, drinking-fountain |
 
 ## How agents append
 
