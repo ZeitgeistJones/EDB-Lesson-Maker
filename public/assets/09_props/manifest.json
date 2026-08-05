@@ -5,7 +5,8 @@
   "props": {
     "bookshelf": { "file": "bookshelf.png", "role": "shelf", "tags": ["shelf", "furniture", "build"], "relativeScale": 1, "anchor": "bottom", "alpha": true, "aspect": 1.32, "bodyHue": 25 },
     "sorting-bin": { "file": "sorting-bin.png", "role": "sortBin", "tags": ["bin", "sort"], "relativeScale": 0.5, "anchor": "bottom", "alpha": true, "aspect": 2.2, "bodyHue": 205 },
-    "sorting-bin-green": { "file": "sorting-bin-green.png", "role": "sortBin", "tags": ["bin", "sort", "green"], "relativeScale": 0.5, "anchor": "bottom" },
+    "sorting-bin-green": { "file": "sorting-bin-green.png", "role": "sortBin", "tags": ["bin", "sort", "green"], "relativeScale": 0.45, "anchor": "bottom", "alpha": true, "aspect": 2.52, "bodyHue": 105 },
+    "reward-flap": { "file": "reward-flap.png", "role": "rewardFlap", "tags": ["flap", "reward", "cover"], "relativeScale": 0.4, "anchor": "center", "alpha": true, "aspect": 1.54, "bodyHue": 35 },
     "flashcard-blank": { "file": "flashcard-blank.png", "role": "wordCard", "tags": ["card", "vocab"], "relativeScale": 0.3, "anchor": "center", "alpha": true, "aspect": 1.86, "bodyHue": 125 },
     "sticky-note": { "file": "sticky-note.png", "role": "sticky", "tags": ["sticky", "cue"], "relativeScale": 0.15, "anchor": "center", "alpha": true, "aspect": 1.26, "bodyHue": 45 },
     "reward-jar": { "file": "reward-jar.png", "role": "rewardContainer", "tags": ["jar", "reward"], "relativeScale": 0.35, "anchor": "bottom", "alpha": true, "aspect": 1.15, "bodyHue": 45 },

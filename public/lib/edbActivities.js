@@ -501,6 +501,85 @@
     return page;
   }
 
+  /**
+   * Place 1–3 locked props on scene activity pages after bgPicks exist.
+   * Flats get nothing — dressing is for the empty centre band of place scenes.
+   * Call from attachBgPicks so preview and bake stay in sync.
+   */
+  function dressScenes(boardPlan, lesson) {
+    const PB = window.PropBank;
+    const L = window.EdbLayout;
+    const req = PB && PB.requestFor('sceneDressing');
+    if (!PB || !L || !req || !boardPlan || !boardPlan.pages || !boardPlan.bgPicks) return;
+
+    const family = PB.familyFor(lesson);
+    const themeTags = [
+      ...((lesson && lesson.vocabulary) || []).flatMap((v) => {
+        const w = typeof v === 'string' ? v : v && v.word;
+        return w ? [String(w).toLowerCase()] : [];
+      }),
+      ...String((lesson && lesson.title) || '').toLowerCase().split(/\W+/).filter(Boolean),
+    ];
+    const exclude = [];
+    const count = Math.max(1, Math.min(3, req.count || 2));
+
+    boardPlan.pages.forEach((page, i) => {
+      if (!page || page.pageKey !== 'activity') return;
+      const pick = boardPlan.bgPicks[i];
+      if (!pick || pick.type !== 'scene') return;
+
+      const groundY = pick.groundY || Math.round(590 * 0.55);
+      const maxH = Math.min(PB.MAX_PROP_H || 300, Math.max(96, groundY - 140));
+      // Activity chrome owns the left bodyText band (x≤748). Dress only in
+      // artSafe on the right so H3 does not fire on locked prop centers.
+      const art = L.zoneRect(page, 'artSafe') || { x: 780, y: 100, w: 450, h: 320 };
+      const dockTop = 420;
+      const gap = 20;
+      const placed = [];
+
+      for (let n = 0; n < count; n++) {
+        const prop = PB.resolve({
+          roles: req.roles,
+          tags: themeTags,
+          seed: (lesson && lesson.title) || '',
+          index: n,
+          exclude: req.distinct ? exclude : [],
+          family,
+          minScore: req.themed ? 3 : 0,
+        });
+        if (!prop) continue;
+        exclude.push(prop.key);
+        const sized = PB.sizeFor(prop, { maxH, maxW: Math.min(220, art.w - 16) });
+        let y = PB.yFor(prop, pick, sized.h);
+        if (y + sized.h > dockTop - 8) y = Math.max(art.y, dockTop - 8 - sized.h);
+        // Center of the piece must stay inside artSafe (H3 checks locked too).
+        const minY = art.y + 4;
+        const maxY = art.y + art.h - sized.h - 4;
+        if (maxY >= minY) y = Math.max(minY, Math.min(maxY, y));
+        placed.push({ prop, sized, y });
+      }
+      if (!placed.length) return;
+
+      const totalW = placed.reduce((s, p) => s + p.sized.w, 0) + gap * Math.max(0, placed.length - 1);
+      let x = art.x + Math.max(8, Math.round((art.w - totalW) / 2));
+      placed.forEach(({ prop, sized, y }) => {
+        L.place(page, {
+          locked: true,
+          kind: 'image',
+          asset: prop.path,
+          w: sized.w,
+          h: sized.h,
+          intentional: true,
+          anchor: { x, y, w: sized.w, h: sized.h },
+          role: 'sceneDress',
+          meta: { propKey: prop.key, propAspect: prop.aspect },
+        });
+        x += sized.w + gap;
+      });
+      page.notes.push('recipe:sceneDressing');
+    });
+  }
+
   function pageTypeForKey(pageKey) {
     if (pageKey === 'newWords') return 'vocab';
     if (pageKey === 'story0' || pageKey === 'story1') return 'story';
@@ -571,6 +650,7 @@
     RECIPES,
     plan,
     applyToPage,
+    dressScenes,
     buildBoardPlan,
     pageTypeForKey,
     speakingCoverRect,

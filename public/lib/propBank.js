@@ -27,6 +27,18 @@
   /** Manifest omits styleFamily for the matte house style; name it so callers can compare. */
   const HOUSE_FAMILY = 'matte';
 
+  // Teaching chrome is shared across lessons: a cover flap and a sorting bin are
+  // not scenery. Resolving them from the matte house pool means a glossy
+  // adventure lesson does not fall back to plain rectangles just because the
+  // glossy pack has no bins. styleFamily still governs scene dressing / vocab.
+  const CHROME_ROLES = {
+    cover: 1,
+    sortBin: 1,
+    orderPad: 1,
+    rewardFlap: 1,
+    reward: 1,
+  };
+
   let bank = null;
   let pending = null;
   let warned = false;
@@ -121,10 +133,6 @@
     buildScene: [
       { slot: 'buildSlot', role: 'orderPad', count: 4, distinct: false, themed: false, fit: 'contain', wired: false },
     ],
-    // Declared so the demand report can measure THEME coverage, which is what
-    // says which sheet to generate next. Scene dressing itself (Step 4) is not
-    // built: it moves the quality baseline and needs sign-off first, so no
-    // recipe consumes this yet.
     sceneDressing: [
       {
         slot: 'sceneDressing',
@@ -133,7 +141,7 @@
         distinct: true,
         themed: true,
         fit: 'contain',
-        wired: false,
+        wired: true,
       },
     ],
   };
@@ -286,7 +294,9 @@
       return null;
     }
 
-    const family = q.family || HOUSE_FAMILY;
+    const wantRole = q.role || null;
+    const chrome = !!(wantRole && CHROME_ROLES[wantRole]);
+    const family = chrome ? HOUSE_FAMILY : (q.family || HOUSE_FAMILY);
     const exclude = new Set(q.exclude || []);
     const pool = bank.all.filter((p) => p.family === family && !exclude.has(p.key));
     if (!pool.length) return null;
@@ -408,6 +418,7 @@
     PROP_REQUESTS,
     PROP_ALIASES,
     HOUSE_FAMILY,
+    CHROME_ROLES,
     MAX_PROP_H,
     MIN_PROP_H,
     BASE,

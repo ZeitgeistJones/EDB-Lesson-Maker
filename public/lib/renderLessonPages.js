@@ -810,6 +810,11 @@
       seed: lesson.title || '',
     });
     boardPlan.bgPicks = bgPicks;
+    // Scene dressing needs groundY from the picks — run after, not in buildBoardPlan.
+    if (window.EdbActivities && window.EdbActivities.dressScenes) {
+      if (window.PropBank) await window.PropBank.ready();
+      window.EdbActivities.dressScenes(boardPlan, lesson);
+    }
     return bgPicks;
   }
 
