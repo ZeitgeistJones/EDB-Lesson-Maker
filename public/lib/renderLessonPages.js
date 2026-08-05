@@ -51,41 +51,166 @@
     return p;
   }
 
-  /**
-   * Chrome text is authored for a light page. Chalkboard, cork, desk and every
-   * photographic scene are darker or busier than that, which left headings like
-   * dark green on a green chalkboard. Surfaces declare the ink they take
-   * (manifest textInk), and light-ink surfaces get a top scrim so the heading
-   * band always has something to sit on.
-   */
-  function applyInkPolicy(pageEl, pick, bgImg, hasWash) {
-    const ink = pick.textInk || (pick.type === 'flat' ? 'light' : 'light');
-    if (ink !== 'light') return null;
+  // Brand teal first, then darker teals, then near-black. White is last and
+  // only used with a scrim — never alone on a mid-tone pastel.
+  const INK_PALETTE = [
+    { heading: '#17827C', hint: '#475569', shadow: false },
+    { heading: '#0B3B38', hint: '#334155', shadow: false },
+    { heading: '#0f172a', hint: '#334155', shadow: false },
+    { heading: '#ffffff', hint: 'rgba(255,255,255,0.92)', shadow: true },
+  ];
+  const INK_WARN = 4.5; // match M6 warn bar in ux-board-rubric.cjs
 
-    let scrim = null;
-    if (!hasWash) {
-      scrim = el('div', {
-        position: 'absolute',
-        left: '0',
-        top: '0',
-        width: W + 'px',
-        height: '186px',
-        background: 'linear-gradient(180deg, rgba(15,23,42,0.78) 0%, rgba(15,23,42,0.55) 55%, rgba(15,23,42,0) 100%)',
-        zIndex: '0',
-        pointerEvents: 'none',
-      });
-      pageEl.insertBefore(scrim, bgImg.nextSibling);
+  function hexRgb(hex) {
+    const h = hex.replace('#', '');
+    return {
+      r: parseInt(h.slice(0, 2), 16),
+      g: parseInt(h.slice(2, 4), 16),
+      b: parseInt(h.slice(4, 6), 16),
+    };
+  }
+
+  function relLum({ r, g, b }) {
+    const f = (v) => {
+      const s = v / 255;
+      return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+    };
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+  }
+
+  function contrastRatio(a, b) {
+    const l1 = relLum(a);
+    const l2 = relLum(b);
+    const hi = Math.max(l1, l2);
+    const lo = Math.min(l1, l2);
+    return (hi + 0.05) / (lo + 0.05);
+  }
+
+  // Same busy threshold the bake uses for M2 — a photographic header band
+  // with this much texture needs a scrim even if a dark ink clears 4.5:1.
+  const BUSY_STDDEV = 26; // match verify-board-visual.cjs M2 threshold
+
+  /** Mean RGB (+ stddev) of the heading band, drawn with the same
+   *  object-fit:cover maths the bake uses for M6. */
+  function sampleHeaderBg(bgImg) {
+    if (!bgImg || !bgImg.naturalWidth) return null;
+    const c = document.createElement('canvas');
+    c.width = W;
+    c.height = H;
+    const ctx = c.getContext('2d');
+    const nw = bgImg.naturalWidth;
+    const nh = bgImg.naturalHeight;
+    const scale = Math.max(W / nw, H / nh);
+    const dw = nw * scale;
+    const dh = nh * scale;
+    try {
+      ctx.drawImage(bgImg, (W - dw) / 2, (H - dh) / 2, dw, dh);
+      // Header sits in the padded top band (~28–110px). Sample that strip.
+      const data = ctx.getImageData(44, 28, W - 88, 90).data;
+      let sr = 0;
+      let sg = 0;
+      let sb = 0;
+      let sumGray = 0;
+      let sumSq = 0;
+      let n = 0;
+      for (let i = 0; i < data.length; i += 16) {
+        const r = data[i];
+        const g = data[i + 1];
+        const b = data[i + 2];
+        const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+        sr += r;
+        sg += g;
+        sb += b;
+        sumGray += gray;
+        sumSq += gray * gray;
+        n++;
+      }
+      if (!n) return null;
+      const mean = sumGray / n;
+      return {
+        r: sr / n,
+        g: sg / n,
+        b: sb / n,
+        stddev: Math.sqrt(Math.max(0, sumSq / n - mean * mean)),
+      };
+    } catch (_) {
+      return null;
     }
+  }
 
+  function paintInk(pageEl, choice) {
     pageEl.querySelectorAll('[data-ink="heading"]').forEach((n) => {
-      n.style.color = '#ffffff';
-      n.style.textShadow = '0 2px 10px rgba(2,6,23,0.55)';
+      n.style.color = choice.heading;
+      n.style.textShadow = choice.shadow ? '0 2px 10px rgba(2,6,23,0.55)' : 'none';
     });
     pageEl.querySelectorAll('[data-ink="hint"]').forEach((n) => {
-      n.style.color = 'rgba(255,255,255,0.92)';
-      n.style.textShadow = '0 1px 6px rgba(2,6,23,0.5)';
+      n.style.color = choice.hint;
+      n.style.textShadow = choice.shadow ? '0 1px 6px rgba(2,6,23,0.5)' : 'none';
     });
+  }
+
+  function makeScrim(bgImg) {
+    const scrim = el('div', {
+      position: 'absolute',
+      left: '0',
+      top: '0',
+      width: W + 'px',
+      height: '186px',
+      background: 'linear-gradient(180deg, rgba(15,23,42,0.78) 0%, rgba(15,23,42,0.55) 55%, rgba(15,23,42,0) 100%)',
+      zIndex: '0',
+      pointerEvents: 'none',
+    });
+    bgImg.parentNode.insertBefore(scrim, bgImg.nextSibling);
     return scrim;
+  }
+
+  /**
+   * Chrome text is authored for a light page. Manifest textInk is only a
+   * fallback when the background image is not yet measurable — the durable
+   * rule is to sample the real header-band pixels and pick the first brand-
+   * first ink that clears the M6 warn bar (4.5:1). A scrim is added only when
+   * no solid ink alone can.
+   */
+  function applyInkPolicy(pageEl, pick, bgImg, hasWash) {
+    // Full-page wash (title/frames/wrap) already darkens the surface — white ink.
+    if (hasWash) {
+      paintInk(pageEl, INK_PALETTE[3]);
+      return null;
+    }
+
+    const sample = sampleHeaderBg(bgImg);
+    if (sample) {
+      // Busy photographic bands (scenes) keep the scrim even when a dark ink
+      // would clear M6 — otherwise body/hint text sits bare on texture (M2).
+      const busy = sample.stddev > BUSY_STDDEV || pick.type === 'scene';
+      if (!busy) {
+        for (const choice of INK_PALETTE) {
+          if (choice.heading === '#ffffff') continue; // white only with scrim
+          if (contrastRatio(hexRgb(choice.heading), sample) >= INK_WARN) {
+            paintInk(pageEl, choice);
+            return null;
+          }
+        }
+      }
+      // No solid ink clears 4.5, or the band is too busy — darken, use white.
+      const scrim = makeScrim(bgImg);
+      paintInk(pageEl, INK_PALETTE[3]);
+      return scrim;
+    }
+
+    // Image not loaded yet. Fall back to the manifest label so we still do
+    // something useful before onload re-runs the measured path.
+    const ink = pick.textInk || (pick.type === 'flat' ? 'light' : 'light');
+    if (ink === 'light') {
+      const scrim = makeScrim(bgImg);
+      paintInk(pageEl, INK_PALETTE[3]);
+      return scrim;
+    }
+    // Mid-tone pastels declare dark ink — brand teal fails on them; dark teal
+    // clears the bar without a scrim. Whiteboards still get brand teal once
+    // the image loads and the measured path runs.
+    paintInk(pageEl, INK_PALETTE[1]);
+    return null;
   }
 
   /** Full-bleed scene/flat under chrome. Uses <img> so html2canvas + waitForImages see it. */
@@ -117,8 +242,26 @@
       pageEl.insertBefore(wash, bgImg.nextSibling);
     }
 
-    const scrim = applyInkPolicy(pageEl, pick, bgImg, !!wash);
+    let scrim = applyInkPolicy(pageEl, pick, bgImg, !!wash);
 
+    // Measured path needs naturalWidth. Re-run once the pack image lands so
+    // mid-tone flats don't keep the conservative dark-teal fallback forever.
+    if (!wash && bgImg && !bgImg.complete) {
+      bgImg.addEventListener(
+        'load',
+        () => {
+          if (scrim && scrim.parentNode) scrim.parentNode.removeChild(scrim);
+          scrim = applyInkPolicy(pageEl, pick, bgImg, false);
+          liftChrome(pageEl, bgImg, wash, scrim);
+        },
+        { once: true }
+      );
+    }
+
+    liftChrome(pageEl, bgImg, wash, scrim);
+  }
+
+  function liftChrome(pageEl, bgImg, wash, scrim) {
     Array.from(pageEl.children).forEach((child) => {
       if (child === bgImg || child === wash || child === scrim) return;
       if (!child.style.position || child.style.position === 'static') {
