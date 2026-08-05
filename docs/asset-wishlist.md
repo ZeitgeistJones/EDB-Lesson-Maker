@@ -31,6 +31,8 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-04 | Cafeteria prop sheet (9) | bad-theme / cafeteria coverage thin | Matte 3×3 sheet | `docs/prop-sheet-prompts.md` Sheet 3 | wired — 9 cafeteria props imported |
 | 2026-08-05 | Home scene-dressing props (matte) | demand: home/matte below tag floor | In-house 3×3 + import | Native GenerateImage sheet | wired — sofa, floor-lamp, coffee-table, house-plant, throw-pillow, picture-frame, rug, remote-control, wall-clock |
 | 2026-08-05 | Park scene-dressing props (matte) | demand: park/matte thin (only swing) | Nine parallel one-offs (sheet gens kept white-tiling) | Native GenerateImage singles | wired — slide, seesaw, sandbox, park-bench, merry-go-round, playground-ball, kite, picnic-table, drinking-fountain |
+| 2026-08-05 | Dentist vocab icons: `dentist`, `smile`, `brush`, `floss` | dentist fixture New Words — Gemini glyph fallback only | Vocab pack icons | ChatGPT vocab sheet → `assets:vocab-sheet` | open |
+| 2026-08-05 | Zoo vocab icons: `zoo`, `cage`, `feed` | zoo-phonics fixture New Words — unvetted glyphs | Vocab pack icons | ChatGPT vocab sheet → `assets:vocab-sheet` | open |
 
 ## How agents append
 

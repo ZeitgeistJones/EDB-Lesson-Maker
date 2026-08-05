@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-05T01:53:56.254Z",
-  "iteration": 5,
+  "updatedAt": "2026-08-05T23:32:23.632Z",
+  "iteration": 6,
   "softRoots": [
     "no-vetted-icon",
     "ink-policy-measured-no-scrim-on-calm",
@@ -140,6 +140,26 @@
       "hardFailures": 0,
       "metricFails": 0,
       "metricWarns": 13,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-05T23:32:23.632Z",
+      "iteration": 6,
+      "tier": "core",
+      "cases": [
+        "dentist",
+        "zoo-phonics"
+      ],
+      "action": "wishlist",
+      "codes": [
+        "M7"
+      ],
+      "roots": [
+        "no-vetted-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 17,
       "regressions": 0
     }
   ]

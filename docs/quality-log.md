@@ -8,3 +8,4 @@ Written by `npm run quality:judge` — do not hand-edit. Machine state lives in 
 - 2026-08-05 iter 3 (core) — **note_soft** — · hard 0 · metric 0 fail / 5 warn · roots: worksheet-heavy-middle-pages
 - 2026-08-05 iter 4 (all) — **fix_soft** S14, S14 · hard 0 · metric 0 fail / 13 warn · roots: creative-question-object-coercion, swing-prop-not-pack-icon
 - 2026-08-05 iter 5 (all) — **wishlist** M7 · hard 0 · metric 0 fail / 13 warn · roots: swing-prop-not-pack-icon · asset gap logged
+- 2026-08-05 iter 6 (core) — **wishlist** M7 · hard 0 · metric 0 fail / 17 warn · roots: no-vetted-icon · asset gap logged

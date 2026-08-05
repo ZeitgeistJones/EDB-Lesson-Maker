@@ -17,7 +17,7 @@
     creative: ['#ecfdf5', '#a7f3d0'],
     speak: ['#f0fdf4', '#bbf7d0'],
     activity: ['#eef2ff', '#c7d2fe'],
-    wrap: ['#4f46e5', '#6366f1'],
+    wrap: ['#fff7ed', '#fdba74'],
   };
 
   function el(tag, style, html) {
@@ -272,7 +272,7 @@
     });
   }
 
-  const LIGHT_TEXT_PAGES = { title: 1, frames: 1, wrap: 1 };
+  const LIGHT_TEXT_PAGES = { title: 1, frames: 1 };
 
   function drawDebugZones(p, pageType) {
     if (!window.EdbLayout) return;
@@ -303,12 +303,14 @@
     return (boardPlan?.assignments || []).some((a) => a.pageKey === pageKey);
   }
 
-  function speakingChunks(lesson) {
+  function speakingChunks(lesson, meta) {
     if (window.EdbActivities && window.EdbActivities.speakingChunks) {
-      return window.EdbActivities.speakingChunks(lesson);
+      return window.EdbActivities.speakingChunks(lesson, meta);
     }
     const qs = (lesson.speakingQuestions || []).slice(0, 4);
     if (!qs.length) return [];
+    const dur = Number(meta?.duration);
+    if (Number.isFinite(dur) && dur <= 30) return [qs];
     const pages = [];
     for (let i = 0; i < qs.length; i += 2) pages.push(qs.slice(i, i + 2));
     return pages;
@@ -362,7 +364,7 @@
    *  background policy recolours it — see applyPackBg. */
   function hint(text, extra) {
     const n = el('div', Object.assign({
-      fontSize: '18px',
+      fontSize: '22px',
       color: '#64748b',
       fontWeight: '600',
       marginBottom: '14px',
@@ -372,14 +374,20 @@
   }
 
   function card(html, extra) {
-    // Opaque white — avoids html2canvas checkerboard on translucent layers
-    return el('div', Object.assign({
+    // One card language: white, soft shadow, 18px radius, roomy padding.
+    // Dark slabs are never the default — ink policy may still darken headers.
+    const n = el('div', Object.assign({
       background: '#ffffff',
-      borderRadius: '16px',
+      borderRadius: '18px',
       padding: '20px 24px',
       boxShadow: '0 8px 24px rgba(15,23,42,0.08)',
       marginBottom: '14px',
+      fontSize: '22px',
+      color: '#0f172a',
+      lineHeight: '1.35',
     }, extra || {}), html);
+    n.dataset.chromeCard = '1';
+    return n;
   }
 
   /**
@@ -461,7 +469,7 @@
       sections.push({ title: 'Your Ideas', tags: ['creative', 'ideas'], vocabulary: [], preferFlat: true });
     }
 
-    speakingChunks(lesson).forEach((chunk, i) => {
+    speakingChunks(lesson, meta).forEach((chunk, i) => {
       sections.push({
         title: (chunk[0] && chunk[0].question) || ('Speaking ' + (i + 1)),
         tags: ['speaking', 'talk'],
@@ -539,12 +547,12 @@
         : 'Say each word together.'));
     const grid = el('div', {
       display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px',
-      maxWidth: interactive ? '720px' : '100%',
+      maxWidth: interactive ? '100%' : '100%',
     });
     const words = (lesson.vocabulary || []).slice(0, 6);
     for (const v of words) {
-      // Interactive matchDock: word-only cards — icons live in the dock to match.
-      // Non-interactive: emoji + word reference sheet.
+      // Interactive: word-only cards — icons live in the honest dock (≥96px).
+      // Non-interactive fallback: emoji on the card (no postage-stamp dock).
       const glyphHtml = interactive
         ? ''
         : `<div style="width:64px;height:64px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0">${esc(v.emoji || '•')}</div>`;
@@ -570,45 +578,32 @@
       reserveDock: interactive, pageType: 'phonics',
     });
     p.appendChild(header('Sound Boxes', '#b45309'));
-    p.appendChild(hint(
-      interactive
-        ? 'Say each sound. Drag a letter tile into every box.'
-        : 'Say the sounds in each word.',
-      { marginBottom: '10px' }
-    ));
 
+    const focus = data && data.targetWords && data.targetWords[data.focusIndex || 0];
     const script = (data && data.teacherScript) || {};
-    const panel = el('div', {
-      maxWidth: '360px',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '10px',
-    });
-    [
-      ['Warm-up', script.warmup],
-      ['Model', script.modeling],
-      ['Check', script.check],
-    ].forEach(([label, text]) => {
-      if (!text) return;
-      panel.appendChild(card(
-        `<div style="font-size:13px;color:#92400e;font-weight:700;margin-bottom:6px">${esc(label)}</div>
-         <div style="font-size:18px;font-weight:700;color:#78350f;line-height:1.35">${esc(text)}</div>`,
-        { padding: '12px 14px', marginBottom: '0' }
-      ));
-    });
+    const oneLine = script.modeling || script.warmup
+      || (focus ? `Say each sound in "${focus.word}". Drag a tile into every box.` : 'Say each sound. Drag a letter tile into every box.');
+    p.appendChild(hint(esc(oneLine), { marginBottom: '8px', fontSize: '20px' }));
 
-    if (data && data.targetWords) {
-      const list = data.targetWords.map((w) =>
-        `${w.emoji || ''} <strong>${esc(w.word)}</strong> (${w.boxCount} sounds)`
-      ).join('<br>');
-      panel.appendChild(card(
-        `<div style="font-size:13px;color:#92400e;font-weight:700;margin-bottom:6px">Target words</div>
-         <div style="font-size:18px;font-weight:600;color:#78350f;line-height:1.45">${list}</div>`,
-        { padding: '12px 14px', marginBottom: '0' }
-      ));
+    if (data && data.targetWords && data.targetWords.length > 1) {
+      const chips = el('div', {
+        display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '8px',
+      });
+      data.targetWords.forEach((w, i) => {
+        const isFocus = i === (data.focusIndex || 0);
+        chips.appendChild(el('div', {
+          padding: '8px 14px',
+          borderRadius: '999px',
+          background: isFocus ? '#fbbf24' : '#fff7ed',
+          border: isFocus ? '2px solid #b45309' : '1px solid #fcd34d',
+          fontSize: '18px',
+          fontWeight: '700',
+          color: '#78350f',
+        }, `${w.emoji || ''} ${esc(w.word)}${isFocus ? ' ← now' : ''}`));
+      });
+      p.appendChild(chips);
     }
 
-    p.appendChild(panel);
     drawDebugZones(p, 'phonics');
     return p;
   }
@@ -621,7 +616,7 @@
     (lesson.vocabulary || []).slice(0, 6).forEach((v) => {
       grid.appendChild(card(
         `<div style="font-size:24px;font-weight:800;margin-bottom:8px">${esc(v.word || '')}</div>
-         <div style="font-size:20px;color:#334155;font-style:italic;line-height:1.35">${esc(v.sentence || '')}</div>`,
+         <div style="font-size:22px;color:#334155;font-style:italic;line-height:1.35">${esc(v.sentence || '')}</div>`,
         { marginBottom: '0', padding: '18px 20px' }
       ));
     });
@@ -633,7 +628,13 @@
     const p = pageShell(THEME_COLORS.frames, { pageType: 'frames' });
     p.appendChild(header('Sentence Frames', '#c4b5fd'));
     p.appendChild(hint('Practice out loud. Fill the blanks.', { marginBottom: '12px' }));
-    const body = fillBody(p, { gap: '18px' });
+    const body = fillBody(p, {
+      gap: '22px',
+      maxWidth: '980px',
+      width: '100%',
+      margin: '0 auto',
+      justifyContent: 'center',
+    });
     (lesson.sentenceFrames || []).slice(0, 5).forEach((f, i) => {
       const row = el('div', {
         display: 'flex', alignItems: 'center', gap: '16px', color: '#fff',
@@ -643,7 +644,7 @@
         background: ['#f43f5e', '#fbbf24', '#34d399', '#60a5fa', '#a78bfa'][i % 5],
         flexShrink: '0',
       }));
-      row.appendChild(el('div', { fontSize: '32px', fontWeight: '700', lineHeight: '1.2' }, esc(f)));
+      row.appendChild(el('div', { fontSize: '34px', fontWeight: '700', lineHeight: '1.25' }, esc(f)));
       body.appendChild(row);
     });
     return p;
@@ -656,6 +657,7 @@
     // when volcano words are also present.
     if (/\b(volcano|volcanic|crater|lava|eruption|ash|geothermal|magma|seismic)\b/.test(t)) return '🌋';
     if (t.includes('gym') || t.includes('workout') || t.includes('athletic') || t.includes('court')) return '🏀';
+    if (t.includes('dentist') || t.includes('dental') || t.includes('tooth') || t.includes('teeth')) return '🦷';
     if (t.includes('doctor') || t.includes('clinic') || t.includes('hospital') || t.includes('sick') || t.includes('checkup')) return '🏥';
     if (t.includes('airport') || t.includes('travel') || t.includes('passport')) return '✈️';
     if (t.includes('school') || t.includes('classroom') || t.includes('teacher')) return '🏫';
@@ -690,23 +692,29 @@
     titleEl.style.zIndex = '2';
     content.appendChild(titleEl);
     const layout = el('div', { display: 'flex', gap: '24px', alignItems: 'stretch' });
+    const artOnRight = index % 2 === 1;
+
+    // Themed side cue — emoji from place language (no brown book slab).
+    // PropBank cutouts for story pages land as EDB pieces when recipes place them.
     const side = el('div', {
-      width: '240px', flexShrink: '0', borderRadius: '18px',
-      background: 'linear-gradient(160deg, #ffedd5, #fed7aa)',
+      width: '220px', flexShrink: '0', borderRadius: '18px',
+      background: artOnRight
+        ? 'linear-gradient(160deg, #ffedd5, #fed7aa)'
+        : 'linear-gradient(200deg, #fff7ed, #fdba74)',
       minHeight: '240px', display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center', padding: '24px',
       boxSizing: 'border-box',
     });
-    side.appendChild(el('div', { fontSize: '88px', lineHeight: '1', marginBottom: '14px' },
+    side.appendChild(el('div', { fontSize: '96px', lineHeight: '1', marginBottom: '14px' },
       themeEmoji(storyArtCue(lesson, page))));
     side.appendChild(el('div', {
-      background: '#1e293b', color: '#fff', borderRadius: '10px', padding: '10px 14px',
+      background: '#ffffff', color: '#9a3412', borderRadius: '12px', padding: '10px 14px',
       fontSize: '16px', fontWeight: '700', textAlign: 'center', width: '100%',
       boxSizing: 'border-box', lineHeight: '1.3',
+      boxShadow: '0 4px 12px rgba(15,23,42,0.08)',
     }, esc(page?.visualCaption || page?.visualTheme || 'Scene')));
+
     const storyText = String(page?.text || '');
-    // Short story beats were floating in a mostly empty card. Read-aloud text
-    // should fill the panel, so type scales up as the sentence gets shorter.
     const textSize = storyText.length <= 80 ? 44 : storyText.length <= 160 ? 36 : 28;
     const text = card(
       `<div style="font-size:${textSize}px;line-height:1.4;color:#1e293b;font-weight:600">${esc(storyText)}</div>`,
@@ -719,8 +727,13 @@
         alignItems: 'center',
       }
     );
-    layout.appendChild(side);
-    layout.appendChild(text);
+    if (artOnRight) {
+      layout.appendChild(text);
+      layout.appendChild(side);
+    } else {
+      layout.appendChild(side);
+      layout.appendChild(text);
+    }
     content.appendChild(layout);
     p.appendChild(content);
     drawDebugZones(p, 'story');
@@ -732,7 +745,12 @@
     p.appendChild(header('Reading Comprehension', '#1d4ed8'));
     p.appendChild(hint('Answer in full sentences. No peeking at notes!', { marginBottom: '12px' }));
     const questions = (lesson.story?.comprehensionQuestions || []).slice(0, 3);
-    const body = fillBody(p, { gap: '16px' });
+    const body = fillBody(p, {
+      gap: '18px',
+      maxWidth: '920px',
+      width: '100%',
+      margin: '0 auto',
+    });
     questions.forEach((q, i) => {
       body.appendChild(card(
         `<div style="font-size:${questions.length <= 1 ? 34 : 26}px;font-weight:800;line-height:1.35">${i + 1}. ${esc(q.question || '')}</div>`,
@@ -747,7 +765,12 @@
     const p = pageShell(THEME_COLORS.creative, { pageType: 'creative' });
     p.appendChild(header('Your Ideas!', '#059669'));
     p.appendChild(hint('Open-ended — no single right answer.', { marginBottom: '12px' }));
-    const body = fillBody(p, { gap: '16px' });
+    const body = fillBody(p, {
+      gap: '18px',
+      maxWidth: '920px',
+      width: '100%',
+      margin: '0 auto',
+    });
     (lesson.story?.creativeQuestions || []).slice(0, 2).forEach((q, i) => {
       const text = creativePromptText(q);
       if (!text) return;
@@ -837,13 +860,20 @@
     });
     p.appendChild(header(lesson.activity?.title || 'Your Turn!', '#4338ca'));
     p.appendChild(hint(esc(lesson.activity?.prompt || 'Work with a partner.'), {
-      textAlign: 'center', lineHeight: '1.35',
+      textAlign: 'left', lineHeight: '1.35', maxWidth: interactive ? '680px' : '100%',
     }));
-    const list = el('div', { maxWidth: interactive ? '700px' : '100%' });
-    (lesson.activity?.templates || []).slice(0, 5).forEach((t, i) => {
+    // Cap templates when interactive so DOM cards stay inside bodyText (H3 / collision).
+    const maxTemplates = interactive ? 3 : 5;
+    const list = el('div', {
+      maxWidth: interactive ? '680px' : '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '10px',
+    });
+    (lesson.activity?.templates || []).slice(0, maxTemplates).forEach((t, i) => {
       list.appendChild(card(
         `<div style="font-size:22px;font-weight:700;line-height:1.3">${i + 1}. ${esc(t)}</div>`,
-        { padding: '14px 18px' }
+        { padding: '14px 18px', marginBottom: '0' }
       ));
     });
     p.appendChild(list);
@@ -857,17 +887,23 @@
       reserveDock: interactive, pageType: 'wrap',
     });
     p.appendChild(el('div', {
-      color: '#fff', fontSize: '52px', fontWeight: '800', textAlign: 'center', marginTop: '28px',
+      color: '#9a3412', fontSize: '56px', fontWeight: '800', textAlign: 'center', marginTop: '36px',
     }, 'Great Job!'));
     p.appendChild(el('div', {
-      color: 'rgba(255,255,255,0.9)', fontSize: '22px', textAlign: 'center', margin: '14px 0 28px',
+      color: '#c2410c', fontSize: '22px', textAlign: 'center', margin: '12px 0 28px', fontWeight: '600',
     }, "Today's key sentences — say them together"));
     (lesson.reviewSentences || []).slice(0, 3).forEach((s) => {
-      p.appendChild(el('div', {
-        color: '#fff', fontSize: '28px', textAlign: 'center', marginBottom: '16px',
-        fontWeight: '700', lineHeight: '1.3',
-      }, esc(s)));
+      p.appendChild(card(
+        `<div style="font-size:28px;text-align:center;font-weight:700;line-height:1.35;color:#9a3412">${esc(s)}</div>`,
+        { maxWidth: '900px', margin: '0 auto 16px', padding: '18px 24px' }
+      ));
     });
+    p.appendChild(img('assets/04_decoration-ui/confetti.svg', {
+      left: '40px', bottom: '36px', width: '110px', height: '110px',
+    }));
+    p.appendChild(img('assets/04_decoration-ui/confetti.svg', {
+      right: '40px', bottom: '36px', width: '110px', height: '110px',
+    }));
     drawDebugZones(p, 'wrap');
     return p;
   }
@@ -964,7 +1000,7 @@
       push(makeCreative(lesson), 'creative');
     }
 
-    const chunks = speakingChunks(lesson);
+    const chunks = speakingChunks(lesson, m);
     chunks.forEach((chunk, i) => {
       push(makeSpeakingPage(chunk, i, chunks.length, boardPlan), 'speaking:' + i);
     });

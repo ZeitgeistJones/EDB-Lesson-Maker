@@ -230,6 +230,34 @@
     fantasy: /\b(fairy|tale|tales|castle|magic|magical|dragon|dragons|princess|prince|knight|wizard|witch|monster|monsters|space|planet|planets|rocket|star|stars|moon|dream|dreams|night|halloween|dinosaur|dinosaurs)\b/,
   };
 
+  /** Soft palette families for drill flats — bias clinic lessons away from beach/night lottery. */
+  const FLAT_PALETTE = {
+    whiteboard: 'neutral', chalkboard: 'neutral', cork: 'warm', desk: 'neutral',
+    'sky-meadow': 'outdoor', 'sunrise-plane': 'travel', 'peach-blush': 'warm',
+    'starry-night': 'night', 'seafoam-shore': 'coast', 'terracotta-arch': 'warm',
+    'window-blue': 'cool', 'sage-leaves': 'cool', 'warm-window': 'warm',
+    'world-map': 'travel', 'blue-alcove': 'cool', 'dawn-clouds': 'cool',
+    'lavender-strings': 'music', 'cloud-castle': 'fantasy',
+  };
+
+  const TOPIC_PALETTE = [
+    { re: /\b(dentist|dental|doctor|clinic|hospital|nurse|tooth|teeth|medical)\b/, want: ['cool', 'neutral', 'warm'] },
+    { re: /\b(airport|travel|train|bus|plane|passport|station)\b/, want: ['travel', 'cool', 'neutral'] },
+    { re: /\b(beach|ocean|sea|shore|swim)\b/, want: ['coast', 'outdoor', 'cool'] },
+    { re: /\b(zoo|park|animal|forest|garden|nature)\b/, want: ['outdoor', 'cool', 'warm'] },
+    { re: /\b(home|house|family|kitchen|living)\b/, want: ['warm', 'neutral'] },
+    { re: /\b(school|classroom|teacher|library)\b/, want: ['neutral', 'cool', 'warm'] },
+    { re: /\b(gym|sport|trampoline|play)\b/, want: ['outdoor', 'warm', 'cool'] },
+  ];
+
+  function palettesFor(topicWords) {
+    const text = ' ' + String(Array.isArray(topicWords) ? topicWords.join(' ') : (topicWords || '')).toLowerCase() + ' ';
+    for (const row of TOPIC_PALETTE) {
+      if (row.re.test(text)) return row.want;
+    }
+    return ['warm', 'cool', 'neutral'];
+  }
+
   function moodsFor(topicWords) {
     const text = ' ' + norm(Array.isArray(topicWords) ? topicWords.join(' ') : topicWords).join(' ') + ' ';
     const out = [...DEFAULT_MOODS];
@@ -239,12 +267,23 @@
     return out;
   }
 
-  function pickFlat(m, index, seed, reason, moods) {
+  function pickFlat(m, index, seed, reason, moods, topicWords) {
     const all = Object.keys(m.flats);
     const allowed = moods && moods.length
       ? all.filter((k) => moods.includes(m.flats[k].mood || 'calm'))
       : all;
-    const flatKeys = allowed.length ? allowed : all;
+    let flatKeys = allowed.length ? allowed : all;
+    const want = palettesFor(topicWords || seed);
+    // Prefer flats whose palette matches the lesson family, then rotate.
+    const ranked = flatKeys
+      .map((k) => {
+        const pal = FLAT_PALETTE[k] || 'neutral';
+        const aff = want.indexOf(pal);
+        return { k, score: aff < 0 ? 50 : aff };
+      })
+      .sort((a, b) => a.score - b.score || a.k.localeCompare(b.k));
+    const preferred = ranked.filter((r) => r.score < 50).map((r) => r.k);
+    flatKeys = preferred.length >= 3 ? preferred : ranked.map((r) => r.k);
     const key = flatKeys[(flatOffset(seed, flatKeys.length) + (index || 0)) % flatKeys.length];
     return {
       type: 'flat',
@@ -262,7 +301,7 @@
 
     // Drill / chrome pages: rotate flats. Place pages keep scene matching.
     if (section.preferFlat) {
-      return pickFlat(m, opts.index, opts.seed, 'preferFlat (drill / chrome page)', opts.moods);
+      return pickFlat(m, opts.index, opts.seed, 'preferFlat (drill / chrome page)', opts.moods, opts.topicWords || opts.seed);
     }
 
     const tags = [
@@ -295,7 +334,8 @@
       ranked.length
         ? `best match ${ranked[0].name} scored ${ranked[0].score}, below floor of ${minScore}`
         : 'no scene matched any tag',
-      opts.moods
+      opts.moods,
+      opts.topicWords || opts.seed
     );
   }
 
@@ -316,7 +356,7 @@
         out.push(Object.assign({}, placeScene, { reused: true }));
         continue;
       }
-      const p = await pickFor(sec, { ...opts, index: flatCount, moods });
+      const p = await pickFor(sec, { ...opts, index: flatCount, moods, topicWords: opts.topicWords || opts.seed });
       if (p.type === 'flat') flatCount++;
       if (p.type === 'scene' && !placeScene) placeScene = p;
       out.push(p);
@@ -342,10 +382,10 @@
   }
 
   /** Unlocked roles that stand on the scene floor in a centred row.
-   *  buildPart / dockPiece stay in the dock — standing them mid-board is what
-   *  turned buildScene into a scattered emoji pile on the volcano activity.
+   *  buildPart / dockPiece / dressPart stay in the dock — standing dress
+   *  accessories mid-board was overlapping activity template cards.
    *  heroPart stands — the trampoline (etc.) belongs on the ground plane. */
-  const STAND_ROLES = { dressPart: 1, sortCard: 1, heroPart: 1 };
+  const STAND_ROLES = { sortCard: 1, heroPart: 1 };
 
   function isStandRole(role) {
     return !!STAND_ROLES[role];

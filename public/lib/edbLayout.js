@@ -109,12 +109,12 @@
       // Teacher answer strip — separate from rewardPocket
       answerStrip: { x: 40, y: 545, w: 220, h: 32, noOverlap: false },
     },
-    // Sound boxes: teacher script left, locked boxes in targetBay, tiles in dock
+    // Sound boxes: one focus word large in targetBay; tiles in full-width dock
     phonics: {
       header:    { x: 48, y: 28,  w: 900, h: 48,  noOverlap: true },
-      bodyText:  { x: 48, y: 88,  w: 360, h: 300, noOverlap: true },
-      artSafe:   { x: 48, y: 88,  w: 360, h: 300, noOverlap: false },
-      targetBay: { x: 430, y: 88,  w: 800, h: 300, noOverlap: false },
+      bodyText:  { x: 48, y: 88,  w: 1184, h: 48, noOverlap: true },
+      artSafe:   { x: 48, y: 140, w: 200, h: 240, noOverlap: false },
+      targetBay: { x: 280, y: 140, w: 900, h: 240, noOverlap: false },
       dock:      { x: 48, y: 420, w: 1184, h: 140, noOverlap: false },
       rewardPocket: { x: 1100, y: 28, w: 140, h: 60, noOverlap: false },
     },
@@ -387,6 +387,7 @@
   }
 
   // Stronger dock placer that doesn't rely on score grid
+  // opts: { w, h, noShrink } — noShrink keeps honest interactive sizes (match dock / phonics)
   function placeDockRow(page, items, size) {
     const dock = zoneRect(page, 'dock');
     if (!dock || !items.length) return [];
@@ -394,17 +395,22 @@
     let h = size?.h || 54;
     const gap = MIN_GAP;
     const n = items.length;
-    // Shrink to fit one row when possible
-    const maxW = Math.floor((dock.w - gap * Math.max(0, n - 1)) / n);
-    if (maxW < w && maxW >= 40) {
-      const scale = maxW / w;
-      w = maxW;
-      h = Math.max(36, Math.floor(h * scale));
+    const noShrink = !!(size && size.noShrink);
+    // Shrink to fit one row when possible (unless caller demands honest sizes)
+    if (!noShrink) {
+      const maxW = Math.floor((dock.w - gap * Math.max(0, n - 1)) / n);
+      if (maxW < w && maxW >= 40) {
+        const scale = maxW / w;
+        w = maxW;
+        h = Math.max(36, Math.floor(h * scale));
+      }
     }
     let cols = Math.max(1, Math.floor((dock.w + gap) / (w + gap)));
     const rowsNeeded = Math.ceil(n / cols);
-    const maxH = Math.floor((dock.h - gap * Math.max(0, rowsNeeded - 1)) / rowsNeeded);
-    if (maxH < h && maxH >= 32) h = maxH;
+    if (!noShrink) {
+      const maxH = Math.floor((dock.h - gap * Math.max(0, rowsNeeded - 1)) / rowsNeeded);
+      if (maxH < h && maxH >= 32) h = maxH;
+    }
     cols = Math.max(1, Math.floor((dock.w + gap) / (w + gap)));
 
     const placed = [];

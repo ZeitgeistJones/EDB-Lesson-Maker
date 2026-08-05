@@ -13,7 +13,7 @@ const ROOT = path.join(__dirname, '..');
 const REPORT = path.join(ROOT, 'tmp', 'board-bg-verify', 'report.json');
 const BASELINE_PATH = path.join(__dirname, 'quality-baseline.json');
 
-const PAGE_METRICS = ['M1', 'M2', 'M3', 'M6', 'M8'];
+const PAGE_METRICS = ['M1', 'M2', 'M3', 'M6', 'M8', 'M9', 'M10'];
 const CASE_METRICS = ['M4', 'M5', 'M7'];
 
 function readJson(file, fallback) {

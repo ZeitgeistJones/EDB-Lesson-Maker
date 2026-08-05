@@ -10,6 +10,14 @@
       "notes": "Baseline topical lesson"
     },
     {
+      "id": "dentist",
+      "fixture": "dentist-lesson.json",
+      "tier": "core",
+      "meta": { "level": "A1", "duration": "30", "phonics": "on" },
+      "expectScene": "dentist|dental|clinic|doctor|hospital|medical",
+      "notes": "High-bar teachability case: phonics one-word focus, honest match dock, no props over activity cards"
+    },
+    {
       "id": "clown-clinic",
       "fixture": "clown-clinic-lesson.json",
       "tier": "core",
@@ -63,7 +71,7 @@
       "tier": "core",
       "meta": { "level": "A1", "duration": "30", "phonics": "on" },
       "expectScene": "zoo|safari|park|wildlife|animal",
-      "notes": "Must include phonicsSoundBoxes page with cat/fish/jump tiles (≤14)"
+      "notes": "Must include phonicsSoundBoxes page with one-word focus tiles (≤10)"
     },
     {
       "id": "abstract-words",

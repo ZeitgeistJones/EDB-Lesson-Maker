@@ -236,10 +236,11 @@ app.post('/api/generate-lesson', async (req, res) => {
   const phonicsBlock = wantPhonics
     ? `
 Also generate phonics for a ClassIn sound-boxes page:
-- phonics.targetWords: EXACTLY 2 or 3 words. Prefer single-syllable, phonetically regular words drawn from (or closely related to) the lesson vocabulary/topic. Reject multisyllabic/schwa-heavy words (e.g. trampoline → use jump/flip instead).
-- Each target word needs: word, graphemes (array — ONE grapheme per sound box; digraphs/blends like sh/ch/th/ck stay as ONE entry; silent-e joins the preceding letter), topicRelevance (short why it fits the topic), optional emoji
+- phonics.targetWords: EXACTLY 2 or 3 words. Prefer single-syllable, phonetically regular words drawn FROM the lesson vocabulary when possible (same spelling). Closely related topic words only when vocab is irregular. Reject multisyllabic/schwa-heavy words (e.g. trampoline → use jump/flip instead; dentist → use tooth/clean/smile).
+- Put the easiest CVC/CVCC word FIRST — the board teaches that word large; the others are "next up" chips.
+- Each target word needs: word, graphemes (array — ONE grapheme per sound box; digraphs/blends like sh/ch/th/ck/oo/ea stay as ONE entry; silent-e joins the preceding letter), topicRelevance (short why it fits the topic), optional emoji
 - graphemes length must be 3–5; box count = graphemes.length
-- phonics.distractors: 4–6 single letters that are NOT the full answer set
+- phonics.distractors: 4 single letters that are NOT in the first (focus) word's graphemes
 - phonics.teacherScript: warmup, modeling, check — short lines a teacher can read aloud cold
 - A1: prefer 3-sound CVC. A2: allow CVCC/CCVC and common digraphs.`
     : `

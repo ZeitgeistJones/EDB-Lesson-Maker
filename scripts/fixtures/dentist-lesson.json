@@ -1,0 +1,91 @@
+{
+  "title": "Dentists are nice!",
+  "warmUp": {
+    "question": "What do you do when you have a toothache?",
+    "sampleAnswer": "I go to the dentist."
+  },
+  "vocabulary": [
+    { "word": "dentist", "emoji": "🦷", "sentence": "The dentist helps my teeth." },
+    { "word": "tooth", "emoji": "😁", "sentence": "My tooth hurts." },
+    { "word": "smile", "emoji": "😊", "sentence": "I smile for the photo." },
+    { "word": "clean", "emoji": "✨", "sentence": "Clean teeth feel good." },
+    { "word": "brush", "emoji": "🪥", "sentence": "I brush every day." },
+    { "word": "floss", "emoji": "🧵", "sentence": "I floss at night." }
+  ],
+  "sentenceFrames": [
+    "I go to the dentist to ____.",
+    "The dentist makes my teeth ____.",
+    "I ____ my teeth every day."
+  ],
+  "phonics": {
+    "targetWords": [
+      {
+        "word": "tooth",
+        "graphemes": ["t", "oo", "th"],
+        "emoji": "😁",
+        "topicRelevance": "Lesson vocab — one long vowel digraph"
+      },
+      {
+        "word": "clean",
+        "graphemes": ["c", "l", "ea", "n"],
+        "emoji": "✨",
+        "topicRelevance": "Lesson vocab — blend + digraph"
+      },
+      {
+        "word": "smile",
+        "graphemes": ["s", "m", "i", "le"],
+        "emoji": "😊",
+        "topicRelevance": "Lesson vocab — silent-e pattern"
+      }
+    ],
+    "distractors": ["b", "a", "p", "r"],
+    "teacherScript": {
+      "warmup": "Say tooth slowly. How many sounds?",
+      "modeling": "Watch me drag t, then oo, then th.",
+      "check": "Which box has two letters?"
+    }
+  },
+  "story": {
+    "title": "Leo Goes to the Dentist",
+    "pages": [
+      {
+        "heading": "In the waiting room",
+        "text": "Leo is a little afraid. Mom holds his hand. The dentist smiles.",
+        "visualTheme": "dentist",
+        "visualCaption": "Dental clinic waiting area"
+      },
+      {
+        "heading": "A healthy smile",
+        "text": "The dentist cleans Leo's teeth. Leo learns to brush and floss.",
+        "visualTheme": "dentist",
+        "visualCaption": "Checkup chair"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Who goes to the dentist?", "sampleAnswer": "Leo." },
+      { "question": "What does Leo learn?", "sampleAnswer": "He learns to brush and floss." }
+    ],
+    "creativeQuestions": [
+      "If you were a dentist, what advice would you give?",
+      "What is one thing you can do to keep your teeth healthy?"
+    ]
+  },
+  "speakingQuestions": [
+    { "question": "How often do you brush your teeth?", "sampleAnswer": "I brush them twice a day." },
+    { "question": "Have you ever visited the dentist?", "sampleAnswer": "Yes, last year." }
+  ],
+  "activity": {
+    "title": "Dental Health Planner",
+    "prompt": "Choose things you would do to help your teeth.",
+    "templates": [
+      "I will brush my teeth every day.",
+      "I will floss at night.",
+      "I will smile for photos.",
+      "I will visit the dentist."
+    ]
+  },
+  "reviewSentences": [
+    "I brush and floss for a healthy smile.",
+    "The dentist helps keep my teeth clean."
+  ]
+}

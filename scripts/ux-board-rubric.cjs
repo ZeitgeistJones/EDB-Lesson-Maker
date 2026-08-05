@@ -38,10 +38,10 @@ const METRICS = {
     label: 'Smallest rendered text size on the page (px)',
     scope: 'page',
     worseWhen: 'lower',
-    warn: 16,
-    fail: 12,
+    warn: 22,
+    fail: 14,
     severity: 'soft',
-    why: 'Kid reading from the back of the room (18px body reads fine; 13px hints do not)',
+    why: 'Kid reading from a ClassIn window (22px body reads; 13px hints do not)',
   },
   M2: {
     label: 'Share of text blocks sitting on busy background with no card/wash behind',
@@ -105,6 +105,24 @@ const METRICS = {
     fail: 0.25,
     severity: 'soft',
     why: 'Unvetted glyphs are how a beach umbrella landed on a gym lesson — wishlist candidates',
+  },
+  M9: {
+    label: 'Dead-space ratio (1 − content coverage of the board)',
+    scope: 'page',
+    worseWhen: 'higher',
+    warn: 0.55,
+    fail: 0.72,
+    severity: 'soft',
+    why: 'Sparse frames / comprehension pages that leave a dead board',
+  },
+  M10: {
+    label: 'Smallest interactive (unlocked) piece size in px (min of w,h)',
+    scope: 'page',
+    worseWhen: 'lower',
+    warn: 64,
+    fail: 40,
+    severity: 'soft',
+    why: 'Postage-stamp dock icons students cannot grab in ClassIn',
   },
 };
 

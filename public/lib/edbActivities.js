@@ -76,13 +76,35 @@
     return list;
   }
 
-  /** Speaking spine: up to 2 Qs per page, max 2 pages (4 Qs). Mirrors LessonPages. */
-  function speakingChunks(lesson) {
+  /** Speaking spine: up to 2 Qs per page, max 2 pages (4 Qs).
+   *  30-min lessons collapse to one speaking page so the board stays teachable. */
+  function speakingChunks(lesson, meta) {
     const qs = (lesson.speakingQuestions || []).slice(0, 4);
     if (!qs.length) return [];
+    const dur = Number(meta?.duration);
+    if (Number.isFinite(dur) && dur <= 30) return [qs];
     const pages = [];
     for (let i = 0; i < qs.length; i += 2) pages.push(qs.slice(i, i + 2));
     return pages;
+  }
+
+  /** Honest match-dock size: ≥96px, scale up when fewer than 5 words. Null = can't fit. */
+  function matchDockSize(count) {
+    const n = Math.max(1, count || 1);
+    const dockW = 1184;
+    const dockH = 140;
+    const gap = 12;
+    let side = n < 5 ? 112 : 96;
+    const needW = n * side + (n - 1) * gap;
+    if (needW > dockW || side > dockH) {
+      side = Math.floor((dockW - gap * (n - 1)) / n);
+      if (side < 96) return null;
+    }
+    return { w: side, h: side };
+  }
+
+  function canHonestMatchDock(lesson) {
+    return !!matchDockSize(vocabList(lesson).length);
   }
 
   /** 60-minute lessons ask Gemini for 3 story pages; shorter ones get 2. */
@@ -99,6 +121,11 @@
     if (!qs.length) return false;
     const dur = Number(meta?.duration);
     if (Number.isFinite(dur) && dur <= 25) return false;
+    // 30-min lessons: drop creative when comprehension is short (≤2 Qs)
+    if (Number.isFinite(dur) && dur <= 30) {
+      const comp = (lesson.story?.comprehensionQuestions || []).length;
+      if (comp <= 2) return false;
+    }
     return true;
   }
 
@@ -151,13 +178,15 @@
     distractors = [...new Set(distractors)].slice(0, 6);
 
     const script = raw.teacherScript || raw.teacher_script || {};
-    const correctCount = words.reduce((n, w) => n + w.graphemes.length, 0);
-    const maxDist = Math.max(0, 14 - correctCount);
+    // Focus word first; dock = its graphemes + ≤4 distractors (≤10 tiles total)
+    const focusCount = words[0].graphemes.length;
+    const maxDist = Math.max(0, Math.min(4, 10 - focusCount));
     distractors = distractors.slice(0, maxDist);
 
     return {
       targetWords: words,
       distractors,
+      focusIndex: 0,
       teacherScript: {
         warmup: script.warmup || 'Say the word slowly. How many sounds do you hear?',
         modeling: script.modeling || 'Watch me drag each sound into a box.',
@@ -223,7 +252,8 @@
     const L = layout || window.EdbLayout;
     const vocab = vocabList(lesson);
     if (!vocab.length) return;
-    // Pack icons resolved at export via VocabIcons + meta.word (no mixed SVG styles)
+    const size = matchDockSize(vocab.length);
+    if (!size) return; // caller should fall back to icons-on-cards
     L.placeDockRow(page, vocab.map((v) => ({
       kind: 'emoji',
       emoji: (window.VocabIcons && window.VocabIcons.emojiFor)
@@ -231,7 +261,7 @@
         : (v.emoji || '•'),
       role: 'matchPiece',
       meta: { word: v.word },
-    })), { w: 96, h: 96 });
+    })), { w: size.w, h: size.h, noShrink: true });
     page.notes.push('recipe:matchDock');
   }
 
@@ -380,15 +410,21 @@
     const L = layout || window.EdbLayout;
     const props = vocabList(lesson).slice(0, 4);
     if (!props.length) return;
-    const art = L.zoneRect(page, 'artSafe');
+    const art = L.zoneRect(page, 'artSafe') || { x: 780, y: 100, w: 450, h: 320 };
     const body = CHAR_PATHS[hashStr(lesson.title) % CHAR_PATHS.length];
+    const bw = Math.min(180, art.w - 24);
+    const bh = Math.min(220, art.h - 24);
     L.place(page, {
       locked: true,
       kind: 'image',
       asset: body,
-      w: 180, h: 220,
+      w: bw, h: bh,
       intentional: true,
-      anchor: { x: art.x + 20, y: art.y + 20, w: 180, h: 220 },
+      anchor: {
+        x: art.x + Math.round((art.w - bw) / 2),
+        y: art.y + Math.max(8, art.h - bh - 8),
+        w: bw, h: bh,
+      },
       role: 'dressBody',
     });
     L.placeDockRow(page, props.map((v) => ({
@@ -397,7 +433,7 @@
       text: v.word,
       role: 'dressPart',
       meta: { word: v.word },
-    })), { w: 96, h: 96 });
+    })), { w: 96, h: 96, noShrink: true });
     page.notes.push('recipe:dressUp');
   }
 
@@ -577,8 +613,8 @@
   }
 
   /**
-   * Sound boxes + letter tiles (Elkonin / CVC–CVCC).
-   * Locked boxes in targetBay; unlocked grapheme tiles in dock (≤14).
+   * Sound boxes + letter tiles — one focus word large; remaining words as chips.
+   * Dock: focus graphemes + ≤4 distractors (≤10 tiles, ≥64px).
    */
   function phonicsSoundBoxes(lesson, page, layout) {
     const L = layout || window.EdbLayout;
@@ -586,80 +622,71 @@
     if (!data) return;
 
     const PB = window.PropBank;
-    const bay = L.zoneRect(page, 'targetBay') || { x: 430, y: 88, w: 800, h: 300 };
-    const words = data.targetWords;
-    const rowH = Math.floor((bay.h - 12) / Math.max(words.length, 1));
-    const boxH = Math.min(68, Math.max(44, rowH - 16));
-    const boxGap = 10;
-    const cueW = 56;
+    const bay = L.zoneRect(page, 'targetBay') || { x: 280, y: 140, w: 900, h: 240 };
+    const focus = data.targetWords[data.focusIndex || 0];
 
-    words.forEach((tw, wi) => {
-      const rowY = bay.y + 6 + wi * rowH;
+    const boxH = 90;
+    const boxGap = 14;
+    const cueW = 72;
+    const rowY = bay.y + Math.max(20, Math.round((bay.h - boxH) / 2) - 10);
+    L.place(page, {
+      locked: true,
+      kind: 'emoji',
+      emoji: focus.emoji || '🔤',
+      w: 64,
+      h: 64,
+      intentional: true,
+      anchor: {
+        x: bay.x + 8,
+        y: rowY + Math.max(0, Math.round((boxH - 64) / 2)),
+        w: 64,
+        h: 64,
+      },
+      role: 'phonicsCue',
+      meta: { target: focus.word },
+    });
+
+    const n = focus.boxCount;
+    const avail = bay.w - cueW - 24;
+    const boxW = Math.min(boxH, Math.floor((avail - boxGap * Math.max(0, n - 1)) / n));
+    const startX = bay.x + cueW + 16;
+
+    for (let i = 0; i < n; i++) {
+      const x = startX + i * (boxW + boxGap);
+      const y = rowY;
+      let asset = slotGhostPng(boxW, boxH, i + 1);
+      let meta = { target: focus.word, box: i, grapheme: focus.graphemes[i] };
+      if (PB && PB.loaded()) {
+        const prop = PB.resolve({
+          role: 'soundBoxes',
+          word: 'sound-box',
+          seed: focus.word + '|' + i,
+          index: i,
+        });
+        if (prop) {
+          asset = prop.path;
+          meta = Object.assign(meta, { propKey: prop.key, propAspect: prop.aspect });
+        }
+      }
       L.place(page, {
         locked: true,
-        kind: 'emoji',
-        emoji: tw.emoji || '🔤',
-        w: 48,
-        h: 48,
+        kind: 'image',
+        asset,
+        w: boxW,
+        h: boxH,
         intentional: true,
-        anchor: {
-          x: bay.x + 4,
-          y: rowY + Math.max(0, Math.round((boxH - 48) / 2)),
-          w: 48,
-          h: 48,
-        },
-        role: 'phonicsCue',
-        meta: { target: tw.word },
+        anchor: { x, y, w: boxW, h: boxH },
+        role: 'soundBox',
+        meta,
       });
+    }
 
-      const n = tw.boxCount;
-      const avail = bay.w - cueW - 16;
-      const boxW = Math.min(boxH, Math.floor((avail - boxGap * Math.max(0, n - 1)) / n));
-      const startX = bay.x + cueW + 8;
-
-      for (let i = 0; i < n; i++) {
-        const x = startX + i * (boxW + boxGap);
-        const y = rowY;
-        let asset = slotGhostPng(boxW, boxH, i + 1);
-        let meta = { target: tw.word, box: i, grapheme: tw.graphemes[i] };
-        if (PB && PB.loaded()) {
-          const prop = PB.resolve({
-            role: 'soundBoxes',
-            word: 'sound-box',
-            seed: tw.word + '|' + i,
-            index: i,
-          });
-          if (prop) {
-            asset = prop.path;
-            meta = Object.assign(meta, { propKey: prop.key, propAspect: prop.aspect });
-          }
-        }
-        L.place(page, {
-          locked: true,
-          kind: 'image',
-          asset,
-          w: boxW,
-          h: boxH,
-          intentional: true,
-          anchor: { x, y, w: boxW, h: boxH },
-          role: 'soundBox',
-          meta,
-        });
-      }
-    });
-
-    const tiles = [];
-    words.forEach((tw) => {
-      tw.graphemes.forEach((g) => {
-        // meta.grapheme only — never meta.word, or VocabIcons steals the tile.
-        tiles.push({
-          kind: 'tile',
-          text: g,
-          role: 'letterTile',
-          meta: { grapheme: g, target: tw.word },
-        });
-      });
-    });
+    const tiles = focus.graphemes.map((g) => ({
+      kind: 'tile',
+      text: g,
+      role: 'letterTile',
+      meta: { grapheme: g, target: focus.word },
+    }));
     data.distractors.forEach((d) => {
       tiles.push({
         kind: 'tile',
@@ -671,8 +698,8 @@
 
     const shuffled = pick(tiles, tiles.length, hashStr((lesson.title || '') + '|phonics'));
     const maxLen = Math.max(1, ...shuffled.map((t) => String(t.text || '').length));
-    const tileW = maxLen > 1 ? 72 : 56;
-    L.placeDockRow(page, shuffled, { w: tileW, h: 56 });
+    const tileW = Math.max(64, maxLen > 1 ? 80 : 64);
+    L.placeDockRow(page, shuffled, { w: tileW, h: 64, noShrink: true });
     page.notes.push('recipe:phonicsSoundBoxes');
   }
 
@@ -703,8 +730,8 @@
     const hasVocab = vocab.length > 0;
     const assignments = [];
 
-    // New Words — dock pieces only (hideSeek fights chrome; revisit later)
-    if (hasVocab) {
+    // New Words — honest dock only (≥96px); else chrome shows icons-on-cards
+    if (hasVocab && canHonestMatchDock(lesson)) {
       assignments.push({ pageKey: 'newWords', recipeId: 'matchDock' });
     }
 
@@ -714,7 +741,7 @@
     }
 
     // Speaking — one Peek sticky over the first sample on speaking:0
-    const chunks = speakingChunks(lesson);
+    const chunks = speakingChunks(lesson, meta);
     if (chunks[0] && chunks[0][0]) {
       assignments.push({
         pageKey: 'speaking:0',
@@ -911,7 +938,7 @@
     addPage('comprehension', 'comprehension');
     if (includeCreative(lesson, meta)) addPage('creative', 'creative');
 
-    speakingChunks(lesson).forEach((_, i) => addPage('speaking:' + i, 'speaking'));
+    speakingChunks(lesson, meta).forEach((_, i) => addPage('speaking:' + i, 'speaking'));
 
     addPage('activity', 'activity');
     addPage('wrap', 'wrap');
@@ -946,6 +973,8 @@
     includePhonics,
     wantsPhonics,
     normalizePhonics,
+    canHonestMatchDock,
+    matchDockSize,
     solidPng,
     slotGhostPng,
     stickyPng,

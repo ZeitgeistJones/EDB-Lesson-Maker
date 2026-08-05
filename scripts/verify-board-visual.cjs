@@ -28,7 +28,10 @@ const BOARD_H = 590;
 const MAX_UNLOCKED_IOU = 0.4;
 
 /** Extra slack before a metric drop counts as a regression. */
-const REGRESSION_ABS = { M1: 2, M2: 0.08, M3: 0.03, M4: 0.08, M5: 0.08, M6: 0.5, M7: 0.08, M8: 0.06 };
+const REGRESSION_ABS = {
+  M1: 2, M2: 0.08, M3: 0.03, M4: 0.08, M5: 0.08, M6: 0.5, M7: 0.08, M8: 0.06,
+  M9: 0.08, M10: 8,
+};
 const REGRESSION_REL = 0.12;
 
 const GRADIENT_HINTS = [
@@ -497,12 +500,30 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
       0
     );
 
+    // Coarse coverage: sum of card + readable areas (capped) as anti-dead-space.
+    const covered = Math.min(
+      pageArea,
+      cards.reduce((s, c) => s + c.area, 0) + readable.reduce((s, b) => s + b.area, 0)
+    );
+    const deadSpace = Number((1 - covered / pageArea).toFixed(3));
+
+    // Chrome cards the agent must not cover with props (data-chrome-card).
+    const chromeCards = [];
+    for (const node of pageEl.querySelectorAll('[data-chrome-card]')) {
+      const cs = getComputedStyle(node);
+      if (!visible(node, cs)) continue;
+      const r = rel(node.getBoundingClientRect());
+      if (r.w > 40 && r.h > 24) chromeCards.push(r);
+    }
+
     return {
       contentBottom,
+      chromeCards,
       M1: minTextPx,
       M2: readable.length ? Number((bareOnBusy / readable.length).toFixed(3)) : 0,
       M3: primaryCard ? Number(Math.min(1, textInPrimary / primaryCard.area).toFixed(3)) : null,
       M6: minContrast == null ? null : Number(minContrast.toFixed(2)),
+      M9: deadSpace,
       artCount,
       textBlocks: readable.length,
       cardCount: cards.length,
@@ -533,6 +554,57 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
     let d = 0;
     for (let i = 0; i < a.length; i++) d += Math.abs(a[i] - b[i]);
     return d / 2; // 0..1
+  }
+
+  function rectOverlapArea(a, b) {
+    const x = Math.max(a.x, b.x);
+    const y = Math.max(a.y, b.y);
+    const x2 = Math.min(a.x + a.w, b.x + b.w);
+    const y2 = Math.min(a.y + a.h, b.y + b.h);
+    return Math.max(0, x2 - x) * Math.max(0, y2 - y);
+  }
+
+  /** Pieces overlapping real DOM chrome cards (templates, questions) — not just zone rects. */
+  function chromeCardCollisionFails(boardPlan, pageMetrics) {
+    const fails = [];
+    // Dock / tray pieces are meant to sit below chrome; they are not collisions.
+    const DOCK_ROLES = {
+      matchPiece: 1, letterTile: 1, dockPiece: 1, dressPart: 1, buildPart: 1,
+      orderTile: 1, sortCard: 1, buildSlot: 0,
+    };
+    if (!boardPlan.pages || !pageMetrics) return fails;
+    boardPlan.pages.forEach((pg, i) => {
+      const cards = (pageMetrics[i] && pageMetrics[i].chromeCards) || [];
+      if (!cards.length) return;
+      const dock = window.EdbLayout && window.EdbLayout.zoneRect(pg, 'dock');
+      const pieces = [...(pg.locked || []), ...(pg.unlocked || [])];
+      for (const p of pieces) {
+        if (p.role === 'answerKey' || p.kind === 'text') continue;
+        if (DOCK_ROLES[p.role]) continue;
+        const pr = { x: p.x || 0, y: p.y || 0, w: p.w || 96, h: p.h || 96 };
+        // Anything whose center is in the dock band is a dock piece even if
+        // the role name is unfamiliar.
+        if (dock) {
+          const cx = pr.x + pr.w / 2;
+          const cy = pr.y + pr.h / 2;
+          if (cx >= dock.x && cx <= dock.x + dock.w && cy >= dock.y && cy <= dock.y + dock.h) {
+            continue;
+          }
+        }
+        const pieceArea = pr.w * pr.h;
+        for (const c of cards) {
+          const inter = rectOverlapArea(pr, c);
+          if (pieceArea > 0 && inter / pieceArea >= 0.25) {
+            fails.push({
+              code: 'H3',
+              msg: `${pg.pageKey}: ${p.role} overlaps chrome card (${Math.round(inter)}px²)`,
+            });
+            break;
+          }
+        }
+      }
+    });
+    return fails;
   }
 
   async function answerLeakCheck(boardPlan, rendered) {
@@ -657,6 +729,9 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
     return acc;
   }, {});
   const pageMetrics = rendered.pageEls.map((el) => measurePage(el));
+  // Real DOM card bounds catch props that clear the fixed bodyText zone but
+  // still sit on template cards that grew past the zone.
+  for (const f of chromeCardCollisionFails(boardPlan, pageMetrics)) layoutFails.push(f);
   window.LessonPages.cleanup(rendered.host);
 
   // Dock / prop art lives in the board plan and is painted straight to canvas,
@@ -678,7 +753,16 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
     m.M8 = POSTER_PAGES[pg.pageKey] || onScene
       ? null
       : Number((Math.max(m.contentBottom || 0, pieceBottom) / BOARD_H).toFixed(3));
+    // Poster / chant / piece-heavy pages aren't empty in the live-classroom sense.
+    if (POSTER_PAGES[pg.pageKey] || pg.pageKey === 'frames' || pieceArt >= 4) {
+      m.M9 = null;
+    }
+    const unlocked = (pg.unlocked || []).filter((p) => p.kind !== 'text');
+    m.M10 = unlocked.length
+      ? Math.min(...unlocked.map((p) => Math.min(p.w || 96, p.h || 96)))
+      : null;
     delete m.contentBottom;
+    delete m.chromeCards;
   });
 
   const vocabArt = await vocabArtCoverage(lesson);
@@ -819,6 +903,8 @@ function metricFlagsFor(caseId, result) {
     push('M3', p.metrics.M3, 'page', p.pageKey, p.index);
     push('M6', p.metrics.M6, 'page', p.pageKey, p.index);
     push('M8', p.metrics.M8, 'page', p.pageKey, p.index);
+    push('M9', p.metrics.M9, 'page', p.pageKey, p.index);
+    push('M10', p.metrics.M10, 'page', p.pageKey, p.index);
   }
   push('M4', result.caseMetrics.M4, 'case');
   push('M5', result.caseMetrics.M5, 'case');
@@ -840,7 +926,7 @@ function regressionsFor(caseId, result, baselineCase) {
   for (const p of result.pages) {
     const b = basePages[p.pageKey];
     if (!b || !p.metrics) continue;
-    for (const code of ['M1', 'M2', 'M3', 'M6', 'M8']) {
+    for (const code of ['M1', 'M2', 'M3', 'M6', 'M8', 'M9', 'M10']) {
       if (worseThan(code, p.metrics[code], b[code])) {
         out.push({
           caseId,
