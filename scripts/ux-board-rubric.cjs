@@ -129,7 +129,7 @@ const SOFT = {
   S9: 'No html2canvas checkerboard behind icons',
 
   // Background variability + appropriateness
-  S2: 'Drill pages feel like classroom surfaces (chalk/cork/desk/whiteboard)',
+  S2: 'Drill pages use calm washes under card chrome — not write-on boards (chalk/cork/whiteboard)',
   S3: 'Story pages feel like being there; drills feel like worksheets',
   S6: 'Rhythm: scene → flat → flat → scene (not spam)',
   S8: 'Story side-art emoji matches place (not Gemini visualTheme lies)',

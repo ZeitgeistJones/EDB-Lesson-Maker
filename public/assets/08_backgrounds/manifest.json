@@ -893,7 +893,11 @@
     "lava",
     "eruption",
     "mountain",
-    "nature"
+    "nature",
+    "crater",
+    "ash",
+    "geothermal",
+    "seismic"
    ]
   },
   "savanna": {
@@ -912,26 +916,26 @@
  "flats": {
   "whiteboard": {
    "file": "flat_whiteboard.png",
-   "tone": "clean white teaching board — universal drills / phonics",
+   "tone": "clean white board — marker text written ON the surface only (not under card chrome)",
    "mood": "teaching",
    "textInk": "dark"
   },
   "chalkboard": {
    "file": "flat_chalkboard.png",
-   "tone": "dark green chalkboard — title / review energy",
+   "tone": "dark green board — chalk text written ON the surface only (not under card chrome)",
    "mood": "teaching",
    "textInk": "light"
   },
   "cork": {
    "file": "flat_cork.png",
-   "tone": "warm cork pinboard — vocab cards / sorting",
+   "tone": "warm cork pinboard — pinned pictures / notes ON the board only (not under card chrome)",
    "mood": "teaching",
    "textInk": "light"
   },
   "desk": {
    "file": "flat_desk.png",
-   "tone": "neutral wall + desk ledge — soft workspace",
-   "mood": "teaching",
+   "tone": "neutral wall + desk ledge — soft workspace wash under cards",
+   "mood": "calm",
    "textInk": "light"
   },
   "sky-meadow": {

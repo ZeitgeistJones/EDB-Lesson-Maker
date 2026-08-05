@@ -42,6 +42,14 @@
       "notes": "Most common real lesson shape"
     },
     {
+      "id": "volcano",
+      "fixture": "volcano-lesson.json",
+      "tier": "core",
+      "meta": { "level": "C1", "duration": "60" },
+      "expectScene": "volcano|lava|eruption|mountain",
+      "notes": "Title starts with Living… — must not steal living-room over volcano-field"
+    },
+    {
       "id": "abstract-words",
       "fixture": "abstract-words-lesson.json",
       "tier": "adversarial",

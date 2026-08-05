@@ -94,12 +94,42 @@
     suitcase: ['airport', 'travel'],
     seatbelt: ['airplane', 'flight', 'travel'],
     turbulence: ['airplane', 'flight'],
+
+    // Volcano / geology — "crater" and "ash" must reach volcano-field tags,
+    // and "Living in the Shadow of the Crater" must not lose to living-room
+    // just because the title starts with Living.
+    volcano: ['volcano', 'lava', 'eruption', 'mountain', 'nature'],
+    volcanoes: ['volcano', 'lava', 'eruption', 'mountain'],
+    volcanic: ['volcano', 'lava', 'eruption', 'mountain'],
+    crater: ['volcano', 'lava', 'eruption', 'mountain'],
+    lava: ['volcano', 'lava', 'eruption'],
+    magma: ['volcano', 'lava', 'eruption'],
+    ash: ['volcano', 'lava', 'eruption'],
+    eruption: ['volcano', 'lava', 'eruption'],
+    eruptions: ['volcano', 'lava', 'eruption'],
+    geothermal: ['volcano', 'lava', 'nature'],
+    seismic: ['volcano', 'earthquake', 'nature'],
+    tremors: ['volcano', 'earthquake', 'nature'],
+    dormant: ['volcano', 'lava', 'mountain'],
+    evacuate: ['volcano', 'emergency', 'city'],
+    evacuation: ['volcano', 'emergency', 'city'],
   };
+
+  /** Words that appear in titles but are not place signals on their own.
+   *  "Living in the Shadow of the Crater" was scoring living-room (5) over
+   *  volcano-field (3) because "living" hit the living-room name (+2) and
+   *  the "living" half of tag "living room" (+3). */
+  const SCORE_STOP = new Set([
+    'a', 'an', 'and', 'at', 'for', 'in', 'of', 'on', 'or', 'the', 'to', 'with',
+    'title', 'shadow', 'living', 'near', 'next', 'my', 'our', 'your', 'how',
+    'what', 'when', 'where', 'why', 'who',
+  ]);
 
   function expandTags(tags) {
     const out = new Set();
     for (const raw of tags || []) {
       for (const t of norm(raw)) {
+        if (SCORE_STOP.has(t)) continue;
         out.add(t);
         const extra = ALIASES[t];
         if (extra) extra.forEach((x) => out.add(x));
@@ -179,12 +209,15 @@
   }
 
   /**
-   * Flats carry a mood (teaching / calm / music / fantasy). Drill pages only
-   * rotate through teaching + calm by default — a doctor lesson was getting
-   * castle and piano washes purely because they existed in the bank. Music
-   * and fantasy flats have to be EARNED by the lesson topic.
+   * Flats carry a mood (teaching / calm / music / fantasy).
+   *
+   * Drill pages with card chrome (warm-up, speaking, comprehension, …) only
+   * rotate calm washes. Whiteboard / chalkboard / cork are "write-on"
+   * surfaces — marker, chalk, or pinned cards ON the board — and must not
+   * sit under floating text boxes. Music and fantasy flats still have to be
+   * earned by the lesson topic.
    */
-  const DEFAULT_MOODS = ['teaching', 'calm'];
+  const DEFAULT_MOODS = ['calm'];
   const MOOD_HINTS = {
     music: /\b(music|song|songs|sing|singing|piano|guitar|drum|drums|rhythm|band|dance|dancing|instrument|instruments|concert)\b/,
     fantasy: /\b(fairy|tale|tales|castle|magic|magical|dragon|dragons|princess|prince|knight|wizard|witch|monster|monsters|space|planet|planets|rocket|star|stars|moon|dream|dreams|night|halloween|dinosaur|dinosaurs)\b/,

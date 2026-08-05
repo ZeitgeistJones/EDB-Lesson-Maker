@@ -409,8 +409,8 @@
   function buildSectionList(lesson, meta) {
     const vocab = (lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v.word)).filter(Boolean);
     const topic = lesson.title || '';
-    // Place pages get the topic scene; drill/chrome pages prefer rotating flats
-    // (whiteboard / chalk / cork / desk) so the board isn't one wallpaper on repeat.
+    // Place pages get the topic scene; drill/chrome pages prefer calm washes
+    // (not whiteboard/chalk/cork — those are write-on surfaces, not card backdrops).
     const sections = [
       { title: topic || 'Title', tags: ['title', topic], vocabulary: vocab },
       { title: 'Warm Up', tags: ['warmup', 'warm-up'], vocabulary: [], preferFlat: true },
