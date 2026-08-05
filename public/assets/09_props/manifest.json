@@ -1440,6 +1440,24 @@
       "aspect": 3.01,
       "bodyHue": 5
     },
+    "trampoline": {
+      "file": "trampoline.png",
+      "role": "playPart",
+      "tags": [
+        "trampoline",
+        "gym",
+        "park",
+        "playground",
+        "sport",
+        "outdoors",
+        "backyard"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.86,
+      "bodyHue": 215
+    },
     "sandbox": {
       "file": "sandbox.png",
       "role": "furniture",
