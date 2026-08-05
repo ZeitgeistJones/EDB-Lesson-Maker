@@ -153,6 +153,8 @@ VOCAB ICON STYLE:
 
 ### Sheet V1 — Clinic people + words (wishlist: doctor/nurse/patient/diagnosis/clumsy/table)
 
+**Status: wired** — imported via `npm run assets:vocab-sheet` into `07_vocab-pack`.
+
 ```
 Generate a 3×3 grid of vocabulary icons for young ESL learners. Each panel ONE subject on solid white. Panels divided evenly, no divider lines.
 
@@ -174,6 +176,8 @@ doctor, nurse, patient, diagnosis, clumsy, table, appointment, sick, stethoscope
 ```
 
 ### Sheet V2 — Room adjectives (cramped / spacious / tidy / cluttered / cosy / huge)
+
+**Status: wired** — imported into `07_vocab-pack`.
 
 These need **contrast pairs**, not random objects.
 
@@ -198,6 +202,8 @@ Keys: cramped, spacious, tidy, cluttered, cosy, huge, small, empty, full
 
 ### Sheet V3 — Travel procedure words
 
+**Status: wired** — imported into `07_vocab-pack`.
+
 ```
 Generate a 3×3 grid of vocabulary icons for young ESL learners. Each panel ONE subject on solid white. Panels divided evenly, no divider lines.
 
@@ -218,6 +224,8 @@ Keys: security, turbulence, connection, passport, boarding-pass, suitcase, gate,
 ```
 
 ### Sheet V4 — Cafeteria words (vocab icons; props are Sheet 3)
+
+**Status: wired** — imported into `07_vocab-pack`.
 
 ```
 Generate a 3×3 grid of vocabulary icons for young ESL learners. Each panel ONE subject on solid white. Panels divided evenly, no divider lines.

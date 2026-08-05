@@ -27,7 +27,7 @@
  "appointment": {
   "file": "appointment.png",
   "emoji": "📅",
-  "codepoint": "1f4c5"
+  "source": "generated"
  },
  "arrival": {
   "file": "arrival.png",
@@ -144,6 +144,11 @@
   "emoji": "🐦",
   "codepoint": "1f426"
  },
+ "boarding-pass": {
+  "file": "boarding-pass.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "boat": {
   "file": "boat.png",
   "emoji": "⛵",
@@ -213,6 +218,11 @@
   "file": "cactus.png",
   "emoji": "🌵",
   "codepoint": "1f335"
+ },
+ "cafeteria": {
+  "file": "cafeteria.png",
+  "emoji": "",
+  "source": "generated"
  },
  "cake": {
   "file": "cake.png",
@@ -334,6 +344,16 @@
   "emoji": "☁️",
   "codepoint": "2601"
  },
+ "clumsy": {
+  "file": "clumsy.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "cluttered": {
+  "file": "cluttered.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "coat": {
   "file": "coat.png",
   "emoji": "🧥",
@@ -369,6 +389,11 @@
   "emoji": "😕",
   "codepoint": "1f615"
  },
+ "connection": {
+  "file": "connection.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "cook": {
   "file": "cook.png",
   "emoji": "🍳",
@@ -384,6 +409,11 @@
   "emoji": "🌽",
   "codepoint": "1f33d"
  },
+ "cosy": {
+  "file": "cosy.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "cow": {
   "file": "cow.png",
   "emoji": "🐮",
@@ -393,6 +423,11 @@
   "file": "crab.png",
   "emoji": "🦀",
   "codepoint": "1f980"
+ },
+ "cramped": {
+  "file": "cramped.png",
+  "emoji": "",
+  "source": "generated"
  },
  "crayon": {
   "file": "crayon.png",
@@ -417,7 +452,7 @@
  "customs": {
   "file": "customs.png",
   "emoji": "🛃",
-  "codepoint": "1f6c3"
+  "source": "generated"
  },
  "cycling": {
   "file": "cycling.png",
@@ -434,6 +469,11 @@
   "emoji": "⏳",
   "codepoint": "23f3"
  },
+ "delicious": {
+  "file": "delicious.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "departure": {
   "file": "departure.png",
   "emoji": "🛫",
@@ -444,10 +484,15 @@
   "emoji": "🏜️",
   "codepoint": "1f3dc"
  },
+ "diagnosis": {
+  "file": "diagnosis.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "doctor": {
   "file": "doctor.png",
   "emoji": "🧑‍⚕️",
-  "codepoint": "1f9d1-200d-2695-fe0f"
+  "source": "generated"
  },
  "dog": {
   "file": "dog.png",
@@ -508,6 +553,11 @@
   "file": "elephant.png",
   "emoji": "🐘",
   "codepoint": "1f418"
+ },
+ "empty": {
+  "file": "empty.png",
+  "emoji": "",
+  "source": "generated"
  },
  "excited": {
   "file": "excited.png",
@@ -599,10 +649,20 @@
   "emoji": "🐸",
   "codepoint": "1f438"
  },
+ "full": {
+  "file": "full.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "game": {
   "file": "game.png",
   "emoji": "🎮",
   "codepoint": "1f3ae"
+ },
+ "gate": {
+  "file": "gate.png",
+  "emoji": "",
+  "source": "generated"
  },
  "gift": {
   "file": "gift.png",
@@ -724,6 +784,16 @@
   "emoji": "🏠",
   "codepoint": "1f3e0"
  },
+ "huge": {
+  "file": "huge.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "hungry": {
+  "file": "hungry.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "hurt": {
   "file": "hurt.png",
   "emoji": "🤕",
@@ -814,6 +884,11 @@
   "emoji": "🛄",
   "codepoint": "1f6c4"
  },
+ "lunch": {
+  "file": "lunch.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "mango": {
   "file": "mango.png",
   "emoji": "🥭",
@@ -852,7 +927,7 @@
  "menu": {
   "file": "menu.png",
   "emoji": "📋",
-  "codepoint": "1f4cb"
+  "source": "generated"
  },
  "microphone": {
   "file": "microphone.png",
@@ -924,6 +999,11 @@
   "emoji": "🍄",
   "codepoint": "1f344"
  },
+ "napkin": {
+  "file": "napkin.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "night": {
   "file": "night.png",
   "emoji": "🌃",
@@ -947,7 +1027,7 @@
  "nurse": {
   "file": "nurse.png",
   "emoji": "👩‍⚕️",
-  "codepoint": "1f469-200d-2695-fe0f"
+  "source": "generated"
  },
  "octopus": {
   "file": "octopus.png",
@@ -992,7 +1072,12 @@
  "passport": {
   "file": "passport.png",
   "emoji": "🛂",
-  "codepoint": "1f6c2"
+  "source": "generated"
+ },
+ "patient": {
+  "file": "patient.png",
+  "emoji": "",
+  "source": "generated"
  },
  "peach": {
   "file": "peach.png",
@@ -1084,6 +1169,11 @@
   "emoji": "❓",
   "codepoint": "2753"
  },
+ "queue": {
+  "file": "queue.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "rabbit": {
   "file": "rabbit.png",
   "emoji": "🐰",
@@ -1134,6 +1224,11 @@
   "emoji": "🏃",
   "codepoint": "1f3c3"
  },
+ "runway": {
+  "file": "runway.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "sad": {
   "file": "sad.png",
   "emoji": "😢",
@@ -1179,6 +1274,11 @@
   "emoji": "💺",
   "codepoint": "1f4ba"
  },
+ "security": {
+  "file": "security.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "shark": {
   "file": "shark.png",
   "emoji": "🦈",
@@ -1222,7 +1322,7 @@
  "sick": {
   "file": "sick.png",
   "emoji": "🤒",
-  "codepoint": "1f912"
+  "source": "generated"
  },
  "sing": {
   "file": "sing.png",
@@ -1259,6 +1359,11 @@
   "emoji": "🛝",
   "codepoint": "1f6dd"
  },
+ "small": {
+  "file": "small.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "snake": {
   "file": "snake.png",
   "emoji": "🐍",
@@ -1294,6 +1399,11 @@
   "emoji": "🍲",
   "codepoint": "1f372"
  },
+ "spacious": {
+  "file": "spacious.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "spider": {
   "file": "spider.png",
   "emoji": "🕷️",
@@ -1317,7 +1427,7 @@
  "stethoscope": {
   "file": "stethoscope.png",
   "emoji": "🩺",
-  "codepoint": "1fa7a"
+  "source": "generated"
  },
  "store": {
   "file": "store.png",
@@ -1342,7 +1452,7 @@
  "suitcase": {
   "file": "suitcase.png",
   "emoji": "🧳",
-  "codepoint": "1f9f3"
+  "source": "generated"
  },
  "sun": {
   "file": "sun.png",
@@ -1358,6 +1468,11 @@
   "file": "swim.png",
   "emoji": "🏊",
   "codepoint": "1f3ca"
+ },
+ "table": {
+  "file": "table.png",
+  "emoji": "",
+  "source": "generated"
  },
  "taxi": {
   "file": "taxi.png",
@@ -1389,10 +1504,20 @@
   "emoji": "🌡️",
   "codepoint": "1f321"
  },
+ "thirsty": {
+  "file": "thirsty.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "ticket": {
   "file": "ticket.png",
   "emoji": "🎫",
   "codepoint": "1f3ab"
+ },
+ "tidy": {
+  "file": "tidy.png",
+  "emoji": "",
+  "source": "generated"
  },
  "tiger": {
   "file": "tiger.png",
@@ -1439,6 +1564,11 @@
   "emoji": "🚆",
   "codepoint": "1f686"
  },
+ "tray": {
+  "file": "tray.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "tree": {
   "file": "tree.png",
   "emoji": "🌳",
@@ -1458,6 +1588,11 @@
   "file": "trumpet.png",
   "emoji": "🎺",
   "codepoint": "1f3ba"
+ },
+ "turbulence": {
+  "file": "turbulence.png",
+  "emoji": "",
+  "source": "generated"
  },
  "turtle": {
   "file": "turtle.png",

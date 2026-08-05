@@ -154,8 +154,15 @@ async function main() {
 
   fs.mkdirSync(IMG, { recursive: true });
   const prev = fs.existsSync(INDEX) ? JSON.parse(fs.readFileSync(INDEX, 'utf8')) : {};
+  const generated = Object.fromEntries(
+    Object.entries(prev).filter(([, e]) => e && e.source === 'generated')
+  );
 
   const todo = Object.entries(WORDS).filter(([word, emoji]) => {
+    // Hand-drawn sheet icons win over Twemoji until someone deletes source:generated.
+    if (generated[word] && fs.existsSync(path.join(IMG, generated[word].file || fileNameFor(word)))) {
+      return false;
+    }
     if (force) return true;
     const entry = prev[word];
     return !entry || entry.emoji !== emoji || !fs.existsSync(path.join(IMG, fileNameFor(word)));
@@ -196,18 +203,31 @@ async function main() {
 
   const index = {};
   for (const word of Object.keys(WORDS).sort()) {
+    const gen = generated[word];
+    if (gen && fs.existsSync(path.join(IMG, gen.file || fileNameFor(word)))) {
+      index[word] = gen;
+      continue;
+    }
     const file = fileNameFor(word);
     if (!fs.existsSync(path.join(IMG, file))) continue;
     index[word] = { file, emoji: WORDS[word], codepoint: codePoint(WORDS[word]) };
   }
-  fs.writeFileSync(INDEX, `${JSON.stringify(index, null, 1)}\n`);
+  // Keep generated-only keys (abstract adjectives etc. not in Twemoji WORDS).
+  for (const [word, entry] of Object.entries(generated)) {
+    if (index[word]) continue;
+    if (!entry.file || !fs.existsSync(path.join(IMG, entry.file))) continue;
+    index[word] = entry;
+  }
+  const ordered = {};
+  for (const k of Object.keys(index).sort()) ordered[k] = index[k];
+  fs.writeFileSync(INDEX, `${JSON.stringify(ordered, null, 1)}\n`);
 
   const stale = fs
     .readdirSync(IMG)
-    .filter((f) => f.endsWith('.png') && !Object.values(index).some((e) => e.file === f));
+    .filter((f) => f.endsWith('.png') && !Object.values(ordered).some((e) => e.file === f));
   stale.forEach((f) => fs.rmSync(path.join(IMG, f)));
 
-  console.log(`\nindex.json: ${Object.keys(index).length} words`);
+  console.log(`\nindex.json: ${Object.keys(ordered).length} words`);
   if (stale.length) console.log(`removed ${stale.length} stale files`);
   if (failed.length) process.exit(1);
 }

@@ -15,6 +15,7 @@
     "quality:judge": "node scripts/quality-verdict.cjs",
     "quality:baseline": "node scripts/quality-baseline.cjs",
     "assets:icons": "node scripts/fetch-vocab-icons.mjs",
+    "assets:vocab-sheet": "node scripts/import-vocab-sheet.mjs",
     "assets:bg": "node scripts/import-background.mjs",
     "assets:ground-qa": "node scripts/qa-scene-ground.mjs",
     "assets:prop": "node scripts/import-prop.mjs",

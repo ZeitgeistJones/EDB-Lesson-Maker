@@ -50,11 +50,19 @@
     aeroplane: 'plane',
     flight: 'plane',
     fly: 'plane',
-    'boarding pass': 'ticket',
+    'boarding pass': 'boarding-pass',
+    boarding: 'boarding-pass',
     seatbelt: 'seat',
     'jet lag': 'tired',
-    gate: 'door',
     classroom: 'school',
+    cozy: 'cosy',
+    patients: 'patient',
+    exam: 'table',
+    'exam table': 'table',
+    yummy: 'delicious',
+    tasty: 'delicious',
+    line: 'queue',
+    'waiting line': 'queue',
     mom: 'mother',
     mum: 'mother',
     dad: 'father',
@@ -68,7 +76,7 @@
    * Anything else belongs in docs/asset-wishlist.md, not a near-enough guess.
    */
   const SAFE_EMOJI = {
-    spacious: '🏟️',
+    // Pack art preferred when present; these are glyph-only fallbacks.
     energetic: '⚡',
   };
 
