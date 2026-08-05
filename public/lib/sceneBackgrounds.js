@@ -334,8 +334,10 @@
     return Math.round(590 * 0.55) - Math.round(pieceHeight / 2);
   }
 
-  /** Unlocked roles that stand on the scene floor in a centred row. */
-  const STAND_ROLES = { buildPart: 1, dressPart: 1, sortCard: 1, dockPiece: 1 };
+  /** Unlocked roles that stand on the scene floor in a centred row.
+   *  buildPart / dockPiece stay in the dock — standing them mid-board is what
+   *  turned buildScene into a scattered emoji pile on the volcano activity. */
+  const STAND_ROLES = { dressPart: 1, sortCard: 1 };
 
   function isStandRole(role) {
     return !!STAND_ROLES[role];

@@ -508,6 +508,12 @@
    * Place 1–3 locked props on scene activity pages after bgPicks exist.
    * Flats get nothing — dressing is for the empty centre band of place scenes.
    * Call from attachBgPicks so preview and bake stay in sync.
+   *
+   * Skip when the activity recipe already owns artSafe (buildScene / dressUp /
+   * sortBins) — stacking dressing on top is what made volcano page 13 a
+   * prop pile-up. Also skip when no prop clears a real theme score: never
+   * wallpaper a volcano with living-room remotes because the title said
+   * "Living…".
    */
   function dressScenes(boardPlan, lesson) {
     const PB = window.PropBank;
@@ -515,14 +521,23 @@
     const req = PB && PB.requestFor('sceneDressing');
     if (!PB || !L || !req || !boardPlan || !boardPlan.pages || !boardPlan.bgPicks) return;
 
+    const RECIPE_OWNS_ART = { buildScene: 1, dressUp: 1, sortBins: 1 };
+    const activityRecipe = (boardPlan.assignments || []).find((a) => a.pageKey === 'activity');
+    if (activityRecipe && RECIPE_OWNS_ART[activityRecipe.recipeId]) return;
+
     const family = PB.familyFor(lesson);
+    const DRESS_TAG_STOP = new Set([
+      'a', 'an', 'and', 'at', 'for', 'in', 'of', 'on', 'or', 'the', 'to', 'with',
+      'living', 'near', 'next', 'my', 'our', 'your', 'how', 'what', 'when', 'where', 'why', 'who',
+      'shadow', 'title',
+    ]);
     const themeTags = [
       ...((lesson && lesson.vocabulary) || []).flatMap((v) => {
         const w = typeof v === 'string' ? v : v && v.word;
         return w ? [String(w).toLowerCase()] : [];
       }),
       ...String((lesson && lesson.title) || '').toLowerCase().split(/\W+/).filter(Boolean),
-    ];
+    ].filter((t) => t && !DRESS_TAG_STOP.has(t));
     const exclude = [];
     const count = Math.max(1, Math.min(3, req.count || 2));
 
@@ -540,18 +555,11 @@
       const gap = 20;
       const placed = [];
 
-      // playPart (swing etc.) only when the lesson is actually about play —
-      // otherwise the role-bucket fallback after a theme miss hangs a swing
-      // in the doctor's office.
-      const calmRoles = ['furniture', 'shelf', 'container', 'object', 'tool'];
-      const playTheme = themeTags.some((t) =>
-        /^(park|playground|swing|slide|gym|play|sport)$/.test(t)
-      );
-      const dressRoles = playTheme ? (req.roles || calmRoles) : calmRoles;
       for (let n = 0; n < count; n++) {
         const seed = (lesson && lesson.title) || '';
-        let prop = PB.resolve({
-          roles: dressRoles,
+        // Tags only + hard minScore. Passing roles here used to ignore a failed
+        // theme score and dump any furniture via the roles bucket.
+        const prop = PB.resolve({
           tags: themeTags,
           seed,
           index: n,
@@ -559,15 +567,6 @@
           family,
           minScore: 3,
         });
-        if (!prop) {
-          prop = PB.resolve({
-            roles: calmRoles,
-            seed,
-            index: n,
-            exclude: req.distinct ? exclude : [],
-            family,
-          });
-        }
         if (!prop) continue;
         exclude.push(prop.key);
         const sized = PB.sizeFor(prop, { maxH, maxW: Math.min(220, art.w - 16) });

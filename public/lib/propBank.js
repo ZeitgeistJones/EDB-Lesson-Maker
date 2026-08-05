@@ -327,6 +327,9 @@
       if (top >= (q.minScore == null ? 3 : q.minScore)) {
         return rotatePick(scored.filter((s) => s.score === top).map((s) => s.p), q.seed, q.index);
       }
+      // Explicit minScore means "theme or nothing" — do not fall through to a
+      // role bucket (that is how remotes landed on volcano activity pages).
+      if (q.minScore != null) return null;
     }
 
     if (q.role) {
