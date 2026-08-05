@@ -822,9 +822,14 @@
       throw new Error('SceneBackgrounds failed to load. Refresh and try again.');
     }
     const sections = buildSectionList(lesson, meta || {});
+    const vocabWords = (lesson.vocabulary || [])
+      .map((v) => (typeof v === 'string' ? v : v.word))
+      .filter(Boolean);
     const bgPicks = await window.SceneBackgrounds.planFor(sections, {
       // Same lesson always lands on the same flats; different lessons do not.
       seed: lesson.title || '',
+      // Title + vocab decide whether music/fantasy flats join the rotation.
+      topicWords: [lesson.title || '', ...vocabWords],
     });
     boardPlan.bgPicks = bgPicks;
     // Scene dressing needs groundY from the picks — run after, not in buildBoardPlan.

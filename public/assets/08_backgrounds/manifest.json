@@ -913,121 +913,145 @@
   "whiteboard": {
    "file": "flat_whiteboard.png",
    "tone": "clean white teaching board — universal drills / phonics",
+   "mood": "teaching",
    "textInk": "dark"
   },
   "chalkboard": {
    "file": "flat_chalkboard.png",
    "tone": "dark green chalkboard — title / review energy",
+   "mood": "teaching",
    "textInk": "light"
   },
   "cork": {
    "file": "flat_cork.png",
    "tone": "warm cork pinboard — vocab cards / sorting",
+   "mood": "teaching",
    "textInk": "light"
   },
   "desk": {
    "file": "flat_desk.png",
    "tone": "neutral wall + desk ledge — soft workspace",
+   "mood": "teaching",
    "textInk": "light"
   },
   "sky-meadow": {
    "file": "flat_sky-meadow.png",
    "tone": "soft blue sky over a green rise — open, outdoorsy, cheerful",
+   "mood": "calm",
    "textInk": "dark"
   },
   "sunrise-plane": {
    "file": "flat_sunrise-plane.png",
    "tone": "teal-to-peach sunrise with a paper plane — journeys and beginnings",
+   "mood": "calm",
    "textInk": "dark"
   },
   "peach-blush": {
    "file": "flat_peach-blush.png",
    "tone": "warm peach wash — gentle and quiet, easy on the eyes",
+   "mood": "calm",
    "textInk": "dark"
   },
   "starry-night": {
    "file": "flat_starry-night.png",
    "tone": "deep violet night sky — bedtime, calm, story energy",
+   "mood": "fantasy",
    "textInk": "light"
   },
   "seafoam-shore": {
    "file": "flat_seafoam-shore.png",
    "tone": "pale mint shore with a wave and pebbles — fresh and summery",
+   "mood": "calm",
    "textInk": "dark"
   },
   "terracotta-arch": {
    "file": "flat_terracotta-arch.png",
    "tone": "warm clay arch with leaves — cosy mediterranean warmth",
+   "mood": "calm",
    "textInk": "dark"
   },
   "window-blue": {
    "file": "flat_window-blue.png",
    "tone": "pale blue with soft window light — airy and focused, morning",
+   "mood": "calm",
    "textInk": "dark"
   },
   "sage-leaves": {
    "file": "flat_sage-leaves.png",
    "tone": "soft sage with leaf shadows — natural and restful",
+   "mood": "calm",
    "textInk": "dark"
   },
   "warm-window": {
    "file": "flat_warm-window.png",
    "tone": "cream and gold arched window light — homely and welcoming",
+   "mood": "calm",
    "textInk": "dark"
   },
   "world-map": {
    "file": "flat_world-map.png",
    "tone": "pale green with a faint world map — travel, geography, culture",
+   "mood": "calm",
    "textInk": "dark"
   },
   "blue-alcove": {
    "file": "flat_blue-alcove.png",
    "tone": "soft blue alcove with a row of books — reading, library calm",
+   "mood": "calm",
    "textInk": "dark"
   },
   "dawn-clouds": {
    "file": "flat_dawn-clouds.png",
    "tone": "lilac and pink dawn clouds — dreamy, imaginative",
+   "mood": "calm",
    "textInk": "dark"
   },
   "soft-piano": {
    "file": "flat_soft-piano.png",
    "tone": "misty blue-grey with faint piano keys — music, listening, calm focus",
+   "mood": "music",
    "textInk": "dark"
   },
   "warm-guitar": {
    "file": "flat_warm-guitar.png",
    "tone": "buttery cream with a guitar edge and staff lines — songs and rhythm",
+   "mood": "music",
    "textInk": "dark"
   },
   "peach-drums": {
    "file": "flat_peach-drums.png",
    "tone": "warm apricot with bongos and drifting dots — beats, chants, energy",
+   "mood": "music",
    "textInk": "dark"
   },
   "lavender-strings": {
    "file": "flat_lavender-strings.png",
    "tone": "mint-to-lilac wash with a violin headstock — gentle and melodic",
+   "mood": "music",
    "textInk": "dark"
   },
   "fairy-grove": {
    "file": "flat_fairy-grove.png",
    "tone": "misty sage grove framed in leaves — storytime, gentle fantasy",
+   "mood": "fantasy",
    "textInk": "dark"
   },
   "cloud-castle": {
    "file": "flat_cloud-castle.png",
    "tone": "pale sky with a distant cloud castle — fairy tales, imagination",
+   "mood": "fantasy",
    "textInk": "dark"
   },
   "crystal-cave": {
    "file": "flat_crystal-cave.png",
    "tone": "warm cave mouth with glowing crystals — adventure and treasure hunts",
+   "mood": "fantasy",
    "textInk": "dark"
   },
   "moon-petals": {
    "file": "flat_moon-petals.png",
    "tone": "lilac dusk with a crescent moon and blossom — dreamy, quiet endings",
+   "mood": "fantasy",
    "textInk": "dark"
   }
  }

@@ -178,8 +178,33 @@
     return Math.abs(h) % count;
   }
 
-  function pickFlat(m, index, seed, reason) {
-    const flatKeys = Object.keys(m.flats);
+  /**
+   * Flats carry a mood (teaching / calm / music / fantasy). Drill pages only
+   * rotate through teaching + calm by default — a doctor lesson was getting
+   * castle and piano washes purely because they existed in the bank. Music
+   * and fantasy flats have to be EARNED by the lesson topic.
+   */
+  const DEFAULT_MOODS = ['teaching', 'calm'];
+  const MOOD_HINTS = {
+    music: /\b(music|song|songs|sing|singing|piano|guitar|drum|drums|rhythm|band|dance|dancing|instrument|instruments|concert)\b/,
+    fantasy: /\b(fairy|tale|tales|castle|magic|magical|dragon|dragons|princess|prince|knight|wizard|witch|monster|monsters|space|planet|planets|rocket|star|stars|moon|dream|dreams|night|halloween|dinosaur|dinosaurs)\b/,
+  };
+
+  function moodsFor(topicWords) {
+    const text = ' ' + norm(Array.isArray(topicWords) ? topicWords.join(' ') : topicWords).join(' ') + ' ';
+    const out = [...DEFAULT_MOODS];
+    for (const [mood, re] of Object.entries(MOOD_HINTS)) {
+      if (re.test(text)) out.push(mood);
+    }
+    return out;
+  }
+
+  function pickFlat(m, index, seed, reason, moods) {
+    const all = Object.keys(m.flats);
+    const allowed = moods && moods.length
+      ? all.filter((k) => moods.includes(m.flats[k].mood || 'calm'))
+      : all;
+    const flatKeys = allowed.length ? allowed : all;
     const key = flatKeys[(flatOffset(seed, flatKeys.length) + (index || 0)) % flatKeys.length];
     return {
       type: 'flat',
@@ -197,7 +222,7 @@
 
     // Drill / chrome pages: rotate flats. Place pages keep scene matching.
     if (section.preferFlat) {
-      return pickFlat(m, opts.index, opts.seed, 'preferFlat (drill / chrome page)');
+      return pickFlat(m, opts.index, opts.seed, 'preferFlat (drill / chrome page)', opts.moods);
     }
 
     const tags = [
@@ -229,7 +254,8 @@
       opts.seed,
       ranked.length
         ? `best match ${ranked[0].name} scored ${ranked[0].score}, below floor of ${minScore}`
-        : 'no scene matched any tag'
+        : 'no scene matched any tag',
+      opts.moods
     );
   }
 
@@ -241,13 +267,16 @@
     const out = [];
     let flatCount = 0;
     let placeScene = null;
+    // One mood decision per lesson: topic words come from the caller
+    // (title + vocab); the seed alone is the title, which still works.
+    const moods = moodsFor(opts.topicWords || opts.seed || '');
     for (let i = 0; i < sections.length; i++) {
       const sec = sections[i];
       if (!sec.preferFlat && placeScene) {
         out.push(Object.assign({}, placeScene, { reused: true }));
         continue;
       }
-      const p = await pickFor(sec, { ...opts, index: flatCount });
+      const p = await pickFor(sec, { ...opts, index: flatCount, moods });
       if (p.type === 'flat') flatCount++;
       if (p.type === 'scene' && !placeScene) placeScene = p;
       out.push(p);
@@ -302,6 +331,6 @@
 
   window.SceneBackgrounds = {
     manifest, rank, pickFor, planFor, loadPng, standOn, standRow, isStandRole,
-    STAND_ROLES, rotate: flatOffset, BASE,
+    STAND_ROLES, rotate: flatOffset, moodsFor, BASE,
   };
 })();
