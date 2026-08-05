@@ -16,7 +16,7 @@
 const MAX_ITERATIONS = 5;
 
 const HARD = {
-  H1: 'Wrong / inappropriate place scene (topic mismatch or place page not reusing title scene)',
+  H1: 'Wrong / inappropriate place scene (topic mismatch on activity/EDB page)',
   H2: 'Background variability broken (no scene/flat mix, flats not rotating, drill got a scene)',
   H3: 'Layout overlap / off-board / unlocked IoU > 0.4 / piece in header|bodyText — hard to navigate',
   H4: 'Old solid gradient chrome still baked (scenes never applied)',

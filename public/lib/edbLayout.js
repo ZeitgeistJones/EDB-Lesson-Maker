@@ -33,11 +33,12 @@
     },
     vocab: {
       header:    { x: 48, y: 36,  w: 700, h: 50,  noOverlap: true },
-      bodyText:  { x: 48, y: 100, w: 700, h: 320, noOverlap: true },
+      bodyText:  { x: 48, y: 100, w: 700, h: 380, noOverlap: true },
       // Covers/targets stay in the right column — never over word cards
       artSafe:   { x: 780, y: 80,  w: 450, h: 220, noOverlap: false },
       targetBay: { x: 780, y: 80,  w: 450, h: 220, noOverlap: false },
-      dock:      { x: 780, y: 310, w: 450, h: 250, noOverlap: false },
+      // Same vertical band as word cards so the match dock reads as a peer column
+      dock:      { x: 780, y: 100, w: 450, h: 380, noOverlap: false },
       rewardPocket: { x: 1100, y: 36, w: 140, h: 90, noOverlap: false },
     },
     vocabSentences: {
@@ -411,14 +412,30 @@
       const maxH = Math.floor((dock.h - gap * Math.max(0, rowsNeeded - 1)) / rowsNeeded);
       if (maxH < h && maxH >= 32) h = maxH;
     }
-    cols = Math.max(1, Math.floor((dock.w + gap) / (w + gap)));
+    cols = (size && size.cols)
+      ? Math.max(1, size.cols)
+      : Math.max(1, Math.floor((dock.w + gap) / (w + gap)));
+    const rows = Math.ceil(n / cols);
+    // Honest grids must fit: if the caller locked size, shrink only when
+    // vertical clamp would stack pieces on top of each other.
+    if (size && size.noShrink) {
+      const needH = rows * h + gap * Math.max(0, rows - 1);
+      if (needH > dock.h) {
+        h = Math.max(96, Math.floor((dock.h - gap * Math.max(0, rows - 1)) / rows));
+        w = h;
+      }
+    }
+    const gridW = cols * w + gap * Math.max(0, cols - 1);
+    const gridH = rows * h + gap * Math.max(0, rows - 1);
+    const originX = dock.x + Math.max(0, Math.floor((dock.w - gridW) / 2));
+    const originY = dock.y + Math.max(0, Math.floor((dock.h - gridH) / 2));
 
     const placed = [];
     items.forEach((item, i) => {
       const col = i % cols;
       const row = Math.floor(i / cols);
-      let x = dock.x + col * (w + gap);
-      let y = dock.y + row * (h + gap);
+      let x = originX + col * (w + gap);
+      let y = originY + row * (h + gap);
       // Clamp inside dock, then board margins
       x = Math.max(dock.x, Math.min(dock.x + dock.w - w, x));
       y = Math.max(dock.y, Math.min(dock.y + dock.h - h, y));

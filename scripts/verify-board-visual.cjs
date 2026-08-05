@@ -868,6 +868,10 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
     assignments: boardPlan.assignments || [],
     titlePick: picks[0] || null,
     vocabPick: picks[2] || null,
+    activityPick: (() => {
+      const i = pageKeys.indexOf('activity');
+      return i >= 0 ? (picks[i] || null) : null;
+    })(),
     pages,
     caseMetrics,
     stripDataUrl: strip.toDataURL('image/jpeg', 0.6),
@@ -1057,36 +1061,42 @@ async function main() {
 
       const sceneCount = result.picks.filter((p) => p.type === 'scene').length;
       const flatCount = result.picks.filter((p) => p.type === 'flat').length;
-      const placeName = result.titlePick && result.titlePick.name;
+      const activityPick = result.activityPick;
+      const placeName = activityPick && activityPick.name;
 
       console.log(`\n=== ${c.id} (${c.tier || 'core'}) ===`);
       console.log(`  pages=${result.pageCount} picks=${result.pickCount} scenes=${sceneCount} flats=${flatCount}`);
       console.log(`  title → ${result.titlePick?.type}:${result.titlePick?.name} score=${result.titlePick?.score}`);
+      console.log(`  activity → ${activityPick?.type}:${activityPick?.name} score=${activityPick?.score}`);
       console.log('  plan:', result.picks.map((p, i) => `${i}:${p.type[0]}:${p.name}`).join(' | '));
 
       if (result.pickCount !== result.pageCount) {
         fail('H2', `pick/page length mismatch ${result.pickCount} vs ${result.pageCount}`);
       }
-      if (!result.titlePick || result.titlePick.type !== 'scene' || !expectName.test(result.titlePick.name)) {
-        fail('H1', `title pick expected scene~/${c.expectScene}/, got ${JSON.stringify(result.titlePick)}`);
+      // Place scene lives on the activity/EDB page — title + story use calm flats.
+      if (!activityPick || activityPick.type !== 'scene' || !expectName.test(activityPick.name)) {
+        fail('H1', `activity pick expected scene~/${c.expectScene}/, got ${JSON.stringify(activityPick)}`);
+      }
+      if (!result.titlePick || result.titlePick.type !== 'flat') {
+        fail('H2', `title pick expected flat, got ${JSON.stringify(result.titlePick)}`);
       }
       if (!result.vocabPick || result.vocabPick.type !== 'flat') {
         fail('H2', `vocab pick expected flat, got ${JSON.stringify(result.vocabPick)}`);
       }
-      if (flatCount < 3 || sceneCount < 2) {
-        fail('H2', `expected mix flats>=3 scenes>=2, got f=${flatCount} s=${sceneCount}`);
+      if (flatCount < 3 || sceneCount < 1) {
+        fail('H2', `expected mix flats>=3 scenes>=1, got f=${flatCount} s=${sceneCount}`);
       }
 
       (result.pageKeys || []).forEach((key, i) => {
         const pick = result.picks[i];
         if (!pick) return;
-        const isPlace = key === 'title' || key === 'activity' || String(key).startsWith('story');
+        const isPlace = key === 'activity';
         if (isPlace) {
           if (pick.type !== 'scene' || pick.name !== placeName) {
-            fail('H1', `place page ${key} should reuse ${placeName}, got ${pick.type}:${pick.name}`);
+            fail('H1', `place page ${key} should be ${placeName}, got ${pick.type}:${pick.name}`);
           }
         } else if (pick.type !== 'flat') {
-          fail('H2', `drill page ${key} should be flat, got ${pick.type}:${pick.name}`);
+          fail('H2', `chrome page ${key} should be flat, got ${pick.type}:${pick.name}`);
         }
       });
 
@@ -1173,6 +1183,7 @@ async function main() {
         sceneCount,
         flatCount,
         title: result.titlePick,
+        activity: result.activityPick,
         caseMetrics: cm,
         pageMetrics: result.pages.map((p) => ({
           pageIndex: p.index,

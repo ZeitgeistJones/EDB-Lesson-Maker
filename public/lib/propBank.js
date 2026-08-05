@@ -352,6 +352,9 @@
       // Explicit minScore means "theme or nothing" — do not fall through to a
       // role bucket (that is how remotes landed on volcano activity pages).
       if (q.minScore != null) return null;
+    } else if (q.minScore != null) {
+      // Same rule when nothing scored at all (dentist → swing via playPart bucket).
+      return null;
     }
 
     if (q.role) {

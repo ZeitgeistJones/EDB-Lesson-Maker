@@ -88,32 +88,65 @@
     return pages;
   }
 
-  /** Honest match-dock size: ≥96px, scale up when fewer than 5 words. Null = can't fit. */
+  /** Honest match-dock size from the real vocab dock zone (≥96px). Null = can't fit. */
   function matchDockSize(count) {
     const n = Math.max(1, count || 1);
-    const dockW = 1184;
-    const dockH = 140;
-    const gap = 12;
-    let side = n < 5 ? 112 : 96;
-    const needW = n * side + (n - 1) * gap;
-    if (needW > dockW || side > dockH) {
-      side = Math.floor((dockW - gap * (n - 1)) / n);
-      if (side < 96) return null;
-    }
-    return { w: side, h: side };
+    const zones = (window.EdbLayout && window.EdbLayout.ZONE_TEMPLATES
+      && window.EdbLayout.ZONE_TEMPLATES.vocab) || {};
+    const dock = zones.dock || { w: 450, h: 250 };
+    const dockW = dock.w || 450;
+    const dockH = dock.h || 250;
+    const gap = 14; // keep in step with EdbLayout.MIN_GAP / placeDockRow
+    // Prefer a clean 2×3 or 3×2 grid inside the right-column dock
+    let cols = n <= 4 ? 2 : 3;
+    let rows = Math.ceil(n / cols);
+    let side = Math.min(
+      Math.floor((dockW - gap * (cols - 1)) / cols),
+      Math.floor((dockH - gap * (rows - 1)) / rows)
+    );
+    if (side >= 96) return { w: side, h: side, cols, rows };
+    // Try one row across the dock
+    cols = n;
+    rows = 1;
+    side = Math.floor((dockW - gap * (n - 1)) / n);
+    if (side >= 96 && side <= dockH) return { w: side, h: side, cols, rows };
+    return null;
   }
 
   function canHonestMatchDock(lesson) {
     return !!matchDockSize(vocabList(lesson).length);
   }
 
-  /** 60-minute lessons ask Gemini for 3 story pages; shorter ones get 2. */
+  /** 60-minute lessons ask Gemini for 3 story pages; 30-min keeps one fuller beat. */
   const MAX_STORY_PAGES = 3;
 
-  function storyPageCount(lesson) {
+  function storyPageCount(lesson, meta) {
     const n = (lesson.story?.pages || []).length;
     if (n <= 0) return 1;
+    const dur = Number(meta && meta.duration);
+    // Two thin story cards on a 30-min board feel unfinished — one fuller page.
+    if (Number.isFinite(dur) && dur <= 30) return 1;
     return Math.min(MAX_STORY_PAGES, n);
+  }
+
+  /** Board story pages: collapse short multi-page stories into one fuller beat. */
+  function storyPagesForBoard(lesson, meta) {
+    const raw = (lesson.story && lesson.story.pages) || [];
+    const count = storyPageCount(lesson, meta);
+    if (!raw.length) {
+      return [{ heading: 'Story', text: 'Read together.', visualTheme: 'nature', visualCaption: 'Scene' }];
+    }
+    if (count >= raw.length) return raw.slice(0, count);
+    if (count === 1 && raw.length > 1) {
+      const first = raw[0] || {};
+      return [{
+        heading: first.heading || (lesson.story && lesson.story.title) || 'Story',
+        text: raw.map((p) => p && p.text).filter(Boolean).join(' '),
+        visualTheme: first.visualTheme,
+        visualCaption: first.visualCaption || (raw[1] && raw[1].visualCaption) || '',
+      }];
+    }
+    return raw.slice(0, count);
   }
 
   function includeCreative(lesson, meta) {
@@ -261,7 +294,7 @@
         : (v.emoji || '•'),
       role: 'matchPiece',
       meta: { word: v.word },
-    })), { w: size.w, h: size.h, noShrink: true });
+    })), { w: size.w, h: size.h, cols: size.cols, noShrink: true });
     page.notes.push('recipe:matchDock');
   }
 
@@ -814,7 +847,7 @@
     const DRESS_TAG_STOP = new Set([
       'a', 'an', 'and', 'at', 'for', 'in', 'of', 'on', 'or', 'the', 'to', 'with',
       'living', 'near', 'next', 'my', 'our', 'your', 'how', 'what', 'when', 'where', 'why', 'who',
-      'shadow', 'title',
+      'shadow', 'title', 'are', 'is', 'nice',
     ]);
     const themeTags = [
       ...((lesson && lesson.vocabulary) || []).flatMap((v) => {
@@ -823,6 +856,11 @@
       }),
       ...String((lesson && lesson.title) || '').toLowerCase().split(/\W+/).filter(Boolean),
     ].filter((t) => t && !DRESS_TAG_STOP.has(t));
+    // Clinic furniture is tagged medical/clinic/doctor — map dental place words so
+    // dentist lessons dress with exam-couch / stethoscope, not a park swing.
+    if (/\b(dentist|dental|tooth|teeth|clinic|doctor|nurse|hospital)\b/.test(themeTags.join(' '))) {
+      themeTags.push('medical', 'clinic', 'doctor');
+    }
     const exclude = [];
     const count = Math.max(1, Math.min(3, req.count || 2));
 
@@ -932,7 +970,7 @@
     addPage('vocabSentences', 'vocabSentences');
     addPage('frames', 'frames');
 
-    const storyCount = storyPageCount(lesson);
+    const storyCount = storyPageCount(lesson, meta);
     for (let i = 0; i < storyCount; i++) addPage('story' + i, 'story');
 
     addPage('comprehension', 'comprehension');
@@ -969,6 +1007,7 @@
     findHeroProp,
     MAX_STORY_PAGES,
     storyPageCount,
+    storyPagesForBoard,
     includeCreative,
     includePhonics,
     wantsPhonics,

@@ -41,11 +41,16 @@
     sleeping: 'sleep',
     jumping: 'jump',
     physician: 'doctor',
+    dentist: 'doctor',
     clinic: 'hospital',
     symptoms: 'sick',
     fever: 'thermometer',
     checkup: 'stethoscope',
     prescription: 'medicine',
+    brush: 'toothbrush',
+    brushing: 'toothbrush',
+    smile: 'happy',
+    smiling: 'happy',
     airplane: 'plane',
     aeroplane: 'plane',
     flight: 'plane',
@@ -68,6 +73,15 @@
     dad: 'father',
     grandma: 'grandmother',
     grandpa: 'grandfather',
+  };
+
+  /**
+   * Pack keys whose art is a misleading stand-in for the ESL word.
+   * Force the alias even when index.json has an exact filename.
+   * (clean.png is a kitchen sponge — soap is closer for dental hygiene.)
+   */
+  const PACK_OVERRIDES = {
+    clean: 'soap',
   };
 
   /**
@@ -121,6 +135,13 @@
   function resolveKey(index, word) {
     const raw = normalize(word);
     if (!raw) return null;
+
+    // Bad stand-ins (sponge-for-clean) — force the override before exact key.
+    const override = PACK_OVERRIDES[raw];
+    if (override) {
+      const forced = lookupKey(index, override);
+      if (forced) return forced;
+    }
 
     let hit = lookupKey(index, raw);
     if (hit) return hit;

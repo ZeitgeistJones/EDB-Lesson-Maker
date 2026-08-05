@@ -46,12 +46,13 @@ function loadSceneBackgrounds() {
 /** The fixed page spine the board planner emits, in board order. */
 function spineSections(topic, vocab) {
   return [
-    { title: topic, tags: ['title', topic], vocabulary: vocab },
+    // Title/story are calm flats — place scenes are for EDB/activity only.
+    { title: topic, tags: ['title', topic], vocabulary: vocab, preferFlat: true },
     { title: 'Warm Up', tags: ['warmup'], vocabulary: [], preferFlat: true },
     { title: 'New Words', tags: ['vocabulary'], vocabulary: [], preferFlat: true },
     { title: 'Words in Sentences', tags: ['sentences'], vocabulary: [], preferFlat: true },
     { title: 'Sentence Frames', tags: ['frames'], vocabulary: [], preferFlat: true },
-    { title: 'Story', tags: ['story', topic], vocabulary: vocab },
+    { title: 'Story', tags: ['story', topic], vocabulary: vocab, preferFlat: true },
     { title: 'Reading Comprehension', tags: ['comprehension'], vocabulary: [], preferFlat: true },
     { title: 'Speaking', tags: ['speaking'], vocabulary: [], preferFlat: true },
     { title: 'Activity', tags: ['activity', topic], vocabulary: vocab },
@@ -92,26 +93,23 @@ for (const c of caseManifest.cases || []) {
 
   console.log(`  title → ${titlePick.type}:${titlePick.name} score=${titlePick.score ?? '-'}`);
   console.log(`  vocab → ${vocabPick.type}:${vocabPick.name}   story → ${storyPick.type}:${storyPick.name}`);
+  console.log(`  activity → ${activityPick.type}:${activityPick.name} score=${activityPick.score ?? '-'}`);
   console.log(`  mix scenes=${scenes.length} flats=${flats.length}`);
 
-  if (titlePick.type !== 'scene' || !expectScene.test(titlePick.name)) {
-    console.error(`  FAIL title scene expected ~/${c.expectScene}/, got ${titlePick.type}:${titlePick.name}`);
+  if (titlePick.type !== 'flat' || storyPick.type !== 'flat') {
+    console.error(`  FAIL title/story should be flat (${titlePick.type}/${storyPick.type})`);
     failed++;
   }
   if (warmPick.type !== 'flat' || vocabPick.type !== 'flat') {
     console.error(`  FAIL warm/vocab should be flat (${warmPick.type}/${vocabPick.type})`);
     failed++;
   }
-  if (storyPick.type !== 'scene' || storyPick.name !== titlePick.name) {
-    console.error(`  FAIL story should reuse the title scene, got ${storyPick.type}:${storyPick.name}`);
+  if (activityPick.type !== 'scene' || !expectScene.test(activityPick.name)) {
+    console.error(`  FAIL activity scene expected ~/${c.expectScene}/, got ${activityPick.type}:${activityPick.name}`);
     failed++;
   }
-  if (activityPick.type !== 'scene' || activityPick.name !== titlePick.name) {
-    console.error(`  FAIL activity should reuse the title scene, got ${activityPick.type}:${activityPick.name}`);
-    failed++;
-  }
-  if (flats.length < 4 || scenes.length < 3) {
-    console.error(`  FAIL expected mix flats>=4 scenes>=3, got f=${flats.length} s=${scenes.length}`);
+  if (flats.length < 4 || scenes.length < 1) {
+    console.error(`  FAIL expected mix flats>=4 scenes>=1, got f=${flats.length} s=${scenes.length}`);
     failed++;
   }
 
@@ -128,14 +126,14 @@ for (const c of caseManifest.cases || []) {
     }
   }
 
-  if (titlePick.type === 'scene' && titlePick.groundY) {
-    const y = SB.standOn(titlePick, 96);
-    const expect = titlePick.groundY - 96;
+  if (activityPick.type === 'scene' && activityPick.groundY) {
+    const y = SB.standOn(activityPick, 96);
+    const expect = activityPick.groundY - 96;
     if (y !== expect) {
       console.error(`  FAIL standOn ${y} expected ${expect}`);
       failed++;
     } else {
-      console.log(`  standOn(96) → ${y} (groundY ${titlePick.groundY}) OK`);
+      console.log(`  standOn(96) → ${y} (groundY ${activityPick.groundY}) OK`);
     }
   }
 }

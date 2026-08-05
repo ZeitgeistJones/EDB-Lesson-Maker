@@ -272,7 +272,7 @@
     });
   }
 
-  const LIGHT_TEXT_PAGES = { title: 1, frames: 1 };
+  const LIGHT_TEXT_PAGES = { frames: 1 };
 
   function drawDebugZones(p, pageType) {
     if (!window.EdbLayout) return;
@@ -320,13 +320,36 @@
   // this file can load before edbActivities.js.
   const MAX_STORY_PAGES = 3;
 
-  function storyPageCount(lesson) {
+  function storyPageCount(lesson, meta) {
     if (window.EdbActivities && window.EdbActivities.storyPageCount) {
-      return window.EdbActivities.storyPageCount(lesson);
+      return window.EdbActivities.storyPageCount(lesson, meta);
     }
     const n = (lesson.story?.pages || []).length;
     if (n <= 0) return 1;
+    const dur = Number(meta && meta.duration);
+    if (Number.isFinite(dur) && dur <= 30) return 1;
     return Math.min(MAX_STORY_PAGES, n);
+  }
+
+  function storyPagesForBoard(lesson, meta) {
+    if (window.EdbActivities && window.EdbActivities.storyPagesForBoard) {
+      return window.EdbActivities.storyPagesForBoard(lesson, meta);
+    }
+    const raw = (lesson.story && lesson.story.pages) || [];
+    const count = storyPageCount(lesson, meta);
+    if (!raw.length) {
+      return [{ heading: 'Story', text: 'Read together.', visualTheme: 'nature', visualCaption: 'Scene' }];
+    }
+    if (count === 1 && raw.length > 1) {
+      const first = raw[0] || {};
+      return [{
+        heading: first.heading || (lesson.story && lesson.story.title) || 'Story',
+        text: raw.map((p) => p && p.text).filter(Boolean).join(' '),
+        visualTheme: first.visualTheme,
+        visualCaption: first.visualCaption || '',
+      }];
+    }
+    return raw.slice(0, count);
   }
 
   function includeCreative(lesson, meta) {
@@ -421,14 +444,14 @@
     return i;
   }
 
-  /** Section list for SceneBackgrounds.planFor — mirrors the render spine. */
+  /** Section list for SceneBackgrounds.planFor — mirrors the render spine.
+   *  Scenes (clinic, zoo, …) are for EDB/activity pages with groundable pieces.
+   *  Title, story, and drill chrome use calm flats so text stays readable. */
   function buildSectionList(lesson, meta) {
     const vocab = (lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v.word)).filter(Boolean);
     const topic = lesson.title || '';
-    // Place pages get the topic scene; drill/chrome pages prefer calm washes
-    // (not whiteboard/chalk/cork — those are write-on surfaces, not card backdrops).
     const sections = [
-      { title: topic || 'Title', tags: ['title', topic], vocabulary: vocab },
+      { title: topic || 'Title', tags: ['title', topic], vocabulary: vocab, preferFlat: true },
       { title: 'Warm Up', tags: ['warmup', 'warm-up'], vocabulary: [], preferFlat: true },
       { title: 'New Words', tags: ['vocabulary', 'words', 'matching'], vocabulary: [], preferFlat: true },
     ];
@@ -447,19 +470,15 @@
       { title: 'Sentence Frames', tags: ['grammar', 'frames'], vocabulary: [], preferFlat: true },
     );
 
-    const storyPages = (lesson.story?.pages || []).slice(0, MAX_STORY_PAGES);
-    const storyCount = storyPageCount(lesson);
-    for (let i = 0; i < storyCount; i++) {
-      const sp = storyPages[i] || {};
-      // Prefer lesson topic + caption over Gemini visualTheme — themes like
-      // "street" / "home" were beating "clinic" and painting wrong places.
+    const boardStories = storyPagesForBoard(lesson, meta);
+    boardStories.forEach((sp, i) => {
       sections.push({
         title: sp.heading || lesson.story?.title || ('Story ' + (i + 1)),
         tags: [sp.visualCaption, 'story', topic].filter(Boolean),
-        vocabulary: vocab,
-        category: null,
+        vocabulary: [],
+        preferFlat: true,
       });
-    }
+    });
 
     sections.push(
       { title: 'Reading Comprehension', tags: ['comprehension', 'reading'], vocabulary: [], preferFlat: true }
@@ -480,6 +499,7 @@
 
     sections.push(
       {
+        // Only the activity page earns the place scene — ground for EDB pieces.
         title: lesson.activity?.title || 'Activity',
         tags: [lesson.activity?.title, lesson.activity?.prompt, 'activity', topic].filter(Boolean),
         vocabulary: vocab,
@@ -494,16 +514,17 @@
     const p = pageShell(THEME_COLORS.title, {
       reserveDock: hasRecipe(boardPlan, 'title'), pageType: 'title',
     });
+    // Dark ink on calm flats — place scenes are reserved for activity/EDB.
     p.appendChild(el('div', {
-      color: 'rgba(255,255,255,0.75)', fontSize: '18px', fontWeight: '600',
+      color: '#64748b', fontSize: '18px', fontWeight: '600',
       textTransform: 'uppercase', letterSpacing: '0.12em', marginTop: '70px',
     }, 'ClassIn Lesson'));
     p.appendChild(el('div', {
-      color: '#fff', fontSize: '64px', fontWeight: '800', marginTop: '14px',
+      color: '#0f172a', fontSize: '64px', fontWeight: '800', marginTop: '14px',
       maxWidth: '900px', lineHeight: '1.08',
     }, lesson.title || 'Lesson'));
     p.appendChild(el('div', {
-      color: 'rgba(255,255,255,0.9)', fontSize: '26px', marginTop: '22px', fontStyle: 'italic',
+      color: '#334155', fontSize: '26px', marginTop: '22px', fontStyle: 'italic',
     }, `${meta.level || ''}  ·  ${meta.duration || ''}-minute lesson`));
     drawDebugZones(p, 'title');
     return p;
@@ -547,7 +568,9 @@
         : 'Say each word together.'));
     const grid = el('div', {
       display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px',
-      maxWidth: interactive ? '100%' : '100%',
+      // Keep word cards in bodyText — right column is the icon dock.
+      maxWidth: interactive ? '700px' : '100%',
+      width: '100%',
     });
     const words = (lesson.vocabulary || []).slice(0, 6);
     for (const v of words) {
@@ -677,12 +700,15 @@
     return [lesson?.title, page?.visualCaption, page?.heading].filter(Boolean).join(' ');
   }
 
-  function makeStoryPage(lesson, page, index, boardPlan) {
+  function makeStoryPage(lesson, page, index, boardPlan, opts) {
     const pageKey = 'story' + index;
     const p = pageShell(THEME_COLORS.story, {
       reserveDock: hasRecipe(boardPlan, pageKey), pageType: 'story',
     });
-    const content = el('div', { position: 'relative', zIndex: '1' });
+    const content = el('div', {
+      position: 'relative', zIndex: '1',
+      display: 'flex', flexDirection: 'column', height: '100%', boxSizing: 'border-box',
+    });
     const title = index === 0
       ? `Story: ${lesson.story?.title || 'Let\'s Read!'}`
       : `Story (cont.): ${page?.heading || ''}`;
@@ -691,50 +717,84 @@
     titleEl.style.position = 'relative';
     titleEl.style.zIndex = '2';
     content.appendChild(titleEl);
-    const layout = el('div', { display: 'flex', gap: '24px', alignItems: 'stretch' });
-    const artOnRight = index % 2 === 1;
-
-    // Themed side cue — emoji from place language (no brown book slab).
-    // PropBank cutouts for story pages land as EDB pieces when recipes place them.
-    const side = el('div', {
-      width: '220px', flexShrink: '0', borderRadius: '18px',
-      background: artOnRight
-        ? 'linear-gradient(160deg, #ffedd5, #fed7aa)'
-        : 'linear-gradient(200deg, #fff7ed, #fdba74)',
-      minHeight: '240px', display: 'flex', flexDirection: 'column',
-      alignItems: 'center', justifyContent: 'center', padding: '24px',
-      boxSizing: 'border-box',
-    });
-    side.appendChild(el('div', { fontSize: '96px', lineHeight: '1', marginBottom: '14px' },
-      themeEmoji(storyArtCue(lesson, page))));
-    side.appendChild(el('div', {
-      background: '#ffffff', color: '#9a3412', borderRadius: '12px', padding: '10px 14px',
-      fontSize: '16px', fontWeight: '700', textAlign: 'center', width: '100%',
-      boxSizing: 'border-box', lineHeight: '1.3',
-      boxShadow: '0 4px 12px rgba(15,23,42,0.08)',
-    }, esc(page?.visualCaption || page?.visualTheme || 'Scene')));
 
     const storyText = String(page?.text || '');
-    const textSize = storyText.length <= 80 ? 44 : storyText.length <= 160 ? 36 : 28;
-    const text = card(
-      `<div style="font-size:${textSize}px;line-height:1.4;color:#1e293b;font-weight:600">${esc(storyText)}</div>`,
-      {
-        flex: '1',
-        marginBottom: '0',
-        minHeight: storyText.length > 160 ? '280px' : '220px',
-        padding: '32px 28px',
-        display: 'flex',
-        alignItems: 'center',
+    const solo = !!(opts && opts.solo);
+    // One merged 30-min beat (or any solo page) should fill the board; scale up.
+    const textSize = solo
+      ? (storyText.length <= 160 ? 40 : storyText.length <= 280 ? 34 : 30)
+      : (storyText.length <= 80 ? 40 : storyText.length <= 160 ? 34 : 28);
+
+    if (solo) {
+      const caption = page?.visualCaption || page?.visualTheme;
+      if (caption) {
+        content.appendChild(el('div', {
+          color: '#9a3412', fontSize: '18px', fontWeight: '700',
+          marginBottom: '10px', opacity: '0.9',
+        }, esc(caption)));
       }
-    );
-    if (artOnRight) {
-      layout.appendChild(text);
-      layout.appendChild(side);
+      // Short paragraphs + vertical spread so one merged beat fills the card.
+      const chunks = storyText.split(/(?<=\.)\s+/).filter(Boolean);
+      const bodyHtml = chunks.length > 1
+        ? chunks.map((c) => `<p style="margin:0">${esc(c)}</p>`).join('')
+        : esc(storyText);
+      const text = card(
+        `<div style="font-size:${textSize}px;line-height:1.35;color:#1e293b;font-weight:600;display:flex;flex-direction:column;justify-content:center;gap:22px;width:100%">${bodyHtml}</div>`,
+        {
+          flex: '1',
+          marginBottom: '0',
+          marginTop: '4px',
+          minHeight: '420px',
+          padding: '32px 36px',
+          display: 'flex',
+          alignItems: 'stretch',
+          overflow: 'hidden',
+        }
+      );
+      content.appendChild(text);
     } else {
-      layout.appendChild(side);
-      layout.appendChild(text);
+      const layout = el('div', {
+        display: 'flex', gap: '24px', alignItems: 'stretch', flex: '1',
+      });
+      const artOnRight = index % 2 === 1;
+      const side = el('div', {
+        width: '220px', flexShrink: '0', borderRadius: '18px',
+        background: artOnRight
+          ? 'linear-gradient(160deg, #ffedd5, #fed7aa)'
+          : 'linear-gradient(200deg, #fff7ed, #fdba74)',
+        minHeight: '240px', display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center', padding: '24px',
+        boxSizing: 'border-box',
+      });
+      side.appendChild(el('div', { fontSize: '96px', lineHeight: '1', marginBottom: '14px' },
+        themeEmoji(storyArtCue(lesson, page))));
+      side.appendChild(el('div', {
+        background: '#ffffff', color: '#9a3412', borderRadius: '12px', padding: '10px 14px',
+        fontSize: '16px', fontWeight: '700', textAlign: 'center', width: '100%',
+        boxSizing: 'border-box', lineHeight: '1.3',
+        boxShadow: '0 4px 12px rgba(15,23,42,0.08)',
+      }, esc(page?.visualCaption || page?.visualTheme || 'Scene')));
+
+      const text = card(
+        `<div style="font-size:${textSize}px;line-height:1.45;color:#1e293b;font-weight:600">${esc(storyText)}</div>`,
+        {
+          flex: '1',
+          marginBottom: '0',
+          minHeight: '320px',
+          padding: '36px 32px',
+          display: 'flex',
+          alignItems: 'center',
+        }
+      );
+      if (artOnRight) {
+        layout.appendChild(text);
+        layout.appendChild(side);
+      } else {
+        layout.appendChild(side);
+        layout.appendChild(text);
+      }
+      content.appendChild(layout);
     }
-    content.appendChild(layout);
     p.appendChild(content);
     drawDebugZones(p, 'story');
     return p;
@@ -985,14 +1045,14 @@
     push(makeVocabSentences(lesson), 'vocabSentences');
     push(makeFrames(lesson), 'frames');
 
-    const storyPages = (lesson.story?.pages || []).slice(0, MAX_STORY_PAGES);
-    const storyCount = storyPageCount(lesson);
-    if (storyPages.length === 0) {
-      push(makeStoryPage(lesson, { heading: 'Story', text: 'Read together.', visualTheme: 'nature' }, 0, boardPlan), 'story0');
+    const boardStories = storyPagesForBoard(lesson, m);
+    if (!boardStories.length) {
+      push(makeStoryPage(lesson, { heading: 'Story', text: 'Read together.', visualTheme: 'nature' }, 0, boardPlan, { solo: true }), 'story0');
     } else {
-      for (let i = 0; i < storyCount; i++) {
-        push(makeStoryPage(lesson, storyPages[i] || storyPages[0], i, boardPlan), 'story' + i);
-      }
+      const solo = boardStories.length === 1;
+      boardStories.forEach((sp, i) => {
+        push(makeStoryPage(lesson, sp, i, boardPlan, { solo }), 'story' + i);
+      });
     }
 
     push(makeComprehension(lesson), 'comprehension');

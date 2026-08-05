@@ -10,7 +10,7 @@
     { "word": "smile", "emoji": "😊", "sentence": "I smile for the photo." },
     { "word": "clean", "emoji": "✨", "sentence": "Clean teeth feel good." },
     { "word": "brush", "emoji": "🪥", "sentence": "I brush every day." },
-    { "word": "floss", "emoji": "🧵", "sentence": "I floss at night." }
+    { "word": "floss", "emoji": "•", "sentence": "I floss at night." }
   ],
   "sentenceFrames": [
     "I go to the dentist to ____.",

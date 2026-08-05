@@ -1,5 +1,5 @@
 {
-  "_comment": "Board quality cases. tier core = npm run quality (fast). tier adversarial = npm run quality:full only. expectScene is a regex source matched against the picked title scene name.",
+  "_comment": "Board quality cases. tier core = npm run quality (fast). tier adversarial = npm run quality:full only. expectScene is a regex source matched against the activity/EDB place scene name.",
   "cases": [
     {
       "id": "doctor",
