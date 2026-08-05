@@ -669,9 +669,11 @@
     p.appendChild(hint('Open-ended — no single right answer.', { marginBottom: '12px' }));
     const body = fillBody(p, { gap: '16px' });
     (lesson.story?.creativeQuestions || []).slice(0, 2).forEach((q, i) => {
+      const text = creativePromptText(q);
+      if (!text) return;
       body.appendChild(card(
         `<div style="font-size:16px;color:#64748b;font-weight:700;margin-bottom:10px">Idea ${i + 1}</div>
-         <div style="font-size:30px;font-weight:800;color:#134e4a;line-height:1.3">${esc(q)}</div>`,
+         <div style="font-size:30px;font-weight:800;color:#134e4a;line-height:1.3">${esc(text)}</div>`,
         { padding: '26px 24px', marginBottom: '0' }
       ));
     });
@@ -796,6 +798,17 @@
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;');
+  }
+
+  /** API schema uses strings; some fixtures use { question, sampleAnswer }. */
+  function creativePromptText(q) {
+    if (q == null) return '';
+    if (typeof q === 'string') return q.trim();
+    if (typeof q === 'object') {
+      const t = q.question || q.prompt || q.text || '';
+      return String(t).trim();
+    }
+    return String(q).trim();
   }
 
   /** Plan scene/flat picks and attach to boardPlan. Call before render for board exports. */

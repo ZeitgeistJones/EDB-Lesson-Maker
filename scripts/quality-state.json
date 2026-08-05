@@ -1,11 +1,14 @@
 {
-  "updatedAt": "2026-08-05T00:53:54.852Z",
-  "iteration": 2,
+  "updatedAt": "2026-08-05T01:53:56.254Z",
+  "iteration": 5,
   "softRoots": [
     "no-vetted-icon",
     "ink-policy-measured-no-scrim-on-calm",
     "no-medical-props",
-    "no-gym-props"
+    "no-gym-props",
+    "worksheet-heavy-middle-pages",
+    "creative-question-object-coercion",
+    "swing-prop-not-pack-icon"
   ],
   "markers": [],
   "history": [
@@ -61,6 +64,83 @@
       "metricFails": 0,
       "metricWarns": 5,
       "regressions": 19
+    },
+    {
+      "at": "2026-08-05T01:48:27.039Z",
+      "iteration": 3,
+      "tier": "core",
+      "cases": [
+        "doctor",
+        "clown-clinic",
+        "gym",
+        "travel",
+        "school"
+      ],
+      "action": "note_soft",
+      "codes": [],
+      "roots": [
+        "worksheet-heavy-middle-pages"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-05T01:51:00.968Z",
+      "iteration": 4,
+      "tier": "all",
+      "cases": [
+        "doctor",
+        "clown-clinic",
+        "gym",
+        "travel",
+        "school",
+        "abstract-words",
+        "bad-theme",
+        "minimal",
+        "overflow"
+      ],
+      "action": "fix_soft",
+      "codes": [
+        "S14",
+        "S14"
+      ],
+      "roots": [
+        "creative-question-object-coercion",
+        "swing-prop-not-pack-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 13,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-05T01:53:56.254Z",
+      "iteration": 5,
+      "tier": "all",
+      "cases": [
+        "doctor",
+        "clown-clinic",
+        "gym",
+        "travel",
+        "school",
+        "abstract-words",
+        "bad-theme",
+        "minimal",
+        "overflow"
+      ],
+      "action": "wishlist",
+      "codes": [
+        "M7"
+      ],
+      "roots": [
+        "swing-prop-not-pack-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 13,
+      "regressions": 0
     }
   ]
 }

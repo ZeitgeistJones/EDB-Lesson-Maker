@@ -353,6 +353,8 @@ function pageCreative(doc, lesson) {
   });
 
   questions.forEach((q, i) => {
+    const text = typeof q === 'string' ? q : (q && (q.question || q.prompt || q.text)) || '';
+    if (!text) return;
     const y = 62 + i * 55;
     card(doc, M + 6, y, W - 2 * M - 12, 48, C.white, 6);
     fill(doc, DOTS[i % DOTS.length]);
@@ -360,7 +362,7 @@ function pageCreative(doc, lesson) {
     drawText(doc, `Creative ${i + 1}`, M + 30, y + 18, W - 2 * M - 50, {
       size: 11, bold: true, color: C.gray,
     });
-    drawText(doc, q, M + 18, y + 32, W - 2 * M - 40, {
+    drawText(doc, String(text), M + 18, y + 32, W - 2 * M - 40, {
       size: 16, bold: true, color: C.navy,
     });
   });
