@@ -24,6 +24,9 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-04 | Wire `09_props` into board rendering | Nothing consumes the pack at runtime: `pieceToPng` never looks at it and recipes still draw covers and trays with `solidPng()`, so 40 keyed cutouts sit unused | Code fix, not art | `09_props/manifest.json` (role, tags, aspect, relativeScale, anchor) | wired — PropBank + sortBins/coverAnswer + scene dressing |
 | 2026-08-04 | Re-generate 6 unkeyable legacy props: `sorting-bin-green`, `prize-flap`, `tile-blue`, `sound-boxes`, `word-strip`, `pencil` | Cut from contact sheets or washed with their own colour to the frame border, so `assets:prop --convert` refuses them at C1; `sound-boxes` and `word-strip` are also truncated at the frame edge | Single-prop black-field generations | `docs/prop-style-lock.md` template → `assets:prop` | partial — `sorting-bin-green` + `reward-flap` (replaces prize-flap role) regenerated; still open: `tile-blue`, `sound-boxes`, `word-strip`, `pencil` |
 | 2026-08-03 | Activity-page collage props (shelf toys, sortables) for EW4 | Soft S17 — activity pages still thin / low charm | Verified cutouts in `09_props` | Project OpenAI props + LICENSE ledger | wired — scene dressing places 1–3 locked props on activity scenes |
+| 2026-08-04 | Medical / clinic prop sheet (9) | doctor + clown-clinic scene dressing has zero medical-tagged props | Matte 3×3 sheet | `docs/prop-sheet-prompts.md` Sheet 1 | open |
+| 2026-08-04 | Gym / sports prop sheet (9) | gym fixture theme void | Matte 3×3 sheet | `docs/prop-sheet-prompts.md` Sheet 2 | open |
+| 2026-08-04 | Cafeteria prop sheet (9) | bad-theme / cafeteria coverage thin | Matte 3×3 sheet | `docs/prop-sheet-prompts.md` Sheet 3 | open |
 
 ## How agents append
 

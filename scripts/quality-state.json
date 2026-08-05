@@ -1,8 +1,11 @@
 {
-  "updatedAt": "2026-08-04T02:20:25.579Z",
-  "iteration": 1,
+  "updatedAt": "2026-08-05T00:53:54.852Z",
+  "iteration": 2,
   "softRoots": [
-    "no-vetted-icon"
+    "no-vetted-icon",
+    "ink-policy-measured-no-scrim-on-calm",
+    "no-medical-props",
+    "no-gym-props"
   ],
   "markers": [],
   "history": [
@@ -32,6 +35,32 @@
       "metricFails": 4,
       "metricWarns": 12,
       "regressions": 0
+    },
+    {
+      "at": "2026-08-05T00:53:54.852Z",
+      "iteration": 2,
+      "tier": "core",
+      "cases": [
+        "doctor",
+        "clown-clinic",
+        "gym",
+        "travel",
+        "school"
+      ],
+      "action": "fix_soft",
+      "codes": [
+        "R1"
+      ],
+      "roots": [
+        "ink-policy-measured-no-scrim-on-calm",
+        "no-medical-props",
+        "no-gym-props",
+        "no-vetted-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "regressions": 19
     }
   ]
 }
