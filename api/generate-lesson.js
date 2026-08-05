@@ -17,6 +17,23 @@ const FALLBACK_MODELS = (process.env.GEMINI_FALLBACK_MODELS || 'gemini-3.5-flash
   .map((s) => s.trim())
   .filter(Boolean);
 
+// A bare "A2 level" leaves the model guessing, and neighbouring bands come back
+// nearly identical without a concrete grammar range to aim at.
+// Mirrored in server.js — keep both in step.
+const CEFR_LEVELS = {
+  A1: 'A1 (beginner: present simple, 2–5 word sentences, concrete everyday nouns)',
+  A2: 'A2 (elementary: past and future simple, short connected sentences)',
+  B1: 'B1 (intermediate: opinions with reasons, common phrasal verbs)',
+  B2: 'B2 (upper-intermediate: abstract topics, nuanced connectors, some idiom)',
+  C1: 'C1 (advanced: precise register, strong collocation, implicit meaning)',
+  C2: 'C2 (proficient: near-native subtlety, idiom and connotation)',
+};
+
+const DURATION_COUNTS = {
+  30: { vocab: 7, questions: 4, storyPages: 2, comprehension: 3 },
+  60: { vocab: 12, questions: 7, storyPages: 3, comprehension: 4 },
+};
+
 const LESSON_SCHEMA = {
   type: 'object',
   properties: {
@@ -166,24 +183,20 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: 'Missing "topic" in request body.' });
   }
 
-  const safeLevel = ['Beginner', 'Intermediate', 'Advanced'].includes(level) ? level : 'Intermediate';
-  const safeDuration = ['15', '25', '40'].includes(String(duration)) ? String(duration) : '25';
+  const safeLevel = CEFR_LEVELS[level] ? level : 'B1';
+  const safeDuration = DURATION_COUNTS[String(duration)] ? String(duration) : '30';
   const focusLine = focus ? `\nSpecific focus: ${focus}.` : '';
 
-  const counts = {
-    15: { vocab: 4, questions: 3 },
-    25: { vocab: 6, questions: 4 },
-    40: { vocab: 8, questions: 5 },
-  }[safeDuration];
+  const counts = DURATION_COUNTS[safeDuration];
 
-  const prompt = `You are an expert ESL curriculum designer. Generate a ${safeDuration}-minute structured lesson about "${topic}" for ${safeLevel} level English learners.${focusLine}
+  const prompt = `You are an expert ESL curriculum designer. Generate a ${safeDuration}-minute structured lesson about "${topic}" for ${CEFR_LEVELS[safeLevel]} English learners.${focusLine}
 
 Generate exactly: ${counts.vocab} vocabulary items, 4 sentenceFrames, ${counts.questions} speakingQuestions, 4 activity templates, 3 reviewSentences.
 
 Also generate a short illustrated story tied to the topic:
 - story.title: a catchy story title
-- story.pages: EXACTLY 2 pages. Each page needs heading, text (2–4 short paragraphs suitable for ${safeLevel} learners; use some lesson vocabulary), visualTheme (exactly one of: park, school, home, city, beach, nature, kitchen, sports), and visualCaption (short scene label)
-- story.comprehensionQuestions: EXACTLY 3 reading comprehension questions about the story, each with a sampleAnswer
+- story.pages: EXACTLY ${counts.storyPages} pages. Each page needs heading, text (2–4 short paragraphs suitable for ${safeLevel} learners; use some lesson vocabulary), visualTheme (exactly one of: park, school, home, city, beach, nature, kitchen, sports), and visualCaption (short scene label)
+- story.comprehensionQuestions: EXACTLY ${counts.comprehension} reading comprehension questions about the story, each with a sampleAnswer
 - story.creativeQuestions: EXACTLY 2 open-ended creative questions related to the story (imagining, personal connection, or continuing the story) — no sample answers
 
 All content appropriate for ${safeLevel} ESL learners. Sentence frames and activity templates should contain a literal "___" blank.`;

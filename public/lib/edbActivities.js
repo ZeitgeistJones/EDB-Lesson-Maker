@@ -85,10 +85,13 @@
     return pages;
   }
 
+  /** 60-minute lessons ask Gemini for 3 story pages; shorter ones get 2. */
+  const MAX_STORY_PAGES = 3;
+
   function storyPageCount(lesson) {
     const n = (lesson.story?.pages || []).length;
     if (n <= 0) return 1;
-    return Math.min(2, n);
+    return Math.min(MAX_STORY_PAGES, n);
   }
 
   function includeCreative(lesson, meta) {
@@ -677,6 +680,7 @@
     pageTypeForKey,
     speakingCoverRect,
     speakingChunks,
+    MAX_STORY_PAGES,
     storyPageCount,
     includeCreative,
     solidPng,

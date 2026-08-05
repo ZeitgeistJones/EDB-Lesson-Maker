@@ -267,7 +267,8 @@ function drawSceneVisual(doc, x, y, w, h, theme, caption) {
 
 function pagesStory(doc, lesson) {
   const story = lesson.story || {};
-  const pages = (story.pages || []).slice(0, 2);
+  // Keep in step with EdbActivities.MAX_STORY_PAGES.
+  const pages = (story.pages || []).slice(0, 3);
 
   pages.forEach((page, i) => {
     if (i > 0) doc.addPage([W, H]);

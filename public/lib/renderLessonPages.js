@@ -313,13 +313,17 @@
     return pages;
   }
 
+  // Keep in step with EdbActivities.MAX_STORY_PAGES — read as a literal because
+  // this file can load before edbActivities.js.
+  const MAX_STORY_PAGES = 3;
+
   function storyPageCount(lesson) {
     if (window.EdbActivities && window.EdbActivities.storyPageCount) {
       return window.EdbActivities.storyPageCount(lesson);
     }
     const n = (lesson.story?.pages || []).length;
     if (n <= 0) return 1;
-    return Math.min(2, n);
+    return Math.min(MAX_STORY_PAGES, n);
   }
 
   function includeCreative(lesson, meta) {
@@ -415,7 +419,7 @@
       { title: 'Sentence Frames', tags: ['grammar', 'frames'], vocabulary: [], preferFlat: true },
     ];
 
-    const storyPages = (lesson.story?.pages || []).slice(0, 2);
+    const storyPages = (lesson.story?.pages || []).slice(0, MAX_STORY_PAGES);
     const storyCount = storyPageCount(lesson);
     for (let i = 0; i < storyCount; i++) {
       const sp = storyPages[i] || {};
@@ -861,7 +865,7 @@
     push(makeVocabSentences(lesson), 'vocabSentences');
     push(makeFrames(lesson), 'frames');
 
-    const storyPages = (lesson.story?.pages || []).slice(0, 2);
+    const storyPages = (lesson.story?.pages || []).slice(0, MAX_STORY_PAGES);
     const storyCount = storyPageCount(lesson);
     if (storyPages.length === 0) {
       push(makeStoryPage(lesson, { heading: 'Story', text: 'Read together.', visualTheme: 'nature' }, 0, boardPlan), 'story0');
