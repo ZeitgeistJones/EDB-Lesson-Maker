@@ -499,10 +499,11 @@
 
     sections.push(
       {
-        // Only the activity page earns the place scene — ground for EDB pieces.
+        // Quiet flat under EDB — place scenes add noise when pieces are the star.
         title: lesson.activity?.title || 'Activity',
         tags: [lesson.activity?.title, lesson.activity?.prompt, 'activity', topic].filter(Boolean),
         vocabulary: vocab,
+        preferFlat: true,
       },
       { title: 'Wrap Up', tags: ['wrap', 'review', 'goodbye'], vocabulary: [], preferFlat: true }
     );

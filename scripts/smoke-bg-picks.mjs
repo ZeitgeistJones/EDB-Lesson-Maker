@@ -46,7 +46,7 @@ function loadSceneBackgrounds() {
 /** The fixed page spine the board planner emits, in board order. */
 function spineSections(topic, vocab) {
   return [
-    // Title/story are calm flats — place scenes are for EDB/activity only.
+    // Quiet flats throughout — place scenes only when explicitly opted in.
     { title: topic, tags: ['title', topic], vocabulary: vocab, preferFlat: true },
     { title: 'Warm Up', tags: ['warmup'], vocabulary: [], preferFlat: true },
     { title: 'New Words', tags: ['vocabulary'], vocabulary: [], preferFlat: true },
@@ -55,7 +55,7 @@ function spineSections(topic, vocab) {
     { title: 'Story', tags: ['story', topic], vocabulary: vocab, preferFlat: true },
     { title: 'Reading Comprehension', tags: ['comprehension'], vocabulary: [], preferFlat: true },
     { title: 'Speaking', tags: ['speaking'], vocabulary: [], preferFlat: true },
-    { title: 'Activity', tags: ['activity', topic], vocabulary: vocab },
+    { title: 'Activity', tags: ['activity', topic], vocabulary: vocab, preferFlat: true },
     { title: 'Wrap Up', tags: ['wrap'], vocabulary: [], preferFlat: true },
   ];
 }
@@ -90,26 +90,39 @@ for (const c of caseManifest.cases || []) {
   const [titlePick, warmPick, vocabPick] = picks;
   const storyPick = picks[5];
   const activityPick = picks[8];
+  const busy = new Set(
+    Object.entries(manifest.flats || {})
+      .filter(([, e]) => e && e.quiet === false)
+      .map(([k]) => k)
+  );
 
   console.log(`  title → ${titlePick.type}:${titlePick.name} score=${titlePick.score ?? '-'}`);
   console.log(`  vocab → ${vocabPick.type}:${vocabPick.name}   story → ${storyPick.type}:${storyPick.name}`);
   console.log(`  activity → ${activityPick.type}:${activityPick.name} score=${activityPick.score ?? '-'}`);
   console.log(`  mix scenes=${scenes.length} flats=${flats.length}`);
 
-  if (titlePick.type !== 'flat' || storyPick.type !== 'flat') {
-    console.error(`  FAIL title/story should be flat (${titlePick.type}/${storyPick.type})`);
+  if (titlePick.type !== 'flat' || storyPick.type !== 'flat' || activityPick.type !== 'flat') {
+    console.error(`  FAIL chrome pages should be flat (title/story/activity)`);
     failed++;
   }
   if (warmPick.type !== 'flat' || vocabPick.type !== 'flat') {
     console.error(`  FAIL warm/vocab should be flat (${warmPick.type}/${vocabPick.type})`);
     failed++;
   }
-  if (activityPick.type !== 'scene' || !expectScene.test(activityPick.name)) {
-    console.error(`  FAIL activity scene expected ~/${c.expectScene}/, got ${activityPick.type}:${activityPick.name}`);
+  if (flats.length < 8 || scenes.length > 0) {
+    console.error(`  FAIL expected quiet flats-only spine, got f=${flats.length} s=${scenes.length}`);
     failed++;
   }
-  if (flats.length < 4 || scenes.length < 1) {
-    console.error(`  FAIL expected mix flats>=4 scenes>=1, got f=${flats.length} s=${scenes.length}`);
+  for (const p of flats) {
+    if (busy.has(p.name)) {
+      console.error(`  FAIL busy flat in chrome rotation: ${p.name}`);
+      failed++;
+    }
+  }
+  // PPT-like: stay inside a short band — not a new photo every page.
+  const distinct = new Set(flats.map((p) => p.name)).size;
+  if (distinct > 5) {
+    console.error(`  FAIL flat band too wide (${distinct} distinct) — want ≤5 for cohesion`);
     failed++;
   }
 
@@ -123,17 +136,6 @@ for (const c of caseManifest.cases || []) {
     if (!p.path) {
       console.error(`  FAIL pick has no path: ${p.type}:${p.name}`);
       failed++;
-    }
-  }
-
-  if (activityPick.type === 'scene' && activityPick.groundY) {
-    const y = SB.standOn(activityPick, 96);
-    const expect = activityPick.groundY - 96;
-    if (y !== expect) {
-      console.error(`  FAIL standOn ${y} expected ${expect}`);
-      failed++;
-    } else {
-      console.log(`  standOn(96) → ${y} (groundY ${activityPick.groundY}) OK`);
     }
   }
 }

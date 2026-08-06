@@ -224,7 +224,7 @@
    * sit under floating text boxes. Music and fantasy flats still have to be
    * earned by the lesson topic.
    */
-  const DEFAULT_MOODS = ['calm'];
+  const DEFAULT_MOODS = ['calm', 'teaching'];
   const MOOD_HINTS = {
     music: /\b(music|song|songs|sing|singing|piano|guitar|drum|drums|rhythm|band|dance|dancing|instrument|instruments|concert)\b/,
     fantasy: /\b(fairy|tale|tales|castle|magic|magical|dragon|dragons|princess|prince|knight|wizard|witch|monster|monsters|space|planet|planets|rocket|star|stars|moon|dream|dreams|night|halloween|dinosaur|dinosaurs)\b/,
@@ -238,14 +238,26 @@
     'window-blue': 'cool', 'sage-leaves': 'cool', 'warm-window': 'warm',
     'world-map': 'travel', 'blue-alcove': 'cool', 'dawn-clouds': 'cool',
     'lavender-strings': 'music', 'cloud-castle': 'fantasy',
+    // Themed quiet sets (docs/bg-theme-sets.md) land here as they are imported.
   };
+
+  /** Topic → preferred quiet flat set id (once those flats exist in the manifest). */
+  const TOPIC_SETS = [
+    { re: /\b(dentist|dental|doctor|clinic|hospital|nurse|tooth|teeth|medical)\b/, set: 'clinic-cool' },
+    { re: /\b(airport|travel|train|bus|plane|passport|station)\b/, set: 'travel-air' },
+    { re: /\b(home|house|family|kitchen|apartment|bedroom)\b/, set: 'home-warm' },
+    { re: /\b(school|classroom|teacher|library|phonics|grammar)\b/, set: 'school-soft' },
+    { re: /\b(zoo|park|animal|forest|garden|nature|gym|sport|trampoline|volcano|lava|eruption|crater)\b/, set: 'outdoor-fresh' },
+  ];
 
   const TOPIC_PALETTE = [
     { re: /\b(dentist|dental|doctor|clinic|hospital|nurse|tooth|teeth|medical)\b/, want: ['cool', 'neutral', 'warm'] },
     { re: /\b(airport|travel|train|bus|plane|passport|station)\b/, want: ['travel', 'cool', 'neutral'] },
     { re: /\b(beach|ocean|sea|shore|swim)\b/, want: ['coast', 'outdoor', 'cool'] },
+    { re: /\b(volcano|lava|eruption|crater|ash|seismic|geothermal)\b/, want: ['outdoor', 'warm', 'cool'] },
     { re: /\b(zoo|park|animal|forest|garden|nature)\b/, want: ['outdoor', 'cool', 'warm'] },
-    { re: /\b(home|house|family|kitchen|living)\b/, want: ['warm', 'neutral'] },
+    // "Living in…" titles must not steal the home palette over a real place.
+    { re: /\b(home|house|family|kitchen|apartment|bedroom)\b/, want: ['warm', 'neutral'] },
     { re: /\b(school|classroom|teacher|library)\b/, want: ['neutral', 'cool', 'warm'] },
     { re: /\b(gym|sport|trampoline|play)\b/, want: ['outdoor', 'warm', 'cool'] },
   ];
@@ -258,6 +270,14 @@
     return ['warm', 'cool', 'neutral'];
   }
 
+  function setFor(topicWords) {
+    const text = ' ' + String(Array.isArray(topicWords) ? topicWords.join(' ') : (topicWords || '')).toLowerCase() + ' ';
+    for (const row of TOPIC_SETS) {
+      if (row.re.test(text)) return row.set;
+    }
+    return null;
+  }
+
   function moodsFor(topicWords) {
     const text = ' ' + norm(Array.isArray(topicWords) ? topicWords.join(' ') : topicWords).join(' ') + ' ';
     const out = [...DEFAULT_MOODS];
@@ -267,23 +287,52 @@
     return out;
   }
 
-  function pickFlat(m, index, seed, reason, moods, topicWords) {
+  /** True when a flat is safe under cards (default true; busy prop photos opt out). */
+  function isQuietFlat(entry) {
+    if (!entry) return true;
+    if (entry.quiet === false) return false;
+    return true;
+  }
+
+  function pickFlat(m, index, seed, reason, moods, topicWords, lockedSet) {
     const all = Object.keys(m.flats);
-    const allowed = moods && moods.length
+    const wantSet = lockedSet || setFor(topicWords || seed);
+    // Prefer a themed quiet set when the lesson has one with ≥2 members.
+    if (wantSet) {
+      const setKeys = all.filter((k) => m.flats[k].set === wantSet && isQuietFlat(m.flats[k]));
+      if (setKeys.length >= 2) {
+        const key = setKeys[(flatOffset(seed, setKeys.length) + (index || 0)) % setKeys.length];
+        return {
+          type: 'flat',
+          name: key,
+          file: m.flats[key].file,
+          path: `${BASE}/img/${m.flats[key].file}`,
+          textInk: m.flats[key].textInk || 'light',
+          set: wantSet,
+          reason: reason + ` · set:${wantSet}`,
+        };
+      }
+    }
+
+    const allowed = (moods && moods.length
       ? all.filter((k) => moods.includes(m.flats[k].mood || 'calm'))
-      : all;
-    let flatKeys = allowed.length ? allowed : all;
+      : all
+    ).filter((k) => isQuietFlat(m.flats[k]));
+    let flatKeys = allowed.length ? allowed : all.filter((k) => isQuietFlat(m.flats[k]));
+    if (!flatKeys.length) flatKeys = all;
     const want = palettesFor(topicWords || seed);
     // Prefer flats whose palette matches the lesson family, then rotate.
     const ranked = flatKeys
       .map((k) => {
-        const pal = FLAT_PALETTE[k] || 'neutral';
+        const pal = FLAT_PALETTE[k] || m.flats[k].palette || 'neutral';
         const aff = want.indexOf(pal);
         return { k, score: aff < 0 ? 50 : aff };
       })
       .sort((a, b) => a.score - b.score || a.k.localeCompare(b.k));
     const preferred = ranked.filter((r) => r.score < 50).map((r) => r.k);
-    flatKeys = preferred.length >= 3 ? preferred : ranked.map((r) => r.k);
+    // PPT-like: stay inside a short band of matching washes, not the whole bank.
+    // Never fall open to the full quiet catalog — that reads as random.
+    flatKeys = (preferred.length >= 2 ? preferred : ranked.map((r) => r.k)).slice(0, 4);
     const key = flatKeys[(flatOffset(seed, flatKeys.length) + (index || 0)) % flatKeys.length];
     return {
       type: 'flat',
@@ -291,6 +340,7 @@
       file: m.flats[key].file,
       path: `${BASE}/img/${m.flats[key].file}`,
       textInk: m.flats[key].textInk || 'light',
+      set: m.flats[key].set || null,
       reason,
     };
   }
@@ -301,7 +351,15 @@
 
     // Drill / chrome pages: rotate flats. Place pages keep scene matching.
     if (section.preferFlat) {
-      return pickFlat(m, opts.index, opts.seed, 'preferFlat (drill / chrome page)', opts.moods, opts.topicWords || opts.seed);
+      return pickFlat(
+        m,
+        opts.index,
+        opts.seed,
+        'preferFlat (quiet chrome)',
+        opts.moods,
+        opts.topicWords || opts.seed,
+        opts.lockedSet
+      );
     }
 
     const tags = [
@@ -335,7 +393,8 @@
         ? `best match ${ranked[0].name} scored ${ranked[0].score}, below floor of ${minScore}`
         : 'no scene matched any tag',
       opts.moods,
-      opts.topicWords || opts.seed
+      opts.topicWords || opts.seed,
+      opts.lockedSet
     );
   }
 
@@ -347,16 +406,23 @@
     const out = [];
     let flatCount = 0;
     let placeScene = null;
-    // One mood decision per lesson: topic words come from the caller
-    // (title + vocab); the seed alone is the title, which still works.
-    const moods = moodsFor(opts.topicWords || opts.seed || '');
+    // One mood + one quiet theme-set decision per lesson.
+    const topicWords = opts.topicWords || opts.seed || '';
+    const moods = moodsFor(topicWords);
+    const lockedSet = setFor(topicWords);
     for (let i = 0; i < sections.length; i++) {
       const sec = sections[i];
       if (!sec.preferFlat && placeScene) {
         out.push(Object.assign({}, placeScene, { reused: true }));
         continue;
       }
-      const p = await pickFor(sec, { ...opts, index: flatCount, moods, topicWords: opts.topicWords || opts.seed });
+      const p = await pickFor(sec, {
+        ...opts,
+        index: flatCount,
+        moods,
+        topicWords,
+        lockedSet,
+      });
       if (p.type === 'flat') flatCount++;
       if (p.type === 'scene' && !placeScene) placeScene = p;
       out.push(p);

@@ -1062,7 +1062,6 @@ async function main() {
       const sceneCount = result.picks.filter((p) => p.type === 'scene').length;
       const flatCount = result.picks.filter((p) => p.type === 'flat').length;
       const activityPick = result.activityPick;
-      const placeName = activityPick && activityPick.name;
 
       console.log(`\n=== ${c.id} (${c.tier || 'core'}) ===`);
       console.log(`  pages=${result.pageCount} picks=${result.pickCount} scenes=${sceneCount} flats=${flatCount}`);
@@ -1073,36 +1072,39 @@ async function main() {
       if (result.pickCount !== result.pageCount) {
         fail('H2', `pick/page length mismatch ${result.pickCount} vs ${result.pageCount}`);
       }
-      // Place scene lives on the activity/EDB page — title + story use calm flats.
-      if (!activityPick || activityPick.type !== 'scene' || !expectName.test(activityPick.name)) {
-        fail('H1', `activity pick expected scene~/${c.expectScene}/, got ${JSON.stringify(activityPick)}`);
-      }
+      // Quiet flats under chrome + EDB. If a place scene appears, it must match topic.
       if (!result.titlePick || result.titlePick.type !== 'flat') {
         fail('H2', `title pick expected flat, got ${JSON.stringify(result.titlePick)}`);
       }
       if (!result.vocabPick || result.vocabPick.type !== 'flat') {
         fail('H2', `vocab pick expected flat, got ${JSON.stringify(result.vocabPick)}`);
       }
-      if (flatCount < 3 || sceneCount < 1) {
-        fail('H2', `expected mix flats>=3 scenes>=1, got f=${flatCount} s=${sceneCount}`);
+      if (!activityPick || activityPick.type !== 'flat') {
+        fail('H2', `activity pick expected quiet flat, got ${JSON.stringify(activityPick)}`);
+      }
+      if (flatCount < 3) {
+        fail('H2', `expected flats>=3, got f=${flatCount} s=${sceneCount}`);
+      }
+      for (const pick of result.picks) {
+        if (pick.type === 'scene' && !expectName.test(pick.name)) {
+          fail('H1', `unexpected scene ${pick.name} (want ~/${c.expectScene}/)`);
+        }
       }
 
       (result.pageKeys || []).forEach((key, i) => {
         const pick = result.picks[i];
         if (!pick) return;
-        const isPlace = key === 'activity';
-        if (isPlace) {
-          if (pick.type !== 'scene' || pick.name !== placeName) {
-            fail('H1', `place page ${key} should be ${placeName}, got ${pick.type}:${pick.name}`);
-          }
-        } else if (pick.type !== 'flat') {
-          fail('H2', `chrome page ${key} should be flat, got ${pick.type}:${pick.name}`);
+        if (pick.type !== 'flat') {
+          fail('H2', `page ${key} should be quiet flat, got ${pick.type}:${pick.name}`);
         }
       });
 
       const flatNames = result.picks.filter((p) => p.type === 'flat').map((p) => p.name);
       if (flatNames.length >= 3 && new Set(flatNames).size === 1) {
         fail('H2', `flats not rotating (all ${flatNames[0]})`);
+      }
+      if (new Set(flatNames).size > 5) {
+        fail('H2', `flat band too wide (${new Set(flatNames).size}) — want PPT-like cohesion ≤5`);
       }
 
       const titleSamples = result.pages[0]?.samples || [];

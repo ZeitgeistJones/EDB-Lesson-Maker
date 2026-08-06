@@ -4,6 +4,10 @@ For generating in the ChatGPT app (free) rather than the paid API. Choose the
 **landscape** aspect ratio, save the result as PNG, and drop it into
 `assets-inbox/` — then tell the agent and it will crop, resize and register it.
 
+**Prefer quiet themed flat sets for most lessons** — see
+[`bg-theme-sets.md`](bg-theme-sets.md). Place scenes below are only when the
+**scene itself** is the hero (empty centre band for standing props).
+
 Four a day covers a batch of scenes in a sitting. The first twenty are already
 wired (hotel through lake-dock). Use this file when adding more.
 

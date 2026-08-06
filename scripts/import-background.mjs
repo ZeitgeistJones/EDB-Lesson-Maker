@@ -14,6 +14,9 @@
  *   --name      manifest key and output filename (default: input filename)
  *   --flat      import as a FLAT teaching surface, not a place with a floor
  *   --tone      one-line description of a flat's feel (used with --flat)
+ *   --set       theme-set id for quiet flat families (e.g. clinic-cool)
+ *   --mood      calm | music | fantasy | teaching (default calm for flats)
+ *   --busy      mark flat quiet:false (prop-heavy; keep out of chrome rotation)
  *   --ground    y pixel where a standing piece's base belongs (default: guessed)
  *   --fit       stretch (default, matches the existing bank) or crop
  *   --top       0..1, where to take a crop from, only used with --fit=crop
@@ -208,14 +211,19 @@ async function main() {
     if (result.topLum > 120 && result.topLum < 175) {
       console.log('  NOTE mid-brightness surface — check the heading by eye, either ink can look weak');
     }
+    const setId = arg('set', '');
+    const mood = arg('mood', 'calm');
+    const quiet = !process.argv.includes('--busy');
+    const flatEntry = {
+      file,
+      tone: arg('tone', 'TODO — one line on the feel'),
+      mood,
+      textInk,
+      quiet,
+    };
+    if (setId) flatEntry.set = setId;
     console.log('\nPaste into public/assets/08_backgrounds/manifest.json under "flats":\n');
-    console.log(
-      JSON.stringify(
-        { [name]: { file, tone: arg('tone', 'TODO — one line on the feel'), textInk } },
-        null,
-        2
-      )
-    );
+    console.log(JSON.stringify({ [name]: flatEntry }, null, 2));
     console.log(
       '\nThen: npm run test:bg-picks  (picker sanity)  and  npm run quality:full  (board bake)'
     );

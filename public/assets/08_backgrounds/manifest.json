@@ -936,7 +936,8 @@
    "file": "flat_desk.png",
    "tone": "neutral wall + desk ledge — soft workspace wash under cards",
    "mood": "calm",
-   "textInk": "light"
+   "textInk": "light",
+   "quiet": false
   },
   "sky-meadow": {
    "file": "flat_sky-meadow.png",
@@ -972,7 +973,8 @@
    "file": "flat_terracotta-arch.png",
    "tone": "warm clay arch with leaves — cosy mediterranean warmth",
    "mood": "calm",
-   "textInk": "dark"
+   "textInk": "dark",
+   "quiet": false
   },
   "window-blue": {
    "file": "flat_window-blue.png",
@@ -990,7 +992,8 @@
    "file": "flat_warm-window.png",
    "tone": "cream and gold arched window light — homely and welcoming",
    "mood": "calm",
-   "textInk": "dark"
+   "textInk": "dark",
+   "quiet": false
   },
   "world-map": {
    "file": "flat_world-map.png",
@@ -1002,7 +1005,8 @@
    "file": "flat_blue-alcove.png",
    "tone": "soft blue alcove with a row of books — reading, library calm",
    "mood": "calm",
-   "textInk": "dark"
+   "textInk": "dark",
+   "quiet": false
   },
   "dawn-clouds": {
    "file": "flat_dawn-clouds.png",
