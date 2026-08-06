@@ -77,6 +77,10 @@
       await window.LessonPages.attachBgPicks(lesson, meta || {}, boardPlan);
     }
     const rendered = await window.LessonPages.render(lesson, meta || {}, boardPlan);
+    if (window.LessonPages.applyStoryArt && window.StoryArt) {
+      const cached = window.StoryArt.getCached(lesson, (meta && meta.level) || '');
+      if (cached) window.LessonPages.applyStoryArt(rendered.pageEls, cached);
+    }
     await waitForImages(rendered.host);
 
     const bgPicks = boardPlan.bgPicks || null;

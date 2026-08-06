@@ -914,6 +914,24 @@
           marginBottom: '10px', opacity: '0.9',
         }, esc(caption)));
       }
+      // Banner slot for realtime story art (separate from the reading card).
+      const banner = el('div', {
+        height: '180px',
+        flexShrink: '0',
+        borderRadius: '16px',
+        marginBottom: '12px',
+        overflow: 'hidden',
+        background: 'linear-gradient(200deg, #fff7ed, #fdba74)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      });
+      banner.dataset.storyArt = String(index);
+      banner.dataset.storyArtMode = 'banner';
+      banner.appendChild(el('div', {
+        fontSize: '64px', lineHeight: '1', opacity: '0.85',
+      }, themeEmoji(storyArtCue(lesson, page))));
+      content.appendChild(banner);
       // One flowing paragraph — fill the card; bigger type when there is room.
       const text = card(
         `<div style="font-size:${textSize}px;line-height:1.45;color:#1e293b;font-weight:600;width:100%">${esc(storyText)}</div>`,
@@ -922,7 +940,7 @@
           marginBottom: '0',
           marginTop: '4px',
           minHeight: '0',
-          padding: '36px 40px',
+          padding: '28px 36px',
           display: 'flex',
           alignItems: 'flex-start',
           overflow: 'hidden',
@@ -942,7 +960,11 @@
         minHeight: '240px', display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center', padding: '24px',
         boxSizing: 'border-box',
+        overflow: 'hidden',
+        position: 'relative',
       });
+      side.dataset.storyArt = String(index);
+      side.dataset.storyArtMode = 'side';
       side.appendChild(el('div', { fontSize: '96px', lineHeight: '1', marginBottom: '14px' },
         themeEmoji(storyArtCue(lesson, page))));
       side.appendChild(el('div', {
@@ -1326,8 +1348,48 @@
     if (host && host.parentNode) host.parentNode.removeChild(host);
   }
 
+  /**
+   * Swap generated illustrations into data-story-art slots.
+   * results: { pages: [{ index, dataUrl|null }] } from /api/generate-story-art
+   * Returns how many slots were filled.
+   */
+  function applyStoryArt(pageEls, results) {
+    if (!pageEls || !results || !Array.isArray(results.pages)) return 0;
+    const byIndex = new Map();
+    results.pages.forEach((p) => {
+      if (p && p.dataUrl && Number.isFinite(Number(p.index))) {
+        byIndex.set(Number(p.index), p.dataUrl);
+      }
+    });
+    if (!byIndex.size) return 0;
+
+    let filled = 0;
+    pageEls.forEach((pageEl) => {
+      if (!pageEl || !pageEl.querySelectorAll) return;
+      pageEl.querySelectorAll('[data-story-art]').forEach((slot) => {
+        const idx = Number(slot.dataset.storyArt);
+        const url = byIndex.get(idx);
+        if (!url) return;
+        while (slot.firstChild) slot.removeChild(slot.firstChild);
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = '';
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+        img.style.display = 'block';
+        img.style.borderRadius = slot.dataset.storyArtMode === 'banner' ? '16px' : '18px';
+        slot.style.padding = '0';
+        slot.style.background = '#fff7ed';
+        slot.appendChild(img);
+        filled += 1;
+      });
+    });
+    return filled;
+  }
+
   window.LessonPages = {
-    render, cleanup, buildSectionList, attachBgPicks, applyPackBg,
+    render, cleanup, buildSectionList, attachBgPicks, applyPackBg, applyStoryArt,
     BOARD_W: W, BOARD_H: H,
   };
 })();

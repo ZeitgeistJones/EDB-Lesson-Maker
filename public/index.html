@@ -53,6 +53,19 @@
   .board-status.ready { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
   .board-status.draft { background: #fffbeb; color: #92400e; border: 1px solid #fcd34d; }
   .board-status ul { margin: 8px 0 0; padding-left: 18px; }
+  .story-art-status {
+    margin: 0 0 14px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.4;
+    background: #f5f3ff;
+    color: #5b21b6;
+    border: 1px solid #ddd6fe;
+    display: none;
+  }
+  .story-art-status.ready { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
+  .story-art-status.fail { background: #fffbeb; color: #92400e; border-color: #fcd34d; }
   .new-btn { padding: 16px 24px; border-radius: 12px; border: 2px solid #e2e8f0; background: #fff; color: #475569; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; }
   .error { background: #fef2f2; border: 1px solid #fecaca; border-radius: 10px; padding: 12px 16px; color: #dc2626; font-size: 14px; margin-bottom: 14px; }
   .info { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 12px 16px; color: #1e40af; font-size: 13px; margin-bottom: 14px; line-height: 1.5; }
@@ -107,6 +120,13 @@
         <button class="opt-btn" data-val="off" onclick="pickPhonics(this)">Off<span class="sub">Never include</span></button>
       </div>
     </div>
+    <div class="card">
+      <label class="label" style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+        <input type="checkbox" id="story-art-toggle" style="width:18px;height:18px;" />
+        Illustrate story pages
+      </label>
+      <div class="field-hint">Optional. Needs STORY_ART=1 on the server. Art hydrates while you review, then bakes into the board download. Falls back to quiet flats if generation fails.</div>
+    </div>
     <div id="error-box" class="error" style="display:none;"></div>
     <button class="generate-btn" id="gen-btn" onclick="generate()">Generate Lesson</button>
   </div>
@@ -134,6 +154,7 @@
       </div>
     </div>
     <div id="board-status" class="board-status" style="display:none;"></div>
+    <div id="story-art-status" class="story-art-status"></div>
     <div id="slides-preview"></div>
     <div class="action-row">
       <button class="download-btn" id="btn-pdf" onclick="downloadPDF()">Download Lesson PDF</button>
@@ -153,11 +174,20 @@
 <script src="lib/propBank.js"></script>
 <script src="lib/boardReadiness.js"></script>
 <script src="lib/coloringOutlines.js"></script>
+<script src="lib/storyArt.js"></script>
 <script src="lib/renderLessonPages.js"></script>
 <script src="lib/buildEdb.js"></script>
 <script src="lib/exportBoardPreview.js"></script>
 <script>
-let state = { level: 'B1', duration: '30', phonics: 'auto', lessonData: null, readiness: null };
+let state = {
+  level: 'B1',
+  duration: '30',
+  phonics: 'auto',
+  lessonData: null,
+  readiness: null,
+  storyArt: null,
+  storyArtPromise: null,
+};
 const MAX_STORY_PAGES = (window.EdbActivities && window.EdbActivities.MAX_STORY_PAGES) || 3;
 
 function pickLevel(btn) {
@@ -247,6 +277,7 @@ function showPreview(d) {
 
   // Judge board readiness async (needs PropBank). Text preview stays instant.
   refreshBoardStatus(d);
+  kickoffStoryArt(d);
 
   const c = document.getElementById('slides-preview');
   c.innerHTML = '';
@@ -270,7 +301,8 @@ function showPreview(d) {
   (story.pages || []).slice(0, MAX_STORY_PAGES).forEach((p, i) => {
     sections.push({
       title: i === 0 ? `Story: ${story.title || 'Let\'s Read!'}` : `Story (cont.): ${p.heading || ''}`,
-      content: `<em>${p.visualTheme || 'scene'}</em> — ${p.visualCaption || ''}<br>${p.text || ''}`,
+      content: `<em>${p.visualTheme || 'scene'}</em> — ${p.visualCaption || ''}<br>${p.text || ''}` +
+        `<div class="story-art-thumb" data-story-art-preview="${i}" style="margin-top:10px;display:none;"></div>`,
       cls: 'coral',
     });
   });
@@ -299,6 +331,87 @@ function showPreview(d) {
   });
 
   showScreen('preview');
+}
+
+function setStoryArtStatus(msg, kind) {
+  const box = document.getElementById('story-art-status');
+  if (!box) return;
+  if (!msg) {
+    box.style.display = 'none';
+    box.textContent = '';
+    box.className = 'story-art-status';
+    return;
+  }
+  box.style.display = 'block';
+  box.className = 'story-art-status' + (kind ? ' ' + kind : '');
+  box.textContent = msg;
+}
+
+function paintStoryArtThumbs(result) {
+  if (!result || !Array.isArray(result.pages)) return;
+  result.pages.forEach((p) => {
+    if (!p || !p.dataUrl) return;
+    const slot = document.querySelector(`[data-story-art-preview="${p.index}"]`);
+    if (!slot) return;
+    slot.style.display = 'block';
+    slot.innerHTML = '';
+    const img = document.createElement('img');
+    img.src = p.dataUrl;
+    img.alt = 'Story illustration';
+    img.style.width = '100%';
+    img.style.maxHeight = '180px';
+    img.style.objectFit = 'cover';
+    img.style.borderRadius = '10px';
+    slot.appendChild(img);
+  });
+}
+
+function kickoffStoryArt(lesson) {
+  state.storyArt = null;
+  state.storyArtPromise = null;
+  const toggle = document.getElementById('story-art-toggle');
+  if (!toggle || !toggle.checked || !window.StoryArt) {
+    setStoryArtStatus('');
+    return;
+  }
+  setStoryArtStatus('Illustrating story… (downloads will include art once ready)');
+  const promise = window.StoryArt.generate(lesson, lessonMeta())
+    .then((result) => {
+      state.storyArt = result;
+      const hits = (result.pages || []).filter((p) => p && p.dataUrl).length;
+      const total = (result.pages || []).length;
+      if (result.disabled) {
+        setStoryArtStatus('Story art disabled on server (set STORY_ART=1). Using quiet flats.', 'fail');
+      } else if (hits) {
+        setStoryArtStatus(`Story art ready — ${hits}/${total} page(s). Will bake into board download.`, 'ready');
+        paintStoryArtThumbs(result);
+      } else {
+        setStoryArtStatus(
+          `Story art unavailable (${result.error || 'gate/timeout'}). Using quiet flats.`,
+          'fail'
+        );
+      }
+      return result;
+    })
+    .catch((err) => {
+      console.warn('Story art failed', err);
+      setStoryArtStatus('Story art failed — using quiet flats.', 'fail');
+      return null;
+    });
+  state.storyArtPromise = promise;
+}
+
+async function ensureStoryArtApplied(pageEls) {
+  if (!window.LessonPages || !window.LessonPages.applyStoryArt) return 0;
+  let result = state.storyArt;
+  if (!result && state.storyArtPromise) {
+    try { result = await state.storyArtPromise; } catch (_) { /* keep null */ }
+  }
+  if (!result && window.StoryArt && state.lessonData) {
+    result = window.StoryArt.getCached(state.lessonData, state.level);
+  }
+  if (!result) return 0;
+  return window.LessonPages.applyStoryArt(pageEls, result);
 }
 
 async function refreshBoardStatus(lesson) {
@@ -414,6 +527,7 @@ async function downloadEDB() {
     await window.LessonPages.attachBgPicks(d, meta, boardPlan);
     const rendered = await window.LessonPages.render(d, meta, boardPlan);
     host = rendered.host;
+    await ensureStoryArtApplied(rendered.pageEls);
     await Promise.all(
       [...host.querySelectorAll('img')].map((img) => {
         if (img.complete) return Promise.resolve();
@@ -477,6 +591,9 @@ async function downloadBoardPreview(format) {
 
 function reset() {
   state.lessonData = null;
+  state.storyArt = null;
+  state.storyArtPromise = null;
+  setStoryArtStatus('');
   document.getElementById('topic').value = '';
   showScreen('input');
 }

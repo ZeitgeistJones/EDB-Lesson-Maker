@@ -56,6 +56,7 @@ route, so it works the same way in both places:
    - `GEMINI_API_KEY` — your key from https://aistudio.google.com/apikey
    - `GEMINI_MODEL` — optional, defaults to `gemini-3.1-flash-lite`
    - `GEMINI_FALLBACK_MODELS` — optional (defaults to `gemini-3.5-flash-lite`)
+   - `STORY_ART=1` — optional; enables realtime story-page illustrations (see `docs/story-art.md`)
 4. Deploy (env var changes require a redeploy).
 
 Or via CLI:

@@ -308,6 +308,11 @@ All content appropriate for ${safeLevel} ESL learners. Sentence frames and activ
  * (gitignored). Fire-and-forget from the browser after readiness assess /
  * download. No-op-safe if the folder can't be created.
  */
+// Optional story illustrations (STORY_ART=1). Same handler as Vercel serverless.
+app.post('/api/generate-story-art', (req, res) => {
+  require('./api/generate-story-art')(req, res);
+});
+
 app.post('/api/log-run', (req, res) => {
   try {
     fs.mkdirSync(APP_RUNS_DIR, { recursive: true });

@@ -108,6 +108,8 @@ const boardPlan = EdbActivities.buildBoardPlan(lesson, meta);
 // { pages: [{ pageIndex, pageKey, locked[], unlocked[], notes[] }], assignments, slots }
 
 const { pageEls, slots, host } = LessonPages.render(lesson, meta, boardPlan);
+// Optional: LessonPages.applyStoryArt(pageEls, await StoryArt.generate(lesson, meta))
+// when STORY_ART=1 — see docs/story-art.md
 const blob = await EdbKit.buildLessonEdb(lesson, meta, pageEls, boardPlan);
 ```
 
