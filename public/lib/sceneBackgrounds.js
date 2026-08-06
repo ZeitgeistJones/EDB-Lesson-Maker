@@ -244,17 +244,19 @@
     'home-a': 'warm', 'home-b': 'warm', 'home-c': 'warm', 'home-d': 'warm',
     'outdoor-a': 'outdoor', 'outdoor-b': 'outdoor', 'outdoor-c': 'outdoor', 'outdoor-d': 'outdoor',
     'house-a': 'cool', 'house-b': 'cool', 'house-c': 'cool', 'house-d': 'cool',
-    'face-a': 'warm', 'face-b': 'warm', 'face-c': 'warm', 'face-d': 'warm',
+    'face-a': 'cool', 'face-b': 'cool', 'face-c': 'cool', 'face-d': 'cool',
+    'board-face-a': 'cool', 'board-face-b': 'cool', 'board-face-c': 'cool', 'board-face-d': 'cool',
   };
 
   /**
    * ClassIn house deck — default when no place theme matches.
-   * Simple tinted walls + tiny corner easter eggs (eyes/faces), not leafy scenery.
-   * Title pins to panel -a (most personality); mid spine prefers -b… for readability.
+   * Soft tinted walls only. Charm eggs must be topic-NEUTRAL (tiny stars / dots) —
+   * never eyes/faces/winks. Face easter eggs live on `board-face` only.
+   * Title pins to panel -a (clean); mid spine prefers -b…; wrap pins to -d.
    */
   const DEFAULT_SET = 'board-house';
 
-  /** Topic → preferred quiet flat set id. Place themes only — not body parts. */
+  /** Topic → preferred quiet flat set id. Place themes + face-only charm set. */
   const TOPIC_SETS = [
     { re: /\b(dentists?|dental|doctors?|clinic|hospital|nurse|tooth|teeth|medical)\b/, set: 'clinic-cool' },
     { re: /\b(airport|travel|train|bus|plane|passport|station)\b/, set: 'travel-air' },
@@ -264,6 +266,8 @@
     // Place nouns only — bare "bread" must not steal supermarket lessons onto bakery.
     { re: /\b(bakerys?|bake\s*shop|pastry\s*shop|cafes?|caf[eé]s?)\b/, set: 'bakery-warm' },
     { re: /\b(markets?|supermarkets?|grocer(?:y|ies)|farmers?\s*markets?)\b/, set: 'outdoor-fresh' },
+    // Face lessons only — tiny eye/wink eggs. Never the default for castle/school/etc.
+    { re: /\b(faces?|eyes?|nose|mouth|cheek|make.?a.?face|blank.?face)\b/, set: 'board-face' },
   ];
 
   /**

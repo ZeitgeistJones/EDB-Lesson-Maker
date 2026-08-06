@@ -22,8 +22,11 @@ human ChatGPT trip for the default path.
 - Quality loop shows off-topic place washes for a clear place lesson, or
 - User asks for a themed quiet set for a **place** lesson
 
-**Do not run** for face / body-part / generic school lessons — those use
-`DEFAULT_SET = board-house`. Never invent flesh/skin/peach-as-body washes.
+**Do not run** for generic school lessons — those use `DEFAULT_SET = board-house`
+with **topic-neutral** charm only (no eyes/faces). Face / make-a-face lessons
+use `board-face` (cool washes + tiny eye eggs). Never invent flesh/skin/peach-as-body
+washes. Never put face easter eggs on `board-house` — castle and other topics
+must not inherit them.
 
 Quality loop: if the bake shows wallpaper spam for a clear *place*, invoke this
 skill. If the topic is not a place, leave it on the house deck.
@@ -32,8 +35,9 @@ skill. If the topic is not a place, leave it on the house deck.
 
 | Choice | Rule |
 |--------|------|
-| Default deck | `board-house` (paper cream + sage + pale sky) for face, school, unmatched |
-| Place sets | Only clinic / travel / home / outdoor (and future *places*) |
+| Default deck | `board-house` cool wall tints for school / unmatched — **no face eggs** |
+| Face charm set | `board-face` only (cool + tiny eye eggs) — never the default |
+| Place sets | Only clinic / travel / home / outdoor / beach / bakery (and future *places*) |
 | Route | **In-house first** (4 individual landscape panels). ChatGPT 2×2 sheet only for bulk |
 | Count | **4 panels** per set (`-a`…`-d`) |
 | Aspect | Native tool **16:9**; importer stretches to 1280×590 |

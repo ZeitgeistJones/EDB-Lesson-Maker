@@ -1285,7 +1285,7 @@
   },
   "house-b": {
    "file": "flat_house-b.png",
-   "tone": "house sage mint wall — tiny smile eggs",
+   "tone": "cool mint wall — tiny star sparkles, no faces",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1294,7 +1294,7 @@
   },
   "house-c": {
    "file": "flat_house-c.png",
-   "tone": "house lavender wall — wink egg",
+   "tone": "cool lavender wall — tiny stars, no faces",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1303,16 +1303,52 @@
   },
   "house-d": {
    "file": "flat_house-d.png",
-   "tone": "house teal wall — eye pair eggs",
+   "tone": "cool teal wall — tiny abstract dots, no faces",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
    "set": "board-house",
    "palette": "cool"
   },
+  "board-face-a": {
+   "file": "flat_board-face-a.png",
+   "tone": "cool sky title panel — clean, no eggs",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "board-face",
+   "palette": "cool"
+  },
+  "board-face-b": {
+   "file": "flat_board-face-b.png",
+   "tone": "cool mint — tiny corner eyes for face lessons",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "board-face",
+   "palette": "cool"
+  },
+  "board-face-c": {
+   "file": "flat_board-face-c.png",
+   "tone": "cool lavender — tiny wink eggs for face lessons",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "board-face",
+   "palette": "cool"
+  },
+  "board-face-d": {
+   "file": "flat_board-face-d.png",
+   "tone": "cool teal — tiny eye eggs for face lessons",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "board-face",
+   "palette": "cool"
+  },
   "face-a": {
    "file": "flat_face-a.png",
-   "tone": "make-a-face craft wash — cream peach, corner sparkles",
+   "tone": "make-a-face craft wash — cream peach, corner sparkles (retired peach set — use board-face)",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1321,7 +1357,7 @@
   },
   "face-b": {
    "file": "flat_face-b.png",
-   "tone": "make-a-face craft wash — cream peach, blush dots",
+   "tone": "make-a-face craft wash — cream peach, blush dots (retired — use board-face)",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1330,7 +1366,7 @@
   },
   "face-c": {
    "file": "flat_face-c.png",
-   "tone": "make-a-face craft wash — cream peach, ribbon arc",
+   "tone": "make-a-face craft wash — cream peach, ribbon arc (retired — use board-face)",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1339,7 +1375,7 @@
   },
   "face-d": {
    "file": "flat_face-d.png",
-   "tone": "make-a-face craft wash — cream peach, soft alcove",
+   "tone": "make-a-face craft wash — cream peach, soft alcove (retired — use board-face)",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,

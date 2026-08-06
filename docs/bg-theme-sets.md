@@ -109,12 +109,20 @@ d rolling pin. **Reject:** wheat / wheat / cookie-as-only-signal / leaf alcove.
 **Readability first.** Soft cool **wall tints** (blue / mint / lavender / teal)
 filling the frame — not cream paper, not leafy hills, not flesh peach.
 
-**Charm = tiny corner easter eggs** (a pair of eyes, a wink, tiny smile faces) —
-easy to miss, never mid-frame scenery.
+**Charm eggs must be topic-neutral** — tiny stars, soft dots, abstract sparkles.
+**Never** eyes, winks, smile faces, or face parts on this deck. Those belong
+only on `board-face` (face / make-a-face lessons). Castle, school, and other
+non-face lessons must not inherit face easter eggs from the default deck.
 
 **Title leans hardest:** panel `house-a` is a **clean** cool tint (topic colour,
-no easter eggs) so the lesson title can sit front-and-center. Mid spine uses
-`house-b`… with tiny corner eggs for charm. Wrap pins to `house-d`.
+no eggs) so the lesson title can sit front-and-center. Mid spine uses
+`house-b`… with tiny *neutral* corner eggs for charm. Wrap pins to `house-d`.
+
+### `board-face` — face lessons only
+
+Cool soft washes (mint / lavender / sky — **not** peach skin) with tiny corner
+eye / wink eggs. Wired via TOPIC_SETS for face / eyes / make-a-face. Do not use
+as the default for unmatched topics.
 
 Place lessons (clinic / travel / home / outdoor) still lock their place set;
 their title pins to `-a` as the strongest topic lean.

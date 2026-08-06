@@ -17,7 +17,8 @@ board** over floating a lonely mid-page card.
 1. **No “ClassIn” in lesson chrome or UI product name** — use Lesson Board Builder /
    Download Board (.edb). Technical `.edb` comments are fine.
 2. **Title = topic-forward** — clear topic art (e.g. face trio), not easter eggs.
-   Easter eggs belong on content flats only.
+   Easter eggs belong on content flats only, and must be **lesson-specific**
+   (face eyes only on `board-face`; never on default `board-house` / castle / school).
 3. **Readability first** — if type can be bigger without clipping, make it bigger.
 4. **Dead mid-board is a bug** — a single question floating in empty space needs a
    second job (coloring stage, write box, dock, etc.).
