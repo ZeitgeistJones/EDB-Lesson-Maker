@@ -36,7 +36,9 @@ worksheet with a side illustration.
    Full layout checklist: [board-ux-layout](../board-ux-layout/SKILL.md).
 9. **Ragged theme sheets** (castle / space / aquarium / nature) — one giant
    hero + many small dock toys. Slice with `assets:prop-blobs` first; human-eye
-   QA beats amber flags. See [prop-cutouts](../prop-cutouts/SKILL.md) ragged rules.
+   QA beats amber flags. Bank into **main** `09_props` with pack tags + part
+   keys (`assets:prop-blobs-import`) so other lessons can still pull individuals.
+   See [prop-cutouts](../prop-cutouts/SKILL.md) ragged rules.
 
 ## Implementation map
 

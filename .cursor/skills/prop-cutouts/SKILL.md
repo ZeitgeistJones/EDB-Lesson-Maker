@@ -63,6 +63,16 @@ amber flags mark shreds. Import/naming is a second step after you approve crops.
 4. **QA bar = human eye.** Ship when the numbered QA looks good to a normal
    person. Amber computer flags are hints (shreds, lattice), not a veto — drop
    only what looks wrong (hairline scraps, full-sheet ghosts).
+5. **Main PropBank, not a side silo.** Theme kits land in `09_props` like
+   everything else. Each piece carries **pack tags** (e.g. `castle`, `medieval`)
+   so a lesson can pull the group, **and** stays an individual prop other
+   lessons can resolve by key/tags/words. Import keepers with:
+
+```bash
+npm run assets:prop-blobs-import -- tmp/blob-slice/<slug>/blobs.json \
+  --pack=castle,medieval --name-map=scripts/fixtures/castle-blob-names.json \
+  --skip=1,7,8 --force
+```
 
 ### Known sheet failure modes
 

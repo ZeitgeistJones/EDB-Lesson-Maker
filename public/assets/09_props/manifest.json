@@ -3,6 +3,85 @@
   "license": "Generated for this project — see LICENSE.txt",
   "notes": "Alpha cutouts keyed from black-field generations. Roles map to collage / activity recipes. relativeScale is real-world size against the biggest props, so a pencil and a bookshelf are not both drawn at 96px. anchor says where the piece attaches: bottom rests on groundY, top hangs from above, center floats. styleFamily names the art family; absent means the default matte house style, and a board should draw from one family. cover-flap is legacy single; prefer cover-* colors for hideSeek.",
   "props": {
+    "activity-tray": {
+      "file": "activity-tray.png",
+      "role": "tray",
+      "tags": [
+        "tray",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 2.23,
+      "bodyHue": 175
+    },
+    "apple": {
+      "file": "apple.png",
+      "role": "object",
+      "tags": [
+        "cafeteria",
+        "food",
+        "school"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.88
+    },
+    "arrow-pointer": {
+      "file": "arrow-pointer.png",
+      "role": "pointer",
+      "tags": [
+        "arrow",
+        "teach"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.54,
+      "bodyHue": 205
+    },
+    "backpack": {
+      "file": "backpack.png",
+      "role": "container",
+      "tags": [
+        "bag",
+        "backpack",
+        "school"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.87,
+      "bodyHue": 215
+    },
+    "bag-satchel": {
+      "file": "bag-satchel.png",
+      "role": "dressPart",
+      "tags": [
+        "bag",
+        "dress"
+      ],
+      "relativeScale": 0.3,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.86,
+      "bodyHue": 25
+    },
+    "basketball": {
+      "file": "basketball.png",
+      "role": "object",
+      "tags": [
+        "gym",
+        "sport",
+        "play"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.99
+    },
     "bookshelf": {
       "file": "bookshelf.png",
       "role": "shelf",
@@ -17,85 +96,1012 @@
       "aspect": 1.32,
       "bodyHue": 25
     },
-    "sorting-bin": {
-      "file": "sorting-bin.png",
-      "role": "sortBin",
+    "bow": {
+      "file": "bow.png",
+      "role": "dressPart",
       "tags": [
-        "bin",
-        "sort"
+        "bow",
+        "dress"
       ],
-      "relativeScale": 0.5,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 2.2,
-      "bodyHue": 205
-    },
-    "sorting-bin-green": {
-      "file": "sorting-bin-green.png",
-      "role": "sortBin",
-      "tags": [
-        "bin",
-        "sort",
-        "green"
-      ],
-      "relativeScale": 0.45,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 2.52,
-      "bodyHue": 105
-    },
-    "reward-flap": {
-      "file": "reward-flap.png",
-      "role": "rewardFlap",
-      "tags": [
-        "flap",
-        "reward",
-        "cover"
-      ],
-      "relativeScale": 0.4,
+      "relativeScale": 0.12,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.54,
-      "bodyHue": 35
+      "aspect": 1.31,
+      "bodyHue": 5
     },
-    "flashcard-blank": {
-      "file": "flashcard-blank.png",
-      "role": "wordCard",
+    "cafeteria-stool": {
+      "file": "cafeteria-stool.png",
+      "role": "furniture",
       "tags": [
-        "card",
-        "vocab"
+        "cafeteria",
+        "food",
+        "school"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.97
+    },
+    "camera": {
+      "file": "camera.png",
+      "role": "object",
+      "tags": [
+        "camera",
+        "photo",
+        "travel",
+        "holiday"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.19,
+      "bodyHue": 175,
+      "styleFamily": "glossy-adventure"
+    },
+    "cap": {
+      "file": "cap.png",
+      "role": "dressPart",
+      "tags": [
+        "cap",
+        "dress"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.42,
+      "bodyHue": 215
+    },
+    "castle-arch-empty": {
+      "file": "castle-arch-empty.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.76,
+      "pack": "castle"
+    },
+    "castle-banner-blue-fleur": {
+      "file": "castle-banner-blue-fleur.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.67,
+      "pack": "castle"
+    },
+    "castle-banner-green": {
+      "file": "castle-banner-green.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.67,
+      "pack": "castle"
+    },
+    "castle-banner-orange-sun": {
+      "file": "castle-banner-orange-sun.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.65,
+      "pack": "castle"
+    },
+    "castle-banner-purple-crown": {
+      "file": "castle-banner-purple-crown.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.68,
+      "pack": "castle"
+    },
+    "castle-banner-red-lion": {
+      "file": "castle-banner-red-lion.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.68,
+      "pack": "castle"
+    },
+    "castle-banner-teal": {
+      "file": "castle-banner-teal.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.64,
+      "pack": "castle"
+    },
+    "castle-banner-white": {
+      "file": "castle-banner-white.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.35,
+      "pack": "castle"
+    },
+    "castle-bridge-rope": {
+      "file": "castle-bridge-rope.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.12,
+      "pack": "castle"
+    },
+    "castle-bridge-stone": {
+      "file": "castle-bridge-stone.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.92,
+      "pack": "castle"
+    },
+    "castle-bridge-wood": {
+      "file": "castle-bridge-wood.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.98,
+      "pack": "castle"
+    },
+    "castle-bush-flower": {
+      "file": "castle-bush-flower.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.24,
+      "pack": "castle"
+    },
+    "castle-cannon": {
+      "file": "castle-cannon.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.25,
+      "pack": "castle"
+    },
+    "castle-chest-gold": {
+      "file": "castle-chest-gold.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.21,
+      "pack": "castle"
+    },
+    "castle-cloud": {
+      "file": "castle-cloud.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.36,
+      "pack": "castle"
+    },
+    "castle-door-wood-a": {
+      "file": "castle-door-wood-a.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.83,
+      "pack": "castle"
+    },
+    "castle-door-wood-b": {
+      "file": "castle-door-wood-b.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.9,
+      "pack": "castle"
+    },
+    "castle-dragon": {
+      "file": "castle-dragon.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.48,
+      "pack": "castle"
+    },
+    "castle-drawbridge": {
+      "file": "castle-drawbridge.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.95,
+      "pack": "castle"
+    },
+    "castle-drawbridge-chain": {
+      "file": "castle-drawbridge-chain.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.75,
+      "pack": "castle"
+    },
+    "castle-finial-a": {
+      "file": "castle-finial-a.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.48,
+      "pack": "castle"
+    },
+    "castle-finial-b": {
+      "file": "castle-finial-b.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.48,
+      "pack": "castle"
+    },
+    "castle-finial-c": {
+      "file": "castle-finial-c.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.56,
+      "pack": "castle"
+    },
+    "castle-finial-d": {
+      "file": "castle-finial-d.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.59,
+      "pack": "castle"
+    },
+    "castle-finial-e": {
+      "file": "castle-finial-e.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.56,
+      "pack": "castle"
+    },
+    "castle-flag-blue": {
+      "file": "castle-flag-blue.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.86,
+      "pack": "castle"
+    },
+    "castle-flag-green": {
+      "file": "castle-flag-green.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.83,
+      "pack": "castle"
+    },
+    "castle-flag-orange": {
+      "file": "castle-flag-orange.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.78,
+      "pack": "castle"
+    },
+    "castle-flag-purple": {
+      "file": "castle-flag-purple.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.83,
+      "pack": "castle"
+    },
+    "castle-flag-red": {
+      "file": "castle-flag-red.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.84,
+      "pack": "castle"
+    },
+    "castle-house-orange": {
+      "file": "castle-house-orange.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.68,
+      "pack": "castle"
+    },
+    "castle-house-purple": {
+      "file": "castle-house-purple.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.69,
+      "pack": "castle"
+    },
+    "castle-knight-blue": {
+      "file": "castle-knight-blue.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.77,
+      "pack": "castle"
+    },
+    "castle-knight-mounted": {
+      "file": "castle-knight-mounted.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.81,
+      "pack": "castle"
+    },
+    "castle-knight-red": {
+      "file": "castle-knight-red.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.78,
+      "pack": "castle"
+    },
+    "castle-pond": {
+      "file": "castle-pond.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.14,
+      "pack": "castle"
+    },
+    "castle-portcullis": {
+      "file": "castle-portcullis.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.89,
+      "pack": "castle"
+    },
+    "castle-rocks": {
+      "file": "castle-rocks.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.33,
+      "pack": "castle"
+    },
+    "castle-target": {
+      "file": "castle-target.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.92,
+      "pack": "castle"
+    },
+    "castle-torch": {
+      "file": "castle-torch.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.48,
+      "pack": "castle"
+    },
+    "castle-tower-roof-blue": {
+      "file": "castle-tower-roof-blue.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.82,
+      "pack": "castle"
+    },
+    "castle-tower-roof-red": {
+      "file": "castle-tower-roof-red.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.71,
+      "pack": "castle"
+    },
+    "castle-tower-top-a": {
+      "file": "castle-tower-top-a.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.74,
+      "pack": "castle"
+    },
+    "castle-tower-top-b": {
+      "file": "castle-tower-top-b.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.76,
+      "pack": "castle"
+    },
+    "castle-tower-top-c": {
+      "file": "castle-tower-top-c.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.74,
+      "pack": "castle"
+    },
+    "castle-tower-top-d": {
+      "file": "castle-tower-top-d.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.94,
+      "pack": "castle"
+    },
+    "castle-tree-autumn": {
+      "file": "castle-tree-autumn.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.92,
+      "pack": "castle"
+    },
+    "castle-tree-blossom": {
+      "file": "castle-tree-blossom.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.95,
+      "pack": "castle"
+    },
+    "castle-tree-cypress": {
+      "file": "castle-tree-cypress.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.41,
+      "pack": "castle"
+    },
+    "castle-tree-pine": {
+      "file": "castle-tree-pine.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.7,
+      "pack": "castle"
+    },
+    "castle-tree-round": {
+      "file": "castle-tree-round.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.87,
+      "pack": "castle"
+    },
+    "castle-wall-gate": {
+      "file": "castle-wall-gate.png",
+      "role": "hero",
+      "tags": [
+        "castle",
+        "medieval",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.66,
+      "pack": "castle",
+      "stageFit": "fit"
+    },
+    "castle-wall-seg-a": {
+      "file": "castle-wall-seg-a.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.61,
+      "pack": "castle"
+    },
+    "castle-wall-seg-b": {
+      "file": "castle-wall-seg-b.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.64,
+      "pack": "castle"
+    },
+    "castle-wall-seg-c": {
+      "file": "castle-wall-seg-c.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.98,
+      "pack": "castle"
+    },
+    "castle-wall-seg-d": {
+      "file": "castle-wall-seg-d.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.63,
+      "pack": "castle"
+    },
+    "castle-window-arch-a": {
+      "file": "castle-window-arch-a.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.75,
+      "pack": "castle"
+    },
+    "cavity-tooth": {
+      "file": "cavity-tooth.png",
+      "role": "object",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic",
+        "cavity"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.78
+    },
+    "chair": {
+      "file": "chair.png",
+      "role": "furniture",
+      "tags": [
+        "chair",
+        "build"
+      ],
+      "relativeScale": 0.6,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.64,
+      "bodyHue": 85
+    },
+    "check-badge": {
+      "file": "check-badge.png",
+      "role": "feedback",
+      "tags": [
+        "check",
+        "correct"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "bodyHue": 75
+    },
+    "clinic-clipboard": {
+      "file": "clinic-clipboard.png",
+      "role": "tool",
+      "tags": [
+        "medical",
+        "clinic",
+        "doctor"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.7
+    },
+    "clipboard": {
+      "file": "clipboard.png",
+      "role": "tool",
+      "tags": [
+        "clipboard",
+        "paper",
+        "checklist",
+        "write"
       ],
       "relativeScale": 0.3,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.86,
-      "bodyHue": 125
+      "aspect": 0.7,
+      "bodyHue": 35
     },
-    "sticky-note": {
-      "file": "sticky-note.png",
-      "role": "sticky",
+    "coffee-table": {
+      "file": "coffee-table.png",
+      "role": "furniture",
       "tags": [
-        "sticky",
-        "cue"
+        "home",
+        "living",
+        "room",
+        "furniture"
       ],
-      "relativeScale": 0.15,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.26,
-      "bodyHue": 45
-    },
-    "reward-jar": {
-      "file": "reward-jar.png",
-      "role": "rewardContainer",
-      "tags": [
-        "jar",
-        "reward"
-      ],
-      "relativeScale": 0.35,
+      "relativeScale": 0.45,
       "anchor": "bottom",
       "alpha": true,
-      "aspect": 1.15,
-      "bodyHue": 45
+      "aspect": 2.03,
+      "bodyHue": 25
+    },
+    "cover-blue": {
+      "file": "cover-blue.png",
+      "role": "cover",
+      "tags": [
+        "cover",
+        "hide"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.34,
+      "bodyHue": 215
     },
     "cover-flap": {
       "file": "cover-flap.png",
@@ -123,19 +1129,6 @@
       "aspect": 1.34,
       "bodyHue": 105
     },
-    "cover-blue": {
-      "file": "cover-blue.png",
-      "role": "cover",
-      "tags": [
-        "cover",
-        "hide"
-      ],
-      "relativeScale": 0.4,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.34,
-      "bodyHue": 215
-    },
     "cover-orange": {
       "file": "cover-orange.png",
       "role": "cover",
@@ -162,1396 +1155,74 @@
       "aspect": 1.34,
       "bodyHue": 275
     },
-    "prize-flap": {
-      "file": "prize-flap.png",
-      "role": "rewardFlap",
+    "dental-bib": {
+      "file": "dental-bib.png",
+      "role": "object",
       "tags": [
-        "flap",
-        "reward"
-      ],
-      "relativeScale": 0.4,
-      "anchor": "center"
-    },
-    "mini-whiteboard": {
-      "file": "mini-whiteboard.png",
-      "role": "miniBoard",
-      "tags": [
-        "whiteboard",
-        "phonics"
-      ],
-      "relativeScale": 0.55,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.42
-    },
-    "activity-tray": {
-      "file": "activity-tray.png",
-      "role": "tray",
-      "tags": [
-        "tray",
-        "dock"
-      ],
-      "relativeScale": 0.5,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 2.23,
-      "bodyHue": 175
-    },
-    "speech-bubble": {
-      "file": "speech-bubble.png",
-      "role": "speech",
-      "tags": [
-        "speech",
-        "speaking"
-      ],
-      "relativeScale": 0.4,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.45
-    },
-    "reward-star": {
-      "file": "reward-star.png",
-      "role": "reward",
-      "tags": [
-        "star",
-        "reward"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.04,
-      "bodyHue": 45
-    },
-    "slot-pad": {
-      "file": "slot-pad.png",
-      "role": "orderPad",
-      "tags": [
-        "slot",
-        "order"
-      ],
-      "relativeScale": 0.45,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.56
-    },
-    "hat-beanie": {
-      "file": "hat-beanie.png",
-      "role": "dressPart",
-      "tags": [
-        "hat",
-        "dress"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.25,
-      "bodyHue": 85
-    },
-    "glasses": {
-      "file": "glasses.png",
-      "role": "dressPart",
-      "tags": [
-        "glasses",
-        "dress"
-      ],
-      "relativeScale": 0.15,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 2.57,
-      "bodyHue": 25
-    },
-    "scarf": {
-      "file": "scarf.png",
-      "role": "dressPart",
-      "tags": [
-        "scarf",
-        "dress"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.86,
-      "bodyHue": 215
-    },
-    "bag-satchel": {
-      "file": "bag-satchel.png",
-      "role": "dressPart",
-      "tags": [
-        "bag",
-        "dress"
-      ],
-      "relativeScale": 0.3,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.86,
-      "bodyHue": 25
-    },
-    "bow": {
-      "file": "bow.png",
-      "role": "dressPart",
-      "tags": [
-        "bow",
-        "dress"
-      ],
-      "relativeScale": 0.12,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.31,
-      "bodyHue": 5
-    },
-    "cap": {
-      "file": "cap.png",
-      "role": "dressPart",
-      "tags": [
-        "cap",
-        "dress"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.42,
-      "bodyHue": 215
-    },
-    "microphone": {
-      "file": "microphone.png",
-      "role": "speakProp",
-      "tags": [
-        "mic",
-        "speaking"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.63,
-      "bodyHue": 45
-    },
-    "check-badge": {
-      "file": "check-badge.png",
-      "role": "feedback",
-      "tags": [
-        "check",
-        "correct"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1,
-      "bodyHue": 75
-    },
-    "arrow-pointer": {
-      "file": "arrow-pointer.png",
-      "role": "pointer",
-      "tags": [
-        "arrow",
-        "teach"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.54,
-      "bodyHue": 205
-    },
-    "target-ring": {
-      "file": "target-ring.png",
-      "role": "target",
-      "tags": [
-        "target",
-        "ring"
-      ],
-      "relativeScale": 0.3,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.01,
-      "components": 12,
-      "bodyHue": 15
-    },
-    "gift-box": {
-      "file": "gift-box.png",
-      "role": "reward",
-      "tags": [
-        "gift",
-        "reward"
+        "dentist",
+        "dental",
+        "clinic"
       ],
       "relativeScale": 0.35,
       "anchor": "center",
-      "alpha": true,
-      "aspect": 0.96,
-      "bodyHue": 25
-    },
-    "hourglass": {
-      "file": "hourglass.png",
-      "role": "timer",
-      "tags": [
-        "timer",
-        "time"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.71,
-      "bodyHue": 215
-    },
-    "table": {
-      "file": "table.png",
-      "role": "furniture",
-      "tags": [
-        "table",
-        "build"
-      ],
-      "relativeScale": 0.8,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.41,
-      "bodyHue": 25
-    },
-    "chair": {
-      "file": "chair.png",
-      "role": "furniture",
-      "tags": [
-        "chair",
-        "build"
-      ],
-      "relativeScale": 0.6,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.64,
-      "bodyHue": 85
-    },
-    "door": {
-      "file": "door.png",
-      "role": "furniture",
-      "tags": [
-        "door",
-        "build"
-      ],
-      "relativeScale": 1,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.66,
-      "bodyHue": 165
-    },
-    "window": {
-      "file": "window.png",
-      "role": "furniture",
-      "tags": [
-        "window",
-        "build"
-      ],
-      "relativeScale": 0.85,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.05,
-      "bodyHue": 195
-    },
-    "rug": {
-      "file": "rug.png",
-      "role": "furniture",
-      "tags": [
-        "home",
-        "living",
-        "room",
-        "furniture"
-      ],
-      "relativeScale": 0.4,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.25,
-      "bodyHue": 205
-    },
-    "lamp": {
-      "file": "lamp.png",
-      "role": "furniture",
-      "tags": [
-        "lamp",
-        "build"
-      ],
-      "relativeScale": 0.5,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.65,
-      "bodyHue": 35
-    },
-    "tile-cream": {
-      "file": "tile-cream.png",
-      "role": "letterTile",
-      "tags": [
-        "tile",
-        "phonics"
-      ],
-      "relativeScale": 0.15,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.02,
-      "bodyHue": 35
-    },
-    "tile-blue": {
-      "file": "tile-blue.png",
-      "role": "letterTile",
-      "tags": [
-        "phonics",
-        "classroom"
-      ],
-      "relativeScale": 0.15,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.99
-    },
-    "sound-boxes": {
-      "file": "sound-boxes.png",
-      "role": "soundBoxes",
-      "tags": [
-        "phonics",
-        "classroom"
-      ],
-      "relativeScale": 0.35,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 2.37
-    },
-    "word-strip": {
-      "file": "word-strip.png",
-      "role": "wordStrip",
-      "tags": [
-        "phonics",
-        "classroom"
-      ],
-      "relativeScale": 0.4,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 3.03
-    },
-    "pencil": {
-      "file": "pencil.png",
-      "role": "tool",
-      "tags": [
-        "phonics",
-        "classroom"
-      ],
-      "relativeScale": 0.15,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 6.51
-    },
-    "eraser": {
-      "file": "eraser.png",
-      "role": "tool",
-      "tags": [
-        "eraser",
-        "write"
-      ],
-      "relativeScale": 0.1,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.17,
-      "bodyHue": 5
-    },
-    "backpack": {
-      "file": "backpack.png",
-      "role": "container",
-      "tags": [
-        "bag",
-        "backpack",
-        "school"
-      ],
-      "relativeScale": 0.35,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.87,
-      "bodyHue": 215
-    },
-    "suitcase": {
-      "file": "suitcase.png",
-      "role": "container",
-      "tags": [
-        "suitcase",
-        "travel",
-        "luggage"
-      ],
-      "relativeScale": 0.45,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.57,
-      "bodyHue": 195
-    },
-    "swing": {
-      "file": "swing.png",
-      "role": "playPart",
-      "tags": [
-        "swing",
-        "playground",
-        "park"
-      ],
-      "relativeScale": 0.9,
-      "anchor": "top",
       "alpha": true,
       "aspect": 0.95,
-      "bodyHue": 15
-    },
-    "umbrella": {
-      "file": "umbrella.png",
-      "role": "object",
-      "tags": [
-        "umbrella",
-        "weather",
-        "rain"
-      ],
-      "relativeScale": 0.5,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.52,
-      "bodyHue": 35
-    },
-    "reward-jar-v2": {
-      "file": "reward-jar-v2.png",
-      "role": "rewardContainer",
-      "tags": [
-        "jar",
-        "reward",
-        "empty"
-      ],
-      "relativeScale": 0.3,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.35,
       "components": 2,
-      "bodyHue": 35
+      "bodyHue": 195
     },
-    "desk": {
-      "file": "desk.png",
-      "role": "furniture",
-      "tags": [
-        "desk",
-        "table",
-        "build",
-        "school"
-      ],
-      "relativeScale": 0.8,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.5,
-      "bodyHue": 35
-    },
-    "wall-clock": {
-      "file": "wall-clock.png",
+    "dental-bib-drape": {
+      "file": "dental-bib-drape.png",
       "role": "object",
       "tags": [
-        "home",
-        "living",
-        "room",
-        "furniture"
+        "dentist",
+        "dental",
+        "clinic"
       ],
-      "relativeScale": 0.25,
+      "relativeScale": 0.35,
       "anchor": "center",
       "alpha": true,
       "aspect": 0.98,
-      "bodyHue": 35
-    },
-    "file-folder": {
-      "file": "file-folder.png",
-      "role": "container",
-      "tags": [
-        "folder",
-        "file",
-        "paper",
-        "office"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.25,
-      "bodyHue": 45
-    },
-    "clipboard": {
-      "file": "clipboard.png",
-      "role": "tool",
-      "tags": [
-        "clipboard",
-        "paper",
-        "checklist",
-        "write"
-      ],
-      "relativeScale": 0.3,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.7,
-      "bodyHue": 35
-    },
-    "supply-caddy": {
-      "file": "supply-caddy.png",
-      "role": "container",
-      "tags": [
-        "caddy",
-        "tote",
-        "supplies",
-        "sort"
-      ],
-      "relativeScale": 0.35,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.46,
       "bodyHue": 205
     },
-    "magazine-file": {
-      "file": "magazine-file.png",
+    "dental-bin": {
+      "file": "dental-bin.png",
       "role": "container",
       "tags": [
-        "holder",
-        "file",
-        "magazine",
-        "shelf"
+        "dentist",
+        "dental",
+        "clinic"
       ],
       "relativeScale": 0.3,
       "anchor": "bottom",
       "alpha": true,
-      "aspect": 0.89,
-      "bodyHue": 75
+      "aspect": 0.89
     },
-    "pencil-pot": {
-      "file": "pencil-pot.png",
-      "role": "container",
-      "tags": [
-        "pot",
-        "pencils",
-        "stationery",
-        "desk"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.71,
-      "bodyHue": 25
-    },
-    "desk-mat": {
-      "file": "desk-mat.png",
+    "dental-cabinet": {
+      "file": "dental-cabinet.png",
       "role": "furniture",
       "tags": [
-        "mat",
-        "placemat",
-        "desk",
-        "surface"
-      ],
-      "relativeScale": 0.45,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.79,
-      "bodyHue": 55
-    },
-    "globe": {
-      "file": "globe.png",
-      "role": "object",
-      "tags": [
-        "globe",
-        "world",
-        "geography",
-        "travel"
-      ],
-      "relativeScale": 0.35,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.73,
-      "bodyHue": 35
-    },
-    "wizard-hat": {
-      "file": "wizard-hat.png",
-      "role": "dressPart",
-      "tags": [
-        "hat",
-        "wizard",
-        "magic",
-        "costume"
-      ],
-      "relativeScale": 0.3,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.08,
-      "bodyHue": 275,
-      "styleFamily": "glossy-adventure"
-    },
-    "suitcase-vintage": {
-      "file": "suitcase-vintage.png",
-      "role": "container",
-      "tags": [
-        "suitcase",
-        "luggage",
-        "travel",
-        "vintage"
-      ],
-      "relativeScale": 0.4,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.08,
-      "bodyHue": 175,
-      "styleFamily": "glossy-adventure"
-    },
-    "lantern": {
-      "file": "lantern.png",
-      "role": "object",
-      "tags": [
-        "lantern",
-        "lamp",
-        "light",
-        "camping"
-      ],
-      "relativeScale": 0.3,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.54,
-      "bodyHue": 15,
-      "styleFamily": "glossy-adventure"
-    },
-    "telescope": {
-      "file": "telescope.png",
-      "role": "object",
-      "tags": [
-        "telescope",
-        "spyglass",
-        "explore",
-        "pirate"
-      ],
-      "relativeScale": 0.35,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.33,
-      "bodyHue": 35,
-      "styleFamily": "glossy-adventure"
-    },
-    "game-controller": {
-      "file": "game-controller.png",
-      "role": "object",
-      "tags": [
-        "controller",
-        "gamepad",
-        "game",
-        "play"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.34,
-      "bodyHue": 35,
-      "styleFamily": "glossy-adventure"
-    },
-    "tent": {
-      "file": "tent.png",
-      "role": "object",
-      "tags": [
-        "tent",
-        "camping",
-        "outdoors",
-        "shelter"
-      ],
-      "relativeScale": 0.9,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.42,
-      "bodyHue": 65,
-      "styleFamily": "glossy-adventure"
-    },
-    "potion-bottle": {
-      "file": "potion-bottle.png",
-      "role": "object",
-      "tags": [
-        "potion",
-        "bottle",
-        "flask",
-        "magic"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.68,
-      "bodyHue": 295,
-      "styleFamily": "glossy-adventure"
-    },
-    "treasure-chest": {
-      "file": "treasure-chest.png",
-      "role": "rewardContainer",
-      "tags": [
-        "chest",
-        "treasure",
-        "reward",
-        "pirate"
-      ],
-      "relativeScale": 0.45,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.1,
-      "bodyHue": 25,
-      "styleFamily": "glossy-adventure"
-    },
-    "camera": {
-      "file": "camera.png",
-      "role": "object",
-      "tags": [
-        "camera",
-        "photo",
-        "travel",
-        "holiday"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.19,
-      "bodyHue": 175,
-      "styleFamily": "glossy-adventure"
-    },
-    "exam-couch": {
-      "file": "exam-couch.png",
-      "role": "furniture",
-      "tags": [
-        "medical",
-        "clinic",
-        "doctor"
-      ],
-      "relativeScale": 0.7,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.43
-    },
-    "stethoscope": {
-      "file": "stethoscope.png",
-      "role": "tool",
-      "tags": [
-        "medical",
-        "clinic",
-        "doctor"
-      ],
-      "relativeScale": 0.15,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.74
-    },
-    "medicine-bottle": {
-      "file": "medicine-bottle.png",
-      "role": "object",
-      "tags": [
-        "medical",
-        "clinic",
-        "doctor"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.52
-    },
-    "first-aid-kit": {
-      "file": "first-aid-kit.png",
-      "role": "container",
-      "tags": [
-        "medical",
-        "clinic",
-        "doctor"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.06
-    },
-    "wheelchair": {
-      "file": "wheelchair.png",
-      "role": "furniture",
-      "tags": [
-        "medical",
-        "clinic",
-        "doctor"
-      ],
-      "relativeScale": 0.55,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.06
-    },
-    "clinic-clipboard": {
-      "file": "clinic-clipboard.png",
-      "role": "tool",
-      "tags": [
-        "medical",
-        "clinic",
-        "doctor"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.7
-    },
-    "thermometer": {
-      "file": "thermometer.png",
-      "role": "tool",
-      "tags": [
-        "medical",
-        "clinic",
-        "doctor"
-      ],
-      "relativeScale": 0.12,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.31
-    },
-    "medical-stool": {
-      "file": "medical-stool.png",
-      "role": "furniture",
-      "tags": [
-        "medical",
-        "clinic",
-        "doctor"
-      ],
-      "relativeScale": 0.35,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.87
-    },
-    "tissue-box": {
-      "file": "tissue-box.png",
-      "role": "object",
-      "tags": [
-        "medical",
-        "clinic",
-        "doctor"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.16
-    },
-    "gym-mat": {
-      "file": "gym-mat.png",
-      "role": "furniture",
-      "tags": [
-        "gym",
-        "sport",
-        "play"
-      ],
-      "relativeScale": 0.5,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.93
-    },
-    "basketball": {
-      "file": "basketball.png",
-      "role": "object",
-      "tags": [
-        "gym",
-        "sport",
-        "play"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.99
-    },
-    "soccer-ball": {
-      "file": "soccer-ball.png",
-      "role": "object",
-      "tags": [
-        "gym",
-        "sport",
-        "play"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.02
-    },
-    "jump-rope": {
-      "file": "jump-rope.png",
-      "role": "object",
-      "tags": [
-        "gym",
-        "sport",
-        "play"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.56
-    },
-    "sports-cone": {
-      "file": "sports-cone.png",
-      "role": "object",
-      "tags": [
-        "gym",
-        "sport",
-        "play"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.84
-    },
-    "water-bottle": {
-      "file": "water-bottle.png",
-      "role": "object",
-      "tags": [
-        "gym",
-        "sport",
-        "play"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.42
-    },
-    "whistle": {
-      "file": "whistle.png",
-      "role": "tool",
-      "tags": [
-        "gym",
-        "sport",
-        "play"
-      ],
-      "relativeScale": 0.1,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.39
-    },
-    "dumbbell": {
-      "file": "dumbbell.png",
-      "role": "object",
-      "tags": [
-        "gym",
-        "sport",
-        "play"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 2.38
-    },
-    "stopwatch": {
-      "file": "stopwatch.png",
-      "role": "timer",
-      "tags": [
-        "gym",
-        "sport",
-        "play"
-      ],
-      "relativeScale": 0.15,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.77
-    },
-    "lunch-tray": {
-      "file": "lunch-tray.png",
-      "role": "tray",
-      "tags": [
-        "cafeteria",
-        "food",
-        "school"
-      ],
-      "relativeScale": 0.4,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.85
-    },
-    "milk-carton": {
-      "file": "milk-carton.png",
-      "role": "object",
-      "tags": [
-        "cafeteria",
-        "food",
-        "school"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.64
-    },
-    "apple": {
-      "file": "apple.png",
-      "role": "object",
-      "tags": [
-        "cafeteria",
-        "food",
-        "school"
-      ],
-      "relativeScale": 0.15,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.88
-    },
-    "sandwich": {
-      "file": "sandwich.png",
-      "role": "object",
-      "tags": [
-        "cafeteria",
-        "food",
-        "school"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.35
-    },
-    "napkin-stack": {
-      "file": "napkin-stack.png",
-      "role": "object",
-      "tags": [
-        "cafeteria",
-        "food",
-        "school"
-      ],
-      "relativeScale": 0.15,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.42
-    },
-    "plastic-cup": {
-      "file": "plastic-cup.png",
-      "role": "object",
-      "tags": [
-        "cafeteria",
-        "food",
-        "school"
-      ],
-      "relativeScale": 0.15,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.82
-    },
-    "fork": {
-      "file": "fork.png",
-      "role": "tool",
-      "tags": [
-        "cafeteria",
-        "food",
-        "school"
-      ],
-      "relativeScale": 0.12,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.11
-    },
-    "spoon": {
-      "file": "spoon.png",
-      "role": "tool",
-      "tags": [
-        "cafeteria",
-        "food",
-        "school"
-      ],
-      "relativeScale": 0.12,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.02
-    },
-    "cafeteria-stool": {
-      "file": "cafeteria-stool.png",
-      "role": "furniture",
-      "tags": [
-        "cafeteria",
-        "food",
-        "school"
-      ],
-      "relativeScale": 0.4,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.97
-    },
-    "tile-green": {
-      "file": "tile-green.png",
-      "role": "letterTile",
-      "tags": [
-        "phonics",
-        "classroom"
-      ],
-      "relativeScale": 0.15,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.99
-    },
-    "tile-orange": {
-      "file": "tile-orange.png",
-      "role": "letterTile",
-      "tags": [
-        "phonics",
-        "classroom"
-      ],
-      "relativeScale": 0.15,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.98
-    },
-    "sound-box": {
-      "file": "sound-box.png",
-      "role": "soundBoxes",
-      "tags": [
-        "phonics",
-        "classroom"
-      ],
-      "relativeScale": 0.15,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1
-    },
-    "pointer-stick": {
-      "file": "pointer-stick.png",
-      "role": "tool",
-      "tags": [
-        "phonics",
-        "classroom"
-      ],
-      "relativeScale": 0.35,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.38
-    },
-    "eraser-block": {
-      "file": "eraser-block.png",
-      "role": "tool",
-      "tags": [
-        "phonics",
-        "classroom"
-      ],
-      "relativeScale": 0.12,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.83
-    },
-    "sofa": {
-      "file": "sofa.png",
-      "role": "furniture",
-      "tags": [
-        "home",
-        "living",
-        "room",
-        "furniture"
-      ],
-      "relativeScale": 0.7,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.76,
-      "bodyHue": 155
-    },
-    "floor-lamp": {
-      "file": "floor-lamp.png",
-      "role": "furniture",
-      "tags": [
-        "home",
-        "living",
-        "room",
-        "furniture"
-      ],
-      "relativeScale": 0.55,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.44,
-      "bodyHue": 35
-    },
-    "coffee-table": {
-      "file": "coffee-table.png",
-      "role": "furniture",
-      "tags": [
-        "home",
-        "living",
-        "room",
-        "furniture"
-      ],
-      "relativeScale": 0.45,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 2.03,
-      "bodyHue": 25
-    },
-    "house-plant": {
-      "file": "house-plant.png",
-      "role": "object",
-      "tags": [
-        "home",
-        "living",
-        "room",
-        "furniture"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.8,
-      "bodyHue": 75,
-      "components": 6
-    },
-    "throw-pillow": {
-      "file": "throw-pillow.png",
-      "role": "object",
-      "tags": [
-        "home",
-        "living",
-        "room",
-        "furniture"
-      ],
-      "relativeScale": 0.15,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.03,
-      "bodyHue": 25
-    },
-    "picture-frame": {
-      "file": "picture-frame.png",
-      "role": "object",
-      "tags": [
-        "home",
-        "living",
-        "room",
-        "furniture"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.82,
-      "bodyHue": 35
-    },
-    "remote-control": {
-      "file": "remote-control.png",
-      "role": "object",
-      "tags": [
-        "home",
-        "living",
-        "room",
-        "furniture"
-      ],
-      "relativeScale": 0.12,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.36
-    },
-    "slide": {
-      "file": "slide.png",
-      "role": "playPart",
-      "tags": [
-        "park",
-        "playground",
-        "slide",
-        "outdoors"
-      ],
-      "relativeScale": 0.85,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.16,
-      "bodyHue": 215
-    },
-    "seesaw": {
-      "file": "seesaw.png",
-      "role": "playPart",
-      "tags": [
-        "park",
-        "playground",
-        "outdoors"
-      ],
-      "relativeScale": 0.7,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 3.01,
-      "bodyHue": 5
-    },
-    "trampoline": {
-      "file": "trampoline.png",
-      "role": "hero",
-      "tags": [
-        "trampoline",
-        "gym",
-        "park",
-        "playground",
-        "sport",
-        "outdoors",
-        "backyard",
-        "backflip"
-      ],
-      "relativeScale": 0.9,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.86,
-      "bodyHue": 215
-    },
-    "sandbox": {
-      "file": "sandbox.png",
-      "role": "furniture",
-      "tags": [
-        "park",
-        "playground",
-        "outdoors"
-      ],
-      "relativeScale": 0.55,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.48,
-      "bodyHue": 35
-    },
-    "park-bench": {
-      "file": "park-bench.png",
-      "role": "furniture",
-      "tags": [
-        "park",
-        "outdoors"
-      ],
-      "relativeScale": 0.5,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.55,
-      "bodyHue": 85,
-      "components": 5
-    },
-    "merry-go-round": {
-      "file": "merry-go-round.png",
-      "role": "playPart",
-      "tags": [
-        "park",
-        "playground",
-        "outdoors"
+        "dentist",
+        "dental",
+        "clinic"
       ],
       "relativeScale": 0.65,
       "anchor": "bottom",
       "alpha": true,
-      "aspect": 1.54,
-      "bodyHue": 45
+      "aspect": 1.07,
+      "bodyHue": 205
     },
-    "playground-ball": {
-      "file": "playground-ball.png",
-      "role": "object",
-      "tags": [
-        "park",
-        "playground",
-        "outdoors"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.98,
-      "bodyHue": 15
-    },
-    "kite": {
-      "file": "kite.png",
-      "role": "object",
-      "tags": [
-        "park",
-        "outdoors"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.53,
-      "bodyHue": 15
-    },
-    "picnic-table": {
-      "file": "picnic-table.png",
+    "dental-chair": {
+      "file": "dental-chair.png",
       "role": "furniture",
       "tags": [
-        "park",
-        "outdoors"
+        "dentist",
+        "dental",
+        "clinic"
       ],
-      "relativeScale": 0.65,
+      "relativeScale": 0.7,
       "anchor": "bottom",
       "alpha": true,
-      "aspect": 1.96,
-      "bodyHue": 25
-    },
-    "drinking-fountain": {
-      "file": "drinking-fountain.png",
-      "role": "furniture",
-      "tags": [
-        "park",
-        "outdoors"
-      ],
-      "relativeScale": 0.45,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.55,
+      "aspect": 1,
       "bodyHue": 215
     },
     "dental-kid-open-mouth": {
@@ -1574,65 +1245,18 @@
       "aspect": 1.25,
       "bodyHue": 15
     },
-    "dentist-character": {
-      "file": "dentist-character.png",
-      "role": "hero",
+    "dental-light": {
+      "file": "dental-light.png",
+      "role": "furniture",
       "tags": [
         "dentist",
         "dental",
         "clinic"
       ],
-      "relativeScale": 0.85,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.32,
-      "bodyHue": 25
-    },
-    "toothbrush-prop": {
-      "file": "toothbrush-prop.png",
-      "role": "object",
-      "tags": [
-        "dentist",
-        "dental",
-        "clinic",
-        "brush",
-        "toothbrush"
-      ],
-      "relativeScale": 0.2,
+      "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.35,
-      "bodyHue": 205
-    },
-    "toothpaste-tube": {
-      "file": "toothpaste-tube.png",
-      "role": "object",
-      "tags": [
-        "dentist",
-        "dental",
-        "clinic",
-        "toothpaste"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.42,
-      "bodyHue": 185
-    },
-    "floss-pick": {
-      "file": "floss-pick.png",
-      "role": "object",
-      "tags": [
-        "dentist",
-        "dental",
-        "clinic",
-        "floss"
-      ],
-      "relativeScale": 0.15,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.42,
-      "bodyHue": 165
+      "aspect": 0.84
     },
     "dental-mirror": {
       "file": "dental-mirror.png",
@@ -1647,118 +1271,6 @@
       "alpha": true,
       "aspect": 0.48
     },
-    "cavity-tooth": {
-      "file": "cavity-tooth.png",
-      "role": "object",
-      "tags": [
-        "dentist",
-        "dental",
-        "clinic",
-        "cavity"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.78
-    },
-    "healthy-tooth": {
-      "file": "healthy-tooth.png",
-      "role": "object",
-      "tags": [
-        "dentist",
-        "dental",
-        "clinic",
-        "tooth"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.78
-    },
-    "dental-bib": {
-      "file": "dental-bib.png",
-      "role": "object",
-      "tags": [
-        "dentist",
-        "dental",
-        "clinic"
-      ],
-      "relativeScale": 0.35,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.95,
-      "components": 2,
-      "bodyHue": 195
-    },
-    "reward-star-dental": {
-      "file": "reward-star-dental.png",
-      "role": "object",
-      "tags": [
-        "dentist",
-        "dental",
-        "clinic",
-        "reward"
-      ],
-      "relativeScale": 0.15,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.05,
-      "bodyHue": 45
-    },
-    "dentist-standing": {
-      "file": "dentist-standing.png",
-      "role": "hero",
-      "tags": [
-        "dentist",
-        "dental",
-        "clinic"
-      ],
-      "relativeScale": 0.85,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.42,
-      "bodyHue": 25
-    },
-    "dental-chair": {
-      "file": "dental-chair.png",
-      "role": "furniture",
-      "tags": [
-        "dentist",
-        "dental",
-        "clinic"
-      ],
-      "relativeScale": 0.7,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1,
-      "bodyHue": 215
-    },
-    "dental-light": {
-      "file": "dental-light.png",
-      "role": "furniture",
-      "tags": [
-        "dentist",
-        "dental",
-        "clinic"
-      ],
-      "relativeScale": 0.45,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.84
-    },
-    "dental-tray-unit": {
-      "file": "dental-tray-unit.png",
-      "role": "furniture",
-      "tags": [
-        "dentist",
-        "dental",
-        "clinic"
-      ],
-      "relativeScale": 0.5,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 0.87
-    },
     "dental-stool": {
       "file": "dental-stool.png",
       "role": "furniture",
@@ -1771,34 +1283,6 @@
       "anchor": "bottom",
       "alpha": true,
       "aspect": 0.66,
-      "bodyHue": 205
-    },
-    "dental-cabinet": {
-      "file": "dental-cabinet.png",
-      "role": "furniture",
-      "tags": [
-        "dentist",
-        "dental",
-        "clinic"
-      ],
-      "relativeScale": 0.65,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.07,
-      "bodyHue": 205
-    },
-    "dental-bib-drape": {
-      "file": "dental-bib-drape.png",
-      "role": "object",
-      "tags": [
-        "dentist",
-        "dental",
-        "clinic"
-      ],
-      "relativeScale": 0.35,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.98,
       "bodyHue": 205
     },
     "dental-tissues": {
@@ -1815,18 +1299,153 @@
       "aspect": 1.11,
       "bodyHue": 205
     },
-    "dental-bin": {
-      "file": "dental-bin.png",
-      "role": "container",
+    "dental-tray-unit": {
+      "file": "dental-tray-unit.png",
+      "role": "furniture",
       "tags": [
         "dentist",
         "dental",
         "clinic"
       ],
-      "relativeScale": 0.3,
+      "relativeScale": 0.5,
       "anchor": "bottom",
       "alpha": true,
-      "aspect": 0.89
+      "aspect": 0.87
+    },
+    "dentist-character": {
+      "file": "dentist-character.png",
+      "role": "hero",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic"
+      ],
+      "relativeScale": 0.85,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.32,
+      "bodyHue": 25
+    },
+    "dentist-standing": {
+      "file": "dentist-standing.png",
+      "role": "hero",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic"
+      ],
+      "relativeScale": 0.85,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.42,
+      "bodyHue": 25
+    },
+    "desk": {
+      "file": "desk.png",
+      "role": "furniture",
+      "tags": [
+        "desk",
+        "table",
+        "build",
+        "school"
+      ],
+      "relativeScale": 0.8,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.5,
+      "bodyHue": 35
+    },
+    "desk-mat": {
+      "file": "desk-mat.png",
+      "role": "furniture",
+      "tags": [
+        "mat",
+        "placemat",
+        "desk",
+        "surface"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.79,
+      "bodyHue": 55
+    },
+    "door": {
+      "file": "door.png",
+      "role": "furniture",
+      "tags": [
+        "door",
+        "build"
+      ],
+      "relativeScale": 1,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.66,
+      "bodyHue": 165
+    },
+    "drinking-fountain": {
+      "file": "drinking-fountain.png",
+      "role": "furniture",
+      "tags": [
+        "park",
+        "outdoors"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.55,
+      "bodyHue": 215
+    },
+    "dumbbell": {
+      "file": "dumbbell.png",
+      "role": "object",
+      "tags": [
+        "gym",
+        "sport",
+        "play"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 2.38
+    },
+    "eraser": {
+      "file": "eraser.png",
+      "role": "tool",
+      "tags": [
+        "eraser",
+        "write"
+      ],
+      "relativeScale": 0.1,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.17,
+      "bodyHue": 5
+    },
+    "eraser-block": {
+      "file": "eraser-block.png",
+      "role": "tool",
+      "tags": [
+        "phonics",
+        "classroom"
+      ],
+      "relativeScale": 0.12,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.83
+    },
+    "exam-couch": {
+      "file": "exam-couch.png",
+      "role": "furniture",
+      "tags": [
+        "medical",
+        "clinic",
+        "doctor"
+      ],
+      "relativeScale": 0.7,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.43
     },
     "face-blank": {
       "file": "face-blank.png",
@@ -1846,81 +1465,6 @@
       "alpha": true,
       "aspect": 0.74,
       "bodyHue": 25
-    },
-    "face-eyes-brown": {
-      "file": "face-eyes-brown.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "eyes",
-        "dress"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 2.06,
-      "components": 2,
-      "bodyHue": 15
-    },
-    "face-eyes-green": {
-      "file": "face-eyes-green.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "eyes",
-        "dress"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.77,
-      "components": 2,
-      "bodyHue": 25
-    },
-    "face-eyes-dark": {
-      "file": "face-eyes-dark.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "eyes",
-        "dress"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.73,
-      "components": 2,
-      "bodyHue": 25
-    },
-    "face-eyes-blue": {
-      "file": "face-eyes-blue.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "eyes",
-        "dress"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 2,
-      "components": 2,
-      "bodyHue": 35
-    },
-    "face-brows-dark": {
-      "file": "face-brows-dark.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "brows",
-        "dress"
-      ],
-      "relativeScale": 0.15,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 5.04,
-      "components": 2,
-      "bodyHue": 15
     },
     "face-brows-arched": {
       "file": "face-brows-arched.png",
@@ -1965,6 +1509,254 @@
       "aspect": 5.37,
       "components": 2,
       "bodyHue": 35
+    },
+    "face-brows-dark": {
+      "file": "face-brows-dark.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "brows",
+        "dress"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 5.04,
+      "components": 2,
+      "bodyHue": 15
+    },
+    "face-ears-elf": {
+      "file": "face-ears-elf.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "ears",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.32,
+      "components": 2,
+      "bodyHue": 35
+    },
+    "face-ears-large": {
+      "file": "face-ears-large.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "ears",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.93,
+      "components": 2,
+      "bodyHue": 25
+    },
+    "face-ears-oval": {
+      "file": "face-ears-oval.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "ears",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.87,
+      "components": 2,
+      "bodyHue": 25
+    },
+    "face-ears-round": {
+      "file": "face-ears-round.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "ears",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.72,
+      "components": 2,
+      "bodyHue": 25
+    },
+    "face-eyes-blue": {
+      "file": "face-eyes-blue.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "eyes",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2,
+      "components": 2,
+      "bodyHue": 35
+    },
+    "face-eyes-brown": {
+      "file": "face-eyes-brown.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "eyes",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.06,
+      "components": 2,
+      "bodyHue": 15
+    },
+    "face-eyes-dark": {
+      "file": "face-eyes-dark.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "eyes",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.73,
+      "components": 2,
+      "bodyHue": 25
+    },
+    "face-eyes-green": {
+      "file": "face-eyes-green.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "eyes",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.77,
+      "components": 2,
+      "bodyHue": 25
+    },
+    "face-glasses-round": {
+      "file": "face-glasses-round.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "glasses",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.48
+    },
+    "face-hair-curly": {
+      "file": "face-hair-curly.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.57,
+      "bodyHue": 25
+    },
+    "face-hair-pigtails": {
+      "file": "face-hair-pigtails.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.96,
+      "bodyHue": 35
+    },
+    "face-hair-shaggy": {
+      "file": "face-hair-shaggy.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.38,
+      "bodyHue": 15
+    },
+    "face-mouth-frown": {
+      "file": "face-mouth-frown.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "mouth",
+        "dress"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 3.21,
+      "bodyHue": 15
+    },
+    "face-mouth-line": {
+      "file": "face-mouth-line.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "mouth",
+        "smile",
+        "dress"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 3.41,
+      "bodyHue": 15
+    },
+    "face-mouth-open": {
+      "file": "face-mouth-open.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "mouth",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.38,
+      "bodyHue": 15
+    },
+    "face-mouth-smile": {
+      "file": "face-mouth-smile.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "mouth",
+        "smile",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.86,
+      "bodyHue": 15
     },
     "face-nose-button": {
       "file": "face-nose-button.png",
@@ -2022,345 +1814,159 @@
       "aspect": 1.02,
       "bodyHue": 25
     },
-    "face-ears-round": {
-      "file": "face-ears-round.png",
-      "role": "dressPart",
+    "file-folder": {
+      "file": "file-folder.png",
+      "role": "container",
       "tags": [
-        "face",
-        "ears",
-        "dress"
+        "folder",
+        "file",
+        "paper",
+        "office"
       ],
       "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.72,
-      "components": 2,
-      "bodyHue": 25
-    },
-    "face-ears-oval": {
-      "file": "face-ears-oval.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "ears",
-        "dress"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.87,
-      "components": 2,
-      "bodyHue": 25
-    },
-    "face-ears-elf": {
-      "file": "face-ears-elf.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "ears",
-        "dress"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 2.32,
-      "components": 2,
-      "bodyHue": 35
-    },
-    "face-ears-large": {
-      "file": "face-ears-large.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "ears",
-        "dress"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.93,
-      "components": 2,
-      "bodyHue": 25
-    },
-    "face-mouth-smile": {
-      "file": "face-mouth-smile.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "mouth",
-        "smile",
-        "dress"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.86,
-      "bodyHue": 15
-    },
-    "face-mouth-open": {
-      "file": "face-mouth-open.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "mouth",
-        "dress"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.38,
-      "bodyHue": 15
-    },
-    "face-mouth-line": {
-      "file": "face-mouth-line.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "mouth",
-        "smile",
-        "dress"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 3.41,
-      "bodyHue": 15
-    },
-    "face-mouth-frown": {
-      "file": "face-mouth-frown.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "mouth",
-        "dress"
-      ],
-      "relativeScale": 0.2,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 3.21,
-      "bodyHue": 15
-    },
-    "face-hair-shaggy": {
-      "file": "face-hair-shaggy.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "hair",
-        "dress"
-      ],
-      "relativeScale": 0.4,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.38,
-      "bodyHue": 15
-    },
-    "face-hair-pigtails": {
-      "file": "face-hair-pigtails.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "hair",
-        "dress"
-      ],
-      "relativeScale": 0.45,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.96,
-      "bodyHue": 35
-    },
-    "face-hair-curly": {
-      "file": "face-hair-curly.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "hair",
-        "dress"
-      ],
-      "relativeScale": 0.4,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.57,
-      "bodyHue": 25
-    },
-    "face-glasses-round": {
-      "file": "face-glasses-round.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "glasses",
-        "dress"
-      ],
-      "relativeScale": 0.25,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 2.48
-    },
-    "hair-messy-brown": {
-      "file": "hair-messy-brown.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "hair",
-        "dress"
-      ],
-      "relativeScale": 0.5,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.31,
-      "bodyHue": 15
-    },
-    "hair-long-straight": {
-      "file": "hair-long-straight.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "hair",
-        "dress"
-      ],
-      "relativeScale": 0.5,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.98,
-      "bodyHue": 15
-    },
-    "hair-spiky-blonde": {
-      "file": "hair-spiky-blonde.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "hair",
-        "dress"
-      ],
-      "relativeScale": 0.5,
       "anchor": "center",
       "alpha": true,
       "aspect": 1.25,
+      "bodyHue": 45
+    },
+    "first-aid-kit": {
+      "file": "first-aid-kit.png",
+      "role": "container",
+      "tags": [
+        "medical",
+        "clinic",
+        "doctor"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.06
+    },
+    "flashcard-blank": {
+      "file": "flashcard-blank.png",
+      "role": "wordCard",
+      "tags": [
+        "card",
+        "vocab"
+      ],
+      "relativeScale": 0.3,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.86,
+      "bodyHue": 125
+    },
+    "floor-lamp": {
+      "file": "floor-lamp.png",
+      "role": "furniture",
+      "tags": [
+        "home",
+        "living",
+        "room",
+        "furniture"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.44,
       "bodyHue": 35
     },
-    "hair-slick-black": {
-      "file": "hair-slick-black.png",
-      "role": "dressPart",
+    "floss-pick": {
+      "file": "floss-pick.png",
+      "role": "object",
       "tags": [
-        "face",
-        "hair",
-        "dress"
+        "dentist",
+        "dental",
+        "clinic",
+        "floss"
       ],
-      "relativeScale": 0.5,
+      "relativeScale": 0.15,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.54
+      "aspect": 0.42,
+      "bodyHue": 165
     },
-    "hair-double-bun": {
-      "file": "hair-double-bun.png",
-      "role": "dressPart",
+    "fork": {
+      "file": "fork.png",
+      "role": "tool",
       "tags": [
-        "face",
-        "hair",
-        "dress"
+        "cafeteria",
+        "food",
+        "school"
       ],
-      "relativeScale": 0.5,
+      "relativeScale": 0.12,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.11,
-      "bodyHue": 355
+      "aspect": 1.11
     },
-    "hair-curly-ginger": {
-      "file": "hair-curly-ginger.png",
-      "role": "dressPart",
+    "game-controller": {
+      "file": "game-controller.png",
+      "role": "object",
       "tags": [
-        "face",
-        "hair",
-        "dress"
+        "controller",
+        "gamepad",
+        "game",
+        "play"
       ],
-      "relativeScale": 0.5,
-      "anchor": "center",
+      "relativeScale": 0.2,
+      "anchor": "bottom",
       "alpha": true,
-      "aspect": 1.35,
-      "bodyHue": 15
+      "aspect": 1.34,
+      "bodyHue": 35,
+      "styleFamily": "glossy-adventure"
     },
-    "hair-wavy-brown": {
-      "file": "hair-wavy-brown.png",
-      "role": "dressPart",
+    "gift-box": {
+      "file": "gift-box.png",
+      "role": "reward",
       "tags": [
-        "face",
-        "hair",
-        "dress"
+        "gift",
+        "reward"
       ],
-      "relativeScale": 0.5,
+      "relativeScale": 0.35,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.16,
-      "bodyHue": 15
-    },
-    "hair-pony-blonde": {
-      "file": "hair-pony-blonde.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "hair",
-        "dress"
-      ],
-      "relativeScale": 0.5,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 0.95,
+      "aspect": 0.96,
       "bodyHue": 25
     },
-    "hair-shaggy-blonde": {
-      "file": "hair-shaggy-blonde.png",
+    "glasses": {
+      "file": "glasses.png",
       "role": "dressPart",
       "tags": [
-        "face",
-        "hair",
+        "glasses",
         "dress"
       ],
-      "relativeScale": 0.5,
+      "relativeScale": 0.15,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.35,
+      "aspect": 2.57,
       "bodyHue": 25
     },
-    "hair-fauxhawk-black": {
-      "file": "hair-fauxhawk-black.png",
-      "role": "dressPart",
+    "globe": {
+      "file": "globe.png",
+      "role": "object",
       "tags": [
-        "face",
-        "hair",
-        "dress"
+        "globe",
+        "world",
+        "geography",
+        "travel"
       ],
-      "relativeScale": 0.5,
-      "anchor": "center",
+      "relativeScale": 0.35,
+      "anchor": "bottom",
       "alpha": true,
-      "aspect": 1.43,
-      "bodyHue": 25
+      "aspect": 0.73,
+      "bodyHue": 35
     },
-    "hair-braids-brown": {
-      "file": "hair-braids-brown.png",
-      "role": "dressPart",
+    "gym-mat": {
+      "file": "gym-mat.png",
+      "role": "furniture",
       "tags": [
-        "face",
-        "hair",
-        "dress"
+        "gym",
+        "sport",
+        "play"
       ],
       "relativeScale": 0.5,
-      "anchor": "center",
+      "anchor": "bottom",
       "alpha": true,
-      "aspect": 1,
-      "bodyHue": 15
-    },
-    "hair-spiky-brown": {
-      "file": "hair-spiky-brown.png",
-      "role": "dressPart",
-      "tags": [
-        "face",
-        "hair",
-        "dress"
-      ],
-      "relativeScale": 0.5,
-      "anchor": "center",
-      "alpha": true,
-      "aspect": 1.27,
-      "bodyHue": 15
+      "aspect": 1.93
     },
     "hair-afro-dark": {
       "file": "hair-afro-dark.png",
@@ -2390,8 +1996,8 @@
       "aspect": 1.12,
       "bodyHue": 15
     },
-    "hair-pointy-black": {
-      "file": "hair-pointy-black.png",
+    "hair-braids-brown": {
+      "file": "hair-braids-brown.png",
       "role": "dressPart",
       "tags": [
         "face",
@@ -2401,7 +2007,50 @@
       "relativeScale": 0.5,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.22
+      "aspect": 1,
+      "bodyHue": 15
+    },
+    "hair-curly-ginger": {
+      "file": "hair-curly-ginger.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.35,
+      "bodyHue": 15
+    },
+    "hair-double-bun": {
+      "file": "hair-double-bun.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.11,
+      "bodyHue": 355
+    },
+    "hair-fauxhawk-black": {
+      "file": "hair-fauxhawk-black.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.43,
+      "bodyHue": 25
     },
     "hair-long-blonde-wave": {
       "file": "hair-long-blonde-wave.png",
@@ -2416,6 +2065,1213 @@
       "alpha": true,
       "aspect": 1.04,
       "bodyHue": 25
+    },
+    "hair-long-straight": {
+      "file": "hair-long-straight.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "bodyHue": 15
+    },
+    "hair-messy-brown": {
+      "file": "hair-messy-brown.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.31,
+      "bodyHue": 15
+    },
+    "hair-pointy-black": {
+      "file": "hair-pointy-black.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.22
+    },
+    "hair-pony-blonde": {
+      "file": "hair-pony-blonde.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.95,
+      "bodyHue": 25
+    },
+    "hair-shaggy-blonde": {
+      "file": "hair-shaggy-blonde.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.35,
+      "bodyHue": 25
+    },
+    "hair-slick-black": {
+      "file": "hair-slick-black.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.54
+    },
+    "hair-spiky-blonde": {
+      "file": "hair-spiky-blonde.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.25,
+      "bodyHue": 35
+    },
+    "hair-spiky-brown": {
+      "file": "hair-spiky-brown.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.27,
+      "bodyHue": 15
+    },
+    "hair-wavy-brown": {
+      "file": "hair-wavy-brown.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.16,
+      "bodyHue": 15
+    },
+    "hat-beanie": {
+      "file": "hat-beanie.png",
+      "role": "dressPart",
+      "tags": [
+        "hat",
+        "dress"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.25,
+      "bodyHue": 85
+    },
+    "healthy-tooth": {
+      "file": "healthy-tooth.png",
+      "role": "object",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic",
+        "tooth"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.78
+    },
+    "hourglass": {
+      "file": "hourglass.png",
+      "role": "timer",
+      "tags": [
+        "timer",
+        "time"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.71,
+      "bodyHue": 215
+    },
+    "house-plant": {
+      "file": "house-plant.png",
+      "role": "object",
+      "tags": [
+        "home",
+        "living",
+        "room",
+        "furniture"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.8,
+      "bodyHue": 75,
+      "components": 6
+    },
+    "jump-rope": {
+      "file": "jump-rope.png",
+      "role": "object",
+      "tags": [
+        "gym",
+        "sport",
+        "play"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.56
+    },
+    "kite": {
+      "file": "kite.png",
+      "role": "object",
+      "tags": [
+        "park",
+        "outdoors"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.53,
+      "bodyHue": 15
+    },
+    "lamp": {
+      "file": "lamp.png",
+      "role": "furniture",
+      "tags": [
+        "lamp",
+        "build"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.65,
+      "bodyHue": 35
+    },
+    "lantern": {
+      "file": "lantern.png",
+      "role": "object",
+      "tags": [
+        "lantern",
+        "lamp",
+        "light",
+        "camping"
+      ],
+      "relativeScale": 0.3,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.54,
+      "bodyHue": 15,
+      "styleFamily": "glossy-adventure"
+    },
+    "lunch-tray": {
+      "file": "lunch-tray.png",
+      "role": "tray",
+      "tags": [
+        "cafeteria",
+        "food",
+        "school"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.85
+    },
+    "magazine-file": {
+      "file": "magazine-file.png",
+      "role": "container",
+      "tags": [
+        "holder",
+        "file",
+        "magazine",
+        "shelf"
+      ],
+      "relativeScale": 0.3,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.89,
+      "bodyHue": 75
+    },
+    "medical-stool": {
+      "file": "medical-stool.png",
+      "role": "furniture",
+      "tags": [
+        "medical",
+        "clinic",
+        "doctor"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.87
+    },
+    "medicine-bottle": {
+      "file": "medicine-bottle.png",
+      "role": "object",
+      "tags": [
+        "medical",
+        "clinic",
+        "doctor"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.52
+    },
+    "merry-go-round": {
+      "file": "merry-go-round.png",
+      "role": "playPart",
+      "tags": [
+        "park",
+        "playground",
+        "outdoors"
+      ],
+      "relativeScale": 0.65,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.54,
+      "bodyHue": 45
+    },
+    "microphone": {
+      "file": "microphone.png",
+      "role": "speakProp",
+      "tags": [
+        "mic",
+        "speaking"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.63,
+      "bodyHue": 45
+    },
+    "milk-carton": {
+      "file": "milk-carton.png",
+      "role": "object",
+      "tags": [
+        "cafeteria",
+        "food",
+        "school"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.64
+    },
+    "mini-whiteboard": {
+      "file": "mini-whiteboard.png",
+      "role": "miniBoard",
+      "tags": [
+        "whiteboard",
+        "phonics"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.42
+    },
+    "napkin-stack": {
+      "file": "napkin-stack.png",
+      "role": "object",
+      "tags": [
+        "cafeteria",
+        "food",
+        "school"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.42
+    },
+    "park-bench": {
+      "file": "park-bench.png",
+      "role": "furniture",
+      "tags": [
+        "park",
+        "outdoors"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.55,
+      "bodyHue": 85,
+      "components": 5
+    },
+    "pencil": {
+      "file": "pencil.png",
+      "role": "tool",
+      "tags": [
+        "phonics",
+        "classroom"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 6.51
+    },
+    "pencil-pot": {
+      "file": "pencil-pot.png",
+      "role": "container",
+      "tags": [
+        "pot",
+        "pencils",
+        "stationery",
+        "desk"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.71,
+      "bodyHue": 25
+    },
+    "picnic-table": {
+      "file": "picnic-table.png",
+      "role": "furniture",
+      "tags": [
+        "park",
+        "outdoors"
+      ],
+      "relativeScale": 0.65,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.96,
+      "bodyHue": 25
+    },
+    "picture-frame": {
+      "file": "picture-frame.png",
+      "role": "object",
+      "tags": [
+        "home",
+        "living",
+        "room",
+        "furniture"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.82,
+      "bodyHue": 35
+    },
+    "plastic-cup": {
+      "file": "plastic-cup.png",
+      "role": "object",
+      "tags": [
+        "cafeteria",
+        "food",
+        "school"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.82
+    },
+    "playground-ball": {
+      "file": "playground-ball.png",
+      "role": "object",
+      "tags": [
+        "park",
+        "playground",
+        "outdoors"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.98,
+      "bodyHue": 15
+    },
+    "pointer-stick": {
+      "file": "pointer-stick.png",
+      "role": "tool",
+      "tags": [
+        "phonics",
+        "classroom"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.38
+    },
+    "potion-bottle": {
+      "file": "potion-bottle.png",
+      "role": "object",
+      "tags": [
+        "potion",
+        "bottle",
+        "flask",
+        "magic"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.68,
+      "bodyHue": 295,
+      "styleFamily": "glossy-adventure"
+    },
+    "prize-flap": {
+      "file": "prize-flap.png",
+      "role": "rewardFlap",
+      "tags": [
+        "flap",
+        "reward"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center"
+    },
+    "remote-control": {
+      "file": "remote-control.png",
+      "role": "object",
+      "tags": [
+        "home",
+        "living",
+        "room",
+        "furniture"
+      ],
+      "relativeScale": 0.12,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.36
+    },
+    "reward-flap": {
+      "file": "reward-flap.png",
+      "role": "rewardFlap",
+      "tags": [
+        "flap",
+        "reward",
+        "cover"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.54,
+      "bodyHue": 35
+    },
+    "reward-jar": {
+      "file": "reward-jar.png",
+      "role": "rewardContainer",
+      "tags": [
+        "jar",
+        "reward"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.15,
+      "bodyHue": 45
+    },
+    "reward-jar-v2": {
+      "file": "reward-jar-v2.png",
+      "role": "rewardContainer",
+      "tags": [
+        "jar",
+        "reward",
+        "empty"
+      ],
+      "relativeScale": 0.3,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.35,
+      "components": 2,
+      "bodyHue": 35
+    },
+    "reward-star": {
+      "file": "reward-star.png",
+      "role": "reward",
+      "tags": [
+        "star",
+        "reward"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.04,
+      "bodyHue": 45
+    },
+    "reward-star-dental": {
+      "file": "reward-star-dental.png",
+      "role": "object",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic",
+        "reward"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.05,
+      "bodyHue": 45
+    },
+    "rug": {
+      "file": "rug.png",
+      "role": "furniture",
+      "tags": [
+        "home",
+        "living",
+        "room",
+        "furniture"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.25,
+      "bodyHue": 205
+    },
+    "sandbox": {
+      "file": "sandbox.png",
+      "role": "furniture",
+      "tags": [
+        "park",
+        "playground",
+        "outdoors"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.48,
+      "bodyHue": 35
+    },
+    "sandwich": {
+      "file": "sandwich.png",
+      "role": "object",
+      "tags": [
+        "cafeteria",
+        "food",
+        "school"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.35
+    },
+    "scarf": {
+      "file": "scarf.png",
+      "role": "dressPart",
+      "tags": [
+        "scarf",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.86,
+      "bodyHue": 215
+    },
+    "seesaw": {
+      "file": "seesaw.png",
+      "role": "playPart",
+      "tags": [
+        "park",
+        "playground",
+        "outdoors"
+      ],
+      "relativeScale": 0.7,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 3.01,
+      "bodyHue": 5
+    },
+    "slide": {
+      "file": "slide.png",
+      "role": "playPart",
+      "tags": [
+        "park",
+        "playground",
+        "slide",
+        "outdoors"
+      ],
+      "relativeScale": 0.85,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.16,
+      "bodyHue": 215
+    },
+    "slot-pad": {
+      "file": "slot-pad.png",
+      "role": "orderPad",
+      "tags": [
+        "slot",
+        "order"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.56
+    },
+    "soccer-ball": {
+      "file": "soccer-ball.png",
+      "role": "object",
+      "tags": [
+        "gym",
+        "sport",
+        "play"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.02
+    },
+    "sofa": {
+      "file": "sofa.png",
+      "role": "furniture",
+      "tags": [
+        "home",
+        "living",
+        "room",
+        "furniture"
+      ],
+      "relativeScale": 0.7,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.76,
+      "bodyHue": 155
+    },
+    "sorting-bin": {
+      "file": "sorting-bin.png",
+      "role": "sortBin",
+      "tags": [
+        "bin",
+        "sort"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 2.2,
+      "bodyHue": 205
+    },
+    "sorting-bin-green": {
+      "file": "sorting-bin-green.png",
+      "role": "sortBin",
+      "tags": [
+        "bin",
+        "sort",
+        "green"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 2.52,
+      "bodyHue": 105
+    },
+    "sound-box": {
+      "file": "sound-box.png",
+      "role": "soundBoxes",
+      "tags": [
+        "phonics",
+        "classroom"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1
+    },
+    "sound-boxes": {
+      "file": "sound-boxes.png",
+      "role": "soundBoxes",
+      "tags": [
+        "phonics",
+        "classroom"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.37
+    },
+    "speech-bubble": {
+      "file": "speech-bubble.png",
+      "role": "speech",
+      "tags": [
+        "speech",
+        "speaking"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.45
+    },
+    "spoon": {
+      "file": "spoon.png",
+      "role": "tool",
+      "tags": [
+        "cafeteria",
+        "food",
+        "school"
+      ],
+      "relativeScale": 0.12,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.02
+    },
+    "sports-cone": {
+      "file": "sports-cone.png",
+      "role": "object",
+      "tags": [
+        "gym",
+        "sport",
+        "play"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.84
+    },
+    "stethoscope": {
+      "file": "stethoscope.png",
+      "role": "tool",
+      "tags": [
+        "medical",
+        "clinic",
+        "doctor"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.74
+    },
+    "sticky-note": {
+      "file": "sticky-note.png",
+      "role": "sticky",
+      "tags": [
+        "sticky",
+        "cue"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.26,
+      "bodyHue": 45
+    },
+    "stopwatch": {
+      "file": "stopwatch.png",
+      "role": "timer",
+      "tags": [
+        "gym",
+        "sport",
+        "play"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.77
+    },
+    "suitcase": {
+      "file": "suitcase.png",
+      "role": "container",
+      "tags": [
+        "suitcase",
+        "travel",
+        "luggage"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.57,
+      "bodyHue": 195
+    },
+    "suitcase-vintage": {
+      "file": "suitcase-vintage.png",
+      "role": "container",
+      "tags": [
+        "suitcase",
+        "luggage",
+        "travel",
+        "vintage"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.08,
+      "bodyHue": 175,
+      "styleFamily": "glossy-adventure"
+    },
+    "supply-caddy": {
+      "file": "supply-caddy.png",
+      "role": "container",
+      "tags": [
+        "caddy",
+        "tote",
+        "supplies",
+        "sort"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.46,
+      "bodyHue": 205
+    },
+    "swing": {
+      "file": "swing.png",
+      "role": "playPart",
+      "tags": [
+        "swing",
+        "playground",
+        "park"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "top",
+      "alpha": true,
+      "aspect": 0.95,
+      "bodyHue": 15
+    },
+    "table": {
+      "file": "table.png",
+      "role": "furniture",
+      "tags": [
+        "table",
+        "build"
+      ],
+      "relativeScale": 0.8,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.41,
+      "bodyHue": 25
+    },
+    "target-ring": {
+      "file": "target-ring.png",
+      "role": "target",
+      "tags": [
+        "target",
+        "ring"
+      ],
+      "relativeScale": 0.3,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.01,
+      "components": 12,
+      "bodyHue": 15
+    },
+    "telescope": {
+      "file": "telescope.png",
+      "role": "object",
+      "tags": [
+        "telescope",
+        "spyglass",
+        "explore",
+        "pirate"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.33,
+      "bodyHue": 35,
+      "styleFamily": "glossy-adventure"
+    },
+    "tent": {
+      "file": "tent.png",
+      "role": "object",
+      "tags": [
+        "tent",
+        "camping",
+        "outdoors",
+        "shelter"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.42,
+      "bodyHue": 65,
+      "styleFamily": "glossy-adventure"
+    },
+    "thermometer": {
+      "file": "thermometer.png",
+      "role": "tool",
+      "tags": [
+        "medical",
+        "clinic",
+        "doctor"
+      ],
+      "relativeScale": 0.12,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.31
+    },
+    "throw-pillow": {
+      "file": "throw-pillow.png",
+      "role": "object",
+      "tags": [
+        "home",
+        "living",
+        "room",
+        "furniture"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.03,
+      "bodyHue": 25
+    },
+    "tile-blue": {
+      "file": "tile-blue.png",
+      "role": "letterTile",
+      "tags": [
+        "phonics",
+        "classroom"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.99
+    },
+    "tile-cream": {
+      "file": "tile-cream.png",
+      "role": "letterTile",
+      "tags": [
+        "tile",
+        "phonics"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.02,
+      "bodyHue": 35
+    },
+    "tile-green": {
+      "file": "tile-green.png",
+      "role": "letterTile",
+      "tags": [
+        "phonics",
+        "classroom"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.99
+    },
+    "tile-orange": {
+      "file": "tile-orange.png",
+      "role": "letterTile",
+      "tags": [
+        "phonics",
+        "classroom"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98
+    },
+    "tissue-box": {
+      "file": "tissue-box.png",
+      "role": "object",
+      "tags": [
+        "medical",
+        "clinic",
+        "doctor"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.16
+    },
+    "toothbrush-prop": {
+      "file": "toothbrush-prop.png",
+      "role": "object",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic",
+        "brush",
+        "toothbrush"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.35,
+      "bodyHue": 205
+    },
+    "toothpaste-tube": {
+      "file": "toothpaste-tube.png",
+      "role": "object",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic",
+        "toothpaste"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.42,
+      "bodyHue": 185
+    },
+    "trampoline": {
+      "file": "trampoline.png",
+      "role": "hero",
+      "tags": [
+        "trampoline",
+        "gym",
+        "park",
+        "playground",
+        "sport",
+        "outdoors",
+        "backyard",
+        "backflip"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.86,
+      "bodyHue": 215
+    },
+    "treasure-chest": {
+      "file": "treasure-chest.png",
+      "role": "rewardContainer",
+      "tags": [
+        "chest",
+        "treasure",
+        "reward",
+        "pirate"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.1,
+      "bodyHue": 25,
+      "styleFamily": "glossy-adventure"
+    },
+    "umbrella": {
+      "file": "umbrella.png",
+      "role": "object",
+      "tags": [
+        "umbrella",
+        "weather",
+        "rain"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.52,
+      "bodyHue": 35
+    },
+    "wall-clock": {
+      "file": "wall-clock.png",
+      "role": "object",
+      "tags": [
+        "home",
+        "living",
+        "room",
+        "furniture"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "bodyHue": 35
+    },
+    "water-bottle": {
+      "file": "water-bottle.png",
+      "role": "object",
+      "tags": [
+        "gym",
+        "sport",
+        "play"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.42
+    },
+    "wheelchair": {
+      "file": "wheelchair.png",
+      "role": "furniture",
+      "tags": [
+        "medical",
+        "clinic",
+        "doctor"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.06
+    },
+    "whistle": {
+      "file": "whistle.png",
+      "role": "tool",
+      "tags": [
+        "gym",
+        "sport",
+        "play"
+      ],
+      "relativeScale": 0.1,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.39
+    },
+    "window": {
+      "file": "window.png",
+      "role": "furniture",
+      "tags": [
+        "window",
+        "build"
+      ],
+      "relativeScale": 0.85,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.05,
+      "bodyHue": 195
+    },
+    "wizard-hat": {
+      "file": "wizard-hat.png",
+      "role": "dressPart",
+      "tags": [
+        "hat",
+        "wizard",
+        "magic",
+        "costume"
+      ],
+      "relativeScale": 0.3,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.08,
+      "bodyHue": 275,
+      "styleFamily": "glossy-adventure"
+    },
+    "word-strip": {
+      "file": "word-strip.png",
+      "role": "wordStrip",
+      "tags": [
+        "phonics",
+        "classroom"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 3.03
     }
   }
 }
