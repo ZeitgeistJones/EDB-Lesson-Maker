@@ -1244,7 +1244,7 @@
   },
   "face-a": {
    "file": "flat_face-a.png",
-   "tone": "face soft wash — plain blush cream",
+   "tone": "make-a-face craft wash — cream peach, corner sparkles",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1253,7 +1253,7 @@
   },
   "face-b": {
    "file": "flat_face-b.png",
-   "tone": "face soft wash — corner sparkles",
+   "tone": "make-a-face craft wash — cream peach, blush dots",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1262,7 +1262,7 @@
   },
   "face-c": {
    "file": "flat_face-c.png",
-   "tone": "face soft wash — tiny corner blush",
+   "tone": "make-a-face craft wash — cream peach, ribbon arc",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1271,7 +1271,7 @@
   },
   "face-d": {
    "file": "flat_face-d.png",
-   "tone": "face soft wash — edge arch shadow",
+   "tone": "make-a-face craft wash — cream peach, soft alcove",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,

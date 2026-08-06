@@ -754,13 +754,33 @@
     });
 
     const tools = roleplayDockProps(lesson, prop, 10);
-    if (tools.length) {
-      L.placeDockRow(page, tools.map((t) => ({
-        kind: 'image',
-        asset: t.path,
-        role: 'dockPiece',
-        meta: { propKey: t.key, propAspect: t.aspect },
-      })), { w: 88, h: 88 });
+    if (tools.length && dock) {
+      // Aspect-honest dock cells (H7) — square placeDockRow squashes wide eyes/mouths.
+      const gap = 10;
+      const maxH = Math.min(88, Math.max(56, dock.h - 8));
+      const maxCellW = Math.floor((dock.w - gap * Math.max(0, tools.length - 1)) / tools.length);
+      const sizes = tools.map((t) => {
+        const sized = PB.sizeFor(t, { maxH, maxW: Math.max(48, maxCellW) });
+        return { t, w: sized.w, h: sized.h };
+      });
+      const totalW = sizes.reduce((s, x) => s + x.w, 0) + gap * Math.max(0, sizes.length - 1);
+      let originX = dock.x + Math.max(0, Math.floor((dock.w - totalW) / 2));
+      const originY = dock.y + Math.max(0, Math.floor((dock.h - maxH) / 2));
+      sizes.forEach(({ t, w, h }) => {
+        const x = Math.max(dock.x, Math.min(dock.x + dock.w - w, originX));
+        const y = originY + Math.max(0, Math.floor((maxH - h) / 2));
+        L.place(page, {
+          locked: false,
+          kind: 'image',
+          asset: t.path,
+          w, h,
+          intentional: true,
+          _force: { x, y, w, h },
+          role: 'dockPiece',
+          meta: { propKey: t.key, propAspect: t.aspect },
+        });
+        originX = x + w + gap;
+      });
     }
     page.notes.push('recipe:heroProp');
   }
