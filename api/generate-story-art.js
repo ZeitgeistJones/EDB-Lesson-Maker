@@ -193,50 +193,40 @@ module.exports = async function handler(req, res) {
     if (styleCheck.reject) {
       // Retry style once without accepting texty sheet
       const retry = await generateImage(
-        [{ text: stylePrompt(title, level) + '\nReminder: ZERO text or letters.' }],
+        [{ text: stylePrompt(title, level) + '\nReminder: ZERO text or letters. No color labels, no alphabet samples.' }],
         '1:1'
       );
       if (retry.ok) {
         const retryCheck = await hasLegibleText(retry);
         if (!retryCheck.reject) styleRef = retry;
-        else {
-          return res.json({
-            styleRef: null,
-            pages: pagesIn.map((p) => ({
-              index: Number(p.index) || 0,
-              dataUrl: null,
-              reason: 'style-text-gate',
-            })),
-          });
-        }
+        else styleRef = null;
       } else {
-        return res.json({
-          styleRef: null,
-          pages: pagesIn.map((p) => ({
-            index: Number(p.index) || 0,
-            dataUrl: null,
-            reason: 'style-text-gate',
-          })),
-        });
+        styleRef = null;
       }
     }
 
+    // If style lock failed the text gate, still try page arts with prompt-only
+    // style (better than blanking the whole lesson).
     const outPages = [];
     for (const page of pagesIn) {
       const index = Number.isFinite(Number(page.index)) ? Number(page.index) : outPages.length;
       try {
-        const gen = await generateImage(
-          [
-            {
+        const parts = styleRef
+          ? [
+              {
+                text:
+                  'Image 1 = style reference: flat children\'s-book gouache wash, warm palette. ' +
+                  'Apply this style; do not copy composition.',
+              },
+              { inlineData: { mimeType: styleRef.mime, data: styleRef.base64 } },
+              { text: pagePrompt(page, title) },
+            ]
+          : [{
               text:
-                'Image 1 = style reference: flat children\'s-book gouache wash, warm palette. ' +
-                'Apply this style; do not copy composition.',
-            },
-            { inlineData: { mimeType: styleRef.mime, data: styleRef.base64 } },
-            { text: pagePrompt(page, title) },
-          ],
-          aspect
-        );
+                pagePrompt(page, title) +
+                '\nStyle (no reference image available): flat children\'s-book gouache wash, warm palette, soft simple shapes.',
+            }];
+        const gen = await generateImage(parts, aspect);
         if (!gen.ok) {
           outPages.push({ index, dataUrl: null, reason: gen.reason });
           continue;
@@ -246,7 +236,11 @@ module.exports = async function handler(req, res) {
           outPages.push({ index, dataUrl: null, reason: gate.reason });
           continue;
         }
-        outPages.push({ index, dataUrl: gen.dataUrl });
+        outPages.push({
+          index,
+          dataUrl: gen.dataUrl,
+          reason: styleRef ? undefined : 'prompt-only-style',
+        });
       } catch (err) {
         const reason = err?.name === 'AbortError' ? 'timeout' : (err.message || 'page-failed');
         outPages.push({ index, dataUrl: null, reason });
@@ -255,7 +249,7 @@ module.exports = async function handler(req, res) {
 
     return res.json({
       model: IMAGE_MODEL,
-      styleRef: styleRef.dataUrl,
+      styleRef: styleRef ? styleRef.dataUrl : null,
       pages: outPages,
     });
   } catch (err) {
