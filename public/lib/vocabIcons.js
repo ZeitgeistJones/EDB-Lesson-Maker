@@ -57,6 +57,10 @@
     fly: 'plane',
     'boarding pass': 'boarding-pass',
     boarding: 'boarding-pass',
+    // Airport waiting-area art — never bare "gate" (castle/portcullis via PropBank)
+    'boarding gate': 'airport gate',
+    'departure gate': 'airport gate',
+    'arrival gate': 'airport gate',
     seatbelt: 'seat',
     'jet lag': 'tired',
     classroom: 'school',

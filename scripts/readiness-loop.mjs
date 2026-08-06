@@ -22,7 +22,7 @@ function arg(name, fallback) {
 /** ~30 diverse A1 topic titles + 6 vocab each (hand-authored, no Gemini). */
 const TOPIC_POOL = [
   { title: 'At the Dentist', words: ['tooth', 'brush', 'dentist', 'clean', 'smile', 'floss'] },
-  { title: 'Airport Adventure', words: ['plane', 'passport', 'suitcase', 'ticket', 'gate', 'flight'] },
+  { title: 'Airport Adventure', words: ['plane', 'passport', 'suitcase', 'ticket', 'boarding gate', 'flight'] },
   { title: 'Our Family Home', words: ['mother', 'father', 'kitchen', 'bedroom', 'sofa', 'family'] },
   { title: 'Day at the Zoo', words: ['lion', 'monkey', 'elephant', 'tiger', 'zebra', 'zoo'] },
   { title: 'Park Play Time', words: ['park', 'ball', 'slide', 'swing', 'run', 'friend'] },

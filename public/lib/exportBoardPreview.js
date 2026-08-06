@@ -30,7 +30,7 @@
     }
   }
 
-  async function drawPiece(ctx, piece) {
+  async function drawPiece(ctx, piece, artCtx) {
     if (piece.kind === 'text' && piece.text) {
       ctx.save();
       const rgba = piece.color || [30, 41, 59, 255];
@@ -42,7 +42,7 @@
       return;
     }
     if (!window.EdbKit || !window.EdbKit.pieceToPng) return;
-    const bytes = await window.EdbKit.pieceToPng(piece);
+    const bytes = await window.EdbKit.pieceToPng(piece, artCtx);
     const bmp = await pngBytesToBitmap(bytes);
     if (!bmp) return;
     const destW = piece.w || bmp.width;
@@ -65,6 +65,13 @@
       throw new Error('Board libraries failed to load. Refresh and try again.');
     }
     if (window.PropBank) await window.PropBank.ready();
+    const artCtx = {
+      lesson,
+      seed: (lesson && lesson.title) || '',
+      family: (window.PropBank && window.PropBank.familyFor)
+        ? window.PropBank.familyFor(lesson)
+        : undefined,
+    };
     const boardPlan = boardPlanIn || window.EdbActivities.buildBoardPlan(lesson, meta || {});
     if (!boardPlan.bgPicks) {
       await window.LessonPages.attachBgPicks(lesson, meta || {}, boardPlan);
@@ -98,24 +105,24 @@
         const page = boardPlan.pages && boardPlan.pages[i];
         const pick = bgPicks && bgPicks[i];
         if (page) {
-          for (const piece of page.locked || []) await drawPiece(ctx, piece);
+          for (const piece of page.locked || []) await drawPiece(ctx, piece, artCtx);
 
           const unlocked = page.unlocked || [];
           const SB = window.SceneBackgrounds;
           const stands = (p) => !!(SB && SB.isStandRole(p.role));
           const standers = unlocked.filter(stands);
           const floaters = unlocked.filter((p) => !stands(p));
-          for (const piece of floaters) await drawPiece(ctx, piece);
+          for (const piece of floaters) await drawPiece(ctx, piece, artCtx);
 
           const row = SB ? SB.standRow(standers, pick, W) : null;
           if (row) {
             for (const slot of row) {
               await drawPiece(ctx, Object.assign({}, slot.piece, {
                 x: slot.x, y: slot.y, w: slot.w, h: slot.h,
-              }));
+              }), artCtx);
             }
           } else {
-            for (const piece of standers) await drawPiece(ctx, piece);
+            for (const piece of standers) await drawPiece(ctx, piece, artCtx);
           }
         }
 

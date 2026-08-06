@@ -309,12 +309,38 @@ function placeholderPng(w, h, label) {
   return canvasToPng(c);
 }
 
-/** Asset first → emoji/tile fallback → solid placeholder (never silent-drop). */
-async function pieceToPng(piece) {
-  const word = piece.meta && piece.meta.word;
-  if (word && window.VocabIcons) {
+/** PropBank theme cutout first, then Twemoji pack — never silent-drop. */
+async function wordArtPng(word, ctx) {
+  if (!word) return null;
+  const c = ctx || {};
+  const PB = window.PropBank;
+  if (PB && typeof PB.loaded === 'function' && PB.loaded()) {
+    const family = c.family
+      || (c.lesson && PB.familyFor ? PB.familyFor(c.lesson) : null)
+      || PB.HOUSE_FAMILY;
+    const prop = PB.resolve({
+      word,
+      family,
+      seed: c.seed || (c.lesson && c.lesson.title) || word,
+    });
+    if (prop) {
+      const png = await PB.loadPng(prop);
+      if (png) return png;
+    }
+  }
+  if (window.VocabIcons) {
     const pack = await window.VocabIcons.loadPng(word);
     if (pack) return pack;
+  }
+  return null;
+}
+
+/** Asset first → emoji/tile fallback → solid placeholder (never silent-drop). */
+async function pieceToPng(piece, ctx) {
+  const word = piece.meta && piece.meta.word;
+  if (word) {
+    const art = await wordArtPng(word, ctx);
+    if (art) return art;
   }
   if (piece.asset) {
     const png = await loadAssetPng(piece.asset, piece.w, piece.h);
@@ -343,6 +369,14 @@ async function pieceToPng(piece) {
  *             Fourth arg may also be legacy `slots` { newWords, wrap }.
  */
 async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
+  if (window.PropBank) await window.PropBank.ready();
+  const artCtx = {
+    lesson,
+    seed: (lesson && lesson.title) || '',
+    family: (window.PropBank && window.PropBank.familyFor)
+      ? window.PropBank.familyFor(lesson)
+      : undefined,
+  };
   const e = new Edb();
   const pages = pageEls || [];
   const MAX_PAGES = 50;   // a ClassIn board is 50 screens tall
@@ -388,7 +422,7 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
           });
           continue;
         }
-        const png = await pieceToPng(piece);
+        const png = await pieceToPng(piece, artCtx);
         if (png) e.addImage(png, piece.x, y0 + piece.y, {
           w: piece.w, h: piece.h, locked: true,
         });
@@ -401,7 +435,7 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
       const floaters = (page.unlocked || []).filter((p) => !stands(p));
 
       for (const piece of floaters) {
-        const png = await pieceToPng(piece);
+        const png = await pieceToPng(piece, artCtx);
         if (png) e.addImage(png, piece.x, y0 + piece.y, {
           w: piece.w, h: piece.h, locked: false,
         });
@@ -410,13 +444,13 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
       const row = SB ? SB.standRow(standers, pick, BOARD_W) : null;
       if (row) {
         for (const slot of row) {
-          const png = await pieceToPng(slot.piece);
+          const png = await pieceToPng(slot.piece, artCtx);
           if (!png) continue;
           e.addImage(png, slot.x, y0 + slot.y, { w: slot.w, h: slot.h, locked: false });
         }
       } else {
         for (const piece of standers) {
-          const png = await pieceToPng(piece);
+          const png = await pieceToPng(piece, artCtx);
           if (png) e.addImage(png, piece.x, y0 + piece.y, {
             w: piece.w, h: piece.h, locked: false,
           });
@@ -437,7 +471,7 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
       for (let i = 0; i < shuffled.length; i++) {
         const v = shuffled[i];
         const col = i % 3, row = Math.floor(i / 3);
-        const png = (window.VocabIcons && await window.VocabIcons.loadPng(v.word))
+        const png = (await wordArtPng(v.word, artCtx))
           || glyphToPng(v.emoji || '•');
         e.addImage(png, 780 + col * 140, y0 + 280 + row * 130, { w: 88, h: 88 });
       }
@@ -484,7 +518,7 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
     let x = Math.max(260, Math.min(1020 - totalW, Math.round((BOARD_W - totalW) / 2)));
     for (let i = 0; i < shuffled.length; i++) {
       const v = shuffled[i];
-      const png = (window.VocabIcons && await window.VocabIcons.loadPng(v.word))
+      const png = (await wordArtPng(v.word, artCtx))
         || glyphToPng(v.emoji || '•');
       const yLocal = (pick && window.SceneBackgrounds)
         ? window.SceneBackgrounds.standOn(pick, pieceH)
@@ -592,6 +626,6 @@ function roundRect(ctx, x, y, w, h, r, fill, stroke) {
 
 // ── expose as a global (index.html uses classic <script> tags) ────
 window.EdbKit = {
-  Edb, buildLessonEdb, elementToPng, pieceToPng, glyphToPng, tileToPng,
+  Edb, buildLessonEdb, elementToPng, pieceToPng, wordArtPng, glyphToPng, tileToPng,
   BOARD_W, BOARD_H, CANVAS_H, PAGE,
 };

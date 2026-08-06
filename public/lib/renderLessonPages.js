@@ -542,6 +542,21 @@
     return sections;
   }
 
+  function titleCharmSrc(lesson) {
+    // Theme-kit hero when PropBank has a ready pack (castle → castle-wall-gate, etc.)
+    const PB = window.PropBank;
+    if (PB && typeof PB.loaded === 'function' && PB.loaded() && PB.assessKit) {
+      const kit = PB.assessKit(lesson);
+      if (kit && kit.ready && kit.hero && kit.hero.path) return kit.hero.path;
+    }
+    // Non-kit fallback: curated face decoration for face lessons only
+    const topicBlob = [lesson.title, ...(lesson.vocabulary || []).map((v) => v.word || v)].join(' ').toLowerCase();
+    if (/\b(faces?|eyes?|nose|mouth|smile|cheek|make.?a.?face)\b/.test(topicBlob)) {
+      return 'assets/04_decoration-ui/title-faces-hero.png';
+    }
+    return null;
+  }
+
   function makeTitle(lesson, meta, boardPlan) {
     const p = pageShell(THEME_COLORS.title, {
       reserveDock: hasRecipe(boardPlan, 'title'), pageType: 'title',
@@ -570,10 +585,9 @@
     copy.appendChild(metaLine);
     p.appendChild(copy);
 
-    // Topic lean: face lessons get a clear charming face showcase on the title.
-    const topicBlob = [lesson.title, ...(lesson.vocabulary || []).map((v) => v.word || v)].join(' ').toLowerCase();
-    if (/\b(faces?|eyes?|nose|mouth|smile|cheek|make.?a.?face)\b/.test(topicBlob)) {
-      p.appendChild(img('assets/04_decoration-ui/title-faces-hero.png', {
+    const charmSrc = titleCharmSrc(lesson);
+    if (charmSrc) {
+      p.appendChild(img(charmSrc, {
         position: 'relative',
         width: '440px',
         height: '440px',
@@ -1237,6 +1251,7 @@
     if (window.VocabIcons && window.VocabIcons.ready) {
       await window.VocabIcons.ready();
     }
+    if (window.PropBank) await window.PropBank.ready();
     const m = meta || {};
     const sections = buildSectionList(lesson, m);
 

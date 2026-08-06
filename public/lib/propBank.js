@@ -88,6 +88,9 @@
     glasses: 'face-glasses-round',
     // Castle build kit (matte pack) — New Words + docks resolve by lesson vocab
     castle: 'castle-wall-gate',
+    gate: 'castle-portcullis',
+    portcullis: 'castle-portcullis',
+    king: 'castle-knight-blue',
     knight: 'castle-knight-blue',
     dragon: 'castle-dragon',
     door: 'castle-door-wood-double',

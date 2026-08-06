@@ -8,7 +8,7 @@
     { "word": "passport", "emoji": "🛂", "sentence": "Show your passport." },
     { "word": "ticket", "emoji": "🎫", "sentence": "I have my ticket." },
     { "word": "suitcase", "emoji": "🧳", "sentence": "Pack your suitcase." },
-    { "word": "gate", "emoji": "🚪", "sentence": "Go to the gate." }
+    { "word": "boarding gate", "emoji": "🚪", "sentence": "Go to the boarding gate." }
   ],
   "sentenceFrames": [
     "My ____ is ready.",
