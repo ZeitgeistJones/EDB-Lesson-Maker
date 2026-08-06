@@ -588,22 +588,28 @@
     return p;
   }
 
-  function makeWarmUp(lesson, boardPlan) {
+  function makeWarmUp(lesson, boardPlan, meta) {
+    const outline = window.ColoringOutlines
+      ? window.ColoringOutlines.forLesson(lesson, meta)
+      : null;
     const p = pageShell(THEME_COLORS.warm, {
       reserveDock: hasRecipe(boardPlan, 'warm'), pageType: 'warm',
     });
     p.style.display = 'flex';
     p.style.flexDirection = 'column';
     p.appendChild(header('Warm Up', '#be123c'));
-    p.appendChild(hint('Say your answer, then color the eyes!', {
-      marginBottom: '10px', flexShrink: '0',
-    }));
+    p.appendChild(hint(
+      outline
+        ? 'Say your answer, then color the picture!'
+        : 'Say your answer out loud.',
+      { marginBottom: '10px', flexShrink: '0' }
+    ));
     // Question rides the top — not floating alone in dead mid-board space.
     p.appendChild(card(
       `<div style="font-size:36px;font-weight:800;color:#1e3a8a;text-align:center;line-height:1.25">${esc(lesson.warmUp?.question || '')}</div>`,
       {
         padding: '22px 28px',
-        marginBottom: '14px',
+        marginBottom: outline ? '14px' : '0',
         width: '100%',
         maxWidth: '980px',
         marginLeft: 'auto',
@@ -612,56 +618,51 @@
         flexShrink: '0',
       }
     ));
-    // Coloring stage: outline eyes fill the leftover board for ClassIn pen work.
-    const stage = el('div', {
-      flex: '1',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      minHeight: '0',
-      // Keep fill under 0.5 alpha so metrics don't treat this as an empty chrome card (M3).
-      background: 'rgba(255,255,255,0.35)',
-      borderRadius: '22px',
-      border: '3px dashed #64748b',
-      boxSizing: 'border-box',
-      padding: '12px 20px 16px',
-      maxWidth: '980px',
-      width: '100%',
-      margin: '0 auto',
-    });
-    stage.appendChild(el('div', {
-      fontSize: '18px',
-      fontWeight: '700',
-      color: '#64748b',
-      marginBottom: '6px',
-      flexShrink: '0',
-    }, 'Color me!'));
-    // Inline SVG so headless bake / html2canvas always captures the outlines.
-    stage.appendChild(el('div', {
-      flex: '1',
-      minHeight: '0',
-      width: '100%',
-      maxWidth: '720px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" width="100%" height="100%" style="max-height:280px" fill="none" aria-label="Eye outlines to color">
-  <g stroke="#334155" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
-    <ellipse cx="170" cy="150" rx="110" ry="72"/>
-    <circle cx="170" cy="150" r="36" stroke-width="7"/>
-    <circle cx="170" cy="150" r="14" fill="#334155" stroke="none"/>
-    <path d="M70 88 Q170 28 270 88" stroke-width="7"/>
-    <ellipse cx="470" cy="150" rx="110" ry="72"/>
-    <circle cx="470" cy="150" r="36" stroke-width="7"/>
-    <circle cx="470" cy="150" r="14" fill="#334155" stroke="none"/>
-    <path d="M370 88 Q470 28 570 88" stroke-width="7"/>
-  </g>
-</svg>`));
-    p.appendChild(stage);
-    // #region agent log
-    fetch('http://127.0.0.1:7298/ingest/2c7b9048-535d-4975-be12-acca9b0197ba',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'ux-pre',hypothesisId:'H2',location:'renderLessonPages.js:makeWarmUp',message:'warm coloring stage',data:{hasEyesOutline:true,qLen:(lesson.warmUp?.question||'').length},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
+    // A1/A2 only: white coloring stage with topic-matched outline (never global eyes).
+    if (outline) {
+      const stage = el('div', {
+        flex: '1',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '0',
+        position: 'relative',
+        background: '#ffffff',
+        borderRadius: '22px',
+        border: '3px solid #cbd5e1',
+        boxSizing: 'border-box',
+        padding: '12px 20px 16px',
+        maxWidth: '980px',
+        width: '100%',
+        margin: '0 auto',
+      });
+      stage.appendChild(el('div', {
+        fontSize: '18px',
+        fontWeight: '700',
+        color: '#64748b',
+        marginBottom: '6px',
+        flexShrink: '0',
+      }, 'Color me!'));
+      stage.appendChild(el('div', {
+        flex: '1',
+        minHeight: '0',
+        width: '100%',
+        maxWidth: '720px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }, outline.svg));
+      stage.appendChild(el('div', {
+        position: 'absolute',
+        right: '14px',
+        bottom: '10px',
+        pointerEvents: 'none',
+        lineHeight: '0',
+        opacity: '0.92',
+      }, outline.crayons));
+      p.appendChild(stage);
+    }
     drawDebugZones(p, 'warm');
     return p;
   }
@@ -1252,7 +1253,7 @@
     }
 
     push(makeTitle(lesson, m, boardPlan), 'title');
-    push(makeWarmUp(lesson, boardPlan), 'warm');
+    push(makeWarmUp(lesson, boardPlan, m), 'warm');
     slots.newWords = push(await makeVocab(lesson, boardPlan), 'newWords');
     if (includePhonics(lesson, m)) {
       push(makePhonics(lesson, boardPlan), 'phonics');

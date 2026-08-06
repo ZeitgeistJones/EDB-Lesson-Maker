@@ -27,10 +27,13 @@ board** over floating a lonely mid-page card.
 ### Warm-up (avoid awkward mid float)
 
 - Question card **top**, not vertically centered alone.
-- Face / eyes lessons: dashed **Color me!** stage with **inline SVG** eye outlines
-  (kids color with the board pen). File `img` SVGs often fail headless bake —
-  prefer inline SVG in the DOM.
-- Keep stage fill under ~0.5 alpha so M3 does not treat it as an empty white card.
+- **A1/A2 only:** white **Color me!** coloring page + crayon corner charm
+  (`public/lib/coloringOutlines.js`). Resolve outline by lesson tokens
+  (title / activity / warm question / vocab): face/eyes → eyes; castle/knight/dragon
+  → castle; beach/sand → sandcastle; else a generic **star** (never eyes).
+- Eyes outlines are **face-only** — never hardcode them on every warm-up.
+- B1+: question-only warm (no coloring stage).
+- Prefer **inline SVG** in the DOM so headless bake / html2canvas captures outlines.
 
 ### New Words (match dock)
 
@@ -82,6 +85,7 @@ board** over floating a lonely mid-page card.
 | Concern | Where |
 |---------|--------|
 | DOM pages / chromeColumn / warm coloring | `public/lib/renderLessonPages.js` |
+| Topic coloring outlines (A1/A2) | `public/lib/coloringOutlines.js` |
 | Zones, `dockReservePx`, `heroStage` dock | `public/lib/edbLayout.js` |
 | `matchDock`, `heroProp`, `ROLEPLAY_DOCK_FACE` | `public/lib/edbActivities.js` |
 | Quiet house flats / title pin | `public/lib/sceneBackgrounds.js`, `docs/bg-theme-sets.md` |
