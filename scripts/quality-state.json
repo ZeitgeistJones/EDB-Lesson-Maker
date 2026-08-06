@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-05T23:32:23.632Z",
-  "iteration": 6,
+  "updatedAt": "2026-08-06T16:34:17.262Z",
+  "iteration": 7,
   "softRoots": [
     "no-vetted-icon",
     "ink-policy-measured-no-scrim-on-calm",
@@ -8,7 +8,9 @@
     "no-gym-props",
     "worksheet-heavy-middle-pages",
     "creative-question-object-coercion",
-    "swing-prop-not-pack-icon"
+    "swing-prop-not-pack-icon",
+    "roleplay-dock-vocab-override",
+    "warm-coloring-metric-blind"
   ],
   "markers": [],
   "history": [
@@ -161,6 +163,31 @@
       "metricFails": 0,
       "metricWarns": 17,
       "regressions": 0
+    },
+    {
+      "at": "2026-08-06T16:34:17.262Z",
+      "iteration": 7,
+      "tier": "core",
+      "cases": [
+        "doctor",
+        "dentist",
+        "face",
+        "castle",
+        "zoo-phonics"
+      ],
+      "action": "fix_hard",
+      "codes": [
+        "H4"
+      ],
+      "roots": [
+        "roleplay-dock-vocab-override",
+        "warm-coloring-metric-blind",
+        "no-vetted-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 3,
+      "metricWarns": 41,
+      "regressions": 14
     }
   ]
 }
