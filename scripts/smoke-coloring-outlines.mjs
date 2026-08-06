@@ -1,5 +1,5 @@
 /**
- * Smoke: topic coloring outlines resolve correctly (no eyes leak).
+ * Smoke: topic coloring outlines resolve correctly (no eyes leak; PNG bank).
  *   node scripts/smoke-coloring-outlines.mjs
  */
 import fs from 'fs';
@@ -31,6 +31,16 @@ const beachOut = CO.forLesson({
   vocabulary: [{ word: 'shell' }],
   activity: { title: 'Build a sandcastle' },
 }, a1);
+const dogOut = CO.forLesson({
+  title: 'Pets',
+  warmUp: { question: 'Do you have a dog?' },
+  vocabulary: [{ word: 'dog' }, { word: 'cat' }],
+}, a1);
+const foodOut = CO.forLesson({
+  title: 'Lunch Time',
+  warmUp: { question: 'What food do you like?' },
+  vocabulary: [{ word: 'apple' }, { word: 'pizza' }],
+}, a1);
 const genOut = CO.forLesson({
   title: 'My School Day',
   warmUp: { question: 'What do you do?' },
@@ -40,25 +50,30 @@ const genOut = CO.forLesson({
 
 const checks = [
   ['face=eyes', faceOut?.id === 'eyes'],
-  ['face has eye ellipse', /ellipse cx="170"/.test(faceOut?.svg || '')],
-  ['castle=castle', castleOut?.id === 'castle'],
-  ['castle no Eye outlines aria', !/Eye outlines/.test(castleOut?.svg || '')],
-  ['castle no eye ellipse', !/ellipse cx="170"/.test(castleOut?.svg || '')],
-  ['castle aria', /Castle outline/.test(castleOut?.svg || '')],
-  ['beach=beach', beachOut?.id === 'beach'],
+  ['face has eye ellipse', /ellipse cx="170"/.test(faceOut?.html || '')],
+  ['castle=castle svg', castleOut?.id === 'castle' && castleOut?.source === 'svg'],
+  ['castle no Eye outlines aria', !/Eye outlines/.test(castleOut?.html || '')],
+  ['castle no eye ellipse', !/ellipse cx="170"/.test(castleOut?.html || '')],
+  ['beach=beach png', beachOut?.id === 'beach' && beachOut?.source === 'png'],
+  ['beach sandcastle img', /sandcastle\.png/.test(beachOut?.html || '')],
+  ['animals=dog png', dogOut?.id === 'animals' && /dog\.png/.test(dogOut?.html || '')],
+  ['food=apple png', foodOut?.id === 'food' && /apple\.png/.test(foodOut?.html || '')],
   ['generic=star', genOut?.id === 'star'],
   ['generic never eyes', genOut?.id !== 'eyes'],
   ['B1 null', b1Out === null],
   ['wants A1', CO.wantsColoring(a1) === true],
   ['wants B1 false', CO.wantsColoring(b1) === false],
   ['crayons on face', /svg/.test(faceOut?.crayons || '')],
+  ['bank has sandcastle file', fs.existsSync(path.join(root, 'public/assets/10_coloring/img/sandcastle.png'))],
+  ['bank has dog file', fs.existsSync(path.join(root, 'public/assets/10_coloring/img/dog.png'))],
+  ['no butterfly-dup file', !fs.existsSync(path.join(root, 'public/assets/10_coloring/img/butterfly-dup.png'))],
+  ['no cat-dup file', !fs.existsSync(path.join(root, 'public/assets/10_coloring/img/cat-dup.png'))],
 ];
 
-// Also ensure makeWarmUp source no longer hardcodes eyes / debug ingest.
 const warmSrc = fs.readFileSync(path.join(root, 'public/lib/renderLessonPages.js'), 'utf8');
 checks.push(['no color the eyes hint', !/color the eyes/i.test(warmSrc)]);
 checks.push(['no hasEyesOutline debug', !/hasEyesOutline/.test(warmSrc)]);
-checks.push(['makeWarmUp passes meta', /makeWarmUp\(lesson, boardPlan, m\)/.test(warmSrc)]);
+checks.push(['makeWarmUp uses html', /outline\.html \|\| outline\.svg/.test(warmSrc)]);
 checks.push(['index loads coloringOutlines', fs.readFileSync(path.join(root, 'public/index.html'), 'utf8').includes('lib/coloringOutlines.js')]);
 
 let failed = 0;

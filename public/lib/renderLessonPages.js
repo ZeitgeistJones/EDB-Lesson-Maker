@@ -652,7 +652,8 @@
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-      }, outline.svg));
+        overflow: 'hidden',
+      }, outline.html || outline.svg || ''));
       stage.appendChild(el('div', {
         position: 'absolute',
         right: '14px',

@@ -29,11 +29,14 @@ board** over floating a lonely mid-page card.
 - Question card **top**, not vertically centered alone.
 - **A1/A2 only:** white **Color me!** coloring page + crayon corner charm
   (`public/lib/coloringOutlines.js`). Resolve outline by lesson tokens
-  (title / activity / warm question / vocab): face/eyes → eyes; castle/knight/dragon
-  → castle; beach/sand → sandcastle; else a generic **star** (never eyes).
+  (title / activity / warm question / vocab): face/eyes → eyes SVG; castle →
+  castle SVG until banked; beach/animals/food/vehicles/space/family/weather →
+  banked **2×2 PNG** crops in `public/assets/10_coloring/` (`npm run assets:coloring`);
+  else a generic **star** SVG (never eyes).
 - Eyes outlines are **face-only** — never hardcode them on every warm-up.
 - B1+: question-only warm (no coloring stage).
-- Prefer **inline SVG** in the DOM so headless bake / html2canvas captures outlines.
+- PNG imgs use `object-fit:contain` + intrinsic size (do not stretch to width).
+  Prefer **inline SVG** when no banked PNG so headless bake captures outlines.
 
 ### New Words (match dock)
 

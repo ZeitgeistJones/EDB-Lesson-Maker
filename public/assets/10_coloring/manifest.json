@@ -1,0 +1,336 @@
+{
+  "version": 1,
+  "outlines": {
+    "mom": {
+      "file": "mom.png",
+      "path": "assets/10_coloring/img/mom.png",
+      "w": 472,
+      "h": 354,
+      "pack": [
+        "family"
+      ],
+      "source": "coloring-2x2-family.png"
+    },
+    "dad": {
+      "file": "dad.png",
+      "path": "assets/10_coloring/img/dad.png",
+      "w": 472,
+      "h": 354,
+      "pack": [
+        "family"
+      ],
+      "source": "coloring-2x2-family.png"
+    },
+    "baby": {
+      "file": "baby.png",
+      "path": "assets/10_coloring/img/baby.png",
+      "w": 472,
+      "h": 354,
+      "pack": [
+        "family"
+      ],
+      "source": "coloring-2x2-family.png"
+    },
+    "house": {
+      "file": "house.png",
+      "path": "assets/10_coloring/img/house.png",
+      "w": 472,
+      "h": 354,
+      "pack": [
+        "family"
+      ],
+      "source": "coloring-2x2-family.png"
+    },
+    "apple": {
+      "file": "apple.png",
+      "path": "assets/10_coloring/img/apple.png",
+      "w": 472,
+      "h": 354,
+      "pack": [
+        "food"
+      ],
+      "source": "coloring-2x2-food-a.png"
+    },
+    "banana": {
+      "file": "banana.png",
+      "path": "assets/10_coloring/img/banana.png",
+      "w": 472,
+      "h": 354,
+      "pack": [
+        "food"
+      ],
+      "source": "coloring-2x2-food-a.png"
+    },
+    "pizza": {
+      "file": "pizza.png",
+      "path": "assets/10_coloring/img/pizza.png",
+      "w": 472,
+      "h": 354,
+      "pack": [
+        "food"
+      ],
+      "source": "coloring-2x2-food-a.png"
+    },
+    "ice-cream": {
+      "file": "ice-cream.png",
+      "path": "assets/10_coloring/img/ice-cream.png",
+      "w": 472,
+      "h": 354,
+      "pack": [
+        "food"
+      ],
+      "source": "coloring-2x2-food-a.png"
+    },
+    "rocket": {
+      "file": "rocket.png",
+      "path": "assets/10_coloring/img/rocket.png",
+      "w": 472,
+      "h": 354,
+      "pack": [
+        "space"
+      ],
+      "source": "coloring-2x2-space.png"
+    },
+    "planet": {
+      "file": "planet.png",
+      "path": "assets/10_coloring/img/planet.png",
+      "w": 472,
+      "h": 354,
+      "pack": [
+        "space"
+      ],
+      "source": "coloring-2x2-space.png"
+    },
+    "moon": {
+      "file": "moon.png",
+      "path": "assets/10_coloring/img/moon.png",
+      "w": 472,
+      "h": 354,
+      "pack": [
+        "space"
+      ],
+      "source": "coloring-2x2-space.png"
+    },
+    "astronaut": {
+      "file": "astronaut.png",
+      "path": "assets/10_coloring/img/astronaut.png",
+      "w": 472,
+      "h": 354,
+      "pack": [
+        "space"
+      ],
+      "source": "coloring-2x2-space.png"
+    },
+    "hamburger": {
+      "file": "hamburger.png",
+      "path": "assets/10_coloring/img/hamburger.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "food"
+      ],
+      "source": "coloring-2x2-food-b.png"
+    },
+    "carrot": {
+      "file": "carrot.png",
+      "path": "assets/10_coloring/img/carrot.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "food"
+      ],
+      "source": "coloring-2x2-food-b.png"
+    },
+    "cake": {
+      "file": "cake.png",
+      "path": "assets/10_coloring/img/cake.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "food"
+      ],
+      "source": "coloring-2x2-food-b.png"
+    },
+    "juice-box": {
+      "file": "juice-box.png",
+      "path": "assets/10_coloring/img/juice-box.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "food"
+      ],
+      "source": "coloring-2x2-food-b.png"
+    },
+    "rabbit": {
+      "file": "rabbit.png",
+      "path": "assets/10_coloring/img/rabbit.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "animals"
+      ],
+      "source": "coloring-2x2-animals-b.png"
+    },
+    "elephant": {
+      "file": "elephant.png",
+      "path": "assets/10_coloring/img/elephant.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "animals"
+      ],
+      "source": "coloring-2x2-animals-b.png"
+    },
+    "butterfly": {
+      "file": "butterfly.png",
+      "path": "assets/10_coloring/img/butterfly.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "animals"
+      ],
+      "source": "coloring-2x2-animals-b.png"
+    },
+    "frog": {
+      "file": "frog.png",
+      "path": "assets/10_coloring/img/frog.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "animals"
+      ],
+      "source": "coloring-2x2-animals-b.png"
+    },
+    "dog": {
+      "file": "dog.png",
+      "path": "assets/10_coloring/img/dog.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "animals"
+      ],
+      "source": "coloring-2x2-pets-flower.png"
+    },
+    "cat": {
+      "file": "cat.png",
+      "path": "assets/10_coloring/img/cat.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "animals"
+      ],
+      "source": "coloring-2x2-pets-flower.png"
+    },
+    "flower": {
+      "file": "flower.png",
+      "path": "assets/10_coloring/img/flower.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "animals"
+      ],
+      "source": "coloring-2x2-pets-flower.png"
+    },
+    "car": {
+      "file": "car.png",
+      "path": "assets/10_coloring/img/car.png",
+      "w": 472,
+      "h": 354,
+      "pack": [
+        "vehicles"
+      ],
+      "source": "coloring-2x2-vehicles.png"
+    },
+    "bicycle": {
+      "file": "bicycle.png",
+      "path": "assets/10_coloring/img/bicycle.png",
+      "w": 472,
+      "h": 354,
+      "pack": [
+        "vehicles"
+      ],
+      "source": "coloring-2x2-vehicles.png"
+    },
+    "train": {
+      "file": "train.png",
+      "path": "assets/10_coloring/img/train.png",
+      "w": 472,
+      "h": 354,
+      "pack": [
+        "vehicles"
+      ],
+      "source": "coloring-2x2-vehicles.png"
+    },
+    "airplane": {
+      "file": "airplane.png",
+      "path": "assets/10_coloring/img/airplane.png",
+      "w": 472,
+      "h": 354,
+      "pack": [
+        "vehicles"
+      ],
+      "source": "coloring-2x2-vehicles.png"
+    },
+    "sun": {
+      "file": "sun.png",
+      "path": "assets/10_coloring/img/sun.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "nature"
+      ],
+      "source": "coloring-2x2-sun-tree.png"
+    },
+    "tree": {
+      "file": "tree.png",
+      "path": "assets/10_coloring/img/tree.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "nature"
+      ],
+      "source": "coloring-2x2-sun-tree.png"
+    },
+    "sandcastle": {
+      "file": "sandcastle.png",
+      "path": "assets/10_coloring/img/sandcastle.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "beach"
+      ],
+      "source": "coloring-2x2-beach.png"
+    },
+    "pail": {
+      "file": "pail.png",
+      "path": "assets/10_coloring/img/pail.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "beach"
+      ],
+      "source": "coloring-2x2-beach.png"
+    },
+    "seashell": {
+      "file": "seashell.png",
+      "path": "assets/10_coloring/img/seashell.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "beach"
+      ],
+      "source": "coloring-2x2-beach.png"
+    },
+    "beach-sun": {
+      "file": "beach-sun.png",
+      "path": "assets/10_coloring/img/beach-sun.png",
+      "w": 472,
+      "h": 472,
+      "pack": [
+        "beach"
+      ],
+      "source": "coloring-2x2-beach.png"
+    }
+  },
+  "updatedAt": "2026-08-06T16:16:14.721Z"
+}

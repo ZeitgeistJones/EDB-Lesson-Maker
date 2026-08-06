@@ -1,7 +1,8 @@
 /* coloringOutlines.js — topic-matched warm-up coloring outlines for A1/A2.
  * Classic script → window.ColoringOutlines
  *
- * Eyes are ONLY for face lessons. Generic fallback is a star — never eyes.
+ * Eyes are ONLY for face lessons. Prefer banked 2×2 PNG crops when present;
+ * SVG fallbacks for eyes / castle / generic star. Never leak eyes as fallback.
  */
 (function () {
   const EYES = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" width="100%" height="100%" style="max-height:280px" fill="none" aria-label="Eye outlines to color">
@@ -30,21 +31,6 @@
   </g>
 </svg>`;
 
-  const BEACH = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="100%" height="100%" style="max-height:280px" fill="none" aria-label="Sandcastle outline to color">
-  <g stroke="#334155" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M40 280 Q160 250 320 280 Q480 310 600 270" stroke-width="6"/>
-    <path d="M160 280 L200 160 L280 160 L320 100 L360 160 L440 160 L480 280 Z"/>
-    <path d="M280 160 L300 120 L320 160 L340 120 L360 160" stroke-width="5"/>
-    <rect x="300" y="200" width="40" height="80"/>
-    <path d="M300 200 Q320 175 340 200"/>
-    <circle cx="240" cy="210" r="14"/>
-    <circle cx="400" cy="210" r="14"/>
-    <path d="M500 180 L520 120 L540 180" stroke-width="5"/>
-    <circle cx="520" cy="110" r="16" stroke-width="5"/>
-    <path d="M100 220 L90 200 M100 220 L110 200 M100 220 L100 250" stroke-width="5"/>
-  </g>
-</svg>`;
-
   const STAR = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="100%" height="100%" style="max-height:280px" fill="none" aria-label="Star outline to color">
   <g stroke="#334155" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M320 28 L355 130 L470 130 L378 192 L412 294 L320 232 L228 294 L262 192 L170 130 L285 130 Z"/>
@@ -62,18 +48,40 @@
   </g>
 </svg>`;
 
-  const OUTLINES = {
-    eyes: { id: 'eyes', label: 'eyes', svg: EYES },
-    castle: { id: 'castle', label: 'castle', svg: CASTLE },
-    beach: { id: 'beach', label: 'sandcastle', svg: BEACH },
-    star: { id: 'star', label: 'star', svg: STAR },
+  /** Primary PNG per theme — banked from 2×2 ChatGPT sheets. */
+  const BANK = {
+    beach: { file: 'sandcastle.png', label: 'sandcastle' },
+    animals: { file: 'dog.png', label: 'dog' },
+    food: { file: 'apple.png', label: 'apple' },
+    vehicles: { file: 'car.png', label: 'car' },
+    space: { file: 'rocket.png', label: 'rocket' },
+    family: { file: 'house.png', label: 'house' },
+    weather: { file: 'sun.png', label: 'sun' },
+    nature: { file: 'tree.png', label: 'tree' },
   };
+
+  const BANK_BASE = 'assets/10_coloring/img/';
+
+  function imgHtml(file, label) {
+    const src = BANK_BASE + file;
+    return (
+      `<img src="${src}" alt="${label} outline to color" ` +
+      'style="max-height:300px;max-width:100%;width:auto;height:auto;object-fit:contain;display:block">'
+    );
+  }
 
   /** First matching rule wins. Generic never maps to eyes. */
   const RULES = [
     { id: 'eyes', re: /\b(face|faces|eye|eyes|nose|mouth|smile|hair)\b/ },
     { id: 'castle', re: /\b(castle|castles|knight|knights|dragon|dragons|royal|fortress)\b/ },
-    { id: 'beach', re: /\b(beach|beaches|sand|sandcastle|ocean|sea|shell|seashell)\b/ },
+    { id: 'beach', re: /\b(beach|beaches|sand|sandcastle|ocean|sea|shell|seashell|pail|shovel)\b/ },
+    { id: 'space', re: /\b(space|rocket|planet|moon|astronaut|starship|ufo|satellite)\b/ },
+    { id: 'vehicles', re: /\b(car|cars|bus|train|bike|bicycle|airplane|plane|helicopter|boat|truck|vehicle)\b/ },
+    { id: 'animals', re: /\b(dog|cat|bird|fish|rabbit|elephant|butterfly|frog|animal|animals|pet|pets)\b/ },
+    { id: 'food', re: /\b(food|apple|banana|pizza|hamburger|burger|cake|carrot|ice.?cream|juice|eat|hungry)\b/ },
+    { id: 'family', re: /\b(family|mom|dad|mother|father|baby|grandma|grandpa|sister|brother|house|home)\b/ },
+    { id: 'weather', re: /\b(weather|sunny|rain|rainy|cloud|snow|snowflake|umbrella|wind|storm|sun)\b/ },
+    { id: 'nature', re: /\b(tree|trees|flower|forest|park|garden|nature)\b/ },
   ];
 
   function wantsColoring(meta) {
@@ -106,29 +114,45 @@
   }
 
   /**
-   * @returns {null|{id:string,label:string,svg:string,crayons:string}}
+   * @returns {null|{id:string,label:string,html:string,crayons:string,source:string}}
    * null when level is not A1/A2 (question-only warm-up).
    */
   function forLesson(lesson, meta) {
     if (!wantsColoring(meta)) return null;
     const id = pickOutlineId(lesson);
-    const base = OUTLINES[id] || OUTLINES.star;
-    return {
-      id: base.id,
-      label: base.label,
-      svg: base.svg,
-      crayons: CRAYONS,
-    };
+
+    if (id === 'eyes') {
+      return { id: 'eyes', label: 'eyes', html: EYES, crayons: CRAYONS, source: 'svg' };
+    }
+    if (id === 'castle') {
+      // No 2×2 castle sheet yet — crisp SVG until banked.
+      return { id: 'castle', label: 'castle', html: CASTLE, crayons: CRAYONS, source: 'svg' };
+    }
+    if (id === 'star') {
+      return { id: 'star', label: 'star', html: STAR, crayons: CRAYONS, source: 'svg' };
+    }
+
+    const bank = BANK[id];
+    if (bank) {
+      return {
+        id,
+        label: bank.label,
+        html: imgHtml(bank.file, bank.label),
+        crayons: CRAYONS,
+        source: 'png',
+      };
+    }
+
+    return { id: 'star', label: 'star', html: STAR, crayons: CRAYONS, source: 'svg' };
   }
 
   window.ColoringOutlines = {
     EYES,
     CASTLE,
-    BEACH,
     STAR,
     CRAYONS,
+    BANK,
     RULES,
-    OUTLINES,
     wantsColoring,
     forLesson,
   };
