@@ -38,6 +38,10 @@ worksheet with a side illustration.
    hero + many small dock toys. Slice with `assets:prop-blobs` first; human-eye
    QA beats amber flags. Bank into **main** `09_props` with pack tags + part
    keys (`assets:prop-blobs-import`) so other lessons can still pull individuals.
+10. **Dock theme follows the hero, not stray vocab** — a dental lesson with
+    vocab *smile* must still get the dental tool dock. Never let lone words
+    (`smile`, `mouth`) flip a stage into make-a-face. Hero key / dental|face
+    pack signals win in `roleplayDockProps`.
    See [prop-cutouts](../prop-cutouts/SKILL.md) ragged rules.
 
 ## Implementation map

@@ -5,7 +5,7 @@
  * SVG fallbacks for eyes / castle / generic star. Never leak eyes as fallback.
  */
 (function () {
-  const EYES = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" width="100%" height="100%" style="max-height:280px" fill="none" aria-label="Eye outlines to color">
+  const EYES = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="display:block" fill="none" aria-label="Eye outlines to color">
   <g stroke="#334155" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
     <ellipse cx="170" cy="150" rx="110" ry="72"/>
     <circle cx="170" cy="150" r="36" stroke-width="7"/>
@@ -18,7 +18,7 @@
   </g>
 </svg>`;
 
-  const CASTLE = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="100%" height="100%" style="max-height:280px" fill="none" aria-label="Castle outline to color">
+  const CASTLE = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="display:block" fill="none" aria-label="Castle outline to color">
   <g stroke="#334155" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
     <path d="M80 280 L80 140 L120 140 L120 100 L160 100 L160 140 L200 140 L200 80 L240 80 L240 140 L280 140 L280 60 L360 60 L360 140 L400 140 L400 80 L440 80 L440 140 L480 140 L480 100 L520 100 L520 140 L560 140 L560 280 Z"/>
     <path d="M280 60 L300 30 L320 60 L340 30 L360 60"/>
@@ -31,7 +31,7 @@
   </g>
 </svg>`;
 
-  const STAR = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="100%" height="100%" style="max-height:280px" fill="none" aria-label="Star outline to color">
+  const STAR = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="display:block" fill="none" aria-label="Star outline to color">
   <g stroke="#334155" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M320 28 L355 130 L470 130 L378 192 L412 294 L320 232 L228 294 L262 192 L170 130 L285 130 Z"/>
   </g>

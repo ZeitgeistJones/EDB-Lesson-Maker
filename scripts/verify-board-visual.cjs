@@ -34,10 +34,11 @@ const REGRESSION_ABS = {
 };
 const REGRESSION_REL = 0.12;
 
+// Old title chrome was indigo→violet. Do NOT include pale pink/lavender — quiet
+// flats (outdoor sky, clinic washes) false-positive H4 under a loose threshold.
 const GRADIENT_HINTS = [
-  [79, 70, 229],
-  [255, 241, 242],
-  [245, 243, 255],
+  [79, 70, 229], // #4f46e5
+  [124, 58, 237], // #7c3aed
 ];
 
 function parseArgs(argv) {
@@ -172,7 +173,11 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
         const h = p.h || 96;
         const x = p.x || 0;
         const y = p.y || 0;
-        if (x < 0 || y < 0 || x + w > BOARD_W || y + h > BOARD_H) {
+        // King flush heroes intentionally bleed past the top (stageFit=flush / bleed=crop).
+        const intentionalBleed = p.bleed === 'crop'
+          || (p.meta && p.meta.stageFit === 'flush')
+          || (p.meta && p.meta.stageKing && (y < 0 || x < 0));
+        if ((x < 0 || y < 0 || x + w > BOARD_W || y + h > BOARD_H) && !intentionalBleed) {
           fails.push({
             code: 'H3',
             msg: `${pg.pageKey}: piece ${p.role} off-board (${x},${y},${w},${h})`,
@@ -398,6 +403,11 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
         else artCount++;
         continue;
       }
+      // Inline SVG coloring outlines / crayon chrome count as art (warm-up stage).
+      if (node.tagName === 'svg' && area > 80 * 80) {
+        artCount++;
+        continue;
+      }
 
       if (/gradient/.test(cs.backgroundImage || '') && area > pageArea * 0.05) {
         const stop = gradientStop(cs.backgroundImage);
@@ -409,7 +419,12 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
       }
 
       const bgColor = parseColor(cs.backgroundColor);
-      if (bgColor && bgColor.a >= 0.5 && area > pageArea * 0.02 && area < pageArea * 0.92) {
+      // Coloring stages are intentional large white panels — not sparse text cards (M3).
+      const isColoringStage = node.dataset && node.dataset.coloringStage === '1';
+      if (
+        bgColor && bgColor.a >= 0.5 && area > pageArea * 0.02 && area < pageArea * 0.92
+        && !isColoringStage
+      ) {
         cards.push({ rect: r, area, color: bgColor, lum: relLum(bgColor) });
       }
 

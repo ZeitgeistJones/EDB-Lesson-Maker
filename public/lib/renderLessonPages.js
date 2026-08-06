@@ -637,6 +637,7 @@
         width: '100%',
         margin: '0 auto',
       });
+      stage.dataset.coloringStage = '1';
       stage.appendChild(el('div', {
         fontSize: '18px',
         fontWeight: '700',
@@ -645,14 +646,17 @@
         flexShrink: '0',
       }, 'Color me!'));
       stage.appendChild(el('div', {
-        flex: '1',
+        flex: '1 1 auto',
         minHeight: '0',
         width: '100%',
-        maxWidth: '720px',
+        maxWidth: '640px',
+        maxHeight: '300px',
+        aspectRatio: '2 / 1',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
+        margin: '0 auto',
       }, outline.html || outline.svg || ''));
       stage.appendChild(el('div', {
         position: 'absolute',

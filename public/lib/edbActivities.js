@@ -706,9 +706,16 @@
     const tags = heroThemeTags(lesson);
     const blob = tags.join(' ') + ' ' + ((hero && hero.key) || '');
     const kit = PB.assessKit && PB.assessKit(lesson);
-    const face = /face|hair|eyes|nose|ear|smile|make.?a.?face|blank/.test(blob)
-      || (hero && hero.key === 'face-blank');
-    const dental = !face && /dentist|dental|tooth|clinic|mouth|floss|cavity|brush/.test(blob);
+    // Hero key wins — vocab like "smile" must not steal a dental stage into a face dock.
+    const heroKey = (hero && hero.key) || '';
+    const face = heroKey === 'face-blank'
+      || /face-blank|make.?a.?face/.test(blob)
+      || (/\b(face|faces|hair|eyes|nose|ear|ears)\b/.test(blob)
+        && !/dentist|dental|tooth|teeth|clinic|floss|cavity|brush/.test(blob));
+    const dental = !face && (
+      /dental|dentist/.test(heroKey)
+      || /dentist|dental|tooth|teeth|clinic|floss|cavity|brush/.test(blob)
+    );
     const out = [];
     const exclude = [hero && hero.key].filter(Boolean);
 
