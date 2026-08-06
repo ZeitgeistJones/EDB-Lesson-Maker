@@ -35,6 +35,19 @@ the real gutters instead of assuming equal pitch, so a row drawn slightly
 oversized still slices correctly — but two props that meet with no black between
 them cannot be separated.
 
+**Ragged / non-grid sheets** (giant castle wall + mixed scales, no uniform RxC):
+do **not** force `--grid`. Preview with the blob slicer first, name from the
+numbered QA, then key:
+
+```bash
+npm run assets:prop-blobs -- assets-inbox/<sheet>.png --dilate=0 --threshold=28
+# → tmp/blob-slice/<slug>/qa-numbered.png + qa-strip.png + blobs.json
+```
+
+`--dilate` merges thin gaps (chains, poles); start at `0` — dilate+compression
+dust can weave a sheet-wide ghost web. Lattice props (portcullis) may shatter;
+amber flags mark shreds. Import/naming is a second step after you approve crops.
+
 The six legacy props in this pack that cannot be keyed today came off old contact
 sheets that had none of that structure — a neighbour's edge was already inside
 the frame. A sheet is a supported input; a crowded sheet is not.
