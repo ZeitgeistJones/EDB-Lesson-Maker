@@ -179,6 +179,13 @@
       return null;
     }
 
+    // Quiet pale flats declare dark ink in the manifest — never flip to white
+    // titles on a cream wash (that is the "titles too light" failure mode).
+    if (pick && pick.type === 'flat' && pick.textInk === 'dark') {
+      paintInk(pageEl, INK_PALETTE[2]); // near-black heading / slate hint
+      return null;
+    }
+
     const sample = sampleHeaderBg(bgImg);
     if (sample) {
       // Busy photographic bands (scenes) keep the scrim even when a dark ink
@@ -521,17 +528,24 @@
       reserveDock: hasRecipe(boardPlan, 'title'), pageType: 'title',
     });
     // Dark ink on calm flats — place scenes are reserved for activity/EDB.
-    p.appendChild(el('div', {
-      color: '#64748b', fontSize: '18px', fontWeight: '600',
+    // data-ink so applyInkPolicy can keep headings dark on pale quiet flats.
+    const eyebrow = el('div', {
+      color: '#475569', fontSize: '18px', fontWeight: '600',
       textTransform: 'uppercase', letterSpacing: '0.12em', marginTop: '70px',
-    }, 'ClassIn Lesson'));
-    p.appendChild(el('div', {
+    }, 'ClassIn Lesson');
+    eyebrow.dataset.ink = 'hint';
+    p.appendChild(eyebrow);
+    const title = el('div', {
       color: '#0f172a', fontSize: '64px', fontWeight: '800', marginTop: '14px',
       maxWidth: '900px', lineHeight: '1.08',
-    }, lesson.title || 'Lesson'));
-    p.appendChild(el('div', {
+    }, lesson.title || 'Lesson');
+    title.dataset.ink = 'heading';
+    p.appendChild(title);
+    const metaLine = el('div', {
       color: '#334155', fontSize: '26px', marginTop: '22px', fontStyle: 'italic',
-    }, `${meta.level || ''}  ·  ${meta.duration || ''}-minute lesson`));
+    }, `${meta.level || ''}  ·  ${meta.duration || ''}-minute lesson`);
+    metaLine.dataset.ink = 'hint';
+    p.appendChild(metaLine);
     drawDebugZones(p, 'title');
     return p;
   }

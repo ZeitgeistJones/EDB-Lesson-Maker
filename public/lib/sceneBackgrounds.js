@@ -243,11 +243,14 @@
     'travel-a': 'travel', 'travel-b': 'travel', 'travel-c': 'travel', 'travel-d': 'travel',
     'home-a': 'warm', 'home-b': 'warm', 'home-c': 'warm', 'home-d': 'warm',
     'outdoor-a': 'outdoor', 'outdoor-b': 'outdoor', 'outdoor-c': 'outdoor', 'outdoor-d': 'outdoor',
+    'face-a': 'warm', 'face-b': 'warm', 'face-c': 'warm', 'face-d': 'warm',
   };
 
   /** Topic → preferred quiet flat set id (once those flats exist in the manifest). */
   const TOPIC_SETS = [
     { re: /\b(dentists?|dental|doctors?|clinic|hospital|nurse|tooth|teeth|medical)\b/, set: 'clinic-cool' },
+    // Face before school — "Learning about the Face" must not land on school-soft
+    { re: /\b(faces?|cheek|lips?|chin|brow|skin|make.?a.?face)\b/, set: 'face-soft' },
     { re: /\b(airport|travel|train|bus|plane|passport|station)\b/, set: 'travel-air' },
     { re: /\b(home|house|family|kitchen|apartment|bedroom)\b/, set: 'home-warm' },
     { re: /\b(school|classroom|teacher|library|phonics|grammar)\b/, set: 'school-soft' },
@@ -321,7 +324,9 @@
     const allowed = (moods && moods.length
       ? all.filter((k) => moods.includes(m.flats[k].mood || 'calm'))
       : all
-    ).filter((k) => isQuietFlat(m.flats[k]));
+    ).filter((k) => isQuietFlat(m.flats[k]) && !m.flats[k].set);
+    // Flats that declare a `set` are reserved for TOPIC_SETS lock-in — they
+    // must not leak into the generic calm rotation (face-soft on a travel lesson).
     let flatKeys = allowed.length ? allowed : all.filter((k) => isQuietFlat(m.flats[k]));
     if (!flatKeys.length) flatKeys = all;
     const want = palettesFor(topicWords || seed);

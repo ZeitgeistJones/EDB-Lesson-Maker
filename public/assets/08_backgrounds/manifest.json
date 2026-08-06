@@ -1241,6 +1241,42 @@
    "quiet": true,
    "set": "outdoor-fresh",
    "palette": "outdoor"
+  },
+  "face-a": {
+   "file": "flat_face-a.png",
+   "tone": "face soft wash — plain blush cream",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "face-soft",
+   "palette": "warm"
+  },
+  "face-b": {
+   "file": "flat_face-b.png",
+   "tone": "face soft wash — corner sparkles",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "face-soft",
+   "palette": "warm"
+  },
+  "face-c": {
+   "file": "flat_face-c.png",
+   "tone": "face soft wash — tiny corner blush",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "face-soft",
+   "palette": "warm"
+  },
+  "face-d": {
+   "file": "flat_face-d.png",
+   "tone": "face soft wash — edge arch shadow",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "face-soft",
+   "palette": "warm"
   }
  }
 }

@@ -9,8 +9,14 @@ Place scenes (`08_backgrounds` scenes with a floor) stay useful when the
 want **quiet flats**: soft washes with almost nothing in the middle so cards,
 icons, and docks stay the star.
 
-Generate these in the ChatGPT app (free). Landscape aspect. Save PNG into
-`assets-inbox/`, then import with `npm run assets:bg`.
+## Routes (pick one)
+
+| Route | When | How |
+|-------|------|-----|
+| **In-house (default)** | Missing set during a quality loop / one topic need | `.cursor/skills/bg-flat-sets/SKILL.md` — generate 4 landscape panels with the native image tool → `npm run assets:bg --flat --set=…` |
+| **ChatGPT 2×2 sheet** | Bulk / max cross-panel consistency | Free ChatGPT app → `assets-inbox/` → import with `--grid=2x2` (below) |
+
+No API key required for the in-house path.
 
 ## Style lock (paste into every prompt)
 
@@ -33,10 +39,29 @@ Generate these in the ChatGPT app (free). Landscape aspect. Save PNG into
 | `mood` | `calm` for normal lessons; `music` / `fantasy` only when topic asks |
 | `textInk` | Usually `dark` on these pale washes |
 
-A set is **4 panels** (2×2 contact sheet) or **6** (2×3). Same palette, tiny
-variations — enough for a 30–60 min board without looking random.
+A set is **4 panels**. Same palette, tiny variations — enough for a 30–60 min
+board without looking random.
 
-## Priority sets to generate
+## Wired sets
+
+| Set | Topic | Status |
+|-----|-------|--------|
+| `clinic-cool` | dentist / doctor / hospital | wired |
+| `school-soft` | classroom / phonics / general A1 | wired |
+| `travel-air` | airport / trip / plane | wired |
+| `home-warm` | family / house / daily routine | wired |
+| `outdoor-fresh` | park / zoo / sport (when scene is not the hero) | wired |
+| `face-soft` | face / cheek / lip / smile / make-a-face | wired (in-house Aug 2026) |
+
+### `face-soft` — face / body parts / smile
+
+Palette: warm **blush peach + cream + pale rose**. Empty centre. Corner motifs
+only (sparkle, tiny blush dot, soft edge arch) — never a drawn face in the
+middle (that fights the make-a-face EDB).
+
+## Priority sets still to generate
+
+Use the in-house skill. ChatGPT sheet prompts below remain valid for bulk.
 
 ### 1. `clinic-cool` — dentist / doctor / hospital
 
@@ -108,7 +133,7 @@ leaf corner.
 > outdoor palette (sage, sky, soft sun). Empty centre. Not a playground photo;
 > not a full zoo habitat.
 
-## Import one sheet
+## Import (ChatGPT sheet)
 
 ```bash
 # After saving ChatGPT 2×2 PNG to assets-inbox/clinic-cool.png
@@ -122,18 +147,25 @@ npm run assets:bg -- assets-inbox/clinic-cool.png --flat --grid=2x2 --cell=1,1 \
   --name=clinic-d --set=clinic-cool --mood=calm --tone="clinic cool wash D"
 ```
 
+## Import (in-house single panel)
+
+```bash
+npm run assets:bg -- assets-inbox/face-soft-a.png --flat --name=face-a \
+  --set=face-soft --mood=calm --tone="face soft wash — plain blush cream"
+```
+
 Paste the printed JSON into `public/assets/08_backgrounds/manifest.json`
 under `flats`, then:
 
 ```bash
 npm run test:bg-picks
-node scripts/verify-board-visual.cjs --cases=dentist
+node scripts/verify-board-visual.cjs --cases=face
 ```
 
 ## Picker behaviour (once sets are in the manifest)
 
-1. Topic words pick a preferred `set` (dentist → `clinic-cool`, school →
-   `school-soft`, …).
+1. Topic words pick a preferred `set` (dentist → `clinic-cool`, face →
+   `face-soft`, school → `school-soft`, …).
 2. The whole lesson rotates **inside that set** (small variations).
 3. Quiet flats without a set still work as a fallback band.
 4. Busy legacy flats (`blue-alcove` books, desk ledge, prop-heavy windows) are
