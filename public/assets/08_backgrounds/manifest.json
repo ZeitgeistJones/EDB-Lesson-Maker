@@ -1345,6 +1345,78 @@
    "quiet": true,
    "set": "face-soft",
    "palette": "warm"
+  },
+  "beach-a": {
+   "file": "flat_beach-a.png",
+   "tone": "beach warm wash — plain sky sand",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "beach-warm",
+   "palette": "coast"
+  },
+  "beach-b": {
+   "file": "flat_beach-b.png",
+   "tone": "beach warm wash — shell corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "beach-warm",
+   "palette": "coast"
+  },
+  "beach-c": {
+   "file": "flat_beach-c.png",
+   "tone": "beach warm wash — wave fringe",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "beach-warm",
+   "palette": "coast"
+  },
+  "beach-d": {
+   "file": "flat_beach-d.png",
+   "tone": "beach warm wash — sun corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "beach-warm",
+   "palette": "coast"
+  },
+  "bakery-a": {
+   "file": "flat_bakery-a.png",
+   "tone": "bakery warm wash — cream peach wall",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "bakery-warm",
+   "palette": "warm"
+  },
+  "bakery-b": {
+   "file": "flat_bakery-b.png",
+   "tone": "bakery warm wash — wheat corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "bakery-warm",
+   "palette": "warm"
+  },
+  "bakery-c": {
+   "file": "flat_bakery-c.png",
+   "tone": "bakery warm wash — cookie corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "bakery-warm",
+   "palette": "warm"
+  },
+  "bakery-d": {
+   "file": "flat_bakery-d.png",
+   "tone": "bakery warm wash — alcove edge",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "bakery-warm",
+   "palette": "warm"
   }
  }
 }

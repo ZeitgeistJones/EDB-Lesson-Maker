@@ -9,6 +9,10 @@
 (function () {
   const VOCAB_ART_FLOOR = 0.5; // ≥ half the words need real prop or vetted icon art
 
+  /** Reasons that are kit / hero-stage concerns (filterable via ignoreKit). */
+  const KIT_REASON_RE =
+    /theme kit|theme stage kit|build\/stage board|heroProp|generic template/i;
+
   function vocabWords(lesson) {
     return ((lesson && lesson.vocabulary) || [])
       .map((v) => (typeof v === 'string' ? v : v && v.word))
@@ -44,14 +48,24 @@
     return { hits, total: words.length, ratio: words.length ? hits / words.length : 1, detail };
   }
 
+  function topicBlob(lesson) {
+    const words = vocabWords(lesson);
+    return [lesson && lesson.title, ...words].filter(Boolean).join(' ');
+  }
+
   /**
    * @param {object} lesson
    * @param {object} [boardPlan] from EdbActivities.buildBoardPlan / plan
-   * @returns {{ status: 'ready'|'draft', reasons: string[], kit: object|null, vocabArt: object, activityRecipe: string|null }}
+   * @param {object} [opts]
+   * @param {boolean} [opts.ignoreKit] skip kit/hero-stage reasons (vocab+bg only)
+   * @param {object} [opts.bgManifest] backgrounds manifest (flats/scenes); else SB.manifest sync cache
+   * @returns {{ status: 'ready'|'draft', reasons: string[], kit: object|null, vocabArt: object, activityRecipe: string|null, bg: object|null }}
    */
-  function assess(lesson, boardPlan) {
+  function assess(lesson, boardPlan, opts) {
+    opts = opts || {};
     const reasons = [];
     const PB = window.PropBank;
+    const SB = window.SceneBackgrounds;
     const kit = PB && PB.assessKit ? PB.assessKit(lesson) : null;
     const vocabArt = vocabArtHits(lesson);
 
@@ -65,27 +79,54 @@
       );
     }
 
-    if (kit && kit.ready) {
-      if (activityRecipe !== 'heroProp') {
+    if (!opts.ignoreKit) {
+      if (kit && kit.ready) {
+        if (activityRecipe !== 'heroProp') {
+          reasons.push(
+            `Theme kit “${kit.pack}” is ready (${kit.dockCount} dock pieces) but the activity is “${activityRecipe || 'none'}” — should be a build/stage board.`
+          );
+        } else if (act && act.ctx && act.ctx.hero && kit.hero && act.ctx.hero.key !== kit.hero.key) {
+          // Soft: different hero still ok if king stage
+        }
+      }
+
+      // Hollow activity: no kit, no hero, collage recipe — fine as draft text board
+      if (!kit && activityRecipe && activityRecipe !== 'heroProp' && vocabArt.ratio < 0.75) {
         reasons.push(
-          `Theme kit “${kit.pack}” is ready (${kit.dockCount} dock pieces) but the activity is “${activityRecipe || 'none'}” — should be a build/stage board.`
+          'No theme stage kit matched — activity is a generic template. Add a pack or accept a draft board.'
         );
-      } else if (act && act.ctx && act.ctx.hero && kit.hero && act.ctx.hero.key !== kit.hero.key) {
-        // Soft: different hero still ok if king stage
       }
     }
 
-    // Hollow activity: no kit, no hero, collage recipe — fine as draft text board
-    if (!kit && activityRecipe && activityRecipe !== 'heroProp' && vocabArt.ratio < 0.75) {
-      reasons.push(
-        'No theme stage kit matched — activity is a generic template. Add a pack or accept a draft board.'
-      );
+    let bg = null;
+    if (SB && typeof SB.bgCoverage === 'function') {
+      let manifest = opts.bgManifest || null;
+      // Prefer explicit manifest; sync cache may not exist until planFor/manifest().
+      if (!manifest && typeof SB._cachedManifest === 'function') {
+        manifest = SB._cachedManifest();
+      }
+      if (manifest) {
+        bg = SB.bgCoverage(topicBlob(lesson), manifest);
+        if (bg && bg.gap) {
+          reasons.push(
+            bg.reason ||
+              (bg.set
+                ? `Place set “${bg.set}” needs ≥2 quiet flats (have ${bg.flats}).`
+                : 'Place theme has no quiet flat TOPIC_SETS coverage.')
+          );
+        }
+      }
     }
 
-    const status = reasons.length ? 'draft' : 'ready';
+    let filtered = reasons;
+    if (opts.ignoreKit) {
+      filtered = reasons.filter((r) => !KIT_REASON_RE.test(r));
+    }
+
+    const status = filtered.length ? 'draft' : 'ready';
     return {
       status,
-      reasons,
+      reasons: filtered,
       kit: kit && kit.ready
         ? { pack: kit.pack, hero: kit.hero.key, docks: kit.dockCount, score: kit.score }
         : null,
@@ -93,8 +134,10 @@
         hits: vocabArt.hits,
         total: vocabArt.total,
         ratio: Number(vocabArt.ratio.toFixed(2)),
+        detail: vocabArt.detail,
       },
       activityRecipe,
+      bg,
     };
   }
 
@@ -102,7 +145,8 @@
     if (!report) return '';
     if (report.status === 'ready') {
       const kit = report.kit ? ` · kit ${report.kit.pack}` : '';
-      return `Ready to teach${kit} · vocab art ${report.vocabArt.hits}/${report.vocabArt.total}`;
+      const bg = report.bg && report.bg.set ? ` · bg ${report.bg.set}` : '';
+      return `Ready to teach${kit}${bg} · vocab art ${report.vocabArt.hits}/${report.vocabArt.total}`;
     }
     return `Draft board · ${report.reasons[0] || 'needs review'}`;
   }
@@ -112,5 +156,6 @@
     vocabArtHits,
     summaryLine,
     VOCAB_ART_FLOOR,
+    KIT_REASON_RE,
   };
 })();

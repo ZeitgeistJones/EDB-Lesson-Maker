@@ -258,8 +258,27 @@
   const TOPIC_SETS = [
     { re: /\b(dentists?|dental|doctors?|clinic|hospital|nurse|tooth|teeth|medical)\b/, set: 'clinic-cool' },
     { re: /\b(airport|travel|train|bus|plane|passport|station)\b/, set: 'travel-air' },
-    { re: /\b(home|house|family|kitchen|apartment|bedroom)\b/, set: 'home-warm' },
-    { re: /\b(zoo|park|animal|forest|garden|nature|gym|sport|trampoline|volcano|lava|eruption|crater)\b/, set: 'outdoor-fresh' },
+    { re: /\b(home|house|family|kitchen|apartment|bedroom|hotel)\b/, set: 'home-warm' },
+    { re: /\b(zoo|park|animal|forest|garden|nature|gym|sport|trampoline|volcano|lava|eruption|crater|farm|pool|swim|swimming)\b/, set: 'outdoor-fresh' },
+    { re: /\b(beach|ocean|sea|shore|seaside|island)\b/, set: 'beach-warm' },
+    // Place nouns only — bare "bread" must not steal supermarket lessons onto bakery.
+    { re: /\b(bakerys?|bake\s*shop|pastry\s*shop|cafes?|caf[eé]s?)\b/, set: 'bakery-warm' },
+    { re: /\b(markets?|supermarkets?|grocer(?:y|ies)|farmers?\s*markets?)\b/, set: 'outdoor-fresh' },
+  ];
+
+  /**
+   * Place-like titles that should lock a quiet set (or report a bgGap).
+   * Broader than TOPIC_SETS so missing place sets surface honestly.
+   * School/library stay on board-house — not place-set gaps.
+   */
+  const PLACE_SIGNALS = [
+    /\b(dentists?|dental|doctors?|clinic|hospital|nurse|medical)\b/,
+    /\b(airport|travel|train|bus|plane|passport|station|hotel)\b/,
+    /\b(home|house|family|kitchen|apartment|bedroom)\b/,
+    /\b(zoo|park|animal|forest|garden|nature|gym|sport|trampoline|volcano)\b/,
+    /\b(beach|ocean|sea|shore|seaside|island)\b/,
+    /\b(bakerys?|bake\s*shop|pastry|cafes?|caf[eé]|restaurants?|markets?|supermarkets?|grocery|groceries)\b/,
+    /\b(farm|campsite|museum|pool|swimming|playground)\b/,
   ];
 
   const TOPIC_PALETTE = [
@@ -288,6 +307,48 @@
       if (row.re.test(text)) return row.set;
     }
     return null;
+  }
+
+  function isPlaceTopic(topicWords) {
+    const text = ' ' + String(Array.isArray(topicWords) ? topicWords.join(' ') : (topicWords || '')).toLowerCase() + ' ';
+    if (setFor(text)) return true;
+    return PLACE_SIGNALS.some((re) => re.test(text));
+  }
+
+  /** Quiet flat count for a set id against a loaded (or passed) manifest. */
+  function quietFlatCount(setId, m) {
+    if (!setId || !m || !m.flats) return 0;
+    return Object.keys(m.flats).filter((k) => {
+      const f = m.flats[k];
+      return f && f.set === setId && f.quiet !== false;
+    }).length;
+  }
+
+  /**
+   * Place-theme flat coverage. gap=true when the topic is a place but has no
+   * TOPIC_SETS row, or the matched set has fewer than 2 quiet flats.
+   */
+  function bgCoverage(topicWords, m) {
+    const text = Array.isArray(topicWords) ? topicWords.join(' ') : (topicWords || '');
+    const place = isPlaceTopic(text);
+    const set = setFor(text);
+    if (!place) {
+      return { place: false, set: null, flats: 0, gap: false };
+    }
+    if (!set) {
+      return { place: true, set: null, flats: 0, gap: true, reason: 'place theme has no TOPIC_SETS row' };
+    }
+    const flats = quietFlatCount(set, m);
+    if (flats < 2) {
+      return {
+        place: true,
+        set,
+        flats,
+        gap: true,
+        reason: `place set “${set}” has ${flats} quiet flat(s) (need ≥2)`,
+      };
+    }
+    return { place: true, set, flats, gap: false };
   }
 
   // #region agent log
@@ -553,5 +614,7 @@
   window.SceneBackgrounds = {
     manifest, rank, pickFor, planFor, loadPng, standOn, standRow, isStandRole,
     STAND_ROLES, rotate: flatOffset, moodsFor, BASE,
+    setFor, isPlaceTopic, quietFlatCount, bgCoverage,
+    TOPIC_SETS, PLACE_SIGNALS, DEFAULT_SET,
   };
 })();

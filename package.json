@@ -9,6 +9,7 @@
     "test:bg-picks": "node scripts/smoke-bg-picks.mjs",
     "test:board-bg": "node scripts/verify-board-visual.cjs",
     "test:board-ready": "node scripts/test-board-readiness.mjs",
+    "test:readiness-loop": "node scripts/readiness-loop.mjs",
     "preflight": "node scripts/preflight-boards.cjs",
     "quality": "node scripts/preflight-boards.cjs",
     "quality:full": "node scripts/preflight-boards.cjs --tier=all",

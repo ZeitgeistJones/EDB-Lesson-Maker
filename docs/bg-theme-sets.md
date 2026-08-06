@@ -58,6 +58,8 @@ board without looking random.
 | `travel-air` | airport / trip / plane | wired |
 | `home-warm` | family / house / daily routine | wired |
 | `outdoor-fresh` | park / zoo / sport (when scene is not the hero) | wired |
+| `beach-warm` | beach / ocean / shore | wired (in-house Aug 2026) |
+| `bakery-warm` | bakery / café | wired (in-house Aug 2026) |
 | `school-soft` | (legacy) superseded by `board-house` | kept on disk, not picker-default |
 | `face-soft` | **retired** — skin-tone peach read as literal skin | kept on disk, unwired |
 

@@ -73,6 +73,32 @@
     dad: 'father',
     grandma: 'grandmother',
     grandpa: 'grandfather',
+    // readiness-loop gaps — map to existing pack art only
+    cart: 'shopping cart',
+    shop: 'store',
+    bedroom: 'bed',
+    bakery: 'bread',
+    oven: 'bread',
+    flour: 'bread',
+    pool: 'swim',
+    float: 'boat',
+    kick: 'ball',
+    dive: 'swim',
+    story: 'book',
+    quiet: 'library',
+    towel: 'bathtub',
+    market: 'store',
+    buy: 'money',
+    wash: 'soap',
+    fruit: 'apple',
+    exercise: 'ball',
+    music: 'piano',
+    song: 'piano',
+    lava: 'volcano',
+    eruption: 'volcano',
+    ash: 'volcano',
+    seed: 'plant',
+    team: 'ball',
   };
 
   /**
@@ -99,9 +125,17 @@
     return SAFE_EMOJI[key] || fallback || '•';
   }
 
-  /** True when a human vetted this word's glyph (not a Gemini guess). */
+  /**
+   * True when board art is human-vetted (not a Gemini guess): either a
+   * SAFE_EMOJI fallback or a resolved Twemoji pack key (incl. aliases).
+   * Requires ready()/loadIndex first for pack hits; SAFE_EMOJI works sync.
+   */
   function isCurated(word) {
-    return Object.prototype.hasOwnProperty.call(SAFE_EMOJI, normalize(word));
+    const key = normalize(word);
+    if (!key) return false;
+    if (Object.prototype.hasOwnProperty.call(SAFE_EMOJI, key)) return true;
+    if (!indexCache) return false;
+    return !!resolveKey(indexCache, word);
   }
 
   function loadIndex() {
