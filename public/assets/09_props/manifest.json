@@ -10635,6 +10635,243 @@
       "alpha": true,
       "aspect": 0.42
     },
+    "weather-cloud": {
+      "file": "weather-cloud.png",
+      "role": "object",
+      "tags": [
+        "weather",
+        "climate",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.27,
+      "pack": "weather"
+    },
+    "weather-cold": {
+      "file": "weather-cold.png",
+      "role": "object",
+      "tags": [
+        "weather",
+        "climate",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.7,
+      "bodyHue": 205,
+      "pack": "weather"
+    },
+    "weather-fog": {
+      "file": "weather-fog.png",
+      "role": "object",
+      "tags": [
+        "weather",
+        "climate",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.49,
+      "pack": "weather"
+    },
+    "weather-hail": {
+      "file": "weather-hail.png",
+      "role": "object",
+      "tags": [
+        "weather",
+        "climate",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.11,
+      "pack": "weather"
+    },
+    "weather-hot": {
+      "file": "weather-hot.png",
+      "role": "object",
+      "tags": [
+        "weather",
+        "climate",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.7,
+      "bodyHue": 15,
+      "pack": "weather"
+    },
+    "weather-moon": {
+      "file": "weather-moon.png",
+      "role": "object",
+      "tags": [
+        "weather",
+        "climate",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.86,
+      "bodyHue": 45,
+      "pack": "weather"
+    },
+    "weather-partly-cloudy": {
+      "file": "weather-partly-cloudy.png",
+      "role": "object",
+      "tags": [
+        "weather",
+        "climate",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.17,
+      "bodyHue": 35,
+      "pack": "weather"
+    },
+    "weather-rain": {
+      "file": "weather-rain.png",
+      "role": "object",
+      "tags": [
+        "weather",
+        "climate",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.04,
+      "bodyHue": 215,
+      "pack": "weather"
+    },
+    "weather-rainbow": {
+      "file": "weather-rainbow.png",
+      "role": "object",
+      "tags": [
+        "weather",
+        "climate",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.59,
+      "bodyHue": 15,
+      "pack": "weather"
+    },
+    "weather-snow": {
+      "file": "weather-snow.png",
+      "role": "object",
+      "tags": [
+        "weather",
+        "climate",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.03,
+      "bodyHue": 205,
+      "pack": "weather"
+    },
+    "weather-snowman": {
+      "file": "weather-snowman.png",
+      "role": "object",
+      "tags": [
+        "weather",
+        "climate",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.82,
+      "bodyHue": 205,
+      "pack": "weather"
+    },
+    "weather-storm": {
+      "file": "weather-storm.png",
+      "role": "object",
+      "tags": [
+        "weather",
+        "climate",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "bodyHue": 215,
+      "pack": "weather"
+    },
+    "weather-sun": {
+      "file": "weather-sun.png",
+      "role": "object",
+      "tags": [
+        "weather",
+        "climate",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.95,
+      "bodyHue": 35,
+      "pack": "weather"
+    },
+    "weather-tornado": {
+      "file": "weather-tornado.png",
+      "role": "object",
+      "tags": [
+        "weather",
+        "climate",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "bodyHue": 205,
+      "pack": "weather"
+    },
+    "weather-umbrella": {
+      "file": "weather-umbrella.png",
+      "role": "object",
+      "tags": [
+        "weather",
+        "climate",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.02,
+      "bodyHue": 275,
+      "pack": "weather"
+    },
+    "weather-wind": {
+      "file": "weather-wind.png",
+      "role": "object",
+      "tags": [
+        "weather",
+        "climate",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.34,
+      "bodyHue": 205,
+      "pack": "weather"
+    },
     "wheelchair": {
       "file": "wheelchair.png",
       "role": "furniture",
