@@ -128,7 +128,9 @@ Metrics never fail the bake. They order your review queue and catch regressions.
 
 ## Wishlist (fetch later)
 
-File: `docs/asset-wishlist.md`
+**Art:** `docs/asset-wishlist.md` — wrong/missing pictures, no verified stand-in.
+
+**Lesson English / pedagogy:** `docs/content-wishlist.md` — story≠questions, CEFR mismatch, weird teaching. Log for us (agent + user); no teacher-complaint pipe. Prefer producer prompt/schema fixes over one-lesson hacks.
 
 When the art is wrong or weak **and** no verified in-repo asset exists:
 

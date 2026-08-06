@@ -13,6 +13,7 @@ If something breaks, fix the **machinery that will fire next time** — prompts,
 | Lesson ships without kit / hollow download | `BoardReadiness` / plan / prop kit assessment |
 | Bad prop keying or gate-blind art | import / prompt rules in `.cursor/skills/prop-cutouts` |
 | Wrong activity shape (cards vs king stage) | recipes + `.cursor/skills/king-stage-edb` |
+| Weird lesson English / story≠questions / CEFR mismatch | prompts in `api/generate-lesson.js` + log row in `docs/content-wishlist.md` |
 
 **OK:** regenerating after the process fix; one-off data typos / a single manifest typo.
 
