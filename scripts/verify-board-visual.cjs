@@ -419,8 +419,22 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
       }
 
       const bgColor = parseColor(cs.backgroundColor);
-      // Coloring stages are intentional large white panels — not sparse text cards (M3).
+      // Coloring / write-in stages are intentional large white panels — not sparse text cards (M3).
+      // Still count them for reach (M8) and coverage (M9).
       const isColoringStage = node.dataset && node.dataset.coloringStage === '1';
+      const isWriteInStage = node.dataset && node.dataset.writeInStage === '1';
+      if ((isColoringStage || isWriteInStage) && area > pageArea * 0.08) {
+        cards.push({
+          rect: r,
+          area,
+          color: bgColor || { r: 255, g: 255, b: 255, a: 1 },
+          lum: 1,
+          playSurface: true,
+          coloring: isColoringStage,
+          writeIn: isWriteInStage,
+        });
+        continue;
+      }
       if (
         bgColor && bgColor.a >= 0.5 && area > pageArea * 0.02 && area < pageArea * 0.92
         && !isColoringStage
@@ -440,10 +454,13 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
     }
 
     // Only a real content panel counts for fill ratio — not a 50px word chip.
+    // Coloring / write-in stages are play surfaces, not text cards — skip for M3.
     const PANEL_MIN_AREA = pageArea * 0.12;
-    const lightCards = cards.filter((c) => c.lum >= 0.35);
-    const primaryCard =
-      lightCards
+    const hasPlaySurface = cards.some((c) => c.playSurface && c.area >= PANEL_MIN_AREA);
+    const lightCards = cards.filter((c) => c.lum >= 0.35 && !c.playSurface);
+    const primaryCard = hasPlaySurface
+      ? null
+      : lightCards
         .filter((c) => c.area >= PANEL_MIN_AREA)
         .sort((a, b) => b.area - a.area)[0] || null;
 

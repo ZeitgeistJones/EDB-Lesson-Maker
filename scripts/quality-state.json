@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-06T16:34:17.262Z",
-  "iteration": 7,
+  "updatedAt": "2026-08-06T23:52:38.812Z",
+  "iteration": 9,
   "softRoots": [
     "no-vetted-icon",
     "ink-policy-measured-no-scrim-on-calm",
@@ -10,7 +10,11 @@
     "creative-question-object-coercion",
     "swing-prop-not-pack-icon",
     "roleplay-dock-vocab-override",
-    "warm-coloring-metric-blind"
+    "warm-coloring-metric-blind",
+    "warm-sparse-non-coloring",
+    "story-side-art-theme-mismatch",
+    "gym-flat-variety-thin",
+    "metric-noise-dock-pack"
   ],
   "markers": [],
   "history": [
@@ -188,6 +192,62 @@
       "metricFails": 3,
       "metricWarns": 41,
       "regressions": 14
+    },
+    {
+      "at": "2026-08-06T23:46:34.030Z",
+      "iteration": 8,
+      "tier": "core",
+      "cases": [
+        "doctor",
+        "dentist",
+        "face",
+        "castle",
+        "clown-clinic",
+        "gym",
+        "travel",
+        "school",
+        "volcano",
+        "trampoline",
+        "zoo-phonics"
+      ],
+      "action": "fix_soft",
+      "codes": [
+        "S8",
+        "S10",
+        "R1",
+        "R1"
+      ],
+      "roots": [
+        "warm-sparse-non-coloring",
+        "warm-coloring-metric-blind",
+        "story-side-art-theme-mismatch",
+        "no-vetted-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 13,
+      "metricWarns": 91,
+      "regressions": 56
+    },
+    {
+      "at": "2026-08-06T23:52:38.812Z",
+      "iteration": 9,
+      "tier": "core",
+      "cases": [
+        "face",
+        "castle",
+        "gym"
+      ],
+      "action": "stop_cap",
+      "codes": [],
+      "roots": [
+        "gym-flat-variety-thin",
+        "no-vetted-icon",
+        "metric-noise-dock-pack"
+      ],
+      "hardFailures": 0,
+      "metricFails": 1,
+      "metricWarns": 20,
+      "regressions": 6
     }
   ]
 }

@@ -623,7 +623,7 @@
       `<div style="font-size:36px;font-weight:800;color:#1e3a8a;text-align:center;line-height:1.25">${esc(lesson.warmUp?.question || '')}</div>`,
       {
         padding: '22px 28px',
-        marginBottom: outline ? '14px' : '0',
+        marginBottom: outline ? '14px' : '12px',
         width: '100%',
         maxWidth: '980px',
         marginLeft: 'auto',
@@ -681,6 +681,35 @@
         opacity: '0.92',
       }, outline.crayons));
       p.appendChild(stage);
+    } else {
+      // B1+: big write-in stage so the warm page isn't a lonely question strip.
+      const sample = lesson.warmUp?.sampleAnswer
+        ? `<div style="margin-top:18px;font-size:22px;font-weight:600;color:#94a3b8;text-align:center">Teacher sample (after kids try): ${esc(lesson.warmUp.sampleAnswer)}</div>`
+        : '';
+      const writeIn = card(
+        `<div style="font-size:28px;font-weight:700;color:#64748b;margin-bottom:16px;text-align:center">Write or say your answer here</div>
+         <div style="border-bottom:3px dashed #cbd5e1;height:56px;margin:12px 8% 0"></div>
+         <div style="border-bottom:3px dashed #cbd5e1;height:56px;margin:20px 8% 0"></div>
+         <div style="border-bottom:3px dashed #cbd5e1;height:56px;margin:20px 8% 0"></div>
+         ${sample}`,
+        {
+          flex: '1',
+          marginBottom: '0',
+          minHeight: '0',
+          padding: '28px 32px',
+          width: '100%',
+          maxWidth: '980px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          boxSizing: 'border-box',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }
+      );
+      // Empty write lines are intentional — metrics must not treat this as a sparse text card.
+      writeIn.dataset.writeInStage = '1';
+      p.appendChild(writeIn);
     }
     drawDebugZones(p, 'warm');
     return p;
@@ -860,7 +889,9 @@
     // "Living in the Shadow of the Crater" must not steal the home house
     // when volcano words are also present.
     if (/\b(volcano|volcanic|crater|lava|eruption|ash|geothermal|magma|seismic)\b/.test(t)) return '🌋';
-    if (t.includes('gym') || t.includes('workout') || t.includes('athletic') || t.includes('court')) return '🏀';
+    // Castle before gym — "courtyard" must not hit includes('court') → basketball.
+    if (/\b(castle|knight|dragon|medieval|moat|portcullis|drawbridge|royal|king|queen|fortress)\b/.test(t)) return '🏰';
+    if (/\b(gym|workout|athletic)\b/.test(t) || /\bcourt\b/.test(t)) return '🏀';
     if (t.includes('dentist') || t.includes('dental') || t.includes('tooth') || t.includes('teeth')) return '🦷';
     if (t.includes('doctor') || t.includes('clinic') || t.includes('hospital') || t.includes('sick') || t.includes('checkup')) return '🏥';
     if (t.includes('airport') || t.includes('travel') || t.includes('passport')) return '✈️';
@@ -873,12 +904,23 @@
     if (t.includes('sport')) return '⚽';
     if (t.includes('park')) return '🌳';
     if (t.includes('bakery') || t.includes('food')) return '🥐';
+    if (t.includes('zoo') || t.includes('animal')) return '🦁';
+    if (t.includes('space') || t.includes('rocket') || t.includes('moon')) return '🚀';
+    // Face/parts after places — "Make a Face" should not fall through to the book.
+    if (/\b(face|eyes|nose|mouth|hair|smile|makeup)\b/.test(t)) return '😊';
     return '📖';
   }
 
   function storyArtCue(lesson, page) {
     // Prefer lesson place language over Gemini visualTheme (often unrelated art direction).
-    return [lesson?.title, page?.visualCaption, page?.heading].filter(Boolean).join(' ');
+    // Include story title — "The Brave Knight" should beat a bad visualTheme.
+    return [
+      lesson?.title,
+      lesson?.story?.title,
+      page?.visualCaption,
+      page?.heading,
+      page?.text,
+    ].filter(Boolean).join(' ');
   }
 
   function makeStoryPage(lesson, page, index, boardPlan, opts) {
@@ -902,9 +944,10 @@
     const storyText = String(page?.text || '');
     const solo = !!(opts && opts.solo);
     // One merged 30-min beat (or any solo page) should fill the board; scale up.
+    // Short multi-page beats need big type so the card doesn't look empty (M3/S12).
     const textSize = solo
       ? (storyText.length <= 220 ? 56 : storyText.length <= 360 ? 48 : 40)
-      : (storyText.length <= 80 ? 40 : storyText.length <= 160 ? 34 : 28);
+      : (storyText.length <= 50 ? 52 : storyText.length <= 100 ? 44 : storyText.length <= 160 ? 34 : 28);
 
     if (solo) {
       const caption = page?.visualCaption || page?.visualTheme;
@@ -979,10 +1022,10 @@
         {
           flex: '1',
           marginBottom: '0',
-          minHeight: '320px',
-          padding: '36px 32px',
+          minHeight: storyText.length <= 100 ? '0' : '320px',
+          padding: storyText.length <= 100 ? '48px 40px' : '36px 32px',
           display: 'flex',
-          alignItems: 'center',
+          alignItems: storyText.length <= 100 ? 'flex-start' : 'center',
         }
       );
       if (artOnRight) {
@@ -1167,9 +1210,21 @@
         maxWidth: '380px',
         lineHeight: '1.2',
       }, esc(lesson.activity?.title || 'Your Turn!')));
-      p.appendChild(hint(faceKing
-        ? 'Drag parts onto the face. Make a friend!'
-        : 'Drag tools onto the patient!', {
+      // Hint must match the king — clinic default must not leak onto castle/face/etc.
+      const kingCue = [
+        lesson.title, lesson.activity?.title, lesson.activity?.prompt,
+        ...(lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v.word)),
+      ].filter(Boolean).join(' ').toLowerCase();
+      let kingHint = 'Drag toys onto the stage. Play!';
+      if (faceKing) kingHint = 'Drag parts onto the face. Make a friend!';
+      else if (/\b(dentist|dental|tooth|teeth|cavity|floss|patient)\b/.test(kingCue)) {
+        kingHint = 'Drag tools onto the patient!';
+      } else if (/\b(castle|knight|dragon|royal|fortress|portcullis)\b/.test(kingCue)) {
+        kingHint = 'Drag toys onto the castle. Build!';
+      } else if (/\b(trampoline|bounce|backflip)\b/.test(kingCue)) {
+        kingHint = 'Drag toys onto the trampoline. Bounce!';
+      }
+      p.appendChild(hint(kingHint, {
         textAlign: 'left', lineHeight: '1.3', maxWidth: '380px',
       }));
       drawDebugZones(p, pageType);

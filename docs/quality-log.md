@@ -10,3 +10,5 @@ Written by `npm run quality:judge` — do not hand-edit. Machine state lives in 
 - 2026-08-05 iter 5 (all) — **wishlist** M7 · hard 0 · metric 0 fail / 13 warn · roots: swing-prop-not-pack-icon · asset gap logged
 - 2026-08-05 iter 6 (core) — **wishlist** M7 · hard 0 · metric 0 fail / 17 warn · roots: no-vetted-icon · asset gap logged
 - 2026-08-06 iter 7 (core) — **fix_hard** H4 · hard 0 · metric 3 fail / 41 warn · roots: roleplay-dock-vocab-override, warm-coloring-metric-blind, no-vetted-icon
+- 2026-08-06 iter 8 (core) — **fix_soft** S8, S10, R1, R1 · hard 0 · metric 13 fail / 91 warn · roots: warm-sparse-non-coloring, warm-coloring-metric-blind, story-side-art-theme-mismatch, no-vetted-icon
+- 2026-08-06 iter 9 (core) — **stop_cap** — · hard 0 · metric 1 fail / 20 warn · roots: gym-flat-variety-thin, no-vetted-icon, metric-noise-dock-pack
