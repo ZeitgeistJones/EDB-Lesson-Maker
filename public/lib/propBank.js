@@ -71,6 +71,8 @@
     whiteboard: 'mini-whiteboard',
     mic: 'microphone',
     card: 'flashcard-blank',
+    dentist: 'dental-kid-open-mouth',
+    patient: 'dental-kid-open-mouth',
   };
 
   /**

@@ -1553,6 +1553,25 @@
       "alpha": true,
       "aspect": 0.55,
       "bodyHue": 215
+    },
+    "dental-kid-open-mouth": {
+      "file": "dental-kid-open-mouth.png",
+      "role": "hero",
+      "tags": [
+        "dentist",
+        "dental",
+        "tooth",
+        "teeth",
+        "mouth",
+        "clinic",
+        "kid",
+        "patient"
+      ],
+      "relativeScale": 0.85,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.25,
+      "bodyHue": 15
     }
   }
 }
