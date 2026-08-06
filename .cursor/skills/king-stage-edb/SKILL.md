@@ -31,6 +31,9 @@ worksheet with a side illustration.
    dental). Missing sweets (lollipop) → `docs/asset-wishlist.md`, don’t invent.
 7. **Preview before declaring done** — bake a single activity JPEG and Read it.
    Code coords can be correct while eyes still see a gap.
+8. **Dense face docks** — two rows when the zone is tall; size with
+   `PropBank.sizeFor` + `relativeScale: 1`; skip ultra-wide brows (H7/M10).
+   Full layout checklist: [board-ux-layout](../board-ux-layout/SKILL.md).
 
 ## Implementation map
 

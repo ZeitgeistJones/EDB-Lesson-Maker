@@ -42,6 +42,8 @@ Never hand-edit `tmp/board-bg-verify/report.json`. The judge CLI writes it, appe
    always matter (title, newWords, story, activity, warm).
 5. Apply the **dual lens** and pillars below to what you actually see. Metrics are hints,
    not verdicts — confirm or overrule them with your eyes and say which in the note.
+   For layout/dead-space/write-in/dock density fixes, also follow
+   [board-ux-layout](../board-ux-layout/SKILL.md).
 6. Write `tmp/verdict.json` and submit it: `npm run quality:judge -- tmp/verdict.json`.
 7. Do exactly what `NEXT ACTION` says. Re-bake. Same soft root twice → P1 (next easy win);
    after implementing one, record it with `--mark-done=EW1`.
