@@ -247,7 +247,7 @@
 
   /** Topic → preferred quiet flat set id (once those flats exist in the manifest). */
   const TOPIC_SETS = [
-    { re: /\b(dentist|dental|doctor|clinic|hospital|nurse|tooth|teeth|medical)\b/, set: 'clinic-cool' },
+    { re: /\b(dentists?|dental|doctors?|clinic|hospital|nurse|tooth|teeth|medical)\b/, set: 'clinic-cool' },
     { re: /\b(airport|travel|train|bus|plane|passport|station)\b/, set: 'travel-air' },
     { re: /\b(home|house|family|kitchen|apartment|bedroom)\b/, set: 'home-warm' },
     { re: /\b(school|classroom|teacher|library|phonics|grammar)\b/, set: 'school-soft' },
@@ -255,7 +255,7 @@
   ];
 
   const TOPIC_PALETTE = [
-    { re: /\b(dentist|dental|doctor|clinic|hospital|nurse|tooth|teeth|medical)\b/, want: ['cool', 'neutral', 'warm'] },
+    { re: /\b(dentists?|dental|doctors?|clinic|hospital|nurse|tooth|teeth|medical)\b/, want: ['cool', 'neutral', 'warm'] },
     { re: /\b(airport|travel|train|bus|plane|passport|station)\b/, want: ['travel', 'cool', 'neutral'] },
     { re: /\b(beach|ocean|sea|shore|swim)\b/, want: ['coast', 'outdoor', 'cool'] },
     { re: /\b(volcano|lava|eruption|crater|ash|seismic|geothermal)\b/, want: ['outdoor', 'warm', 'cool'] },
