@@ -928,6 +928,11 @@
     });
     if (isKing) {
       // Chrome stays tiny — the stage hero + roleplay dock are the page.
+      const faceKing = recipeIdFor(boardPlan, 'activity') === 'heroProp'
+        && /face|hair|eyes|make.?a.?face/i.test([
+          lesson.title, lesson.activity?.title, lesson.activity?.prompt,
+          ...(lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v.word)),
+        ].filter(Boolean).join(' '));
       p.appendChild(el('div', {
         color: '#4338ca',
         fontSize: '22px',
@@ -936,7 +941,9 @@
         maxWidth: '380px',
         lineHeight: '1.2',
       }, esc(lesson.activity?.title || 'Your Turn!')));
-      p.appendChild(hint('Drag tools onto the patient!', {
+      p.appendChild(hint(faceKing
+        ? 'Drag parts onto the face. Make a friend!'
+        : 'Drag tools onto the patient!', {
         textAlign: 'left', lineHeight: '1.3', maxWidth: '380px',
       }));
       drawDebugZones(p, pageType);

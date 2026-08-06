@@ -41,10 +41,19 @@ worksheet with a side illustration.
 | Minimal chrome when `recipeId === 'heroProp'` | `public/lib/renderLessonPages.js` → `makeActivity` |
 | Prop resolve / `sizeFor` hardCap | `public/lib/propBank.js` |
 | Dental dock prefs + matrix | `ROLEPLAY_DOCK_DENTAL` + `docs/dental-unit-matrix.md` |
-| One-off preview | `node scripts/preview-dental-hero.cjs` → `tmp/dental-hero-preview.jpg` |
+| Face kit + dock prefs | `ROLEPLAY_DOCK_FACE` + `docs/face-kit.md` |
+| Previews | `preview-dental-hero.cjs` / `preview-face-hero.cjs` → `tmp/*-hero-preview.jpg` |
 
 `buildBoardPlan` must create the activity page as **`heroStage`** when the
 assignment is `heroProp` (not the default side-art `activity` zones).
+
+## Stage heroes (examples)
+
+| King key | Theme tokens | Dock list |
+|----------|--------------|-----------|
+| `dental-kid-open-mouth` | dentist, tooth, floss, cavity… | `ROLEPLAY_DOCK_DENTAL` |
+| `face-blank` | face, hair, eyes, nose, make-a-face… | `ROLEPLAY_DOCK_FACE` |
+| `trampoline` | trampoline, bounce… | themed objects / tools |
 
 ## Stage hero vs floor hero
 
@@ -70,8 +79,8 @@ Cutouts keep ~8%+ transparent pad; `y = 0` alone still looks gappy.
 
 ## Roleplay dock curation
 
-**Include:** handheld tools, food/health contrasts, reward stickers, one cast
-character (dentist).
+**Include:** handheld tools, face parts (eyes/mouth/hair), food/health contrasts,
+reward stickers, one cast character (dentist).
 
 **Exclude:** furniture (chair, cabinet, tray unit), scene dressing, chrome
 covers, anything ambiguous at ~88px.

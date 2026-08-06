@@ -14,7 +14,7 @@ Do **not** redistribute these folders as a standalone competing stock pack.
 | Board backgrounds (scenes) | `08_backgrounds/img/` (non-flat) | Generated with OpenAI image models for this project | Verify OpenAI terms before commercial resale | 76 place scenes with `groundY`; clear centre band for pieces. Includes free ChatGPT grid imports Aug 2026 | 2026-08-04 |
 | Board backgrounds (flats) | `08_backgrounds/img/flat_*.png` | Generated with OpenAI image models for this project | Verify OpenAI terms before commercial resale | Universal teaching surfaces + quiet themed sets (`clinic-cool`, `school-soft`, `travel-air`, `home-warm`, `outdoor-fresh` — ChatGPT 2×2 grids Aug 2026) | 2026-08-05 |
 | Board props (cutouts) | `09_props/img/` | Generated with OpenAI image models for this project | Verify OpenAI terms before commercial resale | ~40 empty shells: covers, dress-up, speaking tokens, furniture, phonics tools, collage props | 2026-08-02 |
-| Board props (alpha cutouts) | `09_props/img/` (`alpha: true` in manifest) | Generated with OpenAI / Cursor image models for this project | Verify current terms before commercial resale | Includes ChatGPT black-field imports (e.g. `dental-kid-open-mouth` Aug 2026); keyed via `scripts/import-prop.mjs` | 2026-08-05 |
+| Board props (alpha cutouts) | `09_props/img/` (`alpha: true` in manifest) | Generated with OpenAI / Cursor image models for this project | Verify current terms before commercial resale | Includes ChatGPT black-field imports (dental kit + face kit blank/features/hair Aug 2026); keyed via `scripts/import-prop.mjs` | 2026-08-05 |
 
 ## Manual drops still recommended
 

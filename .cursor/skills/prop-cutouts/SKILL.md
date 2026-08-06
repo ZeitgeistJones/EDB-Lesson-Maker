@@ -2,11 +2,11 @@
 name: prop-cutouts
 description: >-
   Generate ClassIn board props on a black field — one at a time in-house for targeted
-  work, or nine at a time from a ChatGPT 3x3 contact sheet for bulk — key them to real
-  alpha cutouts with scripts/import-prop.mjs, map each failed gate to its specific
-  prompt correction, then look at the QA sheet as both teacher and student before
-  writing manifest rows. Use when the user asks for a new board prop, a prop cutout,
-  more collage/activity pieces, or says the prop pack is missing something.
+  work, or many at a time from a ChatGPT contact sheet (3×3, 4×4, 4×6 / 6×4) for bulk —
+  key them to real alpha cutouts with scripts/import-prop.mjs, map each failed gate to
+  its specific prompt correction, then look at the QA sheet as both teacher and student
+  before writing manifest rows. Use when the user asks for a new board prop, a prop
+  cutout, more collage/activity pieces, or says the prop pack is missing something.
 ---
 
 # Prop cutouts
@@ -18,17 +18,22 @@ retry after a gate failure. No human round trip, so generate → import → read
 gate → regenerate is a tight loop. This is the default, and it is the only route
 for a retry.
 
-**Bulk — ask the user for a ChatGPT 3x3 contact sheet.** Filling a whole category
-at once: nine desk objects, nine playground pieces. Nine props drawn in one pass
-also match each other better than nine drawn separately. Costs a round trip
-through the user, so never use it to fix one prop.
+**Bulk — ask the user for a ChatGPT contact sheet.** Filling a whole category
+at once: desk objects, playground pieces, face parts. Prefer **4×4 (16)** or
+**6×4 (24)** when bang-for-buck matters; **3×3 (9)** is still fine for tight
+themes. Props drawn in one pass match each other better than many drawn
+separately. Costs a round trip through the user, so never use it to fix one prop.
 
-A sheet must be one prop per cell on the same solid black field, each with its
-own margin inside its cell, and nothing crossing a cell boundary. The importer
-finds the real gutters instead of assuming exact thirds, so a row drawn slightly
+`--grid` is **rows×cols** (e.g. a sheet with 6 rows of 4 features is `--grid=6x4`,
+not `4x6`). ClassIn can stretch small cutouts; sliced cells under 512px are OK.
+
+A sheet must be **one prop per cell** on the same solid black field, each with
+its own margin inside its cell, and nothing crossing a cell boundary. Do **not**
+ship labeled multi-packs (many beards in one cell with a title) — the importer
+keys the whole collage. Re-prompt those as one-item sheets. The importer finds
+the real gutters instead of assuming equal pitch, so a row drawn slightly
 oversized still slices correctly — but two props that meet with no black between
-them cannot be separated. Sliced props land smaller than 512px by design, which
-is fine because boards draw props at 96-220px.
+them cannot be separated.
 
 The six legacy props in this pack that cannot be keyed today came off old contact
 sheets that had none of that structure — a neighbour's edge was already inside

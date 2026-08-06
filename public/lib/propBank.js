@@ -77,6 +77,15 @@
     cavity: 'cavity-tooth',
     toothbrush: 'toothbrush-prop',
     toothpaste: 'toothpaste-tube',
+    face: 'face-blank',
+    head: 'face-blank',
+    eyes: 'face-eyes-brown',
+    eye: 'face-eyes-brown',
+    nose: 'face-nose-button',
+    mouth: 'face-mouth-smile',
+    smile: 'face-mouth-smile',
+    hair: 'hair-messy-brown',
+    glasses: 'face-glasses-round',
   };
 
   /**

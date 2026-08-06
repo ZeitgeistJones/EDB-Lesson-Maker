@@ -34,6 +34,8 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-05 | Dental unit pack by CEFR (vocab + EDB props) | A1 props wired (2 ChatGPT sheets); still need white-bg vocab icons for floss/cavity/dentist/smile | Vocab icons + black-field props | ChatGPT sheets | partial — props wired Aug 5; vocab dock icons still open |
 | 2026-08-05 | Zoo vocab icons: `zoo`, `cage`, `feed` | zoo-phonics fixture New Words — unvetted glyphs | Vocab pack icons | ChatGPT vocab sheet → `assets:vocab-sheet` | open |
 | 2026-08-05 | `lollipop` / candy / cookie prop for dental roleplay | Open-mouth king dock — teach “sugar vs brush”; no sweet/candy cutout in `09_props` (apple/milk/cup stand in) | Black-field object cutout | ChatGPT / GenerateImage one-off | open |
+| 2026-08-05 | Face kit extras as one-prop-per-cell sheets | Labeled collage (beards/mustaches/freckles/masks/hearing aids/…) cannot import; v1 has blank+features+color hair only | Black-field 4×4 sheets, one item per cell | ChatGPT | open |
+| 2026-08-05 | Dark hair 4×4 face sheet (optional) | Color hair sheet wired; dark/varied set still in assets-inbox if we want more styles | `--sheet --grid=4x4` | Existing ChatGPT sheet | open |
 
 ## How agents append
 

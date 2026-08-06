@@ -596,7 +596,9 @@
     // Explicit stage keys when the theme matches — beat PROP_ALIASES.dentist
     // (standing character) so dental lessons get the open-mouth play surface.
     const STAGE_RULES = [
-      { re: /dentist|dental|tooth|teeth|clinic|patient|mouth|brush|floss|cavity/, key: 'dental-kid-open-mouth' },
+      // Face kit before dental — "mouth/smile" alone would otherwise steal dental king
+      { re: /\bface\b|\bhair\b|\beyes?\b|\bnose\b|\bear\b|make.?a.?face|blank.?face/, key: 'face-blank' },
+      { re: /dentist|dental|tooth|teeth|clinic|patient|brush|floss|cavity/, key: 'dental-kid-open-mouth' },
       { re: /trampolin|bounce|backflip|playground/, key: 'trampoline' },
     ];
     for (const rule of STAGE_RULES) {
@@ -640,6 +642,20 @@
     'dentist-character',
   ];
 
+  /** Curated make-a-face dock — clear silhouettes, not the whole bank. */
+  const ROLEPLAY_DOCK_FACE = [
+    'face-eyes-brown',
+    'face-eyes-blue',
+    'face-mouth-smile',
+    'face-mouth-open',
+    'face-nose-button',
+    'face-ears-round',
+    'hair-messy-brown',
+    'hair-pony-blonde',
+    'hair-afro-dark',
+    'face-glasses-round',
+  ];
+
   function roleplayDockProps(lesson, hero, count) {
     const PB = window.PropBank;
     if (!PB || !PB.loaded()) return [];
@@ -647,8 +663,10 @@
     const seed = ((lesson && lesson.title) || '') + '|roleplay';
     const tags = heroThemeTags(lesson);
     const blob = tags.join(' ') + ' ' + ((hero && hero.key) || '');
-    const dental = /dentist|dental|tooth|clinic|mouth|floss|cavity|brush/.test(blob);
-    const prefer = dental ? ROLEPLAY_DOCK_DENTAL : null;
+    const face = /face|hair|eyes|nose|ear|smile|make.?a.?face|blank/.test(blob)
+      || (hero && hero.key === 'face-blank');
+    const dental = !face && /dentist|dental|tooth|clinic|mouth|floss|cavity|brush/.test(blob);
+    const prefer = face ? ROLEPLAY_DOCK_FACE : (dental ? ROLEPLAY_DOCK_DENTAL : null);
     const out = [];
     const exclude = [hero && hero.key].filter(Boolean);
 

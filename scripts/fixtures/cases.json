@@ -18,6 +18,14 @@
       "notes": "High-bar teachability case: phonics one-word focus, honest match dock, no props over activity cards"
     },
     {
+      "id": "face",
+      "fixture": "face-lesson.json",
+      "tier": "core",
+      "meta": { "level": "A1", "duration": "30", "phonics": "on" },
+      "expectScene": "school|classroom|face",
+      "notes": "Activity must use heroProp with face-blank king stage + dressPart dock, not emoji dressUp"
+    },
+    {
       "id": "clown-clinic",
       "fixture": "clown-clinic-lesson.json",
       "tier": "core",

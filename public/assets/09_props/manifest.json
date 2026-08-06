@@ -1826,6 +1826,594 @@
       "anchor": "bottom",
       "alpha": true,
       "aspect": 0.89
+    },
+    "face-blank": {
+      "file": "face-blank.png",
+      "role": "hero",
+      "tags": [
+        "face",
+        "body",
+        "hair",
+        "eyes",
+        "mouth",
+        "nose",
+        "smile"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.74,
+      "bodyHue": 25
+    },
+    "face-eyes-brown": {
+      "file": "face-eyes-brown.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "eyes",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.06,
+      "components": 2,
+      "bodyHue": 15
+    },
+    "face-eyes-green": {
+      "file": "face-eyes-green.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "eyes",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.77,
+      "components": 2,
+      "bodyHue": 25
+    },
+    "face-eyes-dark": {
+      "file": "face-eyes-dark.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "eyes",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.73,
+      "components": 2,
+      "bodyHue": 25
+    },
+    "face-eyes-blue": {
+      "file": "face-eyes-blue.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "eyes",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2,
+      "components": 2,
+      "bodyHue": 35
+    },
+    "face-brows-dark": {
+      "file": "face-brows-dark.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "brows",
+        "dress"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 5.04,
+      "components": 2,
+      "bodyHue": 15
+    },
+    "face-brows-arched": {
+      "file": "face-brows-arched.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "brows",
+        "dress"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 5,
+      "components": 2,
+      "bodyHue": 15
+    },
+    "face-brows-black": {
+      "file": "face-brows-black.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "brows",
+        "dress"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 4.88,
+      "components": 2
+    },
+    "face-brows-blonde": {
+      "file": "face-brows-blonde.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "brows",
+        "dress"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 5.37,
+      "components": 2,
+      "bodyHue": 35
+    },
+    "face-nose-button": {
+      "file": "face-nose-button.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "nose",
+        "dress"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.22,
+      "bodyHue": 25
+    },
+    "face-nose-long": {
+      "file": "face-nose-long.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "nose",
+        "dress"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.84,
+      "bodyHue": 25
+    },
+    "face-nose-point": {
+      "file": "face-nose-point.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "nose",
+        "dress"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.84,
+      "bodyHue": 25
+    },
+    "face-nose-round": {
+      "file": "face-nose-round.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "nose",
+        "dress"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.02,
+      "bodyHue": 25
+    },
+    "face-ears-round": {
+      "file": "face-ears-round.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "ears",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.72,
+      "components": 2,
+      "bodyHue": 25
+    },
+    "face-ears-oval": {
+      "file": "face-ears-oval.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "ears",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.87,
+      "components": 2,
+      "bodyHue": 25
+    },
+    "face-ears-elf": {
+      "file": "face-ears-elf.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "ears",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.32,
+      "components": 2,
+      "bodyHue": 35
+    },
+    "face-ears-large": {
+      "file": "face-ears-large.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "ears",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.93,
+      "components": 2,
+      "bodyHue": 25
+    },
+    "face-mouth-smile": {
+      "file": "face-mouth-smile.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "mouth",
+        "smile",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.86,
+      "bodyHue": 15
+    },
+    "face-mouth-open": {
+      "file": "face-mouth-open.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "mouth",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.38,
+      "bodyHue": 15
+    },
+    "face-mouth-line": {
+      "file": "face-mouth-line.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "mouth",
+        "smile",
+        "dress"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 3.41,
+      "bodyHue": 15
+    },
+    "face-mouth-frown": {
+      "file": "face-mouth-frown.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "mouth",
+        "dress"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 3.21,
+      "bodyHue": 15
+    },
+    "face-hair-shaggy": {
+      "file": "face-hair-shaggy.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.38,
+      "bodyHue": 15
+    },
+    "face-hair-pigtails": {
+      "file": "face-hair-pigtails.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.96,
+      "bodyHue": 35
+    },
+    "face-hair-curly": {
+      "file": "face-hair-curly.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.57,
+      "bodyHue": 25
+    },
+    "face-glasses-round": {
+      "file": "face-glasses-round.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "glasses",
+        "dress"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.48
+    },
+    "hair-messy-brown": {
+      "file": "hair-messy-brown.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.31,
+      "bodyHue": 15
+    },
+    "hair-long-straight": {
+      "file": "hair-long-straight.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "bodyHue": 15
+    },
+    "hair-spiky-blonde": {
+      "file": "hair-spiky-blonde.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.25,
+      "bodyHue": 35
+    },
+    "hair-slick-black": {
+      "file": "hair-slick-black.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.54
+    },
+    "hair-double-bun": {
+      "file": "hair-double-bun.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.11,
+      "bodyHue": 355
+    },
+    "hair-curly-ginger": {
+      "file": "hair-curly-ginger.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.35,
+      "bodyHue": 15
+    },
+    "hair-wavy-brown": {
+      "file": "hair-wavy-brown.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.16,
+      "bodyHue": 15
+    },
+    "hair-pony-blonde": {
+      "file": "hair-pony-blonde.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.95,
+      "bodyHue": 25
+    },
+    "hair-shaggy-blonde": {
+      "file": "hair-shaggy-blonde.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.35,
+      "bodyHue": 25
+    },
+    "hair-fauxhawk-black": {
+      "file": "hair-fauxhawk-black.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.43,
+      "bodyHue": 25
+    },
+    "hair-braids-brown": {
+      "file": "hair-braids-brown.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "bodyHue": 15
+    },
+    "hair-spiky-brown": {
+      "file": "hair-spiky-brown.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.27,
+      "bodyHue": 15
+    },
+    "hair-afro-dark": {
+      "file": "hair-afro-dark.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.37,
+      "bodyHue": 25
+    },
+    "hair-bob-red": {
+      "file": "hair-bob-red.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.12,
+      "bodyHue": 15
+    },
+    "hair-pointy-black": {
+      "file": "hair-pointy-black.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.22
+    },
+    "hair-long-blonde-wave": {
+      "file": "hair-long-blonde-wave.png",
+      "role": "dressPart",
+      "tags": [
+        "face",
+        "hair",
+        "dress"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.04,
+      "bodyHue": 25
     }
   }
 }
