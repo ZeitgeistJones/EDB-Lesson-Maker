@@ -29,6 +29,935 @@
       "alpha": true,
       "aspect": 0.88
     },
+    "aquarium-bubble-a": {
+      "file": "aquarium-bubble-a.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "pack": "aquarium"
+    },
+    "aquarium-bubble-b": {
+      "file": "aquarium-bubble-b.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "pack": "aquarium"
+    },
+    "aquarium-bubble-c": {
+      "file": "aquarium-bubble-c.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "pack": "aquarium"
+    },
+    "aquarium-bubble-d": {
+      "file": "aquarium-bubble-d.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.04,
+      "pack": "aquarium"
+    },
+    "aquarium-bubble-e": {
+      "file": "aquarium-bubble-e.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "pack": "aquarium"
+    },
+    "aquarium-bubble-f": {
+      "file": "aquarium-bubble-f.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "pack": "aquarium"
+    },
+    "aquarium-bubble-g": {
+      "file": "aquarium-bubble-g.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.29,
+      "pack": "aquarium"
+    },
+    "aquarium-castle": {
+      "file": "aquarium-castle.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.21,
+      "pack": "aquarium"
+    },
+    "aquarium-coral-blue": {
+      "file": "aquarium-coral-blue.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.73,
+      "pack": "aquarium"
+    },
+    "aquarium-coral-orange": {
+      "file": "aquarium-coral-orange.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.91,
+      "pack": "aquarium"
+    },
+    "aquarium-coral-pink": {
+      "file": "aquarium-coral-pink.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.84,
+      "pack": "aquarium"
+    },
+    "aquarium-coral-purple": {
+      "file": "aquarium-coral-purple.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.79,
+      "pack": "aquarium"
+    },
+    "aquarium-coral-red": {
+      "file": "aquarium-coral-red.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.71,
+      "pack": "aquarium"
+    },
+    "aquarium-crab-orange": {
+      "file": "aquarium-crab-orange.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.33,
+      "pack": "aquarium"
+    },
+    "aquarium-crab-red": {
+      "file": "aquarium-crab-red.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.26,
+      "pack": "aquarium"
+    },
+    "aquarium-diver": {
+      "file": "aquarium-diver.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.65,
+      "pack": "aquarium"
+    },
+    "aquarium-fish-angelfish": {
+      "file": "aquarium-fish-angelfish.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.73,
+      "pack": "aquarium"
+    },
+    "aquarium-fish-blue": {
+      "file": "aquarium-fish-blue.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.42,
+      "pack": "aquarium"
+    },
+    "aquarium-fish-brown": {
+      "file": "aquarium-fish-brown.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.37,
+      "pack": "aquarium"
+    },
+    "aquarium-fish-koi": {
+      "file": "aquarium-fish-koi.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.05,
+      "pack": "aquarium"
+    },
+    "aquarium-fish-orange-a": {
+      "file": "aquarium-fish-orange-a.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.48,
+      "pack": "aquarium"
+    },
+    "aquarium-fish-orange-b": {
+      "file": "aquarium-fish-orange-b.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.32,
+      "pack": "aquarium"
+    },
+    "aquarium-fish-red": {
+      "file": "aquarium-fish-red.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.29,
+      "pack": "aquarium"
+    },
+    "aquarium-fish-spotted": {
+      "file": "aquarium-fish-spotted.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.46,
+      "pack": "aquarium"
+    },
+    "aquarium-fish-yellow": {
+      "file": "aquarium-fish-yellow.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.32,
+      "pack": "aquarium"
+    },
+    "aquarium-gravel-bar": {
+      "file": "aquarium-gravel-bar.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.24,
+      "pack": "aquarium"
+    },
+    "aquarium-lobster": {
+      "file": "aquarium-lobster.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.99,
+      "pack": "aquarium"
+    },
+    "aquarium-pebble-a": {
+      "file": "aquarium-pebble-a.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.07,
+      "pack": "aquarium"
+    },
+    "aquarium-pebble-b": {
+      "file": "aquarium-pebble-b.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.07,
+      "pack": "aquarium"
+    },
+    "aquarium-plant-bush": {
+      "file": "aquarium-plant-bush.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "pack": "aquarium"
+    },
+    "aquarium-plant-seaweed-a": {
+      "file": "aquarium-plant-seaweed-a.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.77,
+      "pack": "aquarium"
+    },
+    "aquarium-plant-seaweed-b": {
+      "file": "aquarium-plant-seaweed-b.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.97,
+      "pack": "aquarium"
+    },
+    "aquarium-plant-seaweed-c": {
+      "file": "aquarium-plant-seaweed-c.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.75,
+      "pack": "aquarium"
+    },
+    "aquarium-plant-seaweed-d": {
+      "file": "aquarium-plant-seaweed-d.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.73,
+      "pack": "aquarium"
+    },
+    "aquarium-plant-seaweed-e": {
+      "file": "aquarium-plant-seaweed-e.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.78,
+      "pack": "aquarium"
+    },
+    "aquarium-rock-a": {
+      "file": "aquarium-rock-a.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.18,
+      "pack": "aquarium"
+    },
+    "aquarium-rock-b": {
+      "file": "aquarium-rock-b.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.26,
+      "pack": "aquarium"
+    },
+    "aquarium-rock-c": {
+      "file": "aquarium-rock-c.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.86,
+      "pack": "aquarium"
+    },
+    "aquarium-rock-d": {
+      "file": "aquarium-rock-d.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.26,
+      "pack": "aquarium"
+    },
+    "aquarium-sand-dollar": {
+      "file": "aquarium-sand-dollar.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "pack": "aquarium"
+    },
+    "aquarium-sand-dollar-pattern": {
+      "file": "aquarium-sand-dollar-pattern.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.18,
+      "pack": "aquarium"
+    },
+    "aquarium-seahorse-brown": {
+      "file": "aquarium-seahorse-brown.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.2,
+      "pack": "aquarium"
+    },
+    "aquarium-seahorse-orange": {
+      "file": "aquarium-seahorse-orange.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.63,
+      "pack": "aquarium"
+    },
+    "aquarium-shell-blue": {
+      "file": "aquarium-shell-blue.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.68,
+      "pack": "aquarium"
+    },
+    "aquarium-shell-clam": {
+      "file": "aquarium-shell-clam.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.79,
+      "pack": "aquarium"
+    },
+    "aquarium-shell-conch": {
+      "file": "aquarium-shell-conch.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.84,
+      "pack": "aquarium"
+    },
+    "aquarium-shell-conch-b": {
+      "file": "aquarium-shell-conch-b.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.04,
+      "pack": "aquarium"
+    },
+    "aquarium-shell-scallop": {
+      "file": "aquarium-shell-scallop.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.82,
+      "pack": "aquarium"
+    },
+    "aquarium-shell-spiral": {
+      "file": "aquarium-shell-spiral.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.05,
+      "pack": "aquarium"
+    },
+    "aquarium-shipwreck": {
+      "file": "aquarium-shipwreck.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.2,
+      "pack": "aquarium"
+    },
+    "aquarium-shrimp": {
+      "file": "aquarium-shrimp.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.19,
+      "pack": "aquarium"
+    },
+    "aquarium-starfish-orange-a": {
+      "file": "aquarium-starfish-orange-a.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.04,
+      "pack": "aquarium"
+    },
+    "aquarium-starfish-orange-b": {
+      "file": "aquarium-starfish-orange-b.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.18,
+      "pack": "aquarium"
+    },
+    "aquarium-starfish-orange-c": {
+      "file": "aquarium-starfish-orange-c.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.06,
+      "pack": "aquarium"
+    },
+    "aquarium-submarine": {
+      "file": "aquarium-submarine.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.54,
+      "pack": "aquarium"
+    },
+    "aquarium-tank": {
+      "file": "aquarium-tank.png",
+      "role": "hero",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 2.05,
+      "pack": "aquarium",
+      "stageFit": "fit"
+    },
+    "aquarium-thermometer": {
+      "file": "aquarium-thermometer.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.36,
+      "pack": "aquarium"
+    },
+    "aquarium-treasure-chest": {
+      "file": "aquarium-treasure-chest.png",
+      "role": "object",
+      "tags": [
+        "aquarium",
+        "ocean",
+        "fish",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.47,
+      "pack": "aquarium"
+    },
     "arrow-pointer": {
       "file": "arrow-pointer.png",
       "role": "pointer",
@@ -180,7 +1109,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.76,
+      "aspect": 0.92,
       "pack": "castle"
     },
     "castle-banner-blue-fleur": {
@@ -195,7 +1124,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.67,
+      "aspect": 0.68,
       "pack": "castle"
     },
     "castle-banner-green": {
@@ -210,7 +1139,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.67,
+      "aspect": 0.66,
       "pack": "castle"
     },
     "castle-banner-orange-sun": {
@@ -225,7 +1154,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.65,
+      "aspect": 0.63,
       "pack": "castle"
     },
     "castle-banner-purple-crown": {
@@ -255,7 +1184,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.68,
+      "aspect": 0.67,
       "pack": "castle"
     },
     "castle-banner-teal": {
@@ -270,7 +1199,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.64,
+      "aspect": 0.65,
       "pack": "castle"
     },
     "castle-banner-white": {
@@ -285,7 +1214,7 @@
       "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.35,
+      "aspect": 0.5,
       "pack": "castle"
     },
     "castle-bridge-rope": {
@@ -300,7 +1229,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.12,
+      "aspect": 1.15,
       "pack": "castle"
     },
     "castle-bridge-stone": {
@@ -315,7 +1244,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.92,
+      "aspect": 1.85,
       "pack": "castle"
     },
     "castle-bridge-wood": {
@@ -330,7 +1259,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.98,
+      "aspect": 2.02,
       "pack": "castle"
     },
     "castle-bush-flower": {
@@ -345,7 +1274,7 @@
       "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.24,
+      "aspect": 1.22,
       "pack": "castle"
     },
     "castle-cannon": {
@@ -357,10 +1286,10 @@
         "dock",
         "build"
       ],
-      "relativeScale": 0.45,
+      "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.25,
+      "aspect": 1.24,
       "pack": "castle"
     },
     "castle-chest-gold": {
@@ -375,7 +1304,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.21,
+      "aspect": 1.18,
       "pack": "castle"
     },
     "castle-cloud": {
@@ -390,7 +1319,7 @@
       "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.36,
+      "aspect": 1.34,
       "pack": "castle"
     },
     "castle-door-wood-a": {
@@ -423,6 +1352,36 @@
       "aspect": 0.9,
       "pack": "castle"
     },
+    "castle-door-wood-double": {
+      "file": "castle-door-wood-double.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.82,
+      "pack": "castle"
+    },
+    "castle-door-wood-single": {
+      "file": "castle-door-wood-single.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.76,
+      "pack": "castle"
+    },
     "castle-dragon": {
       "file": "castle-dragon.png",
       "role": "object",
@@ -450,7 +1409,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.95,
+      "aspect": 1.19,
       "pack": "castle"
     },
     "castle-drawbridge-chain": {
@@ -480,7 +1439,7 @@
       "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.48,
+      "aspect": 0.47,
       "pack": "castle"
     },
     "castle-finial-b": {
@@ -510,7 +1469,7 @@
       "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.56,
+      "aspect": 0.58,
       "pack": "castle"
     },
     "castle-finial-d": {
@@ -525,7 +1484,7 @@
       "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.59,
+      "aspect": 0.58,
       "pack": "castle"
     },
     "castle-finial-e": {
@@ -540,7 +1499,7 @@
       "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.56,
+      "aspect": 0.57,
       "pack": "castle"
     },
     "castle-flag-blue": {
@@ -555,7 +1514,7 @@
       "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.86,
+      "aspect": 0.81,
       "pack": "castle"
     },
     "castle-flag-green": {
@@ -570,7 +1529,7 @@
       "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.83,
+      "aspect": 0.8,
       "pack": "castle"
     },
     "castle-flag-orange": {
@@ -585,7 +1544,7 @@
       "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.78,
+      "aspect": 0.79,
       "pack": "castle"
     },
     "castle-flag-purple": {
@@ -600,7 +1559,7 @@
       "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.83,
+      "aspect": 0.81,
       "pack": "castle"
     },
     "castle-flag-red": {
@@ -648,6 +1607,66 @@
       "aspect": 0.69,
       "pack": "castle"
     },
+    "castle-house-roof-blue": {
+      "file": "castle-house-roof-blue.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.76,
+      "pack": "castle"
+    },
+    "castle-house-roof-orange": {
+      "file": "castle-house-roof-orange.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.68,
+      "pack": "castle"
+    },
+    "castle-house-roof-purple": {
+      "file": "castle-house-roof-purple.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.7,
+      "pack": "castle"
+    },
+    "castle-house-roof-red": {
+      "file": "castle-house-roof-red.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.71,
+      "pack": "castle"
+    },
     "castle-knight-blue": {
       "file": "castle-knight-blue.png",
       "role": "object",
@@ -657,7 +1676,7 @@
         "dock",
         "build"
       ],
-      "relativeScale": 0.45,
+      "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
       "aspect": 0.77,
@@ -675,7 +1694,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.81,
+      "aspect": 0.8,
       "pack": "castle"
     },
     "castle-knight-red": {
@@ -687,10 +1706,10 @@
         "dock",
         "build"
       ],
-      "relativeScale": 0.45,
+      "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.78,
+      "aspect": 0.77,
       "pack": "castle"
     },
     "castle-pond": {
@@ -720,7 +1739,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.89,
+      "aspect": 0.84,
       "pack": "castle"
     },
     "castle-rocks": {
@@ -732,10 +1751,10 @@
         "dock",
         "build"
       ],
-      "relativeScale": 0.45,
+      "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.33,
+      "aspect": 1.28,
       "pack": "castle"
     },
     "castle-target": {
@@ -747,10 +1766,10 @@
         "dock",
         "build"
       ],
-      "relativeScale": 0.45,
+      "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.92,
+      "aspect": 0.91,
       "pack": "castle"
     },
     "castle-torch": {
@@ -765,7 +1784,67 @@
       "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.48,
+      "aspect": 0.46,
+      "pack": "castle"
+    },
+    "castle-tower-mid-a": {
+      "file": "castle-tower-mid-a.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.9,
+      "pack": "castle"
+    },
+    "castle-tower-mid-b": {
+      "file": "castle-tower-mid-b.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.72,
+      "pack": "castle"
+    },
+    "castle-tower-mid-c": {
+      "file": "castle-tower-mid-c.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.82,
+      "pack": "castle"
+    },
+    "castle-tower-mid-d": {
+      "file": "castle-tower-mid-d.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.07,
       "pack": "castle"
     },
     "castle-tower-roof-blue": {
@@ -780,7 +1859,37 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.82,
+      "aspect": 0.67,
+      "pack": "castle"
+    },
+    "castle-tower-roof-orange": {
+      "file": "castle-tower-roof-orange.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.68,
+      "pack": "castle"
+    },
+    "castle-tower-roof-purple": {
+      "file": "castle-tower-roof-purple.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.67,
       "pack": "castle"
     },
     "castle-tower-roof-red": {
@@ -795,7 +1904,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.71,
+      "aspect": 0.66,
       "pack": "castle"
     },
     "castle-tower-top-a": {
@@ -870,7 +1979,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.92,
+      "aspect": 0.93,
       "pack": "castle"
     },
     "castle-tree-blossom": {
@@ -885,7 +1994,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.95,
+      "aspect": 0.94,
       "pack": "castle"
     },
     "castle-tree-cypress": {
@@ -900,7 +2009,7 @@
       "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.41,
+      "aspect": 0.42,
       "pack": "castle"
     },
     "castle-tree-pine": {
@@ -927,7 +2036,7 @@
         "dock",
         "build"
       ],
-      "relativeScale": 0.45,
+      "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
       "aspect": 0.87,
@@ -945,7 +2054,7 @@
       "relativeScale": 0.9,
       "anchor": "bottom",
       "alpha": true,
-      "aspect": 1.66,
+      "aspect": 1.67,
       "pack": "castle",
       "stageFit": "fit"
     },
@@ -958,10 +2067,10 @@
         "dock",
         "build"
       ],
-      "relativeScale": 0.45,
+      "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.61,
+      "aspect": 1.6,
       "pack": "castle"
     },
     "castle-wall-seg-b": {
@@ -973,10 +2082,10 @@
         "dock",
         "build"
       ],
-      "relativeScale": 0.45,
+      "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.64,
+      "aspect": 1.61,
       "pack": "castle"
     },
     "castle-wall-seg-c": {
@@ -991,7 +2100,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.98,
+      "aspect": 1.88,
       "pack": "castle"
     },
     "castle-wall-seg-d": {
@@ -1006,7 +2115,7 @@
       "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.63,
+      "aspect": 1.62,
       "pack": "castle"
     },
     "castle-window-arch-a": {
@@ -1022,6 +2131,81 @@
       "anchor": "center",
       "alpha": true,
       "aspect": 0.75,
+      "pack": "castle"
+    },
+    "castle-window-arch-narrow": {
+      "file": "castle-window-arch-narrow.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.7,
+      "pack": "castle"
+    },
+    "castle-window-arch-wide": {
+      "file": "castle-window-arch-wide.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.73,
+      "pack": "castle"
+    },
+    "castle-window-grate": {
+      "file": "castle-window-grate.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.72,
+      "pack": "castle"
+    },
+    "castle-window-round": {
+      "file": "castle-window-round.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.94,
+      "pack": "castle"
+    },
+    "castle-window-tall": {
+      "file": "castle-window-tall.png",
+      "role": "object",
+      "tags": [
+        "castle",
+        "medieval",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.71,
       "pack": "castle"
     },
     "cavity-tooth": {
@@ -4692,6 +5876,883 @@
       "alpha": true,
       "aspect": 2.37
     },
+    "space-alien-green-a": {
+      "file": "space-alien-green-a.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.77,
+      "pack": "space"
+    },
+    "space-alien-green-b": {
+      "file": "space-alien-green-b.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.88,
+      "pack": "space"
+    },
+    "space-alien-green-c": {
+      "file": "space-alien-green-c.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.77,
+      "pack": "space"
+    },
+    "space-alien-purple": {
+      "file": "space-alien-purple.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.92,
+      "pack": "space"
+    },
+    "space-antenna-blue": {
+      "file": "space-antenna-blue.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.1,
+      "pack": "space"
+    },
+    "space-asteroid": {
+      "file": "space-asteroid.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.72,
+      "pack": "space"
+    },
+    "space-astronaut-gray": {
+      "file": "space-astronaut-gray.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.73,
+      "pack": "space"
+    },
+    "space-astronaut-orange-a": {
+      "file": "space-astronaut-orange-a.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.79,
+      "pack": "space"
+    },
+    "space-astronaut-orange-b": {
+      "file": "space-astronaut-orange-b.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.74,
+      "pack": "space"
+    },
+    "space-astronaut-orange-c": {
+      "file": "space-astronaut-orange-c.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.78,
+      "pack": "space"
+    },
+    "space-astronaut-orange-d": {
+      "file": "space-astronaut-orange-d.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.72,
+      "pack": "space"
+    },
+    "space-capsule-blue": {
+      "file": "space-capsule-blue.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.63,
+      "pack": "space"
+    },
+    "space-comet-orange": {
+      "file": "space-comet-orange.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.66,
+      "pack": "space"
+    },
+    "space-console-orange": {
+      "file": "space-console-orange.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "pack": "space"
+    },
+    "space-console-tall": {
+      "file": "space-console-tall.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.81,
+      "pack": "space"
+    },
+    "space-crate-gray": {
+      "file": "space-crate-gray.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.18,
+      "pack": "space"
+    },
+    "space-crate-orange": {
+      "file": "space-crate-orange.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.06,
+      "pack": "space"
+    },
+    "space-crystal-cyan": {
+      "file": "space-crystal-cyan.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.69,
+      "pack": "space"
+    },
+    "space-flag-blue": {
+      "file": "space-flag-blue.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.8,
+      "pack": "space"
+    },
+    "space-hatch-blue": {
+      "file": "space-hatch-blue.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "pack": "space"
+    },
+    "space-lander-orange": {
+      "file": "space-lander-orange.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.39,
+      "pack": "space"
+    },
+    "space-mars-rover": {
+      "file": "space-mars-rover.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.07,
+      "pack": "space"
+    },
+    "space-module-blue-a": {
+      "file": "space-module-blue-a.png",
+      "role": "hero",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.6,
+      "pack": "space",
+      "stageFit": "fit"
+    },
+    "space-module-blue-b": {
+      "file": "space-module-blue-b.png",
+      "role": "hero",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.56,
+      "pack": "space",
+      "stageFit": "fit"
+    },
+    "space-module-blue-c": {
+      "file": "space-module-blue-c.png",
+      "role": "hero",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.78,
+      "pack": "space",
+      "stageFit": "fit"
+    },
+    "space-module-blue-lab": {
+      "file": "space-module-blue-lab.png",
+      "role": "hero",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.63,
+      "pack": "space",
+      "stageFit": "fit"
+    },
+    "space-module-cyan-garden": {
+      "file": "space-module-cyan-garden.png",
+      "role": "hero",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.83,
+      "pack": "space",
+      "stageFit": "fit"
+    },
+    "space-module-gray-a": {
+      "file": "space-module-gray-a.png",
+      "role": "hero",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.78,
+      "pack": "space",
+      "stageFit": "fit"
+    },
+    "space-module-gray-b": {
+      "file": "space-module-gray-b.png",
+      "role": "hero",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.93,
+      "pack": "space",
+      "stageFit": "fit"
+    },
+    "space-module-gray-c": {
+      "file": "space-module-gray-c.png",
+      "role": "hero",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.78,
+      "pack": "space",
+      "stageFit": "fit"
+    },
+    "space-module-orange-bay": {
+      "file": "space-module-orange-bay.png",
+      "role": "hero",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.95,
+      "pack": "space",
+      "stageFit": "fit"
+    },
+    "space-module-orange-hab": {
+      "file": "space-module-orange-hab.png",
+      "role": "hero",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.83,
+      "pack": "space",
+      "stageFit": "fit"
+    },
+    "space-module-orange-ports": {
+      "file": "space-module-orange-ports.png",
+      "role": "hero",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.68,
+      "pack": "space",
+      "stageFit": "fit"
+    },
+    "space-module-orange-solar": {
+      "file": "space-module-orange-solar.png",
+      "role": "hero",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.7,
+      "pack": "space",
+      "stageFit": "fit"
+    },
+    "space-panel-orange": {
+      "file": "space-panel-orange.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.52,
+      "pack": "space"
+    },
+    "space-pipe-blue": {
+      "file": "space-pipe-blue.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.61,
+      "pack": "space"
+    },
+    "space-planet-blue-a": {
+      "file": "space-planet-blue-a.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.56,
+      "pack": "space"
+    },
+    "space-planet-cyan": {
+      "file": "space-planet-cyan.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.01,
+      "pack": "space"
+    },
+    "space-planet-orange-a": {
+      "file": "space-planet-orange-a.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.09,
+      "pack": "space"
+    },
+    "space-probe-orange": {
+      "file": "space-probe-orange.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.12,
+      "pack": "space"
+    },
+    "space-robot-gray": {
+      "file": "space-robot-gray.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.82,
+      "pack": "space"
+    },
+    "space-rocket-cutaway": {
+      "file": "space-rocket-cutaway.png",
+      "role": "hero",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.72,
+      "pack": "space",
+      "stageFit": "fit"
+    },
+    "space-rocket-mini-red": {
+      "file": "space-rocket-mini-red.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.66,
+      "pack": "space"
+    },
+    "space-rover-blue": {
+      "file": "space-rover-blue.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.17,
+      "pack": "space"
+    },
+    "space-sat-orange": {
+      "file": "space-sat-orange.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.39,
+      "pack": "space"
+    },
+    "space-satellite-blue": {
+      "file": "space-satellite-blue.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.45,
+      "pack": "space"
+    },
+    "space-satellite-gray": {
+      "file": "space-satellite-gray.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.97,
+      "pack": "space"
+    },
+    "space-screen-blue": {
+      "file": "space-screen-blue.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.23,
+      "pack": "space"
+    },
+    "space-shuttle-orange": {
+      "file": "space-shuttle-orange.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.53,
+      "pack": "space"
+    },
+    "space-solar-panel": {
+      "file": "space-solar-panel.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.71,
+      "pack": "space"
+    },
+    "space-station-ring": {
+      "file": "space-station-ring.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.77,
+      "pack": "space"
+    },
+    "space-tank-blue": {
+      "file": "space-tank-blue.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.06,
+      "pack": "space"
+    },
+    "space-toolbox-gray": {
+      "file": "space-toolbox-gray.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.15,
+      "pack": "space"
+    },
+    "space-ufo-orange": {
+      "file": "space-ufo-orange.png",
+      "role": "object",
+      "tags": [
+        "space",
+        "rocket",
+        "station",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.52,
+      "pack": "space"
+    },
     "speech-bubble": {
       "file": "speech-bubble.png",
       "role": "speech",
@@ -5042,6 +7103,887 @@
       "aspect": 1.1,
       "bodyHue": 25,
       "styleFamily": "glossy-adventure"
+    },
+    "tree-bare-stage": {
+      "file": "tree-bare-stage.png",
+      "role": "hero",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.07,
+      "pack": "tree",
+      "stageFit": "fit"
+    },
+    "tree-bee": {
+      "file": "tree-bee.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.05,
+      "pack": "tree"
+    },
+    "tree-bird-red": {
+      "file": "tree-bird-red.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.88,
+      "pack": "tree"
+    },
+    "tree-birdhouse-blue": {
+      "file": "tree-birdhouse-blue.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.88,
+      "pack": "tree"
+    },
+    "tree-branch-blue": {
+      "file": "tree-branch-blue.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.14,
+      "pack": "tree"
+    },
+    "tree-branch-fork-a": {
+      "file": "tree-branch-fork-a.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.05,
+      "pack": "tree"
+    },
+    "tree-branch-fork-b": {
+      "file": "tree-branch-fork-b.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.99,
+      "pack": "tree"
+    },
+    "tree-branch-fork-c": {
+      "file": "tree-branch-fork-c.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.02,
+      "pack": "tree"
+    },
+    "tree-branch-orange-a": {
+      "file": "tree-branch-orange-a.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.85,
+      "pack": "tree"
+    },
+    "tree-branch-red": {
+      "file": "tree-branch-red.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.02,
+      "pack": "tree"
+    },
+    "tree-branch-twig-a": {
+      "file": "tree-branch-twig-a.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.75,
+      "pack": "tree"
+    },
+    "tree-branch-twig-b": {
+      "file": "tree-branch-twig-b.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.71,
+      "pack": "tree"
+    },
+    "tree-branch-yellow": {
+      "file": "tree-branch-yellow.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.05,
+      "pack": "tree"
+    },
+    "tree-bridge-plank": {
+      "file": "tree-bridge-plank.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.28,
+      "pack": "tree"
+    },
+    "tree-bush-green": {
+      "file": "tree-bush-green.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.33,
+      "pack": "tree"
+    },
+    "tree-bush-round": {
+      "file": "tree-bush-round.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.41,
+      "pack": "tree"
+    },
+    "tree-butterfly": {
+      "file": "tree-butterfly.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.05,
+      "pack": "tree"
+    },
+    "tree-canopy-autumn-red": {
+      "file": "tree-canopy-autumn-red.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.14,
+      "pack": "tree"
+    },
+    "tree-canopy-green-a": {
+      "file": "tree-canopy-green-a.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.02,
+      "pack": "tree"
+    },
+    "tree-canopy-green-b": {
+      "file": "tree-canopy-green-b.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.13,
+      "pack": "tree"
+    },
+    "tree-canopy-green-c": {
+      "file": "tree-canopy-green-c.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.09,
+      "pack": "tree"
+    },
+    "tree-canopy-orange-a": {
+      "file": "tree-canopy-orange-a.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.13,
+      "pack": "tree"
+    },
+    "tree-canopy-orange-b": {
+      "file": "tree-canopy-orange-b.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.95,
+      "pack": "tree"
+    },
+    "tree-canopy-orange-c": {
+      "file": "tree-canopy-orange-c.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.07,
+      "pack": "tree"
+    },
+    "tree-canopy-orange-d": {
+      "file": "tree-canopy-orange-d.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.08,
+      "pack": "tree"
+    },
+    "tree-canopy-purple": {
+      "file": "tree-canopy-purple.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.04,
+      "pack": "tree"
+    },
+    "tree-canopy-red-b": {
+      "file": "tree-canopy-red-b.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.09,
+      "pack": "tree"
+    },
+    "tree-canopy-red-c": {
+      "file": "tree-canopy-red-c.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.03,
+      "pack": "tree"
+    },
+    "tree-canopy-winter": {
+      "file": "tree-canopy-winter.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.1,
+      "pack": "tree"
+    },
+    "tree-canopy-yellow-a": {
+      "file": "tree-canopy-yellow-a.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.05,
+      "pack": "tree"
+    },
+    "tree-canopy-yellow-b": {
+      "file": "tree-canopy-yellow-b.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.09,
+      "pack": "tree"
+    },
+    "tree-flower-cluster": {
+      "file": "tree-flower-cluster.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.43,
+      "pack": "tree"
+    },
+    "tree-flower-orange": {
+      "file": "tree-flower-orange.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.17,
+      "pack": "tree"
+    },
+    "tree-flower-yellow": {
+      "file": "tree-flower-yellow.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.29,
+      "pack": "tree"
+    },
+    "tree-fox": {
+      "file": "tree-fox.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.4,
+      "pack": "tree"
+    },
+    "tree-hedgehog": {
+      "file": "tree-hedgehog.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.84,
+      "pack": "tree"
+    },
+    "tree-hollow-log": {
+      "file": "tree-hollow-log.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "pack": "tree"
+    },
+    "tree-leaf-pile-a": {
+      "file": "tree-leaf-pile-a.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.07,
+      "pack": "tree"
+    },
+    "tree-leaf-pile-b": {
+      "file": "tree-leaf-pile-b.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.24,
+      "pack": "tree"
+    },
+    "tree-mushroom-blue": {
+      "file": "tree-mushroom-blue.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.15,
+      "pack": "tree"
+    },
+    "tree-mushroom-orange": {
+      "file": "tree-mushroom-orange.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.81,
+      "pack": "tree"
+    },
+    "tree-mushroom-yellow": {
+      "file": "tree-mushroom-yellow.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.79,
+      "pack": "tree"
+    },
+    "tree-nest-eggs": {
+      "file": "tree-nest-eggs.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.57,
+      "pack": "tree"
+    },
+    "tree-nest-twig": {
+      "file": "tree-nest-twig.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.03,
+      "pack": "tree"
+    },
+    "tree-owl": {
+      "file": "tree-owl.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.75,
+      "pack": "tree"
+    },
+    "tree-platform-plank": {
+      "file": "tree-platform-plank.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.31,
+      "pack": "tree"
+    },
+    "tree-pond-blue": {
+      "file": "tree-pond-blue.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.53,
+      "pack": "tree"
+    },
+    "tree-pumpkin": {
+      "file": "tree-pumpkin.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.54,
+      "pack": "tree"
+    },
+    "tree-rabbit": {
+      "file": "tree-rabbit.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.99,
+      "pack": "tree"
+    },
+    "tree-rope-ladder": {
+      "file": "tree-rope-ladder.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.56,
+      "pack": "tree"
+    },
+    "tree-squirrel": {
+      "file": "tree-squirrel.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.05,
+      "pack": "tree"
+    },
+    "tree-swing-seat": {
+      "file": "tree-swing-seat.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.64,
+      "pack": "tree"
+    },
+    "tree-trunk-log": {
+      "file": "tree-trunk-log.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.35,
+      "pack": "tree"
+    },
+    "tree-trunk-post": {
+      "file": "tree-trunk-post.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.72,
+      "pack": "tree"
+    },
+    "tree-trunk-stilts": {
+      "file": "tree-trunk-stilts.png",
+      "role": "object",
+      "tags": [
+        "tree",
+        "nature",
+        "season",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.87,
+      "pack": "tree"
     },
     "umbrella": {
       "file": "umbrella.png",
