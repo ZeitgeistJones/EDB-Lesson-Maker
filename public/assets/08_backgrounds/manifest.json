@@ -911,6 +911,38 @@
     "acacia",
     "safari"
    ]
+  },
+  "kids-bedroom": {
+   "file": "kids-bedroom.png",
+   "groundY": 211,
+   "category": "home",
+   "tags": [
+    "bedroom",
+    "kids",
+    "home",
+    "furniture"
+   ]
+  },
+  "town-shops": {
+   "file": "town-shops.png",
+   "groundY": 209,
+   "category": "commercial",
+   "tags": [
+    "town",
+    "street",
+    "shops",
+    "community"
+   ]
+  },
+  "classroom-bright": {
+   "file": "classroom-bright.png",
+   "groundY": 213,
+   "category": "school",
+   "tags": [
+    "classroom",
+    "school",
+    "teaching"
+   ]
   }
  },
  "flats": {

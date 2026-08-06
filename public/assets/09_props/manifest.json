@@ -109,6 +109,23 @@
       "aspect": 1.31,
       "bodyHue": 5
     },
+    "cafe-counter-stage": {
+      "file": "cafe-counter-stage.png",
+      "role": "object",
+      "tags": [
+        "cafe",
+        "restaurant",
+        "hero",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.62,
+      "bodyHue": 35,
+      "pack": "cafe"
+    },
     "cafeteria-stool": {
       "file": "cafeteria-stool.png",
       "role": "furniture",
@@ -1370,6 +1387,567 @@
       "aspect": 1.79,
       "bodyHue": 55
     },
+    "dh-bathtub": {
+      "file": "dh-bathtub.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.02,
+      "bodyHue": 295,
+      "pack": "dollhouse"
+    },
+    "dh-bed-pink": {
+      "file": "dh-bed-pink.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.99,
+      "bodyHue": 5,
+      "pack": "dollhouse"
+    },
+    "dh-bookshelf-green": {
+      "file": "dh-bookshelf-green.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "bodyHue": 85,
+      "pack": "dollhouse"
+    },
+    "dh-chair-yellow": {
+      "file": "dh-chair-yellow.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "bodyHue": 35,
+      "pack": "dollhouse"
+    },
+    "dh-chest-purple": {
+      "file": "dh-chest-purple.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.97,
+      "bodyHue": 285,
+      "pack": "dollhouse"
+    },
+    "dh-crib": {
+      "file": "dh-crib.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.04,
+      "bodyHue": 25,
+      "pack": "dollhouse"
+    },
+    "dh-doghouse": {
+      "file": "dh-doghouse.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.04,
+      "bodyHue": 35,
+      "pack": "dollhouse"
+    },
+    "dh-dollhouse-mini": {
+      "file": "dh-dollhouse-mini.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "bodyHue": 35,
+      "pack": "dollhouse"
+    },
+    "dh-door-pink": {
+      "file": "dh-door-pink.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.99,
+      "bodyHue": 5,
+      "pack": "dollhouse"
+    },
+    "dh-easel": {
+      "file": "dh-easel.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.03,
+      "bodyHue": 35,
+      "pack": "dollhouse"
+    },
+    "dh-fireplace": {
+      "file": "dh-fireplace.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "bodyHue": 25,
+      "pack": "dollhouse"
+    },
+    "dh-globe": {
+      "file": "dh-globe.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.02,
+      "bodyHue": 195,
+      "pack": "dollhouse"
+    },
+    "dh-grandfather-clock": {
+      "file": "dh-grandfather-clock.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.97,
+      "bodyHue": 35,
+      "pack": "dollhouse"
+    },
+    "dh-lamp-floor": {
+      "file": "dh-lamp-floor.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.02,
+      "bodyHue": 5,
+      "pack": "dollhouse"
+    },
+    "dh-loft-bed": {
+      "file": "dh-loft-bed.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.97,
+      "bodyHue": 25,
+      "pack": "dollhouse"
+    },
+    "dh-mirror-oval": {
+      "file": "dh-mirror-oval.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.95,
+      "bodyHue": 35,
+      "pack": "dollhouse"
+    },
+    "dh-phone-rotary": {
+      "file": "dh-phone-rotary.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "bodyHue": 5,
+      "pack": "dollhouse"
+    },
+    "dh-piano": {
+      "file": "dh-piano.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.2,
+      "bodyHue": 35,
+      "pack": "dollhouse"
+    },
+    "dh-plant-pot": {
+      "file": "dh-plant-pot.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.01,
+      "bodyHue": 75,
+      "pack": "dollhouse"
+    },
+    "dh-play-kitchen": {
+      "file": "dh-play-kitchen.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "bodyHue": 25,
+      "pack": "dollhouse"
+    },
+    "dh-play-tent": {
+      "file": "dh-play-tent.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.04,
+      "bodyHue": 25,
+      "pack": "dollhouse"
+    },
+    "dh-rocking-horse": {
+      "file": "dh-rocking-horse.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.03,
+      "bodyHue": 25,
+      "pack": "dollhouse"
+    },
+    "dh-rug-oval": {
+      "file": "dh-rug-oval.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.02,
+      "bodyHue": 325,
+      "pack": "dollhouse"
+    },
+    "dh-sofa-blue": {
+      "file": "dh-sofa-blue.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "bodyHue": 195,
+      "pack": "dollhouse"
+    },
+    "dh-stairs": {
+      "file": "dh-stairs.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "bodyHue": 35,
+      "pack": "dollhouse"
+    },
+    "dh-stove-teal": {
+      "file": "dh-stove-teal.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.03,
+      "bodyHue": 165,
+      "pack": "dollhouse"
+    },
+    "dh-table-round": {
+      "file": "dh-table-round.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "bodyHue": 25,
+      "pack": "dollhouse"
+    },
+    "dh-teddy": {
+      "file": "dh-teddy.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.11,
+      "bodyHue": 25,
+      "pack": "dollhouse"
+    },
+    "dh-teepee": {
+      "file": "dh-teepee.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "bodyHue": 25,
+      "pack": "dollhouse"
+    },
+    "dh-treasure-chest": {
+      "file": "dh-treasure-chest.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.03,
+      "bodyHue": 25,
+      "pack": "dollhouse"
+    },
+    "dh-wardrobe-blue": {
+      "file": "dh-wardrobe-blue.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.01,
+      "bodyHue": 195,
+      "pack": "dollhouse"
+    },
+    "dh-window-curtains": {
+      "file": "dh-window-curtains.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "furniture",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "bodyHue": 5,
+      "pack": "dollhouse"
+    },
+    "dollhouse-cutaway": {
+      "file": "dollhouse-cutaway.png",
+      "role": "object",
+      "tags": [
+        "dollhouse",
+        "home",
+        "hero",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.95,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.13,
+      "bodyHue": 35,
+      "pack": "dollhouse"
+    },
     "door": {
       "file": "door.png",
       "role": "furniture",
@@ -1913,6 +2491,1239 @@
       "aspect": 1.34,
       "bodyHue": 35,
       "styleFamily": "glossy-adventure"
+    },
+    "gashapon-apple": {
+      "file": "gashapon-apple.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "pack": "gashapon"
+    },
+    "gashapon-backpack-blue": {
+      "file": "gashapon-backpack-blue.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "pack": "gashapon"
+    },
+    "gashapon-backpack-green": {
+      "file": "gashapon-backpack-green.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.97,
+      "pack": "gashapon"
+    },
+    "gashapon-backpack-pink": {
+      "file": "gashapon-backpack-pink.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.96,
+      "pack": "gashapon"
+    },
+    "gashapon-banana": {
+      "file": "gashapon-banana.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.06,
+      "pack": "gashapon"
+    },
+    "gashapon-basketball": {
+      "file": "gashapon-basketball.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.03,
+      "pack": "gashapon"
+    },
+    "gashapon-beachball": {
+      "file": "gashapon-beachball.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.02,
+      "pack": "gashapon"
+    },
+    "gashapon-boat": {
+      "file": "gashapon-boat.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "pack": "gashapon"
+    },
+    "gashapon-bowtie": {
+      "file": "gashapon-bowtie.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.57,
+      "pack": "gashapon"
+    },
+    "gashapon-bus": {
+      "file": "gashapon-bus.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.46,
+      "pack": "gashapon"
+    },
+    "gashapon-capsule-black": {
+      "file": "gashapon-capsule-black.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.97,
+      "pack": "gashapon"
+    },
+    "gashapon-capsule-blue": {
+      "file": "gashapon-capsule-blue.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.97,
+      "pack": "gashapon"
+    },
+    "gashapon-capsule-cyan": {
+      "file": "gashapon-capsule-cyan.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "pack": "gashapon"
+    },
+    "gashapon-capsule-green": {
+      "file": "gashapon-capsule-green.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.97,
+      "pack": "gashapon"
+    },
+    "gashapon-capsule-orange": {
+      "file": "gashapon-capsule-orange.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.97,
+      "pack": "gashapon"
+    },
+    "gashapon-capsule-pink": {
+      "file": "gashapon-capsule-pink.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.99,
+      "pack": "gashapon"
+    },
+    "gashapon-capsule-purple": {
+      "file": "gashapon-capsule-purple.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "pack": "gashapon"
+    },
+    "gashapon-capsule-red": {
+      "file": "gashapon-capsule-red.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "pack": "gashapon"
+    },
+    "gashapon-capsule-white": {
+      "file": "gashapon-capsule-white.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "pack": "gashapon"
+    },
+    "gashapon-capsule-yellow": {
+      "file": "gashapon-capsule-yellow.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.97,
+      "pack": "gashapon"
+    },
+    "gashapon-car": {
+      "file": "gashapon-car.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.47,
+      "pack": "gashapon"
+    },
+    "gashapon-castle": {
+      "file": "gashapon-castle.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.13,
+      "pack": "gashapon"
+    },
+    "gashapon-circle": {
+      "file": "gashapon-circle.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.04,
+      "pack": "gashapon"
+    },
+    "gashapon-coin": {
+      "file": "gashapon-coin.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.01,
+      "pack": "gashapon"
+    },
+    "gashapon-cookie": {
+      "file": "gashapon-cookie.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.06,
+      "pack": "gashapon"
+    },
+    "gashapon-crown": {
+      "file": "gashapon-crown.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.5,
+      "pack": "gashapon"
+    },
+    "gashapon-cupcake": {
+      "file": "gashapon-cupcake.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.87,
+      "pack": "gashapon"
+    },
+    "gashapon-diamond": {
+      "file": "gashapon-diamond.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.18,
+      "pack": "gashapon"
+    },
+    "gashapon-dino": {
+      "file": "gashapon-dino.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.13,
+      "pack": "gashapon"
+    },
+    "gashapon-donut": {
+      "file": "gashapon-donut.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.17,
+      "pack": "gashapon"
+    },
+    "gashapon-dragon": {
+      "file": "gashapon-dragon.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.45,
+      "pack": "gashapon"
+    },
+    "gashapon-duck": {
+      "file": "gashapon-duck.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.09,
+      "pack": "gashapon"
+    },
+    "gashapon-egg": {
+      "file": "gashapon-egg.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.85,
+      "pack": "gashapon"
+    },
+    "gashapon-flower": {
+      "file": "gashapon-flower.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.03,
+      "pack": "gashapon"
+    },
+    "gashapon-football": {
+      "file": "gashapon-football.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.14,
+      "pack": "gashapon"
+    },
+    "gashapon-fries": {
+      "file": "gashapon-fries.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.91,
+      "pack": "gashapon"
+    },
+    "gashapon-gift": {
+      "file": "gashapon-gift.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.04,
+      "pack": "gashapon"
+    },
+    "gashapon-grapes": {
+      "file": "gashapon-grapes.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.08,
+      "pack": "gashapon"
+    },
+    "gashapon-handbag-pink": {
+      "file": "gashapon-handbag-pink.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.04,
+      "pack": "gashapon"
+    },
+    "gashapon-hat-cowboy": {
+      "file": "gashapon-hat-cowboy.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.58,
+      "pack": "gashapon"
+    },
+    "gashapon-hat-pirate": {
+      "file": "gashapon-hat-pirate.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.63,
+      "pack": "gashapon"
+    },
+    "gashapon-hat-police": {
+      "file": "gashapon-hat-police.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.54,
+      "pack": "gashapon"
+    },
+    "gashapon-hat-propeller": {
+      "file": "gashapon-hat-propeller.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.15,
+      "pack": "gashapon"
+    },
+    "gashapon-hat-top": {
+      "file": "gashapon-hat-top.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.24,
+      "pack": "gashapon"
+    },
+    "gashapon-heart": {
+      "file": "gashapon-heart.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.16,
+      "pack": "gashapon"
+    },
+    "gashapon-icecream": {
+      "file": "gashapon-icecream.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.84,
+      "pack": "gashapon"
+    },
+    "gashapon-letter-a": {
+      "file": "gashapon-letter-a.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "pack": "gashapon"
+    },
+    "gashapon-letter-b": {
+      "file": "gashapon-letter-b.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.9,
+      "pack": "gashapon"
+    },
+    "gashapon-letter-c": {
+      "file": "gashapon-letter-c.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.92,
+      "pack": "gashapon"
+    },
+    "gashapon-machine": {
+      "file": "gashapon-machine.png",
+      "role": "hero",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.81,
+      "pack": "gashapon",
+      "stageFit": "fit"
+    },
+    "gashapon-moneybag": {
+      "file": "gashapon-moneybag.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.84,
+      "pack": "gashapon"
+    },
+    "gashapon-number-1": {
+      "file": "gashapon-number-1.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.66,
+      "pack": "gashapon"
+    },
+    "gashapon-number-2": {
+      "file": "gashapon-number-2.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.81,
+      "pack": "gashapon"
+    },
+    "gashapon-number-3": {
+      "file": "gashapon-number-3.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.82,
+      "pack": "gashapon"
+    },
+    "gashapon-pirate-ship": {
+      "file": "gashapon-pirate-ship.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.94,
+      "pack": "gashapon"
+    },
+    "gashapon-pizza": {
+      "file": "gashapon-pizza.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.21,
+      "pack": "gashapon"
+    },
+    "gashapon-plane": {
+      "file": "gashapon-plane.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.49,
+      "pack": "gashapon"
+    },
+    "gashapon-potion": {
+      "file": "gashapon-potion.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.76,
+      "pack": "gashapon"
+    },
+    "gashapon-robot": {
+      "file": "gashapon-robot.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.89,
+      "pack": "gashapon"
+    },
+    "gashapon-rocket": {
+      "file": "gashapon-rocket.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.08,
+      "pack": "gashapon"
+    },
+    "gashapon-shark": {
+      "file": "gashapon-shark.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.46,
+      "pack": "gashapon"
+    },
+    "gashapon-shield": {
+      "file": "gashapon-shield.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.9,
+      "pack": "gashapon"
+    },
+    "gashapon-skateboard": {
+      "file": "gashapon-skateboard.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.28,
+      "pack": "gashapon"
+    },
+    "gashapon-soccer": {
+      "file": "gashapon-soccer.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.01,
+      "pack": "gashapon"
+    },
+    "gashapon-square": {
+      "file": "gashapon-square.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "pack": "gashapon"
+    },
+    "gashapon-star": {
+      "file": "gashapon-star.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.03,
+      "pack": "gashapon"
+    },
+    "gashapon-sunglasses-blue": {
+      "file": "gashapon-sunglasses-blue.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.12,
+      "pack": "gashapon"
+    },
+    "gashapon-sunglasses-star": {
+      "file": "gashapon-sunglasses-star.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.87,
+      "pack": "gashapon"
+    },
+    "gashapon-sword": {
+      "file": "gashapon-sword.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.04,
+      "pack": "gashapon"
+    },
+    "gashapon-teddy": {
+      "file": "gashapon-teddy.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "pack": "gashapon"
+    },
+    "gashapon-tractor": {
+      "file": "gashapon-tractor.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.24,
+      "pack": "gashapon"
+    },
+    "gashapon-train": {
+      "file": "gashapon-train.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.15,
+      "pack": "gashapon"
+    },
+    "gashapon-treasure-chest": {
+      "file": "gashapon-treasure-chest.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.24,
+      "pack": "gashapon"
+    },
+    "gashapon-triangle": {
+      "file": "gashapon-triangle.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.11,
+      "pack": "gashapon"
+    },
+    "gashapon-unicorn": {
+      "file": "gashapon-unicorn.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "pack": "gashapon"
+    },
+    "gashapon-wand": {
+      "file": "gashapon-wand.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.01,
+      "pack": "gashapon"
+    },
+    "gashapon-yoyo": {
+      "file": "gashapon-yoyo.png",
+      "role": "object",
+      "tags": [
+        "gashapon",
+        "prize",
+        "toy",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.09,
+      "pack": "gashapon"
     },
     "gift-box": {
       "file": "gift-box.png",
@@ -2692,6 +4503,74 @@
       "alpha": true,
       "aspect": 0.86,
       "bodyHue": 215
+    },
+    "season-autumn": {
+      "file": "season-autumn.png",
+      "role": "object",
+      "tags": [
+        "season",
+        "banner",
+        "frame",
+        "dock",
+        "autumn"
+      ],
+      "relativeScale": 0.7,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 5.17,
+      "bodyHue": 35,
+      "pack": "season"
+    },
+    "season-spring": {
+      "file": "season-spring.png",
+      "role": "object",
+      "tags": [
+        "season",
+        "banner",
+        "frame",
+        "dock",
+        "spring"
+      ],
+      "relativeScale": 0.7,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 5.12,
+      "bodyHue": 205,
+      "pack": "season"
+    },
+    "season-summer": {
+      "file": "season-summer.png",
+      "role": "object",
+      "tags": [
+        "season",
+        "banner",
+        "frame",
+        "dock",
+        "summer"
+      ],
+      "relativeScale": 0.7,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 5.17,
+      "bodyHue": 55,
+      "pack": "season"
+    },
+    "season-winter": {
+      "file": "season-winter.png",
+      "role": "object",
+      "tags": [
+        "season",
+        "banner",
+        "frame",
+        "dock",
+        "winter"
+      ],
+      "relativeScale": 0.7,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 5.07,
+      "bodyHue": 195,
+      "pack": "season"
     },
     "seesaw": {
       "file": "seesaw.png",
