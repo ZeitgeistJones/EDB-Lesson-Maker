@@ -1242,6 +1242,42 @@
    "set": "outdoor-fresh",
    "palette": "outdoor"
   },
+  "house-a": {
+   "file": "flat_house-a.png",
+   "tone": "ClassIn house wash — paper cream sage, corner sparkles",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "board-house",
+   "palette": "neutral"
+  },
+  "house-b": {
+   "file": "flat_house-b.png",
+   "tone": "ClassIn house wash — paper cream sage, chalk dots",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "board-house",
+   "palette": "neutral"
+  },
+  "house-c": {
+   "file": "flat_house-c.png",
+   "tone": "ClassIn house wash — cream sky band",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "board-house",
+   "palette": "neutral"
+  },
+  "house-d": {
+   "file": "flat_house-d.png",
+   "tone": "ClassIn house wash — soft sage alcove",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "board-house",
+   "palette": "neutral"
+  },
   "face-a": {
    "file": "flat_face-a.png",
    "tone": "make-a-face craft wash — cream peach, corner sparkles",

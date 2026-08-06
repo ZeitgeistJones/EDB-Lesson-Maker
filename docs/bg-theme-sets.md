@@ -29,6 +29,11 @@ No API key required for the in-house path.
 > books, no vases, no windows with props, no text, no letters, no numbers, no
 > logos. Calm, uncluttered, classroom-safe. Each panel in a set must share the
 > **same hue family** and only change value / a small motif.
+>
+> **Never flesh / skin washes.** Do not use peach-blush or pale rose as a
+> body-part metaphor (face lessons must not look like skin). Prefer paper
+> cream, soft sage, pale sky, or a clear *place* palette (clinic teal, travel
+> dawn). Body-part topics use the house deck — they do not get their own hue.
 
 ## What a “set” is
 
@@ -46,22 +51,25 @@ board without looking random.
 
 | Set | Topic | Status |
 |-----|-------|--------|
+| `board-house` | **Default** — face, school, phonics, unmatched A1 | wired (in-house Aug 2026) |
 | `clinic-cool` | dentist / doctor / hospital | wired |
-| `school-soft` | classroom / phonics / general A1 | wired |
 | `travel-air` | airport / trip / plane | wired |
 | `home-warm` | family / house / daily routine | wired |
 | `outdoor-fresh` | park / zoo / sport (when scene is not the hero) | wired |
-| `face-soft` | face / cheek / lip / smile / make-a-face | wired (in-house Aug 2026) |
+| `school-soft` | (legacy) superseded by `board-house` | kept on disk, not picker-default |
+| `face-soft` | **retired** — skin-tone peach read as literal skin | kept on disk, unwired |
 
-### `face-soft` — face / body parts / smile
+### `board-house` — ClassIn default deck
 
-Palette: warm **blush peach + cream + pale rose**. Empty centre. Corner motifs
-only (sparkle, tiny blush dot, soft edge arch) — never a drawn face in the
-middle (that fights the make-a-face EDB).
+Palette: **paper cream + soft sage + pale sky**. Empty centre. Corner motifs
+(sparkle, chalk dots, soft sky band, sage alcove). Title pins to `house-a`,
+wrap to `house-d`; middle pages rotate. Use for face / school / any lesson
+without a clear place — never invent a body-part palette.
 
-## Priority sets still to generate
+## Priority place sets (ChatGPT prompts for bulk regen)
 
-Use the in-house skill. ChatGPT sheet prompts below remain valid for bulk.
+Use the in-house skill for gaps. Only generate **place** themes — not body parts.
+Missing non-place topics → stay on `board-house`.
 
 ### 1. `clinic-cool` — dentist / doctor / hospital
 
@@ -99,17 +107,7 @@ glow in a corner, pale arched alcove on the far edge.
 > Forbidden: green hills, meadows, bushes, flowers, sunsets over landscape,
 > playground, park. This must feel like a clean indoor clinic backdrop.
 
-### 2. `school-soft` — classroom / phonics / general A1
-Palette: warm paper cream + soft sage. Corner motifs: faint chalk dots, soft
-grid suggestion, tiny pencil tip in a corner (not a full desk).
-
-> [style lock] Generate a 2×2 grid of quiet ESL slide backgrounds. All four
-> share a warm school palette (cream, soft sage, pale peach). Panel A: plain
-> warm wash. Panel B: faint ruled-paper suggestion at the very bottom edge.
-> Panel C: soft corner leaf shadow. Panel D: pale cork-tint wash, empty centre.
-> No desks, no bookshelves, no full corkboards full of pins.
-
-### 3. `travel-air` — airport / trip / plane
+### 2. `travel-air` — airport / trip / plane
 Palette: soft teal + peach dawn. Corner motifs: tiny paper-plane silhouette,
 faint cloud band at top only.
 
@@ -117,7 +115,7 @@ faint cloud band at top only.
 > travel palette (teal, peach, pale sky). Empty centre. Tiny cloud or paper
 > plane only in a corner — never a full airport scene.
 
-### 4. `home-warm` — family / house / daily routine
+### 3. `home-warm` — family / house / daily routine
 Palette: peach, cream, soft gold. Corner motifs: faint curtain fold or soft
 arch shadow at the edge only.
 
@@ -125,7 +123,7 @@ arch shadow at the edge only.
 > home palette. Empty centre. No sofas, no lamps, no window plants in the
 > middle band.
 
-### 5. `outdoor-fresh` — park / zoo / sport (when scene is not the hero)
+### 4. `outdoor-fresh` — park / zoo / sport (when scene is not the hero)
 Palette: soft green + sky. Corner motifs: faint grass fringe at bottom, soft
 leaf corner.
 
@@ -150,8 +148,8 @@ npm run assets:bg -- assets-inbox/clinic-cool.png --flat --grid=2x2 --cell=1,1 \
 ## Import (in-house single panel)
 
 ```bash
-npm run assets:bg -- assets-inbox/face-soft-a.png --flat --name=face-a \
-  --set=face-soft --mood=calm --tone="face soft wash — plain blush cream"
+npm run assets:bg -- assets-inbox/board-house-a.png --flat --name=house-a \
+  --set=board-house --mood=calm --tone="ClassIn house wash — paper cream sage"
 ```
 
 Paste the printed JSON into `public/assets/08_backgrounds/manifest.json`
@@ -164,10 +162,12 @@ node scripts/verify-board-visual.cjs --cases=face
 
 ## Picker behaviour (once sets are in the manifest)
 
-1. Topic words pick a preferred `set` (dentist → `clinic-cool`, face →
-   `face-soft`, school → `school-soft`, …).
-2. The whole lesson rotates **inside that set** (small variations).
-3. Quiet flats without a set still work as a fallback band.
+1. Place topic words pick a preferred `set` (dentist → `clinic-cool`, travel →
+   `travel-air`, …). Otherwise **`DEFAULT_SET = board-house`** (face, school,
+   overflow titles).
+2. The whole lesson stays **inside that set**. Title pins to panel `-a`, wrap
+   to last panel; middle pages rotate.
+3. Set-tagged flats never leak into the generic calm lottery.
 4. Busy legacy flats (`blue-alcove` books, desk ledge, prop-heavy windows) are
    marked `quiet: false` and stay out of normal chrome rotation.
 

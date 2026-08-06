@@ -36,7 +36,8 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-05 | `lollipop` / candy / cookie prop for dental roleplay | Open-mouth king dock — teach “sugar vs brush”; no sweet/candy cutout in `09_props` (apple/milk/cup stand in) | Black-field object cutout | ChatGPT / GenerateImage one-off | open |
 | 2026-08-05 | Face kit extras as one-prop-per-cell sheets | Labeled collage (beards/mustaches/freckles/masks/hearing aids/…) cannot import; v1 has blank+features+color hair only | Black-field 4×4 sheets, one item per cell | ChatGPT | open |
 | 2026-08-05 | Dark hair 4×4 face sheet (optional) | Color hair sheet wired; dark/varied set still in assets-inbox if we want more styles | `--sheet --grid=4x4` | Existing ChatGPT sheet | open |
-| 2026-08-05 | `face-soft` quiet flat set | Face lessons were on generic/school washes; need blush-cream deck under make-a-face | 4 in-house landscape flats | Native GenerateImage | wired — `face-a`…`d`, TOPIC_SETS face |
+| 2026-08-05 | `face-soft` quiet flat set | Face lessons were on generic/school washes; need blush-cream deck under make-a-face | 4 in-house landscape flats | Native GenerateImage | retired — skin wash felt creepy; face → `board-house` |
+| 2026-08-05 | `board-house` quiet flat set | Shared ClassIn default backdrop (cream/sage/sky) lesson-to-lesson | 4 in-house landscape flats | Native GenerateImage | wired — `house-a`…`d`, DEFAULT_SET |
 
 ## How agents append
 

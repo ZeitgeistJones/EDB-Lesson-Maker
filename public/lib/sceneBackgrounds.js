@@ -243,17 +243,21 @@
     'travel-a': 'travel', 'travel-b': 'travel', 'travel-c': 'travel', 'travel-d': 'travel',
     'home-a': 'warm', 'home-b': 'warm', 'home-c': 'warm', 'home-d': 'warm',
     'outdoor-a': 'outdoor', 'outdoor-b': 'outdoor', 'outdoor-c': 'outdoor', 'outdoor-d': 'outdoor',
+    'house-a': 'neutral', 'house-b': 'neutral', 'house-c': 'neutral', 'house-d': 'neutral',
     'face-a': 'warm', 'face-b': 'warm', 'face-c': 'warm', 'face-d': 'warm',
   };
 
-  /** Topic → preferred quiet flat set id (once those flats exist in the manifest). */
+  /**
+   * ClassIn house deck — default when no place theme matches.
+   * Face / school / body-part lessons use this (never flesh/skin washes).
+   */
+  const DEFAULT_SET = 'board-house';
+
+  /** Topic → preferred quiet flat set id. Place themes only — not body parts. */
   const TOPIC_SETS = [
     { re: /\b(dentists?|dental|doctors?|clinic|hospital|nurse|tooth|teeth|medical)\b/, set: 'clinic-cool' },
-    // Face before school — "Learning about the Face" must not land on school-soft
-    { re: /\b(faces?|cheek|lips?|chin|brow|skin|make.?a.?face)\b/, set: 'face-soft' },
     { re: /\b(airport|travel|train|bus|plane|passport|station)\b/, set: 'travel-air' },
     { re: /\b(home|house|family|kitchen|apartment|bedroom)\b/, set: 'home-warm' },
-    { re: /\b(school|classroom|teacher|library|phonics|grammar)\b/, set: 'school-soft' },
     { re: /\b(zoo|park|animal|forest|garden|nature|gym|sport|trampoline|volcano|lava|eruption|crater)\b/, set: 'outdoor-fresh' },
   ];
 
@@ -301,14 +305,19 @@
     return true;
   }
 
-  function pickFlat(m, index, seed, reason, moods, topicWords, lockedSet) {
+  function pickFlat(m, index, seed, reason, moods, topicWords, lockedSet, pin) {
     const all = Object.keys(m.flats);
-    const wantSet = lockedSet || setFor(topicWords || seed);
-    // Prefer a themed quiet set when the lesson has one with ≥2 members.
+    const wantSet = lockedSet || setFor(topicWords || seed) || DEFAULT_SET;
+    // Prefer a quiet set (place theme or house default) when ≥2 members exist.
     if (wantSet) {
-      const setKeys = all.filter((k) => m.flats[k].set === wantSet && isQuietFlat(m.flats[k]));
+      const setKeys = all
+        .filter((k) => m.flats[k].set === wantSet && isQuietFlat(m.flats[k]))
+        .sort();
       if (setKeys.length >= 2) {
-        const key = setKeys[(flatOffset(seed, setKeys.length) + (index || 0)) % setKeys.length];
+        let key;
+        if (pin === 'open') key = setKeys[0];
+        else if (pin === 'close') key = setKeys[setKeys.length - 1];
+        else key = setKeys[(flatOffset(seed, setKeys.length) + (index || 0)) % setKeys.length];
         return {
           type: 'flat',
           name: key,
@@ -316,7 +325,7 @@
           path: `${BASE}/img/${m.flats[key].file}`,
           textInk: m.flats[key].textInk || 'light',
           set: wantSet,
-          reason: reason + ` · set:${wantSet}`,
+          reason: reason + ` · set:${wantSet}` + (pin ? ` · pin:${pin}` : ''),
         };
       }
     }
@@ -325,8 +334,8 @@
       ? all.filter((k) => moods.includes(m.flats[k].mood || 'calm'))
       : all
     ).filter((k) => isQuietFlat(m.flats[k]) && !m.flats[k].set);
-    // Flats that declare a `set` are reserved for TOPIC_SETS lock-in — they
-    // must not leak into the generic calm rotation (face-soft on a travel lesson).
+    // Flats that declare a `set` are reserved for TOPIC_SETS / DEFAULT_SET —
+    // they must not leak into the generic calm rotation.
     let flatKeys = allowed.length ? allowed : all.filter((k) => isQuietFlat(m.flats[k]));
     if (!flatKeys.length) flatKeys = all;
     const want = palettesFor(topicWords || seed);
@@ -357,6 +366,8 @@
   async function pickFor(section, opts = {}) {
     const minScore = opts.minScore ?? 4;
     const m = await manifest();
+    const secTags = section.tags || [];
+    const pin = secTags.includes('title') ? 'open' : (secTags.includes('wrap') ? 'close' : null);
 
     // Drill / chrome pages: rotate flats. Place pages keep scene matching.
     if (section.preferFlat) {
@@ -367,7 +378,8 @@
         'preferFlat (quiet chrome)',
         opts.moods,
         opts.topicWords || opts.seed,
-        opts.lockedSet
+        opts.lockedSet,
+        pin
       );
     }
 
@@ -403,7 +415,8 @@
         : 'no scene matched any tag',
       opts.moods,
       opts.topicWords || opts.seed,
-      opts.lockedSet
+      opts.lockedSet,
+      pin
     );
   }
 
@@ -415,10 +428,10 @@
     const out = [];
     let flatCount = 0;
     let placeScene = null;
-    // One mood + one quiet theme-set decision per lesson.
+    // One mood + one quiet theme-set decision per lesson (place or house default).
     const topicWords = opts.topicWords || opts.seed || '';
     const moods = moodsFor(topicWords);
-    const lockedSet = setFor(topicWords);
+    const lockedSet = setFor(topicWords) || DEFAULT_SET;
     for (let i = 0; i < sections.length; i++) {
       const sec = sections[i];
       if (!sec.preferFlat && placeScene) {

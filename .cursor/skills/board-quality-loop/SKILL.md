@@ -170,6 +170,6 @@ fix, one re-bake — run fine on a fast model once the harness is green.
 
 - **King-stage / roleplay EDB** (huge hero + tool dock): `.cursor/skills/king-stage-edb/SKILL.md`
 - **Prop cutouts**: `.cursor/skills/prop-cutouts/SKILL.md`
-- **Quiet flat sets (in-house)**: `.cursor/skills/bg-flat-sets/SKILL.md` — when
-  `setFor` has no matching set (≥2 panels), generate four landscape washes and
-  wire `TOPIC_SETS` instead of waiting on ChatGPT
+- **Quiet flat sets (in-house)**: `.cursor/skills/bg-flat-sets/SKILL.md` — when a
+  *place* set is missing (≥2 panels), generate four landscape washes and wire
+  `TOPIC_SETS`. Non-place topics stay on `board-house`; never invent skin washes
