@@ -1061,6 +1061,186 @@
    "tone": "lilac dusk with a crescent moon and blossom — dreamy, quiet endings",
    "mood": "fantasy",
    "textInk": "dark"
+  },
+  "clinic-a": {
+   "file": "flat_clinic-a.png",
+   "tone": "clinic cool — plain teal wall + white floor",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "clinic-cool",
+   "palette": "cool"
+  },
+  "clinic-b": {
+   "file": "flat_clinic-b.png",
+   "tone": "clinic cool — corner sparkles",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "clinic-cool",
+   "palette": "cool"
+  },
+  "clinic-c": {
+   "file": "flat_clinic-c.png",
+   "tone": "clinic cool — tooth watermark",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "clinic-cool",
+   "palette": "cool"
+  },
+  "clinic-d": {
+   "file": "flat_clinic-d.png",
+   "tone": "clinic cool — right alcove",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "clinic-cool",
+   "palette": "cool"
+  },
+  "school-a": {
+   "file": "flat_school-a.png",
+   "tone": "school soft wash — plain cream",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "school-soft",
+   "palette": "warm"
+  },
+  "school-b": {
+   "file": "flat_school-b.png",
+   "tone": "school soft wash — faint notebook lines",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "school-soft",
+   "palette": "warm"
+  },
+  "school-c": {
+   "file": "flat_school-c.png",
+   "tone": "school soft wash — leaf-shadow corners",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "school-soft",
+   "palette": "warm"
+  },
+  "school-d": {
+   "file": "flat_school-d.png",
+   "tone": "school soft wash — warm kraft paper",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "school-soft",
+   "palette": "warm"
+  },
+  "travel-a": {
+   "file": "flat_travel-a.png",
+   "tone": "travel air wash — corner clouds left",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "travel-air",
+   "palette": "travel"
+  },
+  "travel-b": {
+   "file": "flat_travel-b.png",
+   "tone": "travel air wash — corner clouds right",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "travel-air",
+   "palette": "travel"
+  },
+  "travel-c": {
+   "file": "flat_travel-c.png",
+   "tone": "travel air wash — paper plane trail",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "travel-air",
+   "palette": "travel"
+  },
+  "travel-d": {
+   "file": "flat_travel-d.png",
+   "tone": "travel air wash — map pin trail",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "travel-air",
+   "palette": "travel"
+  },
+  "home-a": {
+   "file": "flat_home-a.png",
+   "tone": "home warm wash — peach hill band",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "home-warm",
+   "palette": "warm"
+  },
+  "home-b": {
+   "file": "flat_home-b.png",
+   "tone": "home warm wash — sage corner wave",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "home-warm",
+   "palette": "warm"
+  },
+  "home-c": {
+   "file": "flat_home-c.png",
+   "tone": "home warm wash — leaf corner + hill",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "home-warm",
+   "palette": "warm"
+  },
+  "home-d": {
+   "file": "flat_home-d.png",
+   "tone": "home warm wash — peach dots",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "home-warm",
+   "palette": "warm"
+  },
+  "outdoor-a": {
+   "file": "flat_outdoor-a.png",
+   "tone": "outdoor fresh wash — soft hills + sun",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "outdoor-fresh",
+   "palette": "outdoor"
+  },
+  "outdoor-b": {
+   "file": "flat_outdoor-b.png",
+   "tone": "outdoor fresh wash — hanging leaf corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "outdoor-fresh",
+   "palette": "outdoor"
+  },
+  "outdoor-c": {
+   "file": "flat_outdoor-c.png",
+   "tone": "outdoor fresh wash — corner flowers",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "outdoor-fresh",
+   "palette": "outdoor"
+  },
+  "outdoor-d": {
+   "file": "flat_outdoor-d.png",
+   "tone": "outdoor fresh wash — soft cloud + flowers",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "outdoor-fresh",
+   "palette": "outdoor"
   }
  }
 }

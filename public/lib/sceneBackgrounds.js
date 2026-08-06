@@ -238,7 +238,11 @@
     'window-blue': 'cool', 'sage-leaves': 'cool', 'warm-window': 'warm',
     'world-map': 'travel', 'blue-alcove': 'cool', 'dawn-clouds': 'cool',
     'lavender-strings': 'music', 'cloud-castle': 'fantasy',
-    // Themed quiet sets (docs/bg-theme-sets.md) land here as they are imported.
+    'clinic-a': 'cool', 'clinic-b': 'cool', 'clinic-c': 'cool', 'clinic-d': 'cool',
+    'school-a': 'warm', 'school-b': 'warm', 'school-c': 'warm', 'school-d': 'warm',
+    'travel-a': 'travel', 'travel-b': 'travel', 'travel-c': 'travel', 'travel-d': 'travel',
+    'home-a': 'warm', 'home-b': 'warm', 'home-c': 'warm', 'home-d': 'warm',
+    'outdoor-a': 'outdoor', 'outdoor-b': 'outdoor', 'outdoor-c': 'outdoor', 'outdoor-d': 'outdoor',
   };
 
   /** Topic → preferred quiet flat set id (once those flats exist in the manifest). */

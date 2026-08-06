@@ -39,18 +39,40 @@ variations — enough for a 30–60 min board without looking random.
 ## Priority sets to generate
 
 ### 1. `clinic-cool` — dentist / doctor / hospital
-Palette: soft blue-mint + pale grey. Corner motifs only: tiny tooth sparkle,
-soft cross shape (no red emergency look), faint stethoscope silhouette, soft
-ripple.
 
-> [style lock] Generate a 2×2 grid of quiet ESL slide backgrounds. All four
-> panels share one cool clinic palette (soft sky blue, mint, pale grey). Panel
-> A: almost-plain cool wash. Panel B: same wash, faint leaf-free corner mist.
-> Panel C: same wash, tiny soft sparkles in one corner. Panel D: same wash,
-> very faint arched niche shadow on the far right edge only. No dental chair,
-> no people, no instruments in the centre.
+**Must read as indoor clinic calm — not grass, not hills, not nature.**
 
-Import keys: `clinic-a`, `clinic-b`, `clinic-c`, `clinic-d` with `--set=clinic-cool`.
+Palette: sterile soft **white + pale sky-teal + very light grey**. Optional blush
+pink only as a tiny corner accent. Ground = soft horizontal wall/floor wash or
+a pale vinyl strip — **never green turf**.
+
+Corner motifs only (pick different ones per panel, keep centre empty):
+tiny tooth outline, soft sparkle, faint cross (not red emergency), soft exam-lamp
+glow in a corner, pale arched alcove on the far edge.
+
+> Soft pastel wash for an ESL lesson slide. Wide panoramic banner (~3:2). Flat
+> vector / children's-book endpaper look: gentle gradients, muted colours, no
+> harsh outlines. The centre 70% must stay empty and low-texture — soft colour
+> only — so white cards sit on top. Tiny decorative hints only in far corners
+> or along the very bottom edge. No people, no faces, no animals, no furniture
+> close-ups, no dental chairs, no instruments filling the frame, no books, no
+> vases, no text, no logos. Calm, uncluttered, classroom-safe.
+>
+> Generate a 2×2 grid of quiet ESL slide backgrounds for a **dentist / clinic**
+> lesson. All four panels share one cool clinic palette: soft white, pale
+> sky-teal, light grey (like a clean children's clinic wall — NOT green grass,
+> NOT outdoor hills, NOT nature landscapes).
+>
+> Panel A: almost-plain pale teal-white wash with a soft horizontal floor line
+> in light grey only.
+> Panel B: same wash, faint soft sparkles in one upper corner.
+> Panel C: same wash, a tiny simple tooth outline watermark in one corner
+> (small, pale, not the focus).
+> Panel D: same wash, very faint arched alcove shadow on the far right edge
+> only.
+>
+> Forbidden: green hills, meadows, bushes, flowers, sunsets over landscape,
+> playground, park. This must feel like a clean indoor clinic backdrop.
 
 ### 2. `school-soft` — classroom / phonics / general A1
 Palette: warm paper cream + soft sage. Corner motifs: faint chalk dots, soft
