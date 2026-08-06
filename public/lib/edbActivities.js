@@ -622,8 +622,9 @@
 
   /**
    * Handheld tools kids drag onto a stage hero.
-   * Dental: brush / paste / floss / mirror / cavity / healthy tooth / bib / star /
-   * dentist cast — not furniture (chair, cabinet) and not vocab emoji strips.
+   * Dental core + cross-pack cafeteria/clinic bits (apple/cup/milk/tissues).
+   * Dropped dental-bib — at dock size it reads as a purse, not a bib.
+   * No lollipop/candy in the bank yet (wishlist).
    */
   const ROLEPLAY_DOCK_DENTAL = [
     'toothbrush-prop',
@@ -632,7 +633,9 @@
     'dental-mirror',
     'cavity-tooth',
     'healthy-tooth',
-    'dental-bib',
+    'apple',
+    'plastic-cup',
+    'milk-carton',
     'reward-star-dental',
     'dentist-character',
   ];
@@ -685,16 +688,20 @@
     const prop = (ctx && ctx.hero) || findHeroProp(lesson);
     if (!prop || !PB) return;
 
-    const art = L.zoneRect(page, 'artSafe') || { x: 40, y: 40, w: 1200, h: 400 };
-    // King: fill nearly all of artSafe (bypass house 300px cap via hardCap)
+    const art = L.zoneRect(page, 'artSafe') || { x: 0, y: 0, w: 1280, h: 470 };
+    const dock = L.zoneRect(page, 'dock');
+    // Overscale past the dock line and pull up so opaque art hits y=0
+    // (cutouts keep transparent pad — flush coords alone still look gappy).
+    const stageH = dock ? Math.max(360, dock.y) : Math.max(360, art.h);
     const king = Object.assign({}, prop, { relativeScale: 1 });
     const sized = PB.sizeFor(king, {
-      maxH: Math.max(220, art.h - 20),
-      maxW: Math.max(280, art.w - 48),
-      hardCap: Math.max(300, art.h - 8),
+      maxH: Math.round(stageH * 1.5),
+      maxW: Math.min(L.W - 8, Math.round(stageH * 1.5 * (prop.aspect || 1))),
+      hardCap: Math.round(stageH * 1.5),
     });
-    const x = art.x + Math.max(8, Math.round((art.w - sized.w) / 2));
-    const y = art.y + Math.max(4, Math.round((art.h - sized.h) / 2));
+    const x = Math.round((L.W - sized.w) / 2);
+    // Crop hard so hair meets the page edge (art has pad + chair above the scalp)
+    const y = -Math.round(sized.h * 0.34);
 
     L.place(page, {
       locked: false,
@@ -703,19 +710,20 @@
       w: sized.w,
       h: sized.h,
       intentional: true,
-      anchor: { x, y, w: sized.w, h: sized.h },
-      role: 'heroPart',
-      meta: { propKey: prop.key, propAspect: prop.aspect },
+      bleed: 'crop',
+      _force: { x, y, w: sized.w, h: sized.h },
+      role: page.pageType === 'heroStage' ? 'stageHero' : 'heroPart',
+      meta: { propKey: prop.key, propAspect: prop.aspect, stageKing: page.pageType === 'heroStage' },
     });
 
-    const tools = roleplayDockProps(lesson, prop, 9);
+    const tools = roleplayDockProps(lesson, prop, 10);
     if (tools.length) {
       L.placeDockRow(page, tools.map((t) => ({
         kind: 'image',
         asset: t.path,
         role: 'dockPiece',
         meta: { propKey: t.key, propAspect: t.aspect },
-      })), { w: 96, h: 96 });
+      })), { w: 88, h: 88 });
     }
     page.notes.push('recipe:heroProp');
   }

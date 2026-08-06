@@ -33,6 +33,7 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-05 | Park scene-dressing props (matte) | demand: park/matte thin (only swing) | Nine parallel one-offs (sheet gens kept white-tiling) | Native GenerateImage singles | wired — slide, seesaw, sandbox, park-bench, merry-go-round, playground-ball, kite, picnic-table, drinking-fountain |
 | 2026-08-05 | Dental unit pack by CEFR (vocab + EDB props) | A1 props wired (2 ChatGPT sheets); still need white-bg vocab icons for floss/cavity/dentist/smile | Vocab icons + black-field props | ChatGPT sheets | partial — props wired Aug 5; vocab dock icons still open |
 | 2026-08-05 | Zoo vocab icons: `zoo`, `cage`, `feed` | zoo-phonics fixture New Words — unvetted glyphs | Vocab pack icons | ChatGPT vocab sheet → `assets:vocab-sheet` | open |
+| 2026-08-05 | `lollipop` / candy / cookie prop for dental roleplay | Open-mouth king dock — teach “sugar vs brush”; no sweet/candy cutout in `09_props` (apple/milk/cup stand in) | Black-field object cutout | ChatGPT / GenerateImage one-off | open |
 
 ## How agents append
 

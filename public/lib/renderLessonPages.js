@@ -930,14 +930,14 @@
       // Chrome stays tiny — the stage hero + roleplay dock are the page.
       p.appendChild(el('div', {
         color: '#4338ca',
-        fontSize: '26px',
+        fontSize: '22px',
         fontWeight: '800',
         marginTop: '4px',
-        maxWidth: '520px',
+        maxWidth: '380px',
         lineHeight: '1.2',
       }, esc(lesson.activity?.title || 'Your Turn!')));
-      p.appendChild(hint('Drag tools onto the patient. Take turns!', {
-        textAlign: 'left', lineHeight: '1.3', maxWidth: '500px',
+      p.appendChild(hint('Drag tools onto the patient!', {
+        textAlign: 'left', lineHeight: '1.3', maxWidth: '380px',
       }));
       drawDebugZones(p, pageType);
       return p;

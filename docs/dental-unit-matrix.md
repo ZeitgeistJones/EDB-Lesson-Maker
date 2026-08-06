@@ -20,8 +20,10 @@ Split by **surface** (what the board needs), not by “make everything.”
 | Vocab: floss, cavity | still open for white-bg dock icons |
 | Prop: open-mouth kid (patient hero) | `dental-kid-open-mouth` |
 | Prop: dentist character | `dentist-character`, `dentist-standing` |
-| Prop: tools | toothbrush, toothpaste, floss-pick, dental-mirror, cavity/healthy tooth, bib, star |
+| Prop: tools | toothbrush, toothpaste, floss-pick, dental-mirror, cavity/healthy tooth, star |
 | Prop: clinic furniture | chair, light, tray unit, stool, cabinet, bib-drape, tissues, bin |
+| Prop: cross-pack roleplay (dock) | apple, plastic-cup, milk-carton (cafeteria) — bib dropped (reads as purse) |
+| Gap | no lollipop/candy/cookie in `09_props` yet — wishlist |
 
 ## Mass-produce plan (wise order)
 

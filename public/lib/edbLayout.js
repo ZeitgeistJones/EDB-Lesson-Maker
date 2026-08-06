@@ -99,14 +99,14 @@
       targetBay: { x: 800, y: 140, w: 400, h: 260, noOverlap: false },
       rewardPocket: { x: 1100, y: 36, w: 140, h: 80, noOverlap: false },
     },
-    // King EDB stage: hero fills the board; thin dock of roleplay tools below
+    // King EDB stage: hero bleeds to page top; thin dock of roleplay tools below
     heroStage: {
-      header:    { x: 48, y: 16,  w: 560, h: 36, noOverlap: true },
-      bodyText:  { x: 48, y: 48,  w: 520, h: 32, noOverlap: false },
-      artSafe:   { x: 40, y: 40,  w: 1200, h: 400, noOverlap: false },
-      dock:      { x: 40, y: 460, w: 1200, h: 110, noOverlap: false },
-      targetBay: { x: 180, y: 70, w: 920, h: 350, noOverlap: false },
-      rewardPocket: { x: 1100, y: 16, w: 140, h: 56, noOverlap: false },
+      header:    { x: 48, y: 8,   w: 420, h: 56, noOverlap: false },
+      bodyText:  { x: 48, y: 52,  w: 400, h: 28, noOverlap: false },
+      artSafe:   { x: 0,  y: 0,   w: 1280, h: 470, noOverlap: false },
+      dock:      { x: 32, y: 480, w: 1216, h: 96, noOverlap: false },
+      targetBay: { x: 120, y: 20, w: 1040, h: 440, noOverlap: false },
+      rewardPocket: { x: 1120, y: 8, w: 140, h: 48, noOverlap: false },
     },
     wrap: {
       header:    { x: 200, y: 40,  w: 880, h: 100, noOverlap: true },
@@ -267,13 +267,27 @@
 
   /**
    * Place a piece. Returns placed rect or null.
-   * opts: { prefer, intentional, role, kind, asset, locked, meta, anchor }
+   * opts: { prefer, intentional, role, kind, asset, locked, meta, anchor, bleed }
    * If intentional + anchor provided, place overlapping the anchor.
+   * bleed:'edge' — flush to board edges (margin 0).
+   * bleed:'crop' — allow negative x/y so oversized kings can crop off the page top.
    */
-  function clampToBoard(r, w, h) {
+  function clampToBoard(r, w, h, opts) {
+    const mode = opts && opts.bleed;
+    if (mode === 'crop') {
+      // Only keep some of the piece on-board so it stays grabable.
+      const minVisible = Math.round(Math.min(w, h) * 0.35);
+      return rect(
+        Math.max(-(w - minVisible), Math.min(W - minVisible, r.x)),
+        Math.max(-(h - minVisible), Math.min(H - minVisible, r.y)),
+        w,
+        h
+      );
+    }
+    const m = mode ? 0 : MARGIN;
     return rect(
-      Math.max(MARGIN, Math.min(W - MARGIN - w, r.x)),
-      Math.max(MARGIN, Math.min(H - MARGIN - h, r.y)),
+      Math.max(m, Math.min(W - m - w, r.x)),
+      Math.max(m, Math.min(H - m - h, r.y)),
       w,
       h
     );
@@ -291,11 +305,12 @@
     const h = opts.h || 96;
     const intentional = !!opts.intentional;
     const prefer = opts.prefer || 'artSafe';
+    const clampOpts = opts.bleed ? { bleed: opts.bleed } : null;
 
     let chosen = null;
 
     if (opts._force) {
-      chosen = clampToBoard(normalize(opts._force), w, h);
+      chosen = clampToBoard(normalize(opts._force), w, h, clampOpts);
     } else if (intentional && opts.anchor) {
       const a = normalize(opts.anchor);
       // Center piece on anchor (cover / flap / dress)
@@ -304,7 +319,7 @@
         Math.round(a.y + a.h / 2 - h / 2),
         w,
         h
-      ), w, h);
+      ), w, h, clampOpts);
       page.notes.push(`intentional:${opts.role || opts.kind || 'overlap'}`);
     } else {
       const zone = zoneRect(page, prefer) || zoneRect(page, 'artSafe') || rect(MARGIN, MARGIN, W - 2 * MARGIN, H - 2 * MARGIN);
