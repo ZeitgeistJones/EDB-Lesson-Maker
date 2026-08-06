@@ -16,6 +16,822 @@
       "aspect": 2.23,
       "bodyHue": 175
     },
+    "animal-bear": {
+      "file": "animal-bear.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.37,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-bear-b": {
+      "file": "animal-bear-b.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.08,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-cat": {
+      "file": "animal-cat.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.85,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-chicken": {
+      "file": "animal-chicken.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.71,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-cow": {
+      "file": "animal-cow.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.07,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-cow-b": {
+      "file": "animal-cow-b.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.18,
+      "bodyHue": 35,
+      "pack": "animals"
+    },
+    "animal-crocodile": {
+      "file": "animal-crocodile.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 3,
+      "bodyHue": 75,
+      "pack": "animals"
+    },
+    "animal-deer": {
+      "file": "animal-deer.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.99,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-dog": {
+      "file": "animal-dog.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.84,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-dolphin": {
+      "file": "animal-dolphin.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.18,
+      "bodyHue": 215,
+      "pack": "animals"
+    },
+    "animal-duck": {
+      "file": "animal-duck.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.9,
+      "bodyHue": 35,
+      "pack": "animals"
+    },
+    "animal-elephant": {
+      "file": "animal-elephant.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.21,
+      "bodyHue": 35,
+      "pack": "animals"
+    },
+    "animal-elephant-b": {
+      "file": "animal-elephant-b.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.99,
+      "bodyHue": 35,
+      "pack": "animals"
+    },
+    "animal-fox": {
+      "file": "animal-fox.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.22,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-fox-b": {
+      "file": "animal-fox-b.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.06,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-frog": {
+      "file": "animal-frog.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.09,
+      "bodyHue": 55,
+      "pack": "animals"
+    },
+    "animal-giraffe": {
+      "file": "animal-giraffe.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.65,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-giraffe-b": {
+      "file": "animal-giraffe-b.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.59,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-goat": {
+      "file": "animal-goat.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.93,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-goldfish-bowl": {
+      "file": "animal-goldfish-bowl.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.07,
+      "bodyHue": 195,
+      "pack": "animals"
+    },
+    "animal-hamster": {
+      "file": "animal-hamster.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.76,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-hedgehog": {
+      "file": "animal-hedgehog.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.32,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-hippo": {
+      "file": "animal-hippo.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.21,
+      "bodyHue": 15,
+      "pack": "animals"
+    },
+    "animal-horse": {
+      "file": "animal-horse.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.9,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-horse-b": {
+      "file": "animal-horse-b.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.99,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-kangaroo": {
+      "file": "animal-kangaroo.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.91,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-koala": {
+      "file": "animal-koala.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.86,
+      "bodyHue": 35,
+      "pack": "animals"
+    },
+    "animal-lion": {
+      "file": "animal-lion.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.03,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-lion-standing": {
+      "file": "animal-lion-standing.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.15,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-monkey": {
+      "file": "animal-monkey.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.83,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-owl": {
+      "file": "animal-owl.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.73,
+      "bodyHue": 35,
+      "pack": "animals"
+    },
+    "animal-panda": {
+      "file": "animal-panda.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.89,
+      "bodyHue": 35,
+      "pack": "animals"
+    },
+    "animal-parrot": {
+      "file": "animal-parrot.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.82,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-penguin": {
+      "file": "animal-penguin.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.59,
+      "bodyHue": 35,
+      "pack": "animals"
+    },
+    "animal-pig": {
+      "file": "animal-pig.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.07,
+      "bodyHue": 15,
+      "pack": "animals"
+    },
+    "animal-pig-b": {
+      "file": "animal-pig-b.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.23,
+      "bodyHue": 15,
+      "pack": "animals"
+    },
+    "animal-rabbit": {
+      "file": "animal-rabbit.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.72,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-retriever": {
+      "file": "animal-retriever.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.81,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-rhino": {
+      "file": "animal-rhino.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.25,
+      "bodyHue": 35,
+      "pack": "animals"
+    },
+    "animal-sheep": {
+      "file": "animal-sheep.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.04,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-sheep-b": {
+      "file": "animal-sheep-b.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.16,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-snake": {
+      "file": "animal-snake.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.93,
+      "bodyHue": 55,
+      "pack": "animals"
+    },
+    "animal-squirrel": {
+      "file": "animal-squirrel.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.39,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-tabby": {
+      "file": "animal-tabby.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.68,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-tiger": {
+      "file": "animal-tiger.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.2,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-tiger-b": {
+      "file": "animal-tiger-b.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.06,
+      "bodyHue": 25,
+      "pack": "animals"
+    },
+    "animal-zebra": {
+      "file": "animal-zebra.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.93,
+      "bodyHue": 35,
+      "pack": "animals"
+    },
+    "animal-zebra-b": {
+      "file": "animal-zebra-b.png",
+      "role": "object",
+      "tags": [
+        "animals",
+        "farm",
+        "zoo",
+        "pet",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.93,
+      "bodyHue": 35,
+      "pack": "animals"
+    },
     "apple": {
       "file": "apple.png",
       "role": "object",
@@ -2276,6 +3092,262 @@
       "aspect": 0.7,
       "bodyHue": 35
     },
+    "clothes-boots": {
+      "file": "clothes-boots.png",
+      "role": "object",
+      "tags": [
+        "clothes",
+        "dressup",
+        "fashion",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.15,
+      "bodyHue": 25,
+      "pack": "clothes"
+    },
+    "clothes-cable-sweater": {
+      "file": "clothes-cable-sweater.png",
+      "role": "object",
+      "tags": [
+        "clothes",
+        "dressup",
+        "fashion",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.13,
+      "bodyHue": 35,
+      "pack": "clothes"
+    },
+    "clothes-coat": {
+      "file": "clothes-coat.png",
+      "role": "object",
+      "tags": [
+        "clothes",
+        "dressup",
+        "fashion",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.89,
+      "bodyHue": 25,
+      "pack": "clothes"
+    },
+    "clothes-denim-jacket": {
+      "file": "clothes-denim-jacket.png",
+      "role": "object",
+      "tags": [
+        "clothes",
+        "dressup",
+        "fashion",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.18,
+      "bodyHue": 215,
+      "pack": "clothes"
+    },
+    "clothes-dress": {
+      "file": "clothes-dress.png",
+      "role": "object",
+      "tags": [
+        "clothes",
+        "dressup",
+        "fashion",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.92,
+      "bodyHue": 5,
+      "pack": "clothes"
+    },
+    "clothes-jeans": {
+      "file": "clothes-jeans.png",
+      "role": "object",
+      "tags": [
+        "clothes",
+        "dressup",
+        "fashion",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.71,
+      "bodyHue": 215,
+      "pack": "clothes"
+    },
+    "clothes-pajamas": {
+      "file": "clothes-pajamas.png",
+      "role": "object",
+      "tags": [
+        "clothes",
+        "dressup",
+        "fashion",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.83,
+      "bodyHue": 205,
+      "pack": "clothes"
+    },
+    "clothes-raincoat": {
+      "file": "clothes-raincoat.png",
+      "role": "object",
+      "tags": [
+        "clothes",
+        "dressup",
+        "fashion",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.86,
+      "bodyHue": 35,
+      "pack": "clothes"
+    },
+    "clothes-scarf": {
+      "file": "clothes-scarf.png",
+      "role": "object",
+      "tags": [
+        "clothes",
+        "dressup",
+        "fashion",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1,
+      "bodyHue": 5,
+      "pack": "clothes"
+    },
+    "clothes-shorts": {
+      "file": "clothes-shorts.png",
+      "role": "object",
+      "tags": [
+        "clothes",
+        "dressup",
+        "fashion",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.19,
+      "bodyHue": 35,
+      "pack": "clothes"
+    },
+    "clothes-skirt": {
+      "file": "clothes-skirt.png",
+      "role": "object",
+      "tags": [
+        "clothes",
+        "dressup",
+        "fashion",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.31,
+      "bodyHue": 285,
+      "pack": "clothes"
+    },
+    "clothes-sneakers": {
+      "file": "clothes-sneakers.png",
+      "role": "object",
+      "tags": [
+        "clothes",
+        "dressup",
+        "fashion",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.41,
+      "bodyHue": 215,
+      "pack": "clothes"
+    },
+    "clothes-socks": {
+      "file": "clothes-socks.png",
+      "role": "object",
+      "tags": [
+        "clothes",
+        "dressup",
+        "fashion",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.02,
+      "bodyHue": 215,
+      "pack": "clothes"
+    },
+    "clothes-striped-sweater": {
+      "file": "clothes-striped-sweater.png",
+      "role": "object",
+      "tags": [
+        "clothes",
+        "dressup",
+        "fashion",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.14,
+      "bodyHue": 65,
+      "pack": "clothes"
+    },
+    "clothes-swimsuit": {
+      "file": "clothes-swimsuit.png",
+      "role": "object",
+      "tags": [
+        "clothes",
+        "dressup",
+        "fashion",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.61,
+      "bodyHue": 205,
+      "pack": "clothes"
+    },
+    "clothes-tshirt": {
+      "file": "clothes-tshirt.png",
+      "role": "object",
+      "tags": [
+        "clothes",
+        "dressup",
+        "fashion",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.1,
+      "bodyHue": 205,
+      "pack": "clothes"
+    },
     "coffee-table": {
       "file": "coffee-table.png",
       "role": "furniture",
@@ -3576,6 +4648,518 @@
       "aspect": 1.02,
       "bodyHue": 25
     },
+    "family-aunt": {
+      "file": "family-aunt.png",
+      "role": "object",
+      "tags": [
+        "family",
+        "people",
+        "ages",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.34,
+      "bodyHue": 25,
+      "pack": "family"
+    },
+    "family-baby": {
+      "file": "family-baby.png",
+      "role": "object",
+      "tags": [
+        "family",
+        "people",
+        "ages",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.74,
+      "bodyHue": 25,
+      "pack": "family"
+    },
+    "family-big-brother": {
+      "file": "family-big-brother.png",
+      "role": "object",
+      "tags": [
+        "family",
+        "people",
+        "ages",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.36,
+      "bodyHue": 35,
+      "pack": "family"
+    },
+    "family-big-sister": {
+      "file": "family-big-sister.png",
+      "role": "object",
+      "tags": [
+        "family",
+        "people",
+        "ages",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.41,
+      "bodyHue": 35,
+      "pack": "family"
+    },
+    "family-boy": {
+      "file": "family-boy.png",
+      "role": "object",
+      "tags": [
+        "family",
+        "people",
+        "ages",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.39,
+      "bodyHue": 25,
+      "pack": "family"
+    },
+    "family-dad": {
+      "file": "family-dad.png",
+      "role": "object",
+      "tags": [
+        "family",
+        "people",
+        "ages",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.36,
+      "bodyHue": 25,
+      "pack": "family"
+    },
+    "family-dog": {
+      "file": "family-dog.png",
+      "role": "object",
+      "tags": [
+        "family",
+        "people",
+        "ages",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.76,
+      "bodyHue": 25,
+      "pack": "family"
+    },
+    "family-girl": {
+      "file": "family-girl.png",
+      "role": "object",
+      "tags": [
+        "family",
+        "people",
+        "ages",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.44,
+      "bodyHue": 25,
+      "pack": "family"
+    },
+    "family-grandma": {
+      "file": "family-grandma.png",
+      "role": "object",
+      "tags": [
+        "family",
+        "people",
+        "ages",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.36,
+      "bodyHue": 25,
+      "pack": "family"
+    },
+    "family-grandpa": {
+      "file": "family-grandpa.png",
+      "role": "object",
+      "tags": [
+        "family",
+        "people",
+        "ages",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.51,
+      "bodyHue": 25,
+      "pack": "family"
+    },
+    "family-mom": {
+      "file": "family-mom.png",
+      "role": "object",
+      "tags": [
+        "family",
+        "people",
+        "ages",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.38,
+      "bodyHue": 25,
+      "pack": "family"
+    },
+    "family-teen-boy": {
+      "file": "family-teen-boy.png",
+      "role": "object",
+      "tags": [
+        "family",
+        "people",
+        "ages",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.39,
+      "bodyHue": 75,
+      "pack": "family"
+    },
+    "family-teen-girl": {
+      "file": "family-teen-girl.png",
+      "role": "object",
+      "tags": [
+        "family",
+        "people",
+        "ages",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.42,
+      "bodyHue": 25,
+      "pack": "family"
+    },
+    "family-toddler-boy": {
+      "file": "family-toddler-boy.png",
+      "role": "object",
+      "tags": [
+        "family",
+        "people",
+        "ages",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.47,
+      "bodyHue": 25,
+      "pack": "family"
+    },
+    "family-toddler-girl": {
+      "file": "family-toddler-girl.png",
+      "role": "object",
+      "tags": [
+        "family",
+        "people",
+        "ages",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.57,
+      "bodyHue": 25,
+      "pack": "family"
+    },
+    "family-uncle": {
+      "file": "family-uncle.png",
+      "role": "object",
+      "tags": [
+        "family",
+        "people",
+        "ages",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.39,
+      "bodyHue": 25,
+      "pack": "family"
+    },
+    "feeling-angry": {
+      "file": "feeling-angry.png",
+      "role": "object",
+      "tags": [
+        "feelings",
+        "emotions",
+        "faces",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.96,
+      "bodyHue": 25,
+      "pack": "feelings"
+    },
+    "feeling-bored": {
+      "file": "feeling-bored.png",
+      "role": "object",
+      "tags": [
+        "feelings",
+        "emotions",
+        "faces",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.91,
+      "bodyHue": 25,
+      "pack": "feelings"
+    },
+    "feeling-cold": {
+      "file": "feeling-cold.png",
+      "role": "object",
+      "tags": [
+        "feelings",
+        "emotions",
+        "faces",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.06,
+      "bodyHue": 25,
+      "pack": "feelings"
+    },
+    "feeling-confused": {
+      "file": "feeling-confused.png",
+      "role": "object",
+      "tags": [
+        "feelings",
+        "emotions",
+        "faces",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.11,
+      "bodyHue": 25,
+      "pack": "feelings"
+    },
+    "feeling-happy": {
+      "file": "feeling-happy.png",
+      "role": "object",
+      "tags": [
+        "feelings",
+        "emotions",
+        "faces",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "bodyHue": 25,
+      "pack": "feelings"
+    },
+    "feeling-hot": {
+      "file": "feeling-hot.png",
+      "role": "object",
+      "tags": [
+        "feelings",
+        "emotions",
+        "faces",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "bodyHue": 15,
+      "pack": "feelings"
+    },
+    "feeling-love": {
+      "file": "feeling-love.png",
+      "role": "object",
+      "tags": [
+        "feelings",
+        "emotions",
+        "faces",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.95,
+      "bodyHue": 25,
+      "pack": "feelings"
+    },
+    "feeling-proud": {
+      "file": "feeling-proud.png",
+      "role": "object",
+      "tags": [
+        "feelings",
+        "emotions",
+        "faces",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.07,
+      "bodyHue": 35,
+      "pack": "feelings"
+    },
+    "feeling-sad": {
+      "file": "feeling-sad.png",
+      "role": "object",
+      "tags": [
+        "feelings",
+        "emotions",
+        "faces",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.95,
+      "bodyHue": 25,
+      "pack": "feelings"
+    },
+    "feeling-scared": {
+      "file": "feeling-scared.png",
+      "role": "object",
+      "tags": [
+        "feelings",
+        "emotions",
+        "faces",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.94,
+      "bodyHue": 25,
+      "pack": "feelings"
+    },
+    "feeling-shy": {
+      "file": "feeling-shy.png",
+      "role": "object",
+      "tags": [
+        "feelings",
+        "emotions",
+        "faces",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.95,
+      "bodyHue": 25,
+      "pack": "feelings"
+    },
+    "feeling-sick": {
+      "file": "feeling-sick.png",
+      "role": "object",
+      "tags": [
+        "feelings",
+        "emotions",
+        "faces",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.95,
+      "bodyHue": 35,
+      "pack": "feelings"
+    },
+    "feeling-silly": {
+      "file": "feeling-silly.png",
+      "role": "object",
+      "tags": [
+        "feelings",
+        "emotions",
+        "faces",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.94,
+      "bodyHue": 25,
+      "pack": "feelings"
+    },
+    "feeling-sleepy": {
+      "file": "feeling-sleepy.png",
+      "role": "object",
+      "tags": [
+        "feelings",
+        "emotions",
+        "faces",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.03,
+      "bodyHue": 25,
+      "pack": "feelings"
+    },
+    "feeling-surprised": {
+      "file": "feeling-surprised.png",
+      "role": "object",
+      "tags": [
+        "feelings",
+        "emotions",
+        "faces",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.94,
+      "bodyHue": 25,
+      "pack": "feelings"
+    },
+    "feeling-worried": {
+      "file": "feeling-worried.png",
+      "role": "object",
+      "tags": [
+        "feelings",
+        "emotions",
+        "faces",
+        "dock"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "bodyHue": 25,
+      "pack": "feelings"
+    },
     "file-folder": {
       "file": "file-folder.png",
       "role": "container",
@@ -3646,6 +5230,246 @@
       "alpha": true,
       "aspect": 0.42,
       "bodyHue": 165
+    },
+    "food-apple": {
+      "file": "food-apple.png",
+      "role": "object",
+      "tags": [
+        "food",
+        "cafeteria",
+        "dock"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.86,
+      "bodyHue": 15,
+      "pack": "food"
+    },
+    "food-banana": {
+      "file": "food-banana.png",
+      "role": "object",
+      "tags": [
+        "food",
+        "cafeteria",
+        "dock"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.93,
+      "bodyHue": 35,
+      "pack": "food"
+    },
+    "food-burger": {
+      "file": "food-burger.png",
+      "role": "object",
+      "tags": [
+        "food",
+        "cafeteria",
+        "dock"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1,
+      "bodyHue": 25,
+      "pack": "food"
+    },
+    "food-cookie": {
+      "file": "food-cookie.png",
+      "role": "object",
+      "tags": [
+        "food",
+        "cafeteria",
+        "dock"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.06,
+      "bodyHue": 25,
+      "pack": "food"
+    },
+    "food-cupcake": {
+      "file": "food-cupcake.png",
+      "role": "object",
+      "tags": [
+        "food",
+        "cafeteria",
+        "dock"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.77,
+      "bodyHue": 5,
+      "pack": "food"
+    },
+    "food-fries": {
+      "file": "food-fries.png",
+      "role": "object",
+      "tags": [
+        "food",
+        "cafeteria",
+        "dock"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.84,
+      "bodyHue": 35,
+      "pack": "food"
+    },
+    "food-grapes": {
+      "file": "food-grapes.png",
+      "role": "object",
+      "tags": [
+        "food",
+        "cafeteria",
+        "dock"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.91,
+      "bodyHue": 275,
+      "pack": "food"
+    },
+    "food-hotdog": {
+      "file": "food-hotdog.png",
+      "role": "object",
+      "tags": [
+        "food",
+        "cafeteria",
+        "dock"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.26,
+      "bodyHue": 25,
+      "pack": "food"
+    },
+    "food-icecream": {
+      "file": "food-icecream.png",
+      "role": "object",
+      "tags": [
+        "food",
+        "cafeteria",
+        "dock"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.6,
+      "bodyHue": 25,
+      "pack": "food"
+    },
+    "food-juice-box": {
+      "file": "food-juice-box.png",
+      "role": "object",
+      "tags": [
+        "food",
+        "cafeteria",
+        "dock"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.62,
+      "bodyHue": 75,
+      "pack": "food"
+    },
+    "food-milk": {
+      "file": "food-milk.png",
+      "role": "object",
+      "tags": [
+        "food",
+        "cafeteria",
+        "dock"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.68,
+      "bodyHue": 215,
+      "pack": "food"
+    },
+    "food-noodles": {
+      "file": "food-noodles.png",
+      "role": "object",
+      "tags": [
+        "food",
+        "cafeteria",
+        "dock"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.28,
+      "bodyHue": 35,
+      "pack": "food"
+    },
+    "food-orange": {
+      "file": "food-orange.png",
+      "role": "object",
+      "tags": [
+        "food",
+        "cafeteria",
+        "dock"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.82,
+      "bodyHue": 35,
+      "pack": "food"
+    },
+    "food-pizza": {
+      "file": "food-pizza.png",
+      "role": "object",
+      "tags": [
+        "food",
+        "cafeteria",
+        "dock"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.15,
+      "bodyHue": 25,
+      "pack": "food"
+    },
+    "food-sandwich": {
+      "file": "food-sandwich.png",
+      "role": "object",
+      "tags": [
+        "food",
+        "cafeteria",
+        "dock"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.22,
+      "bodyHue": 25,
+      "pack": "food"
+    },
+    "food-yogurt": {
+      "file": "food-yogurt.png",
+      "role": "object",
+      "tags": [
+        "food",
+        "cafeteria",
+        "dock"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.02,
+      "bodyHue": 15,
+      "pack": "food"
     },
     "fork": {
       "file": "fork.png",
@@ -5241,6 +7065,278 @@
       "bodyHue": 75,
       "components": 6
     },
+    "job-baker": {
+      "file": "job-baker.png",
+      "role": "object",
+      "tags": [
+        "jobs",
+        "community",
+        "people",
+        "career",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.48,
+      "bodyHue": 25,
+      "pack": "jobs"
+    },
+    "job-bus-driver": {
+      "file": "job-bus-driver.png",
+      "role": "object",
+      "tags": [
+        "jobs",
+        "community",
+        "people",
+        "career",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.5,
+      "bodyHue": 215,
+      "pack": "jobs"
+    },
+    "job-cashier": {
+      "file": "job-cashier.png",
+      "role": "object",
+      "tags": [
+        "jobs",
+        "community",
+        "people",
+        "career",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.64,
+      "bodyHue": 35,
+      "pack": "jobs"
+    },
+    "job-chef": {
+      "file": "job-chef.png",
+      "role": "object",
+      "tags": [
+        "jobs",
+        "community",
+        "people",
+        "career",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.63,
+      "bodyHue": 25,
+      "pack": "jobs"
+    },
+    "job-construction": {
+      "file": "job-construction.png",
+      "role": "object",
+      "tags": [
+        "jobs",
+        "community",
+        "people",
+        "career",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.5,
+      "bodyHue": 35,
+      "pack": "jobs"
+    },
+    "job-dentist": {
+      "file": "job-dentist.png",
+      "role": "object",
+      "tags": [
+        "jobs",
+        "community",
+        "people",
+        "career",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.46,
+      "bodyHue": 25,
+      "pack": "jobs"
+    },
+    "job-doctor": {
+      "file": "job-doctor.png",
+      "role": "object",
+      "tags": [
+        "jobs",
+        "community",
+        "people",
+        "career",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.45,
+      "bodyHue": 25,
+      "pack": "jobs"
+    },
+    "job-farmer": {
+      "file": "job-farmer.png",
+      "role": "object",
+      "tags": [
+        "jobs",
+        "community",
+        "people",
+        "career",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.65,
+      "bodyHue": 25,
+      "pack": "jobs"
+    },
+    "job-firefighter": {
+      "file": "job-firefighter.png",
+      "role": "object",
+      "tags": [
+        "jobs",
+        "community",
+        "people",
+        "career",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.53,
+      "bodyHue": 15,
+      "pack": "jobs"
+    },
+    "job-librarian": {
+      "file": "job-librarian.png",
+      "role": "object",
+      "tags": [
+        "jobs",
+        "community",
+        "people",
+        "career",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.38,
+      "bodyHue": 25,
+      "pack": "jobs"
+    },
+    "job-mail-carrier": {
+      "file": "job-mail-carrier.png",
+      "role": "object",
+      "tags": [
+        "jobs",
+        "community",
+        "people",
+        "career",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.58,
+      "bodyHue": 25,
+      "pack": "jobs"
+    },
+    "job-nurse": {
+      "file": "job-nurse.png",
+      "role": "object",
+      "tags": [
+        "jobs",
+        "community",
+        "people",
+        "career",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.36,
+      "bodyHue": 25,
+      "pack": "jobs"
+    },
+    "job-pilot": {
+      "file": "job-pilot.png",
+      "role": "object",
+      "tags": [
+        "jobs",
+        "community",
+        "people",
+        "career",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.41,
+      "bodyHue": 225,
+      "pack": "jobs"
+    },
+    "job-police": {
+      "file": "job-police.png",
+      "role": "object",
+      "tags": [
+        "jobs",
+        "community",
+        "people",
+        "career",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.45,
+      "bodyHue": 225,
+      "pack": "jobs"
+    },
+    "job-teacher": {
+      "file": "job-teacher.png",
+      "role": "object",
+      "tags": [
+        "jobs",
+        "community",
+        "people",
+        "career",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.57,
+      "bodyHue": 25,
+      "pack": "jobs"
+    },
+    "job-vet": {
+      "file": "job-vet.png",
+      "role": "object",
+      "tags": [
+        "jobs",
+        "community",
+        "people",
+        "career",
+        "dock"
+      ],
+      "relativeScale": 0.55,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.45,
+      "bodyHue": 25,
+      "pack": "jobs"
+    },
     "jump-rope": {
       "file": "jump-rope.png",
       "role": "object",
@@ -6778,6 +8874,262 @@
       "alpha": true,
       "aspect": 1.02
     },
+    "sport-baseball": {
+      "file": "sport-baseball.png",
+      "role": "object",
+      "tags": [
+        "sports",
+        "playground",
+        "play",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.95,
+      "bodyHue": 25,
+      "pack": "sports"
+    },
+    "sport-baseball-bat": {
+      "file": "sport-baseball-bat.png",
+      "role": "object",
+      "tags": [
+        "sports",
+        "playground",
+        "play",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.13,
+      "bodyHue": 35,
+      "pack": "sports"
+    },
+    "sport-basketball": {
+      "file": "sport-basketball.png",
+      "role": "object",
+      "tags": [
+        "sports",
+        "playground",
+        "play",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.97,
+      "bodyHue": 25,
+      "pack": "sports"
+    },
+    "sport-frisbee": {
+      "file": "sport-frisbee.png",
+      "role": "object",
+      "tags": [
+        "sports",
+        "playground",
+        "play",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.38,
+      "bodyHue": 15,
+      "pack": "sports"
+    },
+    "sport-jump-rope": {
+      "file": "sport-jump-rope.png",
+      "role": "object",
+      "tags": [
+        "sports",
+        "playground",
+        "play",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.34,
+      "bodyHue": 215,
+      "pack": "sports"
+    },
+    "sport-kite": {
+      "file": "sport-kite.png",
+      "role": "object",
+      "tags": [
+        "sports",
+        "playground",
+        "play",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.12,
+      "bodyHue": 25,
+      "pack": "sports"
+    },
+    "sport-sand-bucket": {
+      "file": "sport-sand-bucket.png",
+      "role": "object",
+      "tags": [
+        "sports",
+        "playground",
+        "play",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.89,
+      "bodyHue": 45,
+      "pack": "sports"
+    },
+    "sport-scooter": {
+      "file": "sport-scooter.png",
+      "role": "object",
+      "tags": [
+        "sports",
+        "playground",
+        "play",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.88,
+      "bodyHue": 205,
+      "pack": "sports"
+    },
+    "sport-seesaw": {
+      "file": "sport-seesaw.png",
+      "role": "object",
+      "tags": [
+        "sports",
+        "playground",
+        "play",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.8,
+      "bodyHue": 25,
+      "pack": "sports"
+    },
+    "sport-skateboard": {
+      "file": "sport-skateboard.png",
+      "role": "object",
+      "tags": [
+        "sports",
+        "playground",
+        "play",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.79,
+      "bodyHue": 25,
+      "pack": "sports"
+    },
+    "sport-slide": {
+      "file": "sport-slide.png",
+      "role": "object",
+      "tags": [
+        "sports",
+        "playground",
+        "play",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.1,
+      "bodyHue": 25,
+      "pack": "sports"
+    },
+    "sport-soccer": {
+      "file": "sport-soccer.png",
+      "role": "object",
+      "tags": [
+        "sports",
+        "playground",
+        "play",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.98,
+      "bodyHue": 35,
+      "pack": "sports"
+    },
+    "sport-swing": {
+      "file": "sport-swing.png",
+      "role": "object",
+      "tags": [
+        "sports",
+        "playground",
+        "play",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.29,
+      "bodyHue": 205,
+      "pack": "sports"
+    },
+    "sport-tennis-ball": {
+      "file": "sport-tennis-ball.png",
+      "role": "object",
+      "tags": [
+        "sports",
+        "playground",
+        "play",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.95,
+      "bodyHue": 55,
+      "pack": "sports"
+    },
+    "sport-tennis-racket": {
+      "file": "sport-tennis-racket.png",
+      "role": "object",
+      "tags": [
+        "sports",
+        "playground",
+        "play",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.07,
+      "bodyHue": 205,
+      "pack": "sports"
+    },
+    "sport-trampoline": {
+      "file": "sport-trampoline.png",
+      "role": "object",
+      "tags": [
+        "sports",
+        "playground",
+        "play",
+        "dock"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.81,
+      "bodyHue": 205,
+      "pack": "sports"
+    },
     "sports-cone": {
       "file": "sports-cone.png",
       "role": "object",
@@ -7998,6 +10350,262 @@
       "alpha": true,
       "aspect": 0.52,
       "bodyHue": 35
+    },
+    "vehicle-airplane": {
+      "file": "vehicle-airplane.png",
+      "role": "object",
+      "tags": [
+        "vehicles",
+        "transport",
+        "travel",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.88,
+      "bodyHue": 195,
+      "pack": "vehicles"
+    },
+    "vehicle-ambulance": {
+      "file": "vehicle-ambulance.png",
+      "role": "object",
+      "tags": [
+        "vehicles",
+        "transport",
+        "travel",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.61,
+      "bodyHue": 15,
+      "pack": "vehicles"
+    },
+    "vehicle-bike": {
+      "file": "vehicle-bike.png",
+      "role": "object",
+      "tags": [
+        "vehicles",
+        "transport",
+        "travel",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.22,
+      "bodyHue": 195,
+      "pack": "vehicles"
+    },
+    "vehicle-car": {
+      "file": "vehicle-car.png",
+      "role": "object",
+      "tags": [
+        "vehicles",
+        "transport",
+        "travel",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.6,
+      "bodyHue": 15,
+      "pack": "vehicles"
+    },
+    "vehicle-city-bus": {
+      "file": "vehicle-city-bus.png",
+      "role": "object",
+      "tags": [
+        "vehicles",
+        "transport",
+        "travel",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.86,
+      "bodyHue": 195,
+      "pack": "vehicles"
+    },
+    "vehicle-dump-truck": {
+      "file": "vehicle-dump-truck.png",
+      "role": "object",
+      "tags": [
+        "vehicles",
+        "transport",
+        "travel",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.65,
+      "bodyHue": 195,
+      "pack": "vehicles"
+    },
+    "vehicle-fire-truck": {
+      "file": "vehicle-fire-truck.png",
+      "role": "object",
+      "tags": [
+        "vehicles",
+        "transport",
+        "travel",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.19,
+      "bodyHue": 15,
+      "pack": "vehicles"
+    },
+    "vehicle-helicopter": {
+      "file": "vehicle-helicopter.png",
+      "role": "object",
+      "tags": [
+        "vehicles",
+        "transport",
+        "travel",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.85,
+      "bodyHue": 195,
+      "pack": "vehicles"
+    },
+    "vehicle-motorcycle": {
+      "file": "vehicle-motorcycle.png",
+      "role": "object",
+      "tags": [
+        "vehicles",
+        "transport",
+        "travel",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.29,
+      "bodyHue": 205,
+      "pack": "vehicles"
+    },
+    "vehicle-police-car": {
+      "file": "vehicle-police-car.png",
+      "role": "object",
+      "tags": [
+        "vehicles",
+        "transport",
+        "travel",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.87,
+      "bodyHue": 35,
+      "pack": "vehicles"
+    },
+    "vehicle-sailboat": {
+      "file": "vehicle-sailboat.png",
+      "role": "object",
+      "tags": [
+        "vehicles",
+        "transport",
+        "travel",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.92,
+      "bodyHue": 35,
+      "pack": "vehicles"
+    },
+    "vehicle-school-bus": {
+      "file": "vehicle-school-bus.png",
+      "role": "object",
+      "tags": [
+        "vehicles",
+        "transport",
+        "travel",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.67,
+      "bodyHue": 35,
+      "pack": "vehicles"
+    },
+    "vehicle-taxi": {
+      "file": "vehicle-taxi.png",
+      "role": "object",
+      "tags": [
+        "vehicles",
+        "transport",
+        "travel",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.74,
+      "bodyHue": 35,
+      "pack": "vehicles"
+    },
+    "vehicle-tractor": {
+      "file": "vehicle-tractor.png",
+      "role": "object",
+      "tags": [
+        "vehicles",
+        "transport",
+        "travel",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.4,
+      "bodyHue": 85,
+      "pack": "vehicles"
+    },
+    "vehicle-train": {
+      "file": "vehicle-train.png",
+      "role": "object",
+      "tags": [
+        "vehicles",
+        "transport",
+        "travel",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 2.15,
+      "bodyHue": 195,
+      "pack": "vehicles"
+    },
+    "vehicle-van": {
+      "file": "vehicle-van.png",
+      "role": "object",
+      "tags": [
+        "vehicles",
+        "transport",
+        "travel",
+        "dock"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.77,
+      "bodyHue": 35,
+      "pack": "vehicles"
     },
     "wall-clock": {
       "file": "wall-clock.png",
