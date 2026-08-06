@@ -49,6 +49,47 @@ No API key required for the in-house path.
 A set is **4 panels**. Same palette, tiny variations — enough for a 30–60 min
 board without looking random.
 
+## Anti-formula (place-true motifs)
+
+Quiet flats must stay empty in the **centre**, but corners must still read as
+**this place** — not “generic warm wash + sticker.”
+
+What went wrong: sets drifted into a formula — same empty-centre wash with a
+generic corner sticker (wheat, leaf, sun) palette-swapped by theme name. Motifs
+were not place-true (bakery ≠ wheat sheaf). Generators optimized for “4 panels
+that look like a set” over “unmistakable at a glance.”
+
+**Fix the process first** (skill + this doc), then regenerate — see
+[`.cursor/rules/fix-the-producer.mdc`](../.cursor/rules/fix-the-producer.mdc)
+and [`.cursor/skills/bg-flat-sets/SKILL.md`](../.cursor/skills/bg-flat-sets/SKILL.md)
+Anti-formula section.
+
+### Rules
+
+1. Lock a **place-true motif vocabulary** (3–5 concrete objects that ONLY fit
+   that place) before generating.
+2. Write **one motif line per panel**; reject the plan if the place is not
+   obvious from the list alone.
+3. Forbidden: recycling the previous set’s composition with a palette swap;
+   generic “warmth” plants (wheat, decorative leaves) as stand-ins; identical
+   corner layout across a–d; mid-frame clutter / busy shop interiors.
+4. Eye QA: cover corners → centre still works? Uncover → teacher names the
+   place in **1 second**? If no → fail.
+
+### Motif vocabulary (wired place sets)
+
+| Set | Good corner motifs | Bad / formula stand-ins |
+|-----|--------------------|-------------------------|
+| `clinic-cool` | tooth outline, soft sparkle, pale alcove edge, exam-lamp glow | grass, hills, nature landscapes |
+| `travel-air` | paper plane, map-pin trail, soft cloud corner | beach shells, bakery tools, farm wheat |
+| `home-warm` | curtain fold, soft arch shadow, peach hill band at edge | outdoor meadow, clinic teal wall |
+| `outdoor-fresh` | grass fringe, leaf corner, soft sun | indoor shelves, dough, tooth icons |
+| `beach-warm` | shell, wave fringe, sand dollar, sun corner | wheat, bakery loaf, clinic sparkles |
+| `bakery-warm` | flour-dust haze, dough ball, loaf / baguette, rolling pin, whisk | **wheat sheaf / farm grain**, generic leaves, beach composition copy |
+
+**Bakery example (accept):** a flour haze · b dough + flour · c loaf silhouette ·
+d rolling pin. **Reject:** wheat / wheat / cookie-as-only-signal / leaf alcove.
+
 ## Wired sets
 
 | Set | Topic | Status |

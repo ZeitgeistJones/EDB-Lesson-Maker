@@ -1,0 +1,40 @@
+{
+  "title": "Our Family Home",
+  "warmUp": {
+    "question": "Who lives in your home?",
+    "sampleAnswer": "My mother and father."
+  },
+  "vocabulary": [
+    { "word": "mother", "emoji": "👩", "sentence": "My mother cooks." },
+    { "word": "father", "emoji": "👨", "sentence": "My father reads." },
+    { "word": "kitchen", "emoji": "🍳", "sentence": "We eat in the kitchen." },
+    { "word": "bedroom", "emoji": "🛏️", "sentence": "I sleep in my bedroom." },
+    { "word": "sofa", "emoji": "🛋️", "sentence": "I sit on the sofa." },
+    { "word": "family", "emoji": "👨‍👩‍👧", "sentence": "I love my family." }
+  ],
+  "sentenceFrames": ["This is my ____.", "We are in the ____."],
+  "story": {
+    "title": "At Home",
+    "pages": [
+      {
+        "heading": "Family time",
+        "text": "Mother is in the kitchen. Father sits on the sofa with the family.",
+        "visualTheme": "home",
+        "visualCaption": "Our home"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is Mother?", "sampleAnswer": "She is in the kitchen." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What rooms are in your home?", "sampleAnswer": "A kitchen and a bedroom." }
+  ],
+  "activity": {
+    "title": "Home Tour",
+    "prompt": "Name a room.",
+    "templates": ["This is the ____."]
+  },
+  "reviewSentences": ["I love my family.", "My bedroom is cozy."]
+}

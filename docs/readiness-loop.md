@@ -26,6 +26,17 @@ Same 30-title pool (shuffled with seed 42). Gate = vocab art ≥50% **and** plac
 2. **Place BG coverage** — `SceneBackgrounds.bgCoverage`: place topic with no TOPIC_SETS row, or matched set with &lt;2 quiet flats → draft reason.
 3. **ignoreKit** — skips theme-kit / heroProp / generic-template reasons so this loop stays honest about vocab+bg only.
 
+### Human / agent BG bar (beyond file count)
+
+The automated gate only checks that a place set **exists** (≥2 quiet flats).
+That is **not** visual quality. “4 flats exist” must not be treated as a pass
+when judging boards or shipping new sets. Agents must still apply the
+**place-true motif** bar from `.cursor/skills/bg-flat-sets/SKILL.md` and
+`docs/bg-theme-sets.md` Anti-formula: corner motifs must make the place
+unmistakable in one second (bakery → dough/flour/loaf — not wheat-as-warmth).
+If motifs are formulaic, fix the skill/prompt process, then regenerate — do not
+only patch one PNG and leave the formula in place.
+
 ## R1 → R2: what failed the gate
 
 | Draft title (R1) | Reasons |

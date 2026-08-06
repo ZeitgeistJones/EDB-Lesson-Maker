@@ -1,0 +1,40 @@
+{
+  "title": "Morning at the Bakery",
+  "warmUp": {
+    "question": "Do you like bread?",
+    "sampleAnswer": "Yes, I like fresh bread."
+  },
+  "vocabulary": [
+    { "word": "bread", "emoji": "🍞", "sentence": "I buy bread." },
+    { "word": "cake", "emoji": "🍰", "sentence": "The cake is sweet." },
+    { "word": "bakery", "emoji": "🥖", "sentence": "We go to the bakery." },
+    { "word": "oven", "emoji": "🔥", "sentence": "The oven is hot." },
+    { "word": "cookie", "emoji": "🍪", "sentence": "I eat a cookie." },
+    { "word": "flour", "emoji": "🌾", "sentence": "We need flour." }
+  ],
+  "sentenceFrames": ["I want a ____.", "The ____ smells good."],
+  "story": {
+    "title": "At the Bakery",
+    "pages": [
+      {
+        "heading": "Fresh bread",
+        "text": "Tom smells bread at the bakery. He sees a cake and a cookie.",
+        "visualTheme": "bakery",
+        "visualCaption": "Inside the bakery"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is Tom?", "sampleAnswer": "He is at the bakery." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What do you buy at a bakery?", "sampleAnswer": "I buy bread." }
+  ],
+  "activity": {
+    "title": "Bakery Order",
+    "prompt": "Say what you want.",
+    "templates": ["I want a ____."]
+  },
+  "reviewSentences": ["I like the bakery.", "The bread is warm."]
+}

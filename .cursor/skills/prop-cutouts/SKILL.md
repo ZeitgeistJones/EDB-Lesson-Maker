@@ -209,3 +209,6 @@ This procedure is mechanical once the style lock is written: generate, import,
 read the gate table, regenerate, look. It runs fine on a fast model. Writing a
 new `PROP:` paragraph for an object the doc does not cover, or deciding whether a
 prop is stylistically out of step with the pack, deserves a stronger one.
+
+**Process over artifacts:** fix import/prompt/gate rules, then regenerate — see
+[`.cursor/rules/fix-the-producer.mdc`](../../rules/fix-the-producer.mdc).

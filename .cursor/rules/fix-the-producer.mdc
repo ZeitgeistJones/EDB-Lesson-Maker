@@ -1,0 +1,19 @@
+---
+description: Fix the producer (skill/prompt/gate/generator), not one-off output edits
+alwaysApply: true
+---
+
+# Fix the producer
+
+If something breaks, fix the **machinery that will fire next time** — prompts, skills, gates, importers, recipes, pickers — then regenerate. Do **not** hand-fix one bad artifact and call it done.
+
+| Symptom | Fix here (then regen) |
+|---------|------------------------|
+| Formulaic / anonymous quiet flats | `.cursor/skills/bg-flat-sets` + `docs/bg-theme-sets.md` |
+| Lesson ships without kit / hollow download | `BoardReadiness` / plan / prop kit assessment |
+| Bad prop keying or gate-blind art | import / prompt rules in `.cursor/skills/prop-cutouts` |
+| Wrong activity shape (cards vs king stage) | recipes + `.cursor/skills/king-stage-edb` |
+
+**OK:** regenerating after the process fix; one-off data typos / a single manifest typo.
+
+**Not OK:** Photoshop one PNG, tweak one fixture by hand, or ship a one-lesson special-case as the only fix while the producer still repeats the miss.

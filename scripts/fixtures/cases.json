@@ -120,6 +120,46 @@
       "meta": { "level": "B1", "duration": "60" },
       "expectScene": "airport|airplane|train|bus|travel|station",
       "notes": "Layout ceiling: 12 vocab words, long frames/review. Page count must stay under the ClassIn limit and cards must not overflow."
+    },
+    {
+      "id": "loop2-beach",
+      "fixture": "loop2-beach.json",
+      "tier": "adversarial",
+      "meta": { "level": "A1", "duration": "30" },
+      "expectScene": "beach|ocean|shore|seaside",
+      "notes": "R2 visual tour — beach-warm quiet flats (ocean not swim so set locks beach)"
+    },
+    {
+      "id": "loop2-bakery",
+      "fixture": "loop2-bakery.json",
+      "tier": "adversarial",
+      "meta": { "level": "A1", "duration": "30" },
+      "expectScene": "bakery|cafe|kitchen",
+      "notes": "R2 visual tour — bakery-warm"
+    },
+    {
+      "id": "loop2-farm",
+      "fixture": "loop2-farm.json",
+      "tier": "adversarial",
+      "meta": { "level": "A1", "duration": "30" },
+      "expectScene": "farm|park|outdoor|garden",
+      "notes": "R2 visual tour — outdoor-fresh"
+    },
+    {
+      "id": "loop2-doctor",
+      "fixture": "loop2-doctor.json",
+      "tier": "adversarial",
+      "meta": { "level": "A1", "duration": "30" },
+      "expectScene": "doctor|hospital|clinic|medical",
+      "notes": "R2 visual tour — clinic-cool"
+    },
+    {
+      "id": "loop2-home",
+      "fixture": "loop2-home.json",
+      "tier": "adversarial",
+      "meta": { "level": "A1", "duration": "30" },
+      "expectScene": "home|house|living|kitchen|family",
+      "notes": "R2 visual tour — home-warm"
     }
   ]
 }

@@ -170,6 +170,7 @@ fix, one re-bake — run fine on a fast model once the harness is green.
 
 ## Related skills
 
+- **Process over artifacts:** [`.cursor/rules/fix-the-producer.mdc`](../../rules/fix-the-producer.mdc) — fix skill/prompt/gate/recipe, then re-bake; don’t hand-edit one board JPEG as the fix
 - **King-stage / roleplay EDB** (huge hero + tool dock): `.cursor/skills/king-stage-edb/SKILL.md`
 - **Prop cutouts**: `.cursor/skills/prop-cutouts/SKILL.md`
 - **Quiet flat sets (in-house)**: `.cursor/skills/bg-flat-sets/SKILL.md` — when a

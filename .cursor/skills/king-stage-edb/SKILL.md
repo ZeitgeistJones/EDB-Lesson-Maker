@@ -114,6 +114,7 @@ covers, anything ambiguous at ~88px.
 
 ## Related
 
+- **Process over artifacts:** [`.cursor/rules/fix-the-producer.mdc`](../../rules/fix-the-producer.mdc)
 - Quality dual-lens: `.cursor/skills/board-quality-loop/SKILL.md`
 - New cutouts: `.cursor/skills/prop-cutouts/SKILL.md`
 - Dental inventory: `docs/dental-unit-matrix.md`

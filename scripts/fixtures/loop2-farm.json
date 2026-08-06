@@ -1,0 +1,40 @@
+{
+  "title": "Farm Animals",
+  "warmUp": {
+    "question": "Have you been to a farm?",
+    "sampleAnswer": "Yes, I saw cows."
+  },
+  "vocabulary": [
+    { "word": "cow", "emoji": "🐄", "sentence": "The cow says moo." },
+    { "word": "pig", "emoji": "🐷", "sentence": "The pig is pink." },
+    { "word": "chicken", "emoji": "🐔", "sentence": "The chicken lays eggs." },
+    { "word": "horse", "emoji": "🐴", "sentence": "The horse can run." },
+    { "word": "sheep", "emoji": "🐑", "sentence": "The sheep is soft." },
+    { "word": "farm", "emoji": "🚜", "sentence": "We visit the farm." }
+  ],
+  "sentenceFrames": ["I see a ____.", "The ____ is on the farm."],
+  "story": {
+    "title": "At the Farm",
+    "pages": [
+      {
+        "heading": "Farm friends",
+        "text": "Ben sees a cow and a pig. A horse runs past the sheep.",
+        "visualTheme": "farm",
+        "visualCaption": "On the farm"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is Ben?", "sampleAnswer": "He is at the farm." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What animals live on a farm?", "sampleAnswer": "Cows and chickens." }
+  ],
+  "activity": {
+    "title": "Farm Match",
+    "prompt": "Name the animal.",
+    "templates": ["This is a ____."]
+  },
+  "reviewSentences": ["I like the farm.", "The cow is big."]
+}

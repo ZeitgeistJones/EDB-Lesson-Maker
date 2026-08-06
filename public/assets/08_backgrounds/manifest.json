@@ -1384,7 +1384,7 @@
   },
   "bakery-a": {
    "file": "flat_bakery-a.png",
-   "tone": "bakery warm wash — cream peach wall",
+   "tone": "bakery warm — flour-dust cream haze, almost plain",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1393,7 +1393,7 @@
   },
   "bakery-b": {
    "file": "flat_bakery-b.png",
-   "tone": "bakery warm wash — wheat corner",
+   "tone": "bakery warm — corner dough ball + flour dust",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1402,7 +1402,7 @@
   },
   "bakery-c": {
    "file": "flat_bakery-c.png",
-   "tone": "bakery warm wash — cookie corner",
+   "tone": "bakery warm — corner loaf silhouette",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1411,7 +1411,7 @@
   },
   "bakery-d": {
    "file": "flat_bakery-d.png",
-   "tone": "bakery warm wash — alcove edge",
+   "tone": "bakery warm — corner rolling pin",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
