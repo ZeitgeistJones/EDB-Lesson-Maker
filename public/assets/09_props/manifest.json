@@ -1572,6 +1572,260 @@
       "alpha": true,
       "aspect": 1.25,
       "bodyHue": 15
+    },
+    "dentist-character": {
+      "file": "dentist-character.png",
+      "role": "hero",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic"
+      ],
+      "relativeScale": 0.85,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.32,
+      "bodyHue": 25
+    },
+    "toothbrush-prop": {
+      "file": "toothbrush-prop.png",
+      "role": "object",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic",
+        "brush",
+        "toothbrush"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.35,
+      "bodyHue": 205
+    },
+    "toothpaste-tube": {
+      "file": "toothpaste-tube.png",
+      "role": "object",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic",
+        "toothpaste"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.42,
+      "bodyHue": 185
+    },
+    "floss-pick": {
+      "file": "floss-pick.png",
+      "role": "object",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic",
+        "floss"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.42,
+      "bodyHue": 165
+    },
+    "dental-mirror": {
+      "file": "dental-mirror.png",
+      "role": "tool",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic"
+      ],
+      "relativeScale": 0.2,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.48
+    },
+    "cavity-tooth": {
+      "file": "cavity-tooth.png",
+      "role": "object",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic",
+        "cavity"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.78
+    },
+    "healthy-tooth": {
+      "file": "healthy-tooth.png",
+      "role": "object",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic",
+        "tooth"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.78
+    },
+    "dental-bib": {
+      "file": "dental-bib.png",
+      "role": "object",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.95,
+      "components": 2,
+      "bodyHue": 195
+    },
+    "reward-star-dental": {
+      "file": "reward-star-dental.png",
+      "role": "object",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic",
+        "reward"
+      ],
+      "relativeScale": 0.15,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.05,
+      "bodyHue": 45
+    },
+    "dentist-standing": {
+      "file": "dentist-standing.png",
+      "role": "hero",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic"
+      ],
+      "relativeScale": 0.85,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.42,
+      "bodyHue": 25
+    },
+    "dental-chair": {
+      "file": "dental-chair.png",
+      "role": "furniture",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic"
+      ],
+      "relativeScale": 0.7,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1,
+      "bodyHue": 215
+    },
+    "dental-light": {
+      "file": "dental-light.png",
+      "role": "furniture",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.84
+    },
+    "dental-tray-unit": {
+      "file": "dental-tray-unit.png",
+      "role": "furniture",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic"
+      ],
+      "relativeScale": 0.5,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.87
+    },
+    "dental-stool": {
+      "file": "dental-stool.png",
+      "role": "furniture",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic"
+      ],
+      "relativeScale": 0.4,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.66,
+      "bodyHue": 205
+    },
+    "dental-cabinet": {
+      "file": "dental-cabinet.png",
+      "role": "furniture",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic"
+      ],
+      "relativeScale": 0.65,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.07,
+      "bodyHue": 205
+    },
+    "dental-bib-drape": {
+      "file": "dental-bib-drape.png",
+      "role": "object",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic"
+      ],
+      "relativeScale": 0.35,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "bodyHue": 205
+    },
+    "dental-tissues": {
+      "file": "dental-tissues.png",
+      "role": "object",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 1.11,
+      "bodyHue": 205
+    },
+    "dental-bin": {
+      "file": "dental-bin.png",
+      "role": "container",
+      "tags": [
+        "dentist",
+        "dental",
+        "clinic"
+      ],
+      "relativeScale": 0.3,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.89
     }
   }
 }

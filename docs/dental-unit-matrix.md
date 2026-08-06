@@ -16,10 +16,12 @@ Split by **surface** (what the board needs), not by “make everything.”
 |------|--------|
 | Quiet clinic flats | wired (`clinic-a`…`d`) |
 | Vocab: tooth, toothbrush, mouth | pack |
-| Vocab: dentist, smile, clean, brush | aliases (doctor / happy / soap / toothbrush) |
-| Vocab: floss, cavity, gums… | missing / wishlist |
-| Prop: dental kid open mouth | wired `dental-kid-open-mouth` (hero) |
-| Prop: dentist person, cavity tooth, floss, mirror | **none** — medical sheet is general clinic furniture only |
+| Vocab: dentist, smile, clean, brush | aliases (doctor / happy / soap / toothbrush) — still want dedicated pack icons |
+| Vocab: floss, cavity | still open for white-bg dock icons |
+| Prop: open-mouth kid (patient hero) | `dental-kid-open-mouth` |
+| Prop: dentist character | `dentist-character`, `dentist-standing` |
+| Prop: tools | toothbrush, toothpaste, floss-pick, dental-mirror, cavity/healthy tooth, bib, star |
+| Prop: clinic furniture | chair, light, tray unit, stool, cabinet, bib-drape, tissues, bin |
 
 ## Mass-produce plan (wise order)
 

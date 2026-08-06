@@ -31,7 +31,7 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-04 | Cafeteria prop sheet (9) | bad-theme / cafeteria coverage thin | Matte 3×3 sheet | `docs/prop-sheet-prompts.md` Sheet 3 | wired — 9 cafeteria props imported |
 | 2026-08-05 | Home scene-dressing props (matte) | demand: home/matte below tag floor | In-house 3×3 + import | Native GenerateImage sheet | wired — sofa, floor-lamp, coffee-table, house-plant, throw-pillow, picture-frame, rug, remote-control, wall-clock |
 | 2026-08-05 | Park scene-dressing props (matte) | demand: park/matte thin (only swing) | Nine parallel one-offs (sheet gens kept white-tiling) | Native GenerateImage singles | wired — slide, seesaw, sandbox, park-bench, merry-go-round, playground-ball, kite, picnic-table, drinking-fountain |
-| 2026-08-05 | Dental unit pack by CEFR (vocab + EDB props) | No dedicated dentist/cavity/floss/mirror props; only aliases + medical clinic furniture; A1–B1 dental lessons under-served | Vocab icons + black-field props (3×3 sheets) | ChatGPT sheets → `assets:vocab-sheet` / `assets:prop --sheet` | open — hero `dental-kid-open-mouth` started |
+| 2026-08-05 | Dental unit pack by CEFR (vocab + EDB props) | A1 props wired (2 ChatGPT sheets); still need white-bg vocab icons for floss/cavity/dentist/smile | Vocab icons + black-field props | ChatGPT sheets | partial — props wired Aug 5; vocab dock icons still open |
 | 2026-08-05 | Zoo vocab icons: `zoo`, `cage`, `feed` | zoo-phonics fixture New Words — unvetted glyphs | Vocab pack icons | ChatGPT vocab sheet → `assets:vocab-sheet` | open |
 
 ## How agents append

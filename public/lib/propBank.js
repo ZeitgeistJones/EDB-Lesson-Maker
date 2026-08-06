@@ -71,8 +71,12 @@
     whiteboard: 'mini-whiteboard',
     mic: 'microphone',
     card: 'flashcard-blank',
-    dentist: 'dental-kid-open-mouth',
+    dentist: 'dentist-character',
     patient: 'dental-kid-open-mouth',
+    floss: 'floss-pick',
+    cavity: 'cavity-tooth',
+    toothbrush: 'toothbrush-prop',
+    toothpaste: 'toothpaste-tube',
   };
 
   /**
