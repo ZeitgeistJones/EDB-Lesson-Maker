@@ -34,6 +34,9 @@ worksheet with a side illustration.
 8. **Dense face docks** — two rows when the zone is tall; size with
    `PropBank.sizeFor` + `relativeScale: 1`; skip ultra-wide brows (H7/M10).
    Full layout checklist: [board-ux-layout](../board-ux-layout/SKILL.md).
+9. **Ragged theme sheets** (castle / space / aquarium / nature) — one giant
+   hero + many small dock toys. Slice with `assets:prop-blobs` first; human-eye
+   QA beats amber flags. See [prop-cutouts](../prop-cutouts/SKILL.md) ragged rules.
 
 ## Implementation map
 

@@ -48,6 +48,32 @@ npm run assets:prop-blobs -- assets-inbox/<sheet>.png --dilate=0 --threshold=28
 dust can weave a sheet-wide ghost web. Lattice props (portcullis) may shatter;
 amber flags mark shreds. Import/naming is a second step after you approve crops.
 
+### Ragged-sheet product rules (user-locked)
+
+1. **Prompt sheets clean.** Tell the image model: pure black field, **no grey
+   grid / graph paper / labels**. Faint grids become fake skinny “props.”
+2. **Looks like one thing → one prop.** Bubbles, balloons, mushrooms: if it
+   reads as an individual asset on the sheet, keep it separate in the dock.
+   Do not auto-merge into “streams” or “bunches” unless the art is clearly one
+   connected drawing.
+3. **One giant + many smalls = king stage.** The large piece is the hero kids
+   build on / fill / put stuff into; the smalls are the roleplay dock — same
+   shape as make-a-face / dental open-mouth. Other page formats will show up
+   later; don’t invent them early.
+4. **QA bar = human eye.** Ship when the numbered QA looks good to a normal
+   person. Amber computer flags are hints (shreds, lattice), not a veto — drop
+   only what looks wrong (hairline scraps, full-sheet ghosts).
+
+### Known sheet failure modes
+
+| Symptom | Likely cause | What to do |
+|---------|--------------|------------|
+| 14px vertical/horizontal strips | Grey grid lines on sheet | Re-prompt sheet; or drop those crop indices |
+| Dozens of tiny circles | Bubble columns / loose berries | Keep as individuals if they look like assets |
+| Rings split from planet | Black gap in art | Dilate carefully, or accept two pieces / re-prompt |
+| Thin rope swings break | 1px connectors | Slight `--dilate`, or regenerate thicker ropes |
+| Sheet-wide amber mega-box | Dilate + soft black dust | Use `--dilate=0`, higher `--threshold` |
+
 The six legacy props in this pack that cannot be keyed today came off old contact
 sheets that had none of that structure — a neighbour's edge was already inside
 the frame. A sheet is a supported input; a crowded sheet is not.
