@@ -168,6 +168,17 @@
 
   /** Auto A1–A2, keyword override, meta.phonics on/off wins. */
   function wantsPhonics(lesson, meta) {
+    if (window.PhonicsPolicy && window.PhonicsPolicy.autoWantPhonics) {
+      const level = String((meta && meta.level) || '');
+      const hay = [
+        lesson && lesson.title,
+        meta && meta.topic,
+        ...((lesson && lesson.vocabulary) || []).map((v) => (typeof v === 'string' ? v : v && v.word)),
+      ].filter(Boolean).join(' ');
+      const topicAsks = PHONICS_TOPIC_RE.test(hay);
+      const flag = meta && meta.phonics;
+      return window.PhonicsPolicy.autoWantPhonics(level, topicAsks, flag);
+    }
     if (meta && (meta.phonics === true || meta.phonics === 'on')) return true;
     if (meta && (meta.phonics === false || meta.phonics === 'off')) return false;
     const level = String((meta && meta.level) || '');
@@ -181,10 +192,14 @@
   }
 
   /**
-   * Normalize Gemini phonics payload. Returns null when unusable.
-   * Enforces: 2–3 words, 3–5 graphemes each, ≤14 dock tiles with distractors.
+   * Normalize Gemini phonics payload with CEFR gating (PhonicsPolicy).
+   * Returns null when unusable at this level.
    */
-  function normalizePhonics(lesson) {
+  function normalizePhonics(lesson, meta) {
+    if (window.PhonicsPolicy && window.PhonicsPolicy.normalize) {
+      return window.PhonicsPolicy.normalize(lesson, meta || {});
+    }
+    // Legacy fallback if policy script failed to load
     const raw = lesson && lesson.phonics;
     if (!raw || typeof raw !== 'object') return null;
     const rows = raw.targetWords || raw.target_words || [];
@@ -205,33 +220,21 @@
       if (words.length >= 3) break;
     }
     if (words.length < 2) return null;
-
     const used = new Set(words.flatMap((w) => w.graphemes));
-    let distractors = (raw.distractors || raw.distractor_letters || [])
+    let distractors = (raw.distractors || [])
       .map((d) => String(d || '').trim().toLowerCase())
       .filter((d) => d && d.length <= 2 && !used.has(d));
-    distractors = [...new Set(distractors)].slice(0, 6);
-
-    const script = raw.teacherScript || raw.teacher_script || {};
-    // Focus word first; dock = its graphemes + ≤4 distractors (≤10 tiles total)
-    const focusCount = words[0].graphemes.length;
-    const maxDist = Math.max(0, Math.min(4, 10 - focusCount));
-    distractors = distractors.slice(0, maxDist);
-
+    distractors = [...new Set(distractors)].slice(0, 4);
     return {
       targetWords: words,
       distractors,
       focusIndex: 0,
-      teacherScript: {
-        warmup: script.warmup || 'Say the word slowly. How many sounds do you hear?',
-        modeling: script.modeling || 'Watch me drag each sound into a box.',
-        check: script.check || 'Can you point to a box with two letters?',
-      },
+      teacherScript: { warmup: '', modeling: '', check: '' },
     };
   }
 
   function includePhonics(lesson, meta) {
-    return wantsPhonics(lesson, meta) && !!normalizePhonics(lesson);
+    return wantsPhonics(lesson, meta) && !!normalizePhonics(lesson, meta);
   }
 
   /** Canvas PNG helpers for covers/flaps/slots when no dedicated art */
@@ -893,9 +896,10 @@
    * Sound boxes + letter tiles — one focus word large; remaining words as chips.
    * Dock: focus graphemes + ≤4 distractors (≤10 tiles, ≥64px).
    */
-  function phonicsSoundBoxes(lesson, page, layout) {
+  function phonicsSoundBoxes(lesson, page, layout, ctx) {
     const L = layout || window.EdbLayout;
-    const data = normalizePhonics(lesson);
+    const meta = (ctx && ctx.meta) || {};
+    const data = normalizePhonics(lesson, meta);
     if (!data) return;
 
     const PB = window.PropBank;
@@ -975,8 +979,9 @@
 
     const shuffled = pick(tiles, tiles.length, hashStr((lesson.title || '') + '|phonics'));
     const maxLen = Math.max(1, ...shuffled.map((t) => String(t.text || '').length));
-    const tileW = Math.max(64, maxLen > 1 ? 80 : 64);
-    L.placeDockRow(page, shuffled, { w: tileW, h: 64, noShrink: true });
+    // Child touch targets — keep tiles large (esp. A1/A2).
+    const tileW = Math.max(72, maxLen > 1 ? 88 : 72);
+    L.placeDockRow(page, shuffled, { w: tileW, h: 72, noShrink: true });
     page.notes.push('recipe:phonicsSoundBoxes');
   }
 
@@ -1015,7 +1020,7 @@
 
     // Phonics — sound boxes + letter tiles when schema + gate allow
     if (includePhonics(lesson, meta)) {
-      assignments.push({ pageKey: 'phonics', recipeId: 'phonicsSoundBoxes' });
+      assignments.push({ pageKey: 'phonics', recipeId: 'phonicsSoundBoxes', ctx: { meta: meta || {} } });
     }
 
     // Speaking — one Peek sticky over the first sample on speaking:0
@@ -1192,6 +1197,7 @@
    */
   function buildBoardPlan(lesson, meta) {
     const boardPlan = plan(lesson, meta);
+    boardPlan.meta = meta || {};
     const L = window.EdbLayout;
     const pages = [];
     const indexByKey = {};

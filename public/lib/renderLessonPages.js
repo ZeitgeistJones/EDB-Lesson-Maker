@@ -742,9 +742,9 @@
     return p;
   }
 
-  function makePhonics(lesson, boardPlan) {
+  function makePhonics(lesson, boardPlan, meta) {
     const data = window.EdbActivities && window.EdbActivities.normalizePhonics
-      ? window.EdbActivities.normalizePhonics(lesson)
+      ? window.EdbActivities.normalizePhonics(lesson, meta || (boardPlan && boardPlan.meta) || {})
       : null;
     const interactive = hasRecipe(boardPlan, 'phonics');
     const p = pageShell(THEME_COLORS.phonics, {
@@ -1298,7 +1298,7 @@
     push(makeWarmUp(lesson, boardPlan, m), 'warm');
     slots.newWords = push(await makeVocab(lesson, boardPlan), 'newWords');
     if (includePhonics(lesson, m)) {
-      push(makePhonics(lesson, boardPlan), 'phonics');
+      push(makePhonics(lesson, boardPlan, m), 'phonics');
     }
     push(makeVocabSentences(lesson), 'vocabSentences');
     push(makeFrames(lesson), 'frames');

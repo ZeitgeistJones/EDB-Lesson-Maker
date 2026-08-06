@@ -29,7 +29,8 @@
     "assets:coloring": "node scripts/import-coloring-sheet.mjs",
     "test:coloring": "node scripts/smoke-coloring-outlines.mjs",
     "test:story-art-latency": "node scripts/smoke-story-art-latency.mjs",
-    "test:story-art": "node scripts/smoke-story-art-module.cjs"
+    "test:story-art": "node scripts/smoke-story-art-module.cjs",
+    "test:phonics": "node scripts/smoke-phonics-policy.cjs"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
