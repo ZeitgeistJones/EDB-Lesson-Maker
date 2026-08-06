@@ -66,16 +66,22 @@ Preview/export re-ground `heroPart` via `SceneBackgrounds.standRow` on scenes.
 A king forced through `heroPart` on a flat still looked “small with a weird top
 gap” until role was `stageHero` + explicit crop.
 
-## Sizing / flush-top checklist
+## Sizing / stageFit gate (required)
 
-Cutouts keep ~8%+ transparent pad; `y = 0` alone still looks gappy.
+Do **not** copy dental flush-crop onto the next king. Each hero opts in via
+manifest `stageFit`:
+
+| `stageFit` | When | Behavior |
+|------------|------|----------|
+| `fit` (default) | Full silhouette still in the PNG (`face-blank`, trampoline) | ~92% of stage height, centered, `bleed:'edge'` — crown stays on-board |
+| `flush` | Source art is already a cropped close-up (`dental-kid-open-mouth`) | Overscale + negative `y` + `bleed:'crop'` so opaque content meets the page top |
+
+Set `stageFit` when writing the manifest row. Missing → `fit`. Recipe reads
+`prop.stageFit` only — no key regexes.
 
 1. `relativeScale: 1` clone for sizing.
 2. `sizeFor(..., { hardCap })` — house `MAX_PROP_H` (300) is too small for kings.
-3. Overscale past dock line (~1.4–1.5× stage height).
-4. Place with `bleed: 'crop'` and **negative `y`** so opaque hair meets the page
-   top (`edbLayout.clampToBoard` crop mode).
-5. Confirm by Reading the preview JPEG — not only by printing piece coords.
+3. Confirm by Reading the preview JPEG — not only by printing piece coords.
 
 ## Roleplay dock curation
 

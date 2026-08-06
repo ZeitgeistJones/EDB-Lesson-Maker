@@ -1569,6 +1569,7 @@
       ],
       "relativeScale": 0.85,
       "anchor": "bottom",
+      "stageFit": "flush",
       "alpha": true,
       "aspect": 1.25,
       "bodyHue": 15
@@ -1841,6 +1842,7 @@
       ],
       "relativeScale": 0.9,
       "anchor": "center",
+      "stageFit": "fit",
       "alpha": true,
       "aspect": 0.74,
       "bodyHue": 25

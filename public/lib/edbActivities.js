@@ -699,6 +699,19 @@
     return out;
   }
 
+  /**
+   * How a king hero fills heroStage.
+   *   fit   — default. Whole silhouette stays on-board (face-blank, trampoline).
+   *   flush — source art is already a cropped close-up; overscale + negative y
+   *           so opaque content meets the page top (dental open-mouth only).
+   * Never copy flush from one hero to the next — set stageFit on the prop.
+   */
+  function stageFitFor(prop) {
+    const fit = prop && prop.stageFit;
+    if (fit === 'flush' || fit === 'fit') return fit;
+    return 'fit';
+  }
+
   /** One huge groundable stage hero + a dock of roleplay tools. */
   function heroProp(lesson, page, layout, ctx) {
     const L = layout || window.EdbLayout;
@@ -708,18 +721,19 @@
 
     const art = L.zoneRect(page, 'artSafe') || { x: 0, y: 0, w: 1280, h: 470 };
     const dock = L.zoneRect(page, 'dock');
-    // Overscale past the dock line and pull up so opaque art hits y=0
-    // (cutouts keep transparent pad — flush coords alone still look gappy).
     const stageH = dock ? Math.max(360, dock.y) : Math.max(360, art.h);
     const king = Object.assign({}, prop, { relativeScale: 1 });
+    const flushCrop = stageFitFor(prop) === 'flush';
+    const scale = flushCrop ? 1.5 : 0.92;
     const sized = PB.sizeFor(king, {
-      maxH: Math.round(stageH * 1.5),
-      maxW: Math.min(L.W - 8, Math.round(stageH * 1.5 * (prop.aspect || 1))),
-      hardCap: Math.round(stageH * 1.5),
+      maxH: Math.round(stageH * scale),
+      maxW: Math.min(L.W - 8, Math.round(stageH * scale * (prop.aspect || 1))),
+      hardCap: Math.round(stageH * scale),
     });
     const x = Math.round((L.W - sized.w) / 2);
-    // Crop hard so hair meets the page edge (art has pad + chair above the scalp)
-    const y = -Math.round(sized.h * 0.34);
+    const y = flushCrop
+      ? -Math.round(sized.h * 0.34)
+      : Math.max(8, Math.round((stageH - sized.h) / 2));
 
     L.place(page, {
       locked: false,
@@ -728,10 +742,15 @@
       w: sized.w,
       h: sized.h,
       intentional: true,
-      bleed: 'crop',
+      bleed: flushCrop ? 'crop' : 'edge',
       _force: { x, y, w: sized.w, h: sized.h },
       role: page.pageType === 'heroStage' ? 'stageHero' : 'heroPart',
-      meta: { propKey: prop.key, propAspect: prop.aspect, stageKing: page.pageType === 'heroStage' },
+      meta: {
+        propKey: prop.key,
+        propAspect: prop.aspect,
+        stageKing: page.pageType === 'heroStage',
+        stageFit: stageFitFor(prop),
+      },
     });
 
     const tools = roleplayDockProps(lesson, prop, 10);

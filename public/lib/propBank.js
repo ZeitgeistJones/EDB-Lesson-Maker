@@ -219,6 +219,9 @@
         aspect: row.aspect || 1,
         relativeScale: row.relativeScale == null ? 0.5 : row.relativeScale,
         anchor: row.anchor || 'bottom',
+        // King stage fill: 'fit' (default) keeps silhouette on-board; 'flush'
+        // overscales cropped close-ups to the page edge. Opt-in only.
+        stageFit: row.stageFit === 'flush' ? 'flush' : (row.stageFit === 'fit' ? 'fit' : null),
         family: row.styleFamily || HOUSE_FAMILY,
         bodyHue: row.bodyHue == null ? null : row.bodyHue,
       };

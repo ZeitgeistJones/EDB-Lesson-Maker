@@ -15,6 +15,10 @@ All live in `public/assets/09_props/` with `alpha: true`. Fixture:
 `scripts/fixtures/face-lesson.json`. Preview:
 `node scripts/preview-face-hero.cjs` → `tmp/face-hero-preview.jpg`.
 
+**`stageFit`:** `face-blank` is `fit` (full head on-board). Only already-cropped
+close-ups (e.g. dental open-mouth) set `stageFit: "flush"`. Default is fit —
+never copy flush from one hero to another.
+
 **Grid reminder:** importer `--grid` is rows×cols. A ChatGPT “4 across × 6 down”
 features sheet is `--grid=6x4`.
 
