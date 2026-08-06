@@ -303,6 +303,11 @@
     return (boardPlan?.assignments || []).some((a) => a.pageKey === pageKey);
   }
 
+  function recipeIdFor(boardPlan, pageKey) {
+    const a = (boardPlan?.assignments || []).find((x) => x.pageKey === pageKey);
+    return a ? a.recipeId : null;
+  }
+
   function speakingChunks(lesson, meta) {
     if (window.EdbActivities && window.EdbActivities.speakingChunks) {
       return window.EdbActivities.speakingChunks(lesson, meta);
@@ -916,9 +921,27 @@
 
   function makeActivity(lesson, boardPlan) {
     const interactive = hasRecipe(boardPlan, 'activity');
+    const isKing = recipeIdFor(boardPlan, 'activity') === 'heroProp';
+    const pageType = isKing ? 'heroStage' : 'activity';
     const p = pageShell(THEME_COLORS.activity, {
-      reserveDock: interactive, pageType: 'activity',
+      reserveDock: interactive, pageType,
     });
+    if (isKing) {
+      // Chrome stays tiny — the stage hero + roleplay dock are the page.
+      p.appendChild(el('div', {
+        color: '#4338ca',
+        fontSize: '26px',
+        fontWeight: '800',
+        marginTop: '4px',
+        maxWidth: '520px',
+        lineHeight: '1.2',
+      }, esc(lesson.activity?.title || 'Your Turn!')));
+      p.appendChild(hint('Drag tools onto the patient. Take turns!', {
+        textAlign: 'left', lineHeight: '1.3', maxWidth: '500px',
+      }));
+      drawDebugZones(p, pageType);
+      return p;
+    }
     p.appendChild(header(lesson.activity?.title || 'Your Turn!', '#4338ca'));
     p.appendChild(hint(esc(lesson.activity?.prompt || 'Work with a partner.'), {
       textAlign: 'left', lineHeight: '1.35', maxWidth: interactive ? '680px' : '100%',

@@ -580,8 +580,8 @@
 
   /**
    * Find a large interactive prop the activity page can center on.
-   * Exact word/key match first (trampoline), then a strong tag score on
-   * hero / large playPart roles. Returns null when the lesson has no hero.
+   * Prefer roleplay-stage surfaces (open mouth, trampoline) over standing
+   * characters — kids drag tools onto the stage, not beside a stick figure.
    */
   function findHeroProp(lesson) {
     const PB = window.PropBank;
@@ -591,6 +591,20 @@
     const tags = heroThemeTags(lesson);
     const isHeroSized = (p) =>
       !!(p && (p.role === 'hero' || ((p.relativeScale == null ? 0 : p.relativeScale) >= 0.75)));
+    const blob = tags.join(' ');
+
+    // Explicit stage keys when the theme matches — beat PROP_ALIASES.dentist
+    // (standing character) so dental lessons get the open-mouth play surface.
+    const STAGE_RULES = [
+      { re: /dentist|dental|tooth|teeth|clinic|patient|mouth|brush|floss|cavity/, key: 'dental-kid-open-mouth' },
+      { re: /trampolin|bounce|backflip|playground/, key: 'trampoline' },
+    ];
+    for (const rule of STAGE_RULES) {
+      if (rule.re.test(blob)) {
+        const hit = PB.resolve({ word: rule.key, seed, family });
+        if (isHeroSized(hit)) return hit;
+      }
+    }
 
     for (const t of tags) {
       const hit = PB.resolve({ word: t, seed, family });
@@ -606,18 +620,81 @@
     return isHeroSized(scored) ? scored : null;
   }
 
-  /** One big groundable prop + a short vocab dock — the interactive focus page. */
+  /**
+   * Handheld tools kids drag onto a stage hero.
+   * Dental: brush / paste / floss / mirror / cavity / healthy tooth / bib / star /
+   * dentist cast — not furniture (chair, cabinet) and not vocab emoji strips.
+   */
+  const ROLEPLAY_DOCK_DENTAL = [
+    'toothbrush-prop',
+    'toothpaste-tube',
+    'floss-pick',
+    'dental-mirror',
+    'cavity-tooth',
+    'healthy-tooth',
+    'dental-bib',
+    'reward-star-dental',
+    'dentist-character',
+  ];
+
+  function roleplayDockProps(lesson, hero, count) {
+    const PB = window.PropBank;
+    if (!PB || !PB.loaded()) return [];
+    const family = PB.familyFor(lesson);
+    const seed = ((lesson && lesson.title) || '') + '|roleplay';
+    const tags = heroThemeTags(lesson);
+    const blob = tags.join(' ') + ' ' + ((hero && hero.key) || '');
+    const dental = /dentist|dental|tooth|clinic|mouth|floss|cavity|brush/.test(blob);
+    const prefer = dental ? ROLEPLAY_DOCK_DENTAL : null;
+    const out = [];
+    const exclude = [hero && hero.key].filter(Boolean);
+
+    if (prefer) {
+      for (const key of prefer) {
+        if (out.length >= count) break;
+        if (exclude.includes(key)) continue;
+        const p = PB.resolve({ word: key, seed, family, exclude });
+        if (p) {
+          exclude.push(p.key);
+          out.push(p);
+        }
+      }
+    }
+
+    while (out.length < count) {
+      const p = PB.resolve({
+        tags,
+        roles: ['object', 'tool'],
+        minScore: 3,
+        seed,
+        index: out.length,
+        exclude,
+        family,
+      });
+      if (!p) break;
+      exclude.push(p.key);
+      out.push(p);
+    }
+    return out;
+  }
+
+  /** One huge groundable stage hero + a dock of roleplay tools. */
   function heroProp(lesson, page, layout, ctx) {
     const L = layout || window.EdbLayout;
     const PB = window.PropBank;
     const prop = (ctx && ctx.hero) || findHeroProp(lesson);
     if (!prop || !PB) return;
 
-    const art = L.zoneRect(page, 'artSafe') || { x: 700, y: 80, w: 520, h: 340 };
-    const maxH = Math.min(300, Math.max(160, art.h - 24));
-    const sized = PB.sizeFor(prop, { maxH, maxW: Math.min(520, art.w - 16) });
+    const art = L.zoneRect(page, 'artSafe') || { x: 40, y: 40, w: 1200, h: 400 };
+    // King: fill nearly all of artSafe (bypass house 300px cap via hardCap)
+    const king = Object.assign({}, prop, { relativeScale: 1 });
+    const sized = PB.sizeFor(king, {
+      maxH: Math.max(220, art.h - 20),
+      maxW: Math.max(280, art.w - 48),
+      hardCap: Math.max(300, art.h - 8),
+    });
     const x = art.x + Math.max(8, Math.round((art.w - sized.w) / 2));
-    const y = art.y + Math.max(8, art.h - sized.h - 12);
+    const y = art.y + Math.max(4, Math.round((art.h - sized.h) / 2));
 
     L.place(page, {
       locked: false,
@@ -631,16 +708,14 @@
       meta: { propKey: prop.key, propAspect: prop.aspect },
     });
 
-    const vocab = vocabList(lesson).slice(0, 4);
-    if (vocab.length) {
-      L.placeDockRow(page, vocab.map((v) => ({
-        kind: 'emoji',
-        emoji: (window.VocabIcons && window.VocabIcons.emojiFor)
-          ? window.VocabIcons.emojiFor(v.word, v.emoji)
-          : (v.emoji || '•'),
+    const tools = roleplayDockProps(lesson, prop, 9);
+    if (tools.length) {
+      L.placeDockRow(page, tools.map((t) => ({
+        kind: 'image',
+        asset: t.path,
         role: 'dockPiece',
-        meta: { word: v.word },
-      })), { w: 88, h: 88 });
+        meta: { propKey: t.key, propAspect: t.aspect },
+      })), { w: 96, h: 96 });
     }
     page.notes.push('recipe:heroProp');
   }
@@ -978,7 +1053,8 @@
 
     speakingChunks(lesson, meta).forEach((_, i) => addPage('speaking:' + i, 'speaking'));
 
-    addPage('activity', 'activity');
+    const actAssign = (boardPlan.assignments || []).find((a) => a.pageKey === 'activity');
+    addPage('activity', actAssign && actAssign.recipeId === 'heroProp' ? 'heroStage' : 'activity');
     addPage('wrap', 'wrap');
 
     return {

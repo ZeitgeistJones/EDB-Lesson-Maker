@@ -99,6 +99,15 @@
       targetBay: { x: 800, y: 140, w: 400, h: 260, noOverlap: false },
       rewardPocket: { x: 1100, y: 36, w: 140, h: 80, noOverlap: false },
     },
+    // King EDB stage: hero fills the board; thin dock of roleplay tools below
+    heroStage: {
+      header:    { x: 48, y: 16,  w: 560, h: 36, noOverlap: true },
+      bodyText:  { x: 48, y: 48,  w: 520, h: 32, noOverlap: false },
+      artSafe:   { x: 40, y: 40,  w: 1200, h: 400, noOverlap: false },
+      dock:      { x: 40, y: 460, w: 1200, h: 110, noOverlap: false },
+      targetBay: { x: 180, y: 70, w: 920, h: 350, noOverlap: false },
+      rewardPocket: { x: 1100, y: 16, w: 140, h: 56, noOverlap: false },
+    },
     wrap: {
       header:    { x: 200, y: 40,  w: 880, h: 100, noOverlap: true },
       bodyText:  { x: 200, y: 140, w: 880, h: 140, noOverlap: true },

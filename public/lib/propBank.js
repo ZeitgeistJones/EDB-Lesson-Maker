@@ -160,6 +160,15 @@
         fit: 'contain',
         wired: true,
       },
+      {
+        slot: 'roleplayTool',
+        roles: ['object', 'tool'],
+        count: 8,
+        distinct: true,
+        themed: true,
+        fit: 'contain',
+        wired: true,
+      },
     ],
     phonicsSoundBoxes: [
       {
@@ -386,8 +395,11 @@
     const o = opts || {};
     const aspect = (prop && prop.aspect) || 1;
     const maxH = o.maxH == null ? MAX_PROP_H : o.maxH;
+    // King / stage heroes may exceed the house 300px cap when the caller
+    // passes hardCap (activity heroStage). Everything else stays capped.
+    const hardCap = o.hardCap == null ? MAX_PROP_H : o.hardCap;
     const scale = prop && prop.relativeScale != null ? prop.relativeScale : 0.5;
-    let h = Math.min(MAX_PROP_H, Math.max(MIN_PROP_H, Math.round(maxH * scale)));
+    let h = Math.min(hardCap, Math.max(MIN_PROP_H, Math.round(maxH * scale)));
     if (o.maxW && Math.round(h * aspect) > o.maxW) {
       h = Math.max(1, Math.floor(o.maxW / aspect));
     }
