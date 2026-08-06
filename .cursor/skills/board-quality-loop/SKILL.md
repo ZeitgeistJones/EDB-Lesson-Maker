@@ -165,3 +165,8 @@ When the art is wrong or weak **and** no verified in-repo asset exists:
 Foundation work and sticky judgment calls (rubric, thresholds, policy, ambiguous art
 accuracy) deserve a high-reasoning model. Mechanical iterations — one alias, one padding
 fix, one re-bake — run fine on a fast model once the harness is green.
+
+## Related skills
+
+- **King-stage / roleplay EDB** (huge hero + tool dock): `.cursor/skills/king-stage-edb/SKILL.md`
+- **Prop cutouts**: `.cursor/skills/prop-cutouts/SKILL.md`

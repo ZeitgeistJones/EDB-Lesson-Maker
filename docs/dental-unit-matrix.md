@@ -33,6 +33,8 @@ Split by **surface** (what the board needs), not by “make everything.”
 
 EDB recipes already exist (`heroProp`, `matchDock`, `buildScene`). New art plugs into tags; we do **not** need a new recipe per level — we need honest pictures per word/role.
 
+**King-stage pattern** (open-mouth / roleplay dock): see `.cursor/skills/king-stage-edb/SKILL.md`.
+
 ## Prompt for next ChatGPT prop sheet
 
 See `docs/prop-sheet-prompts.md` house style, then:
