@@ -5,10 +5,13 @@
 // you can still `npm start` and test on http://localhost:3000 without Vercel.
 require('dotenv').config();
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const API_KEY = process.env.GEMINI_API_KEY;
+const APP_RUNS_DIR = path.join(__dirname, 'tmp', 'app-runs');
 // Flash-Lite handles structured JSON well and is less capacity-starved than
 // the newest flagship Flash models. Override with GEMINI_MODEL if needed.
 const PRIMARY_MODEL = process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite';
@@ -297,6 +300,50 @@ All content appropriate for ${safeLevel} ESL learners. Sentence frames and activ
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to reach Gemini API. Check server network/logs.' });
+  }
+});
+
+/**
+ * Local-only run log for testing loops. Writes JSON under tmp/app-runs/
+ * (gitignored). Fire-and-forget from the browser after readiness assess /
+ * download. No-op-safe if the folder can't be created.
+ */
+app.post('/api/log-run', (req, res) => {
+  try {
+    fs.mkdirSync(APP_RUNS_DIR, { recursive: true });
+    const body = req.body && typeof req.body === 'object' ? req.body : {};
+    const ts = new Date().toISOString();
+    const stamp = ts.replace(/[:.]/g, '-');
+    const titleSlug = String(body.title || body.topic || 'lesson')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '')
+      .slice(0, 48) || 'lesson';
+    const event = String(body.event || 'preview').replace(/[^a-z0-9_-]/gi, '') || 'preview';
+    const record = {
+      ts,
+      event,
+      title: body.title || null,
+      topic: body.topic || null,
+      level: body.level || null,
+      duration: body.duration || null,
+      readiness: body.readiness || null,
+      activityRecipe: body.activityRecipe || (body.readiness && body.readiness.activityRecipe) || null,
+      kit: body.kit || (body.readiness && body.readiness.kit) || null,
+      vocabArt: body.vocabArt || (body.readiness && body.readiness.vocabArt) || null,
+      reasons: body.reasons || (body.readiness && body.readiness.reasons) || [],
+      // Compact lesson fingerprint — not the full Gemini dump.
+      vocab: Array.isArray(body.vocab) ? body.vocab.slice(0, 20) : null,
+      warmUp: body.warmUp || null,
+      activityTitle: body.activityTitle || null,
+    };
+    const file = path.join(APP_RUNS_DIR, `${stamp}_${event}_${titleSlug}.json`);
+    fs.writeFileSync(file, JSON.stringify(record, null, 2));
+    fs.writeFileSync(path.join(APP_RUNS_DIR, 'latest.json'), JSON.stringify(record, null, 2));
+    res.json({ ok: true, file: path.relative(__dirname, file) });
+  } catch (err) {
+    console.warn('log-run failed', err.message);
+    res.status(500).json({ ok: false, error: err.message });
   }
 });
 

@@ -329,9 +329,41 @@ async function refreshBoardStatus(lesson) {
       (report.activityRecipe ? ` · activity ${report.activityRecipe}` : '') +
       kitLine +
       reasons;
+    // Local testing log — ignored on static/Vercel hosts; never blocks UI.
+    logAppRun('preview', lesson, report);
   } catch (e) {
     console.warn('Board readiness check failed', e);
   }
+}
+
+function logAppRun(event, lesson, report) {
+  try {
+    const meta = lessonMeta();
+    const payload = {
+      event,
+      title: lesson && lesson.title,
+      topic: (document.getElementById('topic') || {}).value || null,
+      level: meta.level,
+      duration: meta.duration,
+      readiness: report
+        ? {
+            status: report.status,
+            reasons: report.reasons || [],
+            activityRecipe: report.activityRecipe || null,
+            kit: report.kit || null,
+            vocabArt: report.vocabArt || null,
+          }
+        : null,
+      vocab: (lesson && lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v && v.word)).filter(Boolean),
+      warmUp: lesson && lesson.warmUp ? { question: lesson.warmUp.question } : null,
+      activityTitle: lesson && lesson.activity && lesson.activity.title,
+    };
+    fetch('/api/log-run', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }).catch(() => {});
+  } catch (_) { /* ignore */ }
 }
 
 function confirmDraftDownload(kind) {
@@ -407,6 +439,7 @@ async function downloadEDB() {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+    logAppRun('download-edb', d, state.readiness);
   } catch (e) {
     alert('Could not build the board: ' + e.message);
   } finally {
