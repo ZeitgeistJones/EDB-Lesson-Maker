@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ClassIn Lesson Builder (PDF)</title>
+<title>Lesson Board Builder</title>
 <script src="lib/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
@@ -58,13 +58,13 @@
   <div id="screen-input">
     <div class="header">
       <div class="header-sub">ESL Lesson Generator</div>
-      <div class="header-title">ClassIn Lesson Builder</div>
+      <div class="header-title">Lesson Board Builder</div>
     </div>
     <div class="info">
       Type a topic to generate one lesson you can export two ways:
-      <strong>PDF</strong> for ClassIn's document viewer / print, and
-      <strong>ClassIn Board</strong> (`.edb`) — the same lesson as an interactive blackboard
-      (full pages + drag activities on New Words and Wrap).
+      <strong>PDF</strong> for print / document view, and
+      <strong>Interactive Board</strong> (`.edb`) — the same lesson as a drag-and-drop blackboard
+      (full pages + activities on New Words and Wrap).
     </div>
     <div class="card">
       <label class="label">What is the lesson about?</label>
@@ -104,7 +104,7 @@
   <div id="screen-loading" style="display:none;">
     <div class="header">
       <div class="header-sub">ESL Lesson Generator</div>
-      <div class="header-title">ClassIn Lesson Builder</div>
+      <div class="header-title">Lesson Board Builder</div>
     </div>
     <div class="loading">
       <div class="spinner"></div>
@@ -115,7 +115,7 @@
   <div id="screen-preview" style="display:none;">
     <div class="header">
       <div class="header-sub">ESL Lesson Generator</div>
-      <div class="header-title">ClassIn Lesson Builder</div>
+      <div class="header-title">Lesson Board Builder</div>
     </div>
     <div class="preview-header">
       <div>
@@ -126,7 +126,7 @@
     <div id="slides-preview"></div>
     <div class="action-row">
       <button class="download-btn" id="btn-pdf" onclick="downloadPDF()">Download Lesson PDF</button>
-      <button class="download-btn" id="btn-edb" onclick="downloadEDB()">Download ClassIn Board</button>
+      <button class="download-btn" id="btn-edb" onclick="downloadEDB()">Download Board (.edb)</button>
       <button class="download-btn" id="btn-board-pdf" onclick="downloadBoardPreview('pdf')" style="background:linear-gradient(135deg,#0f766e,#14b8a6)">Board Preview PDF</button>
       <button class="download-btn" id="btn-board-png" onclick="downloadBoardPreview('png')" style="background:linear-gradient(135deg,#0369a1,#0ea5e9)">Board Preview PNG</button>
       <button class="new-btn" onclick="reset()">New</button>

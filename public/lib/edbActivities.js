@@ -104,6 +104,8 @@
       Math.floor((dockW - gap * (cols - 1)) / cols),
       Math.floor((dockH - gap * (rows - 1)) / rows)
     );
+    // Cap so dock icons stay peer-sized with word cards (96px honest floor).
+    side = Math.min(side, 96);
     if (side >= 96) return { w: side, h: side, cols, rows };
     // Try one row across the dock
     cols = n;
@@ -642,17 +644,33 @@
     'dentist-character',
   ];
 
-  /** Curated make-a-face dock — clear silhouettes, not the whole bank. */
+  /** Curated make-a-face dock — eyes/mouths/noses/ears/hair/glasses (no ultra-wide brows). */
   const ROLEPLAY_DOCK_FACE = [
     'face-eyes-brown',
     'face-eyes-blue',
+    'face-eyes-green',
+    'face-eyes-dark',
     'face-mouth-smile',
     'face-mouth-open',
     'face-nose-button',
+    'face-nose-round',
+    'face-nose-point',
+    'face-nose-long',
     'face-ears-round',
+    'face-ears-oval',
+    'face-ears-large',
     'hair-messy-brown',
     'hair-pony-blonde',
     'hair-afro-dark',
+    'hair-bob-red',
+    'hair-spiky-blonde',
+    'hair-double-bun',
+    'hair-braids-brown',
+    'hair-wavy-brown',
+    'hair-slick-black',
+    'face-hair-curly',
+    'face-hair-pigtails',
+    'face-hair-shaggy',
     'face-glasses-round',
   ];
 
@@ -675,6 +693,10 @@
         if (out.length >= count) break;
         if (exclude.includes(key)) continue;
         const p = PB.resolve({ word: key, seed, family, exclude });
+        // Curated face parts: mouths up to ~3.2; skip wider (brows ~5+) and
+        // anything that would bake under the 48px grab floor (M10).
+        if (face && p && p.aspect && (p.aspect < 0.45 || p.aspect > 3.0)) continue;
+        if (!face && p && p.aspect && (p.aspect < 0.55 || p.aspect > 2.6)) continue;
         if (p) {
           exclude.push(p.key);
           out.push(p);
@@ -753,34 +775,69 @@
       },
     });
 
-    const tools = roleplayDockProps(lesson, prop, 10);
+    // Face kits ship plenty of parts — use two dock rows when the zone is tall enough.
+    const tools = roleplayDockProps(lesson, prop, 18);
     if (tools.length && dock) {
-      // Aspect-honest dock cells (H7) — square placeDockRow squashes wide eyes/mouths.
-      const gap = 10;
-      const maxH = Math.min(88, Math.max(56, dock.h - 8));
-      const maxCellW = Math.floor((dock.w - gap * Math.max(0, tools.length - 1)) / tools.length);
-      const sizes = tools.map((t) => {
-        const sized = PB.sizeFor(t, { maxH, maxW: Math.max(48, maxCellW) });
-        return { t, w: sized.w, h: sized.h };
-      });
-      const totalW = sizes.reduce((s, x) => s + x.w, 0) + gap * Math.max(0, sizes.length - 1);
-      let originX = dock.x + Math.max(0, Math.floor((dock.w - totalW) / 2));
-      const originY = dock.y + Math.max(0, Math.floor((dock.h - maxH) / 2));
-      sizes.forEach(({ t, w, h }) => {
-        const x = Math.max(dock.x, Math.min(dock.x + dock.w - w, originX));
-        const y = originY + Math.max(0, Math.floor((maxH - h) / 2));
-        L.place(page, {
-          locked: false,
-          kind: 'image',
-          asset: t.path,
-          w, h,
-          intentional: true,
-          _force: { x, y, w, h },
-          role: 'dockPiece',
-          meta: { propKey: t.key, propAspect: t.aspect },
+      const gap = 6;
+      const rowGap = 6;
+      const rows = dock.h >= 120 && tools.length > 10 ? 2 : 1;
+      const cols = Math.ceil(tools.length / rows);
+      const rowH = Math.floor((dock.h - rowGap * (rows - 1) - 4) / rows);
+      const maxH = Math.min(68, Math.max(56, rowH));
+      const maxCellW = Math.floor((dock.w - gap * Math.max(0, cols - 1)) / cols);
+
+      for (let r = 0; r < rows; r++) {
+        const slice = tools.slice(r * cols, (r + 1) * cols);
+        if (!slice.length) continue;
+        // Full relativeScale so dock parts use the row height (not tiny manifest scales).
+        let sized = slice.map((t) => {
+          const dockProp = Object.assign({}, t, { relativeScale: 1 });
+          const s = PB.sizeFor(dockProp, {
+            maxH, maxW: Math.max(56, maxCellW), hardCap: maxH,
+          });
+          return { t, w: s.w, h: s.h };
+        }).filter((x) => Math.min(x.w, x.h) >= 48);
+        const totalW = sized.reduce((s, x) => s + x.w, 0) + gap * Math.max(0, sized.length - 1);
+        if (totalW > dock.w) {
+          const scale = dock.w / totalW;
+          sized = sized.map(({ t, h }) => {
+            const nh = Math.max(48, Math.round(h * scale));
+            const dockProp = Object.assign({}, t, { relativeScale: 1 });
+            const s = PB.sizeFor(dockProp, {
+              maxH: nh, maxW: Math.max(56, Math.floor(maxCellW)), hardCap: nh,
+            });
+            return { t, w: s.w, h: s.h };
+          }).filter((x) => Math.min(x.w, x.h) >= 48);
+          while (sized.length > 4) {
+            const tw = sized.reduce((s, x) => s + x.w, 0) + gap * Math.max(0, sized.length - 1);
+            if (tw <= dock.w) break;
+            sized.pop();
+          }
+        }
+        const usedW = sized.reduce((s, x) => s + x.w, 0) + gap * Math.max(0, sized.length - 1);
+        let originX = dock.x + Math.max(0, Math.floor((dock.w - usedW) / 2));
+        const maxPieceH = sized.reduce((m, x) => Math.max(m, x.h), 0);
+        const rowTop = dock.y + r * (rowH + rowGap);
+        const originY = rowTop + Math.max(0, Math.floor((rowH - maxPieceH) / 2));
+        sized.forEach(({ t, w, h }) => {
+          const x = Math.max(dock.x, Math.min(dock.x + dock.w - w, originX));
+          const y = Math.max(dock.y, Math.min(dock.y + dock.h - h, originY));
+          L.place(page, {
+            locked: false,
+            kind: 'image',
+            asset: t.path,
+            w, h,
+            intentional: true,
+            _force: { x, y, w, h },
+            role: 'dockPiece',
+            meta: { propKey: t.key, propAspect: t.aspect },
+          });
+          originX = x + w + gap;
         });
-        originX = x + w + gap;
-      });
+      }
+      // #region agent log
+      fetch('http://127.0.0.1:7298/ingest/2c7b9048-535d-4975-be12-acca9b0197ba',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'ux-pre',hypothesisId:'H3',location:'edbActivities.js:heroProp',message:'face dock density',data:{toolCount:tools.length,rows,dockH:dock.h,keys:tools.map((t)=>t.key)},timestamp:Date.now()})}).catch(function(){});
+      // #endregion
     }
     page.notes.push('recipe:heroProp');
   }

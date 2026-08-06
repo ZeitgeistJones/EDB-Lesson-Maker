@@ -99,13 +99,13 @@
       targetBay: { x: 800, y: 140, w: 400, h: 260, noOverlap: false },
       rewardPocket: { x: 1100, y: 36, w: 140, h: 80, noOverlap: false },
     },
-    // King EDB stage: hero bleeds to page top; thin dock of roleplay tools below
+    // King EDB stage: hero bleeds to page top; 2-row dock of roleplay tools below
     heroStage: {
       header:    { x: 48, y: 8,   w: 420, h: 56, noOverlap: false },
       bodyText:  { x: 48, y: 52,  w: 400, h: 28, noOverlap: false },
-      artSafe:   { x: 0,  y: 0,   w: 1280, h: 470, noOverlap: false },
-      dock:      { x: 32, y: 480, w: 1216, h: 96, noOverlap: false },
-      targetBay: { x: 120, y: 20, w: 1040, h: 440, noOverlap: false },
+      artSafe:   { x: 0,  y: 0,   w: 1280, h: 440, noOverlap: false },
+      dock:      { x: 16, y: 430, w: 1248, h: 150, noOverlap: false },
+      targetBay: { x: 120, y: 20, w: 1040, h: 410, noOverlap: false },
       rewardPocket: { x: 1120, y: 8, w: 140, h: 48, noOverlap: false },
     },
     wrap: {
@@ -293,10 +293,13 @@
     );
   }
 
-  /** Bottom padding (px) so DOM chrome clears the dock zone. */
+  /** Bottom padding (px) so DOM chrome clears a *bottom* dock zone.
+   *  Side docks (vocab match column) must not steal vertical chrome space. */
   function dockReservePx(pageType) {
     const z = (ZONE_TEMPLATES[pageType] || {}).dock;
     if (!z) return 130;
+    // Side / mid-board docks (e.g. vocab right column) — keep a small footer only.
+    if (z.y < H * 0.55 || z.x >= W * 0.45) return 36;
     return Math.max(130, H - z.y + 8);
   }
 

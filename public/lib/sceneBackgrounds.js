@@ -243,13 +243,14 @@
     'travel-a': 'travel', 'travel-b': 'travel', 'travel-c': 'travel', 'travel-d': 'travel',
     'home-a': 'warm', 'home-b': 'warm', 'home-c': 'warm', 'home-d': 'warm',
     'outdoor-a': 'outdoor', 'outdoor-b': 'outdoor', 'outdoor-c': 'outdoor', 'outdoor-d': 'outdoor',
-    'house-a': 'neutral', 'house-b': 'neutral', 'house-c': 'neutral', 'house-d': 'neutral',
+    'house-a': 'cool', 'house-b': 'cool', 'house-c': 'cool', 'house-d': 'cool',
     'face-a': 'warm', 'face-b': 'warm', 'face-c': 'warm', 'face-d': 'warm',
   };
 
   /**
    * ClassIn house deck — default when no place theme matches.
-   * Face / school / body-part lessons use this (never flesh/skin washes).
+   * Simple tinted walls + tiny corner easter eggs (eyes/faces), not leafy scenery.
+   * Title pins to panel -a (most personality); mid spine prefers -b… for readability.
    */
   const DEFAULT_SET = 'board-house';
 
@@ -289,6 +290,27 @@
     return null;
   }
 
+  // #region agent log
+  function agentDbg(hypothesisId, location, message, data) {
+    const payload = {
+      sessionId: '3c9697',
+      runId: 'picker-pre',
+      hypothesisId,
+      location,
+      message,
+      data: data || {},
+      timestamp: Date.now(),
+    };
+    try {
+      fetch('http://127.0.0.1:7298/ingest/2c7b9048-535d-4975-be12-acca9b0197ba', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '3c9697' },
+        body: JSON.stringify(payload),
+      }).catch(function () {});
+    } catch (_) { /* ignore */ }
+  }
+  // #endregion
+
   function moodsFor(topicWords) {
     const text = ' ' + norm(Array.isArray(topicWords) ? topicWords.join(' ') : topicWords).join(' ') + ' ';
     const out = [...DEFAULT_MOODS];
@@ -307,7 +329,8 @@
 
   function pickFlat(m, index, seed, reason, moods, topicWords, lockedSet, pin) {
     const all = Object.keys(m.flats);
-    const wantSet = lockedSet || setFor(topicWords || seed) || DEFAULT_SET;
+    const fromSetFor = setFor(topicWords || seed);
+    const wantSet = lockedSet || fromSetFor || DEFAULT_SET;
     // Prefer a quiet set (place theme or house default) when ≥2 members exist.
     if (wantSet) {
       const setKeys = all
@@ -315,9 +338,21 @@
         .sort();
       if (setKeys.length >= 2) {
         let key;
+        // Title leans hardest into the deck's personality panel (-a).
+        // Mid spine prefers quieter panels (-b…) when available — readability first.
+        // Wrap pins to last panel for a stable close.
         if (pin === 'open') key = setKeys[0];
         else if (pin === 'close') key = setKeys[setKeys.length - 1];
-        else key = setKeys[(flatOffset(seed, setKeys.length) + (index || 0)) % setKeys.length];
+        else {
+          const midPool = setKeys.length >= 3 ? setKeys.slice(1) : setKeys;
+          key = midPool[(flatOffset(seed, midPool.length) + (index || 0)) % midPool.length];
+        }
+        // #region agent log
+        agentDbg('H2', 'sceneBackgrounds.js:pickFlat', 'set-path pick', {
+          wantSet, fromSetFor, lockedSet: lockedSet || null, pin: pin || null,
+          index: index || 0, key, setKeys, path: 'set', titleLean: pin === 'open',
+        });
+        // #endregion
         return {
           type: 'flat',
           name: key,
@@ -352,6 +387,11 @@
     // Never fall open to the full quiet catalog — that reads as random.
     flatKeys = (preferred.length >= 2 ? preferred : ranked.map((r) => r.k)).slice(0, 4);
     const key = flatKeys[(flatOffset(seed, flatKeys.length) + (index || 0)) % flatKeys.length];
+    // #region agent log
+    agentDbg('H4', 'sceneBackgrounds.js:pickFlat', 'FALLBACK palette lottery', {
+      wantSet, fromSetFor, pin: pin || null, key, band: flatKeys, want, path: 'fallback',
+    });
+    // #endregion
     return {
       type: 'flat',
       name: key,
@@ -431,7 +471,17 @@
     // One mood + one quiet theme-set decision per lesson (place or house default).
     const topicWords = opts.topicWords || opts.seed || '';
     const moods = moodsFor(topicWords);
-    const lockedSet = setFor(topicWords) || DEFAULT_SET;
+    const setMatch = setFor(topicWords);
+    const lockedSet = setMatch || DEFAULT_SET;
+    // #region agent log
+    agentDbg('H3', 'sceneBackgrounds.js:planFor', 'lesson lock', {
+      topicWords: String(topicWords).slice(0, 120),
+      setMatch,
+      lockedSet,
+      usedDefault: !setMatch,
+      moods,
+    });
+    // #endregion
     for (let i = 0; i < sections.length; i++) {
       const sec = sections[i];
       if (!sec.preferFlat && placeScene) {

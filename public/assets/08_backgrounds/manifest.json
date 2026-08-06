@@ -1244,39 +1244,39 @@
   },
   "house-a": {
    "file": "flat_house-a.png",
-   "tone": "ClassIn house wash — paper cream sage, corner sparkles",
+   "tone": "house cool blue wall — clean title panel, no eggs",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
    "set": "board-house",
-   "palette": "neutral"
+   "palette": "cool"
   },
   "house-b": {
    "file": "flat_house-b.png",
-   "tone": "ClassIn house wash — paper cream sage, chalk dots",
+   "tone": "house sage mint wall — tiny smile eggs",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
    "set": "board-house",
-   "palette": "neutral"
+   "palette": "cool"
   },
   "house-c": {
    "file": "flat_house-c.png",
-   "tone": "ClassIn house wash — cream sky band",
+   "tone": "house lavender wall — wink egg",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
    "set": "board-house",
-   "palette": "neutral"
+   "palette": "cool"
   },
   "house-d": {
    "file": "flat_house-d.png",
-   "tone": "ClassIn house wash — soft sage alcove",
+   "tone": "house teal wall — eye pair eggs",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
    "set": "board-house",
-   "palette": "neutral"
+   "palette": "cool"
   },
   "face-a": {
    "file": "flat_face-a.png",

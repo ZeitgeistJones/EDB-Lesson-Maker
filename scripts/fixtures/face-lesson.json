@@ -15,7 +15,8 @@
   "sentenceFrames": [
     "I have ____ eyes.",
     "My ____ is big / small.",
-    "I ____ with my mouth."
+    "I ____ with my mouth.",
+    "My hair is ____."
   ],
   "phonics": {
     "targetWords": [
@@ -63,6 +64,7 @@
     ],
     "comprehensionQuestions": [
       { "question": "What does Mia start with?", "sampleAnswer": "A blank face." },
+      { "question": "What does she add after the smile?", "sampleAnswer": "Curly hair and round glasses." },
       { "question": "What does the face look like at the end?", "sampleAnswer": "Her brother." }
     ],
     "creativeQuestions": [

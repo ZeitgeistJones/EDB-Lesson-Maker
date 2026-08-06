@@ -279,7 +279,7 @@
     });
   }
 
-  const LIGHT_TEXT_PAGES = { frames: 1 };
+  const LIGHT_TEXT_PAGES = {};
 
   function drawDebugZones(p, pageType) {
     if (!window.EdbLayout) return;
@@ -445,6 +445,25 @@
     return body;
   }
 
+  /** Full-height column inside the page shell — keeps flex/grid stretch honest
+   *  after applyPackBg injects an absolute background as the first child. */
+  function chromeColumn(p) {
+    p.style.display = 'flex';
+    p.style.flexDirection = 'column';
+    const col = el('div', {
+      position: 'relative',
+      zIndex: '1',
+      display: 'flex',
+      flexDirection: 'column',
+      flex: '1 1 0%',
+      width: '100%',
+      minHeight: '0',
+      boxSizing: 'border-box',
+    });
+    p.appendChild(col);
+    return col;
+  }
+
   function img(src, style) {
     const i = el('img', Object.assign({
       position: 'absolute',
@@ -527,25 +546,44 @@
     const p = pageShell(THEME_COLORS.title, {
       reserveDock: hasRecipe(boardPlan, 'title'), pageType: 'title',
     });
-    // Dark ink on calm flats — place scenes are reserved for activity/EDB.
-    // data-ink so applyInkPolicy can keep headings dark on pale quiet flats.
-    const eyebrow = el('div', {
-      color: '#475569', fontSize: '18px', fontWeight: '600',
-      textTransform: 'uppercase', letterSpacing: '0.12em', marginTop: '70px',
-    }, 'ClassIn Lesson');
-    eyebrow.dataset.ink = 'hint';
-    p.appendChild(eyebrow);
+    p.style.display = 'flex';
+    p.style.flexDirection = 'row';
+    p.style.alignItems = 'center';
+    p.style.gap = '28px';
+
+    const copy = el('div', {
+      flex: '1',
+      minWidth: '0',
+      position: 'relative',
+      zIndex: '1',
+    });
     const title = el('div', {
-      color: '#0f172a', fontSize: '64px', fontWeight: '800', marginTop: '14px',
-      maxWidth: '900px', lineHeight: '1.08',
+      color: '#0f172a', fontSize: '72px', fontWeight: '800',
+      maxWidth: '640px', lineHeight: '1.05',
     }, lesson.title || 'Lesson');
     title.dataset.ink = 'heading';
-    p.appendChild(title);
+    copy.appendChild(title);
     const metaLine = el('div', {
       color: '#334155', fontSize: '26px', marginTop: '22px', fontStyle: 'italic',
     }, `${meta.level || ''}  ·  ${meta.duration || ''}-minute lesson`);
     metaLine.dataset.ink = 'hint';
-    p.appendChild(metaLine);
+    copy.appendChild(metaLine);
+    p.appendChild(copy);
+
+    // Topic lean: face lessons get a clear charming face showcase on the title.
+    const topicBlob = [lesson.title, ...(lesson.vocabulary || []).map((v) => v.word || v)].join(' ').toLowerCase();
+    if (/\b(faces?|eyes?|nose|mouth|smile|cheek|make.?a.?face)\b/.test(topicBlob)) {
+      p.appendChild(img('assets/04_decoration-ui/title-faces-hero.png', {
+        position: 'relative',
+        width: '440px',
+        height: '440px',
+        flexShrink: '0',
+        zIndex: '1',
+        objectFit: 'contain',
+        background: 'transparent',
+      }));
+    }
+
     drawDebugZones(p, 'title');
     return p;
   }
@@ -557,54 +595,126 @@
     p.style.display = 'flex';
     p.style.flexDirection = 'column';
     p.appendChild(header('Warm Up', '#be123c'));
-    p.appendChild(hint('Think, then share with your teacher.', {
-      marginBottom: '12px', flexShrink: '0',
+    p.appendChild(hint('Say your answer, then color the eyes!', {
+      marginBottom: '10px', flexShrink: '0',
     }));
+    // Question rides the top — not floating alone in dead mid-board space.
+    p.appendChild(card(
+      `<div style="font-size:36px;font-weight:800;color:#1e3a8a;text-align:center;line-height:1.25">${esc(lesson.warmUp?.question || '')}</div>`,
+      {
+        padding: '22px 28px',
+        marginBottom: '14px',
+        width: '100%',
+        maxWidth: '980px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        boxSizing: 'border-box',
+        flexShrink: '0',
+      }
+    ));
+    // Coloring stage: outline eyes fill the leftover board for ClassIn pen work.
     const stage = el('div', {
       flex: '1',
       display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
       minHeight: '0',
+      // Keep fill under 0.5 alpha so metrics don't treat this as an empty chrome card (M3).
+      background: 'rgba(255,255,255,0.35)',
+      borderRadius: '22px',
+      border: '3px dashed #64748b',
+      boxSizing: 'border-box',
+      padding: '12px 20px 16px',
+      maxWidth: '980px',
+      width: '100%',
+      margin: '0 auto',
     });
-    stage.appendChild(card(
-      `<div style="font-size:40px;font-weight:800;color:#1e3a8a;text-align:center;line-height:1.3">${esc(lesson.warmUp?.question || '')}</div>`,
-      { padding: '44px 36px', marginBottom: '0', width: '100%', maxWidth: '980px', boxSizing: 'border-box' }
-    ));
+    stage.appendChild(el('div', {
+      fontSize: '18px',
+      fontWeight: '700',
+      color: '#64748b',
+      marginBottom: '6px',
+      flexShrink: '0',
+    }, 'Color me!'));
+    // Inline SVG so headless bake / html2canvas always captures the outlines.
+    stage.appendChild(el('div', {
+      flex: '1',
+      minHeight: '0',
+      width: '100%',
+      maxWidth: '720px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" width="100%" height="100%" style="max-height:280px" fill="none" aria-label="Eye outlines to color">
+  <g stroke="#334155" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="170" cy="150" rx="110" ry="72"/>
+    <circle cx="170" cy="150" r="36" stroke-width="7"/>
+    <circle cx="170" cy="150" r="14" fill="#334155" stroke="none"/>
+    <path d="M70 88 Q170 28 270 88" stroke-width="7"/>
+    <ellipse cx="470" cy="150" rx="110" ry="72"/>
+    <circle cx="470" cy="150" r="36" stroke-width="7"/>
+    <circle cx="470" cy="150" r="14" fill="#334155" stroke="none"/>
+    <path d="M370 88 Q470 28 570 88" stroke-width="7"/>
+  </g>
+</svg>`));
     p.appendChild(stage);
+    // #region agent log
+    fetch('http://127.0.0.1:7298/ingest/2c7b9048-535d-4975-be12-acca9b0197ba',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'ux-pre',hypothesisId:'H2',location:'renderLessonPages.js:makeWarmUp',message:'warm coloring stage',data:{hasEyesOutline:true,qLen:(lesson.warmUp?.question||'').length},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
     drawDebugZones(p, 'warm');
     return p;
   }
 
   async function makeVocab(lesson, boardPlan) {
     const interactive = hasRecipe(boardPlan, 'newWords');
+    // Vocab match dock is a side column — do not reserve bottom chrome for it.
+    // (reserveDock would crush word cards into the top strip.)
     const p = pageShell(THEME_COLORS.vocab, {
-      reserveDock: interactive, pageType: 'vocab',
+      reserveDock: false, pageType: 'vocab',
     });
+    p.style.display = 'flex';
+    p.style.flexDirection = 'column';
     p.appendChild(header('New Words', '#7c3aed'));
     p.appendChild(hint(
       interactive
         ? 'Say each word. Drag the matching pictures onto the board.'
-        : 'Say each word together.'));
-    const grid = el('div', {
-      display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px',
-      // Keep word cards in bodyText — right column is the icon dock.
-      maxWidth: interactive ? '700px' : '100%',
-      width: '100%',
-    });
+        : 'Say each word together.',
+      { flexShrink: '0' }
+    ));
     const words = (lesson.vocabulary || []).slice(0, 6);
+    const grid = el('div', {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gridTemplateRows: '1fr 1fr 1fr',
+      gap: '18px',
+      // Leave the right column clear for the match dock.
+      maxWidth: interactive ? '680px' : '100%',
+      width: '100%',
+      flex: '1',
+      minHeight: '0',
+      height: '100%',
+      alignContent: 'stretch',
+    });
     for (const v of words) {
-      // Interactive: word-only cards — icons live in the honest dock (≥96px).
-      // Non-interactive fallback: emoji on the card (no postage-stamp dock).
       const glyphHtml = interactive
         ? ''
         : `<div style="width:64px;height:64px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0">${esc(v.emoji || '•')}</div>`;
       grid.appendChild(card(
-        `<div style="display:flex;align-items:center;gap:16px">
+        `<div style="display:flex;align-items:center;justify-content:center;gap:16px;height:100%;width:100%">
           ${glyphHtml}
-          <div style="font-size:30px;font-weight:800">${esc(v.word || '')}</div>
+          <div style="font-size:44px;font-weight:800;line-height:1.05;text-align:center">${esc(v.word || '')}</div>
         </div>`,
-        { marginBottom: '0', padding: '16px 18px' }
+        {
+          marginBottom: '0',
+          padding: '20px 22px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '0',
+          height: '100%',
+          boxSizing: 'border-box',
+        }
       ));
     }
     p.appendChild(grid);
@@ -654,13 +764,30 @@
   function makeVocabSentences(lesson) {
     const p = pageShell(THEME_COLORS.vocab, { pageType: 'vocabSentences' });
     p.appendChild(header('New Words — In Sentences', '#7c3aed'));
-    const body = fillBody(p);
-    const grid = el('div', { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' });
+    const body = fillBody(p, { justifyContent: 'stretch', gap: '16px' });
+    const grid = el('div', {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gridTemplateRows: '1fr 1fr 1fr',
+      gap: '16px',
+      flex: '1',
+      minHeight: '0',
+      height: '100%',
+    });
     (lesson.vocabulary || []).slice(0, 6).forEach((v) => {
       grid.appendChild(card(
-        `<div style="font-size:24px;font-weight:800;margin-bottom:8px">${esc(v.word || '')}</div>
-         <div style="font-size:22px;color:#334155;font-style:italic;line-height:1.35">${esc(v.sentence || '')}</div>`,
-        { marginBottom: '0', padding: '18px 20px' }
+        `<div style="font-size:32px;font-weight:800;margin-bottom:10px;line-height:1.1">${esc(v.word || '')}</div>
+         <div style="font-size:26px;color:#334155;font-style:italic;line-height:1.35">${esc(v.sentence || '')}</div>`,
+        {
+          marginBottom: '0',
+          padding: '22px 24px',
+          height: '100%',
+          minHeight: '0',
+          boxSizing: 'border-box',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }
       ));
     });
     body.appendChild(grid);
@@ -668,28 +795,42 @@
   }
 
   function makeFrames(lesson) {
-    const p = pageShell(THEME_COLORS.frames, { pageType: 'frames' });
-    p.appendChild(header('Sentence Frames', '#c4b5fd'));
-    p.appendChild(hint('Practice out loud. Fill the blanks.', { marginBottom: '12px' }));
-    const body = fillBody(p, {
-      gap: '22px',
-      maxWidth: '980px',
+    const p = pageShell(THEME_COLORS.vocab, { pageType: 'frames' });
+    const col = chromeColumn(p);
+    col.appendChild(header('Sentence Frames', '#7c3aed'));
+    col.appendChild(hint('Say each frame out loud. Fill the blank, then write your sentence.', {
+      marginBottom: '8px', flexShrink: '0',
+    }));
+    const frames = (lesson.sentenceFrames || []).slice(0, 3);
+    const body = el('div', {
+      flex: '1',
+      minHeight: '0',
+      display: 'grid',
+      gridTemplateRows: '1fr 1fr 1fr',
+      gap: '14px',
       width: '100%',
-      margin: '0 auto',
-      justifyContent: 'center',
     });
-    (lesson.sentenceFrames || []).slice(0, 5).forEach((f, i) => {
-      const row = el('div', {
-        display: 'flex', alignItems: 'center', gap: '16px', color: '#fff',
-      });
-      row.appendChild(el('div', {
-        width: '18px', height: '18px', borderRadius: '50%',
-        background: ['#f43f5e', '#fbbf24', '#34d399', '#60a5fa', '#a78bfa'][i % 5],
-        flexShrink: '0',
-      }));
-      row.appendChild(el('div', { fontSize: '34px', fontWeight: '700', lineHeight: '1.25' }, esc(f)));
-      body.appendChild(row);
+    frames.forEach((f, i) => {
+      body.appendChild(card(
+        `<div style="font-size:15px;font-weight:700;color:#64748b;margin-bottom:8px;flex-shrink:0">Frame ${i + 1}</div>
+         <div style="font-size:40px;font-weight:800;color:#1e293b;line-height:1.2;margin-bottom:14px;flex-shrink:0">${esc(f)}</div>
+         <div style="border-bottom:4px dashed #94a3b8;flex:1;min-height:56px;width:100%"></div>`,
+        {
+          padding: '20px 26px',
+          marginBottom: '0',
+          height: '100%',
+          minHeight: '0',
+          display: 'flex',
+          flexDirection: 'column',
+          boxSizing: 'border-box',
+        }
+      ));
     });
+    col.appendChild(body);
+    // #region agent log
+    fetch('http://127.0.0.1:7298/ingest/2c7b9048-535d-4975-be12-acca9b0197ba',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'ux-pre',hypothesisId:'H1',location:'renderLessonPages.js:makeFrames',message:'frames type+write space',data:{frameCount:frames.length,frameFontPx:40,writeMinH:56,layout:'chromeColumn-grid'},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
+    drawDebugZones(p, 'frames');
     return p;
   }
 
@@ -742,7 +883,7 @@
     const solo = !!(opts && opts.solo);
     // One merged 30-min beat (or any solo page) should fill the board; scale up.
     const textSize = solo
-      ? (storyText.length <= 160 ? 40 : storyText.length <= 280 ? 34 : 30)
+      ? (storyText.length <= 220 ? 56 : storyText.length <= 360 ? 48 : 40)
       : (storyText.length <= 80 ? 40 : storyText.length <= 160 ? 34 : 28);
 
     if (solo) {
@@ -753,21 +894,17 @@
           marginBottom: '10px', opacity: '0.9',
         }, esc(caption)));
       }
-      // Short paragraphs + vertical spread so one merged beat fills the card.
-      const chunks = storyText.split(/(?<=\.)\s+/).filter(Boolean);
-      const bodyHtml = chunks.length > 1
-        ? chunks.map((c) => `<p style="margin:0">${esc(c)}</p>`).join('')
-        : esc(storyText);
+      // One flowing paragraph — fill the card; bigger type when there is room.
       const text = card(
-        `<div style="font-size:${textSize}px;line-height:1.35;color:#1e293b;font-weight:600;display:flex;flex-direction:column;justify-content:center;gap:22px;width:100%">${bodyHtml}</div>`,
+        `<div style="font-size:${textSize}px;line-height:1.45;color:#1e293b;font-weight:600;width:100%">${esc(storyText)}</div>`,
         {
           flex: '1',
           marginBottom: '0',
           marginTop: '4px',
-          minHeight: '420px',
-          padding: '32px 36px',
+          minHeight: '0',
+          padding: '36px 40px',
           display: 'flex',
-          alignItems: 'stretch',
+          alignItems: 'flex-start',
           overflow: 'hidden',
         }
       );
@@ -822,47 +959,80 @@
 
   function makeComprehension(lesson) {
     const p = pageShell(THEME_COLORS.comp, { pageType: 'comprehension' });
-    p.appendChild(header('Reading Comprehension', '#1d4ed8'));
-    p.appendChild(hint('Answer in full sentences. No peeking at notes!', { marginBottom: '12px' }));
-    const questions = (lesson.story?.comprehensionQuestions || []).slice(0, 3);
-    const body = fillBody(p, {
-      gap: '18px',
-      maxWidth: '920px',
+    const col = chromeColumn(p);
+    col.appendChild(header('Reading Comprehension', '#1d4ed8'));
+    col.appendChild(hint('Answer in full sentences in the space under each question.', {
+      marginBottom: '6px', flexShrink: '0',
+    }));
+    const questions = (lesson.story?.comprehensionQuestions || []).slice(0, 2);
+    const body = el('div', {
+      flex: '1',
+      minHeight: '0',
+      display: 'grid',
+      gridTemplateRows: '1fr 1fr',
+      gap: '16px',
       width: '100%',
-      margin: '0 auto',
     });
     questions.forEach((q, i) => {
       body.appendChild(card(
-        `<div style="font-size:${questions.length <= 1 ? 34 : 26}px;font-weight:800;line-height:1.35">${i + 1}. ${esc(q.question || '')}</div>`,
-        { padding: '26px 24px', marginBottom: '0' }
+        `<div style="font-size:34px;font-weight:800;line-height:1.25;color:#0f172a;margin-bottom:14px;flex-shrink:0">${i + 1}. ${esc(q.question || '')}</div>
+         <div style="border:2px dashed #94a3b8;border-radius:14px;flex:1;min-height:110px;background:rgba(248,250,252,0.9)"></div>`,
+        {
+          padding: '22px 26px',
+          marginBottom: '0',
+          height: '100%',
+          minHeight: '0',
+          display: 'flex',
+          flexDirection: 'column',
+          boxSizing: 'border-box',
+        }
       ));
     });
+    col.appendChild(body);
+    // #region agent log
+    fetch('http://127.0.0.1:7298/ingest/2c7b9048-535d-4975-be12-acca9b0197ba',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'ux-pre',hypothesisId:'H1',location:'renderLessonPages.js:makeComprehension',message:'comp type+write',data:{qCount:questions.length,qFontPx:34,writeMinH:110,layout:'chromeColumn-grid'},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
     drawDebugZones(p, 'comprehension');
     return p;
   }
 
   function makeCreative(lesson) {
     const p = pageShell(THEME_COLORS.creative, { pageType: 'creative' });
-    p.appendChild(header('Your Ideas!', '#059669'));
-    p.appendChild(hint('Open-ended — no single right answer.', { marginBottom: '12px' }));
-    const body = fillBody(p, {
-      gap: '18px',
-      maxWidth: '920px',
+    const col = chromeColumn(p);
+    col.appendChild(header('Your Ideas!', '#059669'));
+    col.appendChild(hint('Open-ended — no single right answer. Write or draw in the box.', {
+      marginBottom: '8px', flexShrink: '0',
+    }));
+    const body = el('div', {
+      flex: '1',
+      minHeight: '0',
+      display: 'grid',
+      gridTemplateRows: '1fr 1fr',
+      gap: '16px',
       width: '100%',
-      margin: '0 auto',
     });
     (lesson.story?.creativeQuestions || []).slice(0, 2).forEach((q, i) => {
       const text = creativePromptText(q);
       if (!text) return;
       body.appendChild(card(
-        `<div style="font-size:16px;color:#64748b;font-weight:700;margin-bottom:10px">Idea ${i + 1}</div>
-         <div style="font-size:30px;font-weight:800;color:#134e4a;line-height:1.3">${esc(text)}</div>`,
-        { padding: '26px 24px', marginBottom: '0' }
+        `<div style="font-size:16px;color:#64748b;font-weight:700;margin-bottom:8px;flex-shrink:0">Idea ${i + 1}</div>
+         <div style="font-size:36px;font-weight:800;color:#134e4a;line-height:1.25;margin-bottom:14px;flex-shrink:0">${esc(text)}</div>
+         <div style="border:2px dashed #94a3b8;border-radius:14px;flex:1;min-height:120px;background:rgba(248,250,252,0.85)"></div>`,
+        {
+          padding: '22px 26px',
+          marginBottom: '0',
+          height: '100%',
+          minHeight: '0',
+          display: 'flex',
+          flexDirection: 'column',
+          boxSizing: 'border-box',
+        }
       ));
     });
-    p.appendChild(img('assets/04_decoration-ui/confetti.svg', {
-      right: '50px', bottom: '40px', width: '120px', height: '120px',
-    }));
+    col.appendChild(body);
+    // #region agent log
+    fetch('http://127.0.0.1:7298/ingest/2c7b9048-535d-4975-be12-acca9b0197ba',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'ux-pre',hypothesisId:'H1',location:'renderLessonPages.js:makeCreative',message:'ideas type+write',data:{ideaFontPx:36,writeMinH:120,layout:'chromeColumn-grid'},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
     drawDebugZones(p, 'creative');
     return p;
   }
@@ -992,10 +1162,10 @@
       reserveDock: interactive, pageType: 'wrap',
     });
     p.appendChild(el('div', {
-      color: '#9a3412', fontSize: '56px', fontWeight: '800', textAlign: 'center', marginTop: '36px',
+      color: '#9a3412', fontSize: '78px', fontWeight: '800', textAlign: 'center', marginTop: '48px',
     }, 'Great Job!'));
     p.appendChild(el('div', {
-      color: '#c2410c', fontSize: '22px', textAlign: 'center', margin: '12px 0 28px', fontWeight: '600',
+      color: '#c2410c', fontSize: '26px', textAlign: 'center', margin: '16px 0 28px', fontWeight: '600',
     }, "Today's key sentences — say them together"));
     (lesson.reviewSentences || []).slice(0, 3).forEach((s) => {
       p.appendChild(card(

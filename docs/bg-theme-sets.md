@@ -31,9 +31,11 @@ No API key required for the in-house path.
 > **same hue family** and only change value / a small motif.
 >
 > **Never flesh / skin washes.** Do not use peach-blush or pale rose as a
-> body-part metaphor (face lessons must not look like skin). Prefer paper
-> cream, soft sage, pale sky, or a clear *place* palette (clinic teal, travel
-> dawn). Body-part topics use the house deck — they do not get their own hue.
+> body-part metaphor (face lessons must not look like skin). Prefer **cool
+> tinted wall washes** (periwinkle, mint, lavender, teal) — not cream-dominant
+> paper, not leafy landscape fringes. Body-part topics use the house deck.
+> **Charm:** tiny corner easter eggs (eyes / tiny faces) only — never mid-frame
+> scenery or hills.
 
 ## What a “set” is
 
@@ -61,10 +63,18 @@ board without looking random.
 
 ### `board-house` — ClassIn default deck
 
-Palette: **paper cream + soft sage + pale sky**. Empty centre. Corner motifs
-(sparkle, chalk dots, soft sky band, sage alcove). Title pins to `house-a`,
-wrap to `house-d`; middle pages rotate. Use for face / school / any lesson
-without a clear place — never invent a body-part palette.
+**Readability first.** Soft cool **wall tints** (blue / mint / lavender / teal)
+filling the frame — not cream paper, not leafy hills, not flesh peach.
+
+**Charm = tiny corner easter eggs** (a pair of eyes, a wink, tiny smile faces) —
+easy to miss, never mid-frame scenery.
+
+**Title leans hardest:** panel `house-a` is a **clean** cool tint (topic colour,
+no easter eggs) so the lesson title can sit front-and-center. Mid spine uses
+`house-b`… with tiny corner eggs for charm. Wrap pins to `house-d`.
+
+Place lessons (clinic / travel / home / outdoor) still lock their place set;
+their title pins to `-a` as the strongest topic lean.
 
 ## Priority place sets (ChatGPT prompts for bulk regen)
 
