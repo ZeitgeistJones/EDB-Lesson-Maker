@@ -46,6 +46,8 @@ worksheet with a side illustration.
 |-------|--------|
 | Zones (`heroStage`: artSafe y≈0, thin bottom dock) | `public/lib/edbLayout.js` |
 | Recipe + dock lists + stage hero sizing | `public/lib/edbActivities.js` → `heroProp`, `findHeroProp`, `roleplayDockProps` |
+| **Pack kit judgment (universal)** | `PropBank.assessKit(lesson)` — hero + ≥6 dock props in a `pack`; forces `heroProp` |
+| **Ship gate Ready/Draft** | `public/lib/boardReadiness.js` + preview banner / download confirm in `index.html` |
 | Minimal chrome when `recipeId === 'heroProp'` | `public/lib/renderLessonPages.js` → `makeActivity` |
 | Prop resolve / `sizeFor` hardCap | `public/lib/propBank.js` |
 | Dental dock prefs + matrix | `ROLEPLAY_DOCK_DENTAL` + `docs/dental-unit-matrix.md` |

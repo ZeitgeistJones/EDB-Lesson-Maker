@@ -43,6 +43,16 @@
   .action-row { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
   .download-btn { flex: 1; padding: 16px; border-radius: 12px; border: none; background: linear-gradient(135deg, #10b981, #059669); color: #fff; font-size: 17px; font-weight: 700; cursor: pointer; font-family: inherit; }
   .download-btn:hover { opacity: 0.92; }
+  .board-status {
+    margin: 12px 0 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .board-status.ready { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+  .board-status.draft { background: #fffbeb; color: #92400e; border: 1px solid #fcd34d; }
+  .board-status ul { margin: 8px 0 0; padding-left: 18px; }
   .new-btn { padding: 16px 24px; border-radius: 12px; border: 2px solid #e2e8f0; background: #fff; color: #475569; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; }
   .error { background: #fef2f2; border: 1px solid #fecaca; border-radius: 10px; padding: 12px 16px; color: #dc2626; font-size: 14px; margin-bottom: 14px; }
   .info { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 12px 16px; color: #1e40af; font-size: 13px; margin-bottom: 14px; line-height: 1.5; }
@@ -123,6 +133,7 @@
         <div class="preview-meta" id="preview-meta"></div>
       </div>
     </div>
+    <div id="board-status" class="board-status" style="display:none;"></div>
     <div id="slides-preview"></div>
     <div class="action-row">
       <button class="download-btn" id="btn-pdf" onclick="downloadPDF()">Download Lesson PDF</button>
@@ -140,11 +151,12 @@
 <script src="lib/vocabIcons.js"></script>
 <script src="lib/sceneBackgrounds.js"></script>
 <script src="lib/propBank.js"></script>
+<script src="lib/boardReadiness.js"></script>
 <script src="lib/renderLessonPages.js"></script>
 <script src="lib/buildEdb.js"></script>
 <script src="lib/exportBoardPreview.js"></script>
 <script>
-let state = { level: 'B1', duration: '30', phonics: 'auto', lessonData: null };
+let state = { level: 'B1', duration: '30', phonics: 'auto', lessonData: null, readiness: null };
 const MAX_STORY_PAGES = (window.EdbActivities && window.EdbActivities.MAX_STORY_PAGES) || 3;
 
 function pickLevel(btn) {
@@ -232,6 +244,9 @@ function showPreview(d) {
   const pageCount = (d.speakingQuestions?.length || 0) + 9 + storyPages + (phonicsOn ? 1 : 0);
   document.getElementById('preview-meta').textContent = `${state.level} · ${state.duration} min · ~${pageCount} pages`;
 
+  // Judge board readiness async (needs PropBank). Text preview stays instant.
+  refreshBoardStatus(d);
+
   const c = document.getElementById('slides-preview');
   c.innerHTML = '';
   const story = d.story || {};
@@ -285,6 +300,48 @@ function showPreview(d) {
   showScreen('preview');
 }
 
+async function refreshBoardStatus(lesson) {
+  const box = document.getElementById('board-status');
+  if (!box) return;
+  box.style.display = 'none';
+  state.readiness = null;
+  try {
+    if (window.PropBank) await window.PropBank.ready();
+    if (window.VocabIcons && window.VocabIcons.ready) await window.VocabIcons.ready();
+    if (!window.EdbActivities || !window.BoardReadiness) return;
+    const plan = window.EdbActivities.plan
+      ? window.EdbActivities.plan(lesson, lessonMeta())
+      : window.EdbActivities.buildBoardPlan(lesson, lessonMeta());
+    const report = (plan && plan.readiness) || window.BoardReadiness.assess(lesson, plan);
+    state.readiness = report;
+    box.style.display = 'block';
+    box.className = 'board-status ' + (report.status === 'ready' ? 'ready' : 'draft');
+    const kitLine = report.kit
+      ? `<div><strong>Kit:</strong> ${report.kit.pack} · hero ${report.kit.hero} · ${report.kit.docks} dock pieces</div>`
+      : '<div><strong>Kit:</strong> none matched</div>';
+    const reasons = (report.reasons || []).length
+      ? `<ul>${report.reasons.map((r) => `<li>${r}</li>`).join('')}</ul>`
+      : '';
+    box.innerHTML =
+      `<strong>${report.status === 'ready' ? 'Ready to teach' : 'Draft board'}</strong>` +
+      ` · vocab art ${report.vocabArt.hits}/${report.vocabArt.total}` +
+      (report.activityRecipe ? ` · activity ${report.activityRecipe}` : '') +
+      kitLine +
+      reasons;
+  } catch (e) {
+    console.warn('Board readiness check failed', e);
+  }
+}
+
+function confirmDraftDownload(kind) {
+  const r = state.readiness;
+  if (!r || r.status === 'ready') return true;
+  const why = (r.reasons || []).join('\n• ') || 'Board may be thin.';
+  return window.confirm(
+    `This board is marked Draft — download ${kind} anyway?\n\n• ${why}\n\nReady boards use theme kits when available and enough vocab art.`
+  );
+}
+
 async function downloadPDF() {
   const d = state.lessonData;
   if (!d) return;
@@ -305,6 +362,7 @@ async function downloadPDF() {
 async function downloadEDB() {
   const d = state.lessonData;
   if (!d) return;
+  if (!confirmDraftDownload('board (.edb)')) return;
   const btn = document.getElementById('btn-edb');
   const original = btn.textContent;
   btn.textContent = 'Building board…';
@@ -360,6 +418,7 @@ async function downloadEDB() {
 async function downloadBoardPreview(format) {
   const d = state.lessonData;
   if (!d) return;
+  if (!confirmDraftDownload(format === 'png' ? 'PNG preview' : 'PDF preview')) return;
   if (!window.exportBoardPreview) {
     alert('Board preview library failed to load. Refresh and try again.');
     return;

@@ -8,6 +8,7 @@
     "dev": "node --watch server.js",
     "test:bg-picks": "node scripts/smoke-bg-picks.mjs",
     "test:board-bg": "node scripts/verify-board-visual.cjs",
+    "test:board-ready": "node scripts/test-board-readiness.mjs",
     "preflight": "node scripts/preflight-boards.cjs",
     "quality": "node scripts/preflight-boards.cjs",
     "quality:full": "node scripts/preflight-boards.cjs --tier=all",

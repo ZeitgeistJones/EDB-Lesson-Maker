@@ -591,17 +591,19 @@
     const family = PB.familyFor(lesson);
     const seed = (lesson && lesson.title) || '';
     const tags = heroThemeTags(lesson);
-    const isHeroSized = (p) =>
-      !!(p && (p.role === 'hero' || ((p.relativeScale == null ? 0 : p.relativeScale) >= 0.75)));
+    const isHeroSized = PB.isHeroSized || ((p) =>
+      !!(p && (p.role === 'hero' || ((p.relativeScale == null ? 0 : p.relativeScale) >= 0.75))));
     const blob = tags.join(' ');
 
-    // Explicit stage keys when the theme matches — beat PROP_ALIASES.dentist
-    // (standing character) so dental lessons get the open-mouth play surface.
+    // Pack kits first — banking a pack with a hero is enough (castle, jobs…).
+    const kit = PB.assessKit && PB.assessKit(lesson);
+    if (kit && kit.ready && kit.hero && isHeroSized(kit.hero)) return kit.hero;
+
+    // Curated stage surfaces for kits that predate pack tags (face / dental).
     const STAGE_RULES = [
-      // Face kit before dental — "mouth/smile" alone would otherwise steal dental king
       { re: /\bface\b|\bhair\b|\beyes?\b|\bnose\b|\bear\b|make.?a.?face|blank.?face/, key: 'face-blank' },
       { re: /dentist|dental|tooth|teeth|clinic|patient|brush|floss|cavity/, key: 'dental-kid-open-mouth' },
-      { re: /trampolin|bounce|backflip|playground/, key: 'trampoline' },
+      { re: /trampolin|bounce|backflip/, key: 'trampoline' },
     ];
     for (const rule of STAGE_RULES) {
       if (rule.re.test(blob)) {
@@ -674,6 +676,28 @@
     'face-glasses-round',
   ];
 
+  /** Castle build dock — roofs, doors, banners, knights, dragon (not the wall hero). */
+  const ROLEPLAY_DOCK_CASTLE = [
+    'castle-tower-roof-blue',
+    'castle-tower-roof-red',
+    'castle-door-wood-double',
+    'castle-portcullis',
+    'castle-drawbridge',
+    'castle-banner-red-lion',
+    'castle-banner-blue-fleur',
+    'castle-flag-red',
+    'castle-flag-blue',
+    'castle-knight-blue',
+    'castle-knight-red',
+    'castle-knight-mounted',
+    'castle-dragon',
+    'castle-bridge-stone',
+    'castle-tree-round',
+    'castle-chest-gold',
+    'castle-cannon',
+    'castle-pond',
+  ];
+
   function roleplayDockProps(lesson, hero, count) {
     const PB = window.PropBank;
     if (!PB || !PB.loaded()) return [];
@@ -681,26 +705,42 @@
     const seed = ((lesson && lesson.title) || '') + '|roleplay';
     const tags = heroThemeTags(lesson);
     const blob = tags.join(' ') + ' ' + ((hero && hero.key) || '');
+    const kit = PB.assessKit && PB.assessKit(lesson);
     const face = /face|hair|eyes|nose|ear|smile|make.?a.?face|blank/.test(blob)
       || (hero && hero.key === 'face-blank');
     const dental = !face && /dentist|dental|tooth|clinic|mouth|floss|cavity|brush/.test(blob);
-    const prefer = face ? ROLEPLAY_DOCK_FACE : (dental ? ROLEPLAY_DOCK_DENTAL : null);
     const out = [];
     const exclude = [hero && hero.key].filter(Boolean);
+
+    // 1) Curated docks for face / dental (and optional castle shortlist)
+    let prefer = null;
+    if (face) prefer = ROLEPLAY_DOCK_FACE;
+    else if (dental) prefer = ROLEPLAY_DOCK_DENTAL;
+    else if (kit && kit.pack === 'castle') prefer = ROLEPLAY_DOCK_CASTLE;
 
     if (prefer) {
       for (const key of prefer) {
         if (out.length >= count) break;
         if (exclude.includes(key)) continue;
         const p = PB.resolve({ word: key, seed, family, exclude });
-        // Curated face parts: mouths up to ~3.2; skip wider (brows ~5+) and
-        // anything that would bake under the 48px grab floor (M10).
         if (face && p && p.aspect && (p.aspect < 0.45 || p.aspect > 3.0)) continue;
-        if (!face && p && p.aspect && (p.aspect < 0.55 || p.aspect > 2.6)) continue;
+        if (!face && prefer === ROLEPLAY_DOCK_CASTLE && p && p.aspect && (p.aspect < 0.35 || p.aspect > 3.5)) continue;
+        if (!face && prefer === ROLEPLAY_DOCK_DENTAL && p && p.aspect && (p.aspect < 0.55 || p.aspect > 2.6)) continue;
         if (p) {
           exclude.push(p.key);
           out.push(p);
         }
+      }
+    }
+
+    // 2) Universal pack dock — rest of the matched kit
+    if (kit && kit.docks && kit.docks.length) {
+      for (const p of kit.docks) {
+        if (out.length >= count) break;
+        if (exclude.includes(p.key)) continue;
+        if (p.aspect && (p.aspect < 0.3 || p.aspect > 4)) continue;
+        exclude.push(p.key);
+        out.push(p);
       }
     }
 
@@ -959,6 +999,7 @@
     const vocab = vocabList(lesson);
     const hasVocab = vocab.length > 0;
     const assignments = [];
+    const kit = window.PropBank && window.PropBank.assessKit && window.PropBank.assessKit(lesson);
 
     // New Words — honest dock only (≥96px); else chrome shows icons-on-cards
     if (hasVocab && canHonestMatchDock(lesson)) {
@@ -980,14 +1021,15 @@
       });
     }
 
-    // Activity section — hero prop wins when the topic earns a big interactive piece
+    // Activity — pack kit or curated hero forces king stage; never bit-pick
+    // dressUp when a ready kit exists (that was the "fast but empty" failure).
     if (hasVocab) {
-      const hero = findHeroProp(lesson);
+      const hero = (kit && kit.ready && kit.hero) || findHeroProp(lesson);
       if (hero) {
         assignments.push({
           pageKey: 'activity',
           recipeId: 'heroProp',
-          ctx: { hero },
+          ctx: { hero, kit: kit && kit.ready ? kit : null },
         });
       } else {
         assignments.push({
@@ -997,13 +1039,11 @@
       }
     }
 
-    // Wrap is chrome-only for now (orderLine/reward mismatched review blanks)
-
-    return {
-      assignments: capAssignments(assignments, 5),
-      seed,
-      recipes: Object.keys(RECIPES),
-    };
+    const planOut = { assignments, seed, kit: kit && kit.ready ? { pack: kit.pack, hero: kit.hero.key, docks: kit.dockCount } : null };
+    if (window.BoardReadiness && window.BoardReadiness.assess) {
+      planOut.readiness = window.BoardReadiness.assess(lesson, planOut);
+    }
+    return planOut;
   }
 
   /**
@@ -1184,6 +1224,8 @@
       indexByKey,
       assignments: boardPlan.assignments,
       seed: boardPlan.seed,
+      kit: boardPlan.kit || null,
+      readiness: boardPlan.readiness || null,
       // Back-compat slots
       slots: {
         newWords: indexByKey.newWords,
@@ -1198,6 +1240,7 @@
     plan,
     applyToPage,
     dressScenes,
+    plan,
     buildBoardPlan,
     pageTypeForKey,
     speakingCoverRect,

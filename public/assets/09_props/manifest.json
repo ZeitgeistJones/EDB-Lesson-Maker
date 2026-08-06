@@ -4189,7 +4189,7 @@
     },
     "dollhouse-cutaway": {
       "file": "dollhouse-cutaway.png",
-      "role": "object",
+      "role": "hero",
       "tags": [
         "dollhouse",
         "home",
@@ -4202,7 +4202,8 @@
       "alpha": true,
       "aspect": 1.13,
       "bodyHue": 35,
-      "pack": "dollhouse"
+      "pack": "dollhouse",
+      "stageFit": "fit"
     },
     "door": {
       "file": "door.png",

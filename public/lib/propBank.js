@@ -86,6 +86,16 @@
     smile: 'face-mouth-smile',
     hair: 'hair-messy-brown',
     glasses: 'face-glasses-round',
+    // Castle build kit (matte pack) — New Words + docks resolve by lesson vocab
+    castle: 'castle-wall-gate',
+    knight: 'castle-knight-blue',
+    dragon: 'castle-dragon',
+    door: 'castle-door-wood-double',
+    flag: 'castle-flag-red',
+    bridge: 'castle-bridge-stone',
+    crown: 'castle-banner-purple-crown',
+    tower: 'castle-tower-mid-a',
+    banner: 'castle-banner-blue-fleur',
   };
 
   /**
@@ -104,12 +114,22 @@
     'home', 'house', 'apartment', 'kitchen', 'bedroom', 'cafeteria', 'canteen',
     'shopping', 'weather', 'family', 'gym',
   ];
+  // Glossy is only the small lacquered adventure set (wizard-hat, lantern…).
+  // Do NOT put castle/dragon/space/tree here — those kits are matte house art;
+  // a castle lesson that picks glossy filters every castle-* prop out of play.
   const GLOSSY_HINTS = [
-    'adventure', 'quest', 'pirate', 'treasure', 'magic', 'wizard', 'dragon',
-    'fantasy', 'castle', 'camping', 'camp', 'explorer', 'explore', 'jungle',
-    'island', 'safari', 'space', 'journey', 'voyage',
+    'adventure', 'quest', 'pirate', 'treasure', 'magic', 'wizard',
+    'camping', 'camp', 'explorer', 'explore', 'jungle',
+    'island', 'safari', 'journey', 'voyage',
     'travel', 'trip', 'holiday', 'vacation', 'airport', 'flight', 'flying',
     'tourist', 'suitcase',
+  ];
+  const MATTE_THEME_HINTS = [
+    'castle', 'knight', 'dragon', 'medieval', 'moat',
+    'aquarium', 'fish', 'ocean', 'coral',
+    'space', 'rocket', 'astronaut', 'alien', 'station',
+    'tree', 'forest', 'nature', 'season',
+    'dollhouse', 'gashapon',
   ];
 
   /**
@@ -224,6 +244,8 @@
         stageFit: row.stageFit === 'flush' ? 'flush' : (row.stageFit === 'fit' ? 'fit' : null),
         family: row.styleFamily || HOUSE_FAMILY,
         bodyHue: row.bodyHue == null ? null : row.bodyHue,
+        // Theme kit id (castle, jobs, animals…). Absent = loose bank piece.
+        pack: row.pack ? String(row.pack).toLowerCase() : null,
       };
       out.byKey[key] = prop;
       out.all.push(prop);
@@ -280,6 +302,9 @@
       ...((lesson && lesson.vocabulary) || []).flatMap((v) => norm(typeof v === 'string' ? v : v && v.word)),
       ...norm(lesson && lesson.activity && lesson.activity.title),
     ]);
+    // Theme kits we banked as matte win over glossy travel/adventure hints
+    // (e.g. "dragon" alone must not exile the castle pack).
+    for (const hint of MATTE_THEME_HINTS) if (words.has(hint)) return HOUSE_FAMILY;
     for (const hint of MATTE_HINTS) if (words.has(hint)) return HOUSE_FAMILY;
     for (const hint of GLOSSY_HINTS) if (words.has(hint)) return 'glossy-adventure';
     return HOUSE_FAMILY;
@@ -309,6 +334,19 @@
     if (alias) {
       hit = find(alias);
       if (hit) return hit;
+    }
+
+    // Pack-prefixed keys: teacher → job-teacher, dragon → castle-dragon / gashapon-dragon
+    const prefixed = pool.filter(
+      (p) => p.key === key || p.key.endsWith('-' + key) || p.words.includes(key)
+    );
+    if (prefixed.length === 1) return prefixed[0];
+    if (prefixed.length > 1) {
+      // Prefer exact suffix match (job-teacher) over loose word hits
+      const tight = prefixed.filter((p) => p.key === key || p.key.endsWith('-' + key));
+      const band = tight.length ? tight : prefixed;
+      band.sort((a, b) => a.key.length - b.key.length || a.key.localeCompare(b.key));
+      return band[0];
     }
 
     if (key.length > 3 && key.endsWith('s') && !key.endsWith('ss')) {
@@ -444,6 +482,124 @@
     return Math.min(want, have) / Math.max(want, have) >= 1 - (tol == null ? 0.02 : tol);
   }
 
+  const KIT_STOP = new Set([
+    'a', 'an', 'and', 'at', 'for', 'in', 'of', 'on', 'or', 'the', 'to', 'with',
+    'living', 'near', 'next', 'my', 'our', 'your', 'how', 'what', 'when', 'where',
+    'why', 'who', 'i', 'do', 'is', 'are', 'was', 'were', 'be', 'been', 'build',
+    'make', 'our', 'royal', 'lesson', 'about', 'focus',
+  ]);
+
+  /** Theme tokens from title + vocab + activity — used by kit + readiness. */
+  function themeTokens(lesson) {
+    const words = [
+      ...((lesson && lesson.vocabulary) || []).flatMap((v) => {
+        const w = typeof v === 'string' ? v : v && v.word;
+        return w ? norm(w) : [];
+      }),
+      ...norm(lesson && lesson.title),
+      ...norm(lesson && lesson.activity && lesson.activity.title),
+      ...norm(lesson && lesson.activity && lesson.activity.prompt),
+    ];
+    return [...new Set(words.filter((t) => t && !KIT_STOP.has(t) && t.length > 2))];
+  }
+
+  function isHeroSized(p) {
+    return !!(p && (p.role === 'hero' || (p.relativeScale == null ? 0 : p.relativeScale) >= 0.75));
+  }
+
+  /**
+   * Universal theme-kit judgment: does this lesson match a banked pack with a
+   * stage hero + enough dock toys? Pack tags on props are the source of truth —
+   * banking a new kit is enough; no per-theme STAGE_RULES required.
+   *
+   * Returns null when no kit clears the bar (face/dental still use curated
+   * stage rules in EdbActivities as a special case).
+   */
+  function assessKit(lesson) {
+    if (!bank) return null;
+    const tokens = themeTokens(lesson);
+    if (!tokens.length) return null;
+    const family = familyFor(lesson);
+    const pool = bank.all.filter((p) => p.family === family);
+    const byPack = new Map();
+    for (const p of pool) {
+      if (!p.pack) continue;
+      if (!byPack.has(p.pack)) byPack.set(p.pack, []);
+      byPack.get(p.pack).push(p);
+    }
+
+    let best = null;
+    for (const [pack, members] of byPack) {
+      let score = 0;
+      let memberHits = 0;
+      const packTok = norm(pack);
+      const packHit = tokens.some((t) => packTok.includes(t) || t === pack);
+      for (const t of tokens) {
+        if (packTok.includes(t) || t === pack) score += 5;
+      }
+      for (const p of members) {
+        let hitTok = false;
+        for (const t of tokens) {
+          if (p.tags.includes(t)) {
+            score += 3;
+            hitTok = true;
+          }
+          if (p.words.includes(t)) {
+            score += 2;
+            hitTok = true;
+          }
+          if (p.key === t || p.key.endsWith('-' + t)) {
+            score += 4;
+            hitTok = true;
+          }
+        }
+        if (hitTok) memberHits++;
+      }
+      const heroes = members.filter(isHeroSized).sort(
+        (a, b) => (b.relativeScale || 0) - (a.relativeScale || 0) || a.key.localeCompare(b.key)
+      );
+      const hero = heroes[0] || null;
+      const docks = members
+        .filter((p) => hero && p.key !== hero.key && (p.role === 'object' || p.role === 'tool' || !p.role))
+        .sort((a, b) => (a.relativeScale || 0) - (b.relativeScale || 0) || a.key.localeCompare(b.key));
+      // Need a real theme link: pack name in lesson OR ≥2 pack pieces touched.
+      // Stops "dragon" alone from claiming the gashapon machine.
+      const ready = !!(hero && docks.length >= 6 && score >= 8 && (packHit || memberHits >= 2));
+      if (!ready) continue;
+      if (!best || score > best.score || (score === best.score && docks.length > best.dockCount)) {
+        best = {
+          pack,
+          hero,
+          docks,
+          dockCount: docks.length,
+          score,
+          ready: true,
+          source: 'pack',
+          tokens,
+        };
+      }
+    }
+    return best;
+  }
+
+  /** How many vocab words resolve to a real prop (alias / key / tags). */
+  function vocabPropHits(lesson) {
+    const vocab = (lesson && lesson.vocabulary) || [];
+    const family = familyFor(lesson);
+    const seed = (lesson && lesson.title) || '';
+    let hits = 0;
+    const detail = [];
+    for (const v of vocab) {
+      const word = typeof v === 'string' ? v : v && v.word;
+      if (!word) continue;
+      const prop = resolve({ word, seed, family, minScore: 3 });
+      const ok = !!prop;
+      if (ok) hits++;
+      detail.push({ word: String(word), prop: prop ? prop.key : null, ok });
+    }
+    return { hits, total: detail.length, detail };
+  }
+
   /**
    * Load prop bytes for EdbKit.addImage.
    *
@@ -469,6 +625,10 @@
     resolve,
     requestFor,
     familyFor,
+    themeTokens,
+    assessKit,
+    vocabPropHits,
+    isHeroSized,
     sizeFor,
     yFor,
     fillsRect,
