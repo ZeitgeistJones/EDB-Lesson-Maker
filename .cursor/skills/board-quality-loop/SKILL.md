@@ -128,6 +128,21 @@ A charming board that lies to students or cannot be read is worse than a plain o
 
 Metrics never fail the bake. They order your review queue and catch regressions.
 
+## Batching (user workflow)
+
+Prefer **two modes**, not interleaved mid-loop:
+
+1. **Loop mode** — many `quality` / `fullquality` iterations fixing producer code
+   (layout, picker, metrics, king hints, flats when place sets are the issue).
+   Log M7 / missing icons as wishlist rows and **keep going** — do not stop the
+   loop batch to generate a vocab sheet unless the user says so.
+2. **Art mode** — one dedicated pass that burns down many wishlist vocab/prop
+   sheets together (`assets:vocab-sheet` / prop sheets), then re-bake.
+
+When judge says `wishlist` for icons only, append rows and continue other soft
+roots (M5/M8/M9/M10…) if iterations remain. Fetch/wire art only when the user
+opens art mode.
+
 ## Wishlist (fetch later)
 
 **Art:** `docs/asset-wishlist.md` — wrong/missing pictures, no verified stand-in.
