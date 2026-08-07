@@ -4,26 +4,23 @@
   "duration": "60",
   "knownIssues": [
     "Full generative StoryArt still interim — PropBank musician-* cutouts (not scene paintings)",
-    "Match dock deliberately has NO answer-naming caption chips on drag pieces (S26) — words live on numbered pads; do not re-litigate as a blocker"
+    "Match dock deliberately has NO answer-naming caption chips on drag pieces (S26) — words live on numbered pads"
   ],
   "justFixed": [
-    "Dedicated inspire.png (lyre-bulb, keyed alpha) — not brain stand-in",
-    "Story orchestra captions prefer musician-conductor before bare stands (S38)",
-    "skipKing music activity has visible My symphony idea write strip (S39)",
-    "Wrap peer-check moved above review cards + frosted chip so it stays on-board (S36)",
-    "Match dock: numbered pads + no student caption chips on pieces (S26 intentional)",
-    "Teacher timing chips on king/activity headers (S29)",
-    "Wrap Also say recycles missing board vocab (S37)",
-    "Mid-deck flats ≤2; story prop cards always-left (S33/S34)"
+    "Dedicated inspire.png (lyre-bulb, keyed alpha)",
+    "Story orchestra → musician-conductor (S38)",
+    "skipKing write strip My symphony idea (S39)",
+    "Wrap peer-check on-board above cards (S36)",
+    "Match dock numbered pads, no caption chips (S26)",
+    "Timing chips + Also say + midFlat≤2 + story left (S29/S33/S34/S37)"
   ],
   "localChecks": [
-    "verify-classical-compose.mjs: ok (S19–S39; story2=musician-conductor; prodWrite; wrapPeerOnBoard; inspire.png)",
-    "Soft codes S38/S39 added from Manus RWiY revise/4.0"
+    "verify-classical-compose.mjs: ok through S39",
+    "Manus 3Jr6xcP5fCbDXVupySAJ8V pass/99 — all just_fixed HOLDS"
   ],
   "focus": [
-    "Verify JUST FIXED: inspire alpha cutout, story2 musician, write strip, on-board peer check",
-    "Fill just_fixed_results HOLDS/FAIL — do NOT reopen S26 caption chips as blockers",
-    "If overall > 4.0, zpd_challenges only for new misses (full StoryArt)"
+    "Ship / upload EDB when ready",
+    "ZPD next: abstract vocab stress OR two-round production — do not reopen S26 chips"
   ],
-  "notes": "Pass1 Manus RWiYXgfxTfhAFVLakM8rC8 revise/4.0 folded: S38/S39 + peer on-board. Caption-chip ask rejected (answer leak). Re-send pass2."
+  "notes": "manusloopx2 complete. Pass1 RWiY revise/4 → S38/S39. Pass2 3Jr6 pass/99."
 }
