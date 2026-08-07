@@ -88,6 +88,7 @@ Anti-formula section.
 | `beach-warm` | shell, wave fringe, sand dollar, sun corner | wheat, bakery loaf, clinic sparkles |
 | `bakery-warm` | flour-dust haze, dough ball, loaf / baguette, rolling pin, whisk | **wheat sheaf / farm grain**, generic leaves, beach composition copy |
 | `supermarket-cool` | cart silhouette, blank price-tag, tote bag, aisle wall haze | outdoor meadow, bakery dough, clinic tooth |
+| `classical-moon` | indigo haze, soft moon disc, tiny notes / ivy fringe (empty centre) | full terrace photos, piano mid-frame |
 | `aquarium-cool` | bubble cluster, seaweed fringe, tank waterline / glass rim, aqua haze | beach shells, sand, outdoor ocean horizon, farm wheat |
 
 **Bakery example (accept):** a flour haze · b dough + flour · c loaf silhouette ·
@@ -106,6 +107,7 @@ d rolling pin. **Reject:** wheat / wheat / cookie-as-only-signal / leaf alcove.
 | `beach-warm` | beach / ocean / shore | wired (in-house Aug 2026) |
 | `bakery-warm` | bakery / café | wired (in-house Aug 2026) |
 | `supermarket-cool` | supermarket / grocery / market | wired (in-house Aug 2026) |
+| `classical-moon` | compose / classical / orchestra / concert | wired (in-house Aug 2026) + title scene `classical-terrace-moonlit` |
 | `aquarium-cool` | aquarium / fish tank | wired (in-house Aug 2026) |
 | `school-soft` | (legacy) superseded by `board-house` | kept on disk, not picker-default |
 | `face-soft` | **retired** — skin-tone peach read as literal skin | kept on disk, unwired |

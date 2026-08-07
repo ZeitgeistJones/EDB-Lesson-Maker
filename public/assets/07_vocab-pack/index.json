@@ -129,6 +129,11 @@
   "emoji": "🛁",
   "codepoint": "1f6c1"
  },
+ "baton-ivory": {
+  "file": "baton-ivory.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "beach": {
   "file": "beach.png",
   "emoji": "🏖️",
@@ -324,6 +329,11 @@
   "emoji": "🐱",
   "codepoint": "1f431"
  },
+ "cello-ivory": {
+  "file": "cello-ivory.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "chair": {
   "file": "chair.png",
   "emoji": "🪑",
@@ -413,6 +423,11 @@
   "file": "compass.png",
   "emoji": "🧭",
   "codepoint": "1f9ed"
+ },
+ "compose": {
+  "file": "compose.png",
+  "emoji": "",
+  "source": "generated"
  },
  "computer": {
   "file": "computer.png",
@@ -554,6 +569,11 @@
   "emoji": "",
   "source": "generated"
  },
+ "draft": {
+  "file": "draft.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "dragon": {
   "file": "dragon.png",
   "emoji": "",
@@ -608,6 +628,11 @@
   "file": "excited.png",
   "emoji": "🤩",
   "codepoint": "1f929"
+ },
+ "expressive": {
+  "file": "expressive.png",
+  "emoji": "",
+  "source": "generated"
  },
  "eye": {
   "file": "eye.png",
@@ -804,6 +829,16 @@
   "emoji": "😀",
   "codepoint": "1f600"
  },
+ "harmony": {
+  "file": "harmony.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "harp-ivory": {
+  "file": "harp-ivory.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "hat": {
   "file": "hat.png",
   "emoji": "🎩",
@@ -833,6 +868,11 @@
   "file": "homework.png",
   "emoji": "📝",
   "codepoint": "1f4dd"
+ },
+ "horn-ivory": {
+  "file": "horn-ivory.png",
+  "emoji": "",
+  "source": "generated"
  },
  "horse": {
   "file": "horse.png",
@@ -888,6 +928,11 @@
   "file": "injection.png",
   "emoji": "💉",
   "codepoint": "1f489"
+ },
+ "inspire": {
+  "file": "inspire.png",
+  "emoji": "",
+  "source": "generated"
  },
  "island": {
   "file": "island.png",
@@ -994,6 +1039,11 @@
   "emoji": "😷",
   "codepoint": "1f637"
  },
+ "masterpiece": {
+  "file": "masterpiece.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "mat": {
   "file": "mat.png",
   "emoji": "",
@@ -1018,6 +1068,11 @@
   "file": "medicine.png",
   "emoji": "💊",
   "codepoint": "1f48a"
+ },
+ "melody": {
+  "file": "melody.png",
+  "emoji": "",
+  "source": "generated"
  },
  "menu": {
   "file": "menu.png",
@@ -1149,6 +1204,11 @@
   "emoji": "🍊",
   "codepoint": "1f34a"
  },
+ "orchestra": {
+  "file": "orchestra.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "oven": {
   "file": "oven.png",
   "emoji": "",
@@ -1213,6 +1273,11 @@
   "file": "penguin.png",
   "emoji": "🐧",
   "codepoint": "1f427"
+ },
+ "performance": {
+  "file": "performance.png",
+  "emoji": "",
+  "source": "generated"
  },
  "phone": {
   "file": "phone.png",
@@ -1318,6 +1383,11 @@
   "file": "receipt.png",
   "emoji": "🧾",
   "codepoint": "1f9fe"
+ },
+ "rhythm": {
+  "file": "rhythm.png",
+  "emoji": "",
+  "source": "generated"
  },
  "rice": {
   "file": "rice.png",
@@ -1609,6 +1679,11 @@
   "emoji": "",
   "source": "generated"
  },
+ "strum": {
+  "file": "strum.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "student": {
   "file": "student.png",
   "emoji": "🧑‍🎓",
@@ -1668,6 +1743,11 @@
   "file": "teacher.png",
   "emoji": "👩‍🏫",
   "codepoint": "1f469-200d-1f3eb"
+ },
+ "tempo": {
+  "file": "tempo.png",
+  "emoji": "",
+  "source": "generated"
  },
  "tennis": {
   "file": "tennis.png",
@@ -1779,6 +1859,11 @@
   "emoji": "🎺",
   "codepoint": "1f3ba"
  },
+ "trumpet-ivory": {
+  "file": "trumpet-ivory.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "turbulence": {
   "file": "turbulence.png",
   "emoji": "",
@@ -1794,10 +1879,20 @@
   "emoji": "☂️",
   "codepoint": "2602"
  },
+ "unused-metro": {
+  "file": "unused-metro.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "violin": {
   "file": "violin.png",
   "emoji": "🎻",
   "codepoint": "1f3bb"
+ },
+ "violin-ivory": {
+  "file": "violin-ivory.png",
+  "emoji": "",
+  "source": "generated"
  },
  "volcano": {
   "file": "volcano.png",

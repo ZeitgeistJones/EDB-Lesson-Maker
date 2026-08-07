@@ -103,17 +103,8 @@
     team: 'ball',
     // hotel place noun — door.png is the vetted stand-in (not Gemini)
     room: 'door',
-    // Classical compose unit (B1) — distinct pack files; no two words share art
-    compose: 'music',
-    melody: 'song',
-    orchestra: 'violin',
-    rhythm: 'drum',
-    strum: 'guitar',
-    draft: 'notebook',
-    inspire: 'star',
-    performance: 'mask',
-    expressive: 'dance',
-    masterpiece: 'trophy',
+    // Classical compose unit — dedicated ivory/gold pack PNGs (compose.png …);
+    // keep aliases only as fallbacks if a dedicated file is missing.
   };
 
   /**
@@ -154,9 +145,6 @@
     story: '📜',
     planet: '🪐',
     space: '🌌',
-    // Classical compose — pack aliases preferred; these cover gaps (harmony/tempo)
-    harmony: '🎧',
-    tempo: '⏳',
   };
 
   function emojiFor(word, fallback) {

@@ -482,8 +482,21 @@
   function buildSectionList(lesson, meta) {
     const vocab = (lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v.word)).filter(Boolean);
     const topic = lesson.title || '';
+    const topicBlob = [topic, ...vocab].join(' ');
+    // Music / classical title pages earn the terrace (or other) place scene —
+    // chrome pages stay on quiet flats.
+    const musicTitle = !!(
+      window.SceneBackgrounds &&
+      window.SceneBackgrounds.moodsFor &&
+      (window.SceneBackgrounds.moodsFor(topicBlob) || []).includes('music')
+    );
     const sections = [
-      { title: topic || 'Title', tags: ['title', topic], vocabulary: vocab, preferFlat: true },
+      {
+        title: topic || 'Title',
+        tags: ['title', topic, musicTitle ? 'classical' : ''].filter(Boolean),
+        vocabulary: vocab,
+        preferFlat: !musicTitle,
+      },
       { title: 'Warm Up', tags: ['warmup', 'warm-up'], vocabulary: [], preferFlat: true },
       { title: 'New Words', tags: ['vocabulary', 'words', 'matching'], vocabulary: [], preferFlat: true },
     ];

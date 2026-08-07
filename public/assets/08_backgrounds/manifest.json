@@ -943,6 +943,24 @@
     "school",
     "teaching"
    ]
+  },
+  "classical-terrace-moonlit": {
+   "file": "classical-terrace-moonlit.png",
+   "groundY": 420,
+   "category": "music",
+   "tags": [
+    "music",
+    "classical",
+    "piano",
+    "orchestra",
+    "compose",
+    "concert",
+    "masterpiece",
+    "melody",
+    "harmony",
+    "terrace",
+    "moonlit"
+   ]
   }
  },
  "flats": {
@@ -1561,6 +1579,38 @@
    "quiet": true,
    "set": "aquarium-cool",
    "palette": "cool"
+  },
+  "classical-moon-a": {
+   "file": "flat_classical-moon-a.png",
+   "tone": "Indigo-lavender haze, empty centre for classical compose boards",
+   "mood": "music",
+   "textInk": "light",
+   "quiet": true,
+   "set": "classical-moon"
+  },
+  "classical-moon-b": {
+   "file": "flat_classical-moon-b.png",
+   "tone": "Indigo night wash with soft moon glow corner",
+   "mood": "music",
+   "textInk": "light",
+   "quiet": true,
+   "set": "classical-moon"
+  },
+  "classical-moon-c": {
+   "file": "flat_classical-moon-c.png",
+   "tone": "Indigo wash with faint moonlight disc, empty centre",
+   "mood": "music",
+   "textInk": "light",
+   "quiet": true,
+   "set": "classical-moon"
+  },
+  "classical-moon-d": {
+   "file": "flat_classical-moon-d.png",
+   "tone": "Indigo wash with soft ivy and purple blossom fringe",
+   "mood": "music",
+   "textInk": "light",
+   "quiet": true,
+   "set": "classical-moon"
   }
  }
 }

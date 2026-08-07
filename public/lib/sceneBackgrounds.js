@@ -238,6 +238,8 @@
     'window-blue': 'cool', 'sage-leaves': 'cool', 'warm-window': 'warm',
     'world-map': 'travel', 'blue-alcove': 'cool', 'dawn-clouds': 'cool',
     'lavender-strings': 'music', 'cloud-castle': 'fantasy',
+    'classical-moon-a': 'music', 'classical-moon-b': 'music',
+    'classical-moon-c': 'music', 'classical-moon-d': 'music',
     'clinic-a': 'cool', 'clinic-b': 'cool', 'clinic-c': 'cool', 'clinic-d': 'cool',
     'school-a': 'warm', 'school-b': 'warm', 'school-c': 'warm', 'school-d': 'warm',
     'travel-a': 'travel', 'travel-b': 'travel', 'travel-c': 'travel', 'travel-d': 'travel',
@@ -276,6 +278,8 @@
     { re: /\b(markets?|supermarkets?|grocer(?:y|ies)|farmers?\s*markets?)\b/, set: 'supermarket-cool' },
     // Face lessons only — tiny eye/wink eggs. Never the default for castle/school/etc.
     { re: /\b(faces?|eyes?|nose|mouth|cheek|make.?a.?face|blank.?face)\b/, set: 'board-face' },
+    // Classical compose / concert — indigo moon washes (title may still take terrace scene).
+    { re: /\b(compose|composer|composition|orchestra|classical|symphony|concert|masterpiece|melody|harmony|tempo)\b/, set: 'classical-moon' },
   ];
 
   /**
