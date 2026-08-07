@@ -88,8 +88,7 @@
     float: 'boat',
     kick: 'ball',
     dive: 'swim',
-    story: 'book',
-    quiet: 'library',
+    // story / quiet / shelf have own Twemoji pack rows (M7 — no share with book/library)
     towel: 'bathtub',
     market: 'store',
     buy: 'money',
@@ -138,6 +137,12 @@
     // Music unit — only until Twemoji pack rows land; never share piano.png.
     music: '🎵',
     song: '🎶',
+    // Library / space — pack PNGs preferred; glyphs keep isCurated if pack lags.
+    shelf: '🗄️',
+    quiet: '🤫',
+    story: '📜',
+    planet: '🪐',
+    space: '🌌',
   };
 
   function emojiFor(word, fallback) {

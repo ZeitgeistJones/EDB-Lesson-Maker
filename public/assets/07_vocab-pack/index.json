@@ -1249,6 +1249,11 @@
   "emoji": "✈️",
   "codepoint": "2708"
  },
+ "planet": {
+  "file": "planet.png",
+  "emoji": "🪐",
+  "codepoint": "1fa90"
+ },
  "plant": {
   "file": "plant.png",
   "emoji": "🪴",
@@ -1283,6 +1288,11 @@
   "file": "queue.png",
   "emoji": "",
   "source": "generated"
+ },
+ "quiet": {
+  "file": "quiet.png",
+  "emoji": "🤫",
+  "codepoint": "1f92b"
  },
  "rabbit": {
   "file": "rabbit.png",
@@ -1403,6 +1413,11 @@
   "file": "sheep.png",
   "emoji": "🐑",
   "codepoint": "1f411"
+ },
+ "shelf": {
+  "file": "shelf.png",
+  "emoji": "🗄️",
+  "codepoint": "1f5c4"
  },
  "shell": {
   "file": "shell.png",
@@ -1529,6 +1544,11 @@
   "emoji": "🍲",
   "codepoint": "1f372"
  },
+ "space": {
+  "file": "space.png",
+  "emoji": "🌌",
+  "codepoint": "1f30c"
+ },
  "spacious": {
   "file": "spacious.png",
   "emoji": "",
@@ -1573,6 +1593,11 @@
   "file": "storm.png",
   "emoji": "⛈️",
   "codepoint": "26c8"
+ },
+ "story": {
+  "file": "story.png",
+  "emoji": "📜",
+  "codepoint": "1f4dc"
  },
  "strawberry": {
   "file": "strawberry.png",
