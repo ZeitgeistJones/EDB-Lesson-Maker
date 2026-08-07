@@ -3,40 +3,27 @@
   "level": "B1",
   "duration": "60",
   "knownIssues": [
-    "Full generative StoryArt may still be missing — PropBank caption fallback is the interim (now prefers musician-piano / musician-conductor when caption names them)"
+    "Full generative StoryArt still interim — PropBank musician-* cutouts (not scene paintings)",
+    "Match dock deliberately has NO answer-naming caption chips on drag pieces (S26) — words live on numbered pads; do not re-litigate as a blocker"
   ],
   "justFixed": [
-    "normalizeLesson lifts root comprehension so Reading Comp is populated",
-    "Warm-up no longer shows teacher sampleAnswer to students",
-    "King hint: musicians + write/say symphony idea (no 'toys')",
-    "Title aims = board-taught vocab only (slice 0–6) + frosted aims panel; wrap exit ticket",
-    "Grammar aim derived from actual frames (would/opinion honest — S31)",
-    "Generate prompt: B1 frame grammar + comprehension under story.*",
-    "Story side/banner: PropBank match from caption before glyph (S24)",
-    "Story caption chip: no absolute img bleed; desk captions prefer compose-desk",
-    "pickImages always includes every storyN beat (S27)",
-    "inspire pack override retired — dedicated ivory/gold inspire.png (lyre-bulb); verify requires inspire.png not brain",
-    "Story PropBank: piano/orchestra captions prefer musician-* cutouts before bare furniture",
-    "Frame 2 no longer identity-based; story beat 2 guitar→piano; tempo in board vocab",
-    "Teacher timing chips on scene headers INCLUDING king/activity (S29)",
-    "Vocab matchDock: numbered drop-zone pads (S28); pieceToPng prefers data:/pad roles",
-    "Wrap slide navy/slate bookend (S32) — no warm lavender breakaway",
-    "Mid-deck quiet flats capped at ≤2 unique washes (S34)",
-    "Story prop cards locked left across beats — no L/R thrash (S33)",
-    "Activity/king title+hint ink-tagged with slate defaults (S35)",
-    "Wrap exit peer-check prompt (S36)",
-    "Wrap exit recycles all board vocab via Also say: for gaps (S37)"
+    "Dedicated inspire.png (lyre-bulb, keyed alpha) — not brain stand-in",
+    "Story orchestra captions prefer musician-conductor before bare stands (S38)",
+    "skipKing music activity has visible My symphony idea write strip (S39)",
+    "Wrap peer-check moved above review cards + frosted chip so it stays on-board (S36)",
+    "Match dock: numbered pads + no student caption chips on pieces (S26 intentional)",
+    "Teacher timing chips on king/activity headers (S29)",
+    "Wrap Also say recycles missing board vocab (S37)",
+    "Mid-deck flats ≤2; story prop cards always-left (S33/S34)"
   ],
   "localChecks": [
-    "verify-classical-compose.mjs: ok (S19–S37; midFlat≤2; storySide left; no matchPiece labels; king timing; wrap Also say; peer exit)",
-    "test:bg-picks smoke passed after midPool cap",
-    "Soft codes S19–S37; manus schema: scorecard + just_fixed_results + zpd_challenges"
+    "verify-classical-compose.mjs: ok (S19–S39; story2=musician-conductor; prodWrite; wrapPeerOnBoard; inspire.png)",
+    "Soft codes S38/S39 added from Manus RWiY revise/4.0"
   ],
   "focus": [
-    "Verify dedicated inspire.png (lyre-bulb) reads clearly on match dock — not brain, not starburst",
-    "Verify story piano/orchestra beats prefer musician-* PropBank cutouts",
-    "Fill just_fixed_results HOLDS/FAIL; gate_holes if local checks lied",
-    "If overall > 4.0, give zpd_challenges — New misses only (full StoryArt depth)"
+    "Verify JUST FIXED: inspire alpha cutout, story2 musician, write strip, on-board peer check",
+    "Fill just_fixed_results HOLDS/FAIL — do NOT reopen S26 caption chips as blockers",
+    "If overall > 4.0, zpd_challenges only for new misses (full StoryArt)"
   ],
-  "notes": "Assetgap 2026-08-07: dedicated inspire.png + story musician prefer. Re-send live Manus on post-assetgap bake."
+  "notes": "Pass1 Manus RWiYXgfxTfhAFVLakM8rC8 revise/4.0 folded: S38/S39 + peer on-board. Caption-chip ask rejected (answer leak). Re-send pass2."
 }

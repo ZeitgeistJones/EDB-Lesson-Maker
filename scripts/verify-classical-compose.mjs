@@ -303,6 +303,16 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
   const kingTitleInk = !!(actDom && actDom.querySelector && actDom.querySelector('[data-ink="heading"]'));
   const actHintInk = !!(actDom && actDom.querySelector && actDom.querySelector('[data-ink="hint"]'));
   const wrapPeerFeedback = /Peer check/i.test((wrapDom && wrapDom.textContent) || '');
+  const wrapPeerEl = wrapDom && wrapDom.querySelector && wrapDom.querySelector('[data-wrap-peer]');
+  let wrapPeerOnBoard = false;
+  if (wrapPeerEl) {
+    const pr = wrapPeerEl.getBoundingClientRect();
+    const wr = wrapDom.getBoundingClientRect();
+    wrapPeerOnBoard = pr.bottom <= wr.bottom + 2 && pr.top >= wr.top - 2;
+  }
+  const prodWrite = !!(actDom && actDom.querySelector && actDom.querySelector('[data-prod-write]'));
+  const story2Prop = (storyPropKeys || []).find((s) => s.i === 2);
+  const story2Musician = !!(story2Prop && /^musician-/.test(story2Prop.key));
 
   if (window.LessonPages.cleanup) window.LessonPages.cleanup(rendered.host);
 
@@ -343,6 +353,9 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     kingTitleInk,
     actHintInk,
     wrapPeerFeedback,
+    wrapPeerOnBoard,
+    prodWrite,
+    story2Musician,
     framesHintListenFirst: /listen and say/i.test(framesText),
     flatNames: picks.filter((p) => p.type === 'flat').map((p) => p.name),
     houseLeaks: picks.filter((p) => p.type === 'flat' && /^house-/.test(p.name)).map((p) => p.name),
@@ -450,6 +463,19 @@ if (!result.kingTitleInk || !result.actHintInk) {
 }
 if (!result.wrapPeerFeedback) {
   fails.push('wrap missing peer-feedback exit prompt (S36)');
+}
+if (!result.wrapPeerOnBoard) {
+  fails.push('wrap peer-check prompt clipped off board (S36/S38)');
+}
+const story2Prop = (result.storyPropKeys || []).find((s) => s.i === 2);
+if (story2Prop && /orchestra-stands|music-stand/i.test(story2Prop.key)) {
+  fails.push('story2 orchestra caption still bare stands (prefer musician-*): ' + story2Prop.key);
+}
+if (!result.story2Musician) {
+  fails.push('story2 should resolve to musician-* cutout (S38)');
+}
+if (result.skipKing && !result.prodWrite) {
+  fails.push('skipKing activity missing production write strip (S39)');
 }
 
 for (const p of result.pages) {

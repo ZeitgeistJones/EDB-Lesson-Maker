@@ -1,114 +1,71 @@
-﻿# Last Manus response
-
-- task_id: LgtXoJYhXfR7hxq6rf75wR
-- url: https://manus.im/app/LgtXoJYhXfR7hxq6rf75wR
-- verdict: revise
-- score: 84
-- scorecard.overall: 4.2
-- date: 2026-08-07 (shift21 — live after S30–S32; pre S33–S37 fold)
-
-## Structured review
-
-```json
-{
-  "blocking_issues": [
-    "B1 | Page 3 (New Words) | Caption chips on vocab icons name the target word before students drag, removing the inferential challenge. Producer action: remove answer-naming caption chips from student view; reveal only on teacher confirmation.",
-    "B2 | Page 11 (My Song Blueprint) | Timing chip missing on the scene header; misalignment with overall 60-minute plan. Producer action: add a visible timing chip (~5 min) to the header and ensure it remains in exports.",
-    "B3 | Exit ticket vocabulary coverage | Exit ticket recycles only 3 of the 6 target words (compose, melody, orchestra, harmony, inspire, tempo). Producer action: revise wrap-up/exits to include all six words (or add a closing activity that recycles the full set)."
+# Manus pass 1\n\n- URL: https://manus.im/app/RWiYXgfxTfhAFVLakM8rC8\n- verdict: revise\n- score: 4\n\n\json\n{
+  "date": "2026-08-07T18:11:05.991Z",
+  "task_id": "RWiYXgfxTfhAFVLakM8rC8",
+  "task_url": "https://manus.im/app/RWiYXgfxTfhAFVLakM8rC8",
+  "title": "Writing a Symphony for the Orchestra",
+  "dir": "tmp/board-bg-verify/classical-compose",
+  "verdict": "revise",
+  "score": 4,
+  "next_actions": [
+    "1 | Blocking | Scene 2 | Ensure the drag items have caption chips or mapping clarity (explicit caption chips for each vocab item) or replace ambiguous icons with clearly mapped musician-related visuals.",
+    "2 | Blocking | Scene 10 | Add a clear text entry box or designated writing area for the 'write or say your symphony idea' prompt.",
+    "3 | Medium | Scene 7 | Update PropBank selection to ensure an image with actual musicians performing (not bare stands).",
+    "4 | Low | Scene 11 Wrap | Insert explicit peer-check prompt text on wrap slide and ensure 'Also say' cascading prompts are visible to students."
   ],
-  "classin_fit": {
-    "gaps": [
-      "Caption-chip naming conflicts on New Words drag-zone undermines inferential practice (S24)",
-      "Missing per-scene timing chips on longer-scaffolded beats (≥45 min) on additional pages",
-      "Exit ticket vocabulary coverage incomplete (must recycle all target words)"
-    ],
-    "strengths": [
-      "Clear board structure with frosted aims on title slide",
-      "Vocab and grammar aims aligned with frames",
-      "Rigor for ClassIn interactions (drag-and-drop, captions, drop-zones) generally well designed"
-    ]
-  },
-  "edb_alignment": {
-    "gaps": [
-      "Exit ticket does not consistently recycle all target vocabulary in practice"
-    ],
-    "strengths": [
-      "Aims list includes all six target words on the title slide",
-      "Grammar aim matches frames (second conditional in Frame 2; opinion/planning frames in Frames 1 & 3)"
-    ]
-  },
-  "engagement_and_pacing": [
-    "Strengths: coherent 3-beat story arc linked to reading comprehension; warm-up and open-ended sections promote student talk. Opportunities: improve consistency of timing cues across pages and ensure per-scene chips guide pace on all longer sections."
+  "blocking_issues": [
+    "B1: Scene 2 (New Words) – Inspire image caption/asset mapping not captioned; drop-zone items lack caption chips for clear mapping",
+    "B2: Scene 10 (My Song Blueprint) – King activity writing prompt lacks a dedicated text input box or writing area for student response"
   ],
   "gate_holes": [
-    "gate_hole check: inspire pack override → brain.png; claimed: pass; board_evidence: Caption chips on draggable icons name the target word before the drag; severity: blocking",
-    "gate_hole check: Teacher timing chips (~N min) on scene headers; claimed: pass; board_evidence: Page 11 missing timing chip; severity: medium"
-  ],
-  "just_fixed_results": [
-    "HOLDS|normalizeLesson lifts root comprehension|Board evidence: 3 questions present, grounded in story",
-    "HOLDS|Warm-up no longer shows teacher sampleAnswer to students|Board evidence: Only placeholder text visible",
-    "HOLDS|King hint: musicians + write/say symphony idea (no 'toys')|Board evidence: Instruction correctly references musicians and symphony idea",
-    "HOLDS|Title aims = board-taught vocab only (slice 0–6) + frosted aims panel; wrap exit ticket|Board evidence: All 6 words present; frosted panel present",
-    "HOLDS|Grammar aim derived from actual frames (would/opinion honest — S31)|Board evidence: Second conditional and opinion frames accurately labelled",
-    "HOLDS|Generate prompt: B1 frame grammar + comprehension under story.*|Board evidence: Frames are B1; comprehension is story-grounded",
-    "HOLDS|Story side/banner: PropBank match from caption before glyph (S24)|Board evidence: All 3 beats have descriptive captions",
-    "HOLDS|Story caption chip: no absolute img bleed; desk captions prefer compose-desk|Board evidence: Caption chips contained within orange cards",
-    "HOLDS|pickImages always includes every storyN beat (S27)|Board evidence: 3 beats present",
-    "FAIL|inspire pack override → brain.png; no student answer-naming match captions (S26)|Board evidence: Caption chips on draggable icons still name the target word",
-    "HOLDS|Frame 2 no longer identity-based; story beat 2 guitar→piano; tempo in board vocab|Board evidence: Piano in beat 2; tempo in vocab",
-    "FAIL|Teacher timing chips (~N min) on scene headers|Board evidence: Page 11 missing timing chip",
-    "HOLDS|Vocab matchDock: numbered drop-zone pads (S28); pieceToPng prefers data:/pad roles|Board evidence: Pads are numbered 1–6",
-    "HOLDS|Wrap slide navy/slate bookend (S32) — no warm lavender breakaway|Board evidence: Palette consistency kept"
-  ],
-  "language_accuracy": [
-    "Frame grammar alignment appears accurate to the frames; minor lexical refinements could be considered for B1 level"
+    "- check: verify-classical-compose.mjs, claimed: pass, board_evidence: Story beat 2 (page 7) shows bare stands not musician cutouts, severity: medium",
+    "- check: wrap exit peer-check prompt (S36), claimed: pass, board_evidence: Wrap slide lacks explicit peer-check prompt, severity: low"
   ],
   "method_feedback": [
-    "inspire pack override|Caption naming persists in draggable icons, undermining the no-caption-naming rule.|Update the capture/visibility logic so student view hides the target word captions; reveal only on teacher confirmation.",
-    "teacher timing chips check|Page 11 missing timing chip despite prior pass.|Extend the verification script to scan all scene headers for timing chips and include Page 11 in the check."
+    "- item: Story PropBank: piano/orchestra captions prefer musician-* cutouts before bare furniture",
+    "  issue: In Beat 2/Beat 3 visuals, musician cutouts are not consistently used; some slides show inanimate props instead of musician figures.",
+    "  recommendation: Enforce a rule that story beats with performance themes use musician cutouts first; update asset library and gating logic to prefer human performers over static props."
   ],
-  "next_actions": [
-    "Blocking|Page 3|Remove answer-naming caption chips from vocab match icons; ensure 1:1 icon→word mapping without visible target word on student view",
-    "High|Page 11|Add timing chip (~5 min) to scene header and ensure visibility in exports",
-    "Medium|Page 12|Revise exit ticket to include all six target vocabulary words",
-    "Medium|Pages 6-8|Standardize story prop card side across beats (left vs right) to reduce scanning friction",
-    "Low|Page 2|Maintain warm-up with no sample answer; verify there is no teacher model leakage"
+  "just_fixed_results": [
+    "normalizeLesson lifts root comprehension so Reading Comp is populated | Page 8 has 3 full sentence questions based on the story. | HOLDS",
+    " Warm-up no longer shows teacher sampleAnswer to students | Page 1 shows only the question and a blank space for student input. | HOLDS",
+    " King hint: musicians + write/say symphony idea (no 'toys') | Page 10 says \"Drag musicians onto the stage. Then write or say your symphony idea in 1–2 sentences.\" | HOLDS",
+    " Title aims = board-taught vocab only (slice 0–6) + frosted aims panel; wrap exit ticket | Page 0 shows the exact 6 words taught (compose, melody, orchestra, harmony, inspire, tempo) on a frosted panel. Wrap ticket recycles them. | HOLDS",
+    " Grammar aim derived from actual frames (would/opinion honest — S31) | Page 0 says \"practise hypothetical (If..., I would...) + opinion / planning frames.\" Page 4 frames match this. | HOLDS",
+    " Generate prompt: B1 frame grammar + comprehension under story.* | Frames are B1 level; comprehension questions accurately reflect the story beats. | HOLDS",
+    " Story side/banner: PropBank match from caption before glyph (S24) | Story slides (5, 6, 7) have prop cards with captions below the images (e.g., \"A musician sitting at a desk with papers.\"). | HOLDS",
+    " Story caption chip: no absolute img bleed; desk captions prefer compose-desk | Images fit well within the prop cards without bleeding. Desk caption on page 5 is appropriate. | HOLDS",
+    " pickImages always includes every storyN beat (S27) | Story beats 0, 1, and 2 are present and visually distinct. | HOLDS",
+    " inspire pack override retired — dedicated ivory/gold inspire.png (lyre-bulb); verify requires inspire.png not brain | The image for inspire on page 2 is a lightbulb with a lyre inside. | HOLDS",
+    " Story PropBank: piano/orchestra captions prefer musician-* cutouts before bare furniture | Page 6 shows Elias playing piano; page 7 shows a bare orchestra stand, not musician cutouts. | FAIL",
+    " Frame 2 no longer identity-based; story beat 2 guitar→piano; tempo in board vocab | Frame 2 is \"If I could compose a song, I would add ___ to make it feel ___.\" Story beat 1 is piano. Tempo is in vocab. | HOLDS",
+    " Teacher timing chips on scene headers INCLUDING king/activity (S29) | Timing chips (~4 min, ~6 min, etc.) are present on all scene headers, including page 10 (My Song Blueprint). | HOLDS",
+    " Vocab matchDock: numbered drop-zone pads (S28); pieceToPng prefers data:/pad roles | Page 2 has numbered drop-zone pads (1-6) for the vocab words. | HOLDS",
+    " Wrap slide navy/slate bookend (S32) — no warm lavender breakaway | Page 11 uses the same navy background as the title slide. | HOLDS",
+    " Mid-deck quiet flats capped at ≤2 unique washes (S34) | The deck uses a consistent dark blue/slate gradient for the mid-deck slides. | HOLDS",
+    " Story prop cards locked left across beats — no L/R thrash (S33) | Prop cards on pages 5, 6, and 7 are all locked to the left side. | HOLDS",
+    " Activity/king title+hint ink-tagged with slate defaults (S35) | Page 10 title and hint text are white, legible against the background. | HOLDS",
+    " Wrap exit peer-check prompt (S36) | Not clearly visible on page 11; instruction just says \"Exit ticket — say them together\". | FAIL",
+    " Wrap exit recycles all board vocab via Also say: for gaps (S37) | Page 11 includes \"Also say: melody · orchestra · tempo\" at the bottom. | HOLDS"
   ],
-  "nice_to_haves": [
-    "Add a 100% vocabulary recycling step at wrap-up or reading comprehension to ensure full coverage",
-    "Introduce a cross-page palette check to guarantee ≥3 background registers are not introduced",
-    "Add a teacher-facing quick-check list for per-scene timing, caption behavior, and prop-side consistency"
-  ],
-  "score": 84,
   "scorecard": {
-    "classin_delivery": 3.5,
-    "completeness": 4.2,
-    "edb_alignment": 4.5,
-    "esl_pedagogy": 4.8,
-    "notes": "Two gating issues impact delivery quality; address them in this rev.",
-    "overall": 4.2,
+    "classin_delivery": 4,
+    "completeness": 4,
+    "edb_alignment": 5,
+    "esl_pedagogy": 4,
+    "notes": "Minor interactive gaps remain (caption chips, input box) but overall solid alignment and pacing.",
+    "overall": 4,
     "ppt_like_quality": 4
   },
-  "verdict": "revise",
   "zpd_challenges": [
-    "1) Exit ticket vocabulary coverage expansion to recycle all six target words (Format Challenge). 2) Add consistent per-scene timing chips across longer beats and ensure visibility in export.",
-    "zpd_focus_notes_2nd_iteration_for_producer: In Tasks with 60-minute length, strengthen gating by adding per-scene timing chips and ensuring exit tickets reinforce all vocabulary Words"
-  ]
-}
-```
-
-## Folded this shift (post-review producer)
-
-| Manus | Producer |
-|-------|----------|
-| B1 caption chips | `matchDock` drop `label`; `pieceToPng` never captions `matchPiece`; verify on piece.label; S26 |
-| B2 activity timing | king header timing chip; S29 + actTimingChip gate |
-| B3 exit vocab | wrap `Also say:` for missing board words; S37 tagged aims/also |
-| Story L/R | always-left; S33 |
-| Mid-deck flats | midPool ≤2; S34 |
-| Instruction contrast | ink-tagged king title + slate hints; S35 |
-| Peer exit | Peer check line; S36 |
-
-## Packet images
-
-page-0-title, page-2-newWords, page-4-frames, page-5-story0, page-6-story1, page-7-story2, page-8-comprehension, page-10-activity, page-11-wrap, page-1-warm, page-3-vocabSentences, page-9-creative
+    "Topic Expansion / multi-beat PropBank consistency (iteration 2)",
+    "Format Challenge / ensure explicit production input areas on all king/production slides"
+  ],
+  "passoff": {
+    "file": "scripts/manus/passoffs/classical-compose.json",
+    "known": 1,
+    "fixed": 20,
+    "gates": 3,
+    "focus": 4,
+    "brief_chars": 4133
+  }
+}\n\\

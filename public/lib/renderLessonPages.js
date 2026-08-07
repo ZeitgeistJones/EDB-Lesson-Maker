@@ -1135,22 +1135,20 @@
           : orchestraScene
             ? orchestraPrefer
             : themePrefer;
-      const prefer = preferList.filter((w) => hay.includes(w.replace(/^musician-/, '').replace(/-/g, ' '))
+      let prefer = preferList.filter((w) => hay.includes(w.replace(/^musician-/, '').replace(/-/g, ' '))
         || hay.includes(w.split('-').pop()));
+      // Force caption-local keys first (unshift reverses array order — concat instead).
       if (deskScene) {
-        ['compose-desk', 'desk'].forEach((w) => {
-          if (!prefer.includes(w)) prefer.unshift(w);
-        });
+        prefer = ['compose-desk', 'desk', ...prefer.filter((w) => w !== 'compose-desk' && w !== 'desk')];
       }
       if (pianoScene) {
-        ['musician-piano', 'grand-piano'].forEach((w) => {
-          if (!prefer.includes(w)) prefer.unshift(w);
-        });
+        prefer = ['musician-piano', 'grand-piano', ...prefer.filter((w) => w !== 'musician-piano' && w !== 'grand-piano')];
       }
       if (orchestraScene) {
-        ['musician-conductor', 'orchestra-stands'].forEach((w) => {
-          if (!prefer.includes(w)) prefer.unshift(w);
-        });
+        prefer = [
+          'musician-conductor', 'musician-violin', 'musician-cello',
+          ...prefer.filter((w) => !/^musician-|^orchestra-stands$|^conductor-podium$/.test(w)),
+        ];
       }
       const stop = new Set([
         'with', 'from', 'that', 'this', 'have', 'sitting', 'local', 'near',
@@ -1164,7 +1162,7 @@
       ).slice(0, 12);
       const exclude = [];
       const family = PB.familyFor ? PB.familyFor(lesson) : null;
-      const sharp = PB.isDockSharp || (() => true);
+      // Story side art is not a dock — allow sharp and soft props (conductor bust OK).
       for (const w of tryWords) {
         const prop = PB.resolve({
           word: w,
@@ -1177,8 +1175,16 @@
         exclude.push(prop.key);
         // Desk caption must not settle on loose orchestra furniture.
         if (deskScene && /orchestra-stands|music-stand/.test(prop.key)) continue;
-        if (!sharp(prop)) continue;
+        // Orchestra/performance captions: musicians before bare stands.
+        if (orchestraScene && /orchestra-stands|music-stand|conductor-podium/.test(prop.key)) continue;
         return { type: 'prop', src: prop.path, key: prop.key };
+      }
+      // Soft fallback: allow stands only after musician keys failed.
+      if (orchestraScene) {
+        for (const w of ['orchestra-stands', 'conductor-podium']) {
+          const prop = PB.resolve({ word: w, seed: cue + '|fb|' + w, family, exclude, minScore: 3 });
+          if (prop && prop.path) return { type: 'prop', src: prop.path, key: prop.key };
+        }
       }
     }
     return { type: 'emoji', emoji: themeEmoji(cue) };
@@ -1644,6 +1650,33 @@
       p.appendChild(hint(kingHint, {
         textAlign: 'left', lineHeight: '1.3', maxWidth: '420px',
       }));
+      // skipKing terrace (music) still asks write/say — give a visible write strip
+      // so production isn't oral-only (Manus B2 on classical-compose).
+      const actAssign = (boardPlan.assignments || []).find((a) => a.pageKey === 'activity');
+      const skipKing = !!(actAssign && actAssign.ctx && actAssign.ctx.skipKing);
+      if (skipKing && /write or say|say or write/i.test(kingHint)) {
+        const strip = el('div', {
+          position: 'absolute',
+          left: '28px',
+          top: '118px',
+          width: '460px',
+          zIndex: '3',
+          background: 'rgba(248,250,252,0.94)',
+          border: '2px dashed rgba(51,65,85,0.55)',
+          borderRadius: '14px',
+          padding: '14px 16px',
+          boxSizing: 'border-box',
+          color: '#0f172a',
+          fontSize: '20px',
+          fontWeight: '700',
+          lineHeight: '1.45',
+          boxShadow: '0 2px 10px rgba(15,23,42,0.12)',
+        });
+        strip.dataset.prodWrite = '1';
+        strip.dataset.ink = 'hint';
+        strip.innerHTML = 'My symphony idea:<br><span style="display:block;margin-top:10px;border-bottom:2px solid #94a3b8;min-height:28px"></span><span style="display:block;margin-top:12px;border-bottom:2px solid #94a3b8;min-height:28px"></span>';
+        p.appendChild(strip);
+      }
       drawDebugZones(p, pageType);
       return p;
     }
@@ -1705,13 +1738,24 @@
       p.appendChild(aimsLine);
     }
     p.appendChild(el('div', {
-      color: '#fbbf24', fontSize: '24px', textAlign: 'center', margin: '8px 0 16px', fontWeight: '600',
+      color: '#fbbf24', fontSize: '24px', textAlign: 'center', margin: '8px 0 8px', fontWeight: '600',
     }, 'Exit ticket — say them together'));
+    // Peer check must sit ABOVE review cards so it stays on the 590px board
+    // (Manus gate_hole: peer line was in DOM but clipped under overflowing cards).
+    const peer = el('div', {
+      color: '#fde68a', fontSize: '22px', textAlign: 'center', margin: '0 40px 12px',
+      fontWeight: '700', lineHeight: '1.35',
+      background: 'rgba(15,23,42,0.55)',
+      borderRadius: '12px',
+      padding: '8px 14px',
+    }, 'Peer check: tell a partner one word or sentence they used well.');
+    peer.dataset.wrapPeer = '1';
+    p.appendChild(peer);
     const review = (lesson.reviewSentences || []).slice(0, 3);
     review.forEach((s) => {
       p.appendChild(card(
-        `<div style="font-size:26px;text-align:center;font-weight:700;line-height:1.35;color:#0f172a">${esc(s)}</div>`,
-        { maxWidth: '900px', margin: '0 auto 12px', padding: '16px 22px' }
+        `<div style="font-size:24px;text-align:center;font-weight:700;line-height:1.3;color:#0f172a">${esc(s)}</div>`,
+        { maxWidth: '900px', margin: '0 auto 8px', padding: '12px 18px' }
       ));
     });
     // Manus B3: exit must recycle all board-taught words, not only 3 sentences.
@@ -1723,17 +1767,12 @@
       .filter((w) => !new RegExp(`\\b${String(w).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(exitHay));
     if (exitMissing.length) {
       const also = card(
-        `<div style="font-size:22px;text-align:center;font-weight:700;line-height:1.35;color:#0f172a">Also say: ${esc(exitMissing.join(' · '))}</div>`,
-        { maxWidth: '900px', margin: '0 auto 12px', padding: '14px 20px' }
+        `<div style="font-size:20px;text-align:center;font-weight:700;line-height:1.3;color:#0f172a">Also say: ${esc(exitMissing.join(' · '))}</div>`,
+        { maxWidth: '900px', margin: '0 auto 8px', padding: '10px 16px' }
       );
       also.dataset.wrapExitAlso = '1';
       p.appendChild(also);
     }
-    // Manus nice-to-have: quick peer-feedback beat on the exit (higher engagement).
-    p.appendChild(el('div', {
-      color: '#e2e8f0', fontSize: '20px', textAlign: 'center', margin: '10px 48px 0',
-      fontWeight: '600', lineHeight: '1.35',
-    }, 'Peer check: tell a partner one word or sentence they used well.'));
     p.appendChild(img('assets/04_decoration-ui/confetti.svg', {
       left: '40px', bottom: '36px', width: '110px', height: '110px',
     }));

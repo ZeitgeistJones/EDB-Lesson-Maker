@@ -180,6 +180,8 @@ const SOFT = {
   S35: 'Activity/king instruction chrome is ink-tagged (heading+hint) with slate-weight defaults — not low-contrast purple/gray on scenes',
   S36: 'Wrap exit includes a short peer-feedback prompt (not only Great Job + review sentences)',
   S37: 'Wrap exit recycles all board-taught vocab (review sentences and/or Also say: line — not a 3-word subset)',
+  S38: 'Orchestra/performance story captions prefer musician-* PropBank cutouts over bare stands/podium furniture',
+  S39: 'skipKing / write-or-say king activities show a visible production write strip (not oral-only)',
 };
 
 /**
