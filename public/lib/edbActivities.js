@@ -707,6 +707,20 @@
     'castle-tower-roof',
   ];
 
+  /** Space station build dock — sharp in-house cutouts only (MIN_DOCK_SRC / C8). */
+  const ROLEPLAY_DOCK_SPACE = [
+    'space-helmet-white',
+    'space-jetpack-orange',
+    'space-wrench-blue',
+    'space-flagpole-blue',
+    'space-dish-teal',
+    'space-flashlight-yellow',
+    'space-radio-olive',
+    'space-o2-tank-cyan',
+    'space-moon-rock',
+    'space-cubesat-gray',
+  ];
+
   /** Trampoline / bounce lab — gym toys kids drag onto the king. */
   const ROLEPLAY_DOCK_TRAMPOLINE = [
     'gym-mat',
@@ -749,12 +763,13 @@
     const out = [];
     const exclude = [hero && hero.key].filter(Boolean);
 
-    // 1) Curated docks for face / dental / trampoline / castle
+    // 1) Curated docks for face / dental / trampoline / castle / space
     let prefer = null;
     if (face) prefer = ROLEPLAY_DOCK_FACE;
     else if (dental) prefer = ROLEPLAY_DOCK_DENTAL;
     else if (trampoline) prefer = ROLEPLAY_DOCK_TRAMPOLINE;
     else if (kit && kit.pack === 'castle') prefer = ROLEPLAY_DOCK_CASTLE;
+    else if (kit && kit.pack === 'space') prefer = ROLEPLAY_DOCK_SPACE;
 
     if (prefer) {
       for (const key of prefer) {
@@ -764,6 +779,7 @@
         if (!p || !sharp(p)) continue;
         if (face && p.aspect && (p.aspect < 0.45 || p.aspect > 3.0)) continue;
         if (!face && prefer === ROLEPLAY_DOCK_CASTLE && p.aspect && (p.aspect < 0.35 || p.aspect > 3.5)) continue;
+        if (!face && prefer === ROLEPLAY_DOCK_SPACE && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && prefer === ROLEPLAY_DOCK_DENTAL && p.aspect && (p.aspect < 0.3 || p.aspect > 2.6)) continue;
         exclude.push(p.key);
         out.push(p);
