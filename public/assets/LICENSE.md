@@ -15,12 +15,16 @@ Do **not** redistribute these folders as a standalone competing stock pack.
 | Board backgrounds (flats) | `08_backgrounds/img/flat_*.png` | Generated with OpenAI / Cursor image models for this project | Verify OpenAI terms before commercial resale | House default `board-house` (in-house Aug 2026) + place sets `clinic-cool`, `travel-air`, `home-warm`, `outdoor-fresh` (ChatGPT); legacy `school-soft` / retired `face-soft` kept on disk | 2026-08-05 |
 | Board props (cutouts) | `09_props/img/` | Generated with OpenAI image models for this project | Verify OpenAI terms before commercial resale | ~40 empty shells: covers, dress-up, speaking tokens, furniture, phonics tools, collage props | 2026-08-02 |
 | Board props (alpha cutouts) | `09_props/img/` (`alpha: true` in manifest) | Generated with OpenAI / Cursor image models for this project | Verify current terms before commercial resale | Includes ChatGPT black-field imports (dental kit + face kit blank/features/hair Aug 2026); keyed via `scripts/import-prop.mjs` | 2026-08-05 |
+| Kenney Game Assets | `tmp/asset-banks/kenney/` (staging; pointer in `05_source-svg/kenney/`) | CC0 1.0 | Not required (credit Kenney appreciated) | ESL-sorted junctions under `by-topic/` — animals, sports, space Side, nature, farm, backgrounds; 3D kits held as source only. Do not resell packs as stock. | 2026-08-07 |
 
 ## Manual drops still recommended
 
 1. **Humaaans** full library from https://www.humaaans.com/ → `05_source-svg/humaaans/`
 2. **Open Doodles** from https://www.opendoodles.com/ → `05_source-svg/open-doodles/`
 3. Curated **OpenClipart** / **PublicDomainVectors** scene elements → `03_vocab-icons/`, `02_scenes-backgrounds/`
+4. **Glitch items** (CC0) https://github.com/tinyspeck/glitch-items — charming props; cherry-pick, quirky style
+5. **Nieobie free icons** (CC0) https://nieobie.itch.io/free-icons — vocab dock candidates
+6. **Noto Emoji** (Apache 2.0) — optional Twemoji alternative for pack rebuilds
 
 Quality-loop gaps (preferred art we don’t have yet) live in [`docs/asset-wishlist.md`](../../docs/asset-wishlist.md) — fetch from there later; do not scrape to close rows.
 
