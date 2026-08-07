@@ -412,7 +412,21 @@
         if (pin === 'open') key = setKeys[0];
         else if (pin === 'close') key = setKeys[setKeys.length - 1];
         else {
-          const midPool = setKeys.length >= 3 ? setKeys.slice(1) : setKeys;
+          // Thin sets (≤4) recycle hard for M5. Borrow at most enough house cool
+          // panels to stay inside the H2 cohesion band (≤5 distinct flats).
+          let midPool = setKeys.length >= 3 ? setKeys.slice(1) : setKeys.slice();
+          if (setKeys.length <= 4 && wantSet !== DEFAULT_SET) {
+            const room = Math.max(0, 5 - setKeys.length);
+            if (room > 0) {
+              const houseBoost = all.filter((k) => {
+                const f = m.flats[k];
+                if (!f || f.set !== DEFAULT_SET || !isQuietFlat(f)) return false;
+                const pal = FLAT_PALETTE[k] || f.palette || 'neutral';
+                return pal === 'cool' || pal === 'neutral';
+              }).sort();
+              if (houseBoost.length) midPool = midPool.concat(houseBoost.slice(0, room));
+            }
+          }
           key = midPool[(flatOffset(seed, midPool.length) + (index || 0)) % midPool.length];
         }
         // #region agent log

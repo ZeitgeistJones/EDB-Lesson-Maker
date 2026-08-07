@@ -476,8 +476,8 @@
   }
 
   /** Section list for SceneBackgrounds.planFor — mirrors the render spine.
-   *  Scenes (clinic, zoo, …) are for EDB/activity pages with groundable pieces.
-   *  Title, story, and drill chrome use calm flats so text stays readable. */
+   *  Scenes are gated off the spine by H2 (quiet flats only). Variety comes from
+   *  rotating quiet flats; thin place sets may borrow one house cool mid-panel. */
   function buildSectionList(lesson, meta) {
     const vocab = (lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v.word)).filter(Boolean);
     const topic = lesson.title || '';
