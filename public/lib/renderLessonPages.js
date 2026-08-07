@@ -382,17 +382,42 @@
     return false;
   }
 
-  function header(text, color) {
+  function header(text, color, opts) {
+    const timing = opts && opts.timing;
+    const row = el('div', {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '12px',
+      marginBottom: '16px',
+      flexWrap: 'wrap',
+    });
     const n = el('div', {
       fontSize: '40px',
       fontWeight: '800',
       color: color || '#17827C',
-      marginBottom: '16px',
       letterSpacing: '-0.02em',
       lineHeight: '1.1',
+      marginBottom: '0',
     }, text);
     n.dataset.ink = 'heading';
-    return n;
+    row.appendChild(n);
+    if (timing) {
+      const chip = el('div', {
+        fontSize: '16px',
+        fontWeight: '700',
+        color: '#334155',
+        background: 'rgba(255,255,255,0.88)',
+        border: '1px solid rgba(148,163,184,0.7)',
+        borderRadius: '999px',
+        padding: '4px 12px',
+        lineHeight: '1.2',
+        flexShrink: '0',
+      }, timing);
+      chip.dataset.ink = 'hint';
+      chip.dataset.timingChip = '1';
+      row.appendChild(chip);
+    }
+    return row;
   }
 
   /** Small instruction line under a header. Sits on the raw background, so the
@@ -660,14 +685,26 @@
     const aimWords = (lesson.vocabulary || [])
       .map((v) => (typeof v === 'string' ? v : v && v.word))
       .filter(Boolean)
-      .slice(0, 5);
+      .slice(0, 8);
+    let aims = null;
+    let grammarAim = null;
     if (aimWords.length) {
-      const aims = el('div', {
+      aims = el('div', {
         color: '#475569', fontSize: '22px', marginTop: '18px', fontWeight: '700',
         maxWidth: '640px', lineHeight: '1.35',
       }, `Aims: use ${aimWords.join(', ')} to talk about today's topic.`);
       aims.dataset.ink = 'hint';
+      aims.dataset.aimsLine = '1';
       copy.appendChild(aims);
+    }
+    if ((lesson.sentenceFrames || []).length) {
+      grammarAim = el('div', {
+        color: '#475569', fontSize: '18px', marginTop: '10px', fontWeight: '600',
+        maxWidth: '640px', lineHeight: '1.35',
+      }, 'Grammar aim: practise first-conditional / planning frames (If I…, I will… / I am planning to…).');
+      grammarAim.dataset.ink = 'hint';
+      grammarAim.dataset.grammarAim = '1';
+      copy.appendChild(grammarAim);
     }
     p.appendChild(copy);
 
@@ -677,6 +714,8 @@
       title.style.color = '#fff';
       title.style.textShadow = '0 2px 16px rgba(15,23,42,0.55)';
       metaLine.style.color = '#e2e8f0';
+      if (aims) aims.style.color = '#e2e8f0';
+      if (grammarAim) grammarAim.style.color = '#cbd5e1';
       p.appendChild(img(charmSrc, {
         position: 'relative',
         width: '440px',
@@ -701,7 +740,7 @@
     });
     p.style.display = 'flex';
     p.style.flexDirection = 'column';
-    p.appendChild(header('Warm Up', '#be123c'));
+    p.appendChild(header('Warm Up', '#be123c', { timing: '~4 min' }));
     p.appendChild(hint(
       outline
         ? 'Say your answer, then color the picture!'
@@ -812,7 +851,7 @@
     });
     p.style.display = 'flex';
     p.style.flexDirection = 'column';
-    p.appendChild(header('New Words', '#7c3aed'));
+    p.appendChild(header('New Words', '#7c3aed', { timing: '~6 min' }));
     p.appendChild(hint(
       interactive
         ? 'Say each word. Drag the matching pictures onto the board.'
@@ -914,7 +953,7 @@
 
   function makeVocabSentences(lesson) {
     const p = pageShell(THEME_COLORS.vocab, { pageType: 'vocabSentences' });
-    p.appendChild(header('New Words — In Sentences', '#7c3aed'));
+    p.appendChild(header('New Words — In Sentences', '#7c3aed', { timing: '~5 min' }));
     const body = fillBody(p, { justifyContent: 'stretch', gap: '16px' });
     const words = (lesson.vocabulary || []).slice(0, 6);
     const n = Math.max(1, words.length);
@@ -952,8 +991,8 @@
   function makeFrames(lesson) {
     const p = pageShell(THEME_COLORS.vocab, { pageType: 'frames' });
     const col = chromeColumn(p);
-    col.appendChild(header('Sentence Frames', '#7c3aed'));
-    col.appendChild(hint('Say each frame out loud. Fill the blank, then write your sentence.', {
+    col.appendChild(header('Sentence Frames', '#7c3aed', { timing: '~6 min' }));
+    col.appendChild(hint('Listen and say each frame first. Then fill the blank and write your sentence.', {
       marginBottom: '8px', flexShrink: '0',
     }));
     const frames = (lesson.sentenceFrames || []).slice(0, 3);
@@ -1186,7 +1225,7 @@
     const title = index === 0
       ? `Story: ${lesson.story?.title || 'Let\'s Read!'}`
       : `Story (cont.): ${page?.heading || ''}`;
-    const titleEl = header(title, '#c2410c');
+    const titleEl = header(title, '#c2410c', { timing: '~4 min' });
     titleEl.style.textShadow = '0 1px 0 #fff, 0 2px 10px rgba(255,255,255,0.85)';
     titleEl.style.position = 'relative';
     titleEl.style.zIndex = '2';
@@ -1291,7 +1330,7 @@
   function makeComprehension(lesson) {
     const p = pageShell(THEME_COLORS.comp, { pageType: 'comprehension' });
     const col = chromeColumn(p);
-    col.appendChild(header('Reading Comprehension', '#1d4ed8'));
+    col.appendChild(header('Reading Comprehension', '#1d4ed8', { timing: '~6 min' }));
     col.appendChild(hint('Answer in full sentences in the space under each question.', {
       marginBottom: '6px', flexShrink: '0',
     }));
@@ -1343,7 +1382,7 @@
   function makeCreative(lesson) {
     const p = pageShell(THEME_COLORS.creative, { pageType: 'creative' });
     const col = chromeColumn(p);
-    col.appendChild(header('Your Ideas!', '#059669'));
+    col.appendChild(header('Your Ideas!', '#059669', { timing: '~5 min' }));
     col.appendChild(hint('Open-ended — no single right answer. Write or draw in the box.', {
       marginBottom: '8px', flexShrink: '0',
     }));
@@ -1390,7 +1429,7 @@
       reserveDock: covered, pageType: 'speaking',
     });
     const col = chromeColumn(p);
-    col.appendChild(header("Let's Talk!", '#15803d'));
+    col.appendChild(header("Let's Talk!", '#15803d', { timing: '~6 min' }));
     const sub = totalPages > 1
       ? `Part ${pageIndex + 1} of ${totalPages}`
       : 'Answer out loud first';
@@ -1541,7 +1580,7 @@
       drawDebugZones(p, pageType);
       return p;
     }
-    p.appendChild(header(lesson.activity?.title || 'Your Turn!', '#4338ca'));
+    p.appendChild(header(lesson.activity?.title || 'Your Turn!', '#4338ca', { timing: '~10 min' }));
     p.appendChild(hint(esc(lesson.activity?.prompt || 'Work with a partner.'), {
       textAlign: 'left', lineHeight: '1.35', maxWidth: interactive ? '680px' : '100%',
     }));

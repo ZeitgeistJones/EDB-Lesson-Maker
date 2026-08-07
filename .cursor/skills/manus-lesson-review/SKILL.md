@@ -40,7 +40,8 @@ Schema also asks Manus for **`gate_holes`** + **`method_feedback`** — meta-rev
 
 **Board JPGs** + pass-off text, not the binary `.edb`.
 
-Prefer contact + title, newWords, frames, story0, comprehension, activity, wrap when present.
+Prefer contact + title, newWords, frames, **all storyN beats**, comprehension, activity, wrap when present.
+`pickImages` soft-max must never drop a middle story page (gate hole B1 on classical-compose).
 
 ## How to run
 
@@ -80,5 +81,8 @@ Log lines append to `.cursor/ratings/manus-reviews.jsonl`.
 | Title charm on terrace piano | Music pack title charm skipped |
 | B1 bare second conditional | Generate prompt CEFR frame rules |
 | Story glyphs | PropBank caption fallback before emoji; full StoryArt still preferred when cached; S24 |
+| Story beat 3 “missing” | Often a **packet hole**: `pickImages` must attach every `storyN` (S27) — board already had 3 beats |
+| inspire starburst ambiguity | `PACK_OVERRIDES.inspire→brain` + match-dock caption chips; S26 |
+| Aims truncated / no grammar | Title aims ≤8 vocab + grammar aim line; S25 |
 
 Setup details: [docs/manus-review.md](../../docs/manus-review.md).

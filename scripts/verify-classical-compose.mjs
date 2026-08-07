@@ -44,6 +44,12 @@ if (arg('retitle', '1') !== '0') {
 const meta = { level: 'B1', duration: '60', phonics: 'off' };
 fs.mkdirSync(OUT, { recursive: true });
 fs.mkdirSync(path.dirname(LOG), { recursive: true });
+// Drop stale page JPGs so Manus pickImages cannot attach an old wrap/activity sibling.
+for (const n of fs.readdirSync(OUT)) {
+  if (/^page-\d+-.+\.(jpe?g|png)$/i.test(n)) {
+    try { fs.unlinkSync(path.join(OUT, n)); } catch { /* ignore */ }
+  }
+}
 if (fs.existsSync(LOG)) fs.writeFileSync(LOG, '');
 
 const server = http.createServer((req, res) => {
@@ -163,10 +169,26 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
   const byKey = (rendered.slots && rendered.slots.byKey) || {};
   const actDom = rendered.pageEls[byKey.activity];
   const warmDom = rendered.pageEls[byKey.warm];
+  const titleDom = rendered.pageEls[byKey.title];
+  const framesDom = rendered.pageEls[byKey.frames];
   const actText = (actDom && actDom.textContent) || '';
   const warmText = (warmDom && warmDom.textContent) || '';
+  const titleText = (titleDom && titleDom.textContent) || '';
+  const framesText = (framesDom && framesDom.textContent) || '';
   const sampleLeak = /Teacher sample/i.test(warmText)
     || (lesson.warmUp && lesson.warmUp.sampleAnswer && warmText.includes(String(lesson.warmUp.sampleAnswer)));
+
+  const boardVocab = words.slice(0, 6);
+  const aimsMissing = boardVocab.filter((w) => !new RegExp(`\\b${w}\\b`, 'i').test(titleText));
+  const hasGrammarAim = /grammar aim/i.test(titleText);
+  const timingChipCount = rendered.pageEls.filter((el) => el && el.querySelector && el.querySelector('[data-timing-chip]')).length;
+  const matchCaptionNotes = (boardPlan.pages || [])
+    .filter((pg) => pg.pageKey === 'newWords')
+    .flatMap((pg) => pg.notes || []);
+  const hasMatchCaptions = matchCaptionNotes.some((n) => /matchDockCaptions/i.test(String(n)));
+  const identityFrame = (lesson.sentenceFrames || []).some((f) => /If I am a musician/i.test(String(f)));
+  const guitarStory = ((lesson.story && lesson.story.pages) || [])
+    .some((sp) => /guitar/i.test([sp.text, sp.visualCaption, sp.heading].filter(Boolean).join(' ')));
 
   // Soft S24: story sides with data-story-prop must keep caption as a chip
   // below art — not absolute img stacking over sibling caption text.
@@ -222,6 +244,14 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     activityHintHasToys: /\btoys\b/i.test(actText),
     activityHintHasWriteOrSay: /write or say|say or write|then say|then write/i.test(actText),
     warmSampleLeak: !!sampleLeak,
+    aimsMissing,
+    hasGrammarAim,
+    timingChipCount,
+    hasMatchCaptions,
+    identityFrame,
+    guitarStory,
+    storyPageCount: storyIdxs.length,
+    framesHintListenFirst: /listen and say/i.test(framesText),
     flatNames: picks.filter((p) => p.type === 'flat').map((p) => p.name),
     houseLeaks: picks.filter((p) => p.type === 'flat' && /^house-/.test(p.name)).map((p) => p.name),
     artWinners,
@@ -254,6 +284,10 @@ if (result.houseLeaks.length) fails.push('house flats leaked: ' + result.houseLe
 if (result.artWinners.some((w) => !String(w.winner).startsWith('pack:'))) {
   fails.push('vocab art must prefer pack: ' + JSON.stringify(result.artWinners));
 }
+const inspireWin = (result.artWinners || []).find((w) => w.w === 'inspire');
+if (inspireWin && /inspire\.png/i.test(String(inspireWin.winner))) {
+  fails.push('inspire must not use lone starburst pack glyph (override to clearer art): ' + inspireWin.winner);
+}
 if (result.storyEmojis.some((s) => s.emoji === '🏠')) fails.push('story emoji still house');
 if (result.frames.longest > 75 && result.frames.fontPx > 28) fails.push('long frames font not shrunk');
 if ((result.storyCaptionIssues || []).length) {
@@ -263,10 +297,39 @@ const story0Prop = (result.storyPropKeys || []).find((s) => s.i === 0);
 if (story0Prop && /orchestra-stands|music-stand/.test(story0Prop.key)) {
   fails.push('story0 desk caption resolved to orchestra prop: ' + story0Prop.key);
 }
+if ((result.storyPageCount || 0) < 3) {
+  fails.push('need 3 story beats before comprehension: ' + result.storyPageCount);
+}
+if ((result.aimsMissing || []).length) {
+  fails.push('title aims missing vocab (S25): ' + result.aimsMissing.join(','));
+}
+if (!result.hasGrammarAim) fails.push('title missing grammar aim line (S25)');
+if (!result.hasMatchCaptions) fails.push('newWords match dock missing caption chips (S26)');
+if (result.identityFrame) fails.push('Frame still uses identity-based "If I am a musician"');
+if (result.guitarStory) fails.push('story still references guitar (prefer piano/violin theme)');
+const story1Prop = (result.storyPropKeys || []).find((s) => s.i === 1);
+if (story1Prop && /guitar/i.test(story1Prop.key)) {
+  fails.push('story1 prop still guitar: ' + story1Prop.key);
+}
+if ((result.timingChipCount || 0) < 4) {
+  fails.push('too few teacher timing chips on headers: ' + result.timingChipCount);
+}
 
 for (const p of result.pages) {
   const b64 = p.dataUrl.replace(/^data:image\/jpeg;base64,/, '');
   fs.writeFileSync(path.join(OUT, `page-${p.index}-${p.key}.jpg`), Buffer.from(b64, 'base64'));
+}
+
+// S27 — Manus packet must include every story beat (gate the review picker).
+const { pickImages } = await import('./manus/review.mjs');
+const picked = pickImages(OUT).map((p) => path.basename(p));
+const storyFiles = fs.readdirSync(OUT).filter((n) => /^page-\d+-story\d+\.jpe?g$/i.test(n));
+const missingStories = storyFiles.filter((n) => !picked.includes(n));
+if (missingStories.length) {
+  fails.push('pickImages dropped story pages (S27): ' + missingStories.join(','));
+}
+if ((result.storyPageCount || 0) >= 3 && !picked.some((n) => /story2/i.test(n))) {
+  fails.push('pickImages missing story2 beat');
 }
 
     logLine('VERIFY', 'producer invariants', {
@@ -281,6 +344,11 @@ for (const p of result.pages) {
   storyEmojis: result.storyEmojis,
   storyPropKeys: result.storyPropKeys,
   storyCaptionIssues: result.storyCaptionIssues,
+  aimsMissing: result.aimsMissing,
+  hasGrammarAim: result.hasGrammarAim,
+  hasMatchCaptions: result.hasMatchCaptions,
+  timingChipCount: result.timingChipCount,
+  pickedImages: picked,
   frames: result.frames,
   fails,
   out: OUT,
@@ -300,8 +368,14 @@ console.log(JSON.stringify({
   storyEmojis: result.storyEmojis,
   storyPropKeys: result.storyPropKeys,
   storyCaptionIssues: result.storyCaptionIssues,
+  aimsMissing: result.aimsMissing,
+  hasGrammarAim: result.hasGrammarAim,
+  hasMatchCaptions: result.hasMatchCaptions,
+  timingChipCount: result.timingChipCount,
+  storyPageCount: result.storyPageCount,
   frames: result.frames,
   pageFiles: result.pages.map((p) => `page-${p.index}-${p.key}.jpg`),
+  pickedImages: picked,
   fails,
   ok: fails.length === 0,
 }, null, 2));

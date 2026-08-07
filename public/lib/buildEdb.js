@@ -353,19 +353,86 @@ async function wordArtPng(word, ctx) {
   return null;
 }
 
+/** Match-dock icon + one-word caption chip (Manus B2 — kill ambiguous glyphs). */
+function pngBytesToDataUrl(bytes) {
+  let s = '';
+  const chunk = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunk) {
+    s += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+  }
+  return `data:image/png;base64,${btoa(s)}`;
+}
+
+function captionedArtPng(artBytes, label, w, h) {
+  const width = Math.max(64, w || 96);
+  const height = Math.max(80, h || 118);
+  const chipH = Math.max(18, Math.min(28, Math.floor(height * 0.2)));
+  const artBox = height - chipH - 2;
+  const c = document.createElement('canvas');
+  c.width = width;
+  c.height = height;
+  const ctx = c.getContext('2d');
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      const nw = img.naturalWidth || 96;
+      const nh = img.naturalHeight || 96;
+      const scale = Math.min(width / nw, artBox / nh);
+      const dw = nw * scale;
+      const dh = nh * scale;
+      ctx.drawImage(img, Math.round((width - dw) / 2), Math.round((artBox - dh) / 2), dw, dh);
+      const chipY = artBox + 1;
+      const r = 8;
+      ctx.fillStyle = 'rgba(255,255,255,0.94)';
+      ctx.beginPath();
+      ctx.moveTo(r, chipY);
+      ctx.arcTo(width, chipY, width, height, r);
+      ctx.arcTo(width, height, 0, height, r);
+      ctx.arcTo(0, height, 0, chipY, r);
+      ctx.arcTo(0, chipY, width, chipY, r);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = '#0f172a';
+      ctx.font = `700 ${Math.max(11, Math.floor(chipH * 0.62))}px Poppins, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(String(label || '').slice(0, 14), width / 2, chipY + chipH / 2, width - 8);
+      resolve(canvasToPng(c));
+    };
+    img.onerror = () => resolve(artBytes);
+    img.src = pngBytesToDataUrl(artBytes);
+  });
+}
+
 /** Asset first → emoji/tile fallback → solid placeholder (never silent-drop). */
 async function pieceToPng(piece, ctx) {
   const word = piece.meta && piece.meta.word;
+  const wantCaption = !!(piece.label || (piece.meta && piece.meta.captionChip)
+    || piece.role === 'matchPiece');
   if (word) {
     const art = await wordArtPng(word, ctx);
-    if (art) return art;
+    if (art) {
+      if (wantCaption) {
+        return captionedArtPng(art, piece.label || word, piece.w, piece.h);
+      }
+      return art;
+    }
   }
   if (piece.asset) {
     const png = await loadAssetPng(piece.asset, piece.w, piece.h);
-    if (png) return png;
+    if (png) {
+      if (wantCaption && (piece.label || word)) {
+        return captionedArtPng(png, piece.label || word, piece.w, piece.h);
+      }
+      return png;
+    }
   }
   if (piece.kind === 'emoji' || piece.emoji) {
-    return glyphToPng(piece.emoji || '•', Math.max(piece.w || 96, piece.h || 96, 64));
+    const glyph = glyphToPng(piece.emoji || '•', Math.max(piece.w || 96, piece.h || 96, 64));
+    if (wantCaption && (piece.label || word)) {
+      return captionedArtPng(glyph, piece.label || word, piece.w, piece.h);
+    }
+    return glyph;
   }
   if (piece.kind === 'tile' || (piece.text && piece.kind !== 'text')) {
     return tileToPng(piece.text || piece.label || '?', {

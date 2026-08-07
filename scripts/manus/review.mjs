@@ -42,27 +42,51 @@ export function resolveDir(raw) {
   return abs;
 }
 
-export function pickImages(dir) {
+export function pickImages(dir, opts = {}) {
   const names = fs.readdirSync(dir).filter((n) => /\.(jpe?g|png)$/i.test(n));
-  const byRole = (role) => names.find((n) => new RegExp(`(^|-)${role}\\.(jpe?g|png)$`, 'i').test(n)
-    || new RegExp(`page-\\d+-${role}\\.(jpe?g|png)$`, 'i').test(n));
+  const softMax = Number(opts.maxImages) > 0 ? Number(opts.maxImages) : 14;
+  /** Prefer highest page-N when rebakes leave stale siblings (e.g. page-10-wrap + page-11-wrap). */
+  const byRole = (role) => {
+    const re = new RegExp(`(?:^|-)${role}\\.(jpe?g|png)$`, 'i');
+    const pageRe = new RegExp(`^page-(\\d+)-${role}\\.(jpe?g|png)$`, 'i');
+    const hits = names.filter((n) => re.test(n) || pageRe.test(n));
+    if (!hits.length) return null;
+    hits.sort((a, b) => {
+      const na = Number((a.match(/^page-(\d+)/i) || [])[1] || -1);
+      const nb = Number((b.match(/^page-(\d+)/i) || [])[1] || -1);
+      return nb - na;
+    });
+    return hits[0];
+  };
+  const pageNum = (n) => Number((String(n).match(/^page-(\d+)/i) || [])[1] || -1);
+  // Manus B1 hole: preferredRoles used only story0, then soft-max 10 dropped story2.
+  // Always attach every storyN beat before comprehension — never omit the middle.
+  const storyHits = names
+    .filter((n) => /^page-\d+-story\d+\.(jpe?g|png)$/i.test(n))
+    .sort((a, b) => pageNum(a) - pageNum(b) || a.localeCompare(b, undefined, { numeric: true }));
   const preferredRoles = [
-    'contact', 'title', 'newWords', 'frames', 'story0', 'comprehension', 'activity', 'wrap', 'warm',
+    'contact', 'title', 'newWords', 'frames',
+    'comprehension', 'activity', 'wrap', 'warm', 'vocabSentences', 'creative',
   ];
   const chosen = [];
-  for (const role of preferredRoles) {
-    const hit = role === 'contact'
-      ? names.find((n) => /^contact\./i.test(n))
-      : byRole(role);
+  const push = (hit) => {
     if (hit && !chosen.includes(hit)) chosen.push(hit);
-  }
+  };
+  push(names.find((n) => /^contact\./i.test(n)));
+  push(byRole('title'));
+  push(byRole('newWords'));
+  push(byRole('frames'));
+  for (const s of storyHits) push(s);
+  for (const role of preferredRoles.slice(4)) push(byRole(role));
   const rest = names
     .filter((n) => !chosen.includes(n))
-    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+    .sort((a, b) => pageNum(a) - pageNum(b) || a.localeCompare(b, undefined, { numeric: true }));
   for (const n of rest) {
-    if (chosen.length >= 10) break;
+    if (chosen.length >= softMax) break;
     if (/^page-\d+/.test(n) || /^contact\./i.test(n)) chosen.push(n);
   }
+  // Stories stay mandatory even if softMax would have trimmed them earlier.
+  for (const s of storyHits) push(s);
   if (!chosen.length) {
     throw new Error(`No JPG/PNG pages in ${dir}`);
   }

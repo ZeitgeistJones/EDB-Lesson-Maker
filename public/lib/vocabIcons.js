@@ -114,6 +114,9 @@
    */
   const PACK_OVERRIDES = {
     clean: 'soap',
+    // inspire.png is a lone starburst glyph — kids confuse it with compose/desk
+    // gold sparkles (Manus classical-compose B2). Brain reads as "idea/inspire".
+    inspire: 'brain',
   };
 
   /**

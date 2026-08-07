@@ -10,7 +10,7 @@
     { "word": "orchestra", "emoji": "🎻", "sentence": "The orchestra played perfectly under the conductor's lead." },
     { "word": "harmony", "emoji": "🎶", "sentence": "The singers created beautiful harmony during the chorus." },
     { "word": "rhythm", "emoji": "🥁", "sentence": "You need a steady rhythm to keep the beat of the song." },
-    { "word": "inspire", "emoji": "✨", "sentence": "Beautiful scenery can often inspire musicians to write songs." },
+    { "word": "inspire", "emoji": "💡", "sentence": "Beautiful scenery can often inspire musicians to write songs." },
     { "word": "performance", "emoji": "🎭", "sentence": "The audience cheered loudly after the final musical performance." },
     { "word": "tempo", "emoji": "⏳", "sentence": "The conductor increased the tempo to make the song exciting." },
     { "word": "expressive", "emoji": "😊", "sentence": "Her piano playing was very expressive and full of feeling." },
@@ -20,7 +20,7 @@
   ],
   "sentenceFrames": [
     "I believe that composing music is ___ because ___.",
-    "If I am a musician, I will use ___ to express my feelings.",
+    "If I could compose a song, I would add ___ to make it feel ___.",
     "The most important part of a song is the ___ because it makes the listener feel ___.",
     "I am planning to ___ my song by adding more harmony."
   ],
@@ -34,8 +34,8 @@
       },
       {
         "heading": "Crafting the Melody",
-        "text": "He began to strum his old guitar, testing different notes. Suddenly, a soft melody appeared. He wrote down the notes, feeling excited about his work. It was the start of a masterpiece.",
-        "visualCaption": "Elias playing guitar near a window."
+        "text": "He sat at his piano and tried different notes. Suddenly, a soft melody appeared. He wrote down the notes, feeling excited about his work. It was the start of a masterpiece.",
+        "visualCaption": "Elias playing piano near a window."
       },
       {
         "heading": "The Final Performance",
@@ -45,7 +45,7 @@
     ],
     "comprehensionQuestions": [
       { "question": "Why did Elias feel stuck at the beginning of the story?", "sampleAnswer": "He wanted to compose but felt stuck and needed inspiration." },
-      { "question": "What instrument did Elias use to find his melody?", "sampleAnswer": "His old guitar." },
+      { "question": "What instrument did Elias use to find his melody?", "sampleAnswer": "His piano." },
       { "question": "How did Elias feel when the melody finally appeared?", "sampleAnswer": "Excited about his work." },
       { "question": "What was the final result of his hard work?", "sampleAnswer": "The orchestra performed his music." }
     ],

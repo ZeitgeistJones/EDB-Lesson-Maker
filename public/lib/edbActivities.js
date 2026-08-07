@@ -294,15 +294,19 @@
     if (!vocab.length) return;
     const size = matchDockSize(vocab.length);
     if (!size) return; // caller should fall back to icons-on-cards
+    // Caption chips under icons (Manus B2) — pieceToPng composites word label.
+    const chipH = 22;
     L.placeDockRow(page, vocab.map((v) => ({
       kind: 'emoji',
       emoji: (window.VocabIcons && window.VocabIcons.emojiFor)
         ? window.VocabIcons.emojiFor(v.word, v.emoji)
         : (v.emoji || '•'),
       role: 'matchPiece',
-      meta: { word: v.word },
-    })), { w: size.w, h: size.h, cols: size.cols, noShrink: true });
+      label: v.word,
+      meta: { word: v.word, captionChip: true },
+    })), { w: size.w, h: size.h + chipH, cols: size.cols, noShrink: true });
     page.notes.push('recipe:matchDock');
+    page.notes.push('recipe:matchDockCaptions');
   }
 
   function orderLine(lesson, page, layout) {
