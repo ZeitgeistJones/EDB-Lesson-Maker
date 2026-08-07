@@ -242,7 +242,14 @@ Also generate a short illustrated story tied to the topic:
 - story.creativeQuestions: EXACTLY 2 open-ended creative questions related to the story (imagining, personal connection, or continuing the story) — no sample answers
 ${phonicsBlock}
 
-All content appropriate for ${safeLevel} ESL learners. Sentence frames and activity templates should contain a literal "___" blank.`;
+All content appropriate for ${safeLevel} ESL learners. Sentence frames and activity templates should contain a literal "___" blank.
+
+CEFR grammar for sentenceFrames:
+- A1–A2: present simple, can, like/want, basic past if needed. No second conditional.
+- B1: opinions with because, first conditional (If + present, will/can…), "I would like to ___". Prefer "If I am a musician, I will use ___ to …" over bare "If I were…" unless the blank itself teaches the form.
+- B2+: second conditional OK when intentional.
+
+Put comprehension under story.comprehensionQuestions (never only a top-level "comprehension" array). Put closing review lines in reviewSentences. Do not put teacher sample answers on student-facing copy fields.`;
 
   try {
     const models = modelCandidates();

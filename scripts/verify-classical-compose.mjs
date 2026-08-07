@@ -155,6 +155,20 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     .filter((p) => p.role === 'dockPiece')
     .map((p) => (p.meta && p.meta.propKey) || p.asset);
 
+  window.LessonPages.normalizeLesson(lesson);
+  const compQs = window.LessonPages.comprehensionQuestions(lesson) || [];
+
+  // Pedagogy chrome (Manus S19–S21) — inspect DOM pages from LessonPages.render.
+  const rendered = await window.LessonPages.render(lesson, meta, boardPlan);
+  const byKey = (rendered.slots && rendered.slots.byKey) || {};
+  const actDom = rendered.pageEls[byKey.activity];
+  const warmDom = rendered.pageEls[byKey.warm];
+  const actText = (actDom && actDom.textContent) || '';
+  const warmText = (warmDom && warmDom.textContent) || '';
+  const sampleLeak = /Teacher sample/i.test(warmText)
+    || (lesson.warmUp && lesson.warmUp.sampleAnswer && warmText.includes(String(lesson.warmUp.sampleAnswer)));
+  if (window.LessonPages.cleanup) window.LessonPages.cleanup(rendered.host);
+
   return {
     title: lesson.title,
     titlePick: picks[titleIdx],
@@ -165,6 +179,10 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     kingPieces,
     dockCount: dockPieces.length,
     dockSample: dockPieces.slice(0, 8),
+    compCount: compQs.length,
+    activityHintHasToys: /\btoys\b/i.test(actText),
+    activityHintHasWriteOrSay: /write or say|say or write|then say|then write/i.test(actText),
+    warmSampleLeak: !!sampleLeak,
     flatNames: picks.filter((p) => p.type === 'flat').map((p) => p.name),
     houseLeaks: picks.filter((p) => p.type === 'flat' && /^house-/.test(p.name)).map((p) => p.name),
     artWinners,
@@ -187,6 +205,10 @@ if ((result.kingPieces || []).some((k) => /piano/i.test(String(k)))) {
   fails.push('activity still has piano king piece: ' + JSON.stringify(result.kingPieces));
 }
 if ((result.dockCount || 0) < 10) fails.push('activity dock too thin: ' + result.dockCount);
+if ((result.compCount || 0) < 2) fails.push('comprehension questions missing after normalize: ' + result.compCount);
+if (result.activityHintHasToys) fails.push('activity hint still says toys');
+if (!result.activityHintHasWriteOrSay) fails.push('activity hint missing speak/write production cue');
+if (result.warmSampleLeak) fails.push('warm-up still leaks teacher sample to students');
 if (result.houseLeaks.length) fails.push('house flats leaked: ' + result.houseLeaks.join(','));
 if (result.artWinners.some((w) => !String(w.winner).startsWith('pack:'))) {
   fails.push('vocab art must prefer pack: ' + JSON.stringify(result.artWinners));

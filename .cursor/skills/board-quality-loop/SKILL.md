@@ -94,12 +94,19 @@ Never hand-edit `tmp/board-bg-verify/report.json`. The judge CLI writes it, appe
 
 ### Teacher (standing in front of class)
 - Can I glance and run the page in under 5 seconds?
-- Is the activity honest (no answer already on the card)?
+- Is the activity honest (no answer already on the card — warm-up sample, matchDock icons)?
 - Do backgrounds match the topic and change enough that the lesson doesn't feel copy-pasted?
 - Would I be embarrassed if a parent peeked at this board?
+- Does comprehension have real questions? Does wrap/exit ticket exist? Does the king hint ask for language, not only “drag toys”?
 
 If student and teacher disagree, prefer **clarity + honesty** (readable, accurate, no
 answer leak), then charm.
+
+## After Manus feedback
+
+When a Manus review returns, follow [manus-lesson-review](../manus-lesson-review/SKILL.md)
+**After feedback (REQUIRED)** — fold into producer + this loop’s soft codes (S19–S23),
+then re-bake. Do not only paste the JSON into chat.
 
 ## Product pillars
 

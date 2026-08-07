@@ -475,11 +475,53 @@
     return i;
   }
 
+  /**
+   * Tolerate fixture / LLM shape drift so boards don't ship hollow.
+   * Manus 2026-08: classical fixture put comprehension/creative/wrapUp at root
+   * while the renderer only read story.comprehensionQuestions / reviewSentences.
+   */
+  function normalizeLesson(lesson) {
+    if (!lesson || typeof lesson !== 'object') return lesson || {};
+    if (!lesson.story || typeof lesson.story !== 'object') lesson.story = {};
+    const story = lesson.story;
+
+    if (!(story.comprehensionQuestions && story.comprehensionQuestions.length)
+      && Array.isArray(lesson.comprehension) && lesson.comprehension.length) {
+      story.comprehensionQuestions = lesson.comprehension.map((q) => {
+        if (typeof q === 'string') return { question: q, sampleAnswer: '' };
+        return {
+          question: q.question || q.text || '',
+          sampleAnswer: q.sampleAnswer || q.answer || '',
+        };
+      });
+    }
+
+    if (!(story.creativeQuestions && story.creativeQuestions.length)
+      && Array.isArray(lesson.creative) && lesson.creative.length) {
+      story.creativeQuestions = lesson.creative.map((q) => {
+        if (typeof q === 'string') return q;
+        return q.question || q.text || q;
+      });
+    }
+
+    if (!(lesson.reviewSentences && lesson.reviewSentences.length)
+      && Array.isArray(lesson.wrapUp) && lesson.wrapUp.length) {
+      lesson.reviewSentences = lesson.wrapUp.slice();
+    }
+
+    return lesson;
+  }
+
+  function comprehensionQuestions(lesson) {
+    return (lesson.story && lesson.story.comprehensionQuestions) || [];
+  }
+
   /** Section list for SceneBackgrounds.planFor — mirrors the render spine.
    *  Page picks stay quiet flats (H2): chrome + story *text* need empty washes.
    *  Story place art belongs in `[data-story-art]` panels, not as page scenes.
    *  Variety = rotating flats; thin place sets may borrow one house cool mid-panel. */
   function buildSectionList(lesson, meta) {
+    lesson = normalizeLesson(lesson);
     const vocab = (lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v.word)).filter(Boolean);
     const topic = lesson.title || '';
     const topicBlob = [topic, ...vocab].join(' ');
@@ -569,18 +611,14 @@
           .toLowerCase();
         // Classical / music kits use a terrace scene that already paints a piano —
         // stacking grand-piano charm is the "piano on piano" failure.
+        // Terrace / classical scenes already paint a piano (+ often a figure).
+        // Never stack a second cutout on the title — Manus + teacher eyes both
+        // flagged conductor-over-piano as awkward.
         if (
           kit.pack === 'music' ||
           /classical|compose|composer|orchestra|symphony|concert|masterpiece/.test(topicBlob)
         ) {
-          if (/piano|dh-piano/.test(heroKey)) {
-            const standIn = PB.resolve({
-              word: 'musician-conductor',
-              seed: (lesson && lesson.title) || '',
-              family: PB.familyFor ? PB.familyFor(lesson) : null,
-            });
-            return (standIn && standIn.path) || null;
-          }
+          return null;
         }
         return kit.hero.path;
       }
@@ -619,6 +657,18 @@
     }, `${meta.level || ''}  ·  ${meta.duration || ''}-minute lesson`);
     metaLine.dataset.ink = 'hint';
     copy.appendChild(metaLine);
+    const aimWords = (lesson.vocabulary || [])
+      .map((v) => (typeof v === 'string' ? v : v && v.word))
+      .filter(Boolean)
+      .slice(0, 5);
+    if (aimWords.length) {
+      const aims = el('div', {
+        color: '#475569', fontSize: '22px', marginTop: '18px', fontWeight: '700',
+        maxWidth: '640px', lineHeight: '1.35',
+      }, `Aims: use ${aimWords.join(', ')} to talk about today's topic.`);
+      aims.dataset.ink = 'hint';
+      copy.appendChild(aims);
+    }
     p.appendChild(copy);
 
     const charmSrc = titleCharmSrc(lesson);
@@ -722,16 +772,14 @@
       }, outline.crayons));
       p.appendChild(stage);
     } else {
-      // B1+: big write-in stage so the warm page isn't a lonely question strip.
-      const sample = lesson.warmUp?.sampleAnswer
-        ? `<div style="margin-top:18px;font-size:22px;font-weight:600;color:#94a3b8;text-align:center">Teacher sample (after kids try): ${esc(lesson.warmUp.sampleAnswer)}</div>`
-        : '';
+      // B1+: big write-in stage. Never print sampleAnswer on the student board
+      // (Manus / honesty — teacher samples bias kids). Keep sampleAnswer in JSON
+      // for teacher scripts / PDF notes only.
       const writeIn = card(
         `<div style="font-size:28px;font-weight:700;color:#64748b;margin-bottom:16px;text-align:center">Write or say your answer here</div>
          <div style="border-bottom:3px dashed #cbd5e1;height:56px;margin:12px 8% 0"></div>
          <div style="border-bottom:3px dashed #cbd5e1;height:56px;margin:20px 8% 0"></div>
-         <div style="border-bottom:3px dashed #cbd5e1;height:56px;margin:20px 8% 0"></div>
-         ${sample}`,
+         <div style="border-bottom:3px dashed #cbd5e1;height:56px;margin:20px 8% 0"></div>`,
         {
           flex: '1',
           marginBottom: '0',
@@ -1113,8 +1161,9 @@
     col.appendChild(hint('Answer in full sentences in the space under each question.', {
       marginBottom: '6px', flexShrink: '0',
     }));
-    const questions = (lesson.story?.comprehensionQuestions || []).slice(0, 2);
-    const rows = Math.max(1, questions.length);
+    // Up to 3 on the board (Manus: 3–4; 4 rows crush type on 590px).
+    const questions = comprehensionQuestions(lesson).slice(0, 3);
+    const rows = Math.max(1, questions.length || 1);
     const body = el('div', {
       flex: '1 1 0%',
       minHeight: '0',
@@ -1124,24 +1173,34 @@
       gap: '16px',
       width: '100%',
     });
-    questions.forEach((q, i) => {
-      const qCard = card(
-        `<div style="font-size:34px;font-weight:800;line-height:1.25;color:#0f172a;margin-bottom:14px;flex-shrink:0">${i + 1}. ${esc(q.question || '')}</div>
-         <div style="border:2px dashed #94a3b8;border-radius:14px;flex:1;min-height:140px;background:rgba(248,250,252,0.9)"></div>`,
-        {
-          padding: '22px 26px',
-          marginBottom: '0',
-          height: '100%',
-          minHeight: '0',
-          display: 'flex',
-          flexDirection: 'column',
-          boxSizing: 'border-box',
-        }
+    if (!questions.length) {
+      const empty = card(
+        `<div style="font-size:28px;font-weight:800;color:#9f1239;line-height:1.35;text-align:center">No reading questions in this lesson.</div>
+         <div style="font-size:22px;font-weight:600;color:#64748b;margin-top:12px;text-align:center;line-height:1.35">Teacher: add story.comprehensionQuestions (or regenerate).</div>`,
+        { padding: '28px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }
       );
-      // Big write region on purpose — not a sparse text card (M3).
-      qCard.dataset.writeInStage = '1';
-      body.appendChild(qCard);
-    });
+      empty.dataset.emptyComprehension = '1';
+      body.appendChild(empty);
+    } else {
+      questions.forEach((q, i) => {
+        const qCard = card(
+          `<div style="font-size:30px;font-weight:800;line-height:1.25;color:#0f172a;margin-bottom:14px;flex-shrink:0">${i + 1}. ${esc(q.question || '')}</div>
+           <div style="border:2px dashed #94a3b8;border-radius:14px;flex:1;min-height:100px;background:rgba(248,250,252,0.9)"></div>`,
+          {
+            padding: '18px 22px',
+            marginBottom: '0',
+            height: '100%',
+            minHeight: '0',
+            display: 'flex',
+            flexDirection: 'column',
+            boxSizing: 'border-box',
+          }
+        );
+        // Big write region on purpose — not a sparse text card (M3).
+        qCard.dataset.writeInStage = '1';
+        body.appendChild(qCard);
+      });
+    }
     col.appendChild(body);
     drawDebugZones(p, 'comprehension');
     return p;
@@ -1328,17 +1387,22 @@
         lesson.title, lesson.activity?.title, lesson.activity?.prompt,
         ...(lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v.word)),
       ].filter(Boolean).join(' ').toLowerCase();
-      let kingHint = 'Drag toys onto the stage. Play!';
-      if (faceKing) kingHint = 'Drag parts onto the face. Make a friend!';
-      else if (/\b(dentist|dental|tooth|teeth|cavity|floss|patient)\b/.test(kingCue)) {
-        kingHint = 'Drag tools onto the patient!';
+      // Never say "toys" on language boards (Manus) — name the pieces + require
+      // a speaking/writing beat so drag isn't the only "output".
+      let kingHint = 'Drag the pieces onto the stage. Then say or write one sentence about your idea.';
+      if (faceKing) {
+        kingHint = 'Drag parts onto the face. Then say: My friend has ___';
+      } else if (/\b(dentist|dental|tooth|teeth|cavity|floss|patient)\b/.test(kingCue)) {
+        kingHint = 'Drag tools onto the patient. Then say what you used and why.';
       } else if (/\b(castle|knight|dragon|royal|fortress|portcullis)\b/.test(kingCue)) {
-        kingHint = 'Drag toys onto the castle. Build!';
+        kingHint = 'Drag pieces onto the castle. Then say what you built.';
       } else if (/\b(trampoline|bounce|backflip)\b/.test(kingCue)) {
-        kingHint = 'Drag toys onto the trampoline. Bounce!';
+        kingHint = 'Drag pieces onto the trampoline. Then say your bounce plan.';
+      } else if (/\b(music|compose|composer|orchestra|symphony|concert|classical|melody|harmony|piano|violin)\b/.test(kingCue)) {
+        kingHint = 'Drag musicians onto the stage. Then write or say your symphony idea in 1–2 sentences.';
       }
       p.appendChild(hint(kingHint, {
-        textAlign: 'left', lineHeight: '1.3', maxWidth: '380px',
+        textAlign: 'left', lineHeight: '1.3', maxWidth: '420px',
       }));
       drawDebugZones(p, pageType);
       return p;
@@ -1372,15 +1436,26 @@
       reserveDock: interactive, pageType: 'wrap',
     });
     p.appendChild(el('div', {
-      color: '#9a3412', fontSize: '78px', fontWeight: '800', textAlign: 'center', marginTop: '48px',
+      color: '#9a3412', fontSize: '64px', fontWeight: '800', textAlign: 'center', marginTop: '28px',
     }, 'Great Job!'));
+    const aims = (lesson.vocabulary || [])
+      .map((v) => (typeof v === 'string' ? v : v && v.word))
+      .filter(Boolean)
+      .slice(0, 6)
+      .join(', ');
+    if (aims) {
+      p.appendChild(el('div', {
+        color: '#9a3412', fontSize: '22px', textAlign: 'center', margin: '8px 40px 12px', fontWeight: '700',
+        lineHeight: '1.35',
+      }, `Today we used: ${aims}`));
+    }
     p.appendChild(el('div', {
-      color: '#c2410c', fontSize: '26px', textAlign: 'center', margin: '16px 0 28px', fontWeight: '600',
-    }, "Today's key sentences — say them together"));
+      color: '#c2410c', fontSize: '24px', textAlign: 'center', margin: '8px 0 16px', fontWeight: '600',
+    }, 'Exit ticket — say them together'));
     (lesson.reviewSentences || []).slice(0, 3).forEach((s) => {
       p.appendChild(card(
-        `<div style="font-size:28px;text-align:center;font-weight:700;line-height:1.35;color:#9a3412">${esc(s)}</div>`,
-        { maxWidth: '900px', margin: '0 auto 16px', padding: '18px 24px' }
+        `<div style="font-size:26px;text-align:center;font-weight:700;line-height:1.35;color:#9a3412">${esc(s)}</div>`,
+        { maxWidth: '900px', margin: '0 auto 12px', padding: '16px 22px' }
       ));
     });
     p.appendChild(img('assets/04_decoration-ui/confetti.svg', {
@@ -1464,6 +1539,7 @@
   }
 
   async function render(lesson, meta, boardPlan) {
+    lesson = normalizeLesson(lesson);
     if (window.VocabIcons && window.VocabIcons.ready) {
       await window.VocabIcons.ready();
     }
@@ -1584,6 +1660,7 @@
 
   window.LessonPages = {
     render, cleanup, buildSectionList, attachBgPicks, applyPackBg, applyStoryArt,
+    normalizeLesson, comprehensionQuestions,
     BOARD_W: W, BOARD_H: H,
   };
 })();

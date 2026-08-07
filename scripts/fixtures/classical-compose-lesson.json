@@ -20,7 +20,7 @@
   ],
   "sentenceFrames": [
     "I believe that composing music is ___ because ___.",
-    "If I were a musician, I would use ___ to express my feelings.",
+    "If I am a musician, I will use ___ to express my feelings.",
     "The most important part of a song is the ___ because it makes the listener feel ___.",
     "I am planning to ___ my song by adding more harmony."
   ],
@@ -42,18 +42,18 @@
         "text": "Weeks later, the orchestra played his music. The rhythm was perfect and the harmony sounded heavenly. Elias smiled, knowing he had finally shared his heart through his art.",
         "visualCaption": "An orchestra performing on a stage."
       }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Why did Elias feel stuck at the beginning of the story?", "sampleAnswer": "He wanted to compose but felt stuck and needed inspiration." },
+      { "question": "What instrument did Elias use to find his melody?", "sampleAnswer": "His old guitar." },
+      { "question": "How did Elias feel when the melody finally appeared?", "sampleAnswer": "Excited about his work." },
+      { "question": "What was the final result of his hard work?", "sampleAnswer": "The orchestra performed his music." }
+    ],
+    "creativeQuestions": [
+      "If you could compose a song about your life, what kind of tempo would it have?",
+      "Imagine the orchestra is performing your own masterpiece. Who would you invite to listen?"
     ]
   },
-  "comprehension": [
-    { "question": "Why did Elias feel stuck at the beginning of the story?", "sampleAnswer": "He wanted to compose but felt stuck and needed inspiration." },
-    { "question": "What instrument did Elias use to find his melody?", "sampleAnswer": "His old guitar." },
-    { "question": "How did Elias feel when the melody finally appeared?", "sampleAnswer": "Excited about his work." },
-    { "question": "What was the final result of his hard work?", "sampleAnswer": "The orchestra performed his music." }
-  ],
-  "creative": [
-    "If you could compose a song about your life, what kind of tempo would it have?",
-    "Imagine the orchestra is performing your own masterpiece. Who would you invite to listen?"
-  ],
   "speaking": [
     { "question": "Do you prefer listening to classical music or modern pop music?", "sampleAnswer": "I prefer classical music because it feels emotional." },
     { "question": "Why is it difficult to compose a long musical piece?", "sampleAnswer": "It takes time, practice, and inspiration." },
@@ -73,7 +73,7 @@
       "To finish the composition, I need to ___."
     ]
   },
-  "wrapUp": [
+  "reviewSentences": [
     "It takes a lot of practice to compose a professional piece of music.",
     "The harmony between the violin and the cello was absolutely perfect.",
     "I hope this performance will inspire the audience to learn an instrument."

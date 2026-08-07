@@ -51,6 +51,10 @@ Tools:
 | `manus_confirm` | `task.confirmAction` when status is `waiting` |
 | `manus_review_brief` | Build judge-only brief text (no API call) |
 
+## After feedback
+
+Always fold Manus output into **producer + local checks** — see `.cursor/skills/manus-lesson-review/SKILL.md` (“After feedback REQUIRED”). Do not only summarize in chat.
+
 ## Docs
 
 - https://open.manus.ai/docs/v2/task.create

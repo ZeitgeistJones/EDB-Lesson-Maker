@@ -12,10 +12,15 @@ Gaps in **lesson content** — not art. For us (agent + you) when something teac
 
 | Date | Issue | Why (topic / level / page) | Likely producer | Status |
 |------|-------|----------------------------|-----------------|--------|
-| 2026-08-07 | Title charm stacks a musician cutout on a terrace scene that already has a piano — awkward double-instrument title | Classical compose bake (“Writing a Symphony for the Orchestra”) title page after terrace + skipKing; titleCharmSrc / makeTitle still overlays “composer guy” on photographic piano | `titleCharm` / `makeTitle` — skip charm when title scene already reads as musician/instrument stage; do not Photoshop one lesson | open |
-| 2026-08-07 | Story pages ship cheap 🎼 glyph side art instead of real story / prop-side visuals | Same classical compose bake — all story panels weak; story-art path falls through to theme emoji | Story-art picker + theme-emoji fallback / gates — prefer real story or prop-side art before glyph | open |
+| 2026-08-07 | Title charm stacks a musician cutout on a terrace scene that already has a piano — awkward double-instrument title | Classical compose / Manus reviews | `titleCharmSrc` skips charm for music/classical packs | prompt-fixed |
+| 2026-08-07 | Story pages ship cheap 🎼 glyph side art instead of real story / prop-side visuals | Same bake — all story panels weak | Story-art picker + theme-emoji fallback / gates | open |
+| 2026-08-07 | Reading comprehension page empty despite fixture having questions | Fixture used root `comprehension[]`; renderer only read `story.comprehensionQuestions` — Manus fail/revise | `normalizeLesson` + S19 | schema-fixed |
+| 2026-08-07 | Warm-up shows teacher sampleAnswer to students | Honesty / answer leak — Manus | Warm page no longer renders sample; keep JSON for teachers | schema-fixed |
+| 2026-08-07 | King activity hint says “Drag toys…” with no language production | Manus ClassIn fit | Theme-aware king hints + speak/write cue; S21 | schema-fixed |
+| 2026-08-07 | B1 frames use bare second conditional without scaffold | Manus language_accuracy | Generate-lesson CEFR frame rules | prompt-fixed |
+| 2026-08-07 | No visible aims / weak wrap-up exit ticket | Manus EDB alignment | Title aims line + wrap “Today we used” / exit ticket; S22/S23 | schema-fixed |
 
-<!-- Classical compose note (2026-08-07): Activity/hero dock + skipKing piano-on-piano are fixed (dockCount 17, f21ca03) — do not re-open those; only title charm overlay + story visuals remain. -->
+<!-- Classical compose note (2026-08-07): Activity dock + skipKing piano-on-piano fixed (f21ca03). Manus dual reviews LbVd…/oEDh… folded into producer 2026-08-07. Story glyphs still open. -->
 
 ## How to add a row
 

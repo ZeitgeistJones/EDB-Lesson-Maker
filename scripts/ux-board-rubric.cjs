@@ -158,6 +158,13 @@ const SOFT = {
   S16: 'Board feels a little fun/charming — not a bland form',
   S17: 'Activity page invites play (not only another text list)',
   S18: 'Strip as a whole has variety — student would not say “every page is the same”',
+
+  // Pedagogy / honesty (Manus ClassIn reviews 2026-08)
+  S19: 'Reading comprehension has real questions (not an empty write-in void)',
+  S20: 'Warm-up does not show teacher sample answers to students',
+  S21: 'King/activity hint names pieces accurately (not “toys”) and asks for speak/write output',
+  S22: 'Wrap-up / exit ticket consolidates aims (not only “Great Job!”)',
+  S23: 'Title / intro states learning aims (vocab or communicative goal visible)',
 };
 
 /**
@@ -167,11 +174,11 @@ const SOFT = {
 const TIER_ORDER = ['honesty', 'readable', 'navigable', 'variety', 'charm'];
 
 const TIERS = {
-  honesty: ['H5', 'H1', 'S15', 'S8', 'M7'],
+  honesty: ['H5', 'H1', 'S15', 'S8', 'M7', 'S19', 'S20'],
   readable: ['H4', 'S1', 'S5', 'S11', 'S13', 'S9', 'M1', 'M2', 'M6'],
-  navigable: ['H3', 'H6', 'S4', 'S10', 'S14', 'M3', 'M8'],
+  navigable: ['H3', 'H6', 'S4', 'S10', 'S14', 'M3', 'M8', 'S21', 'S23'],
   variety: ['H2', 'S2', 'S3', 'S6', 'S18', 'M5'],
-  charm: ['S7', 'S12', 'S16', 'S17', 'M4', 'H7'],
+  charm: ['S7', 'S12', 'S16', 'S17', 'M4', 'H7', 'S22'],
 };
 
 /** Product pillars as the user states them, mapped to codes for reporting. */
