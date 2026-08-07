@@ -1,0 +1,26 @@
+{
+  "title": "Writing a Symphony for the Orchestra",
+  "level": "B1",
+  "duration": "60",
+  "knownIssues": [
+    "Story pages may still use cheap glyph side art (wishlist — story-art path open)",
+    "Vocab icon clarity / drop-zone affordances still soft (Manus prior pass)"
+  ],
+  "justFixed": [
+    "normalizeLesson lifts root comprehension so Reading Comp is populated",
+    "Warm-up no longer shows teacher sampleAnswer to students",
+    "King hint: musicians + write/say symphony idea (no 'toys')",
+    "Title aims line + wrap exit ticket; music title charm skipped on terrace",
+    "Generate prompt: B1 frame grammar + comprehension under story.*"
+  ],
+  "localChecks": [
+    "verify-classical-compose.mjs: ok (skipKing, dock≥10, comp≥2, no toys hint, no warm sample leak, pack vocab)",
+    "Soft codes S19–S23 added to ux-board-rubric for future quality-loop eyes"
+  ],
+  "focus": [
+    "Verify JUST FIXED still holds on the JPGs",
+    "Call gate_holes if local checks claimed pass but board still fails",
+    "New misses only — especially story art, vocab match clarity, pacing/teacher cues"
+  ],
+  "notes": "Second Manus pass after folding prior fail/revise into producer. Prefer producer next_actions."
+}

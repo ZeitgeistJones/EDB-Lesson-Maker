@@ -15,12 +15,26 @@ Never commit the key. Create keys in Manus → API Integration settings.
 ## CLI
 
 ```bash
-npm run manus:review -- tmp/board-bg-verify/classical-compose --title="Writing a Symphony for the Orchestra" --level=B1 --duration=60
+# Preview pass-off brief + attachments (no API call)
+npm run manus:review -- tmp/board-bg-verify/classical-compose --passoff=scripts/manus/passoffs/classical-compose.json --dry-run
+
+# Live review (auto-loads <dir>/manus-passoff.json if present)
+npm run manus:review -- tmp/board-bg-verify/classical-compose --title="Writing a Symphony for the Orchestra"
 ```
 
-Uploads key page JPGs (inline `file_data` when under 15MB), creates a task with structured output schema, polls until stopped, prints JSON, appends `.cursor/ratings/manus-reviews.jsonl`.
+Pass-off fields (JSON or `--known=` / `--fixed=` / `--gates=` / `--focus=` pipe lists):
 
-Optional: `--known="issue one|issue two"` to disclose wishlist items already known.
+| Field | Purpose |
+|-------|---------|
+| `knownIssues` | Already owned — don’t re-litigate unless worse |
+| `justFixed` | Verify these still hold; fail → `method_feedback` |
+| `localChecks` | What we claim passed |
+| `focus` | This pass’s ask |
+| `notes` | Optional one-liner |
+
+Schema adds `gate_holes` + `method_feedback` so Manus can call out check/process misses.
+
+Template: [`scripts/manus/passoff.example.json`](../scripts/manus/passoff.example.json).
 
 ## MCP (Cursor Agent tools)
 

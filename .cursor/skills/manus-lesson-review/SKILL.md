@@ -2,10 +2,10 @@
 name: manus-lesson-review
 description: >-
   Send an internally good-enough ClassIn board bake to Manus for structured
-  visual/pedagogy critique, then ALWAYS fold feedback into the producer and
-  local review checks before the next bake. Use when the user says send to
-  Manus, Manus review, external eyes, or after a quality verify pass when the
-  lesson looks ready for ClassIn.
+  visual/pedagogy critique with a pass-off brief (known / just-fixed / gates /
+  focus), then ALWAYS fold feedback into the producer and local review checks.
+  Use when the user says send to Manus, Manus review, external eyes, or after a
+  quality verify pass when the lesson looks ready for ClassIn.
 ---
 
 # Manus lesson review
@@ -20,24 +20,37 @@ Only when the bake is **internally good enough**:
 - No hollow kit / readiness hard-fail if those gates ran
 - Agent or user believes title + activity + vocab are teachable
 
-Known open issues from `docs/content-wishlist.md` may be passed as `--known=` so Manus focuses on new misses.
+## Pass-off (always write before send)
+
+Short JSON — template [`scripts/manus/passoff.example.json`](../../../scripts/manus/passoff.example.json):
+
+| Field | Purpose |
+|-------|---------|
+| `knownIssues` | Owned misses — don’t re-litigate unless worse |
+| `justFixed` | Verify these still hold; else Manus fills `method_feedback` |
+| `localChecks` | What we claim passed (script names + outcomes) |
+| `focus` | This pass’s ask |
+| `notes` | Optional one-liner |
+
+Save as `<verify-dir>/manus-passoff.json` (auto-loaded) or `--passoff=scripts/manus/passoffs/….json`.
+
+Schema also asks Manus for **`gate_holes`** + **`method_feedback`** — meta-review of our checks/process.
 
 ## What to send
 
-**Board JPGs**, not the binary `.edb`:
+**Board JPGs** + pass-off text, not the binary `.edb`.
 
-- Prefer `contact.jpg` when present
-- Always include title, newWords, frames, story0, activity, comprehension, wrap when present
+Prefer contact + title, newWords, frames, story0, comprehension, activity, wrap when present.
 
 ## How to run
 
 ```bash
-npm run manus:review -- tmp/board-bg-verify/<case> --title="Lesson Title" --level=B1 --duration=60
+npm run manus:review -- tmp/board-bg-verify/<case> --passoff=scripts/manus/passoffs/<case>.json --dry-run
+npm run manus:review -- tmp/board-bg-verify/<case> --passoff=scripts/manus/passoffs/<case>.json
+# flags also work: --known=a|b --fixed=c|d --gates=e|f --focus=g|h
 ```
 
-Optional known issues (pipe-separated): `--known="title charm overlay|story glyph"`.
-
-Or MCP: prefer `manus_review_bake` with `{ "dir": "tmp/board-bg-verify/<case>", "title": "..." }`.
+Or MCP `manus_review_bake` with the same fields / `passoff_path`.
 
 Auth: `MANUS_API_KEY` in environment or gitignored `.env`. Never commit or print the key.
 
@@ -45,16 +58,13 @@ Auth: `MANUS_API_KEY` in environment or gitignored `.env`. Never commit or print
 
 Do **not** stop at summarizing Manus. Always:
 
-1. **Dedupe** blockers / `next_actions` across duplicate tasks (keep the higher-signal pass).
+1. **Dedupe** blockers / `next_actions` (and `gate_holes`) across duplicate tasks.
 2. **Log** durable pedagogy misses in [`docs/content-wishlist.md`](../../docs/content-wishlist.md) (or asset wishlist for art).
-3. **Fix the producer** for repeating patterns — prompts (`api/generate-lesson.js` / `server.js`), render (`renderLessonPages.js`), recipes, gates — then regenerate. Never Photoshop one PNG as the only fix ([fix-the-producer](../../rules/fix-the-producer.mdc)).
-4. **Upgrade local checks** so we catch the same miss without Manus next time:
-   - Soft codes in [`scripts/ux-board-rubric.cjs`](../../../scripts/ux-board-rubric.cjs) (S19–S23 pedagogy)
-   - Dual-lens bullets in [board-quality-loop](../board-quality-loop/SKILL.md)
-   - Verify scripts / readiness when measurable
+3. **Fix the producer** for repeating patterns — then regenerate ([fix-the-producer](../../rules/fix-the-producer.mdc)).
+4. **Upgrade local checks** from `gate_holes` / `method_feedback` so the same miss fails locally next time (rubric soft codes, verify scripts, dual-lens).
 5. **Verdict routing**
    - `pass` → ship / upload EDB  
-   - `revise` → apply `next_actions` to machinery, rebake, re-send Manus only after a real fix  
+   - `revise` → apply `next_actions`, rebake, re-send Manus only after a real fix (+ updated pass-off)  
    - `fail` → fix `blocking_issues` first  
 
 Log lines append to `.cursor/ratings/manus-reviews.jsonl`.
@@ -63,10 +73,10 @@ Log lines append to `.cursor/ratings/manus-reviews.jsonl`.
 
 | Miss | Producer / check |
 |------|------------------|
-| Empty comprehension | `normalizeLesson` lifts root `comprehension` → `story.comprehensionQuestions`; S19 |
-| Warm sample on board | Warm-up no longer renders `sampleAnswer` to students; S20 |
-| “Drag toys…” | King hints name pieces + require speak/write; music-specific cue; S21 |
-| No aims / weak wrap | Title aims line + wrap exit ticket; S22/S23 |
+| Empty comprehension | `normalizeLesson`; S19 |
+| Warm sample on board | Warm-up hides sampleAnswer; S20 |
+| “Drag toys…” | King hints + speak/write; S21 |
+| No aims / weak wrap | Title aims + wrap exit ticket; S22/S23 |
 | Title charm on terrace piano | Music pack title charm skipped |
 | B1 bare second conditional | Generate prompt CEFR frame rules |
 | Story glyphs | Still open on wishlist — story-art path |

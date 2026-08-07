@@ -1,0 +1,21 @@
+{
+  "title": "Lesson Title",
+  "level": "B1",
+  "duration": "60",
+  "knownIssues": [
+    "Open wishlist miss A (do not re-litigate unless worse)"
+  ],
+  "justFixed": [
+    "Producer change 1",
+    "Producer change 2"
+  ],
+  "localChecks": [
+    "npm run manus:review dry-run / verify script: ok — list what passed"
+  ],
+  "focus": [
+    "Verify JUST FIXED still holds",
+    "Call gate_holes if checks claimed pass but board still fails",
+    "New misses only"
+  ],
+  "notes": "Optional one-liner context for this pass."
+}

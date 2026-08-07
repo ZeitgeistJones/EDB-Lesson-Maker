@@ -45,7 +45,14 @@ const TOOLS = [
         level: { type: 'string' },
         duration: { type: 'string' },
         known_issues: { type: 'array', items: { type: 'string' } },
+        just_fixed: { type: 'array', items: { type: 'string' } },
+        local_checks: { type: 'array', items: { type: 'string' } },
+        focus: { type: 'array', items: { type: 'string' } },
         notes: { type: 'string' },
+        passoff_path: {
+          type: 'string',
+          description: 'Optional path to manus-passoff.json (defaults to <dir>/manus-passoff.json)',
+        },
         agent_profile: {
           type: 'string',
           enum: ['manus-1.6', 'manus-1.6-lite', 'manus-1.6-max'],
@@ -111,7 +118,7 @@ const TOOLS = [
   },
   {
     name: 'manus_review_brief',
-    description: 'Build the standard ClassIn judge-only brief text (no API call).',
+    description: 'Build the standard ClassIn pass-off brief text (no API call).',
     inputSchema: {
       type: 'object',
       properties: {
@@ -119,6 +126,9 @@ const TOOLS = [
         level: { type: 'string' },
         duration: { type: 'string' },
         known_issues: { type: 'array', items: { type: 'string' } },
+        just_fixed: { type: 'array', items: { type: 'string' } },
+        local_checks: { type: 'array', items: { type: 'string' } },
+        focus: { type: 'array', items: { type: 'string' } },
         notes: { type: 'string' },
       },
       required: ['title'],
@@ -159,6 +169,9 @@ async function callTool(name, args) {
         level: args.level,
         duration: args.duration,
         knownIssues: args.known_issues,
+        justFixed: args.just_fixed,
+        localChecks: args.local_checks,
+        focus: args.focus,
         notes: args.notes,
       }),
     };
@@ -172,7 +185,11 @@ async function callTool(name, args) {
       level: args.level,
       duration: args.duration,
       knownIssues: args.known_issues || [],
+      justFixed: args.just_fixed || [],
+      localChecks: args.local_checks || [],
+      focus: args.focus || [],
       notes: args.notes,
+      passoff: args.passoff_path,
       profile: args.agent_profile || 'manus-1.6',
     });
   }
