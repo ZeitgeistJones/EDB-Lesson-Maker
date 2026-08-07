@@ -170,6 +170,8 @@ const SOFT = {
   S25: 'Title aims list the board vocab (not truncated short of inspire/key words) and state a one-line grammar aim when sentence frames exist',
   S26: 'Vocab match-dock icons carry one-word caption chips; abstract pack glyphs (e.g. inspire starburst) are overridden to a clearer curated stand-in',
   S27: 'Manus/review pickImages includes every storyN beat before comprehension (never drop middle story pages at soft max)',
+  S28: 'Vocab matchDock shows numbered drop-zone pads on word cards (not word text alone as the only target)',
+  S29: 'Lessons ≥45 min show teacher timing chips on major scene headers (pacing cues)',
 };
 
 /**
@@ -181,7 +183,7 @@ const TIER_ORDER = ['honesty', 'readable', 'navigable', 'variety', 'charm'];
 const TIERS = {
   honesty: ['H5', 'H1', 'S15', 'S8', 'M7', 'S19', 'S20', 'S26'],
   readable: ['H4', 'S1', 'S5', 'S11', 'S13', 'S9', 'M1', 'M2', 'M6'],
-  navigable: ['H3', 'H6', 'S4', 'S10', 'S14', 'M3', 'M8', 'S21', 'S23', 'S25', 'S27'],
+  navigable: ['H3', 'H6', 'S4', 'S10', 'S14', 'M3', 'M8', 'S21', 'S23', 'S25', 'S27', 'S28', 'S29'],
   variety: ['H2', 'S2', 'S3', 'S6', 'S18', 'M5'],
   charm: ['S7', 'S12', 'S16', 'S17', 'M4', 'H7', 'S22', 'S24'],
 };

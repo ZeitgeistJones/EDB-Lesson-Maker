@@ -409,6 +409,19 @@ async function pieceToPng(piece, ctx) {
   const word = piece.meta && piece.meta.word;
   const wantCaption = !!(piece.label || (piece.meta && piece.meta.captionChip)
     || piece.role === 'matchPiece');
+  // Explicit data-URL canvases (slot ghosts / solid pads) must win over word-art
+  // lookup — matchPad used to set meta.word and rendered tiny vocab icons on cards.
+  const assetStr = piece.asset != null ? String(piece.asset) : '';
+  const padRole = /^(matchPad|orderPad|buildSlot)$/.test(piece.role || '');
+  if (piece.asset && (assetStr.startsWith('data:') || padRole)) {
+    const png = await loadAssetPng(piece.asset, piece.w, piece.h);
+    if (png) {
+      if (wantCaption && (piece.label || word)) {
+        return captionedArtPng(png, piece.label || word, piece.w, piece.h);
+      }
+      return png;
+    }
+  }
   if (word) {
     const art = await wordArtPng(word, ctx);
     if (art) {

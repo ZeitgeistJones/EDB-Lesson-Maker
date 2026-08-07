@@ -854,7 +854,7 @@
     p.appendChild(header('New Words', '#7c3aed', { timing: '~6 min' }));
     p.appendChild(hint(
       interactive
-        ? 'Say each word. Drag the matching pictures onto the board.'
+        ? 'Say each word. Drag each picture onto its numbered drop pad.'
         : 'Say each word together.',
       { flexShrink: '0' }
     ));
@@ -877,36 +877,41 @@
       height: '100%',
       alignContent: 'stretch',
     });
-    for (const v of words) {
+    words.forEach((v, i) => {
       const glyphHtml = interactive
         ? ''
         : `<div style="width:64px;height:64px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0">${esc(v.emoji || '•')}</div>`;
       const wordPx = n <= 2 ? 56 : 44;
-      // Sparse lessons: write line fills the tall card so M3 doesn't see empty panels.
-      const writeLine = n <= 3
+      // Match-dock: numbered dashed pad under the word (S28 / Manus drop-zones).
+      // Painted into the page PNG so ClassIn + bake stay aligned (no EDB ghost overlay).
+      const dropPad = interactive
+        ? `<div data-match-pad="${i + 1}" style="margin-top:auto;width:78%;max-width:160px;min-height:52px;border:3px dashed #94a3b8;border-radius:10px;background:rgba(148,163,184,0.14);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#64748b">${i + 1}</div>`
+        : '';
+      const writeLine = (!interactive && n <= 3)
         ? `<div style="margin-top:20px;font-size:24px;font-weight:700;color:#64748b;text-align:center;line-height:1.35;max-width:90%">Say the word. Drag the matching picture. Write it on the line.</div>
            <div style="margin-top:16px;border-bottom:3px dashed #cbd5e1;height:48px;width:75%;max-width:320px"></div>`
         : '';
       grid.appendChild(card(
-        `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;height:100%;width:100%">
+        `<div style="display:flex;flex-direction:column;align-items:center;justify-content:${interactive ? 'flex-start' : 'center'};gap:12px;height:100%;width:100%;padding-top:${interactive ? '18px' : '0'};box-sizing:border-box">
           <div style="display:flex;align-items:center;justify-content:center;gap:16px">
             ${glyphHtml}
             <div style="font-size:${wordPx}px;font-weight:800;line-height:1.05;text-align:center">${esc(v.word || '')}</div>
           </div>
+          ${dropPad}
           ${writeLine}
         </div>`,
         {
           marginBottom: '0',
-          padding: '20px 22px',
+          padding: interactive ? '12px 22px 16px' : '20px 22px',
           display: 'flex',
-          alignItems: 'center',
+          alignItems: interactive ? 'stretch' : 'center',
           justifyContent: 'center',
           minHeight: '0',
           height: '100%',
           boxSizing: 'border-box',
         }
       ));
-    }
+    });
     p.appendChild(grid);
     drawDebugZones(p, 'vocab');
     return p;

@@ -186,6 +186,11 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     .filter((pg) => pg.pageKey === 'newWords')
     .flatMap((pg) => pg.notes || []);
   const hasMatchCaptions = matchCaptionNotes.some((n) => /matchDockCaptions/i.test(String(n)));
+  const hasMatchPads = matchCaptionNotes.some((n) => /matchDockPads/i.test(String(n)));
+  const newWordsDom = rendered.pageEls[byKey.newWords];
+  const matchPadDomCount = newWordsDom
+    ? newWordsDom.querySelectorAll('[data-match-pad]').length
+    : 0;
   const identityFrame = (lesson.sentenceFrames || []).some((f) => /If I am a musician/i.test(String(f)));
   const guitarStory = ((lesson.story && lesson.story.pages) || [])
     .some((sp) => /guitar/i.test([sp.text, sp.visualCaption, sp.heading].filter(Boolean).join(' ')));
@@ -248,6 +253,8 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     hasGrammarAim,
     timingChipCount,
     hasMatchCaptions,
+    hasMatchPads,
+    matchPadDomCount,
     identityFrame,
     guitarStory,
     storyPageCount: storyIdxs.length,
@@ -305,6 +312,10 @@ if ((result.aimsMissing || []).length) {
 }
 if (!result.hasGrammarAim) fails.push('title missing grammar aim line (S25)');
 if (!result.hasMatchCaptions) fails.push('newWords match dock missing caption chips (S26)');
+if (!result.hasMatchPads) fails.push('newWords match dock missing numbered pads note (S28)');
+if ((result.matchPadDomCount || 0) < Math.min(6, (lesson.vocabulary || []).length || 0)) {
+  fails.push('newWords DOM missing numbered drop pads (S28): ' + result.matchPadDomCount);
+}
 if (result.identityFrame) fails.push('Frame still uses identity-based "If I am a musician"');
 if (result.guitarStory) fails.push('story still references guitar (prefer piano/violin theme)');
 const story1Prop = (result.storyPropKeys || []).find((s) => s.i === 1);
@@ -313,6 +324,10 @@ if (story1Prop && /guitar/i.test(story1Prop.key)) {
 }
 if ((result.timingChipCount || 0) < 4) {
   fails.push('too few teacher timing chips on headers: ' + result.timingChipCount);
+}
+// S29 — Manus next_action: gate pacing chips for lessons ≥45 min.
+if (Number(meta.duration) >= 45 && (result.timingChipCount || 0) < 6) {
+  fails.push('duration≥45 needs ≥6 timing chips (S29): ' + result.timingChipCount);
 }
 
 for (const p of result.pages) {
@@ -347,6 +362,8 @@ if ((result.storyPageCount || 0) >= 3 && !picked.some((n) => /story2/i.test(n)))
   aimsMissing: result.aimsMissing,
   hasGrammarAim: result.hasGrammarAim,
   hasMatchCaptions: result.hasMatchCaptions,
+  hasMatchPads: result.hasMatchPads,
+  matchPadDomCount: result.matchPadDomCount,
   timingChipCount: result.timingChipCount,
   pickedImages: picked,
   frames: result.frames,
@@ -371,6 +388,8 @@ console.log(JSON.stringify({
   aimsMissing: result.aimsMissing,
   hasGrammarAim: result.hasGrammarAim,
   hasMatchCaptions: result.hasMatchCaptions,
+  hasMatchPads: result.hasMatchPads,
+  matchPadDomCount: result.matchPadDomCount,
   timingChipCount: result.timingChipCount,
   storyPageCount: result.storyPageCount,
   frames: result.frames,

@@ -86,7 +86,7 @@ Margin ~24px from edges; min gap ~14px between unlocked pieces unless stacking i
 
 | ID | Feel | EDB mapping |
 |----|------|-------------|
-| `matchDock` | Match icons to words | Locked word row + unlocked icons in dock |
+| `matchDock` | Match icons to words | Locked numbered drop pads on word cards + unlocked captioned icons in dock |
 | `orderLine` | Sequence | Locked numbered pads + shuffled word tiles; answer on `answerStrip` |
 | `hideSeek` | Hide and seek | Locked targets + unlocked covers in `targetBay` / art column |
 | `revealReward` | Locked rewards | Locked star under unlocked flap in `rewardPocket` |

@@ -3,7 +3,6 @@
   "level": "B1",
   "duration": "60",
   "knownIssues": [
-    "Drop-zone affordances for vocab match remain soft (word cards are targets; no numbered pads yet)",
     "Full generative StoryArt may still be missing — PropBank caption fallback is the interim",
     "Background palette variety across flats still soft (Manus nice-to-have)"
   ],
@@ -18,16 +17,17 @@
     "pickImages always includes every storyN beat (S27) — was dropping story2 at soft max 10",
     "inspire pack override → brain.png (not starburst glyph); match-dock caption chips (S26)",
     "Frame 2 no longer identity-based 'If I am a musician'; story beat 2 guitar→piano",
-    "Teacher timing chips (~N min) on scene headers"
+    "Teacher timing chips (~N min) on scene headers",
+    "Vocab matchDock: numbered drop-zone pads under word cards in DOM bake (S28); pieceToPng prefers data:/pad roles over wordArt"
   ],
   "localChecks": [
-    "verify-classical-compose.mjs: ok (skipKing, dock≥10, 3 story beats, aims+grammar, match captions, inspire≠starburst, pickImages stories, no guitar story)",
-    "Soft codes S19–S27 in ux-board-rubric; manus pass-off with gate_holes schema"
+    "verify-classical-compose.mjs: ok (skipKing, dock≥10, 3 story beats, aims+grammar, match captions+pads, inspire≠starburst, pickImages stories, no guitar story)",
+    "Soft codes S19–S29 in ux-board-rubric; manus pass-off with gate_holes schema"
   ],
   "focus": [
-    "Verify JUST FIXED still holds on the JPGs (esp. all 3 story beats in packet, inspire caption, aims)",
+    "Verify JUST FIXED still holds on the JPGs (esp. all 3 story beats, inspire caption, aims, numbered drop pads on New Words)",
     "Call gate_holes if local checks claimed pass but board still fails",
-    "New misses only — drop-zone pads, palette cohesion"
+    "New misses only — StoryArt placeholders, palette cohesion"
   ],
-  "notes": "Manusloop fold after revise/72 (J4up6tWdwZyWUWP5wLq2pG). Prefer producer next_actions."
+  "notes": "Manusloop second live pass after e0466b5 + numbered match pads (S28). Prefer producer next_actions."
 }

@@ -294,6 +294,9 @@
     if (!vocab.length) return;
     const size = matchDockSize(vocab.length);
     if (!size) return; // caller should fall back to icons-on-cards
+    // Numbered drop pads live in makeVocab DOM (data-match-pad) so they stay
+    // under the word label. Placing EDB ghosts via bodyText math misaligned and
+    // covered the words — keep ClassIn targets as the word cards + pad chrome.
     // Caption chips under icons (Manus B2) — pieceToPng composites word label.
     const chipH = 22;
     L.placeDockRow(page, vocab.map((v) => ({
@@ -307,6 +310,7 @@
     })), { w: size.w, h: size.h + chipH, cols: size.cols, noShrink: true });
     page.notes.push('recipe:matchDock');
     page.notes.push('recipe:matchDockCaptions');
+    page.notes.push('recipe:matchDockPads');
   }
 
   function orderLine(lesson, page, layout) {

@@ -22,8 +22,10 @@ Gaps in **lesson content** — not art. For us (agent + you) when something teac
 | 2026-08-07 | Manus thought story beat 3 missing | Review `pickImages` soft-max 10 dropped story2 after preferred roles | `pickImages` mandates all storyN; S27 + verify | schema-fixed |
 | 2026-08-07 | inspire dock icon = ambiguous starburst glyph; no word captions | Vocab match clarity / Manus B2 | PACK_OVERRIDES inspire→brain; matchDock caption chips; S26 | schema-fixed |
 | 2026-08-07 | Title aims truncated before inspire; no grammar aim; identity Frame 2; guitar in classical story | classical-compose Manus soft | Aims≤8 + grammar line; fixture frames/story piano; timing chips | schema-fixed |
+| 2026-08-07 | Vocab match drop-zone affordances soft (word cards only; no numbered pads) | classical-compose Manus ClassIn fit | matchDock numbered pads + DOM data-match-pad; S28 | schema-fixed |
+| 2026-08-07 | matchPad with meta.word rendered tiny vocab icons on cards (answer-ish leak) | pieceToPng wordArt before data-URL asset | Prefer data:/pad roles in pieceToPng; matchPad meta.targetWord | schema-fixed |
 
-<!-- Classical compose note (2026-08-07): Activity dock + skipKing piano-on-piano fixed (f21ca03). Manus dual reviews LbVd…/oEDh… folded into producer 2026-08-07. Story glyphs still open. Manusloop J4up… revise/72 folded: pickImages + inspire override + aims/frames/story. -->
+<!-- Classical compose note (2026-08-07): Activity dock + skipKing piano-on-piano fixed (f21ca03). Manus dual reviews LbVd…/oEDh… folded into producer 2026-08-07. Story glyphs still open. Manusloop J4up… revise/72 folded: pickImages + inspire override + aims/frames/story. Second live pass USYe… pass/98 — numbered pads + pieceToPng pad fix. -->
 
 ## How to add a row
 

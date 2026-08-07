@@ -84,5 +84,7 @@ Log lines append to `.cursor/ratings/manus-reviews.jsonl`.
 | Story beat 3 “missing” | Often a **packet hole**: `pickImages` must attach every `storyN` (S27) — board already had 3 beats |
 | inspire starburst ambiguity | `PACK_OVERRIDES.inspire→brain` + match-dock caption chips; S26 |
 | Aims truncated / no grammar | Title aims ≤8 vocab + grammar aim line; S25 |
+| Soft match drop zones | Numbered DOM `data-match-pad` under word cards + recipe note; S28 |
+| matchPad meta.word → tiny vocab art on cards | `pieceToPng` prefers data:/pad roles over wordArt |
 
 Setup details: [docs/manus-review.md](../../docs/manus-review.md).
