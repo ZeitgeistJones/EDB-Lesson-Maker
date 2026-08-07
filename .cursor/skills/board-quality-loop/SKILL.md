@@ -147,7 +147,9 @@ opens art mode.
 (also auto on `quality:judge`). Trends live in `docs/quality-progress.md` and
 `npm run quality:status`. **Only compare same tier + same case count**
 (`fullquality`→`fullquality`). Cross-tier deltas are withheld so the scoreboard
-doesn’t lie. Zero soft fails with a huge warn pile is not “clean.”
+doesn’t lie. Prefer **metric rates** (M1–M10 warn|fail ÷ pages or cases) over raw
+warn counts as the bake grows; thresholds can tighten later. Zero soft fails with
+a huge warn pile is not “clean.”
 
 ## Wishlist (fetch later)
 
