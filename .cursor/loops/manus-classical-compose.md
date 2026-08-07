@@ -52,8 +52,12 @@ npm run manus:review -- tmp/board-bg-verify/classical-compose --passoff=scripts/
 | Soft drop zones | `makeVocab` numbered `data-match-pad`; S28 |
 | matchPad → tiny vocab art | `pieceToPng` prefer data:/pad roles before wordArt |
 | Wrap palette break | wrap preferFlat=!musicTitle + navy THEME; S32 |
+| Mid-deck flat fan-out | `pickFlat` midPool/generic band ≤2; S34 |
+| Story L/R thrash | `makeStoryPage` always left; S33 |
+| Activity instruction contrast | ink-tagged king title + slate hint; S35 |
+| Wrap peer exit | peer-check line; S36 |
 | Pass-off / schema | scorecard + just_fixed_results + zpd_challenges |
-| Soft codes | `scripts/ux-board-rubric.cjs` S25–S32 |
+| Soft codes | `scripts/ux-board-rubric.cjs` S25–S36 |
 | Wishlist / skill | `docs/content-wishlist.md`, `.cursor/skills/manus-lesson-review` |
 
 ### 4 — Audit
@@ -67,9 +71,9 @@ Confirm: 3 story JPGs; inspire ≠ `inspire.png` starburst; dry-run lists all st
 
 ## Last run
 
-- **When:** 2026-08-07 (shift20 — Manus skill delta fold)
-- **Base:** verify after S30–S32 producer (aims⊆board, grammar honesty, navy/terrace wrap, no match captions)
-- **Manus:** schema/skill aligned to upstream `classin-lesson-quality-review-skill` v2 (J4up skill-att-2 + USYe report); no live re-send this shift
-- **Producer fixes:** frosted aims panel; grammarAimLine; tempo in board vocab; wrap bookend; drop student match captions; review-schema scorecard/ZPD/just_fixed_results
-- **Manus skill delta → absorbed:** see `.cursor/skills/manus-lesson-review/SKILL.md` “Manus skill delta” table
-- **Audit:** verify + manus:dry this shift
+- **When:** 2026-08-07 (shift21 — live Manus + S33–S37 fold)
+- **Base:** verify ok after S33–S37 (midFlat≤2, story L lock, ink hints, peer exit, no match captions, king timing, wrap Also say)
+- **Manus:** live https://manus.im/app/LgtXoJYhXfR7hxq6rf75wR · revise/84 · scorecard 4.2 — body `.cursor/loops/manus-classical-compose/last-response.md`
+- **Producer fixes:** matchPiece no caption bake; king timing chip; wrap Also say + peer; midPool≤2; story always-left; S33–S37 gates
+- **Audit:** verify ok; manus:dry schema_keys scorecard/zpd; test:bg-picks passed
+- **Next live Manus:** after this bake ships (re-send to confirm B1–B3 HOLDS)

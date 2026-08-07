@@ -407,8 +407,10 @@ function captionedArtPng(artBytes, label, w, h) {
 /** Asset first → emoji/tile fallback → solid placeholder (never silent-drop). */
 async function pieceToPng(piece, ctx) {
   const word = piece.meta && piece.meta.word;
-  const wantCaption = !!(piece.label || (piece.meta && piece.meta.captionChip)
-    || piece.role === 'matchPiece');
+  // Match-dock icons must NEVER bake answer-naming caption chips (Manus S26 /
+  // skill v2). Words live on the numbered drop pads — pictures stay unlabeled.
+  const isMatchIcon = piece.role === 'matchPiece';
+  const wantCaption = !isMatchIcon && !!(piece.label || (piece.meta && piece.meta.captionChip));
   // Explicit data-URL canvases (slot ghosts / solid pads) must win over word-art
   // lookup — matchPad used to set meta.word and rendered tiny vocab icons on cards.
   const assetStr = piece.asset != null ? String(piece.asset) : '';

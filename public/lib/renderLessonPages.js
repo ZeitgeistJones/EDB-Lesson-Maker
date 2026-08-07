@@ -424,10 +424,12 @@
   /** Small instruction line under a header. Sits on the raw background, so the
    *  background policy recolours it — see applyPackBg. */
   function hint(text, extra) {
+    // Default slate (not soft gray) so instructions stay readable on pale flats
+    // before ink policy runs; dataset.ink lets applyInkPolicy retarget on scenes.
     const n = el('div', Object.assign({
       fontSize: '22px',
-      color: '#64748b',
-      fontWeight: '600',
+      color: '#334155',
+      fontWeight: '700',
       marginBottom: '14px',
     }, extra || {}), text);
     n.dataset.ink = 'hint';
@@ -1298,12 +1300,11 @@
       const layout = el('div', {
         display: 'flex', gap: '24px', alignItems: 'stretch', flex: '1',
       });
-      const artOnRight = index % 2 === 1;
+      // Manus PPT-like: keep prop card on the same side across story beats
+      // (alternating L/R reads as layout thrash, not intentional variety).
       const side = el('div', {
         width: '240px', flexShrink: '0', borderRadius: '18px',
-        background: artOnRight
-          ? 'linear-gradient(160deg, #ffedd5, #fed7aa)'
-          : 'linear-gradient(200deg, #fff7ed, #fdba74)',
+        background: 'linear-gradient(200deg, #fff7ed, #fdba74)',
         minHeight: '240px', display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'flex-start', padding: '18px',
         boxSizing: 'border-box',
@@ -1313,6 +1314,7 @@
       });
       side.dataset.storyArt = String(index);
       side.dataset.storyArtMode = 'side';
+      side.dataset.storySide = 'left';
       fillStoryArtSlot(side, lesson, page, true);
       side.appendChild(storyCaptionChip(
         page?.visualCaption || page?.visualTheme || 'Scene',
@@ -1330,13 +1332,8 @@
           alignItems: storyText.length <= 100 ? 'flex-start' : 'center',
         }
       );
-      if (artOnRight) {
-        layout.appendChild(text);
-        layout.appendChild(side);
-      } else {
-        layout.appendChild(side);
-        layout.appendChild(text);
-      }
+      layout.appendChild(side);
+      layout.appendChild(text);
       content.appendChild(layout);
     }
     p.appendChild(content);
@@ -1564,14 +1561,39 @@
           lesson.title, lesson.activity?.title, lesson.activity?.prompt,
           ...(lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v.word)),
         ].filter(Boolean).join(' '));
-      p.appendChild(el('div', {
-        color: '#4338ca',
+      // Ink-tagged so applyInkPolicy can lift contrast on busy scene BGs (Manus).
+      // Timing chip required on king/activity headers too (Manus S29 / gate hole).
+      const kingRow = el('div', {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '12px',
+        marginTop: '4px',
+        maxWidth: '520px',
+        flexWrap: 'wrap',
+      });
+      const kingTitle = el('div', {
+        color: '#0f172a',
         fontSize: '22px',
         fontWeight: '800',
-        marginTop: '4px',
-        maxWidth: '380px',
         lineHeight: '1.2',
-      }, esc(lesson.activity?.title || 'Your Turn!')));
+      }, esc(lesson.activity?.title || 'Your Turn!'));
+      kingTitle.dataset.ink = 'heading';
+      kingRow.appendChild(kingTitle);
+      const kingTiming = el('div', {
+        fontSize: '16px',
+        fontWeight: '700',
+        color: '#334155',
+        background: 'rgba(255,255,255,0.88)',
+        border: '1px solid rgba(148,163,184,0.7)',
+        borderRadius: '999px',
+        padding: '4px 12px',
+        lineHeight: '1.2',
+        flexShrink: '0',
+      }, '~10 min');
+      kingTiming.dataset.ink = 'hint';
+      kingTiming.dataset.timingChip = '1';
+      kingRow.appendChild(kingTiming);
+      p.appendChild(kingRow);
       // Hint must match the king — clinic default must not leak onto castle/face/etc.
       const kingCue = [
         lesson.title, lesson.activity?.title, lesson.activity?.prompt,
@@ -1647,20 +1669,43 @@
       .slice(0, 6)
       .join(', ');
     if (aims) {
-      p.appendChild(el('div', {
+      const aimsLine = el('div', {
         color: '#e2e8f0', fontSize: '22px', textAlign: 'center', margin: '8px 40px 12px', fontWeight: '700',
         lineHeight: '1.35',
-      }, `Today we used: ${aims}`));
+      }, `Today we used: ${aims}`);
+      aimsLine.dataset.wrapAims = '1';
+      p.appendChild(aimsLine);
     }
     p.appendChild(el('div', {
       color: '#fbbf24', fontSize: '24px', textAlign: 'center', margin: '8px 0 16px', fontWeight: '600',
     }, 'Exit ticket — say them together'));
-    (lesson.reviewSentences || []).slice(0, 3).forEach((s) => {
+    const review = (lesson.reviewSentences || []).slice(0, 3);
+    review.forEach((s) => {
       p.appendChild(card(
         `<div style="font-size:26px;text-align:center;font-weight:700;line-height:1.35;color:#0f172a">${esc(s)}</div>`,
         { maxWidth: '900px', margin: '0 auto 12px', padding: '16px 22px' }
       ));
     });
+    // Manus B3: exit must recycle all board-taught words, not only 3 sentences.
+    const exitHay = review.join(' ').toLowerCase();
+    const exitMissing = (lesson.vocabulary || [])
+      .map((v) => (typeof v === 'string' ? v : v && v.word))
+      .filter(Boolean)
+      .slice(0, 6)
+      .filter((w) => !new RegExp(`\\b${String(w).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(exitHay));
+    if (exitMissing.length) {
+      const also = card(
+        `<div style="font-size:22px;text-align:center;font-weight:700;line-height:1.35;color:#0f172a">Also say: ${esc(exitMissing.join(' · '))}</div>`,
+        { maxWidth: '900px', margin: '0 auto 12px', padding: '14px 20px' }
+      );
+      also.dataset.wrapExitAlso = '1';
+      p.appendChild(also);
+    }
+    // Manus nice-to-have: quick peer-feedback beat on the exit (higher engagement).
+    p.appendChild(el('div', {
+      color: '#e2e8f0', fontSize: '20px', textAlign: 'center', margin: '10px 48px 0',
+      fontWeight: '600', lineHeight: '1.35',
+    }, 'Peer check: tell a partner one word or sentence they used well.'));
     p.appendChild(img('assets/04_decoration-ui/confetti.svg', {
       left: '40px', bottom: '36px', width: '110px', height: '110px',
     }));

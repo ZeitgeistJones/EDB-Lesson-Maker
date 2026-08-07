@@ -297,20 +297,21 @@
     // Numbered drop pads live in makeVocab DOM (data-match-pad) so they stay
     // under the word label. Placing EDB ghosts via bodyText math misaligned and
     // covered the words — keep ClassIn targets as the word cards + pad chrome.
-    // No student-facing caption chips under icons (Manus skill v2): naming the
-    // word on the picture turns match into label→label. Icons must be 1:1 clear
-    // via pack overrides instead (see VocabIcons PACK_OVERRIDES).
+    // No student-facing caption chips under icons (Manus skill v2 / S26): naming
+    // the word on the picture turns match into label→label. Icons must be 1:1
+    // clear via pack overrides (VocabIcons PACK_OVERRIDES). Do NOT set `label`
+    // — pieceToPng would bake answer-naming chips into the dock PNG.
     L.placeDockRow(page, vocab.map((v) => ({
       kind: 'emoji',
       emoji: (window.VocabIcons && window.VocabIcons.emojiFor)
         ? window.VocabIcons.emojiFor(v.word, v.emoji)
         : (v.emoji || '•'),
       role: 'matchPiece',
-      label: v.word,
       meta: { word: v.word },
     })), { w: size.w, h: size.h, cols: size.cols, noShrink: true });
     page.notes.push('recipe:matchDock');
     page.notes.push('recipe:matchDockPads');
+    page.notes.push('recipe:matchDockNoCaptions');
   }
 
   function orderLine(lesson, page, layout) {

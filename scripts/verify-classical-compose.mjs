@@ -212,13 +212,28 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
   const matchCaptionNotes = (boardPlan.pages || [])
     .filter((pg) => pg.pageKey === 'newWords')
     .flatMap((pg) => pg.notes || []);
-  const hasMatchCaptions = matchCaptionNotes.some((n) => /matchDockCaptions/i.test(String(n)));
+  const newWordsPage = (boardPlan.pages || []).find((pg) => pg.pageKey === 'newWords');
+  const matchPieces = ((newWordsPage && newWordsPage.unlocked) || [])
+    .filter((p) => p.role === 'matchPiece');
+  // Gate hole (Manus LgtX): notes alone lied — captions bake from piece.label /
+  // pieceToPng matchPiece. Fail if any dock icon still carries a student label.
+  const hasMatchCaptions = matchPieces.some((p) => !!(p.label || (p.meta && p.meta.captionChip)))
+    || matchCaptionNotes.some((n) => /matchDockCaptions/i.test(String(n)));
+  const hasMatchNoCaptionsNote = matchCaptionNotes.some((n) => /matchDockNoCaptions/i.test(String(n)));
   const hasMatchPads = matchCaptionNotes.some((n) => /matchDockPads/i.test(String(n)));
   const newWordsDom = rendered.pageEls[byKey.newWords];
   const matchPadDomCount = newWordsDom
     ? newWordsDom.querySelectorAll('[data-match-pad]').length
     : 0;
+  const actTimingChip = !!(actDom && actDom.querySelector && actDom.querySelector('[data-timing-chip]'));
   const wrapDom = rendered.pageEls[byKey.wrap];
+  // Prefer tagged aims/Also-say nodes — full-page textContent glues siblings
+  // ("tempo"+"Exit" → "tempoExit") and false-fails the last aims word.
+  const wrapExitHay = [
+    wrapDom && wrapDom.querySelector && wrapDom.querySelector('[data-wrap-aims]'),
+    wrapDom && wrapDom.querySelector && wrapDom.querySelector('[data-wrap-exit-also]'),
+  ].filter(Boolean).map((n) => n.textContent || '').join(' ').toLowerCase();
+  const wrapExitMissing = boardVocab.filter((w) => !new RegExp('\\b' + String(w).toLowerCase() + '\\b').test(wrapExitHay));
   const wrapPick = picks[byKey.wrap];
   const wrapHtml = wrapDom ? wrapDom.outerHTML.slice(0, 800) : '';
   const wrapNavy = /#1e293b|#334155|30,\s*41,\s*59|51,\s*65,\s*85|classical-terrace|moonlit|rgba\(15,\s*23,\s*42/i.test(
@@ -235,6 +250,7 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
   // below art — not absolute img stacking over sibling caption text.
   const storyCaptionIssues = [];
   const storyPropKeys = [];
+  const storySides = [];
   storyIdxs.forEach((si, storyI) => {
     const key = 'story' + storyI;
     const el = rendered.pageEls[byKey[key]];
@@ -243,6 +259,9 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     if (!slot) return;
     const propKey = slot.dataset.storyProp || '';
     if (propKey) storyPropKeys.push({ i: storyI, key: propKey });
+    if (slot.dataset.storyArtMode === 'side' && slot.dataset.storySide) {
+      storySides.push(slot.dataset.storySide);
+    }
     if (!propKey || slot.dataset.storyArtMode !== 'side') return;
     const imgs = slot.querySelectorAll('img');
     const caption = Array.from(slot.children).find((c) => c.tagName === 'DIV'
@@ -268,6 +287,22 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
       storyCaptionIssues.push({ i: storyI, issue: 'missing-caption-chip', prop: propKey });
     }
   });
+  const storySideConsistent = storySides.length <= 1
+    || storySides.every((s) => s === storySides[0]);
+
+  // S34: mid-deck flats (exclude title/activity/wrap bookends) ≤2 unique washes.
+  const midFlatNames = picks
+    .map((p, i) => {
+      const tags = (sections[i] && sections[i].tags) || [];
+      if (tags.includes('title') || tags.includes('activity') || tags.includes('wrap')) return null;
+      return p && p.type === 'flat' ? p.name : null;
+    })
+    .filter(Boolean);
+  const midFlatUnique = [...new Set(midFlatNames)];
+
+  const kingTitleInk = !!(actDom && actDom.querySelector && actDom.querySelector('[data-ink="heading"]'));
+  const actHintInk = !!(actDom && actDom.querySelector && actDom.querySelector('[data-ink="hint"]'));
+  const wrapPeerFeedback = /Peer check/i.test((wrapDom && wrapDom.textContent) || '');
 
   if (window.LessonPages.cleanup) window.LessonPages.cleanup(rendered.host);
 
@@ -294,11 +329,20 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     wrapNavy,
     timingChipCount,
     hasMatchCaptions,
+    hasMatchNoCaptionsNote,
     hasMatchPads,
     matchPadDomCount,
+    actTimingChip,
+    wrapExitMissing,
     identityFrame,
     guitarStory,
     storyPageCount: storyIdxs.length,
+    storySideConsistent,
+    storySides,
+    midFlatUnique,
+    kingTitleInk,
+    actHintInk,
+    wrapPeerFeedback,
     framesHintListenFirst: /listen and say/i.test(framesText),
     flatNames: picks.filter((p) => p.type === 'flat').map((p) => p.name),
     houseLeaks: picks.filter((p) => p.type === 'flat' && /^house-/.test(p.name)).map((p) => p.name),
@@ -366,9 +410,18 @@ if (!result.wrapNavy) fails.push('wrap bg not navy/slate bookend (S32)');
 if (result.hasMatchCaptions) {
   fails.push('newWords match dock still has answer-naming caption chips (S26 student leak)');
 }
+if (!result.hasMatchNoCaptionsNote) {
+  fails.push('newWords match dock missing matchDockNoCaptions note (S26)');
+}
 if (!result.hasMatchPads) fails.push('newWords match dock missing numbered pads note (S28)');
 if ((result.matchPadDomCount || 0) < Math.min(6, (lesson.vocabulary || []).length || 0)) {
   fails.push('newWords DOM missing numbered drop pads (S28): ' + result.matchPadDomCount);
+}
+if (!result.actTimingChip) {
+  fails.push('activity/king header missing timing chip (S29)');
+}
+if ((result.wrapExitMissing || []).length) {
+  fails.push('wrap exit missing board vocab (S37): ' + result.wrapExitMissing.join(','));
 }
 if (result.identityFrame) fails.push('Frame still uses identity-based "If I am a musician"');
 if (result.guitarStory) fails.push('story still references guitar (prefer piano/violin theme)');
@@ -382,6 +435,18 @@ if ((result.timingChipCount || 0) < 4) {
 // S29 — Manus next_action: gate pacing chips for lessons ≥45 min.
 if (Number(meta.duration) >= 45 && (result.timingChipCount || 0) < 6) {
   fails.push('duration≥45 needs ≥6 timing chips (S29): ' + result.timingChipCount);
+}
+if (!result.storySideConsistent) {
+  fails.push('story prop sides alternate (S33): ' + JSON.stringify(result.storySides));
+}
+if ((result.midFlatUnique || []).length > 2) {
+  fails.push('mid-deck flats >2 unique washes (S34): ' + result.midFlatUnique.join(','));
+}
+if (!result.kingTitleInk || !result.actHintInk) {
+  fails.push('activity instruction missing ink tags (S35)');
+}
+if (!result.wrapPeerFeedback) {
+  fails.push('wrap missing peer-feedback exit prompt (S36)');
 }
 
 for (const p of result.pages) {
@@ -413,6 +478,11 @@ if ((result.storyPageCount || 0) >= 3 && !picked.some((n) => /story2/i.test(n)))
   storyEmojis: result.storyEmojis,
   storyPropKeys: result.storyPropKeys,
   storyCaptionIssues: result.storyCaptionIssues,
+  storySideConsistent: result.storySideConsistent,
+  midFlatUnique: result.midFlatUnique,
+  kingTitleInk: result.kingTitleInk,
+  wrapPeerFeedback: result.wrapPeerFeedback,
+  wrapExitMissing: result.wrapExitMissing,
   aimsMissing: result.aimsMissing,
   hasGrammarAim: result.hasGrammarAim,
   hasMatchCaptions: result.hasMatchCaptions,
@@ -439,6 +509,11 @@ console.log(JSON.stringify({
   storyEmojis: result.storyEmojis,
   storyPropKeys: result.storyPropKeys,
   storyCaptionIssues: result.storyCaptionIssues,
+  storySideConsistent: result.storySideConsistent,
+  midFlatUnique: result.midFlatUnique,
+  kingTitleInk: result.kingTitleInk,
+  wrapPeerFeedback: result.wrapPeerFeedback,
+  wrapExitMissing: result.wrapExitMissing,
   aimsMissing: result.aimsMissing,
   hasGrammarAim: result.hasGrammarAim,
   hasMatchCaptions: result.hasMatchCaptions,

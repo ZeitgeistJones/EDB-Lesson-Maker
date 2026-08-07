@@ -168,13 +168,18 @@ const SOFT = {
   S24: 'Story side/banner uses a real prop cutout when PropBank has a match (not only a glyph); caption stays a white chip below/above art — never free red text bleeding through an absolute alpha cutout',
   // Manus classical-compose 2026-08 (revise/72 + skill v2 / pass-98 report)
   S25: 'Title aims list the board-taught vocab (first 6 match-dock words) and state a honest grammar aim when sentence frames exist',
-  S26: 'Vocab match-dock icons map 1:1 without student-facing answer-naming caption chips; abstract pack glyphs (e.g. inspire starburst) are overridden to a clearer curated stand-in',
+  S26: 'Vocab match-dock icons map 1:1 without student-facing answer-naming caption chips (no piece.label / no pieceToPng caption bake); abstract pack glyphs (e.g. inspire starburst) are overridden to a clearer curated stand-in',
   S27: 'Manus/review pickImages includes every storyN beat before comprehension (never drop middle story pages at soft max)',
   S28: 'Vocab matchDock shows numbered drop-zone pads on word cards (not word text alone as the only target)',
-  S29: 'Lessons ≥45 min show teacher timing chips on major scene headers (pacing cues)',
+  S29: 'Lessons ≥45 min show teacher timing chips on major scene headers including king/activity (pacing cues)',
   S30: 'Title aims and creative prompts only use board-taught vocab (no orphan words like tempo in aims/creative but not New Words)',
   S31: 'Grammar aim line matches the frames on the board (do not claim first-conditional when frames are would/opinion only)',
   S32: 'Wrap slide background stays in the deck register (deep navy/slate — not a warm lavender breakaway)',
+  S33: 'Multi-beat story prop cards stay on the same side (no L/R thrash across storyN)',
+  S34: 'Mid-deck quiet flats use ≤2 distinct washes (Manus ≤2 registers heuristic; open/close pins may bookend)',
+  S35: 'Activity/king instruction chrome is ink-tagged (heading+hint) with slate-weight defaults — not low-contrast purple/gray on scenes',
+  S36: 'Wrap exit includes a short peer-feedback prompt (not only Great Job + review sentences)',
+  S37: 'Wrap exit recycles all board-taught vocab (review sentences and/or Also say: line — not a 3-word subset)',
 };
 
 /**
@@ -184,11 +189,11 @@ const SOFT = {
 const TIER_ORDER = ['honesty', 'readable', 'navigable', 'variety', 'charm'];
 
 const TIERS = {
-  honesty: ['H5', 'H1', 'S15', 'S8', 'M7', 'S19', 'S20', 'S26', 'S30', 'S31'],
-  readable: ['H4', 'S1', 'S5', 'S11', 'S13', 'S9', 'M1', 'M2', 'M6'],
-  navigable: ['H3', 'H6', 'S4', 'S10', 'S14', 'M3', 'M8', 'S21', 'S23', 'S25', 'S27', 'S28', 'S29'],
-  variety: ['H2', 'S2', 'S3', 'S6', 'S18', 'M5', 'S32'],
-  charm: ['S7', 'S12', 'S16', 'S17', 'M4', 'H7', 'S22', 'S24'],
+  honesty: ['H5', 'H1', 'S15', 'S8', 'M7', 'S19', 'S20', 'S26', 'S30', 'S31', 'S37'],
+  readable: ['H4', 'S1', 'S5', 'S11', 'S13', 'S9', 'M1', 'M2', 'M6', 'S35'],
+  navigable: ['H3', 'H6', 'S4', 'S10', 'S14', 'M3', 'M8', 'S21', 'S23', 'S25', 'S27', 'S28', 'S29', 'S33'],
+  variety: ['H2', 'S2', 'S3', 'S6', 'S18', 'M5', 'S32', 'S34'],
+  charm: ['S7', 'S12', 'S16', 'S17', 'M4', 'H7', 'S22', 'S24', 'S36'],
 };
 
 /** Product pillars as the user states them, mapped to codes for reporting. */

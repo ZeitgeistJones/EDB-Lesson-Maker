@@ -29,8 +29,15 @@ Gaps in **lesson content** — not art. For us (agent + you) when something teac
 | 2026-08-07 | Grammar aim claimed first-conditional while Frame 2 used would / opinion frames | Manus honesty | `grammarAimLine()`; S31 | schema-fixed |
 | 2026-08-07 | Wrap slide warm lavender broke navy deck register | Manus PPT-like | THEME_COLORS.wrap navy/slate; S32 | schema-fixed |
 | 2026-08-07 | Match caption chips named the answer (label→label, no inference) | Manus skill v2 ClassIn delivery | Drop student caption chips; keep clear pack icons + pads; S26 | schema-fixed |
+| 2026-08-07 | Mid-deck flat washes fanned across 3–4 panels (Manus ≤2 registers) | classical-compose palette / PPT-like | pickFlat midPool + generic band capped at 2; S34 | schema-fixed |
+| 2026-08-07 | Story prop card alternated L/R across beats | Manus PPT-like consistency | makeStoryPage always left side; S33 | schema-fixed |
+| 2026-08-07 | Activity king title purple / soft gray hint on busy scene | Instruction contrast | ink-tagged heading+hint; slate defaults; S35 | schema-fixed |
+| 2026-08-07 | Wrap exit lacked peer-feedback beat | Manus nice-to-have engagement | Peer check line on wrap; S36 | schema-fixed |
+| 2026-08-07 | Match dock still baked answer-naming caption chips (label→label) despite S26 claim | Manus LgtX B1 / gate_hole | Drop matchPiece.label; pieceToPng never captions matchPiece; verify on piece.label | schema-fixed |
+| 2026-08-07 | King/activity header missing timing chip | Manus LgtX B2 | King row timing chip; actTimingChip gate; S29 | schema-fixed |
+| 2026-08-07 | Exit ticket recycled only 3 of 6 board words | Manus LgtX B3 | Wrap Also say: for missing vocab; S37 | schema-fixed |
 
-<!-- Classical compose note (2026-08-07): Activity dock + skipKing piano-on-piano fixed (f21ca03). Manus dual reviews LbVd…/oEDh… folded into producer 2026-08-07. Story glyphs still open. Manusloop J4up… revise/72 folded: pickImages + inspire override + aims/frames/story. Second live pass USYe… pass/98 — numbered pads + pieceToPng pad fix. Shift20: Manus skill delta → schema scorecard/ZPD + S30–S32 producer. -->
+<!-- Classical compose note (2026-08-07): Activity dock + skipKing piano-on-piano fixed (f21ca03). Manus dual reviews LbVd…/oEDh… folded into producer 2026-08-07. Story glyphs still open. Manusloop J4up… revise/72 folded: pickImages + inspire override + aims/frames/story. Second live pass USYe… pass/98 — numbered pads + pieceToPng pad fix. Shift20: Manus skill delta → schema scorecard/ZPD + S30–S32 producer. Shift21: live Manus LgtX… revise/84 → S26 caption bake kill + S29 king timing + S33–S37. -->
 
 ## How to add a row
 

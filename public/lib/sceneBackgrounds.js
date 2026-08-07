@@ -409,9 +409,11 @@
           // Thin sets (<3) recycle hard for M5. Borrow house cool panels only
           // when the place set is too short — never dilute a full 4-panel deck
           // (classical-moon was leaking house-a into music lessons).
+          // Manus ≤2 bg registers: mid-deck rotates at most 2 quiet panels
+          // (open/close pins stay on set ends; spine never fans across 3–4 washes).
           let midPool = setKeys.length >= 3 ? setKeys.slice(1) : setKeys.slice();
           if (setKeys.length < 3 && wantSet !== DEFAULT_SET) {
-            const room = Math.max(0, 5 - setKeys.length);
+            const room = Math.max(0, 2 - midPool.length);
             if (room > 0) {
               const houseBoost = all.filter((k) => {
                 const f = m.flats[k];
@@ -422,6 +424,7 @@
               if (houseBoost.length) midPool = midPool.concat(houseBoost.slice(0, room));
             }
           }
+          midPool = midPool.slice(0, 2);
           key = midPool[(flatOffset(seed, midPool.length) + (index || 0)) % midPool.length];
         }
         return {
@@ -454,9 +457,9 @@
       })
       .sort((a, b) => a.score - b.score || a.k.localeCompare(b.k));
     const preferred = ranked.filter((r) => r.score < 50).map((r) => r.k);
-    // PPT-like: stay inside a short band of matching washes, not the whole bank.
-    // Never fall open to the full quiet catalog — that reads as random.
-    flatKeys = (preferred.length >= 2 ? preferred : ranked.map((r) => r.k)).slice(0, 4);
+    // PPT-like: ≤2 mid-deck registers (Manus visual consistency). Never fall
+    // open to the full quiet catalog — that reads as random.
+    flatKeys = (preferred.length >= 2 ? preferred : ranked.map((r) => r.k)).slice(0, 2);
     const key = flatKeys[(flatOffset(seed, flatKeys.length) + (index || 0)) % flatKeys.length];
     return {
       type: 'flat',

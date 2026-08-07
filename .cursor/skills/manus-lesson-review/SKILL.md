@@ -89,12 +89,18 @@ Log lines append to `.cursor/ratings/manus-reviews.jsonl`.
 | Story glyphs | PropBank caption fallback before emoji; full StoryArt still preferred when cached; S24 |
 | Story beat 3 “missing” | Often a **packet hole**: `pickImages` must attach every `storyN` (S27) — board already had 3 beats |
 | inspire starburst ambiguity | `PACK_OVERRIDES.inspire→brain` + clear icons (no student caption chips); S26 |
+| Match caption bake leak | `matchDock` no label; `pieceToPng` never captions matchPiece; verify piece.label; S26 |
 | Aims truncated / untaught orphans | Aims = board vocab slice(0,6); S25/S30 |
 | Soft match drop zones | Numbered DOM `data-match-pad`; S28 |
 | matchPad meta.word → tiny vocab art on cards | `pieceToPng` prefers data:/pad roles over wordArt |
-| Timing chips | headers ≥45 min; S29 |
+| Timing chips | headers ≥45 min + king/activity chip; S29 |
 | Grammar aim honesty | `grammarAimLine()` from frames; S31 |
 | Wrap palette break | Navy/slate wrap bookend; S32 |
+| Mid-deck ≤2 flats | pickFlat midPool/generic band cap; S34 |
+| Story side thrash | always-left prop card; S33 |
+| Activity instruction contrast | ink-tagged king title + slate hints; S35 |
+| Wrap peer-feedback | Peer check exit line; S36 |
+| Wrap exit vocab coverage | Also say: for missing board words; S37 |
 | Title aims vs scene | Frosted aims panel + slightly smaller title |
 
 ### Manus skill delta (absorbed 2026-08-07)
