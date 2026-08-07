@@ -52,6 +52,8 @@ board** over floating a lonely mid-page card.
 - Use `chromeColumn(p)` then a **CSS grid** (`gridTemplateRows: 1fr 1fr…`) with
   `flex: 1 1 0%` on the column — plain `fillBody` + `justifyContent: stretch` does
   **not** reliably grow cards after `applyPackBg` injects an absolute BG.
+- **Row count = item count** — never leave a spare `1fr` row for a missing second
+  question (that was the M8 “half-empty comprehension” bug).
 - Each card: column flex, prompt fixed, **dashed write/draw region `flex:1`**.
 - Bigger prompt type (frames ~40px, ideas ~36px, comp ~34px).
 

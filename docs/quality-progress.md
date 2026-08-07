@@ -22,6 +22,8 @@ thresholds can tighten later without changing the rate definition.
 | 2026-08-07 | all | 20 | 0 | 1 ↑-2 | 137 ↑-2 | 0 | 1 ↑-2 | 0 | 10 ↑-16 | 7 ↑-2 | 0.532 ↓-0.00 | 0.95 ↑+0.18 | — |
 | 2026-08-07 | all | 20 | 20 ↓+20 | 1 | 34 ↑-103 | 0 | 1 | 0 | 10 | 7 | 0.533 ↑+0.00 | 0.95 | — |
 | 2026-08-07 | all | 20 | 0 ↑-20 | 1 | 40 ↓+6 | 0 | 1 | 0 | 10 | 7 | 0.537 ↑+0.00 | 0.95 | — |
+| 2026-08-07 | all | 20 | 0 | 15 ↓+14 | 15 ↑-25 | 0 | 1 | 0 | 10 | 7 | 0.521 ↓-0.02 | 0.95 | — |
+| 2026-08-07 | all | 20 | 0 | 1 ↑-14 | 16 ↓+1 | 0 | 1 | 0 | 10 | 7 | 0.519 ↓-0.00 | 0.95 | — |
 
 ## Since first comparable `all` × 20 cases
 
@@ -29,13 +31,13 @@ _Baseline: 2026-08-07 → latest 2026-08-07_
 
 - **Hard fails:** 0 → 0 (→)
 - **Soft metric fails:** 18 → 1 (↑-17)
-- **Soft metric warns:** 145 → 40 (↑-105)
+- **Soft metric warns:** 145 → 16 (↑-129)
 - **M5 variety fails:** 10 → 0 (↑-10)
 - **M7 vocab-art fails:** 3 → 1 (↑-2)
 - **Layout soft fails (M8/M9/M10):** 5 → 0 (↑-5)
 - **Unvetted vocab words:** 26 → 10 (↑-16)
 - **Open wishlist rows:** 7 → 7 (→)
-- **Mean M5 (variety):** 0.363 → 0.537 (↑+0.17)
+- **Mean M5 (variety):** 0.363 → 0.519 (↑+0.16)
 - **Mean M7 (vetted art):** 0.767 → 0.95 (↑+0.18)
 - **Pillar score avg (0-3):** — → — (·)
 
@@ -47,11 +49,11 @@ _Denom: 227 pages · 20 cases_
 | --- | --- | --- | --- |
 | M1 tiny text | page | 0.0% (0/227) | → |
 | M2 busy-bg text | page | 0.0% (0/227) | → |
-| M3 sparse card | page | 0.0% (0/227) | → |
+| M3 sparse card | page | 0.0% (0/227) | ↑-0.06 |
 | M6 low contrast | page | 0.4% (1/227) | → |
-| M8 short reach | page | 9.7% (22/227) | → |
-| M9 dead space | page | 2.6% (6/227) | ↓+0.03 |
+| M8 short reach | page | 0.0% (0/227) | → |
+| M9 dead space | page | 0.0% (0/227) | → |
 | M10 tiny dock piece | page | 3.5% (8/227) | → |
 | M4 low visuals | case | 5.0% (1/20) | → |
-| M5 low variety | case | 10.0% (2/20) | → |
+| M5 low variety | case | 30.0% (6/20) | ↓+0.05 |
 | M7 weak vocab art | case | 5.0% (1/20) | → |

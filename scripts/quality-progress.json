@@ -369,7 +369,215 @@
         }
       },
       "note": null
+    },
+    {
+      "at": "2026-08-07T05:27:21.463Z",
+      "tier": "all",
+      "cases": 20,
+      "pages": 227,
+      "iteration": 2,
+      "hard": 0,
+      "metricFails": 15,
+      "metricWarns": 15,
+      "m5Fails": 0,
+      "m7Fails": 1,
+      "layoutFails": 0,
+      "unvettedWords": 10,
+      "wishlistOpen": 7,
+      "meanM5": 0.521,
+      "meanM7": 0.95,
+      "pillarAvg": null,
+      "regressions": 30,
+      "rates": {
+        "pages": 227,
+        "cases": 20,
+        "M1": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 14,
+          "warns": 0,
+          "fails": 14,
+          "denom": 227,
+          "rate": 0.062
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.004
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 8,
+          "warns": 8,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.035
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 20,
+          "rate": 0.05
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 5,
+          "warns": 5,
+          "fails": 0,
+          "denom": 20,
+          "rate": 0.25
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 0,
+          "fails": 1,
+          "denom": 20,
+          "rate": 0.05
+        }
+      },
+      "note": null
+    },
+    {
+      "at": "2026-08-07T05:29:07.315Z",
+      "tier": "all",
+      "cases": 20,
+      "pages": 227,
+      "iteration": 2,
+      "hard": 0,
+      "metricFails": 1,
+      "metricWarns": 16,
+      "m5Fails": 0,
+      "m7Fails": 1,
+      "layoutFails": 0,
+      "unvettedWords": 10,
+      "wishlistOpen": 7,
+      "meanM5": 0.519,
+      "meanM7": 0.95,
+      "pillarAvg": null,
+      "regressions": 16,
+      "rates": {
+        "pages": 227,
+        "cases": 20,
+        "M1": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.004
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 8,
+          "warns": 8,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.035
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 20,
+          "rate": 0.05
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 6,
+          "warns": 6,
+          "fails": 0,
+          "denom": 20,
+          "rate": 0.3
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 0,
+          "fails": 1,
+          "denom": 20,
+          "rate": 0.05
+        }
+      },
+      "note": null
     }
   ],
-  "updatedAt": "2026-08-07T04:56:22.251Z"
+  "updatedAt": "2026-08-07T05:29:07.319Z"
 }

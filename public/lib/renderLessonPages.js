@@ -1067,18 +1067,20 @@
       marginBottom: '6px', flexShrink: '0',
     }));
     const questions = (lesson.story?.comprehensionQuestions || []).slice(0, 2);
+    const rows = Math.max(1, questions.length);
     const body = el('div', {
-      flex: '1',
+      flex: '1 1 0%',
       minHeight: '0',
       display: 'grid',
-      gridTemplateRows: '1fr 1fr',
+      // One question must own the full column — a spare 1fr row left half the board dead (M8).
+      gridTemplateRows: `repeat(${rows}, 1fr)`,
       gap: '16px',
       width: '100%',
     });
     questions.forEach((q, i) => {
-      body.appendChild(card(
+      const qCard = card(
         `<div style="font-size:34px;font-weight:800;line-height:1.25;color:#0f172a;margin-bottom:14px;flex-shrink:0">${i + 1}. ${esc(q.question || '')}</div>
-         <div style="border:2px dashed #94a3b8;border-radius:14px;flex:1;min-height:110px;background:rgba(248,250,252,0.9)"></div>`,
+         <div style="border:2px dashed #94a3b8;border-radius:14px;flex:1;min-height:140px;background:rgba(248,250,252,0.9)"></div>`,
         {
           padding: '22px 26px',
           marginBottom: '0',
@@ -1088,7 +1090,10 @@
           flexDirection: 'column',
           boxSizing: 'border-box',
         }
-      ));
+      );
+      // Big write region on purpose — not a sparse text card (M3).
+      qCard.dataset.writeInStage = '1';
+      body.appendChild(qCard);
     });
     col.appendChild(body);
     drawDebugZones(p, 'comprehension');
@@ -1102,21 +1107,23 @@
     col.appendChild(hint('Open-ended — no single right answer. Write or draw in the box.', {
       marginBottom: '8px', flexShrink: '0',
     }));
+    const ideas = (lesson.story?.creativeQuestions || []).slice(0, 2)
+      .map((q, i) => ({ i, text: creativePromptText(q) }))
+      .filter((x) => x.text);
+    const rows = Math.max(1, ideas.length);
     const body = el('div', {
-      flex: '1',
+      flex: '1 1 0%',
       minHeight: '0',
       display: 'grid',
-      gridTemplateRows: '1fr 1fr',
+      gridTemplateRows: `repeat(${rows}, 1fr)`,
       gap: '16px',
       width: '100%',
     });
-    (lesson.story?.creativeQuestions || []).slice(0, 2).forEach((q, i) => {
-      const text = creativePromptText(q);
-      if (!text) return;
-      body.appendChild(card(
+    ideas.forEach(({ i, text }) => {
+      const ideaCard = card(
         `<div style="font-size:22px;color:#64748b;font-weight:700;margin-bottom:8px;flex-shrink:0">Idea ${i + 1}</div>
          <div style="font-size:36px;font-weight:800;color:#134e4a;line-height:1.25;margin-bottom:14px;flex-shrink:0">${esc(text)}</div>
-         <div style="border:2px dashed #94a3b8;border-radius:14px;flex:1;min-height:120px;background:rgba(248,250,252,0.85)"></div>`,
+         <div style="border:2px dashed #94a3b8;border-radius:14px;flex:1;min-height:140px;background:rgba(248,250,252,0.85)"></div>`,
         {
           padding: '22px 26px',
           marginBottom: '0',
@@ -1126,7 +1133,9 @@
           flexDirection: 'column',
           boxSizing: 'border-box',
         }
-      ));
+      );
+      ideaCard.dataset.writeInStage = '1';
+      body.appendChild(ideaCard);
     });
     col.appendChild(body);
     drawDebugZones(p, 'creative');
@@ -1140,60 +1149,106 @@
     const p = pageShell(THEME_COLORS.speak, {
       reserveDock: covered, pageType: 'speaking',
     });
-    p.appendChild(header("Let's Talk!", '#15803d'));
+    const col = chromeColumn(p);
+    col.appendChild(header("Let's Talk!", '#15803d'));
     const sub = totalPages > 1
       ? `Part ${pageIndex + 1} of ${totalPages}`
       : 'Answer out loud first';
-    p.appendChild(hint(sub + (covered ? ' — peel the sticky after the first answer' : ''), {
-      fontSize: '22px', marginBottom: '12px',
+    col.appendChild(hint(sub + (covered ? ' — peel the sticky after the first answer' : ''), {
+      fontSize: '22px', marginBottom: '12px', flexShrink: '0',
     }));
 
-    items.forEach((item, qi) => {
-      const showSticky = covered && qi === 0;
-      // Number in the prompt line (no tiny "Question N" label — that tanked M1 / ate cover space).
-      p.appendChild(card(
-        `<div style="font-size:30px;font-weight:800;color:#14532d;line-height:1.25">${qi + 1}. ${esc(item.question || '')}</div>`,
-        { padding: '16px 20px', marginBottom: showSticky ? '8px' : '14px' }
-      ));
-
-      if (showSticky) {
-        const r = (window.EdbActivities && window.EdbActivities.speakingCoverRect())
-          || { x: 88, y: 240, w: 720, h: 72 };
-        p.appendChild(el('div', {
-          position: 'absolute',
-          left: r.x + 'px',
-          top: r.y + 'px',
-          width: r.w + 'px',
-          height: r.h + 'px',
-          boxSizing: 'border-box',
-          background: '#ffffff',
-          borderRadius: '14px',
-          padding: '10px 16px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '22px',
-          fontStyle: 'italic',
-          color: '#166534',
-          textAlign: 'center',
-          zIndex: '2',
-          boxShadow: '0 6px 18px rgba(15,23,42,0.08)',
-        }, esc(item.sampleAnswer || '')));
-        // Below the sticky: above it the label collided with the question card.
-        p.appendChild(hint('Sample answer', {
-          position: 'absolute',
-          left: r.x + 'px',
-          top: (r.y + r.h + 8) + 'px',
-          fontSize: '22px',
-          fontWeight: '700',
+    // Covered pages keep a short Q1 card so the Peek sticky (fixed bay) doesn't
+    // sit on chrome (H3). Uncovered pages stretch with write lines for M8 reach.
+    if (covered) {
+      items.forEach((item, qi) => {
+        const showSticky = qi === 0;
+        const qCard = card(
+          `<div style="font-size:30px;font-weight:800;color:#14532d;line-height:1.25">${qi + 1}. ${esc(item.question || '')}</div>`,
+          { padding: '16px 20px', marginBottom: showSticky ? '8px' : '14px', flexShrink: '0' }
+        );
+        qCard.dataset.writeInStage = '1';
+        col.appendChild(qCard);
+        if (showSticky) {
+          const r = (window.EdbActivities && window.EdbActivities.speakingCoverRect())
+            || { x: 88, y: 240, w: 720, h: 72 };
+          p.appendChild(el('div', {
+            position: 'absolute',
+            left: r.x + 'px',
+            top: r.y + 'px',
+            width: r.w + 'px',
+            height: r.h + 'px',
+            boxSizing: 'border-box',
+            background: '#ffffff',
+            borderRadius: '14px',
+            padding: '10px 16px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '22px',
+            fontStyle: 'italic',
+            color: '#166534',
+            textAlign: 'center',
+            zIndex: '2',
+            boxShadow: '0 6px 18px rgba(15,23,42,0.08)',
+          }, esc(item.sampleAnswer || '')));
+          p.appendChild(hint('Sample answer', {
+            position: 'absolute',
+            left: r.x + 'px',
+            top: (r.y + r.h + 8) + 'px',
+            fontSize: '22px',
+            fontWeight: '700',
+            marginBottom: '0',
+            zIndex: '2',
+          }));
+          col.appendChild(el('div', { height: '96px', marginBottom: '8px', flexShrink: '0' }));
+        }
+      });
+      // Fill the lower board so Peek pages aren't a top-strip (M8).
+      const notes = card(
+        `<div style="font-size:22px;font-weight:700;color:#64748b;margin-bottom:10px;flex-shrink:0">Notes / more answers</div>
+         <div style="border:2px dashed #86efac;border-radius:14px;flex:1;min-height:160px;background:rgba(240,253,244,0.85)"></div>`,
+        {
+          flex: '1 1 0%',
           marginBottom: '0',
-          zIndex: '2',
-        }));
-        // Spacer so following questions clear the sticky band
-        p.appendChild(el('div', { height: '96px', marginBottom: '8px' }));
-      }
-      // Other questions: no sample — produce first
-    });
+          minHeight: '180px',
+          padding: '16px 20px',
+          display: 'flex',
+          flexDirection: 'column',
+          boxSizing: 'border-box',
+        }
+      );
+      notes.dataset.writeInStage = '1';
+      col.appendChild(notes);
+    } else {
+      const rows = Math.max(1, items.length);
+      const body = el('div', {
+        flex: '1 1 0%',
+        minHeight: '0',
+        display: 'grid',
+        gridTemplateRows: `repeat(${rows}, 1fr)`,
+        gap: '12px',
+        width: '100%',
+      });
+      items.forEach((item, qi) => {
+        const qCard = card(
+          `<div style="font-size:30px;font-weight:800;color:#14532d;line-height:1.25;flex-shrink:0">${qi + 1}. ${esc(item.question || '')}</div>
+           <div style="border:2px dashed #86efac;border-radius:14px;flex:1;min-height:72px;margin-top:12px;background:rgba(240,253,244,0.85)"></div>`,
+          {
+            padding: '16px 20px',
+            marginBottom: '0',
+            height: '100%',
+            minHeight: '0',
+            display: 'flex',
+            flexDirection: 'column',
+            boxSizing: 'border-box',
+          }
+        );
+        qCard.dataset.writeInStage = '1';
+        body.appendChild(qCard);
+      });
+      col.appendChild(body);
+    }
 
     drawDebugZones(p, 'speaking');
     return p;
