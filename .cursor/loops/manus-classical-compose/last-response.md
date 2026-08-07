@@ -1,34 +1,50 @@
-# Manus pass 2\n\n- URL: https://manus.im/app/3Jr6xcP5fCbDXVupySAJ8V\n- verdict: pass\n- score: 99\n- overall: 4.96\n\n\json\n{
+# Manus pass (manusloop RUN_COUNT=1)
+
+- URL: https://manus.im/app/bNsAKJdTgbQNTAe6qSFQwr
+- verdict: pass
+- score: 100
+- overall: 5
+
+`json
+{
+  "url": "https://manus.im/app/bNsAKJdTgbQNTAe6qSFQwr",
   "verdict": "pass",
-  "score": 99,
+  "score": 100,
+  "overall": 5,
+  "blocking_issues": [],
+  "next_actions": [
+    "Blocking|Global|Append clearly labelled grammar detail to the title slide: specify second conditional in the grammar aim",
+    "Medium|Page 10 (Activity)|Increase instruction text card opacity or apply darker tint to improve projection readability",
+    "Medium|Pages 5–7 (Story Beat 1–3)|Harmonize caption chip colour to charcoal for palette cohesion while preserving readability",
+    "Low|Global|Advance StoryArt from musician-cutout props toward fully integrated scene paintings (update generation prompts)",
+    "Low|Global|Consider moving to a new topic in the next pass to test generalisation of caption-chip logic, timing chips, and exit-ticket recycling"
+  ],
+  "just_fixed_results": [
+    "HOLDS|Music roleplay dock: spare-room +12% musician scale|board evidence: S38 (page 10) shows larger musician dock",
+    "HOLDS|Match drop pads slightly larger (min-height 60 / max-width 180)|board evidence: S26 (page 2) pad dimensions increased",
+    "HOLDS|Dedicated inspire.png (lyre-bulb, keyed alpha)|board evidence: inspire glyph and alpha key present on S26",
+    "HOLDS|Story orchestra → musician-conductor (S38)|board evidence: conductor visible on S38 (page 10)",
+    "HOLDS|skipKing write strip My symphony idea (S39)|board evidence: text-entry box labelled \"My symphony idea:\" on S39 (page 10)",
+    "HOLDS|Wrap peer-check on-board above cards (S36)|board evidence: peer-check chip above cards on S36 (page 11)",
+    "HOLDS|Match dock numbered pads, no caption chips (S26)|board evidence: numbered pads present; no caption on pieces (S26)",
+    "HOLDS|Timing chips + Also say + midFlat≤2 + story left (S29/S33/S34/S37)|board evidence: chips present; background palette stable; story left alignment maintained"
+  ],
+  "gate_holes": [
+    "No gate_holes triggered this pass."
+  ],
+  "zpd_challenges": [
+    "Topic Expansion / Format Challenge: add a two-round peer evaluation loop in production phase to deepen engagement",
+    "Pedagogical Stretch: introduce a 'composer's choice' constraint in blueprint activity (instrument families and justification) to push toward argumentation and higher-order language use"
+  ],
+  "method_feedback": [],
   "scorecard": {
     "classin_delivery": 5,
     "completeness": 5,
     "edb_alignment": 5,
     "esl_pedagogy": 5,
-    "notes": "Overall near-perfect with minor aesthetic tweaks suggested.",
-    "overall": 4.96,
+    "notes": "Blockers none; minor polish items identified in Next Actions.",
+    "overall": 5,
     "ppt_like_quality": 4.8
-  },
-  "blocking_issues": [],
-  "next_actions": [
-    "Blocking|Page 10|Scale musician drag assets up by ~10–15% to improve visual impact",
-    "Low|Page 2|Consider slightly larger drop pads for better visibility on smaller devices"
-  ],
-  "just_fixed_results": [
-    "HOLDS|Dedicated inspire.png|Page 2 shows lyre-bulb icon with keyed alpha background",
-    "HOLDS|Story orchestra captions prefer musician-conductor before bare stands|Page 7 shows conductor figure with caption",
-    "HOLDS|My Song Blueprint activity has visible write strip|Page 10 shows a clearly labelled text-entry strip",
-    "HOLDS|Wrap peer-check moved above review cards + frosted chip|Page 11 shows peer-check above sentence cards",
-    "HOLDS|Match dock: numbered pads + no student caption chips on drag pieces|Page 2 confirms numbered pads on tiles and no caption chips",
-    "HOLDS|Teacher timing chips on king/activity headers|Page 10 shows ~10 min timing chip",
-    "HOLDS|Wrap Also say recycles missing board vocab|Page 11 includes \"Also say: melody · orchestra · tempo\"",
-    "HOLDS|Mid-deck flats ≤2; story prop cards always-left|Pages 5–7 consistently left-anchored"
-  ],
-  "gate_holes": [],
-  "zpd_challenges": [
-    "Topic Expansion: Abstract vocabulary stress test",
-    "Format Challenge: Two-round production activity"
-  ],
-  "method_feedback": []
-}\n\\
+  }
+}
+`

@@ -41,7 +41,10 @@ Gaps in **lesson content** — not art. For us (agent + you) when something teac
 | 2026-08-07 | Wrap peer-check in DOM but clipped under overflowing cards | Manus RWiY FAIL S36 | Peer chip above review cards + on-board gate | schema-fixed |
 | 2026-08-07 | Manus re-asked match caption chips after S26 kill | Manus RWiY B1 | Reject — answer leak; keep pads+clear icons; passoff knownIssues | wont-fix |
 | 2026-08-07 | ZPD (pass/99): abstract vocab stress test + two-round production format | Manus 3Jr6 Level-Up | Next loop fuel — not this bake | open |
-| 2026-08-07 | Music dock musicians ~10–15% larger (soft next_action on pass) | Manus 3Jr6 | DOCK_MIN bump risks dropping thin musicians from 17-wide row | open |
+| 2026-08-07 | Music dock musicians ~10–15% larger (soft next_action on pass) | Manus 3Jr6 | Spare-room +12% boost in edbActivities (no DOCK_MIN bump) + slightly larger match pads | closed |
+| 2026-08-07 | Grammar aim said “hypothetical” not “second conditional” | Manus bNsAK soft Blocking | `grammarAimLine` labels second conditional; S31 gate | schema-fixed |
+| 2026-08-07 | King instruction low contrast on terrace; story caption terracotta | Manus bNsAK Medium | Frosted king hint card + charcoal caption chips; S40 | schema-fixed |
+| 2026-08-07 | ZPD (pass/100): two-round peer eval + composer’s-choice instrument constraint | Manus bNsAK Level-Up | Log only — do not invent new lesson this pass | open |
 
 <!-- Classical compose note (2026-08-07): Activity dock + skipKing piano-on-piano fixed (f21ca03). Manus dual reviews LbVd…/oEDh… folded into producer 2026-08-07. Story glyphs still open. Manusloop J4up… revise/72 folded: pickImages + inspire override + aims/frames/story. Second live pass USYe… pass/98 — numbered pads + pieceToPng pad fix. Shift20: Manus skill delta → schema scorecard/ZPD + S30–S32 producer. Shift21: live Manus LgtX… revise/84 → S26 caption bake kill + S29 king timing + S33–S37. Shift22 assetgap+manus x2: inspire.png + RWiY → S38/S39. -->
 

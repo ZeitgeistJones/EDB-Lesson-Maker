@@ -7,20 +7,19 @@
     "Match dock deliberately has NO answer-naming caption chips on drag pieces (S26) — words live on numbered pads"
   ],
   "justFixed": [
-    "Dedicated inspire.png (lyre-bulb, keyed alpha)",
-    "Story orchestra → musician-conductor (S38)",
-    "skipKing write strip My symphony idea (S39)",
-    "Wrap peer-check on-board above cards (S36)",
-    "Match dock numbered pads, no caption chips (S26)",
-    "Timing chips + Also say + midFlat≤2 + story left (S29/S33/S34/S37)"
+    "Grammar aim names second conditional when frames use If…would (S31)",
+    "King hint frosted card + charcoal story caption chips (S40)",
+    "Music roleplay dock spare-room +12% musician scale",
+    "Match drop pads slightly larger",
+    "Dedicated inspire.png + S38/S39 + S26 pads/no chips + wrap peer on-board"
   ],
   "localChecks": [
-    "verify-classical-compose.mjs: ok through S39",
-    "Manus 3Jr6xcP5fCbDXVupySAJ8V pass/99 — all just_fixed HOLDS"
+    "verify-classical-compose.mjs: ok through S40",
+    "Manus bNsAKJdTgbQNTAe6qSFQwr pass/100 — all just_fixed HOLDS"
   ],
   "focus": [
     "Ship / upload EDB when ready",
-    "ZPD next: abstract vocab stress OR two-round production — do not reopen S26 chips"
+    "ZPD next (wishlist): two-round peer eval OR composer’s-choice constraint — do not reopen S26 chips"
   ],
-  "notes": "manusloopx2 complete. Pass1 RWiY revise/4 → S38/S39. Pass2 3Jr6 pass/99."
+  "notes": "manusloop RUN_COUNT=1 complete. Soft dock/pad pre-send; post-fold S31/S40. Prior 3Jr6 pass/99."
 }

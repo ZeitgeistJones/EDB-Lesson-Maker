@@ -31,17 +31,24 @@ Body: `.cursor/loops/manus-classical-compose/last-response.md`
 | no write strip | skipKing prod write; S39 |
 | peer clipped | peer above cards + on-board gate |
 | caption chips re-ask | reject (S26) |
+| musician dock soft | spare-room +12% (no DOCK_MIN bump) |
+| match pads soft | larger DOM pads |
+| second conditional label | grammarAimLine; S31 |
+| king hint contrast / caption terracotta | frosted kingHintCard + charcoal chips; S40 |
 
 ### 4 — Audit
 ```bash
 node scripts/verify-classical-compose.mjs
 ```
+Gates through S40.
 
 ## Last run
 
-- **When:** 2026-08-07 (manusloopx2 complete — 2/2)
-- **Pass 1:** https://manus.im/app/RWiYXgfxTfhAFVLakM8rC8 · revise · score 4 · overall 4.0 → folded S38/S39 + peer on-board
-- **Pass 2:** https://manus.im/app/3Jr6xcP5fCbDXVupySAJ8V · **pass** · score 99 · overall 4.96 · all just_fixed HOLDS · no gate_holes
-- **Audit:** verify ok
-- **ZPD logged:** abstract vocab stress test; two-round production (wishlist open)
-- **Soft defer:** music dock +10–15% scale (risk dropping thin musicians)
+- **When:** 2026-08-07 (manusloop RUN_COUNT=1)
+- **Pass:** https://manus.im/app/bNsAKJdTgbQNTAe6qSFQwr · **pass** · score **100** · overall **5.0** · all just_fixed HOLDS · no gate_holes
+- **Pre-send soft:** musician dock +12% spare-room + larger match pads
+- **Post-Manus fold:** second-conditional grammar label (S31); frosted king hint + charcoal story captions (S40)
+- **Assets:** none (Manus did not call missing/wrong art; assetgap locate: no critical gaps)
+- **Audit:** verify ok (fails=[])
+- **ZPD logged (not built):** two-round peer eval + composer’s-choice instrument constraint
+- **Assetgap:** skipped generate burst — no critical gaps

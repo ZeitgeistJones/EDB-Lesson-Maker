@@ -30,19 +30,19 @@ Locate first, then generate. Fix machinery (manifests, vocabIcons, PropBank pref
 
 | Gap | Where | Need | Severity | Locate? | Generate? |
 |-----|-------|------|----------|---------|-----------|
-| Dedicated inspire art | match dock / PACK_OVERRIDES→brain | Clear ivory/gold inspire icon | high | miss | yes |
-| StoryArt interim | story0–2 side props | Better PropBank picks; full StoryArt later | med | musician-* props | no (prefer lists) |
-| Vocab icons 11/12 | newWords | already on disk | ok | — | — |
+| Dedicated inspire art | match dock | inspire.png on disk | ok | yes | no |
+| Vocab icons 12/12 | newWords | all exact PNGs | ok | — | — |
+| Musician kit | activity dock / story | 18 musician-* + compose-desk | ok | — | — |
 | Wrap/terrace bookends | title/activity/wrap | terrace + classical-moon + navy wrap | ok | on disk | — |
-| Match art | match pads | icons + numbered pads | ok | — | — |
+| Match pads / dock scale | producer sizing | not new art | n/a | — | — (edbActivities / renderLessonPages) |
 
 ## Last run
 
-- **When:** 2026-08-07 (~15 min burst)
-- **DURATION_MINUTES:** 15
-- **gaps:** 4 ranked (1 high / 1 med / 2 ok)
-- **located:** terrace, classical-moon flats, 11/12 vocab icons, music PropBank kit, wrap navy CSS
-- **generated:** 1 — `inspire.png` (lyre-bulb + notes); removed brain override; S26/verify require dedicated inspire.png
-- **wired:** `vocabIcons.js`, `renderLessonPages` piano/orchestra prefer musician-*, passoff + wishlist + manus skill row
-- **still open:** full generative StoryArt scenes (PropBank interim; musician-piano / musician-conductor preferred when captions match)
-- **Lead:** `Assetgaploop assetgap-classical-compose: gaps=4 · located=3 · generated=1 · still open=1`
+- **When:** 2026-08-07 (pre-manusloop scan)
+- **DURATION_MINUTES:** n/a (locate-only gate)
+- **gaps:** **no critical gaps**
+- **located:** inspire.png, compose…masterpiece (12/12), musician-* kit, compose-desk, terrace/classical-moon
+- **generated:** 0 (skipped generate burst)
+- **wired:** n/a
+- **still open:** full generative StoryArt scenes (PropBank interim — not a missing file)
+- **Lead:** `Assetgaploop assetgap-classical-compose: gaps=0 critical · located=all · generated=0 · still open=StoryArt (deferred)`

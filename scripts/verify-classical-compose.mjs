@@ -181,9 +181,14 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
   const boardVocab = words.slice(0, 6);
   const aimsMissing = boardVocab.filter((w) => !new RegExp(`\\b${w}\\b`, 'i').test(titleText));
   const hasGrammarAim = /grammar aim/i.test(titleText);
-  const grammarClaimsFirstOnly = /first-conditional/i.test(titleText)
-    && !/hypothetical|would|opinion/i.test(titleText)
+  const grammarClaimsFirstOnly = /first[- ]conditional/i.test(titleText)
+    && !/second[- ]conditional|hypothetical|would|opinion/i.test(titleText)
     && (lesson.sentenceFrames || []).some((f) => /\bwould\b/i.test(String(f)));
+  const framesNeedSecond = (lesson.sentenceFrames || []).some(
+    (f) => /\bwould\b/i.test(String(f)) && /\bif\b/i.test(String(f))
+  );
+  const grammarNamesSecond = /second[- ]conditional/i.test(titleText);
+  const grammarMissingSecondLabel = framesNeedSecond && hasGrammarAim && !grammarNamesSecond;
   const aimsOrphans = [];
   const aimsMatch = titleText.match(/Aims:\s*use\s+([^.]+)/i);
   if (aimsMatch) {
@@ -302,6 +307,22 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
 
   const kingTitleInk = !!(actDom && actDom.querySelector && actDom.querySelector('[data-ink="heading"]'));
   const actHintInk = !!(actDom && actDom.querySelector && actDom.querySelector('[data-ink="hint"]'));
+  const kingHintCard = !!(actDom && actDom.querySelector && actDom.querySelector('[data-king-hint-card]'));
+  // Story caption chips should use charcoal ink (not terracotta) for palette cohesion.
+  let storyCaptionCharcoal = true;
+  let storyCaptionChipCount = 0;
+  for (const storyI of storyIdxs) {
+    const sDom = rendered.pageEls[storyI];
+    if (!sDom || !sDom.querySelectorAll) continue;
+    const chips = Array.from(sDom.querySelectorAll('[data-story-caption-chip]'));
+    storyCaptionChipCount += chips.length;
+    for (const chip of chips) {
+      const c = String((chip.style && chip.style.color) || '');
+      const ok = /#1e293b|#0f172a|#334155|rgb\(\s*30,\s*41,\s*59\s*\)|rgb\(\s*15,\s*23,\s*42\s*\)|rgb\(\s*51,\s*65,\s*85\s*\)/i.test(c);
+      if (!ok) storyCaptionCharcoal = false;
+    }
+  }
+  if (storyCaptionChipCount === 0) storyCaptionCharcoal = false;
   const wrapPeerFeedback = /Peer check/i.test((wrapDom && wrapDom.textContent) || '');
   const wrapPeerEl = wrapDom && wrapDom.querySelector && wrapDom.querySelector('[data-wrap-peer]');
   let wrapPeerOnBoard = false;
@@ -335,6 +356,7 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     creativeOrphans,
     hasGrammarAim,
     grammarClaimsFirstOnly,
+    grammarMissingSecondLabel,
     hasAimsPanel,
     wrapNavy,
     timingChipCount,
@@ -352,6 +374,8 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     midFlatUnique,
     kingTitleInk,
     actHintInk,
+    kingHintCard,
+    storyCaptionCharcoal,
     wrapPeerFeedback,
     wrapPeerOnBoard,
     prodWrite,
@@ -421,6 +445,9 @@ if (!result.hasGrammarAim) fails.push('title missing grammar aim line (S25)');
 if (result.grammarClaimsFirstOnly) {
   fails.push('grammar aim claims first-conditional only but frames use would (S31)');
 }
+if (result.grammarMissingSecondLabel) {
+  fails.push('grammar aim must name second conditional when frames use If…would (S31)');
+}
 if (!result.hasAimsPanel) fails.push('title missing frosted aims panel (Manus PPT-like)');
 if (!result.wrapNavy) fails.push('wrap bg not navy/slate bookend (S32)');
 if (result.hasMatchCaptions) {
@@ -460,6 +487,12 @@ if ((result.midFlatUnique || []).length > 2) {
 }
 if (!result.kingTitleInk || !result.actHintInk) {
   fails.push('activity instruction missing ink tags (S35)');
+}
+if (result.skipKing && !result.kingHintCard) {
+  fails.push('king activity hint missing frosted instruction card (S40)');
+}
+if (result.storyCaptionCharcoal === false) {
+  fails.push('story caption chips not charcoal ink (S40)');
 }
 if (!result.wrapPeerFeedback) {
   fails.push('wrap missing peer-feedback exit prompt (S36)');

@@ -971,6 +971,32 @@
           const tw = sized[0].w;
           if (tw > dock.w) sized = [];
         }
+        // Music dock soft (Manus): +12% when spare width allows — never bump DOCK_MIN
+        // (that drops thin musicians from a packed row). Cap boost so pieces still fit.
+        const musicRow = sized.some((x) => /^musician-/.test((x.t && x.t.key) || ''));
+        if (musicRow && sized.length) {
+          const gapsW = gap * Math.max(0, sized.length - 1);
+          const rawW = sized.reduce((s, x) => s + x.w, 0);
+          const boost = 1.12;
+          if (rawW > 0 && Math.ceil(rawW * boost) + gapsW <= dock.w) {
+            const maxHBoost = Math.max(rowH, maxNeedH);
+            sized = sized.map((x) => {
+              let w = Math.round(x.w * boost);
+              let h = Math.round(x.h * boost);
+              if (h > maxHBoost && x.h > 0) {
+                const fit = maxHBoost / h;
+                w = Math.max(DOCK_MIN, Math.round(w * fit));
+                h = Math.max(DOCK_MIN, Math.round(h * fit));
+              }
+              return { t: x.t, w, h };
+            }).filter((x) => Math.min(x.w, x.h) >= DOCK_MIN && x.w <= dock.w);
+            while (sized.length > 1) {
+              const tw = sized.reduce((s, x) => s + x.w, 0) + gap * Math.max(0, sized.length - 1);
+              if (tw <= dock.w) break;
+              sized.pop();
+            }
+          }
+        }
         sizedPerRow.push(sized.length);
         const usedW = sized.reduce((s, x) => s + x.w, 0) + gap * Math.max(0, sized.length - 1);
         let originX = dock.x + Math.max(0, Math.floor((dock.w - usedW) / 2));

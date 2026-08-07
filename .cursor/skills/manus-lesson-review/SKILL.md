@@ -94,11 +94,12 @@ Log lines append to `.cursor/ratings/manus-reviews.jsonl`.
 | Soft match drop zones | Numbered DOM `data-match-pad`; S28 |
 | matchPad meta.word → tiny vocab art on cards | `pieceToPng` prefers data:/pad roles over wordArt |
 | Timing chips | headers ≥45 min + king/activity chip; S29 |
-| Grammar aim honesty | `grammarAimLine()` from frames; S31 |
+| Grammar aim honesty | `grammarAimLine()` from frames; name **second conditional** for If…would (S31) |
 | Wrap palette break | Navy/slate wrap bookend; S32 |
 | Mid-deck ≤2 flats | pickFlat midPool/generic band cap; S34 |
 | Story side thrash | always-left prop card; S33 |
-| Activity instruction contrast | ink-tagged king title + slate hints; S35 |
+| Activity instruction contrast | ink-tagged king title + frosted hint card + slate; S35/S40 |
+| Story caption terracotta | charcoal caption chip ink; S40 |
 | Wrap peer-feedback | Peer check exit line; S36 |
 | Wrap exit vocab coverage | Also say: for missing board words; S37 |
 | Title aims vs scene | Frosted aims panel + slightly smaller title |

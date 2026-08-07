@@ -899,7 +899,7 @@
       // Match-dock: numbered dashed pad under the word (S28 / Manus drop-zones).
       // Painted into the page PNG so ClassIn + bake stay aligned (no EDB ghost overlay).
       const dropPad = interactive
-        ? `<div data-match-pad="${i + 1}" style="margin-top:auto;width:78%;max-width:160px;min-height:52px;border:3px dashed #94a3b8;border-radius:10px;background:rgba(148,163,184,0.14);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#64748b">${i + 1}</div>`
+        ? `<div data-match-pad="${i + 1}" style="margin-top:auto;width:82%;max-width:180px;min-height:60px;border:3px dashed #94a3b8;border-radius:10px;background:rgba(148,163,184,0.14);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:#64748b">${i + 1}</div>`
         : '';
       const writeLine = (!interactive && n <= 3)
         ? `<div style="margin-top:20px;font-size:24px;font-weight:700;color:#64748b;text-align:center;line-height:1.35;max-width:90%">Say the word. Drag the matching picture. Write it on the line.</div>
@@ -1246,9 +1246,11 @@
 
   function storyCaptionChip(text, opts) {
     const o = opts || {};
-    return el('div', {
+    // Charcoal ink on white chip — palette-cohesive (Manus soft); keep white plate
+    // so StoryArt swap can still find the caption sibling.
+    const chip = el('div', {
       background: '#ffffff',
-      color: '#9a3412',
+      color: '#1e293b',
       borderRadius: '12px',
       padding: o.compact ? '8px 12px' : '10px 14px',
       fontSize: o.compact ? '20px' : '22px',
@@ -1264,6 +1266,8 @@
       position: 'relative',
       zIndex: '2',
     }, esc(text));
+    chip.dataset.storyCaptionChip = '1';
+    return chip;
   }
 
   function makeStoryPage(lesson, page, index, boardPlan, opts) {
@@ -1647,9 +1651,21 @@
       } else if (/\b(music|compose|composer|orchestra|symphony|concert|classical|melody|harmony|piano|violin)\b/.test(kingCue)) {
         kingHint = 'Drag musicians onto the stage. Then write or say your symphony idea in 1–2 sentences.';
       }
-      p.appendChild(hint(kingHint, {
-        textAlign: 'left', lineHeight: '1.3', maxWidth: '420px',
-      }));
+      // Frosted instruction plate — projection-readable on busy terrace scenes (Manus).
+      const kingHintEl = hint(kingHint, {
+        textAlign: 'left',
+        lineHeight: '1.3',
+        maxWidth: '420px',
+        marginBottom: '8px',
+        background: 'rgba(248,250,252,0.96)',
+        border: '1px solid rgba(148,163,184,0.65)',
+        borderRadius: '12px',
+        padding: '10px 14px',
+        boxShadow: '0 2px 8px rgba(15,23,42,0.10)',
+        color: '#0f172a',
+      });
+      kingHintEl.dataset.kingHintCard = '1';
+      p.appendChild(kingHintEl);
       // skipKing terrace (music) still asks write/say — give a visible write strip
       // so production isn't oral-only (Manus B2 on classical-compose).
       const actAssign = (boardPlan.assignments || []).find((a) => a.pageKey === 'activity');
@@ -1658,10 +1674,10 @@
         const strip = el('div', {
           position: 'absolute',
           left: '28px',
-          top: '118px',
+          top: '128px',
           width: '460px',
           zIndex: '3',
-          background: 'rgba(248,250,252,0.94)',
+          background: 'rgba(248,250,252,0.98)',
           border: '2px dashed rgba(51,65,85,0.55)',
           borderRadius: '14px',
           padding: '14px 16px',
@@ -1670,7 +1686,7 @@
           fontSize: '20px',
           fontWeight: '700',
           lineHeight: '1.45',
-          boxShadow: '0 2px 10px rgba(15,23,42,0.12)',
+          boxShadow: '0 2px 10px rgba(15,23,42,0.14)',
         });
         strip.dataset.prodWrite = '1';
         strip.dataset.ink = 'hint';
@@ -1707,11 +1723,12 @@
   function grammarAimLine(frames) {
     const list = (frames || []).map((f) => String(f || ''));
     const hasWill = list.some((f) => /\bI will\b|\bwill\b/i.test(f) && /\bif\b/i.test(f));
+    // ESL label: If…, I would… = second conditional (Manus: name it explicitly).
     const hasWould = list.some((f) => /\bwould\b/i.test(f) && /\bif\b/i.test(f));
     const hasPlanning = list.some((f) => /planning to|I believe|most important/i.test(f));
     const bits = [];
-    if (hasWill) bits.push('first-conditional (If…, I will…)');
-    if (hasWould) bits.push('hypothetical (If…, I would…)');
+    if (hasWill) bits.push('first conditional (If…, I will…)');
+    if (hasWould) bits.push('second conditional (If…, I would…)');
     if (hasPlanning || !bits.length) bits.push('opinion / planning frames');
     return `practise ${bits.join(' + ')}.`;
   }
