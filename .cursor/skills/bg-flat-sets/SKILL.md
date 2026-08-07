@@ -37,7 +37,7 @@ skill. If the topic is not a place, leave it on the house deck.
 |--------|------|
 | Default deck | `board-house` cool wall tints for school / unmatched — **no face eggs** |
 | Face charm set | `board-face` only (cool + tiny eye eggs) — never the default |
-| Place sets | Only clinic / travel / home / outdoor / beach / bakery (and future *places*) |
+| Place sets | Only clinic / travel / home / outdoor / beach / bakery / gym (and future *places*) |
 | Route | **In-house first** (4 individual landscape panels). ChatGPT 2×2 sheet only for bulk |
 | Count | **4 panels** per set (`-a`…`-d`) |
 | Aspect | Native tool **16:9**; importer stretches to 1280×590 |
@@ -68,6 +68,7 @@ place** (see motif table in [`docs/bg-theme-sets.md`](../../../docs/bg-theme-set
 | Travel | paper plane, map pin trail, cloud corner | beach shells, bakery tools |
 | Home | curtain fold, soft arch shadow, peach hill band | outdoor meadow, clinic teal |
 | Outdoor | grass fringe, leaf corner, soft sun | indoor shelves, bakery dough |
+| Gym | basketball corner, court lane fringe, rolled mat, wall-pad edge | outdoor meadow, clinic tooth |
 
 ### Forbidden formula moves
 

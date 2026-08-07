@@ -84,6 +84,7 @@ Anti-formula section.
 | `travel-air` | paper plane, map-pin trail, soft cloud corner | beach shells, bakery tools, farm wheat |
 | `home-warm` | curtain fold, soft arch shadow, peach hill band at edge | outdoor meadow, clinic teal wall |
 | `outdoor-fresh` | grass fringe, leaf corner, soft sun | indoor shelves, dough, tooth icons |
+| `gym-cool` | basketball corner, court lane fringe, rolled mat, wall-pad edge | outdoor meadow, clinic tooth, bakery dough |
 | `beach-warm` | shell, wave fringe, sand dollar, sun corner | wheat, bakery loaf, clinic sparkles |
 | `bakery-warm` | flour-dust haze, dough ball, loaf / baguette, rolling pin, whisk | **wheat sheaf / farm grain**, generic leaves, beach composition copy |
 
@@ -98,7 +99,8 @@ d rolling pin. **Reject:** wheat / wheat / cookie-as-only-signal / leaf alcove.
 | `clinic-cool` | dentist / doctor / hospital | wired |
 | `travel-air` | airport / trip / plane | wired |
 | `home-warm` | family / house / daily routine | wired |
-| `outdoor-fresh` | park / zoo / sport (when scene is not the hero) | wired |
+| `outdoor-fresh` | park / zoo (when scene is not the hero) | wired |
+| `gym-cool` | gym / sport / workout (indoor court washes) | wired (in-house Aug 2026) |
 | `beach-warm` | beach / ocean / shore | wired (in-house Aug 2026) |
 | `bakery-warm` | bakery / café | wired (in-house Aug 2026) |
 | `school-soft` | (legacy) superseded by `board-house` | kept on disk, not picker-default |
@@ -184,13 +186,21 @@ arch shadow at the edge only.
 > home palette. Empty centre. No sofas, no lamps, no window plants in the
 > middle band.
 
-### 4. `outdoor-fresh` — park / zoo / sport (when scene is not the hero)
+### 4. `outdoor-fresh` — park / zoo (when scene is not the hero)
 Palette: soft green + sky. Corner motifs: faint grass fringe at bottom, soft
-leaf corner.
+leaf corner. **Not** indoor gym — that is `gym-cool`.
 
 > [style lock] Generate a 2×2 grid of quiet ESL slide backgrounds. Shared
 > outdoor palette (sage, sky, soft sun). Empty centre. Not a playground photo;
 > not a full zoo habitat.
+
+### 4b. `gym-cool` — gym / sport / workout
+Palette: pale blue-grey indoor wall + soft teal. Corner motifs: basketball,
+court lane fringe, rolled mat, wall-pad edge. Empty centre. Not a park meadow.
+
+> [style lock] Generate a 2×2 grid of quiet ESL slide backgrounds. Shared cool
+> indoor gym palette. Empty centre. Place-true court motifs in corners only.
+> No outdoor hills, no clinic teeth, no bakery dough.
 
 ## Import (ChatGPT sheet)
 

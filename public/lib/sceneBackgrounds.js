@@ -243,6 +243,7 @@
     'travel-a': 'travel', 'travel-b': 'travel', 'travel-c': 'travel', 'travel-d': 'travel',
     'home-a': 'warm', 'home-b': 'warm', 'home-c': 'warm', 'home-d': 'warm',
     'outdoor-a': 'outdoor', 'outdoor-b': 'outdoor', 'outdoor-c': 'outdoor', 'outdoor-d': 'outdoor',
+    'gym-a': 'cool', 'gym-b': 'cool', 'gym-c': 'cool', 'gym-d': 'cool',
     'house-a': 'cool', 'house-b': 'cool', 'house-c': 'cool', 'house-d': 'cool',
     'face-a': 'cool', 'face-b': 'cool', 'face-c': 'cool', 'face-d': 'cool',
     'board-face-a': 'cool', 'board-face-b': 'cool', 'board-face-c': 'cool', 'board-face-d': 'cool',
@@ -261,7 +262,9 @@
     { re: /\b(dentists?|dental|doctors?|clinic|hospital|nurse|tooth|teeth|medical)\b/, set: 'clinic-cool' },
     { re: /\b(airport|travel|train|bus|plane|passport|station)\b/, set: 'travel-air' },
     { re: /\b(home|house|family|kitchen|apartment|bedroom|hotel)\b/, set: 'home-warm' },
-    { re: /\b(zoo|park|animal|forest|garden|nature|gym|sport|trampoline|volcano|lava|eruption|crater|farm|pool|swim|swimming)\b/, set: 'outdoor-fresh' },
+    // Indoor gym before outdoor — "gym" must not land on park meadows.
+    { re: /\b(gym|workout|athletic|basketball|fitness|sports?)\b/, set: 'gym-cool' },
+    { re: /\b(zoo|park|animal|forest|garden|nature|trampoline|volcano|lava|eruption|crater|farm|pool|swim|swimming)\b/, set: 'outdoor-fresh' },
     { re: /\b(beach|ocean|sea|shore|seaside|island)\b/, set: 'beach-warm' },
     // Place nouns only — bare "bread" must not steal supermarket lessons onto bakery.
     { re: /\b(bakerys?|bake\s*shop|pastry\s*shop|cafes?|caf[eé]s?)\b/, set: 'bakery-warm' },
@@ -294,7 +297,7 @@
     // "Living in…" titles must not steal the home palette over a real place.
     { re: /\b(home|house|family|kitchen|apartment|bedroom)\b/, want: ['warm', 'neutral'] },
     { re: /\b(school|classroom|teacher|library)\b/, want: ['neutral', 'cool', 'warm'] },
-    { re: /\b(gym|sport|trampoline|play)\b/, want: ['outdoor', 'warm', 'cool'] },
+    { re: /\b(gym|sport|trampoline|play|workout|athletic)\b/, want: ['cool', 'outdoor', 'warm'] },
   ];
 
   function palettesFor(topicWords) {

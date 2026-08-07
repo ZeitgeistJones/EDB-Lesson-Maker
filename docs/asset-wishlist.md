@@ -40,6 +40,7 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-05 | Dark hair 4×4 face sheet (optional) | Color hair sheet wired; dark/varied set still in assets-inbox if we want more styles | `--sheet --grid=4x4` | Existing ChatGPT sheet | open |
 | 2026-08-05 | `face-soft` quiet flat set | Face lessons were on generic/school washes; need blush-cream deck under make-a-face | 4 in-house landscape flats | Native GenerateImage | retired — skin wash felt creepy; face → `board-house` |
 | 2026-08-05 | `board-house` quiet flat set | Shared ClassIn default backdrop (cream/sage/sky) lesson-to-lesson | 4 in-house landscape flats | Native GenerateImage | wired — `house-a`…`d`, DEFAULT_SET |
+| 2026-08-06 | `gym-cool` quiet flat set | Gym fixture was locked to outdoor park meadows (M5 fail / place mismatch) | 4 in-house indoor court washes | Native GenerateImage | wired — `gym-a`…`d`, TOPIC_SETS before outdoor |
 
 ## How agents append
 

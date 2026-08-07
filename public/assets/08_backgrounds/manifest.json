@@ -1453,6 +1453,42 @@
    "quiet": true,
    "set": "bakery-warm",
    "palette": "warm"
+  },
+  "gym-a": {
+   "file": "flat_gym-a.png",
+   "tone": "gym cool wash — plain indoor wall",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "gym-cool",
+   "palette": "cool"
+  },
+  "gym-b": {
+   "file": "flat_gym-b.png",
+   "tone": "gym cool — basketball corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "gym-cool",
+   "palette": "cool"
+  },
+  "gym-c": {
+   "file": "flat_gym-c.png",
+   "tone": "gym cool — court lane fringe",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "gym-cool",
+   "palette": "cool"
+  },
+  "gym-d": {
+   "file": "flat_gym-d.png",
+   "tone": "gym cool — yoga mat corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "gym-cool",
+   "palette": "cool"
   }
  }
 }
