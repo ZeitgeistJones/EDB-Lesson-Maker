@@ -1109,6 +1109,7 @@
       const pianoScene = /\b(piano|keys|keyboard)\b/.test(caption) && !deskScene;
       const orchestraScene = /\b(orchestra|stage|concert|performance|performing|conductor)\b/.test(caption)
         && !deskScene && !pianoScene;
+      const feelingsScene = /\b(worried|scared|confused|shy|surprised|happy|sad|angry|bored|sleepy|proud|feeling|feelings|emotion)\b/.test(cueLower);
       const deskPrefer = [
         'compose-desk', 'desk', 'grand-piano', 'piano', 'pencil-pot',
       ];
@@ -1120,13 +1121,18 @@
         'musician-conductor', 'orchestra-stands', 'musician-violin', 'musician-cello',
         'conductor-podium', 'violin', 'cello',
       ];
+      const feelingsPrefer = [
+        'feeling-confused', 'feeling-worried', 'feeling-scared', 'feeling-shy',
+        'feeling-surprised', 'feeling-happy', 'feeling-sad', 'feeling-angry',
+      ];
       const themePrefer = [
         'orchestra', 'grand-piano', 'piano', 'violin', 'cello', 'guitar', 'flute',
         'musician-conductor', 'conductor', 'trumpet', 'harp', 'desk', 'compose-desk',
         'castle', 'dentist', 'face-blank', 'trampoline',
       ];
       // Desk/piano/orchestra captions: match caption only — lesson title often says orchestra.
-      const captionLocal = deskScene || pianoScene || orchestraScene;
+      // Feelings captions stay caption-local so "check a worksheet" cannot steal a checkmark.
+      const captionLocal = deskScene || pianoScene || orchestraScene || feelingsScene;
       const hay = captionLocal ? caption : cueLower;
       const preferList = deskScene
         ? deskPrefer
@@ -1134,8 +1140,10 @@
           ? pianoPrefer
           : orchestraScene
             ? orchestraPrefer
-            : themePrefer;
-      let prefer = preferList.filter((w) => hay.includes(w.replace(/^musician-/, '').replace(/-/g, ' '))
+            : feelingsScene
+              ? feelingsPrefer
+              : themePrefer;
+      let prefer = preferList.filter((w) => hay.includes(w.replace(/^musician-/, '').replace(/^feeling-/, '').replace(/-/g, ' '))
         || hay.includes(w.split('-').pop()));
       // Force caption-local keys first (unshift reverses array order — concat instead).
       if (deskScene) {
@@ -1150,9 +1158,19 @@
           ...prefer.filter((w) => !/^musician-|^orchestra-stands$|^conductor-podium$/.test(w)),
         ];
       }
+      if (feelingsScene) {
+        prefer = [
+          ...feelingsPrefer.filter((w) => hay.includes(w.replace(/^feeling-/, ''))),
+          ...feelingsPrefer,
+          ...prefer.filter((w) => !/^feeling-/.test(w)),
+        ];
+      }
       const stop = new Set([
         'with', 'from', 'that', 'this', 'have', 'sitting', 'local', 'near',
         'beautiful', 'musician', 'playing', 'performing',
+        // "check a worksheet" must not resolve to a green checkmark badge (Manus Ssdp).
+        'check', 'checking', 'together', 'students', 'student', 'partner',
+        'smiled', 'explained', 'worksheet', 'looks', 'looking', 'left', 'her',
       ]);
       const captionWords = (caption.match(/\b[a-z]{4,}\b/g) || []).filter((w) => !stop.has(w));
       // Caption words before theme prefer so scene text wins over title theme.

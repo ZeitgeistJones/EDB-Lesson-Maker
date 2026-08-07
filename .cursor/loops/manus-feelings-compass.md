@@ -40,8 +40,10 @@ node scripts/verify-feelings-compass.mjs
 
 ## Last run
 
-- **When:** 2026-08-07 (shift30 — new topic)
+- **When:** 2026-08-07 (shift30 — new topic + Manus fold)
 - **Local:** verify ok (fails=[])
-- **Manus:** see below / pending
-- **Assets:** located existing feeling-* props + vocab pack PNGs — no new generate
-- **ZPD fuel from classical:** abstract vocab stress test ← this topic
+- **Manus:** https://manus.im/app/SsdpWA76twR2U5WF3MLMHg · **revise** · score **41** · overall **4.0** · all just_fixed HOLDS
+- **Fold:** B2 story check→checkmark → feelings prefer + stop words; reject B1 (OCR commas) + B3 (navy wrap = S32)
+- **Assets:** existing feeling-* + vocab pack — no generate
+- **ZPD logged:** richer emotion terms; two-round Feelings Lab
+- **Next:** `/manusloop run manus-feelings-compass` after story prop confirm

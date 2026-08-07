@@ -47,6 +47,9 @@ Gaps in **lesson content** — not art. For us (agent + you) when something teac
 | 2026-08-07 | ZPD (pass/100): two-round peer eval + composer’s-choice instrument constraint | Manus bNsAK Level-Up | Log only — do not invent new lesson this pass | open |
 | 2026-08-07 | Abstract vocab stress test: new topic away from arts-music | Manus ZPD / shift30 | `feelings-compass` fixture + verify; feelings dock on face-blank; TOPIC_SETS board-face | schema-fixed |
 | 2026-08-07 | Feelings king dock padded with face eyes/nose after curated feeling-* list | Producer generalization | Stop feelings dock pad with non-feeling kit/tag resolve | schema-fixed |
+| 2026-08-07 | Story caption “check a worksheet” → green checkmark badge | Manus Ssdp B2 feelings-compass | storyFallbackVisual feelings prefer + stop “check”; fixture caption | schema-fixed |
+| 2026-08-07 | Manus OCR misread frame commas as periods (B1) | Manus Ssdp | False positive — frames already comma; keep verify soft note | wont-fix |
+| 2026-08-07 | Manus wants mint wrap; navy wrap is S32 bookend | Manus Ssdp B3 vs classical S32 | Keep navy wrap; passoff knownIssues | wont-fix |
 
 <!-- Classical compose note (2026-08-07): Activity dock + skipKing piano-on-piano fixed (f21ca03). Manus dual reviews LbVd…/oEDh… folded into producer 2026-08-07. Story glyphs still open. Manusloop J4up… revise/72 folded: pickImages + inspire override + aims/frames/story. Second live pass USYe… pass/98 — numbered pads + pieceToPng pad fix. Shift20: Manus skill delta → schema scorecard/ZPD + S30–S32 producer. Shift21: live Manus LgtX… revise/84 → S26 caption bake kill + S29 king timing + S33–S37. Shift22 assetgap+manus x2: inspire.png + RWiY → S38/S39. -->
 
