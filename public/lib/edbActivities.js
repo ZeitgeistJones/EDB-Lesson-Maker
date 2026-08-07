@@ -898,9 +898,6 @@
       });
     }
 
-    // #region agent log
-    fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'post-fix',hypothesisId:'A',location:'edbActivities.js:heroProp',message:'hero stage placement',data:{heroKey:prop.key,path:prop.path,pageType:page.pageType,skipKing,pack:prop.pack||null},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
 
     // Face kits ship plenty of parts — use two dock rows when the zone is tall enough.
     // Tall-thin roleplay cutouts (musicians ~0.4–0.65) need height ≥ DOCK_MIN/aspect for
@@ -992,10 +989,6 @@
           originX = x + w + gap;
         });
       }
-      // #region agent log
-      const dockPlaced = (page.unlocked || []).filter((p) => p.role === 'dockPiece');
-      fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'post-fix',hypothesisId:'D',location:'edbActivities.js:heroProp:dock',message:'dock sizing after thin-aspect fix',data:{tools:tools.length,rows,maxH,rowH,thinCount,maxNeedH,sizedPerRow,dockSample:dockPlaced.slice(0,12).map((p)=>p.meta&&p.meta.propKey)},timestamp:Date.now()})}).catch(()=>{});
-      // #endregion
     }
     page.notes.push('recipe:heroProp');
   }

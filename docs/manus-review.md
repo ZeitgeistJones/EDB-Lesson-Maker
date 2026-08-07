@@ -18,7 +18,9 @@ Never commit the key. Create keys in Manus → API Integration settings.
 npm run manus:review -- tmp/board-bg-verify/classical-compose --title="Writing a Symphony for the Orchestra" --level=B1 --duration=60
 ```
 
-Uploads key page JPGs, creates a task with structured output schema, polls until stopped, prints JSON, appends `.cursor/ratings/manus-reviews.jsonl`.
+Uploads key page JPGs (inline `file_data` when under 15MB), creates a task with structured output schema, polls until stopped, prints JSON, appends `.cursor/ratings/manus-reviews.jsonl`.
+
+Optional: `--known="issue one|issue two"` to disclose wishlist items already known.
 
 ## MCP (Cursor Agent tools)
 
@@ -43,12 +45,11 @@ Tools:
 
 | Tool | Role |
 |------|------|
+| `manus_review_bake` | One-shot: JPG dir → create → poll → structured verdict |
 | `manus_create_task` | `task.create` (+ optional review schema / file_ids) |
 | `manus_poll_task` | One `task.listMessages` snapshot |
 | `manus_confirm` | `task.confirmAction` when status is `waiting` |
 | `manus_review_brief` | Build judge-only brief text (no API call) |
-
-For full bake→upload→poll in one shot, prefer the CLI.
 
 ## Docs
 

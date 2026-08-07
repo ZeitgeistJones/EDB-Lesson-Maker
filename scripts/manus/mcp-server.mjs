@@ -25,14 +25,39 @@ import {
   apiKey,
 } from './client.mjs';
 import { REVIEW_SCHEMA, buildReviewBrief } from './review-schema.mjs';
+import { runBoardReview } from './review.mjs';
 
 const SERVER_INFO = { name: 'manus', version: '1.0.0' };
 
 const TOOLS = [
   {
+    name: 'manus_review_bake',
+    description:
+      'One-shot: attach JPGs from a tmp/board-bg-verify/<case> dir, create a Manus ClassIn review task with structured schema, poll until done, return verdict JSON. Prefer this after an internal quality bake.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        dir: {
+          type: 'string',
+          description: 'Path to bake dir with page-*.jpg (absolute or repo-relative)',
+        },
+        title: { type: 'string' },
+        level: { type: 'string' },
+        duration: { type: 'string' },
+        known_issues: { type: 'array', items: { type: 'string' } },
+        notes: { type: 'string' },
+        agent_profile: {
+          type: 'string',
+          enum: ['manus-1.6', 'manus-1.6-lite', 'manus-1.6-max'],
+        },
+      },
+      required: ['dir'],
+    },
+  },
+  {
     name: 'manus_create_task',
     description:
-      'Create a Manus task (optionally with ClassIn lesson review schema). Prefer attaching file_ids from prior uploads via the CLI, or pass a text-only brief.',
+      'Create a Manus task (optionally with ClassIn lesson review schema). Prefer manus_review_bake when you have a verify JPG directory.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -137,6 +162,19 @@ async function callTool(name, args) {
         notes: args.notes,
       }),
     };
+  }
+
+  if (name === 'manus_review_bake') {
+    apiKey();
+    return runBoardReview({
+      dir: args.dir,
+      title: args.title,
+      level: args.level,
+      duration: args.duration,
+      knownIssues: args.known_issues || [],
+      notes: args.notes,
+      profile: args.agent_profile || 'manus-1.6',
+    });
   }
 
   // Touch key early for clearer errors

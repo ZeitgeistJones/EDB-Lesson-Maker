@@ -372,26 +372,6 @@
     return { place: true, set, flats, gap: false };
   }
 
-  // #region agent log
-  function agentDbg(hypothesisId, location, message, data) {
-    const payload = {
-      sessionId: '3c9697',
-      runId: 'picker-pre',
-      hypothesisId,
-      location,
-      message,
-      data: data || {},
-      timestamp: Date.now(),
-    };
-    try {
-      fetch('http://127.0.0.1:7298/ingest/2c7b9048-535d-4975-be12-acca9b0197ba', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '3c9697' },
-        body: JSON.stringify(payload),
-      }).catch(function () {});
-    } catch (_) { /* ignore */ }
-  }
-  // #endregion
 
   function moodsFor(topicWords) {
     const text = ' ' + norm(Array.isArray(topicWords) ? topicWords.join(' ') : topicWords).join(' ') + ' ';
@@ -444,12 +424,6 @@
           }
           key = midPool[(flatOffset(seed, midPool.length) + (index || 0)) % midPool.length];
         }
-        // #region agent log
-        agentDbg('H2', 'sceneBackgrounds.js:pickFlat', 'set-path pick', {
-          wantSet, fromSetFor, lockedSet: lockedSet || null, pin: pin || null,
-          index: index || 0, key, setKeys, path: 'set', titleLean: pin === 'open',
-        });
-        // #endregion
         return {
           type: 'flat',
           name: key,
@@ -484,11 +458,6 @@
     // Never fall open to the full quiet catalog — that reads as random.
     flatKeys = (preferred.length >= 2 ? preferred : ranked.map((r) => r.k)).slice(0, 4);
     const key = flatKeys[(flatOffset(seed, flatKeys.length) + (index || 0)) % flatKeys.length];
-    // #region agent log
-    agentDbg('H4', 'sceneBackgrounds.js:pickFlat', 'FALLBACK palette lottery', {
-      wantSet, fromSetFor, pin: pin || null, key, band: flatKeys, want, path: 'fallback',
-    });
-    // #endregion
     return {
       type: 'flat',
       name: key,
@@ -570,15 +539,6 @@
     const moods = moodsFor(topicWords);
     const setMatch = setFor(topicWords);
     const lockedSet = setMatch || DEFAULT_SET;
-    // #region agent log
-    agentDbg('H3', 'sceneBackgrounds.js:planFor', 'lesson lock', {
-      topicWords: String(topicWords).slice(0, 120),
-      setMatch,
-      lockedSet,
-      usedDefault: !setMatch,
-      moods,
-    });
-    // #endregion
     for (let i = 0; i < sections.length; i++) {
       const sec = sections[i];
       if (!sec.preferFlat && placeScene) {

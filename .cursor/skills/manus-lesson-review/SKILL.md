@@ -34,7 +34,9 @@ Known open issues from `docs/content-wishlist.md` may be passed as `--known=` so
 npm run manus:review -- tmp/board-bg-verify/<case> --title="Lesson Title" --level=B1 --duration=60
 ```
 
-Or MCP tools (if `manus` server is registered): `manus_create_task` → poll `manus_poll_task` → `manus_confirm` if waiting.
+Optional known issues (pipe-separated): `--known="title charm overlay|story glyph"`.
+
+Or MCP: prefer `manus_review_bake` with `{ "dir": "tmp/board-bg-verify/<case>", "title": "..." }` (create/poll/confirm still available for manual flows).
 
 Auth: `MANUS_API_KEY` in environment or gitignored `.env`. Never commit or print the key.
 

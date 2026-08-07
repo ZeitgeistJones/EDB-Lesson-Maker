@@ -322,9 +322,6 @@ async function wordArtPng(word, ctx) {
   if (VI && typeof VI.isCurated === 'function' && VI.isCurated(word)) {
     const pack = await VI.loadPng(word);
     if (pack) {
-      // #region agent log
-      fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'post-fix',hypothesisId:'E',location:'buildEdb.js:wordArtPng',message:'word art via curated VocabIcons',data:{word,source:'pack'},timestamp:Date.now()})}).catch(()=>{});
-      // #endregion
       return pack;
     }
   }
@@ -342,9 +339,6 @@ async function wordArtPng(word, ctx) {
       propKey = prop.key;
       const png = await PB.loadPng(prop);
       if (png) {
-        // #region agent log
-        fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'post-fix',hypothesisId:'E',location:'buildEdb.js:wordArtPng',message:'word art via PropBank fallback',data:{word,propKey,source:'prop'},timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
         return png;
       }
     }
@@ -353,15 +347,9 @@ async function wordArtPng(word, ctx) {
   if (VI) {
     const pack = await VI.loadPng(word);
     if (pack) {
-      // #region agent log
-      fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'post-fix',hypothesisId:'E',location:'buildEdb.js:wordArtPng',message:'word art via VocabIcons late',data:{word,propKey,source:'pack-late'},timestamp:Date.now()})}).catch(()=>{});
-      // #endregion
       return pack;
     }
   }
-  // #region agent log
-  fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'post-fix',hypothesisId:'E',location:'buildEdb.js:wordArtPng',message:'word art miss',data:{word,propKey},timestamp:Date.now()})}).catch(()=>{});
-  // #endregion
   return null;
 }
 

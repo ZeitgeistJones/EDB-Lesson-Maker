@@ -914,9 +914,6 @@
     const longest = Math.max(0, ...lens);
     // Long B1 frames at 40px overflow the 590px board — shrink type + wrap.
     const fontPx = longest > 75 ? 26 : longest > 55 ? 30 : rows <= 1 ? 44 : 34;
-    // #region agent log
-    fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'post-fix',hypothesisId:'B',location:'renderLessonPages.js:makeFrames',message:'frames layout inputs',data:{count:frames.length,lens,fontPx,longest,frames:frames.map((f)=>String(f).slice(0,80))},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
     const body = el('div', {
       flex: '1',
       minHeight: '0',
@@ -1077,9 +1074,6 @@
       side.dataset.storyArtMode = 'side';
       side.appendChild(el('div', { fontSize: '96px', lineHeight: '1', marginBottom: '14px' },
         themeEmoji(storyArtCue(lesson, page))));
-      // #region agent log
-      fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'pre-fix',hypothesisId:'C',location:'renderLessonPages.js:makeStoryPage',message:'story side emoji chosen',data:{index,cue:storyArtCue(lesson,page).slice(0,160),emoji:themeEmoji(storyArtCue(lesson,page)),caption:page&&page.visualCaption,heading:page&&page.heading},timestamp:Date.now()})}).catch(()=>{});
-      // #endregion
       side.appendChild(el('div', {
         background: '#ffffff', color: '#9a3412', borderRadius: '12px', padding: '10px 14px',
         fontSize: '22px', fontWeight: '700', textAlign: 'center', width: '100%',
@@ -1461,10 +1455,6 @@
         }
       }
     }
-    // #region agent log
-    const titleIdx = sections.findIndex((s) => (s.tags || []).includes('title'));
-    fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'post-fix',hypothesisId:'A',location:'renderLessonPages.js:attachBgPicks',message:'bg picks for title/activity',data:{title:bgPicks[titleIdx]&&{type:bgPicks[titleIdx].type,name:bgPicks[titleIdx].name},activity:actPick&&{type:actPick.type,name:actPick.name,reused:!!actPick.reused},skipKing:!!(actAssign&&actAssign.ctx&&actAssign.ctx.skipKing),actPreferFlat:sections[actIdx]&&sections[actIdx].preferFlat,flatNames:bgPicks.filter(p=>p.type==='flat').map(p=>p.name)},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
     // Scene dressing needs groundY from the picks — run after, not in buildBoardPlan.
     if (window.EdbActivities && window.EdbActivities.dressScenes) {
       if (window.PropBank) await window.PropBank.ready();

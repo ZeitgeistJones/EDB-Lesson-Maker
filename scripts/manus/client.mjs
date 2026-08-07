@@ -16,7 +16,7 @@ export function apiKey() {
   const key = (process.env.MANUS_API_KEY || '').trim();
   if (!key) {
     throw new Error(
-      'MANUS_API_KEY missing. Add it to the environment or repo .env (gitignored).'
+      'MANUS_API_KEY missing. Add it to repo .env (see .env.example) or set a User env var, then restart Cursor. Create a key at https://manus.im (API Integration settings).'
     );
   }
   return key;
@@ -121,6 +121,35 @@ export async function uploadFile(filePath) {
     await new Promise((r) => setTimeout(r, 300));
   }
   return { file_id: fileId, filename, bytes: bytes.length };
+}
+
+const INLINE_MAX = 15 * 1024 * 1024; // under Manus 20MB file_data cap
+
+/**
+ * Build a message.content File part from a local path.
+ * Board JPGs are tiny — prefer inline file_data (one round-trip).
+ * Larger files use file.upload → file_id.
+ */
+export async function fileContentPart(filePath) {
+  const filename = path.basename(filePath);
+  const bytes = fs.readFileSync(filePath);
+  if (bytes.length <= INLINE_MAX) {
+    return {
+      type: 'file',
+      filename,
+      file_data: bytes.toString('base64'),
+      bytes: bytes.length,
+      via: 'file_data',
+    };
+  }
+  const up = await uploadFile(filePath);
+  return {
+    type: 'file',
+    filename: up.filename,
+    file_id: up.file_id,
+    bytes: up.bytes,
+    via: 'file_id',
+  };
 }
 
 /**
