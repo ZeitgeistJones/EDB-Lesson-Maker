@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "manus": {
+      "command": "node",
+      "args": [
+        "C:/dev/PPT-Lesson-Maker-for-Classin/scripts/manus/mcp-server.mjs"
+      ]
+    }
+  }
+}
