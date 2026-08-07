@@ -149,6 +149,7 @@ the frame. A sheet is a supported input; a crowded sheet is not.
    | C5 | an unexpected extra object, or a declared component is missing | one object only — or pass the honest `--components=` if the extra shape is a real detached piece like a jar lid |
    | C6 | near-black regions that keying will erase into holes | lighter trim, fittings and shadows; nothing close to black |
    | C7 | edge colour does not match the interior | usually follows a C1 failure — fix the field first |
+| C8 | keyed short side under 120px | draw the object larger in-frame / use bigger sheet cells — dock toys mush when upscaled |
 
    On a sheet, C2/C3/C4 are measured against the cell the panel was cut from, so
    a prop drawn small inside a generous cell reads as loosely framed even though

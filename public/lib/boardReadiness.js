@@ -88,6 +88,13 @@
         } else if (act && act.ctx && act.ctx.hero && kit.hero && act.ctx.hero.key !== kit.hero.key) {
           // Soft: different hero still ok if king stage
         }
+      } else if (kit && !kit.ready && kit.hero) {
+        // Producer honesty: theme pack exists but soft/mushy docks were banned —
+        // do not ship as Ready with a hollow king stage.
+        const soft = kit.softDockCount || 0;
+        reasons.push(
+          `Theme pack “${kit.pack}” has stage hero “${kit.hero.key}” but only ${kit.dockCount} sharp dock toys (need ≥6${soft ? `; ${soft} soft scraps blocked` : ''}). Regen docks at ≥120px short side.`
+        );
       }
 
       // Hollow activity: no kit, no hero, collage recipe — fine as draft text board

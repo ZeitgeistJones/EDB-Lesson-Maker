@@ -1,0 +1,40 @@
+{
+  "title": "Music Class",
+  "warmUp": {
+    "question": "Do you like music?",
+    "sampleAnswer": "Yes, I like music."
+  },
+  "vocabulary": [
+    { "word": "music", "emoji": "🎵", "sentence": "I like music." },
+    { "word": "sing", "emoji": "🎤", "sentence": "We sing a song." },
+    { "word": "drum", "emoji": "🥁", "sentence": "Hit the drum." },
+    { "word": "piano", "emoji": "🎹", "sentence": "Play the piano." },
+    { "word": "dance", "emoji": "💃", "sentence": "We dance together." },
+    { "word": "song", "emoji": "🎶", "sentence": "This song is fun." }
+  ],
+  "sentenceFrames": ["I can ____.", "I hear a ____."],
+  "story": {
+    "title": "Music Time",
+    "pages": [
+      {
+        "heading": "In music class",
+        "text": "Tom plays the drum. Mia plays the piano and they sing a song.",
+        "visualTheme": "classroom music",
+        "visualCaption": "Music room"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What does Tom play?", "sampleAnswer": "He plays the drum." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What instrument do you like?", "sampleAnswer": "I like the piano." }
+  ],
+  "activity": {
+    "title": "Make a Band",
+    "prompt": "Say what you play.",
+    "templates": ["I play the ____."]
+  },
+  "reviewSentences": ["I like music class.", "We sing a song."]
+}

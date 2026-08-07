@@ -786,7 +786,14 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
       ? null
       : Number((Math.max(m.contentBottom || 0, pieceBottom) / BOARD_H).toFixed(3));
     // Poster / chant / piece-heavy pages aren't empty in the live-classroom sense.
-    if (POSTER_PAGES[pg.pageKey] || pg.pageKey === 'frames' || pieceArt >= 4) {
+    // heroStage: the king prop is the page — a thin dock (awaiting sharp toys)
+    // must not read as a sparse card board.
+    if (
+      POSTER_PAGES[pg.pageKey]
+      || pg.pageKey === 'frames'
+      || pieceArt >= 4
+      || pg.pageType === 'heroStage'
+    ) {
       m.M9 = null;
     }
     const unlocked = (pg.unlocked || []).filter((p) => p.kind !== 'text');

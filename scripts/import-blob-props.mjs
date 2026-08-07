@@ -92,6 +92,14 @@ async function main() {
         || `${packSlug}-${String(b.index).padStart(2, '0')}`
     );
     const isHero = b.w * b.h >= summary.medianArea * 8 || b.w >= 400 || b.h >= 300;
+    const MIN_DOCK_SRC = 120;
+    if (!isHero && Math.min(b.w, b.h) < MIN_DOCK_SRC) {
+      console.log(
+        `SKIP  #${b.index} — soft splice ${b.w}x${b.h} (short side < ${MIN_DOCK_SRC}; re-prompt larger sheet cells)`
+      );
+      skipped++;
+      continue;
+    }
     const role = isHero ? 'hero' : 'object';
     const scale = isHero ? '0.9' : b.w * b.h > summary.medianArea * 2 ? '0.45' : '0.25';
     const anchor = isHero ? 'bottom' : 'center';
@@ -125,6 +133,24 @@ async function main() {
       continue;
     }
 
+    // Prefer keyed output size (after trim) over raw blob bbox.
+    let srcW = b.w;
+    let srcH = b.h;
+    try {
+      const png = fs.readFileSync(dest);
+      if (png[0] === 0x89) {
+        srcW = png.readUInt32BE(16);
+        srcH = png.readUInt32BE(20);
+      }
+    } catch (_) { /* keep bbox */ }
+
+    if (!isHero && Math.min(srcW, srcH) < MIN_DOCK_SRC) {
+      console.log(`SKIP  ${name} — keyed short side ${Math.min(srcW, srcH)} < ${MIN_DOCK_SRC}`);
+      try { fs.unlinkSync(dest); } catch (_) { /* ignore */ }
+      skipped++;
+      continue;
+    }
+
     manifest.props[name] = {
       file: `${name}.png`,
       role,
@@ -132,7 +158,9 @@ async function main() {
       relativeScale: Number(scale),
       anchor,
       alpha: true,
-      aspect: Number((b.w / Math.max(1, b.h)).toFixed(2)),
+      aspect: Number((srcW / Math.max(1, srcH)).toFixed(2)),
+      srcW,
+      srcH,
       pack: packTags[0],
       ...(isHero ? { stageFit: 'fit' } : {}),
     };

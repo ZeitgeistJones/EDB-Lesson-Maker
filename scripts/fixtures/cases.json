@@ -160,6 +160,22 @@
       "meta": { "level": "A1", "duration": "30" },
       "expectScene": "home|house|living|kitchen|family",
       "notes": "R2 visual tour — home-warm"
+    },
+    {
+      "id": "hotel",
+      "fixture": "hotel-lesson.json",
+      "tier": "adversarial",
+      "meta": { "level": "A1", "duration": "30" },
+      "expectScene": "hotel|home|house|travel",
+      "notes": "New topic probe — hotel lobby place + luggage/key vocab art"
+    },
+    {
+      "id": "music",
+      "fixture": "music-lesson.json",
+      "tier": "adversarial",
+      "meta": { "level": "A1", "duration": "30" },
+      "expectScene": "school|classroom|music",
+      "notes": "New topic probe — music class; no dedicated kit, check hollow-activity honesty"
     }
   ]
 }

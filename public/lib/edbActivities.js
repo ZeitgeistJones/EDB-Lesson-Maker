@@ -622,6 +622,7 @@
       { re: /\bface\b|\bhair\b|\beyes?\b|\bnose\b|\bear\b|make.?a.?face|blank.?face/, key: 'face-blank' },
       { re: /dentist|dental|tooth|teeth|clinic|patient|brush|floss|cavity/, key: 'dental-kid-open-mouth' },
       { re: /trampolin|bounce|backflip/, key: 'trampoline' },
+      { re: /castle|medieval|knight|drawbridge|portcullis|royal/, key: 'castle-wall-gate' },
     ];
     for (const rule of STAGE_RULES) {
       if (rule.re.test(blob)) {
@@ -694,26 +695,16 @@
     'face-glasses-round',
   ];
 
-  /** Castle build dock — roofs, doors, banners, knights, dragon (not the wall hero). */
+  /** Castle build dock — sharp cutouts only (MIN_DOCK_SRC / C8). */
   const ROLEPLAY_DOCK_CASTLE = [
-    'castle-tower-roof-blue',
-    'castle-tower-roof-red',
-    'castle-door-wood-double',
-    'castle-portcullis',
-    'castle-drawbridge',
-    'castle-banner-red-lion',
-    'castle-banner-blue-fleur',
     'castle-flag-red',
-    'castle-flag-blue',
-    'castle-knight-blue',
-    'castle-knight-red',
-    'castle-knight-mounted',
-    'castle-dragon',
-    'castle-bridge-stone',
-    'castle-tree-round',
-    'castle-chest-gold',
-    'castle-cannon',
-    'castle-pond',
+    'castle-crown',
+    'castle-shield',
+    'castle-sword',
+    'castle-key',
+    'castle-door-wood',
+    'castle-torch-lit',
+    'castle-tower-roof',
   ];
 
   /** Trampoline / bounce lab — gym toys kids drag onto the king. */
@@ -740,6 +731,7 @@
     const tags = heroThemeTags(lesson);
     const blob = tags.join(' ') + ' ' + ((hero && hero.key) || '');
     const kit = PB.assessKit && PB.assessKit(lesson);
+    const sharp = PB.isDockSharp || (() => true);
     // Hero key wins — vocab like "smile" must not steal a dental stage into a face dock.
     const heroKey = (hero && hero.key) || '';
     const face = heroKey === 'face-blank'
@@ -769,21 +761,21 @@
         if (out.length >= count) break;
         if (exclude.includes(key)) continue;
         const p = PB.resolve({ word: key, seed, family, exclude });
-        if (face && p && p.aspect && (p.aspect < 0.45 || p.aspect > 3.0)) continue;
-        if (!face && prefer === ROLEPLAY_DOCK_CASTLE && p && p.aspect && (p.aspect < 0.35 || p.aspect > 3.5)) continue;
-        if (!face && prefer === ROLEPLAY_DOCK_DENTAL && p && p.aspect && (p.aspect < 0.55 || p.aspect > 2.6)) continue;
-        if (p) {
-          exclude.push(p.key);
-          out.push(p);
-        }
+        if (!p || !sharp(p)) continue;
+        if (face && p.aspect && (p.aspect < 0.45 || p.aspect > 3.0)) continue;
+        if (!face && prefer === ROLEPLAY_DOCK_CASTLE && p.aspect && (p.aspect < 0.35 || p.aspect > 3.5)) continue;
+        if (!face && prefer === ROLEPLAY_DOCK_DENTAL && p.aspect && (p.aspect < 0.3 || p.aspect > 2.6)) continue;
+        exclude.push(p.key);
+        out.push(p);
       }
     }
 
-    // 2) Universal pack dock — rest of the matched kit
+    // 2) Universal pack dock — rest of the matched kit (already sharp-filtered)
     if (kit && kit.docks && kit.docks.length) {
       for (const p of kit.docks) {
         if (out.length >= count) break;
         if (exclude.includes(p.key)) continue;
+        if (!sharp(p)) continue;
         if (p.aspect && (p.aspect < 0.3 || p.aspect > 4)) continue;
         exclude.push(p.key);
         out.push(p);
@@ -802,6 +794,7 @@
       });
       if (!p) break;
       exclude.push(p.key);
+      if (!sharp(p)) continue;
       out.push(p);
     }
     return out;

@@ -48,6 +48,8 @@
  *   --anchors      parallel to --names; short lists fall back to --anchor
  *   --role         manifest role, e.g. cover / tray / container
  *   --tags         comma-separated manifest tags
+ *   --pack         theme pack tag (e.g. castle) — written when --write is set
+ *   --write        write the manifest row (not just print paste text)
  *   --components   how many separate shapes are legitimate (default 1; the
  *                  reward jar plus its detached lid is 2)
  *   --scale        real-world size relative to the biggest props, 0.1 to 1.0
@@ -632,8 +634,18 @@ function gatesFor(r, wantComponents) {
       got: `${r.edgeRatio.toFixed(2)}x interior brightness (want 0.75+)`,
       ok: r.edgeRatio >= 0.75,
     },
+    {
+      id: 'C8',
+      what: 'cutout large enough for a ClassIn dock (no mushy upscales)',
+      got: `short side ${Math.min(r.out.width, r.out.height)}px (want ${MIN_DOCK_SRC}+)`,
+      // Heroes may be large on one axis only; dock toys need both usable.
+      ok: Math.min(r.out.width, r.out.height) >= MIN_DOCK_SRC,
+    },
   ];
 }
+
+/** Dock toys under this short-side look soft when ClassIn enlarges them. */
+const MIN_DOCK_SRC = 120;
 
 // Converting the already-approved pack is a different job from vetting a fresh
 // generation. C2-C5 describe how well the image was *composed*, which is settled
@@ -715,8 +727,11 @@ async function main() {
   let grid = null;
   let skipped = 0;
 
-  if (convert) {
+  if (convert || flag('write')) {
     manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  }
+
+  if (convert) {
     for (const [key, p] of Object.entries(manifest.props)) {
       if (p.alpha) continue;
       const src = path.join(OUT_DIR, p.file);
@@ -838,6 +853,8 @@ async function main() {
         const entry = manifest.props[job.name];
         entry.alpha = true;
         entry.aspect = Number((r.out.width / r.out.height).toFixed(2));
+        entry.srcW = r.out.width;
+        entry.srcH = r.out.height;
         // Only a count above one is information. Thin-line art (slot-pad) erodes
         // to nothing and measures 0, which is a limit of the measurement, not a
         // prop with no pieces — recording it would put a lie in the manifest.
@@ -888,6 +905,7 @@ async function main() {
         .filter(Boolean);
       // Field order matches what --convert writes, so a pasted row sits in the
       // manifest looking like its neighbours.
+      const pack = arg('pack', '').trim();
       const row = {
         file: path.basename(job.dest),
         role: job.role,
@@ -896,20 +914,35 @@ async function main() {
         anchor: job.anchor,
         alpha: true,
         aspect: Number((r.out.width / r.out.height).toFixed(2)),
+        srcW: r.out.width,
+        srcH: r.out.height,
       };
       if (job.components !== 1) row.components = job.components;
       if (r.bodyHue != null) row.bodyHue = r.bodyHue;
+      if (pack) row.pack = pack;
 
       if (job.relativeScale == null) {
         console.log('  NOTE no --scale given — relativeScale is a placeholder 0.5, set it deliberately');
+      }
+      if (flag('write')) {
+        manifest.props[job.name] = row;
+        const ordered = {};
+        for (const k of Object.keys(manifest.props).sort()) ordered[k] = manifest.props[k];
+        manifest.props = ordered;
+        await writeManifest(manifestPath, manifest);
+        console.log(`Wrote manifest row ${job.name}${pack ? ` pack=${pack}` : ''}`);
       }
       if (sheet) {
         sheetRows.push(entryLine(job.name, row));
         continue;
       }
-      console.log('\nPaste into public/assets/09_props/manifest.json under "props":\n');
-      console.log(`${entryLine(job.name, row)},`);
-      console.log('\nThen: npm run assets:prop-qa   (see it on light and dark boards)');
+      if (!flag('write')) {
+        console.log('\nPaste into public/assets/09_props/manifest.json under "props":\n');
+        console.log(`${entryLine(job.name, row)},`);
+        console.log('\nOr re-run with --write [--pack=theme]. Then: npm run assets:prop-qa');
+      } else {
+        console.log('\nThen: npm run assets:prop-qa   (see it on light and dark boards)');
+      }
     }
   } finally {
     await browser.close();

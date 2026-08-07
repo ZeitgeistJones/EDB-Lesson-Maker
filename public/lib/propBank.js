@@ -23,6 +23,12 @@
   /** relativeScale 1.0 against a 590px board, and the floor below which a cutout is mush. */
   const MAX_PROP_H = 300;
   const MIN_PROP_H = 64;
+  /**
+   * Min native px (short side) before a cutout may sit on a roleplay dock.
+   * Hero-sheet splices under this look like mush when ClassIn scales them up —
+   * drop them from docks and re-import larger, do not upscale postage stamps.
+   */
+  const MIN_DOCK_SRC = 120;
 
   /** Manifest omits styleFamily for the matte house style; name it so callers can compare. */
   const HOUSE_FAMILY = 'matte';
@@ -249,6 +255,8 @@
         bodyHue: row.bodyHue == null ? null : row.bodyHue,
         // Theme kit id (castle, jobs, animals…). Absent = loose bank piece.
         pack: row.pack ? String(row.pack).toLowerCase() : null,
+        srcW: row.srcW == null ? null : Number(row.srcW),
+        srcH: row.srcH == null ? null : Number(row.srcH),
       };
       out.byKey[key] = prop;
       out.all.push(prop);
@@ -520,6 +528,19 @@
   }
 
   /**
+   * True when the keyed PNG is sharp enough to enlarge onto a ClassIn dock.
+   * Missing srcW/srcH (legacy row) fails closed — re-run
+   * `node scripts/backfill-prop-src-size.mjs` after importing.
+   */
+  function isDockSharp(p) {
+    if (!p) return false;
+    const w = p.srcW;
+    const h = p.srcH;
+    if (!(w > 0) || !(h > 0)) return false;
+    return Math.min(w, h) >= MIN_DOCK_SRC;
+  }
+
+  /**
    * Universal theme-kit judgment: does this lesson match a banked pack with a
    * stage hero + enough dock toys? Pack tags on props are the source of truth —
    * banking a new kit is enough; no per-theme STAGE_RULES required.
@@ -541,6 +562,9 @@
     }
 
     let best = null;
+    // Theme-matched packs that fail the sharp-dock floor stay visible as
+    // ready:false near-misses so BoardReadiness can draft honestly (not null).
+    let near = null;
     for (const [pack, members] of byPack) {
       let score = 0;
       let memberHits = 0;
@@ -571,27 +595,45 @@
         (a, b) => (b.relativeScale || 0) - (a.relativeScale || 0) || a.key.localeCompare(b.key)
       );
       const hero = heroes[0] || null;
-      const docks = members
-        .filter((p) => hero && p.key !== hero.key && (p.role === 'object' || p.role === 'tool' || !p.role))
-        .sort((a, b) => (a.relativeScale || 0) - (b.relativeScale || 0) || a.key.localeCompare(b.key));
+      const dockPool = members
+        .filter((p) => hero && p.key !== hero.key && (p.role === 'object' || p.role === 'tool' || !p.role));
+      // Soft splices stay in the bank (heroes / future regen) but never ship on
+      // the roleplay dock — min(srcW,srcH) must clear MIN_DOCK_SRC.
+      const docks = dockPool.filter(isDockSharp).sort(
+        (a, b) => (a.relativeScale || 0) - (b.relativeScale || 0) || a.key.localeCompare(b.key)
+      );
       // Need a real theme link: pack name in lesson OR ≥2 pack pieces touched.
       // Stops "dragon" alone from claiming the gashapon machine.
-      const ready = !!(hero && docks.length >= 6 && score >= 8 && (packHit || memberHits >= 2));
-      if (!ready) continue;
-      if (!best || score > best.score || (score === best.score && docks.length > best.dockCount)) {
-        best = {
-          pack,
-          hero,
-          docks,
-          dockCount: docks.length,
-          score,
-          ready: true,
-          source: 'pack',
-          tokens,
-        };
+      // Ready uses sharp docks only — a kit of mushy sheet scraps is not ready.
+      const themeOk = score >= 8 && (packHit || memberHits >= 2);
+      const ready = !!(hero && docks.length >= 6 && themeOk);
+      const softDockCount = dockPool.length - docks.length;
+      const candidate = {
+        pack,
+        hero,
+        docks,
+        dockCount: docks.length,
+        softDockCount,
+        score,
+        ready,
+        source: 'pack',
+        tokens,
+      };
+      if (ready) {
+        if (!best || score > best.score || (score === best.score && docks.length > best.dockCount)) {
+          best = candidate;
+        }
+      } else if (hero && themeOk) {
+        if (
+          !near
+          || score > near.score
+          || (score === near.score && docks.length > near.dockCount)
+        ) {
+          near = candidate;
+        }
       }
     }
-    return best;
+    return best || near;
   }
 
   /** How many vocab words resolve to a real prop (alias / key / tags). */
@@ -641,6 +683,7 @@
     assessKit,
     vocabPropHits,
     isHeroSized,
+    isDockSharp,
     sizeFor,
     yFor,
     fillsRect,
@@ -651,6 +694,7 @@
     CHROME_ROLES,
     MAX_PROP_H,
     MIN_PROP_H,
+    MIN_DOCK_SRC,
     BASE,
   };
 
