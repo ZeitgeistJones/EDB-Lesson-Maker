@@ -54,7 +54,8 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-07 | Campsite / playground TOPIC_SETS row | campsite+playground were PLACE_SIGNALS-only → false bgGap | Wire into `outdoor-fresh` | picker fix | wired — camp/camping/campsite/playground in outdoor-fresh |
 | 2026-08-07 | Space pack dock toys at ≥120px short side | space kit has hero modules but 0 sharp docks (all objects ~60–100px) — BoardReadiness drafts hollow stage | Black-field sheet, one prop per large cell | ChatGPT / in-house → `assets:prop` | wired — 10 in-house sharp docks (helmet/jetpack/wrench/flag/dish/flashlight/radio/o2/moon-rock/cubesat) |
 | 2026-08-07 | Vocab icons: library (`shelf`, `quiet` distinct from `library`/`book`/`story`) | library fixture M7 — shared glyphs | Vocab pack | Twemoji / sheet | wired — Twemoji `shelf`/`quiet`/`story` pack rows + dropped quiet→library / story→book aliases |
-| 2026-08-07 | Vocab icons: `planet`, `space` (space unit) | space fixture unvetted Gemini glyphs | Vocab pack | Sheet / Twemoji | wired — Twemoji `planet`/`space` pack rows |
+| 2026-08-07 | Vocab icons: classical compose unit (`compose`, `melody`, `harmony`, `tempo`, …) | Composing a Classical Masterpiece — 0/12 board art | Pack aliases + SAFE_EMOJI | Producer vocabIcons | wired — aliases to music/song/violin/drum/guitar/notebook/star/mask/dance/trophy; harmony/tempo SAFE |
+| 2026-08-07 | Music stage kit (piano hero + instrument dock ≥6 sharp) | Classical compose lessons fall to dressUp | Black-field instruments | in-house / Kenney | wired — pack=music grand-piano hero + 16 sharp docks from 3 ChatGPT 3×3 sheets |
 
 ## How agents append
 

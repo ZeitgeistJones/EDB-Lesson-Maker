@@ -103,6 +103,17 @@
     team: 'ball',
     // hotel place noun — door.png is the vetted stand-in (not Gemini)
     room: 'door',
+    // Classical compose unit (B1) — distinct pack files; no two words share art
+    compose: 'music',
+    melody: 'song',
+    orchestra: 'violin',
+    rhythm: 'drum',
+    strum: 'guitar',
+    draft: 'notebook',
+    inspire: 'star',
+    performance: 'mask',
+    expressive: 'dance',
+    masterpiece: 'trophy',
   };
 
   /**
@@ -143,6 +154,9 @@
     story: '📜',
     planet: '🪐',
     space: '🌌',
+    // Classical compose — pack aliases preferred; these cover gaps (harmony/tempo)
+    harmony: '🎧',
+    tempo: '⏳',
   };
 
   function emojiFor(word, fallback) {
@@ -159,6 +173,9 @@
     const key = normalize(word);
     if (!key) return false;
     if (Object.prototype.hasOwnProperty.call(SAFE_EMOJI, key)) return true;
+    // Alias → SAFE_EMOJI (e.g. compose→music) without waiting on pack index.
+    const alias = PACK_ALIASES[key];
+    if (alias && Object.prototype.hasOwnProperty.call(SAFE_EMOJI, alias)) return true;
     if (!indexCache) return false;
     return !!resolveKey(indexCache, word);
   }

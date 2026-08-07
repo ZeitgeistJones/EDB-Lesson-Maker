@@ -226,7 +226,7 @@
    */
   const DEFAULT_MOODS = ['calm', 'teaching'];
   const MOOD_HINTS = {
-    music: /\b(music|song|songs|sing|singing|piano|guitar|drum|drums|rhythm|band|dance|dancing|instrument|instruments|concert)\b/,
+    music: /\b(music|song|songs|sing|singing|piano|guitar|drum|drums|rhythm|band|dance|dancing|instrument|instruments|concert|compose|composer|composition|orchestra|melody|harmony|tempo|symphony|classical|violin|strum)\b/,
     fantasy: /\b(fairy|tale|tales|castle|magic|magical|dragon|dragons|princess|prince|knight|wizard|witch|monster|monsters|space|planet|planets|rocket|star|stars|moon|dream|dreams|night|halloween|dinosaur|dinosaurs)\b/,
   };
 
