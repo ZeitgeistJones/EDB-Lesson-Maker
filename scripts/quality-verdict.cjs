@@ -217,7 +217,7 @@ function main() {
   if (decision.stop) {
     console.log('\nLoop should stop here. Commit the work and summarize for the user.');
   } else {
-    console.log('\nApply the fix, then re-run: npm run quality (or quality:full before declaring clean)');
+    console.log('\nApply the fix, then re-run: npm run quality (or fullquality before declaring clean)');
   }
   if ((report.wishlistCandidates || []).length) {
     console.log('\nAsset gaps the bake noticed (append to docs/asset-wishlist.md if you agree):');

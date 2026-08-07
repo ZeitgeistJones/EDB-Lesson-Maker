@@ -26,7 +26,7 @@ function readJson(file, fallback) {
 
 const report = readJson(REPORT, null);
 if (!report) {
-  console.error('No bake report found. Run: npm run quality:full');
+  console.error('No bake report found. Run: npm run fullquality');
   process.exit(1);
 }
 if ((report.hardFailures || []).length) {

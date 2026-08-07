@@ -21,10 +21,12 @@ your idea.
 ```bash
 npm run quality:status                        # loop memory + last bake + review queue
 npm run quality                               # bake core cases (fast)
-npm run quality:full                          # bake core + adversarial (before declaring clean)
+npm run fullquality                           # bake core + adversarial (before declaring clean)
 npm run quality:judge -- tmp/verdict.json     # validate judgment, get NEXT ACTION
 npm run quality:baseline                      # snapshot metrics as the regression baseline
 ```
+
+(`quality:full` is the same as `fullquality`.)
 
 Never hand-edit `tmp/board-bg-verify/report.json`. The judge CLI writes it, appends
 `docs/quality-log.md`, and updates `scripts/quality-state.json`.
@@ -33,7 +35,7 @@ Never hand-edit `tmp/board-bg-verify/report.json`. The judge CLI writes it, appe
 
 1. `npm run quality:status` — read remembered soft roots, implemented easy wins, and
    recent iterations. Do not re-try a root that already repeated; that is what P1 is for.
-2. `npm run quality` (or `quality:full`).
+2. `npm run quality` (or `fullquality`).
 3. **Hard failures?** Fix them first, one coherent theme per iteration, then re-bake.
    Hard failures come from the bake, not from your judgment.
 4. **Hard clean?** For each case, Read `contact.jpg` (labeled grid — page index, pageKey,
@@ -47,7 +49,7 @@ Never hand-edit `tmp/board-bg-verify/report.json`. The judge CLI writes it, appe
 6. Write `tmp/verdict.json` and submit it: `npm run quality:judge -- tmp/verdict.json`.
 7. Do exactly what `NEXT ACTION` says. Re-bake. Same soft root twice → P1 (next easy win);
    after implementing one, record it with `--mark-done=EW1`.
-8. Before telling the user it is clean: `npm run quality:full`, and if you are happy with
+8. Before telling the user it is clean: `npm run fullquality`, and if you are happy with
    the numbers, `npm run quality:baseline` so future regressions are caught.
 
 ## Verdict file

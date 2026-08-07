@@ -2,7 +2,7 @@
  * Preflight / quality entry — hard bake plus measured UX metrics.
  *
  *   npm run quality              core cases (fast)
- *   npm run quality:full         core + adversarial cases
+ *   npm run fullquality          core + adversarial cases
  *   node scripts/preflight-boards.cjs --cases=gym,travel
  *
  * Exit 0 = hard rules passed. The agent must then run the board-quality-loop

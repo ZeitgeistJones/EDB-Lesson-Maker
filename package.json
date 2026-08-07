@@ -13,6 +13,7 @@
     "preflight": "node scripts/preflight-boards.cjs",
     "quality": "node scripts/preflight-boards.cjs",
     "quality:full": "node scripts/preflight-boards.cjs --tier=all",
+    "fullquality": "node scripts/preflight-boards.cjs --tier=all",
     "quality:status": "node scripts/quality-loop-status.cjs",
     "quality:judge": "node scripts/quality-verdict.cjs",
     "quality:baseline": "node scripts/quality-baseline.cjs",
