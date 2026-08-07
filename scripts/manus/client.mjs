@@ -22,7 +22,7 @@ export function apiKey() {
   return key;
 }
 
-async function api(method, route, body) {
+async function api(method, route, body, { allowStatuses = [] } = {}) {
   const url = route.startsWith('http') ? route : `${BASE}${route}`;
   const headers = {
     'x-manus-api-key': apiKey(),
@@ -39,6 +39,9 @@ async function api(method, route, body) {
     data = text ? JSON.parse(text) : {};
   } catch {
     throw new Error(`Manus ${method} ${route} non-JSON (${res.status}): ${text.slice(0, 200)}`);
+  }
+  if (allowStatuses.includes(res.status)) {
+    return { ...data, _http_status: res.status };
   }
   if (!res.ok || data.ok === false) {
     const err = data.error || {};
@@ -71,14 +74,16 @@ export async function createTask(opts) {
 }
 
 /** List task events / messages. */
-export async function listMessages(taskId, { order = 'desc', limit = 50, cursor } = {}) {
+export async function listMessages(taskId, { order = 'desc', limit = 50, cursor, allowMissing = false } = {}) {
   const q = new URLSearchParams({
     task_id: taskId,
     order,
     limit: String(limit),
   });
   if (cursor) q.set('cursor', cursor);
-  return api('GET', `/task.listMessages?${q}`);
+  return api('GET', `/task.listMessages?${q}`, undefined, {
+    allowStatuses: allowMissing ? [404] : [],
+  });
 }
 
 /** Confirm a waiting action (terminal, high-credit notice, etc.). */
@@ -127,17 +132,24 @@ const INLINE_MAX = 15 * 1024 * 1024; // under Manus 20MB file_data cap
 
 /**
  * Build a message.content File part from a local path.
- * Board JPGs are tiny — prefer inline file_data (one round-trip).
+ * Board JPGs are tiny — prefer inline file_data (data URI).
  * Larger files use file.upload → file_id.
  */
 export async function fileContentPart(filePath) {
   const filename = path.basename(filePath);
   const bytes = fs.readFileSync(filePath);
   if (bytes.length <= INLINE_MAX) {
+    const ext = path.extname(filename).toLowerCase();
+    const mime =
+      ext === '.png' ? 'image/png'
+        : ext === '.webp' ? 'image/webp'
+          : ext === '.gif' ? 'image/gif'
+            : 'image/jpeg';
     return {
       type: 'file',
       filename,
-      file_data: bytes.toString('base64'),
+      // Manus rejects raw base64 — requires a data URI.
+      file_data: `data:${mime};base64,${bytes.toString('base64')}`,
       bytes: bytes.length,
       via: 'file_data',
     };
@@ -200,8 +212,18 @@ export async function pollUntilDone(taskId, {
 } = {}) {
   const started = Date.now();
   let lastStatus = null;
+  // Fresh tasks sometimes 404 for a few seconds before listMessages is consistent.
+  const missingGraceMs = 90 * 1000;
+  await sleep(2500);
+
   while (Date.now() - started < timeoutMs) {
-    const page = await listMessages(taskId, { order: 'desc', limit: 80 });
+    const allowMissing = Date.now() - started < missingGraceMs;
+    const page = await listMessages(taskId, { order: 'desc', limit: 80, allowMissing });
+    if (page && page._http_status === 404) {
+      if (onTick) onTick({ agent_status: 'pending', messages: [] });
+      await sleep(intervalMs);
+      continue;
+    }
     const messages = page.messages || [];
     const st = latestAgentStatus(messages);
     lastStatus = st && st.agent_status;
@@ -226,8 +248,16 @@ export async function pollUntilDone(taskId, {
     }
 
     if (st && (st.agent_status === 'stopped' || st.agent_status === 'error')) {
-      const structured = extractStructuredOutput(messages);
-      const assistant = (messages || [])
+      // Structured output can land a beat after stopped — one extra pull if missing.
+      let structured = extractStructuredOutput(messages);
+      let msgs = messages;
+      if (!structured) {
+        await sleep(2000);
+        const again = await listMessages(taskId, { order: 'desc', limit: 80 });
+        msgs = again.messages || messages;
+        structured = extractStructuredOutput(msgs);
+      }
+      const assistant = (msgs || [])
         .filter((m) => m.assistant_message || m.type === 'assistant_message')
         .map((m) => (m.assistant_message && m.assistant_message.content) || '')
         .filter(Boolean);
@@ -235,7 +265,7 @@ export async function pollUntilDone(taskId, {
         agent_status: st.agent_status,
         structured,
         assistant_messages: assistant,
-        messages,
+        messages: msgs,
       };
     }
 
