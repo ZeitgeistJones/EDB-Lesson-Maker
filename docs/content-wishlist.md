@@ -20,12 +20,17 @@ Gaps in **lesson content** — not art. For us (agent + you) when something teac
 | 2026-08-07 | B1 frames use bare second conditional without scaffold | Manus language_accuracy | Generate-lesson CEFR frame rules | prompt-fixed |
 | 2026-08-07 | No visible aims / weak wrap-up exit ticket | Manus EDB alignment | Title aims line + wrap “Today we used” / exit ticket; S22/S23 | schema-fixed |
 | 2026-08-07 | Manus thought story beat 3 missing | Review `pickImages` soft-max 10 dropped story2 after preferred roles | `pickImages` mandates all storyN; S27 + verify | schema-fixed |
-| 2026-08-07 | inspire dock icon = ambiguous starburst glyph; no word captions | Vocab match clarity / Manus B2 | PACK_OVERRIDES inspire→brain; matchDock caption chips; S26 | schema-fixed |
+| 2026-08-07 | inspire dock icon = ambiguous starburst glyph | Vocab match clarity / Manus B2 | PACK_OVERRIDES inspire→brain; S26 clear icons | schema-fixed |
 | 2026-08-07 | Title aims truncated before inspire; no grammar aim; identity Frame 2; guitar in classical story | classical-compose Manus soft | Aims≤8 + grammar line; fixture frames/story piano; timing chips | schema-fixed |
 | 2026-08-07 | Vocab match drop-zone affordances soft (word cards only; no numbered pads) | classical-compose Manus ClassIn fit | matchDock numbered pads + DOM data-match-pad; S28 | schema-fixed |
 | 2026-08-07 | matchPad with meta.word rendered tiny vocab icons on cards (answer-ish leak) | pieceToPng wordArt before data-URL asset | Prefer data:/pad roles in pieceToPng; matchPad meta.targetWord | schema-fixed |
 
-<!-- Classical compose note (2026-08-07): Activity dock + skipKing piano-on-piano fixed (f21ca03). Manus dual reviews LbVd…/oEDh… folded into producer 2026-08-07. Story glyphs still open. Manusloop J4up… revise/72 folded: pickImages + inspire override + aims/frames/story. Second live pass USYe… pass/98 — numbered pads + pieceToPng pad fix. -->
+| 2026-08-07 | Title aims listed words not taught on New Words (tempo in aims/creative, board slice 0–6) | Manus skill v2 / USYe report EDB | Aims = board vocab; fixture orders tempo into top 6; S30 | schema-fixed |
+| 2026-08-07 | Grammar aim claimed first-conditional while Frame 2 used would / opinion frames | Manus honesty | `grammarAimLine()`; S31 | schema-fixed |
+| 2026-08-07 | Wrap slide warm lavender broke navy deck register | Manus PPT-like | THEME_COLORS.wrap navy/slate; S32 | schema-fixed |
+| 2026-08-07 | Match caption chips named the answer (label→label, no inference) | Manus skill v2 ClassIn delivery | Drop student caption chips; keep clear pack icons + pads; S26 | schema-fixed |
+
+<!-- Classical compose note (2026-08-07): Activity dock + skipKing piano-on-piano fixed (f21ca03). Manus dual reviews LbVd…/oEDh… folded into producer 2026-08-07. Story glyphs still open. Manusloop J4up… revise/72 folded: pickImages + inspire override + aims/frames/story. Second live pass USYe… pass/98 — numbered pads + pieceToPng pad fix. Shift20: Manus skill delta → schema scorecard/ZPD + S30–S32 producer. -->
 
 ## How to add a row
 

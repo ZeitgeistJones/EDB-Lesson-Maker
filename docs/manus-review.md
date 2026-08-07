@@ -32,7 +32,9 @@ Pass-off fields (JSON or `--known=` / `--fixed=` / `--gates=` / `--focus=` pipe 
 | `focus` | This pass’s ask |
 | `notes` | Optional one-liner |
 
-Schema adds `gate_holes` + `method_feedback` so Manus can call out check/process misses.
+Schema adds `gate_holes` + `method_feedback` + `just_fixed_results` + `/5 scorecard` + `zpd_challenges` so Manus can call out check/process misses and Level-Up the producer after strong passes.
+
+Aligned to Manus upstream skill `classin-lesson-quality-review-skill` (mirrored at `.cursor/skills/manus-lesson-review/manus-upstream-SKILL.md`).
 
 Template: [`scripts/manus/passoff.example.json`](../scripts/manus/passoff.example.json).
 

@@ -17,7 +17,8 @@
     creative: ['#ecfdf5', '#a7f3d0'],
     speak: ['#f0fdf4', '#bbf7d0'],
     activity: ['#eef2ff', '#c7d2fe'],
-    wrap: ['#fff7ed', '#fdba74'],
+    // Deep navy bookend (Manus PPT-like: avoid lavender/warm wrap breaking deck register)
+    wrap: ['#1e293b', '#334155'],
   };
 
   function el(tag, style, html) {
@@ -618,7 +619,7 @@
         vocabulary: vocab,
         preferFlat: !musicTitle,
       },
-      { title: 'Wrap Up', tags: ['wrap', 'review', 'goodbye'], vocabulary: [], preferFlat: true }
+      { title: 'Wrap Up', tags: ['wrap', 'review', 'goodbye'], vocabulary: [], preferFlat: !musicTitle }
     );
 
     return sections;
@@ -671,41 +672,54 @@
       position: 'relative',
       zIndex: '1',
     });
+    // Board-taught vocab only (match dock / sentences = first 6) — Manus S30:
+    // aims must not advertise words that never appear on New Words.
+    const BOARD_VOCAB_N = 6;
+    const aimWords = (lesson.vocabulary || [])
+      .map((v) => (typeof v === 'string' ? v : v && v.word))
+      .filter(Boolean)
+      .slice(0, BOARD_VOCAB_N);
     const title = el('div', {
-      color: '#0f172a', fontSize: '72px', fontWeight: '800',
-      maxWidth: '640px', lineHeight: '1.05',
+      color: '#0f172a', fontSize: '62px', fontWeight: '800',
+      maxWidth: '560px', lineHeight: '1.05',
     }, lesson.title || 'Lesson');
     title.dataset.ink = 'heading';
     copy.appendChild(title);
     const metaLine = el('div', {
-      color: '#334155', fontSize: '26px', marginTop: '22px', fontStyle: 'italic',
+      color: '#334155', fontSize: '24px', marginTop: '16px', fontStyle: 'italic',
     }, `${meta.level || ''}  ·  ${meta.duration || ''}-minute lesson`);
     metaLine.dataset.ink = 'hint';
     copy.appendChild(metaLine);
-    const aimWords = (lesson.vocabulary || [])
-      .map((v) => (typeof v === 'string' ? v : v && v.word))
-      .filter(Boolean)
-      .slice(0, 8);
     let aims = null;
     let grammarAim = null;
+    const aimsPanel = el('div', {
+      marginTop: '16px',
+      maxWidth: '560px',
+      padding: '14px 18px',
+      borderRadius: '14px',
+      background: 'rgba(15,23,42,0.55)',
+      backdropFilter: 'blur(6px)',
+    });
+    aimsPanel.dataset.aimsPanel = '1';
     if (aimWords.length) {
       aims = el('div', {
-        color: '#475569', fontSize: '22px', marginTop: '18px', fontWeight: '700',
-        maxWidth: '640px', lineHeight: '1.35',
+        color: '#e2e8f0', fontSize: '20px', fontWeight: '700',
+        lineHeight: '1.35',
       }, `Aims: use ${aimWords.join(', ')} to talk about today's topic.`);
       aims.dataset.ink = 'hint';
       aims.dataset.aimsLine = '1';
-      copy.appendChild(aims);
+      aimsPanel.appendChild(aims);
     }
     if ((lesson.sentenceFrames || []).length) {
       grammarAim = el('div', {
-        color: '#475569', fontSize: '18px', marginTop: '10px', fontWeight: '600',
-        maxWidth: '640px', lineHeight: '1.35',
-      }, 'Grammar aim: practise first-conditional / planning frames (If I…, I will… / I am planning to…).');
+        color: '#cbd5e1', fontSize: '17px', marginTop: aimWords.length ? '8px' : '0',
+        fontWeight: '600', lineHeight: '1.35',
+      }, `Grammar aim: ${grammarAimLine(lesson.sentenceFrames)}`);
       grammarAim.dataset.ink = 'hint';
       grammarAim.dataset.grammarAim = '1';
-      copy.appendChild(grammarAim);
+      aimsPanel.appendChild(grammarAim);
     }
+    if (aims || grammarAim) copy.appendChild(aimsPanel);
     p.appendChild(copy);
 
     const charmSrc = titleCharmSrc(lesson);
@@ -714,12 +728,10 @@
       title.style.color = '#fff';
       title.style.textShadow = '0 2px 16px rgba(15,23,42,0.55)';
       metaLine.style.color = '#e2e8f0';
-      if (aims) aims.style.color = '#e2e8f0';
-      if (grammarAim) grammarAim.style.color = '#cbd5e1';
       p.appendChild(img(charmSrc, {
         position: 'relative',
-        width: '440px',
-        height: '440px',
+        width: '400px',
+        height: '400px',
         flexShrink: '0',
         zIndex: '1',
         objectFit: 'contain',
@@ -1608,13 +1620,26 @@
     return p;
   }
 
+  /** Honest grammar-aim copy from the frames actually on the board (Manus S31). */
+  function grammarAimLine(frames) {
+    const list = (frames || []).map((f) => String(f || ''));
+    const hasWill = list.some((f) => /\bI will\b|\bwill\b/i.test(f) && /\bif\b/i.test(f));
+    const hasWould = list.some((f) => /\bwould\b/i.test(f) && /\bif\b/i.test(f));
+    const hasPlanning = list.some((f) => /planning to|I believe|most important/i.test(f));
+    const bits = [];
+    if (hasWill) bits.push('first-conditional (If…, I will…)');
+    if (hasWould) bits.push('hypothetical (If…, I would…)');
+    if (hasPlanning || !bits.length) bits.push('opinion / planning frames');
+    return `practise ${bits.join(' + ')}.`;
+  }
+
   function makeWrap(lesson, boardPlan) {
     const interactive = hasRecipe(boardPlan, 'wrap');
     const p = pageShell(THEME_COLORS.wrap, {
       reserveDock: interactive, pageType: 'wrap',
     });
     p.appendChild(el('div', {
-      color: '#9a3412', fontSize: '64px', fontWeight: '800', textAlign: 'center', marginTop: '28px',
+      color: '#f8fafc', fontSize: '64px', fontWeight: '800', textAlign: 'center', marginTop: '28px',
     }, 'Great Job!'));
     const aims = (lesson.vocabulary || [])
       .map((v) => (typeof v === 'string' ? v : v && v.word))
@@ -1623,16 +1648,16 @@
       .join(', ');
     if (aims) {
       p.appendChild(el('div', {
-        color: '#9a3412', fontSize: '22px', textAlign: 'center', margin: '8px 40px 12px', fontWeight: '700',
+        color: '#e2e8f0', fontSize: '22px', textAlign: 'center', margin: '8px 40px 12px', fontWeight: '700',
         lineHeight: '1.35',
       }, `Today we used: ${aims}`));
     }
     p.appendChild(el('div', {
-      color: '#c2410c', fontSize: '24px', textAlign: 'center', margin: '8px 0 16px', fontWeight: '600',
+      color: '#fbbf24', fontSize: '24px', textAlign: 'center', margin: '8px 0 16px', fontWeight: '600',
     }, 'Exit ticket — say them together'));
     (lesson.reviewSentences || []).slice(0, 3).forEach((s) => {
       p.appendChild(card(
-        `<div style="font-size:26px;text-align:center;font-weight:700;line-height:1.35;color:#9a3412">${esc(s)}</div>`,
+        `<div style="font-size:26px;text-align:center;font-weight:700;line-height:1.35;color:#0f172a">${esc(s)}</div>`,
         { maxWidth: '900px', margin: '0 auto 12px', padding: '16px 22px' }
       ));
     });
@@ -1783,6 +1808,15 @@
       }
       pageEls.forEach((pageEl, i) => {
         const pageType = pageEl.dataset.pageType || '';
+        // Manus S32: wrap stays a deep bookend — skip pastel flat washes that
+        // break the deck register. Scenes (e.g. terrace) may still bookend.
+        if (pageType === 'wrap') {
+          const pick = bgPicks[i];
+          if (pick && pick.type === 'scene') {
+            applyPackBg(pageEl, pick, { dimForLightText: true });
+          }
+          return;
+        }
         applyPackBg(pageEl, bgPicks[i], {
           dimForLightText: !!LIGHT_TEXT_PAGES[pageType],
         });

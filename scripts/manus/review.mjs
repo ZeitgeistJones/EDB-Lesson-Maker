@@ -213,6 +213,9 @@ export async function runBoardReview(opts) {
     blocking_issues: (value && value.blocking_issues) || [],
     gate_holes: (value && value.gate_holes) || [],
     method_feedback: (value && value.method_feedback) || [],
+    just_fixed_results: (value && value.just_fixed_results) || [],
+    scorecard: (value && value.scorecard) || null,
+    zpd_challenges: (value && value.zpd_challenges) || [],
     passoff: out.passoff,
   });
   out.log_path = path.relative(ROOT, logPath).replace(/\\/g, '/');

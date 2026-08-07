@@ -4,30 +4,33 @@
   "duration": "60",
   "knownIssues": [
     "Full generative StoryArt may still be missing — PropBank caption fallback is the interim",
-    "Background palette variety across flats still soft (Manus nice-to-have)"
+    "Background flat variety across mid-deck pages still soft (Manus ≤2 registers heuristic)",
+    "Story prop card side alternates L/R — consistency is a soft Manus PPT-like note"
   ],
   "justFixed": [
     "normalizeLesson lifts root comprehension so Reading Comp is populated",
     "Warm-up no longer shows teacher sampleAnswer to students",
     "King hint: musicians + write/say symphony idea (no 'toys')",
-    "Title aims include full board vocab + grammar aim; wrap exit ticket",
+    "Title aims = board-taught vocab only (slice 0–6) + frosted aims panel; wrap exit ticket",
+    "Grammar aim derived from actual frames (would/opinion honest — S31)",
     "Generate prompt: B1 frame grammar + comprehension under story.*",
     "Story side/banner: PropBank match from caption before glyph (S24)",
     "Story caption chip: no absolute img bleed; desk captions prefer compose-desk",
-    "pickImages always includes every storyN beat (S27) — was dropping story2 at soft max 10",
-    "inspire pack override → brain.png (not starburst glyph); match-dock caption chips (S26)",
-    "Frame 2 no longer identity-based 'If I am a musician'; story beat 2 guitar→piano",
+    "pickImages always includes every storyN beat (S27)",
+    "inspire pack override → brain.png; no student answer-naming match captions (S26)",
+    "Frame 2 no longer identity-based; story beat 2 guitar→piano; tempo in board vocab",
     "Teacher timing chips (~N min) on scene headers",
-    "Vocab matchDock: numbered drop-zone pads under word cards in DOM bake (S28); pieceToPng prefers data:/pad roles over wordArt"
+    "Vocab matchDock: numbered drop-zone pads (S28); pieceToPng prefers data:/pad roles",
+    "Wrap slide navy/slate bookend (S32) — no warm lavender breakaway"
   ],
   "localChecks": [
-    "verify-classical-compose.mjs: ok (skipKing, dock≥10, 3 story beats, aims+grammar, match captions+pads, inspire≠starburst, pickImages stories, no guitar story)",
-    "Soft codes S19–S29 in ux-board-rubric; manus pass-off with gate_holes schema"
+    "verify-classical-compose.mjs: ok (S19–S32; aims⊆board; grammar honesty; navy wrap; no match captions; 3 stories; pads)",
+    "Soft codes S19–S32; manus schema: scorecard + just_fixed_results + zpd_challenges"
   ],
   "focus": [
-    "Verify JUST FIXED still holds on the JPGs (esp. all 3 story beats, inspire caption, aims, numbered drop pads on New Words)",
-    "Call gate_holes if local checks claimed pass but board still fails",
-    "New misses only — StoryArt placeholders, palette cohesion"
+    "Verify JUST FIXED still holds (esp. aims⊆board + tempo taught, grammar honesty, navy wrap, no caption chips)",
+    "Fill just_fixed_results HOLDS/FAIL; gate_holes if local checks lied",
+    "If overall > 4.0, give zpd_challenges — New misses only (StoryArt, flat register count)"
   ],
-  "notes": "Manusloop second live pass after e0466b5 + numbered match pads (S28). Prefer producer next_actions."
+  "notes": "Folded Manus classin-lesson-quality-review-skill v2 (J4up skill-att-2 + USYe report). Prefer producer next_actions."
 }

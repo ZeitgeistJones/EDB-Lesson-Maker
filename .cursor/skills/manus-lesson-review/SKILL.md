@@ -12,6 +12,10 @@ description: >-
 
 Manus is **external eyes** after local gates. Do not spam on every draft.
 
+Manus runs its own upstream skill `classin-lesson-quality-review-skill` (mirror:
+[`manus-upstream-SKILL.md`](./manus-upstream-SKILL.md)). Our schema + brief must
+match that bar so structured output stays machine-foldable.
+
 ## When to send
 
 Only when the bake is **internally good enough**:
@@ -34,7 +38,8 @@ Short JSON — template [`scripts/manus/passoff.example.json`](../../../scripts/
 
 Save as `<verify-dir>/manus-passoff.json` (auto-loaded) or `--passoff=scripts/manus/passoffs/….json`.
 
-Schema also asks Manus for **`gate_holes`** + **`method_feedback`** — meta-review of our checks/process.
+Schema asks Manus for **`gate_holes`**, **`method_feedback`**, **`just_fixed_results`**,
+**`scorecard`** (/5 × 5 dims + overall), and **`zpd_challenges`** (when overall > 4.0).
 
 ## What to send
 
@@ -67,6 +72,7 @@ Do **not** stop at summarizing Manus. Always:
    - `pass` → ship / upload EDB  
    - `revise` → apply `next_actions`, rebake, re-send Manus only after a real fix (+ updated pass-off)  
    - `fail` → fix `blocking_issues` first  
+6. **ZPD** — if `scorecard.overall > 4.0` (or score ≥ 80 with empty blockers), log `zpd_challenges` as next-loop fuel; do not treat pass as “stop improving the producer.”
 
 Log lines append to `.cursor/ratings/manus-reviews.jsonl`.
 
@@ -82,9 +88,26 @@ Log lines append to `.cursor/ratings/manus-reviews.jsonl`.
 | B1 bare second conditional | Generate prompt CEFR frame rules |
 | Story glyphs | PropBank caption fallback before emoji; full StoryArt still preferred when cached; S24 |
 | Story beat 3 “missing” | Often a **packet hole**: `pickImages` must attach every `storyN` (S27) — board already had 3 beats |
-| inspire starburst ambiguity | `PACK_OVERRIDES.inspire→brain` + match-dock caption chips; S26 |
-| Aims truncated / no grammar | Title aims ≤8 vocab + grammar aim line; S25 |
-| Soft match drop zones | Numbered DOM `data-match-pad` under word cards + recipe note; S28 |
+| inspire starburst ambiguity | `PACK_OVERRIDES.inspire→brain` + clear icons (no student caption chips); S26 |
+| Aims truncated / untaught orphans | Aims = board vocab slice(0,6); S25/S30 |
+| Soft match drop zones | Numbered DOM `data-match-pad`; S28 |
 | matchPad meta.word → tiny vocab art on cards | `pieceToPng` prefers data:/pad roles over wordArt |
+| Timing chips | headers ≥45 min; S29 |
+| Grammar aim honesty | `grammarAimLine()` from frames; S31 |
+| Wrap palette break | Navy/slate wrap bookend; S32 |
+| Title aims vs scene | Frosted aims panel + slightly smaller title |
+
+### Manus skill delta (absorbed 2026-08-07)
+
+Upstream skill after J4up self-update + ZPD pass — vs our original flat schema:
+
+| New Manus bar | Our fold |
+|---------------|----------|
+| Board map → JUST FIXED table → 5-dim rubric → scorecard /5 | Brief + `scorecard` + `just_fixed_results` in `review-schema.mjs` |
+| Structured `gate_holes` / `method_feedback` fields | Pipe-string formats in schema descriptions |
+| ZPD Level-Up when overall > 4.0 | `zpd_challenges` required array; skill step 6 |
+| Heuristic: aims ⊆ taught vocab; caption chips remove inference | S30; remove student match captions |
+| Heuristic: ≤2 bg registers / flag ≥4; wrap register | S32 navy wrap; palette still known soft |
+| Heuristic: grammar aim matches frames | S31 `grammarAimLine` |
 
 Setup details: [docs/manus-review.md](../../docs/manus-review.md).

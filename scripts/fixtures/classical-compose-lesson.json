@@ -9,10 +9,10 @@
     { "word": "melody", "emoji": "🎵", "sentence": "The catchy melody stayed in my head all day long." },
     { "word": "orchestra", "emoji": "🎻", "sentence": "The orchestra played perfectly under the conductor's lead." },
     { "word": "harmony", "emoji": "🎶", "sentence": "The singers created beautiful harmony during the chorus." },
-    { "word": "rhythm", "emoji": "🥁", "sentence": "You need a steady rhythm to keep the beat of the song." },
     { "word": "inspire", "emoji": "💡", "sentence": "Beautiful scenery can often inspire musicians to write songs." },
-    { "word": "performance", "emoji": "🎭", "sentence": "The audience cheered loudly after the final musical performance." },
     { "word": "tempo", "emoji": "⏳", "sentence": "The conductor increased the tempo to make the song exciting." },
+    { "word": "rhythm", "emoji": "🥁", "sentence": "You need a steady rhythm to keep the beat of the song." },
+    { "word": "performance", "emoji": "🎭", "sentence": "The audience cheered loudly after the final musical performance." },
     { "word": "expressive", "emoji": "😊", "sentence": "Her piano playing was very expressive and full of feeling." },
     { "word": "draft", "emoji": "✍️", "sentence": "I finished the first draft of my song before lunch." },
     { "word": "strum", "emoji": "🎸", "sentence": "It is relaxing to strum a guitar in the evening." },
@@ -51,7 +51,7 @@
     ],
     "creativeQuestions": [
       "If you could compose a song about your life, what kind of tempo would it have?",
-      "Imagine the orchestra is performing your own masterpiece. Who would you invite to listen?"
+      "Imagine the orchestra is performing your own melody. Who would you invite to listen?"
     ]
   },
   "speaking": [

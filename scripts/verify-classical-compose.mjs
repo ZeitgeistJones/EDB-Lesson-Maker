@@ -181,6 +181,33 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
   const boardVocab = words.slice(0, 6);
   const aimsMissing = boardVocab.filter((w) => !new RegExp(`\\b${w}\\b`, 'i').test(titleText));
   const hasGrammarAim = /grammar aim/i.test(titleText);
+  const grammarClaimsFirstOnly = /first-conditional/i.test(titleText)
+    && !/hypothetical|would|opinion/i.test(titleText)
+    && (lesson.sentenceFrames || []).some((f) => /\bwould\b/i.test(String(f)));
+  const aimsOrphans = [];
+  const aimsMatch = titleText.match(/Aims:\s*use\s+([^.]+)/i);
+  if (aimsMatch) {
+    const listed = aimsMatch[1].split(/,/).map((s) => s.trim()).filter(Boolean)
+      .map((s) => s.replace(/\s+to talk about.*$/i, '').trim());
+    listed.forEach((w) => {
+      if (w && !boardVocab.some((b) => b.toLowerCase() === w.toLowerCase())) {
+        aimsOrphans.push(w);
+      }
+    });
+  }
+  const creativeText = ((lesson.story && lesson.story.creativeQuestions) || [])
+    .map((q) => (typeof q === 'string' ? q : (q && (q.question || q.prompt)) || ''))
+    .join(' ');
+  const creativeOrphans = [];
+  boardVocab; // taught set
+  const vocabAll = words;
+  // Words used in creative prompts that appear in lesson vocab but not board-taught
+  const creativeTokens = (creativeText.toLowerCase().match(/\b[a-z]{4,}\b/g) || []);
+  vocabAll.forEach((w) => {
+    const lw = String(w).toLowerCase();
+    if (boardVocab.some((b) => b.toLowerCase() === lw)) return;
+    if (creativeTokens.includes(lw)) creativeOrphans.push(w);
+  });
   const timingChipCount = rendered.pageEls.filter((el) => el && el.querySelector && el.querySelector('[data-timing-chip]')).length;
   const matchCaptionNotes = (boardPlan.pages || [])
     .filter((pg) => pg.pageKey === 'newWords')
@@ -191,6 +218,15 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
   const matchPadDomCount = newWordsDom
     ? newWordsDom.querySelectorAll('[data-match-pad]').length
     : 0;
+  const wrapDom = rendered.pageEls[byKey.wrap];
+  const wrapPick = picks[byKey.wrap];
+  const wrapHtml = wrapDom ? wrapDom.outerHTML.slice(0, 800) : '';
+  const wrapNavy = /#1e293b|#334155|30,\s*41,\s*59|51,\s*65,\s*85|classical-terrace|moonlit|rgba\(15,\s*23,\s*42/i.test(
+    String((wrapDom && wrapDom.style && wrapDom.style.background) || '')
+    + String((wrapPick && wrapPick.name) || '')
+    + wrapHtml
+  );
+  const hasAimsPanel = !!(titleDom && titleDom.querySelector && titleDom.querySelector('[data-aims-panel]'));
   const identityFrame = (lesson.sentenceFrames || []).some((f) => /If I am a musician/i.test(String(f)));
   const guitarStory = ((lesson.story && lesson.story.pages) || [])
     .some((sp) => /guitar/i.test([sp.text, sp.visualCaption, sp.heading].filter(Boolean).join(' ')));
@@ -250,7 +286,12 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     activityHintHasWriteOrSay: /write or say|say or write|then say|then write/i.test(actText),
     warmSampleLeak: !!sampleLeak,
     aimsMissing,
+    aimsOrphans,
+    creativeOrphans,
     hasGrammarAim,
+    grammarClaimsFirstOnly,
+    hasAimsPanel,
+    wrapNavy,
     timingChipCount,
     hasMatchCaptions,
     hasMatchPads,
@@ -310,8 +351,21 @@ if ((result.storyPageCount || 0) < 3) {
 if ((result.aimsMissing || []).length) {
   fails.push('title aims missing vocab (S25): ' + result.aimsMissing.join(','));
 }
+if ((result.aimsOrphans || []).length) {
+  fails.push('title aims list untaught words (S30): ' + result.aimsOrphans.join(','));
+}
+if ((result.creativeOrphans || []).length) {
+  fails.push('creative prompts use vocab not on New Words (S30): ' + result.creativeOrphans.join(','));
+}
 if (!result.hasGrammarAim) fails.push('title missing grammar aim line (S25)');
-if (!result.hasMatchCaptions) fails.push('newWords match dock missing caption chips (S26)');
+if (result.grammarClaimsFirstOnly) {
+  fails.push('grammar aim claims first-conditional only but frames use would (S31)');
+}
+if (!result.hasAimsPanel) fails.push('title missing frosted aims panel (Manus PPT-like)');
+if (!result.wrapNavy) fails.push('wrap bg not navy/slate bookend (S32)');
+if (result.hasMatchCaptions) {
+  fails.push('newWords match dock still has answer-naming caption chips (S26 student leak)');
+}
 if (!result.hasMatchPads) fails.push('newWords match dock missing numbered pads note (S28)');
 if ((result.matchPadDomCount || 0) < Math.min(6, (lesson.vocabulary || []).length || 0)) {
   fails.push('newWords DOM missing numbered drop pads (S28): ' + result.matchPadDomCount);

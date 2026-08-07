@@ -1,6 +1,10 @@
 /**
  * Structured output schema + pass-off brief for Manus ClassIn lesson critiques.
  * Schema follows Manus strict subset: all props required, additionalProperties false.
+ *
+ * Aligned to Manus upstream `classin-lesson-quality-review-skill` (J4up skill-att-2,
+ * 2026-08): board map · JUST FIXED table · 5-dimension rubric · gate_holes ·
+ * method_feedback · producer next_actions · ZPD · /5 scorecard.
  */
 
 export const REVIEW_SCHEMA = {
@@ -13,7 +17,7 @@ export const REVIEW_SCHEMA = {
     },
     score: {
       type: 'integer',
-      description: '0-100 overall quality for a live ClassIn ESL board lesson',
+      description: '0-100 overall (map from scorecard.overall /5 × 20 when using /5 dims)',
     },
     edb_alignment: {
       type: 'object',
@@ -38,25 +42,60 @@ export const REVIEW_SCHEMA = {
     blocking_issues: {
       type: 'array',
       items: { type: 'string' },
-      description: 'Must-fix before another Manus pass or ClassIn upload',
+      description: 'Must-fix before another Manus pass or ClassIn upload (label B1/B2 + scene + action)',
     },
     nice_to_haves: { type: 'array', items: { type: 'string' } },
     next_actions: {
       type: 'array',
       items: { type: 'string' },
-      description: 'Concrete producer/machinery fixes, ordered by priority',
+      description:
+        'Concrete producer/machinery fixes as "Priority|Scene|Action" (Blocking/High/Medium/Low)',
     },
     gate_holes: {
       type: 'array',
       items: { type: 'string' },
       description:
-        'Places where local checks claimed pass (or were skipped) but the board still fails — name the check if guessable',
+        'Local check claimed pass but board fails — format: "check|claimed|board_evidence|severity"',
     },
     method_feedback: {
       type: 'array',
       items: { type: 'string' },
       description:
-        'Critique of our producer method or pass-off claims (just-fixed that still looks broken, focus that missed the real miss, etc.)',
+        'JUST FIXED regress or unreliable check — format: "item|issue|recommendation"',
+    },
+    just_fixed_results: {
+      type: 'array',
+      items: { type: 'string' },
+      description:
+        'One line per JUST FIXED claim: "HOLDS|fix|board evidence" or "FAIL|fix|board evidence"',
+    },
+    scorecard: {
+      type: 'object',
+      properties: {
+        edb_alignment: { type: 'number', description: '1-5' },
+        classin_delivery: { type: 'number', description: '1-5' },
+        ppt_like_quality: { type: 'number', description: '1-5' },
+        esl_pedagogy: { type: 'number', description: '1-5' },
+        completeness: { type: 'number', description: '1-5' },
+        overall: { type: 'number', description: '1-5 overall' },
+        notes: { type: 'string' },
+      },
+      required: [
+        'edb_alignment',
+        'classin_delivery',
+        'ppt_like_quality',
+        'esl_pedagogy',
+        'completeness',
+        'overall',
+        'notes',
+      ],
+      additionalProperties: false,
+    },
+    zpd_challenges: {
+      type: 'array',
+      items: { type: 'string' },
+      description:
+        'When overall > 4.0: 1–2 Level-Up challenges (Topic Expansion / Format Challenge / Pedagogical Stretch). Empty array if overall ≤ 4.0.',
     },
   },
   required: [
@@ -71,6 +110,9 @@ export const REVIEW_SCHEMA = {
     'next_actions',
     'gate_holes',
     'method_feedback',
+    'just_fixed_results',
+    'scorecard',
+    'zpd_challenges',
   ],
   additionalProperties: false,
 };
@@ -119,24 +161,30 @@ export function buildReviewBrief(meta = {}) {
   return [
     'You are reviewing a ClassIn ESL board lesson (EDB-aligned, PPT-like scenes).',
     'JUDGE ONLY — structured feedback. Do NOT rewrite the whole lesson or regenerate slides.',
+    'Apply your ClassIn lesson quality review skill (board map → JUST FIXED → 5-dim rubric → gate_holes → method_feedback → next_actions → ZPD → scorecard).',
     '',
     `Lesson: ${title}`,
     `Level: ${level} · Duration: ${duration}`,
     '',
     'Attached = baked board page JPGs (teacher + student eyes).',
     '',
-    'Rubric: EDB alignment · ClassIn delivery · PPT-like beats · ESL pedagogy · completeness.',
+    'Rubric dimensions (score each /5 in scorecard): EDB Alignment · ClassIn Delivery · PPT-like Quality · ESL Pedagogy · Completeness.',
+    'Heuristics to check: aims ⊆ board-taught vocab; grammar aim matches frames; timing chips if ≥45 min; warm-up no sampleAnswer; story arc complete in packet; ≤2–3 bg registers (flag ≥4); drop pads without answer-naming caption chips on student match; PropBank caption-before-glyph on story.',
     'Prefer next_actions aimed at the producer (prompts, layouts, props, gates), not one-off Photoshop.',
+    'If scorecard.overall > 4.0, fill zpd_challenges (Topic Expansion / Format Challenge / Pedagogical Stretch). Never treat a high score as “done forever.”',
     listBlock('KNOWN open issues (do not re-litigate unless worse)', known),
-    listBlock('JUST FIXED this pass (verify these still hold; call method_feedback if they do not)', fixed),
+    listBlock('JUST FIXED this pass (verify each → just_fixed_results HOLDS/FAIL; method_feedback if FAIL)', fixed),
     listBlock('LOCAL CHECKS we ran / claim', gates),
     listBlock('FOCUS this pass', focus),
     notes ? `\nNotes:\n${notes}` : '',
     '',
     'META (required in structured output):',
-    '- If something still fails that our LOCAL CHECKS claimed as pass (or we said JUST FIXED), put it in gate_holes and method_feedback.',
-    '- If a miss is only in KNOWN, mention only if worse than stated — otherwise skip.',
-    '- Put blocking_issues first; keep next_actions concrete for the producer.',
+    '- just_fixed_results: one HOLDS|… or FAIL|… line per JUST FIXED item.',
+    '- gate_holes as "check|claimed|board_evidence|severity" when LOCAL CHECKS lied.',
+    '- method_feedback as "item|issue|recommendation" when JUST FIXED regresses or a check is unreliable.',
+    '- scorecard: five dimensions + overall on 1–5 scale + short notes; score 0–100 ≈ overall×20.',
+    '- zpd_challenges: 1–2 Level-Ups when overall > 4.0; else [].',
+    '- Put blocking_issues first; keep next_actions as Priority|Scene|Action for the producer.',
   ]
     .filter(Boolean)
     .join('\n');

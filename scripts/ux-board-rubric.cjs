@@ -166,12 +166,15 @@ const SOFT = {
   S22: 'Wrap-up / exit ticket consolidates aims (not only “Great Job!”)',
   S23: 'Title / intro states learning aims (vocab or communicative goal visible)',
   S24: 'Story side/banner uses a real prop cutout when PropBank has a match (not only a glyph); caption stays a white chip below/above art — never free red text bleeding through an absolute alpha cutout',
-  // Manus classical-compose 2026-08 (revise/72)
-  S25: 'Title aims list the board vocab (not truncated short of inspire/key words) and state a one-line grammar aim when sentence frames exist',
-  S26: 'Vocab match-dock icons carry one-word caption chips; abstract pack glyphs (e.g. inspire starburst) are overridden to a clearer curated stand-in',
+  // Manus classical-compose 2026-08 (revise/72 + skill v2 / pass-98 report)
+  S25: 'Title aims list the board-taught vocab (first 6 match-dock words) and state a honest grammar aim when sentence frames exist',
+  S26: 'Vocab match-dock icons map 1:1 without student-facing answer-naming caption chips; abstract pack glyphs (e.g. inspire starburst) are overridden to a clearer curated stand-in',
   S27: 'Manus/review pickImages includes every storyN beat before comprehension (never drop middle story pages at soft max)',
   S28: 'Vocab matchDock shows numbered drop-zone pads on word cards (not word text alone as the only target)',
   S29: 'Lessons ≥45 min show teacher timing chips on major scene headers (pacing cues)',
+  S30: 'Title aims and creative prompts only use board-taught vocab (no orphan words like tempo in aims/creative but not New Words)',
+  S31: 'Grammar aim line matches the frames on the board (do not claim first-conditional when frames are would/opinion only)',
+  S32: 'Wrap slide background stays in the deck register (deep navy/slate — not a warm lavender breakaway)',
 };
 
 /**
@@ -181,10 +184,10 @@ const SOFT = {
 const TIER_ORDER = ['honesty', 'readable', 'navigable', 'variety', 'charm'];
 
 const TIERS = {
-  honesty: ['H5', 'H1', 'S15', 'S8', 'M7', 'S19', 'S20', 'S26'],
+  honesty: ['H5', 'H1', 'S15', 'S8', 'M7', 'S19', 'S20', 'S26', 'S30', 'S31'],
   readable: ['H4', 'S1', 'S5', 'S11', 'S13', 'S9', 'M1', 'M2', 'M6'],
   navigable: ['H3', 'H6', 'S4', 'S10', 'S14', 'M3', 'M8', 'S21', 'S23', 'S25', 'S27', 'S28', 'S29'],
-  variety: ['H2', 'S2', 'S3', 'S6', 'S18', 'M5'],
+  variety: ['H2', 'S2', 'S3', 'S6', 'S18', 'M5', 'S32'],
   charm: ['S7', 'S12', 'S16', 'S17', 'M4', 'H7', 'S22', 'S24'],
 };
 
