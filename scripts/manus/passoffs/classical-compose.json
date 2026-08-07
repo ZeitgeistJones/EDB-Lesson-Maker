@@ -12,7 +12,8 @@
     "King hint: musicians + write/say symphony idea (no 'toys')",
     "Title aims line + wrap exit ticket; music title charm skipped on terrace",
     "Generate prompt: B1 frame grammar + comprehension under story.*",
-    "Story side/banner: PropBank match from caption before glyph (S24)"
+    "Story side/banner: PropBank match from caption before glyph (S24)",
+    "Story caption chip: no absolute img bleed through alpha props; desk/papers captions prefer compose-desk (not orchestra-stands)"
   ],
   "localChecks": [
     "verify-classical-compose.mjs: ok (skipKing, dock≥10, comp≥2, no toys hint, no warm sample leak, pack vocab)",

@@ -167,6 +167,45 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
   const warmText = (warmDom && warmDom.textContent) || '';
   const sampleLeak = /Teacher sample/i.test(warmText)
     || (lesson.warmUp && lesson.warmUp.sampleAnswer && warmText.includes(String(lesson.warmUp.sampleAnswer)));
+
+  // Soft S24: story sides with data-story-prop must keep caption as a chip
+  // below art — not absolute img stacking over sibling caption text.
+  const storyCaptionIssues = [];
+  const storyPropKeys = [];
+  storyIdxs.forEach((si, storyI) => {
+    const key = 'story' + storyI;
+    const el = rendered.pageEls[byKey[key]];
+    if (!el) return;
+    const slot = el.querySelector('[data-story-art]');
+    if (!slot) return;
+    const propKey = slot.dataset.storyProp || '';
+    if (propKey) storyPropKeys.push({ i: storyI, key: propKey });
+    if (!propKey || slot.dataset.storyArtMode !== 'side') return;
+    const imgs = slot.querySelectorAll('img');
+    const caption = Array.from(slot.children).find((c) => c.tagName === 'DIV'
+      && (c.textContent || '').trim().length > 2
+      && !c.querySelector('img'));
+    imgs.forEach((im) => {
+      const pos = (im.style && im.style.position) || '';
+      if (pos === 'absolute') {
+        storyCaptionIssues.push({ i: storyI, issue: 'absolute-img-over-caption', prop: propKey });
+      }
+    });
+    if (caption) {
+      const bg = (caption.style && caption.style.background) || '';
+      if (!/#fff|rgb\(255,\s*255,\s*255\)/i.test(bg)) {
+        storyCaptionIssues.push({ i: storyI, issue: 'caption-not-white-chip', prop: propKey });
+      }
+      const ir = imgs[0] && imgs[0].getBoundingClientRect();
+      const cr = caption.getBoundingClientRect();
+      if (ir && cr && cr.top + 4 < ir.bottom && cr.bottom > ir.top) {
+        storyCaptionIssues.push({ i: storyI, issue: 'caption-overlaps-img', prop: propKey });
+      }
+    } else {
+      storyCaptionIssues.push({ i: storyI, issue: 'missing-caption-chip', prop: propKey });
+    }
+  });
+
   if (window.LessonPages.cleanup) window.LessonPages.cleanup(rendered.host);
 
   return {
@@ -187,6 +226,8 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     houseLeaks: picks.filter((p) => p.type === 'flat' && /^house-/.test(p.name)).map((p) => p.name),
     artWinners,
     storyEmojis,
+    storyPropKeys,
+    storyCaptionIssues,
     frames: { count: frames.length, longest, fontPx },
     pages,
     picks: picks.map((p, i) => ({ i, type: p.type, name: p.name })),
@@ -215,6 +256,13 @@ if (result.artWinners.some((w) => !String(w.winner).startsWith('pack:'))) {
 }
 if (result.storyEmojis.some((s) => s.emoji === '🏠')) fails.push('story emoji still house');
 if (result.frames.longest > 75 && result.frames.fontPx > 28) fails.push('long frames font not shrunk');
+if ((result.storyCaptionIssues || []).length) {
+  fails.push('story caption bleed/overlap (S24): ' + JSON.stringify(result.storyCaptionIssues));
+}
+const story0Prop = (result.storyPropKeys || []).find((s) => s.i === 0);
+if (story0Prop && /orchestra-stands|music-stand/.test(story0Prop.key)) {
+  fails.push('story0 desk caption resolved to orchestra prop: ' + story0Prop.key);
+}
 
 for (const p of result.pages) {
   const b64 = p.dataUrl.replace(/^data:image\/jpeg;base64,/, '');
@@ -231,6 +279,8 @@ for (const p of result.pages) {
   houseLeaks: result.houseLeaks,
   artWinners: result.artWinners,
   storyEmojis: result.storyEmojis,
+  storyPropKeys: result.storyPropKeys,
+  storyCaptionIssues: result.storyCaptionIssues,
   frames: result.frames,
   fails,
   out: OUT,
@@ -248,6 +298,8 @@ console.log(JSON.stringify({
   houseLeaks: result.houseLeaks,
   artWinners: result.artWinners,
   storyEmojis: result.storyEmojis,
+  storyPropKeys: result.storyPropKeys,
+  storyCaptionIssues: result.storyCaptionIssues,
   frames: result.frames,
   pageFiles: result.pages.map((p) => `page-${p.index}-${p.key}.jpg`),
   fails,

@@ -1038,22 +1038,44 @@
   /**
    * Prefer a real PropBank cutout over a lone glyph when the caption names an
    * object we stock (Manus: story glyph panels). StoryArt still wins when cached.
+   * Caption-local scenes (desk/papers/compose) beat lesson-theme prefer words
+   * so "sitting at a desk…" does not grab orchestra-stands from the title.
    */
   function storyFallbackVisual(lesson, page) {
     const cue = storyArtCue(lesson, page);
     const PB = window.PropBank;
     if (PB && typeof PB.loaded === 'function' && PB.loaded()) {
-      const lower = cue.toLowerCase();
-      const prefer = [
+      const caption = String(page?.visualCaption || '').toLowerCase();
+      const cueLower = cue.toLowerCase();
+      const deskScene = /\b(desk|papers?|compose|sheet\s*music|writing|manuscript|notebook)\b/.test(caption);
+      const deskPrefer = [
+        'compose-desk', 'desk', 'grand-piano', 'piano', 'pencil-pot',
+      ];
+      const themePrefer = [
         'orchestra', 'grand-piano', 'piano', 'violin', 'cello', 'guitar', 'flute',
         'musician-conductor', 'conductor', 'trumpet', 'harp', 'desk', 'compose-desk',
         'castle', 'dentist', 'face-blank', 'trampoline',
-      ].filter((w) => lower.includes(w.replace(/^musician-/, '').replace(/-/g, ' '))
-        || lower.includes(w.split('-').pop()));
-      const captionWords = String(page?.visualCaption || '')
-        .toLowerCase()
-        .match(/\b[a-z]{4,}\b/g) || [];
-      const tryWords = [...prefer, ...captionWords].slice(0, 12);
+      ];
+      // Desk captions: match against caption only — lesson title often says orchestra.
+      const hay = deskScene ? caption : cueLower;
+      const preferList = deskScene ? deskPrefer : themePrefer;
+      const prefer = preferList.filter((w) => hay.includes(w.replace(/^musician-/, '').replace(/-/g, ' '))
+        || hay.includes(w.split('-').pop()));
+      if (deskScene) {
+        ['compose-desk', 'desk'].forEach((w) => {
+          if (!prefer.includes(w)) prefer.unshift(w);
+        });
+      }
+      const stop = new Set([
+        'with', 'from', 'that', 'this', 'have', 'sitting', 'local', 'near',
+        'beautiful', 'musician', 'playing', 'performing',
+      ]);
+      const captionWords = (caption.match(/\b[a-z]{4,}\b/g) || []).filter((w) => !stop.has(w));
+      // Caption words before theme prefer so scene text wins over title theme.
+      const tryWords = (deskScene
+        ? [...prefer, ...captionWords]
+        : [...captionWords, ...prefer]
+      ).slice(0, 12);
       const exclude = [];
       const family = PB.familyFor ? PB.familyFor(lesson) : null;
       const sharp = PB.isDockSharp || (() => true);
@@ -1067,6 +1089,8 @@
         });
         if (!prop || !prop.path) continue;
         exclude.push(prop.key);
+        // Desk caption must not settle on loose orchestra furniture.
+        if (deskScene && /orchestra-stands|music-stand/.test(prop.key)) continue;
         if (!sharp(prop)) continue;
         return { type: 'prop', src: prop.path, key: prop.key };
       }
@@ -1074,28 +1098,80 @@
     return { type: 'emoji', emoji: themeEmoji(cue) };
   }
 
+  /**
+   * Fill side/banner art. Do NOT use img() here — that helper defaults to
+   * position:absolute (EDB piece overlay), which stacks the cutout on top of
+   * the caption chip so red caption text bleeds through alpha props.
+   */
   function fillStoryArtSlot(slot, lesson, page, bigEmoji) {
     const vis = storyFallbackVisual(lesson, page);
     slot.innerHTML = '';
     if (vis.type === 'prop') {
       slot.dataset.storyProp = vis.key || '1';
-      const i = img(vis.src, {
-        width: '100%',
-        height: bigEmoji ? '160px' : '160px',
-        objectFit: 'contain',
+      const plate = el('div', {
         flex: '1',
         minHeight: '0',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#ffffff',
+        borderRadius: '14px',
+        position: 'relative',
+        zIndex: '1',
+        overflow: 'hidden',
+        boxSizing: 'border-box',
+        padding: bigEmoji ? '10px' : '8px',
+        boxShadow: '0 2px 8px rgba(15,23,42,0.06)',
       });
-      slot.appendChild(i);
+      const i = document.createElement('img');
+      i.src = vis.src;
+      i.alt = '';
+      Object.assign(i.style, {
+        width: '100%',
+        height: '100%',
+        maxHeight: bigEmoji ? '220px' : '150px',
+        objectFit: 'contain',
+        display: 'block',
+        position: 'relative',
+        pointerEvents: 'none',
+      });
+      plate.appendChild(i);
+      slot.appendChild(plate);
       return vis;
     }
+    delete slot.dataset.storyProp;
     slot.appendChild(el('div', {
       fontSize: bigEmoji ? '96px' : '64px',
       lineHeight: '1',
       marginBottom: bigEmoji ? '14px' : '0',
       opacity: bigEmoji ? '1' : '0.85',
+      position: 'relative',
+      zIndex: '1',
     }, vis.emoji));
     return vis;
+  }
+
+  function storyCaptionChip(text, opts) {
+    const o = opts || {};
+    return el('div', {
+      background: '#ffffff',
+      color: '#9a3412',
+      borderRadius: '12px',
+      padding: o.compact ? '8px 12px' : '10px 14px',
+      fontSize: o.compact ? '20px' : '22px',
+      fontWeight: '700',
+      textAlign: 'center',
+      width: '100%',
+      boxSizing: 'border-box',
+      lineHeight: '1.3',
+      boxShadow: '0 4px 12px rgba(15,23,42,0.08)',
+      flexShrink: '0',
+      marginTop: o.marginTop || '0',
+      marginBottom: o.marginBottom || '0',
+      position: 'relative',
+      zIndex: '2',
+    }, esc(text));
   }
 
   function makeStoryPage(lesson, page, index, boardPlan, opts) {
@@ -1127,10 +1203,7 @@
     if (solo) {
       const caption = page?.visualCaption || page?.visualTheme;
       if (caption) {
-        content.appendChild(el('div', {
-          color: '#9a3412', fontSize: '22px', fontWeight: '700',
-          marginBottom: '10px', opacity: '0.9',
-        }, esc(caption)));
+        content.appendChild(storyCaptionChip(caption, { compact: true, marginBottom: '10px' }));
       }
       // Banner slot for realtime story art (separate from the reading card).
       const banner = el('div', {
@@ -1143,6 +1216,8 @@
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        padding: '12px',
+        boxSizing: 'border-box',
       });
       banner.dataset.storyArt = String(index);
       banner.dataset.storyArtMode = 'banner';
@@ -1169,27 +1244,24 @@
       });
       const artOnRight = index % 2 === 1;
       const side = el('div', {
-        width: '220px', flexShrink: '0', borderRadius: '18px',
+        width: '240px', flexShrink: '0', borderRadius: '18px',
         background: artOnRight
           ? 'linear-gradient(160deg, #ffedd5, #fed7aa)'
           : 'linear-gradient(200deg, #fff7ed, #fdba74)',
         minHeight: '240px', display: 'flex', flexDirection: 'column',
-        alignItems: 'center', justifyContent: 'center', padding: '24px',
+        alignItems: 'center', justifyContent: 'flex-start', padding: '18px',
         boxSizing: 'border-box',
         overflow: 'hidden',
         position: 'relative',
+        gap: '12px',
       });
       side.dataset.storyArt = String(index);
       side.dataset.storyArtMode = 'side';
       fillStoryArtSlot(side, lesson, page, true);
-      side.appendChild(el('div', {
-        background: '#ffffff', color: '#9a3412', borderRadius: '12px', padding: '10px 14px',
-        fontSize: '22px', fontWeight: '700', textAlign: 'center', width: '100%',
-        boxSizing: 'border-box', lineHeight: '1.3',
-        boxShadow: '0 4px 12px rgba(15,23,42,0.08)',
-        flexShrink: '0',
-        marginTop: '10px',
-      }, esc(page?.visualCaption || page?.visualTheme || 'Scene')));
+      side.appendChild(storyCaptionChip(
+        page?.visualCaption || page?.visualTheme || 'Scene',
+        { marginTop: '0' }
+      ));
 
       const text = card(
         `<div style="font-size:${textSize}px;line-height:1.45;color:#1e293b;font-weight:600">${esc(storyText)}</div>`,
@@ -1702,18 +1774,36 @@
         const idx = Number(slot.dataset.storyArt);
         const url = byIndex.get(idx);
         if (!url) return;
+        const mode = slot.dataset.storyArtMode || 'side';
+        // Keep the caption chip (last white text div) for side panels — only
+        // swap the art plate so caption never becomes free sibling bleed.
+        let captionEl = null;
+        if (mode === 'side') {
+          const kids = Array.from(slot.children);
+          captionEl = kids.find((c) => c.tagName === 'DIV' && c.style && c.style.background
+            && /rgb\(255,\s*255,\s*255\)|#fff|#ffffff/i.test(c.style.background)
+            && (c.textContent || '').trim()) || kids[kids.length - 1];
+          if (captionEl && captionEl.tagName !== 'DIV') captionEl = null;
+        }
         while (slot.firstChild) slot.removeChild(slot.firstChild);
-        const img = document.createElement('img');
-        img.src = url;
-        img.alt = '';
-        img.style.width = '100%';
-        img.style.height = '100%';
-        img.style.objectFit = 'cover';
-        img.style.display = 'block';
-        img.style.borderRadius = slot.dataset.storyArtMode === 'banner' ? '16px' : '18px';
-        slot.style.padding = '0';
-        slot.style.background = '#fff7ed';
-        slot.appendChild(img);
+        delete slot.dataset.storyProp;
+        const wrap = document.createElement('div');
+        wrap.style.cssText = mode === 'side'
+          ? 'flex:1;min-height:0;width:100%;border-radius:14px;overflow:hidden;background:#fff;position:relative;z-index:1'
+          : 'width:100%;height:100%;border-radius:16px;overflow:hidden';
+        const imgEl = document.createElement('img');
+        imgEl.src = url;
+        imgEl.alt = '';
+        imgEl.style.width = '100%';
+        imgEl.style.height = '100%';
+        imgEl.style.objectFit = 'cover';
+        imgEl.style.display = 'block';
+        imgEl.style.position = 'relative';
+        wrap.appendChild(imgEl);
+        slot.style.padding = mode === 'side' ? slot.style.padding || '18px' : '0';
+        slot.style.background = mode === 'side' ? slot.style.background : '#fff7ed';
+        slot.appendChild(wrap);
+        if (captionEl) slot.appendChild(captionEl);
         filled += 1;
       });
     });

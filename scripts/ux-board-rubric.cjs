@@ -165,7 +165,7 @@ const SOFT = {
   S21: 'King/activity hint names pieces accurately (not “toys”) and asks for speak/write output',
   S22: 'Wrap-up / exit ticket consolidates aims (not only “Great Job!”)',
   S23: 'Title / intro states learning aims (vocab or communicative goal visible)',
-  S24: 'Story side/banner uses a real prop cutout when PropBank has a match (not only a glyph)',
+  S24: 'Story side/banner uses a real prop cutout when PropBank has a match (not only a glyph); caption stays a white chip below/above art — never free red text bleeding through an absolute alpha cutout',
 };
 
 /**
