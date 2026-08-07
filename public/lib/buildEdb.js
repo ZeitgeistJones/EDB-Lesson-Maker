@@ -309,11 +309,26 @@ function placeholderPng(w, h, label) {
   return canvasToPng(c);
 }
 
-/** PropBank theme cutout first, then Twemoji pack — never silent-drop. */
+/** Curated VocabIcons pack first, then PropBank cutout — never silent-drop.
+ *  PropBank-first stole abstract vocab (compose→desk, melody→trumpet) and
+ *  skipped dedicated ivory/gold pack icons. */
 async function wordArtPng(word, ctx) {
   if (!word) return null;
   const c = ctx || {};
+  const VI = window.VocabIcons;
   const PB = window.PropBank;
+  let propKey = null;
+
+  if (VI && typeof VI.isCurated === 'function' && VI.isCurated(word)) {
+    const pack = await VI.loadPng(word);
+    if (pack) {
+      // #region agent log
+      fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'post-fix',hypothesisId:'E',location:'buildEdb.js:wordArtPng',message:'word art via curated VocabIcons',data:{word,source:'pack'},timestamp:Date.now()})}).catch(()=>{});
+      // #endregion
+      return pack;
+    }
+  }
+
   if (PB && typeof PB.loaded === 'function' && PB.loaded()) {
     const family = c.family
       || (c.lesson && PB.familyFor ? PB.familyFor(c.lesson) : null)
@@ -324,14 +339,29 @@ async function wordArtPng(word, ctx) {
       seed: c.seed || (c.lesson && c.lesson.title) || word,
     });
     if (prop) {
+      propKey = prop.key;
       const png = await PB.loadPng(prop);
-      if (png) return png;
+      if (png) {
+        // #region agent log
+        fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'post-fix',hypothesisId:'E',location:'buildEdb.js:wordArtPng',message:'word art via PropBank fallback',data:{word,propKey,source:'prop'},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
+        return png;
+      }
     }
   }
-  if (window.VocabIcons) {
-    const pack = await window.VocabIcons.loadPng(word);
-    if (pack) return pack;
+
+  if (VI) {
+    const pack = await VI.loadPng(word);
+    if (pack) {
+      // #region agent log
+      fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'post-fix',hypothesisId:'E',location:'buildEdb.js:wordArtPng',message:'word art via VocabIcons late',data:{word,propKey,source:'pack-late'},timestamp:Date.now()})}).catch(()=>{});
+      // #endregion
+      return pack;
+    }
   }
+  // #region agent log
+  fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'post-fix',hypothesisId:'E',location:'buildEdb.js:wordArtPng',message:'word art miss',data:{word,propKey},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
   return null;
 }
 

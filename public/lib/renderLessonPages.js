@@ -885,27 +885,36 @@
     }));
     const frames = (lesson.sentenceFrames || []).slice(0, 3);
     const rows = Math.max(1, frames.length);
+    const lens = frames.map((f) => String(f || '').length);
+    const longest = Math.max(0, ...lens);
+    // Long B1 frames at 40px overflow the 590px board — shrink type + wrap.
+    const fontPx = longest > 75 ? 26 : longest > 55 ? 30 : rows <= 1 ? 44 : 34;
+    // #region agent log
+    fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'post-fix',hypothesisId:'B',location:'renderLessonPages.js:makeFrames',message:'frames layout inputs',data:{count:frames.length,lens,fontPx,longest,frames:frames.map((f)=>String(f).slice(0,80))},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
     const body = el('div', {
       flex: '1',
       minHeight: '0',
       display: 'grid',
       gridTemplateRows: `repeat(${rows}, 1fr)`,
-      gap: '14px',
+      gap: '10px',
       width: '100%',
+      overflow: 'hidden',
     });
     frames.forEach((f, i) => {
       body.appendChild(card(
-        `<div style="font-size:22px;font-weight:700;color:#64748b;margin-bottom:8px;flex-shrink:0">Frame ${i + 1}</div>
-         <div style="font-size:${rows <= 1 ? 48 : 40}px;font-weight:800;color:#1e293b;line-height:1.2;margin-bottom:14px;flex-shrink:0">${esc(f)}</div>
-         <div style="border-bottom:4px dashed #94a3b8;flex:1;min-height:56px;width:100%"></div>`,
+        `<div style="font-size:18px;font-weight:700;color:#64748b;margin-bottom:6px;flex-shrink:0">Frame ${i + 1}</div>
+         <div style="font-size:${fontPx}px;font-weight:800;color:#1e293b;line-height:1.25;margin-bottom:10px;flex-shrink:1;overflow:hidden;max-height:46%">${esc(f)}</div>
+         <div style="border-bottom:3px dashed #94a3b8;flex:1;min-height:36px;width:100%"></div>`,
         {
-          padding: '20px 26px',
+          padding: '14px 22px',
           marginBottom: '0',
           height: '100%',
           minHeight: '0',
           display: 'flex',
           flexDirection: 'column',
           boxSizing: 'border-box',
+          overflow: 'hidden',
         }
       ));
     });
@@ -920,6 +929,8 @@
     // "Living in the Shadow of the Crater" must not steal the home house
     // when volcano words are also present.
     if (/\b(volcano|volcanic|crater|lava|eruption|ash|geothermal|magma|seismic)\b/.test(t)) return '🌋';
+    // Music / compose before "Quiet Home" — classical lessons must not show 🏠.
+    if (/\b(music|compose|composer|composition|orchestra|melody|harmony|guitar|piano|violin|concert|classical|symphony|strum|tempo|rhythm|performance)\b/.test(t)) return '🎼';
     // Castle before gym — "courtyard" must not hit includes('court') → basketball.
     if (/\b(castle|knight|dragon|medieval|moat|portcullis|drawbridge|royal|king|queen|fortress)\b/.test(t)) return '🏰';
     if (/\b(gym|workout|athletic)\b/.test(t) || /\bcourt\b/.test(t)) return '🏀';
@@ -1041,6 +1052,9 @@
       side.dataset.storyArtMode = 'side';
       side.appendChild(el('div', { fontSize: '96px', lineHeight: '1', marginBottom: '14px' },
         themeEmoji(storyArtCue(lesson, page))));
+      // #region agent log
+      fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'pre-fix',hypothesisId:'C',location:'renderLessonPages.js:makeStoryPage',message:'story side emoji chosen',data:{index,cue:storyArtCue(lesson,page).slice(0,160),emoji:themeEmoji(storyArtCue(lesson,page)),caption:page&&page.visualCaption,heading:page&&page.heading},timestamp:Date.now()})}).catch(()=>{});
+      // #endregion
       side.appendChild(el('div', {
         background: '#ffffff', color: '#9a3412', borderRadius: '12px', padding: '10px 14px',
         fontSize: '22px', fontWeight: '700', textAlign: 'center', width: '100%',
@@ -1396,6 +1410,26 @@
       topicWords: [lesson.title || '', ...vocabWords],
     });
     boardPlan.bgPicks = bgPicks;
+    // Terrace scene already paints a grand piano — skip a second king cutout.
+    const actAssign = (boardPlan.assignments || []).find((a) => a.pageKey === 'activity');
+    const actIdx = sections.findIndex((s) => (s.tags || []).includes('activity'));
+    const actPick = actIdx >= 0 ? bgPicks[actIdx] : null;
+    if (
+      actAssign &&
+      actAssign.recipeId === 'heroProp' &&
+      actPick &&
+      actPick.type === 'scene' &&
+      /piano|terrace|moonlit/i.test(String(actPick.name || ''))
+    ) {
+      const heroKey = actAssign.ctx && actAssign.ctx.hero && actAssign.ctx.hero.key;
+      if (heroKey === 'grand-piano' || heroKey === 'dh-piano') {
+        actAssign.ctx = Object.assign({}, actAssign.ctx || {}, { skipKing: true });
+      }
+    }
+    // #region agent log
+    const titleIdx = sections.findIndex((s) => (s.tags || []).includes('title'));
+    fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'post-fix',hypothesisId:'A',location:'renderLessonPages.js:attachBgPicks',message:'bg picks for title/activity',data:{title:bgPicks[titleIdx]&&{type:bgPicks[titleIdx].type,name:bgPicks[titleIdx].name},activity:actPick&&{type:actPick.type,name:actPick.name,reused:!!actPick.reused},skipKing:!!(actAssign&&actAssign.ctx&&actAssign.ctx.skipKing),actPreferFlat:sections[actIdx]&&sections[actIdx].preferFlat,flatNames:bgPicks.filter(p=>p.type==='flat').map(p=>p.name)},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
     // Scene dressing needs groundY from the picks — run after, not in buildBoardPlan.
     if (window.EdbActivities && window.EdbActivities.dressScenes) {
       if (window.PropBank) await window.PropBank.ready();

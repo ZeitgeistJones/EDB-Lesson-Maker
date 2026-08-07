@@ -426,10 +426,11 @@
         if (pin === 'open') key = setKeys[0];
         else if (pin === 'close') key = setKeys[setKeys.length - 1];
         else {
-          // Thin sets (≤4) recycle hard for M5. Borrow at most enough house cool
-          // panels to stay inside the H2 cohesion band (≤5 distinct flats).
+          // Thin sets (<3) recycle hard for M5. Borrow house cool panels only
+          // when the place set is too short — never dilute a full 4-panel deck
+          // (classical-moon was leaking house-a into music lessons).
           let midPool = setKeys.length >= 3 ? setKeys.slice(1) : setKeys.slice();
-          if (setKeys.length <= 4 && wantSet !== DEFAULT_SET) {
+          if (setKeys.length < 3 && wantSet !== DEFAULT_SET) {
             const room = Math.max(0, 5 - setKeys.length);
             if (room > 0) {
               const houseBoost = all.filter((k) => {

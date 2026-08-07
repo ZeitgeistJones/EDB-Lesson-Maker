@@ -863,36 +863,44 @@
     const art = L.zoneRect(page, 'artSafe') || { x: 0, y: 0, w: 1280, h: 470 };
     const dock = L.zoneRect(page, 'dock');
     const stageH = dock ? Math.max(360, dock.y) : Math.max(360, art.h);
-    const king = Object.assign({}, prop, { relativeScale: 1 });
-    const flushCrop = stageFitFor(prop) === 'flush';
-    const scale = flushCrop ? 1.5 : 0.92;
-    const sized = PB.sizeFor(king, {
-      maxH: Math.round(stageH * scale),
-      maxW: Math.min(L.W - 8, Math.round(stageH * scale * (prop.aspect || 1))),
-      hardCap: Math.round(stageH * scale),
-    });
-    const x = Math.round((L.W - sized.w) / 2);
-    const y = flushCrop
-      ? -Math.round(sized.h * 0.34)
-      : Math.max(8, Math.round((stageH - sized.h) / 2));
+    const skipKing = !!(ctx && ctx.skipKing);
 
-    L.place(page, {
-      locked: false,
-      kind: 'image',
-      asset: prop.path,
-      w: sized.w,
-      h: sized.h,
-      intentional: true,
-      bleed: flushCrop ? 'crop' : 'edge',
-      _force: { x, y, w: sized.w, h: sized.h },
-      role: page.pageType === 'heroStage' ? 'stageHero' : 'heroPart',
-      meta: {
-        propKey: prop.key,
-        propAspect: prop.aspect,
-        stageKing: page.pageType === 'heroStage',
-        stageFit: stageFitFor(prop),
-      },
-    });
+    if (!skipKing) {
+      const king = Object.assign({}, prop, { relativeScale: 1 });
+      const flushCrop = stageFitFor(prop) === 'flush';
+      const scale = flushCrop ? 1.5 : 0.92;
+      const sized = PB.sizeFor(king, {
+        maxH: Math.round(stageH * scale),
+        maxW: Math.min(L.W - 8, Math.round(stageH * scale * (prop.aspect || 1))),
+        hardCap: Math.round(stageH * scale),
+      });
+      const x = Math.round((L.W - sized.w) / 2);
+      const y = flushCrop
+        ? -Math.round(sized.h * 0.34)
+        : Math.max(8, Math.round((stageH - sized.h) / 2));
+
+      L.place(page, {
+        locked: false,
+        kind: 'image',
+        asset: prop.path,
+        w: sized.w,
+        h: sized.h,
+        intentional: true,
+        bleed: flushCrop ? 'crop' : 'edge',
+        _force: { x, y, w: sized.w, h: sized.h },
+        role: page.pageType === 'heroStage' ? 'stageHero' : 'heroPart',
+        meta: {
+          propKey: prop.key,
+          propAspect: prop.aspect,
+          stageKing: page.pageType === 'heroStage',
+          stageFit: stageFitFor(prop),
+        },
+      });
+    }
+
+    // #region agent log
+    fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'post-fix',hypothesisId:'A',location:'edbActivities.js:heroProp',message:'hero stage placement',data:{heroKey:prop.key,path:prop.path,pageType:page.pageType,skipKing,pack:prop.pack||null},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
 
     // Face kits ship plenty of parts — use two dock rows when the zone is tall enough.
     const tools = roleplayDockProps(lesson, prop, 18);
