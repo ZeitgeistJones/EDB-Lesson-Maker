@@ -732,10 +732,15 @@
       { flexShrink: '0' }
     ));
     const words = (lesson.vocabulary || []).slice(0, 6);
+    // Sparse lessons (2–3 words) must still fill the board — don't leave empty
+    // 2×3 grid slots as dead space (minimal fixture M8/M9).
+    const n = Math.max(1, words.length);
+    const cols = n <= 2 ? 1 : 2;
+    const rows = Math.max(1, Math.ceil(n / cols));
     const grid = el('div', {
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gridTemplateRows: '1fr 1fr 1fr',
+      gridTemplateColumns: cols === 1 ? '1fr' : '1fr 1fr',
+      gridTemplateRows: `repeat(${rows}, 1fr)`,
       gap: '18px',
       // Leave the right column clear for the match dock.
       maxWidth: interactive ? '680px' : '100%',
@@ -749,10 +754,19 @@
       const glyphHtml = interactive
         ? ''
         : `<div style="width:64px;height:64px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0">${esc(v.emoji || '•')}</div>`;
+      const wordPx = n <= 2 ? 56 : 44;
+      // Sparse lessons: write line fills the tall card so M3 doesn't see empty panels.
+      const writeLine = n <= 3
+        ? `<div style="margin-top:20px;font-size:24px;font-weight:700;color:#64748b;text-align:center;line-height:1.35;max-width:90%">Say the word. Drag the matching picture. Write it on the line.</div>
+           <div style="margin-top:16px;border-bottom:3px dashed #cbd5e1;height:48px;width:75%;max-width:320px"></div>`
+        : '';
       grid.appendChild(card(
-        `<div style="display:flex;align-items:center;justify-content:center;gap:16px;height:100%;width:100%">
-          ${glyphHtml}
-          <div style="font-size:44px;font-weight:800;line-height:1.05;text-align:center">${esc(v.word || '')}</div>
+        `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;height:100%;width:100%">
+          <div style="display:flex;align-items:center;justify-content:center;gap:16px">
+            ${glyphHtml}
+            <div style="font-size:${wordPx}px;font-weight:800;line-height:1.05;text-align:center">${esc(v.word || '')}</div>
+          </div>
+          ${writeLine}
         </div>`,
         {
           marginBottom: '0',
@@ -814,19 +828,23 @@
     const p = pageShell(THEME_COLORS.vocab, { pageType: 'vocabSentences' });
     p.appendChild(header('New Words — In Sentences', '#7c3aed'));
     const body = fillBody(p, { justifyContent: 'stretch', gap: '16px' });
+    const words = (lesson.vocabulary || []).slice(0, 6);
+    const n = Math.max(1, words.length);
+    const cols = n <= 2 ? 1 : 2;
+    const rows = Math.max(1, Math.ceil(n / cols));
     const grid = el('div', {
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gridTemplateRows: '1fr 1fr 1fr',
+      gridTemplateColumns: cols === 1 ? '1fr' : '1fr 1fr',
+      gridTemplateRows: `repeat(${rows}, 1fr)`,
       gap: '16px',
       flex: '1',
       minHeight: '0',
       height: '100%',
     });
-    (lesson.vocabulary || []).slice(0, 6).forEach((v) => {
+    words.forEach((v) => {
       grid.appendChild(card(
-        `<div style="font-size:32px;font-weight:800;margin-bottom:10px;line-height:1.1">${esc(v.word || '')}</div>
-         <div style="font-size:26px;color:#334155;font-style:italic;line-height:1.35">${esc(v.sentence || '')}</div>`,
+        `<div style="font-size:${n <= 2 ? 40 : 32}px;font-weight:800;margin-bottom:10px;line-height:1.1">${esc(v.word || '')}</div>
+         <div style="font-size:${n <= 2 ? 30 : 26}px;color:#334155;font-style:italic;line-height:1.35">${esc(v.sentence || '')}</div>`,
         {
           marginBottom: '0',
           padding: '22px 24px',
@@ -851,18 +869,19 @@
       marginBottom: '8px', flexShrink: '0',
     }));
     const frames = (lesson.sentenceFrames || []).slice(0, 3);
+    const rows = Math.max(1, frames.length);
     const body = el('div', {
       flex: '1',
       minHeight: '0',
       display: 'grid',
-      gridTemplateRows: '1fr 1fr 1fr',
+      gridTemplateRows: `repeat(${rows}, 1fr)`,
       gap: '14px',
       width: '100%',
     });
     frames.forEach((f, i) => {
       body.appendChild(card(
         `<div style="font-size:15px;font-weight:700;color:#64748b;margin-bottom:8px;flex-shrink:0">Frame ${i + 1}</div>
-         <div style="font-size:40px;font-weight:800;color:#1e293b;line-height:1.2;margin-bottom:14px;flex-shrink:0">${esc(f)}</div>
+         <div style="font-size:${rows <= 1 ? 48 : 40}px;font-weight:800;color:#1e293b;line-height:1.2;margin-bottom:14px;flex-shrink:0">${esc(f)}</div>
          <div style="border-bottom:4px dashed #94a3b8;flex:1;min-height:56px;width:100%"></div>`,
         {
           padding: '20px 26px',
@@ -876,9 +895,6 @@
       ));
     });
     col.appendChild(body);
-    // #region agent log
-    fetch('http://127.0.0.1:7298/ingest/2c7b9048-535d-4975-be12-acca9b0197ba',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'ux-pre',hypothesisId:'H1',location:'renderLessonPages.js:makeFrames',message:'frames type+write space',data:{frameCount:frames.length,frameFontPx:40,writeMinH:56,layout:'chromeColumn-grid'},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
     drawDebugZones(p, 'frames');
     return p;
   }
@@ -1074,9 +1090,6 @@
       ));
     });
     col.appendChild(body);
-    // #region agent log
-    fetch('http://127.0.0.1:7298/ingest/2c7b9048-535d-4975-be12-acca9b0197ba',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'ux-pre',hypothesisId:'H1',location:'renderLessonPages.js:makeComprehension',message:'comp type+write',data:{qCount:questions.length,qFontPx:34,writeMinH:110,layout:'chromeColumn-grid'},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
     drawDebugZones(p, 'comprehension');
     return p;
   }
@@ -1115,9 +1128,6 @@
       ));
     });
     col.appendChild(body);
-    // #region agent log
-    fetch('http://127.0.0.1:7298/ingest/2c7b9048-535d-4975-be12-acca9b0197ba',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'ux-pre',hypothesisId:'H1',location:'renderLessonPages.js:makeCreative',message:'ideas type+write',data:{ideaFontPx:36,writeMinH:120,layout:'chromeColumn-grid'},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
     drawDebugZones(p, 'creative');
     return p;
   }

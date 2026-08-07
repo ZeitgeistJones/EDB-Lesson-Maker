@@ -1,0 +1,44 @@
+{
+  "note": "Append-only quality area snapshots.",
+  "snapshots": [
+    {
+      "at": "2026-08-07T01:20:07.721Z",
+      "tier": "all",
+      "cases": 20,
+      "iteration": 2,
+      "hard": 0,
+      "metricFails": 18,
+      "metricWarns": 145,
+      "m5Fails": 10,
+      "m7Fails": 3,
+      "layoutFails": 5,
+      "unvettedWords": 26,
+      "wishlistOpen": 7,
+      "meanM5": 0.363,
+      "meanM7": 0.767,
+      "pillarAvg": null,
+      "regressions": 69,
+      "note": null
+    },
+    {
+      "at": "2026-08-07T01:25:21.774Z",
+      "tier": "core",
+      "cases": 3,
+      "iteration": 1,
+      "hard": 0,
+      "metricFails": 2,
+      "metricWarns": 25,
+      "m5Fails": 1,
+      "m7Fails": 1,
+      "layoutFails": 0,
+      "unvettedWords": 6,
+      "wishlistOpen": 7,
+      "meanM5": 0.311,
+      "meanM7": 0.444,
+      "pillarAvg": 2.583,
+      "regressions": 7,
+      "note": null
+    }
+  ],
+  "updatedAt": "2026-08-07T01:25:21.775Z"
+}

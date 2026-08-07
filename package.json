@@ -17,6 +17,7 @@
     "quality:status": "node scripts/quality-loop-status.cjs",
     "quality:judge": "node scripts/quality-verdict.cjs",
     "quality:baseline": "node scripts/quality-baseline.cjs",
+    "quality:progress": "node scripts/quality-progress.cjs",
     "quality:matrix": "node scripts/page-matrix.cjs",
     "assets:icons": "node scripts/fetch-vocab-icons.mjs",
     "assets:vocab-sheet": "node scripts/import-vocab-sheet.mjs",

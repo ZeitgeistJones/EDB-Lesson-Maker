@@ -143,6 +143,11 @@ When judge says `wishlist` for icons only, append rows and continue other soft
 roots (M5/M8/M9/M10…) if iterations remain. Fetch/wire art only when the user
 opens art mode.
 
+**Progress over time:** after each bake you care about, `npm run quality:progress -- --snap`
+(also auto on `quality:judge`). Trends live in `docs/quality-progress.md` and
+`npm run quality:status`. Use this to see whether fails/M5/M7 are actually
+dropping across sessions — not just that another iteration ran.
+
 ## Wishlist (fetch later)
 
 **Art:** `docs/asset-wishlist.md` — wrong/missing pictures, no verified stand-in.

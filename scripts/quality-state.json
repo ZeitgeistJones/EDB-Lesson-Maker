@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-07T00:09:48.712Z",
+  "updatedAt": "2026-08-07T01:25:21.771Z",
   "iteration": 1,
   "softRoots": [
     "no-vetted-icon",
@@ -14,7 +14,8 @@
     "warm-sparse-non-coloring",
     "story-side-art-theme-mismatch",
     "gym-flat-variety-thin",
-    "metric-noise-dock-pack"
+    "metric-noise-dock-pack",
+    "outdoor-flat-variety-thin"
   ],
   "markers": [],
   "history": [
@@ -269,6 +270,29 @@
       "metricFails": 0,
       "metricWarns": 21,
       "regressions": 6
+    },
+    {
+      "at": "2026-08-07T01:25:21.770Z",
+      "iteration": 1,
+      "tier": "core",
+      "cases": [
+        "trampoline",
+        "minimal",
+        "loop2-bakery"
+      ],
+      "action": "wishlist",
+      "codes": [
+        "M5",
+        "M7"
+      ],
+      "roots": [
+        "outdoor-flat-variety-thin",
+        "no-vetted-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 2,
+      "metricWarns": 25,
+      "regressions": 7
     }
   ]
 }

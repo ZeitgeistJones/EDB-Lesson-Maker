@@ -113,4 +113,13 @@ if (fs.existsSync(WISHLIST_PATH)) {
   console.log('asset wishlist: (missing docs/asset-wishlist.md)');
 }
 console.log(`loop log: ${fs.existsSync(LOG_PATH) ? LOG_PATH : '(none yet)'}`);
-console.log('\ncommands: npm run quality | fullquality | quality:judge | quality:baseline');
+console.log('\ncommands: npm run quality | fullquality | quality:judge | quality:progress | quality:baseline');
+
+try {
+  const progress = require('./quality-progress.cjs');
+  const series = progress.loadSeries();
+  progress.writeMarkdown(series);
+  progress.printTrends(series);
+} catch (_) {
+  /* optional */
+}

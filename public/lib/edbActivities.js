@@ -554,13 +554,26 @@
     });
     const cards = vocabList(lesson).slice(0, 6);
     if (!cards.length) return;
-    L.placeDockRow(page, cards.map((v) => ({
+    // Keep dock cards big enough to tap (M10). Shrinking six 140px tiles into one
+    // row drops below ~40px — use noShrink + fewer cards if needed.
+    const dock = L.zoneRect(page, 'dock');
+    const gap = 14;
+    let cardW = 140;
+    let cardH = 72;
+    let fit = cards;
+    if (dock && dock.w) {
+      const maxN = Math.max(2, Math.floor((dock.w + gap) / (96 + gap)));
+      if (fit.length > maxN) fit = fit.slice(0, maxN);
+      cardW = Math.max(96, Math.min(140, Math.floor((dock.w - gap * Math.max(0, fit.length - 1)) / fit.length)));
+      cardH = Math.max(56, Math.min(72, cardW));
+    }
+    L.placeDockRow(page, fit.map((v) => ({
       kind: 'tile',
       text: v.word,
       emoji: v.emoji,
       role: 'sortCard',
       meta: { word: v.word },
-    })), { w: 140, h: 52 });
+    })), { w: cardW, h: cardH, noShrink: true });
     page.notes.push('recipe:sortBins');
   }
 
@@ -701,6 +714,22 @@
     'castle-pond',
   ];
 
+  /** Trampoline / bounce lab — gym toys kids drag onto the king. */
+  const ROLEPLAY_DOCK_TRAMPOLINE = [
+    'gym-mat',
+    'sports-cone',
+    'soccer-ball',
+    'basketball',
+    'playground-ball',
+    'water-bottle',
+    'whistle',
+    'jump-rope',
+    'stopwatch',
+    'dumbbell',
+    'sport-frisbee',
+    'sport-skateboard',
+  ];
+
   function roleplayDockProps(lesson, hero, count) {
     const PB = window.PropBank;
     if (!PB || !PB.loaded()) return [];
@@ -719,13 +748,18 @@
       /dental|dentist/.test(heroKey)
       || /dentist|dental|tooth|teeth|clinic|floss|cavity|brush/.test(blob)
     );
+    const trampoline = !face && !dental && (
+      heroKey === 'trampoline'
+      || /trampolin|bounce|backflip/.test(blob)
+    );
     const out = [];
     const exclude = [hero && hero.key].filter(Boolean);
 
-    // 1) Curated docks for face / dental (and optional castle shortlist)
+    // 1) Curated docks for face / dental / trampoline / castle
     let prefer = null;
     if (face) prefer = ROLEPLAY_DOCK_FACE;
     else if (dental) prefer = ROLEPLAY_DOCK_DENTAL;
+    else if (trampoline) prefer = ROLEPLAY_DOCK_TRAMPOLINE;
     else if (kit && kit.pack === 'castle') prefer = ROLEPLAY_DOCK_CASTLE;
 
     if (prefer) {

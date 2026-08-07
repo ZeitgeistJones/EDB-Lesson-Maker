@@ -200,6 +200,16 @@ function main() {
   });
   saveState(state);
 
+  try {
+    const progress = require('./quality-progress.cjs');
+    const { series } = progress.appendSnapshot(
+      progress.snapshotFromReport(report, { iteration, scores: verdict.scores || null })
+    );
+    progress.writeMarkdown(series);
+  } catch (err) {
+    console.warn('quality progress snap skipped:', err.message);
+  }
+
   const codes = (decision.codes || (decision.code ? [decision.code] : [])).join(', ') || '—';
   appendLog(
     `- ${fmtDate(new Date())} iter ${iteration} (${report.tier || 'core'}) — **${decision.action}** ${codes} · hard ${hardFailures.length} · metric ${metricFails} fail / ${metricWarns} warn · roots: ${roots.join(', ') || '—'}${
