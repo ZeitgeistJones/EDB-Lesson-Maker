@@ -35,6 +35,8 @@ Optional:
 
 Illustration and reading card are **separate zones** (no text over art). Matches board readability rules and picture-book pedagogy for novice readers.
 
+**Invariant:** the **page** background stays a quiet flat (H2). Do not reopen place scenes as full-bleed story page picks — put dentist/beach/etc. art in the banner/side slot only. Emoji caption art is the offline fallback when StoryArt is off or fails.
+
 ## Smoke
 
 ```bash

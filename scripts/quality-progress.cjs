@@ -6,6 +6,8 @@
  *   npm run quality:progress -- --snap    # snapshot last bake into the series
  *
  * Snapshots are also written automatically by quality:judge.
+ *
+ * Deltas only compare same tier + same case count (core×3 vs all×20 is not a trend).
  */
 const fs = require('fs');
 const path = require('path');
@@ -138,6 +140,11 @@ function appendSnapshot(snap) {
   return { series, snap, deduped: false };
 }
 
+function comparable(a, b) {
+  if (!a || !b) return false;
+  return a.tier === b.tier && a.cases === b.cases;
+}
+
 function deltaStr(prev, cur, better) {
   if (prev == null || cur == null) return '·';
   const d = cur - prev;
@@ -146,6 +153,33 @@ function deltaStr(prev, cur, better) {
   const arrow = improved ? '↑' : '↓';
   const n = Number.isInteger(d) ? String(d) : d.toFixed(2);
   return `${arrow}${d > 0 ? '+' : ''}${n}`;
+}
+
+/** Previous snap that is safe to delta against (same tier + case count). */
+function priorComparable(snaps, index) {
+  const cur = snaps[index];
+  for (let i = index - 1; i >= 0; i--) {
+    if (comparable(snaps[i], cur)) return snaps[i];
+  }
+  return null;
+}
+
+function firstComparable(snaps, last) {
+  for (let i = 0; i < snaps.length; i++) {
+    if (comparable(snaps[i], last)) return snaps[i];
+  }
+  return null;
+}
+
+function warnHonestyLine(snap) {
+  if (!snap || typeof snap.metricWarns !== 'number') return null;
+  if (snap.metricFails === 0 && snap.metricWarns >= 40) {
+    return 'Note: 0 soft *fails* but **' + snap.metricWarns + ' soft warns** — not “clean” yet; warns still need an owner.';
+  }
+  if (snap.metricFails <= 2 && snap.metricWarns >= 80) {
+    return 'Note: almost no soft fails, but **' + snap.metricWarns + ' soft warns** remain — don’t treat this as done.';
+  }
+  return null;
 }
 
 function writeMarkdown(series) {
@@ -157,7 +191,10 @@ function writeMarkdown(series) {
     '`npm run quality:progress -- --snap` and automatically on `quality:judge`.',
     'Do not hand-edit the numbers — append via those commands.',
     '',
-    '**Reading the arrows:** ↑ improved · ↓ worsened · → flat (vs previous snapshot).',
+    '**Reading the arrows:** ↑ improved · ↓ worsened · → flat.',
+    'Deltas only vs a prior row with the **same tier and case count**',
+    '(core×3 vs all×20 is not a trend — those rows show raw numbers only).',
+    'Prefer `fullquality` → `fullquality` for scoreboard reads.',
     'Lower-is-better for fails/unvetted; higher-is-better for mean M5/M7 and pillars.',
     '',
   ];
@@ -168,13 +205,20 @@ function writeMarkdown(series) {
     return;
   }
 
+  const last = snaps[snaps.length - 1];
+  const honesty = warnHonestyLine(last);
+  if (honesty) {
+    lines.push(`> ${honesty}`, '');
+  }
+
   const recent = snaps.slice(-12);
   const header = ['Date', 'Tier', 'cases', ...AREAS.map((a) => a.label)];
   lines.push('| ' + header.join(' | ') + ' |');
   lines.push('| ' + header.map(() => '---').join(' | ') + ' |');
 
+  const absStart = snaps.length - recent.length;
   recent.forEach((s, i) => {
-    const prev = i === 0 ? null : recent[i - 1];
+    const prev = priorComparable(snaps, absStart + i);
     const date = String(s.at || '').slice(0, 10);
     const cells = [
       date,
@@ -183,21 +227,29 @@ function writeMarkdown(series) {
       ...AREAS.map((a) => {
         const v = s[a.key];
         const shown = v == null ? '—' : String(v);
-        const d = prev ? deltaStr(prev[a.key], v, a.better) : '';
+        if (!prev) return shown;
+        const d = deltaStr(prev[a.key], v, a.better);
         return d && d !== '·' && d !== '→' ? `${shown} ${d}` : shown;
       }),
     ];
     lines.push('| ' + cells.join(' | ') + ' |');
   });
 
-  const first = snaps[0];
-  const last = snaps[snaps.length - 1];
-  lines.push('', '## Since first snapshot', '');
-  for (const a of AREAS) {
-    const d = deltaStr(first[a.key], last[a.key], a.better);
-    lines.push(`- **${a.label}:** ${first[a.key] ?? '—'} → ${last[a.key] ?? '—'} (${d})`);
+  const first = firstComparable(snaps, last);
+  lines.push('', `## Since first comparable \`${last.tier}\` × ${last.cases} cases`, '');
+  if (!first || first === last) {
+    lines.push('_Need another snapshot with the same tier and case count before trends mean anything._', '');
+  } else {
+    lines.push(
+      `_Baseline: ${String(first.at || '').slice(0, 10)} → latest ${String(last.at || '').slice(0, 10)}_`,
+      ''
+    );
+    for (const a of AREAS) {
+      const d = deltaStr(first[a.key], last[a.key], a.better);
+      lines.push(`- **${a.label}:** ${first[a.key] ?? '—'} → ${last[a.key] ?? '—'} (${d})`);
+    }
+    lines.push('');
   }
-  lines.push('');
   fs.writeFileSync(MD_PATH, lines.join('\n'));
 }
 
@@ -209,11 +261,18 @@ function printTrends(series) {
     return;
   }
   const last = snaps[snaps.length - 1];
-  const prev = snaps.length > 1 ? snaps[snaps.length - 2] : null;
+  const prev = priorComparable(snaps, snaps.length - 1);
   console.log(
     `snapshots: ${snaps.length}   latest: ${last.at}  tier=${last.tier}  cases=${last.cases}` +
       (last.iteration != null ? `  iter=${last.iteration}` : '')
   );
+  if (!prev) {
+    console.log('  (no prior same-tier / same-case-count snap — deltas withheld)');
+  } else {
+    console.log(`  vs prior comparable: ${prev.at}  tier=${prev.tier}  cases=${prev.cases}`);
+  }
+  const honesty = warnHonestyLine(last);
+  if (honesty) console.log(`  ${honesty.replace(/\*\*/g, '').replace(/\*/g, '')}`);
   for (const a of AREAS) {
     const v = last[a.key];
     const d = prev ? deltaStr(prev[a.key], v, a.better) : '·';
@@ -251,5 +310,7 @@ module.exports = {
   writeMarkdown,
   loadSeries,
   printTrends,
+  comparable,
+  priorComparable,
   AREAS,
 };

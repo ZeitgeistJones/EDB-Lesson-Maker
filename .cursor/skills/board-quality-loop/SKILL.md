@@ -145,8 +145,9 @@ opens art mode.
 
 **Progress over time:** after each bake you care about, `npm run quality:progress -- --snap`
 (also auto on `quality:judge`). Trends live in `docs/quality-progress.md` and
-`npm run quality:status`. Use this to see whether fails/M5/M7 are actually
-dropping across sessions — not just that another iteration ran.
+`npm run quality:status`. **Only compare same tier + same case count**
+(`fullquality`→`fullquality`). Cross-tier deltas are withheld so the scoreboard
+doesn’t lie. Zero soft fails with a huge warn pile is not “clean.”
 
 ## Wishlist (fetch later)
 

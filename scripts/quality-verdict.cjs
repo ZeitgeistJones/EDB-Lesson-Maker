@@ -220,6 +220,11 @@ function main() {
   console.log(`Verdict accepted — iteration ${iteration} (${report.tier || 'core'})`);
   console.log(`Hard failures from bake: ${hardFailures.length}`);
   console.log(`Metric flags: ${metricFails} fail / ${metricWarns} warn · regressions: ${(report.regressions || []).length}`);
+  if (metricFails === 0 && metricWarns >= 40) {
+    console.log(`Note: zero soft fails but ${metricWarns} soft warns — not clean yet.`);
+  } else if (metricFails <= 2 && metricWarns >= 80) {
+    console.log(`Note: almost no soft fails, but ${metricWarns} soft warns remain — don't treat as done.`);
+  }
   console.log(`Roots this pass: ${roots.join(', ') || '(none)'}`);
   console.log('');
   console.log(`NEXT ACTION: ${decision.action}`);

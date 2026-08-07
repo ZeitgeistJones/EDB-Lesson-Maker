@@ -59,6 +59,8 @@ board** over floating a lonely mid-page card.
 
 - One flowing paragraph (not poem line breaks).
 - Scale type up when text is short (~56px+); card fills remaining height.
+- **Page background = quiet flat** (H2). Never put story body text on a full-bleed place scene.
+- **Picture = separate zone** — side panel or solo banner (`[data-story-art]`); reading card stays pale. Place immersion goes in that panel (generated StoryArt or a future scene fill), not under the type.
 
 ### King activity dock (make-a-face, etc.)
 
@@ -93,6 +95,7 @@ board** over floating a lonely mid-page card.
 | Zones, `dockReservePx`, `heroStage` dock | `public/lib/edbLayout.js` |
 | `matchDock`, `heroProp`, `ROLEPLAY_DOCK_FACE` | `public/lib/edbActivities.js` |
 | Quiet house flats / title pin | `public/lib/sceneBackgrounds.js`, `docs/bg-theme-sets.md` |
+| Story panel art (not page BG) | `docs/story-art.md`, `applyStoryArt` in `renderLessonPages.js` |
 | Quality loop | `.cursor/skills/board-quality-loop/SKILL.md` |
 | King stage product rules | `.cursor/skills/king-stage-edb/SKILL.md` |
 
@@ -103,3 +106,4 @@ board** over floating a lonely mid-page card.
 - Scaling dock `w`/`h` independently (breaks H7).
 - Shipping black-field title art “for now”.
 - Leaving write-in pages as short cards with huge purple margins below.
+- Full-bleed place scenes under story reading text (use the art panel instead).

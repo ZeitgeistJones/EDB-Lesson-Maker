@@ -476,8 +476,9 @@
   }
 
   /** Section list for SceneBackgrounds.planFor — mirrors the render spine.
-   *  Scenes are gated off the spine by H2 (quiet flats only). Variety comes from
-   *  rotating quiet flats; thin place sets may borrow one house cool mid-panel. */
+   *  Page picks stay quiet flats (H2): chrome + story *text* need empty washes.
+   *  Story place art belongs in `[data-story-art]` panels, not as page scenes.
+   *  Variety = rotating flats; thin place sets may borrow one house cool mid-panel. */
   function buildSectionList(lesson, meta) {
     const vocab = (lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v.word)).filter(Boolean);
     const topic = lesson.title || '';
