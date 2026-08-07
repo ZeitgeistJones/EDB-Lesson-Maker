@@ -173,35 +173,40 @@ module.exports = async function handler(req, res) {
   const aspect = multi ? '3:4' : '16:9';
 
   try {
-    const styleRes = await generateImage(
-      [{ text: stylePrompt(title, level) }],
-      '1:1'
-    );
-    if (!styleRes.ok) {
-      return res.status(502).json({
-        error: `Style reference failed: ${styleRes.reason}`,
-        pages: pagesIn.map((p) => ({
-          index: Number(p.index) || 0,
-          dataUrl: null,
-          reason: 'style-failed',
-        })),
-      });
-    }
-
-    const styleCheck = await hasLegibleText(styleRes);
-    let styleRef = styleRes;
-    if (styleCheck.reject) {
-      // Retry style once without accepting texty sheet
-      const retry = await generateImage(
-        [{ text: stylePrompt(title, level) + '\nReminder: ZERO text or letters. No color labels, no alphabet samples.' }],
+    // One story page: skip the paid style-reference image — nothing to lock across pages.
+    // Prompt-only style keeps the look; saves ~1 image (+ possible text-gate retry).
+    let styleRef = null;
+    if (multi) {
+      const styleRes = await generateImage(
+        [{ text: stylePrompt(title, level) }],
         '1:1'
       );
-      if (retry.ok) {
-        const retryCheck = await hasLegibleText(retry);
-        if (!retryCheck.reject) styleRef = retry;
-        else styleRef = null;
-      } else {
-        styleRef = null;
+      if (!styleRes.ok) {
+        return res.status(502).json({
+          error: `Style reference failed: ${styleRes.reason}`,
+          pages: pagesIn.map((p) => ({
+            index: Number(p.index) || 0,
+            dataUrl: null,
+            reason: 'style-failed',
+          })),
+        });
+      }
+
+      const styleCheck = await hasLegibleText(styleRes);
+      styleRef = styleRes;
+      if (styleCheck.reject) {
+        // Retry style once without accepting texty sheet
+        const retry = await generateImage(
+          [{ text: stylePrompt(title, level) + '\nReminder: ZERO text or letters. No color labels, no alphabet samples.' }],
+          '1:1'
+        );
+        if (retry.ok) {
+          const retryCheck = await hasLegibleText(retry);
+          if (!retryCheck.reject) styleRef = retry;
+          else styleRef = null;
+        } else {
+          styleRef = null;
+        }
       }
     }
 
@@ -239,7 +244,7 @@ module.exports = async function handler(req, res) {
         outPages.push({
           index,
           dataUrl: gen.dataUrl,
-          reason: styleRef ? undefined : 'prompt-only-style',
+          reason: styleRef ? undefined : (multi ? 'prompt-only-style' : 'solo-prompt-style'),
         });
       } catch (err) {
         const reason = err?.name === 'AbortError' ? 'timeout' : (err.message || 'page-failed');

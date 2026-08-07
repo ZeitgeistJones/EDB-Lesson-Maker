@@ -20,7 +20,7 @@ Optional:
 - **Literal** paragraph-matching scenes for A1–A2 (not inferential / ironic art).
 - Flat children’s-book gouache wash; culturally generic; uncluttered.
 - **No text / letters / signs** in prompts; a cheap vision YES/NO check rejects failures.
-- One **style reference** image per lesson, passed into every page call with an explicit style-reference role.
+- One **style reference** image per lesson **only when there are 2+ story pages**; solo pages use prompt-only style (saves one paid image).
 - Partial success is fine — null pages keep today’s quiet flat + emoji/caption side art.
 
 ## Pipeline

@@ -869,7 +869,9 @@
       const rows = dock.h >= 120 && tools.length > 10 ? 2 : 1;
       const cols = Math.ceil(tools.length / rows);
       const rowH = Math.floor((dock.h - rowGap * (rows - 1) - 4) / rows);
-      const maxH = Math.min(68, Math.max(56, rowH));
+      // Grab floor = M10 warn (64) — never ship postage-stamp dock toys.
+      const DOCK_MIN = 64;
+      const maxH = Math.min(72, Math.max(DOCK_MIN, rowH));
       const maxCellW = Math.floor((dock.w - gap * Math.max(0, cols - 1)) / cols);
 
       for (let r = 0; r < rows; r++) {
@@ -879,21 +881,21 @@
         let sized = slice.map((t) => {
           const dockProp = Object.assign({}, t, { relativeScale: 1 });
           const s = PB.sizeFor(dockProp, {
-            maxH, maxW: Math.max(56, maxCellW), hardCap: maxH,
+            maxH, maxW: Math.max(DOCK_MIN, maxCellW), hardCap: maxH,
           });
           return { t, w: s.w, h: s.h };
-        }).filter((x) => Math.min(x.w, x.h) >= 48);
+        }).filter((x) => Math.min(x.w, x.h) >= DOCK_MIN);
         const totalW = sized.reduce((s, x) => s + x.w, 0) + gap * Math.max(0, sized.length - 1);
         if (totalW > dock.w) {
           const scale = dock.w / totalW;
           sized = sized.map(({ t, h }) => {
-            const nh = Math.max(48, Math.round(h * scale));
+            const nh = Math.max(DOCK_MIN, Math.round(h * scale));
             const dockProp = Object.assign({}, t, { relativeScale: 1 });
             const s = PB.sizeFor(dockProp, {
-              maxH: nh, maxW: Math.max(56, Math.floor(maxCellW)), hardCap: nh,
+              maxH: nh, maxW: Math.max(DOCK_MIN, Math.floor(maxCellW)), hardCap: nh,
             });
             return { t, w: s.w, h: s.h };
-          }).filter((x) => Math.min(x.w, x.h) >= 48);
+          }).filter((x) => Math.min(x.w, x.h) >= DOCK_MIN);
           while (sized.length > 4) {
             const tw = sized.reduce((s, x) => s + x.w, 0) + gap * Math.max(0, sized.length - 1);
             if (tw <= dock.w) break;

@@ -416,6 +416,8 @@
 
   // Stronger dock placer that doesn't rely on score grid
   // opts: { w, h, noShrink } — noShrink keeps honest interactive sizes (match dock / phonics)
+  // Grab floor matches PropBank MIN_PROP_H / M10 warn (64px) — never shrink into postage stamps.
+  const DOCK_MIN = 64;
   function placeDockRow(page, items, size) {
     const dock = zoneRect(page, 'dock');
     if (!dock || !items.length) return [];
@@ -427,29 +429,38 @@
     // Shrink to fit one row when possible (unless caller demands honest sizes)
     if (!noShrink) {
       const maxW = Math.floor((dock.w - gap * Math.max(0, n - 1)) / n);
-      if (maxW < w && maxW >= 40) {
+      if (maxW < w && maxW >= DOCK_MIN) {
         const scale = maxW / w;
         w = maxW;
-        h = Math.max(36, Math.floor(h * scale));
+        h = Math.max(DOCK_MIN, Math.floor(h * scale));
       }
     }
     let cols = Math.max(1, Math.floor((dock.w + gap) / (w + gap)));
-    const rowsNeeded = Math.ceil(n / cols);
+    let rowsNeeded = Math.ceil(n / cols);
     if (!noShrink) {
-      const maxH = Math.floor((dock.h - gap * Math.max(0, rowsNeeded - 1)) / rowsNeeded);
-      if (maxH < h && maxH >= 32) h = maxH;
+      let maxH = Math.floor((dock.h - gap * Math.max(0, rowsNeeded - 1)) / rowsNeeded);
+      // Prefer an extra row over going under the grab floor.
+      if (maxH < DOCK_MIN && n > 1) {
+        cols = Math.max(1, Math.ceil(n / 2));
+        rowsNeeded = Math.ceil(n / cols);
+        maxH = Math.floor((dock.h - gap * Math.max(0, rowsNeeded - 1)) / rowsNeeded);
+      }
+      if (maxH < h && maxH >= DOCK_MIN) h = maxH;
+      else if (maxH < DOCK_MIN) h = DOCK_MIN;
     }
     cols = (size && size.cols)
       ? Math.max(1, size.cols)
-      : Math.max(1, Math.floor((dock.w + gap) / (w + gap)));
+      : Math.max(1, Math.floor((dock.w + gap) / (Math.max(w, DOCK_MIN) + gap)));
+    w = Math.max(w, DOCK_MIN);
+    h = Math.max(h, DOCK_MIN);
     const rows = Math.ceil(n / cols);
     // Honest grids must fit: if the caller locked size, shrink only when
     // vertical clamp would stack pieces on top of each other.
     if (size && size.noShrink) {
       const needH = rows * h + gap * Math.max(0, rows - 1);
       if (needH > dock.h) {
-        h = Math.max(96, Math.floor((dock.h - gap * Math.max(0, rows - 1)) / rows));
-        w = h;
+        h = Math.max(DOCK_MIN, Math.floor((dock.h - gap * Math.max(0, rows - 1)) / rows));
+        w = Math.max(DOCK_MIN, h);
       }
     }
     const gridW = cols * w + gap * Math.max(0, cols - 1);
