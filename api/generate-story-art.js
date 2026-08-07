@@ -9,7 +9,7 @@
  * Returns: { pages: [{ index, dataUrl|null, reason? }], styleRef?: dataUrl }
  */
 const API_KEY = process.env.GEMINI_API_KEY;
-const IMAGE_MODEL = process.env.GEMINI_IMAGE_MODEL || 'gemini-3.1-flash-image';
+const IMAGE_MODEL = process.env.GEMINI_IMAGE_MODEL || 'gemini-2.5-flash-image';
 const VISION_MODEL = process.env.GEMINI_VISION_MODEL || process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite';
 const PER_IMAGE_MS = Number(process.env.STORY_ART_TIMEOUT_MS) || 45000;
 const MAX_PAGES = 3;

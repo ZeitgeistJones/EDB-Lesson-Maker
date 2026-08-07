@@ -1,5 +1,5 @@
 /**
- * Benchmark gemini-3.1-flash-image latency (p50/p95) for story-art planning.
+ * Benchmark story-art image model latency (p50/p95). Default: gemini-2.5-flash-image.
  *
  * Usage: node scripts/smoke-story-art-latency.mjs [N]
  * Needs GEMINI_API_KEY in .env (or env). Optional GEMINI_IMAGE_MODEL.
@@ -20,7 +20,7 @@ if (existsSync(envPath)) {
 }
 
 const API_KEY = process.env.GEMINI_API_KEY;
-const MODEL = process.env.GEMINI_IMAGE_MODEL || 'gemini-3.1-flash-image';
+const MODEL = process.env.GEMINI_IMAGE_MODEL || 'gemini-2.5-flash-image';
 const N = Math.max(1, Math.min(10, Number(process.argv[2]) || 3));
 
 if (!API_KEY) {

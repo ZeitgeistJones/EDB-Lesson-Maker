@@ -11,7 +11,7 @@ Optional:
 
 | Env | Default | Role |
 |-----|---------|------|
-| `GEMINI_IMAGE_MODEL` | `gemini-3.1-flash-image` | Image generation |
+| `GEMINI_IMAGE_MODEL` | `gemini-2.5-flash-image` | Image generation (cheaper 1K lane; override if needed) |
 | `GEMINI_VISION_MODEL` | `GEMINI_MODEL` / flash-lite | Legible-text gate |
 | `STORY_ART_TIMEOUT_MS` | `45000` | Per-image abort |
 
