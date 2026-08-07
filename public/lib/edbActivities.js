@@ -721,6 +721,28 @@
     'space-cubesat-gray',
   ];
 
+  /** Classical concert roleplay — cream/gold musicians for the terrace stage. */
+  const ROLEPLAY_DOCK_MUSIC = [
+    'musician-piano',
+    'musician-violin',
+    'musician-cello',
+    'musician-flute',
+    'musician-harp',
+    'musician-trumpet',
+    'musician-clarinet',
+    'musician-horn',
+    'musician-conductor',
+    'musician-trombone',
+    'musician-oboe',
+    'musician-bassoon',
+    'musician-bass',
+    'musician-guitar',
+    'musician-tuba',
+    'musician-drums',
+    'musician-triangle',
+    'musician-singer',
+  ];
+
   /** Trampoline / bounce lab — gym toys kids drag onto the king. */
   const ROLEPLAY_DOCK_TRAMPOLINE = [
     'gym-mat',
@@ -770,6 +792,7 @@
     else if (trampoline) prefer = ROLEPLAY_DOCK_TRAMPOLINE;
     else if (kit && kit.pack === 'castle') prefer = ROLEPLAY_DOCK_CASTLE;
     else if (kit && kit.pack === 'space') prefer = ROLEPLAY_DOCK_SPACE;
+    else if (kit && kit.pack === 'music') prefer = ROLEPLAY_DOCK_MUSIC;
 
     if (prefer) {
       for (const key of prefer) {
@@ -780,6 +803,7 @@
         if (face && p.aspect && (p.aspect < 0.45 || p.aspect > 3.0)) continue;
         if (!face && prefer === ROLEPLAY_DOCK_CASTLE && p.aspect && (p.aspect < 0.35 || p.aspect > 3.5)) continue;
         if (!face && prefer === ROLEPLAY_DOCK_SPACE && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
+        if (!face && prefer === ROLEPLAY_DOCK_MUSIC && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && prefer === ROLEPLAY_DOCK_DENTAL && p.aspect && (p.aspect < 0.3 || p.aspect > 2.6)) continue;
         exclude.push(p.key);
         out.push(p);
