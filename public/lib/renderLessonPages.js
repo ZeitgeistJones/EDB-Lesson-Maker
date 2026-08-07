@@ -562,7 +562,28 @@
     const PB = window.PropBank;
     if (PB && typeof PB.loaded === 'function' && PB.loaded() && PB.assessKit) {
       const kit = PB.assessKit(lesson);
-      if (kit && kit.ready && kit.hero && kit.hero.path) return kit.hero.path;
+      if (kit && kit.ready && kit.hero && kit.hero.path) {
+        const heroKey = kit.hero.key || '';
+        const topicBlob = [lesson.title, ...(lesson.vocabulary || []).map((v) => v.word || v)]
+          .join(' ')
+          .toLowerCase();
+        // Classical / music kits use a terrace scene that already paints a piano —
+        // stacking grand-piano charm is the "piano on piano" failure.
+        if (
+          kit.pack === 'music' ||
+          /classical|compose|composer|orchestra|symphony|concert|masterpiece/.test(topicBlob)
+        ) {
+          if (/piano|dh-piano/.test(heroKey)) {
+            const standIn = PB.resolve({
+              word: 'musician-conductor',
+              seed: (lesson && lesson.title) || '',
+              family: PB.familyFor ? PB.familyFor(lesson) : null,
+            });
+            return (standIn && standIn.path) || null;
+          }
+        }
+        return kit.hero.path;
+      }
     }
     // Non-kit fallback: curated face decoration for face lessons only
     const topicBlob = [lesson.title, ...(lesson.vocabulary || []).map((v) => v.word || v)].join(' ').toLowerCase();
@@ -602,6 +623,10 @@
 
     const charmSrc = titleCharmSrc(lesson);
     if (charmSrc) {
+      // Dark terrace scenes: light title ink so copy stays readable.
+      title.style.color = '#fff';
+      title.style.textShadow = '0 2px 16px rgba(15,23,42,0.55)';
+      metaLine.style.color = '#e2e8f0';
       p.appendChild(img(charmSrc, {
         position: 'relative',
         width: '440px',
@@ -1424,6 +1449,16 @@
       const heroKey = actAssign.ctx && actAssign.ctx.hero && actAssign.ctx.hero.key;
       if (heroKey === 'grand-piano' || heroKey === 'dh-piano') {
         actAssign.ctx = Object.assign({}, actAssign.ctx || {}, { skipKing: true });
+        // Pieces were applied in buildBoardPlan BEFORE bg picks — rebuild activity
+        // so skipKing actually removes the duplicate piano cutout.
+        const actPage = (boardPlan.pages || []).find((p) => p.pageKey === 'activity');
+        if (actPage && window.EdbActivities && window.EdbActivities.applyToPage) {
+          actPage.locked = [];
+          actPage.unlocked = [];
+          actPage.notes = [];
+          actPage.occupied = [];
+          window.EdbActivities.applyToPage(lesson, actPage, 'activity', boardPlan);
+        }
       }
     }
     // #region agent log

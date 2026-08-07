@@ -903,46 +903,69 @@
     // #endregion
 
     // Face kits ship plenty of parts — use two dock rows when the zone is tall enough.
+    // Tall-thin roleplay cutouts (musicians ~0.4–0.65) need height ≥ DOCK_MIN/aspect for
+    // grabbable width; a 72px cap + 2 rows filters them all out except squat pieces.
     const tools = roleplayDockProps(lesson, prop, 18);
     if (tools.length && dock) {
       const gap = 6;
       const rowGap = 6;
-      const rows = dock.h >= 120 && tools.length > 10 ? 2 : 1;
-      const cols = Math.ceil(tools.length / rows);
-      const rowH = Math.floor((dock.h - rowGap * (rows - 1) - 4) / rows);
       // Grab floor = M10 warn (64) — never ship postage-stamp dock toys.
       const DOCK_MIN = 64;
-      const maxH = Math.min(72, Math.max(DOCK_MIN, rowH));
-      const maxCellW = Math.floor((dock.w - gap * Math.max(0, cols - 1)) / cols);
+      const needHFor = (t) => Math.ceil(DOCK_MIN / Math.max(0.05, Number(t.aspect) || 1));
+      const thinCount = tools.filter((t) => (Number(t.aspect) || 1) < 0.7).length;
+      const maxNeedH = tools.reduce((m, t) => Math.max(m, needHFor(t)), DOCK_MIN);
+      let rows = 1;
+      if (dock.h >= 120 && tools.length > 10 && thinCount < tools.length * 0.5) {
+        const rowH2 = Math.floor((dock.h - rowGap - 4) / 2);
+        // Only use 2 rows when every tool can still hit DOCK_MIN width at that rowH.
+        if (rowH2 >= maxNeedH) rows = 2;
+      } else if (dock.h >= 120 && tools.length > 10) {
+        // Mostly tall-thin: pick the largest row count that still satisfies needH.
+        for (let tryRows = 2; tryRows >= 1; tryRows--) {
+          const tryH = Math.floor((dock.h - rowGap * (tryRows - 1) - 4) / tryRows);
+          if (tryH >= maxNeedH || tryRows === 1) {
+            rows = tryRows;
+            break;
+          }
+        }
+      }
+      const cols = Math.ceil(tools.length / rows);
+      const rowH = Math.floor((dock.h - rowGap * (rows - 1) - 4) / rows);
+      // No hard 72 cap. Prefer grab-floor sizing (min side = DOCK_MIN) so many
+      // tall-thin musicians fit; bloating to full rowH makes each too wide and
+      // the packer drops them. Cap height at rowH unless needH requires more.
+      const maxH = Math.max(DOCK_MIN, rowH);
+      const sizedPerRow = [];
 
       for (let r = 0; r < rows; r++) {
         const slice = tools.slice(r * cols, (r + 1) * cols);
         if (!slice.length) continue;
-        // Full relativeScale so dock parts use the row height (not tiny manifest scales).
+        // Full relativeScale — size to the smallest grabbable box for this aspect.
         let sized = slice.map((t) => {
           const dockProp = Object.assign({}, t, { relativeScale: 1 });
+          const aspect = Math.max(0.05, Number(t.aspect) || 1);
+          // Tall-thin: h = DOCK_MIN/aspect → w≈64. Wide/square: h = DOCK_MIN.
+          const grabH = aspect >= 1 ? DOCK_MIN : Math.ceil(DOCK_MIN / aspect);
+          const pieceMaxH = Math.min(Math.max(grabH, DOCK_MIN), Math.max(rowH, grabH));
           const s = PB.sizeFor(dockProp, {
-            maxH, maxW: Math.max(DOCK_MIN, maxCellW), hardCap: maxH,
+            maxH: pieceMaxH,
+            maxW: Math.max(DOCK_MIN, dock.w),
+            hardCap: pieceMaxH,
           });
           return { t, w: s.w, h: s.h };
         }).filter((x) => Math.min(x.w, x.h) >= DOCK_MIN && x.w <= dock.w);
-        const totalW = sized.reduce((s, x) => s + x.w, 0) + gap * Math.max(0, sized.length - 1);
-        if (totalW > dock.w) {
-          const scale = dock.w / totalW;
-          sized = sized.map(({ t, h }) => {
-            const nh = Math.max(DOCK_MIN, Math.round(h * scale));
-            const dockProp = Object.assign({}, t, { relativeScale: 1 });
-            const s = PB.sizeFor(dockProp, {
-              maxH: nh, maxW: Math.max(DOCK_MIN, Math.floor(maxCellW)), hardCap: nh,
-            });
-            return { t, w: s.w, h: s.h };
-          }).filter((x) => Math.min(x.w, x.h) >= DOCK_MIN && x.w <= dock.w);
-          while (sized.length > 1) {
-            const tw = sized.reduce((s, x) => s + x.w, 0) + gap * Math.max(0, sized.length - 1);
-            if (tw <= dock.w) break;
-            sized.pop();
-          }
+        // Never scale below grab-floor (that re-filters thin props). Drop overflow.
+        while (sized.length > 1) {
+          const tw = sized.reduce((s, x) => s + x.w, 0) + gap * Math.max(0, sized.length - 1);
+          if (tw <= dock.w) break;
+          sized.pop();
         }
+        // If a single remaining piece is somehow wider than the dock, drop it.
+        if (sized.length === 1) {
+          const tw = sized[0].w;
+          if (tw > dock.w) sized = [];
+        }
+        sizedPerRow.push(sized.length);
         const usedW = sized.reduce((s, x) => s + x.w, 0) + gap * Math.max(0, sized.length - 1);
         let originX = dock.x + Math.max(0, Math.floor((dock.w - usedW) / 2));
         const maxPieceH = sized.reduce((m, x) => Math.max(m, x.h), 0);
@@ -969,6 +992,10 @@
           originX = x + w + gap;
         });
       }
+      // #region agent log
+      const dockPlaced = (page.unlocked || []).filter((p) => p.role === 'dockPiece');
+      fetch('http://127.0.0.1:7330/ingest/c54d6774-70b5-407f-ba51-380519a0c4ca',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'post-fix',hypothesisId:'D',location:'edbActivities.js:heroProp:dock',message:'dock sizing after thin-aspect fix',data:{tools:tools.length,rows,maxH,rowH,thinCount,maxNeedH,sizedPerRow,dockSample:dockPlaced.slice(0,12).map((p)=>p.meta&&p.meta.propKey)},timestamp:Date.now()})}).catch(()=>{});
+      // #endregion
     }
     page.notes.push('recipe:heroProp');
   }
