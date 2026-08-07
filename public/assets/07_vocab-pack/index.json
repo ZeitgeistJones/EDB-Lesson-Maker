@@ -1,4 +1,9 @@
 {
+ "airport gate": {
+  "file": "gate.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "alphabet": {
   "file": "alphabet.png",
   "emoji": "🔤",
@@ -187,7 +192,7 @@
  "bridge": {
   "file": "bridge.png",
   "emoji": "🌉",
-  "codepoint": "1f309"
+  "source": "generated"
  },
  "broccoli": {
   "file": "broccoli.png",
@@ -282,7 +287,7 @@
  "castle": {
   "file": "castle.png",
   "emoji": "🏰",
-  "codepoint": "1f3f0"
+  "source": "generated"
  },
  "cat": {
   "file": "cat.png",
@@ -514,6 +519,11 @@
   "emoji": "🚪",
   "codepoint": "1f6aa"
  },
+ "dragon": {
+  "file": "dragon.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "dress": {
   "file": "dress.png",
   "emoji": "👗",
@@ -569,6 +579,16 @@
   "emoji": "👁️",
   "codepoint": "1f441"
  },
+ "eyes": {
+  "file": "eyes.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "face": {
+  "file": "face.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "factory": {
   "file": "factory.png",
   "emoji": "🏭",
@@ -612,7 +632,7 @@
  "flag": {
   "file": "flag.png",
   "emoji": "🚩",
-  "codepoint": "1f6a9"
+  "source": "generated"
  },
  "flower": {
   "file": "flower.png",
@@ -658,11 +678,6 @@
   "file": "game.png",
   "emoji": "🎮",
   "codepoint": "1f3ae"
- },
- "airport gate": {
-  "file": "gate.png",
-  "emoji": "",
-  "source": "generated"
  },
  "gift": {
   "file": "gift.png",
@@ -713,6 +728,11 @@
   "file": "guitar.png",
   "emoji": "🎸",
   "codepoint": "1f3b8"
+ },
+ "hair": {
+  "file": "hair.png",
+  "emoji": "",
+  "source": "generated"
  },
  "hamburger": {
   "file": "hamburger.png",
@@ -843,6 +863,11 @@
   "file": "kiwi.png",
   "emoji": "🥝",
   "codepoint": "1f95d"
+ },
+ "knight": {
+  "file": "knight.png",
+  "emoji": "",
+  "source": "generated"
  },
  "koala": {
   "file": "koala.png",
@@ -1361,6 +1386,11 @@
  },
  "small": {
   "file": "small.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "smile": {
+  "file": "smile.png",
   "emoji": "",
   "source": "generated"
  },

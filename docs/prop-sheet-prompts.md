@@ -248,6 +248,30 @@ Reading order:
 Keys: tray, queue, napkin, delicious, cafeteria, lunch, hungry, thirsty, menu
 ```
 
+### Sheet V5 — Castle + face words (wishlist: knight/dragon/face/hair)
+
+**Status: wired** — imported via `npm run assets:vocab-sheet` into `07_vocab-pack`
+(`assets-inbox/vocab-castle-face-3x3.png`).
+
+```
+Generate a 3×3 grid of vocabulary icons for young ESL learners. Each panel ONE subject on solid white. Panels divided evenly, no divider lines.
+
+[VOCAB ICON STYLE]
+
+Reading order:
+1. knight — armored knight with sword and shield, standing, kid-safe cartoon
+2. dragon — friendly green dragon, clear wings and tail (not a lizard, not a dinosaur)
+3. castle — simple stone castle with towers and a gate
+4. face — simple blank kid face outline (no hair, ready for features)
+5. hair — one clear hair style alone (wavy brown locks), not a whole head with face
+6. eyes — pair of simple cartoon eyes
+7. smile — simple smiling mouth
+8. bridge — stone arched bridge
+9. flag — red pennant flag on a pole
+
+Keys: knight, dragon, castle, face, hair, eyes, smile, bridge, flag
+```
+
 ## Not promptable (code)
 
 - **Programmatic prop recolouring** — already has `bodyHue` in the manifest; no art to generate.
