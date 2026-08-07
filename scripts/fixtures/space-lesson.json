@@ -1,0 +1,40 @@
+{
+  "title": "Space Station Trip",
+  "warmUp": {
+    "question": "Do you want to go to space?",
+    "sampleAnswer": "Yes, I want to fly."
+  },
+  "vocabulary": [
+    { "word": "rocket", "emoji": "🚀", "sentence": "The rocket is fast." },
+    { "word": "astronaut", "emoji": "🧑‍🚀", "sentence": "The astronaut waves." },
+    { "word": "planet", "emoji": "🪐", "sentence": "I see a planet." },
+    { "word": "moon", "emoji": "🌙", "sentence": "The moon is bright." },
+    { "word": "star", "emoji": "⭐", "sentence": "A star shines." },
+    { "word": "space", "emoji": "🌌", "sentence": "Space is big." }
+  ],
+  "sentenceFrames": ["I see a ____.", "The ____ is in space."],
+  "story": {
+    "title": "On the Station",
+    "pages": [
+      {
+        "heading": "Docking",
+        "text": "The rocket meets the space station. An astronaut looks at a planet.",
+        "visualTheme": "space station",
+        "visualCaption": "Space station"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is the astronaut?", "sampleAnswer": "In space / on the station." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What do you take to space?", "sampleAnswer": "I take a rocket." }
+  ],
+  "activity": {
+    "title": "Build the Station",
+    "prompt": "Put tools on the station.",
+    "templates": ["This is a ____."]
+  },
+  "reviewSentences": ["I like space.", "The rocket is big."]
+}

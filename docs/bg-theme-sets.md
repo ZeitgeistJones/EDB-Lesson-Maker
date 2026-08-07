@@ -87,6 +87,7 @@ Anti-formula section.
 | `gym-cool` | basketball corner, court lane fringe, rolled mat, wall-pad edge | outdoor meadow, clinic tooth, bakery dough |
 | `beach-warm` | shell, wave fringe, sand dollar, sun corner | wheat, bakery loaf, clinic sparkles |
 | `bakery-warm` | flour-dust haze, dough ball, loaf / baguette, rolling pin, whisk | **wheat sheaf / farm grain**, generic leaves, beach composition copy |
+| `supermarket-cool` | cart silhouette, blank price-tag, tote bag, aisle wall haze | outdoor meadow, bakery dough, clinic tooth |
 
 **Bakery example (accept):** a flour haze · b dough + flour · c loaf silhouette ·
 d rolling pin. **Reject:** wheat / wheat / cookie-as-only-signal / leaf alcove.
@@ -103,6 +104,7 @@ d rolling pin. **Reject:** wheat / wheat / cookie-as-only-signal / leaf alcove.
 | `gym-cool` | gym / sport / workout (indoor court washes) | wired (in-house Aug 2026) |
 | `beach-warm` | beach / ocean / shore | wired (in-house Aug 2026) |
 | `bakery-warm` | bakery / café | wired (in-house Aug 2026) |
+| `supermarket-cool` | supermarket / grocery / market | wired (in-house Aug 2026) |
 | `school-soft` | (legacy) superseded by `board-house` | kept on disk, not picker-default |
 | `face-soft` | **retired** — skin-tone peach read as literal skin | kept on disk, unwired |
 

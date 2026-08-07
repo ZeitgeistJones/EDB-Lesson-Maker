@@ -260,7 +260,8 @@
   /** Topic → preferred quiet flat set id. Place themes + face-only charm set. */
   const TOPIC_SETS = [
     { re: /\b(dentists?|dental|doctors?|clinic|hospital|nurse|tooth|teeth|medical)\b/, set: 'clinic-cool' },
-    { re: /\b(airport|travel|train|bus|plane|passport|station)\b/, set: 'travel-air' },
+    // No bare "station" — "Space Station" must not steal travel-air; train/bus station still match.
+    { re: /\b(airport|travel|train|bus|plane|passport|(?:train|bus|transit|railway)\s*stations?)\b/, set: 'travel-air' },
     { re: /\b(home|house|family|kitchen|apartment|bedroom|hotel)\b/, set: 'home-warm' },
     // Indoor gym before outdoor — "gym" must not land on park meadows.
     { re: /\b(gym|workout|athletic|basketball|fitness|sports?)\b/, set: 'gym-cool' },
@@ -268,7 +269,8 @@
     { re: /\b(beach|ocean|sea|shore|seaside|island)\b/, set: 'beach-warm' },
     // Place nouns only — bare "bread" must not steal supermarket lessons onto bakery.
     { re: /\b(bakerys?|bake\s*shop|pastry\s*shop|cafes?|caf[eé]s?)\b/, set: 'bakery-warm' },
-    { re: /\b(markets?|supermarkets?|grocer(?:y|ies)|farmers?\s*markets?)\b/, set: 'outdoor-fresh' },
+    // Supermarket aisle washes — not outdoor-fresh meadow.
+    { re: /\b(markets?|supermarkets?|grocer(?:y|ies)|farmers?\s*markets?)\b/, set: 'supermarket-cool' },
     // Face lessons only — tiny eye/wink eggs. Never the default for castle/school/etc.
     { re: /\b(faces?|eyes?|nose|mouth|cheek|make.?a.?face|blank.?face)\b/, set: 'board-face' },
   ];
@@ -296,6 +298,8 @@
     { re: /\b(zoo|park|animal|forest|garden|nature)\b/, want: ['outdoor', 'cool', 'warm'] },
     // "Living in…" titles must not steal the home palette over a real place.
     { re: /\b(home|house|family|kitchen|apartment|bedroom)\b/, want: ['warm', 'neutral'] },
+    { re: /\b(bakerys?|bake\s*shop|pastry|cafes?|caf[eé]|restaurants?)\b/, want: ['warm', 'neutral', 'cool'] },
+    { re: /\b(markets?|supermarkets?|grocery|groceries)\b/, want: ['cool', 'neutral', 'warm'] },
     { re: /\b(school|classroom|teacher|library)\b/, want: ['neutral', 'cool', 'warm'] },
     { re: /\b(gym|sport|trampoline|play|workout|athletic)\b/, want: ['cool', 'outdoor', 'warm'] },
   ];

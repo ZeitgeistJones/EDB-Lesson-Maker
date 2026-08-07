@@ -1489,6 +1489,42 @@
    "quiet": true,
    "set": "gym-cool",
    "palette": "cool"
+  },
+  "supermarket-a": {
+   "file": "flat_supermarket-a.png",
+   "tone": "supermarket cool — plain mint aisle wash",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "supermarket-cool",
+   "palette": "cool"
+  },
+  "supermarket-b": {
+   "file": "flat_supermarket-b.png",
+   "tone": "supermarket cool — corner cart silhouette",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "supermarket-cool",
+   "palette": "cool"
+  },
+  "supermarket-c": {
+   "file": "flat_supermarket-c.png",
+   "tone": "supermarket cool — blank price-tag corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "supermarket-cool",
+   "palette": "cool"
+  },
+  "supermarket-d": {
+   "file": "flat_supermarket-d.png",
+   "tone": "supermarket cool — tote bag corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "supermarket-cool",
+   "palette": "cool"
   }
  }
 }

@@ -176,6 +176,30 @@
       "meta": { "level": "A1", "duration": "30" },
       "expectScene": "school|classroom|music",
       "notes": "New topic probe — music class; no dedicated kit, check hollow-activity honesty"
+    },
+    {
+      "id": "library",
+      "fixture": "library-lesson.json",
+      "tier": "adversarial",
+      "meta": { "level": "A1", "duration": "30" },
+      "expectScene": "library|school|classroom",
+      "notes": "New topic probe — library stays on board-house (not a place-set gap)"
+    },
+    {
+      "id": "supermarket",
+      "fixture": "supermarket-lesson.json",
+      "tier": "adversarial",
+      "meta": { "level": "A1", "duration": "30" },
+      "expectScene": "supermarket|market|grocery|shop",
+      "notes": "New topic probe — supermarket-cool quiet flats (not outdoor meadow)"
+    },
+    {
+      "id": "space",
+      "fixture": "space-lesson.json",
+      "tier": "adversarial",
+      "meta": { "level": "A1", "duration": "30" },
+      "expectScene": "space|rocket|station|fantasy",
+      "notes": "New topic probe — space kit exists but soft docks; must not steal travel-air via station"
     }
   ]
 }

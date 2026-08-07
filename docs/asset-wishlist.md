@@ -49,6 +49,10 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-07 | Vocab icons: beach (`sand`, `shell`, `wave`, `ocean`, …) | loop2-beach M7 | Vocab pack | Sheet V7 | wired — `vocab-beach-3x3` |
 | 2026-08-07 | Vocab icons: `farm`, `kitchen`, distinct `bread`/`bakery`/`oven`/`flour` | farm/home/bakery M7 + dup glyphs | Vocab pack | Sheet V9 | wired — `vocab-daily-3x3` |
 | 2026-08-07 | Vocab icons: volcano abstracts (`abundant`, `seismic`, …) + distinct `eruption`/`ash` | volcano M7 | Vocab pack sheet | Art mode follow-up | open |
+| 2026-08-07 | `supermarket-cool` quiet flat set | supermarket fixture was on outdoor-fresh meadow | 4 in-house aisle washes (cart / blank tag / tote) | Native GenerateImage | wired — `supermarket-a`…`d`, TOPIC_SETS |
+| 2026-08-07 | Space pack dock toys at ≥120px short side | space kit has hero modules but 0 sharp docks (all objects ~60–100px) — BoardReadiness drafts hollow stage | Black-field sheet, one prop per large cell | ChatGPT / in-house → `assets:prop` | open |
+| 2026-08-07 | Vocab icons: library (`shelf`, `quiet` distinct from `library`/`book`/`story`) | library fixture M7 — shared glyphs | Vocab pack | Twemoji / sheet | open |
+| 2026-08-07 | Vocab icons: `planet`, `space` (space unit) | space fixture unvetted Gemini glyphs | Vocab pack | Sheet / Twemoji | open |
 
 ## How agents append
 

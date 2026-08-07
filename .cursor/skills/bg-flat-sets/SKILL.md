@@ -37,7 +37,7 @@ skill. If the topic is not a place, leave it on the house deck.
 |--------|------|
 | Default deck | `board-house` cool wall tints for school / unmatched — **no face eggs** |
 | Face charm set | `board-face` only (cool + tiny eye eggs) — never the default |
-| Place sets | Only clinic / travel / home / outdoor / beach / bakery / gym (and future *places*) |
+| Place sets | Only clinic / travel / home / outdoor / beach / bakery / gym / supermarket (and future *places*) |
 | Route | **In-house first** (4 individual landscape panels). ChatGPT 2×2 sheet only for bulk |
 | Count | **4 panels** per set (`-a`…`-d`) |
 | Aspect | Native tool **16:9**; importer stretches to 1280×590 |
