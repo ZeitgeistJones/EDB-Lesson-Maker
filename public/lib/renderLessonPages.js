@@ -544,11 +544,12 @@
 
     sections.push(
       {
-        // Quiet flat under EDB — place scenes add noise when pieces are the star.
+        // Music / classical king stage keeps the terrace (or matched place scene)
+        // under the hero — quiet flats only when no music mood.
         title: lesson.activity?.title || 'Activity',
-        tags: [lesson.activity?.title, lesson.activity?.prompt, 'activity', topic].filter(Boolean),
+        tags: [lesson.activity?.title, lesson.activity?.prompt, 'activity', topic, musicTitle ? 'classical' : ''].filter(Boolean),
         vocabulary: vocab,
-        preferFlat: true,
+        preferFlat: !musicTitle,
       },
       { title: 'Wrap Up', tags: ['wrap', 'review', 'goodbye'], vocabulary: [], preferFlat: true }
     );
