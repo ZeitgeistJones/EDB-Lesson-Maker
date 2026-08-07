@@ -272,6 +272,30 @@ Reading order:
 Keys: knight, dragon, castle, face, hair, eyes, smile, bridge, flag
 ```
 
+### Sheet V6 — Zoo words
+
+**Status: wired** — `vocab-zoo-3x3.png` → `07_vocab-pack`.
+
+Keys: zoo, cage, feed, lion, monkey, giraffe, elephant, zookeeper, ticket
+
+### Sheet V7 — Beach words
+
+**Status: wired** — `vocab-beach-3x3.png` → `07_vocab-pack`.
+
+Keys: sand, shell, wave, ocean, beach, towel, bucket, sunscreen, sunglasses
+
+### Sheet V8 — Trampoline unit
+
+**Status: wired** — `vocab-trampoline-3x3.png` → `07_vocab-pack`.
+
+Keys: trampoline, backflip, bounce, balance, spotter, mat, jump, stretch, helmet
+
+### Sheet V9 — Daily (floss / farm / kitchen / bakery distinct)
+
+**Status: wired** — `vocab-daily-3x3.png` → `07_vocab-pack`.
+
+Keys: floss, farm, kitchen, bread, bakery, oven, flour, cake, dough
+
 ## Not promptable (code)
 
 - **Programmatic prop recolouring** — already has `bodyHue` in the manifest; no art to generate.

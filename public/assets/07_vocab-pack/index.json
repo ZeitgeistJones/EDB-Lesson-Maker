@@ -59,6 +59,11 @@
   "emoji": "👶",
   "codepoint": "1f476"
  },
+ "backflip": {
+  "file": "backflip.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "backpack": {
   "file": "backpack.png",
   "emoji": "🎒",
@@ -68,6 +73,16 @@
   "file": "bag.png",
   "emoji": "👜",
   "codepoint": "1f45c"
+ },
+ "bakery": {
+  "file": "bakery.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "balance": {
+  "file": "balance.png",
+  "emoji": "",
+  "source": "generated"
  },
  "ball": {
   "file": "ball.png",
@@ -117,7 +132,7 @@
  "beach": {
   "file": "beach.png",
   "emoji": "🏖️",
-  "codepoint": "1f3d6"
+  "source": "generated"
  },
  "bear": {
   "file": "bear.png",
@@ -174,6 +189,11 @@
   "emoji": "🥱",
   "codepoint": "1f971"
  },
+ "bounce": {
+  "file": "bounce.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "box": {
   "file": "box.png",
   "emoji": "📦",
@@ -187,7 +207,7 @@
  "bread": {
   "file": "bread.png",
   "emoji": "🍞",
-  "codepoint": "1f35e"
+  "source": "generated"
  },
  "bridge": {
   "file": "bridge.png",
@@ -209,6 +229,11 @@
   "emoji": "👦",
   "codepoint": "1f466"
  },
+ "bucket": {
+  "file": "bucket.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "bus": {
   "file": "bus.png",
   "emoji": "🚌",
@@ -229,10 +254,15 @@
   "emoji": "",
   "source": "generated"
  },
+ "cage": {
+  "file": "cage.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "cake": {
   "file": "cake.png",
   "emoji": "🍰",
-  "codepoint": "1f370"
+  "source": "generated"
  },
  "calculator": {
   "file": "calculator.png",
@@ -519,6 +549,11 @@
   "emoji": "🚪",
   "codepoint": "1f6aa"
  },
+ "dough": {
+  "file": "dough.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "dragon": {
   "file": "dragon.png",
   "emoji": "",
@@ -562,7 +597,7 @@
  "elephant": {
   "file": "elephant.png",
   "emoji": "🐘",
-  "codepoint": "1f418"
+  "source": "generated"
  },
  "empty": {
   "file": "empty.png",
@@ -599,6 +634,11 @@
   "emoji": "👨‍👩‍👧",
   "codepoint": "1f468-200d-1f469-200d-1f467"
  },
+ "farm": {
+  "file": "farm.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "farmer": {
   "file": "farmer.png",
   "emoji": "🧑‍🌾",
@@ -608,6 +648,11 @@
   "file": "father.png",
   "emoji": "👨",
   "codepoint": "1f468"
+ },
+ "feed": {
+  "file": "feed.png",
+  "emoji": "",
+  "source": "generated"
  },
  "fire": {
   "file": "fire.png",
@@ -632,6 +677,16 @@
  "flag": {
   "file": "flag.png",
   "emoji": "🚩",
+  "source": "generated"
+ },
+ "floss": {
+  "file": "floss.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "flour": {
+  "file": "flour.png",
+  "emoji": "",
   "source": "generated"
  },
  "flower": {
@@ -687,7 +742,7 @@
  "giraffe": {
   "file": "giraffe.png",
   "emoji": "🦒",
-  "codepoint": "1f992"
+  "source": "generated"
  },
  "glasses": {
   "file": "glasses.png",
@@ -763,6 +818,11 @@
   "file": "heart.png",
   "emoji": "❤️",
   "codepoint": "2764"
+ },
+ "helmet": {
+  "file": "helmet.png",
+  "emoji": "",
+  "source": "generated"
  },
  "hippo": {
   "file": "hippo.png",
@@ -842,7 +902,7 @@
  "jump": {
   "file": "jump.png",
   "emoji": "🤸",
-  "codepoint": "1f938"
+  "source": "generated"
  },
  "kangaroo": {
   "file": "kangaroo.png",
@@ -853,6 +913,11 @@
   "file": "key.png",
   "emoji": "🔑",
   "codepoint": "1f511"
+ },
+ "kitchen": {
+  "file": "kitchen.png",
+  "emoji": "",
+  "source": "generated"
  },
  "kite": {
   "file": "kite.png",
@@ -897,7 +962,7 @@
  "lion": {
   "file": "lion.png",
   "emoji": "🦁",
-  "codepoint": "1f981"
+  "source": "generated"
  },
  "lock": {
   "file": "lock.png",
@@ -928,6 +993,11 @@
   "file": "mask.png",
   "emoji": "😷",
   "codepoint": "1f637"
+ },
+ "mat": {
+  "file": "mat.png",
+  "emoji": "",
+  "source": "generated"
  },
  "meat": {
   "file": "meat.png",
@@ -977,7 +1047,7 @@
  "monkey": {
   "file": "monkey.png",
   "emoji": "🐵",
-  "codepoint": "1f435"
+  "source": "generated"
  },
  "moon": {
   "file": "moon.png",
@@ -1054,6 +1124,11 @@
   "emoji": "👩‍⚕️",
   "source": "generated"
  },
+ "ocean": {
+  "file": "ocean.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "octopus": {
   "file": "octopus.png",
   "emoji": "🐙",
@@ -1068,6 +1143,11 @@
   "file": "orange.png",
   "emoji": "🍊",
   "codepoint": "1f34a"
+ },
+ "oven": {
+  "file": "oven.png",
+  "emoji": "",
+  "source": "generated"
  },
  "paint": {
   "file": "paint.png",
@@ -1264,6 +1344,11 @@
   "emoji": "🥗",
   "codepoint": "1f957"
  },
+ "sand": {
+  "file": "sand.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "sandwich": {
   "file": "sandwich.png",
   "emoji": "🥪",
@@ -1313,6 +1398,11 @@
   "file": "sheep.png",
   "emoji": "🐑",
   "codepoint": "1f411"
+ },
+ "shell": {
+  "file": "shell.png",
+  "emoji": "",
+  "source": "generated"
  },
  "ship": {
   "file": "ship.png",
@@ -1439,6 +1529,11 @@
   "emoji": "🕷️",
   "codepoint": "1f577"
  },
+ "spotter": {
+  "file": "spotter.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "squirrel": {
   "file": "squirrel.png",
   "emoji": "🐿️",
@@ -1474,6 +1569,11 @@
   "emoji": "🍓",
   "codepoint": "1f353"
  },
+ "stretch": {
+  "file": "stretch.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "student": {
   "file": "student.png",
   "emoji": "🧑‍🎓",
@@ -1488,6 +1588,16 @@
   "file": "sun.png",
   "emoji": "☀️",
   "codepoint": "2600"
+ },
+ "sunglasses": {
+  "file": "sunglasses.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "sunscreen": {
+  "file": "sunscreen.png",
+  "emoji": "",
+  "source": "generated"
  },
  "surprised": {
   "file": "surprised.png",
@@ -1547,7 +1657,7 @@
  "ticket": {
   "file": "ticket.png",
   "emoji": "🎫",
-  "codepoint": "1f3ab"
+  "source": "generated"
  },
  "tidy": {
   "file": "tidy.png",
@@ -1584,6 +1694,11 @@
   "emoji": "🪥",
   "codepoint": "1faa5"
  },
+ "towel": {
+  "file": "towel.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "tractor": {
   "file": "tractor.png",
   "emoji": "🚜",
@@ -1598,6 +1713,11 @@
   "file": "train.png",
   "emoji": "🚆",
   "codepoint": "1f686"
+ },
+ "trampoline": {
+  "file": "trampoline.png",
+  "emoji": "",
+  "source": "generated"
  },
  "tray": {
   "file": "tray.png",
@@ -1674,6 +1794,11 @@
   "emoji": "🍉",
   "codepoint": "1f349"
  },
+ "wave": {
+  "file": "wave.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "whale": {
   "file": "whale.png",
   "emoji": "🐳",
@@ -1713,5 +1838,15 @@
   "file": "zebra.png",
   "emoji": "🦓",
   "codepoint": "1f993"
+ },
+ "zoo": {
+  "file": "zoo.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "zookeeper": {
+  "file": "zookeeper.png",
+  "emoji": "",
+  "source": "generated"
  }
 }

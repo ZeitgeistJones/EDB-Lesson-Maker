@@ -33,8 +33,8 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-05 | Park scene-dressing props (matte) | demand: park/matte thin (only swing) | Nine parallel one-offs (sheet gens kept white-tiling) | Native GenerateImage singles | wired — slide, seesaw, sandbox, park-bench, merry-go-round, playground-ball, kite, picnic-table, drinking-fountain |
 | 2026-08-05 | Dental unit pack by CEFR (vocab + EDB props) | A1 props wired (2 ChatGPT sheets); still need white-bg vocab icons for floss/cavity/dentist/smile | Vocab icons + black-field props | ChatGPT sheets | partial — props wired Aug 5; vocab dock icons still open |
 | 2026-08-06 | Vocab icons: `knight`, `dragon` | castle New Words — unvetted / soft M7 | Vocab pack or prop-backed dock icons | ChatGPT vocab sheet / existing castle props | wired — Sheet V5 `vocab-castle-face-3x3` |
-| 2026-08-06 | Vocab icons: `zoo`, `cage`, `feed` | zoo-phonics — still open from earlier bake | Vocab pack | ChatGPT vocab sheet | open |
-| 2026-08-06 | Vocab icon: `floss` | dentist fixture soft M7 | Vocab pack | Dental sheet | open |
+| 2026-08-06 | Vocab icons: `zoo`, `cage`, `feed` | zoo-phonics — still open from earlier bake | Vocab pack | ChatGPT vocab sheet | wired — Sheet V6 `vocab-zoo-3x3` |
+| 2026-08-06 | Vocab icon: `floss` | dentist fixture soft M7 | Vocab pack | Dental sheet | wired — Sheet V9 `vocab-daily-3x3` |
 | 2026-08-06 | Vocab icons: `face`, `hair` (+ eyes/smile/castle/bridge/flag on same sheet) | face fixture New Words — unvetted glyphs | Vocab pack | Sheet V5 | wired — same `vocab-castle-face-3x3` |
 | 2026-08-05 | `lollipop` / candy / cookie prop for dental roleplay | Open-mouth king dock — teach “sugar vs brush”; no sweet/candy cutout in `09_props` (apple/milk/cup stand in) | Black-field object cutout | ChatGPT / GenerateImage one-off | open |
 | 2026-08-05 | Face kit extras as one-prop-per-cell sheets | Labeled collage (beards/mustaches/freckles/masks/hearing aids/…) cannot import; v1 has blank+features+color hair only | Black-field 4×4 sheets, one item per cell | ChatGPT | open |
@@ -43,7 +43,10 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-05 | `board-house` quiet flat set | Shared ClassIn default backdrop (cream/sage/sky) lesson-to-lesson | 4 in-house landscape flats | Native GenerateImage | wired — `house-a`…`d`, DEFAULT_SET |
 | 2026-08-06 | `gym-cool` quiet flat set | Gym fixture was locked to outdoor park meadows (M5 fail / place mismatch) | 4 in-house indoor court washes | Native GenerateImage | wired — `gym-a`…`d`, TOPIC_SETS before outdoor |
 | 2026-08-07 | More distinct `outdoor-fresh` panels (or park scene mix) | minimal / trampoline / zoo M5 — flats rotate but look copy-pasted | Regen outdoor set with stronger motif contrast | bg-flat-sets | open |
-| 2026-08-07 | Vocab icons: trampoline unit (`trampoline`, `backflip`, `bounce`, `balance`, `spotter`, `mat`) | trampoline New Words M7 | Vocab pack sheet | Art mode batch | open |
+| 2026-08-07 | Vocab icons: trampoline unit (`trampoline`, `backflip`, `bounce`, `balance`, `spotter`, `mat`) | trampoline New Words M7 | Vocab pack sheet | Art mode batch | wired — Sheet V8 `vocab-trampoline-3x3` |
+| 2026-08-07 | Vocab icons: beach (`sand`, `shell`, `wave`, `ocean`, …) | loop2-beach M7 | Vocab pack | Sheet V7 | wired — `vocab-beach-3x3` |
+| 2026-08-07 | Vocab icons: `farm`, `kitchen`, distinct `bread`/`bakery`/`oven`/`flour` | farm/home/bakery M7 + dup glyphs | Vocab pack | Sheet V9 | wired — `vocab-daily-3x3` |
+| 2026-08-07 | Vocab icons: volcano abstracts (`abundant`, `seismic`, …) + distinct `eruption`/`ash` | volcano M7 | Vocab pack sheet | Art mode follow-up | open |
 
 ## How agents append
 
