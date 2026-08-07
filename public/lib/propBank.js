@@ -454,7 +454,16 @@
     const scale = prop && prop.relativeScale != null ? prop.relativeScale : 0.5;
     let h = Math.min(hardCap, Math.max(MIN_PROP_H, Math.round(maxH * scale)));
     if (o.maxW && Math.round(h * aspect) > o.maxW) {
-      h = Math.max(1, Math.floor(o.maxW / aspect));
+      // Prefer fitting maxW, but never collapse under the grab floor — M10
+      // measures min(w,h). Overflowing a tight cell beats a postage stamp.
+      h = Math.min(hardCap, Math.max(MIN_PROP_H, Math.floor(o.maxW / aspect)));
+    }
+    // Tall-thin cutouts: height floor alone can leave width under MIN_PROP_H.
+    // Only grow when the caller's hardCap still allows a grabbable min side;
+    // otherwise return undersized width and let dock placers drop the piece.
+    if (aspect > 0 && Math.round(h * aspect) < MIN_PROP_H) {
+      const needH = Math.ceil(MIN_PROP_H / aspect);
+      if (needH <= hardCap) h = Math.max(h, needH);
     }
     // Derived from h last, always: |w/h − aspect| then stays inside the bake's
     // 0.02 assertion for any height the board uses.

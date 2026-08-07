@@ -884,7 +884,7 @@
             maxH, maxW: Math.max(DOCK_MIN, maxCellW), hardCap: maxH,
           });
           return { t, w: s.w, h: s.h };
-        }).filter((x) => Math.min(x.w, x.h) >= DOCK_MIN);
+        }).filter((x) => Math.min(x.w, x.h) >= DOCK_MIN && x.w <= dock.w);
         const totalW = sized.reduce((s, x) => s + x.w, 0) + gap * Math.max(0, sized.length - 1);
         if (totalW > dock.w) {
           const scale = dock.w / totalW;
@@ -895,8 +895,8 @@
               maxH: nh, maxW: Math.max(DOCK_MIN, Math.floor(maxCellW)), hardCap: nh,
             });
             return { t, w: s.w, h: s.h };
-          }).filter((x) => Math.min(x.w, x.h) >= DOCK_MIN);
-          while (sized.length > 4) {
+          }).filter((x) => Math.min(x.w, x.h) >= DOCK_MIN && x.w <= dock.w);
+          while (sized.length > 1) {
             const tw = sized.reduce((s, x) => s + x.w, 0) + gap * Math.max(0, sized.length - 1);
             if (tw <= dock.w) break;
             sized.pop();
@@ -907,8 +907,12 @@
         const maxPieceH = sized.reduce((m, x) => Math.max(m, x.h), 0);
         const rowTop = dock.y + r * (rowH + rowGap);
         const originY = rowTop + Math.max(0, Math.floor((rowH - maxPieceH) / 2));
+        const dockRight = dock.x + dock.w;
         sized.forEach(({ t, w, h }) => {
-          const x = Math.max(dock.x, Math.min(dock.x + dock.w - w, originX));
+          // Never clamp sideways into a neighbor — that is how H3 IoU fires when
+          // grab-floor pieces no longer fit the row. Drop the overflow instead.
+          if (originX + w > dockRight + 0.5) return;
+          const x = originX;
           const y = Math.max(dock.y, Math.min(dock.y + dock.h - h, originY));
           L.place(page, {
             locked: false,
@@ -916,6 +920,7 @@
             asset: t.path,
             w, h,
             intentional: true,
+            bleed: 'edge',
             _force: { x, y, w, h },
             role: 'dockPiece',
             meta: { propKey: t.key, propAspect: t.aspect },
@@ -923,9 +928,6 @@
           originX = x + w + gap;
         });
       }
-      // #region agent log
-      fetch('http://127.0.0.1:7298/ingest/2c7b9048-535d-4975-be12-acca9b0197ba',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3c9697'},body:JSON.stringify({sessionId:'3c9697',runId:'ux-pre',hypothesisId:'H3',location:'edbActivities.js:heroProp',message:'face dock density',data:{toolCount:tools.length,rows,dockH:dock.h,keys:tools.map((t)=>t.key)},timestamp:Date.now()})}).catch(function(){});
-      // #endregion
     }
     page.notes.push('recipe:heroProp');
   }

@@ -100,7 +100,7 @@
     song: 'piano',
     lava: 'volcano',
     eruption: 'volcano',
-    ash: 'volcano',
+    // ash stays SAFE_EMOJI — sharing volcano.png with eruption breaks match cards
     seed: 'plant',
     team: 'ball',
   };
@@ -122,6 +122,18 @@
   const SAFE_EMOJI = {
     // Pack art preferred when present; these are glyph-only fallbacks.
     energetic: '⚡',
+    // Volcano B1+ fixture — unique glyphs so match cards stay playable (M7).
+    abundant: '📦',
+    remnant: '🗿',
+    vulnerable: '⚠️',
+    geothermal: '♨️',
+    subterranean: '🕳️',
+    trauma: '💔',
+    dormant: '😴',
+    evacuation: '🚪',
+    seismic: '📉',
+    tremors: '🫨',
+    ash: '🌫️',
   };
 
   function emojiFor(word, fallback) {
