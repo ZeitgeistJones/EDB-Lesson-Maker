@@ -33,6 +33,20 @@ const AREAS = [
   { key: 'pillarAvg', label: 'Pillar score avg (0-3)', better: 'higher' },
 ];
 
+/** Soft metrics with hit-rate (warn|fail ÷ pages or cases). Lower is better. */
+const RATE_METRICS = [
+  { code: 'M1', scope: 'page', label: 'M1 tiny text' },
+  { code: 'M2', scope: 'page', label: 'M2 busy-bg text' },
+  { code: 'M3', scope: 'page', label: 'M3 sparse card' },
+  { code: 'M6', scope: 'page', label: 'M6 low contrast' },
+  { code: 'M8', scope: 'page', label: 'M8 short reach' },
+  { code: 'M9', scope: 'page', label: 'M9 dead space' },
+  { code: 'M10', scope: 'page', label: 'M10 tiny dock piece' },
+  { code: 'M4', scope: 'case', label: 'M4 low visuals' },
+  { code: 'M5', scope: 'case', label: 'M5 low variety' },
+  { code: 'M7', scope: 'case', label: 'M7 weak vocab art' },
+];
+
 function readJson(file, fallback) {
   try {
     return JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -68,6 +82,62 @@ function pillarAverage(scores) {
   return mean(vals);
 }
 
+function countPages(report) {
+  let n = 0;
+  for (const c of report.cases || []) {
+    if (typeof c.pageCount === 'number') n += c.pageCount;
+    else if (Array.isArray(c.pages)) n += c.pages.length;
+    else if (Array.isArray(c.pageKeys)) n += c.pageKeys.length;
+  }
+  return n;
+}
+
+/**
+ * Hit rate per soft metric: share of pages (or cases) with warn|fail.
+ * Prefer rates over raw warn counts when the bake size changes.
+ */
+function metricRatesFromReport(report) {
+  const flags = report.metricFlags || [];
+  const cases = (report.caseIds || []).length || (report.cases || []).length || 0;
+  const pages = countPages(report);
+  const out = { pages, cases };
+
+  for (const meta of RATE_METRICS) {
+    const relevant = flags.filter(
+      (f) => f.code === meta.code && (f.grade === 'warn' || f.grade === 'fail')
+    );
+    const warns = relevant.filter((f) => f.grade === 'warn').length;
+    const fails = relevant.filter((f) => f.grade === 'fail').length;
+    let hits;
+    if (meta.scope === 'page') {
+      const keys = new Set(
+        relevant.map((f) => `${f.caseId || ''}:${f.pageIndex ?? ''}:${f.pageKey || ''}`)
+      );
+      hits = keys.size;
+    } else {
+      const keys = new Set(relevant.map((f) => String(f.caseId || '')));
+      hits = keys.size;
+    }
+    const denom = meta.scope === 'page' ? pages : cases;
+    const rate = denom > 0 ? Number((hits / denom).toFixed(3)) : null;
+    out[meta.code] = {
+      scope: meta.scope,
+      hits,
+      warns,
+      fails,
+      denom,
+      rate,
+    };
+  }
+  return out;
+}
+
+function formatRate(entry) {
+  if (!entry || entry.rate == null) return '—';
+  const pct = `${(entry.rate * 100).toFixed(1)}%`;
+  return `${pct} (${entry.hits}/${entry.denom})`;
+}
+
 /** Build one snapshot from a bake report (+ optional verdict scores). */
 function snapshotFromReport(report, extra = {}) {
   const flags = report.metricFlags || [];
@@ -86,10 +156,13 @@ function snapshotFromReport(report, extra = {}) {
     unvetted += words.length;
   }
 
+  const rates = metricRatesFromReport(report);
+
   return {
     at: new Date().toISOString(),
     tier: report.tier || 'core',
     cases: (report.caseIds || []).length,
+    pages: rates.pages,
     iteration: extra.iteration ?? report.iteration ?? null,
     hard: (report.hardFailures || []).length,
     metricFails: fails.length,
@@ -103,6 +176,7 @@ function snapshotFromReport(report, extra = {}) {
     meanM7: mean(m7s),
     pillarAvg: pillarAverage(extra.scores || report.uxVerdict?.scores),
     regressions: (report.regressions || []).length,
+    rates,
     note: extra.note || null,
   };
 }
@@ -122,18 +196,29 @@ function saveSeries(series) {
 function appendSnapshot(snap) {
   const series = loadSeries();
   series.snapshots = series.snapshots || [];
-  // Dedupe identical bake+iteration within ~2 minutes
   const last = series.snapshots[series.snapshots.length - 1];
   if (
     last &&
     last.tier === snap.tier &&
     last.cases === snap.cases &&
     last.metricFails === snap.metricFails &&
+    last.metricWarns === snap.metricWarns &&
     last.hard === snap.hard &&
-    last.iteration === snap.iteration &&
-    Math.abs(new Date(snap.at) - new Date(last.at)) < 120000
+    last.iteration === snap.iteration
   ) {
-    return { series, snap: last, deduped: true };
+    const ageMs = Math.abs(new Date(snap.at) - new Date(last.at));
+    if (!last.rates && snap.rates) {
+      last.rates = snap.rates;
+      last.pages = snap.pages;
+      if (ageMs < 120000) {
+        /* keep original at */
+      }
+      saveSeries(series);
+      return { series, snap: last, deduped: true, enriched: true };
+    }
+    if (ageMs < 120000) {
+      return { series, snap: last, deduped: true };
+    }
   }
   series.snapshots.push(snap);
   saveSeries(series);
@@ -197,6 +282,10 @@ function writeMarkdown(series) {
     'Prefer `fullquality` → `fullquality` for scoreboard reads.',
     'Lower-is-better for fails/unvetted; higher-is-better for mean M5/M7 and pillars.',
     '',
+    '**Metric rates:** share of pages (M1/M2/M3/M6/M8/M9/M10) or cases (M4/M5/M7)',
+    'with a warn *or* fail. Prefer rates over raw warn counts as the bake grows;',
+    'thresholds can tighten later without changing the rate definition.',
+    '',
   ];
 
   if (!snaps.length) {
@@ -250,7 +339,38 @@ function writeMarkdown(series) {
     }
     lines.push('');
   }
+
+  lines.push('## Metric rates (latest)', '');
+  if (!last.rates) {
+    lines.push('_No rates on this snapshot — re-run `npm run quality:progress -- --snap` after a bake._', '');
+  } else {
+    const prevRates = prevRatesFor(snaps, snaps.length - 1);
+    lines.push(
+      `_Denom: ${last.rates.pages ?? '—'} pages · ${last.rates.cases ?? last.cases} cases_`,
+      ''
+    );
+    lines.push('| Metric | Scope | Rate | vs prior comparable |');
+    lines.push('| --- | --- | --- | --- |');
+    for (const meta of RATE_METRICS) {
+      const cur = last.rates[meta.code];
+      const prev = prevRates && prevRates[meta.code];
+      const d =
+        prev && cur && prev.rate != null && cur.rate != null
+          ? deltaStr(prev.rate, cur.rate, 'lower')
+          : '·';
+      lines.push(
+        `| ${meta.label} | ${meta.scope} | ${formatRate(cur)} | ${d === '·' || d === '→' ? d : d} |`
+      );
+    }
+    lines.push('');
+  }
+
   fs.writeFileSync(MD_PATH, lines.join('\n'));
+}
+
+function prevRatesFor(snaps, index) {
+  const prev = priorComparable(snaps, index);
+  return prev && prev.rates ? prev.rates : null;
 }
 
 function printTrends(series) {
@@ -278,6 +398,19 @@ function printTrends(series) {
     const d = prev ? deltaStr(prev[a.key], v, a.better) : '·';
     console.log(`  ${a.label.padEnd(32)} ${String(v ?? '—').padStart(6)}  ${d}`);
   }
+  if (last.rates) {
+    console.log(`\n── Metric rates (warn|fail ÷ ${last.rates.pages} pages / ${last.rates.cases} cases) ──`);
+    const prevRates = prev && prev.rates ? prev.rates : null;
+    for (const meta of RATE_METRICS) {
+      const cur = last.rates[meta.code];
+      const p = prevRates && prevRates[meta.code];
+      const d =
+        p && cur && p.rate != null && cur.rate != null ? deltaStr(p.rate, cur.rate, 'lower') : '·';
+      console.log(`  ${meta.label.padEnd(28)} ${formatRate(cur).padStart(18)}  ${d}`);
+    }
+  } else {
+    console.log('\n  (no metric rates on this snap — npm run quality:progress -- --snap)');
+  }
   console.log(`  file: ${MD_PATH}`);
 }
 
@@ -291,9 +424,11 @@ function main() {
       console.error('No bake report. Run npm run fullquality (or quality) first.');
       process.exit(1);
     }
-    const { series: s, snap, deduped } = appendSnapshot(snapshotFromReport(report));
+    const { series: s, snap, deduped, enriched } = appendSnapshot(snapshotFromReport(report));
     series = s;
-    console.log(deduped ? 'Snapshot unchanged (deduped).' : `Snapshot added: hard=${snap.hard} fails=${snap.metricFails} M5=${snap.m5Fails} M7=${snap.m7Fails}`);
+    if (enriched) console.log('Snapshot enriched with metric rates.');
+    else if (deduped) console.log('Snapshot unchanged (deduped).');
+    else console.log(`Snapshot added: hard=${snap.hard} fails=${snap.metricFails} M5=${snap.m5Fails} M7=${snap.m7Fails} pages=${snap.pages}`);
   }
 
   writeMarkdown(series);
@@ -312,5 +447,7 @@ module.exports = {
   printTrends,
   comparable,
   priorComparable,
+  metricRatesFromReport,
+  RATE_METRICS,
   AREAS,
 };

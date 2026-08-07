@@ -75,8 +75,93 @@
       "meanM7": 0.95,
       "pillarAvg": null,
       "regressions": 0,
-      "note": null
+      "note": null,
+      "rates": {
+        "pages": 227,
+        "cases": 20,
+        "M1": {
+          "scope": "page",
+          "hits": 102,
+          "warns": 102,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.449
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.004
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.004
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 22,
+          "warns": 22,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.097
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 8,
+          "warns": 8,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.035
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 20,
+          "rate": 0.05
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 2,
+          "warns": 2,
+          "fails": 0,
+          "denom": 20,
+          "rate": 0.1
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 0,
+          "fails": 1,
+          "denom": 20,
+          "rate": 0.05
+        }
+      },
+      "pages": 227
     }
   ],
-  "updatedAt": "2026-08-07T01:53:46.902Z"
+  "updatedAt": "2026-08-07T04:49:13.461Z"
 }

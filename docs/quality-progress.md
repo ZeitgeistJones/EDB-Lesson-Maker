@@ -10,6 +10,10 @@ Deltas only vs a prior row with the **same tier and case count**
 Prefer `fullquality` → `fullquality` for scoreboard reads.
 Lower-is-better for fails/unvetted; higher-is-better for mean M5/M7 and pillars.
 
+**Metric rates:** share of pages (M1/M2/M3/M6/M8/M9/M10) or cases (M4/M5/M7)
+with a warn *or* fail. Prefer rates over raw warn counts as the bake grows;
+thresholds can tighten later without changing the rate definition.
+
 > Note: almost no soft fails, but **137 soft warns** remain — don’t treat this as done.
 
 | Date | Tier | cases | Hard fails | Soft metric fails | Soft metric warns | M5 variety fails | M7 vocab-art fails | Layout soft fails (M8/M9/M10) | Unvetted vocab words | Open wishlist rows | Mean M5 (variety) | Mean M7 (vetted art) | Pillar score avg (0-3) |
@@ -34,3 +38,20 @@ _Baseline: 2026-08-07 → latest 2026-08-07_
 - **Mean M5 (variety):** 0.363 → 0.532 (↑+0.17)
 - **Mean M7 (vetted art):** 0.767 → 0.95 (↑+0.18)
 - **Pillar score avg (0-3):** — → — (·)
+
+## Metric rates (latest)
+
+_Denom: 227 pages · 20 cases_
+
+| Metric | Scope | Rate | vs prior comparable |
+| --- | --- | --- | --- |
+| M1 tiny text | page | 44.9% (102/227) | · |
+| M2 busy-bg text | page | 0.0% (0/227) | · |
+| M3 sparse card | page | 0.4% (1/227) | · |
+| M6 low contrast | page | 0.4% (1/227) | · |
+| M8 short reach | page | 9.7% (22/227) | · |
+| M9 dead space | page | 0.0% (0/227) | · |
+| M10 tiny dock piece | page | 3.5% (8/227) | · |
+| M4 low visuals | case | 5.0% (1/20) | · |
+| M5 low variety | case | 10.0% (2/20) | · |
+| M7 weak vocab art | case | 5.0% (1/20) | · |
