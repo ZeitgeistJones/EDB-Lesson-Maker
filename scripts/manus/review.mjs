@@ -21,16 +21,6 @@ import {
   normalizePassOff,
 } from './review-schema.mjs';
 
-const KEY_PAGES = [
-  'contact.jpg',
-  'page-0-title.jpg',
-  'page-2-newWords.jpg',
-  'page-4-frames.jpg',
-  'page-5-story0.jpg',
-  'page-8-comprehension.jpg',
-  'page-9-activity.jpg',
-];
-
 export function arg(name, fallback, argv = process.argv) {
   const hit = argv.find((a) => a.startsWith(`--${name}=`));
   return hit ? hit.slice(name.length + 3) : fallback;
@@ -54,14 +44,24 @@ export function resolveDir(raw) {
 
 export function pickImages(dir) {
   const names = fs.readdirSync(dir).filter((n) => /\.(jpe?g|png)$/i.test(n));
-  const preferred = KEY_PAGES.filter((n) => names.includes(n));
+  const byRole = (role) => names.find((n) => new RegExp(`(^|-)${role}\\.(jpe?g|png)$`, 'i').test(n)
+    || new RegExp(`page-\\d+-${role}\\.(jpe?g|png)$`, 'i').test(n));
+  const preferredRoles = [
+    'contact', 'title', 'newWords', 'frames', 'story0', 'comprehension', 'activity', 'wrap', 'warm',
+  ];
+  const chosen = [];
+  for (const role of preferredRoles) {
+    const hit = role === 'contact'
+      ? names.find((n) => /^contact\./i.test(n))
+      : byRole(role);
+    if (hit && !chosen.includes(hit)) chosen.push(hit);
+  }
   const rest = names
-    .filter((n) => !preferred.includes(n))
+    .filter((n) => !chosen.includes(n))
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
-  const chosen = [...preferred];
   for (const n of rest) {
     if (chosen.length >= 10) break;
-    if (/^page-\d+/.test(n)) chosen.push(n);
+    if (/^page-\d+/.test(n) || /^contact\./i.test(n)) chosen.push(n);
   }
   if (!chosen.length) {
     throw new Error(`No JPG/PNG pages in ${dir}`);

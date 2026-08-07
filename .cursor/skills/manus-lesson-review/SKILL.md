@@ -79,6 +79,6 @@ Log lines append to `.cursor/ratings/manus-reviews.jsonl`.
 | No aims / weak wrap | Title aims + wrap exit ticket; S22/S23 |
 | Title charm on terrace piano | Music pack title charm skipped |
 | B1 bare second conditional | Generate prompt CEFR frame rules |
-| Story glyphs | Still open on wishlist — story-art path |
+| Story glyphs | PropBank caption fallback before emoji; full StoryArt still preferred when cached; S24 |
 
 Setup details: [docs/manus-review.md](../../docs/manus-review.md).

@@ -1035,6 +1035,69 @@
     ].filter(Boolean).join(' ');
   }
 
+  /**
+   * Prefer a real PropBank cutout over a lone glyph when the caption names an
+   * object we stock (Manus: story glyph panels). StoryArt still wins when cached.
+   */
+  function storyFallbackVisual(lesson, page) {
+    const cue = storyArtCue(lesson, page);
+    const PB = window.PropBank;
+    if (PB && typeof PB.loaded === 'function' && PB.loaded()) {
+      const lower = cue.toLowerCase();
+      const prefer = [
+        'orchestra', 'grand-piano', 'piano', 'violin', 'cello', 'guitar', 'flute',
+        'musician-conductor', 'conductor', 'trumpet', 'harp', 'desk', 'compose-desk',
+        'castle', 'dentist', 'face-blank', 'trampoline',
+      ].filter((w) => lower.includes(w.replace(/^musician-/, '').replace(/-/g, ' '))
+        || lower.includes(w.split('-').pop()));
+      const captionWords = String(page?.visualCaption || '')
+        .toLowerCase()
+        .match(/\b[a-z]{4,}\b/g) || [];
+      const tryWords = [...prefer, ...captionWords].slice(0, 12);
+      const exclude = [];
+      const family = PB.familyFor ? PB.familyFor(lesson) : null;
+      const sharp = PB.isDockSharp || (() => true);
+      for (const w of tryWords) {
+        const prop = PB.resolve({
+          word: w,
+          seed: cue + '|' + w,
+          family,
+          exclude,
+          minScore: 3,
+        });
+        if (!prop || !prop.path) continue;
+        exclude.push(prop.key);
+        if (!sharp(prop)) continue;
+        return { type: 'prop', src: prop.path, key: prop.key };
+      }
+    }
+    return { type: 'emoji', emoji: themeEmoji(cue) };
+  }
+
+  function fillStoryArtSlot(slot, lesson, page, bigEmoji) {
+    const vis = storyFallbackVisual(lesson, page);
+    slot.innerHTML = '';
+    if (vis.type === 'prop') {
+      slot.dataset.storyProp = vis.key || '1';
+      const i = img(vis.src, {
+        width: '100%',
+        height: bigEmoji ? '160px' : '160px',
+        objectFit: 'contain',
+        flex: '1',
+        minHeight: '0',
+      });
+      slot.appendChild(i);
+      return vis;
+    }
+    slot.appendChild(el('div', {
+      fontSize: bigEmoji ? '96px' : '64px',
+      lineHeight: '1',
+      marginBottom: bigEmoji ? '14px' : '0',
+      opacity: bigEmoji ? '1' : '0.85',
+    }, vis.emoji));
+    return vis;
+  }
+
   function makeStoryPage(lesson, page, index, boardPlan, opts) {
     const pageKey = 'story' + index;
     const p = pageShell(THEME_COLORS.story, {
@@ -1083,9 +1146,7 @@
       });
       banner.dataset.storyArt = String(index);
       banner.dataset.storyArtMode = 'banner';
-      banner.appendChild(el('div', {
-        fontSize: '64px', lineHeight: '1', opacity: '0.85',
-      }, themeEmoji(storyArtCue(lesson, page))));
+      fillStoryArtSlot(banner, lesson, page, false);
       content.appendChild(banner);
       // One flowing paragraph — fill the card; bigger type when there is room.
       const text = card(
@@ -1120,13 +1181,14 @@
       });
       side.dataset.storyArt = String(index);
       side.dataset.storyArtMode = 'side';
-      side.appendChild(el('div', { fontSize: '96px', lineHeight: '1', marginBottom: '14px' },
-        themeEmoji(storyArtCue(lesson, page))));
+      fillStoryArtSlot(side, lesson, page, true);
       side.appendChild(el('div', {
         background: '#ffffff', color: '#9a3412', borderRadius: '12px', padding: '10px 14px',
         fontSize: '22px', fontWeight: '700', textAlign: 'center', width: '100%',
         boxSizing: 'border-box', lineHeight: '1.3',
         boxShadow: '0 4px 12px rgba(15,23,42,0.08)',
+        flexShrink: '0',
+        marginTop: '10px',
       }, esc(page?.visualCaption || page?.visualTheme || 'Scene')));
 
       const text = card(

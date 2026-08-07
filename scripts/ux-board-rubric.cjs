@@ -165,6 +165,7 @@ const SOFT = {
   S21: 'King/activity hint names pieces accurately (not “toys”) and asks for speak/write output',
   S22: 'Wrap-up / exit ticket consolidates aims (not only “Great Job!”)',
   S23: 'Title / intro states learning aims (vocab or communicative goal visible)',
+  S24: 'Story side/banner uses a real prop cutout when PropBank has a match (not only a glyph)',
 };
 
 /**
@@ -178,7 +179,7 @@ const TIERS = {
   readable: ['H4', 'S1', 'S5', 'S11', 'S13', 'S9', 'M1', 'M2', 'M6'],
   navigable: ['H3', 'H6', 'S4', 'S10', 'S14', 'M3', 'M8', 'S21', 'S23'],
   variety: ['H2', 'S2', 'S3', 'S6', 'S18', 'M5'],
-  charm: ['S7', 'S12', 'S16', 'S17', 'M4', 'H7', 'S22'],
+  charm: ['S7', 'S12', 'S16', 'S17', 'M4', 'H7', 'S22', 'S24'],
 };
 
 /** Product pillars as the user states them, mapped to codes for reporting. */

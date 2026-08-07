@@ -3,24 +3,25 @@
   "level": "B1",
   "duration": "60",
   "knownIssues": [
-    "Story pages may still use cheap glyph side art (wishlist — story-art path open)",
-    "Vocab icon clarity / drop-zone affordances still soft (Manus prior pass)"
+    "Vocab icon clarity / drop-zone affordances still soft (Manus prior pass)",
+    "Full generative StoryArt may still be missing — PropBank caption fallback is the interim"
   ],
   "justFixed": [
     "normalizeLesson lifts root comprehension so Reading Comp is populated",
     "Warm-up no longer shows teacher sampleAnswer to students",
     "King hint: musicians + write/say symphony idea (no 'toys')",
     "Title aims line + wrap exit ticket; music title charm skipped on terrace",
-    "Generate prompt: B1 frame grammar + comprehension under story.*"
+    "Generate prompt: B1 frame grammar + comprehension under story.*",
+    "Story side/banner: PropBank match from caption before glyph (S24)"
   ],
   "localChecks": [
     "verify-classical-compose.mjs: ok (skipKing, dock≥10, comp≥2, no toys hint, no warm sample leak, pack vocab)",
-    "Soft codes S19–S23 added to ux-board-rubric for future quality-loop eyes"
+    "Soft codes S19–S24 in ux-board-rubric; manus pass-off with gate_holes schema"
   ],
   "focus": [
-    "Verify JUST FIXED still holds on the JPGs",
+    "Verify JUST FIXED still holds on the JPGs (esp. story prop vs glyph, comprehension, king hint)",
     "Call gate_holes if local checks claimed pass but board still fails",
-    "New misses only — especially story art, vocab match clarity, pacing/teacher cues"
+    "New misses only — vocab match clarity, pacing/teacher cues"
   ],
-  "notes": "Second Manus pass after folding prior fail/revise into producer. Prefer producer next_actions."
+  "notes": "Pass after producer fold-in + story PropBank fallback. Prefer producer next_actions."
 }

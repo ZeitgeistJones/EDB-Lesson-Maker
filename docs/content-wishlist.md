@@ -13,7 +13,7 @@ Gaps in **lesson content** — not art. For us (agent + you) when something teac
 | Date | Issue | Why (topic / level / page) | Likely producer | Status |
 |------|-------|----------------------------|-----------------|--------|
 | 2026-08-07 | Title charm stacks a musician cutout on a terrace scene that already has a piano — awkward double-instrument title | Classical compose / Manus reviews | `titleCharmSrc` skips charm for music/classical packs | prompt-fixed |
-| 2026-08-07 | Story pages ship cheap 🎼 glyph side art instead of real story / prop-side visuals | Same bake — all story panels weak | Story-art picker + theme-emoji fallback / gates | open |
+| 2026-08-07 | Story pages ship cheap 🎼 glyph side art instead of real story / prop-side visuals | Same bake — all story panels weak | Story-art when cached; else PropBank caption match before glyph (`storyFallbackVisual`); S24 | prompt-fixed |
 | 2026-08-07 | Reading comprehension page empty despite fixture having questions | Fixture used root `comprehension[]`; renderer only read `story.comprehensionQuestions` — Manus fail/revise | `normalizeLesson` + S19 | schema-fixed |
 | 2026-08-07 | Warm-up shows teacher sampleAnswer to students | Honesty / answer leak — Manus | Warm page no longer renders sample; keep JSON for teachers | schema-fixed |
 | 2026-08-07 | King activity hint says “Drag toys…” with no language production | Manus ClassIn fit | Theme-aware king hints + speak/write cue; S21 | schema-fixed |
