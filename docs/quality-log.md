@@ -14,3 +14,4 @@ Written by `npm run quality:judge` — do not hand-edit. Machine state lives in 
 - 2026-08-06 iter 9 (core) — **stop_cap** — · hard 0 · metric 1 fail / 20 warn · roots: gym-flat-variety-thin, no-vetted-icon, metric-noise-dock-pack
 - 2026-08-07 iter 1 (core) — **wishlist** M7 · hard 0 · metric 0 fail / 21 warn · roots: no-vetted-icon · asset gap logged
 - 2026-08-07 iter 1 (core) — **wishlist** M5, M7 · hard 0 · metric 2 fail / 25 warn · roots: outdoor-flat-variety-thin, no-vetted-icon · asset gap logged
+- 2026-08-07 iter 1 (all) — **wishlist** M7 · hard 0 · metric 3 fail / 139 warn · roots: no-vetted-icon · asset gap logged

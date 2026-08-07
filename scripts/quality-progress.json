@@ -38,7 +38,26 @@
       "pillarAvg": 2.583,
       "regressions": 7,
       "note": null
+    },
+    {
+      "at": "2026-08-07T01:36:04.973Z",
+      "tier": "all",
+      "cases": 20,
+      "iteration": 1,
+      "hard": 0,
+      "metricFails": 3,
+      "metricWarns": 139,
+      "m5Fails": 0,
+      "m7Fails": 3,
+      "layoutFails": 0,
+      "unvettedWords": 26,
+      "wishlistOpen": 9,
+      "meanM5": 0.533,
+      "meanM7": 0.767,
+      "pillarAvg": null,
+      "regressions": 71,
+      "note": null
     }
   ],
-  "updatedAt": "2026-08-07T01:25:21.775Z"
+  "updatedAt": "2026-08-07T01:36:04.976Z"
 }

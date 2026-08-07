@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-07T01:25:21.771Z",
+  "updatedAt": "2026-08-07T01:36:45.086Z",
   "iteration": 1,
   "softRoots": [
     "no-vetted-icon",
@@ -293,6 +293,44 @@
       "metricFails": 2,
       "metricWarns": 25,
       "regressions": 7
+    },
+    {
+      "at": "2026-08-07T01:36:45.086Z",
+      "iteration": 1,
+      "tier": "all",
+      "cases": [
+        "doctor",
+        "dentist",
+        "face",
+        "castle",
+        "clown-clinic",
+        "gym",
+        "travel",
+        "school",
+        "volcano",
+        "trampoline",
+        "zoo-phonics",
+        "abstract-words",
+        "bad-theme",
+        "minimal",
+        "overflow",
+        "loop2-beach",
+        "loop2-bakery",
+        "loop2-farm",
+        "loop2-doctor",
+        "loop2-home"
+      ],
+      "action": "wishlist",
+      "codes": [
+        "M7"
+      ],
+      "roots": [
+        "no-vetted-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 3,
+      "metricWarns": 139,
+      "regressions": 71
     }
   ]
 }
