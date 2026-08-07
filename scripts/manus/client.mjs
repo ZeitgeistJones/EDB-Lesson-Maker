@@ -248,11 +248,11 @@ export async function pollUntilDone(taskId, {
     }
 
     if (st && (st.agent_status === 'stopped' || st.agent_status === 'error')) {
-      // Structured output can land a beat after stopped — one extra pull if missing.
+      // Structured output can land after stopped — retry a few times (JkBr5 early stop).
       let structured = extractStructuredOutput(messages);
       let msgs = messages;
-      if (!structured) {
-        await sleep(2000);
+      for (let i = 0; !structured && i < 4; i++) {
+        await sleep(2500);
         const again = await listMessages(taskId, { order: 'desc', limit: 80 });
         msgs = again.messages || messages;
         structured = extractStructuredOutput(msgs);

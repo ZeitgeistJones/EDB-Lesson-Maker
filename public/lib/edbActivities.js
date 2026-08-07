@@ -622,17 +622,26 @@
       !!(p && (p.role === 'hero' || ((p.relativeScale == null ? 0 : p.relativeScale) >= 0.75))));
     const blob = tags.join(' ');
 
-    // Pack kits first — banking a pack with a hero is enough (castle, jobs…).
-    const kit = PB.assessKit && PB.assessKit(lesson);
-    if (kit && kit.ready && kit.hero && isHeroSized(kit.hero)) return kit.hero;
-
-    // Curated stage surfaces for kits that predate pack tags (face / dental).
-    // Feelings before generic face parts — emotion lessons reuse face-blank as
-    // the play surface with feeling-* dock stickers (not eyes/nose dress-up).
-    const STAGE_RULES = [
+    // Curated emotion/face/dental stages BEFORE pack kits — "Round 1" used to
+    // token-match castle-tree-round / castle-window-round and steal the hero (S43).
+    const CURATED_STAGE_FIRST = [
       { re: /\b(feeling|feelings|emotion|emotions|mood)\b|\b(worried|scared|shy|confused|proud|surprised|happy|sad|angry|bored|sleepy|excited|tired)\b/, key: 'face-blank' },
       { re: /\bface\b|\bhair\b|\beyes?\b|\bnose\b|\bear\b|make.?a.?face|blank.?face/, key: 'face-blank' },
       { re: /dentist|dental|tooth|teeth|clinic|patient|brush|floss|cavity/, key: 'dental-kid-open-mouth' },
+    ];
+    for (const rule of CURATED_STAGE_FIRST) {
+      if (rule.re.test(blob)) {
+        const hit = PB.resolve({ word: rule.key, seed, family });
+        if (isHeroSized(hit)) return hit;
+      }
+    }
+
+    // Pack kits — banking a pack with a hero is enough (castle, jobs…).
+    const kit = PB.assessKit && PB.assessKit(lesson);
+    if (kit && kit.ready && kit.hero && isHeroSized(kit.hero)) return kit.hero;
+
+    // Remaining curated stages (trampoline / castle) after kits.
+    const STAGE_RULES = [
       { re: /trampolin|bounce|backflip/, key: 'trampoline' },
       { re: /castle|medieval|knight|drawbridge|portcullis|royal/, key: 'castle-wall-gate' },
     ];
@@ -1202,15 +1211,17 @@
       });
     }
 
-    // Activity — pack kit or curated hero forces king stage; never bit-pick
-    // dressUp when a ready kit exists (that was the "fast but empty" failure).
+    // Activity — curated stage (feelings/face/dental) or pack kit → king stage.
+    // Always resolve via findHeroProp so "Round 1" cannot keep a false-ready
+    // castle kit ahead of face-blank (S43).
     if (hasVocab) {
-      const hero = (kit && kit.ready && kit.hero) || findHeroProp(lesson);
+      const hero = findHeroProp(lesson);
+      const kitMatchesHero = !!(kit && kit.ready && kit.hero && hero && kit.hero.key === hero.key);
       if (hero) {
         assignments.push({
           pageKey: 'activity',
           recipeId: 'heroProp',
-          ctx: { hero, kit: kit && kit.ready ? kit : null },
+          ctx: { hero, kit: kitMatchesHero ? kit : null },
         });
       } else {
         assignments.push({

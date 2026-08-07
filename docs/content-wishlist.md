@@ -50,6 +50,14 @@ Gaps in **lesson content** — not art. For us (agent + you) when something teac
 | 2026-08-07 | Story caption “check a worksheet” → green checkmark badge | Manus Ssdp B2 feelings-compass | storyFallbackVisual feelings prefer + stop “check”; fixture caption | schema-fixed |
 | 2026-08-07 | Manus OCR misread frame commas as periods (B1) | Manus Ssdp | False positive — frames already comma; keep verify soft note | wont-fix |
 | 2026-08-07 | Manus wants mint wrap; navy wrap is S32 bookend | Manus Ssdp B3 vs classical S32 | Keep navy wrap; passoff knownIssues | wont-fix |
+| 2026-08-07 | ZPD: two-round Feelings Lab + abstract emotion vocab + caption names feeling | Manus Ssdp ZPD / JkBr5 blocked | feelingsKing Round1/2 hint; generate-lesson feelings block; S41 | schema-fixed |
+| 2026-08-07 | Manus task user_stop before structured_output (false structured_success) | Manusloop JkBr5… | review.mjs require value; client retry pulls after stop | schema-fixed |
+| 2026-08-07 | “Round 1/2” activity prompt → token round → castle-*-round stole face-blank hero | feelings-compass verify after S41 | KIT_STOP round+pedagogy; curated face/dental before assessKit (S43) | schema-fixed |
+| 2026-08-07 | Feelings Lab “write or say” with no write strip; captions not leading with feeling word | Manus kS8Er fail/90 B1/B2 | feelingsKing prodWrite strip; caption `feeling — scene`; S44 | schema-fixed |
+| 2026-08-07 | Manus re-asks mint wrap vs navy bookend | Manus kS8Er B3 | Reject — S32; keep knownIssues | wont-fix |
+| 2026-08-07 | ZPD after pass/99: inferential comprehension + Round 2 second conditional | Manus LSSgv | hint If I felt…would; fixture inferential Q; generate-lesson; S45 | schema-fixed |
+| 2026-08-07 | Wrap page missing timing chip on ≥45 min boards | Manus 3Uc8 Soft High | makeWrap header ~3 min; S46 verify | schema-fixed |
+| 2026-08-07 | Manus OCR letter-sub on frames (mv/shv) | Manus 3Uc8 | False positive like Ssdp B1 — keep string frames; soft only | wont-fix |
 
 <!-- Classical compose note (2026-08-07): Activity dock + skipKing piano-on-piano fixed (f21ca03). Manus dual reviews LbVd…/oEDh… folded into producer 2026-08-07. Story glyphs still open. Manusloop J4up… revise/72 folded: pickImages + inspire override + aims/frames/story. Second live pass USYe… pass/98 — numbered pads + pieceToPng pad fix. Shift20: Manus skill delta → schema scorecard/ZPD + S30–S32 producer. Shift21: live Manus LgtX… revise/84 → S26 caption bake kill + S29 king timing + S33–S37. Shift22 assetgap+manus x2: inspire.png + RWiY → S38/S39. -->
 

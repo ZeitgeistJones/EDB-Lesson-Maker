@@ -179,16 +179,19 @@ export async function runBoardReview(opts) {
   });
 
   const value = done.structured && done.structured.value;
-  const success = done.structured && done.structured.success;
+  const success = !!(done.structured && done.structured.success && value);
+  // user_stop / early stop can yield agent stopped with no structured value —
+  // do not claim structured_success when review is null (Manusloop JkBr5…).
 
   const out = {
-    ok: done.agent_status === 'stopped' && success !== false,
+    ok: done.agent_status === 'stopped' && success,
     task_id: taskId,
     task_url: created.task_url || null,
     agent_status: done.agent_status,
-    structured_success: success !== false,
+    structured_success: success,
     review: value || null,
-    structured_error: (done.structured && done.structured.error) || null,
+    structured_error: (done.structured && done.structured.error)
+      || (!value ? 'No structured_output_result (early stop or schema miss)' : null),
     assistant_excerpt: (done.assistant_messages || []).slice(-1)[0] || null,
     images: images.map((p) => path.basename(p)),
     passoff: {

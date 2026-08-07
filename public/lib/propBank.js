@@ -521,6 +521,9 @@
     'living', 'near', 'next', 'my', 'our', 'your', 'how', 'what', 'when', 'where',
     'why', 'who', 'i', 'do', 'is', 'are', 'was', 'were', 'be', 'been', 'build',
     'make', 'our', 'royal', 'lesson', 'about', 'focus',
+    // Activity pedagogy words — "Round 1/2" must not claim castle-*-round (S43).
+    'round', 'partner', 'switch', 'guess', 'guesses', 'feels', 'say', 'then',
+    'lab', 'drag', 'write', 'onto', 'blank', 'face', 'faces',
   ]);
 
   /** Theme tokens from title + vocab + activity — used by kit + readiness. */

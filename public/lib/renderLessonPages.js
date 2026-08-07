@@ -1663,7 +1663,8 @@
           && !/\b(hair|eyes|nose|ear|ears|make.?a.?face)\b/.test(kingCue));
       let kingHint = 'Drag the pieces onto the stage. Then say or write one sentence about your idea.';
       if (feelingsKing) {
-        kingHint = 'Drag feeling faces onto the blank face. Then write or say how it feels in 1–2 sentences.';
+        // Two-round Feelings Lab (Manus ZPD / classical Level-Up generalization).
+        kingHint = 'Round 1: drag a feeling face onto the blank face; write or say how it feels. Round 2: partner guesses, then answer with If I felt ____, I would ____.';
       } else if (faceKing) {
         kingHint = 'Drag parts onto the face. Then say: My friend has ___';
       } else if (/\b(dentist|dental|tooth|teeth|cavity|floss|patient)\b/.test(kingCue)) {
@@ -1690,12 +1691,29 @@
       });
       kingHintEl.dataset.kingHintCard = '1';
       p.appendChild(kingHintEl);
-      // skipKing terrace (music) still asks write/say — give a visible write strip
-      // so production isn't oral-only (Manus B2 on classical-compose).
+      // Write strip whenever the hint asks write/say — music skipKing (S39) and
+      // feelings Lab on face-blank (Manus kS8Er B1). Feelings: flow under the
+      // hint card so absolute strip cannot cover Round 1/2 text (layout collide).
       const actAssign = (boardPlan.assignments || []).find((a) => a.pageKey === 'activity');
       const skipKing = !!(actAssign && actAssign.ctx && actAssign.ctx.skipKing);
-      if (skipKing && /write or say|say or write/i.test(kingHint)) {
-        const strip = el('div', {
+      if ((skipKing || feelingsKing) && /write or say|say or write/i.test(kingHint)) {
+        const strip = el('div', feelingsKing ? {
+          position: 'relative',
+          width: '420px',
+          maxWidth: '100%',
+          marginBottom: '10px',
+          zIndex: '3',
+          background: 'rgba(248,250,252,0.98)',
+          border: '2px dashed rgba(51,65,85,0.55)',
+          borderRadius: '14px',
+          padding: '12px 14px',
+          boxSizing: 'border-box',
+          color: '#0f172a',
+          fontSize: '20px',
+          fontWeight: '700',
+          lineHeight: '1.45',
+          boxShadow: '0 2px 10px rgba(15,23,42,0.14)',
+        } : {
           position: 'absolute',
           left: '28px',
           top: '128px',
@@ -1714,7 +1732,9 @@
         });
         strip.dataset.prodWrite = '1';
         strip.dataset.ink = 'hint';
-        strip.innerHTML = 'My symphony idea:<br><span style="display:block;margin-top:10px;border-bottom:2px solid #94a3b8;min-height:28px"></span><span style="display:block;margin-top:12px;border-bottom:2px solid #94a3b8;min-height:28px"></span>';
+        strip.innerHTML = feelingsKing
+          ? 'This face feels:<br><span style="display:block;margin-top:10px;border-bottom:2px solid #94a3b8;min-height:28px"></span><span style="display:block;margin-top:12px;border-bottom:2px solid #94a3b8;min-height:28px"></span>'
+          : 'My symphony idea:<br><span style="display:block;margin-top:10px;border-bottom:2px solid #94a3b8;min-height:28px"></span><span style="display:block;margin-top:12px;border-bottom:2px solid #94a3b8;min-height:28px"></span>';
         p.appendChild(strip);
       }
       drawDebugZones(p, pageType);
@@ -1762,8 +1782,10 @@
     const p = pageShell(THEME_COLORS.wrap, {
       reserveDock: interactive, pageType: 'wrap',
     });
+    // Timing chip for ≥45 min pacing completeness (Manus 3Uc8 Soft High).
+    p.appendChild(header('Wrap Up', '#f8fafc', { timing: '~3 min' }));
     p.appendChild(el('div', {
-      color: '#f8fafc', fontSize: '64px', fontWeight: '800', textAlign: 'center', marginTop: '28px',
+      color: '#f8fafc', fontSize: '56px', fontWeight: '800', textAlign: 'center', marginTop: '8px',
     }, 'Great Job!'));
     const aims = (lesson.vocabulary || [])
       .map((v) => (typeof v === 'string' ? v : v && v.word))

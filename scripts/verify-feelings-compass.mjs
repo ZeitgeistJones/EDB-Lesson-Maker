@@ -297,6 +297,7 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     const wr = wrapDom.getBoundingClientRect();
     wrapPeerOnBoard = pr.bottom <= wr.bottom + 2 && pr.top >= wr.top - 2;
   }
+  const wrapTimingChip = !!(wrapDom && wrapDom.querySelector && wrapDom.querySelector('[data-timing-chip]'));
 
   const feelingDockCount = (dockPieces || []).filter((k) => /^feeling-/.test(String(k))).length;
   const facePartsOnDock = (dockPieces || []).filter((k) =>
@@ -323,6 +324,9 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     activityHintHasToys: /\btoys\b/i.test(actText),
     activityHintHasWriteOrSay: /write or say|say or write|then say|then write/i.test(actText),
     activityHintFeelings: /feeling/i.test(actText),
+    activityHintTwoRound: /round\s*1/i.test(actText) && /round\s*2/i.test(actText),
+    activityHintSecondCond: /if i felt/i.test(actText) && /\bi would\b/i.test(actText),
+    activityProdWrite: !!(actDom && actDom.querySelector && actDom.querySelector('[data-prod-write]')),
     warmSampleLeak: !!sampleLeak,
     aimsMissing,
     aimsOrphans,
@@ -349,6 +353,7 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     storyCaptionCharcoal,
     wrapPeerFeedback,
     wrapPeerOnBoard,
+    wrapTimingChip,
     houseLeaks,
     classicalLeaks,
     artWinners,
@@ -374,6 +379,38 @@ if ((result.compCount || 0) < 2) fails.push('comprehension questions missing aft
 if (result.activityHintHasToys) fails.push('activity hint still says toys');
 if (!result.activityHintHasWriteOrSay) fails.push('activity hint missing speak/write production cue');
 if (!result.activityHintFeelings) fails.push('activity hint should name feeling faces');
+if (!result.activityHintTwoRound) {
+  fails.push('feelings activity missing two-round Lab cue (S41 Manus ZPD)');
+}
+if (!result.activityProdWrite) {
+  fails.push('feelings Lab missing student write strip (S39/S44 Manus kS8Er B1)');
+}
+if (!result.activityHintSecondCond) {
+  fails.push('feelings Round 2 missing If I felt…would cue (S45 Manus LSSgv ZPD)');
+}
+if ((result.storyPropKeys || []).some((s) => /checkmark|check-mark|^check$/i.test(String(s.key || '')))) {
+  fails.push('story prop resolved to checkmark badge (Ssdp B2): ' + JSON.stringify(result.storyPropKeys));
+}
+const feelWordRe = /\b(worried|scared|confused|shy|surprised|happy|sad|angry|bored|sleepy|proud|silly|excited|tired)\b/i;
+const storyPages = lesson.story && lesson.story.pages;
+if (Array.isArray(storyPages)) {
+  for (let i = 0; i < storyPages.length; i++) {
+    const cap = String((storyPages[i] && storyPages[i].visualCaption) || '');
+    const lead = cap.split(/[—–-]/)[0].trim();
+    if (!feelWordRe.test(cap)) {
+      fails.push(`S44 story caption ${i} missing feeling word: ${cap}`);
+    } else if (!feelWordRe.test(lead)) {
+      fails.push(`S44 story caption ${i} must lead with feeling word: ${cap}`);
+    }
+  }
+}
+const soft = [];
+if (!(result.storyPropKeys || []).some((s) => /^feeling-/.test(String(s.key || '')))) {
+  soft.push('S42: no feeling-* story props — caption may not name emotion words');
+}
+const inferentialComp = (lesson.story && lesson.story.comprehensionQuestions || []).some((q) =>
+  /\b(why|what do you think|how do you know|infer)\b/i.test(String(q && q.question || q || '')));
+if (!inferentialComp) soft.push('S45 soft: no inferential comprehension question (Manus LSSgv ZPD)');
 if (result.warmSampleLeak) fails.push('warm-up still leaks teacher sample to students');
 if (result.houseLeaks.length) fails.push('house flats leaked: ' + result.houseLeaks.join(','));
 if (result.classicalLeaks.length) fails.push('classical music flats leaked into feelings: ' + result.classicalLeaks.join(','));
@@ -447,6 +484,9 @@ if (!result.wrapPeerFeedback) {
 if (!result.wrapPeerOnBoard) {
   fails.push('wrap peer-check prompt clipped off board (S36/S38)');
 }
+if (!result.wrapTimingChip) {
+  fails.push('wrap missing timing chip (S29/S46 Manus 3Uc8)');
+}
 
 for (const p of result.pages) {
   const b64 = p.dataUrl.replace(/^data:image\/jpeg;base64,/, '');
@@ -496,9 +536,12 @@ console.log(JSON.stringify({
   timingChipCount: result.timingChipCount,
   wrapExitMissing: result.wrapExitMissing,
   storyPageCount: result.storyPageCount,
+  storyPropKeys: result.storyPropKeys,
+  activityHintTwoRound: result.activityHintTwoRound,
   midFlatUnique: result.midFlatUnique,
   pageFiles: result.pages.map((p) => `page-${p.index}-${p.key}.jpg`),
   pickedImages: picked,
+  soft,
   fails,
   ok: fails.length === 0,
 }, null, 2));

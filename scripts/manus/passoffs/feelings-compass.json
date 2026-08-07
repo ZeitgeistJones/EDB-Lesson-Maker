@@ -4,24 +4,24 @@
   "duration": "60",
   "knownIssues": [
     "Story art still PropBank/caption fallback — not full generative StoryArt",
-    "Match dock deliberately has NO answer-naming caption chips on drag pieces (S26) — words live on numbered pads",
-    "Feelings pack has no dedicated stage hero — reuses face-blank as play surface (intentional)",
-    "Navy wrap bookend is S32 (classical) — do not recolor mint to match mid-deck; Manus Ssdp B3 rejected"
+    "Match dock deliberately has NO answer-naming caption chips (S26)",
+    "Feelings pack reuses face-blank as stage (intentional)",
+    "Navy wrap bookend is S32 — do not recolor mint; wrap B3 rejected",
+    "Manus OCR letter-sub on frames (mv/shv) — false positive; frames already correct"
   ],
   "justFixed": [
-    "Story feelings captions prefer feeling-* (no check→checkmark badge)",
-    "Feelings dock no face-parts pad; TOPIC_SETS board-face; PROP_ALIASES",
-    "King hint names feeling faces + write/say",
-    "Aims⊆vocab / S26/S28/S29/S31/S37 / full story packet hold on non-music topic"
+    "S46 wrap timing chip ~3 min",
+    "S45 Round 2 If I felt…would + inferential comprehension",
+    "S41–S44 two-round Lab, write strip under hint, leading feeling captions, S43 castle-round",
+    "Manus 3Uc8A7mGCQFSVZLbZPSGq6 pass — all prior just_fixed HOLDS"
   ],
   "localChecks": [
-    "verify-feelings-compass.mjs: ok (fails=[])",
-    "Manus SsdpWA76twR2U5WF3MLMHg revise/41 — fold B2; reject B1 OCR + B3 wrap"
+    "verify-feelings-compass.mjs: ok (fails=[]; timingChipCount=11)",
+    "Manusloop ×4 complete — last https://manus.im/app/3Uc8A7mGCQFSVZLbZPSGq6 pass"
   ],
   "focus": [
-    "Confirm story beat 2 shows feeling-confused (not checkmark)",
-    "Do not re-ask navy wrap or frame comma OCR",
-    "ZPD: two-round Feelings Lab or richer abstract terms — next manusloop"
+    "Optional polish only — StoryArt / palette soft",
+    "Do not re-ask navy wrap or frame OCR"
   ],
-  "notes": "Shift30 generalization. Manus https://manus.im/app/SsdpWA76twR2U5WF3MLMHg revise/41 folded."
+  "notes": "Manusloop ×4 done 2026-08-07."
 }

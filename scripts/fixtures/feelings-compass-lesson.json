@@ -31,25 +31,26 @@
         "heading": "Morning Jitters",
         "text": "Mia walked into class feeling worried. The new project looked hard, and she felt a little shy about asking for help.",
         "visualTheme": "classroom",
-        "visualCaption": "Mia sits at her desk looking worried"
+        "visualCaption": "worried — Mia at her desk"
       },
       {
         "heading": "A Confusing Task",
         "text": "The instructions left her confused. For a moment she felt scared she would fail, but her partner smiled and explained the first step.",
         "visualTheme": "classroom",
-        "visualCaption": "Two students study a worksheet together"
+        "visualCaption": "confused — Mia reads the worksheet"
       },
       {
         "heading": "A Happy Finish",
         "text": "When they finished, Mia felt surprised by how well it went. She left school happy and ready to try again tomorrow.",
         "visualTheme": "school",
-        "visualCaption": "Friends leave school smiling"
+        "visualCaption": "surprised — Mia leaves school happy"
       }
     ],
     "comprehensionQuestions": [
       { "question": "How did Mia feel at the start of the day?", "sampleAnswer": "She felt worried and a little shy." },
       { "question": "What made Mia feel confused?", "sampleAnswer": "The project instructions were hard to understand." },
-      { "question": "How did Mia feel at the end?", "sampleAnswer": "She felt surprised and happy." }
+      { "question": "How did Mia feel at the end?", "sampleAnswer": "She felt surprised and happy." },
+      { "question": "Why do you think Mia felt surprised at the end?", "sampleAnswer": "Because the hard project went better than she expected." }
     ],
     "creativeQuestions": [
       "If you felt worried like Mia, what would you do first?",
@@ -66,10 +67,11 @@
   ],
   "activity": {
     "title": "Feelings Face Lab",
-    "prompt": "Drag feeling faces onto the blank face. Then write or say how the face feels.",
+    "prompt": "Round 1: build a feeling face and say how it feels. Round 2: partner guesses, then answer with If I felt ____, I would ____.",
     "templates": [
       "This face looks ____ because ____.",
       "If I felt ____, I would ____.",
+      "My partner guessed ____, but I meant ____.",
       "My friend looks ____, so I would ____."
     ]
   },

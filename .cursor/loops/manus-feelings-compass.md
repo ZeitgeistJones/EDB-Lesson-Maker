@@ -10,7 +10,8 @@ Re-runnable: `/manusloop run manus-feelings-compass`
 
 Abstract-vocab stress test away from classical/music. Feelings B1 board:
 face-blank king + feeling-* dock; aims⊆board vocab; second-conditional honesty;
-no match answer captions; full story packet.
+no match answer captions; full story packet; two-round Feelings Lab (S41) with
+Round 2 If…would (S45); leading feeling captions (S44); wrap timing (S46).
 
 ## Stages
 
@@ -32,18 +33,30 @@ Body: `.cursor/loops/manus-feelings-compass/last-response.md`
 | Make-a-face hint leak | feelingsKing hint before faceKing |
 | Classical flats on feelings | TOPIC_SETS feelings → board-face |
 | Emotion prop resolve | PROP_ALIASES worried→feeling-worried etc. |
+| Check→checkmark story | feelings prefer + stop words; caption leads with feeling |
+| One-shot activity | Two-round Feelings Lab (S41) + If…would Round 2 (S45) |
+| Round→castle-*-round | KIT_STOP + curated stage before kit (S43) |
+| Write/say no strip | feelingsKing prodWrite under hint (S44) |
+| Wrap no timing | makeWrap ~3 min chip (S46) |
+| Manus null review | structured_success requires value; post-stop retries |
+| Navy wrap / OCR frames | Reject (S32 / false OCR) |
 
 ### 4 — Audit
 ```bash
 node scripts/verify-feelings-compass.mjs
 ```
+Soft: S42 no feeling-* story props.
 
 ## Last run
 
-- **When:** 2026-08-07 (shift30 — new topic + Manus fold)
-- **Local:** verify ok (fails=[])
-- **Manus:** https://manus.im/app/SsdpWA76twR2U5WF3MLMHg · **revise** · score **41** · overall **4.0** · all just_fixed HOLDS
-- **Fold:** B2 story check→checkmark → feelings prefer + stop words; reject B1 (OCR commas) + B3 (navy wrap = S32)
-- **Assets:** existing feeling-* + vocab pack — no generate
-- **ZPD logged:** richer emotion terms; two-round Feelings Lab
-- **Next:** `/manusloop run manus-feelings-compass` after story prop confirm
+- **When:** 2026-08-07 (manusloop ×4 complete)
+- **Local:** verify ok (fails=[]; timingChipCount=11)
+- **Manus trail:**
+  - pass1 [JkBr5](https://manus.im/app/JkBr5MesJWVgnGGtXrgHM8) blocked
+  - pass2 [kS8Er](https://manus.im/app/kS8ErN7ZPkUtJ8iNWu38oc) fail/90
+  - pass3 [LSSgv](https://manus.im/app/LSSgv4Kc5Tigura7fph87F) pass/99
+  - pass4 [3Uc8](https://manus.im/app/3Uc8A7mGCQFSVZLbZPSGq6) pass/4
+- **Fold:** S41–S46 producer + generate-lesson feelings block; reject wrap recolor + OCR
+- **Assets:** none generated — existing feeling-* / vocab pack
+- **Leftover soft:** StoryArt; palette register soft; receptive-reading aim wording
+- **Next:** optional StoryArt assetgap or new topic; re-run after StoryArt if desired

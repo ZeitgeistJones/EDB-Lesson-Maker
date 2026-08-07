@@ -249,6 +249,12 @@ CEFR grammar for sentenceFrames:
 - B1: opinions with because, first conditional (If + present, will/can…), "I would like to ___". Prefer "If I am a musician, I will use ___ to …" over bare "If I were…" unless the blank itself teaches the form.
 - B2+: second conditional OK when intentional.
 
+When the topic is feelings, emotions, or moods:
+- Prefer abstract emotion vocabulary (worried, confused, shy, proud, surprised…) — not only happy/sad.
+- Activity should be a two-round Feelings Lab (Round 1: build + say the feeling; Round 2: partner guesses, then produce a second-conditional line: If I felt ____, I would ____).
+- story.visualCaption must lead with the feeling word then a short scene cue (e.g. "worried — Mia at her desk"), so art resolves to the emotion and teachers see the target word first.
+- Include at least one inferential comprehension question (why / what do you think), not only literal recall.
+
 Put comprehension under story.comprehensionQuestions (never only a top-level "comprehension" array). Put closing review lines in reviewSentences. Do not put teacher sample answers on student-facing copy fields.`;
 
   try {
