@@ -88,7 +88,7 @@ Log lines append to `.cursor/ratings/manus-reviews.jsonl`.
 | B1 bare second conditional | Generate prompt CEFR frame rules |
 | Story glyphs | PropBank caption fallback before emoji; full StoryArt still preferred when cached; S24 |
 | Story beat 3 “missing” | Often a **packet hole**: `pickImages` must attach every `storyN` (S27) — board already had 3 beats |
-| inspire starburst ambiguity | `PACK_OVERRIDES.inspire→brain` + clear icons (no student caption chips); S26 |
+| inspire starburst ambiguity | Dedicated `inspire.png` (lyre-bulb ivory/gold); verify requires inspire.png not brain; S26 |
 | Match caption bake leak | `matchDock` no label; `pieceToPng` never captions matchPiece; verify piece.label; S26 |
 | Aims truncated / untaught orphans | Aims = board vocab slice(0,6); S25/S30 |
 | Soft match drop zones | Numbered DOM `data-match-pad`; S28 |

@@ -57,6 +57,7 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-07 | Vocab icons: classical compose unit (`compose`, `melody`, `harmony`, `tempo`, …) | Composing a Classical Masterpiece — 0/12 board art | Pack aliases + SAFE_EMOJI | Producer vocabIcons | wired — aliases to music/song/violin/drum/guitar/notebook/star/mask/dance/trophy; harmony/tempo SAFE |
 | 2026-08-07 | Music stage kit (piano hero + instrument dock ≥6 sharp) | Classical compose lessons fall to dressUp | Black-field instruments | in-house / Kenney | wired — pack=music grand-piano hero + 16 sharp docks from 3 ChatGPT 3×3 sheets |
 | 2026-08-07 | Classical terrace title scene + ivory/gold vocab pack | Composing a Classical Masterpiece needs matching hero BG + dock art | Scene + vocab PNGs | User terrace + in-house icons | wired — `classical-terrace-moonlit` title; `classical-moon` flats; 12 dedicated vocab icons |
+| 2026-08-07 | Dedicated `inspire` vocab icon (retire brain stand-in) | classical-compose match dock — starburst ambiguous, brain interim | Pack PNG ivory/gold lightbulb+lyre | In-house GenerateImage → `inspire.png` | wired — override removed; verify requires inspire.png |
 
 ## How agents append
 

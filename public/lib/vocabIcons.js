@@ -114,9 +114,8 @@
    */
   const PACK_OVERRIDES = {
     clean: 'soap',
-    // inspire.png is a lone starburst glyph — kids confuse it with compose/desk
-    // gold sparkles (Manus classical-compose B2). Brain reads as "idea/inspire".
-    inspire: 'brain',
+    // inspire.png is now dedicated ivory/gold lightbulb+lyre (classical pack).
+    // Do NOT override to brain — that was the interim stand-in for the old starburst.
   };
 
   /**

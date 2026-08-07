@@ -377,8 +377,11 @@ if (result.artWinners.some((w) => !String(w.winner).startsWith('pack:'))) {
   fails.push('vocab art must prefer pack: ' + JSON.stringify(result.artWinners));
 }
 const inspireWin = (result.artWinners || []).find((w) => w.w === 'inspire');
-if (inspireWin && /inspire\.png/i.test(String(inspireWin.winner))) {
-  fails.push('inspire must not use lone starburst pack glyph (override to clearer art): ' + inspireWin.winner);
+if (inspireWin && /brain\.png/i.test(String(inspireWin.winner))) {
+  fails.push('inspire must use dedicated pack art (not brain stand-in): ' + inspireWin.winner);
+}
+if (inspireWin && !/inspire\.png/i.test(String(inspireWin.winner))) {
+  fails.push('inspire must resolve to dedicated inspire.png: ' + inspireWin.winner);
 }
 if (result.storyEmojis.some((s) => s.emoji === '🏠')) fails.push('story emoji still house');
 if (result.frames.longest > 75 && result.frames.fontPx > 28) fails.push('long frames font not shrunk');

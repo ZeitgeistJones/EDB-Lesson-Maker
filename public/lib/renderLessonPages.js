@@ -1106,21 +1106,49 @@
       const caption = String(page?.visualCaption || '').toLowerCase();
       const cueLower = cue.toLowerCase();
       const deskScene = /\b(desk|papers?|compose|sheet\s*music|writing|manuscript|notebook)\b/.test(caption);
+      const pianoScene = /\b(piano|keys|keyboard)\b/.test(caption) && !deskScene;
+      const orchestraScene = /\b(orchestra|stage|concert|performance|performing|conductor)\b/.test(caption)
+        && !deskScene && !pianoScene;
       const deskPrefer = [
         'compose-desk', 'desk', 'grand-piano', 'piano', 'pencil-pot',
+      ];
+      // Prefer a musician-at-instrument cutout over bare furniture for story beats.
+      const pianoPrefer = [
+        'musician-piano', 'grand-piano', 'piano', 'dh-piano',
+      ];
+      const orchestraPrefer = [
+        'musician-conductor', 'orchestra-stands', 'musician-violin', 'musician-cello',
+        'conductor-podium', 'violin', 'cello',
       ];
       const themePrefer = [
         'orchestra', 'grand-piano', 'piano', 'violin', 'cello', 'guitar', 'flute',
         'musician-conductor', 'conductor', 'trumpet', 'harp', 'desk', 'compose-desk',
         'castle', 'dentist', 'face-blank', 'trampoline',
       ];
-      // Desk captions: match against caption only — lesson title often says orchestra.
-      const hay = deskScene ? caption : cueLower;
-      const preferList = deskScene ? deskPrefer : themePrefer;
+      // Desk/piano/orchestra captions: match caption only — lesson title often says orchestra.
+      const captionLocal = deskScene || pianoScene || orchestraScene;
+      const hay = captionLocal ? caption : cueLower;
+      const preferList = deskScene
+        ? deskPrefer
+        : pianoScene
+          ? pianoPrefer
+          : orchestraScene
+            ? orchestraPrefer
+            : themePrefer;
       const prefer = preferList.filter((w) => hay.includes(w.replace(/^musician-/, '').replace(/-/g, ' '))
         || hay.includes(w.split('-').pop()));
       if (deskScene) {
         ['compose-desk', 'desk'].forEach((w) => {
+          if (!prefer.includes(w)) prefer.unshift(w);
+        });
+      }
+      if (pianoScene) {
+        ['musician-piano', 'grand-piano'].forEach((w) => {
+          if (!prefer.includes(w)) prefer.unshift(w);
+        });
+      }
+      if (orchestraScene) {
+        ['musician-conductor', 'orchestra-stands'].forEach((w) => {
           if (!prefer.includes(w)) prefer.unshift(w);
         });
       }
@@ -1130,7 +1158,7 @@
       ]);
       const captionWords = (caption.match(/\b[a-z]{4,}\b/g) || []).filter((w) => !stop.has(w));
       // Caption words before theme prefer so scene text wins over title theme.
-      const tryWords = (deskScene
+      const tryWords = (captionLocal
         ? [...prefer, ...captionWords]
         : [...captionWords, ...prefer]
       ).slice(0, 12);

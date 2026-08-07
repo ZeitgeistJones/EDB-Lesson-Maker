@@ -3,7 +3,7 @@
   "level": "B1",
   "duration": "60",
   "knownIssues": [
-    "Full generative StoryArt may still be missing — PropBank caption fallback is the interim"
+    "Full generative StoryArt may still be missing — PropBank caption fallback is the interim (now prefers musician-piano / musician-conductor when caption names them)"
   ],
   "justFixed": [
     "normalizeLesson lifts root comprehension so Reading Comp is populated",
@@ -15,7 +15,8 @@
     "Story side/banner: PropBank match from caption before glyph (S24)",
     "Story caption chip: no absolute img bleed; desk captions prefer compose-desk",
     "pickImages always includes every storyN beat (S27)",
-    "inspire pack override → brain.png; matchPiece never bakes answer-naming caption chips (S26)",
+    "inspire pack override retired — dedicated ivory/gold inspire.png (lyre-bulb); verify requires inspire.png not brain",
+    "Story PropBank: piano/orchestra captions prefer musician-* cutouts before bare furniture",
     "Frame 2 no longer identity-based; story beat 2 guitar→piano; tempo in board vocab",
     "Teacher timing chips on scene headers INCLUDING king/activity (S29)",
     "Vocab matchDock: numbered drop-zone pads (S28); pieceToPng prefers data:/pad roles",
@@ -32,9 +33,10 @@
     "Soft codes S19–S37; manus schema: scorecard + just_fixed_results + zpd_challenges"
   ],
   "focus": [
-    "Verify JUST FIXED B1–B3 from LgtX revise/84 now HOLDS (no caption chips, activity timing, full exit vocab)",
+    "Verify dedicated inspire.png (lyre-bulb) reads clearly on match dock — not brain, not starburst",
+    "Verify story piano/orchestra beats prefer musician-* PropBank cutouts",
     "Fill just_fixed_results HOLDS/FAIL; gate_holes if local checks lied",
-    "If overall > 4.0, give zpd_challenges — New misses only (StoryArt depth)"
+    "If overall > 4.0, give zpd_challenges — New misses only (full StoryArt depth)"
   ],
-  "notes": "Shift21 folded LgtXoJYhXfR7hxq6rf75wR revise/84 into S26/S29/S33–S37. Ready for re-send Manus on post-fold bake."
+  "notes": "Assetgap 2026-08-07: dedicated inspire.png + story musician prefer. Re-send live Manus on post-assetgap bake."
 }

@@ -168,7 +168,7 @@ const SOFT = {
   S24: 'Story side/banner uses a real prop cutout when PropBank has a match (not only a glyph); caption stays a white chip below/above art — never free red text bleeding through an absolute alpha cutout',
   // Manus classical-compose 2026-08 (revise/72 + skill v2 / pass-98 report)
   S25: 'Title aims list the board-taught vocab (first 6 match-dock words) and state a honest grammar aim when sentence frames exist',
-  S26: 'Vocab match-dock icons map 1:1 without student-facing answer-naming caption chips (no piece.label / no pieceToPng caption bake); abstract pack glyphs (e.g. inspire starburst) are overridden to a clearer curated stand-in',
+  S26: 'Vocab match-dock icons map 1:1 without student-facing answer-naming caption chips (no piece.label / no pieceToPng caption bake); inspire uses dedicated pack art (inspire.png lightbulb — not brain stand-in, not ambiguous starburst)',
   S27: 'Manus/review pickImages includes every storyN beat before comprehension (never drop middle story pages at soft max)',
   S28: 'Vocab matchDock shows numbered drop-zone pads on word cards (not word text alone as the only target)',
   S29: 'Lessons ≥45 min show teacher timing chips on major scene headers including king/activity (pacing cues)',
