@@ -92,6 +92,20 @@
     smile: 'face-mouth-smile',
     hair: 'hair-messy-brown',
     glasses: 'face-glasses-round',
+    // Feelings compass — emotion stickers (pack="feelings")
+    // Do NOT alias cold/hot/sick/love — those collide with weather/health/theme props.
+    worried: 'feeling-worried',
+    scared: 'feeling-scared',
+    confused: 'feeling-confused',
+    shy: 'feeling-shy',
+    surprised: 'feeling-surprised',
+    happy: 'feeling-happy',
+    sad: 'feeling-sad',
+    angry: 'feeling-angry',
+    bored: 'feeling-bored',
+    sleepy: 'feeling-sleepy',
+    proud: 'feeling-proud',
+    silly: 'feeling-silly',
     // Castle build kit (matte pack) — New Words + docks resolve by lesson vocab
     castle: 'castle-wall-gate',
     gate: 'castle-portcullis',

@@ -276,6 +276,8 @@
     { re: /\b(bakerys?|bake\s*shop|pastry\s*shop|cafes?|caf[eé]s?)\b/, set: 'bakery-warm' },
     // Supermarket aisle washes — not outdoor-fresh meadow.
     { re: /\b(markets?|supermarkets?|grocer(?:y|ies)|farmers?\s*markets?)\b/, set: 'supermarket-cool' },
+    // Feelings / emotion compass — same quiet board-face washes as make-a-face.
+    { re: /\b(feeling|feelings|emotion|emotions|mood|worried|scared|shy|confused|proud|surprised)\b/, set: 'board-face' },
     // Face lessons only — tiny eye/wink eggs. Never the default for castle/school/etc.
     { re: /\b(faces?|eyes?|nose|mouth|cheek|make.?a.?face|blank.?face)\b/, set: 'board-face' },
     // Classical compose / concert — indigo moon washes (title may still take terrace scene).

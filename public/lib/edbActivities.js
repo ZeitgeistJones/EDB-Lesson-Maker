@@ -627,7 +627,10 @@
     if (kit && kit.ready && kit.hero && isHeroSized(kit.hero)) return kit.hero;
 
     // Curated stage surfaces for kits that predate pack tags (face / dental).
+    // Feelings before generic face parts — emotion lessons reuse face-blank as
+    // the play surface with feeling-* dock stickers (not eyes/nose dress-up).
     const STAGE_RULES = [
+      { re: /\b(feeling|feelings|emotion|emotions|mood)\b|\b(worried|scared|shy|confused|proud|surprised|happy|sad|angry|bored|sleepy|excited|tired)\b/, key: 'face-blank' },
       { re: /\bface\b|\bhair\b|\beyes?\b|\bnose\b|\bear\b|make.?a.?face|blank.?face/, key: 'face-blank' },
       { re: /dentist|dental|tooth|teeth|clinic|patient|brush|floss|cavity/, key: 'dental-kid-open-mouth' },
       { re: /trampolin|bounce|backflip/, key: 'trampoline' },
@@ -730,6 +733,22 @@
     'space-cubesat-gray',
   ];
 
+  /** Feelings compass — emotion face stickers kids drag onto a blank face. */
+  const ROLEPLAY_DOCK_FEELINGS = [
+    'feeling-worried',
+    'feeling-scared',
+    'feeling-confused',
+    'feeling-shy',
+    'feeling-surprised',
+    'feeling-happy',
+    'feeling-sad',
+    'feeling-angry',
+    'feeling-bored',
+    'feeling-sleepy',
+    'feeling-proud',
+    'feeling-silly',
+  ];
+
   /** Classical concert roleplay — cream/gold musicians for the terrace stage. */
   const ROLEPLAY_DOCK_MUSIC = [
     'musician-piano',
@@ -778,25 +797,34 @@
     const kit = PB.assessKit && PB.assessKit(lesson);
     const sharp = PB.isDockSharp || (() => true);
     // Hero key wins — vocab like "smile" must not steal a dental stage into a face dock.
+    // Feelings lessons also use face-blank as king, but the dock must be emotion
+    // stickers — not eyes/nose hair (that would erase the abstract vocab stress test).
     const heroKey = (hero && hero.key) || '';
-    const face = heroKey === 'face-blank'
+    const feelings = !!(kit && kit.pack === 'feelings')
+      || /\b(feeling|feelings|emotion|emotions|mood)\b/.test(blob)
+      || (/\b(worried|scared|shy|confused|proud|surprised|happy|sad|angry|bored|sleepy|excited|tired)\b/.test(blob)
+        && !/\b(hair|eyes|nose|ear|ears|make.?a.?face)\b/.test(blob));
+    const face = !feelings && (
+      heroKey === 'face-blank'
       || /face-blank|make.?a.?face/.test(blob)
       || (/\b(face|faces|hair|eyes|nose|ear|ears)\b/.test(blob)
-        && !/dentist|dental|tooth|teeth|clinic|floss|cavity|brush/.test(blob));
-    const dental = !face && (
+        && !/dentist|dental|tooth|teeth|clinic|floss|cavity|brush/.test(blob))
+    );
+    const dental = !feelings && !face && (
       /dental|dentist/.test(heroKey)
       || /dentist|dental|tooth|teeth|clinic|floss|cavity|brush/.test(blob)
     );
-    const trampoline = !face && !dental && (
+    const trampoline = !feelings && !face && !dental && (
       heroKey === 'trampoline'
       || /trampolin|bounce|backflip/.test(blob)
     );
     const out = [];
     const exclude = [hero && hero.key].filter(Boolean);
 
-    // 1) Curated docks for face / dental / trampoline / castle / space
+    // 1) Curated docks for feelings / face / dental / trampoline / castle / space
     let prefer = null;
-    if (face) prefer = ROLEPLAY_DOCK_FACE;
+    if (feelings) prefer = ROLEPLAY_DOCK_FEELINGS;
+    else if (face) prefer = ROLEPLAY_DOCK_FACE;
     else if (dental) prefer = ROLEPLAY_DOCK_DENTAL;
     else if (trampoline) prefer = ROLEPLAY_DOCK_TRAMPOLINE;
     else if (kit && kit.pack === 'castle') prefer = ROLEPLAY_DOCK_CASTLE;
@@ -809,42 +837,47 @@
         if (exclude.includes(key)) continue;
         const p = PB.resolve({ word: key, seed, family, exclude });
         if (!p || !sharp(p)) continue;
-        if (face && p.aspect && (p.aspect < 0.45 || p.aspect > 3.0)) continue;
-        if (!face && prefer === ROLEPLAY_DOCK_CASTLE && p.aspect && (p.aspect < 0.35 || p.aspect > 3.5)) continue;
-        if (!face && prefer === ROLEPLAY_DOCK_SPACE && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
-        if (!face && prefer === ROLEPLAY_DOCK_MUSIC && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
-        if (!face && prefer === ROLEPLAY_DOCK_DENTAL && p.aspect && (p.aspect < 0.3 || p.aspect > 2.6)) continue;
+        if ((face || feelings) && p.aspect && (p.aspect < 0.45 || p.aspect > 3.0)) continue;
+        if (!face && !feelings && prefer === ROLEPLAY_DOCK_CASTLE && p.aspect && (p.aspect < 0.35 || p.aspect > 3.5)) continue;
+        if (!face && !feelings && prefer === ROLEPLAY_DOCK_SPACE && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
+        if (!face && !feelings && prefer === ROLEPLAY_DOCK_MUSIC && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
+        if (!face && !feelings && prefer === ROLEPLAY_DOCK_DENTAL && p.aspect && (p.aspect < 0.3 || p.aspect > 2.6)) continue;
         exclude.push(p.key);
         out.push(p);
       }
     }
 
     // 2) Universal pack dock — rest of the matched kit (already sharp-filtered)
+    // Feelings: only more feeling-* stickers — never eyes/nose hair from face-blank tags.
     if (kit && kit.docks && kit.docks.length) {
       for (const p of kit.docks) {
         if (out.length >= count) break;
         if (exclude.includes(p.key)) continue;
         if (!sharp(p)) continue;
+        if (feelings && !/^feeling-/.test(p.key)) continue;
         if (p.aspect && (p.aspect < 0.3 || p.aspect > 4)) continue;
         exclude.push(p.key);
         out.push(p);
       }
     }
 
-    while (out.length < count) {
-      const p = PB.resolve({
-        tags,
-        roles: ['object', 'tool'],
-        minScore: 3,
-        seed,
-        index: out.length,
-        exclude,
-        family,
-      });
-      if (!p) break;
-      exclude.push(p.key);
-      if (!sharp(p)) continue;
-      out.push(p);
+    // Feelings curated list is the dock — do not pad with theme-tag junk (face parts).
+    if (!feelings) {
+      while (out.length < count) {
+        const p = PB.resolve({
+          tags,
+          roles: ['object', 'tool'],
+          minScore: 3,
+          seed,
+          index: out.length,
+          exclude,
+          family,
+        });
+        if (!p) break;
+        exclude.push(p.key);
+        if (!sharp(p)) continue;
+        out.push(p);
+      }
     }
     return out;
   }

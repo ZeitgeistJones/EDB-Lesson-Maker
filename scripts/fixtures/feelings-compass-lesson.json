@@ -1,0 +1,81 @@
+{
+  "title": "Finding Our Feelings Compass",
+  "warmUp": {
+    "question": "When was the last time you felt surprised at school?",
+    "sampleAnswer": "I felt surprised when my friend gave me a gift."
+  },
+  "vocabulary": [
+    { "word": "worried", "emoji": "😟", "sentence": "I felt worried before the big test." },
+    { "word": "scared", "emoji": "😨", "sentence": "She was scared of the dark hallway." },
+    { "word": "confused", "emoji": "😕", "sentence": "He looked confused by the new rules." },
+    { "word": "shy", "emoji": "😊", "sentence": "The new student felt shy on the first day." },
+    { "word": "surprised", "emoji": "😲", "sentence": "We were surprised by the kind message." },
+    { "word": "happy", "emoji": "😄", "sentence": "They felt happy after helping a friend." },
+    { "word": "sad", "emoji": "😢", "sentence": "I felt sad when my friend moved away." },
+    { "word": "angry", "emoji": "😠", "sentence": "He felt angry, then took a deep breath." },
+    { "word": "bored", "emoji": "😑", "sentence": "She felt bored during the long wait." },
+    { "word": "sleepy", "emoji": "😴", "sentence": "I felt sleepy after lunch." },
+    { "word": "excited", "emoji": "🤩", "sentence": "We felt excited about the class trip." },
+    { "word": "tired", "emoji": "😩", "sentence": "After sports, everyone felt tired." }
+  ],
+  "sentenceFrames": [
+    "If I felt worried, I would ____.",
+    "If my friend looked shy, I would ____.",
+    "I would feel ____ if someone ____.",
+    "When I feel confused, I usually ____."
+  ],
+  "story": {
+    "title": "Mia's Monday Compass",
+    "pages": [
+      {
+        "heading": "Morning Jitters",
+        "text": "Mia walked into class feeling worried. The new project looked hard, and she felt a little shy about asking for help.",
+        "visualTheme": "classroom",
+        "visualCaption": "Mia sits at her desk looking worried"
+      },
+      {
+        "heading": "A Confusing Task",
+        "text": "The instructions left her confused. For a moment she felt scared she would fail, but her partner smiled and explained the first step.",
+        "visualTheme": "classroom",
+        "visualCaption": "Two students check a worksheet together"
+      },
+      {
+        "heading": "A Happy Finish",
+        "text": "When they finished, Mia felt surprised by how well it went. She left school happy and ready to try again tomorrow.",
+        "visualTheme": "school",
+        "visualCaption": "Friends leave school smiling"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "How did Mia feel at the start of the day?", "sampleAnswer": "She felt worried and a little shy." },
+      { "question": "What made Mia feel confused?", "sampleAnswer": "The project instructions were hard to understand." },
+      { "question": "How did Mia feel at the end?", "sampleAnswer": "She felt surprised and happy." }
+    ],
+    "creativeQuestions": [
+      "If you felt worried like Mia, what would you do first?",
+      "Would you feel shy or happy asking a classmate for help? Why?"
+    ]
+  },
+  "speaking": [
+    { "question": "What makes you feel happy at school?", "sampleAnswer": "Talking with friends makes me feel happy." },
+    { "question": "When do you feel worried?", "sampleAnswer": "I feel worried before tests." },
+    { "question": "What do you do if you feel confused in class?", "sampleAnswer": "I ask the teacher or a friend." },
+    { "question": "Have you ever felt surprised by kind words?", "sampleAnswer": "Yes, a note from my friend surprised me." },
+    { "question": "Is it okay to feel shy on the first day?", "sampleAnswer": "Yes, many people feel shy at first." },
+    { "question": "What helps when you feel scared?", "sampleAnswer": "Taking a breath and talking to someone helps." }
+  ],
+  "activity": {
+    "title": "Feelings Face Lab",
+    "prompt": "Drag feeling faces onto the blank face. Then write or say how the face feels.",
+    "templates": [
+      "This face looks ____ because ____.",
+      "If I felt ____, I would ____.",
+      "My friend looks ____, so I would ____."
+    ]
+  },
+  "reviewSentences": [
+    "It is normal to feel worried before something new.",
+    "If I felt confused, I would ask a clear question.",
+    "A small kindness can turn shy feelings into happy ones."
+  ]
+}

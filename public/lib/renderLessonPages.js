@@ -1639,8 +1639,14 @@
       ].filter(Boolean).join(' ').toLowerCase();
       // Never say "toys" on language boards (Manus) — name the pieces + require
       // a speaking/writing beat so drag isn't the only "output".
+      // Feelings before faceKing: emotion lessons reuse face-blank but dock is feeling-*.
+      const feelingsKing = /\b(feeling|feelings|emotion|emotions|mood)\b/.test(kingCue)
+        || (/\b(worried|scared|shy|confused|proud|surprised|happy|sad|angry|bored|sleepy|excited|tired)\b/.test(kingCue)
+          && !/\b(hair|eyes|nose|ear|ears|make.?a.?face)\b/.test(kingCue));
       let kingHint = 'Drag the pieces onto the stage. Then say or write one sentence about your idea.';
-      if (faceKing) {
+      if (feelingsKing) {
+        kingHint = 'Drag feeling faces onto the blank face. Then write or say how it feels in 1–2 sentences.';
+      } else if (faceKing) {
         kingHint = 'Drag parts onto the face. Then say: My friend has ___';
       } else if (/\b(dentist|dental|tooth|teeth|cavity|floss|patient)\b/.test(kingCue)) {
         kingHint = 'Drag tools onto the patient. Then say what you used and why.';

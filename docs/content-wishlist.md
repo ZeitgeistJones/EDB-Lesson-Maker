@@ -45,6 +45,8 @@ Gaps in **lesson content** — not art. For us (agent + you) when something teac
 | 2026-08-07 | Grammar aim said “hypothetical” not “second conditional” | Manus bNsAK soft Blocking | `grammarAimLine` labels second conditional; S31 gate | schema-fixed |
 | 2026-08-07 | King instruction low contrast on terrace; story caption terracotta | Manus bNsAK Medium | Frosted king hint card + charcoal caption chips; S40 | schema-fixed |
 | 2026-08-07 | ZPD (pass/100): two-round peer eval + composer’s-choice instrument constraint | Manus bNsAK Level-Up | Log only — do not invent new lesson this pass | open |
+| 2026-08-07 | Abstract vocab stress test: new topic away from arts-music | Manus ZPD / shift30 | `feelings-compass` fixture + verify; feelings dock on face-blank; TOPIC_SETS board-face | schema-fixed |
+| 2026-08-07 | Feelings king dock padded with face eyes/nose after curated feeling-* list | Producer generalization | Stop feelings dock pad with non-feeling kit/tag resolve | schema-fixed |
 
 <!-- Classical compose note (2026-08-07): Activity dock + skipKing piano-on-piano fixed (f21ca03). Manus dual reviews LbVd…/oEDh… folded into producer 2026-08-07. Story glyphs still open. Manusloop J4up… revise/72 folded: pickImages + inspire override + aims/frames/story. Second live pass USYe… pass/98 — numbered pads + pieceToPng pad fix. Shift20: Manus skill delta → schema scorecard/ZPD + S30–S32 producer. Shift21: live Manus LgtX… revise/84 → S26 caption bake kill + S29 king timing + S33–S37. Shift22 assetgap+manus x2: inspire.png + RWiY → S38/S39. -->
 

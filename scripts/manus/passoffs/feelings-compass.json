@@ -1,0 +1,28 @@
+{
+  "title": "Reading the Feelings Compass",
+  "level": "B1",
+  "duration": "60",
+  "knownIssues": [
+    "Story art still PropBank/caption fallback — not full generative StoryArt",
+    "Match dock deliberately has NO answer-naming caption chips on drag pieces (S26) — words live on numbered pads",
+    "Feelings pack has no dedicated stage hero — reuses face-blank as play surface (intentional)"
+  ],
+  "justFixed": [
+    "New non-music topic: feelings-compass abstract vocab stress test",
+    "ROLEPLAY_DOCK_FEELINGS + face-blank stage; no face-parts pad leak",
+    "TOPIC_SETS feelings → board-face; PROP_ALIASES emotion→feeling-*",
+    "King hint names feeling faces + write/say (not make-a-face body parts)",
+    "Producer pedagogy gates still hold: aims⊆vocab, S26/S28/S29/S31/S37, full story packet"
+  ],
+  "localChecks": [
+    "verify-feelings-compass.mjs: ok (fails=[])",
+    "Art winners pack: worried/scared/confused/shy/surprised/happy"
+  ],
+  "focus": [
+    "Does abstract emotion vocab teach clearly on match + story + aims?",
+    "Is face-blank + feeling stickers a coherent ClassIn activity (not confused with make-a-face)?",
+    "Call gate_holes if local checks claimed pass but board still fails",
+    "ZPD only if overall > 4.0 — prefer next abstract/science topic, not music polish"
+  ],
+  "notes": "Shift30 generalization after classical-compose pass/100. Away from arts-music."
+}
