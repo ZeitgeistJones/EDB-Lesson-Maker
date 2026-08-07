@@ -654,7 +654,7 @@
       });
       stage.dataset.coloringStage = '1';
       stage.appendChild(el('div', {
-        fontSize: '18px',
+        fontSize: '22px',
         fontWeight: '700',
         color: '#64748b',
         marginBottom: '6px',
@@ -800,7 +800,7 @@
     const script = (data && data.teacherScript) || {};
     const oneLine = script.modeling || script.warmup
       || (focus ? `Say each sound in "${focus.word}". Drag a tile into every box.` : 'Say each sound. Drag a letter tile into every box.');
-    p.appendChild(hint(esc(oneLine), { marginBottom: '8px', fontSize: '20px' }));
+    p.appendChild(hint(esc(oneLine), { marginBottom: '8px', fontSize: '22px' }));
 
     if (data && data.targetWords && data.targetWords.length > 1) {
       const chips = el('div', {
@@ -813,7 +813,7 @@
           borderRadius: '999px',
           background: isFocus ? '#fbbf24' : '#fff7ed',
           border: isFocus ? '2px solid #b45309' : '1px solid #fcd34d',
-          fontSize: '18px',
+          fontSize: '22px',
           fontWeight: '700',
           color: '#78350f',
         }, `${w.emoji || ''} ${esc(w.word)}${isFocus ? ' ← now' : ''}`));
@@ -881,7 +881,7 @@
     });
     frames.forEach((f, i) => {
       body.appendChild(card(
-        `<div style="font-size:15px;font-weight:700;color:#64748b;margin-bottom:8px;flex-shrink:0">Frame ${i + 1}</div>
+        `<div style="font-size:22px;font-weight:700;color:#64748b;margin-bottom:8px;flex-shrink:0">Frame ${i + 1}</div>
          <div style="font-size:${rows <= 1 ? 48 : 40}px;font-weight:800;color:#1e293b;line-height:1.2;margin-bottom:14px;flex-shrink:0">${esc(f)}</div>
          <div style="border-bottom:4px dashed #94a3b8;flex:1;min-height:56px;width:100%"></div>`,
         {
@@ -970,7 +970,7 @@
       const caption = page?.visualCaption || page?.visualTheme;
       if (caption) {
         content.appendChild(el('div', {
-          color: '#9a3412', fontSize: '18px', fontWeight: '700',
+          color: '#9a3412', fontSize: '22px', fontWeight: '700',
           marginBottom: '10px', opacity: '0.9',
         }, esc(caption)));
       }
@@ -1029,7 +1029,7 @@
         themeEmoji(storyArtCue(lesson, page))));
       side.appendChild(el('div', {
         background: '#ffffff', color: '#9a3412', borderRadius: '12px', padding: '10px 14px',
-        fontSize: '16px', fontWeight: '700', textAlign: 'center', width: '100%',
+        fontSize: '22px', fontWeight: '700', textAlign: 'center', width: '100%',
         boxSizing: 'border-box', lineHeight: '1.3',
         boxShadow: '0 4px 12px rgba(15,23,42,0.08)',
       }, esc(page?.visualCaption || page?.visualTheme || 'Scene')));
@@ -1114,7 +1114,7 @@
       const text = creativePromptText(q);
       if (!text) return;
       body.appendChild(card(
-        `<div style="font-size:16px;color:#64748b;font-weight:700;margin-bottom:8px;flex-shrink:0">Idea ${i + 1}</div>
+        `<div style="font-size:22px;color:#64748b;font-weight:700;margin-bottom:8px;flex-shrink:0">Idea ${i + 1}</div>
          <div style="font-size:36px;font-weight:800;color:#134e4a;line-height:1.25;margin-bottom:14px;flex-shrink:0">${esc(text)}</div>
          <div style="border:2px dashed #94a3b8;border-radius:14px;flex:1;min-height:120px;background:rgba(248,250,252,0.85)"></div>`,
         {
@@ -1145,20 +1145,20 @@
       ? `Part ${pageIndex + 1} of ${totalPages}`
       : 'Answer out loud first';
     p.appendChild(hint(sub + (covered ? ' — peel the sticky after the first answer' : ''), {
-      fontSize: '16px', marginBottom: '12px',
+      fontSize: '22px', marginBottom: '12px',
     }));
 
     items.forEach((item, qi) => {
       const showSticky = covered && qi === 0;
+      // Number in the prompt line (no tiny "Question N" label — that tanked M1 / ate cover space).
       p.appendChild(card(
-        `<div style="font-size:17px;color:#64748b;font-weight:700;margin-bottom:8px">Question ${qi + 1}</div>
-         <div style="font-size:28px;font-weight:800;color:#14532d;line-height:1.25">${esc(item.question || '')}</div>`,
+        `<div style="font-size:30px;font-weight:800;color:#14532d;line-height:1.25">${qi + 1}. ${esc(item.question || '')}</div>`,
         { padding: '16px 20px', marginBottom: showSticky ? '8px' : '14px' }
       ));
 
       if (showSticky) {
         const r = (window.EdbActivities && window.EdbActivities.speakingCoverRect())
-          || { x: 88, y: 218, w: 720, h: 72 };
+          || { x: 88, y: 240, w: 720, h: 72 };
         p.appendChild(el('div', {
           position: 'absolute',
           left: r.x + 'px',
@@ -1172,7 +1172,7 @@
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: '20px',
+          fontSize: '22px',
           fontStyle: 'italic',
           color: '#166534',
           textAlign: 'center',
@@ -1184,7 +1184,7 @@
           position: 'absolute',
           left: r.x + 'px',
           top: (r.y + r.h + 8) + 'px',
-          fontSize: '16px',
+          fontSize: '22px',
           fontWeight: '700',
           marginBottom: '0',
           zIndex: '2',

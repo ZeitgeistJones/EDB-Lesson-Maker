@@ -48,7 +48,9 @@
 
   /** Must match speaking.targetBay in edbLayout ZONE_TEMPLATES. */
   function speakingCoverRect() {
-    return { x: 88, y: 218, w: 720, h: 72 };
+    // Below the Q1 chrome card (header + hint + one question line). Keep in sync
+    // with edbLayout speaking.targetBay when bumping type sizes.
+    return { x: 88, y: 240, w: 720, h: 72 };
   }
 
   /** Drop lowest-priority extras until unique pageKeys ≤ maxKeys. */

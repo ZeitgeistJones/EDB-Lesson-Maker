@@ -61,6 +61,7 @@ board** over floating a lonely mid-page card.
 - Scale type up when text is short (~56px+); card fills remaining height.
 - **Page background = quiet flat** (H2). Never put story body text on a full-bleed place scene.
 - **Picture = separate zone** — side panel or solo banner (`[data-story-art]`); reading card stays pale. Place immersion goes in that panel (generated StoryArt or a future scene fill), not under the type.
+- **M1 floor:** any readable chrome (Frame N, Question N, Color me!, story caption, phonics chips) ≥ **22px** — one tiny label tanks the whole page.
 
 ### King activity dock (make-a-face, etc.)
 

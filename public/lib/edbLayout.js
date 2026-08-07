@@ -84,11 +84,11 @@
     speaking: {
       header:    { x: 48, y: 36,  w: 1184, h: 50, noOverlap: true },
       // First question band; Peek sticky covers sample in targetBay
-      bodyText:  { x: 48, y: 100, w: 1184, h: 100, noOverlap: true },
+      bodyText:  { x: 48, y: 100, w: 1184, h: 120, noOverlap: true },
       artSafe:   { x: 1060, y: 140, w: 180, h: 220, noOverlap: false },
       dock:      { x: 48, y: 500, w: 1184, h: 70, noOverlap: false },
       // Must match EdbActivities.speakingCoverRect / painted sample band
-      targetBay: { x: 88, y: 218, w: 720, h: 72, noOverlap: false },
+      targetBay: { x: 88, y: 240, w: 720, h: 72, noOverlap: false },
       rewardPocket: { x: 1100, y: 36, w: 140, h: 80, noOverlap: false },
     },
     activity: {
