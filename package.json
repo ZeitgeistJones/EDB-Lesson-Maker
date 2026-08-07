@@ -28,6 +28,7 @@
     "assets:prop-blobs-import": "node scripts/import-blob-props.mjs",
     "assets:prop-qa": "node scripts/qa-props.mjs",
     "assets:prop-demand": "node scripts/prop-demand.mjs",
+    "assets:kenney-curate": "node scripts/kenney-curate.mjs",
     "assets:coloring": "node scripts/import-coloring-sheet.mjs",
     "test:coloring": "node scripts/smoke-coloring-outlines.mjs",
     "test:story-art-latency": "node scripts/smoke-story-art-latency.mjs",
