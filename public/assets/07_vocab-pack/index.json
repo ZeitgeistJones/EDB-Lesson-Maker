@@ -1094,6 +1094,11 @@
   "emoji": "🍄",
   "codepoint": "1f344"
  },
+ "music": {
+  "file": "music.png",
+  "emoji": "🎵",
+  "codepoint": "1f3b5"
+ },
  "napkin": {
   "file": "napkin.png",
   "emoji": "",
@@ -1513,6 +1518,11 @@
   "file": "sofa.png",
   "emoji": "🛋️",
   "codepoint": "1f6cb"
+ },
+ "song": {
+  "file": "song.png",
+  "emoji": "🎶",
+  "codepoint": "1f3b6"
  },
  "soup": {
   "file": "soup.png",

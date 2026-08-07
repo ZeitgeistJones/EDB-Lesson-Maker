@@ -116,6 +116,8 @@ const WORDS = {
   fishing: '🎣', game: '🎮', puzzle: '🧩', kite: '🪁', skateboard: '🛹',
   chess: '♟️', slide: '🛝', guitar: '🎸', piano: '🎹', drum: '🥁',
   violin: '🎻', trumpet: '🎺', microphone: '🎤', headphone: '🎧',
+  // Distinct from piano — match cards need one picture per word (M7).
+  music: '🎵', song: '🎶',
 
   // geography
   map: '🗺️', globe: '🌍', compass: '🧭', flag: '🚩', mountain: '⛰️',

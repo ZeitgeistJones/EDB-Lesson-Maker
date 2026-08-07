@@ -96,13 +96,14 @@
     wash: 'soap',
     fruit: 'apple',
     exercise: 'ball',
-    music: 'piano',
-    song: 'piano',
+    // music / song stay pack keys or SAFE_EMOJI — never piano.png (M7 match cards)
     lava: 'volcano',
     eruption: 'volcano',
     // ash stays SAFE_EMOJI — sharing volcano.png with eruption breaks match cards
     seed: 'plant',
     team: 'ball',
+    // hotel place noun — door.png is the vetted stand-in (not Gemini)
+    room: 'door',
   };
 
   /**
@@ -134,6 +135,9 @@
     seismic: '📉',
     tremors: '🫨',
     ash: '🌫️',
+    // Music unit — only until Twemoji pack rows land; never share piano.png.
+    music: '🎵',
+    song: '🎶',
   };
 
   function emojiFor(word, fallback) {
