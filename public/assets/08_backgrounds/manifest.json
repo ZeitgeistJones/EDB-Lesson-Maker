@@ -1525,6 +1525,42 @@
    "quiet": true,
    "set": "supermarket-cool",
    "palette": "cool"
+  },
+  "aquarium-a": {
+   "file": "flat_aquarium-a.png",
+   "tone": "aquarium cool — plain aqua tank haze",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "aquarium-cool",
+   "palette": "cool"
+  },
+  "aquarium-b": {
+   "file": "flat_aquarium-b.png",
+   "tone": "aquarium cool — bubble corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "aquarium-cool",
+   "palette": "cool"
+  },
+  "aquarium-c": {
+   "file": "flat_aquarium-c.png",
+   "tone": "aquarium cool — seaweed fringe",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "aquarium-cool",
+   "palette": "cool"
+  },
+  "aquarium-d": {
+   "file": "flat_aquarium-d.png",
+   "tone": "aquarium cool — tank waterline rim",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "aquarium-cool",
+   "palette": "cool"
   }
  }
 }

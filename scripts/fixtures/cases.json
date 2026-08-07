@@ -200,6 +200,30 @@
       "meta": { "level": "A1", "duration": "30" },
       "expectScene": "space|rocket|station|fantasy",
       "notes": "New topic probe — space kit exists but soft docks; must not steal travel-air via station"
+    },
+    {
+      "id": "aquarium",
+      "fixture": "aquarium-lesson.json",
+      "tier": "adversarial",
+      "meta": { "level": "A1", "duration": "30" },
+      "expectScene": "aquarium|tank|reef|underwater",
+      "notes": "New topic probe — aquarium-cool tank washes (not beach-warm via ocean/coral)"
+    },
+    {
+      "id": "campsite",
+      "fixture": "campsite-lesson.json",
+      "tier": "adversarial",
+      "meta": { "level": "A1", "duration": "30" },
+      "expectScene": "camp|campsite|park|outdoor|garden",
+      "notes": "New topic probe — campsite locks outdoor-fresh (was PLACE_SIGNALS gap)"
+    },
+    {
+      "id": "weather",
+      "fixture": "weather-lesson.json",
+      "tier": "adversarial",
+      "meta": { "level": "A1", "duration": "30" },
+      "expectScene": "school|classroom|weather",
+      "notes": "New topic probe — weather stays on board-house (not a place-set gap)"
     }
   ]
 }

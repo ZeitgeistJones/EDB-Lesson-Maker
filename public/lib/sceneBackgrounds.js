@@ -264,8 +264,11 @@
     { re: /\b(airport|travel|train|bus|plane|passport|(?:train|bus|transit|railway)\s*stations?)\b/, set: 'travel-air' },
     { re: /\b(home|house|family|kitchen|apartment|bedroom|hotel)\b/, set: 'home-warm' },
     // Indoor gym before outdoor — "gym" must not land on park meadows.
-    { re: /\b(gym|workout|athletic|basketball|fitness|sports?)\b/, set: 'gym-cool' },
-    { re: /\b(zoo|park|animal|forest|garden|nature|trampoline|volcano|lava|eruption|crater|farm|pool|swim|swimming)\b/, set: 'outdoor-fresh' },
+    // Soccer/tennis/etc. beyond bare "gym" still lock court washes (not meadow).
+    { re: /\b(gym|workout|athletic|basketball|fitness|sports?|soccer|football|tennis|baseball)\b/, set: 'gym-cool' },
+    // Indoor tank washes before beach/ocean — "coral"/"tank" must not steal beach-warm.
+    { re: /\b(aquariums?|fish\s*tanks?|coral\s*reefs?)\b/, set: 'aquarium-cool' },
+    { re: /\b(zoo|park|animal|forest|garden|nature|trampoline|volcano|lava|eruption|crater|farm|pool|swim|swimming|campsites?|camp(?:ing|fire)?|playgrounds?)\b/, set: 'outdoor-fresh' },
     { re: /\b(beach|ocean|sea|shore|seaside|island)\b/, set: 'beach-warm' },
     // Place nouns only — bare "bread" must not steal supermarket lessons onto bakery.
     { re: /\b(bakerys?|bake\s*shop|pastry\s*shop|cafes?|caf[eé]s?)\b/, set: 'bakery-warm' },
@@ -278,30 +281,33 @@
   /**
    * Place-like titles that should lock a quiet set (or report a bgGap).
    * Broader than TOPIC_SETS so missing place sets surface honestly.
-   * School/library stay on board-house — not place-set gaps.
+   * School/library/museum/weather stay on board-house — not place-set gaps.
+   * No bare "station" — space station is not travel.
    */
   const PLACE_SIGNALS = [
     /\b(dentists?|dental|doctors?|clinic|hospital|nurse|medical)\b/,
-    /\b(airport|travel|train|bus|plane|passport|station|hotel)\b/,
+    /\b(airport|travel|train|bus|plane|passport|(?:train|bus|transit|railway)\s*stations?|hotel)\b/,
     /\b(home|house|family|kitchen|apartment|bedroom)\b/,
     /\b(zoo|park|animal|forest|garden|nature|gym|sport|trampoline|volcano)\b/,
+    /\b(aquariums?|fish\s*tanks?)\b/,
     /\b(beach|ocean|sea|shore|seaside|island)\b/,
     /\b(bakerys?|bake\s*shop|pastry|cafes?|caf[eé]|restaurants?|markets?|supermarkets?|grocery|groceries)\b/,
-    /\b(farm|campsite|museum|pool|swimming|playground)\b/,
+    /\b(farm|campsites?|camp(?:ing)?|pool|swimming|playgrounds?)\b/,
   ];
 
   const TOPIC_PALETTE = [
     { re: /\b(dentists?|dental|doctors?|clinic|hospital|nurse|tooth|teeth|medical)\b/, want: ['cool', 'neutral', 'warm'] },
-    { re: /\b(airport|travel|train|bus|plane|passport|station)\b/, want: ['travel', 'cool', 'neutral'] },
+    { re: /\b(airport|travel|train|bus|plane|passport|(?:train|bus|transit|railway)\s*stations?)\b/, want: ['travel', 'cool', 'neutral'] },
+    { re: /\b(aquariums?|fish\s*tanks?|coral)\b/, want: ['cool', 'coast', 'neutral'] },
     { re: /\b(beach|ocean|sea|shore|swim)\b/, want: ['coast', 'outdoor', 'cool'] },
     { re: /\b(volcano|lava|eruption|crater|ash|seismic|geothermal)\b/, want: ['outdoor', 'warm', 'cool'] },
-    { re: /\b(zoo|park|animal|forest|garden|nature)\b/, want: ['outdoor', 'cool', 'warm'] },
+    { re: /\b(zoo|park|animal|forest|garden|nature|campsites?|camping|playgrounds?)\b/, want: ['outdoor', 'cool', 'warm'] },
     // "Living in…" titles must not steal the home palette over a real place.
     { re: /\b(home|house|family|kitchen|apartment|bedroom)\b/, want: ['warm', 'neutral'] },
     { re: /\b(bakerys?|bake\s*shop|pastry|cafes?|caf[eé]|restaurants?)\b/, want: ['warm', 'neutral', 'cool'] },
     { re: /\b(markets?|supermarkets?|grocery|groceries)\b/, want: ['cool', 'neutral', 'warm'] },
-    { re: /\b(school|classroom|teacher|library)\b/, want: ['neutral', 'cool', 'warm'] },
-    { re: /\b(gym|sport|trampoline|play|workout|athletic)\b/, want: ['cool', 'outdoor', 'warm'] },
+    { re: /\b(school|classroom|teacher|library|museum|weather)\b/, want: ['neutral', 'cool', 'warm'] },
+    { re: /\b(gym|sport|trampoline|play|workout|athletic|soccer|football|tennis)\b/, want: ['cool', 'outdoor', 'warm'] },
   ];
 
   function palettesFor(topicWords) {
