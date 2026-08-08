@@ -58,6 +58,7 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-07 | Music stage kit (piano hero + instrument dock ≥6 sharp) | Classical compose lessons fall to dressUp | Black-field instruments | in-house / Kenney | wired — pack=music grand-piano hero + 16 sharp docks from 3 ChatGPT 3×3 sheets |
 | 2026-08-07 | Classical terrace title scene + ivory/gold vocab pack | Composing a Classical Masterpiece needs matching hero BG + dock art | Scene + vocab PNGs | User terrace + in-house icons | wired — `classical-terrace-moonlit` title; `classical-moon` flats; 12 dedicated vocab icons |
 | 2026-08-07 | Dedicated `inspire` vocab icon (retire brain stand-in) | classical-compose match dock — starburst ambiguous, brain interim | Pack PNG ivory/gold lightbulb+lyre | In-house GenerateImage → `inspire.png` | wired — override removed; verify requires inspire.png |
+| 2026-08-08 | White-key prop pack for **health** (doctor, dentist, first-aid, sick/hurt) and **community** (helpers + places: post office, market, bus stop) | shift10 gptbrief/assetswarm coverage scan — no fixtures and no keyed prop pack | White-key prop cutouts in `09_props` | In-house white-key swarm — EDGE-RISK: medical accuracy + cultural sensitivity, prompts need careful review not a blind swarm | open |
 
 ## How agents append
 

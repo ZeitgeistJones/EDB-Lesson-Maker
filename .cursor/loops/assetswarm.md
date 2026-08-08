@@ -27,6 +27,50 @@ the end, so N loops never race on the same file.
   `pack` tags before choosing, and prefer concrete, single-object-friendly nouns
   that key cleanly on black.
 
+## Coverage pre-scan (MANDATORY — run before spawning any loop)
+
+The swarm's most expensive failure is spending loops **rediscovering packs it
+already has**. A recent run burned roughly half its loops re-generating weather,
+animals, jobs and sports props that were already keyed and shipping. Fix it at
+the coordinator, before the fan-out — never let a loop find out mid-run.
+
+Before spawning **any** per-topic loop, the coordinator scans the existing pack
+coverage for **every** candidate topic — the ones passed on the command line as
+well as any it would pick itself:
+
+1. **Read the manifest** `public/assets/09_props/manifest.json` and build the set
+   of keys/`pack` tags already on disk. Cross-reference `assets:prop-demand`
+   (`npm run assets:prop-demand`) and the `covered_before` blocks in
+   `.cursor/loops/assetscout-*.md`.
+2. **Classify each candidate topic** against what's already there:
+   - **Mature pack** (≈6+ keyed props, gates clean) → **SKIP** the topic
+     entirely. Do not spawn a loop for it.
+   - **Partial pack** (a few keys, obvious holes) → **NARROW** the topic: spawn
+     the loop but hand it the exact list of keys already covered so it only fills
+     the genuine gaps, not the whole set.
+   - **Empty** (no matching keys) → spawn a full loop.
+3. **Pass the already-covered keys down to each loop.** Every spawned loop must
+   be told, in its brief, the exact `<topic>-*` keys that already exist so its
+   step-1 vocab pick and step-2 disk scan start from the real gap, not from zero.
+   "Owns topic X; these keys already exist and are OFF-LIMITS: X-foo, X-bar;
+   generate only fresh gaps."
+
+Example — invoked `/assetswarm 5 weather, sports, transport, animals, jobs`, but
+the manifest already has mature `weather-*`, `animals-*`, `jobs-*`, `sports-*`
+packs and only a thin `transport-*` set:
+
+- SKIP `weather`, `animals`, `jobs`, `sports` (mature — spawning them just
+  rediscovers what ships).
+- NARROW `transport`: spawn one loop, tell it `transport-car`, `transport-train`
+  already exist → fill only `transport-bus`, `transport-boat`, `transport-airplane`,
+  `transport-bicycle`.
+- Net: **1 useful loop instead of 5**, and the coordinator reports the four
+  skips so the caller can feed in genuinely new topics next time.
+
+If the pre-scan leaves fewer live topics than `<N>`, don't pad the count with
+near-duplicates — run the smaller set and report the skips. A swarm of 1 real
+gap beats a swarm of 5 where 4 re-draw the pack.
+
 ## Collision-safety contract (the whole point)
 
 Each loop is a NEW-FILES-ONLY worker. Per loop:
@@ -47,8 +91,10 @@ Each loop is a NEW-FILES-ONLY worker. Per loop:
 
 1. Pick **~6 concrete B1 vocab nouns** for the topic that key cleanly on black
    (light/colourful bodies, neutral fittings, one object each).
-2. **Scan existing props first** (`09_props/manifest.json` + `assets:prop-demand`)
-   and reuse anything already on disk — only generate the genuine gaps.
+2. **Scan existing props first** (`09_props/manifest.json` + `assets:prop-demand`),
+   and honour the **already-covered keys the coordinator handed down** in the
+   pre-scan — reuse anything already on disk and generate only the genuine gaps.
+   Never regenerate a key the brief listed as off-limits.
 3. **Generate gaps in-house, one at a time**, on solid black — no grid, no
    labels, no baked text. Follow `.cursor/skills/prop-cutouts/SKILL.md`
    (`docs/prop-style-lock.md` is the prompt; request 1:1 + explicit filename).

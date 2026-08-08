@@ -257,6 +257,46 @@ that is all you want.
 Then look at it: `npm run assets:prop-qa -- --only=<slug>` and open
 `tmp/prop-qa.jpg`. The gates cannot see style drift or faint micro-text.
 
+## Vehicles, wheeled objects, and wide props
+
+Two patterns bite hard enough on a specific class of prop to be worth their own
+rules. Both come out of real generations that fought the gates.
+
+### Vehicles / wheeled objects: grey the base, keep it one connected solid
+
+Prompt the wheels **and** the undercarriage as **MEDIUM GREY** — one connected
+solid base, **never near-black**. A car, bus, train, bike or wagon whose wheels
+and chassis-shadow are painted dark charcoal or black reads to the keyer as part
+of the black field: the alpha punches straight through the wheels, the base
+splits into disconnected islands, and **C5 rejects it as too many components**
+(a "blob-split"). Medium grey keeps the base a single solid shape the keyer
+holds onto, so the vehicle stays one piece.
+
+- Body: the one dominant recolourable hue (per the recolourability rule above).
+- Wheels, axles, undercarriage, wheel wells: **medium grey**, connected, not
+  near-black. Grey tyres are correct here — do not "realism" them to black.
+- This is the reliable fix for wheeled props failing C5 with a split base.
+
+### Wide props (aspect ratio ≳1.5): a clean single gen is a valid `--force`
+
+Buses, trains, whales, sharks, planes and other long objects (long side ≳1.5×
+the short side) routinely land in a **thin C3/C4 source-margin dead-zone**: the
+object is composed correctly and centred, but because it is wide, its long side
+eats into the 8% margin band and the source-margin gates (C3/C4) read the frame
+as too tight — even when the art itself is clean.
+
+This is a **measurement artefact, not a bad generation.** The C1 border check is
+the one that actually matters for keyability, and when C1 is clean the frame is
+keyable. `scripts/import-prop.mjs` re-pads every output to a uniform **~8%
+margin** on export, so a wide prop that only trips C3/C4 comes out correctly
+padded anyway.
+
+So: **an otherwise-clean single generation of a wide prop is a valid `--force`
+case.** If C1 passes and the only failures are the C3/C4 source-margin gates on
+a genuinely wide object, import it with `--force` rather than burning three more
+generations trying to buy margin the model can't give a wide shape. Still eyeball
+the result — `--force` skips the gate, not the human check.
+
 ## Known failure modes
 
 Observed on real generations, in rough order of how often they bite.
