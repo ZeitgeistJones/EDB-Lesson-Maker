@@ -96,18 +96,75 @@ Props (reading order, left→right then top→bottom):
 Export as ONE PNG at maximum resolution (see the ≥2048px rule above).
 ```
 
+### Variant C — batch (4×8, high-quality 4K — 32 tiles)
+
+Use when the 4K model is available (`nano-banana-pro` / `nano-banana-2`) and you
+want to DOUBLE the props per image at the same keying quality. Requires a TALL
+canvas so 32 sliced tiles still land ≥512px each. If only the default /
+`gpt-image-2` model is available, **fall back to Variant B (4×4, 16 tiles)** — do
+NOT run 4×8 at 2048px, the tiles drop below the ~512px keying floor.
+
+```
+[HARD RULES block above]
+
+MODEL / RENDER SETTINGS:
+- quality="high", model nano-banana-pro (fallback nano-banana-2).
+- aspect_ratio: 9:16 (or "auto" + "ultra-tall portrait"), long side ≥4096px so
+  each of 32 tiles is ≥512px after slicing. NEVER run this grid at 2048px.
+
+Draw 32 separate props for <purpose>, arranged in a clean 4 columns × 8 rows
+grid on a pure solid #000000 field. One prop per cell, its own ~8% margin inside
+its cell, nothing crossing a cell border. Every prop is a flat 2-tone vector,
+Material Design icon style, orthographic front view — two flat colour values per
+surface (base tone + one darker shade), hard boundaries, no blending, no gloss,
+no 3D, no photoreal, no heavy outline, no drop/cast shadow.
+
+Consistent STYLE across all 32 (same line weight, shading, lighting) but EACH
+object keeps its OWN natural, distinct colours — "two flat values per surface"
+applies PER OBJECT, not per sheet. No near-black or pure-white as any object's
+MAIN body colour; give dark/white subjects a coloured or medium-grey body.
+Vehicles/wheeled objects: wheels AND undercarriage as ONE connected MEDIUM GREY
+base, never near-black.
+
+ZERO text anywhere — no letters, numbers, labels, captions, watermarks, or
+brand/company logos, and no real brand marks on any object.
+
+Props (reading order, left→right then top→bottom):
+  1. <prop> … 32. <prop>
+
+Don't hyperfixate: if a tile won't come out clean after a try or two, SKIP it
+and keep the rest — a 30/32 sheet is fine. Export as ONE PNG at maximum
+resolution (long side ≥4096px).
+```
+
 ### Resolution ↔ grid tradeoff (state it in the brief)
 
 Sliced tiles inherit a fraction of the sheet's pixels, and the importer refuses
 to resample above the tile it came from. So grid size is bounded by what the
-generator will actually export:
+generator will actually export. The caps below are **confirmed** (Manus asked &
+answered — see the Manus note), not guessed:
 
-- **4×4 (16 tiles)** needs a **≥2048px** sheet to land ≥512px per tile. Ask for
-  it explicitly, and reject a sheet that comes back at 1024px.
-- If the generator **caps around ~1024px**, drop to **3×3 (9 tiles)** — a 1024px
-  3×3 slice is ~340px per panel, which still keys and draws fine at dock size
-  (96–220px). Better nine clean big tiles than sixteen soft ones.
-- Never let the grid outrun the resolution. When unsure, prefer the smaller grid.
+- **Default quality / `gpt-image-2`:** long side caps at **~2048px**.
+- **High quality (`quality="high"`) + `nano-banana-pro` / `nano-banana-2`:** up
+  to **4096px** long side (nano-banana-pro sometimes up to 5632px).
+- **Keying floor stays ~512px per tile** — the importer won't resample above the
+  slice it came from.
+
+Decision rule:
+
+- **Default / `gpt-image-2` (2048px cap):** use **4×4 (16 tiles)** on a
+  square/near-square canvas → ~512px/tile. This is the **safe default**.
+- **High quality + `nano-banana-pro` / `nano-banana-2` (4096px):** use **4×8 (32
+  tiles)** on a **TALL** canvas (`aspect_ratio` 9:16, or `auto` + "ultra-tall
+  portrait", long side ~4096px) → still ~512px/tile, **doubling props per image
+  at the same keying quality**. This is the preferred efficient unit whenever the
+  4K model is available.
+- **Never let the grid outrun the resolution.** 6×6 at 2048, or 4×8 at 2048,
+  drops tiles below the ~512px floor — reject. When unsure, prefer the smaller
+  grid.
+- **Exact pixel dims** (e.g. 2048×4096) if a target requires them: generate at
+  the nearest aspect preset (9:16 for tall) and PIL/Pillow resize/extend as a
+  post-step — deterministic, no quality loss.
 
 ### Manus (agentic) note
 
@@ -138,6 +195,22 @@ Validated Run-5 findings (fold these into the Manus instructions):
 - **Success metric = "tiles that survive our importer,"** not "tiles that pass
   Manus's own vision check." Judge a Manus run by how many cleanly key through
   `assets:import-sheet`, not by Manus's self-reported pass rate.
+
+Confirmed canvas limits (asked & answered — don't re-ask next run):
+
+- **Model → max resolution (long side):** `gpt-image-2` = 2048px; default
+  quality mode ≈ 2048px; `nano-banana-2` = 4096px (4K); `nano-banana-pro` = up to
+  4096px, sometimes up to 5632px. Reach the 4K tiers with `quality="high"`.
+- **Non-square is supported** via aspect presets — landscape 3:2 / 4:3 / 16:9 /
+  21:9; portrait 2:3 / 3:4 / 4:5 / 9:16; square 1:1. Tallest preset is 9:16
+  (0.5625). `aspect_ratio="auto"` + "ultra-tall portrait" in the prompt gets close
+  to arbitrary shapes (near 1:2).
+- **Exact pixel dims** (e.g. 2048×4096) are achievable via post-processing:
+  generate at the nearest preset (9:16), then PIL/Pillow resize/extend —
+  deterministic, no quality loss.
+- **Takeaway:** high quality + a tall canvas unlocks **4×8 / 32-tile sheets**
+  (Variant C) at the same ~512px/tile keying quality, doubling props per image.
+  Default / `gpt-image-2` stays on 4×4 / 16 tiles.
 
 ## Policy
 
