@@ -60,3 +60,30 @@
 ## zpd_challenges (stretch, not blockers)
 - StoryArt on process/sequence topic (cooking/science) — test generalisation beyond single-character arcs
 - Student-generated content loop ("My Compass" scene) for B1→B2
+
+---
+
+# NEW-BAR RUN (commit 2d5e971 brief) — [S9VxcmZA](https://manus.im/app/S9VxcmZA3PyjoDxw98E4Uh)
+
+- **When:** 2026-08-08 (manusloop ×2 under new bar, pass 1)
+- **Verdict:** pass · **Score:** 91 · scorecard overall 4.6 (edb 4.8, classin 4.7, completeness 4.6, pedagogy 4.5, ppt 4.2)
+- **blocking_issues:** [] · **gate_holes:** [] (division of labor held — no re-report of drag count / spelling / clipping / warm leak)
+
+## NEW-BAR directives — did they fire?
+- **weakest_link (populated on a pass ✓):** "PPT-like Quality — Background palette/register count; deck uses four registers (periwinkle/title, lavender/body, mint/body, navy wrap); required: bookend palette system → reduce body registers to two and unify title/wrap for cohesion."
+- **escalation_homework (real spec ✓):** "Add a Feelings Compass Wheel scene (2D classification task) to stress-test ClassIn's ability to handle non-linear layouts and multi-axis classification; single buildable generator change the producer can ACCEPT or DECLINE."
+
+## just_fixed_results — all HOLD
+- StoryArt LIVE (Mia arc) HOLDS · S46 wrap chip HOLDS · S45/S9 inferential HOLDS · S41–S44 two-round Lab HOLDS
+
+## next_actions (folded / triaged)
+- **Blocking|S6|Enforce Mia's character design consistency across all beats (hair color, features) in StoryArt assets** → FOLD (producer: story-art character-lock)
+- High|S5 (Frame 3)|Add small example verb/hint under inverted conditional 2nd blank → CAUTION (S26/S58 answer-giving risk — hint only, no answer word)
+- Medium|S10 (Your Ideas)|Reword Idea 2 to open-ended (avoid forced binary) → consider
+- Low|Global|Bookend palette spec to reduce register count → S32 (navy wrap intentional; body already 2 registers) — log, not recolor
+
+## method_feedback
+- "hair-color-consistency in StoryArt | recurring character appearance shifts across beats | enforce a fixed character model + global style reference on all panels" → drives producer fold
+
+## known-false / gated (did NOT re-litigate)
+- Frame OCR (shv/mv), navy wrap S32 — Manus did not re-raise as blocking (weakest_link touched palette register as the anti-inflation nag, not a hard fail)

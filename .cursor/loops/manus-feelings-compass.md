@@ -48,10 +48,16 @@ node scripts/verify-feelings-compass.mjs --story-art=auto
 Soft: S42 no feeling-* story props.
 New gates (S49, Manus QCVsgMcb): DRAG_SOURCE_COUNT == TARGET_VOCAB_COUNT (dock==6);
 comprehension board must show inferential Q (not dropped past slice); creative cards on-board.
+New gate (S48, Manus S9VxcmZA): multi-panel StoryArt cache must carry charLock (v2-charlock);
+stale caches soft-flag → regenerate with --story-art=1 to enforce recurring-character consistency.
 
-## Last run
+## Last run (NEW-BAR ×2 — commit 2d5e971 brief)
 
-- **When:** 2026-08-08 (manusloop ×2 — StoryArt validation)
+- **When:** 2026-08-08 (manusloop ×2 under the upgraded pass-off brief)
+- **Local:** verify ok (fails=[]; soft=[]; feelingDockCount=6; StoryArt 3/3; charLock=true; timingChipCount=11)
+- **Manus (pass 1):** [S9VxcmZA](https://manus.im/app/S9VxcmZA3PyjoDxw98E4Uh) pass/91 (overall 4.6). Directives fired: weakest_link=palette register count; escalation_homework=Feelings Compass Wheel 2D-classification scene. Only real producer finding = StoryArt character drift (Mia hair color p6↔p7).
+- **Fold (pass 1):** StoryArt character-lock machinery (api/generate-story-art.js) — first panel establishes the one main character, later panels ride the established panel as an extra reference image ("reuse exact identity"); PROMPT_VERSION=v2-charlock bumped into cacheKey so the fix regenerates; charLock flag persisted in cache meta. New verify soft S48 flags stale (pre-charLock) multi-panel caches. Regenerated art (sa_f0e7613a): Mia now consistent (brown pigtails, yellow+green-stripe top, denim overalls) across worried→surprised→happy. Palette register + Frame-3 hint declined (S32 / S26–S58 answer-giving risk).
+- **When (prior ×2 — StoryArt validation):** 2026-08-08
 - **Local:** verify ok (fails=[]; soft=[]; feelingDockCount=6; StoryArt 3/3; timingChipCount=11)
 - **Manus trail:**
   - pass4 (prev) [3Uc8](https://manus.im/app/3Uc8A7mGCQFSVZLbZPSGq6) pass

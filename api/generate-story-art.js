@@ -19,6 +19,9 @@ const IMAGE_MODEL = process.env.GEMINI_IMAGE_MODEL || 'gemini-2.5-flash-image';
 const VISION_MODEL = process.env.GEMINI_VISION_MODEL || process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite';
 const PER_IMAGE_MS = Number(process.env.STORY_ART_TIMEOUT_MS) || 45000;
 const MAX_PAGES = 3;
+// Bump when the prompt/flow changes so cached art regenerates with the new logic.
+// v2-charlock: recurring-character continuity (first panel establishes look; later panels reuse it).
+const PROMPT_VERSION = 'v2-charlock';
 const ROOT = path.resolve(__dirname, '..');
 const CACHE_ROOT = path.join(ROOT, 'tmp', 'story-art-cache');
 
@@ -36,6 +39,7 @@ function cacheEnabled() {
 function cacheKeyFor(title, level, pages) {
   const raw = JSON.stringify({
     model: IMAGE_MODEL,
+    pv: PROMPT_VERSION,
     title: title || '',
     level: level || '',
     pages: (pages || []).map((p) => ({
@@ -108,6 +112,7 @@ function loadCachedResult(cacheKey) {
     pages,
     cacheKey,
     cacheHit: true,
+    charLock: !!meta.charLock,
   };
 }
 
@@ -146,6 +151,7 @@ function writeCachedResult(cacheKey, result) {
     JSON.stringify({
       model: result.model || IMAGE_MODEL,
       styleRefFile,
+      charLock: !!result.charLock,
       pages: metaPages,
       savedAt: new Date().toISOString(),
     }, null, 2)
@@ -160,7 +166,7 @@ Aimed at ${lvl} young learners. Leave large empty areas — this is a palette/st
 Absolutely no text, letters, numbers, signs, logos, or writing of any kind.`;
 }
 
-function pagePrompt(page, title, level) {
+function pagePrompt(page, title, level, character) {
   const caption = String(page.visualCaption || page.heading || 'scene').trim();
   const text = String(page.text || '').slice(0, 600);
   const lvl = level || 'A1';
@@ -170,6 +176,18 @@ function pagePrompt(page, title, level) {
   const emotionRule = feelingLead
     ? `- Show clear body language / facial expression for "${feelingLead[1].toLowerCase()}" (readable at small side-panel size)`
     : '- Prefer a concrete place + action the caption names (not abstract symbols)';
+  // Recurring-character continuity across a multi-panel story arc. First panel
+  // locks the look; later panels get the established character as Image 2 and
+  // must reuse it exactly (fixes drift like hair-color changing between beats).
+  const multi = !!(character && character.multi);
+  let characterRule = '';
+  if (multi && character && character.ref) {
+    characterRule =
+      '\n- CHARACTER CONTINUITY: The FINAL reference image shows the SAME single main character already established in an earlier panel. Keep this character identical here — same hair color, same hairstyle, same skin tone, same clothing, same age. Change only pose, expression, and setting to fit this scene. Do not add other lookalike characters.';
+  } else if (multi) {
+    characterRule =
+      '\n- CHARACTER CONTINUITY: This is the FIRST appearance of the ONE main character of this story. Give them a single clear, simple, memorable look (one fixed hair color, hairstyle, skin tone, and outfit) that must stay identical in every later panel. Exactly one main character.';
+  }
   return `Image 1 is a STYLE REFERENCE only — match its flat children's-book gouache wash, color palette, and simple shapes. Do not copy its composition.
 
 Paint ONE literal story illustration for this ESL reading page (title: "${title || 'Story'}", level ${lvl}):
@@ -179,7 +197,7 @@ Story text to depict literally (not metaphorically): ${text}
 Rules:
 - Uncluttered composition for a small story side panel / banner — one clear focal action
 - Culturally generic, friendly, warm
-${emotionRule}
+${emotionRule}${characterRule}
 - Depict the caption scene literally; do not invent ironic or adult subtext
 - Absolutely no text, letters, numbers, signs, logos, captions, speech bubbles with writing, or writing of any kind
 - Do not invent extra busy details that fight the reading`;
@@ -299,28 +317,37 @@ async function hasLegibleText(img) {
   return { reject: true, reason: `vision-unclear:${text.slice(0, 40)}` };
 }
 
-function buildPageParts(page, title, level, styleRef) {
-  const prompt = pagePrompt(page, title, level);
+function buildPageParts(page, title, level, styleRef, character) {
+  const prompt = pagePrompt(page, title, level, character);
+  const characterRef = character && character.ref;
+  const parts = [];
   if (styleRef) {
-    return [
-      {
-        text:
-          'Image 1 = style reference: flat children\'s-book gouache wash, warm palette. ' +
-          'Apply this style; do not copy composition.',
-      },
-      { inlineData: { mimeType: styleRef.mime, data: styleRef.base64 } },
-      { text: prompt },
-    ];
+    parts.push({
+      text:
+        'Image 1 = style reference: flat children\'s-book gouache wash, warm palette. ' +
+        'Apply this style; do not copy composition.',
+    });
+    parts.push({ inlineData: { mimeType: styleRef.mime, data: styleRef.base64 } });
   }
-  return [{
-    text:
-      prompt +
-      '\nStyle (no reference image available): flat children\'s-book gouache wash, warm palette, soft simple shapes.',
-  }];
+  if (characterRef) {
+    parts.push({
+      text:
+        'Next reference image = the SAME main character already drawn in an earlier panel. ' +
+        'Reuse this exact character identity (hair color, hairstyle, skin tone, clothing, age); ' +
+        'change only pose, expression, and setting.',
+    });
+    parts.push({ inlineData: { mimeType: characterRef.mime, data: characterRef.base64 } });
+  }
+  parts.push({
+    text: styleRef
+      ? prompt
+      : prompt + '\nStyle (no reference image available): flat children\'s-book gouache wash, warm palette, soft simple shapes.',
+  });
+  return parts;
 }
 
-async function generatePageArt(page, title, level, styleRef, aspect) {
-  const parts = buildPageParts(page, title, level, styleRef);
+async function generatePageArt(page, title, level, styleRef, aspect, character) {
+  const parts = buildPageParts(page, title, level, styleRef, character);
   let gen = await generateImage(parts, aspect);
   if (!gen.ok) return { ok: false, reason: gen.reason };
 
@@ -334,7 +361,7 @@ async function generatePageArt(page, title, level, styleRef, aspect) {
   }
 
   // One retry with a harder no-text reminder (style sheet already retries once).
-  const retryParts = buildPageParts(page, title, level, styleRef);
+  const retryParts = buildPageParts(page, title, level, styleRef, character);
   retryParts.push({
     text: 'Reminder: ZERO text or letters anywhere. No signs, worksheets with writing, name tags, or alphabet.',
   });
@@ -455,15 +482,30 @@ async function handler(req, res) {
     const priorByIndex = new Map(((prior && prior.pages) || []).map((p) => [Number(p.index) || 0, p]));
     const missingSet = (prior && prior._missingIndexes) || null;
     const outPages = [];
+    // Recurring-character reference: the first good panel anchors the look, then
+    // rides along as an extra reference image so later beats stay on-model.
+    let characterRef = null;
+    if (multi) {
+      for (const p of (prior && prior.pages) || []) {
+        if (p && p.dataUrl) {
+          const parts = dataUrlToParts(p.dataUrl);
+          if (parts) { characterRef = parts; break; }
+        }
+      }
+    }
     for (const page of pagesIn) {
       const index = Number.isFinite(Number(page.index)) ? Number(page.index) : outPages.length;
       if (missingSet && !missingSet.has(index)) {
         const keep = priorByIndex.get(index);
         outPages.push(keep || { index, dataUrl: null, reason: 'cache-keep-miss' });
+        if (multi && !characterRef && keep && keep.dataUrl) {
+          const parts = dataUrlToParts(keep.dataUrl);
+          if (parts) characterRef = parts;
+        }
         continue;
       }
       try {
-        const gen = await generatePageArt(page, title, level, styleRef, aspect);
+        const gen = await generatePageArt(page, title, level, styleRef, aspect, { multi, ref: characterRef });
         if (!gen.ok) {
           outPages.push({ index, dataUrl: null, reason: gen.reason });
           continue;
@@ -473,6 +515,10 @@ async function handler(req, res) {
           dataUrl: gen.dataUrl,
           reason: gen.reason || (styleRef ? undefined : (multi ? 'prompt-only-style' : 'solo-prompt-style')),
         });
+        // Lock the first successful panel as the character anchor for later beats.
+        if (multi && !characterRef && gen.mime && gen.base64) {
+          characterRef = { mime: gen.mime, base64: gen.base64 };
+        }
       } catch (err) {
         const reason = err?.name === 'AbortError' ? 'timeout' : (err.message || 'page-failed');
         outPages.push({ index, dataUrl: null, reason });
@@ -489,6 +535,8 @@ async function handler(req, res) {
       cacheKey,
       cacheHit: filling,
       filledMissing: filling,
+      // Records that recurring-character continuity was requested for this multi-panel run.
+      charLock: multi,
     };
     writeCachedResult(cacheKey, payload);
     return res.json(payload);

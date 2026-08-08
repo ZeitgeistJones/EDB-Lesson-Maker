@@ -586,6 +586,14 @@ if (storyArtMode !== '0' && storyArtMode !== 'off' && storyArtMode !== 'false') 
   } else if (!storyArtResult) {
     soft.push('S47: no StoryArt disk cache — run scripts/illustrate-fixture-story.mjs (PropBank interim)');
   }
+  // S48 (Manus S9VxcmZA): multi-panel StoryArt must carry recurring-character
+  // continuity. Stale caches (pre v2-charlock) have no charLock flag — regen to
+  // stop character drift (e.g. hair color shifting between beats).
+  const multiPanel = (result.storyPageCount || 0) > 1;
+  if (storyArtResult && storyArtGen && multiPanel && !storyArtResult.charLock) {
+    soft.push('S48: StoryArt cache predates character-lock (v2-charlock) — regenerate with --story-art=1 to enforce recurring-character consistency across beats');
+  }
+  storyArtMeta.charLock = !!(storyArtResult && storyArtResult.charLock);
 }
 const inferRe = /\b(why|what do you think|how do you know|how might|what would|what could|infer|imagine)\b/i;
 const inferentialComp = (lesson.story && lesson.story.comprehensionQuestions || []).some((q) =>
