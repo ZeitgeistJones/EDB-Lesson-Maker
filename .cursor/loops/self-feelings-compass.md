@@ -90,14 +90,53 @@ A's S57 target-neutral honesty wins → warm-up stays neutral (no taught feeling
 `VocabIcons.pathForSync` added (sync pack path from cached index) so the synchronous
 board planner can share New Words' art on the activity dock.
 
+## Round 4 (selfloopx2 — round 2) — 2026-08-08
+
+Judges on the round-1-fixed JPGs. **A (teacher/CELTA):** 5 findings (0 HIGH, 2 MED,
+3 LOW) — verdict "ClassIn-ready, nothing blocks teaching cold". **B (student/12yo):**
+top item was (again) the New Words dock layout + activity balance. **Merged → 10**,
+tiebreak = student-blocking layout + pedagogy honesty first.
+
+| # | Sev | Finding (judges) | Producer fix | Gate |
+|---|-----|------------------|--------------|------|
+| 1 | HIGH (B) | New Words faces stranded mid-right + dead gap from cards, too small | **Root:** `placeDockRow` centres a 96px 2×3 block in a 450-wide dock at x780. Rebuilt: `ZONE_TEMPLATES.vocab.dock`→ wide 3×2 bin `x724 w412` hugging cards; `matchDockSize` prefers wide grid + cap 96→128; `makeVocab` paints a framed **"Picture bin"** tray. Faces now 128px, edge-to-edge (x724→1136), tray present | **S65** |
+| 2 | MED (A) | Frames **Model** "If I felt worried…" duplicated Frame 1's given → copy-the-model | `makeFrames` picks a model feeling NOT given in any frame (worried/shy excluded → "scared") | **S60** (ext) |
+| 3 | MED (A) | Frame 3 reversed "I would feel ___ if someone ___" → unmodeled past-form trap | fixture frame 3 → taught If-first order "If someone ____, I would feel ____." | **S67** |
+| 4 | MED (B) | Activity lopsided — head centred, right third dead | `heroProp` feelings king centred in RIGHT region past a 520px left gutter (x=786) | **S64** |
+| 5 | MED (B) | Frame 3 flush on the board bottom, looks cut off | `makeFrames` body bottom gutter (marginBottom 14 → 42px measured) | **S66** |
+| 6 | MED (B) | Warm-up = one question + big empty box | `makeWarmUp` target-neutral starter chip "Try: I feel ___ because ___." (no taught feeling → S57 safe) | **S68** |
+| 7 | LOW (A) | Comp "why…surprised at the end" is retrieval, not inference | fixture Q4 → "Why do you think Mia's partner smiled and helped her?" | **S70** |
+| 8 | LOW (A) | Activity Round 2 says "partner guesses" but face is visible | king hint reworded → "partner reads the face, names the feeling…" + split to 2 lines | **S69** |
+| 9 | LOW (A) | Title aim "talk and read about today's topic" hides topic | fixture `topic:"feelings"`; `makeTitle` aim → "about feelings" | **S63** |
+| 10 | LOW (B) | Title right-half empty / face order p2≠p10 | cosmetic → wishlist | — |
+
+**Conflict tiebreak recorded:** B again wanted feeling faces on warm-up/title to fill
+dead space; A's target-neutral honesty (S57) wins for warm-up — used a blank
+sentence-starter instead (scaffolds, leaks nothing).
+
+### New gates (continue S-series)
+- **S63** — title Aims name the declared `lesson.topic` (never "today's topic"). Honesty.
+- **S64** — Feelings Lab hero balanced into the right region (kingHeroX ≥480). Navigable.
+- **S65** — New Words match dock is a framed picture bin: hugs cards (minX≤dockX+24),
+  fills width (maxX2≥dockRight−24), faces ≥110px, wide grid (cols≥3). Navigable.
+- **S66** — frames stack keeps a ≥20px bottom gutter (Frame 3 not flush). Navigable.
+- **S67** — no reversed result-first conditional frame (past-form trap). Honesty.
+- **S68** — warm-up carries a target-neutral starter scaffold (no taught vocab). Charm.
+- **S69** — activity Round 2 says "reads the face", never "partner guesses". Honesty.
+- **S70** — surfaced inferential comp Q is not stated-fact retrieval ("surprised at the end"). Honesty.
+- **S60 (ext)** — Model feeling must not equal any frame's given feeling (copy-the-model guard).
+
 ## Last run
 
-- **When:** 2026-08-08 (selfloop round 2, final)
-- **Local:** verify ok (fails=[]; soft=[]; feelingDockCount=6; confusedGlyph=🤔;
-  warmTargetLeaks=[]; matchPieceLabels=[]; frame LH 1.4; StoryArt 3/3; chips=11)
-- **Confirmed on JPGs:** confused = 🤔 thinking/head-scratch, distinct from all 5
-  others; warm-up target-neutral; drag pieces label/number-free; frames word bank;
-  instruction card larger + clears hero.
-- **Deferred (uncheckable/cosmetic → wishlist):** feeling-*.png visual cues for
-  worried/scared/confused (needs prop regen); activity blank hero still largest
-  (drop target by design) + right-side dead space.
+- **When:** 2026-08-08 (selfloopx2 — round 2, final)
+- **Local:** verify ok (fails=[]; soft=[]). New round-2 signals: aimHidesTopic=false /
+  aimNamesTopic=true; kingHeroX=786; matchBin minX724 maxX2 1136 minSide 128 cols 3
+  tray=true; framesGutter=42; warmStarter="Try: I feel ___ because ___."; readsFace=true;
+  compBoardStaleInfer=false; Model="scared" (not a frame given); StoryArt 3/3; chips=11.
+- **Confirmed on JPGs:** New Words = framed "Picture bin", 128px 3×2 faces hugging
+  cards (no dead gap); activity head balanced right + 2-line rounds; frames Model
+  "scared" + Frame 3 If-first with a bottom gutter; warm-up neutral starter chip.
+- **Deferred (uncheckable/cosmetic → wishlist):** feeling-*.png per-emotion visual cues
+  (needs prop regen); title right-half empty + p2/p10 face-order parity; story2 caption
+  vs generative art drift.
+- **Total across selfloopx2:** round1 5 fixes / 5 gates, round2 9 fixes / 9 gates.

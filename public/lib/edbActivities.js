@@ -99,15 +99,18 @@
     const dockW = dock.w || 450;
     const dockH = dock.h || 250;
     const gap = 14; // keep in step with EdbLayout.MIN_GAP / placeDockRow
-    // Prefer a clean 2×3 or 3×2 grid inside the right-column dock
-    let cols = n <= 4 ? 2 : 3;
+    // Prefer a wide, short grid (more cols than rows) so faces stay LARGE and the
+    // bin fills the column edge to edge instead of a tall stranded sliver.
+    let cols = n <= 2 ? n : (n <= 4 ? 2 : 3);
     let rows = Math.ceil(n / cols);
     let side = Math.min(
       Math.floor((dockW - gap * (cols - 1)) / cols),
       Math.floor((dockH - gap * (rows - 1)) / rows)
     );
-    // Cap so dock icons stay peer-sized with word cards (96px honest floor).
-    side = Math.min(side, 96);
+    // Cap raised to 128: the wider dock lets faces read big without crowding the
+    // word cards (round-2 Judge B: faces were too small AND stranded). 96 stays the
+    // honest floor below which we fall back to one row.
+    side = Math.min(side, 128);
     if (side >= 96) return { w: side, h: side, cols, rows };
     // Try one row across the dock
     cols = n;
@@ -972,7 +975,17 @@
         maxW: Math.min(L.W - 8, Math.round(stageH * scale * (prop.aspect || 1))),
         hardCap: Math.round(stageH * scale),
       });
-      const x = Math.round((L.W - sized.w) / 2);
+      let x = Math.round((L.W - sized.w) / 2);
+      // Feelings Lab: the instruction card + "This face feels:" write strip live in
+      // a left column, so a centred blank head left the whole right third empty and
+      // read as lopsided (both round-2 judges). Centre the head in the RIGHT region
+      // (past a reserved left gutter) so the page balances: instructions left, hero
+      // right-centre, drag dock across the bottom. S64 guards the balance.
+      if (feelingsStage && !flushCrop) {
+        const LEFT_GUTTER = 520;
+        x = LEFT_GUTTER + Math.round((L.W - LEFT_GUTTER - sized.w) / 2);
+        x = Math.max(LEFT_GUTTER, Math.min(L.W - 8 - sized.w, x));
+      }
       const y = flushCrop
         ? -Math.round(sized.h * 0.34)
         : Math.max(8, Math.round((stageH - sized.h) / 2));

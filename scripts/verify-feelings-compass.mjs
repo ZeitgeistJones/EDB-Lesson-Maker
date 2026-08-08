@@ -498,9 +498,70 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     });
   }
 
+  // S63 — title Aims must NAME the topic, not hide it behind "today's topic".
+  const aimHidesTopic = /today's topic|todays topic/i.test(titleText);
+  const aimNamesTopic = lesson.topic
+    ? new RegExp('\\b' + String(lesson.topic).toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i').test(titleText)
+    : true;
+
+  // S64 — Feelings Lab hero must be balanced into the RIGHT region (past the left
+  // instruction column) so the page isn't lopsided with a dead right third.
+  const heroPieces = ((actPage && actPage.locked) || [])
+    .concat((actPage && actPage.unlocked) || [])
+    .filter((p) => p.role === 'stageHero' || p.role === 'heroPart' || (p.meta && p.meta.stageKing));
+  const kingHeroX = heroPieces.length
+    ? Math.min(...heroPieces.map((p) => (p._force && p._force.x != null ? p._force.x : (p.x || 0))))
+    : -1;
+
+  // S65 — New Words match dock (picture bin) must HUG the word cards and FILL the
+  // column edge-to-edge as a wide grid of large faces — not a centred narrow block
+  // stranded mid-right with a dead gap (round-1+2 Judge B).
+  const vDock = ((window.EdbLayout && window.EdbLayout.ZONE_TEMPLATES
+    && window.EdbLayout.ZONE_TEMPLATES.vocab) || {}).dock || { x: 724, w: 412 };
+  const binMinX = matchPieces.length ? Math.min(...matchPieces.map((p) => p.x || 0)) : 0;
+  const binMaxX2 = matchPieces.length ? Math.max(...matchPieces.map((p) => (p.x || 0) + (p.w || 0))) : 0;
+  const binMinSide = matchPieces.length ? Math.min(...matchPieces.map((p) => Math.min(p.w || 0, p.h || 0))) : 0;
+  const binCols = new Set(matchPieces.map((p) => Math.round(p.x || 0))).size;
+  const vocabTrayPresent = !!(newWordsDom && newWordsDom.querySelector
+    && newWordsDom.querySelector('[data-vocab-tray]'));
+
+  // S66 — frames stack must keep a bottom gutter so Frame 3's write-line is never
+  // flush on the board edge (round-1 model row pushed it down; Judge B: "cut off").
+  let framesGutter = 999;
+  if (framesDom && framesDom.getBoundingClientRect) {
+    const fbody = framesDom.querySelector('[data-frames-body]');
+    if (fbody) {
+      framesGutter = Math.round(framesDom.getBoundingClientRect().bottom - fbody.getBoundingClientRect().bottom);
+    }
+  }
+
+  // S68 — warm-up carries a target-neutral sentence starter to scaffold output
+  // without pre-cueing any taught feeling word.
+  const warmStarterEl = warmDom && warmDom.querySelector
+    ? warmDom.querySelector('[data-warm-starter]') : null;
+  const warmStarterText = warmStarterEl ? (warmStarterEl.textContent || '').trim() : '';
+
+  // S70 — the surfaced inferential comprehension question must not be a stated-fact
+  // retrieval in disguise ("...surprised at the end" is answered verbatim in the story).
+  const compBoardStaleInfer = /surprised at the end/i.test(compBoardText);
+
   if (window.LessonPages.cleanup) window.LessonPages.cleanup(rendered.host);
 
   return {
+    aimHidesTopic,
+    aimNamesTopic,
+    activityHintReadsFace: /reads? the face|read the face/i.test(actText),
+    activityHintPartnerGuesses: /partner guesses/i.test(actText),
+    kingHeroX,
+    binMinX,
+    binMaxX2,
+    binMinSide,
+    binCols,
+    vocabTrayPresent,
+    vDock,
+    framesGutter,
+    warmStarterText,
+    compBoardStaleInfer,
     title: lesson.title,
     titlePick: picks[titleIdx],
     activityPick: picks[actIdx],
@@ -578,6 +639,12 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
 }, { lesson, meta });
 
 const fails = [];
+// Shared vocab helpers for round-2 gates (S65/S68).
+const BOARD_VOCAB = (lesson.vocabulary || [])
+  .slice(0, 6)
+  .map((v) => (typeof v === 'string' ? v : v && v.word))
+  .filter(Boolean);
+const DRAG_TARGET_VOCAB = BOARD_VOCAB.length || 6;
 if (result.recipe !== 'heroProp') fails.push('activity must be heroProp (face-blank + feelings dock): ' + result.recipe);
 if (result.heroKey !== 'face-blank') fails.push('hero must be face-blank: ' + result.heroKey);
 // S49 (Manus QCVsgMcb): drag sources must equal the taught vocab. A 12-sticker pad
@@ -799,6 +866,97 @@ if (result.compCardsOnBoard === false) {
     }
   }
 }
+// S63 — title Aims must name the topic (round-2 Judge A: "today's topic" hides it).
+if (result.aimHidesTopic) {
+  fails.push('S63: title Aims hides the topic behind "today\'s topic" — name it (set lesson.topic so Aims read "about <topic>")');
+}
+if (lesson.topic && !result.aimNamesTopic) {
+  fails.push('S63: title Aims does not name the declared topic "' + lesson.topic + '" — the Aims line must say "about ' + lesson.topic + '"');
+}
+// S64 — Feelings Lab hero balanced into the right region (not centred → dead right).
+if (result.recipe === 'heroProp' && (result.kingHeroX || 0) < 480) {
+  fails.push('S64: Feelings Lab hero not balanced right (x=' + result.kingHeroX + ', need ≥480) — a centred head leaves the right third empty and the page reads lopsided (both round-2 judges)');
+}
+// S65 — New Words picture bin hugs the cards and fills the column with large faces.
+{
+  const dockX = (result.vDock && result.vDock.x) || 724;
+  const dockW = (result.vDock && result.vDock.w) || 412;
+  const dockRight = dockX + dockW;
+  if (!result.vocabTrayPresent) {
+    fails.push('S65: New Words match dock missing the framed "picture bin" tray (data-vocab-tray) — faces read as floating icons, not an intentional drag tray (Judge B)');
+  }
+  if ((result.binMinX || 0) > dockX + 24) {
+    fails.push('S65: match-dock faces do not hug the cards (leftX=' + result.binMinX + ', dock starts ' + dockX + ') — they float mid-right with a dead gap');
+  }
+  if ((result.binMaxX2 || 0) < dockRight - 24) {
+    fails.push('S65: match-dock faces do not fill the bin width (rightX=' + result.binMaxX2 + ', dock ends ' + dockRight + ') — widen the grid to fill the column');
+  }
+  if ((result.binMinSide || 0) < 110) {
+    fails.push('S65: match-dock faces too small (min side ' + result.binMinSide + 'px, need ≥110) — enlarge the picture-bin faces');
+  }
+  if ((result.binCols || 0) < 3 && DRAG_TARGET_VOCAB >= 5) {
+    fails.push('S65: match-dock grid is not wide (cols=' + result.binCols + ', need ≥3 for ' + DRAG_TARGET_VOCAB + ' words) — use a short wide bin, not a tall stranded sliver');
+  }
+}
+// S66 — frames stack keeps a bottom gutter (Frame 3 never flush on the edge).
+if ((result.framesGutter || 0) < 20) {
+  fails.push('S66: frames stack has no bottom gutter (gutter=' + result.framesGutter + 'px, need ≥20) — Frame 3 write-line reads cut off at the board edge (Judge B)');
+}
+// S67 — no reversed "I would feel ___ if someone ___" frame (past-form trap with no
+// model of the reversed order → invites present-tense error; round-2 Judge A). Frames
+// must lead with the modeled If-clause order.
+{
+  const reversed = (lesson.sentenceFrames || []).slice(0, 3)
+    .filter((f) => /^\s*i would feel\b/i.test(String(f)) && /\bif\b/i.test(String(f)));
+  if (reversed.length) {
+    fails.push('S67: reversed result-first conditional frame invites a past-form error (' + reversed.join(' | ') + ') — reword to the taught If-first order');
+  }
+}
+// M2/S60b — the worked Model must NOT reuse a feeling that is the given word in any
+// frame, or Frame 1 becomes copy-the-model instead of production (round-2 Judge A).
+{
+  const m = String(result.frameModelText || '');
+  const mw = (m.match(/if i felt\s+([a-z]+)/i) || [])[1];
+  if (mw) {
+    const taught = (lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v && v.word)).filter(Boolean);
+    const givens = new Set();
+    (lesson.sentenceFrames || []).slice(0, 3).forEach((f) => {
+      const s = String(f || '').toLowerCase();
+      taught.forEach((w) => { if (new RegExp('\\b' + String(w).toLowerCase() + '\\b').test(s)) givens.add(String(w).toLowerCase()); });
+    });
+    if (givens.has(mw.toLowerCase())) {
+      fails.push('S60: frames Model reuses a frame\'s given feeling ("' + mw + '") — Frame 1 becomes copy-the-model; pick a feeling not given in any frame (round-2 Judge A)');
+    }
+  }
+}
+// S68 — warm-up carries a target-neutral sentence starter (scaffold) that leaks no
+// taught feeling word (round-2 Judge B: the warm-up was one lonely question + empty box).
+{
+  const starter = String(result.warmStarterText || '');
+  if (!starter) {
+    fails.push('S68: warm-up missing a sentence-starter scaffold (data-warm-starter) — a lone question over an empty box reads boring/unscaffolded (Judge B)');
+  } else {
+    const leaks = BOARD_VOCAB.filter((w) => new RegExp('\\b' + String(w).toLowerCase() + '\\b', 'i').test(starter));
+    if (leaks.length) {
+      fails.push('S68: warm-up starter pre-cues taught vocab (' + leaks.join(',') + ') — keep the scaffold target-neutral');
+    }
+  }
+}
+// S69 — activity Round 2 must describe the READ-the-face mechanic, not a misleading
+// "partner guesses" (the chosen face is in full view; round-2 Judge A).
+if (result.recipe === 'heroProp') {
+  if (result.activityHintPartnerGuesses) {
+    fails.push('S69: activity says "partner guesses" but the face is visible — reword to reading the face and naming the feeling (round-2 Judge A)');
+  }
+  if (!result.activityHintReadsFace) {
+    fails.push('S69: activity Round 2 missing the read-the-face cue ("reads the face") — clarify what the partner actually does');
+  }
+}
+// S70 — the surfaced inferential comprehension question must be genuinely inferential,
+// not a stated fact retrieval in disguise ("surprised at the end"; round-2 Judge A).
+if (result.compBoardStaleInfer) {
+  fails.push('S70: comprehension "why" question is answered verbatim in the story ("surprised at the end") — make it genuinely inferential (round-2 Judge A)');
+}
 if (result.artWinners.some((w) => !String(w.winner).startsWith('pack:'))) {
   fails.push('board vocab art must prefer pack: ' + JSON.stringify(result.artWinners));
 }
@@ -931,6 +1089,18 @@ console.log(JSON.stringify({
   feelingDockArt: result.feelingDockArt,
   frameModelText: result.frameModelText,
   compCardsOnBoard: result.compCardsOnBoard,
+  aimHidesTopic: result.aimHidesTopic,
+  aimNamesTopic: result.aimNamesTopic,
+  kingHeroX: result.kingHeroX,
+  matchBin: {
+    minX: result.binMinX, maxX2: result.binMaxX2,
+    minSide: result.binMinSide, cols: result.binCols,
+    tray: result.vocabTrayPresent,
+  },
+  framesGutter: result.framesGutter,
+  warmStarterText: result.warmStarterText,
+  activityHintReadsFace: result.activityHintReadsFace,
+  compBoardStaleInfer: result.compBoardStaleInfer,
   storyBodyInks: result.storyBodyInks,
   storyPageCount: result.storyPageCount,
   storyPropKeys: result.storyPropKeys,

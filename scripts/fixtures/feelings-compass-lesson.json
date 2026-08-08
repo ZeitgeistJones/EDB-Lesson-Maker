@@ -1,5 +1,6 @@
 {
   "title": "Finding Our Feelings Compass",
+  "topic": "feelings",
   "warmUp": {
     "question": "How are you feeling right now, and why?",
     "sampleAnswer": "I feel okay because it was a calm morning."
@@ -21,7 +22,7 @@
   "sentenceFrames": [
     "If I felt worried, I would ____.",
     "If my friend looked shy, I would ____.",
-    "I would feel ____ if someone ____.",
+    "If someone ____, I would feel ____.",
     "When I feel confused, I usually ____."
   ],
   "story": {
@@ -50,7 +51,7 @@
       { "question": "How did Mia feel at the start of the day?", "sampleAnswer": "She felt worried and a little shy." },
       { "question": "What made Mia feel confused?", "sampleAnswer": "The project instructions were hard to understand." },
       { "question": "How did Mia feel at the end?", "sampleAnswer": "She felt surprised and happy." },
-      { "question": "Why do you think Mia felt surprised at the end?", "sampleAnswer": "Because the hard project went better than she expected." }
+      { "question": "Why do you think Mia's partner smiled and helped her?", "sampleAnswer": "Maybe the partner is kind and wanted Mia to feel less worried." }
     ],
     "creativeQuestions": [
       "If you felt worried like Mia, what would you do first?",

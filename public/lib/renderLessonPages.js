@@ -708,9 +708,13 @@
     if (aimWords.length) {
       // When the board includes a story, name receptive reading — not production-only "talk".
       const hasStoryPages = !!(lesson.story && Array.isArray(lesson.story.pages) && lesson.story.pages.length);
+      // Name the actual topic when the lesson declares one — "today's topic" hides
+      // what the lesson is about and undercuts aim honesty (S63 / Judge A).
+      const topicNoun = String(lesson.topic || '').trim();
+      const about = topicNoun ? `about ${topicNoun}` : 'about today\'s topic';
       const aimClause = hasStoryPages
-        ? 'to talk and read about today\'s topic'
-        : 'to talk about today\'s topic';
+        ? `to talk and read ${about}`
+        : `to talk ${about}`;
       aims = el('div', {
         color: '#f8fafc', fontSize: '20px', fontWeight: '700',
         lineHeight: '1.35',
@@ -838,10 +842,11 @@
       // (Manus / honesty — teacher samples bias kids). Keep sampleAnswer in JSON
       // for teacher scripts / PDF notes only.
       const writeIn = card(
-        `<div style="font-size:28px;font-weight:700;color:#64748b;margin-bottom:16px;text-align:center">Write or say your answer here</div>
-         <div style="border-bottom:3px dashed #cbd5e1;height:56px;margin:12px 8% 0"></div>
-         <div style="border-bottom:3px dashed #cbd5e1;height:56px;margin:20px 8% 0"></div>
-         <div style="border-bottom:3px dashed #cbd5e1;height:56px;margin:20px 8% 0"></div>`,
+        `<div style="font-size:28px;font-weight:700;color:#64748b;margin-bottom:14px;text-align:center">Write or say your answer here</div>
+         <div data-warm-starter="1" style="font-size:26px;font-weight:800;color:#1e3a8a;background:#eff6ff;border:2px dashed #93c5fd;border-radius:14px;padding:12px 20px;margin:0 8% 18px;text-align:center">Try: I feel ____ because ____.</div>
+         <div style="border-bottom:3px dashed #cbd5e1;height:52px;margin:12px 8% 0"></div>
+         <div style="border-bottom:3px dashed #cbd5e1;height:52px;margin:20px 8% 0"></div>
+         <div style="border-bottom:3px dashed #cbd5e1;height:52px;margin:20px 8% 0"></div>`,
         {
           flex: '1',
           marginBottom: '0',
@@ -892,8 +897,8 @@
       gridTemplateColumns: cols === 1 ? '1fr' : '1fr 1fr',
       gridTemplateRows: `repeat(${rows}, 1fr)`,
       gap: '18px',
-      // Leave the right column clear for the match dock.
-      maxWidth: interactive ? '680px' : '100%',
+      // Leave the right column clear for the match dock (bin) — cards hug its left edge.
+      maxWidth: interactive ? '660px' : '100%',
       width: '100%',
       flex: '1',
       minHeight: '0',
@@ -936,6 +941,40 @@
       ));
     });
     p.appendChild(grid);
+    // Framed "picture bin" behind the draggable faces so the match dock reads as an
+    // intentional tray hugging the cards — not icons floating in dead right-column
+    // space (round-1+2 Judge B). Coords track the real vocab dock zone so the label
+    // sits just above the faces. pointer-events off; it is pure chrome.
+    if (interactive) {
+      const dz = (window.EdbLayout
+        && window.EdbLayout.ZONE_TEMPLATES
+        && window.EdbLayout.ZONE_TEMPLATES.vocab
+        && window.EdbLayout.ZONE_TEMPLATES.vocab.dock)
+        || { x: 724, y: 150, w: 412, h: 300 };
+      const tray = el('div', {
+        position: 'absolute',
+        left: dz.x + 'px',
+        top: (dz.y - 52) + 'px',
+        width: dz.w + 'px',
+        height: (dz.h + 60) + 'px',
+        border: '3px dashed #a78bfa',
+        background: 'rgba(237,233,254,0.42)',
+        borderRadius: '22px',
+        boxSizing: 'border-box',
+        padding: '12px 10px 0',
+        pointerEvents: 'none',
+        zIndex: '0',
+      });
+      tray.dataset.vocabTray = '1';
+      tray.appendChild(el('div', {
+        fontSize: '22px',
+        fontWeight: '800',
+        color: '#6d28d9',
+        textAlign: 'center',
+        lineHeight: '1.15',
+      }, 'Picture bin — drag onto a pad'));
+      p.appendChild(tray);
+    }
     drawDebugZones(p, 'vocab');
     return p;
   }
@@ -1065,12 +1104,22 @@
     // S60 (Judge A / CELTA): the second conditional is the grammar aim but it never
     // appears in the receptive input — the reading is all past simple and students
     // meet "If I felt X, I would ___" cold, only in production. Show ONE completed
-    // worked model so learners see the target modeled before they produce it. Uses
-    // a taught feeling + a real completion (no blank) in a distinct example chip.
-    const modelWord = ((lesson.vocabulary || [])
+    // worked model so learners see the target modeled before they produce it.
+    // The model MUST use a feeling that is NOT the given word in any frame — else the
+    // first practice frame becomes copy-the-model, not production (round-2 Judge A).
+    const taughtFeelings = (lesson.vocabulary || [])
       .map((v) => (typeof v === 'string' ? v : v && v.word))
-      .filter(Boolean)[0]) || 'worried';
-    const modelSentence = `If I felt ${esc(modelWord)}, I would take a deep breath.`;
+      .filter(Boolean);
+    const frameGivens = new Set();
+    (lesson.sentenceFrames || []).slice(0, 3).forEach((f) => {
+      const s = String(f || '').toLowerCase();
+      taughtFeelings.forEach((w) => {
+        if (new RegExp('\\b' + String(w).toLowerCase() + '\\b').test(s)) frameGivens.add(String(w).toLowerCase());
+      });
+    });
+    const modelWord = taughtFeelings.find((w) => !frameGivens.has(String(w).toLowerCase()))
+      || taughtFeelings[0] || 'scared';
+    const modelSentence = `If I felt ${esc(modelWord)}, I would ask for help.`;
     const model = el('div', {
       display: 'flex',
       alignItems: 'baseline',
@@ -1111,7 +1160,11 @@
       gap: '10px',
       width: '100%',
       overflow: 'hidden',
+      // Gutter so Frame 3's write-line never sits flush on the board edge — the
+      // round-1 model row pushed the stack down and it read as cut off (Judge B / S66).
+      marginBottom: '14px',
     });
+    body.dataset.framesBody = '1';
     frames.forEach((f, i) => {
       body.appendChild(card(
         `<div style="font-size:18px;font-weight:700;color:#64748b;margin-bottom:6px;flex-shrink:0">Frame ${i + 1}</div>
@@ -1764,7 +1817,10 @@
       let kingHint = 'Drag the pieces onto the stage. Then say or write one sentence about your idea.';
       if (feelingsKing) {
         // Two-round Feelings Lab (Manus ZPD / classical Level-Up generalization).
-        kingHint = 'Round 1: drag a feeling face onto the blank face; write or say how it feels. Round 2: partner guesses, then answer with If I felt ____, I would ____.';
+        // Two skimmable lines (round-2 Judge B: one dense paragraph was hard from the
+        // back). Round 2 reworded — the face is visible, so the partner READS it and
+        // names the feeling; there is nothing hidden to "guess" (round-2 Judge A).
+        kingHint = '<b>Round 1:</b> drag a feeling face onto the blank face; write or say how it feels.<br><b>Round 2:</b> your partner reads the face, names the feeling, then answers with If I felt ____, I would ____.';
       } else if (faceKing) {
         kingHint = 'Drag parts onto the face. Then say: My friend has ___';
       } else if (/\b(dentist|dental|tooth|teeth|cavity|floss|patient)\b/.test(kingCue)) {
@@ -1785,7 +1841,7 @@
         textAlign: 'left',
         fontSize: '24px',
         lineHeight: '1.45',
-        maxWidth: '400px',
+        maxWidth: '460px',
         marginBottom: '12px',
         background: 'rgba(248,250,252,0.96)',
         border: '1px solid rgba(148,163,184,0.65)',

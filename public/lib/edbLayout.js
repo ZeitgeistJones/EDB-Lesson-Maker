@@ -33,13 +33,16 @@
     },
     vocab: {
       header:    { x: 48, y: 36,  w: 700, h: 50,  noOverlap: true },
-      bodyText:  { x: 48, y: 100, w: 700, h: 380, noOverlap: true },
+      bodyText:  { x: 48, y: 100, w: 660, h: 380, noOverlap: true },
       // Covers/targets stay in the right column — never over word cards
-      artSafe:   { x: 780, y: 80,  w: 450, h: 220, noOverlap: false },
-      targetBay: { x: 780, y: 80,  w: 450, h: 220, noOverlap: false },
-      // Same vertical band as word cards so the match dock reads as a peer column
-      dock:      { x: 780, y: 100, w: 450, h: 380, noOverlap: false },
-      rewardPocket: { x: 1100, y: 36, w: 140, h: 90, noOverlap: false },
+      artSafe:   { x: 724, y: 150, w: 412, h: 300, noOverlap: false },
+      targetBay: { x: 724, y: 150, w: 412, h: 300, noOverlap: false },
+      // Match dock hugs the word cards as a wide 3×2 bin that fills the column edge
+      // to edge — a centred narrow block left the faces stranded mid-right with a
+      // dead gap from the cards (round-1+2 Judge B). A y150 top leaves room for the
+      // "picture bin" label band painted by makeVocab. S65 guards the hug + fill.
+      dock:      { x: 724, y: 150, w: 412, h: 300, noOverlap: false },
+      rewardPocket: { x: 1140, y: 36, w: 92, h: 84, noOverlap: false },
     },
     vocabSentences: {
       header:    { x: 48, y: 36,  w: 1184, h: 50, noOverlap: true },
