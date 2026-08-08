@@ -699,7 +699,9 @@
       maxWidth: '560px',
       padding: '14px 18px',
       borderRadius: '14px',
-      background: 'rgba(15,23,42,0.55)',
+      // Darker slab + lighter ink so aims/grammar read on a projector (was a
+      // faint grey box + #cbd5e1 grammar line — barely legible). S55 guards this.
+      background: 'rgba(15,23,42,0.82)',
       backdropFilter: 'blur(6px)',
     });
     aimsPanel.dataset.aimsPanel = '1';
@@ -710,19 +712,21 @@
         ? 'to talk and read about today\'s topic'
         : 'to talk about today\'s topic';
       aims = el('div', {
-        color: '#e2e8f0', fontSize: '20px', fontWeight: '700',
+        color: '#f8fafc', fontSize: '20px', fontWeight: '700',
         lineHeight: '1.35',
       }, `Aims: use ${aimWords.join(', ')} ${aimClause}.`);
-      aims.dataset.ink = 'hint';
+      // NOT data-ink: this text lives on the dark frosted aims slab and must stay
+      // light. The flat dark-ink policy (paintInk) would otherwise repaint it
+      // slate-dark → dark-on-dark, the exact low-contrast bug judges flagged (S55).
       aims.dataset.aimsLine = '1';
       aimsPanel.appendChild(aims);
     }
     if ((lesson.sentenceFrames || []).length) {
       grammarAim = el('div', {
-        color: '#cbd5e1', fontSize: '17px', marginTop: aimWords.length ? '8px' : '0',
-        fontWeight: '600', lineHeight: '1.35',
+        color: '#f1f5f9', fontSize: '18px', marginTop: aimWords.length ? '8px' : '0',
+        fontWeight: '700', lineHeight: '1.35',
       }, `Grammar aim: ${grammarAimLine(lesson.sentenceFrames)}`);
-      grammarAim.dataset.ink = 'hint';
+      // NOT data-ink — see aims note above; keep light on the dark slab (S55).
       grammarAim.dataset.grammarAim = '1';
       aimsPanel.appendChild(grammarAim);
     }
@@ -1025,6 +1029,12 @@
     const longest = Math.max(0, ...lens);
     // Long B1 frames at 40px overflow the 590px board — shrink type + wrap.
     const fontPx = longest > 75 ? 26 : longest > 55 ? 30 : rows <= 1 ? 44 : 34;
+    // Frame copy MUST NOT clip descenders. line-height 1.25 + overflow:hidden was
+    // cutting the tails of y/g/p/q/j AND comma tails (worried,→worried.) AND the
+    // "____" underscores (both judges: shy→shv, my→mv, floating period). Give the
+    // text real descender headroom (≥1.35 + bottom padding) and never vertically
+    // clip it. Guarded by verify-feelings-compass S50/S51.
+    const FRAME_LINE_HEIGHT = 1.4;
     const body = el('div', {
       flex: '1',
       minHeight: '0',
@@ -1037,8 +1047,8 @@
     frames.forEach((f, i) => {
       body.appendChild(card(
         `<div style="font-size:18px;font-weight:700;color:#64748b;margin-bottom:6px;flex-shrink:0">Frame ${i + 1}</div>
-         <div style="font-size:${fontPx}px;font-weight:800;color:#1e293b;line-height:1.25;margin-bottom:10px;flex-shrink:1;overflow:hidden;max-height:46%">${esc(f)}</div>
-         <div style="border-bottom:3px dashed #94a3b8;flex:1;min-height:36px;width:100%"></div>`,
+         <div data-frame-text style="font-size:${fontPx}px;font-weight:800;color:#1e293b;line-height:${FRAME_LINE_HEIGHT};padding-bottom:0.18em;margin-bottom:8px;flex-shrink:0;overflow:visible;word-break:break-word">${esc(f)}</div>
+         <div style="border-bottom:3px dashed #94a3b8;flex:1;min-height:18px;width:100%"></div>`,
         {
           padding: '14px 22px',
           marginBottom: '0',

@@ -149,9 +149,20 @@
     space: '🌌',
   };
 
+  /**
+   * Distinct glyphs for feeling words whose default emoji collides with another
+   * taught feeling. "shy" (😊 blushing smile) and "happy" (😄) both read as
+   * smiles on the New Words match dock — students cannot tell the pads apart.
+   * 😳 (flushed / looking-away) is the clear ESL "shy" face and is widely
+   * supported. Overrides win in emojiFor over both SAFE_EMOJI and the fixture.
+   */
+  const EMOJI_OVERRIDES = {
+    shy: '😳',
+  };
+
   function emojiFor(word, fallback) {
     const key = normalize(word);
-    return SAFE_EMOJI[key] || fallback || '•';
+    return EMOJI_OVERRIDES[key] || SAFE_EMOJI[key] || fallback || '•';
   }
 
   /**

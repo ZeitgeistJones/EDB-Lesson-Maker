@@ -381,9 +381,56 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
   const feelingDockCount = (dockPieces || []).filter((k) => /^feeling-/.test(String(k))).length;
   const facePartsOnDock = (dockPieces || []).filter((k) =>
     /^(face-eyes|face-nose|face-mouth|face-ears|face-hair|hair-)/.test(String(k))).length;
-  const houseLeaks = picks.filter((p) => p.type === 'flat' && /^house-/.test(p.name)).map((p) => p.name);
+  // Feelings now rides the egg-free board-house deck (house-*). board-face flats
+  // carry corner eye/wink easter eggs that read as a floating unlabeled
+  // googly-eyes prop on an emotion board (S53). Flag any board-face leak.
+  const faceEggLeaks = picks.filter((p) => p.type === 'flat' && /^board-face-/.test(p.name)).map((p) => p.name);
   const classicalLeaks = picks.filter((p) =>
     p.type === 'flat' && /classical|moon|lavender-strings/.test(p.name)).map((p) => p.name);
+
+  // S50/S51 — frame copy must not vertically clip descenders (y/g/p/q/j), comma
+  // tails (worried,→worried.) or the "____" blank. Guard the rendered style, not
+  // just the source string: enough line-height and no vertical overflow clip.
+  const frameTextChecks = (framesDom ? Array.from(framesDom.querySelectorAll('[data-frame-text]')) : [])
+    .map((fx) => {
+      const cs = window.getComputedStyle(fx);
+      const fs = parseFloat(cs.fontSize) || 0;
+      const lh = cs.lineHeight === 'normal' ? fs * 1.2 : (parseFloat(cs.lineHeight) || 0);
+      return {
+        text: (fx.textContent || '').trim(),
+        lineHeightRatio: fs ? +(lh / fs).toFixed(3) : 0,
+        overflowY: cs.overflowY,
+        clipped: (fx.scrollHeight || 0) > (fx.clientHeight || 0) + 1,
+      };
+    });
+
+  // S51 — second-conditional frames use a comma (If I felt X, I would ___), never
+  // a mid-sentence period, and the blank stays on the line.
+  // Only leading-If frames need the comma ("If I felt X, I would ___"). Frames
+  // where the if-clause trails ("I would feel ___ if someone ___") do not.
+  const condFramePunct = (lesson.sentenceFrames || []).slice(0, 3)
+    .filter((f) => /^\s*if\b/i.test(String(f)) && /\bwould\b/i.test(String(f)))
+    .map((f) => {
+      const s = String(f);
+      const body = s.replace(/[.!?]+\s*$/, '');
+      return { frame: s, hasComma: /,/.test(s), midPeriod: /\./.test(body) };
+    });
+
+  // S52 — shy must not share a glyph with happy on the match dock (both smiles).
+  const vFind = (w) => (lesson.vocabulary || []).find(
+    (v) => String((typeof v === 'string' ? v : v.word) || '').toLowerCase() === w
+  );
+  const emj = (w) => (window.VocabIcons.emojiFor
+    ? window.VocabIcons.emojiFor(w, ((vFind(w) || {}).emoji))
+    : ((vFind(w) || {}).emoji || ''));
+  const shyGlyph = emj('shy');
+  const happyGlyph = emj('happy');
+
+  // S54 — feelings drag faces must be grabbably large (not postage-stamp).
+  const feelingDockSides = ((actPage && actPage.unlocked) || [])
+    .filter((p) => p.role === 'dockPiece')
+    .map((p) => Math.min(p.w || 0, p.h || 0));
+  const minFeelingDockSide = feelingDockSides.length ? Math.min(...feelingDockSides) : 0;
 
   if (window.LessonPages.cleanup) window.LessonPages.cleanup(rendered.host);
 
@@ -436,8 +483,13 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     wrapPeerFeedback,
     wrapPeerOnBoard,
     wrapTimingChip,
-    houseLeaks,
+    faceEggLeaks,
     classicalLeaks,
+    frameTextChecks,
+    condFramePunct,
+    shyGlyph,
+    happyGlyph,
+    minFeelingDockSide,
     artWinners,
     storyPropKeys,
     storyCaptionIssues,
@@ -523,8 +575,37 @@ if ((result.storyPageCount || 0) > 0 && !result.aimsHasRead) {
   soft.push('S48: story lesson Aims line is talk-only — should mention read/reading');
 }
 if (result.warmSampleLeak) fails.push('warm-up still leaks teacher sample to students');
-if (result.houseLeaks.length) fails.push('house flats leaked: ' + result.houseLeaks.join(','));
+if (result.faceEggLeaks.length) {
+  fails.push('S53: board-face eye-egg flats leaked (unlabeled googly-eyes prop on newWords/activity) — feelings must ride egg-free board-house: ' + result.faceEggLeaks.join(','));
+}
 if (result.classicalLeaks.length) fails.push('classical music flats leaked into feelings: ' + result.classicalLeaks.join(','));
+
+// S50 — frame text keeps descender headroom and is never vertically clipped
+// (worried,→worried. / shy→shv / my→mv / dropped "____" — both judges).
+if (!result.frameTextChecks.length) {
+  fails.push('S50: no [data-frame-text] frame copy found to guard for descender clip');
+}
+for (const fc of result.frameTextChecks) {
+  if (fc.lineHeightRatio < 1.35) {
+    fails.push(`S50: frame text line-height too tight (${fc.lineHeightRatio}, need ≥1.35) — clips descenders/commas: "${fc.text}"`);
+  }
+  if (fc.overflowY === 'hidden' || fc.clipped) {
+    fails.push(`S50: frame text vertically clipped (overflowY=${fc.overflowY}, clipped=${fc.clipped}): "${fc.text}"`);
+  }
+}
+// S51 — second conditional frames: comma, no mid-sentence period, blank on line.
+for (const cp of result.condFramePunct) {
+  if (!cp.hasComma) fails.push('S51: second-conditional frame missing comma (If I felt X, I would ___): ' + cp.frame);
+  if (cp.midPeriod) fails.push('S51: second-conditional frame has a mid-sentence period (should be a comma): ' + cp.frame);
+}
+// S52 — shy glyph must differ from happy on the match dock.
+if (result.shyGlyph && result.happyGlyph && result.shyGlyph === result.happyGlyph) {
+  fails.push('S52: shy and happy share the same match-dock glyph (' + result.shyGlyph + ') — students cannot tell pads apart');
+}
+// S54 — feelings drag faces must be grabbably large (not postage-stamp).
+if ((result.minFeelingDockSide || 0) < 96) {
+  fails.push('S54: feelings drag faces too small (min side ' + result.minFeelingDockSide + 'px, need ≥96) — enlarge dock stickers');
+}
 if (result.artWinners.some((w) => !String(w.winner).startsWith('pack:'))) {
   fails.push('board vocab art must prefer pack: ' + JSON.stringify(result.artWinners));
 }
@@ -646,6 +727,11 @@ console.log(JSON.stringify({
   matchPadDomCount: result.matchPadDomCount,
   timingChipCount: result.timingChipCount,
   wrapExitMissing: result.wrapExitMissing,
+  faceEggLeaks: result.faceEggLeaks,
+  frameLineHeights: result.frameTextChecks.map((f) => f.lineHeightRatio),
+  shyGlyph: result.shyGlyph,
+  happyGlyph: result.happyGlyph,
+  minFeelingDockSide: result.minFeelingDockSide,
   storyPageCount: result.storyPageCount,
   storyPropKeys: result.storyPropKeys,
   storyArt: storyArtMeta,

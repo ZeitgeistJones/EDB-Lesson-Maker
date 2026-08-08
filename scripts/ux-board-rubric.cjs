@@ -186,6 +186,13 @@ const SOFT = {
   S47: 'When StoryArt cache/results are applied, story slots mark data-story-art-gen and drop PropBank-only storyProp fallback',
   // Title aims: story lessons name receptive reading, not production-only "talk"
   S48: 'When lesson has story pages, title Aims line mentions read/reading (not talk-only)',
+  // Feelings-compass judge pass 2026-08 (teacher + student agree)
+  S50: 'Sentence-frame copy keeps descender headroom (line-height ≥1.35, no vertical clip) — never cuts y/g/p/q/j tails, comma tails (worried,→worried.) or the "____" blank',
+  S51: 'Second-conditional frames use a comma (If I felt X, I would ___) — never a mid-sentence period; the blank sits on the line, not floating before a period',
+  S52: 'Feelings New Words glyphs are mutually distinct — shy does not share the smiley used by happy (students can tell the match pads apart)',
+  S53: 'No unlabeled stray prop (board-face corner eye/wink easter egg) on emotion-vocab newWords/activity boards — feelings ride the egg-free board-house deck',
+  S54: 'Feelings drag faces are grabbably large on the stage (≥96px) and the blank drop-face does not dominate as a giant empty blob',
+  S55: 'Title aims/grammar panel is projector-legible — light ink on a dark frosted slab, not repainted dark-on-dark by the flat ink policy',
 };
 
 /**
@@ -195,11 +202,11 @@ const SOFT = {
 const TIER_ORDER = ['honesty', 'readable', 'navigable', 'variety', 'charm'];
 
 const TIERS = {
-  honesty: ['H5', 'H1', 'S15', 'S8', 'M7', 'S19', 'S20', 'S26', 'S30', 'S31', 'S37'],
-  readable: ['H4', 'S1', 'S5', 'S11', 'S13', 'S9', 'M1', 'M2', 'M6', 'S35'],
-  navigable: ['H3', 'H6', 'S4', 'S10', 'S14', 'M3', 'M8', 'S21', 'S23', 'S25', 'S27', 'S28', 'S29', 'S33'],
+  honesty: ['H5', 'H1', 'S15', 'S8', 'M7', 'S19', 'S20', 'S26', 'S30', 'S31', 'S37', 'S51', 'S52'],
+  readable: ['H4', 'S1', 'S5', 'S11', 'S13', 'S9', 'M1', 'M2', 'M6', 'S35', 'S50', 'S55'],
+  navigable: ['H3', 'H6', 'S4', 'S10', 'S14', 'M3', 'M8', 'S21', 'S23', 'S25', 'S27', 'S28', 'S29', 'S33', 'S54'],
   variety: ['H2', 'S2', 'S3', 'S6', 'S18', 'M5', 'S32', 'S34'],
-  charm: ['S7', 'S12', 'S16', 'S17', 'M4', 'H7', 'S22', 'S24', 'S36'],
+  charm: ['S7', 'S12', 'S16', 'S17', 'M4', 'H7', 'S22', 'S24', 'S36', 'S53'],
 };
 
 /** Product pillars as the user states them, mapped to codes for reporting. */

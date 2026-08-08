@@ -276,8 +276,11 @@
     { re: /\b(bakerys?|bake\s*shop|pastry\s*shop|cafes?|caf[eé]s?)\b/, set: 'bakery-warm' },
     // Supermarket aisle washes — not outdoor-fresh meadow.
     { re: /\b(markets?|supermarkets?|grocer(?:y|ies)|farmers?\s*markets?)\b/, set: 'supermarket-cool' },
-    // Feelings / emotion compass — same quiet board-face washes as make-a-face.
-    { re: /\b(feeling|feelings|emotion|emotions|mood|worried|scared|shy|confused|proud|surprised)\b/, set: 'board-face' },
+    // Feelings / emotion compass — neutral house washes (stars/dots, no eggs).
+    // board-face carries corner eye/wink easter eggs that read as a floating
+    // unlabeled googly-eyes prop on an emotion-vocab board (both judges). Only
+    // make-a-face lessons (below) want those eyes. S53 guards this routing.
+    { re: /\b(feeling|feelings|emotion|emotions|mood|worried|scared|shy|confused|proud|surprised)\b/, set: 'board-house' },
     // Face lessons only — tiny eye/wink eggs. Never the default for castle/school/etc.
     { re: /\b(faces?|eyes?|nose|mouth|cheek|make.?a.?face|blank.?face)\b/, set: 'board-face' },
     // Classical compose / concert — indigo moon washes (title may still take terrace scene).

@@ -8,7 +8,7 @@
     { "word": "worried", "emoji": "😟", "sentence": "I felt worried before the big test." },
     { "word": "scared", "emoji": "😨", "sentence": "She was scared of the dark hallway." },
     { "word": "confused", "emoji": "😕", "sentence": "He looked confused by the new rules." },
-    { "word": "shy", "emoji": "😊", "sentence": "The new student felt shy on the first day." },
+    { "word": "shy", "emoji": "😳", "sentence": "The new student felt shy on the first day." },
     { "word": "surprised", "emoji": "😲", "sentence": "We were surprised by the kind message." },
     { "word": "happy", "emoji": "😄", "sentence": "They felt happy after helping a friend." },
     { "word": "sad", "emoji": "😢", "sentence": "I felt sad when my friend moved away." },
@@ -76,8 +76,8 @@
     ]
   },
   "reviewSentences": [
-    "It is normal to feel worried before something new.",
+    "It is normal to feel worried or scared before something new.",
     "If I felt confused, I would ask a clear question.",
-    "A small kindness can turn shy feelings into happy ones."
+    "A kind word can turn shy or surprised feelings into happy ones."
   ]
 }

@@ -932,10 +932,20 @@
     const stageH = dock ? Math.max(360, dock.y) : Math.max(360, art.h);
     const skipKing = !!(ctx && ctx.skipKing);
 
+    // Feelings Lab reuses face-blank as a drop stage for ONE feeling sticker, so
+    // it should not fill the board like a make-a-face king (which needs room for
+    // eyes/nose/hair). A near-full blank face read as a "giant empty blob" while
+    // the feeling faces sat tiny at the bottom (both judges). Detect feelings and
+    // rebalance: smaller stage + larger drag faces. S54 guards this.
+    const heroBlob = heroThemeTags(lesson).join(' ');
+    const feelingsStage = /\b(feeling|feelings|emotion|emotions|mood)\b/.test(heroBlob)
+      || (/\b(worried|scared|shy|confused|proud|surprised|happy|sad|angry|bored|sleepy|excited|tired)\b/.test(heroBlob)
+        && !/\b(hair|eyes|nose|ear|ears|make.?a.?face)\b/.test(heroBlob));
+
     if (!skipKing) {
       const king = Object.assign({}, prop, { relativeScale: 1 });
       const flushCrop = stageFitFor(prop) === 'flush';
-      const scale = flushCrop ? 1.5 : 0.92;
+      const scale = flushCrop ? 1.5 : (feelingsStage ? 0.72 : 0.92);
       const sized = PB.sizeFor(king, {
         maxH: Math.round(stageH * scale),
         maxW: Math.min(L.W - 8, Math.round(stageH * scale * (prop.aspect || 1))),
@@ -1053,6 +1063,25 @@
               if (tw <= dock.w) break;
               sized.pop();
             }
+          }
+        }
+        // Feelings faces are square stickers; a single uncrowded row defaulted to
+        // the 64px grab-floor and looked lost in the 1248px dock. Grow them to
+        // fill the dock height (capped so the whole row still fits width) so the
+        // drag targets read as the point of the page (Manus S54).
+        if (feelingsStage && sized.length) {
+          const gapsW = gap * Math.max(0, sized.length - 1);
+          const rawW = sized.reduce((s, x) => s + x.w, 0);
+          const maxPieceH0 = sized.reduce((m, x) => Math.max(m, x.h), 0);
+          const widthScale = rawW > 0 ? (dock.w - gapsW) / rawW : 1;
+          const heightScale = maxPieceH0 > 0 ? rowH / maxPieceH0 : 1;
+          const grow = Math.min(widthScale, heightScale);
+          if (grow > 1.02) {
+            sized = sized.map((x) => ({
+              t: x.t,
+              w: Math.round(x.w * grow),
+              h: Math.round(x.h * grow),
+            })).filter((x) => x.w <= dock.w);
           }
         }
         sizedPerRow.push(sized.length);
