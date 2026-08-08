@@ -192,6 +192,11 @@ Validated Run-5 findings (fold these into the Manus instructions):
   Manus re-check background purity or margins — the importer does that harder.
 - **Model tier: `default` quality is enough** for flat-vector art. The PROMPT is
   the stronger lever, not the model — don't pay for a pro tier.
+  - *Reconciliation:* `default` quality is fine for VISUAL quality
+    (flatness/detail) — the prompt is the stronger lever there. Switch to
+    `quality="high"` + a 4K model ONLY to gain RESOLUTION HEADROOM for denser
+    grids (4×8 / 32 tiles). Two different reasons; not a conflict. If you're
+    running a standard 4×4, stay on default.
 - **Success metric = "tiles that survive our importer,"** not "tiles that pass
   Manus's own vision check." Judge a Manus run by how many cleanly key through
   `assets:import-sheet`, not by Manus's self-reported pass rate.
