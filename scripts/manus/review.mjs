@@ -90,6 +90,9 @@ export function pickImages(dir, opts = {}) {
   if (!chosen.length) {
     throw new Error(`No JPG/PNG pages in ${dir}`);
   }
+  // Send in board order so a scrambled packet never *looks* like a skipped page
+  // (Manus read out-of-order attaches as a missing beat). contact (-1) leads.
+  chosen.sort((a, b) => pageNum(a) - pageNum(b) || a.localeCompare(b, undefined, { numeric: true }));
   return chosen.map((n) => path.join(dir, n));
 }
 
