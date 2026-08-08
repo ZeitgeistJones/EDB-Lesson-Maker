@@ -184,6 +184,8 @@ const SOFT = {
   S39: 'skipKing / write-or-say king activities show a visible production write strip (not oral-only)',
   // StoryArt soft — generative panels preferred when cache/API available
   S47: 'When StoryArt cache/results are applied, story slots mark data-story-art-gen and drop PropBank-only storyProp fallback',
+  // Title aims: story lessons name receptive reading, not production-only "talk"
+  S48: 'When lesson has story pages, title Aims line mentions read/reading (not talk-only)',
 };
 
 /**

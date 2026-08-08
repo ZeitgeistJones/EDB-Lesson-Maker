@@ -58,6 +58,7 @@ Soft: S42 no feeling-* story props.
   - pass4 [3Uc8](https://manus.im/app/3Uc8A7mGCQFSVZLbZPSGq6) pass/4
 - **Fold:** S41–S46 producer + generate-lesson feelings block; reject wrap recolor + OCR
 - **Assets:** none generated — existing feeling-* / vocab pack
-- **Leftover soft:** palette register soft; receptive-reading aim wording
-- **StoryArt:** disk cache + verify `--story-art=auto` + S47 (see `assetgap-story-art.md`); Manus re-review when credits available
-- **Next:** illustrate fixture → verify with gen panels → Manus when home/credits
+- **Leftover soft:** palette register soft (Manus ≤2 mid-deck holds locally via S34)
+- **StoryArt:** disk cache + verify `--story-art=auto` + S47; fill-missing; feelings+classical caches green
+- **Folded soft:** S48 receptive Aims (`talk and read`) when story.pages
+- **Next:** Manus re-review when home/credits; optional third-topic StoryArt illustrate

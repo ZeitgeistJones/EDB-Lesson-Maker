@@ -41,5 +41,5 @@ Locate/cache first, then generate. Fix machinery (prompts, cache, verify hydrate
 - **located:** PropBank feeling-* / musician-* fallbacks already good
 - **generated:** via `illustrate-fixture-story.mjs` when run
 - **wired:** disk cache, verify `--story-art=auto`, S47 soft, sessionStorage
-- **still open:** live Manus after credits; palette register soft; receptive-reading aim wording
-- **Lead:** `Assetgaploop assetgap-story-art: feelings+classical caches green · fill-missing · Manus deferred`
+- **still open:** live Manus after credits; palette register soft (S34 hard already); third-topic illustrate
+- **Lead:** `Assetgaploop assetgap-story-art: caches green · S48 aims · Manus deferred`

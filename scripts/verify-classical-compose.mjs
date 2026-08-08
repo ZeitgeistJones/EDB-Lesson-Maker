@@ -250,13 +250,15 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
   const aimsMatch = titleText.match(/Aims:\s*use\s+([^.]+)/i);
   if (aimsMatch) {
     const listed = aimsMatch[1].split(/,/).map((s) => s.trim()).filter(Boolean)
-      .map((s) => s.replace(/\s+to talk about.*$/i, '').trim());
+      .map((s) => s.replace(/\s+to talk(?: and read)? about.*$/i, '').trim());
     listed.forEach((w) => {
       if (w && !boardVocab.some((b) => b.toLowerCase() === w.toLowerCase())) {
         aimsOrphans.push(w);
       }
     });
   }
+  // S48 — story boards should name receptive reading in Aims (not talk-only).
+  const aimsHasRead = /\bread\b/i.test(titleText);
   const creativeText = ((lesson.story && lesson.story.creativeQuestions) || [])
     .map((q) => (typeof q === 'string' ? q : (q && (q.question || q.prompt)) || ''))
     .join(' ');
@@ -412,6 +414,7 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     warmSampleLeak: !!sampleLeak,
     aimsMissing,
     aimsOrphans,
+    aimsHasRead,
     creativeOrphans,
     hasGrammarAim,
     grammarClaimsFirstOnly,
@@ -464,6 +467,9 @@ if (storyArtMode !== '0' && storyArtMode !== 'off' && storyArtMode !== 'false') 
   } else if (!storyArtResult) {
     soft.push('S47: no StoryArt disk cache — run scripts/illustrate-fixture-story.mjs (PropBank interim)');
   }
+}
+if ((result.storyPageCount || 0) > 0 && !result.aimsHasRead) {
+  soft.push('S48: story lesson Aims line is talk-only — should mention read/reading');
 }
 
 const fails = [];

@@ -704,10 +704,15 @@
     });
     aimsPanel.dataset.aimsPanel = '1';
     if (aimWords.length) {
+      // When the board includes a story, name receptive reading — not production-only "talk".
+      const hasStoryPages = !!(lesson.story && Array.isArray(lesson.story.pages) && lesson.story.pages.length);
+      const aimClause = hasStoryPages
+        ? 'to talk and read about today\'s topic'
+        : 'to talk about today\'s topic';
       aims = el('div', {
         color: '#e2e8f0', fontSize: '20px', fontWeight: '700',
         lineHeight: '1.35',
-      }, `Aims: use ${aimWords.join(', ')} to talk about today's topic.`);
+      }, `Aims: use ${aimWords.join(', ')} ${aimClause}.`);
       aims.dataset.ink = 'hint';
       aims.dataset.aimsLine = '1';
       aimsPanel.appendChild(aims);

@@ -58,6 +58,7 @@ Gaps in **lesson content** — not art. For us (agent + you) when something teac
 | 2026-08-07 | ZPD after pass/99: inferential comprehension + Round 2 second conditional | Manus LSSgv | hint If I felt…would; fixture inferential Q; generate-lesson; S45 | schema-fixed |
 | 2026-08-07 | Wrap page missing timing chip on ≥45 min boards | Manus 3Uc8 Soft High | makeWrap header ~3 min; S46 verify | schema-fixed |
 | 2026-08-08 | Story panels stay PropBank-only; generative StoryArt not in verify bake | feelings/classical soft ceiling | disk cache + illustrate-fixture + verify `--story-art`; S47 soft; caption paint-able prompt | prompt-fixed |
+| 2026-08-08 | Title Aims talk-only on story boards (no receptive reading) | Manus feelings leftover | Aims: talk and read when story.pages; S48 soft | schema-fixed |
 | 2026-08-07 | Manus OCR letter-sub on frames (mv/shv) | Manus 3Uc8 | False positive like Ssdp B1 — keep string frames; soft only | wont-fix |
 
 <!-- Classical compose note (2026-08-07): Activity dock + skipKing piano-on-piano fixed (f21ca03). Manus dual reviews LbVd…/oEDh… folded into producer 2026-08-07. Story glyphs still open. Manusloop J4up… revise/72 folded: pickImages + inspire override + aims/frames/story. Second live pass USYe… pass/98 — numbered pads + pieceToPng pad fix. Shift20: Manus skill delta → schema scorecard/ZPD + S30–S32 producer. Shift21: live Manus LgtX… revise/84 → S26 caption bake kill + S29 king timing + S33–S37. Shift22 assetgap+manus x2: inspire.png + RWiY → S38/S39. -->
