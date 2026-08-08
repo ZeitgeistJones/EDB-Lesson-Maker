@@ -271,6 +271,11 @@
         pack: row.pack ? String(row.pack).toLowerCase() : null,
         srcW: row.srcW == null ? null : Number(row.srcW),
         srcH: row.srcH == null ? null : Number(row.srcH),
+        // Variant convention: a manifest row may declare itself a duplicate of
+        // another word's art with variantOf:"<baseKey>", or simply be named
+        // <baseKey>-v2 / -v3. Both are collapsed to the same base by baseKeyOf
+        // so the picker can rotate them for variety (see resolve/byWord).
+        variantOf: row.variantOf ? slug(row.variantOf) : null,
       };
       out.byKey[key] = prop;
       out.all.push(prop);
@@ -347,36 +352,87 @@
     return band[(start + (index_ || 0)) % band.length];
   }
 
-  function byWord(pool, word) {
-    const key = slug(word);
+  /** True when this row is a duplicate-kept variant, not a base prop. */
+  const VARIANT_SUFFIX = /^(.+)-v\d+$/;
+  function isVariantProp(prop) {
+    return !!(prop && (prop.variantOf || VARIANT_SUFFIX.test(prop.key)));
+  }
+
+  /** Base identity of a prop: explicit variantOf, else <key> minus a -vN tail. */
+  function baseOfProp(prop) {
+    if (!prop) return null;
+    if (prop.variantOf) return prop.variantOf;
+    const m = VARIANT_SUFFIX.exec(prop.key);
+    return m ? m[1] : prop.key;
+  }
+
+  /** Base identity from a bare key string (used to collapse the exclude set). */
+  function baseKeyOf(key) {
+    const known = bank && bank.byKey[key];
+    if (known) return baseOfProp(known);
+    const m = VARIANT_SUFFIX.exec(key);
+    return m ? m[1] : key;
+  }
+
+  /**
+   * All props in `pool` that share `hit`'s base — the variant set the picker
+   * may rotate through. Sorted by key so base (<key>) precedes <key>-v2 and the
+   * order never depends on manifest order. Returns [hit] when there is no set.
+   */
+  function variantBand(pool, hit) {
+    const base = baseOfProp(hit);
+    const band = pool.filter((p) => baseOfProp(p) === base);
+    band.sort((a, b) => a.key.localeCompare(b.key));
+    return band.length ? band : [hit];
+  }
+
+  function byWord(pool, q) {
+    const rawWord = q && q.word;
+    const key = slug(rawWord);
     if (!key) return null;
+    const seed = (q && q.seed) || '';
     const find = (k) => pool.find((p) => p.key === k) || null;
 
+    // A hit rotates across its variant set for cross-lesson variety, EXCEPT
+    // when the caller pinned an exact variant key (word === that key) — an
+    // explicit variant reference must resolve to exactly that prop.
+    const pick = (hit) => {
+      if (!hit) return null;
+      if (hit.key === key && isVariantProp(hit)) return hit;
+      const band = variantBand(pool, hit);
+      if (band.length <= 1) return hit;
+      // Seed on lesson seed + word so the same word is stable within a lesson
+      // (and thus within a page) while different lessons/words diverge.
+      return rotatePick(band, (seed ? seed + '|' : '') + key, 0);
+    };
+
     let hit = find(key);
-    if (hit) return hit;
+    if (hit) return pick(hit);
 
     const alias = PROP_ALIASES[key];
     if (alias) {
       hit = find(alias);
-      if (hit) return hit;
+      if (hit) return pick(hit);
     }
 
     // Pack-prefixed keys: teacher → job-teacher, dragon → castle-dragon / gashapon-dragon
     const prefixed = pool.filter(
       (p) => p.key === key || p.key.endsWith('-' + key) || p.words.includes(key)
     );
-    if (prefixed.length === 1) return prefixed[0];
+    if (prefixed.length === 1) return pick(prefixed[0]);
     if (prefixed.length > 1) {
-      // Prefer exact suffix match (job-teacher) over loose word hits
+      // Prefer exact suffix match (job-teacher) over loose word hits. Group by
+      // base first so job-teacher / job-teacher-v2 count as one candidate, not
+      // two competing suffix matches.
       const tight = prefixed.filter((p) => p.key === key || p.key.endsWith('-' + key));
       const band = tight.length ? tight : prefixed;
       band.sort((a, b) => a.key.length - b.key.length || a.key.localeCompare(b.key));
-      return band[0];
+      return pick(band[0]);
     }
 
     if (key.length > 3 && key.endsWith('s') && !key.endsWith('ss')) {
       hit = find(key.slice(0, -1));
-      if (hit) return hit;
+      if (hit) return pick(hit);
     }
     return null;
   }
@@ -410,10 +466,22 @@
     const chrome = !!(wantRole && CHROME_ROLES[wantRole]);
     const family = chrome ? HOUSE_FAMILY : (q.family || HOUSE_FAMILY);
     const exclude = new Set(q.exclude || []);
-    const pool = bank.all.filter((p) => p.family === family && !exclude.has(p.key));
+    // Same-page guard: a caller building a distinct set (dock, bins, dressing)
+    // pushes each picked key into `exclude`. Collapsing those to their base and
+    // dropping every sibling means a second variant of an already-placed word
+    // can never land on the same page — while single-prop words are unaffected
+    // (baseKeyOf(k) === k when there is no variant set).
+    const excludeBases = new Set();
+    exclude.forEach((k) => excludeBases.add(baseKeyOf(k)));
+    const pool = bank.all.filter(
+      (p) =>
+        p.family === family &&
+        !exclude.has(p.key) &&
+        !excludeBases.has(baseOfProp(p))
+    );
     if (!pool.length) return null;
 
-    const named = byWord(pool, q.word);
+    const named = byWord(pool, q);
     if (named) return named;
 
     // The word's own tokens join the tag query: an exact tag match is still an

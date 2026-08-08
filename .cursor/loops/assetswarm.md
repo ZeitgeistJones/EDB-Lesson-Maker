@@ -55,6 +55,16 @@ well as any it would pick itself:
    "Owns topic X; these keys already exist and are OFF-LIMITS: X-foo, X-bar;
    generate only fresh gaps."
 
+**Duplicates → variants, don't discard.** When a loop lands a second good prop
+for a word that's already covered, do NOT reflexively skip it. If the duplicate
+is **gate-clean AND visually good / stylistically distinct** from the existing
+one, KEEP it as a variant: name it `<key>-v2` (then `-v3`…), or add
+`"variantOf": "<baseKey>"` to its row. The picker rotates variants across
+lessons for visual variety and already guards against two variants of the same
+word landing on one page, so extra good art is pure upside. Only skip **true
+junk or near-identical copies** (same pose/palette, no added variety) — those
+are noise, not variants. Report kept variants in the topic summary.
+
 Example — invoked `/assetswarm 5 weather, sports, transport, animals, jobs`, but
 the manifest already has mature `weather-*`, `animals-*`, `jobs-*`, `sports-*`
 packs and only a thin `transport-*` set:
@@ -94,7 +104,10 @@ Each loop is a NEW-FILES-ONLY worker. Per loop:
 2. **Scan existing props first** (`09_props/manifest.json` + `assets:prop-demand`),
    and honour the **already-covered keys the coordinator handed down** in the
    pre-scan — reuse anything already on disk and generate only the genuine gaps.
-   Never regenerate a key the brief listed as off-limits.
+   Don't re-draw an off-limits key just to duplicate it; but if you happen to
+   produce a gate-clean, visually distinct alternative for a covered word, stage
+   it as a variant `<key>-v2` (see "Duplicates → variants" above) rather than
+   throwing it away.
 3. **Generate gaps in-house, one at a time**, on solid black — no grid, no
    labels, no baked text. Follow `.cursor/skills/prop-cutouts/SKILL.md`
    (`docs/prop-style-lock.md` is the prompt; request 1:1 + explicit filename).

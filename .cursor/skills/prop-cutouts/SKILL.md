@@ -181,6 +181,40 @@ the frame. A sheet is a supported input; a crowded sheet is not.
 7. **Only then add the manifest row** to `public/assets/09_props/manifest.json`.
    The importer prints the row ready to paste, already formatted for the file.
 
+## Keep good duplicates as variants
+
+When you make (or find) a **second good prop for a word that's already covered**,
+don't discard it — the picker keeps duplicates as **variants** and rotates them
+across lessons for visual variety.
+
+- **Keep it** when the duplicate is **gate-clean AND visually good /
+  stylistically distinct** from the existing art (different pose, framing, or
+  charm — still the same house style, same object).
+- **Skip it** only when it's **true junk or a near-identical copy** (same
+  pose/palette, adds no variety). That's noise, not a variant.
+
+**Naming / tag convention** (this is all the picker needs):
+
+- Name the extra rows `<baseKey>-v2`, then `<baseKey>-v3`, … (the base keeps its
+  plain `<baseKey>` name). Example: `reward-jar` + `reward-jar-v2`.
+- OR, when a nice alternative doesn't fit the `-vN` name, add
+  `"variantOf": "<baseKey>"` to its manifest row. Both forms collapse to the
+  same base in `PropBank`.
+
+**How the picker uses them (so you can trust the policy):**
+
+- A word that resolves to a base with variants **rotates** across the whole
+  variant set, seeded by lesson + word — so different lessons get
+  different-but-valid art while one lesson stays stable.
+- **Same-page guard:** two variants of the *same* word can never appear on one
+  board page. Within a page the same word always resolves to the *same* single
+  variant, and distinct sets (docks, sort bins, scene dressing) can't pull a
+  second variant of a word they've already placed.
+- **Pinned keys stay exact:** if a lesson/fixture references an explicit variant
+  key (e.g. `reward-jar-v2`), it still resolves to exactly that prop — rotation
+  only kicks in for plain-word lookups.
+- Words with only one prop behave exactly as before.
+
 ## The visual pass is not optional
 
 The gates measure geometry, black purity, blob count and edge colour. They
