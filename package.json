@@ -33,6 +33,7 @@
     "test:coloring": "node scripts/smoke-coloring-outlines.mjs",
     "test:story-art-latency": "node scripts/smoke-story-art-latency.mjs",
     "test:story-art": "node scripts/smoke-story-art-module.cjs",
+    "story-art:illustrate": "node scripts/illustrate-fixture-story.mjs",
     "test:phonics": "node scripts/smoke-phonics-policy.cjs",
     "manus:review": "node scripts/manus/review.mjs",
     "manus:dry": "node scripts/manus/review.mjs --dry-run",

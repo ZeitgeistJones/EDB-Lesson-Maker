@@ -1,8 +1,12 @@
 /* storyArt.js — session cache + fetch for realtime story illustrations.
  * Classic script → window.StoryArt
+ *
+ * Memory Map + sessionStorage so a refresh still hydrates board downloads
+ * without re-billing Gemini for the same lesson fingerprint.
  */
 (function () {
   const cache = new Map();
+  const STORAGE_PREFIX = 'storyArt:v1:';
 
   function normalizePages(lesson) {
     const pages = (lesson && lesson.story && lesson.story.pages) || [];
@@ -34,12 +38,54 @@
     return 'sa_' + (h >>> 0).toString(16);
   }
 
+  function readStorage(key) {
+    try {
+      if (!window.sessionStorage) return null;
+      const raw = window.sessionStorage.getItem(STORAGE_PREFIX + key);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (!parsed || !Array.isArray(parsed.pages)) return null;
+      return parsed;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function writeStorage(key, result) {
+    try {
+      if (!window.sessionStorage || !result) return;
+      const hits = (result.pages || []).filter((p) => p && p.dataUrl).length;
+      if (!hits) return;
+      // Skip huge payloads that may blow sessionStorage (~5MB).
+      const approx = JSON.stringify(result).length;
+      if (approx > 4.5e6) return;
+      window.sessionStorage.setItem(STORAGE_PREFIX + key, JSON.stringify({
+        pages: result.pages,
+        styleRef: result.styleRef || null,
+        model: result.model || null,
+        cacheKey: result.cacheKey || key,
+      }));
+    } catch (_) {
+      /* quota / private mode — memory cache still works */
+    }
+  }
+
   function getCached(lesson, level) {
-    return cache.get(cacheKey(lesson, level)) || null;
+    const key = cacheKey(lesson, level);
+    const mem = cache.get(key);
+    if (mem) return mem;
+    const stored = readStorage(key);
+    if (stored) {
+      cache.set(key, stored);
+      return stored;
+    }
+    return null;
   }
 
   function setCached(lesson, level, result) {
-    cache.set(cacheKey(lesson, level), result);
+    const key = cacheKey(lesson, level);
+    cache.set(key, result);
+    writeStorage(key, result);
     return result;
   }
 
@@ -66,6 +112,7 @@
         title: (lesson && lesson.title) || (lesson && lesson.story && lesson.story.title) || 'Story',
         level,
         pages,
+        force: !!(opts && opts.force),
       }),
     });
     const raw = await resp.text();
@@ -81,6 +128,7 @@
         pages: pages.map((p) => ({ index: p.index, dataUrl: null, reason: data.error || `HTTP ${resp.status}` })),
         error: data.error || `HTTP ${resp.status}`,
         disabled: !!data.disabled,
+        cacheKey: data.cacheKey || null,
       };
       // Don't cache hard disables / missing key — allow retry after env change.
       if (!data.disabled && resp.status !== 500) setCached(lesson, level, result);
@@ -91,6 +139,8 @@
       pages: Array.isArray(data.pages) ? data.pages : [],
       styleRef: data.styleRef || null,
       model: data.model || null,
+      cacheKey: data.cacheKey || null,
+      cacheHit: !!data.cacheHit,
     };
     setCached(lesson, level, result);
     return result;

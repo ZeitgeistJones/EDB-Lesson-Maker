@@ -3,20 +3,34 @@
  * Mirrors classical-compose pedagogy gates without music/terrace specials.
  *
  *   node scripts/verify-feelings-compass.mjs
+ *   node scripts/verify-feelings-compass.mjs --story-art=auto   # apply disk cache if present
+ *   node scripts/verify-feelings-compass.mjs --story-art=1      # generate if miss (costs Gemini)
  */
 import fs from 'fs';
 import path from 'path';
 import http from 'http';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 import { chromium } from 'playwright';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const require = createRequire(import.meta.url);
 const LOG = path.join(ROOT, '.cursor', 'debug-3c9697.log');
 const OUT = path.join(ROOT, 'tmp', 'board-bg-verify', 'feelings-compass');
 
 function arg(name, fallback) {
   const hit = process.argv.find((a) => a.startsWith(`--${name}=`));
   return hit ? hit.slice(name.length + 3) : fallback;
+}
+
+function loadEnv() {
+  const envPath = path.join(ROOT, '.env');
+  if (!fs.existsSync(envPath)) return;
+  for (const line of fs.readFileSync(envPath, 'utf8').split(/\r?\n/)) {
+    const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)$/);
+    if (!m || process.env[m[1]]) continue;
+    process.env[m[1]] = m[2].replace(/^["']|["']$/g, '').trim();
+  }
 }
 
 function logLine(hypothesisId, message, data) {
@@ -33,6 +47,7 @@ function logLine(hypothesisId, message, data) {
   );
 }
 
+loadEnv();
 const fixtureName = arg('fixture', 'feelings-compass-lesson.json');
 const lesson = JSON.parse(fs.readFileSync(path.join(ROOT, 'scripts/fixtures', fixtureName), 'utf8'));
 if (arg('retitle', '1') !== '0') {
@@ -40,6 +55,45 @@ if (arg('retitle', '1') !== '0') {
 }
 
 const meta = { level: 'B1', duration: '60', phonics: 'off' };
+const storyArtMode = String(arg('story-art', process.env.STORY_ART_BAKE || 'auto')).toLowerCase();
+let storyArtResult = null;
+let storyArtMeta = { mode: storyArtMode, applied: 0, cacheKey: null, cacheHit: false };
+if (storyArtMode !== '0' && storyArtMode !== 'off' && storyArtMode !== 'false') {
+  try {
+    const storyArtApi = require('../api/generate-story-art.js');
+    const pages = ((lesson.story && lesson.story.pages) || []).slice(0, 3).map((p, i) => ({
+      index: i,
+      heading: p.heading || '',
+      text: p.text || '',
+      visualCaption: p.visualCaption || p.visualTheme || '',
+    }));
+    const cacheKey = storyArtApi.cacheKeyFor(lesson.title || 'Story', meta.level, pages);
+    storyArtMeta.cacheKey = cacheKey;
+    storyArtResult = storyArtApi.loadCachedResult(cacheKey);
+    if (storyArtResult) {
+      storyArtMeta.cacheHit = true;
+    } else if (storyArtMode === '1' || storyArtMode === 'true' || storyArtMode === 'on' || storyArtMode === 'gen') {
+      // Synchronous-ish generate via handler (may take ~1–2 min).
+      const out = { statusCode: 200, body: null };
+      const res = {
+        setHeader() {},
+        status(code) { out.statusCode = code; return this; },
+        json(payload) { out.body = payload; return this; },
+      };
+      await storyArtApi(
+        { method: 'POST', body: { title: lesson.title || 'Story', level: meta.level, pages } },
+        res
+      );
+      if (out.statusCode < 400 && out.body && Array.isArray(out.body.pages)) {
+        storyArtResult = out.body;
+        storyArtMeta.cacheHit = !!out.body.cacheHit;
+      }
+    }
+    if (storyArtResult) meta.storyArt = storyArtResult;
+  } catch (err) {
+    storyArtMeta.error = err.message || String(err);
+  }
+}
 fs.mkdirSync(OUT, { recursive: true });
 fs.mkdirSync(path.dirname(LOG), { recursive: true });
 for (const n of fs.readdirSync(OUT)) {
@@ -145,6 +199,10 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
   const compQs = window.LessonPages.comprehensionQuestions(lesson) || [];
 
   const rendered = await window.LessonPages.render(lesson, meta, boardPlan);
+  let storyArtApplied = 0;
+  if (meta && meta.storyArt && window.LessonPages.applyStoryArt) {
+    storyArtApplied = window.LessonPages.applyStoryArt(rendered.pageEls, meta.storyArt) || 0;
+  }
   const byKey = (rendered.slots && rendered.slots.byKey) || {};
   const actDom = rendered.pageEls[byKey.activity];
   const warmDom = rendered.pageEls[byKey.warm];
@@ -224,12 +282,14 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
   const storyCaptionIssues = [];
   const storyPropKeys = [];
   const storySides = [];
+  let storyArtGenCount = 0;
   storyIdxs.forEach((si, storyI) => {
     const key = 'story' + storyI;
     const el = rendered.pageEls[byKey[key]];
     if (!el) return;
     const slot = el.querySelector('[data-story-art]');
     if (!slot) return;
+    if (slot.dataset.storyArtGen === '1') storyArtGenCount += 1;
     const propKey = slot.dataset.storyProp || '';
     if (propKey) storyPropKeys.push({ i: storyI, key: propKey });
     if (slot.dataset.storyArtMode === 'side' && slot.dataset.storySide) {
@@ -359,6 +419,8 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     artWinners,
     storyPropKeys,
     storyCaptionIssues,
+    storyArtApplied,
+    storyArtGenCount,
     frames: { count: frames.length, longest, fontPx },
     framesHintListenFirst: /listen and say/i.test(framesText),
     pages,
@@ -405,8 +467,19 @@ if (Array.isArray(storyPages)) {
   }
 }
 const soft = [];
-if (!(result.storyPropKeys || []).some((s) => /^feeling-/.test(String(s.key || '')))) {
+const storyArtGen = (result.storyArtGenCount || 0) > 0 || (result.storyArtApplied || 0) > 0;
+storyArtMeta.applied = result.storyArtApplied || 0;
+storyArtMeta.genSlots = result.storyArtGenCount || 0;
+// PropBank feeling-* fallback only matters when generative StoryArt did not fill slots.
+if (!storyArtGen && !(result.storyPropKeys || []).some((s) => /^feeling-/.test(String(s.key || '')))) {
   soft.push('S42: no feeling-* story props — caption may not name emotion words');
+}
+if (storyArtMode !== '0' && storyArtMode !== 'off' && storyArtMode !== 'false') {
+  if (storyArtResult && !storyArtGen) {
+    soft.push('S47: StoryArt payload present but slots not marked data-story-art-gen');
+  } else if (!storyArtResult) {
+    soft.push('S47: no StoryArt disk cache — run scripts/illustrate-fixture-story.mjs (PropBank interim)');
+  }
 }
 const inferentialComp = (lesson.story && lesson.story.comprehensionQuestions || []).some((q) =>
   /\b(why|what do you think|how do you know|infer)\b/i.test(String(q && q.question || q || '')));
@@ -537,6 +610,7 @@ console.log(JSON.stringify({
   wrapExitMissing: result.wrapExitMissing,
   storyPageCount: result.storyPageCount,
   storyPropKeys: result.storyPropKeys,
+  storyArt: storyArtMeta,
   activityHintTwoRound: result.activityHintTwoRound,
   midFlatUnique: result.midFlatUnique,
   pageFiles: result.pages.map((p) => `page-${p.index}-${p.key}.jpg`),

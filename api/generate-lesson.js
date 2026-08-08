@@ -237,7 +237,7 @@ Generate exactly: ${counts.vocab} vocabulary items, 4 sentenceFrames, ${counts.q
 
 Also generate a short illustrated story tied to the topic:
 - story.title: a catchy story title
-- story.pages: EXACTLY ${counts.storyPages} pages. Each page needs heading, text (2–4 short paragraphs suitable for ${safeLevel} learners; use some lesson vocabulary), visualTheme (exactly one of: park, school, home, city, beach, nature, kitchen, sports), and visualCaption (short scene label)
+- story.pages: EXACTLY ${counts.storyPages} pages. Each page needs heading, text (2–4 short paragraphs suitable for ${safeLevel} learners; use some lesson vocabulary), visualTheme (exactly one of: park, school, home, city, beach, nature, kitchen, sports), and visualCaption (short paint-able scene: who + where + action — concrete nouns a story illustration or PropBank cutout can depict; not abstract mood alone)
 - story.comprehensionQuestions: EXACTLY ${counts.comprehension} reading comprehension questions about the story, each with a sampleAnswer
 - story.creativeQuestions: EXACTLY 2 open-ended creative questions related to the story (imagining, personal connection, or continuing the story) — no sample answers
 ${phonicsBlock}

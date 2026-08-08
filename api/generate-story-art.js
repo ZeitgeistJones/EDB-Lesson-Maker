@@ -5,18 +5,151 @@
  * Gated by STORY_ART=1 and GEMINI_API_KEY. Partial success is OK — null
  * pages fall back to quiet flats / emoji side art in the client.
  *
+ * Disk cache (tmp/story-art-cache/<hash>/) avoids re-billing the same
+ * lesson fingerprint. Set STORY_ART_CACHE=0 to disable.
+ *
  * Body: { title, level?, pages: [{ index, heading, text, visualCaption }] }
- * Returns: { pages: [{ index, dataUrl|null, reason? }], styleRef?: dataUrl }
+ * Returns: { pages: [{ index, dataUrl|null, reason? }], styleRef?: dataUrl, cacheKey?, cacheHit? }
  */
+const fs = require('fs');
+const path = require('path');
+
 const API_KEY = process.env.GEMINI_API_KEY;
 const IMAGE_MODEL = process.env.GEMINI_IMAGE_MODEL || 'gemini-2.5-flash-image';
 const VISION_MODEL = process.env.GEMINI_VISION_MODEL || process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite';
 const PER_IMAGE_MS = Number(process.env.STORY_ART_TIMEOUT_MS) || 45000;
 const MAX_PAGES = 3;
+const ROOT = path.resolve(__dirname, '..');
+const CACHE_ROOT = path.join(ROOT, 'tmp', 'story-art-cache');
 
 function storyArtEnabled() {
   const v = String(process.env.STORY_ART || '').trim().toLowerCase();
   return v === '1' || v === 'true' || v === 'on';
+}
+
+function cacheEnabled() {
+  const v = String(process.env.STORY_ART_CACHE || '1').trim().toLowerCase();
+  return !(v === '0' || v === 'false' || v === 'off');
+}
+
+/** Stable fingerprint shared with scripts/verify + illustrate-fixture. */
+function cacheKeyFor(title, level, pages) {
+  const raw = JSON.stringify({
+    model: IMAGE_MODEL,
+    title: title || '',
+    level: level || '',
+    pages: (pages || []).map((p) => ({
+      i: Number(p.index) || 0,
+      t: String(p.text || ''),
+      c: String(p.visualCaption || ''),
+      h: String(p.heading || ''),
+    })),
+  });
+  let h = 2166136261;
+  for (let i = 0; i < raw.length; i++) {
+    h ^= raw.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return 'sa_' + (h >>> 0).toString(16);
+}
+
+function extFromMime(mime) {
+  if (/jpeg|jpg/i.test(mime || '')) return 'jpg';
+  if (/webp/i.test(mime || '')) return 'webp';
+  return 'png';
+}
+
+function dataUrlToParts(dataUrl) {
+  const m = String(dataUrl || '').match(/^data:([^;]+);base64,(.+)$/);
+  if (!m) return null;
+  return { mime: m[1], base64: m[2], dataUrl };
+}
+
+function fileToDataUrl(filePath) {
+  if (!fs.existsSync(filePath)) return null;
+  const buf = fs.readFileSync(filePath);
+  const ext = path.extname(filePath).toLowerCase();
+  const mime = ext === '.jpg' || ext === '.jpeg'
+    ? 'image/jpeg'
+    : ext === '.webp'
+      ? 'image/webp'
+      : 'image/png';
+  return `data:${mime};base64,${buf.toString('base64')}`;
+}
+
+function loadCachedResult(cacheKey) {
+  if (!cacheEnabled() || !cacheKey) return null;
+  const dir = path.join(CACHE_ROOT, cacheKey);
+  const metaPath = path.join(dir, 'meta.json');
+  if (!fs.existsSync(metaPath)) return null;
+  let meta;
+  try {
+    meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+  } catch {
+    return null;
+  }
+  const pages = (meta.pages || []).map((p) => {
+    if (!p || !p.ok || !p.file) {
+      return { index: Number(p && p.index) || 0, dataUrl: null, reason: (p && p.reason) || 'cache-miss-page' };
+    }
+    const dataUrl = fileToDataUrl(path.join(dir, p.file));
+    if (!dataUrl) {
+      return { index: Number(p.index) || 0, dataUrl: null, reason: 'cache-file-missing' };
+    }
+    return { index: Number(p.index) || 0, dataUrl, reason: p.reason || undefined };
+  });
+  const hits = pages.filter((p) => p.dataUrl).length;
+  if (!hits) return null;
+  let styleRef = null;
+  if (meta.styleRefFile) styleRef = fileToDataUrl(path.join(dir, meta.styleRefFile));
+  return {
+    model: meta.model || IMAGE_MODEL,
+    styleRef,
+    pages,
+    cacheKey,
+    cacheHit: true,
+  };
+}
+
+function writeCachedResult(cacheKey, result) {
+  if (!cacheEnabled() || !cacheKey || !result) return;
+  const hits = (result.pages || []).filter((p) => p && p.dataUrl).length;
+  if (!hits) return;
+  const dir = path.join(CACHE_ROOT, cacheKey);
+  fs.mkdirSync(dir, { recursive: true });
+  const metaPages = [];
+  for (const p of result.pages || []) {
+    const index = Number(p.index) || 0;
+    if (!p.dataUrl) {
+      metaPages.push({ index, ok: false, reason: p.reason || 'null' });
+      continue;
+    }
+    const parts = dataUrlToParts(p.dataUrl);
+    if (!parts) {
+      metaPages.push({ index, ok: false, reason: 'bad-data-url' });
+      continue;
+    }
+    const file = `page-${index}.${extFromMime(parts.mime)}`;
+    fs.writeFileSync(path.join(dir, file), Buffer.from(parts.base64, 'base64'));
+    metaPages.push({ index, ok: true, file, reason: p.reason || undefined });
+  }
+  let styleRefFile = null;
+  if (result.styleRef) {
+    const parts = dataUrlToParts(result.styleRef);
+    if (parts) {
+      styleRefFile = `style-ref.${extFromMime(parts.mime)}`;
+      fs.writeFileSync(path.join(dir, styleRefFile), Buffer.from(parts.base64, 'base64'));
+    }
+  }
+  fs.writeFileSync(
+    path.join(dir, 'meta.json'),
+    JSON.stringify({
+      model: result.model || IMAGE_MODEL,
+      styleRefFile,
+      pages: metaPages,
+      savedAt: new Date().toISOString(),
+    }, null, 2)
+  );
 }
 
 function stylePrompt(title, level) {
@@ -27,19 +160,28 @@ Aimed at ${lvl} young learners. Leave large empty areas — this is a palette/st
 Absolutely no text, letters, numbers, signs, logos, or writing of any kind.`;
 }
 
-function pagePrompt(page, title) {
-  const caption = page.visualCaption || page.heading || 'scene';
+function pagePrompt(page, title, level) {
+  const caption = String(page.visualCaption || page.heading || 'scene').trim();
   const text = String(page.text || '').slice(0, 600);
+  const lvl = level || 'A1';
+  const feelingLead = caption.match(
+    /^(worried|scared|confused|shy|surprised|happy|sad|angry|bored|sleepy|proud|silly|excited|tired|feelings?)\b/i
+  );
+  const emotionRule = feelingLead
+    ? `- Show clear body language / facial expression for "${feelingLead[1].toLowerCase()}" (readable at small side-panel size)`
+    : '- Prefer a concrete place + action the caption names (not abstract symbols)';
   return `Image 1 is a STYLE REFERENCE only — match its flat children's-book gouache wash, color palette, and simple shapes. Do not copy its composition.
 
-Paint ONE literal story illustration for this ESL reading page (title: "${title || 'Story'}"):
+Paint ONE literal story illustration for this ESL reading page (title: "${title || 'Story'}", level ${lvl}):
 Scene label: ${caption}
 Story text to depict literally (not metaphorically): ${text}
 
 Rules:
-- Uncluttered composition suitable for young A1–A2 learners
+- Uncluttered composition for a small story side panel / banner — one clear focal action
 - Culturally generic, friendly, warm
-- Absolutely no text, letters, numbers, signs, logos, captions, or writing of any kind
+${emotionRule}
+- Depict the caption scene literally; do not invent ironic or adult subtext
+- Absolutely no text, letters, numbers, signs, logos, captions, speech bubbles with writing, or writing of any kind
 - Do not invent extra busy details that fight the reading`;
 }
 
@@ -144,7 +286,57 @@ async function hasLegibleText(img) {
   return { reject: true, reason: `vision-unclear:${text.slice(0, 40)}` };
 }
 
-module.exports = async function handler(req, res) {
+function buildPageParts(page, title, level, styleRef) {
+  const prompt = pagePrompt(page, title, level);
+  if (styleRef) {
+    return [
+      {
+        text:
+          'Image 1 = style reference: flat children\'s-book gouache wash, warm palette. ' +
+          'Apply this style; do not copy composition.',
+      },
+      { inlineData: { mimeType: styleRef.mime, data: styleRef.base64 } },
+      { text: prompt },
+    ];
+  }
+  return [{
+    text:
+      prompt +
+      '\nStyle (no reference image available): flat children\'s-book gouache wash, warm palette, soft simple shapes.',
+  }];
+}
+
+async function generatePageArt(page, title, level, styleRef, aspect) {
+  const parts = buildPageParts(page, title, level, styleRef);
+  let gen = await generateImage(parts, aspect);
+  if (!gen.ok) return { ok: false, reason: gen.reason };
+
+  let gate = await hasLegibleText(gen);
+  if (!gate.reject) {
+    return {
+      ok: true,
+      ...gen,
+      reason: styleRef ? undefined : 'prompt-only-style',
+    };
+  }
+
+  // One retry with a harder no-text reminder (style sheet already retries once).
+  const retryParts = buildPageParts(page, title, level, styleRef);
+  retryParts.push({
+    text: 'Reminder: ZERO text or letters anywhere. No signs, worksheets with writing, name tags, or alphabet.',
+  });
+  const retry = await generateImage(retryParts, aspect);
+  if (!retry.ok) return { ok: false, reason: gate.reason };
+  gate = await hasLegibleText(retry);
+  if (gate.reject) return { ok: false, reason: gate.reason };
+  return {
+    ok: true,
+    ...retry,
+    reason: styleRef ? 'text-gate-retry' : 'prompt-only-style-retry',
+  };
+}
+
+async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Method not allowed. Use POST.' });
@@ -169,6 +361,15 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Missing pages[] for story art.' });
   }
 
+  const force = !!(body.force || body.nocache);
+  const cacheKey = cacheKeyFor(title, level, pagesIn);
+  if (!force) {
+    const hit = loadCachedResult(cacheKey);
+    if (hit) {
+      return res.json(hit);
+    }
+  }
+
   const multi = pagesIn.length > 1;
   const aspect = multi ? '3:4' : '16:9';
 
@@ -184,6 +385,7 @@ module.exports = async function handler(req, res) {
       if (!styleRes.ok) {
         return res.status(502).json({
           error: `Style reference failed: ${styleRes.reason}`,
+          cacheKey,
           pages: pagesIn.map((p) => ({
             index: Number(p.index) || 0,
             dataUrl: null,
@@ -216,35 +418,15 @@ module.exports = async function handler(req, res) {
     for (const page of pagesIn) {
       const index = Number.isFinite(Number(page.index)) ? Number(page.index) : outPages.length;
       try {
-        const parts = styleRef
-          ? [
-              {
-                text:
-                  'Image 1 = style reference: flat children\'s-book gouache wash, warm palette. ' +
-                  'Apply this style; do not copy composition.',
-              },
-              { inlineData: { mimeType: styleRef.mime, data: styleRef.base64 } },
-              { text: pagePrompt(page, title) },
-            ]
-          : [{
-              text:
-                pagePrompt(page, title) +
-                '\nStyle (no reference image available): flat children\'s-book gouache wash, warm palette, soft simple shapes.',
-            }];
-        const gen = await generateImage(parts, aspect);
+        const gen = await generatePageArt(page, title, level, styleRef, aspect);
         if (!gen.ok) {
           outPages.push({ index, dataUrl: null, reason: gen.reason });
-          continue;
-        }
-        const gate = await hasLegibleText(gen);
-        if (gate.reject) {
-          outPages.push({ index, dataUrl: null, reason: gate.reason });
           continue;
         }
         outPages.push({
           index,
           dataUrl: gen.dataUrl,
-          reason: styleRef ? undefined : (multi ? 'prompt-only-style' : 'solo-prompt-style'),
+          reason: gen.reason || (styleRef ? undefined : (multi ? 'prompt-only-style' : 'solo-prompt-style')),
         });
       } catch (err) {
         const reason = err?.name === 'AbortError' ? 'timeout' : (err.message || 'page-failed');
@@ -252,14 +434,24 @@ module.exports = async function handler(req, res) {
       }
     }
 
-    return res.json({
+    const payload = {
       model: IMAGE_MODEL,
       styleRef: styleRef ? styleRef.dataUrl : null,
       pages: outPages,
-    });
+      cacheKey,
+      cacheHit: false,
+    };
+    writeCachedResult(cacheKey, payload);
+    return res.json(payload);
   } catch (err) {
     console.error('generate-story-art', err);
     const reason = err?.name === 'AbortError' ? 'timeout' : 'Failed to reach Gemini image API.';
-    return res.status(500).json({ error: reason });
+    return res.status(500).json({ error: reason, cacheKey });
   }
-};
+}
+
+handler.cacheKeyFor = cacheKeyFor;
+handler.loadCachedResult = loadCachedResult;
+handler.writeCachedResult = writeCachedResult;
+handler.CACHE_ROOT = CACHE_ROOT;
+module.exports = handler;

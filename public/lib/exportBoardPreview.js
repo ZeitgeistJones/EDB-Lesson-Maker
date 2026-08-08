@@ -77,9 +77,13 @@
       await window.LessonPages.attachBgPicks(lesson, meta || {}, boardPlan);
     }
     const rendered = await window.LessonPages.render(lesson, meta || {}, boardPlan);
-    if (window.LessonPages.applyStoryArt && window.StoryArt) {
-      const cached = window.StoryArt.getCached(lesson, (meta && meta.level) || '');
-      if (cached) window.LessonPages.applyStoryArt(rendered.pageEls, cached);
+    if (window.LessonPages.applyStoryArt) {
+      // Prefer explicit results (verify/bake inject disk cache), then session cache.
+      let art = (meta && meta.storyArt) || null;
+      if (!art && window.StoryArt) {
+        art = window.StoryArt.getCached(lesson, (meta && meta.level) || '');
+      }
+      if (art) window.LessonPages.applyStoryArt(rendered.pageEls, art);
     }
     await waitForImages(rendered.host);
 

@@ -4,20 +4,34 @@
  *
  *   node scripts/verify-classical-compose.mjs
  *   node scripts/verify-classical-compose.mjs --fixture=classical-compose-lesson.json
+ *   node scripts/verify-classical-compose.mjs --story-art=auto   # apply disk cache if present
+ *   node scripts/verify-classical-compose.mjs --story-art=1      # generate if miss (costs Gemini)
  */
 import fs from 'fs';
 import path from 'path';
 import http from 'http';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 import { chromium } from 'playwright';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const require = createRequire(import.meta.url);
 const LOG = path.join(ROOT, '.cursor', 'debug-3c9697.log');
 const OUT = path.join(ROOT, 'tmp', 'board-bg-verify', 'classical-compose');
 
 function arg(name, fallback) {
   const hit = process.argv.find((a) => a.startsWith(`--${name}=`));
   return hit ? hit.slice(name.length + 3) : fallback;
+}
+
+function loadEnv() {
+  const envPath = path.join(ROOT, '.env');
+  if (!fs.existsSync(envPath)) return;
+  for (const line of fs.readFileSync(envPath, 'utf8').split(/\r?\n/)) {
+    const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)$/);
+    if (!m || process.env[m[1]]) continue;
+    process.env[m[1]] = m[2].replace(/^["']|["']$/g, '').trim();
+  }
 }
 
 function logLine(hypothesisId, message, data) {
@@ -34,6 +48,7 @@ function logLine(hypothesisId, message, data) {
   );
 }
 
+loadEnv();
 const fixtureName = arg('fixture', 'classical-compose-lesson.json');
 const lesson = JSON.parse(fs.readFileSync(path.join(ROOT, 'scripts/fixtures', fixtureName), 'utf8'));
 // Similar-but-not-identical title so we aren't fixture-locked.
@@ -42,6 +57,44 @@ if (arg('retitle', '1') !== '0') {
 }
 
 const meta = { level: 'B1', duration: '60', phonics: 'off' };
+const storyArtMode = String(arg('story-art', process.env.STORY_ART_BAKE || 'auto')).toLowerCase();
+let storyArtResult = null;
+let storyArtMeta = { mode: storyArtMode, applied: 0, cacheKey: null, cacheHit: false };
+if (storyArtMode !== '0' && storyArtMode !== 'off' && storyArtMode !== 'false') {
+  try {
+    const storyArtApi = require('../api/generate-story-art.js');
+    const pages = ((lesson.story && lesson.story.pages) || []).slice(0, 3).map((p, i) => ({
+      index: i,
+      heading: p.heading || '',
+      text: p.text || '',
+      visualCaption: p.visualCaption || p.visualTheme || '',
+    }));
+    const cacheKey = storyArtApi.cacheKeyFor(lesson.title || 'Story', meta.level, pages);
+    storyArtMeta.cacheKey = cacheKey;
+    storyArtResult = storyArtApi.loadCachedResult(cacheKey);
+    if (storyArtResult) {
+      storyArtMeta.cacheHit = true;
+    } else if (storyArtMode === '1' || storyArtMode === 'true' || storyArtMode === 'on' || storyArtMode === 'gen') {
+      const out = { statusCode: 200, body: null };
+      const res = {
+        setHeader() {},
+        status(code) { out.statusCode = code; return this; },
+        json(payload) { out.body = payload; return this; },
+      };
+      await storyArtApi(
+        { method: 'POST', body: { title: lesson.title || 'Story', level: meta.level, pages } },
+        res
+      );
+      if (out.statusCode < 400 && out.body && Array.isArray(out.body.pages)) {
+        storyArtResult = out.body;
+        storyArtMeta.cacheHit = !!out.body.cacheHit;
+      }
+    }
+    if (storyArtResult) meta.storyArt = storyArtResult;
+  } catch (err) {
+    storyArtMeta.error = err.message || String(err);
+  }
+}
 fs.mkdirSync(OUT, { recursive: true });
 fs.mkdirSync(path.dirname(LOG), { recursive: true });
 // Drop stale page JPGs so Manus pickImages cannot attach an old wrap/activity sibling.
@@ -166,6 +219,10 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
 
   // Pedagogy chrome (Manus S19–S21) — inspect DOM pages from LessonPages.render.
   const rendered = await window.LessonPages.render(lesson, meta, boardPlan);
+  let storyArtApplied = 0;
+  if (meta && meta.storyArt && window.LessonPages.applyStoryArt) {
+    storyArtApplied = window.LessonPages.applyStoryArt(rendered.pageEls, meta.storyArt) || 0;
+  }
   const byKey = (rendered.slots && rendered.slots.byKey) || {};
   const actDom = rendered.pageEls[byKey.activity];
   const warmDom = rendered.pageEls[byKey.warm];
@@ -256,12 +313,14 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
   const storyCaptionIssues = [];
   const storyPropKeys = [];
   const storySides = [];
+  let storyArtGenCount = 0;
   storyIdxs.forEach((si, storyI) => {
     const key = 'story' + storyI;
     const el = rendered.pageEls[byKey[key]];
     if (!el) return;
     const slot = el.querySelector('[data-story-art]');
     if (!slot) return;
+    if (slot.dataset.storyArtGen === '1') storyArtGenCount += 1;
     const propKey = slot.dataset.storyProp || '';
     if (propKey) storyPropKeys.push({ i: storyI, key: propKey });
     if (slot.dataset.storyArtMode === 'side' && slot.dataset.storySide) {
@@ -380,6 +439,8 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     wrapPeerOnBoard,
     prodWrite,
     story2Musician,
+    storyArtApplied,
+    storyArtGenCount,
     framesHintListenFirst: /listen and say/i.test(framesText),
     flatNames: picks.filter((p) => p.type === 'flat').map((p) => p.name),
     houseLeaks: picks.filter((p) => p.type === 'flat' && /^house-/.test(p.name)).map((p) => p.name),
@@ -392,6 +453,18 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     picks: picks.map((p, i) => ({ i, type: p.type, name: p.name })),
   };
 }, { lesson, meta });
+
+const storyArtGen = (result.storyArtGenCount || 0) > 0 || (result.storyArtApplied || 0) > 0;
+storyArtMeta.applied = result.storyArtApplied || 0;
+storyArtMeta.genSlots = result.storyArtGenCount || 0;
+const soft = [];
+if (storyArtMode !== '0' && storyArtMode !== 'off' && storyArtMode !== 'false') {
+  if (storyArtResult && !storyArtGen) {
+    soft.push('S47: StoryArt payload present but slots not marked data-story-art-gen');
+  } else if (!storyArtResult) {
+    soft.push('S47: no StoryArt disk cache — run scripts/illustrate-fixture-story.mjs (PropBank interim)');
+  }
+}
 
 const fails = [];
 if (!(result.titlePick && result.titlePick.type === 'scene' && /terrace|moonlit|piano/i.test(result.titlePick.name))) {
@@ -500,12 +573,15 @@ if (!result.wrapPeerFeedback) {
 if (!result.wrapPeerOnBoard) {
   fails.push('wrap peer-check prompt clipped off board (S36/S38)');
 }
-const story2Prop = (result.storyPropKeys || []).find((s) => s.i === 2);
-if (story2Prop && /orchestra-stands|music-stand/i.test(story2Prop.key)) {
-  fails.push('story2 orchestra caption still bare stands (prefer musician-*): ' + story2Prop.key);
-}
-if (!result.story2Musician) {
-  fails.push('story2 should resolve to musician-* cutout (S38)');
+// PropBank musician-* gates only when generative StoryArt did not fill slots.
+if (!storyArtGen) {
+  const story2Prop = (result.storyPropKeys || []).find((s) => s.i === 2);
+  if (story2Prop && /orchestra-stands|music-stand/i.test(story2Prop.key)) {
+    fails.push('story2 orchestra caption still bare stands (prefer musician-*): ' + story2Prop.key);
+  }
+  if (!result.story2Musician) {
+    fails.push('story2 should resolve to musician-* cutout (S38)');
+  }
 }
 if (result.skipKing && !result.prodWrite) {
   fails.push('skipKing activity missing production write strip (S39)');
@@ -583,6 +659,8 @@ console.log(JSON.stringify({
   matchPadDomCount: result.matchPadDomCount,
   timingChipCount: result.timingChipCount,
   storyPageCount: result.storyPageCount,
+  storyArt: storyArtMeta,
+  soft,
   frames: result.frames,
   pageFiles: result.pages.map((p) => `page-${p.index}-${p.key}.jpg`),
   pickedImages: picked,

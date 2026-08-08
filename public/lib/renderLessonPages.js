@@ -2028,18 +2028,20 @@
         const url = byIndex.get(idx);
         if (!url) return;
         const mode = slot.dataset.storyArtMode || 'side';
-        // Keep the caption chip (last white text div) for side panels — only
-        // swap the art plate so caption never becomes free sibling bleed.
+        // Prefer marked caption chip; fall back to white-plate sibling scan.
         let captionEl = null;
         if (mode === 'side') {
           const kids = Array.from(slot.children);
-          captionEl = kids.find((c) => c.tagName === 'DIV' && c.style && c.style.background
-            && /rgb\(255,\s*255,\s*255\)|#fff|#ffffff/i.test(c.style.background)
-            && (c.textContent || '').trim()) || kids[kids.length - 1];
+          captionEl = kids.find((c) => c.dataset && c.dataset.storyCaptionChip === '1')
+            || kids.find((c) => c.tagName === 'DIV' && c.style && c.style.background
+              && /rgb\(255,\s*255,\s*255\)|#fff|#ffffff/i.test(c.style.background)
+              && (c.textContent || '').trim())
+            || kids[kids.length - 1];
           if (captionEl && captionEl.tagName !== 'DIV') captionEl = null;
         }
         while (slot.firstChild) slot.removeChild(slot.firstChild);
         delete slot.dataset.storyProp;
+        slot.dataset.storyArtGen = '1';
         const wrap = document.createElement('div');
         wrap.style.cssText = mode === 'side'
           ? 'flex:1;min-height:0;width:100%;border-radius:14px;overflow:hidden;background:#fff;position:relative;z-index:1'
