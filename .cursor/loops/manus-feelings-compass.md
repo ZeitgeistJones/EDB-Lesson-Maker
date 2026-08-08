@@ -56,8 +56,10 @@ comprehension board must show inferential Q (not dropped past slice); creative c
 - **Manus trail:**
   - pass4 (prev) [3Uc8](https://manus.im/app/3Uc8A7mGCQFSVZLbZPSGq6) pass
   - ×2 pass1 [QCVsgMcb](https://manus.im/app/QCVsgMcb6FhkXQekQSVbuC) pass/90 — StoryArt HOLDS ("consistent Mia design", "visual engagement boost")
+  - ×2 pass2 [ERcBCTg7](https://manus.im/app/ERcBCTg788aBRC3BWfhjUs) pass/4.9 — classin_fit.gaps=[]; S49 trio CLEARED; StoryArt HOLDS
 - **Fold (pass1):** S49 producer trio — feelings dock capped to taught vocab (12→6, edbActivities.roleplayDockProps); comprehension surfaces inferential Q instead of dropping it (renderLessonPages.makeComprehension); creative prompt 36→30px + box 140→100 so Idea 2 fits. Verify gained S49 gates.
-- **StoryArt:** validated live by Manus — illustrated S5–S7 panels recurring Mia, scene↔caption fit; disk cache green (`--story-art=auto`, cacheKey sa_c6d870f0)
+- **Pass2:** clean pass — no new fold needed. Only Low/optional notes (navy variant = S32 intentional; abstract-vocab→scene-image gate = speculative future-topic, logged not implemented).
+- **StoryArt:** validated live twice — illustrated S5–S7 panels recurring Mia, scene↔caption fit; disk cache green (`--story-art=auto`, cacheKey sa_c6d870f0). Illustrated panels lifted scorecard (StoryArt "visual engagement boost" strength both passes).
 - **Assets:** none generated — StoryArt cache hit; feeling-* pack sufficient
-- **Leftover soft:** palette register soft (Manus ≤2 mid-deck holds locally via S34); ZPD nice-to-haves (student-authored story beat)
-- **Next:** pass2 rebake → Manus re-review; confirm S49 trio holds under external eyes
+- **Leftover soft:** palette register soft (navy S32 held); ZPD stretch (StoryArt on process/sequence topic; student-authored "My Compass" scene for B1→B2)
+- **Next:** optional — generalize StoryArt to a process/sequence topic; consider student-generated content loop
