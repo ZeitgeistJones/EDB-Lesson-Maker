@@ -97,6 +97,16 @@ export const REVIEW_SCHEMA = {
       description:
         'When overall > 4.0: 1–2 Level-Up challenges (Topic Expansion / Format Challenge / Pedagogical Stretch). Empty array if overall ≤ 4.0.',
     },
+    weakest_link: {
+      type: 'string',
+      description:
+        'ANTI-INFLATION (required EVEN on a pass): name the single weakest page + one required improvement — format "scene/page|required improvement". Never empty; never award a perfect/near-perfect score without naming a weakest link.',
+    },
+    escalation_homework: {
+      type: 'string',
+      description:
+        'Exactly ONE escalating generalization challenge as a buildable spec that stresses the PRODUCER (a new topic, a new page type, a harder CEFR level, or a multi-round activity), escalating relative to what has already passed. Phrase as a proposal the human can accept or decline — not an auto-build.',
+    },
   },
   required: [
     'verdict',
@@ -113,6 +123,8 @@ export const REVIEW_SCHEMA = {
     'just_fixed_results',
     'scorecard',
     'zpd_challenges',
+    'weakest_link',
+    'escalation_homework',
   ],
   additionalProperties: false,
 };
@@ -172,6 +184,14 @@ export function buildReviewBrief(meta = {}) {
     'Heuristics to check: aims ⊆ board-taught vocab; grammar aim matches frames; timing chips if ≥45 min; warm-up no sampleAnswer; story arc complete in packet; ≤2–3 bg registers (flag ≥4); drop pads without answer-naming caption chips on student match; PropBank caption-before-glyph on story.',
     'Prefer next_actions aimed at the producer (prompts, layouts, props, gates), not one-off Photoshop.',
     'If scorecard.overall > 4.0, fill zpd_challenges (Topic Expansion / Format Challenge / Pedagogical Stretch). Never treat a high score as “done forever.”',
+    '',
+    'STANDING REVIEW BAR — three directives, always apply:',
+    '1) DIVISION OF LABOR — mechanical / rendering + gated classes are already handled locally (spelling, letter-clipping, text overlap, warm-up target-word leak, drag pieces label/number-free, comma-in-frames, and everything named in LOCAL CHECKS below). Do NOT spend score or findings re-reporting these. Spend your judgment instead on pedagogy soundness, level-fit, and generalization.',
+    gates.length
+      ? `   Locally gated this pass (do not re-report unless a listed check demonstrably lied → then use gate_holes): ${gates.join(' · ')}`
+      : '   (No LOCAL CHECKS supplied this pass — still assume routine mechanical/rendering issues are gated locally.)',
+    '2) ANTI-INFLATION — ALWAYS name the single weakest page + one required improvement in weakest_link, EVEN on a pass. Do NOT award a perfect / near-perfect score without naming a weakest link.',
+    '3) ESCALATING HOMEWORK — propose exactly ONE escalating generalization challenge in escalation_homework as a buildable spec that stresses the PRODUCER (a new topic, a new page type, a harder CEFR level, or a multi-round activity). Escalate relative to what has already passed. Phrase it so the human can accept or decline — this is a proposal the human triages, not an auto-build.',
     listBlock('KNOWN open issues (do not re-litigate unless worse)', known),
     listBlock('JUST FIXED this pass (verify each → just_fixed_results HOLDS/FAIL; method_feedback if FAIL)', fixed),
     listBlock('LOCAL CHECKS we ran / claim', gates),
@@ -184,6 +204,8 @@ export function buildReviewBrief(meta = {}) {
     '- method_feedback as "item|issue|recommendation" when JUST FIXED regresses or a check is unreliable.',
     '- scorecard: five dimensions + overall on 1–5 scale + short notes; score 0–100 ≈ overall×20.',
     '- zpd_challenges: 1–2 Level-Ups when overall > 4.0; else [].',
+    '- weakest_link: single weakest page + one required improvement ("scene/page|improvement") — REQUIRED even on a pass.',
+    '- escalation_homework: exactly ONE buildable generalization challenge (new topic / new page type / harder CEFR / multi-round) the human can accept or decline.',
     '- Put blocking_issues first; keep next_actions as Priority|Scene|Action for the producer.',
   ]
     .filter(Boolean)

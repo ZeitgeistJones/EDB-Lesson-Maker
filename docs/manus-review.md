@@ -32,7 +32,15 @@ Pass-off fields (JSON or `--known=` / `--fixed=` / `--gates=` / `--focus=` pipe 
 | `focus` | This pass’s ask |
 | `notes` | Optional one-liner |
 
-Schema adds `gate_holes` + `method_feedback` + `just_fixed_results` + `/5 scorecard` + `zpd_challenges` so Manus can call out check/process misses and Level-Up the producer after strong passes.
+Schema adds `gate_holes` + `method_feedback` + `just_fixed_results` + `/5 scorecard` + `zpd_challenges` + `weakest_link` + `escalation_homework` so Manus can call out check/process misses and Level-Up the producer after strong passes.
+
+Standing review bar baked into every brief (`buildReviewBrief`):
+
+1. **Division of labor** — mechanical/rendering + gated classes (and everything in `localChecks`) are handled locally; Manus spends judgment on pedagogy, level-fit, and generalization, not re-reporting them. The gate list is pulled dynamically from the pass-off.
+2. **Anti-inflation** — `weakest_link` (single weakest page + one required improvement) is REQUIRED even on a pass; no perfect/near-perfect score without a named weakest link.
+3. **Escalating homework** — `escalation_homework` is exactly ONE buildable generalization challenge (new topic / new page type / harder CEFR / multi-round) that stresses the producer; a proposal the human triages, not an auto-build.
+
+`review.mjs` logs `weakest_link` + `escalation_homework` into `.cursor/ratings/manus-reviews.jsonl` alongside verdict/score/zpd.
 
 Aligned to Manus upstream skill `classin-lesson-quality-review-skill` (mirrored at `.cursor/skills/manus-lesson-review/manus-upstream-SKILL.md`).
 

@@ -222,6 +222,8 @@ export async function runBoardReview(opts) {
     just_fixed_results: (value && value.just_fixed_results) || [],
     scorecard: (value && value.scorecard) || null,
     zpd_challenges: (value && value.zpd_challenges) || [],
+    weakest_link: (value && value.weakest_link) || null,
+    escalation_homework: (value && value.escalation_homework) || null,
     passoff: out.passoff,
   });
   out.log_path = path.relative(ROOT, logPath).replace(/\\/g, '/');

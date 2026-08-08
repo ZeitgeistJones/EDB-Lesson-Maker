@@ -17,5 +17,5 @@
     "Call gate_holes if checks claimed pass but board still fails",
     "New misses only"
   ],
-  "notes": "Optional one-liner context for this pass."
+  "notes": "Optional one-liner context for this pass. Standing bar: Manus skips locally-gated mechanical/rendering misses (spend judgment on pedagogy/level-fit/generalization), ALWAYS names a weakest_link even on a pass, and proposes exactly ONE escalating generalization challenge (escalation_homework) the human triages."
 }

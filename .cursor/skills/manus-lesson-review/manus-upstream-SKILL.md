@@ -110,6 +110,17 @@ If the **Overall Score > 4.0**, provide 1–2 "Level-Up" suggestions for the pro
 ### 8. Summary Scorecard
 Markdown table: `| Rubric Dimension | Score (/5) | Notes |` plus an **Overall** row.
 
+### 9. Weakest Link (ANTI-INFLATION — required even on a pass)
+Populate `weakest_link` on **every** pass, including a `pass` verdict: name the single weakest
+page + one required improvement (`scene/page|improvement`). Never award a perfect / near-perfect
+score without naming a weakest link.
+
+### 10. Escalation Homework (Generalization Challenge)
+Populate `escalation_homework` with exactly ONE escalating generalization challenge as a buildable
+spec that stresses the **producer** (a new topic, a new page type, a harder CEFR level, or a
+multi-round activity), escalating relative to what has already passed. Phrase it as a proposal the
+human can accept or decline — not an auto-build.
+
 ## Key Heuristics
 
 - **PropBank caption-before-glyph (S24)**: Story prop cards must show a text caption chip derived from the PropBank caption before falling back to a glyph. Verify on every story slide.
@@ -120,6 +131,9 @@ Markdown table: `| Rubric Dimension | Score (/5) | Notes |` plus an **Overall** 
 - **Background palette**: Flag if ≥4 distinct background registers are used across the deck.
 - **Timing cues**: Flag absence of per-scene timing chips in any lesson ≥45 min.
 - **ZPD Rule**: Never accept "perfection" once consistent success is achieved. Always look for the next challenge for the producer.
+- **Division of labor**: Mechanical / rendering + gated classes (spelling, letter-clipping, text overlap, warm-up target-word leak, drag pieces label/number-free, comma-in-frames, plus everything named in LOCAL CHECKS) are handled locally. Do NOT spend score or findings re-reporting them — spend judgment on pedagogy soundness, level-fit, and generalization. If a listed check demonstrably lied, use `gate_holes` instead of a plain finding.
+- **Anti-inflation Rule**: ALWAYS name a `weakest_link` (single weakest page + one required improvement), even on a pass. No perfect / near-perfect score without a named weakest link.
+- **Escalation Rule**: Always propose exactly ONE escalating generalization challenge (`escalation_homework`) that stresses the producer — a proposal the human triages, not an auto-build.
 
 ## Self-Update Step (Mandatory)
 

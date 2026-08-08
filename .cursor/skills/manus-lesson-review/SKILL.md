@@ -39,7 +39,26 @@ Short JSON — template [`scripts/manus/passoff.example.json`](../../../scripts/
 Save as `<verify-dir>/manus-passoff.json` (auto-loaded) or `--passoff=scripts/manus/passoffs/….json`.
 
 Schema asks Manus for **`gate_holes`**, **`method_feedback`**, **`just_fixed_results`**,
-**`scorecard`** (/5 × 5 dims + overall), and **`zpd_challenges`** (when overall > 4.0).
+**`scorecard`** (/5 × 5 dims + overall), **`zpd_challenges`** (when overall > 4.0),
+**`weakest_link`**, and **`escalation_homework`**.
+
+## Standing review bar (3 directives — baked into every brief)
+
+`buildReviewBrief` now injects three non-negotiable directives into every pass-off,
+so we don't hand-write them each time:
+
+1. **Division of labor.** Mechanical / rendering + gated classes (spelling, letter-clipping,
+   text overlap, warm-up target-word leak, drag pieces label/number-free, comma-in-frames,
+   plus everything named in `localChecks`) are handled locally. Manus must **not** spend score
+   or findings re-reporting them — spend judgment on pedagogy soundness, level-fit, and
+   generalization. The concrete gate list is pulled dynamically from the pass-off `localChecks`.
+2. **Anti-inflation.** Manus must ALWAYS name the single weakest page + one required improvement
+   in `weakest_link`, **even on a pass**, and must not award a perfect/near-perfect score without
+   naming a weakest link.
+3. **Escalating homework.** Manus proposes exactly ONE escalating *generalization* challenge in
+   `escalation_homework` as a buildable spec (new topic / new page type / harder CEFR / multi-round)
+   that stresses the PRODUCER, escalating relative to what has already passed. It's a proposal the
+   human triages — not an auto-build.
 
 ## What to send
 
