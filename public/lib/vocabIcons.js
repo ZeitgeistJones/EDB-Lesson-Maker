@@ -258,6 +258,20 @@
     return IMG_BASE + file;
   }
 
+  /**
+   * Synchronous pack-path resolver — only works after ready()/loadIndex has
+   * populated indexCache. Lets the board planner (buildBoardPlan, synchronous)
+   * repoint feeling dock pieces at the SAME vetted pack PNG the New Words match
+   * dock renders, so both drag surfaces show one consistent face set (S59).
+   */
+  function pathForSync(word) {
+    if (!indexCache) return null;
+    const key = resolveKey(indexCache, word);
+    if (!key) return null;
+    const file = indexCache[key].file;
+    return IMG_BASE + file;
+  }
+
   async function has(word) {
     return (await pathFor(word)) != null;
   }
@@ -276,6 +290,7 @@
 
   window.VocabIcons = {
     pathFor,
+    pathForSync,
     has,
     loadPng,
     emojiFor,

@@ -89,7 +89,14 @@ const WORDS = {
 
   // feelings
   happy: '😀', sad: '😢', angry: '😠', tired: '😫', scared: '😨',
-  surprised: '😲', excited: '🤩', bored: '🥱', shy: '😊', worried: '😟',
+  surprised: '😲', excited: '🤩', bored: '🥱', worried: '😟',
+  // "shy" was 😊 (1f60a) — a blushing SMILE that reads identically to happy 😀
+  // on the New Words drag dock (both selfloop judges: shy≈happy). The dock renders
+  // the pack PNG (wordArtPng), so the emoji override alone could not fix it — the
+  // pack mapping must change too. 😳 (1f633, flushed/looking-away) is the clear
+  // ESL "shy" face, matches the emojiFor override, and is distinct from happy 😀,
+  // surprised 😲, worried 😟, scared 😨, confused 🤔 (S52 pack-codepoint guard).
+  shy: '😳',
   // "confused" was 😕 (1f615) — reads as a flat/meh neutral face at board size
   // (both feelings-compass judges). 🤔 (1f914, thinking / head-scratch) is
   // unmistakably puzzled and distinct from 😲 surprised / 😳 shy / 😟 worried.

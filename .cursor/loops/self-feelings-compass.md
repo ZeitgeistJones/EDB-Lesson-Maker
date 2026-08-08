@@ -59,6 +59,37 @@ Merged teacher+student fix list, priority order:
 (present in index.json + vocabIcons SAFE_EMOJI but missing from its WORDS map).
 Added those 5 to WORDS so pack rebuilds are self-consistent and can't nuke them.
 
+## Round 3 (selfloopx2 — round 1) — 2026-08-08
+
+Judges on rendered JPGs. **A (teacher/CELTA):** 6 findings (1 HIGH, 2 MED, 3 LOW).
+**B (student/12yo):** 10 findings (3 HIGH, 3 MED, 4 LOW). **Merged → 9** after dedupe.
+
+| # | Sev | Finding (judges) | Producer fix | Gate |
+|---|-----|------------------|--------------|------|
+| 1 | HIGH (A+B) | Feelings Lab dock = 3D `feeling-*` prop faces, different art from New Words flat Twemoji; mapping doesn't transfer + one reads "angry" + floating "?" | `roleplayDockProps` feelings → repoint dock at vocab-pack PNG (`VocabIcons.pathForSync`) + `meta.word`; both drag surfaces now share one vetted, mutually-distinct face set | **S59** |
+| 2 | HIGH→MED (B+A) | New Words dock far-right + dead centre gap; shy≈happy (both smiles) | shy pack gate-hole: `shy.png`=😊 beat emoji override (pack wins, like S56/confused) → `fetch-vocab-icons` shy 😊→😳 (1f633) + re-render | **S52 pack** |
+| 3 | MED (A) | 2nd conditional never modeled receptively (reading all past simple) | `makeFrames` green worked **Model** chip "If I felt worried, I would take a deep breath." + "fill the blanks" plural | **S60** |
+| 4 | MED (B) | Comprehension Q3 write box clipped off board bottom | `makeComprehension` tighter grid (gap 12 / write 60 / q 28px) + overflow guard | **S61** |
+| 5 | MED (B) | Story body medium-gray, washes out projected | `makeStoryPage` body ink → #0f172a weight 700 (`data-story-body`) | **S62** |
+| 6 | HIGH (B) | Activity page lopsided / empty right third | Dock art+size fixed (S59); overall balance **deferred to round 2** | wishlist |
+| 7 | MED (B) | Warm-up sparse; wanted example feelings | **TIEBREAK pedagogy>aesthetics:** reject — would break S57 target-neutral | wishlist (wont) |
+| 8 | LOW (A) | Story2 caption leads "surprised" but art shows happy | StoryArt generative drift — uncheckable in producer | wishlist |
+| 9 | LOW (A/B) | Title right-half dead space | cosmetic; carried open | wishlist |
+
+**Conflict tiebreak recorded:** B wanted feeling faces on the warm-up (fill dead space);
+A's S57 target-neutral honesty wins → warm-up stays neutral (no taught feelings).
+
+### New gates (continue S-series)
+- **S59** — Feelings Lab dock renders the same 07_vocab-pack art as New Words (word set + asset source; no 09_props feeling face). Honesty/navigable.
+- **S60** — a completed second-conditional model is on the frames board (If…would, no blank). Honesty.
+- **S61** — comprehension write-in cards sit fully on-board (no clip). Navigable.
+- **S62** — story body ink is near-black. Readable.
+- **S52 (pack)** — shy.png codepoint not a smile-family Twemoji (closes the pack-wins-over-emoji hole, mirrors S56).
+
+### Producer note
+`VocabIcons.pathForSync` added (sync pack path from cached index) so the synchronous
+board planner can share New Words' art on the activity dock.
+
 ## Last run
 
 - **When:** 2026-08-08 (selfloop round 2, final)

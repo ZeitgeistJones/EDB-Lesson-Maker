@@ -456,6 +456,48 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     .map((p) => Math.min(p.w || 0, p.h || 0));
   const minFeelingDockSide = feelingDockSides.length ? Math.min(...feelingDockSides) : 0;
 
+  // S59 — the Feelings Lab dock must render the SAME vetted vocab-pack art the New
+  // Words match dock teaches (not a second 3D prop face set). Capture each feeling
+  // dock piece's word + rendered asset source so the gate can prove both drag
+  // surfaces share one face vocabulary (and no untaught prop expression leaks in).
+  const feelingDockArt = ((actPage && actPage.unlocked) || [])
+    .filter((p) => p.role === 'dockPiece' && /^feeling-/.test(String((p.meta && p.meta.propKey) || '')))
+    .map((p) => ({
+      key: (p.meta && p.meta.propKey) || '',
+      word: (p.meta && p.meta.word) || '',
+      asset: String(p.asset || ''),
+    }));
+
+  // S60 — a completed second-conditional model must appear on the frames board so
+  // the target grammar is modeled receptively before students produce it.
+  const frameModelEl = framesDom && framesDom.querySelector
+    ? framesDom.querySelector('[data-frame-model]')
+    : null;
+  const frameModelText = frameModelEl ? (frameModelEl.textContent || '').trim() : '';
+
+  // S61 — comprehension write-in cards must sit fully on the board (Q3's box was
+  // clipping off the bottom edge). Mirror the creative-cards clip check.
+  let compCardsOnBoard = true;
+  if (compDom && compDom.getBoundingClientRect) {
+    const cr = compDom.getBoundingClientRect();
+    const cards = Array.from(compDom.querySelectorAll('[data-write-in-stage]'));
+    for (const c of cards) {
+      const r = c.getBoundingClientRect();
+      if (r.bottom > cr.bottom + 2) { compCardsOnBoard = false; break; }
+    }
+  }
+
+  // S62 — story body copy must be near-black (not medium-gray that washes out
+  // projected). Capture every rendered story-body ink colour.
+  const storyBodyInks = [];
+  for (const storyI of storyIdxs) {
+    const sDom = rendered.pageEls[storyI];
+    if (!sDom || !sDom.querySelectorAll) continue;
+    Array.from(sDom.querySelectorAll('[data-story-body]')).forEach((b) => {
+      storyBodyInks.push(String((b.style && b.style.color) || ''));
+    });
+  }
+
   if (window.LessonPages.cleanup) window.LessonPages.cleanup(rendered.host);
 
   return {
@@ -519,6 +561,10 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     matchPieceLabels,
     matchPieceNumbered,
     minFeelingDockSide,
+    feelingDockArt,
+    frameModelText,
+    compCardsOnBoard,
+    storyBodyInks,
     artWinners,
     storyPropKeys,
     storyCaptionIssues,
@@ -639,6 +685,22 @@ for (const cp of result.condFramePunct) {
 if (result.shyGlyph && result.happyGlyph && result.shyGlyph === result.happyGlyph) {
   fails.push('S52: shy and happy share the same match-dock glyph (' + result.shyGlyph + ') — students cannot tell pads apart');
 }
+// S52 (pack) — same gate hole S56 closed for confused: the New Words dock renders
+// the vocab-pack PNG (wordArtPng), so an emojiFor override alone cannot save shy if
+// shy.png is still a smile. Guard the rendered art: shy's pack codepoint must not be
+// a smile-family Twemoji (it read identically to happy's grin — both selfloop judges).
+try {
+  const packIndexShy = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'public/assets/07_vocab-pack/index.json'), 'utf8')
+  );
+  const shyRow = packIndexShy && packIndexShy.shy;
+  const SMILE_CODEPOINTS = ['1f60a', '1f600', '1f603', '1f604', '1f601', '1f642', '1f60d', '1f970', '1f60e', '1f929'];
+  if (shyRow && SMILE_CODEPOINTS.includes(String(shyRow.codepoint || '').toLowerCase())) {
+    fails.push('S52: shy vocab-pack art is a smile-family Twemoji (' + shyRow.codepoint + ' ' + (shyRow.emoji || '') + ') — repoint fetch-vocab-icons shy→😳 (1f633) and re-render shy.png so it does not read as happy');
+  }
+} catch (err) {
+  fails.push('S52: could not read vocab pack index to verify shy art: ' + (err.message || err));
+}
 // S54 — feelings drag faces must be grabbably large (not postage-stamp).
 if ((result.minFeelingDockSide || 0) < 96) {
   fails.push('S54: feelings drag faces too small (min side ' + result.minFeelingDockSide + 'px, need ≥96) — enlarge dock stickers');
@@ -686,6 +748,56 @@ if ((result.matchPieceLabels || []).length) {
 }
 if (result.matchPieceNumbered) {
   fails.push('S58: draggable match pieces are numbered/pre-mapped to pads — remove numbers/answer indices from drag emoji (pedagogy: fix guessing via unambiguous icons, not by revealing the match)');
+}
+// S59 — the Feelings Lab dock must reuse the vetted vocab-pack face art (same set
+// as New Words), not a second 3D prop face vocabulary. Every feeling dock piece
+// must carry its taught word and resolve to the 07_vocab-pack art (both judges:
+// mismatched art broke the picture→word transfer + leaked an untaught "angry" face).
+{
+  const dockArt = result.feelingDockArt || [];
+  if (!dockArt.length) {
+    fails.push('S59: no feeling dock pieces captured on the activity page');
+  }
+  for (const d of dockArt) {
+    if (!d.word) {
+      fails.push('S59: feeling dock piece ' + (d.key || '?') + ' has no taught word — it renders prop art, not the New Words pack face');
+    } else if (!/07_vocab-pack/.test(d.asset)) {
+      fails.push('S59: feeling dock piece ' + d.key + ' renders non-pack art (' + (d.asset || 'none') + ') — repoint the Feelings Lab dock at the New Words vocab-pack PNG so both drag surfaces share one face set');
+    }
+    if (/09_props\/?.*feeling-/i.test(d.asset)) {
+      fails.push('S59: feeling dock piece ' + d.key + ' still points at a 3D prop face (' + d.asset + ')');
+    }
+  }
+}
+// S60 — a completed second-conditional model must be on the frames board (grammar
+// aim modeled receptively before production). Model must be a full sentence with
+// no blank ("____") and use If…would.
+{
+  const m = String(result.frameModelText || '');
+  if (!m) {
+    fails.push('S60: frames board missing a worked second-conditional Model (Judge A: target grammar never modeled in the input)');
+  } else if (/_{2,}|_ /.test(m) || /___/.test(m)) {
+    fails.push('S60: frames Model still contains a blank — it must be a completed example: ' + m);
+  } else if (!(/\bif\b/i.test(m) && /\bwould\b/i.test(m))) {
+    fails.push('S60: frames Model is not a second conditional (needs If…would): ' + m);
+  }
+}
+// S61 — comprehension write-in cards must sit fully on the board (Q3 clipped).
+if (result.compCardsOnBoard === false) {
+  fails.push('S61: comprehension write-in card clipped below the board bottom (Judge B: Q3 answer box cut off) — tighten the comprehension grid so all questions fit');
+}
+// S62 — story body copy must be near-black, not medium-gray that washes out.
+{
+  const DARK = /#0f172a|#0b1220|rgb\(\s*15,\s*23,\s*42\s*\)/i;
+  const inks = result.storyBodyInks || [];
+  if (!inks.length) {
+    fails.push('S62: no [data-story-body] story copy captured to verify contrast');
+  }
+  for (const ink of inks) {
+    if (!DARK.test(String(ink))) {
+      fails.push('S62: story body ink not near-black (' + ink + ') — darken so projected reading text does not wash out');
+    }
+  }
 }
 if (result.artWinners.some((w) => !String(w.winner).startsWith('pack:'))) {
   fails.push('board vocab art must prefer pack: ' + JSON.stringify(result.artWinners));
@@ -816,6 +928,10 @@ console.log(JSON.stringify({
   warmTargetLeaks: result.warmTargetLeaks,
   matchPieceLabels: result.matchPieceLabels,
   minFeelingDockSide: result.minFeelingDockSide,
+  feelingDockArt: result.feelingDockArt,
+  frameModelText: result.frameModelText,
+  compCardsOnBoard: result.compCardsOnBoard,
+  storyBodyInks: result.storyBodyInks,
   storyPageCount: result.storyPageCount,
   storyPropKeys: result.storyPropKeys,
   storyArt: storyArtMeta,

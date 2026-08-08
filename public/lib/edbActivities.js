@@ -904,6 +904,27 @@
         out.push(p);
       }
     }
+
+    // S59 (both selfloop judges): the Feelings Lab dock rendered realistic 3D boy
+    // faces (09_props/feeling-*) — a DIFFERENT visual vocabulary from the flat
+    // Twemoji the New Words match dock teaches. The picture→word mapping students
+    // just built did not transfer, one prop face read as an untaught "angry", and
+    // a prop carried a floating "?". Repoint every feeling dock piece at the SAME
+    // vetted vocab-pack PNG New Words uses (square, aspect 1) so both drag surfaces
+    // show one consistent, mutually-distinct face set. Keeps the feeling-* key so
+    // feelingDockCount/S49 still counts it; carries the word so pieceToPng →
+    // wordArtPng resolves the pack art.
+    if (feelings) {
+      const VI = window.VocabIcons;
+      const packSync = VI && typeof VI.pathForSync === 'function' ? VI.pathForSync.bind(VI) : null;
+      return out.map((p) => {
+        const m = /^feeling-(.+)$/.exec(String(p.key || ''));
+        const word = m ? m[1] : null;
+        const packPath = word && packSync ? packSync(word) : null;
+        if (!word || !packPath) return p;
+        return Object.assign({}, p, { path: packPath, aspect: 1, feelWord: word });
+      });
+    }
     return out;
   }
 
@@ -1106,7 +1127,9 @@
             bleed: 'edge',
             _force: { x, y, w, h },
             role: 'dockPiece',
-            meta: { propKey: t.key, propAspect: t.aspect },
+            meta: t.feelWord
+              ? { propKey: t.key, propAspect: t.aspect, word: t.feelWord }
+              : { propKey: t.key, propAspect: t.aspect },
           });
           originX = x + w + gap;
         });

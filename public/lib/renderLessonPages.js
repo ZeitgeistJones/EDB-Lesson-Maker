@@ -1020,7 +1020,8 @@
     const p = pageShell(THEME_COLORS.vocab, { pageType: 'frames' });
     const col = chromeColumn(p);
     col.appendChild(header('Sentence Frames', '#7c3aed', { timing: '~6 min' }));
-    col.appendChild(hint('Listen and say each frame first. Then fill the blank and write your sentence.', {
+    // "fill the blank" (singular) was wrong — Frame 3 has TWO blanks (S60/Judge A).
+    col.appendChild(hint('Listen and say each frame first. Then fill the blanks and write your sentence.', {
       marginBottom: '8px', flexShrink: '0',
     }));
     // Word bank — reinforces the taught vocab and scaffolds open frames like
@@ -1061,6 +1062,35 @@
       });
       col.appendChild(bank);
     }
+    // S60 (Judge A / CELTA): the second conditional is the grammar aim but it never
+    // appears in the receptive input — the reading is all past simple and students
+    // meet "If I felt X, I would ___" cold, only in production. Show ONE completed
+    // worked model so learners see the target modeled before they produce it. Uses
+    // a taught feeling + a real completion (no blank) in a distinct example chip.
+    const modelWord = ((lesson.vocabulary || [])
+      .map((v) => (typeof v === 'string' ? v : v && v.word))
+      .filter(Boolean)[0]) || 'worried';
+    const modelSentence = `If I felt ${esc(modelWord)}, I would take a deep breath.`;
+    const model = el('div', {
+      display: 'flex',
+      alignItems: 'baseline',
+      gap: '8px',
+      flexWrap: 'wrap',
+      padding: '8px 14px',
+      marginBottom: '10px',
+      flexShrink: '0',
+      borderRadius: '12px',
+      background: '#ecfdf5',
+      border: '1px solid #a7f3d0',
+    });
+    model.dataset.frameModel = '1';
+    model.appendChild(el('div', {
+      fontSize: '18px', fontWeight: '800', color: '#047857',
+    }, 'Model:'));
+    model.appendChild(el('div', {
+      fontSize: '22px', fontWeight: '700', color: '#065f46', lineHeight: '1.3',
+    }, modelSentence));
+    col.appendChild(model);
     const frames = (lesson.sentenceFrames || []).slice(0, 3);
     const rows = Math.max(1, frames.length);
     const lens = frames.map((f) => String(f || '').length);
@@ -1391,8 +1421,10 @@
       fillStoryArtSlot(banner, lesson, page, false);
       content.appendChild(banner);
       // One flowing paragraph — fill the card; bigger type when there is room.
+      // Story body ink is near-black + heavier weight so it never washes out on the
+      // light card (S62 / Judge B: medium-gray body read as low contrast projected).
       const text = card(
-        `<div style="font-size:${textSize}px;line-height:1.45;color:#1e293b;font-weight:600;width:100%">${esc(storyText)}</div>`,
+        `<div data-story-body style="font-size:${textSize}px;line-height:1.45;color:#0f172a;font-weight:700;width:100%">${esc(storyText)}</div>`,
         {
           flex: '1',
           marginBottom: '0',
@@ -1431,7 +1463,7 @@
       ));
 
       const text = card(
-        `<div style="font-size:${textSize}px;line-height:1.45;color:#1e293b;font-weight:600">${esc(storyText)}</div>`,
+        `<div data-story-body style="font-size:${textSize}px;line-height:1.45;color:#0f172a;font-weight:700">${esc(storyText)}</div>`,
         {
           flex: '1',
           marginBottom: '0',
@@ -1476,8 +1508,12 @@
       display: 'grid',
       // One question must own the full column — a spare 1fr row left half the board dead (M8).
       gridTemplateRows: `repeat(${rows}, 1fr)`,
-      gap: '16px',
+      // S61 (Judge B): 3 cards with 100px write floors + 16px gaps overflowed the
+      // board and clipped Q3's write box off the bottom. Tighter gap keeps all
+      // three fully on-board.
+      gap: '12px',
       width: '100%',
+      overflow: 'hidden',
     });
     if (!questions.length) {
       const empty = card(
@@ -1490,16 +1526,17 @@
     } else {
       questions.forEach((q, i) => {
         const qCard = card(
-          `<div style="font-size:30px;font-weight:800;line-height:1.25;color:#0f172a;margin-bottom:14px;flex-shrink:0">${i + 1}. ${esc(q.question || '')}</div>
-           <div style="border:2px dashed #94a3b8;border-radius:14px;flex:1;min-height:100px;background:rgba(248,250,252,0.9)"></div>`,
+          `<div style="font-size:28px;font-weight:800;line-height:1.2;color:#0f172a;margin-bottom:10px;flex-shrink:0">${i + 1}. ${esc(q.question || '')}</div>
+           <div data-comp-write style="border:2px dashed #94a3b8;border-radius:14px;flex:1;min-height:60px;background:rgba(248,250,252,0.9)"></div>`,
           {
-            padding: '18px 22px',
+            padding: '14px 20px',
             marginBottom: '0',
             height: '100%',
             minHeight: '0',
             display: 'flex',
             flexDirection: 'column',
             boxSizing: 'border-box',
+            overflow: 'hidden',
           }
         );
         // Big write region on purpose — not a sparse text card (M3).

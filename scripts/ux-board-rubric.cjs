@@ -196,6 +196,11 @@ const SOFT = {
   S56: 'Feelings New Words icons are unmistakable and mutually distinct — "confused" reads as clearly puzzled (🤔/furrowed brow), never a neutral/meh 😐; no two of the six board feelings share a glyph',
   S57: 'Warm-up elicits prior knowledge target-neutral — it does not pre-cue a taught feeling word before New Words teaches it',
   S58: 'Draggable match/drag pieces stay label- and number-free — icons carry no answer-naming caption and are not pre-mapped/numbered to the drop pads (fix guessing via unambiguous icons, not by revealing the match)',
+  // Feelings-compass selfloop round 1 (teacher + student agree)
+  S59: 'Activity/roleplay feeling dock reuses the SAME vetted vocab-pack face art the New Words match dock teaches — not a second 3D prop face vocabulary; picture→word mapping transfers and no untaught expression (e.g. "angry") or stray "?" leaks onto the drag pieces',
+  S60: 'Second-conditional (If…would) grammar aim is modeled receptively — a completed worked example appears on the board (frames Model or story line) before students must produce the structure cold',
+  S61: 'Comprehension write-in cards all sit fully on the board — the last question\'s answer box is not clipped off the bottom edge',
+  S62: 'Story reading copy is near-black (high contrast) so the paragraph does not wash out as medium-gray when projected',
 };
 
 /**
@@ -205,9 +210,9 @@ const SOFT = {
 const TIER_ORDER = ['honesty', 'readable', 'navigable', 'variety', 'charm'];
 
 const TIERS = {
-  honesty: ['H5', 'H1', 'S15', 'S8', 'M7', 'S19', 'S20', 'S26', 'S30', 'S31', 'S37', 'S51', 'S52', 'S57', 'S58'],
-  readable: ['H4', 'S1', 'S5', 'S11', 'S13', 'S9', 'M1', 'M2', 'M6', 'S35', 'S50', 'S55', 'S56'],
-  navigable: ['H3', 'H6', 'S4', 'S10', 'S14', 'M3', 'M8', 'S21', 'S23', 'S25', 'S27', 'S28', 'S29', 'S33', 'S54'],
+  honesty: ['H5', 'H1', 'S15', 'S8', 'M7', 'S19', 'S20', 'S26', 'S30', 'S31', 'S37', 'S51', 'S52', 'S57', 'S58', 'S59', 'S60'],
+  readable: ['H4', 'S1', 'S5', 'S11', 'S13', 'S9', 'M1', 'M2', 'M6', 'S35', 'S50', 'S55', 'S56', 'S62'],
+  navigable: ['H3', 'H6', 'S4', 'S10', 'S14', 'M3', 'M8', 'S21', 'S23', 'S25', 'S27', 'S28', 'S29', 'S33', 'S54', 'S61'],
   variety: ['H2', 'S2', 'S3', 'S6', 'S18', 'M5', 'S32', 'S34'],
   charm: ['S7', 'S12', 'S16', 'S17', 'M4', 'H7', 'S22', 'S24', 'S36', 'S53'],
 };
