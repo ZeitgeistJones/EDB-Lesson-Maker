@@ -33,7 +33,11 @@ trip. Do not soften or drop any line.
 
 > HARD RULES (every tile):
 > - Pure solid BLACK field, #000000, edge to edge — no grey, no grid, no graph
->   paper, no gradient, no vignette, no per-cell frame or gutter line.
+>   paper, no gradient, no vignette, no per-cell frame or gutter line, and NO
+>   filled panel / card / rounded rectangle behind any object. The black is ONE
+>   continuous field behind the whole sheet; objects float directly on it. (A
+>   pets sheet came back with every icon on a dark-grey card — the keyer leaves
+>   those cards and the whole sheet fails the C1 purity gate.)
 > - Exactly ONE object per tile. Nothing else in the tile, not even a small
 >   companion item. Nothing crosses a tile/cell border.
 > - Flat matte vector illustration, POSITIVELY anchored as: "flat 2-tone vector,
@@ -56,6 +60,15 @@ trip. Do not soften or drop any line.
 >   the black field or blows out on white boards. Give dark/white subjects a
 >   coloured or medium-grey body (a "black" cat → dark grey; a "white" ghost →
 >   pale blue). Near-black interiors also trip the importer's C6 hole gate.
+>   Silhouette-prone subjects especially — skyscrapers, towers, monuments,
+>   bats — must get a LIT, medium-value face, never a dark shape on black (a
+>   landmarks sheet lost its whole bottom row of dark towers this way).
+> - Every object DISTINCT. NEVER repeat an object or pad with off-theme fillers
+>   to hit the tile count. If the theme only yields N clean distinct props,
+>   deliver N — a short sheet beats duplicates or filler. Do NOT stretch a thin
+>   theme across 32 tiles (a Christmas sheet padded 10 real objects into 32 with
+>   triple candy canes; a clock sheet padded with gears and a spring). Fewer,
+>   distinct, clean > full-of-repeats.
 > - Vehicles / wheeled objects: draw the wheels AND undercarriage as MEDIUM
 >   GREY, one connected solid base, never near-black (near-black wheels key out
 >   and split the base — the importer's C5 gate then rejects it).
@@ -216,6 +229,25 @@ Confirmed canvas limits (asked & answered — don't re-ask next run):
 - **Takeaway:** high quality + a tall canvas unlocks **4×8 / 32-tile sheets**
   (Variant C) at the same ~512px/tile keying quality, doubling props per image.
   Default / `gpt-image-2` stays on 4×4 / 16 tiles.
+
+Validated Run-6 findings (first real 10× 4×8 batch — fold these in):
+
+- **4×8/4K doubling is proven.** ~7 of 10 themed sheets came back full, flat,
+  on pure black, distinct-coloured, caption-free, and ready to key. This is now
+  the default batch unit when the 4K model is up.
+- **At 32 tiles the model pads rather than delivers short.** When a theme runs
+  thin it will DUPLICATE (Christmas: candy cane ×3, sleigh ×3) or invent
+  OFF-THEME fillers (clock sheet: gears, a spring) to reach the count. The
+  "distinct only, deliver N not 32" hard rule above is the fix — restate it in
+  every Variant C brief and cap thin themes at their real distinct count.
+- **Two style regressions to watch (reject on sight):** (1) per-tile grey
+  cards/panels behind objects → C1 purity fail (pets sheet); (2) glossy 3D emoji
+  render + captions under tiles (desserts sheet). Both are now called out in the
+  hard rules; if a returned sheet shows either, reshoot that theme rather than
+  trying to key it.
+- **Right-size the theme to the grid:** rich themes (flowers, construction,
+  cleaning, baby, emergency) easily fill 32; thin ones (holidays, clock) should
+  run as 4×4/16 to avoid padding.
 
 ## Policy
 
