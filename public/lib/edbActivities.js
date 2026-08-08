@@ -627,6 +627,7 @@
 
     // Curated emotion/face/dental stages BEFORE pack kits — "Round 1" used to
     // token-match castle-tree-round / castle-window-round and steal the hero (S43).
+    // TODO: move to lessonTraits (curated stage rules — keep with STAGE_RULES below).
     const CURATED_STAGE_FIRST = [
       { re: /\b(feeling|feelings|emotion|emotions|mood)\b|\b(worried|scared|shy|confused|proud|surprised|happy|sad|angry|bored|sleepy|excited|tired)\b/, key: 'face-blank' },
       { re: /\bface\b|\bhair\b|\beyes?\b|\bnose\b|\bear\b|make.?a.?face|blank.?face/, key: 'face-blank' },
@@ -811,6 +812,7 @@
     // Hero key wins — vocab like "smile" must not steal a dental stage into a face dock.
     // Feelings lessons also use face-blank as king, but the dock must be emotion
     // stickers — not eyes/nose hair (that would erase the abstract vocab stress test).
+    // TODO: move to lessonTraits (dock-source selection: feelings/face/dental/trampoline).
     const heroKey = (hero && hero.key) || '';
     const feelings = !!(kit && kit.pack === 'feelings')
       || /\b(feeling|feelings|emotion|emotions|mood)\b/.test(blob)
@@ -961,6 +963,7 @@
     // eyes/nose/hair). A near-full blank face read as a "giant empty blob" while
     // the feeling faces sat tiny at the bottom (both judges). Detect feelings and
     // rebalance: smaller stage + larger drag faces. S54 guards this.
+    // TODO: move to lessonTraits (feelings stage detection — shares the feelings cue).
     const heroBlob = heroThemeTags(lesson).join(' ');
     const feelingsStage = /\b(feeling|feelings|emotion|emotions|mood)\b/.test(heroBlob)
       || (/\b(worried|scared|shy|confused|proud|surprised|happy|sad|angry|bored|sleepy|excited|tired)\b/.test(heroBlob)

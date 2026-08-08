@@ -555,11 +555,13 @@
     const topicBlob = [topic, ...vocab].join(' ');
     // Music / classical title pages earn the terrace (or other) place scene —
     // chrome pages stay on quiet flats.
-    const musicTitle = !!(
-      window.SceneBackgrounds &&
-      window.SceneBackgrounds.moodsFor &&
-      (window.SceneBackgrounds.moodsFor(topicBlob) || []).includes('music')
-    );
+    const musicTitle = window.LessonTraits
+      ? window.LessonTraits.traitsFor(lesson).musicTitle
+      : !!(
+        window.SceneBackgrounds &&
+        window.SceneBackgrounds.moodsFor &&
+        (window.SceneBackgrounds.moodsFor(topicBlob) || []).includes('music')
+      );
     const sections = [
       {
         title: topic || 'Title',
@@ -1765,11 +1767,14 @@
     });
     if (isKing) {
       // Chrome stays tiny — the stage hero + roleplay dock are the page.
+      const faceCueStr = [
+        lesson.title, lesson.activity?.title, lesson.activity?.prompt,
+        ...(lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v.word)),
+      ].filter(Boolean).join(' ');
       const faceKing = recipeIdFor(boardPlan, 'activity') === 'heroProp'
-        && /face|hair|eyes|make.?a.?face/i.test([
-          lesson.title, lesson.activity?.title, lesson.activity?.prompt,
-          ...(lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v.word)),
-        ].filter(Boolean).join(' '));
+        && (window.LessonTraits
+          ? window.LessonTraits.isFaceCue(faceCueStr)
+          : /face|hair|eyes|make.?a.?face/i.test(faceCueStr));
       // Ink-tagged so applyInkPolicy can lift contrast on busy scene BGs (Manus).
       // Timing chip required on king/activity headers too (Manus S29 / gate hole).
       const kingRow = el('div', {
@@ -1811,26 +1816,36 @@
       // Never say "toys" on language boards (Manus) — name the pieces + require
       // a speaking/writing beat so drag isn't the only "output".
       // Feelings before faceKing: emotion lessons reuse face-blank but dock is feeling-*.
-      const feelingsKing = /\b(feeling|feelings|emotion|emotions|mood)\b/.test(kingCue)
-        || (/\b(worried|scared|shy|confused|proud|surprised|happy|sad|angry|bored|sleepy|excited|tired)\b/.test(kingCue)
-          && !/\b(hair|eyes|nose|ear|ears|make.?a.?face)\b/.test(kingCue));
-      let kingHint = 'Drag the pieces onto the stage. Then say or write one sentence about your idea.';
-      if (feelingsKing) {
-        // Two-round Feelings Lab (Manus ZPD / classical Level-Up generalization).
-        // Two skimmable lines (round-2 Judge B: one dense paragraph was hard from the
-        // back). Round 2 reworded — the face is visible, so the partner READS it and
-        // names the feeling; there is nothing hidden to "guess" (round-2 Judge A).
-        kingHint = '<b>Round 1:</b> drag a feeling face onto the blank face; write or say how it feels.<br><b>Round 2:</b> your partner reads the face, names the feeling, then answers with If I felt ____, I would ____.';
-      } else if (faceKing) {
-        kingHint = 'Drag parts onto the face. Then say: My friend has ___';
-      } else if (/\b(dentist|dental|tooth|teeth|cavity|floss|patient)\b/.test(kingCue)) {
-        kingHint = 'Drag tools onto the patient. Then say what you used and why.';
-      } else if (/\b(castle|knight|dragon|royal|fortress|portcullis)\b/.test(kingCue)) {
-        kingHint = 'Drag pieces onto the castle. Then say what you built.';
-      } else if (/\b(trampoline|bounce|backflip)\b/.test(kingCue)) {
-        kingHint = 'Drag pieces onto the trampoline. Then say your bounce plan.';
-      } else if (/\b(music|compose|composer|orchestra|symphony|concert|classical|melody|harmony|piano|violin)\b/.test(kingCue)) {
-        kingHint = 'Drag musicians onto the stage. Then write or say your symphony idea in 1–2 sentences.';
+      const feelingsKing = window.LessonTraits
+        ? window.LessonTraits.isFeelingsCue(kingCue)
+        : (/\b(feeling|feelings|emotion|emotions|mood)\b/.test(kingCue)
+          || (/\b(worried|scared|shy|confused|proud|surprised|happy|sad|angry|bored|sleepy|excited|tired)\b/.test(kingCue)
+            && !/\b(hair|eyes|nose|ear|ears|make.?a.?face)\b/.test(kingCue)));
+      // Per-topic king hint now lives in LessonTraits.KING_HINTS (data table) so a
+      // new topic is a row, not another else-if. feelings/face still decided here
+      // (they depend on plan state, not just the cue) and passed in. Inline cascade
+      // kept as the identical fallback when the registry script is absent.
+      let kingHint = window.LessonTraits
+        ? window.LessonTraits.kingHintFor(kingCue, { feelingsKing, faceKing })
+        : 'Drag the pieces onto the stage. Then say or write one sentence about your idea.';
+      if (!window.LessonTraits) {
+        if (feelingsKing) {
+          // Two-round Feelings Lab (Manus ZPD / classical Level-Up generalization).
+          // Two skimmable lines (round-2 Judge B: one dense paragraph was hard from the
+          // back). Round 2 reworded — the face is visible, so the partner READS it and
+          // names the feeling; there is nothing hidden to "guess" (round-2 Judge A).
+          kingHint = '<b>Round 1:</b> drag a feeling face onto the blank face; write or say how it feels.<br><b>Round 2:</b> your partner reads the face, names the feeling, then answers with If I felt ____, I would ____.';
+        } else if (faceKing) {
+          kingHint = 'Drag parts onto the face. Then say: My friend has ___';
+        } else if (/\b(dentist|dental|tooth|teeth|cavity|floss|patient)\b/.test(kingCue)) {
+          kingHint = 'Drag tools onto the patient. Then say what you used and why.';
+        } else if (/\b(castle|knight|dragon|royal|fortress|portcullis)\b/.test(kingCue)) {
+          kingHint = 'Drag pieces onto the castle. Then say what you built.';
+        } else if (/\b(trampoline|bounce|backflip)\b/.test(kingCue)) {
+          kingHint = 'Drag pieces onto the trampoline. Then say your bounce plan.';
+        } else if (/\b(music|compose|composer|orchestra|symphony|concert|classical|melody|harmony|piano|violin)\b/.test(kingCue)) {
+          kingHint = 'Drag musicians onto the stage. Then write or say your symphony idea in 1–2 sentences.';
+        }
       }
       // Frosted instruction plate — projection-readable on busy terrace scenes (Manus).
       // Wider than the old 420px cramped panel but must clear the centre hero
