@@ -60,6 +60,15 @@
  *                  SceneBackgrounds.standOn puts a piece's base on groundY,
  *                  which is wrong for anything hanging or floating.
  *   --threshold    channel-max value above which a pixel is object (default 24)
+ *   --white        key a NEAR-WHITE background to transparent instead of black.
+ *                  The background is flood-filled inward from the border, so a
+ *                  large INTERIOR white region — a chef hat, a bowl, a phone
+ *                  screen — stays opaque instead of being punched into a hole,
+ *                  which is the whole difference from a naive white threshold.
+ *                  Framing gates (C2-C4) report but do not block in this mode,
+ *                  because curated external packs are already-composed art.
+ *   --white-tol    how far below 255 still counts as background white (default
+ *                  14; corners of real packs sit near 253, not 255)
  *   --size         long edge of the output PNG (default 512)
  *   --margin       share of the output left empty on each side (default 0.08)
  *   --force        write the PNG even when a gate fails
@@ -229,7 +238,7 @@ async function panelRects(page, src, rows, cols, threshold) {
 async function cutout(page, src, opts, rect) {
   const dataUrl = `data:image/png;base64,${fs.readFileSync(src).toString('base64')}`;
   return page.evaluate(
-    async ({ url, T, SIZE, MARGIN, box }) => {
+    async ({ url, T, SIZE, MARGIN, box, WHITE, WTOL }) => {
       const img = new Image();
       img.src = url;
       await img.decode();
@@ -259,22 +268,82 @@ async function cutout(page, src, opts, rect) {
         val[p] = r > g ? (r > b ? r : b) : g > b ? g : b;
       }
 
-      // C1 — is the frame actually a black field, or did we get an environment?
+      // C1 — is the frame the expected clean field, or did we get an
+      // environment? Black mode wants a black border ring; white mode wants a
+      // near-white one. Either way the border should read as background.
       const ring = Math.max(4, Math.round(Math.min(w, h) * 0.006));
-      let ringTotal = 0;
-      let ringBlack = 0;
-      for (let y = 0; y < h; y++) {
-        const edgeRow = y < ring || y >= h - ring;
-        for (let x = 0; x < w; x++) {
-          if (!edgeRow && x >= ring && x < w - ring) continue;
-          ringTotal++;
-          if (val[y * w + x] <= 12) ringBlack++;
-        }
-      }
-      const ringPurity = ringBlack / ringTotal;
 
+      // The object mask and the ring-purity number are the only two things that
+      // differ between the two fields, so they branch here and the rest of the
+      // pipeline — feather, colour bleed, gates, crop, re-pad — is shared.
       const mask = new Uint8Array(n);
-      for (let p = 0; p < n; p++) mask[p] = val[p] > T ? 1 : 0;
+      let ringPurity;
+      if (WHITE) {
+        // White is high on every channel, so test the channel MIN against a
+        // tolerance below 255. A near-white background pixel has min >= wthr.
+        const wthr = 255 - WTOL;
+        const isBg = (p) => {
+          const i = p * 4;
+          return px[i] >= wthr && px[i + 1] >= wthr && px[i + 2] >= wthr;
+        };
+        // Flood the background inward from every border pixel. Only white that
+        // is CONNECTED to the edge is knocked out; a white chef hat or bowl
+        // sealed inside the object's own outline is never reached, so it stays
+        // opaque. This connected knockout is the whole point of white mode over
+        // a plain threshold, which would hole every interior white region.
+        const bg = new Uint8Array(n);
+        const queue = new Int32Array(n);
+        let qh = 0;
+        const seed = (p) => {
+          if (!bg[p] && isBg(p)) {
+            bg[p] = 1;
+            queue[qh++] = p;
+          }
+        };
+        for (let x = 0; x < w; x++) {
+          seed(x);
+          seed((h - 1) * w + x);
+        }
+        for (let y = 0; y < h; y++) {
+          seed(y * w);
+          seed(y * w + w - 1);
+        }
+        for (let qt = 0; qt < qh; qt++) {
+          const cur = queue[qt];
+          const cx = cur % w;
+          const cy = (cur - cx) / w;
+          if (cx > 0) seed(cur - 1);
+          if (cx < w - 1) seed(cur + 1);
+          if (cy > 0) seed(cur - w);
+          if (cy < h - 1) seed(cur + w);
+        }
+        for (let p = 0; p < n; p++) mask[p] = bg[p] ? 0 : 1;
+
+        let ringTotal = 0;
+        let ringBg = 0;
+        for (let y = 0; y < h; y++) {
+          const edgeRow = y < ring || y >= h - ring;
+          for (let x = 0; x < w; x++) {
+            if (!edgeRow && x >= ring && x < w - ring) continue;
+            ringTotal++;
+            if (isBg(y * w + x)) ringBg++;
+          }
+        }
+        ringPurity = ringBg / ringTotal;
+      } else {
+        let ringTotal = 0;
+        let ringBlack = 0;
+        for (let y = 0; y < h; y++) {
+          const edgeRow = y < ring || y >= h - ring;
+          for (let x = 0; x < w; x++) {
+            if (!edgeRow && x >= ring && x < w - ring) continue;
+            ringTotal++;
+            if (val[y * w + x] <= 12) ringBlack++;
+          }
+        }
+        ringPurity = ringBlack / ringTotal;
+        for (let p = 0; p < n; p++) mask[p] = val[p] > T ? 1 : 0;
+      }
 
       // Content bounding box.
       let minX = w;
@@ -339,10 +408,20 @@ async function cutout(page, src, opts, rect) {
       const inner = erode(mask, 3);
       let innerN = 0;
       let innerDark = 0;
+      const wthr6 = 255 - WTOL;
       for (let p = 0; p < n; p++) {
         if (!inner[p]) continue;
         innerN++;
-        if (val[p] <= T + 6) innerDark++;
+        if (WHITE) {
+          // White mode: how much of the deep interior is itself near-white. It
+          // is legitimately preserved (a chef hat), but a high number is the
+          // signal to eyeball the cutout for eaten white or a re-opened hole.
+          const i = p * 4;
+          if (px[i] >= wthr6 && px[i + 1] >= wthr6 && px[i + 2] >= wthr6) innerDark++;
+        } else if (val[p] <= T + 6) {
+          // Black mode: near-black interior that keying would blow into holes.
+          innerDark++;
+        }
       }
       const darkInside = innerN ? innerDark / innerN : 0;
 
@@ -579,7 +658,15 @@ async function cutout(page, src, opts, rect) {
         bodyHue,
       };
     },
-    { url: dataUrl, T: opts.threshold, SIZE: opts.size, MARGIN: opts.margin, box: rect || null }
+    {
+      url: dataUrl,
+      T: opts.threshold,
+      SIZE: opts.size,
+      MARGIN: opts.margin,
+      box: rect || null,
+      WHITE: !!opts.white,
+      WTOL: opts.whiteTol,
+    }
   );
 }
 
@@ -643,6 +730,73 @@ function gatesFor(r, wantComponents) {
     },
   ];
 }
+
+/**
+ * Gate report for --white cutouts. Same shape, thresholds and ids as gatesFor
+ * so the QA readout is identical, but C1 measures a white border ring instead
+ * of a black one, and C6 measures preserved interior white instead of near-black
+ * holes. The black-field gates are left untouched.
+ */
+function gatesForWhite(r, wantComponents) {
+  const minMargin = Math.min(r.margins.left, r.margins.right, r.margins.top, r.margins.bottom);
+  return [
+    {
+      id: 'C1',
+      what: 'background is a clean white field',
+      got: `${pct(r.ringPurity)} of the border ring is near-white`,
+      ok: r.ringPurity >= 0.98,
+    },
+    {
+      id: 'C2',
+      what: 'object clear of the frame edge',
+      got: `closest edge ${pct(minMargin)}`,
+      ok: minMargin >= 0.02,
+    },
+    {
+      id: 'C3',
+      what: 'safe margin in range',
+      got: `min ${pct(minMargin)} (want 4-18%)`,
+      ok: minMargin >= 0.04 && minMargin <= 0.18,
+    },
+    {
+      id: 'C4',
+      what: 'object fills the frame sensibly',
+      got: `spans ${pct(r.span)} of its long side (want 66-96%)`,
+      ok: r.span >= 0.66 && r.span <= 0.96,
+    },
+    {
+      id: 'C5',
+      what: 'expected number of shapes',
+      got: `${r.blobs} (want ${wantComponents})`,
+      ok: r.blobs === wantComponents,
+    },
+    {
+      id: 'C6',
+      what: 'interior white preserved, object not mostly background',
+      got: `${pct(r.darkInside)} of the interior is near-white (inspect if high; fail over 60%)`,
+      ok: r.darkInside <= 0.6,
+    },
+    {
+      id: 'C7',
+      what: 'edge colour matches the interior',
+      got: `${r.edgeRatio.toFixed(2)}x interior brightness (want 0.75+)`,
+      ok: r.edgeRatio >= 0.75,
+    },
+    {
+      id: 'C8',
+      what: 'cutout large enough for a ClassIn dock (no mushy upscales)',
+      got: `short side ${Math.min(r.out.width, r.out.height)}px (want ${MIN_DOCK_SRC}+)`,
+      ok: Math.min(r.out.width, r.out.height) >= MIN_DOCK_SRC,
+    },
+  ];
+}
+
+/**
+ * External clipart packs are already-composed art, so their framing (C2-C4) is
+ * settled history the way a --convert pack's is. In white mode only the gates
+ * that predict a dirty cutout block a write; framing still reports.
+ */
+const WHITE_BLOCKING = new Set(['C1', 'C6', 'C7', 'C8']);
 
 /** Dock toys under this short-side look soft when ClassIn enlarges them. */
 const MIN_DOCK_SRC = 120;
@@ -719,6 +873,8 @@ async function main() {
     threshold: Number(arg('threshold', '24')),
     size: Number(arg('size', '512')),
     margin: Number(arg('margin', '0.08')),
+    white: flag('white'),
+    whiteTol: Number(arg('white-tol', '14')),
   };
 
   const manifestPath = path.join(ROOT, 'public', 'assets', '09_props', 'manifest.json');
@@ -838,7 +994,7 @@ async function main() {
         continue;
       }
 
-      const gates = gatesFor(r, job.components);
+      const gates = opts.white ? gatesForWhite(r, job.components) : gatesFor(r, job.components);
       const failed = gates.filter((g) => !g.ok);
 
       if (convert) {
@@ -880,10 +1036,22 @@ async function main() {
       console.log(`\n${sheet ? `— ${job.name} — ` : ''}${inDesc} in, ${r.out.width}x${r.out.height} out\n`);
       for (const g of gates) console.log(`  ${g.ok ? 'PASS' : 'FAIL'}  ${g.id}  ${g.what} — ${g.got}`);
 
-      if (failed.length && !flag('force')) {
+      if (opts.white && r.darkInside > 0.15) {
         console.log(
-          `\n${failed.length} gate(s) failed. Regenerate this prop with a targeted correction, ` +
-            `or pass --force if you have looked at it and disagree.`
+          `  NOTE large interior near-white area (${pct(r.darkInside)}) — eyeball for eaten white or a re-opened hole`
+        );
+      }
+
+      // In white mode the framing gates (C2-C4) report but do not block, the
+      // same way --convert only lets the dirty-cutout gates stop a write; for
+      // the black field every failed gate still blocks exactly as before.
+      const blockingFailed = opts.white ? failed.filter((g) => WHITE_BLOCKING.has(g.id)) : failed;
+      if (blockingFailed.length && !flag('force')) {
+        const soft = failed.filter((g) => !blockingFailed.includes(g)).map((g) => g.id);
+        console.log(
+          `\n${blockingFailed.length} gate(s) failed. Regenerate this prop with a targeted correction, ` +
+            `or pass --force if you have looked at it and disagree.` +
+            (soft.length ? ` (soft, not blocking: ${soft.join(', ')})` : '')
         );
         process.exitCode = 1;
         // One bad panel should not cost the other eight; the run reports at the
