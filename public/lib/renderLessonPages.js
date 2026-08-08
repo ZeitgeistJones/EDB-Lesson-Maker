@@ -1409,8 +1409,18 @@
     col.appendChild(hint('Answer in full sentences in the space under each question.', {
       marginBottom: '6px', flexShrink: '0',
     }));
-    // Up to 3 on the board (Manus: 3–4; 4 rows crush type on 590px).
-    const questions = comprehensionQuestions(lesson).slice(0, 3);
+    // Up to 3 on the board (Manus: 3–4; 4 rows crush type on 590px). But the visible 3
+    // must include a higher-order (inferential/evaluative) question — recall-only crushes
+    // the grammar/ZPD tie-in (Manus QCVsgMcb). If the top-3 are all recall and a later
+    // question is inferential, swap it into the last slot instead of dropping it.
+    const allComp = comprehensionQuestions(lesson);
+    const inferRe = /\b(why|what do you think|how do you know|how might|what would|what could|infer|imagine)\b/i;
+    const compText = (q) => (typeof q === 'string' ? q : (q && q.question) || '');
+    const questions = allComp.slice(0, 3);
+    if (questions.length && !questions.some((q) => inferRe.test(compText(q)))) {
+      const infer = allComp.find((q) => inferRe.test(compText(q)));
+      if (infer) questions[questions.length - 1] = infer;
+    }
     const rows = Math.max(1, questions.length || 1);
     const body = el('div', {
       flex: '1 1 0%',
@@ -1475,9 +1485,9 @@
     });
     ideas.forEach(({ i, text }) => {
       const ideaCard = card(
-        `<div style="font-size:22px;color:#64748b;font-weight:700;margin-bottom:8px;flex-shrink:0">Idea ${i + 1}</div>
-         <div style="font-size:36px;font-weight:800;color:#134e4a;line-height:1.25;margin-bottom:14px;flex-shrink:0">${esc(text)}</div>
-         <div style="border:2px dashed #94a3b8;border-radius:14px;flex:1;min-height:140px;background:rgba(248,250,252,0.85)"></div>`,
+        `<div style="font-size:22px;color:#64748b;font-weight:700;margin-bottom:6px;flex-shrink:0">Idea ${i + 1}</div>
+         <div style="font-size:30px;font-weight:800;color:#134e4a;line-height:1.22;margin-bottom:10px;flex-shrink:0">${esc(text)}</div>
+         <div style="border:2px dashed #94a3b8;border-radius:14px;flex:1;min-height:100px;background:rgba(248,250,252,0.85)"></div>`,
         {
           padding: '22px 26px',
           marginBottom: '0',

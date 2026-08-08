@@ -3,25 +3,26 @@
   "level": "B1",
   "duration": "60",
   "knownIssues": [
-    "Story art still PropBank/caption fallback — not full generative StoryArt",
     "Match dock deliberately has NO answer-naming caption chips (S26)",
     "Feelings pack reuses face-blank as stage (intentional)",
     "Navy wrap bookend is S32 — do not recolor mint; wrap B3 rejected",
     "Manus OCR letter-sub on frames (mv/shv) — false positive; frames already correct"
   ],
   "justFixed": [
+    "Generative StoryArt LIVE (commit 51a1670): S5-S7 story panels now render illustrated scenes from disk cache — recurring character Mia, scene matches caption + feeling arc (worried->confused->surprised/happy). No longer PropBank/caption fallback.",
     "S46 wrap timing chip ~3 min",
     "S45 Round 2 If I felt…would + inferential comprehension",
     "S41–S44 two-round Lab, write strip under hint, leading feeling captions, S43 castle-round",
     "Manus 3Uc8A7mGCQFSVZLbZPSGq6 pass — all prior just_fixed HOLDS"
   ],
   "localChecks": [
-    "verify-feelings-compass.mjs: ok (fails=[]; timingChipCount=11)",
+    "verify-feelings-compass.mjs --story-art=auto: ok (fails=[]; StoryArt applied 3/3; timingChipCount=11)",
     "Manusloop ×4 complete — last https://manus.im/app/3Uc8A7mGCQFSVZLbZPSGq6 pass"
   ],
   "focus": [
-    "Optional polish only — StoryArt / palette soft",
+    "PRIMARY: judge the new generative StoryArt (S5-S7) — do illustrated scenes help comprehension/engagement? character consistency, scene-caption fit, art quality",
+    "Otherwise optional polish only — palette soft",
     "Do not re-ask navy wrap or frame OCR"
   ],
-  "notes": "Manusloop ×4 done 2026-08-07."
+  "notes": "Manusloop feelings-compass — StoryArt validation pass 2026-08-08."
 }

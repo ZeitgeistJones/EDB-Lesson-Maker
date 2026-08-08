@@ -43,22 +43,21 @@ Body: `.cursor/loops/manus-feelings-compass/last-response.md`
 
 ### 4 — Audit
 ```bash
-node scripts/verify-feelings-compass.mjs
+node scripts/verify-feelings-compass.mjs --story-art=auto
 ```
 Soft: S42 no feeling-* story props.
+New gates (S49, Manus QCVsgMcb): DRAG_SOURCE_COUNT == TARGET_VOCAB_COUNT (dock==6);
+comprehension board must show inferential Q (not dropped past slice); creative cards on-board.
 
 ## Last run
 
-- **When:** 2026-08-07 (manusloop ×4 complete)
-- **Local:** verify ok (fails=[]; timingChipCount=11)
+- **When:** 2026-08-08 (manusloop ×2 — StoryArt validation)
+- **Local:** verify ok (fails=[]; soft=[]; feelingDockCount=6; StoryArt 3/3; timingChipCount=11)
 - **Manus trail:**
-  - pass1 [JkBr5](https://manus.im/app/JkBr5MesJWVgnGGtXrgHM8) blocked
-  - pass2 [kS8Er](https://manus.im/app/kS8ErN7ZPkUtJ8iNWu38oc) fail/90
-  - pass3 [LSSgv](https://manus.im/app/LSSgv4Kc5Tigura7fph87F) pass/99
-  - pass4 [3Uc8](https://manus.im/app/3Uc8A7mGCQFSVZLbZPSGq6) pass/4
-- **Fold:** S41–S46 producer + generate-lesson feelings block; reject wrap recolor + OCR
-- **Assets:** none generated — existing feeling-* / vocab pack
-- **Leftover soft:** palette register soft (Manus ≤2 mid-deck holds locally via S34)
-- **StoryArt:** disk cache + verify `--story-art=auto` + S47; fill-missing; feelings+classical caches green
-- **Folded soft:** S48 receptive Aims (`talk and read`) when story.pages
-- **Next:** Manus re-review when home/credits; optional third-topic StoryArt illustrate
+  - pass4 (prev) [3Uc8](https://manus.im/app/3Uc8A7mGCQFSVZLbZPSGq6) pass
+  - ×2 pass1 [QCVsgMcb](https://manus.im/app/QCVsgMcb6FhkXQekQSVbuC) pass/90 — StoryArt HOLDS ("consistent Mia design", "visual engagement boost")
+- **Fold (pass1):** S49 producer trio — feelings dock capped to taught vocab (12→6, edbActivities.roleplayDockProps); comprehension surfaces inferential Q instead of dropping it (renderLessonPages.makeComprehension); creative prompt 36→30px + box 140→100 so Idea 2 fits. Verify gained S49 gates.
+- **StoryArt:** validated live by Manus — illustrated S5–S7 panels recurring Mia, scene↔caption fit; disk cache green (`--story-art=auto`, cacheKey sa_c6d870f0)
+- **Assets:** none generated — StoryArt cache hit; feeling-* pack sufficient
+- **Leftover soft:** palette register soft (Manus ≤2 mid-deck holds locally via S34); ZPD nice-to-haves (student-authored story beat)
+- **Next:** pass2 rebake → Manus re-review; confirm S49 trio holds under external eyes

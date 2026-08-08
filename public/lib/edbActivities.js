@@ -830,9 +830,25 @@
     const out = [];
     const exclude = [hero && hero.key].filter(Boolean);
 
+    // Feelings drag sources must equal the taught board vocab, not a fixed 12-sticker
+    // pad — 12 sources for 6 taught words overloads B1 and adds unnameable distractors
+    // (Manus QCVsgMcb: DRAG_SOURCE_COUNT == TARGET_VOCAB_COUNT). Derive the exact
+    // first-6 feelings from lesson vocab; fall back to the curated list if empty.
+    let feelingsKeys = null;
+    if (feelings) {
+      const vocabKeys = ((lesson && lesson.vocabulary) || [])
+        .map((v) => (typeof v === 'string' ? v : v && v.word))
+        .filter(Boolean)
+        .slice(0, 6)
+        .map((w) => 'feeling-' + String(w).toLowerCase())
+        .filter((k) => ROLEPLAY_DOCK_FEELINGS.includes(k));
+      if (vocabKeys.length) feelingsKeys = vocabKeys;
+    }
+    let targetCount = count;
+
     // 1) Curated docks for feelings / face / dental / trampoline / castle / space
     let prefer = null;
-    if (feelings) prefer = ROLEPLAY_DOCK_FEELINGS;
+    if (feelings) { prefer = feelingsKeys || ROLEPLAY_DOCK_FEELINGS; targetCount = prefer.length; }
     else if (face) prefer = ROLEPLAY_DOCK_FACE;
     else if (dental) prefer = ROLEPLAY_DOCK_DENTAL;
     else if (trampoline) prefer = ROLEPLAY_DOCK_TRAMPOLINE;
@@ -842,7 +858,7 @@
 
     if (prefer) {
       for (const key of prefer) {
-        if (out.length >= count) break;
+        if (out.length >= targetCount) break;
         if (exclude.includes(key)) continue;
         const p = PB.resolve({ word: key, seed, family, exclude });
         if (!p || !sharp(p)) continue;
@@ -860,7 +876,7 @@
     // Feelings: only more feeling-* stickers — never eyes/nose hair from face-blank tags.
     if (kit && kit.docks && kit.docks.length) {
       for (const p of kit.docks) {
-        if (out.length >= count) break;
+        if (out.length >= targetCount) break;
         if (exclude.includes(p.key)) continue;
         if (!sharp(p)) continue;
         if (feelings && !/^feeling-/.test(p.key)) continue;

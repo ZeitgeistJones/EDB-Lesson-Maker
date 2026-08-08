@@ -215,6 +215,23 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
   const sampleLeak = /Teacher sample/i.test(warmText)
     || (lesson.warmUp && lesson.warmUp.sampleAnswer && warmText.includes(String(lesson.warmUp.sampleAnswer)));
 
+  // S49 (Manus QCVsgMcb): comprehension board must show a higher-order question,
+  // and creative "Your Ideas" cards must not clip below the board.
+  const compDom = rendered.pageEls[byKey.comprehension];
+  const creativeDom = rendered.pageEls[byKey.creative];
+  const inferReDom = /\b(why|what do you think|how do you know|how might|what would|what could|infer|imagine)\b/i;
+  const compBoardText = (compDom && compDom.textContent) || '';
+  const compBoardInferential = inferReDom.test(compBoardText);
+  let creativeCardsOnBoard = true;
+  if (creativeDom && creativeDom.getBoundingClientRect) {
+    const cr = creativeDom.getBoundingClientRect();
+    const cards = Array.from(creativeDom.querySelectorAll('[data-write-in-stage]'));
+    for (const c of cards) {
+      const r = c.getBoundingClientRect();
+      if (r.bottom > cr.bottom + 2) { creativeCardsOnBoard = false; break; }
+    }
+  }
+
   const boardVocab = words.slice(0, 6);
   const aimsMissing = boardVocab.filter((w) => !new RegExp(`\\b${w}\\b`, 'i').test(titleText));
   const hasGrammarAim = /grammar aim/i.test(titleText);
@@ -383,6 +400,8 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     feelingDockCount,
     facePartsOnDock,
     compCount: compQs.length,
+    compBoardInferential,
+    creativeCardsOnBoard,
     activityHintHasToys: /\btoys\b/i.test(actText),
     activityHintHasWriteOrSay: /write or say|say or write|then say|then write/i.test(actText),
     activityHintFeelings: /feeling/i.test(actText),
@@ -434,8 +453,11 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
 const fails = [];
 if (result.recipe !== 'heroProp') fails.push('activity must be heroProp (face-blank + feelings dock): ' + result.recipe);
 if (result.heroKey !== 'face-blank') fails.push('hero must be face-blank: ' + result.heroKey);
-if ((result.feelingDockCount || 0) < 8) {
-  fails.push('feelings dock too thin: ' + result.feelingDockCount + ' ' + JSON.stringify(result.dockSample));
+// S49 (Manus QCVsgMcb): drag sources must equal the taught vocab. A 12-sticker pad
+// for 6 taught feelings overloads B1 and adds unnameable distractors.
+const DRAG_TARGET = Math.min(6, (lesson.vocabulary || []).length || 6);
+if ((result.feelingDockCount || 0) !== DRAG_TARGET) {
+  fails.push('DRAG_SOURCE_COUNT != TARGET_VOCAB_COUNT (S49): dock=' + result.feelingDockCount + ' target=' + DRAG_TARGET + ' ' + JSON.stringify(result.dockSample));
 }
 if ((result.facePartsOnDock || 0) > 0) {
   fails.push('feelings dock leaked face parts: ' + JSON.stringify(result.dockSample));
@@ -484,9 +506,19 @@ if (storyArtMode !== '0' && storyArtMode !== 'off' && storyArtMode !== 'false') 
     soft.push('S47: no StoryArt disk cache — run scripts/illustrate-fixture-story.mjs (PropBank interim)');
   }
 }
+const inferRe = /\b(why|what do you think|how do you know|how might|what would|what could|infer|imagine)\b/i;
 const inferentialComp = (lesson.story && lesson.story.comprehensionQuestions || []).some((q) =>
-  /\b(why|what do you think|how do you know|infer)\b/i.test(String(q && q.question || q || '')));
-if (!inferentialComp) soft.push('S45 soft: no inferential comprehension question (Manus LSSgv ZPD)');
+  inferRe.test(String(q && q.question || q || '')));
+if (!inferentialComp) {
+  soft.push('S45 soft: no inferential comprehension question in fixture (Manus LSSgv ZPD)');
+} else if (!result.compBoardInferential) {
+  // Gate hole (Manus QCVsgMcb): fixture had an inferential Q but the board's visible
+  // top-3 were recall-only. Producer must surface it, not drop it past slice(0,3).
+  fails.push('S49: comprehension board shows only recall — inferential question dropped (Manus QCVsgMcb)');
+}
+if (result.creativeCardsOnBoard === false) {
+  fails.push('S49: creative "Your Ideas" cards clipped below board bottom (Manus QCVsgMcb crop)');
+}
 if ((result.storyPageCount || 0) > 0 && !result.aimsHasRead) {
   soft.push('S48: story lesson Aims line is talk-only — should mention read/reading');
 }
