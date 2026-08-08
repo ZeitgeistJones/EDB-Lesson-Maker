@@ -244,6 +244,8 @@ ${phonicsBlock}
 
 All content appropriate for ${safeLevel} ESL learners. Sentence frames and activity templates should contain a literal "___" blank.
 
+warmUp.question must ELICIT prior knowledge and stay target-neutral: do NOT name or pre-cue any target vocabulary word (that gives the answer away before it is taught). Ask about the learner's own experience in general terms (e.g. "How are you feeling right now, and why?" / "Tell your partner about your morning."). Keep warmUp.sampleAnswer for the teacher only and free of the target vocabulary too.
+
 CEFR grammar for sentenceFrames:
 - A1–A2: present simple, can, like/want, basic past if needed. No second conditional.
 - B1: opinions with because, first conditional (If + present, will/can…), "I would like to ___". Prefer "If I am a musician, I will use ___ to …" over bare "If I were…" unless the blank itself teaches the form.
@@ -254,6 +256,7 @@ When the topic is feelings, emotions, or moods:
 - Activity should be a two-round Feelings Lab (Round 1: build + say the feeling; Round 2: partner guesses, then produce a second-conditional line: If I felt ____, I would ____).
 - story.visualCaption must lead with the feeling word then a short scene cue (e.g. "worried — Mia at her desk"), so art resolves to the emotion and teachers see the target word first.
 - Include at least one inferential comprehension question (why / what do you think), not only literal recall.
+- warmUp.question must NOT contain any feeling/emotion target word (worried, scared, confused, shy, surprised, happy, sad, angry…): elicit the learner's current mood in target-neutral language before the words are taught.
 
 Put comprehension under story.comprehensionQuestions (never only a top-level "comprehension" array). Put closing review lines in reviewSentences. Do not put teacher sample answers on student-facing copy fields.`;
 

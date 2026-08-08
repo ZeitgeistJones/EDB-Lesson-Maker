@@ -1023,6 +1023,44 @@
     col.appendChild(hint('Listen and say each frame first. Then fill the blank and write your sentence.', {
       marginBottom: '8px', flexShrink: '0',
     }));
+    // Word bank — reinforces the taught vocab and scaffolds open frames like
+    // "I would feel ___ if someone ___." (two blanks, no cue). It restates the
+    // words that are ON New Words, so it is not answer-leaking — it is the same
+    // choice set students already met. Chips only; no per-frame mapping.
+    const bankWords = (lesson.vocabulary || [])
+      .slice(0, 6)
+      .map((v) => (typeof v === 'string' ? v : v.word))
+      .filter(Boolean);
+    if (bankWords.length) {
+      const bank = el('div', {
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        gap: '8px',
+        marginBottom: '10px',
+        flexShrink: '0',
+      });
+      bank.dataset.frameWordBank = '1';
+      bank.appendChild(el('div', {
+        fontSize: '18px',
+        fontWeight: '800',
+        color: '#7c3aed',
+        marginRight: '2px',
+      }, 'Word bank:'));
+      bankWords.forEach((w) => {
+        bank.appendChild(el('div', {
+          padding: '6px 14px',
+          borderRadius: '999px',
+          background: '#f5f3ff',
+          border: '1px solid #ddd6fe',
+          fontSize: '20px',
+          fontWeight: '700',
+          color: '#5b21b6',
+          lineHeight: '1.2',
+        }, esc(w)));
+      });
+      col.appendChild(bank);
+    }
     const frames = (lesson.sentenceFrames || []).slice(0, 3);
     const rows = Math.max(1, frames.length);
     const lens = frames.map((f) => String(f || '').length);
@@ -1702,15 +1740,20 @@
         kingHint = 'Drag musicians onto the stage. Then write or say your symphony idea in 1–2 sentences.';
       }
       // Frosted instruction plate — projection-readable on busy terrace scenes (Manus).
+      // Wider than the old 420px cramped panel but must clear the centre hero
+      // face (widening into the middle overlapped the blank head). Fill the empty
+      // LEFT-column vertical space instead: bigger type, more line-height, a few
+      // comfortable lines stacking downward.
       const kingHintEl = hint(kingHint, {
         textAlign: 'left',
-        lineHeight: '1.3',
-        maxWidth: '420px',
-        marginBottom: '8px',
+        fontSize: '24px',
+        lineHeight: '1.45',
+        maxWidth: '400px',
+        marginBottom: '12px',
         background: 'rgba(248,250,252,0.96)',
         border: '1px solid rgba(148,163,184,0.65)',
-        borderRadius: '12px',
-        padding: '10px 14px',
+        borderRadius: '14px',
+        padding: '16px 20px',
         boxShadow: '0 2px 8px rgba(15,23,42,0.10)',
         color: '#0f172a',
       });

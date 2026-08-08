@@ -426,6 +426,30 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
   const shyGlyph = emj('shy');
   const happyGlyph = emj('happy');
 
+  // S56 — "confused" must not read as a neutral/meh face and must be distinct
+  // from the other five board feelings (drag-picture match lives or dies on it).
+  const confusedGlyph = emj('confused');
+  const boardFeelingGlyphs = boardVocab.map((w) => ({ w: String(w), g: emj(String(w).toLowerCase()) }));
+
+  // S57 — warm-up must stay target-neutral (elicit prior knowledge, no taught
+  // feeling word pre-cued before New Words teaches it).
+  const warmQuestion = String((lesson.warmUp && lesson.warmUp.question) || '');
+  const warmSample = String((lesson.warmUp && lesson.warmUp.sampleAnswer) || '');
+  const warmTargetLeaks = boardVocab.filter((w) => {
+    const re = new RegExp('\\b' + String(w).toLowerCase() + '\\b', 'i');
+    return re.test(warmQuestion) || re.test(warmText) || re.test(warmSample);
+  });
+
+  // S58 — draggable match pieces stay label/number-free (protects the
+  // no-answer-naming tiebreak: never pre-map drag emoji to the numbered pads).
+  const matchPieceLabels = matchPieces
+    .map((p) => String(p.label || (p.meta && (p.meta.captionChip || p.meta.caption)) || '').trim())
+    .filter(Boolean);
+  const matchPieceNumbered = matchPieces.some((p) => {
+    const glyph = String(p.emoji || '');
+    return /\d/.test(glyph) || (p.meta && (p.meta.padIndex != null || p.meta.answerIndex != null));
+  });
+
   // S54 — feelings drag faces must be grabbably large (not postage-stamp).
   const feelingDockSides = ((actPage && actPage.unlocked) || [])
     .filter((p) => p.role === 'dockPiece')
@@ -489,6 +513,11 @@ const result = await page.evaluate(async ({ lesson, meta }) => {
     condFramePunct,
     shyGlyph,
     happyGlyph,
+    confusedGlyph,
+    boardFeelingGlyphs,
+    warmTargetLeaks,
+    matchPieceLabels,
+    matchPieceNumbered,
     minFeelingDockSide,
     artWinners,
     storyPropKeys,
@@ -605,6 +634,50 @@ if (result.shyGlyph && result.happyGlyph && result.shyGlyph === result.happyGlyp
 // S54 — feelings drag faces must be grabbably large (not postage-stamp).
 if ((result.minFeelingDockSide || 0) < 96) {
   fails.push('S54: feelings drag faces too small (min side ' + result.minFeelingDockSide + 'px, need ≥96) — enlarge dock stickers');
+}
+// S56 — "confused" glyph must not be a neutral/meh face and must be distinct
+// from the other five board feelings (both judges: 😕 read as neutral 😐).
+const NEUTRAL_GLYPHS = ['😐', '😑', '😕', '🫤', '😶'];
+if (NEUTRAL_GLYPHS.includes(String(result.confusedGlyph || ''))) {
+  fails.push('S56: confused icon is a neutral/meh face (' + result.confusedGlyph + ') — use a clearly-puzzled glyph (🤔/😕-brow) so the drag-picture match is unmistakable');
+}
+// S56 (pack) — the New Words drag dock renders the vocab-pack PNG via wordArtPng,
+// NOT the emoji fallback. Guard the actual rendered art: confused's pack codepoint
+// must not be a neutral/meh Twemoji (1f615 😕, 1f610 😐, 1f611 😑, 1fae4 🫤, 1f636 😶).
+try {
+  const packIndex = JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'public/assets/07_vocab-pack/index.json'), 'utf8')
+  );
+  const confusedRow = packIndex && packIndex.confused;
+  const NEUTRAL_CODEPOINTS = ['1f615', '1f610', '1f611', '1fae4', '1f636'];
+  if (confusedRow && NEUTRAL_CODEPOINTS.includes(String(confusedRow.codepoint || '').toLowerCase())) {
+    fails.push('S56: confused vocab-pack art is a neutral/meh Twemoji (' + confusedRow.codepoint + ' ' + (confusedRow.emoji || '') + ') — repoint fetch-vocab-icons confused→🤔 (1f914) and re-render confused.png');
+  }
+} catch (err) {
+  fails.push('S56: could not read vocab pack index to verify confused art: ' + (err.message || err));
+}
+{
+  const seen = new Map();
+  for (const { w, g } of (result.boardFeelingGlyphs || [])) {
+    if (!g) continue;
+    if (seen.has(g)) {
+      fails.push('S56: board feeling glyphs collide — "' + w + '" and "' + seen.get(g) + '" share ' + g + ' (six icons must be mutually distinct)');
+    } else {
+      seen.set(g, w);
+    }
+  }
+}
+// S57 — warm-up must stay target-neutral (no taught feeling word pre-cued).
+if ((result.warmTargetLeaks || []).length) {
+  fails.push('S57: warm-up pre-cues target vocab before it is taught (' + result.warmTargetLeaks.join(',') + ') — make the warm-up target-neutral to elicit prior knowledge');
+}
+// S58 — draggable match pieces stay label/number-free (protect the tiebreak:
+// never pre-map drag emoji to numbered pads — that gives away the match).
+if ((result.matchPieceLabels || []).length) {
+  fails.push('S58: draggable match pieces carry answer-naming labels (' + result.matchPieceLabels.join(',') + ') — drag pieces must stay label-free (S26 family)');
+}
+if (result.matchPieceNumbered) {
+  fails.push('S58: draggable match pieces are numbered/pre-mapped to pads — remove numbers/answer indices from drag emoji (pedagogy: fix guessing via unambiguous icons, not by revealing the match)');
 }
 if (result.artWinners.some((w) => !String(w.winner).startsWith('pack:'))) {
   fails.push('board vocab art must prefer pack: ' + JSON.stringify(result.artWinners));
@@ -731,6 +804,9 @@ console.log(JSON.stringify({
   frameLineHeights: result.frameTextChecks.map((f) => f.lineHeightRatio),
   shyGlyph: result.shyGlyph,
   happyGlyph: result.happyGlyph,
+  confusedGlyph: result.confusedGlyph,
+  warmTargetLeaks: result.warmTargetLeaks,
+  matchPieceLabels: result.matchPieceLabels,
   minFeelingDockSide: result.minFeelingDockSide,
   storyPageCount: result.storyPageCount,
   storyPropKeys: result.storyPropKeys,

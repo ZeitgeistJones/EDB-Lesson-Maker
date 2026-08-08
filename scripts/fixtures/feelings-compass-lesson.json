@@ -1,13 +1,13 @@
 {
   "title": "Finding Our Feelings Compass",
   "warmUp": {
-    "question": "When was the last time you felt surprised at school?",
-    "sampleAnswer": "I felt surprised when my friend gave me a gift."
+    "question": "How are you feeling right now, and why?",
+    "sampleAnswer": "I feel okay because it was a calm morning."
   },
   "vocabulary": [
     { "word": "worried", "emoji": "😟", "sentence": "I felt worried before the big test." },
     { "word": "scared", "emoji": "😨", "sentence": "She was scared of the dark hallway." },
-    { "word": "confused", "emoji": "😕", "sentence": "He looked confused by the new rules." },
+    { "word": "confused", "emoji": "🤔", "sentence": "He looked confused by the new rules." },
     { "word": "shy", "emoji": "😳", "sentence": "The new student felt shy on the first day." },
     { "word": "surprised", "emoji": "😲", "sentence": "We were surprised by the kind message." },
     { "word": "happy", "emoji": "😄", "sentence": "They felt happy after helping a friend." },

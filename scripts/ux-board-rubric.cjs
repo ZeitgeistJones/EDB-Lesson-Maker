@@ -193,6 +193,9 @@ const SOFT = {
   S53: 'No unlabeled stray prop (board-face corner eye/wink easter egg) on emotion-vocab newWords/activity boards — feelings ride the egg-free board-house deck',
   S54: 'Feelings drag faces are grabbably large on the stage (≥96px) and the blank drop-face does not dominate as a giant empty blob',
   S55: 'Title aims/grammar panel is projector-legible — light ink on a dark frosted slab, not repainted dark-on-dark by the flat ink policy',
+  S56: 'Feelings New Words icons are unmistakable and mutually distinct — "confused" reads as clearly puzzled (🤔/furrowed brow), never a neutral/meh 😐; no two of the six board feelings share a glyph',
+  S57: 'Warm-up elicits prior knowledge target-neutral — it does not pre-cue a taught feeling word before New Words teaches it',
+  S58: 'Draggable match/drag pieces stay label- and number-free — icons carry no answer-naming caption and are not pre-mapped/numbered to the drop pads (fix guessing via unambiguous icons, not by revealing the match)',
 };
 
 /**
@@ -202,8 +205,8 @@ const SOFT = {
 const TIER_ORDER = ['honesty', 'readable', 'navigable', 'variety', 'charm'];
 
 const TIERS = {
-  honesty: ['H5', 'H1', 'S15', 'S8', 'M7', 'S19', 'S20', 'S26', 'S30', 'S31', 'S37', 'S51', 'S52'],
-  readable: ['H4', 'S1', 'S5', 'S11', 'S13', 'S9', 'M1', 'M2', 'M6', 'S35', 'S50', 'S55'],
+  honesty: ['H5', 'H1', 'S15', 'S8', 'M7', 'S19', 'S20', 'S26', 'S30', 'S31', 'S37', 'S51', 'S52', 'S57', 'S58'],
+  readable: ['H4', 'S1', 'S5', 'S11', 'S13', 'S9', 'M1', 'M2', 'M6', 'S35', 'S50', 'S55', 'S56'],
   navigable: ['H3', 'H6', 'S4', 'S10', 'S14', 'M3', 'M8', 'S21', 'S23', 'S25', 'S27', 'S28', 'S29', 'S33', 'S54'],
   variety: ['H2', 'S2', 'S3', 'S6', 'S18', 'M5', 'S32', 'S34'],
   charm: ['S7', 'S12', 'S16', 'S17', 'M4', 'H7', 'S22', 'S24', 'S36', 'S53'],

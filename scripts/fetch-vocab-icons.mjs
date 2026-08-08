@@ -90,7 +90,12 @@ const WORDS = {
   // feelings
   happy: '😀', sad: '😢', angry: '😠', tired: '😫', scared: '😨',
   surprised: '😲', excited: '🤩', bored: '🥱', shy: '😊', worried: '😟',
-  confused: '😕', sick: '🤒', hurt: '🤕', sleepy: '😴',
+  // "confused" was 😕 (1f615) — reads as a flat/meh neutral face at board size
+  // (both feelings-compass judges). 🤔 (1f914, thinking / head-scratch) is
+  // unmistakably puzzled and distinct from 😲 surprised / 😳 shy / 😟 worried.
+  // This is the picture the New Words drag dock actually renders (wordArtPng →
+  // vocab pack PNG), so the pack mapping — not just the emoji override — must change.
+  confused: '🤔', sick: '🤒', hurt: '🤕', sleepy: '😴',
 
   // actions
   run: '🏃', walk: '🚶', swim: '🏊', dance: '💃', sing: '🎙️',
@@ -126,6 +131,11 @@ const WORDS = {
   // misc
   money: '💰', gift: '🎁', balloon: '🎈', candle: '🕯️', bell: '🔔',
   umbrella: '☂️', basket: '🧺', bag: '👜', box: '📦',
+
+  // library / space / quiet — these had real index.json rows but were missing
+  // from this map, so every pack rebuild deleted their PNGs as "stale". Keep the
+  // producer self-consistent with the pack (mirrors vocabIcons SAFE_EMOJI).
+  planet: '🪐', space: '🌌', story: '📜', shelf: '🗄️', quiet: '🤫',
 };
 
 /** Twemoji filename rule: codepoints joined by '-', FE0F dropped unless ZWJ. */

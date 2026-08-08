@@ -158,6 +158,11 @@
    */
   const EMOJI_OVERRIDES = {
     shy: '😳',
+    // "confused" default 😕 reads as flat/meh (neutral 😐) on the New Words drag
+    // dock — both judges flagged it. 🤔 (thinking / head-scratch) is unmistakably
+    // puzzled and distinct from 😲 surprised / 😳 shy / 😟 worried. Override wins
+    // over the fixture emoji so the match dock and Feelings Lab stay in sync.
+    confused: '🤔',
   };
 
   function emojiFor(word, fallback) {
