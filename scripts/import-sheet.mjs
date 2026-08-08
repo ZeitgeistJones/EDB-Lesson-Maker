@@ -1,0 +1,254 @@
+/**
+ * First-class bulk verb: turn one contact sheet into a folder of staged,
+ * manifest-safe prop cutouts in a single command.
+ *
+ * This wraps scripts/import-prop.mjs (the deterministic keyer, unchanged) so no
+ * agent has to fork it again to do a staged bulk run. It:
+ *   1. Slices + keys every cell of --grid in one browser (import-prop --sheet).
+ *   2. Auto-forces the soft gates and hard-blocks only C1/C6/C7 tiles, listing
+ *      the handful to regenerate (import-prop's SHEET_BLOCKING does this).
+ *   3. Applies --prefix so --names can be bare nouns (sci- + beaker → sci-beaker).
+ *   4. Writes staged PNGs + a <prefix>rows.json (manifest-shape rows with a
+ *      stagedPath) to the output dir — never the live manifest or img dir.
+ *   5. Emits ONE QA composite (light / dark / scene / 96px dock) for the sheet.
+ *
+ * The agent's only remaining jobs are naming, reviewing the one QA sheet, and
+ * eyeballing the flagged tiles — the parts that genuinely need eyes.
+ *
+ *   node scripts/import-sheet.mjs sheet.png --grid=4x4 --prefix=sci- \
+ *     --names=beaker,flask,test-tube,... \
+ *     --roles=tool,tool,tool,... --scales=0.2,0.2,... --anchors=bottom,... \
+ *     --pack=science --stage=tmp/import/science
+ *
+ * Options:
+ *   --grid       RxC of the sheet (required), e.g. --grid=4x4
+ *   --names      bare nouns, one per cell in reading order (required)
+ *   --prefix     theme prefix prepended to every name for the key/filename
+ *   --roles      parallel to --names; short lists fall back per import-prop
+ *   --scales     parallel to --names
+ *   --anchors    parallel to --names
+ *   --pack       theme pack tag recorded on each staged row
+ *   --stage      output dir for staged PNGs + rows.json + QA (default
+ *                tmp/import-sheet/<prefix-or-sheet-name>)
+ *   --stage-all  keep every non-empty tile, even hard-blocked ones, for review
+ *   --no-qa      skip the QA composite
+ *   --threshold --size --margin --white --white-tol   forwarded to the keyer
+ *
+ * Dedup for this shift is a simple read-only manifest key-scan: an existing key
+ * is marked "skip" in rows.json (the tile is still keyed into the scratch dir,
+ * it is just not offered for merge). It does NOT modify the manifest.
+ * TODO(dedup-helper): route new/skip/overlap through the shared propBank.js
+ * resolver so every importer gives identical answers and tag/word overlaps are
+ * caught too — deferred here because propBank.js is owned by another worker.
+ * See tmp/manus-import/pipeline-audit.md item 4.
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { chromium } from 'playwright';
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+function arg(name, fallback) {
+  const hit = process.argv.find((a) => a.startsWith(`--${name}=`));
+  return hit ? hit.slice(name.length + 3) : fallback;
+}
+const flag = (name) => process.argv.includes(`--${name}`);
+const slug = (s) => s.replace(/[^a-z0-9-]+/gi, '-').toLowerCase();
+const csv = (name) =>
+  arg(name, '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+// --- Guard clauses on inputs ------------------------------------------------
+
+const sheetArg = process.argv[2];
+if (!sheetArg || sheetArg.startsWith('--')) {
+  console.error('Pass the sheet PNG as the first argument, e.g. node scripts/import-sheet.mjs sheet.png --grid=4x4 --names=...');
+  process.exit(1);
+}
+const sheetPath = path.resolve(ROOT, sheetArg);
+if (!fs.existsSync(sheetPath)) {
+  console.error(`No sheet at ${sheetPath}`);
+  process.exit(1);
+}
+
+const [rows, cols] = arg('grid', '').split('x').map(Number);
+if (!Number.isInteger(rows) || !Number.isInteger(cols) || rows < 1 || cols < 1) {
+  console.error('--grid must be RxC in whole numbers, e.g. --grid=4x4');
+  process.exit(1);
+}
+const cellCount = rows * cols;
+
+const prefix = arg('prefix', '');
+const bareNames = csv('names');
+if (bareNames.length !== cellCount) {
+  console.error(`--names lists ${bareNames.length} name(s) but --grid=${rows}x${cols} has ${cellCount} cells. Name every cell in reading order.`);
+  process.exit(1);
+}
+// A bare noun gets the prefix; a name already carrying it is left alone so the
+// same --names list works whether or not the caller pre-prefixed it.
+const keys = bareNames.map((n) => slug(prefix && !slug(n).startsWith(slug(prefix)) ? prefix + n : n));
+
+const stageDir = path.resolve(ROOT, arg('stage', path.join('tmp', 'import-sheet', slug(prefix || path.basename(sheetPath, path.extname(sheetPath))).replace(/-$/, ''))));
+const rawDir = path.join(stageDir, 'raw');
+const resultsPath = path.join(stageDir, '_results.json');
+const rowsName = `${slug(prefix || 'sheet').replace(/-$/, '')}-rows.json`;
+const rowsPath = path.join(stageDir, rowsName);
+const qaPath = path.join(stageDir, `${slug(prefix || 'sheet').replace(/-$/, '')}-qa.jpg`);
+
+fs.mkdirSync(stageDir, { recursive: true });
+fs.mkdirSync(rawDir, { recursive: true });
+
+// --- Read-only manifest key-scan for dedup ---------------------------------
+
+const manifestPath = path.join(ROOT, 'public', 'assets', '09_props', 'manifest.json');
+let manifestKeys = new Set();
+try {
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  manifestKeys = new Set(Object.keys(manifest.props || {}));
+} catch (err) {
+  console.log(`Note: could not read manifest for dedup (${err.message}); treating every key as new.`);
+}
+
+// --- Run the real keyer in staging mode ------------------------------------
+
+const importArgs = [
+  path.join('scripts', 'import-prop.mjs'),
+  sheetPath,
+  '--sheet',
+  `--grid=${rows}x${cols}`,
+  '--stage',
+  `--outdir=${stageDir}`,
+  `--rawdir=${rawDir}`,
+  `--results=${resultsPath}`,
+  `--names=${keys.join(',')}`,
+];
+if (flag('stage-all')) importArgs.push('--stage-all');
+for (const pass of ['roles', 'scales', 'anchors', 'pack', 'threshold', 'size', 'margin', 'white-tol']) {
+  const v = arg(pass);
+  if (v != null) importArgs.push(`--${pass}=${v}`);
+}
+if (flag('white')) importArgs.push('--white');
+
+console.log(`Keying ${cellCount} tile(s) from ${path.relative(ROOT, sheetPath)} into ${path.relative(ROOT, stageDir)} (staged, no manifest writes)\n`);
+const run = spawnSync('node', importArgs, { cwd: ROOT, stdio: 'inherit' });
+if (run.status !== 0) {
+  // A non-zero exit here means at least one tile was hard-blocked; that is
+  // expected on a real sheet and not a wrapper failure. Keep going so the
+  // rows.json and QA still reflect what landed.
+  console.log('\n(import-prop exited non-zero — one or more tiles hard-blocked; continuing to build rows + QA.)');
+}
+
+if (!fs.existsSync(resultsPath)) {
+  console.error(`\nNo results at ${resultsPath} — the keyer produced nothing. Check the sheet and grid.`);
+  process.exit(1);
+}
+const results = JSON.parse(fs.readFileSync(resultsPath, 'utf8'));
+
+// --- Build rows.json + a plain-language summary ----------------------------
+
+const rowsOut = [];
+const cleanKeyed = [];
+const softForced = [];
+const hardBlocked = [];
+const dedupSkips = [];
+
+for (const r of results) {
+  const dedup = manifestKeys.has(r.name) ? 'skip' : 'new';
+  if (dedup === 'skip') dedupSkips.push(r.name);
+
+  const entry = {
+    key: r.name,
+    dedup,
+    blocked: !r.landed,
+    forced: !!r.forced,
+    reason: r.reason || null,
+    stagedPath: r.dest || null,
+    gates: r.gates || [],
+    failed: r.failed || [],
+    row: r.landed ? r.row : null,
+  };
+  rowsOut.push(entry);
+
+  if (!r.landed) {
+    hardBlocked.push(`${r.name} (${r.reason || 'blocked'})`);
+    continue;
+  }
+  const softIds = (r.failed || []).filter((g) => !['C1', 'C6', 'C7'].includes(g));
+  if (softIds.length) softForced.push(`${r.name} [${softIds.join(',')}]`);
+  else cleanKeyed.push(r.name);
+}
+
+fs.writeFileSync(rowsPath, JSON.stringify(rowsOut, null, 2));
+
+console.log(`\n=== import-sheet summary ===`);
+console.log(`Staged dir : ${path.relative(ROOT, stageDir)}`);
+console.log(`Rows file  : ${path.relative(ROOT, rowsPath)}  (${rowsOut.filter((e) => e.row).length} merge-ready row(s))`);
+console.log(`Clean auto-keyed (${cleanKeyed.length}): ${cleanKeyed.join(', ') || '—'}`);
+console.log(`Soft-forced, look but kept (${softForced.length}): ${softForced.join(', ') || '—'}`);
+console.log(`HARD-BLOCKED, regenerate these (${hardBlocked.length}): ${hardBlocked.join(', ') || '—'}`);
+console.log(`Dedup skips, key already in manifest (${dedupSkips.length}): ${dedupSkips.join(', ') || '—'}`);
+
+// --- One QA composite for the whole sheet ----------------------------------
+
+if (flag('no-qa')) {
+  console.log(`\nQA skipped (--no-qa). Staged PNGs are in ${path.relative(ROOT, stageDir)}.`);
+  process.exit(0);
+}
+
+const pngs = fs
+  .readdirSync(stageDir)
+  .filter((f) => f.toLowerCase().endsWith('.png'))
+  .sort();
+if (!pngs.length) {
+  console.log(`\nNo staged PNGs to QA (every tile was blocked). Skipping composite.`);
+  process.exit(0);
+}
+
+const cells = pngs.map((f) => ({
+  name: f.replace(/\.png$/i, ''),
+  url: `data:image/png;base64,${fs.readFileSync(path.join(stageDir, f)).toString('base64')}`,
+}));
+
+// Same four surfaces qa-props uses — light flat, dark flat, a scene tint, and a
+// true 96px dock chip — so rims, vanish, baked text and mush are all visible in
+// one pass. Self-contained (no manifest read) because staged PNGs are not
+// registered yet.
+const html = `<!doctype html><html><head><meta charset="utf8"><style>
+  body{margin:0;font:13px/1.3 system-ui;background:#111;color:#eee}
+  .row{display:flex;align-items:center;border-bottom:1px solid #000}
+  .name{width:210px;padding:8px;font-weight:600}
+  .bg{width:190px;height:190px;display:flex;align-items:center;justify-content:center}
+  .light{background:#f4f1ea}.dark{background:#12202e}
+  .scene{background:linear-gradient(#bfe3f5 58%,#cdeec9 58%)}
+  .dock{width:120px;height:120px;background:#e9e9e9;display:flex;align-items:center;justify-content:center}
+  img.full{max-width:172px;max-height:172px}
+  img.chip{width:96px;height:96px;object-fit:contain}
+</style></head><body>
+${cells
+  .map(
+    (c) => `<div class="row">
+  <div class="name">${c.name}</div>
+  <div class="bg light"><img class="full" src="${c.url}"></div>
+  <div class="bg dark"><img class="full" src="${c.url}"></div>
+  <div class="bg scene"><img class="full" src="${c.url}"></div>
+  <div class="dock"><img class="chip" src="${c.url}"></div>
+</div>`
+  )
+  .join('\n')}
+</body></html>`;
+
+const browser = await chromium.launch();
+try {
+  const page = await browser.newPage({ viewport: { width: 700, height: Math.max(200, cells.length * 191 + 4) } });
+  await page.setContent(html, { waitUntil: 'networkidle' });
+  await page.screenshot({ path: qaPath, type: 'jpeg', quality: 90, fullPage: true });
+} finally {
+  await browser.close();
+}
+
+console.log(`\nQA composite: ${path.relative(ROOT, qaPath)} (${cells.length} tile(s))`);
+console.log('Look for: dark rim on the light flat, prop vanishing on the dark flat, mush at dock size.');

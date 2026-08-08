@@ -72,6 +72,18 @@
  *   --size         long edge of the output PNG (default 512)
  *   --margin       share of the output left empty on each side (default 0.08)
  *   --force        write the PNG even when a gate fails
+ *   --outdir       write cutout PNGs here instead of the live prop img dir, so
+ *                  a staged bulk run never touches shipped art
+ *   --rawdir       bank the source raw here instead of assets-inbox/raw
+ *   --stage        staging run: write PNGs (honouring --outdir) but never the
+ *                  live manifest; pair with --sheet + --results for bulk import
+ *   --stage-all    like --stage but also force past the hard gates, keeping
+ *                  every non-empty panel so even flagged tiles can be eyeballed
+ *   --results      dump a per-panel JSON report (gates, forced, staged path)
+ *
+ * On a --sheet, only C1/C6/C7 block a tile (dirty field / interior holes). The
+ * framing gates C2-C4 are fixed by the re-pad, and C5/C8 misfire on thin/small
+ * props, so they are auto-forced and reported per tile but never block or drop.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -80,14 +92,17 @@ import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const OUT_DIR = path.join(ROOT, 'public', 'assets', '09_props', 'img');
-const AUDIT_DIR = path.join(ROOT, 'assets-inbox', 'raw');
 
 function arg(name, fallback) {
   const hit = process.argv.find((a) => a.startsWith(`--${name}=`));
   return hit ? hit.slice(name.length + 3) : fallback;
 }
 const flag = (name) => process.argv.includes(`--${name}`);
+
+// Output dirs default to the live prop pack, but --outdir / --rawdir redirect
+// them to a scratch folder so a staged bulk run writes nothing into shipped art.
+const OUT_DIR = path.resolve(ROOT, arg('outdir', path.join('public', 'assets', '09_props', 'img')));
+const AUDIT_DIR = path.resolve(ROOT, arg('rawdir', path.join('assets-inbox', 'raw')));
 
 /**
  * Where the image tool drops its output: the per-project folder under the
@@ -807,6 +822,14 @@ const MIN_DOCK_SRC = 120;
 // cutout get to block a conversion. The framing numbers are still reported.
 const CONVERT_BLOCKING = new Set(['C1', 'C6', 'C7']);
 
+// A contact sheet keyed in bulk is fresh generation, but the re-pad-to-margin
+// step normalizes the output frame no matter how the source cell was composed,
+// so C2-C4 (framing) are settled by the pipeline itself, and C5/C8 are
+// measurement artifacts on thin/small props. Only a dirty field or a
+// hole-punching near-black interior (C1/C6, and C7 which rides with C1) predicts
+// a bad cutout — so a sheet tile blocks on exactly the same set a convert does.
+const SHEET_BLOCKING = new Set(['C1', 'C6', 'C7']);
+
 const rel = (p) => path.relative(ROOT, p);
 const rawPath = (name) => path.join(AUDIT_DIR, `${name}-raw.png`);
 
@@ -869,6 +892,11 @@ const ANCHORS = ['bottom', 'top', 'center'];
 async function main() {
   const convert = flag('convert');
   const sheet = flag('sheet');
+  // Staging run: write cutouts (to --outdir if given) but never the live
+  // manifest. --stage-all additionally forces past the hard gates so every
+  // non-empty panel lands for eyeballing.
+  const stageAll = flag('stage-all');
+  const stage = flag('stage') || stageAll;
   const opts = {
     threshold: Number(arg('threshold', '24')),
     size: Number(arg('size', '512')),
@@ -971,6 +999,7 @@ async function main() {
   const page = await browser.newPage();
   let converted = 0;
   const sheetRows = [];
+  const stageResults = [];
   try {
     // Found once for the whole sheet, so nine panels cost one scan.
     const rects = grid ? await panelRects(page, jobs[0].src, grid.rows, grid.cols, opts.threshold) : null;
@@ -989,7 +1018,10 @@ async function main() {
           break;
         }
         console.log(`SKIP  ${job.name} — nothing above the black threshold`);
-        if (sheet) process.exitCode = 1;
+        if (sheet) {
+          stageResults.push({ name: job.name, cell: [job.row, job.col], landed: false, reason: 'empty panel', gates: [] });
+          process.exitCode = 1;
+        }
         skipped++;
         continue;
       }
@@ -1042,11 +1074,26 @@ async function main() {
         );
       }
 
-      // In white mode the framing gates (C2-C4) report but do not block, the
-      // same way --convert only lets the dirty-cutout gates stop a write; for
-      // the black field every failed gate still blocks exactly as before.
-      const blockingFailed = opts.white ? failed.filter((g) => WHITE_BLOCKING.has(g.id)) : failed;
-      if (blockingFailed.length && !flag('force')) {
+      // Which failures actually block a write. White mode blocks only the
+      // dirty-cutout gates; a sheet blocks on {C1,C6,C7} and auto-forces the
+      // rest; a single fresh prop still blocks on every failed gate, exactly as
+      // before.
+      const blockingFailed = opts.white
+        ? failed.filter((g) => WHITE_BLOCKING.has(g.id))
+        : sheet
+        ? failed.filter((g) => SHEET_BLOCKING.has(g.id))
+        : failed;
+
+      // On a sheet, surface the soft gates that were auto-forced so the agent
+      // still sees them, but they neither block nor drop the tile.
+      if (sheet) {
+        const softForced = failed.filter((g) => !blockingFailed.includes(g));
+        if (softForced.length) {
+          console.log(`  [soft-forced: ${softForced.map((g) => `${g.id} ${g.got}`).join(', ')}]`);
+        }
+      }
+
+      if (blockingFailed.length && !flag('force') && !stageAll) {
         const soft = failed.filter((g) => !blockingFailed.includes(g)).map((g) => g.id);
         console.log(
           `\n${blockingFailed.length} gate(s) failed. Regenerate this prop with a targeted correction, ` +
@@ -1057,6 +1104,14 @@ async function main() {
         // One bad panel should not cost the other eight; the run reports at the
         // end which ones landed.
         if (sheet) {
+          stageResults.push({
+            name: job.name,
+            cell: [job.row, job.col],
+            landed: false,
+            reason: blockingFailed.map((g) => `${g.id} ${g.got}`).join('; '),
+            gates: gates.map((g) => ({ id: g.id, ok: g.ok, got: g.got })),
+            failed: failed.map((g) => g.id),
+          });
           skipped++;
           continue;
         }
@@ -1092,7 +1147,7 @@ async function main() {
       if (job.relativeScale == null) {
         console.log('  NOTE no --scale given — relativeScale is a placeholder 0.5, set it deliberately');
       }
-      if (flag('write')) {
+      if (flag('write') && !stage) {
         manifest.props[job.name] = row;
         const ordered = {};
         for (const k of Object.keys(manifest.props).sort()) ordered[k] = manifest.props[k];
@@ -1102,6 +1157,16 @@ async function main() {
       }
       if (sheet) {
         sheetRows.push(entryLine(job.name, row));
+        stageResults.push({
+          name: job.name,
+          cell: [job.row, job.col],
+          landed: true,
+          forced: blockingFailed.length > 0,
+          gates: gates.map((g) => ({ id: g.id, ok: g.ok, got: g.got })),
+          failed: failed.map((g) => g.id),
+          dest: path.relative(ROOT, job.dest).replace(/\\/g, '/'),
+          row,
+        });
         continue;
       }
       if (!flag('write')) {
@@ -1119,11 +1184,19 @@ async function main() {
   if (convert) console.log(`\n${converted} converted, ${skipped} skipped.`);
   if (sheet) {
     console.log(`\n${sheetRows.length} panel(s) written, ${skipped} skipped.`);
-    if (sheetRows.length) {
+    if (sheetRows.length && !stage) {
       console.log('\nPaste into public/assets/09_props/manifest.json under "props":\n');
       console.log(`${sheetRows.join(',\n')},`);
       console.log('\nThen: npm run assets:prop-qa   (see them on light and dark boards)');
     }
+  }
+
+  // A staged bulk run leaves a machine-readable record so a wrapper (or a later
+  // merge step) can build rows / QA without re-parsing stdout.
+  const resultsPath = arg('results');
+  if (resultsPath) {
+    fs.writeFileSync(path.resolve(ROOT, resultsPath), JSON.stringify(stageResults, null, 2));
+    console.log(`\nWrote per-panel results to ${rel(path.resolve(ROOT, resultsPath))}`);
   }
 }
 
