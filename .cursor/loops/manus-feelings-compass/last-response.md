@@ -87,3 +87,27 @@
 
 ## known-false / gated (did NOT re-litigate)
 - Frame OCR (shv/mv), navy wrap S32 — Manus did not re-raise as blocking (weakest_link touched palette register as the anti-inflation nag, not a hard fail)
+
+---
+
+# NEW-BAR RUN — pass 2 — [WTF5sfEP](https://manus.im/app/WTF5sfEP5agaojUcTS8Usu)
+
+- **When:** 2026-08-08 (manusloop ×2 under new bar, pass 2 — rebake after char-lock fold)
+- **Verdict:** pass · **Score:** 99 · scorecard overall 4.96 (edb 5, classin 5, completeness 5, pedagogy 5, ppt 4.8)
+- **blocking_issues:** [] · **gate_holes:** [] · **method_feedback:** none
+
+## CHARACTER-LOCK verified (primary focus) — HOLDS ✓
+- just_fixed_results: "StoryArt CHARACTER-LOCK (Mia consistent across S5-S7) | S5-S7 Mia identity continuity | HOLDS"
+- classin_fit strength: "StoryArt CHARACTER-LOCK maintains Mia as a single visual reference across S5–S7"
+- The pass-1 producer fold was externally validated: character drift finding CLEARED.
+
+## NEW-BAR directives — pass 2
+- **weakest_link:** "Wrap Up (Page 11) | Update the palette to match the primary deck" → RE-RAISES navy wrap (S32 intentional). This is the anti-inflation directive landing on the one KNOWN-intentional element again.
+- **escalation_homework:** "Add a Debates/Evaluation slide type (two-round task) for B2+: students defend/critique a position using target vocabulary, with teacher-provided sentence frames + peer checks; producer may ACCEPT or DECLINE." (escalated: harder CEFR + new page type)
+
+## next_actions — triaged
+- Priority 1 (Blocking): Align Wrap Up palette → DECLINE (S32 intentional navy bookend; wrap B3 already rejected). Division-of-labor miss: Manus escalated a KNOWN item to Blocking.
+- Priority 2 (High): Face Lab breathing room / legibility "Page 11" → mislabel (Face Lab = p10 activity); breathing-room/legibility is a gated mechanical class → not folded.
+
+## Producer fold (pass 2)
+- No lesson recolor (respect S32). Durable BRIEF tightening in review-schema.mjs: KNOWN human-declared-intentional items may NOT be escalated into blocking_issues or Blocking/High next_actions; at most named in weakest_link tagged [known-intentional]; prefer a non-gated improvable item for weakest_link when one exists. Extends division-of-labor (directive #1) to human-declared design decisions, so the anti-inflation nag stops re-litigating settled calls.

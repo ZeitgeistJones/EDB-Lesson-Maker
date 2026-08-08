@@ -190,7 +190,7 @@ export function buildReviewBrief(meta = {}) {
     gates.length
       ? `   Locally gated this pass (do not re-report unless a listed check demonstrably lied → then use gate_holes): ${gates.join(' · ')}`
       : '   (No LOCAL CHECKS supplied this pass — still assume routine mechanical/rendering issues are gated locally.)',
-    '2) ANTI-INFLATION — ALWAYS name the single weakest page + one required improvement in weakest_link, EVEN on a pass. Do NOT award a perfect / near-perfect score without naming a weakest link.',
+    '2) ANTI-INFLATION — ALWAYS name the single weakest page + one required improvement in weakest_link, EVEN on a pass. Do NOT award a perfect / near-perfect score without naming a weakest link. BUT do not let anti-inflation re-litigate settled calls: items in KNOWN below are human-declared intentional — you may NOT escalate a KNOWN item into blocking_issues or a Blocking/High next_action. Prefer a genuinely improvable NON-gated, NON-known item for weakest_link; only fall back to a KNOWN item when nothing else is improvable, and then prefix it "[known-intentional]".',
     '3) ESCALATING HOMEWORK — propose exactly ONE escalating generalization challenge in escalation_homework as a buildable spec that stresses the PRODUCER (a new topic, a new page type, a harder CEFR level, or a multi-round activity). Escalate relative to what has already passed. Phrase it so the human can accept or decline — this is a proposal the human triages, not an auto-build.',
     listBlock('KNOWN open issues (do not re-litigate unless worse)', known),
     listBlock('JUST FIXED this pass (verify each → just_fixed_results HOLDS/FAIL; method_feedback if FAIL)', fixed),
