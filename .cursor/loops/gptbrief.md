@@ -36,13 +36,26 @@ trip. Do not soften or drop any line.
 >   paper, no gradient, no vignette, no per-cell frame or gutter line.
 > - Exactly ONE object per tile. Nothing else in the tile, not even a small
 >   companion item. Nothing crosses a tile/cell border.
-> - Flat matte vector illustration. NO gloss, NO 3D product render, NO
->   photoreal, NO heavy black outline, NO drop shadow, NO cast shadow.
+> - Flat matte vector illustration, POSITIVELY anchored as: "flat 2-tone vector,
+>   Material Design icon style, orthographic front view" — two flat colour values
+>   per surface (a base tone + one darker shade), hard colour boundaries, no
+>   blending. (Positive style anchoring pulls harder than a list of don'ts.)
+>   Still forbid: NO gloss, NO 3D product render, NO photoreal, NO heavy black
+>   outline, NO drop shadow, NO cast shadow.
 > - Centred, with an even margin (~8% each side); the whole object inside its
 >   tile including thin parts (handles, straps, wheels, tails, antennae).
 > - ZERO text: no letters, numbers, labels, cell titles, captions, watermarks,
->   or brand logos anywhere on the sheet or on any object.
-> - One consistent, soft, muted palette across the whole set (one coherent kit).
+>   or brand/company logos — and NO real brand marks (no Mastercard / Apple /
+>   Nike-type marks) anywhere on the sheet or on any object.
+> - Consistent STYLE across the set — same line weight, shading approach and
+>   lighting — but EACH object keeps its OWN natural, distinct colours (a banana
+>   is yellow, an apple red). Do NOT force the whole sheet into a single palette:
+>   "two flat values per surface" applies PER OBJECT, not per sheet. (Forcing one
+>   palette turned a whole transport sheet mono-gold.)
+> - No near-black or pure-white as an object's MAIN body colour — it vanishes on
+>   the black field or blows out on white boards. Give dark/white subjects a
+>   coloured or medium-grey body (a "black" cat → dark grey; a "white" ghost →
+>   pale blue). Near-black interiors also trip the importer's C6 hole gate.
 > - Vehicles / wheeled objects: draw the wheels AND undercarriage as MEDIUM
 >   GREY, one connected solid base, never near-black (near-black wheels key out
 >   and split the base — the importer's C5 gate then rejects it).
@@ -50,6 +63,9 @@ trip. Do not soften or drop any line.
 >   emoji basics. No abstract glyphs, no icon-of-an-idea.
 > - Export at MAX resolution. Target a sheet ≥2048px on its long side so each of
 >   16 tiles is ≥512px after slicing. Bigger is always better; never downscale.
+> - Don't hyperfixate. If a tile won't come out clean after a try or two, SKIP it
+>   and keep the rest — a 14/16 sheet is fine. Don't loop perfecting stubborn
+>   tiles; the missing few can be topped up in-house or on the next sheet.
 
 ### Variant A — single object
 
@@ -102,6 +118,26 @@ pack), route it to Manus with the same hard rules and let it iterate on failing
 tiles, rather than paying a human round trip per sheet in ChatGPT. Still eyeball
 the returned tiles as teacher + student — Manus's self-check catches geometry,
 not style drift or faint micro-text.
+
+Validated Run-5 findings (fold these into the Manus instructions):
+
+- **Batch cap is HARD at 5 images per `generate_image` call.** There is no
+  workaround — don't ask Manus for more per call. Plan sheets around this (one
+  4×4 sheet is one image; multiple sheets = multiple calls).
+- **Single-call grid vision check.** Send the WHOLE sliced sheet in ONE vision
+  request and have Manus return JSON of only the failing cells by grid index
+  (e.g. `{"fails":[3,11]}`) — not a per-tile call. This is ~16× cheaper than
+  checking each tile separately and is confirmed working.
+- **Division of labor — the importer is the real backstop.** Our
+  `assets:import-sheet` (gates C1/C6/C7) already enforces background purity,
+  holes, and margins. So Manus's vision check should NARROW to only what keying
+  can't catch: multi-object tiles, brand/IP logos, and gross 3D gloss. Don't have
+  Manus re-check background purity or margins — the importer does that harder.
+- **Model tier: `default` quality is enough** for flat-vector art. The PROMPT is
+  the stronger lever, not the model — don't pay for a pro tier.
+- **Success metric = "tiles that survive our importer,"** not "tiles that pass
+  Manus's own vision check." Judge a Manus run by how many cleanly key through
+  `assets:import-sheet`, not by Manus's self-reported pass rate.
 
 ## Policy
 
