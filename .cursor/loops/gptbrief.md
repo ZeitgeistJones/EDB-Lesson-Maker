@@ -248,6 +248,10 @@ Validated Run-6 findings (first real 10× 4×8 batch — fold these in):
 - **Right-size the theme to the grid:** rich themes (flowers, construction,
   cleaning, baby, emergency) easily fill 32; thin ones (holidays, clock) should
   run as 4×4/16 to avoid padding.
+- **Manus 4×8 sheets bloom at the frame/gutters** (bright contamination in the
+  outer ~24px band hard-blocks ~half a sheet on C1) — `assets:import-sheet` now
+  auto-cleans that gutter band before slicing (default on; `--no-edge-clean` /
+  `--edge-inset` to override), so no manual pre-clean pass is needed.
 
 ## Policy
 

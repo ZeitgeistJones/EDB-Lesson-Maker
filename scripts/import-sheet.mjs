@@ -32,7 +32,17 @@
  *                tmp/import-sheet/<prefix-or-sheet-name>)
  *   --stage-all  keep every non-empty tile, even hard-blocked ones, for review
  *   --no-qa      skip the QA composite
+ *   --no-edge-clean  skip the gutter-cuff pre-clean (key the raw sheet as-is)
+ *   --edge-inset paint band width in px for the pre-clean (default 24)
  *   --threshold --size --margin --white --white-tol   forwarded to the keyer
+ *
+ * Manus 4x8 sheets bloom bright pixels into the outer frame and the inter-tile
+ * gutters while the composed props sit safely inside each cell. That bloom is a
+ * dirty field that hard-blocks C1 on roughly half a sheet, so before slicing we
+ * paint pure black (#000000) over the outer frame band and the gutters at the
+ * grid pitch — killing the contamination without touching object bodies. This
+ * is on by default; --no-edge-clean keys the raw sheet, --edge-inset sets the
+ * band width. Folded in from tmp/manus-import/batch-run6/_src/clean-sheet.ps1.
  *
  * Dedup for this shift is a simple read-only manifest key-scan: an existing key
  * is marked "skip" in rows.json (the tile is still keyed into the scratch dir,
@@ -113,11 +123,74 @@ try {
   console.log(`Note: could not read manifest for dedup (${err.message}); treating every key as new.`);
 }
 
+// --- Gutter-cuff pre-clean --------------------------------------------------
+// Paint pure black over the outer frame band + the inter-tile gutters so the
+// keyer sees a clean black field per cell. On by default; --no-edge-clean keys
+// the raw sheet, --edge-inset sets the band width. The gutters are painted at
+// the grid pitch (2*inset wide, centred on each cut line) so props inside a
+// cell are never touched — only the contaminated border/gutter band is.
+async function preCleanSheet(srcPath, gr, gc, inset) {
+  const dataUrl = `data:image/png;base64,${fs.readFileSync(srcPath).toString('base64')}`;
+  const browser = await chromium.launch();
+  try {
+    const page = await browser.newPage();
+    const b64 = await page.evaluate(
+      async ({ url, gr, gc, inset }) => {
+        const img = new Image();
+        img.src = url;
+        await img.decode();
+        const W = img.width;
+        const H = img.height;
+        const c = document.createElement('canvas');
+        c.width = W;
+        c.height = H;
+        const ctx = c.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        ctx.fillStyle = '#000000';
+        // Outer frame band.
+        ctx.fillRect(0, 0, W, inset);
+        ctx.fillRect(0, H - inset, W, inset);
+        ctx.fillRect(0, 0, inset, H);
+        ctx.fillRect(W - inset, 0, inset, H);
+        // Internal gutters at the grid pitch.
+        const cw = W / gc;
+        const ch = H / gr;
+        for (let cx = 1; cx < gc; cx++) {
+          const x = Math.round(cx * cw);
+          ctx.fillRect(x - inset, 0, 2 * inset, H);
+        }
+        for (let ry = 1; ry < gr; ry++) {
+          const y = Math.round(ry * ch);
+          ctx.fillRect(0, y - inset, W, 2 * inset);
+        }
+        return c.toDataURL('image/png').split(',')[1];
+      },
+      { url: dataUrl, gr, gc, inset }
+    );
+    const cleanedPath = path.join(stageDir, `_edge-clean-${path.basename(srcPath)}`);
+    fs.writeFileSync(cleanedPath, Buffer.from(b64, 'base64'));
+    return cleanedPath;
+  } finally {
+    await browser.close();
+  }
+}
+
+const edgeClean = !flag('no-edge-clean');
+const edgeInset = Math.max(0, Math.round(Number(arg('edge-inset', '24'))));
+let keySheetPath = sheetPath;
+if (edgeClean && edgeInset > 0) {
+  console.log(`Pre-cleaning gutter/frame band (${edgeInset}px cuff) before slicing...`);
+  keySheetPath = await preCleanSheet(sheetPath, rows, cols, edgeInset);
+  console.log(`Cleaned sheet written to ${path.relative(ROOT, keySheetPath)}\n`);
+} else {
+  console.log('Edge-clean disabled (--no-edge-clean) — keying the raw sheet.\n');
+}
+
 // --- Run the real keyer in staging mode ------------------------------------
 
 const importArgs = [
   path.join('scripts', 'import-prop.mjs'),
-  sheetPath,
+  keySheetPath,
   '--sheet',
   `--grid=${rows}x${cols}`,
   '--stage',
