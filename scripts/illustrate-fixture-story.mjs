@@ -74,16 +74,31 @@ const cacheKey = handler.cacheKeyFor(lesson.title || 'Story', level, pages);
 const existing = !force ? handler.loadCachedResult(cacheKey) : null;
 if (existing) {
   const hits = existing.pages.filter((p) => p.dataUrl).length;
+  const total = existing.pages.length || pages.length;
+  if (hits >= total && hits > 0) {
+    console.log(JSON.stringify({
+      ok: true,
+      cacheHit: true,
+      complete: true,
+      cacheKey,
+      hits,
+      total,
+      title: lesson.title,
+      fixture: fixturePath,
+    }, null, 2));
+    process.exit(0);
+  }
+  // Partial cache: fall through so the API fills only missing pages.
   console.log(JSON.stringify({
     ok: true,
     cacheHit: true,
+    complete: false,
+    fillingMissing: true,
     cacheKey,
     hits,
-    total: existing.pages.length,
+    total,
     title: lesson.title,
-    fixture: fixturePath,
   }, null, 2));
-  process.exit(hits ? 0 : 1);
 }
 
 const res = mockRes();
@@ -95,6 +110,7 @@ await handler(
       level,
       pages,
       force,
+      fillMissing: true,
     },
   },
   res

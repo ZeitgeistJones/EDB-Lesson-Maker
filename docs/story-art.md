@@ -30,7 +30,7 @@ Optional:
 
 1. Lesson JSON returns immediately (unchanged `/api/generate-lesson`).
 2. Preview kicks off `POST /api/generate-story-art` in the background.
-3. Caches: in-memory + `sessionStorage` (client) and `tmp/story-art-cache/` (server). Same lesson fingerprint skips re-billing.
+3. Caches: in-memory + `sessionStorage` (client) and `tmp/story-art-cache/` (server). Same lesson fingerprint skips re-billing. Partial cache hits **fill only missing pages** (no re-bill of good pages); one short retry on Gemini “high demand” spikes.
 4. `LessonPages.applyStoryArt` fills `[data-story-art]` slots (solo = top banner; multi-page = side panel) and sets `data-story-art-gen=1`.
 5. Board / preview PDF / PNG downloads rasterize whatever is in the DOM — art is baked if ready, otherwise quiet flats + PropBank.
 

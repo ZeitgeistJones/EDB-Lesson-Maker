@@ -229,27 +229,40 @@ function firstInlineImage(data) {
   return null;
 }
 
+function isTransientImageError(reason) {
+  return /high demand|temporar|rate limit|429|unavailable|try again later/i.test(String(reason || ''));
+}
+
 async function generateImage(parts, aspectRatio) {
-  const { resp, data } = await geminiJson(
-    IMAGE_MODEL,
-    {
-      contents: [{ role: 'user', parts }],
-      generationConfig: {
-        responseModalities: ['TEXT', 'IMAGE'],
-        imageConfig: { aspectRatio: aspectRatio || '4:3', imageSize: '1K' },
+  async function once() {
+    const { resp, data } = await geminiJson(
+      IMAGE_MODEL,
+      {
+        contents: [{ role: 'user', parts }],
+        generationConfig: {
+          responseModalities: ['TEXT', 'IMAGE'],
+          imageConfig: { aspectRatio: aspectRatio || '4:3', imageSize: '1K' },
+        },
       },
-    },
-    PER_IMAGE_MS
-  );
-  if (!resp.ok) {
-    return { ok: false, reason: data?.error?.message || `image HTTP ${resp.status}` };
+      PER_IMAGE_MS
+    );
+    if (!resp.ok) {
+      return { ok: false, reason: data?.error?.message || `image HTTP ${resp.status}` };
+    }
+    const img = firstInlineImage(data);
+    if (!img) {
+      const block = data?.promptFeedback?.blockReason;
+      return { ok: false, reason: block ? `blocked:${block}` : 'no image in response' };
+    }
+    return { ok: true, ...img };
   }
-  const img = firstInlineImage(data);
-  if (!img) {
-    const block = data?.promptFeedback?.blockReason;
-    return { ok: false, reason: block ? `blocked:${block}` : 'no image in response' };
+  let result = await once();
+  // One short retry on Gemini capacity spikes (common on flash-image).
+  if (!result.ok && isTransientImageError(result.reason)) {
+    await new Promise((r) => setTimeout(r, 2500));
+    result = await once();
   }
-  return { ok: true, ...img };
+  return result;
 }
 
 async function hasLegibleText(img) {
@@ -362,61 +375,93 @@ async function handler(req, res) {
   }
 
   const force = !!(body.force || body.nocache);
+  const fillMissing = body.fillMissing !== false && body.fill !== false;
   const cacheKey = cacheKeyFor(title, level, pagesIn);
+  let prior = null;
   if (!force) {
-    const hit = loadCachedResult(cacheKey);
-    if (hit) {
-      return res.json(hit);
+    prior = loadCachedResult(cacheKey);
+    if (prior) {
+      const byIndex = new Map((prior.pages || []).map((p) => [Number(p.index) || 0, p]));
+      const missing = pagesIn.filter((p, i) => {
+        const index = Number.isFinite(Number(p.index)) ? Number(p.index) : i;
+        const hit = byIndex.get(index);
+        return !(hit && hit.dataUrl);
+      });
+      if (!missing.length || !fillMissing) {
+        return res.json(prior);
+      }
+      // Fall through: regenerate only missing pages; keep prior hits.
+      prior._missingIndexes = new Set(missing.map((p, i) => (
+        Number.isFinite(Number(p.index)) ? Number(p.index) : i
+      )));
     }
   }
 
   const multi = pagesIn.length > 1;
   const aspect = multi ? '3:4' : '16:9';
+  const filling = !!(prior && prior._missingIndexes && prior._missingIndexes.size);
 
   try {
     // One story page: skip the paid style-reference image — nothing to lock across pages.
-    // Prompt-only style keeps the look; saves ~1 image (+ possible text-gate retry).
+    // Fill-missing reuses cached styleRef when present (no re-bill).
     let styleRef = null;
-    if (multi) {
+    if (filling && prior.styleRef) {
+      const parts = dataUrlToParts(prior.styleRef);
+      if (parts) styleRef = parts;
+    }
+    const missingCount = filling && prior._missingIndexes ? prior._missingIndexes.size : 0;
+    // New style sheet: full multi-page runs, or fill-missing ≥2 pages with no cached style.
+    const wantNewStyle = multi && !styleRef && (!filling || missingCount >= 2);
+    if (wantNewStyle) {
       const styleRes = await generateImage(
         [{ text: stylePrompt(title, level) }],
         '1:1'
       );
       if (!styleRes.ok) {
-        return res.status(502).json({
-          error: `Style reference failed: ${styleRes.reason}`,
-          cacheKey,
-          pages: pagesIn.map((p) => ({
-            index: Number(p.index) || 0,
-            dataUrl: null,
-            reason: 'style-failed',
-          })),
-        });
-      }
-
-      const styleCheck = await hasLegibleText(styleRes);
-      styleRef = styleRes;
-      if (styleCheck.reject) {
-        // Retry style once without accepting texty sheet
-        const retry = await generateImage(
-          [{ text: stylePrompt(title, level) + '\nReminder: ZERO text or letters. No color labels, no alphabet samples.' }],
-          '1:1'
-        );
-        if (retry.ok) {
-          const retryCheck = await hasLegibleText(retry);
-          if (!retryCheck.reject) styleRef = retry;
-          else styleRef = null;
+        if (filling) {
+          styleRef = null; // prompt-only fill beats failing the whole lesson
         } else {
-          styleRef = null;
+          return res.status(502).json({
+            error: `Style reference failed: ${styleRes.reason}`,
+            cacheKey,
+            pages: pagesIn.map((p) => ({
+              index: Number(p.index) || 0,
+              dataUrl: null,
+              reason: 'style-failed',
+            })),
+          });
+        }
+      } else {
+        const styleCheck = await hasLegibleText(styleRes);
+        styleRef = styleRes;
+        if (styleCheck.reject) {
+          const retry = await generateImage(
+            [{ text: stylePrompt(title, level) + '\nReminder: ZERO text or letters. No color labels, no alphabet samples.' }],
+            '1:1'
+          );
+          if (retry.ok) {
+            const retryCheck = await hasLegibleText(retry);
+            if (!retryCheck.reject) styleRef = retry;
+            else styleRef = null;
+          } else {
+            styleRef = null;
+          }
         }
       }
     }
 
     // If style lock failed the text gate, still try page arts with prompt-only
     // style (better than blanking the whole lesson).
+    const priorByIndex = new Map(((prior && prior.pages) || []).map((p) => [Number(p.index) || 0, p]));
+    const missingSet = (prior && prior._missingIndexes) || null;
     const outPages = [];
     for (const page of pagesIn) {
       const index = Number.isFinite(Number(page.index)) ? Number(page.index) : outPages.length;
+      if (missingSet && !missingSet.has(index)) {
+        const keep = priorByIndex.get(index);
+        outPages.push(keep || { index, dataUrl: null, reason: 'cache-keep-miss' });
+        continue;
+      }
       try {
         const gen = await generatePageArt(page, title, level, styleRef, aspect);
         if (!gen.ok) {
@@ -434,12 +479,16 @@ async function handler(req, res) {
       }
     }
 
+    const styleRefDataUrl = styleRef
+      ? (styleRef.dataUrl || `data:${styleRef.mime};base64,${styleRef.base64}`)
+      : ((prior && prior.styleRef) || null);
     const payload = {
       model: IMAGE_MODEL,
-      styleRef: styleRef ? styleRef.dataUrl : null,
+      styleRef: styleRefDataUrl,
       pages: outPages,
       cacheKey,
-      cacheHit: false,
+      cacheHit: filling,
+      filledMissing: filling,
     };
     writeCachedResult(cacheKey, payload);
     return res.json(payload);
