@@ -112,6 +112,8 @@
     "weighing-scale": "sci-scale",
     "hole-punch": "office-hole-puncher",
     "hole-puncher": "office-hole-puncher",
-    "holepuncher": "office-hole-puncher"
+    "holepuncher": "office-hole-puncher",
+    "power-bank": "tech-power-bank",
+    "powerbank": "tech-power-bank"
   }
 }
