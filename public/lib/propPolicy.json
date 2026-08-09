@@ -92,7 +92,6 @@
     "clinic": true,
     "student": true,
     "teammate": true,
-    "stadium": true,
     "homework": true,
     "goal": true,
     "goals": true
@@ -100,6 +99,8 @@
   "aliases": {
     "patient": "dental-kid-open-mouth",
     "grape": "food-grapes",
-    "grapes": "food-grapes"
+    "grapes": "food-grapes",
+    "stadium": "city-stadium",
+    "coffee": "cafe-coffee-cup"
   }
 }

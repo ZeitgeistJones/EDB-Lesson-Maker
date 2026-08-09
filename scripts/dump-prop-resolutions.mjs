@@ -67,13 +67,16 @@ const CASES = [
   { topic: 'beach', words: ['towel', 'umbrella', 'shell', 'ball', 'sunscreen', 'bucket', 'sandcastle', 'swim'] },
   { topic: 'fruit market', words: ['apple', 'banana', 'orange', 'grape', 'carrot', 'tomato', 'lemon'] },
   { topic: 'first aid', words: ['bandage', 'ice pack', 'crutches', 'sling', 'medicine', 'gloves', 'mask'] },
-  { topic: 'kitchen', words: ['chef', 'pan', 'spatula', 'oven', 'plate', 'knife'] },
+  { topic: 'kitchen', words: ['chef', 'pan', 'spatula', 'oven', 'plate', 'knife', 'coffee', 'table'] },
   { topic: 'farm', words: ['farmer', 'tractor', 'barn', 'cow', 'chicken', 'hay'] },
+  { topic: 'family', words: ['grandfather', 'grandmother', 'father', 'mother'] },
+  { topic: 'hearing', words: ['ear', 'hear', 'loud'] },
 ];
 
 const PHASE2_EXPECT = [
   { topic: 'doctor clinic', word: 'patient', picked: null },
   { topic: 'dentist', word: 'patient', picked: 'dental-kid-open-mouth' },
+  // Pharmacy is not a clinic — empty beats wrong building.
   { topic: 'doctor clinic', word: 'clinic', picked: null },
   { topic: 'school', word: 'student', picked: null },
   { topic: 'soccer', word: 'coach', picked: null },
@@ -82,6 +85,12 @@ const PHASE2_EXPECT = [
   { topic: 'soccer', word: 'ball', picked: 'soccer-ball' },
   { topic: 'tennis lesson', word: 'ball', picked: 'sport-tennis-ball' },
   { topic: 'fruit market', word: 'grape', picked: 'food-grapes' },
+  // Head-noun gate: modifier tokens in compounds must not qualify.
+  { topic: 'family', word: 'grandfather', picked: null },
+  { topic: 'hearing', word: 'ear', picked: null },
+  { topic: 'kitchen', word: 'coffee', picked: 'cafe-coffee-cup' },
+  // Exact key "table" is honest; coffee-table must not answer "coffee" (head-noun).
+  { topic: 'kitchen', word: 'coffee', picked: 'cafe-coffee-cup' },
 ];
 
 const lines = [];
