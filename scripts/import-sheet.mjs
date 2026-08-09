@@ -91,10 +91,38 @@ if (!fs.existsSync(sheetPath)) {
 
 const [rows, cols] = arg('grid', '').split('x').map(Number);
 if (!Number.isInteger(rows) || !Number.isInteger(cols) || rows < 1 || cols < 1) {
-  console.error('--grid must be RxC in whole numbers, e.g. --grid=4x4');
+  console.error('--grid must be rows×cols in whole numbers, e.g. --grid=8x4 for 8 rows of 4 (Manus portrait packs)');
   process.exit(1);
 }
 const cellCount = rows * cols;
+
+// Guard: swapped RxC paints gutters through prop bodies → tall thin cutoffs.
+// Portrait Manus sheets (≈9:16) with 4-col×8-row art need --grid=8x4, not 4x8.
+try {
+  // Lazy size read via PNG IHDR (bytes 16–23) — no native deps.
+  const fd = fs.openSync(sheetPath, 'r');
+  const buf = Buffer.alloc(24);
+  fs.readSync(fd, buf, 0, 24, 0);
+  fs.closeSync(fd);
+  if (buf.toString('ascii', 1, 4) === 'PNG') {
+    const imgW = buf.readUInt32BE(16);
+    const imgH = buf.readUInt32BE(20);
+    if (imgW > 0 && imgH > 0) {
+      const imgAspect = imgW / imgH;
+      const gridAspect = cols / rows;
+      if (Math.abs(imgAspect - gridAspect) > 0.35) {
+        console.warn(
+          `\nWARNING: --grid=${rows}x${cols} (cols/rows=${gridAspect.toFixed(2)}) does not match sheet ${imgW}x${imgH} (aspect ${imgAspect.toFixed(2)}).`
+        );
+        console.warn(
+          '  --grid is rows×cols. A 4-column × 8-row Manus portrait pack is --grid=8x4, not 4x8.\n'
+        );
+      }
+    }
+  }
+} catch (_) {
+  /* size probe is advisory only */
+}
 
 const prefix = arg('prefix', '');
 const bareNames = csv('names');

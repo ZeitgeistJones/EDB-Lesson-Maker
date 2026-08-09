@@ -37,7 +37,7 @@ npm run assets:import-sheet -- assets-inbox/science-4x4.png --grid=4x4 --prefix=
 ## Flags
 | Flag | Meaning |
 |------|---------|
-| `--grid=RxC` | **Required.** Sheet layout in whole numbers, e.g. `--grid=4x4`. |
+| `--grid=RxC` | **Required.** Sheet layout as **rows×cols**. A Manus portrait pack with **8 rows of 4** is `--grid=8x4` (not `4x8`). Swapping axes cuts props into thin strips. |
 | `--names=a,b,…` | **Required.** One bare noun per cell in **reading order** (left→right, top→bottom). Count must equal R×C. |
 | `--prefix=theme-` | Prepended to every name for key/filename. A name that already carries the prefix is left alone (so the same list works pre- or un-prefixed). |
 | `--roles=…` | Parallel to `--names`; a short list falls back per the keyer (a single value applies to all). |
