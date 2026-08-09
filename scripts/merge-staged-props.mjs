@@ -197,9 +197,14 @@ function main() {
       relativeScale = heuristicScale(key);
     }
 
+    // import-prop can leave role as TODO when --roles broadcast is incomplete;
+    // never ship that into the live bank.
+    const role =
+      rowIn.role && rowIn.role !== 'TODO' ? rowIn.role : 'object';
+
     const outRow = {
       file: rowIn.file || `${key}.png`,
-      role: rowIn.role || 'object',
+      role,
       tags: buildTags(key, rowIn.pack, rowIn.tags),
       relativeScale,
       anchor: rowIn.anchor || 'center',
