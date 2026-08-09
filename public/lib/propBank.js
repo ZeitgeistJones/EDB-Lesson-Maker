@@ -36,6 +36,13 @@
 
   /** Manifest omits styleFamily for the matte house style; name it so callers can compare. */
   const HOUSE_FAMILY = 'matte';
+  /**
+   * Flat object shelves share matte boards. They are provenance tags on the
+   * manifest row (kenney-flat / game-icons), not a third exclusive family like
+   * glossy-adventure — otherwise every gicon-* / kenney-* alias is dead on
+   * classroom lessons.
+   */
+  const SHELF_AS_HOUSE = { 'kenney-flat': 1, 'game-icons': 1 };
 
   // Teaching chrome is shared across lessons: a cover flap and a sorting bin are
   // not scenery. Resolving them from the matte house pool means a glossy
@@ -338,7 +345,7 @@
     hatchet: 'fire-axe',
     toolbox: 'construction-toolbox',
     // Shift30-B — honest gicon pins for unique mid-obscure tools (empty > wrong).
-    // Targets live in game-icons family; alias is the pin once gicon shelf is in play.
+    // styleFamily game-icons coerces to matte via SHELF_AS_HOUSE so these resolve.
     sextant: 'gicon-sextant',
     trilobite: 'gicon-trilobite',
     'swiss-army-knife': 'gicon-swiss-army-knife', // else camp-pocket-knife via "knife"
@@ -529,7 +536,9 @@
         // King stage fill: 'fit' (default) keeps silhouette on-board; 'flush'
         // overscales cropped close-ups to the page edge. Opt-in only.
         stageFit: row.stageFit === 'flush' ? 'flush' : (row.stageFit === 'fit' ? 'fit' : null),
-        family: row.styleFamily || HOUSE_FAMILY,
+        family: SHELF_AS_HOUSE[row.styleFamily]
+          ? HOUSE_FAMILY
+          : row.styleFamily || HOUSE_FAMILY,
         bodyHue: row.bodyHue == null ? null : row.bodyHue,
         // Theme kit id (castle, jobs, animals…). Absent = loose bank piece.
         pack: row.pack ? String(row.pack).toLowerCase() : null,
