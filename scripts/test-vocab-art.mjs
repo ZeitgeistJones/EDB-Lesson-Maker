@@ -150,13 +150,11 @@ async function main() {
   assert(rejected, 'case3: ready() rejects on fetch failure');
   assert(!failBox.window.VocabIcons.indexReady(), 'case3: index not warm after failure');
   assert(!!failBox.window.VocabIcons.loadError(), 'case3: loadError set');
-  // Retry after restoring fetch must be able to succeed (not stuck on {})
+  // Same-instance retry must work — failures must not lock a permanent {} cache.
   failBox.fetch = fileFetch;
-  // Clear promise by requiring a new sandbox — permanent {} would make second sandbox
-  // from same module state... each sandbox is fresh. Second load with good fetch:
-  const W4 = loadSandbox();
-  await W4.VocabIcons.ready();
-  assert(W4.VocabIcons.indexReady(), 'case3: retry on new session warms index');
+  await failBox.window.VocabIcons.ready();
+  assert(failBox.window.VocabIcons.indexReady(), 'case3: same-instance retry warms index');
+  assert(!failBox.window.VocabIcons.loadError(), 'case3: loadError cleared after retry');
 
   console.log('OK vocab-art cases 1,3,4,6,7', {
     soccerTier: soccer.tier,
