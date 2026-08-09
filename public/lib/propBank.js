@@ -337,6 +337,21 @@
     seedling: 'garden-seedling',
     hatchet: 'fire-axe',
     toolbox: 'construction-toolbox',
+    // Shift30-B — honest gicon pins for unique mid-obscure tools (empty > wrong).
+    // Targets live in game-icons family; alias is the pin once gicon shelf is in play.
+    sextant: 'gicon-sextant',
+    trilobite: 'gicon-trilobite',
+    'swiss-army-knife': 'gicon-swiss-army-knife', // else camp-pocket-knife via "knife"
+    'box-cutter': 'gicon-box-cutter', // else gift-box via "box"
+    boxcutter: 'gicon-box-cutter',
+    crowbar: 'gicon-crowbar',
+    clamp: 'gicon-clamp', // sole -clamp suffix in bank
+    gears: 'gicon-gears',
+    cog: 'gicon-cog',
+    brick: 'gicon-clay-brick', // sole -brick suffix
+    'broken-pottery': 'gicon-broken-pottery',
+    'sewing-needle': 'gicon-sewing-needle', // else sew-needle
+    pottery: 'gicon-pottery', // NULL bare; not broken-pottery amphora
   };
 
   /**

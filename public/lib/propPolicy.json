@@ -181,6 +181,19 @@
     "multi-tool": "hike-multi-tool",
     "seedling": "garden-seedling",
     "hatchet": "fire-axe",
-    "toolbox": "construction-toolbox"
+    "toolbox": "construction-toolbox",
+    "sextant": "gicon-sextant",
+    "trilobite": "gicon-trilobite",
+    "swiss-army-knife": "gicon-swiss-army-knife",
+    "box-cutter": "gicon-box-cutter",
+    "boxcutter": "gicon-box-cutter",
+    "crowbar": "gicon-crowbar",
+    "clamp": "gicon-clamp",
+    "gears": "gicon-gears",
+    "cog": "gicon-cog",
+    "brick": "gicon-clay-brick",
+    "broken-pottery": "gicon-broken-pottery",
+    "sewing-needle": "gicon-sewing-needle",
+    "pottery": "gicon-pottery"
   }
 }
