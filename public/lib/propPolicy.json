@@ -86,6 +86,7 @@
     "ball": ["beach-ball"],
     "knife": ["camp-pocket-knife"],
     "bucket": ["cleaning-bucket"],
+    "sand": ["landmark-marina-bay-sands"],
     "patient": ["job-doctor", "job-nurse", "stethoscope", "clinic-clipboard"]
   },
   "ambiguous": {
