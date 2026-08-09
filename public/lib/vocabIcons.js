@@ -163,6 +163,10 @@
     // puzzled and distinct from 😲 surprised / 😳 shy / 😟 worried. Override wins
     // over the fixture emoji so the match dock and Feelings Lab stay in sync.
     confused: '🤔',
+    // PropBank has no coach character (empty > whistle). Fixture 🧑‍🏫 reads as
+    // "teacher" on the match dock — cap is a clearer coach-adjacent glyph until
+    // a real coach cutout lands (see docs/asset-wishlist.md).
+    coach: '🧢',
   };
 
   function emojiFor(word, fallback) {

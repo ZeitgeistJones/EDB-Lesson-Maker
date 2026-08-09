@@ -59,6 +59,9 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-07 | Classical terrace title scene + ivory/gold vocab pack | Composing a Classical Masterpiece needs matching hero BG + dock art | Scene + vocab PNGs | User terrace + in-house icons | wired — `classical-terrace-moonlit` title; `classical-moon` flats; 12 dedicated vocab icons |
 | 2026-08-07 | Dedicated `inspire` vocab icon (retire brain stand-in) | classical-compose match dock — starburst ambiguous, brain interim | Pack PNG ivory/gold lightbulb+lyre | In-house GenerateImage → `inspire.png` | wired — override removed; verify requires inspire.png |
 | 2026-08-08 | White-key prop pack for **health** (doctor, dentist, first-aid, sick/hurt) and **community** (helpers + places: post office, market, bus stop) | shift10 gptbrief/assetswarm coverage scan — no fixtures and no keyed prop pack | White-key prop cutouts in `09_props` | In-house white-key swarm — EDGE-RISK: medical accuracy + cultural sensitivity, prompts need careful review not a blind swarm | open |
+| 2026-08-09 | `job-coach` person cutout (subject:person) | Soccer/sports New Words — PropBank coach→null (empty>whistle); dock uses 🧢 emoji interim | Black-field standing coach | Manus / prop-cutouts | open |
+| 2026-08-09 | `soccer-goal` post+net dock prop | `goal`/`goals` moved deny→ambiguous until honest art exists | Black-field goal frame | Manus / prop-cutouts | open |
+| 2026-08-09 | Winter `clothing-gloves` usable under winter topics | `gloves` never-blocks clothing so first-aid can reach `aid-medical-glove`; winter→null today | Keep clothing-gloves; topic-aware never OR winter pack tags + theme rank | policy follow-up | open |
 
 ## How agents append
 

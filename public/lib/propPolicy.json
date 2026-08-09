@@ -43,8 +43,6 @@
     "answers",
     "question",
     "questions",
-    "goal",
-    "goals",
     "win",
     "winning",
     "lose",
@@ -96,7 +94,9 @@
     "student": true,
     "teammate": true,
     "stadium": true,
-    "homework": true
+    "homework": true,
+    "goal": true,
+    "goals": true
   },
   "aliases": {
     "patient": "dental-kid-open-mouth",
