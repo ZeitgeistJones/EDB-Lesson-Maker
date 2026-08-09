@@ -7,14 +7,9 @@
  *
  *   node scripts/verify-offtopic-props.mjs
  */
-import fs from 'fs';
-import path from 'path';
-import http from 'http';
-import { fileURLToPath } from 'url';
 import { createRequire } from 'module';
-import { chromium } from 'playwright';
+import { startPublicServer, openBoardPage } from './lib/verify-harness.mjs';
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
 const rubric = require('./ux-board-rubric.cjs');
 
@@ -48,24 +43,8 @@ const lesson = {
 };
 const meta = { level: 'B1', duration: '60', phonics: 'off' };
 
-const server = http.createServer((req, res) => {
-  const rel = decodeURIComponent((req.url || '/').split('?')[0].replace(/^\//, '') || 'index.html');
-  const file = path.join(ROOT, 'public', rel);
-  if (!file.startsWith(path.join(ROOT, 'public')) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
-    res.writeHead(404); res.end(); return;
-  }
-  const ext = path.extname(file);
-  const types = { '.html': 'text/html', '.js': 'text/javascript', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.css': 'text/css', '.svg': 'image/svg+xml' };
-  res.writeHead(200, { 'Content-Type': types[ext] || 'application/octet-stream' });
-  fs.createReadStream(file).pipe(res);
-});
-
-await new Promise((r) => server.listen(0, '127.0.0.1', r));
-const port = server.address().port;
-const browser = await chromium.launch();
-const page = await browser.newPage({ viewport: { width: 1400, height: 900 } });
-await page.goto(`http://127.0.0.1:${port}/index.html`, { waitUntil: 'networkidle' });
-await page.waitForFunction(() => window.LessonPages && window.EdbActivities && window.PropBank && window.VocabIcons && window.SceneBackgrounds && window.BoardPreview);
+const { port, close } = await startPublicServer();
+const { browser, page } = await openBoardPage(port);
 
 const result = await page.evaluate(async ({ lesson, meta }) => {
   await window.PropBank.ready();
@@ -137,5 +116,5 @@ console.log(JSON.stringify({
 }, null, 2));
 
 await browser.close();
-server.close();
+close();
 process.exit(fails.length ? 1 : 0);

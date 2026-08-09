@@ -19,10 +19,16 @@ const IMAGE_MODEL = process.env.GEMINI_IMAGE_MODEL || 'gemini-2.5-flash-image';
 const VISION_MODEL = process.env.GEMINI_VISION_MODEL || process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite';
 const PER_IMAGE_MS = Number(process.env.STORY_ART_TIMEOUT_MS) || 45000;
 const MAX_PAGES = 3;
-// Bump when the prompt/flow changes so cached art regenerates with the new logic.
-// v2-charlock: recurring-character continuity (first panel establishes look; later panels reuse it).
-const PROMPT_VERSION = 'v2-charlock';
 const ROOT = path.resolve(__dirname, '..');
+// Single source of truth shared with the client (public/lib/storyArtCacheVersion.js).
+// Bump THERE when the prompt/flow or image model changes — not a second literal here.
+const PROMPT_VERSION = (() => {
+  try {
+    return require(path.join(ROOT, 'public', 'lib', 'storyArtCacheVersion.js')).PROMPT_VERSION;
+  } catch (_) {
+    return 'v2-charlock';
+  }
+})();
 const CACHE_ROOT = path.join(ROOT, 'tmp', 'story-art-cache');
 
 function storyArtEnabled() {

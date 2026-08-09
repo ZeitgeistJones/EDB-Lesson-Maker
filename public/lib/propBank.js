@@ -269,6 +269,10 @@
         bodyHue: row.bodyHue == null ? null : row.bodyHue,
         // Theme kit id (castle, jobs, animals…). Absent = loose bank piece.
         pack: row.pack ? String(row.pack).toLowerCase() : null,
+        // Decorative/character filler (distinct art style, broad tags). Generic
+        // dock/story selectors skip these unless the lesson topic invites the pack.
+        // Source of truth = manifest row; see decorativeHints on the manifest root.
+        decorative: row.decorative === true,
         srcW: row.srcW == null ? null : Number(row.srcW),
         srcH: row.srcH == null ? null : Number(row.srcH),
         // Variant convention: a manifest row may declare itself a duplicate of
@@ -279,6 +283,13 @@
       };
       out.byKey[key] = prop;
       out.all.push(prop);
+    }
+    // Pack → topic tokens that invite a decorative pack onto a matching lesson.
+    out.decorativeHints = {};
+    const hints = (raw && raw.decorativeHints) || {};
+    for (const pack of Object.keys(hints)) {
+      const list = Array.isArray(hints[pack]) ? hints[pack] : [];
+      out.decorativeHints[String(pack).toLowerCase()] = list.map((h) => String(h).toLowerCase()).filter(Boolean);
     }
     return out;
   }
@@ -608,35 +619,37 @@
     return [...new Set(words.filter((t) => t && !KIT_STOP.has(t) && t.length > 2))];
   }
 
-  // Decorative / character packs: downloaded filler art (the 3D-style feeling-*
-  // emotion faces, the gashapon toy blobs) that carry broad generic tags
-  // (role:object, tags:dock/toy/faces) and a DIFFERENT art style from the matte
-  // house set. With no topical binding they win generic tag/caption queries for
-  // unrelated lessons — a soccer story beat rendering a 3D "worried" face, or a
-  // gashapon cyclops-in-sunglasses on the activity dock. Classify them here so the
-  // two generic selectors (activity dock fill + story fallback art) can skip them
-  // unless the lesson's own topic invites the pack. Curated uses (feelings dock,
-  // matched theme kits) resolve by explicit word/kit and are untouched.
-  const DECORATIVE_PACKS = new Set(['feelings', 'gashapon']);
-
-  // Lesson tokens that legitimately invite each decorative pack (topic match).
-  const DECORATIVE_PACK_HINTS = {
+  // Legacy fallback only — new packs must set decorative:true + decorativeHints
+  // on the manifest. Kept so un-migrated rows still fail closed during rollout.
+  const LEGACY_DECORATIVE_PACKS = new Set(['feelings', 'gashapon']);
+  const LEGACY_DECORATIVE_HINTS = {
     feelings: ['feeling', 'feelings', 'emotion', 'emotions', 'mood', 'moods'],
     gashapon: ['gashapon', 'capsule', 'toy', 'toys', 'prize', 'prizes', 'vending'],
   };
 
-  /** True when a prop belongs to a decorative/character pack (no topical binding). */
+  /** True when a prop is decorative/character filler (manifest.decorative, else legacy pack). */
   function isDecorativeProp(prop) {
-    return !!(prop && prop.pack && DECORATIVE_PACKS.has(prop.pack));
+    if (!prop) return false;
+    if (prop.decorative === true) return true;
+    return !!(prop.pack && LEGACY_DECORATIVE_PACKS.has(prop.pack));
   }
 
   /** Decorative packs whose topic THIS lesson matches (so they may be surfaced). */
   function decorativePacksFor(lesson) {
     const tokens = new Set(themeTokens(lesson));
     const out = new Set();
-    for (const pack of DECORATIVE_PACKS) {
-      const hints = DECORATIVE_PACK_HINTS[pack] || [pack];
-      if (hints.some((h) => tokens.has(h))) out.add(pack);
+    const hints = (bank && bank.decorativeHints) || {};
+    // Discover decorative packs from indexed props (manifest.decorative:true).
+    const packs = new Set();
+    if (bank && bank.all) {
+      for (const p of bank.all) {
+        if (p.decorative && p.pack) packs.add(p.pack);
+      }
+    }
+    for (const pack of LEGACY_DECORATIVE_PACKS) packs.add(pack);
+    for (const pack of packs) {
+      const list = hints[pack] || LEGACY_DECORATIVE_HINTS[pack] || [pack];
+      if (list.some((h) => tokens.has(h))) out.add(pack);
     }
     return out;
   }

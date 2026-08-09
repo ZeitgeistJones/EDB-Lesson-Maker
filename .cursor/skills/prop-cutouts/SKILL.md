@@ -181,6 +181,16 @@ the frame. A sheet is a supported input; a crowded sheet is not.
 7. **Only then add the manifest row** to `public/assets/09_props/manifest.json`.
    The importer prints the row ready to paste, already formatted for the file.
 
+   **Decorative / character packs** (distinct style that must not leak onto
+   off-topic lessons via generic dock/story pick — e.g. 3D faces, gashapon
+   blobs): set `"decorative": true` on each row **and** add/extend root
+   `decorativeHints` with topic tokens that invite the pack. Curated docks and
+   pinned keys still resolve; only generic selectors are gated. Full rule:
+   [`docs/prop-style-lock.md`](../../../docs/prop-style-lock.md) → Decorative
+   packs. Regression: `node scripts/verify-offtopic-props.mjs` (S71). For
+   `assets:import-sheet` staging, edit `*-rows.json` before merge — the
+   importer does not set `decorative` automatically.
+
 ## Keep good duplicates as variants
 
 When you make (or find) a **second good prop for a word that's already covered**,

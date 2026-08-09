@@ -6,9 +6,10 @@
  */
 (function () {
   const cache = new Map();
-  // Bump this whenever the server PROMPT_VERSION or image model changes so the
-  // client stops serving stale session art (memory Map + sessionStorage).
-  const CLIENT_CACHE_VERSION = 'v2-charlock';
+  // Single source of truth: public/lib/storyArtCacheVersion.js (also required by
+  // api/generate-story-art.js). Bump THERE — not here — so client + server stay in lockstep.
+  const CLIENT_CACHE_VERSION = (typeof window !== 'undefined' && window.STORY_ART_CACHE_VERSION)
+    || 'v2-charlock';
   const STORAGE_PREFIX = `storyArt:${CLIENT_CACHE_VERSION}:`;
 
   function normalizePages(lesson) {

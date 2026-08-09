@@ -8,44 +8,21 @@
  */
 import fs from 'fs';
 import path from 'path';
-import http from 'http';
-import { fileURLToPath } from 'url';
-import { createRequire } from 'module';
-import { chromium } from 'playwright';
+import {
+  ROOT,
+  arg,
+  loadEnv,
+  logLine as harnessLogLine,
+  clearPageJpgs,
+  startPublicServer,
+  openBoardPage,
+  prepareStoryArt,
+} from './lib/verify-harness.mjs';
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const require = createRequire(import.meta.url);
 const LOG = path.join(ROOT, '.cursor', 'debug-3c9697.log');
 const OUT = path.join(ROOT, 'tmp', 'board-bg-verify', 'feelings-compass');
-
-function arg(name, fallback) {
-  const hit = process.argv.find((a) => a.startsWith(`--${name}=`));
-  return hit ? hit.slice(name.length + 3) : fallback;
-}
-
-function loadEnv() {
-  const envPath = path.join(ROOT, '.env');
-  if (!fs.existsSync(envPath)) return;
-  for (const line of fs.readFileSync(envPath, 'utf8').split(/\r?\n/)) {
-    const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)$/);
-    if (!m || process.env[m[1]]) continue;
-    process.env[m[1]] = m[2].replace(/^["']|["']$/g, '').trim();
-  }
-}
-
-function logLine(hypothesisId, message, data) {
-  fs.appendFileSync(
-    LOG,
-    JSON.stringify({
-      sessionId: '3c9697',
-      runId: 'feelings-verify',
-      timestamp: Date.now(),
-      hypothesisId,
-      message,
-      data,
-    }) + '\n'
-  );
-}
+const logLine = (hypothesisId, message, data) =>
+  harnessLogLine(LOG, 'feelings-verify', hypothesisId, message, data);
 
 loadEnv();
 const fixtureName = arg('fixture', 'feelings-compass-lesson.json');
@@ -56,89 +33,14 @@ if (arg('retitle', '1') !== '0') {
 
 const meta = { level: 'B1', duration: '60', phonics: 'off' };
 const storyArtMode = String(arg('story-art', process.env.STORY_ART_BAKE || 'auto')).toLowerCase();
-let storyArtResult = null;
-let storyArtMeta = { mode: storyArtMode, applied: 0, cacheKey: null, cacheHit: false };
-if (storyArtMode !== '0' && storyArtMode !== 'off' && storyArtMode !== 'false') {
-  try {
-    const storyArtApi = require('../api/generate-story-art.js');
-    const pages = ((lesson.story && lesson.story.pages) || []).slice(0, 3).map((p, i) => ({
-      index: i,
-      heading: p.heading || '',
-      text: p.text || '',
-      visualCaption: p.visualCaption || p.visualTheme || '',
-    }));
-    const cacheKey = storyArtApi.cacheKeyFor(lesson.title || 'Story', meta.level, pages);
-    storyArtMeta.cacheKey = cacheKey;
-    storyArtResult = storyArtApi.loadCachedResult(cacheKey);
-    if (storyArtResult) {
-      storyArtMeta.cacheHit = true;
-    } else if (storyArtMode === '1' || storyArtMode === 'true' || storyArtMode === 'on' || storyArtMode === 'gen') {
-      // Synchronous-ish generate via handler (may take ~1–2 min).
-      const out = { statusCode: 200, body: null };
-      const res = {
-        setHeader() {},
-        status(code) { out.statusCode = code; return this; },
-        json(payload) { out.body = payload; return this; },
-      };
-      await storyArtApi(
-        { method: 'POST', body: { title: lesson.title || 'Story', level: meta.level, pages } },
-        res
-      );
-      if (out.statusCode < 400 && out.body && Array.isArray(out.body.pages)) {
-        storyArtResult = out.body;
-        storyArtMeta.cacheHit = !!out.body.cacheHit;
-      }
-    }
-    if (storyArtResult) meta.storyArt = storyArtResult;
-  } catch (err) {
-    storyArtMeta.error = err.message || String(err);
-  }
-}
+const { storyArtResult, storyArtMeta } = await prepareStoryArt(lesson, meta, storyArtMode);
 fs.mkdirSync(OUT, { recursive: true });
 fs.mkdirSync(path.dirname(LOG), { recursive: true });
-for (const n of fs.readdirSync(OUT)) {
-  if (/^page-\d+-.+\.(jpe?g|png)$/i.test(n)) {
-    try { fs.unlinkSync(path.join(OUT, n)); } catch { /* ignore */ }
-  }
-}
+clearPageJpgs(OUT);
 if (fs.existsSync(LOG)) fs.writeFileSync(LOG, '');
 
-const server = http.createServer((req, res) => {
-  const rel = decodeURIComponent((req.url || '/').split('?')[0].replace(/^\//, '') || 'index.html');
-  const file = path.join(ROOT, 'public', rel);
-  if (!file.startsWith(path.join(ROOT, 'public')) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
-    res.writeHead(404);
-    res.end();
-    return;
-  }
-  const ext = path.extname(file);
-  const types = {
-    '.html': 'text/html',
-    '.js': 'text/javascript',
-    '.json': 'application/json',
-    '.png': 'image/png',
-    '.jpg': 'image/jpeg',
-    '.css': 'text/css',
-    '.svg': 'image/svg+xml',
-  };
-  res.writeHead(200, { 'Content-Type': types[ext] || 'application/octet-stream' });
-  fs.createReadStream(file).pipe(res);
-});
-
-await new Promise((r) => server.listen(0, '127.0.0.1', r));
-const port = server.address().port;
-const browser = await chromium.launch();
-const page = await browser.newPage({ viewport: { width: 1400, height: 900 } });
-await page.goto(`http://127.0.0.1:${port}/index.html`, { waitUntil: 'networkidle' });
-await page.waitForFunction(
-  () =>
-    window.LessonPages &&
-    window.EdbActivities &&
-    window.PropBank &&
-    window.VocabIcons &&
-    window.SceneBackgrounds &&
-    window.BoardPreview
-);
+const { port, close } = await startPublicServer();
+const { browser, page } = await openBoardPage(port);
 
 const result = await page.evaluate(async ({ lesson, meta }) => {
   await window.PropBank.ready();
@@ -1115,5 +1017,5 @@ console.log(JSON.stringify({
 }, null, 2));
 
 await browser.close();
-server.close();
+close();
 process.exit(fails.length ? 1 : 0);

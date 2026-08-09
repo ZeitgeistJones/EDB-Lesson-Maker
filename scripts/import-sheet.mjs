@@ -44,6 +44,10 @@
  * is on by default; --no-edge-clean keys the raw sheet, --edge-inset sets the
  * band width. Folded in from tmp/manus-import/batch-run6/_src/clean-sheet.ps1.
  *
+ * Decorative/character packs: before merge, set decorative:true on staged
+ * *-rows.json rows and extend manifest decorativeHints — importer does not.
+ * See docs/prop-style-lock.md (Decorative packs) + docs/import-sheet-usage.md.
+ *
  * Dedup for this shift is a simple read-only manifest key-scan: an existing key
  * is marked "skip" in rows.json (the tile is still keyed into the scratch dir,
  * it is just not offered for merge). It does NOT modify the manifest.

@@ -57,6 +57,11 @@ npm run assets:import-sheet -- assets-inbox/science-4x4.png --grid=4x4 --prefix=
   `*-rows.json`, copies the kept PNGs into `09_props/img/`, and adds the rows. Because staging
   already keyed + QA'd + deduped, merge is mechanical/instant. Set real `relativeScale` values
   at (or before) merge if you used the placeholder.
+- **Decorative / character packs:** before merge, set `"decorative": true` on every staged row
+  in `*-rows.json`, and add/extend root `decorativeHints` for that pack’s topic tokens. The
+  importer does not set this automatically — see **Decorative packs** in
+  [`docs/prop-style-lock.md`](prop-style-lock.md). Gate with
+  `node scripts/verify-offtopic-props.mjs` (S71).
 
 ## The C1 / C6 / C7-only blocking rule
 On a real sheet you *expect* soft-gate noise (a rainbow spans wide, a thermometer + sun read as
@@ -88,5 +93,8 @@ provisional.
   wrong art.
 - **Placeholder scale.** No `--scales` → every row gets `relativeScale: 0.5`. Fix before merge so
   a pencil and a bookshelf aren't drawn the same size.
+- **Decorative packs need a hand flag.** Staged rows do not get `decorative: true` from the
+  importer. Character/toy/filler packs must set it (and `decorativeHints`) at merge, or generic
+  docks will leak them onto off-topic lessons.
 - **Non-zero exit is normal.** If any tile hard-blocks, the wrapper still finishes and writes
   rows + QA; the non-zero code just signals "some tiles need regeneration."

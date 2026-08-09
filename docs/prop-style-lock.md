@@ -232,6 +232,59 @@ There is no flag for `styleFamily`: it is a judgement about the finished art, so
 it goes into the manifest by hand after the visual pass, and only when the prop
 is not matte house style.
 
+## Decorative packs: `decorative` + `decorativeHints`
+
+Some packs are **character / toy / filler art** in a distinct style that would
+look wrong on an unrelated lesson — 3D emotion faces (`feelings`), gashapon toy
+blobs, and similar. Mark those in **manifest data**, not in `propBank.js`.
+
+**When to set `"decorative": true` on each prop row**
+
+- The art is a **distinct style family** (glossy 3D character, capsule-toy blob,
+  etc.) that would clash if a generic dock or story-art picker grabbed it for
+  an off-topic lesson (e.g. soccer captions naming “worried” or “toy”).
+- Ordinary house-style objects (desk tools, furniture, animals in the matte
+  pack) stay **unmarked** — they are fine as generic filler.
+
+**Also extend root `decorativeHints`**
+
+On the same `manifest.json`, add or extend the root map so the lesson topic can
+invite the pack:
+
+```json
+"decorativeHints": {
+  "feelings": ["feeling", "feelings", "emotion", "emotions", "mood", "moods"],
+  "gashapon": ["gashapon", "capsule", "toy", "toys", "prize", "prizes"],
+  "<pack>": ["<topic-token>", "..."]
+}
+```
+
+Keys are **pack** names (same as the row’s `pack`); values are topic / word
+tokens that mean “this lesson may use this decorative pack.” Without matching
+hints, generic selectors skip the pack.
+
+**What is gated vs what is not**
+
+- **Gated:** generic dock fill and story-fallback visual resolve — they skip
+  decorative props unless the lesson topic invites the pack via hints.
+- **Not gated:** curated / explicit resolves (feelings dock, kit docks, pinned
+  keys). Those still work on any lesson that asks for them by name.
+
+**Regression gate**
+
+After merging a decorative pack, run S71:
+
+```bash
+node scripts/verify-offtopic-props.mjs
+```
+
+It bakes an off-topic lesson that baits emotion/toy words and fails if decorative
+art leaks onto the dock or story art.
+
+At merge time (or when editing staged `*-rows.json` before merge), set
+`decorative: true` on every row of a decorative pack and update
+`decorativeHints` — do not hardcode pack names in producer code.
+
 ## Importing a sheet
 
 `--sheet` walks every cell of `--grid` in one pass, reusing one browser. The

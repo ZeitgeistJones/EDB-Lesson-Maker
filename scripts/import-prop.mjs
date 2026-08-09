@@ -80,6 +80,8 @@
  *   --stage-all    like --stage but also force past the hard gates, keeping
  *                  every non-empty panel so even flagged tiles can be eyeballed
  *   --results      dump a per-panel JSON report (gates, forced, staged path)
+ *                  Note: decorative packs set decorative:true on staged rows
+ *                  before merge (docs/prop-style-lock.md); no --decorative flag.
  *
  * On a --sheet, only C1/C6/C7 block a tile (dirty field / interior holes). The
  * framing gates C2-C4 are fixed by the re-pad, and C5/C8 misfire on thin/small
