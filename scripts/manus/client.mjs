@@ -36,6 +36,22 @@ export function resolveAgentProfile(explicit) {
   return (process.env.MANUS_AGENT_PROFILE || '').trim() || 'manus-1.6-lite';
 }
 
+/**
+ * Opening line for asset-gen briefs. force_skills alone is not enough — Manus
+ * should also see the skill named in the message (same pattern as review briefs
+ * naming the ClassIn review skill).
+ */
+export const ESL_ASSET_GENERATOR_BRIEF_LINE =
+  'Use your esl-asset-generator skill for this whole task (contact sheets / prop packs). Follow that skill\'s rules; do not improvise a different asset pipeline.';
+
+/** Prepend the skill instruction if the brief does not already name it. */
+export function withEslAssetGeneratorBrief(content) {
+  const body = String(content || '').trim();
+  if (!body) return ESL_ASSET_GENERATOR_BRIEF_LINE;
+  if (/\besl-asset-generator\b/i.test(body)) return body;
+  return `${ESL_ASSET_GENERATOR_BRIEF_LINE}\n\n${body}`;
+}
+
 export function apiKey() {
   const key = (process.env.MANUS_API_KEY || '').trim();
   if (!key) {
@@ -103,6 +119,11 @@ export async function createTask(opts) {
   }
   if (Array.isArray(force_skills) && force_skills.length) {
     msg.force_skills = force_skills;
+    // When forcing the asset skill, also name it in the message text so the
+    // agent sees the instruction in-chat (force_skills alone is easy to miss).
+    if (force_skills.includes(MANUS_SKILLS.ESL_ASSET_GENERATOR) && typeof msg.content === 'string') {
+      msg.content = withEslAssetGeneratorBrief(msg.content);
+    }
   }
   const body = {
     message: msg,

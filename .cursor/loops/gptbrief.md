@@ -191,8 +191,13 @@ not style drift or faint micro-text.
 
 **API wiring (asset tasks):** `createTask` defaults to `agent_profile`
 `manus-1.6-lite` (`MANUS_AGENT_PROFILE` override) and asset/spike callers pass
-`message.force_skills: [esl-asset-generator]` (id in `MANUS_SKILLS`). Board
-**review** stays on `manus-1.6` and does not force that skill.
+`message.force_skills: [esl-asset-generator]` (id in `MANUS_SKILLS`). **Also**
+open every asset brief with an explicit line naming the skill (use
+`withEslAssetGeneratorBrief()` / `ESL_ASSET_GENERATOR_BRIEF_LINE` in
+`scripts/manus/client.mjs`) — `force_skills` alone is not enough; Manus should
+see "Use your esl-asset-generator skill…" in the message text, same pattern as
+review briefs naming the ClassIn review skill. Board **review** stays on
+`manus-1.6` and does not force the asset skill.
 
 Validated Run-5 findings (fold these into the Manus instructions):
 
