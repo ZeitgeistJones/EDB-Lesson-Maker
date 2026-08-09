@@ -22,6 +22,346 @@
     ]
   },
   "props": {
+    "acc-baseball-cap": {
+      "file": "acc-baseball-cap.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.49,
+      "srcW": 277,
+      "srcH": 186,
+      "pack": "bags"
+    },
+    "acc-beanie": {
+      "file": "acc-beanie.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.13,
+      "srcW": 201,
+      "srcH": 178,
+      "pack": "bags"
+    },
+    "acc-belt": {
+      "file": "acc-belt.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.92,
+      "srcW": 297,
+      "srcH": 155,
+      "pack": "bags"
+    },
+    "acc-bow-tie": {
+      "file": "acc-bow-tie.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.83,
+      "srcW": 265,
+      "srcH": 145,
+      "pack": "bags"
+    },
+    "acc-bracelet": {
+      "file": "acc-bracelet.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.66,
+      "srcW": 247,
+      "srcH": 149,
+      "pack": "bags"
+    },
+    "acc-brooch": {
+      "file": "acc-brooch.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.87,
+      "srcW": 170,
+      "srcH": 196,
+      "pack": "bags"
+    },
+    "acc-cufflinks": {
+      "file": "acc-cufflinks.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.29,
+      "srcW": 164,
+      "srcH": 127,
+      "pack": "bags"
+    },
+    "acc-glove-left": {
+      "file": "acc-glove-left.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.67,
+      "srcW": 132,
+      "srcH": 197,
+      "pack": "bags"
+    },
+    "acc-glove-right": {
+      "file": "acc-glove-right.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.67,
+      "srcW": 132,
+      "srcH": 197,
+      "pack": "bags"
+    },
+    "acc-hair-bow": {
+      "file": "acc-hair-bow.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.61,
+      "srcW": 254,
+      "srcH": 158,
+      "pack": "bags"
+    },
+    "acc-headband": {
+      "file": "acc-headband.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.31,
+      "srcW": 231,
+      "srcH": 177,
+      "pack": "bags"
+    },
+    "acc-keychain": {
+      "file": "acc-keychain.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.17,
+      "srcW": 227,
+      "srcH": 194,
+      "pack": "bags"
+    },
+    "acc-knit-scarf": {
+      "file": "acc-knit-scarf.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.94,
+      "srcW": 204,
+      "srcH": 216,
+      "pack": "bags"
+    },
+    "acc-pearl-necklace": {
+      "file": "acc-pearl-necklace.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.99,
+      "srcW": 225,
+      "srcH": 227,
+      "pack": "bags"
+    },
+    "acc-pocket-square": {
+      "file": "acc-pocket-square.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.16,
+      "srcW": 213,
+      "srcH": 183,
+      "pack": "bags"
+    },
+    "acc-ring": {
+      "file": "acc-ring.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.79,
+      "srcW": 147,
+      "srcH": 187,
+      "pack": "bags"
+    },
+    "acc-scrunchie": {
+      "file": "acc-scrunchie.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.32,
+      "srcW": 232,
+      "srcH": 176,
+      "pack": "bags"
+    },
+    "acc-sun-hat": {
+      "file": "acc-sun-hat.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.95,
+      "srcW": 337,
+      "srcH": 173,
+      "pack": "bags"
+    },
+    "acc-umbrella": {
+      "file": "acc-umbrella.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.1,
+      "srcW": 239,
+      "srcH": 217,
+      "pack": "bags"
+    },
+    "acc-wristwatch": {
+      "file": "acc-wristwatch.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.63,
+      "srcW": 153,
+      "srcH": 243,
+      "pack": "bags"
+    },
     "activity-tray": {
       "file": "activity-tray.png",
       "role": "tray",
@@ -3869,6 +4209,125 @@
       "srcW": 447,
       "srcH": 512
     },
+    "bag-backpack": {
+      "file": "bag-backpack.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.85,
+      "srcW": 210,
+      "srcH": 248,
+      "pack": "bags"
+    },
+    "bag-briefcase": {
+      "file": "bag-briefcase.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.22,
+      "srcW": 263,
+      "srcH": 216,
+      "pack": "bags"
+    },
+    "bag-clasp-purse": {
+      "file": "bag-clasp-purse.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.17,
+      "srcW": 245,
+      "srcH": 209,
+      "pack": "bags"
+    },
+    "bag-duffel": {
+      "file": "bag-duffel.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.89,
+      "srcW": 358,
+      "srcH": 189,
+      "pack": "bags"
+    },
+    "bag-fanny-pack": {
+      "file": "bag-fanny-pack.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.01,
+      "srcW": 337,
+      "srcH": 168,
+      "pack": "bags"
+    },
+    "bag-handbag": {
+      "file": "bag-handbag.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.17,
+      "srcW": 255,
+      "srcH": 218,
+      "pack": "bags"
+    },
+    "bag-messenger": {
+      "file": "bag-messenger.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.79,
+      "srcW": 324,
+      "srcH": 181,
+      "pack": "bags"
+    },
     "bag-satchel": {
       "file": "bag-satchel.png",
       "role": "dressPart",
@@ -3883,6 +4342,57 @@
       "bodyHue": 25,
       "srcW": 439,
       "srcH": 512
+    },
+    "bag-suitcase": {
+      "file": "bag-suitcase.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.6,
+      "srcW": 150,
+      "srcH": 252,
+      "pack": "bags"
+    },
+    "bag-tote": {
+      "file": "bag-tote.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.9,
+      "srcW": 228,
+      "srcH": 253,
+      "pack": "bags"
+    },
+    "bag-wallet": {
+      "file": "bag-wallet.png",
+      "role": "object",
+      "tags": [
+        "bags",
+        "accessories",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.55,
+      "srcW": 268,
+      "srcH": 173,
+      "pack": "bags"
     },
     "basketball": {
       "file": "basketball.png",
