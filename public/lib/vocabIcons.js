@@ -107,6 +107,13 @@
     room: 'door',
     // Classical compose unit — dedicated ivory/gold pack PNGs (compose.png …);
     // keep aliases only as fallbacks if a dedicated file is missing.
+    // Weather adjectives → noun pack art (sun.png / rain.png / … already exist)
+    sunny: 'sun',
+    rainy: 'rain',
+    windy: 'wind',
+    snowy: 'snow',
+    // Birthday party — present is the ESL synonym for gift.png (already in pack)
+    present: 'gift',
   };
 
   /**

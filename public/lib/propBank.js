@@ -267,6 +267,16 @@
     crown: 'castle-banner-purple-crown',
     tower: 'castle-tower-mid-a',
     banner: 'castle-banner-blue-fleur',
+    // Weather adjectives → climate props (weather-sun etc. already exist;
+    // cloudy already hits weather-partly-cloudy via pack-suffix identity)
+    sunny: 'weather-sun',
+    rainy: 'weather-rain',
+    windy: 'weather-wind',
+    snowy: 'weather-snow',
+    // Clothes — slug "t-shirt" ≠ prop suffix "-tshirt"; keep distinct from pack shirt.png
+    't-shirt': 'clothes-tshirt',
+    tshirt: 'clothes-tshirt',
+    'tee-shirt': 'clothes-tshirt',
   };
 
   /**

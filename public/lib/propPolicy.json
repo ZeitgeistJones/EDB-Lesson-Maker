@@ -119,6 +119,13 @@
     "powerbank": "tech-power-bank",
     "shell": "beach-seashell",
     "seashell": "beach-seashell",
-    "sandcastle": "beach-sandcastle"
+    "sandcastle": "beach-sandcastle",
+    "sunny": "weather-sun",
+    "rainy": "weather-rain",
+    "windy": "weather-wind",
+    "snowy": "weather-snow",
+    "t-shirt": "clothes-tshirt",
+    "tshirt": "clothes-tshirt",
+    "tee-shirt": "clothes-tshirt"
   }
 }
