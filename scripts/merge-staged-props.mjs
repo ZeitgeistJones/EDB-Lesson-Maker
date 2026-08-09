@@ -218,6 +218,8 @@ function main() {
     if (pack) outRow.pack = pack;
     if (rowIn.decorative === true) outRow.decorative = true;
     if (rowIn.stageFit) outRow.stageFit = rowIn.stageFit;
+    if (rowIn.subject) outRow.subject = rowIn.subject;
+    if (rowIn.variantOf) outRow.variantOf = rowIn.variantOf;
 
     const dest = path.join(OUT_DIR, outRow.file);
     if (dry) {

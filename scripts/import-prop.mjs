@@ -293,21 +293,13 @@ async function cutout(page, src, opts, rect) {
       // The object mask and the ring-purity number are the only two things that
       // differ between the two fields, so they branch here and the rest of the
       // pipeline — feather, colour bleed, gates, crop, re-pad — is shared.
+      //
+      // Both modes flood-fill background from the border. A plain threshold
+      // punches INTERIOR field-coloured regions transparent (white: chef hat /
+      // bowl; black: camera lens, crab outlines). Only pixels that match the
+      // field AND are connected to the edge are knocked out.
       const mask = new Uint8Array(n);
-      let ringPurity;
-      if (WHITE) {
-        // White is high on every channel, so test the channel MIN against a
-        // tolerance below 255. A near-white background pixel has min >= wthr.
-        const wthr = 255 - WTOL;
-        const isBg = (p) => {
-          const i = p * 4;
-          return px[i] >= wthr && px[i + 1] >= wthr && px[i + 2] >= wthr;
-        };
-        // Flood the background inward from every border pixel. Only white that
-        // is CONNECTED to the edge is knocked out; a white chef hat or bowl
-        // sealed inside the object's own outline is never reached, so it stays
-        // opaque. This connected knockout is the whole point of white mode over
-        // a plain threshold, which would hole every interior white region.
+      const floodBgFromBorder = (isBg) => {
         const bg = new Uint8Array(n);
         const queue = new Int32Array(n);
         let qh = 0;
@@ -335,6 +327,18 @@ async function cutout(page, src, opts, rect) {
           if (cy < h - 1) seed(cur + w);
         }
         for (let p = 0; p < n; p++) mask[p] = bg[p] ? 0 : 1;
+      };
+
+      let ringPurity;
+      if (WHITE) {
+        // White is high on every channel, so test the channel MIN against a
+        // tolerance below 255. A near-white background pixel has min >= wthr.
+        const wthr = 255 - WTOL;
+        const isBg = (p) => {
+          const i = p * 4;
+          return px[i] >= wthr && px[i + 1] >= wthr && px[i + 2] >= wthr;
+        };
+        floodBgFromBorder(isBg);
 
         let ringTotal = 0;
         let ringBg = 0;
@@ -359,7 +363,9 @@ async function cutout(page, src, opts, rect) {
           }
         }
         ringPurity = ringBlack / ringTotal;
-        for (let p = 0; p < n; p++) mask[p] = val[p] > T ? 1 : 0;
+        // Opposite predicate of white mode: near-black channel-max is background.
+        // Flood from the border so sealed dark interiors stay opaque.
+        floodBgFromBorder((p) => val[p] <= T);
       }
 
       // Content bounding box.

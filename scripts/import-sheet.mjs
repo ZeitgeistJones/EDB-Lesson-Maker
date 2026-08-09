@@ -20,9 +20,20 @@
  *     --roles=tool,tool,tool,... --scales=0.2,0.2,... --anchors=bottom,... \
  *     --pack=science --stage=tmp/import/science
  *
+ * Fast path (vision labels instead of four CSVs):
+ *   node scripts/label-sheet.mjs --sheet=sheet.png --grid=8x4 --out=tmp/labels.json
+ *   node scripts/import-sheet.mjs sheet.png --grid=8x4 --labels=tmp/labels.json \
+ *     --prefix=nau- --pack=nautical
+ *
  * Options:
- *   --grid       RxC of the sheet (required), e.g. --grid=4x4
- *   --names      bare nouns, one per cell in reading order (required)
+ *   --grid       RxC of the sheet (required), e.g. --grid=8x4 (rows×cols;
+ *                Manus 4-col×8-row portrait packs are 8x4, not 4x8)
+ *   --names      bare nouns, one per cell in reading order (required unless --labels)
+ *   --labels     path to labels.json from scripts/label-sheet.mjs — supplies
+ *                names/roles/scales/anchors (+ tags/subject/variantOf). When set,
+ *                the four CSVs are optional. Cells with confidence:"low" are
+ *                keyed for eyeballing but staged into a review bucket
+ *                (review:true + skip:true) and are NOT offered for PropBank merge.
  *   --prefix     theme prefix prepended to every name for the key/filename
  *   --roles      parallel to --names; short lists fall back per import-prop
  *   --scales     parallel to --names
@@ -98,6 +109,7 @@ const cellCount = rows * cols;
 
 // Guard: swapped RxC paints gutters through prop bodies → tall thin cutoffs.
 // Portrait Manus sheets (≈9:16) with 4-col×8-row art need --grid=8x4, not 4x8.
+// Reminder is intentional noise — a wrong axis ruins an entire 32-pack.
 try {
   // Lazy size read via PNG IHDR (bytes 16–23) — no native deps.
   const fd = fs.openSync(sheetPath, 'r');
@@ -115,7 +127,10 @@ try {
           `\nWARNING: --grid=${rows}x${cols} (cols/rows=${gridAspect.toFixed(2)}) does not match sheet ${imgW}x${imgH} (aspect ${imgAspect.toFixed(2)}).`
         );
         console.warn(
-          '  --grid is rows×cols. A 4-column × 8-row Manus portrait pack is --grid=8x4, not 4x8.\n'
+          '  --grid is rows×cols (NOT cols×rows). A Manus portrait pack with 4 columns and 8 rows is --grid=8x4.'
+        );
+        console.warn(
+          '  Swapping to 4x8 paints gutters through prop bodies and yields tall thin cutoffs. Fix --grid before keying.\n'
         );
       }
     }
@@ -125,14 +140,98 @@ try {
 }
 
 const prefix = arg('prefix', '');
-const bareNames = csv('names');
+const labelsPath = arg('labels', '');
+/** @type {Map<number, object>} */
+const labelByIndex = new Map();
+/** @type {Set<string>} keys staged for review only (low-confidence labels) */
+const reviewKeys = new Set();
+
+if (labelsPath) {
+  const absLabels = path.resolve(ROOT, labelsPath);
+  if (!fs.existsSync(absLabels)) {
+    console.error(`No labels file at ${absLabels}`);
+    process.exit(1);
+  }
+  const labelsDoc = JSON.parse(fs.readFileSync(absLabels, 'utf8'));
+  const labelCells = Array.isArray(labelsDoc) ? labelsDoc : labelsDoc.cells;
+  if (!Array.isArray(labelCells) || !labelCells.length) {
+    console.error(`labels file has no cells[] — run label-sheet without --composite-only first: ${absLabels}`);
+    process.exit(1);
+  }
+  for (const cell of labelCells) {
+    const i = Number(cell?.i);
+    if (!Number.isInteger(i) || i < 0 || i >= cellCount) {
+      console.error(`labels cell i=${cell?.i} out of range for --grid=${rows}x${cols}`);
+      process.exit(1);
+    }
+    if (labelByIndex.has(i)) {
+      console.error(`labels file has duplicate index i=${i}`);
+      process.exit(1);
+    }
+    labelByIndex.set(i, cell);
+  }
+  for (let i = 0; i < cellCount; i++) {
+    if (!labelByIndex.has(i)) {
+      console.error(`labels file missing cell index i=${i} (need 0…${cellCount - 1})`);
+      process.exit(1);
+    }
+  }
+  console.log(`Using labels from ${path.relative(ROOT, absLabels)} (${cellCount} cells by index).\n`);
+}
+
+const bareNames = labelsPath
+  ? Array.from({ length: cellCount }, (_, i) => String(labelByIndex.get(i).key || '').trim())
+  : csv('names');
 if (bareNames.length !== cellCount) {
-  console.error(`--names lists ${bareNames.length} name(s) but --grid=${rows}x${cols} has ${cellCount} cells. Name every cell in reading order.`);
+  console.error(
+    labelsPath
+      ? `labels produced ${bareNames.length} name(s) but --grid=${rows}x${cols} has ${cellCount} cells.`
+      : `--names lists ${bareNames.length} name(s) but --grid=${rows}x${cols} has ${cellCount} cells. Name every cell in reading order (or pass --labels= from label-sheet).`
+  );
+  process.exit(1);
+}
+if (bareNames.some((n) => !n)) {
+  console.error('Every cell needs a non-empty key/name (labels.key or --names).');
   process.exit(1);
 }
 // A bare noun gets the prefix; a name already carrying it is left alone so the
 // same --names list works whether or not the caller pre-prefixed it.
 const keys = bareNames.map((n) => slug(prefix && !slug(n).startsWith(slug(prefix)) ? prefix + n : n));
+
+// Resolve parallel CSVs; --labels fills gaps (and wins when CSV omitted).
+const rolesFromLabels = labelsPath
+  ? Array.from({ length: cellCount }, (_, i) => labelByIndex.get(i).role || 'object')
+  : null;
+const scalesFromLabels = labelsPath
+  ? Array.from({ length: cellCount }, (_, i) => {
+      const s = Number(labelByIndex.get(i).relativeScale);
+      return Number.isFinite(s) ? String(s) : '';
+    })
+  : null;
+const anchorsFromLabels = labelsPath
+  ? Array.from({ length: cellCount }, (_, i) => labelByIndex.get(i).anchor || 'center')
+  : null;
+
+const rolesCsv = csv('roles');
+const scalesCsv = csv('scales');
+const anchorsCsv = csv('anchors');
+const rolesList = rolesCsv.length ? rolesCsv : rolesFromLabels || [];
+const scalesList = scalesCsv.length ? scalesCsv : scalesFromLabels || [];
+const anchorsList = anchorsCsv.length ? anchorsCsv : anchorsFromLabels || [];
+
+if (labelsPath) {
+  for (let i = 0; i < cellCount; i++) {
+    const cell = labelByIndex.get(i);
+    if (String(cell.confidence || '').toLowerCase() === 'low') {
+      reviewKeys.add(keys[i]);
+    }
+  }
+  if (reviewKeys.size) {
+    console.log(
+      `Low-confidence labels → review bucket (no PropBank merge): ${[...reviewKeys].join(', ')}\n`
+    );
+  }
+}
 
 const stageDir = path.resolve(ROOT, arg('stage', path.join('tmp', 'import-sheet', slug(prefix || path.basename(sheetPath, path.extname(sheetPath))).replace(/-$/, ''))));
 const rawDir = path.join(stageDir, 'raw');
@@ -232,7 +331,10 @@ const importArgs = [
   `--names=${keys.join(',')}`,
 ];
 if (flag('stage-all')) importArgs.push('--stage-all');
-for (const pass of ['roles', 'scales', 'anchors', 'pack', 'threshold', 'size', 'margin', 'white-tol']) {
+if (rolesList.length) importArgs.push(`--roles=${rolesList.join(',')}`);
+if (scalesList.length) importArgs.push(`--scales=${scalesList.join(',')}`);
+if (anchorsList.length) importArgs.push(`--anchors=${anchorsList.join(',')}`);
+for (const pass of ['pack', 'threshold', 'size', 'margin', 'white-tol']) {
   const v = arg(pass);
   if (v != null) importArgs.push(`--${pass}=${v}`);
 }
@@ -260,34 +362,107 @@ const cleanKeyed = [];
 const softForced = [];
 const hardBlocked = [];
 const dedupSkips = [];
+const reviewBucket = [];
+const reviewDir = path.join(stageDir, 'review');
+const keyToLabel = new Map();
+if (labelsPath) {
+  for (let i = 0; i < cellCount; i++) {
+    keyToLabel.set(keys[i], labelByIndex.get(i));
+  }
+}
 
 for (const r of results) {
-  const dedup = manifestKeys.has(r.name) ? 'skip' : 'new';
+  const label = keyToLabel.get(r.name) || null;
+  const isReview = reviewKeys.has(r.name);
+  let dedup = manifestKeys.has(r.name) ? 'skip' : 'new';
+  if (isReview) dedup = 'review';
+  else if (label?.existingMatch && manifestKeys.has(slug(label.existingMatch))) {
+    // Near-twin called out by the labeler — still staged, not merge-offered.
+    dedup = 'skip';
+  }
   if (dedup === 'skip') dedupSkips.push(r.name);
+  if (isReview) reviewBucket.push(r.name);
+
+  let row = r.landed ? { ...r.row } : null;
+  if (row && label) {
+    if (Array.isArray(label.tags) && label.tags.length) row.tags = label.tags;
+    if (label.subject) row.subject = label.subject;
+    if (label.variantOf) {
+      const v = slug(
+        prefix && !slug(label.variantOf).startsWith(slug(prefix)) ? prefix + label.variantOf : label.variantOf
+      );
+      row.variantOf = v;
+    }
+    if (Number.isFinite(Number(label.relativeScale))) {
+      row.relativeScale = Number(label.relativeScale);
+    }
+    if (label.role) row.role = label.role;
+    if (label.anchor) row.anchor = label.anchor;
+    if (label.existingMatch) row.existingMatch = slug(label.existingMatch);
+    row.labelConfidence = label.confidence || null;
+  }
 
   const entry = {
     key: r.name,
     dedup,
     blocked: !r.landed,
     forced: !!r.forced,
-    reason: r.reason || null,
+    reason: isReview ? 'low-confidence label (review bucket)' : r.reason || null,
     stagedPath: r.dest || null,
     gates: r.gates || [],
     failed: r.failed || [],
-    row: r.landed ? r.row : null,
+    row: isReview ? null : row,
+    review: isReview,
+    label: label
+      ? {
+          i: label.i,
+          confidence: label.confidence || null,
+          existingMatch: label.existingMatch || null,
+        }
+      : null,
   };
+
+  // Keep a copy of the keyed PNG + label meta under review/ for eyeballing;
+  // merge-staged skips these because row is null / skip is set.
+  if (isReview) {
+    entry.skip = true;
+    if (r.landed && r.dest) {
+      fs.mkdirSync(reviewDir, { recursive: true });
+      const srcPng = path.resolve(ROOT, r.dest);
+      if (fs.existsSync(srcPng)) {
+        const destPng = path.join(reviewDir, path.basename(srcPng));
+        fs.copyFileSync(srcPng, destPng);
+        entry.reviewPath = path.relative(ROOT, destPng).replace(/\\/g, '/');
+      }
+      entry.reviewRow = row;
+    }
+  }
+
   rowsOut.push(entry);
 
   if (!r.landed) {
     hardBlocked.push(`${r.name} (${r.reason || 'blocked'})`);
     continue;
   }
+  if (isReview) continue;
   const softIds = (r.failed || []).filter((g) => !['C1', 'C6', 'C7'].includes(g));
   if (softIds.length) softForced.push(`${r.name} [${softIds.join(',')}]`);
   else cleanKeyed.push(r.name);
 }
 
 fs.writeFileSync(rowsPath, JSON.stringify(rowsOut, null, 2));
+if (reviewBucket.length) {
+  const reviewJson = path.join(reviewDir, 'review-labels.json');
+  fs.mkdirSync(reviewDir, { recursive: true });
+  fs.writeFileSync(
+    reviewJson,
+    JSON.stringify(
+      rowsOut.filter((e) => e.review),
+      null,
+      2
+    )
+  );
+}
 
 console.log(`\n=== import-sheet summary ===`);
 console.log(`Staged dir : ${path.relative(ROOT, stageDir)}`);
@@ -296,6 +471,7 @@ console.log(`Clean auto-keyed (${cleanKeyed.length}): ${cleanKeyed.join(', ') ||
 console.log(`Soft-forced, look but kept (${softForced.length}): ${softForced.join(', ') || '—'}`);
 console.log(`HARD-BLOCKED, regenerate these (${hardBlocked.length}): ${hardBlocked.join(', ') || '—'}`);
 console.log(`Dedup skips, key already in manifest (${dedupSkips.length}): ${dedupSkips.join(', ') || '—'}`);
+console.log(`Review bucket, low-confidence labels (${reviewBucket.length}): ${reviewBucket.join(', ') || '—'}`);
 
 // --- One QA composite for the whole sheet ----------------------------------
 
