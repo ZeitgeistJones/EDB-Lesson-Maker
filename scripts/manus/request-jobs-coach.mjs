@@ -12,7 +12,9 @@ const brief = `Request a ClassIn ESL prop contact sheet.
 
 Layout: even **4×4 or smaller** true grid (prefer bigger people cells — NOT 4×8 tiny stamps). Solid pure black (#000000) field edge-to-edge. One standing person per cell. No painted grid lines, no labels, no text on art. Gutters are empty black only.
 
-Style: **flat educational** vector/matte cutouts (restrained soft shading only) matching our existing job-* people — NOT soft-3D, NOT glossy product renders, NOT photo. Kid-safe, friendly, full body or 3/4, clear silhouette.
+Style: aim **flat educational** vector/matte cutouts matching our existing job-* people — NOT glossy product renders, NOT photo. Kid-safe, friendly, full body or 3/4, clear silhouette. Accept soft-3D drift on people — do NOT repair/regen this sheet for flatness.
+
+quality: default only (never high).
 
 Theme: **jobs / community helpers people** — every cell MUST be a person figure in uniform (not tools/whistle/clipboard alone).
 

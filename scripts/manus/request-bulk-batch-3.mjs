@@ -28,9 +28,9 @@ DON'T HYPERFIXATE: self-check tiles against the rules, but if one or two won't c
 
 HARD STYLE (all sheets):
 - Pure solid #000000 field edge-to-edge. True even grid. One subject per cell, ~8% margin, nothing crossing borders.
-- Flat educational / matte 2-tone vector (base + one shade). NOT soft-3D, NOT glossy emoji, NOT photo, NOT grey cards behind objects.
+- Flat educational / matte 2-tone vector (base + one shade). NOT glossy emoji, NOT photo, NOT grey cards behind objects.
 - ZERO text/letters/numbers/logos/brand marks on any tile. Kid-safe.
-- Prefer quality="high" + nano-banana-pro/2 on tall 9:16 canvas (long side ≥4096) for 4×8 so tiles stay ~512px+.
+- Use quality: default only (never high). Prefer 4×8 when default still keys; else 4×4. Cost ceiling: ≤3 generate_image calls for this 11-sheet pack (5+5+1).
 
 SHEETS (11 total — deliver each as its own PNG):
 
@@ -39,7 +39,7 @@ SHEET A — JOBS / COMMUNITY HELPERS PEOPLE (denser cells; NOT tiny stamps)
 - Every cell is a standing PERSON figure in uniform (full body or 3/4). Never tools alone.
 - MUST include a distinct **coach** (sports coach with cap; whistle may hang on lanyard as accessory — NOT classroom teacher, NOT whistle/clipboard alone).
 - Also include high-value people as natural: teacher, doctor, nurse, firefighter, pilot, chef, police officer, construction worker, scientist, mail carrier, vet, dentist, bus driver, librarian (pick ≤16 distinct).
-- Flat educational style matching house job-* cutouts (reject soft-3D).
+- Aim flat educational matching house job-* cutouts, but accept soft-3D drift on people — do NOT repair/regen this sheet for flatness.
 
 SHEETS B–K — OBJECT leftover / gap fills (default **4 columns × 8 rows = 32** when you have 32 DISTINCT props; otherwise **4×4 = 16** — never pad):
 B. bathroom toiletries LEFTOVERS — thicker/cleaner shampoo bottle, toilet brush, dental-floss box, mouthwash, loofah, bathrobe, scale, plunger, soap dispenser, trash can, towel rack, etc. (kid-safe, non-gross; objects only)
@@ -50,7 +50,7 @@ F. clinic / community place exteriors — matte clinic/medical-office building (
 G. soccer / sports dock props — soccer goal (post+net), corner flag, coach clipboard blank, cones, pinnies/bibs, water bottle, medal, trophy, stopwatch blank face, etc. (objects; NO people on this sheet)
 H. kid-safe drinks ONLY — mug, juice box, water bottle, smoothie cup, milk carton, thermos, soda can (generic), straw, pitcher, teacup — NO wine/beer/martini/champagne/alcohol silhouettes
 I. dental / sweets roleplay objects — toothbrush, toothpaste, floss, oversized tooth model, lollipop, cookie, candy cane, apple, milk carton, dental mirror tool (kid-safe; objects only)
-J. feelings face extras (flat vocab style) — excited, tired, proud, shy, confused, bored, surprised, calm, brave, worried, silly, grateful (simple face icons OR face cards; no body; no text labels on art)
+J. feelings face extras (flat vocab style) — excited, tired, proud, shy, confused, bored, surprised, calm, brave, worried, silly, grateful (simple face icons OR face cards; no body; no text labels on art). Accept soft-3D drift — do NOT repair/regen face sheets for flatness.
 K. white-key health / first-aid extras (objects, not people) — bandage roll, ice pack, thermometer, crutches, sling, first-aid kit, wheelchair, clinic clipboard blank, medicine bottle opaque generic, tissue box plain (no brands; no gore)
 
 When done, return the PNG sheets with a short legend per sheet in chat (cell names only — not painted on art). No long essay.`);
@@ -104,7 +104,7 @@ const dump = {
   task_id: created.task_id,
   task_url: created.task_url || (created.task_id ? `https://manus.im/app/${created.task_id}` : null),
   themes: [
-    { id: 'A', theme: 'jobs-people', grid: '4x4 (or 3x4)', notes: 'MUST coach person; flat not soft-3D' },
+    { id: 'A', theme: 'jobs-people', grid: '4x4 (or 3x4)', notes: 'MUST coach person; accept soft-3D; no people regen' },
     { id: 'B', theme: 'bathroom-leftovers', grid: '4x8 or 4x4' },
     { id: 'C', theme: 'bags-leftovers', grid: '4x8 or 4x4' },
     { id: 'D', theme: 'office-leftovers', grid: '4x8 or 4x4' },

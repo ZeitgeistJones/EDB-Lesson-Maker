@@ -199,11 +199,25 @@ see "Use your esl-asset-generator skill…" in the message text, same pattern as
 review briefs naming the ClassIn review skill. Board **review** stays on
 `manus-1.6` and does not force the asset skill.
 
+**Manus `esl-asset-generator` lock (Cursor — every asset call):**
+
+1. **Dedupe** — one sheet list / one `createTask`. Never double-attach identical
+   files; never re-fire the same list.
+2. **`quality: default` only** — never `quality: high` in Manus task prompts.
+   Skill overrides; high costs 3–5× with no gain for flat vector. Client
+   sanitizes legacy “prefer high / 4K” brief language.
+3. **People / face sheets** — accept soft-3D drift; do **not** ask Manus to
+   repair/regen people or face-icon sheets for flatness.
+4. **Cost ceiling:** ~11 sheets ≤ 3 `generate_image` calls (5+5+1) at default.
+
+(ChatGPT Variant C / `quality="high"` above is for **human ChatGPT** bulk sheets
+only — do **not** copy that into Manus asset briefs.)
+
 Validated Run-5 findings (fold these into the Manus instructions):
 
 - **Batch cap is HARD at 5 images per `generate_image` call.** There is no
   workaround — don't ask Manus for more per call. Plan sheets around this (one
-  4×4 sheet is one image; multiple sheets = multiple calls).
+  4×4 sheet is one image; multiple sheets = multiple calls; 11 sheets ≈ 5+5+1).
 - **Single-call grid vision check.** Send the WHOLE sliced sheet in ONE vision
   request and have Manus return JSON of only the failing cells by grid index
   (e.g. `{"fails":[3,11]}`) — not a per-tile call. This is ~16× cheaper than
@@ -211,34 +225,15 @@ Validated Run-5 findings (fold these into the Manus instructions):
 - **Division of labor — the importer is the real backstop.** Our
   `assets:import-sheet` (gates C1/C6/C7) already enforces background purity,
   holes, and margins. So Manus's vision check should NARROW to only what keying
-  can't catch: multi-object tiles, brand/IP logos, and gross 3D gloss. Don't have
-  Manus re-check background purity or margins — the importer does that harder.
-- **Model tier: `default` quality is enough** for flat-vector art. The PROMPT is
-  the stronger lever, not the model — don't pay for a pro tier.
-  - *Reconciliation:* `default` quality is fine for VISUAL quality
-    (flatness/detail) — the prompt is the stronger lever there. Switch to
-    `quality="high"` + a 4K model ONLY to gain RESOLUTION HEADROOM for denser
-    grids (4×8 / 32 tiles). Two different reasons; not a conflict. If you're
-    running a standard 4×4, stay on default.
+  can't catch: multi-object tiles, brand/IP logos, and gross 3D gloss on
+  **object** sheets. Don't have Manus re-check background purity or margins —
+  the importer does that harder. Do **not** burn vision/regen cycles trying to
+  flatten people/face soft-3D.
+- **Model tier: `default` quality only** for Manus flat-vector sheets. The
+  PROMPT is the stronger lever — never pay for high on this skill path.
 - **Success metric = "tiles that survive our importer,"** not "tiles that pass
   Manus's own vision check." Judge a Manus run by how many cleanly key through
   `assets:import-sheet`, not by Manus's self-reported pass rate.
-
-Confirmed canvas limits (asked & answered — don't re-ask next run):
-
-- **Model → max resolution (long side):** `gpt-image-2` = 2048px; default
-  quality mode ≈ 2048px; `nano-banana-2` = 4096px (4K); `nano-banana-pro` = up to
-  4096px, sometimes up to 5632px. Reach the 4K tiers with `quality="high"`.
-- **Non-square is supported** via aspect presets — landscape 3:2 / 4:3 / 16:9 /
-  21:9; portrait 2:3 / 3:4 / 4:5 / 9:16; square 1:1. Tallest preset is 9:16
-  (0.5625). `aspect_ratio="auto"` + "ultra-tall portrait" in the prompt gets close
-  to arbitrary shapes (near 1:2).
-- **Exact pixel dims** (e.g. 2048×4096) are achievable via post-processing:
-  generate at the nearest preset (9:16), then PIL/Pillow resize/extend —
-  deterministic, no quality loss.
-- **Takeaway:** high quality + a tall canvas unlocks **4×8 / 32-tile sheets**
-  (Variant C) at the same ~512px/tile keying quality, doubling props per image.
-  Default / `gpt-image-2` stays on 4×4 / 16 tiles.
 
 Validated Run-6 findings (first real 10× 4×8 batch — fold these in):
 

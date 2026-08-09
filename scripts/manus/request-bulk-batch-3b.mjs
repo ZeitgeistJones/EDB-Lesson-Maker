@@ -28,9 +28,9 @@ DON'T HYPERFIXATE: self-check tiles; if one or two won't come clean after a try 
 
 HARD STYLE (all sheets):
 - Pure solid #000000 field. True even grid. One subject per cell, ~8% margin, nothing crossing borders.
-- Flat educational / matte 2-tone vector (base + one shade). NOT soft-3D, NOT glossy emoji, NOT photo, NOT grey cards behind objects.
+- Flat educational / matte 2-tone vector (base + one shade). NOT glossy emoji, NOT photo, NOT grey cards behind objects.
 - ZERO text/letters/numbers/logos/brand marks. Kid-safe.
-- Prefer quality="high" + nano-banana-pro/2 on tall 9:16 (long side ≥4096) for 4×8 so tiles stay ~512px+.
+- Use quality: default only (never high). Prefer 4×8 when default still keys; else 4×4.
 - Default grid: **4 columns × 8 rows (32)** when you have 32 DISTINCT props; else **4×4 (16)**. People sheets use denser cells (4×4 / 3×4).
 
 SHEETS (deliver each as its own PNG):
@@ -40,10 +40,11 @@ SHEET 1 — CAFE / RESTAURANT PEOPLE (denser cells)
 - Every cell is a standing PERSON in uniform (full body or 3/4). Not tools alone.
 - MUST include distinct: **waiter**, **waitress**, **barista** (apron + coffee cup/portafilter OK as accessories — person must dominate).
 - Fill remaining cells with high-value food-service people if natural: chef (if distinct from our house job-chef), host/hostess, baker, server with tray, sommelier SKIP (alcohol), busboy/runner, ice-cream scooper, pizza maker, sushi chef kid-safe, etc. (≤16; no alcohol props).
+- Accept soft-3D drift on people — do NOT repair/regen this sheet for flatness.
 
 SHEET 2 — JOBS PEOPLE TOP-UP (denser; includes coach)
 - Grid: **4×4**.
-- Standing PERSON figures only. Flat educational (reject soft-3D).
+- Standing PERSON figures only. Aim flat educational; accept soft-3D drift — do NOT repair/regen for flatness.
 - MUST include distinct **coach** (sports coach with cap; whistle-on-lanyard OK as accessory — NOT teacher, NOT whistle alone).
 - Also: teacher, doctor, nurse, firefighter, pilot, chef, police, construction worker, scientist, mail carrier, vet, dentist, bus driver, librarian as fit (≤16).
 

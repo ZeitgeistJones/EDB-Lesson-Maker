@@ -90,3 +90,13 @@ Always fold Manus output into **producer + local checks** — see `.cursor/skill
 Board **review** always passes `agent_profile: manus-1.6` (`REVIEW_AGENT_PROFILE`) and does not attach `esl-asset-generator`.
 
 Asset / sheet-request / spike creates omit that override so they use **`MANUS_AGENT_PROFILE`** (default **`manus-1.6-lite`**) and pass `message.force_skills: [MANUS_SKILLS.ESL_ASSET_GENERATOR]` (`L6pNb9BaysxKxawADNwTWE`, name `esl-asset-generator`). See `scripts/manus/client.mjs` and `tmp/manus-attachment-spike-run.mjs`.
+
+### Cursor rules for every `esl-asset-generator` call
+
+There is **no in-repo skill mirror** for `esl-asset-generator` (upstream lives on the Manus account). Cursor must follow these on every future asset call — enforced in `withEslAssetGeneratorBrief` / `createTask` in `scripts/manus/client.mjs`:
+
+1. **Deduplicate** — never run the same sheet list twice if two identical files/attachments appear. One `createTask` only; `dedupeMessageFileParts` drops duplicate file parts in one message.
+2. **`quality: default` only** — never `quality: high` in task prompts. The skill overrides; high costs 3–5× with no gain for flat vector. Callers that still say “prefer high / 4K” are sanitized to default.
+3. **People / face sheets** — accept soft-3D drift; do **not** ask Manus to repair or regenerate people or face-icon sheets for flatness.
+
+**Cost ceiling (mental model):** an 11-sheet run ≤ 3 `generate_image` calls (5+5+1) at default quality.

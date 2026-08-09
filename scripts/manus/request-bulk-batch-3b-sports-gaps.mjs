@@ -26,7 +26,7 @@ const BRIEF = withEslAssetGeneratorBrief(`TASK: Produce flat-vector ESL teaching
 
 DON'T HYPERFIXATE: skip stubborn tiles after 1–2 tries; never pad with duplicates or off-theme fillers.
 
-HARD STYLE: pure #000000 field; true even grid; one subject per cell; flat educational 2-tone matte vector (NOT soft-3D, NOT photo, NOT grey cards); ZERO text/logos; kid-safe. Use high quality / 4K tall 9:16 so 4×8 tiles stay ~512px+.
+HARD STYLE: pure #000000 field; true even grid; one subject per cell; flat educational 2-tone matte vector (NOT photo, NOT grey cards); ZERO text/logos; kid-safe. Use quality: default only (never high). Prefer 4×8 when default still keys; else 4×4.
 
 CONTEXT: A separate task already covers jobs PEOPLE (incl. coach) + bathroom/bags/office/art leftovers. This task is OBJECT gaps only from a sports/playground scan.
 
