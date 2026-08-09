@@ -39,6 +39,7 @@
     "test:asset-coverage": "npm run coverageloop",
     "coverageloop:merge": "node scripts/merge-asset-coverage.mjs",
     "assets:kenney-curate": "node scripts/kenney-curate.mjs",
+    "assets:kenney-import": "node scripts/kenney-import.mjs",
     "assets:coloring": "node scripts/import-coloring-sheet.mjs",
     "test:coloring": "node scripts/smoke-coloring-outlines.mjs",
     "test:story-art-latency": "node scripts/smoke-story-art-latency.mjs",

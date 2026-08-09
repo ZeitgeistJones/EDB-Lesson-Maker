@@ -4,6 +4,9 @@
  *
  *   node scripts/kenney-curate.mjs
  *   node scripts/kenney-curate.mjs --min=160 --topics=zoo-animals,aquarium-fish
+ *
+ * Then merge dock-ready picks into PropBank:
+ *   node scripts/kenney-import.mjs
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -20,9 +23,10 @@ const SOURCES = {
   'zoo-animals': path.join(BANK, 'by-pack', 'animal-pack', 'PNG', 'Round'),
   // Default is 64px; Double is 128px (clears MIN_DOCK_SRC).
   'aquarium-fish': path.join(BANK, 'by-pack', 'fish-pack', 'PNG', 'Double'),
-  'space-planets': path.join(BANK, 'by-pack', 'planets'),
+  // Finished planet discs only — Parts/ is noise/light assembly textures.
+  'space-planets': path.join(BANK, 'by-pack', 'planets', 'Planets'),
   'space-simple': path.join(BANK, 'by-pack', 'simple-space', 'PNG', 'Retina'),
-  'nature-foliage': path.join(BANK, 'by-pack', 'foliage-sprites'),
+  'nature-foliage': path.join(BANK, 'by-pack', 'foliage-sprites', 'PNG'),
   'sports-gym': path.join(BANK, 'by-pack', 'sports-pack', 'PNG', 'Blue'),
 };
 
@@ -68,6 +72,12 @@ function main() {
     }
     const dest = path.join(OUT, topic);
     fs.mkdirSync(dest, { recursive: true });
+    // Clear prior curated copies so removed sources don't linger.
+    for (const old of fs.readdirSync(dest)) {
+      if (/\.png$/i.test(old) || old === 'manifest.json') {
+        fs.unlinkSync(path.join(dest, old));
+      }
+    }
     const kept = [];
     for (const file of walkPngs(src)) {
       const base = path.basename(file);

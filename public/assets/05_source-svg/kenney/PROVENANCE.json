@@ -1,0 +1,24 @@
+{
+  "license": "CC0 1.0 Universal",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "attribution": "Kenney (https://kenney.nl) — credit appreciated, not required",
+  "site": "https://kenney.nl/assets",
+  "commercialUse": true,
+  "stagingBank": "tmp/asset-banks/kenney/ (gitignored; see PROVENANCE.json + INDEX.md there)",
+  "propBankKeys": "kenney-* in public/assets/09_props (styleFamily=kenney-flat)",
+  "producer": {
+    "curate": "npm run assets:kenney-curate",
+    "import": "npm run assets:kenney-import"
+  },
+  "packsImported": [
+    { "id": "animal-pack", "page": "https://kenney.nl/assets/animal-pack", "topic": "zoo-animals" },
+    { "id": "fish-pack", "page": "https://kenney.nl/assets/fish-pack", "topic": "aquarium-fish" },
+    { "id": "planets", "page": "https://kenney.nl/assets/planets", "topic": "space-planets" },
+    { "id": "simple-space", "page": "https://kenney.nl/assets/simple-space", "topic": "space-simple" },
+    { "id": "foliage-sprites", "page": "https://kenney.nl/assets/foliage-sprites", "topic": "nature-foliage" }
+  ],
+  "packsSkipped": [
+    { "id": "sports-pack", "page": "https://kenney.nl/assets/sports-pack", "reason": "Blue sprites ~21px — below dock min" }
+  ],
+  "importedAt": "2026-08-09"
+}
