@@ -74,6 +74,7 @@ async function main() {
     const meta = { level: 'A1', duration: '30', phonics: 'on' };
     const result = await page.evaluate(async ({ lesson, meta }) => {
       await window.PropBank.ready();
+      if (window.VocabIcons && window.VocabIcons.ready) await window.VocabIcons.ready();
       const boardPlan = window.EdbActivities.buildBoardPlan(lesson, meta);
       await window.LessonPages.attachBgPicks(lesson, meta, boardPlan);
       const canvases = await window.BoardPreview.renderCanvases(lesson, meta, boardPlan);

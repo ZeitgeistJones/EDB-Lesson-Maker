@@ -711,6 +711,7 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
 
   // ---- build board ----
   if (window.PropBank) await window.PropBank.ready();
+  if (window.VocabIcons && window.VocabIcons.ready) await window.VocabIcons.ready();
   const boardPlan = window.EdbActivities.buildBoardPlan(lesson, meta);
   await window.LessonPages.attachBgPicks(lesson, meta, boardPlan);
 

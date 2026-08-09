@@ -43,6 +43,7 @@ async function main() {
 
   const r = await page.evaluate(async (lesson) => {
     await window.PropBank.ready();
+    if (window.VocabIcons && window.VocabIcons.ready) await window.VocabIcons.ready();
     const meta = { level: 'A1', duration: '30', phonics: 'on' };
     const plan = window.EdbActivities.buildBoardPlan(lesson, meta);
     const act = (plan.pages || []).find((p) => p.pageKey === 'activity');

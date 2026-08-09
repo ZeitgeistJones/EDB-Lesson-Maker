@@ -41,6 +41,7 @@ async function main() {
 
   const dataUrl = await page.evaluate(async ({ lesson, meta }) => {
     await window.PropBank.ready();
+    if (window.VocabIcons && window.VocabIcons.ready) await window.VocabIcons.ready();
     const boardPlan = window.EdbActivities.buildBoardPlan(lesson, meta);
     const hero = window.PropBank.resolve({ word: 'face-blank', family: 'matte' })
       || window.PropBank.all().find((p) => p.key === 'face-blank');
