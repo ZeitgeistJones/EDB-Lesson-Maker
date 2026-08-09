@@ -197,6 +197,150 @@ const TOPIC_CATALOG = [
     source: 'fixture:castle-lesson.json',
     fixture: 'castle-lesson.json',
   },
+  // Shard-5 themes: transport / city / camping / music / space / animals
+  {
+    id: 'travel',
+    title: 'Airport Travel Day',
+    source: 'fixture:travel-lesson.json',
+    fixture: 'travel-lesson.json',
+  },
+  {
+    id: 'hotel',
+    title: 'Hotel Stay',
+    source: 'fixture:hotel-lesson.json',
+    fixture: 'hotel-lesson.json',
+  },
+  {
+    id: 'campsite',
+    title: 'Campsite Fun',
+    source: 'fixture:campsite-lesson.json',
+    fixture: 'campsite-lesson.json',
+  },
+  {
+    id: 'music',
+    title: 'Music Class',
+    source: 'fixture:music-lesson.json',
+    fixture: 'music-lesson.json',
+  },
+  {
+    id: 'space',
+    title: 'Space Station Trip',
+    source: 'fixture:space-lesson.json',
+    fixture: 'space-lesson.json',
+  },
+  {
+    id: 'aquarium',
+    title: 'Aquarium Visit',
+    source: 'fixture:aquarium-lesson.json',
+    fixture: 'aquarium-lesson.json',
+  },
+  {
+    id: 'zoo',
+    title: 'A Day at the Zoo',
+    source: 'fixture:zoo-phonics-lesson.json',
+    fixture: 'zoo-phonics-lesson.json',
+  },
+  {
+    id: 'transport-demand',
+    title: 'Transport and Vehicles',
+    source: 'demand',
+    words: [
+      'bus', 'train', 'car', 'plane', 'boat', 'bike', 'taxi', 'subway', 'ticket',
+      'station', 'airport', 'passport', 'suitcase', 'helmet', 'truck', 'motorcycle',
+      'ferry', 'scooter', 'bridge', 'traffic light',
+    ],
+  },
+  {
+    id: 'city-demand',
+    title: 'City Buildings',
+    source: 'demand',
+    words: [
+      'city', 'street', 'building', 'house', 'apartment', 'shop', 'bank', 'library',
+      'station', 'park', 'traffic light', 'sidewalk', 'skyscraper', 'hotel',
+      'restaurant', 'museum', 'bridge', 'mailbox', 'crosswalk', 'fountain',
+    ],
+  },
+  {
+    id: 'camping-demand',
+    title: 'Camping Trip Demand',
+    source: 'demand',
+    words: [
+      'tent', 'campfire', 'backpack', 'map', 'flashlight', 'camp', 'sleeping bag',
+      'marshmallow', 'compass', 'lantern', 'cooler', 'hiking', 'trail', 'canoe',
+      'canteen', 'rope', 'hatchet', 'picnic table', 'camp stove', 'binoculars',
+    ],
+  },
+  {
+    id: 'music-demand',
+    title: 'Music Instruments Demand',
+    source: 'demand',
+    words: [
+      'music', 'sing', 'drum', 'piano', 'dance', 'song', 'guitar', 'violin', 'flute',
+      'trumpet', 'microphone', 'headphones', 'conductor', 'orchestra', 'note',
+      'xylophone', 'tambourine', 'cello', 'saxophone', 'harmonica',
+    ],
+  },
+  {
+    id: 'space-demand',
+    title: 'Space Demand',
+    source: 'demand',
+    words: [
+      'rocket', 'astronaut', 'planet', 'moon', 'star', 'space', 'satellite', 'alien',
+      'earth', 'spaceship', 'telescope', 'comet', 'galaxy', 'helmet', 'station',
+      'orbit', 'meteor', 'sun', 'asteroid', 'spacesuit',
+    ],
+  },
+  {
+    id: 'animals-demand',
+    title: 'Animals Demand',
+    source: 'demand',
+    words: [
+      'lion', 'bear', 'fish', 'zoo', 'elephant', 'monkey', 'tiger', 'bird', 'dog',
+      'cat', 'horse', 'cow', 'giraffe', 'penguin', 'shark', 'dolphin', 'coral',
+      'turtle', 'zebra', 'kangaroo',
+    ],
+  },
+  // gap-scan-C leftovers (no prior catalog id to enrich into)
+  {
+    id: 'hobbies-demand',
+    title: 'My Hobbies',
+    source: 'demand+gap-scan-C',
+    words: [
+      'hobby', 'paint', 'paintbrush', 'draw', 'chess', 'knitting', 'garden',
+      'camera', 'photography', 'kite', 'read', 'sing', 'dance', 'collect',
+      'fishing', 'board game', 'piano', 'skateboard', 'bike', 'cook',
+    ],
+  },
+  {
+    id: 'bags-demand',
+    title: 'Bags and Accessories',
+    source: 'demand+gap-scan-C',
+    words: [
+      'bag', 'backpack', 'handbag', 'purse', 'wallet', 'suitcase', 'briefcase',
+      'umbrella', 'watch', 'glasses', 'sunglasses', 'hat', 'belt', 'gloves',
+      'scarf', 'jewelry', 'necklace', 'ring', 'tote', 'duffel',
+    ],
+  },
+  {
+    id: 'office-demand',
+    title: 'At the Office',
+    source: 'demand+gap-scan-C',
+    words: [
+      'office', 'desk', 'computer', 'laptop', 'phone', 'stapler', 'scissors',
+      'tape', 'paperclip', 'calculator', 'folder', 'clipboard', 'pen', 'pencil',
+      'eraser', 'notebook', 'calendar', 'lamp', 'envelope', 'printer',
+    ],
+  },
+  {
+    id: 'bathroom-demand',
+    title: 'Bathroom Routines Demand',
+    source: 'demand+gap-scan-C',
+    words: [
+      'shower', 'soap', 'toothbrush', 'toothpaste', 'towel', 'mirror', 'toilet',
+      'sink', 'shampoo', 'bathtub', 'comb', 'hairbrush', 'razor', 'scale',
+      'bathroom scale', 'mouthwash', 'floss', 'faucet', 'bathrobe', 'plunger',
+    ],
+  },
 ];
 
 function parseArgs(argv) {
@@ -378,11 +522,15 @@ function selectTopics(opts) {
   if (opts.topics && opts.topics.length) {
     const want = new Set(opts.topics.map((t) => t.toLowerCase()));
     catalog = catalog.filter((t) => want.has(t.id.toLowerCase()));
-    const missing = opts.topics.filter((t) => !catalog.some((c) => c.id.toLowerCase() === t.toLowerCase()));
+    const missing = opts.topics.filter(
+      (t) => !TOPIC_CATALOG.some((c) => c.id.toLowerCase() === t.toLowerCase())
+    );
     if (missing.length) {
       console.warn('Unknown --topics (skipped):', missing.join(', '));
       console.warn('Known ids:', TOPIC_CATALOG.map((t) => t.id).join(', '));
     }
+    // Explicit --topics wins; do not also slice by --shard index.
+    return catalog;
   }
   if (opts.shardIndex != null) {
     catalog = catalog.filter((_, i) => i % opts.shardTotal === opts.shardIndex - 1);
