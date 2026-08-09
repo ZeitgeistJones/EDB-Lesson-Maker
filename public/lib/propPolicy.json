@@ -94,7 +94,8 @@
     "teammate": true,
     "homework": true,
     "goal": true,
-    "goals": true
+    "goals": true,
+    "scale": true
   },
   "aliases": {
     "patient": "dental-kid-open-mouth",
@@ -103,7 +104,11 @@
     "stadium": "city-stadium",
     "coffee": "cafe-coffee-cup",
     "shower": "bath-shower-head",
-    "shower head": "bath-shower-head",
-    "straw": "drink-straw"
+    "shower-head": "bath-shower-head",
+    "straw": "drink-straw",
+    "bathroom-scale": "bath-scale",
+    "bath-scale": "bath-scale",
+    "kitchen-scale": "sci-scale",
+    "weighing-scale": "sci-scale"
   }
 }
