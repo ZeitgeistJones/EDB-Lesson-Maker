@@ -516,9 +516,9 @@
   }
 
   /**
-   * Deterministic variety: rotate inside the top-score band from a per-lesson
-   * start, then step by index. Seed is lesson.title — the same seed
-   * attachBgPicks uses — so one lesson reproduces exactly while two diverge.
+   * Deterministic variety inside an already-narrowed band (variants of one
+   * base, or a role bucket for pickDecor). Seed + index pick the slot —
+   * callers must not pass a mixed equal-score object list (ball↛yarn-ball).
    */
   function rotatePick(band, seed, index_) {
     if (!band.length) return null;
@@ -889,7 +889,11 @@
     const top = scored[0].score;
     const floor = q.minScore == null ? DEFAULT_MIN_SCORE : q.minScore;
     if (top >= floor) {
-      const band = scored.filter((s) => s.score === top).map((s) => s.p);
+      // Equal-score ≠ same object (ball / yarn-ball / cotton-ball can tie).
+      // Sort already chose a stable winner; rotate only inside that prop's
+      // variant set — never across different bases.
+      const hit = scored[0].p;
+      const band = variantBand(pool, hit);
       const pick = rotatePick(band, q.seed, q.index);
       logResolution({
         word: String(word),
