@@ -88,7 +88,9 @@
     "bucket": ["cleaning-bucket"],
     "sand": ["landmark-marina-bay-sands"],
     "wave": ["hair-long-blonde-wave"],
-    "patient": ["job-doctor", "job-nurse", "stethoscope", "clinic-clipboard"]
+    "patient": ["job-doctor", "job-nurse", "stethoscope", "clinic-clipboard"],
+    "propeller": ["gashapon-hat-propeller", "gashapon"],
+    "bubble": ["speech-bubble", "speech"]
   },
   "ambiguous": {
     "clinic": true,
