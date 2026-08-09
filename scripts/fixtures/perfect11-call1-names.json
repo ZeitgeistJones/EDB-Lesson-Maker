@@ -1,0 +1,32 @@
+{
+  "circus": [
+    "tent", "ring", "podium", "unicycle", "juggling-clubs", "cannon", "juggling-balls", "tightrope-poles",
+    "balance-pole", "colorful-ball", "hula-hoop", "top-hat", "magician-wand", "star-wand", "megaphone", "popcorn-bucket",
+    "cotton-candy", "ticket-roll", "banner", "trapeze-bar", "safety-net", "bass-drum", "trumpet", "cymbals",
+    "wagon", "torch", "fire-hoop", "mallet", "star-cape", "bow-tie", "ruffled-collar", "whistle"
+  ],
+  "carnival": [
+    "ferris-wheel", "bumper-car", "ticket-booth", "carousel-horse", "roller-coaster", "popcorn-machine", "cotton-candy-machine", "hot-dog-stand",
+    "prize-booth", "teddy-bear", "stuffed-rabbit", "rubber-duck", "hammer-game", "ring-toss-bottle", "ring", "dart",
+    "balloons", "candy-apple", "pretzel", "lemonade", "funnel-cake", "mask", "pinwheel", "token",
+    "raffle-drum", "pennant-banner", "dunk-tank", "water-gun", "target", "bean-bag", "tin-cans", "milk-bottle"
+  ],
+  "library": [
+    "bookshelf", "book-stack", "open-book", "bookmark", "library-card", "reading-lamp", "book-cart", "date-stamp",
+    "ink-pad", "globe", "magazine-stack", "dictionary", "encyclopedia", "newspaper", "magnifying-glass", "glasses",
+    "bookend", "library-ladder", "index-box", "index-card", "quill-pen", "inkwell", "red-book", "blue-book",
+    "green-book", "scroll", "map", "headphones", "cd-case", "tablet", "e-reader", "drop-box"
+  ],
+  "post-office": [
+    "blue-mailbox", "red-postbox", "envelope", "sealed-envelope", "small-parcel", "large-parcel", "stamp-pad", "scale",
+    "mail-bag", "shipping-label", "packing-tape", "stamp", "postcard", "postcard-back", "bubble-mailer", "tube",
+    "pen", "rubber-bands", "twine", "paper-cutter", "bell", "mail-sorter", "hand-truck", "delivery-truck",
+    "mail-slot", "airmail-envelope", "glue-stick", "wax-stick", "wax-seal", "letter-opener", "clipboard", "po-box"
+  ],
+  "airport": [
+    "airplane", "control-tower", "suitcase", "luggage-cart", "boarding-pass", "runway-cone", "jet-bridge", "passport",
+    "backpack", "duffel-bag", "luggage-tag", "scanner", "xray-machine", "plastic-bin", "airport-seat", "info-desk",
+    "departure-board", "windcone", "blue-light", "red-light", "aircraft-tug", "fuel-truck", "stairs-truck", "pilot-hat",
+    "scarf", "serving-tray", "plastic-cup", "pillow", "eye-mask", "headphones", "duty-free-bag", "wheelchair"
+  ]
+}
