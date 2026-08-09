@@ -16,6 +16,7 @@ Do **not** redistribute these folders as a standalone competing stock pack.
 | Board props (cutouts) | `09_props/img/` | Generated with OpenAI image models for this project | Verify OpenAI terms before commercial resale | ~40 empty shells: covers, dress-up, speaking tokens, furniture, phonics tools, collage props | 2026-08-02 |
 | Board props (alpha cutouts) | `09_props/img/` (`alpha: true` in manifest) | Generated with OpenAI / Cursor image models for this project | Verify current terms before commercial resale | Includes ChatGPT black-field imports (dental kit + face kit blank/features/hair Aug 2026); keyed via `scripts/import-prop.mjs` | 2026-08-05 |
 | Kenney Game Assets | `tmp/asset-banks/kenney/` (staging; pointer in `05_source-svg/kenney/`) | CC0 1.0 | Not required (credit Kenney appreciated) | ESL-sorted junctions under `by-topic/` — animals, sports, space Side, nature, farm, backgrounds; 3D kits held as source only. Do not resell packs as stock. | 2026-08-07 |
+| game-icons.net tool shelf | `09_props/img/gicon-*.png` + `tmp/asset-banks/game-icons/` | CC BY 3.0 | **Required** — see `tmp/asset-banks/game-icons/ATTRIBUTION.md` | Black-on-transparent icon shelf (`gicon-*`, styleFamily `game-icons`, pack `gicon`, tags include `cc-by` + `tool`). Import via `scripts/game-icons-import.mjs`. Do not treat as Manus matte props. | 2026-08-09 |
 
 ## Manual drops still recommended
 

@@ -7,6 +7,10 @@ _parse_edb_*.js
 public/assets/**/_crop_demo/
 assets-inbox/*
 !assets-inbox/.gitkeep
-tmp/
-
-tmp/
+# Ignore tmp contents, but keep the game-icons CC-BY attribution ledger tracked.
+tmp/*
+!tmp/asset-banks/
+tmp/asset-banks/*
+!tmp/asset-banks/game-icons/
+tmp/asset-banks/game-icons/*
+!tmp/asset-banks/game-icons/ATTRIBUTION.md

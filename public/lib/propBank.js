@@ -356,11 +356,11 @@
     'shopping', 'weather', 'family', 'gym',
   ];
   // Glossy is only the small lacquered adventure set (wizard-hat, lantern…).
-  // Do NOT put castle/dragon/space/tree here — those kits are matte house art;
-  // a castle lesson that picks glossy filters every castle-* prop out of play.
+  // Do NOT put castle/dragon/space/tree/camp here — those kits are matte house art;
+  // a camping lesson that picks glossy filters every camp-* / hike-* prop out of play.
   const GLOSSY_HINTS = [
     'adventure', 'quest', 'pirate', 'treasure', 'magic', 'wizard',
-    'camping', 'camp', 'explorer', 'explore', 'jungle',
+    'explorer', 'explore', 'jungle',
     'island', 'safari', 'journey', 'voyage',
     'travel', 'trip', 'holiday', 'vacation', 'airport', 'flight', 'flying',
     'tourist', 'suitcase',
@@ -370,6 +370,8 @@
     'aquarium', 'fish', 'ocean', 'coral',
     'space', 'rocket', 'astronaut', 'alien', 'station',
     'tree', 'forest', 'nature', 'season',
+    // Camp / hike packs are matte; win over glossy travel/trip title words.
+    'camping', 'camp', 'campsite', 'hiking', 'hike',
     'dollhouse', 'gashapon',
   ];
 
