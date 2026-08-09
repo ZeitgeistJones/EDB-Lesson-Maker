@@ -502,11 +502,13 @@
   function buildScene(lesson, page, layout) {
     const L = layout || window.EdbLayout;
     const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
-    const parts = vocabList(lesson).slice(0, 4);
-    if (!parts.length) return;
+    const dock = vocabList(lesson).slice(0, 4)
+      .map((v) => vocabDockPiece(v, 'buildPart'))
+      .filter((p) => p && p.meta && (p.meta.artSrc || p.emoji));
+    if (!dock.length) return;
     const slotW = 100;
     const slotH = 100;
-    parts.forEach((_, i) => {
+    dock.forEach((_, i) => {
       const x = bay.x + 16 + (i % 2) * (slotW + 20);
       const y = bay.y + 16 + Math.floor(i / 2) * (slotH + 16);
       L.place(page, {
@@ -519,10 +521,7 @@
         role: 'buildSlot',
       });
     });
-    const dock = parts.map((v) => vocabDockPiece(v, 'buildPart')).filter(Boolean);
-    if (dock.length) {
-      L.placeDockRow(page, dock, { w: 96, h: 96 });
-    }
+    L.placeDockRow(page, dock, { w: 96, h: 96 });
     page.notes.push('recipe:buildScene');
   }
 

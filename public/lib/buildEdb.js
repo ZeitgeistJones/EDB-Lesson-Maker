@@ -452,7 +452,8 @@ async function pieceToPng(piece, ctx) {
   const wantCaption = !isMatchIcon && !!(piece.label || (piece.meta && piece.meta.captionChip));
   const assetStr = piece.asset != null ? String(piece.asset) : '';
   const padRole = /^(matchPad|orderPad|buildSlot)$/.test(piece.role || '');
-  const isImageKind = piece.kind === 'image' || (!!piece.asset && !padRole && piece.kind !== 'emoji');
+  // Loud fail only for planned match art — chrome (hero/dress/star) skips null.
+  const mustHaveArt = isMatchIcon || !!artSrc;
 
   // VocabArt-planned path wins (match dock + any piece with meta.artSrc).
   if (artSrc) {
@@ -463,7 +464,7 @@ async function pieceToPng(piece, ctx) {
       }
       return png;
     }
-    if (isMatchIcon || piece.kind === 'image') {
+    if (mustHaveArt) {
       throw new Error('pieceToPng: missing artSrc file for ' + (word || artSrc));
     }
   }
@@ -511,9 +512,10 @@ async function pieceToPng(piece, ctx) {
       }
       return png;
     }
-    if (isImageKind || isMatchIcon) {
+    if (mustHaveArt) {
       throw new Error('pieceToPng: image asset failed to load (' + (word || piece.role || assetStr) + ')');
     }
+    return null;
   }
   const glyph = piece.emoji && String(piece.emoji) !== '•' ? piece.emoji : null;
   if ((piece.kind === 'emoji' || glyph) && glyph) {
@@ -526,10 +528,10 @@ async function pieceToPng(piece, ctx) {
   if (piece.text && piece.kind !== 'text') {
     return tileToPng(piece.text, { w: piece.w || 186, h: piece.h || 54 });
   }
-  if (isMatchIcon || piece.kind === 'image') {
-    throw new Error('pieceToPng: no vetted art for ' + (word || piece.role || 'image'));
+  if (mustHaveArt) {
+    throw new Error('pieceToPng: no vetted art for ' + (word || piece.role || 'matchPiece'));
   }
-  // Unlabeled chrome without art — blank plate, never role text / bullet.
+  // Chrome / unlabeled pieces without art — skip (empty > role-label / bullet).
   return null;
 }
 

@@ -1381,9 +1381,11 @@
   function fillStoryArtSlot(slot, lesson, page, bigEmoji) {
     const vis = storyFallbackVisual(lesson, page);
     slot.innerHTML = '';
+    // Keep dataset.storyArt as the numeric page index for applyStoryArt —
+    // never overwrite it with 'none' / delete it (that breaks StoryArt swaps).
     if (vis.type === 'prop') {
       slot.dataset.storyProp = vis.key || '1';
-      delete slot.dataset.storyArt;
+      delete slot.dataset.storyArtFallback;
       const plate = el('div', {
         flex: '1',
         minHeight: '0',
@@ -1419,7 +1421,7 @@
     delete slot.dataset.storyProp;
     if (vis.type === 'none' || !vis.emoji) {
       // Caption-only plate — no fake book / bullet.
-      slot.dataset.storyArt = 'none';
+      slot.dataset.storyArtFallback = 'none';
       slot.appendChild(el('div', {
         flex: '1',
         minHeight: bigEmoji ? '120px' : '80px',
@@ -1432,7 +1434,7 @@
       }));
       return vis;
     }
-    delete slot.dataset.storyArt;
+    delete slot.dataset.storyArtFallback;
     slot.appendChild(el('div', {
       fontSize: bigEmoji ? '96px' : '64px',
       lineHeight: '1',
