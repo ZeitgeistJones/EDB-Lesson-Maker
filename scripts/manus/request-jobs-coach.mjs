@@ -8,11 +8,15 @@ import { fileURLToPath } from 'url';
 import { createTask, MANUS_SKILLS } from './client.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-const brief = `Request a ClassIn ESL prop contact sheet (black field, one prop per cell, no labels/grid).
+const brief = `Request a ClassIn ESL prop contact sheet.
 
-Theme: **jobs / community helpers people** — standing kid-safe characters, full body or 3/4, clear silhouette, matte toy style matching our existing job-* props.
+Layout: even **4×4 or smaller** true grid (prefer bigger people cells — NOT 4×8 tiny stamps). Solid pure black (#000000) field edge-to-edge. One standing person per cell. No painted grid lines, no labels, no text on art. Gutters are empty black only.
 
-MUST include a distinct **coach** (sports coach with cap or whistle-on-lanyard — NOT a classroom teacher, NOT a whistle alone). Also include: teacher, doctor, nurse, firefighter, pilot, chef, police officer, construction worker (pick ~9–16 that fit a 3x3 or 4x4 grid).
+Style: **flat educational** vector/matte cutouts (restrained soft shading only) matching our existing job-* people — NOT soft-3D, NOT glossy product renders, NOT photo. Kid-safe, friendly, full body or 3/4, clear silhouette.
+
+Theme: **jobs / community helpers people** — every cell MUST be a person figure in uniform (not tools/whistle/clipboard alone).
+
+MUST include a distinct **coach** (sports coach with cap; whistle may hang on lanyard as accessory — NOT a classroom teacher, NOT a whistle/clipboard alone). Also fill high-value missing/refresh people that fit: teacher, doctor, nurse, firefighter, pilot, chef, police officer, construction worker, plus e.g. scientist / mail carrier / vet / dentist if natural (≤16 total).
 
 Output: PNG contact sheet ready for blob-slice import into 09_props (pack tags: jobs, people). Name each cell in a short legend in the chat reply (not painted on the art).
 
