@@ -35,6 +35,35 @@ the real gutters instead of assuming equal pitch, so a row drawn slightly
 oversized still slices correctly — but two props that meet with no black between
 them cannot be separated.
 
+**Bulk import workflow (default):** vision-label, then staged import. Black-field
+sheets only — do **not** re-run white-field carnival / library / airport sheets.
+
+1. **Label** (needs `ANTHROPIC_API_KEY`):
+
+   ```bash
+   npm run assets:label-sheet -- --sheet=<png> --grid=RxC --out=tmp/labels-<theme>.json
+   ```
+
+   `--grid` is **rows×cols** (portrait 4×8 Manus pack → `--grid=8x4`). Labels
+   map by cell index `i`, not position guess — kills off-by-one shifts.
+
+2. **Import** (staged, no manifest writes):
+
+   ```bash
+   npm run assets:import-sheet -- <png> --grid=RxC \
+     --labels=tmp/labels-<theme>.json --prefix=<theme-> --pack=<theme> \
+     --stage=tmp/<batch>/<theme>
+   ```
+
+3. **QA + cull:** open `<prefix>-qa.jpg`; mark `"skip": true` on hard-blocked /
+   junk / not-worth rows in `*-rows.json` before merge.
+
+**Fallback** when vision is unavailable: hand-type parallel CSV lists on
+`assets:import-sheet` (`--names`, `--roles`, `--scales`, `--anchors`) — see
+[`docs/import-sheet-usage.md`](../../../docs/import-sheet-usage.md). The older
+`assets:prop --sheet` one-liner still works for tiny grids but prefer
+`import-sheet` for Manus batches.
+
 **Ragged / non-grid sheets** (giant castle wall + mixed scales, no uniform RxC):
 do **not** force `--grid`. Preview with the blob slicer first, name from the
 numbered QA, then key:
