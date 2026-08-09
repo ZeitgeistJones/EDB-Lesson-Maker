@@ -20,8 +20,19 @@ CEFR-gated sound-box rules live in [`public/lib/phonicsPolicy.js`](../public/lib
 
 Teacher scripts stress **letter sounds, not letter names** (EFL-appropriate).
 
-## Smoke
+## Split correctness (PH1/PH2)
+
+`acceptsGraphemes` checks **split well-formedness** before **word eligibility**:
+
+1. Required digraphs/vowel teams (when the level allows them) must stay in one box — over-splits like `ship → s|h|i|p` reject.
+2. Magic-e: no terminal lone `e` box when magic-e is allowed (`cake → c|a|k|e` rejects; `c|a|ke` accepts).
+3. Irregular sight words (`the`, `said`, …) are denylisted at every level.
+4. `minBoxes`/`maxBoxes` gate whether the *word* is rich enough for the page — a correct `shy → sh|y` is well-formed but too thin for A2, and is not replaced by illegal `s|h|y`.
+
+## Smoke + audit matrix
 
 ```bash
 npm run test:phonics
 ```
+
+Runs gating smoke (`scripts/smoke-phonics-policy.cjs`) then the 12-case audit matrix (`scripts/test-phonics-audit.cjs`).

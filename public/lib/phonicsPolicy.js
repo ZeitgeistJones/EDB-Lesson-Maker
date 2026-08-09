@@ -8,6 +8,10 @@
  *   B1  + vowel teams / magic-e / simple 2-syllable, 4–5 boxes, 3–4 distractors
  *   B2  optional (multisyllabic / r-controlled) — still allowed when forced on
  *   C1+ omit unless meta.phonics=on
+ *
+ * Split correctness (required digraphs/teams, magic-e) is checked before
+ * word-eligibility (minBoxes/maxBoxes) so a correct 2-box split is never
+ * rejected in favour of an illegal over-split that merely hits minBoxes.
  */
 (function (root, factory) {
   const api = factory();
@@ -73,11 +77,25 @@
     },
   };
 
-  const CORE_DIGRAPHS = new Set(['sh', 'ch', 'th', 'ck', 'ng', 'qu', 'wh']);
-  const VOWEL_TEAMS = new Set([
-    'ai', 'ay', 'ee', 'ea', 'oa', 'ow', 'oo', 'ou', 'oi', 'oy', 'igh', 'ie', 'ue', 'ew',
-  ]);
+  /** Multigraphs that must stay in one box when the level permits them. Longest first. */
+  const REQUIRED_DIGRAPHS = ['sh', 'ch', 'th', 'ck', 'ng', 'qu', 'wh', 'ph'];
+  const REQUIRED_VOWEL_TEAMS = [
+    'igh', 'ai', 'ay', 'ee', 'ea', 'oa', 'ow', 'oo', 'ou', 'oi', 'oy', 'ie', 'ue', 'ew',
+  ];
+
+  const CORE_DIGRAPHS = new Set(REQUIRED_DIGRAPHS);
+  const VOWEL_TEAMS = new Set(REQUIRED_VOWEL_TEAMS);
   const VOWELS = new Set(['a', 'e', 'i', 'o', 'u']);
+
+  /**
+   * Irregular sight words — never a decoding target (promptBlock already asks this in prose).
+   * Fixes the PH2 "the → t|h|e" path that otherwise looks like legal A1 CVC.
+   */
+  const IRREGULAR_DENYLIST = new Set([
+    'the', 'said', 'one', 'two', 'come', 'some', 'was', 'are', 'were', 'they',
+    'you', 'your', 'who', 'of', 'do', 'to', 'there', 'where', 'been', 'done',
+    'love', 'give', 'once',
+  ]);
 
   /** Small decodable bank when lesson vocab is irregular for the level. */
   const FALLBACK_BANK = {
@@ -121,6 +139,18 @@
     return LEVEL_RULES[key] || LEVEL_RULES.A1;
   }
 
+  function cleanWord(word) {
+    return String(word || '')
+      .toLowerCase()
+      .replace(/[^a-z]/g, '');
+  }
+
+  function cleanGraphemes(graphemes) {
+    return (graphemes || [])
+      .map((x) => String(x || '').trim().toLowerCase())
+      .filter(Boolean);
+  }
+
   function syllableHint(word) {
     const w = String(word || '').toLowerCase();
     let n = 0;
@@ -143,19 +173,88 @@
     return 'other';
   }
 
+  /** Required multigraphs for this level, longest-match first (igh before ie). */
+  function requiredMultigraphs(rules) {
+    const list = [];
+    if (rules.allowDigraphs) list.push(...REQUIRED_DIGRAPHS);
+    if (rules.allowVowelTeams) list.push(...REQUIRED_VOWEL_TEAMS);
+    return list.slice().sort((a, b) => b.length - a.length);
+  }
+
   /**
-   * Validate grapheme split for a CEFR level. Returns false if the word/split
-   * should not appear on a sound-box page at that level.
+   * True when a level-permitted multigraph in the word is split across box boundaries.
+   * Walks the word left-to-right with longest-match; does not invent under-splits.
    */
-  function acceptsGraphemes(word, graphemes, level) {
+  function breaksRequiredMultigraph(word, graphemes, rules) {
+    const w = cleanWord(word);
+    const g = cleanGraphemes(graphemes);
+    if (!w || !g.length) return false;
+
+    const spans = [];
+    let offset = 0;
+    for (const part of g) {
+      spans.push({ start: offset, end: offset + part.length });
+      offset += part.length;
+    }
+    if (offset !== w.length) return false;
+
+    function boxIndexAt(charIndex) {
+      for (let i = 0; i < spans.length; i += 1) {
+        if (charIndex >= spans[i].start && charIndex < spans[i].end) return i;
+      }
+      return -1;
+    }
+
+    const required = requiredMultigraphs(rules);
+    let i = 0;
+    while (i < w.length) {
+      let matched = null;
+      for (const m of required) {
+        if (w.startsWith(m, i)) {
+          matched = m;
+          break;
+        }
+      }
+      if (!matched) {
+        i += 1;
+        continue;
+      }
+      const start = i;
+      const end = i + matched.length;
+      const boxStart = boxIndexAt(start);
+      const boxEnd = boxIndexAt(end - 1);
+      if (boxStart < 0 || boxEnd < 0 || boxStart !== boxEnd) return true;
+      i = end;
+    }
+    return false;
+  }
+
+  /**
+   * Magic-e: when the level allows it, a VCe word must not put terminal silent e
+   * in its own sound box (cake → c|a|k|e is wrong; c|a|ke is right).
+   */
+  function breaksMagicE(word, graphemes, rules) {
+    if (!rules.allowMagicE) return false;
+    const w = cleanWord(word);
+    const g = cleanGraphemes(graphemes);
+    if (g.length < 2) return false;
+    // Classic silent-e shape: ... vowel + consonant + e
+    if (!/[aeiou][^aeiou]e$/.test(w)) return false;
+    return g[g.length - 1] === 'e';
+  }
+
+  /**
+   * Structural split check — correctness only (no minBoxes/maxBoxes).
+   * A 2-box shy→[sh,y] returns true here; page eligibility is separate.
+   */
+  function isSplitWellFormed(word, graphemes, level) {
     const rules = rulesFor(level);
-    const g = (graphemes || []).map((x) => String(x || '').trim().toLowerCase()).filter(Boolean);
-    if (!word || !g.length) return false;
-    if (g.length < rules.minBoxes || g.length > rules.maxBoxes) return false;
+    const g = cleanGraphemes(graphemes);
+    const w = cleanWord(word);
+    if (!w || !g.length) return false;
+    if (IRREGULAR_DENYLIST.has(w)) return false;
 
     const joined = g.join('');
-    const w = String(word).toLowerCase().replace(/[^a-z]/g, '');
-    // Exact spelling match, or magic-e absorbed into last grapheme (cake → c+a+ke).
     if (joined !== w) return false;
 
     const syllables = syllableHint(w);
@@ -169,6 +268,7 @@
       if (kind === 'magicE' && !rules.allowMagicE) return false;
       if (kind === 'cluster' && part.length > 1) {
         // multi-letter that's not digraph/team — treat as blend chunk; A1 forbids
+        // (PH4 will reject clusters at every level; kept permissive here for now.)
         if (!rules.allowDigraphs && !rules.allowBlends && !rules.allowVowelTeams) return false;
       }
       if (part.length > 3) return false;
@@ -179,6 +279,33 @@
       if (g.some((x) => x.length !== 1)) return false;
     }
 
+    if (breaksRequiredMultigraph(w, g, rules)) return false;
+    if (breaksMagicE(w, g, rules)) return false;
+
+    return true;
+  }
+
+  /**
+   * Word rich enough for a sound-box page at this level (box-count gate).
+   * Applied only after the split is well-formed — never used to prefer a wrong split.
+   */
+  function wordEligibleForLevel(word, graphemes, level) {
+    const rules = rulesFor(level);
+    const g = cleanGraphemes(graphemes);
+    if (!g.length) return false;
+    if (g.length < rules.minBoxes || g.length > rules.maxBoxes) return false;
+    return true;
+  }
+
+  /**
+   * Validate grapheme split for a CEFR level. Returns false if the word/split
+   * should not appear on a sound-box page at that level.
+   *
+   * Order: denylist / well-formed split first, then minBoxes–maxBoxes eligibility.
+   */
+  function acceptsGraphemes(word, graphemes, level) {
+    if (!isSplitWellFormed(word, graphemes, level)) return false;
+    if (!wordEligibleForLevel(word, graphemes, level)) return false;
     return true;
   }
 
@@ -360,7 +487,12 @@ Also generate phonics for a ClassIn sound-boxes page (teacher-led; teach letter 
   return {
     LEVEL_RULES,
     FALLBACK_BANK,
+    IRREGULAR_DENYLIST,
     rulesFor,
+    graphemeKind,
+    breaksRequiredMultigraph,
+    isSplitWellFormed,
+    wordEligibleForLevel,
     acceptsGraphemes,
     normalize,
     promptBlock,
