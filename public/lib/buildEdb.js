@@ -311,19 +311,42 @@ function placeholderPng(w, h, label) {
 
 /** Curated VocabIcons pack first, then PropBank cutout — never silent-drop.
  *  PropBank-first stole abstract vocab (compose→desk, melody→trumpet) and
- *  skipped dedicated ivory/gold pack icons. */
+ *  skipped dedicated ivory/gold pack icons.
+ *
+ *  Bake-aligned uniqueness: ctx.usedPropKeys / ctx.usedArtPaths track what
+ *  this board already claimed. Empty beats two words sharing one PNG. */
 async function wordArtPng(word, ctx) {
   if (!word) return null;
   const c = ctx || {};
+  if (!(c.usedPropKeys instanceof Set)) c.usedPropKeys = new Set();
+  if (!(c.usedArtPaths instanceof Set)) c.usedArtPaths = new Set();
   const VI = window.VocabIcons;
   const PB = window.PropBank;
-  let propKey = null;
+
+  const claim = (path, propKey) => {
+    if (path) c.usedArtPaths.add(path);
+    if (propKey) c.usedPropKeys.add(propKey);
+  };
+  const packPath = async (w) => {
+    if (!VI) return null;
+    if (typeof VI.pathForSync === 'function') {
+      const sync = VI.pathForSync(w);
+      if (sync) return sync;
+    }
+    if (typeof VI.pathFor === 'function') return VI.pathFor(w);
+    return null;
+  };
 
   if (VI && typeof VI.isCurated === 'function' && VI.isCurated(word)) {
-    const pack = await VI.loadPng(word);
-    if (pack) {
-      return pack;
+    const path = await packPath(word);
+    if (path && !c.usedArtPaths.has(path)) {
+      const pack = await VI.loadPng(word);
+      if (pack) {
+        claim(path, null);
+        return pack;
+      }
     }
+    // Shared pack path → fall through (empty > duplicate match card).
   }
 
   if (PB && typeof PB.loaded === 'function' && PB.loaded()) {
@@ -334,20 +357,28 @@ async function wordArtPng(word, ctx) {
       word,
       family,
       seed: c.seed || (c.lesson && c.lesson.title) || word,
+      exclude: Array.from(c.usedPropKeys),
     });
     if (prop) {
-      propKey = prop.key;
-      const png = await PB.loadPng(prop);
-      if (png) {
-        return png;
+      const path = prop.path || prop.src || null;
+      if (!path || !c.usedArtPaths.has(path)) {
+        const png = await PB.loadPng(prop);
+        if (png) {
+          claim(path, prop.key);
+          return png;
+        }
       }
     }
   }
 
   if (VI) {
-    const pack = await VI.loadPng(word);
-    if (pack) {
-      return pack;
+    const path = await packPath(word);
+    if (path && !c.usedArtPaths.has(path)) {
+      const pack = await VI.loadPng(word);
+      if (pack) {
+        claim(path, null);
+        return pack;
+      }
     }
   }
   return null;
@@ -424,6 +455,14 @@ async function pieceToPng(piece, ctx) {
       return png;
     }
   }
+  // Word tiles (orderLine) carry meta.word for tracing — never steal the tile
+  // into a picture just because that field is set.
+  if (piece.kind === 'tile' || (piece.text && piece.kind !== 'text' && piece.kind !== 'emoji' && piece.kind !== 'image')) {
+    return tileToPng(piece.text || piece.label || '?', {
+      w: piece.w || 186,
+      h: piece.h || 54,
+    });
+  }
   if (word) {
     const art = await wordArtPng(word, ctx);
     if (art) {
@@ -449,12 +488,6 @@ async function pieceToPng(piece, ctx) {
     }
     return glyph;
   }
-  if (piece.kind === 'tile' || (piece.text && piece.kind !== 'text')) {
-    return tileToPng(piece.text || piece.label || '?', {
-      w: piece.w || 186,
-      h: piece.h || 54,
-    });
-  }
   if (piece.text && piece.kind !== 'text') {
     return tileToPng(piece.text, { w: piece.w || 186, h: piece.h || 54 });
   }
@@ -470,12 +503,19 @@ async function pieceToPng(piece, ctx) {
  */
 async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
   if (window.PropBank) await window.PropBank.ready();
+  if (window.VocabIcons && typeof window.VocabIcons.ready === 'function') {
+    await window.VocabIcons.ready();
+  }
   const artCtx = {
     lesson,
     seed: (lesson && lesson.title) || '',
     family: (window.PropBank && window.PropBank.familyFor)
       ? window.PropBank.familyFor(lesson)
       : undefined,
+    // Shared across every pieceToPng/wordArtPng call so match-dock vocab
+    // cannot double-claim one cutout/pack PNG.
+    usedPropKeys: new Set(),
+    usedArtPaths: new Set(),
   };
   const e = new Edb();
   const pages = pageEls || [];

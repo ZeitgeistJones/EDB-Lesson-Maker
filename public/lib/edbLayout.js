@@ -451,25 +451,36 @@
       if (maxH < h && maxH >= DOCK_MIN) h = maxH;
       else if (maxH < DOCK_MIN) h = DOCK_MIN;
     }
-    cols = (size && size.cols)
-      ? Math.max(1, size.cols)
-      : Math.max(1, Math.floor((dock.w + gap) / (Math.max(w, DOCK_MIN) + gap)));
+    const widthCols = Math.max(1, Math.floor((dock.w + gap) / (Math.max(w, DOCK_MIN) + gap)));
+    const maxColsFitMin = Math.max(1, Math.floor((dock.w + gap) / (DOCK_MIN + gap)));
+    cols = (size && size.cols) ? Math.max(1, size.cols) : widthCols;
+    // Never lay out more columns than the dock can hold — x-clamp would bury.
+    cols = Math.max(1, Math.min(cols, maxColsFitMin));
     w = Math.max(w, DOCK_MIN);
     h = Math.max(h, DOCK_MIN);
-    const rows = Math.ceil(n / cols);
-    // Honest grids must fit: if the caller locked size, shrink only when
-    // vertical clamp would stack pieces on top of each other.
-    if (size && size.noShrink) {
-      const needH = rows * h + gap * Math.max(0, rows - 1);
-      if (needH > dock.h) {
-        h = Math.max(DOCK_MIN, Math.floor((dock.h - gap * Math.max(0, rows - 1)) / rows));
-        w = Math.max(DOCK_MIN, h);
-      }
+    // Fit vertically BEFORE place — old y-clamp stacked overflow rows on one line.
+    let rows = Math.ceil(n / cols);
+    let needH = rows * h + gap * Math.max(0, rows - 1);
+    if (needH > dock.h) {
+      h = Math.max(DOCK_MIN, Math.floor((dock.h - gap * Math.max(0, rows - 1)) / rows));
+      if (size && size.noShrink) w = Math.max(DOCK_MIN, h);
+      needH = rows * h + gap * Math.max(0, rows - 1);
+    }
+    const maxColsFit = Math.max(1, Math.floor((dock.w + gap) / (Math.max(w, DOCK_MIN) + gap)));
+    while (needH > dock.h && cols < Math.min(n, maxColsFit)) {
+      cols += 1;
+      rows = Math.ceil(n / cols);
+      h = Math.max(DOCK_MIN, Math.floor((dock.h - gap * Math.max(0, rows - 1)) / rows));
+      if (size && size.noShrink) w = Math.max(DOCK_MIN, Math.min(w, h));
+      needH = rows * h + gap * Math.max(0, rows - 1);
     }
     const gridW = cols * w + gap * Math.max(0, cols - 1);
     const gridH = rows * h + gap * Math.max(0, rows - 1);
     const originX = dock.x + Math.max(0, Math.floor((dock.w - gridW) / 2));
-    const originY = dock.y + Math.max(0, Math.floor((dock.h - gridH) / 2));
+    // Prefer top of dock when still slightly tall — never center into a clamp bury.
+    const originY = gridH <= dock.h
+      ? dock.y + Math.max(0, Math.floor((dock.h - gridH) / 2))
+      : dock.y;
 
     const placed = [];
     items.forEach((item, i) => {
@@ -477,9 +488,9 @@
       const row = Math.floor(i / cols);
       let x = originX + col * (w + gap);
       let y = originY + row * (h + gap);
-      // Clamp inside dock, then board margins
+      // Clamp X inside dock/margins. Do NOT y-clamp to the dock floor — that
+      // stacked overflow rows on one line. fitGrid already kept rows distinct.
       x = Math.max(dock.x, Math.min(dock.x + dock.w - w, x));
-      y = Math.max(dock.y, Math.min(dock.y + dock.h - h, y));
       x = Math.max(MARGIN, Math.min(W - MARGIN - w, x));
       y = Math.max(MARGIN, Math.min(H - MARGIN - h, y));
       const piece = {

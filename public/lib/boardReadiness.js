@@ -22,6 +22,8 @@
 
   /**
    * Art hit = PropBank prop OR VocabIcons vetted pack glyph (not a Gemini guess).
+   * Shared PNG / prop key across two words does not count — matches bake
+   * uniqueness in wordArtPng (empty > duplicate match cards).
    */
   function vocabArtHits(lesson) {
     const words = vocabWords(lesson);
@@ -29,15 +31,40 @@
     const VI = window.VocabIcons;
     const family = PB && PB.familyFor ? PB.familyFor(lesson) : null;
     const seed = (lesson && lesson.title) || '';
+    const exclude = [];
+    const usedPaths = new Set();
     const detail = [];
     let hits = 0;
     for (const word of words) {
-      const prop = PB && PB.loaded()
-        ? PB.resolve({ word, seed, family, minScore: 3 })
-        : null;
-      const vetted = VI && typeof VI.isCurated === 'function' ? VI.isCurated(word) : false;
+      let prop = null;
+      let vetted = false;
+      let path = null;
+
+      if (VI && typeof VI.isCurated === 'function' && VI.isCurated(word)) {
+        path = typeof VI.pathForSync === 'function' ? VI.pathForSync(word) : null;
+        if (path && !usedPaths.has(path)) {
+          vetted = true;
+        } else if (!path) {
+          // SAFE_EMOJI curated with no pack file — still a distinct glyph hit.
+          vetted = true;
+        }
+      }
+
+      if (!vetted && PB && PB.loaded()) {
+        prop = PB.resolve({ word, seed, family, minScore: 3, exclude });
+        const propPath = prop && (prop.path || prop.src);
+        if (prop && propPath && usedPaths.has(propPath)) prop = null;
+        if (prop && exclude.includes(prop.key)) prop = null;
+      }
+
       const ok = !!(prop || vetted);
       if (ok) hits++;
+      if (prop) {
+        exclude.push(prop.key);
+        if (prop.path || prop.src) usedPaths.add(prop.path || prop.src);
+      } else if (vetted && path) {
+        usedPaths.add(path);
+      }
       detail.push({
         word,
         prop: prop ? prop.key : null,
