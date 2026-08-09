@@ -467,6 +467,38 @@
     page.notes.push('recipe:revealReward');
   }
 
+  /** Collage/dress dock piece from VocabArt / curated glyph — never Gemini •. */
+  function vocabDockPiece(v, role) {
+    const word = v && v.word;
+    if (!word) return null;
+    const VI = window.VocabIcons;
+    const path = VI && typeof VI.pathForSync === 'function' ? VI.pathForSync(word) : null;
+    if (path) {
+      return {
+        kind: 'image',
+        asset: path,
+        role,
+        meta: { word, artSrc: path, artTier: 'pack' },
+      };
+    }
+    const glyph = VI && typeof VI.curatedGlyph === 'function' ? VI.curatedGlyph(word) : null;
+    if (glyph) {
+      return {
+        kind: 'emoji',
+        emoji: glyph,
+        role,
+        meta: { word, artTier: 'glyph' },
+      };
+    }
+    // Prop / wordArt at bake via meta.word — empty beats bullet (no kind:image
+    // without asset — that throws in pieceToPng).
+    return {
+      kind: 'emoji',
+      role,
+      meta: { word },
+    };
+  }
+
   function buildScene(lesson, page, layout) {
     const L = layout || window.EdbLayout;
     const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
@@ -487,12 +519,10 @@
         role: 'buildSlot',
       });
     });
-    L.placeDockRow(page, parts.map((v) => ({
-      kind: 'emoji',
-      emoji: v.emoji || '•',
-      role: 'buildPart',
-      meta: { word: v.word },
-    })), { w: 96, h: 96 });
+    const dock = parts.map((v) => vocabDockPiece(v, 'buildPart')).filter(Boolean);
+    if (dock.length) {
+      L.placeDockRow(page, dock, { w: 96, h: 96 });
+    }
     page.notes.push('recipe:buildScene');
   }
 
@@ -517,13 +547,14 @@
       },
       role: 'dressBody',
     });
-    L.placeDockRow(page, props.map((v) => ({
-      kind: 'emoji',
-      emoji: v.emoji || '•',
-      text: v.word,
-      role: 'dressPart',
-      meta: { word: v.word },
-    })), { w: 96, h: 96, noShrink: true });
+    const dock = props.map((v) => {
+      const piece = vocabDockPiece(v, 'dressPart');
+      if (!piece) return null;
+      return Object.assign(piece, { text: v.word });
+    }).filter(Boolean);
+    if (dock.length) {
+      L.placeDockRow(page, dock, { w: 96, h: 96, noShrink: true });
+    }
     page.notes.push('recipe:dressUp');
   }
 
