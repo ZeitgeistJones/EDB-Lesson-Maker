@@ -3,11 +3,12 @@
  * Classic script (no ES modules) → window.PropBank, a deliberate sibling of
  * VocabIcons and SceneBackgrounds.
  *
- * Empty beats wrong. Tags never qualify a candidate into the pool — only key /
- * words-from-key / alias / pack-suffix / optional identity[] do. Tags may rank
- * inside that pool (capped). Soft nouns live in lib/propPolicy.json deny list;
- * subjectLock / never / ambiguous / aliases are phase-2 hard filters on top.
- * Chrome / slot-filling with no word uses pickDecor(role), not resolve().
+ * Empty beats wrong. Tags never qualify a candidate into the pool — only exact
+ * key / alias / pack-suffix head (endsWith -token) / optional identity[] do.
+ * Non-head compound tokens do NOT qualify (grandfather↛clock, ear↛defenders,
+ * coffee↛table). Tags may rank inside that pool (capped). Soft nouns live in
+ * lib/propPolicy.json deny list; subjectLock / never / ambiguous / aliases are
+ * phase-2 hard filters on top. Chrome / slot-fill uses pickDecor, not resolve().
  *
  * resolve() is synchronous so recipes (which run inside the synchronous
  * EdbActivities.buildBoardPlan) can call it. Await ready() once before building
@@ -615,15 +616,10 @@
       return pick(band[0]);
     };
 
+    // Head-noun / pack-suffix only — never a non-head compound token
+    // (grandfather-clock must not answer "grandfather").
     const identityPrefixed = (token) =>
-      pool.filter(
-        (p) =>
-          !isNeverProp(rawWord, p) &&
-          (p.key === token ||
-            p.key.endsWith('-' + token) ||
-            p.words.includes(token) ||
-            (p.identity && p.identity.includes(token)))
-      );
+      pool.filter((p) => !isNeverProp(rawWord, p) && identityHit(p, token));
 
     // Pack-prefixed keys / identity[]: teacher → job-teacher, etc.
     // Merge plural stem / singular plural into one band BEFORE early-returning a
@@ -689,11 +685,14 @@
     if (typeof console !== 'undefined' && console.info) console.info('[PropBank.resolve]', line);
   }
 
-  /** True when token is an identity hit on prop (never tags). */
+  /**
+   * True when token is an identity hit on prop (never tags).
+   * Compound keys only match on the head / pack-suffix (endsWith -token) or an
+   * explicit identity[] entry — not on modifier tokens in words-from-key.
+   */
   function identityHit(prop, token) {
     if (!prop || !token) return false;
     if (prop.key === token || prop.key.endsWith('-' + token)) return true;
-    if (prop.words && prop.words.includes(token)) return true;
     if (prop.identity && prop.identity.includes(token)) return true;
     const alias = aliasFor(token);
     if (alias && (prop.key === alias || prop.key.endsWith('-' + alias))) return true;
@@ -859,7 +858,7 @@
       for (const t of wordTokens) {
         if (p.key === t) score += 6;
         else if (p.key.endsWith('-' + t)) score += 5;
-        else if (p.words.includes(t) || (p.identity && p.identity.includes(t))) score += 4;
+        else if (p.identity && p.identity.includes(t)) score += 4;
       }
       // Tags rank only — each +1, capped at +2 total.
       let tagBonus = 0;
