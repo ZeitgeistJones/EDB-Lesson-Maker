@@ -130,8 +130,14 @@
         disabled: !!data.disabled,
         cacheKey: data.cacheKey || null,
       };
-      // Don't cache hard disables / missing key — allow retry after env change.
-      if (!data.disabled && resp.status !== 500) setCached(lesson, level, result);
+      // Don't cache hard disables/missing key OR transient failures. A 429
+      // (rate limit) or 5xx (capacity/timeout/style-ref 502) is retryable —
+      // memoizing it would blank story art for the WHOLE session off one blip,
+      // since getCached would keep serving the dead dataUrl:null result until a
+      // refresh clears the Map + sessionStorage. Only genuinely permanent
+      // responses (e.g. 4xx bad-request) are safe to remember.
+      const retryable = resp.status === 429 || resp.status >= 500;
+      if (!data.disabled && !retryable) setCached(lesson, level, result);
       return result;
     }
 
