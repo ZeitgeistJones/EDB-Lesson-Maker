@@ -114,6 +114,9 @@
     snowy: 'snow',
     // Birthday party — present is the ESL synonym for gift.png (already in pack)
     present: 'gift',
+    // Pets — puppy/kitten share adult animal pack art (no dedicated cub PNGs)
+    puppy: 'dog',
+    kitten: 'cat',
   };
 
   /**

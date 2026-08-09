@@ -282,6 +282,8 @@
     'pi-ata': 'party-pinata',
     piata: 'party-pinata',
     pinata: 'party-pinata',
+    // Pets — aquarium kit tank is the object (keys are aquarium-* parts, not -aquarium)
+    aquarium: 'aquarium-tank',
   };
 
   /**
