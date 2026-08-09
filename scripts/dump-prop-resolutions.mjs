@@ -71,6 +71,9 @@ const CASES = [
   { topic: 'farm', words: ['farmer', 'tractor', 'barn', 'cow', 'chicken', 'hay'] },
   { topic: 'family', words: ['grandfather', 'grandmother', 'father', 'mother'] },
   { topic: 'hearing', words: ['ear', 'hear', 'loud'] },
+  { topic: 'music class', words: ['scale', 'piano', 'song'] },
+  { topic: 'bathroom routines', words: ['shower', 'soap', 'bathroom scale', 'toothbrush'] },
+  { topic: 'kitchen baking', words: ['kitchen scale', 'oven', 'flour'] },
 ];
 
 const PHASE2_EXPECT = [
@@ -79,7 +82,8 @@ const PHASE2_EXPECT = [
   // Pharmacy is not a clinic — empty beats wrong building.
   { topic: 'doctor clinic', word: 'clinic', picked: null },
   { topic: 'school', word: 'student', picked: null },
-  { topic: 'soccer', word: 'coach', picked: null },
+  // Person cutout landed — subjectLock person still blocks whistle/clipboard.
+  { topic: 'soccer', word: 'coach', picked: 'job-coach' },
   { topic: 'soccer', word: 'effort', picked: null },
   { topic: 'kitchen', word: 'oven', picked: null },
   { topic: 'soccer', word: 'ball', picked: 'soccer-ball' },
@@ -91,6 +95,10 @@ const PHASE2_EXPECT = [
   { topic: 'kitchen', word: 'coffee', picked: 'cafe-coffee-cup' },
   // Exact key "table" is honest identity; compound coffee-table is head-"table" only.
   { topic: 'kitchen', word: 'table', picked: 'table' },
+  // Homonym: bare scale null; explicit phrases pick the right instrument.
+  { topic: 'music class', word: 'scale', picked: null },
+  { topic: 'bathroom routines', word: 'bathroom scale', picked: 'bath-scale' },
+  { topic: 'kitchen baking', word: 'kitchen scale', picked: 'sci-scale' },
 ];
 
 const lines = [];
