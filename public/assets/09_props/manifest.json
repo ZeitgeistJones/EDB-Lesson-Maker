@@ -4752,6 +4752,23 @@
       "srcH": 267,
       "pack": "bathroom"
     },
+    "bath-soap": {
+      "file": "bath-soap.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.73,
+      "srcW": 286,
+      "srcH": 165,
+      "pack": "bathroom"
+    },
     "bath-soap-dispenser": {
       "file": "bath-soap-dispenser.png",
       "role": "object",
@@ -4837,6 +4854,23 @@
       "srcH": 247,
       "pack": "bathroom"
     },
+    "bath-toothbrush-cup": {
+      "file": "bath-toothbrush-cup.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.6,
+      "srcW": 156,
+      "srcH": 259,
+      "pack": "bathroom"
+    },
     "bath-toothbrush-holder": {
       "file": "bath-toothbrush-holder.png",
       "role": "object",
@@ -4869,6 +4903,40 @@
       "aspect": 0.5,
       "srcW": 126,
       "srcH": 251,
+      "pack": "bathroom"
+    },
+    "bath-towel-blue": {
+      "file": "bath-towel-blue.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.27,
+      "srcW": 270,
+      "srcH": 212,
+      "pack": "bathroom"
+    },
+    "bath-towel-orange": {
+      "file": "bath-towel-orange.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.29,
+      "srcW": 242,
+      "srcH": 188,
       "pack": "bathroom"
     },
     "bath-towel-rack": {
