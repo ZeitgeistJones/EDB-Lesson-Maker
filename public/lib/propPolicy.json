@@ -99,6 +99,8 @@
     "homework": true
   },
   "aliases": {
-    "patient": "dental-kid-open-mouth"
+    "patient": "dental-kid-open-mouth",
+    "grape": "food-grapes",
+    "grapes": "food-grapes"
   }
 }

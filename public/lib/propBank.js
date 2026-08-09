@@ -630,6 +630,44 @@
       hit = find(key.slice(0, -1));
       if (hit) return pick(hit);
     }
+
+    // Singular query → plural pack key (grape → food-grapes). Only exact /
+    // suffix / words identity — never tags. Competing plurals use theme rank.
+    if (key.length > 2 && !key.endsWith('s')) {
+      const plural = key + 's';
+      hit = find(plural);
+      if (hit) return pick(hit);
+      const prefPlural = pool.filter(
+        (p) =>
+          p.key === plural ||
+          p.key.endsWith('-' + plural) ||
+          p.words.includes(plural) ||
+          (p.identity && p.identity.includes(plural))
+      );
+      if (prefPlural.length === 1) return pick(prefPlural[0]);
+      if (prefPlural.length > 1) {
+        const theme = topicTokens(seed, q && q.tags);
+        const themeScore = (p) => {
+          let s = 0;
+          for (const t of norm(String(p.key || '').replace(/-/g, ' '))) {
+            if (theme.has(t)) s += 3;
+          }
+          for (const t of p.tags || []) {
+            if (theme.has(t)) s += 1;
+          }
+          if (p.pack && theme.has(slug(p.pack))) s += 2;
+          return s;
+        };
+        prefPlural.sort(
+          (a, b) =>
+            themeScore(b) - themeScore(a) ||
+            a.key.length - b.key.length ||
+            a.key.localeCompare(b.key)
+        );
+        if (prefPlural.length > 1 && themeScore(prefPlural[0]) === 0) return null;
+        return pick(prefPlural[0]);
+      }
+    }
     return null;
   }
 
