@@ -25093,16 +25093,16 @@
       "role": "object",
       "tags": [
         "shopping",
-        "atm",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.5,
-      "anchor": "bottom",
+      "relativeScale": 0.25,
+      "anchor": "center",
       "alpha": true,
-      "aspect": 0.83,
-      "bodyHue": 215,
-      "srcW": 250,
-      "srcH": 301,
+      "aspect": 0.95,
+      "srcW": 209,
+      "srcH": 220,
       "pack": "shopping"
     },
     "shop-banknote": {
@@ -25127,34 +25127,33 @@
       "role": "object",
       "tags": [
         "shopping",
-        "shop",
-        "barcode",
-        "dock"
-      ],
-      "relativeScale": 0.22,
-      "anchor": "bottom",
-      "alpha": true,
-      "aspect": 1.24,
-      "srcW": 425,
-      "srcH": 343,
-      "pack": "shopping"
-    },
-    "shop-barcode-scanner": {
-      "file": "shop-barcode-scanner.png",
-      "role": "tool",
-      "tags": [
-        "shopping",
-        "barcode",
-        "scanner",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
       "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.84,
-      "bodyHue": 5,
-      "srcW": 195,
-      "srcH": 233,
+      "aspect": 1.53,
+      "srcW": 250,
+      "srcH": 163,
+      "pack": "shopping"
+    },
+    "shop-barcode-scanner": {
+      "file": "shop-barcode-scanner.png",
+      "role": "object",
+      "tags": [
+        "shopping",
+        "money",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.78,
+      "srcW": 159,
+      "srcH": 203,
       "pack": "shopping"
     },
     "shop-basket": {
@@ -25162,17 +25161,16 @@
       "role": "object",
       "tags": [
         "shopping",
-        "shop",
-        "basket",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.22,
-      "anchor": "bottom",
+      "relativeScale": 0.25,
+      "anchor": "center",
       "alpha": true,
-      "aspect": 1.65,
-      "srcW": 455,
-      "srcH": 275,
-      "bodyHue": 5,
+      "aspect": 1.71,
+      "srcW": 268,
+      "srcH": 157,
       "pack": "shopping"
     },
     "shop-calculator": {
@@ -25180,16 +25178,16 @@
       "role": "object",
       "tags": [
         "shopping",
-        "calculator",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
       "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
       "aspect": 0.79,
-      "bodyHue": 215,
-      "srcW": 237,
-      "srcH": 301,
+      "srcW": 164,
+      "srcH": 208,
       "pack": "shopping"
     },
     "shop-card-reader": {
@@ -25197,18 +25195,16 @@
       "role": "object",
       "tags": [
         "shopping",
-        "shop",
-        "card",
-        "reader",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.22,
-      "anchor": "bottom",
+      "relativeScale": 0.25,
+      "anchor": "center",
       "alpha": true,
-      "aspect": 0.85,
-      "srcW": 437,
-      "srcH": 512,
-      "bodyHue": 215,
+      "aspect": 0.66,
+      "srcW": 146,
+      "srcH": 221,
       "pack": "shopping"
     },
     "shop-cart": {
@@ -25216,16 +25212,16 @@
       "role": "object",
       "tags": [
         "shopping",
-        "shop",
-        "cart",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.22,
-      "anchor": "bottom",
+      "relativeScale": 0.25,
+      "anchor": "center",
       "alpha": true,
-      "aspect": 1.59,
-      "srcW": 485,
-      "srcH": 305,
+      "aspect": 1.37,
+      "srcW": 257,
+      "srcH": 188,
       "pack": "shopping"
     },
     "shop-cash-register": {
@@ -25233,17 +25229,33 @@
       "role": "object",
       "tags": [
         "shopping",
-        "cash",
-        "register",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.4,
-      "anchor": "bottom",
+      "relativeScale": 0.45,
+      "anchor": "center",
       "alpha": true,
-      "aspect": 0.91,
-      "bodyHue": 215,
-      "srcW": 238,
-      "srcH": 261,
+      "aspect": 0.97,
+      "srcW": 244,
+      "srcH": 251,
+      "pack": "shopping"
+    },
+    "shop-closed-sign": {
+      "file": "shop-closed-sign.png",
+      "role": "object",
+      "tags": [
+        "shopping",
+        "money",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.3,
+      "srcW": 218,
+      "srcH": 168,
       "pack": "shopping"
     },
     "shop-coin": {
@@ -25263,22 +25275,55 @@
       "srcH": 254,
       "pack": "shopping"
     },
-    "shop-coin-purse": {
-      "file": "shop-coin-purse.png",
-      "role": "container",
+    "shop-coin-gold": {
+      "file": "shop-coin-gold.png",
+      "role": "object",
       "tags": [
         "shopping",
-        "coin",
-        "purse",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.2,
+      "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.11,
-      "bodyHue": 275,
-      "srcW": 301,
-      "srcH": 271,
+      "aspect": 0.99,
+      "srcW": 202,
+      "srcH": 205,
+      "pack": "shopping"
+    },
+    "shop-coin-purse": {
+      "file": "shop-coin-purse.png",
+      "role": "object",
+      "tags": [
+        "shopping",
+        "money",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.12,
+      "srcW": 233,
+      "srcH": 208,
+      "pack": "shopping"
+    },
+    "shop-coin-silver": {
+      "file": "shop-coin-silver.png",
+      "role": "object",
+      "tags": [
+        "shopping",
+        "money",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.99,
+      "srcW": 202,
+      "srcH": 205,
       "pack": "shopping"
     },
     "shop-coupon": {
@@ -25286,17 +25331,50 @@
       "role": "object",
       "tags": [
         "shopping",
-        "shop",
-        "coupon",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.22,
-      "anchor": "bottom",
+      "relativeScale": 0.25,
+      "anchor": "center",
       "alpha": true,
-      "aspect": 1.43,
-      "srcW": 474,
-      "srcH": 332,
-      "bodyHue": 35,
+      "aspect": 1.81,
+      "srcW": 286,
+      "srcH": 158,
+      "pack": "shopping"
+    },
+    "shop-dollar-bill": {
+      "file": "shop-dollar-bill.png",
+      "role": "object",
+      "tags": [
+        "shopping",
+        "money",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.02,
+      "srcW": 326,
+      "srcH": 161,
+      "pack": "shopping"
+    },
+    "shop-gift-bag": {
+      "file": "shop-gift-bag.png",
+      "role": "object",
+      "tags": [
+        "shopping",
+        "money",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.84,
+      "srcW": 192,
+      "srcH": 228,
       "pack": "shopping"
     },
     "shop-gift-box": {
@@ -25304,18 +25382,16 @@
       "role": "object",
       "tags": [
         "shopping",
-        "shop",
-        "gift",
-        "box",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.28,
-      "anchor": "bottom",
+      "relativeScale": 0.25,
+      "anchor": "center",
       "alpha": true,
-      "aspect": 1.16,
-      "srcW": 469,
-      "srcH": 406,
-      "bodyHue": 25,
+      "aspect": 0.89,
+      "srcW": 184,
+      "srcH": 207,
       "pack": "shopping"
     },
     "shop-hand-truck": {
@@ -25323,18 +25399,16 @@
       "role": "object",
       "tags": [
         "shopping",
-        "shop",
-        "hand",
-        "truck",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.22,
-      "anchor": "bottom",
+      "relativeScale": 0.25,
+      "anchor": "center",
       "alpha": true,
-      "aspect": 2.28,
-      "srcW": 491,
-      "srcH": 215,
-      "bodyHue": 175,
+      "aspect": 1.18,
+      "srcW": 212,
+      "srcH": 180,
       "pack": "shopping"
     },
     "shop-hanger": {
@@ -25342,17 +25416,50 @@
       "role": "object",
       "tags": [
         "shopping",
-        "shop",
-        "hanger",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.22,
-      "anchor": "bottom",
+      "relativeScale": 0.25,
+      "anchor": "center",
       "alpha": true,
-      "aspect": 1.88,
-      "srcW": 504,
-      "srcH": 268,
-      "bodyHue": 165,
+      "aspect": 1.59,
+      "srcW": 286,
+      "srcH": 180,
+      "pack": "shopping"
+    },
+    "shop-open-sign": {
+      "file": "shop-open-sign.png",
+      "role": "object",
+      "tags": [
+        "shopping",
+        "money",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.33,
+      "srcW": 227,
+      "srcH": 171,
+      "pack": "shopping"
+    },
+    "shop-paper-bag": {
+      "file": "shop-paper-bag.png",
+      "role": "object",
+      "tags": [
+        "shopping",
+        "money",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.93,
+      "srcW": 205,
+      "srcH": 221,
       "pack": "shopping"
     },
     "shop-piggy-bank": {
@@ -25360,17 +25467,16 @@
       "role": "object",
       "tags": [
         "shopping",
-        "piggy",
-        "bank",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.3,
-      "anchor": "bottom",
+      "relativeScale": 0.25,
+      "anchor": "center",
       "alpha": true,
-      "aspect": 1.25,
-      "bodyHue": 355,
-      "srcW": 301,
-      "srcH": 241,
+      "aspect": 1.3,
+      "srcW": 259,
+      "srcH": 199,
       "pack": "shopping"
     },
     "shop-pink-purse": {
@@ -25416,17 +25522,33 @@
       "role": "object",
       "tags": [
         "shopping",
-        "price",
-        "tag",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.2,
+      "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.04,
-      "bodyHue": 5,
-      "srcW": 256,
-      "srcH": 245,
+      "aspect": 1,
+      "srcW": 234,
+      "srcH": 233,
+      "pack": "shopping"
+    },
+    "shop-purse": {
+      "file": "shop-purse.png",
+      "role": "object",
+      "tags": [
+        "shopping",
+        "money",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.17,
+      "srcW": 231,
+      "srcH": 198,
       "pack": "shopping"
     },
     "shop-receipt": {
@@ -25434,15 +25556,16 @@
       "role": "object",
       "tags": [
         "shopping",
-        "receipt",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.2,
+      "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.7,
-      "srcW": 178,
-      "srcH": 254,
+      "aspect": 0.73,
+      "srcW": 156,
+      "srcH": 213,
       "pack": "shopping"
     },
     "shop-safe": {
@@ -25462,22 +25585,55 @@
       "srcH": 265,
       "pack": "shopping"
     },
+    "shop-sale-burst": {
+      "file": "shop-sale-burst.png",
+      "role": "object",
+      "tags": [
+        "shopping",
+        "money",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.36,
+      "srcW": 240,
+      "srcH": 176,
+      "pack": "shopping"
+    },
     "shop-scale": {
       "file": "shop-scale.png",
       "role": "object",
       "tags": [
         "shopping",
-        "shop",
-        "scale",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.22,
-      "anchor": "bottom",
+      "relativeScale": 0.25,
+      "anchor": "center",
       "alpha": true,
-      "aspect": 1.28,
-      "srcW": 512,
-      "srcH": 400,
-      "bodyHue": 165,
+      "aspect": 1,
+      "srcW": 222,
+      "srcH": 223,
+      "pack": "shopping"
+    },
+    "shop-shelf": {
+      "file": "shop-shelf.png",
+      "role": "object",
+      "tags": [
+        "shopping",
+        "money",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.25,
+      "srcW": 255,
+      "srcH": 204,
       "pack": "shopping"
     },
     "shop-shipping-box": {
@@ -25485,18 +25641,16 @@
       "role": "object",
       "tags": [
         "shopping",
-        "shop",
-        "shipping",
-        "box",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.28,
-      "anchor": "bottom",
+      "relativeScale": 0.25,
+      "anchor": "center",
       "alpha": true,
-      "aspect": 1.57,
-      "srcW": 451,
-      "srcH": 287,
-      "bodyHue": 25,
+      "aspect": 1.29,
+      "srcW": 251,
+      "srcH": 195,
       "pack": "shopping"
     },
     "shop-shopping-bag": {
@@ -25591,34 +25745,50 @@
       "role": "object",
       "tags": [
         "shopping",
-        "shop",
-        "storefront",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.22,
-      "anchor": "bottom",
+      "relativeScale": 0.25,
+      "anchor": "center",
       "alpha": true,
-      "aspect": 1.66,
-      "srcW": 437,
-      "srcH": 263,
-      "bodyHue": 15,
+      "aspect": 1.38,
+      "srcW": 273,
+      "srcH": 198,
+      "pack": "shopping"
+    },
+    "shop-vending-machine": {
+      "file": "shop-vending-machine.png",
+      "role": "object",
+      "tags": [
+        "shopping",
+        "money",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.82,
+      "srcW": 191,
+      "srcH": 233,
       "pack": "shopping"
     },
     "shop-wallet": {
       "file": "shop-wallet.png",
-      "role": "container",
+      "role": "object",
       "tags": [
         "shopping",
-        "wallet",
-        "dock"
+        "money",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.2,
+      "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.18,
-      "bodyHue": 25,
-      "srcW": 254,
-      "srcH": 215,
+      "aspect": 1.45,
+      "srcW": 271,
+      "srcH": 187,
       "pack": "shopping"
     },
     "slide": {
