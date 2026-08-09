@@ -70,6 +70,16 @@ const CASES = [
   { topic: 'farm', words: ['farmer', 'tractor', 'barn', 'cow', 'chicken', 'hay'] },
 ];
 
+const PHASE2_EXPECT = [
+  { topic: 'doctor clinic', word: 'patient', picked: null },
+  { topic: 'dentist', word: 'patient', picked: 'dental-kid-open-mouth' },
+  { topic: 'doctor clinic', word: 'clinic', picked: null },
+  { topic: 'school', word: 'student', picked: null },
+  { topic: 'soccer', word: 'coach', picked: null },
+  { topic: 'soccer', word: 'effort', picked: null },
+  { topic: 'kitchen', word: 'oven', picked: null },
+];
+
 const lines = [];
 const summary = {
   total: 0,
@@ -127,7 +137,7 @@ for (const c of CASES) {
         (word === 'patient' && /dental-kid/.test(key) && !/dentist|dental|tooth|teeth|cavity|floss|toothbrush/.test(c.topic)) ||
         (word === 'patient' && /clipboard/.test(key)) ||
         (word === 'clinic' && /clipboard/.test(key)) ||
-        (word === 'chef' && /hat|pan|spatula/.test(key) && key !== 'job-chef' && !/^job-chef$/.test(key));
+        (word === 'chef' && /hat|pan|spatula/.test(key) && key !== 'job-chef');
       if (looksWrong) {
         summary.suspectedFormerMetonymy.push({ topic: c.topic, word, picked: key, reason: row.reason });
       }
@@ -135,15 +145,6 @@ for (const c of CASES) {
   }
 }
 
-/** Phase-2 evidence gates — empty/lock beats wrong metonymy. */
-const PHASE2_EXPECT = [
-  { topic: 'doctor clinic', word: 'patient', picked: null },
-  { topic: 'dentist', word: 'patient', picked: 'dental-kid-open-mouth' },
-  { topic: 'doctor clinic', word: 'clinic', picked: null },
-  { topic: 'school', word: 'student', picked: null },
-  { topic: 'soccer', word: 'coach', picked: null },
-  { topic: 'soccer', word: 'effort', picked: null },
-];
 const phase2Fails = [];
 for (const exp of PHASE2_EXPECT) {
   const row = lines.find((r) => r.topic === exp.topic && r.word === exp.word);
@@ -181,7 +182,7 @@ console.log(`  coverage → ${path.relative(root, coverageFile)}`);
 console.log(
   `  total=${summary.total} picked=${summary.picked} nulls=${summary.nulls} deny=${summary.deny} ambiguous=${summary.ambiguous} policyBlock=${summary.policyBlock}`
 );
-for (const w of ['coach', 'doctor', 'teacher', 'patient', 'clinic', 'effort', 'practice', 'whistle', 'dentist', 'chef', 'nurse']) {
+for (const w of ['coach', 'doctor', 'teacher', 'patient', 'clinic', 'effort', 'practice', 'whistle', 'dentist', 'chef', 'nurse', 'oven']) {
   const rows = highlight(w);
   if (!rows.length) continue;
   console.log(`  ${w}:`);
@@ -197,26 +198,6 @@ if (summary.suspectedFormerMetonymy.length) {
   process.exitCode = 1;
 } else {
   console.log('\n  No suspected former metonymy in watch list. OK.');
-}
-
-const PHASE2_EXPECT = [
-  { topic: 'doctor clinic', word: 'patient', picked: null },
-  { topic: 'dentist', word: 'patient', picked: 'dental-kid-open-mouth' },
-  { topic: 'doctor clinic', word: 'clinic', picked: null },
-  { topic: 'school', word: 'student', picked: null },
-  { topic: 'soccer', word: 'coach', picked: null },
-  { topic: 'soccer', word: 'effort', picked: null },
-  { topic: 'kitchen', word: 'oven', picked: null },
-];
-const phase2Fails = [];
-for (const exp of PHASE2_EXPECT) {
-  const row = lines.find((r) => r.topic === exp.topic && r.word === exp.word);
-  if (!row) {
-    phase2Fails.push({ ...exp, actual: '(missing)' });
-    continue;
-  }
-  const ok = exp.picked == null ? row.picked == null : row.picked === exp.picked;
-  if (!ok) phase2Fails.push({ ...exp, actual: row.picked });
 }
 if (phase2Fails.length) {
   console.log('\n  PHASE-2 expectation fails:');
