@@ -1318,6 +1318,10 @@
       ).slice(0, 12);
       const exclude = [];
       const family = PB.familyFor ? PB.familyFor(lesson) : null;
+      // Decorative/character packs (3D feeling faces, gashapon toy blobs) must not
+      // become story art unless THIS lesson's topic invites them — a soccer beat
+      // caption ("...felt worried") must not resolve to a 3D "worried" prop face.
+      const decoOK = PB.decorativePacksFor ? PB.decorativePacksFor(lesson) : null;
       // Story side art is not a dock — allow sharp and soft props (conductor bust OK).
       for (const w of tryWords) {
         const prop = PB.resolve({
@@ -1329,6 +1333,7 @@
         });
         if (!prop || !prop.path) continue;
         exclude.push(prop.key);
+        if (PB.isDecorativeProp && PB.isDecorativeProp(prop) && decoOK && !decoOK.has(prop.pack)) continue;
         // Desk caption must not settle on loose orchestra furniture.
         if (deskScene && /orchestra-stands|music-stand/.test(prop.key)) continue;
         // Orchestra/performance captions: musicians before bare stands.

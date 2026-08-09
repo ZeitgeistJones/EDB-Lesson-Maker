@@ -608,6 +608,39 @@
     return [...new Set(words.filter((t) => t && !KIT_STOP.has(t) && t.length > 2))];
   }
 
+  // Decorative / character packs: downloaded filler art (the 3D-style feeling-*
+  // emotion faces, the gashapon toy blobs) that carry broad generic tags
+  // (role:object, tags:dock/toy/faces) and a DIFFERENT art style from the matte
+  // house set. With no topical binding they win generic tag/caption queries for
+  // unrelated lessons — a soccer story beat rendering a 3D "worried" face, or a
+  // gashapon cyclops-in-sunglasses on the activity dock. Classify them here so the
+  // two generic selectors (activity dock fill + story fallback art) can skip them
+  // unless the lesson's own topic invites the pack. Curated uses (feelings dock,
+  // matched theme kits) resolve by explicit word/kit and are untouched.
+  const DECORATIVE_PACKS = new Set(['feelings', 'gashapon']);
+
+  // Lesson tokens that legitimately invite each decorative pack (topic match).
+  const DECORATIVE_PACK_HINTS = {
+    feelings: ['feeling', 'feelings', 'emotion', 'emotions', 'mood', 'moods'],
+    gashapon: ['gashapon', 'capsule', 'toy', 'toys', 'prize', 'prizes', 'vending'],
+  };
+
+  /** True when a prop belongs to a decorative/character pack (no topical binding). */
+  function isDecorativeProp(prop) {
+    return !!(prop && prop.pack && DECORATIVE_PACKS.has(prop.pack));
+  }
+
+  /** Decorative packs whose topic THIS lesson matches (so they may be surfaced). */
+  function decorativePacksFor(lesson) {
+    const tokens = new Set(themeTokens(lesson));
+    const out = new Set();
+    for (const pack of DECORATIVE_PACKS) {
+      const hints = DECORATIVE_PACK_HINTS[pack] || [pack];
+      if (hints.some((h) => tokens.has(h))) out.add(pack);
+    }
+    return out;
+  }
+
   function isHeroSized(p) {
     return !!(p && (p.role === 'hero' || (p.relativeScale == null ? 0 : p.relativeScale) >= 0.75));
   }
@@ -767,6 +800,8 @@
     themeTokens,
     assessKit,
     vocabPropHits,
+    isDecorativeProp,
+    decorativePacksFor,
     isHeroSized,
     isDockSharp,
     sizeFor,

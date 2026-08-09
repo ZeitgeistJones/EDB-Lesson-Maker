@@ -809,6 +809,11 @@
     const blob = tags.join(' ') + ' ' + ((hero && hero.key) || '');
     const kit = PB.assessKit && PB.assessKit(lesson);
     const sharp = PB.isDockSharp || (() => true);
+    // Decorative/character packs (3D feeling faces, gashapon toy blobs) must not
+    // fill the generic dock unless THIS lesson's topic invites them — a soccer
+    // dock should never surface a gashapon cyclops.
+    const decoOK = PB.decorativePacksFor ? PB.decorativePacksFor(lesson) : new Set();
+    const decoBlocked = (p) => PB.isDecorativeProp && PB.isDecorativeProp(p) && !decoOK.has(p.pack);
     // Hero key wins — vocab like "smile" must not steal a dental stage into a face dock.
     // Feelings lessons also use face-blank as king, but the dock must be emotion
     // stickers — not eyes/nose hair (that would erase the abstract vocab stress test).
@@ -906,6 +911,7 @@
         if (!p) break;
         exclude.push(p.key);
         if (!sharp(p)) continue;
+        if (decoBlocked(p)) continue;
         out.push(p);
       }
     }
