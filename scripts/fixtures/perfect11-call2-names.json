@@ -1,0 +1,52 @@
+{
+  "pirates": [
+    "ship-wheel", "treasure-chest", "pirate-hat", "hook",
+    "spyglass", "anchor", "map-blank", "flag-blank",
+    "cannon", "compass", "sword", "parrot",
+    "gold-coin", "barrel", "rope-coil", "ship-lantern",
+    "pirate-boot", "telescope-tripod", "message-bottle", "key-ring",
+    "treasure-bag", "skull-prop", "crossbones-prop", "wooden-plank",
+    "ship-bell", "hammock-piece", "rum-bottle", "pirate-bandana",
+    "eye-patch", "dagger", "treasure-map-scroll", "anchor-chain"
+  ],
+  "fire-station": [
+    "fire-truck", "hydrant", "hose", "extinguisher",
+    "ladder", "helmet", "axe", "boots",
+    "alarm-bell", "pole", "station-building", "water-tank",
+    "oxygen-tank", "mask", "flashlight", "megaphone",
+    "safety-cone", "first-aid-kit", "walkie-talkie", "flare",
+    "smoke-detector", "fire-blanket", "sprinkler-head", "hydrant-wrench",
+    "rescue-saw", "engine-siren", "hose-nozzle", "reflective-vest",
+    "fire-gloves", "barrier-tape", "water-bucket", "station-door"
+  ],
+  "volcano-geology": [
+    "volcano", "lava-rock", "crystal", "fossil",
+    "geode", "magma-chunk", "mountain-peak", "ash-cloud",
+    "pickaxe", "sample-bag", "magnifying-glass", "rock-hammer",
+    "tectonic-plates", "seismograph", "obsidian-shard", "pumice-stone",
+    "sulfur-crystal", "core-sample", "geological-map", "compass",
+    "field-notebook", "stratigraphy", "sediment-jar", "microscope",
+    "chisel", "sieve", "granite-chunk", "basalt-column",
+    "quartz-point", "amber-piece", "petrified-wood", "stalactite"
+  ],
+  "recycling-eco": [
+    "blue-bin", "green-bin", "yellow-bin", "red-bin",
+    "glass-bottle", "plastic-bottle", "aluminum-can", "newspaper",
+    "compost-bin", "recycle-symbol", "cardboard-stack", "sorting-crate",
+    "reusable-bag", "led-bulb", "battery", "solar-panel",
+    "wind-turbine", "electric-plug", "water-butt", "egg-carton",
+    "tin-foil-ball", "milk-carton", "cereal-box", "plastic-tub",
+    "metal-scrap", "e-waste-phone", "garden-bag", "wormery",
+    "cleaning-bottle", "reusable-straw", "bamboo-brush", "cloth-napkin"
+  ],
+  "planetarium": [
+    "dome-exterior", "dome-interior", "star-projector", "constellation-card",
+    "telescope", "jupiter-model", "saturn-model", "comet",
+    "moon-model", "planetarium-seat", "ticket-blank", "mobile-piece",
+    "astronaut-helmet", "rocket-model", "space-shuttle", "satellite-model",
+    "lunar-lander", "star-map", "laser-pointer", "space-glove",
+    "meteorite", "black-hole-model", "galaxy-model", "sun-model",
+    "earth-globe", "mars-globe", "venus-globe", "mercury-globe",
+    "neptune-globe", "uranus-globe", "space-probe", "station-module"
+  ]
+}
