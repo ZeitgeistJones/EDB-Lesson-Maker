@@ -1,16 +1,12 @@
-/* propBank.js — resolve board props out of 09_props by ROLE and TAG.
+/* propBank.js — resolve board props out of 09_props by IDENTITY, then rank.
  *
  * Classic script (no ES modules) → window.PropBank, a deliberate sibling of
  * VocabIcons and SceneBackgrounds.
  *
- * The point of this layer is that adding a manifest row is enough for a prop to
- * start appearing: nothing here enumerates prop keys. Inputs are role, tags,
- * alpha, aspect, relativeScale, anchor and styleFamily, all read from the
- * manifest at fetch time. Recipes ask by role / tags / word only.
- *
- * Borrowed from vocabIcons.js, and the important half: resolve() returns null
- * rather than a near-enough prop. A wrong prop on a board is worse than the
- * canvas rectangle the recipe would have drawn, because it is confidently wrong.
+ * Empty beats wrong. Tags never qualify a candidate into the pool — only key /
+ * words-from-key / alias / pack-suffix / optional identity[] do. Tags may rank
+ * inside that pool (capped). Soft nouns live in lib/propPolicy.json deny list.
+ * Chrome / slot-filling with no word uses pickDecor(role), not resolve().
  *
  * resolve() is synchronous so recipes (which run inside the synchronous
  * EdbActivities.buildBoardPlan) can call it. Await ready() once before building
@@ -18,7 +14,13 @@
  */
 (function () {
   const BASE = 'assets/09_props';
+  const POLICY_URL = 'lib/propPolicy.json';
   const BOARD_H = 590;
+  /** Default scored-path floor. Identity exact hits via byWord bypass scoring. */
+  const DEFAULT_MIN_SCORE = 4;
+  /** Tag rank bonus inside an identity pool only — never candidacy. */
+  const TAG_RANK_EACH = 1;
+  const TAG_RANK_CAP = 2;
 
   /** relativeScale 1.0 against a 590px board, and the floor below which a cutout is mush. */
   const MAX_PROP_H = 300;
@@ -46,8 +48,42 @@
   };
 
   let bank = null;
+  let policy = null;
   let pending = null;
   let warned = false;
+
+  const EMPTY_POLICY = {
+    version: 2,
+    deny: [],
+    subjectLock: {},
+    never: {},
+    ambiguous: {},
+    aliases: {},
+  };
+
+  function normalizePolicy(raw) {
+    const p = raw && typeof raw === 'object' ? raw : {};
+    const deny = Array.isArray(p.deny)
+      ? p.deny.map((d) => slug(d)).filter(Boolean)
+      : [];
+    return {
+      version: p.version == null ? 2 : p.version,
+      deny: [...new Set(deny)],
+      subjectLock: p.subjectLock && typeof p.subjectLock === 'object' ? p.subjectLock : {},
+      never: p.never && typeof p.never === 'object' ? p.never : {},
+      ambiguous: p.ambiguous && typeof p.ambiguous === 'object' ? p.ambiguous : {},
+      aliases: p.aliases && typeof p.aliases === 'object' ? p.aliases : {},
+    };
+  }
+
+  function isDeniedWord(word) {
+    if (!policy || !policy.deny || !policy.deny.length) return false;
+    const key = slug(word);
+    if (!key) return false;
+    if (policy.deny.indexOf(key) >= 0) return true;
+    // Also deny when any token of a multi-word query is on the list.
+    return norm(word).some((t) => policy.deny.indexOf(t) >= 0);
+  }
 
   function norm(s) {
     return String(s || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(Boolean);
@@ -258,7 +294,10 @@
         path: `${BASE}/img/${row.file}`,
         role: row.role || null,
         tags: [...new Set((row.tags || []).flatMap(norm))],
+        // Identity tokens from the key slug only — never associative tags.
         words: norm(key),
+        // Optional future field; absent on most rows. Tags must not fill this.
+        identity: [...new Set((row.identity || []).flatMap(norm))],
         aspect: row.aspect || 1,
         relativeScale: row.relativeScale == null ? 0.5 : row.relativeScale,
         anchor: row.anchor || 'bottom',
@@ -294,22 +333,36 @@
     return out;
   }
 
-  /** Load the manifest once. Await before building a board plan. */
+  function loadPolicy() {
+    return fetch(POLICY_URL)
+      .then((r) => {
+        if (!r.ok) return EMPTY_POLICY;
+        return r.json();
+      })
+      .then((raw) => normalizePolicy(raw))
+      .catch(() => normalizePolicy(EMPTY_POLICY));
+  }
+
+  /** Load the manifest + policy once. Await before building a board plan. */
   function ready() {
     if (bank) return Promise.resolve(bank);
     if (!pending) {
-      pending = fetch(`${BASE}/manifest.json`)
-        .then((r) => {
+      pending = Promise.all([
+        fetch(`${BASE}/manifest.json`).then((r) => {
           if (!r.ok) throw new Error(`prop manifest not found at ${BASE}/manifest.json`);
           return r.json();
-        })
-        .then((raw) => {
+        }),
+        loadPolicy(),
+      ])
+        .then(([raw, pol]) => {
+          policy = pol;
           bank = index(raw);
           return bank;
         })
         .catch((err) => {
           pending = null;
           console.warn(err);
+          if (!policy) policy = normalizePolicy(EMPTY_POLICY);
           bank = index(null);
           return bank;
         });
@@ -426,9 +479,13 @@
       if (hit) return pick(hit);
     }
 
-    // Pack-prefixed keys: teacher → job-teacher, dragon → castle-dragon / gashapon-dragon
+    // Pack-prefixed keys / identity[]: teacher → job-teacher, etc.
     const prefixed = pool.filter(
-      (p) => p.key === key || p.key.endsWith('-' + key) || p.words.includes(key)
+      (p) =>
+        p.key === key ||
+        p.key.endsWith('-' + key) ||
+        p.words.includes(key) ||
+        (p.identity && p.identity.includes(key))
     );
     if (prefixed.length === 1) return pick(prefixed[0]);
     if (prefixed.length > 1) {
@@ -448,20 +505,80 @@
     return null;
   }
 
+  function resolveLogEnabled() {
+    try {
+      if (typeof window !== 'undefined' && window.__PROP_RESOLVE_LOG__) return true;
+    } catch (_) { /* ignore */ }
+    try {
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('PROP_RESOLVE_LOG') === '1') {
+        return true;
+      }
+    } catch (_) { /* ignore */ }
+    try {
+      if (typeof process !== 'undefined' && process.env && process.env.PROP_RESOLVE_LOG) {
+        return true;
+      }
+    } catch (_) { /* ignore */ }
+    return false;
+  }
+
+  function logResolution(row) {
+    if (!resolveLogEnabled()) return;
+    const line = JSON.stringify(Object.assign({ t: Date.now() }, row));
+    try {
+      if (typeof window !== 'undefined') {
+        if (!window.__PROP_RESOLVE_LOG_LINES__) window.__PROP_RESOLVE_LOG_LINES__ = [];
+        window.__PROP_RESOLVE_LOG_LINES__.push(line);
+      }
+    } catch (_) { /* ignore */ }
+    if (typeof console !== 'undefined' && console.info) console.info('[PropBank.resolve]', line);
+  }
+
+  /** True when token is an identity hit on prop (never tags). */
+  function identityHit(prop, token) {
+    if (!prop || !token) return false;
+    if (prop.key === token || prop.key.endsWith('-' + token)) return true;
+    if (prop.words && prop.words.includes(token)) return true;
+    if (prop.identity && prop.identity.includes(token)) return true;
+    const alias = PROP_ALIASES[token];
+    if (alias && (prop.key === alias || prop.key.endsWith('-' + alias))) return true;
+    return false;
+  }
+
   /**
-   * Resolve one prop, or null.
+   * Identity-only candidate pool. Tags never add a prop here.
+   * Tokens come from the word (and its slug), not from query tags.
+   */
+  function identityPool(pool, word) {
+    const tokens = new Set();
+    const key = slug(word);
+    if (key) tokens.add(key);
+    for (const t of norm(word)) tokens.add(t);
+    if (key.length > 3 && key.endsWith('s') && !key.endsWith('ss')) {
+      tokens.add(key.slice(0, -1));
+    }
+    if (!tokens.size) return [];
+    return pool.filter((p) => {
+      for (const t of tokens) {
+        if (identityHit(p, t)) return true;
+      }
+      return false;
+    });
+  }
+
+  /**
+   * Resolve one prop for a WORD (or null). Empty beats wrong.
    *
    *   { role, word, tags, seed, index, exclude, minScore, family }
    *
-   * Ladder: exact key → PROP_ALIASES → scored rank over tags + role → role
-   * bucket (so role:'cover' always works while the bank has a cover) → null.
+   * Ladder: deny → exact key / PROP_ALIASES / pack-suffix (byWord) → score only
+   * inside an identity pool (tags rank, capped) → null.
    *
-   * Scoring mirrors sceneBackgrounds.rank so both pickers behave the same way:
-   * +3 a query word is one of the prop's tags, +2 it is part of the prop's key,
-   * +2 the role matches. Ties break on FEWER tags (more specific) then key, so
-   * the winner never depends on manifest order. A role match alone scores 2 and
-   * so does not clear the default floor — role-only queries land on the bucket
-   * step instead, which is rotated rather than ranked.
+   * Role-bucket fallback is gone from resolve. Chrome / slot-fill without a
+   * word: use pickDecor(role) / pickByRole.
+   *
+   * Tag-only queries (no word) intentionally return null — prefer empty scene
+   * dressing over a metonymy prop. Do not route vocab through a tag qualifier.
    */
   function resolve(query) {
     const q = query || {};
@@ -470,6 +587,18 @@
         warned = true;
         console.warn('PropBank.resolve called before ready() — no props will be used');
       }
+      return null;
+    }
+
+    const word = q.word;
+    if (word && isDeniedWord(word)) {
+      logResolution({
+        word: String(word),
+        picked: null,
+        score: 0,
+        reason: 'deny',
+        topic: q.seed || null,
+      });
       return null;
     }
 
@@ -490,52 +619,153 @@
         !exclude.has(p.key) &&
         !excludeBases.has(baseOfProp(p))
     );
-    if (!pool.length) return null;
-
-    const named = byWord(pool, q);
-    if (named) return named;
-
-    // The word's own tokens join the tag query: an exact tag match is still an
-    // exact match, so this widens reach without inventing a resemblance.
-    const want = new Set([...(q.tags || []).flatMap(norm), ...norm(q.word)]);
-    const scored = [];
-    for (const p of pool) {
-      let score = 0;
-      for (const t of want) {
-        if (p.tags.includes(t)) score += 3;
-        if (p.words.includes(t)) score += 2;
-      }
-      if (q.role && p.role === q.role) score += 2;
-      if (score > 0) scored.push({ p, score });
-    }
-    if (scored.length) {
-      scored.sort((a, b) =>
-        b.score - a.score ||
-        a.p.tags.length - b.p.tags.length ||
-        a.p.key.localeCompare(b.p.key)
-      );
-      const top = scored[0].score;
-      if (top >= (q.minScore == null ? 3 : q.minScore)) {
-        return rotatePick(scored.filter((s) => s.score === top).map((s) => s.p), q.seed, q.index);
-      }
-      // Explicit minScore means "theme or nothing" — do not fall through to a
-      // role bucket (that is how remotes landed on volcano activity pages).
-      if (q.minScore != null) return null;
-    } else if (q.minScore != null) {
-      // Same rule when nothing scored at all (dentist → swing via playPart bucket).
+    if (!pool.length) {
+      logResolution({
+        word: word ? String(word) : null,
+        picked: null,
+        score: 0,
+        reason: 'empty-pool',
+        topic: q.seed || null,
+      });
       return null;
     }
 
-    if (q.role) {
-      const bucket = pool.filter((p) => p.role === q.role);
-      if (bucket.length) return rotatePick(bucket, q.seed, q.index);
-    }
-    if (q.roles && q.roles.length) {
-      const bucket = pool.filter((p) => q.roles.indexOf(p.role) >= 0);
-      if (bucket.length) return rotatePick(bucket, q.seed, q.index);
+    const named = byWord(pool, q);
+    if (named) {
+      logResolution({
+        word: word ? String(word) : null,
+        picked: named.key,
+        score: null,
+        reason: 'byWord',
+        topic: q.seed || null,
+      });
+      return named;
     }
 
+    // No word → no identity tokens. Tags alone cannot qualify (empty > wrong).
+    if (!slug(word)) {
+      logResolution({
+        word: null,
+        tags: q.tags || [],
+        picked: null,
+        score: 0,
+        reason: 'no-identity',
+        topic: q.seed || null,
+      });
+      return null;
+    }
+
+    const candidates = identityPool(pool, word);
+    if (!candidates.length) {
+      logResolution({
+        word: String(word),
+        picked: null,
+        score: 0,
+        reason: 'no-identity',
+        topic: q.seed || null,
+      });
+      return null;
+    }
+
+    const tagTokens = [...new Set((q.tags || []).flatMap(norm))];
+    const wordTokens = new Set([...norm(word), slug(word)].filter(Boolean));
+    const scored = [];
+    for (const p of candidates) {
+      let score = 0;
+      // Identity strength inside the already-filtered pool.
+      for (const t of wordTokens) {
+        if (p.key === t) score += 6;
+        else if (p.key.endsWith('-' + t)) score += 5;
+        else if (p.words.includes(t) || (p.identity && p.identity.includes(t))) score += 4;
+      }
+      // Tags rank only — each +1, capped at +2 total.
+      let tagBonus = 0;
+      for (const t of tagTokens) {
+        if (p.tags.includes(t)) tagBonus += TAG_RANK_EACH;
+      }
+      if (tagBonus > TAG_RANK_CAP) tagBonus = TAG_RANK_CAP;
+      score += tagBonus;
+      if (q.role && p.role === q.role) score += 2;
+      else if (q.roles && q.roles.length && q.roles.indexOf(p.role) >= 0) score += 1;
+      if (score > 0) scored.push({ p, score });
+    }
+    if (!scored.length) {
+      logResolution({
+        word: String(word),
+        picked: null,
+        score: 0,
+        reason: 'no-score',
+        topic: q.seed || null,
+      });
+      return null;
+    }
+    scored.sort((a, b) =>
+      b.score - a.score ||
+      a.p.tags.length - b.p.tags.length ||
+      a.p.key.localeCompare(b.p.key)
+    );
+    const top = scored[0].score;
+    const floor = q.minScore == null ? DEFAULT_MIN_SCORE : q.minScore;
+    if (top >= floor) {
+      const band = scored.filter((s) => s.score === top).map((s) => s.p);
+      const pick = rotatePick(band, q.seed, q.index);
+      logResolution({
+        word: String(word),
+        picked: pick ? pick.key : null,
+        score: top,
+        reason: 'identity-score',
+        runnerUp: scored[1] ? { key: scored[1].p.key, score: scored[1].score } : null,
+        topic: q.seed || null,
+      });
+      return pick;
+    }
+    logResolution({
+      word: String(word),
+      picked: null,
+      score: top,
+      reason: 'below-floor',
+      runnerUp: { key: scored[0].p.key, score: top },
+      topic: q.seed || null,
+      floor,
+    });
     return null;
+  }
+
+  /**
+   * Role-only chrome / slot-filling. No word, no tags — rotate props with the
+   * matching role (cover, sortBin, orderPad, …). Prefer this over resolve()
+   * when the recipe needs a bin/flap regardless of lesson vocabulary.
+   */
+  function pickDecor(role, opts) {
+    const o = opts || {};
+    if (!bank || !role) return null;
+    const chrome = !!CHROME_ROLES[role];
+    const family = chrome ? HOUSE_FAMILY : (o.family || HOUSE_FAMILY);
+    const exclude = new Set(o.exclude || []);
+    const excludeBases = new Set();
+    exclude.forEach((k) => excludeBases.add(baseKeyOf(k)));
+    const bucket = bank.all.filter(
+      (p) =>
+        p.family === family &&
+        p.role === role &&
+        !exclude.has(p.key) &&
+        !excludeBases.has(baseOfProp(p))
+    );
+    if (!bucket.length) return null;
+    return rotatePick(bucket, o.seed, o.index);
+  }
+
+  /** Alias: pick by a single role, or the first matching role in `roles`. */
+  function pickByRole(roleOrRoles, opts) {
+    const o = opts || {};
+    if (Array.isArray(roleOrRoles)) {
+      for (let i = 0; i < roleOrRoles.length; i++) {
+        const hit = pickDecor(roleOrRoles[i], o);
+        if (hit) return hit;
+      }
+      return null;
+    }
+    return pickDecor(roleOrRoles, o);
   }
 
   /**
@@ -767,7 +997,12 @@
     return best || near;
   }
 
-  /** How many vocab words resolve to a real prop (alias / key / tags). */
+  /**
+   * How many vocab words resolve to a real prop (identity: key / alias /
+   * pack-suffix / words-from-key). Uses resolve with an explicit minScore so a
+   * weak identity-score cannot pass; exact byWord hits still early-return.
+   * Soft/abstract nouns on the policy deny list count as misses (empty > wrong).
+   */
   function vocabPropHits(lesson) {
     const vocab = (lesson && lesson.vocabulary) || [];
     const family = familyFor(lesson);
@@ -777,7 +1012,7 @@
     for (const v of vocab) {
       const word = typeof v === 'string' ? v : v && v.word;
       if (!word) continue;
-      const prop = resolve({ word, seed, family, minScore: 3 });
+      const prop = resolve({ word, seed, family, minScore: DEFAULT_MIN_SCORE });
       const ok = !!prop;
       if (ok) hits++;
       detail.push({ word: String(word), prop: prop ? prop.key : null, ok });
@@ -808,6 +1043,8 @@
     all,
     skipped,
     resolve,
+    pickDecor,
+    pickByRole,
     requestFor,
     familyFor,
     themeTokens,
@@ -821,14 +1058,17 @@
     yFor,
     fillsRect,
     loadPng,
+    isDeniedWord,
     PROP_REQUESTS,
     PROP_ALIASES,
     HOUSE_FAMILY,
     CHROME_ROLES,
+    DEFAULT_MIN_SCORE,
     MAX_PROP_H,
     MIN_PROP_H,
     MIN_DOCK_SRC,
     BASE,
+    POLICY_URL,
   };
 
   // Start the fetch at load so a board built straight after page load does not

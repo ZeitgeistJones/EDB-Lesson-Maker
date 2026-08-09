@@ -528,9 +528,10 @@
       const cellY = bay.y + 10;
       // Two DIFFERENT bins or none: excluding bin A's prop is what makes the
       // second miss visible instead of drawing the same bin twice.
-      const prop = req
-        ? PB.resolve({
-            role: req.role,
+      // Role-only chrome — pickDecor, not word resolve (no role-bucket in resolve).
+      const pickChrome = PB.pickDecor || PB.pickByRole;
+      const prop = req && pickChrome
+        ? pickChrome.call(PB, req.role, {
             seed: lesson.title || '',
             index: i,
             exclude: req.distinct ? exclude : [],
@@ -656,18 +657,12 @@
       }
     }
 
+    // Identity word lookups only — tag-only hero scoring removed (empty > wrong).
     for (const t of tags) {
       const hit = PB.resolve({ word: t, seed, family });
       if (isHeroSized(hit)) return hit;
     }
-    const scored = PB.resolve({
-      tags,
-      roles: ['hero', 'playPart'],
-      minScore: 5,
-      seed,
-      family,
-    });
-    return isHeroSized(scored) ? scored : null;
+    return null;
   }
 
   /**
@@ -896,25 +891,8 @@
       }
     }
 
-    // Feelings curated list is the dock — do not pad with theme-tag junk (face parts).
-    if (!feelings) {
-      while (out.length < count) {
-        const p = PB.resolve({
-          tags,
-          roles: ['object', 'tool'],
-          minScore: 3,
-          seed,
-          index: out.length,
-          exclude,
-          family,
-        });
-        if (!p) break;
-        exclude.push(p.key);
-        if (!sharp(p)) continue;
-        if (decoBlocked(p)) continue;
-        out.push(p);
-      }
-    }
+    // Tag-only dock pad removed (phase-1): tags no longer qualify candidates.
+    // Prefer a shorter dock over a metonymy prop (coach→whistle).
 
     // S59 (both selfloop judges): the Feelings Lab dock rendered realistic 3D boy
     // faces (09_props/feeling-*) — a DIFFERENT visual vocabulary from the flat
@@ -1399,16 +1377,20 @@
 
       for (let n = 0; n < count; n++) {
         const seed = (lesson && lesson.title) || '';
-        // Tags only + hard minScore. Passing roles here used to ignore a failed
-        // theme score and dump any furniture via the roles bucket.
-        const prop = PB.resolve({
-          tags: themeTags,
-          seed,
-          index: n,
-          exclude: req.distinct ? exclude : [],
-          family,
-          minScore: 3,
-        });
+        // Identity-only: try each theme token as a WORD lookup. Tags never
+        // qualify (coach must not dress a whistle via tag overlap).
+        let prop = null;
+        for (const w of themeTags) {
+          if (exclude.includes(w)) continue;
+          prop = PB.resolve({
+            word: w,
+            seed: seed + '|dress|' + n,
+            exclude: req.distinct ? exclude : [],
+            family,
+            minScore: PB.DEFAULT_MIN_SCORE || 4,
+          });
+          if (prop) break;
+        }
         if (!prop) continue;
         exclude.push(prop.key);
         const sized = PB.sizeFor(prop, { maxH, maxW: Math.min(220, art.w - 16) });

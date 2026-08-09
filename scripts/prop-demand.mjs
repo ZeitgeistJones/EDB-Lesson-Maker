@@ -191,15 +191,37 @@ for (const c of caseManifest.cases || []) {
     const hits = [];
     const misses = [];
     for (let i = 0; i < req.count; i++) {
-      const hit = PB.resolve({
-        role: req.role,
-        roles: req.roles,
-        tags: req.themed ? tags : undefined,
-        seed,
-        index: i,
-        exclude: req.distinct ? exclude : [],
-        family,
-      });
+      // Chrome / role-only slots use pickDecor. Word/theme demand still uses resolve.
+      let hit = null;
+      if (!req.themed && (req.role || (req.roles && req.roles.length))) {
+        const pick = PB.pickDecor || PB.pickByRole;
+        if (pick) {
+          hit = req.role
+            ? pick.call(PB, req.role, {
+                seed,
+                index: i,
+                exclude: req.distinct ? exclude : [],
+                family,
+              })
+            : PB.pickByRole(req.roles, {
+                seed,
+                index: i,
+                exclude: req.distinct ? exclude : [],
+                family,
+              });
+        }
+      } else {
+        hit = PB.resolve({
+          role: req.role,
+          roles: req.roles,
+          tags: req.themed ? tags : undefined,
+          // Themed slots without a concrete word no longer tag-qualify — report MISS.
+          seed,
+          index: i,
+          exclude: req.distinct ? exclude : [],
+          family,
+        });
+      }
       if (hit) {
         hits.push(hit.key);
         if (req.distinct) exclude.push(hit.key);

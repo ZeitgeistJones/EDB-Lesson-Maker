@@ -15,6 +15,9 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const manifest = JSON.parse(
   fs.readFileSync(path.join(ROOT, 'public/assets/09_props/manifest.json'), 'utf8')
 );
+const policy = JSON.parse(
+  fs.readFileSync(path.join(ROOT, 'public/lib/propPolicy.json'), 'utf8')
+);
 const lesson = JSON.parse(
   fs.readFileSync(path.join(ROOT, 'scripts/fixtures/castle-lesson.json'), 'utf8')
 );
@@ -22,11 +25,13 @@ const lesson = JSON.parse(
 const sandbox = {
   window: {},
   console,
-  fetch: () =>
-    Promise.resolve({
-      ok: true,
-      json: () => Promise.resolve(manifest),
-    }),
+  fetch: (url) => {
+    const u = String(url);
+    if (u.includes('propPolicy')) {
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(policy) });
+    }
+    return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) });
+  },
 };
 vm.createContext(sandbox);
 vm.runInContext(fs.readFileSync(path.join(ROOT, 'public/lib/propBank.js'), 'utf8'), sandbox);
