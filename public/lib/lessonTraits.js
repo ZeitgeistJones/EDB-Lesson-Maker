@@ -27,10 +27,14 @@
     feelingsWords: /\b(worried|scared|shy|confused|proud|surprised|happy|sad|angry|bored|sleepy|excited|tired)\b/,
     faceGuard: /\b(hair|eyes|nose|ear|ears|make.?a.?face)\b/,
     faceCue: /face|hair|eyes|make.?a.?face/,
-    dental: /\b(dentist|dental|tooth|teeth|cavity|floss|patient)\b/,
+    // "patient" is general clinic/hospital — do not steal doctor lessons onto
+    // the dental open-mouth stage (hospital quality loop).
+    dental: /\b(dentist|dental|tooth|teeth|cavity|floss)\b/,
+    hospital: /\b(doctor|clinic|hospital|nurse|medical|checkup|diagnosis|symptoms?|prescription|appointment|fever|sick)\b/,
     castle: /\b(castle|knight|dragon|royal|fortress|portcullis)\b/,
     trampoline: /\b(trampoline|bounce|backflip)\b/,
     music: /\b(music|compose|composer|orchestra|symphony|concert|classical|melody|harmony|piano|violin)\b/,
+    beach: /\b(beach|shore|seaside|sandcastle|ocean|seashell)\b/,
   };
 
   // King-stage instruction copy, keyed by resolved king type. `default` is the
@@ -40,19 +44,23 @@
     feelings: '<b>Round 1:</b> drag a feeling face onto the blank face; write or say how it feels.<br><b>Round 2:</b> your partner reads the face, names the feeling, then answers with If I felt ____, I would ____.',
     face: 'Drag parts onto the face. Then say: My friend has ___',
     dental: 'Drag tools onto the patient. Then say what you used and why.',
+    hospital: 'Drag tools onto the patient. Then say what you used and why.',
     castle: 'Drag pieces onto the castle. Then say what you built.',
     trampoline: 'Drag pieces onto the trampoline. Then say your bounce plan.',
     music: 'Drag musicians onto the stage. Then write or say your symphony idea in 1–2 sentences.',
+    beach: 'Drag beach things onto the sandcastle. Then say what you find or bring.',
   };
 
   // Ordered regex-tested king types (checked only after the caller-supplied
   // feelings/face booleans). Order MUST match the original else-if cascade:
-  // dental → castle → trampoline → music.
+  // dental → hospital → castle → trampoline → music → beach.
   const KING_TYPE_RULES = [
     { type: 'dental', re: RE.dental },
+    { type: 'hospital', re: RE.hospital },
     { type: 'castle', re: RE.castle },
     { type: 'trampoline', re: RE.trampoline },
     { type: 'music', re: RE.music },
+    { type: 'beach', re: RE.beach },
   ];
 
   function vocabWords(lesson) {

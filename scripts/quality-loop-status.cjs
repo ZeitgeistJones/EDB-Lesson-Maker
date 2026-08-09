@@ -3,12 +3,20 @@
  * a loop that a previous chat started.
  *
  *   npm run quality:status
+ *   npm run quality:status -- --out=tmp/board-bg-verify-hospital
  */
 const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const REPORT = path.join(ROOT, 'tmp', 'board-bg-verify', 'report.json');
+function reportFromArgs(argv) {
+  for (const a of argv.slice(2)) {
+    if (a.startsWith('--report=')) return path.resolve(ROOT, a.slice('--report='.length));
+    if (a.startsWith('--out=')) return path.resolve(ROOT, a.slice('--out='.length), 'report.json');
+  }
+  return path.join(ROOT, 'tmp', 'board-bg-verify', 'report.json');
+}
+const REPORT = reportFromArgs(process.argv);
 const STATE_PATH = path.join(__dirname, 'quality-state.json');
 const LOG_PATH = path.join(ROOT, 'docs', 'quality-log.md');
 const WISHLIST_PATH = path.join(ROOT, 'docs', 'asset-wishlist.md');

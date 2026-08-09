@@ -72,7 +72,9 @@
 
   /** First matching rule wins. Generic never maps to eyes. */
   const RULES = [
-    { id: 'eyes', re: /\b(face|faces|eye|eyes|nose|mouth|smile|hair)\b/ },
+    // Eyes are face-kit only — bare "smile"/"mouth" on dentist lessons must NOT
+    // steal the face eye outline (board-ux: eyes = face lessons).
+    { id: 'eyes', re: /\b(face|faces|eye|eyes|nose|hair)\b|make.?a.?face|blank.?face/ },
     { id: 'castle', re: /\b(castle|castles|knight|knights|dragon|dragons|royal|fortress)\b/ },
     { id: 'beach', re: /\b(beach|beaches|sand|sandcastle|ocean|sea|shell|seashell|pail|shovel)\b/ },
     { id: 'space', re: /\b(space|rocket|planet|moon|astronaut|starship|ufo|satellite)\b/ },

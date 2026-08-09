@@ -5,6 +5,7 @@
  *   npm run quality:judge -- --stdin < verdict.json
  *   npm run quality:judge -- tmp/verdict.json --mark-done=EW1
  *   npm run quality:judge -- --reset            (start a fresh loop, keep history)
+ *   npm run quality:judge -- tmp/verdict.json --report=tmp/board-bg-verify-hospital/report.json
  *
  * Verdict JSON:
  * {
@@ -27,7 +28,7 @@ const path = require('path');
 const rubric = require('./ux-board-rubric.cjs');
 
 const ROOT = path.join(__dirname, '..');
-const REPORT = path.join(ROOT, 'tmp', 'board-bg-verify', 'report.json');
+const DEFAULT_REPORT = path.join(ROOT, 'tmp', 'board-bg-verify', 'report.json');
 const STATE_PATH = path.join(__dirname, 'quality-state.json');
 const LOG_PATH = path.join(ROOT, 'docs', 'quality-log.md');
 const HISTORY_CAP = 24;
@@ -40,13 +41,17 @@ Written by \`npm run quality:judge\` — do not hand-edit. Machine state lives i
 `;
 
 function parseArgs(argv) {
-  const out = { file: null, stdin: false, reset: false, markDone: [], dryRun: false };
+  const out = { file: null, stdin: false, reset: false, markDone: [], dryRun: false, report: null };
   for (const a of argv.slice(2)) {
     if (a === '--stdin') out.stdin = true;
     else if (a === '--reset') out.reset = true;
     else if (a === '--dry-run') out.dryRun = true;
     else if (a.startsWith('--mark-done=')) out.markDone.push(a.split('=')[1]);
-    else if (!a.startsWith('--')) out.file = a;
+    else if (a.startsWith('--report=')) out.report = a.slice('--report='.length);
+    else if (a.startsWith('--out=')) {
+      // Convenience: --out=tmp/foo → tmp/foo/report.json
+      out.report = path.join(a.slice('--out='.length), 'report.json');
+    } else if (!a.startsWith('--')) out.file = a;
   }
   return out;
 }
@@ -116,7 +121,8 @@ function main() {
     if (!args.file && !args.stdin) return;
   }
 
-  const report = readJson(REPORT, null);
+  const reportPath = args.report ? path.resolve(ROOT, args.report) : DEFAULT_REPORT;
+  const report = readJson(reportPath, null);
   if (!report) {
     console.error('No bake report found. Run: npm run quality');
     process.exit(1);
@@ -181,7 +187,7 @@ function main() {
 
   report.uxVerdict = enriched;
   report.iteration = iteration;
-  fs.writeFileSync(REPORT, JSON.stringify(report, null, 2));
+  fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
 
   state.iteration = iteration;
   state.softRoots = [...new Set([...state.softRoots, ...roots])];

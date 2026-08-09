@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-09T20:32:13.836Z",
-  "iteration": 8,
+  "updatedAt": "2026-08-09T20:33:08.502Z",
+  "iteration": 9,
   "softRoots": [
     "no-vetted-icon",
     "ink-policy-measured-no-scrim-on-calm",
@@ -502,6 +502,28 @@
       "metricFails": 0,
       "metricWarns": 5,
       "regressions": 0
+    },
+    {
+      "at": "2026-08-09T20:33:08.502Z",
+      "iteration": 9,
+      "tier": "core",
+      "cases": [
+        "doctor",
+        "dentist",
+        "clown-clinic",
+        "loop2-doctor"
+      ],
+      "action": "wishlist",
+      "codes": [
+        "M5"
+      ],
+      "roots": [
+        "clinic-flat-variety-thin"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 4,
+      "regressions": 20
     }
   ]
 }

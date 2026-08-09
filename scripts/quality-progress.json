@@ -1201,7 +1201,111 @@
         }
       },
       "note": null
+    },
+    {
+      "at": "2026-08-09T20:33:08.512Z",
+      "tier": "core",
+      "cases": 4,
+      "pages": 42,
+      "iteration": 9,
+      "hard": 0,
+      "metricFails": 0,
+      "metricWarns": 4,
+      "m5Fails": 0,
+      "m7Fails": 0,
+      "layoutFails": 0,
+      "unvettedWords": 0,
+      "wishlistOpen": 16,
+      "meanM5": 0.415,
+      "meanM7": 1,
+      "pillarAvg": 2.75,
+      "regressions": 20,
+      "rates": {
+        "pages": 42,
+        "cases": 4,
+        "M1": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 4,
+          "rate": 0
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 4,
+          "warns": 4,
+          "fails": 0,
+          "denom": 4,
+          "rate": 1
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 4,
+          "rate": 0
+        }
+      },
+      "note": null
     }
   ],
-  "updatedAt": "2026-08-09T20:32:13.845Z"
+  "updatedAt": "2026-08-09T20:33:08.517Z"
 }

@@ -4,6 +4,7 @@
  *   npm run quality              core cases (fast)
  *   npm run fullquality          core + adversarial cases
  *   node scripts/preflight-boards.cjs --cases=gym,travel
+ *   node scripts/preflight-boards.cjs --cases=doctor --out=tmp/board-bg-verify-hospital
  *
  * Exit 0 = hard rules passed. The agent must then run the board-quality-loop
  * skill: read the review queue, judge with both lenses, submit via
@@ -14,8 +15,15 @@ const path = require('path');
 const fs = require('fs');
 
 const ROOT = path.join(__dirname, '..');
-const OUT = path.join(ROOT, 'tmp', 'board-bg-verify');
 const forwarded = process.argv.slice(2);
+function outFromArgs(argv) {
+  for (const a of argv) {
+    const m = /^--out=(.+)$/.exec(a);
+    if (m) return path.resolve(ROOT, m[1]);
+  }
+  return path.join(ROOT, 'tmp', 'board-bg-verify');
+}
+const OUT = outFromArgs(forwarded);
 
 function run(label, cmd, args) {
   console.log(`\n▓▓▓▓ ${label} ▓▓▓▓`);

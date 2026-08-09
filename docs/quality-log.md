@@ -22,3 +22,4 @@ Written by `npm run quality:judge` — do not hand-edit. Machine state lives in 
 - 2026-08-09 iter 6 (core) — **wishlist** M5 · hard 0 · metric 0 fail / 5 warn · roots: beach-flat-variety-thin · asset gap logged
 - 2026-08-09 iter 7 (core) — **promote_ew** P1 · hard 0 · metric 0 fail / 5 warn · roots: ball-pack-volleyball-look, no-vetted-icon, gym-flat-variety-thin
 - 2026-08-09 iter 8 (core) — **promote_ew** P1 · hard 0 · metric 0 fail / 5 warn · roots: ball-pack-volleyball-look, no-vetted-icon, gym-flat-variety-thin
+- 2026-08-09 iter 9 (core) — **wishlist** M5 · hard 0 · metric 0 fail / 4 warn · roots: clinic-flat-variety-thin · asset gap logged

@@ -62,11 +62,13 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-09 | `job-coach` person cutout (subject:person) | Soccer/sports New Words — PropBank coach→null (empty>whistle); dock used 🧢 interim | Black-field standing coach | Manus hnGqvrq38ZJV3287uWRRbh → merged `job-coach.png` (+5 job people). Soft-3D vs house flat — acceptable for people pack; VocabArt coach→prop tier | wired |
 | 2026-08-09 | `soccer-goal` post+net dock prop | `goal`/`goals` moved deny→ambiguous until honest art exists | Black-field goal frame | Manus / prop-cutouts | open |
 | 2026-08-09 | Winter `clothing-gloves` usable under winter topics | `gloves` never-blocks clothing so first-aid can reach `aid-medical-glove`; winter→null today | Keep clothing-gloves; topic-aware never OR winter pack tags + theme rank | policy follow-up | open |
+| 2026-08-09 | More `beach-warm` quiet flats (beyond a–d) | loop3-beach M5≈0.40 — four washes ping-pong across 11 pages | 2–4 extra landscape quiet flats | `.cursor/skills/bg-flat-sets` in-house | open |
 | 2026-08-09 | Soccer `ball` pack icon (replace volleyball-looking `ball.png`) | soccer-coach New Words — pack tier wins over `soccer-ball` prop; kids see a volleyball | Flat soccer ball PNG in `07_vocab-pack` OR topic alias ball→soccer-ball under sport | pack refresh / VocabArt topic prefer | open |
 | 2026-08-09 | Abstract sports icons: `practice`, `effort`, `teamwork` (or keep deny) | soccer-coach M7 — correctly dropped today; no honest picture | Optional metaphor icons only if unmistakable; else leave text-only | curated pack or stay null | open |
 | 2026-08-09 | More distinct `home-warm` panels (stronger motif contrast) | bathroom-routines M5 warn — home flats rotate but read as cousins | Regen home-a…d with clearer motif contrast | bg-flat-sets | open |
 | 2026-08-09 | Bathroom / wash routines king stage (sink or tub hero + toiletry dock ≥6 sharp) | bathroom-routines activity is honest sortBins after dental-steal fix; still thin charm (S17) | Black-field hero + dock sheet | Manus / prop-cutouts | open |
 | 2026-08-09 | Warm-up coloring outline for bathroom / daily wash | bathroom warm uses generic star (no banked PNG) | 2×2 coloring crop in `10_coloring/` | assets:coloring | open |
+| 2026-08-09 | More distinct `clinic-cool` panels (stronger motif contrast across a–d) | hospital quality loop M5 — doctor/dentist/clown-clinic/loop2-doctor pageDiff~0.22; flats rotate keys but read as cousins | Regen clinic-a…d with clearer motif contrast (waiting room vs exam vs corridor vs night desk) | bg-flat-sets | open |
 
 ## How agents append
 

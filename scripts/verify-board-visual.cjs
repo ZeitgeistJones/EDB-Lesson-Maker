@@ -2,10 +2,10 @@
  * Headless board quality bake — hard rules, measured UX metrics, and artifacts
  * for the agent review loop.
  *
- *   node scripts/verify-board-visual.cjs [--tier=core|adversarial|all] [--cases=gym,travel]
+ *   node scripts/verify-board-visual.cjs [--tier=core|adversarial|all] [--cases=gym,travel] [--out=tmp/board-bg-verify]
  *
- * Writes tmp/board-bg-verify/{case}/page-*.jpg, contact.jpg, strip.jpg, review.json
- * plus the aggregate tmp/board-bg-verify/report.json.
+ * Writes {out}/{case}/page-*.jpg, contact.jpg, strip.jpg, review.json
+ * plus the aggregate {out}/report.json.
  *
  * Hard failures exit 1. Metrics (M*) and regressions (R1) never fail the bake —
  * they feed the review queue so the agent looks at the right pages first.
@@ -17,7 +17,7 @@ const http = require('http');
 const rubric = require('./ux-board-rubric.cjs');
 
 const ROOT = path.join(__dirname, '..');
-const OUT = path.join(ROOT, 'tmp', 'board-bg-verify');
+const DEFAULT_OUT = path.join(ROOT, 'tmp', 'board-bg-verify');
 const FIXTURES = path.join(__dirname, 'fixtures');
 const BASELINE_PATH = path.join(__dirname, 'quality-baseline.json');
 const STATE_PATH = path.join(__dirname, 'quality-state.json');
@@ -42,14 +42,23 @@ const GRADIENT_HINTS = [
 ];
 
 function parseArgs(argv) {
-  const out = { tier: 'core', cases: null };
+  const out = { tier: 'core', cases: null, out: null };
   for (const a of argv.slice(2)) {
     const m = /^--([^=]+)(?:=(.*))?$/.exec(a);
     if (!m) continue;
     if (m[1] === 'tier') out.tier = (m[2] || 'core').toLowerCase();
     if (m[1] === 'cases') out.cases = (m[2] || '').split(',').map((s) => s.trim()).filter(Boolean);
+    if (m[1] === 'out') out.out = m[2] || '';
   }
   return out;
+}
+
+/** Resolve --out to an absolute dir + repo-relative posix path for report image refs. */
+function resolveOutDir(raw) {
+  const abs = path.resolve(ROOT, raw || DEFAULT_OUT);
+  let rel = path.relative(ROOT, abs).replace(/\\/g, '/');
+  if (!rel || rel.startsWith('..')) rel = 'tmp/board-bg-verify';
+  return { abs, rel };
 }
 
 function loadCases({ tier, cases }) {
@@ -378,12 +387,25 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
     const textBlocks = [];
     let artCount = 0;
 
-    /** Strongest rgba stop in a gradient — our scrims darken from the top. */
+    /** Strongest stop in a gradient (rgba or #hex — wrap bookends use hex). */
     function gradientStop(bgImage) {
-      const stops = String(bgImage || '').match(/rgba?\([^)]+\)/g) || [];
+      const raw = String(bgImage || '');
+      const stops = raw.match(/rgba?\([^)]+\)|#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b/g) || [];
       let best = null;
       for (const s of stops) {
-        const c = parseColor(s);
+        let c = parseColor(s);
+        if (!c && s[0] === '#') {
+          let h = s.slice(1);
+          if (h.length === 3) h = h.split('').map((ch) => ch + ch).join('');
+          if (h.length === 6) {
+            c = {
+              r: parseInt(h.slice(0, 2), 16),
+              g: parseInt(h.slice(2, 4), 16),
+              b: parseInt(h.slice(4, 6), 16),
+              a: 1,
+            };
+          }
+        }
         if (!c) continue;
         if (!best || c.a > best.a) best = c;
       }
@@ -451,6 +473,27 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
         continue;
       }
       textBlocks.push({ rect: r, area, text, fontSize, color });
+    }
+
+    // Wrap bookend (and any page with no pack image) paints its wash on pageEl
+    // itself — querySelectorAll('*') misses it, so white wrap titles used to
+    // measure against the default light fallback (~1.1:1 false M6 fail).
+    // Only when there is no full-bleed pack image; otherwise the under-paint
+    // would cover every text block and poison pale-flat M6.
+    if (!bgImg) {
+      const pageCs = getComputedStyle(pageEl);
+      const pageRect = rel(pageEl.getBoundingClientRect());
+      const pageGrad = gradientStop(pageCs.backgroundImage);
+      if (pageGrad) {
+        overlays.push({ rect: pageRect, color: pageGrad, alpha: Math.max(pageGrad.a, 0.92) });
+        wash = wash || pageEl;
+      } else {
+        const pageBg = parseColor(pageCs.backgroundColor);
+        if (pageBg && pageBg.a >= 0.5) {
+          overlays.push({ rect: pageRect, color: pageBg, alpha: pageBg.a });
+          wash = wash || pageEl;
+        }
+      }
     }
 
     // Only a real content panel counts for fill ratio — not a 50px word chip.
@@ -663,11 +706,10 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
   }
 
   /**
-   * Vocab art is "vetted" when a human chose it: a verified pack PNG or a
-   * curated SAFE_EMOJI glyph. A raw Gemini emoji is not vetted — that is how a
-   * beach umbrella ended up on a gym lesson. Duplicate glyphs inside one lesson
-   * are called out too: two different words showing the same picture confuses
-   * students no matter how pretty it is.
+   * Vocab art is "vetted" when a human chose it: pack PNG, PropBank identity
+   * prop (VocabArt tier), or curated SAFE_EMOJI glyph. Gemini / bullet is not.
+   * Duplicate art inside one lesson is called out too — two words, one picture
+   * makes the match task unplayable.
    */
   async function vocabArtCoverage(lesson) {
     const entries = (lesson.vocabulary || []).filter((v) => v && v.word);
@@ -675,20 +717,34 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
       return { M7: null, unvettedWords: [], duplicateGlyphs: [], words: 0 };
     }
     await window.VocabIcons.ready();
+    if (window.PropBank && window.PropBank.ready) await window.PropBank.ready();
+    // Same ladder as bake — pack → prop(+headNounOk) → glyph.
+    let planned = null;
+    if (window.VocabArt && typeof window.VocabArt.planFor === 'function') {
+      try {
+        planned = window.VocabArt.planFor(lesson, { seed: (lesson && lesson.title) || '' });
+      } catch (_) {
+        planned = null;
+      }
+    }
+    const byWord = new Map((planned && planned.rows || []).map((r) => [String(r.word || '').toLowerCase(), r]));
     const unvetted = [];
-    // Keyed by the artwork a student actually sees, pack file or glyph, so an
-    // alias that points three words at one picture is caught like a duplicate
-    // emoji is — a match task with two identical cards is unplayable either way.
     const artOwners = {};
     let vetted = 0;
     for (const v of entries) {
-      const packPath = await window.VocabIcons.pathFor(v.word);
+      const row = byWord.get(String(v.word).toLowerCase());
+      const packPath = row && row.tier === 'pack' ? row.artSrc : await window.VocabIcons.pathFor(v.word);
+      const propSrc = row && row.tier === 'prop' ? row.artSrc : null;
+      const propKey = row && row.tier === 'prop' ? row.propKey : null;
       const curated = window.VocabIcons.isCurated ? window.VocabIcons.isCurated(v.word) : false;
-      if (packPath || curated) vetted++;
+      const glyph = row && row.tier === 'glyph' ? row.glyph : null;
+      if (packPath || propSrc || curated || glyph) vetted++;
       else unvetted.push(v.word);
       const art = packPath
         ? String(packPath).split('/').pop()
-        : window.VocabIcons.emojiFor(v.word, v.emoji);
+        : (propKey || (propSrc && String(propSrc).split('/').pop())
+          || glyph
+          || window.VocabIcons.emojiFor(v.word, v.emoji));
       if (art && art !== '•') {
         artOwners[art] = artOwners[art] || [];
         artOwners[art].push(v.word);
@@ -1006,7 +1062,8 @@ function regressionsFor(caseId, result, baselineCase) {
 }
 
 /** Ordered "look at these pages, for this reason" queue for the vision pass. */
-function buildReviewQueue(caseId, result, flags, regressions) {
+function buildReviewQueue(caseId, result, flags, regressions, outRel) {
+  const root = outRel || 'tmp/board-bg-verify';
   const byIndex = new Map();
   const add = (index, reason, weight) => {
     if (index == null || index < 0 || index >= result.pages.length) return;
@@ -1015,7 +1072,7 @@ function buildReviewQueue(caseId, result, flags, regressions) {
       pageIndex: index,
       pageKey: p.pageKey,
       recipe: p.recipe,
-      image: `tmp/board-bg-verify/${caseId}/page-${index}.jpg`,
+      image: `${root}/${caseId}/page-${index}.jpg`,
       metrics: p.metrics,
       reasons: [],
       weight: 0,
@@ -1049,6 +1106,7 @@ function buildReviewQueue(caseId, result, flags, regressions) {
 async function main() {
   const args = parseArgs(process.argv);
   const cases = loadCases(args);
+  const { abs: OUT, rel: OUT_REL } = resolveOutDir(args.out);
   fs.mkdirSync(OUT, { recursive: true });
 
   const baseline = readJson(BASELINE_PATH, null);
@@ -1194,7 +1252,7 @@ async function main() {
         });
       }
 
-      const reviewQueue = buildReviewQueue(c.id, result, flags, regressions);
+      const reviewQueue = buildReviewQueue(c.id, result, flags, regressions, OUT_REL);
       fs.writeFileSync(
         path.join(caseDir, 'review.json'),
         JSON.stringify(
@@ -1202,7 +1260,7 @@ async function main() {
             id: c.id,
             tier: c.tier || 'core',
             notes: c.notes || null,
-            contact: `tmp/board-bg-verify/${c.id}/contact.jpg`,
+            contact: `${OUT_REL}/${c.id}/contact.jpg`,
             pageCount: result.pageCount,
             picks: result.picks,
             pageKeys: result.pageKeys,
@@ -1236,9 +1294,9 @@ async function main() {
         hardFailures: caseHard,
         metricFlags: flags,
         regressions,
-        contact: `tmp/board-bg-verify/${c.id}/contact.jpg`,
-        strip: `tmp/board-bg-verify/${c.id}/strip.jpg`,
-        review: `tmp/board-bg-verify/${c.id}/review.json`,
+        contact: `${OUT_REL}/${c.id}/contact.jpg`,
+        strip: `${OUT_REL}/${c.id}/strip.jpg`,
+        review: `${OUT_REL}/${c.id}/review.json`,
         reviewQueue: reviewQueue.slice(0, 6),
       });
     }
