@@ -626,32 +626,36 @@
       );
 
     // Pack-prefixed keys / identity[]: teacher → job-teacher, etc.
-    // Drop policy.never hits here so a sole metonymy (gloves→clothing-gloves)
-    // cannot block the plural→stem path (→ aid-medical-glove).
-    const prefixed = identityPrefixed(key);
-    if (prefixed.length === 1) return pick(prefixed[0]);
-    if (prefixed.length > 1) {
-      const tight = prefixed.filter((p) => p.key === key || p.key.endsWith('-' + key));
-      const band = tight.length ? tight : prefixed;
+    // Merge plural stem / singular plural into one band BEFORE early-returning a
+    // sole suffix hit — otherwise gloves→laundry-rubber-gloves wins alone and
+    // never reaches aid-medical-glove (stem "glove").
+    const stem =
+      key.length > 3 && key.endsWith('s') && !key.endsWith('ss') ? key.slice(0, -1) : null;
+    const plural = key.length > 2 && !key.endsWith('s') ? key + 's' : null;
+    const tokens = [key, stem, plural].filter(Boolean);
+    const merged = [];
+    const seen = new Set();
+    for (const t of tokens) {
+      if (t !== key) {
+        const exact = find(t);
+        if (exact && !isNeverProp(rawWord, exact) && !seen.has(exact.key)) {
+          seen.add(exact.key);
+          merged.push(exact);
+        }
+      }
+      for (const p of identityPrefixed(t)) {
+        if (seen.has(p.key)) continue;
+        seen.add(p.key);
+        merged.push(p);
+      }
+    }
+    if (merged.length === 1) return pick(merged[0]);
+    if (merged.length > 1) {
+      const tight = merged.filter((p) =>
+        tokens.some((t) => p.key === t || p.key.endsWith('-' + t))
+      );
+      const band = tight.length ? tight : merged;
       return pickThemedBand(band);
-    }
-
-    // Plural query → singular stem pack key (gloves → aid-medical-glove).
-    if (key.length > 3 && key.endsWith('s') && !key.endsWith('ss')) {
-      const stem = key.slice(0, -1);
-      hit = find(stem);
-      if (hit) return pick(hit);
-      const stemHit = pickThemedBand(identityPrefixed(stem));
-      if (stemHit) return stemHit;
-    }
-
-    // Singular query → plural pack key (grape → food-grapes).
-    if (key.length > 2 && !key.endsWith('s')) {
-      const plural = key + 's';
-      hit = find(plural);
-      if (hit) return pick(hit);
-      const pluralHit = pickThemedBand(identityPrefixed(plural));
-      if (pluralHit) return pluralHit;
     }
     return null;
   }
