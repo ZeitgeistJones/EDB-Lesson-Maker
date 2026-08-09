@@ -16,44 +16,48 @@ thresholds can tighten later without changing the rate definition.
 
 | Date | Tier | cases | Hard fails | Soft metric fails | Soft metric warns | M5 variety fails | M7 vocab-art fails | Layout soft fails (M8/M9/M10) | Unvetted vocab words | Open wishlist rows | Mean M5 (variety) | Mean M7 (vetted art) | Pillar score avg (0-3) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2026-08-07 | all | 20 | 0 | 18 | 145 | 10 | 3 | 5 | 26 | 7 | 0.363 | 0.767 | — |
-| 2026-08-07 | core | 3 | 0 | 2 | 25 | 1 | 1 | 0 | 6 | 7 | 0.311 | 0.444 | 2.583 |
 | 2026-08-07 | all | 20 | 0 | 3 ↑-15 | 139 ↑-6 | 0 ↑-10 | 3 | 0 ↑-5 | 26 | 9 ↓+2 | 0.533 ↑+0.17 | 0.767 | — |
 | 2026-08-07 | all | 20 | 0 | 1 ↑-2 | 137 ↑-2 | 0 | 1 ↑-2 | 0 | 10 ↑-16 | 7 ↑-2 | 0.532 ↓-0.00 | 0.95 ↑+0.18 | — |
 | 2026-08-07 | all | 20 | 20 ↓+20 | 1 | 34 ↑-103 | 0 | 1 | 0 | 10 | 7 | 0.533 ↑+0.00 | 0.95 | — |
 | 2026-08-07 | all | 20 | 0 ↑-20 | 1 | 40 ↓+6 | 0 | 1 | 0 | 10 | 7 | 0.537 ↑+0.00 | 0.95 | — |
 | 2026-08-07 | all | 20 | 0 | 15 ↓+14 | 15 ↑-25 | 0 | 1 | 0 | 10 | 7 | 0.521 ↓-0.02 | 0.95 | — |
 | 2026-08-07 | all | 20 | 0 | 1 ↑-14 | 16 ↓+1 | 0 | 1 | 0 | 10 | 7 | 0.519 ↓-0.00 | 0.95 | — |
+| 2026-08-09 | core | 3 | 0 | 1 ↑-1 | 16 ↑-9 | 0 ↑-1 | 0 ↑-1 | 1 ↓+1 | 3 ↑-3 | 10 ↓+3 | 0.417 ↑+0.11 | 0.833 ↑+0.39 | 2.25 ↓-0.33 |
+| 2026-08-09 | core | 1 | 0 | 0 | 5 | 0 | 0 | 0 | 0 | 10 | 0.404 | 1 | 2.5 |
+| 2026-08-09 | core | 1 | 0 | 0 | 5 | 0 | 0 | 0 | 0 | 10 | 0.435 ↑+0.03 | 1 | 2 ↓-0.50 |
+| 2026-08-09 | core | 4 | 0 | 0 | 19 | 0 | 0 | 0 | 0 | 10 | 0.415 | 1 | 2.5 |
+| 2026-08-09 | core | 1 | 0 | 0 | 5 | 0 | 0 | 0 | 0 | 10 | 0.404 ↓-0.03 | 1 | 2.75 ↑+0.75 |
+| 2026-08-09 | core | 1 | 0 | 0 | 5 | 0 | 0 | 0 | 3 ↓+3 | 15 ↓+5 | 0.481 ↑+0.08 | 0.5 ↓-0.50 | 2.333 ↓-0.42 |
 
-## Since first comparable `all` × 20 cases
+## Since first comparable `core` × 1 cases
 
-_Baseline: 2026-08-07 → latest 2026-08-07_
+_Baseline: 2026-08-09 → latest 2026-08-09_
 
 - **Hard fails:** 0 → 0 (→)
-- **Soft metric fails:** 18 → 1 (↑-17)
-- **Soft metric warns:** 145 → 16 (↑-129)
-- **M5 variety fails:** 10 → 0 (↑-10)
-- **M7 vocab-art fails:** 3 → 1 (↑-2)
-- **Layout soft fails (M8/M9/M10):** 5 → 0 (↑-5)
-- **Unvetted vocab words:** 26 → 10 (↑-16)
-- **Open wishlist rows:** 7 → 7 (→)
-- **Mean M5 (variety):** 0.363 → 0.519 (↑+0.16)
-- **Mean M7 (vetted art):** 0.767 → 0.95 (↑+0.18)
-- **Pillar score avg (0-3):** — → — (·)
+- **Soft metric fails:** 0 → 0 (→)
+- **Soft metric warns:** 5 → 5 (→)
+- **M5 variety fails:** 0 → 0 (→)
+- **M7 vocab-art fails:** 0 → 0 (→)
+- **Layout soft fails (M8/M9/M10):** 0 → 0 (→)
+- **Unvetted vocab words:** 0 → 3 (↓+3)
+- **Open wishlist rows:** 10 → 15 (↓+5)
+- **Mean M5 (variety):** 0.404 → 0.481 (↑+0.08)
+- **Mean M7 (vetted art):** 1 → 0.5 (↓-0.50)
+- **Pillar score avg (0-3):** 2.5 → 2.333 (↓-0.17)
 
 ## Metric rates (latest)
 
-_Denom: 227 pages · 20 cases_
+_Denom: 10 pages · 1 cases_
 
 | Metric | Scope | Rate | vs prior comparable |
 | --- | --- | --- | --- |
-| M1 tiny text | page | 0.0% (0/227) | → |
-| M2 busy-bg text | page | 0.0% (0/227) | → |
-| M3 sparse card | page | 0.0% (0/227) | ↑-0.06 |
-| M6 low contrast | page | 0.4% (1/227) | → |
-| M8 short reach | page | 0.0% (0/227) | → |
-| M9 dead space | page | 0.0% (0/227) | → |
-| M10 tiny dock piece | page | 3.5% (8/227) | → |
-| M4 low visuals | case | 5.0% (1/20) | → |
-| M5 low variety | case | 30.0% (6/20) | ↓+0.05 |
-| M7 weak vocab art | case | 5.0% (1/20) | → |
+| M1 tiny text | page | 40.0% (4/10) | ↓+0.04 |
+| M2 busy-bg text | page | 0.0% (0/10) | → |
+| M3 sparse card | page | 0.0% (0/10) | → |
+| M6 low contrast | page | 0.0% (0/10) | → |
+| M8 short reach | page | 0.0% (0/10) | → |
+| M9 dead space | page | 0.0% (0/10) | → |
+| M10 tiny dock piece | page | 0.0% (0/10) | → |
+| M4 low visuals | case | 0.0% (0/1) | → |
+| M5 low variety | case | 0.0% (0/1) | ↑-1 |
+| M7 weak vocab art | case | 100.0% (1/1) | ↓+1 |

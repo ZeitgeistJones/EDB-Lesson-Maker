@@ -5,7 +5,10 @@
       "id": "doctor",
       "fixture": "doctor-lesson.json",
       "tier": "core",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "doctor|hospital|clinic|medical|dentist",
       "notes": "Baseline topical lesson"
     },
@@ -13,7 +16,11 @@
       "id": "dentist",
       "fixture": "dentist-lesson.json",
       "tier": "core",
-      "meta": { "level": "A1", "duration": "30", "phonics": "on" },
+      "meta": {
+        "level": "A1",
+        "duration": "30",
+        "phonics": "on"
+      },
       "expectScene": "dentist|dental|clinic|doctor|hospital|medical",
       "notes": "High-bar teachability case: phonics one-word focus, honest match dock, no props over activity cards"
     },
@@ -21,7 +28,11 @@
       "id": "face",
       "fixture": "face-lesson.json",
       "tier": "core",
-      "meta": { "level": "A1", "duration": "30", "phonics": "on" },
+      "meta": {
+        "level": "A1",
+        "duration": "30",
+        "phonics": "on"
+      },
       "expectScene": "school|classroom|face",
       "notes": "Activity must use heroProp with face-blank king stage + dressPart dock, not emoji dressUp"
     },
@@ -29,7 +40,11 @@
       "id": "castle",
       "fixture": "castle-lesson.json",
       "tier": "core",
-      "meta": { "level": "A1", "duration": "30", "phonics": "on" },
+      "meta": {
+        "level": "A1",
+        "duration": "30",
+        "phonics": "on"
+      },
       "expectScene": "castle|throne|fantasy|home",
       "notes": "Pack kit readiness: castle-wall-gate king + dock; BoardReadiness ready"
     },
@@ -37,7 +52,10 @@
       "id": "clown-clinic",
       "fixture": "clown-clinic-lesson.json",
       "tier": "core",
-      "meta": { "level": "B1", "duration": "60" },
+      "meta": {
+        "level": "B1",
+        "duration": "60"
+      },
       "expectScene": "doctor|hospital|clinic|medical|pharmacy",
       "notes": "Silly framing over a real place — scene must follow the place, not the joke"
     },
@@ -45,7 +63,10 @@
       "id": "gym",
       "fixture": "gym-lesson.json",
       "tier": "core",
-      "meta": { "level": "B1", "duration": "60" },
+      "meta": {
+        "level": "B1",
+        "duration": "60"
+      },
       "expectScene": "gym|school|playground|sport",
       "notes": "Story visualTheme lies (beach/kitchen); abstract adjectives in vocab"
     },
@@ -53,7 +74,10 @@
       "id": "travel",
       "fixture": "travel-lesson.json",
       "tier": "core",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "airport|travel|station|bus|train|airplane",
       "notes": "Transit vocabulary"
     },
@@ -61,7 +85,10 @@
       "id": "school",
       "fixture": "school-lesson.json",
       "tier": "core",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "school|classroom|library|hallway",
       "notes": "Most common real lesson shape"
     },
@@ -69,7 +96,10 @@
       "id": "volcano",
       "fixture": "volcano-lesson.json",
       "tier": "core",
-      "meta": { "level": "C1", "duration": "60" },
+      "meta": {
+        "level": "C1",
+        "duration": "60"
+      },
       "expectScene": "volcano|lava|eruption|mountain",
       "notes": "Title starts with Living… — must not steal living-room over volcano-field"
     },
@@ -77,7 +107,10 @@
       "id": "trampoline",
       "fixture": "trampoline-lesson.json",
       "tier": "core",
-      "meta": { "level": "A2", "duration": "30" },
+      "meta": {
+        "level": "A2",
+        "duration": "30"
+      },
       "expectScene": "park|playground|gym|sport|home|garden",
       "notes": "Activity must use heroProp with the trampoline, not buildScene slots"
     },
@@ -85,7 +118,11 @@
       "id": "zoo-phonics",
       "fixture": "zoo-phonics-lesson.json",
       "tier": "core",
-      "meta": { "level": "A1", "duration": "30", "phonics": "on" },
+      "meta": {
+        "level": "A1",
+        "duration": "30",
+        "phonics": "on"
+      },
       "expectScene": "zoo|safari|park|wildlife|animal",
       "notes": "Must include phonicsSoundBoxes page with one-word focus tiles (≤10)"
     },
@@ -93,7 +130,10 @@
       "id": "abstract-words",
       "fixture": "abstract-words-lesson.json",
       "tier": "adversarial",
-      "meta": { "level": "B1", "duration": "60" },
+      "meta": {
+        "level": "B1",
+        "duration": "60"
+      },
       "expectScene": "living|bedroom|dining|kitchen|house|home",
       "notes": "Words with no literal picture (spacious, cramped, tidy, cosy). Expect low M7 and wishlist rows — never a misleading substitute icon."
     },
@@ -101,7 +141,10 @@
       "id": "bad-theme",
       "fixture": "bad-theme-lesson.json",
       "tier": "adversarial",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "cafeteria|school|restaurant|dining|kitchen",
       "notes": "Every story visualTheme contradicts the lesson place. Scene + side art must follow title/caption."
     },
@@ -109,7 +152,10 @@
       "id": "minimal",
       "fixture": "minimal-lesson.json",
       "tier": "adversarial",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "playground|park|sports-field|campsite|beach",
       "notes": "Layout floor: 2 vocab words, one story page, no creative questions. Pages must not look empty."
     },
@@ -117,7 +163,10 @@
       "id": "overflow",
       "fixture": "overflow-lesson.json",
       "tier": "adversarial",
-      "meta": { "level": "B1", "duration": "60" },
+      "meta": {
+        "level": "B1",
+        "duration": "60"
+      },
       "expectScene": "airport|airplane|train|bus|travel|station",
       "notes": "Layout ceiling: 12 vocab words, long frames/review. Page count must stay under the ClassIn limit and cards must not overflow."
     },
@@ -125,7 +174,10 @@
       "id": "loop2-beach",
       "fixture": "loop2-beach.json",
       "tier": "adversarial",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "beach|ocean|shore|seaside",
       "notes": "R2 visual tour — beach-warm quiet flats (ocean not swim so set locks beach)"
     },
@@ -133,7 +185,10 @@
       "id": "loop2-bakery",
       "fixture": "loop2-bakery.json",
       "tier": "adversarial",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "bakery|cafe|kitchen",
       "notes": "R2 visual tour — bakery-warm"
     },
@@ -141,7 +196,10 @@
       "id": "loop2-farm",
       "fixture": "loop2-farm.json",
       "tier": "adversarial",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "farm|park|outdoor|garden",
       "notes": "R2 visual tour — outdoor-fresh"
     },
@@ -149,7 +207,10 @@
       "id": "loop2-doctor",
       "fixture": "loop2-doctor.json",
       "tier": "adversarial",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "doctor|hospital|clinic|medical",
       "notes": "R2 visual tour — clinic-cool"
     },
@@ -157,7 +218,10 @@
       "id": "loop2-home",
       "fixture": "loop2-home.json",
       "tier": "adversarial",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "home|house|living|kitchen|family",
       "notes": "R2 visual tour — home-warm"
     },
@@ -165,7 +229,10 @@
       "id": "hotel",
       "fixture": "hotel-lesson.json",
       "tier": "adversarial",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "hotel|home|house|travel",
       "notes": "New topic probe — hotel lobby place + luggage/key vocab art"
     },
@@ -173,7 +240,10 @@
       "id": "music",
       "fixture": "music-lesson.json",
       "tier": "adversarial",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "school|classroom|music",
       "notes": "New topic probe — music class; no dedicated kit, check hollow-activity honesty"
     },
@@ -181,7 +251,10 @@
       "id": "library",
       "fixture": "library-lesson.json",
       "tier": "adversarial",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "library|school|classroom",
       "notes": "New topic probe — library stays on board-house (not a place-set gap)"
     },
@@ -189,15 +262,32 @@
       "id": "supermarket",
       "fixture": "supermarket-lesson.json",
       "tier": "adversarial",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "supermarket|market|grocery|shop",
       "notes": "New topic probe — supermarket-cool quiet flats (not outdoor meadow)"
+    },
+    {
+      "id": "bathroom-routines",
+      "fixture": "bathroom-routines-lesson.json",
+      "tier": "adversarial",
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
+      "expectScene": "bathroom|home|house|bedroom",
+      "notes": "Parallel quality loop — daily routines (avoid sports/fruit collision); home wash flats"
     },
     {
       "id": "space",
       "fixture": "space-lesson.json",
       "tier": "adversarial",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "space|rocket|station|fantasy",
       "notes": "New topic probe — space kit exists but soft docks; must not steal travel-air via station"
     },
@@ -205,7 +295,10 @@
       "id": "aquarium",
       "fixture": "aquarium-lesson.json",
       "tier": "adversarial",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "aquarium|tank|reef|underwater",
       "notes": "New topic probe — aquarium-cool tank washes (not beach-warm via ocean/coral)"
     },
@@ -213,7 +306,10 @@
       "id": "campsite",
       "fixture": "campsite-lesson.json",
       "tier": "adversarial",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "camp|campsite|park|outdoor|garden",
       "notes": "New topic probe — campsite locks outdoor-fresh (was PLACE_SIGNALS gap)"
     },
@@ -221,7 +317,10 @@
       "id": "weather",
       "fixture": "weather-lesson.json",
       "tier": "adversarial",
-      "meta": { "level": "A1", "duration": "30" },
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
       "expectScene": "school|classroom|weather",
       "notes": "New topic probe — weather stays on board-house (not a place-set gap)"
     }

@@ -332,6 +332,10 @@
         artSrc: row.artSrc || null,
         artTier: row.tier,
       };
+      // H7: any 09_props draw must carry PropBank provenance. Dock cells are
+      // square peers — stamp propKey only (not propAspect) so sizeFor aspect
+      // checks do not fire on letterboxed match icons.
+      if (row.propKey) meta.propKey = row.propKey;
       if (row.artSrc) {
         return {
           kind: 'image',
@@ -584,71 +588,50 @@
   function sortBins(lesson, page, layout) {
     const L = layout || window.EdbLayout;
     const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
-    const bins = ['A', 'B'];
+    // Things vs Ideas — honest when some vocab has pictures and some are abstract
+    // (soccer: whistle/ball vs practice/effort). Painted labels beat random trays
+    // that read as mystery chrome with no job.
+    const bins = [
+      { label: 'Things', fill: '#dbeafe' },
+      { label: 'Ideas', fill: '#dcfce7' },
+    ];
     const binW = Math.floor((bay.w - 40) / 2);
     const binH = Math.min(180, bay.h - 20);
-    const PB = window.PropBank;
-    const req = PB && PB.requestFor('sortBins');
-    const family = req ? PB.familyFor(lesson) : null;
-    const exclude = [];
-    bins.forEach((label, i) => {
+    bins.forEach((bin, i) => {
       const cellX = bay.x + 10 + i * (binW + 20);
       const cellY = bay.y + 10;
-      // Two DIFFERENT bins or none: excluding bin A's prop is what makes the
-      // second miss visible instead of drawing the same bin twice.
-      // Role-only chrome — pickDecor, not word resolve (no role-bucket in resolve).
-      const pickChrome = PB.pickDecor || PB.pickByRole;
-      const prop = req && pickChrome
-        ? pickChrome.call(PB, req.role, {
-            seed: lesson.title || '',
-            index: i,
-            exclude: req.distinct ? exclude : [],
-            family,
-          })
-        : null;
-      let asset = solidPng(binW, binH, i === 0 ? '#dbeafe' : '#dcfce7', 'Bin ' + label, '#1e293b');
-      let w = binW;
-      let h = binH;
-      let x = cellX;
-      let y = cellY;
-      const meta = { bin: label };
-      if (prop) {
-        // fit:'contain' — size from aspect inside the cell; letterbox is structural.
-        const sized = PB.sizeFor(prop, { maxH: binH, maxW: binW });
-        w = sized.w;
-        h = sized.h;
-        x = cellX + Math.round((binW - w) / 2);
-        y = cellY + Math.round((binH - h) / 2);
-        asset = prop.path;
-        exclude.push(prop.key);
-        meta.propKey = prop.key;
-        meta.propAspect = prop.aspect;
-      }
+      const asset = solidPng(binW, binH, bin.fill, bin.label, '#1e293b');
       L.place(page, {
         locked: true,
         kind: 'image',
         asset,
-        w, h,
+        w: binW,
+        h: binH,
         intentional: true,
-        anchor: { x, y, w, h },
+        anchor: { x: cellX, y: cellY, w: binW, h: binH },
         role: 'sortBin',
-        meta,
+        meta: { bin: bin.label },
       });
     });
     const cards = vocabList(lesson).slice(0, 6);
     if (!cards.length) return;
-    // Keep dock cards big enough to tap (M10). Shrinking six 140px tiles into one
-    // row drops below ~40px — use noShrink + fewer cards if needed.
+    // Keep dock cards big enough to tap (M10) and wide enough for long words
+    // ("toothbrush"). Prefer fewer wider tiles over clipped labels.
     const dock = L.zoneRect(page, 'dock');
     const gap = 14;
-    let cardW = 140;
+    const longest = cards.reduce((n, v) => Math.max(n, String(v.word || '').length), 0);
+    const minWForWord = Math.min(200, Math.max(96, longest * 13 + 24));
+    let cardW = Math.max(140, minWForWord);
     let cardH = 72;
     let fit = cards;
     if (dock && dock.w) {
-      const maxN = Math.max(2, Math.floor((dock.w + gap) / (96 + gap)));
+      const maxN = Math.max(2, Math.floor((dock.w + gap) / (minWForWord + gap)));
       if (fit.length > maxN) fit = fit.slice(0, maxN);
-      cardW = Math.max(96, Math.min(140, Math.floor((dock.w - gap * Math.max(0, fit.length - 1)) / fit.length)));
-      cardH = Math.max(56, Math.min(72, cardW));
+      cardW = Math.max(
+        minWForWord,
+        Math.min(200, Math.floor((dock.w - gap * Math.max(0, fit.length - 1)) / fit.length))
+      );
+      cardH = Math.max(56, Math.min(72, Math.round(cardW * 0.45)));
     }
     L.placeDockRow(page, fit.map((v) => ({
       kind: 'tile',
@@ -697,10 +680,19 @@
     // Curated emotion/face/dental stages BEFORE pack kits — "Round 1" used to
     // token-match castle-tree-round / castle-window-round and steal the hero (S43).
     // TODO: move to lessonTraits (curated stage rules — keep with STAGE_RULES below).
+    // Dental must use word boundaries — bare `tooth`/`brush` steals bathroom
+    // "toothbrush" lessons onto the open-mouth patient (quality loop).
+    const dentalCue = (window.LessonTraits && window.LessonTraits.RE && window.LessonTraits.RE.dental)
+      || /\b(dentist|dental|tooth|teeth|cavity|floss)\b/;
+    const hospitalCue = (window.LessonTraits && window.LessonTraits.RE && window.LessonTraits.RE.hospital)
+      || /\b(doctor|clinic|hospital|nurse|medical|checkup|diagnosis|symptoms?|prescription|appointment|fever|sick)\b/;
     const CURATED_STAGE_FIRST = [
       { re: /\b(feeling|feelings|emotion|emotions|mood)\b|\b(worried|scared|shy|confused|proud|surprised|happy|sad|angry|bored|sleepy|excited|tired)\b/, key: 'face-blank' },
       { re: /\bface\b|\bhair\b|\beyes?\b|\bnose\b|\bear\b|make.?a.?face|blank.?face/, key: 'face-blank' },
-      { re: /dentist|dental|tooth|teeth|clinic|patient|brush|floss|cavity/, key: 'dental-kid-open-mouth' },
+      { re: dentalCue, key: 'dental-kid-open-mouth' },
+      // Clinic/doctor lessons stage the hospital bed — not the dental open mouth
+      // (clown-clinic / loop2-doctor quality loop). Dental cue wins first.
+      { re: hospitalCue, key: 'hospital-bed' },
     ];
     for (const rule of CURATED_STAGE_FIRST) {
       if (rule.re.test(blob)) {
@@ -713,10 +705,13 @@
     const kit = PB.assessKit && PB.assessKit(lesson);
     if (kit && kit.ready && kit.hero && isHeroSized(kit.hero)) return kit.hero;
 
-    // Remaining curated stages (trampoline / castle) after kits.
+    // Remaining curated stages (trampoline / castle / beach) after kits.
+    // Beach sandcastle is also kit-promoted (hero-scale); rule is belt-and-suspenders
+    // so "sand" never falls through to landmark-marina-bay-sands.
     const STAGE_RULES = [
       { re: /trampolin|bounce|backflip/, key: 'trampoline' },
       { re: /castle|medieval|knight|drawbridge|portcullis|royal/, key: 'castle-wall-gate' },
+      { re: /\b(beach|shore|seaside|sandcastle)\b/, key: 'beach-sandcastle' },
     ];
     for (const rule of STAGE_RULES) {
       if (rule.re.test(blob)) {
@@ -886,15 +881,17 @@
       || /\b(feeling|feelings|emotion|emotions|mood)\b/.test(blob)
       || (/\b(worried|scared|shy|confused|proud|surprised|happy|sad|angry|bored|sleepy|excited|tired)\b/.test(blob)
         && !/\b(hair|eyes|nose|ear|ears|make.?a.?face)\b/.test(blob));
+    const dentalCue = (window.LessonTraits && window.LessonTraits.RE && window.LessonTraits.RE.dental)
+      || /\b(dentist|dental|tooth|teeth|cavity|floss)\b/;
     const face = !feelings && (
       heroKey === 'face-blank'
       || /face-blank|make.?a.?face/.test(blob)
       || (/\b(face|faces|hair|eyes|nose|ear|ears)\b/.test(blob)
-        && !/dentist|dental|tooth|teeth|clinic|floss|cavity|brush/.test(blob))
+        && !dentalCue.test(blob))
     );
     const dental = !feelings && !face && (
       /dental|dentist/.test(heroKey)
-      || /dentist|dental|tooth|teeth|clinic|floss|cavity|brush/.test(blob)
+      || dentalCue.test(blob)
     );
     const trampoline = !feelings && !face && !dental && (
       heroKey === 'trampoline'
@@ -1020,11 +1017,14 @@
     const feelingsStage = /\b(feeling|feelings|emotion|emotions|mood)\b/.test(heroBlob)
       || (/\b(worried|scared|shy|confused|proud|surprised|happy|sad|angry|bored|sleepy|excited|tired)\b/.test(heroBlob)
         && !/\b(hair|eyes|nose|ear|ears|make.?a.?face)\b/.test(heroBlob));
+    // Wide hospital-bed king covers the left instruction card when centred
+    // (hospital quality loop) — reserve a left gutter like Feelings Lab.
+    const hospitalStage = !!(prop && prop.key === 'hospital-bed');
 
     if (!skipKing) {
       const king = Object.assign({}, prop, { relativeScale: 1 });
       const flushCrop = stageFitFor(prop) === 'flush';
-      const scale = flushCrop ? 1.5 : (feelingsStage ? 0.72 : 0.92);
+      const scale = flushCrop ? 1.5 : (feelingsStage ? 0.72 : (hospitalStage ? 0.82 : 0.92));
       const sized = PB.sizeFor(king, {
         maxH: Math.round(stageH * scale),
         maxW: Math.min(L.W - 8, Math.round(stageH * scale * (prop.aspect || 1))),
@@ -1036,8 +1036,8 @@
       // read as lopsided (both round-2 judges). Centre the head in the RIGHT region
       // (past a reserved left gutter) so the page balances: instructions left, hero
       // right-centre, drag dock across the bottom. S64 guards the balance.
-      if (feelingsStage && !flushCrop) {
-        const LEFT_GUTTER = 520;
+      if ((feelingsStage || hospitalStage) && !flushCrop) {
+        const LEFT_GUTTER = feelingsStage ? 520 : 400;
         x = LEFT_GUTTER + Math.round((L.W - LEFT_GUTTER - sized.w) / 2);
         x = Math.max(LEFT_GUTTER, Math.min(L.W - 8 - sized.w, x));
       }
@@ -1373,6 +1373,14 @@
           pageKey: 'activity',
           recipeId: 'heroProp',
           ctx: { hero, kit: kitMatchesHero ? kit : null },
+        });
+      } else if (honestMatch) {
+        // No king stage — do NOT re-run matchDock on the activity layout (vocab
+        // zones are missing → templates + a lonely bottom icon row). sortBins
+        // uses activity targetBay + dock and keeps the taught words as cards.
+        assignments.push({
+          pageKey: 'activity',
+          recipeId: 'sortBins',
         });
       } else {
         assignments.push({

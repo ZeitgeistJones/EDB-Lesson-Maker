@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-07T01:36:45.086Z",
-  "iteration": 1,
+  "updatedAt": "2026-08-09T20:32:13.836Z",
+  "iteration": 8,
   "softRoots": [
     "no-vetted-icon",
     "ink-policy-measured-no-scrim-on-calm",
@@ -15,9 +15,23 @@
     "story-side-art-theme-mismatch",
     "gym-flat-variety-thin",
     "metric-noise-dock-pack",
-    "outdoor-flat-variety-thin"
+    "outdoor-flat-variety-thin",
+    "frames-model-feelings-only",
+    "phonics-model-mismatch-focus",
+    "story-art-caption-steals",
+    "hollow-activity-no-kit",
+    "ball-pack-volleyball-look",
+    "metric-noise-title-m1",
+    "beach-flat-variety-thin",
+    "home-flat-variety-thin",
+    "no-bathroom-king-kit",
+    "clinic-flat-variety-thin",
+    "chrome-type-floor",
+    "clinic-king-was-dental"
   ],
-  "markers": [],
+  "markers": [
+    "done:EW1"
+  ],
   "history": [
     {
       "at": "2026-08-04T02:20:25.579Z",
@@ -331,6 +345,163 @@
       "metricFails": 3,
       "metricWarns": 139,
       "regressions": 71
+    },
+    {
+      "at": "2026-08-09T20:22:54.411Z",
+      "iteration": 2,
+      "tier": "core",
+      "cases": [
+        "soccer-coach",
+        "fruit-market",
+        "zoo-phonics"
+      ],
+      "action": "fix_soft",
+      "codes": [
+        "S31",
+        "S15",
+        "S8",
+        "M9"
+      ],
+      "roots": [
+        "frames-model-feelings-only",
+        "phonics-model-mismatch-focus",
+        "story-art-caption-steals",
+        "hollow-activity-no-kit",
+        "ball-pack-volleyball-look",
+        "no-vetted-icon",
+        "metric-noise-title-m1"
+      ],
+      "hardFailures": 0,
+      "metricFails": 1,
+      "metricWarns": 16,
+      "regressions": 6
+    },
+    {
+      "at": "2026-08-09T20:24:57.371Z",
+      "iteration": 3,
+      "tier": "core",
+      "cases": [
+        "loop3-beach"
+      ],
+      "action": "fix_soft",
+      "codes": [
+        "S24"
+      ],
+      "roots": [
+        "beach-flat-variety-thin",
+        "story-side-art-theme-mismatch"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-09T20:28:52.816Z",
+      "iteration": 4,
+      "tier": "core",
+      "cases": [
+        "bathroom-routines"
+      ],
+      "action": "wishlist",
+      "codes": [
+        "M5",
+        "S17"
+      ],
+      "roots": [
+        "home-flat-variety-thin",
+        "no-bathroom-king-kit"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-09T20:29:05.332Z",
+      "iteration": 5,
+      "tier": "core",
+      "cases": [
+        "doctor",
+        "dentist",
+        "clown-clinic",
+        "loop2-doctor"
+      ],
+      "action": "fix_soft",
+      "codes": [
+        "M1",
+        "S17"
+      ],
+      "roots": [
+        "clinic-flat-variety-thin",
+        "chrome-type-floor",
+        "clinic-king-was-dental"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 19,
+      "regressions": 20
+    },
+    {
+      "at": "2026-08-09T20:29:28.253Z",
+      "iteration": 6,
+      "tier": "core",
+      "cases": [
+        "loop3-beach"
+      ],
+      "action": "wishlist",
+      "codes": [
+        "M5"
+      ],
+      "roots": [
+        "beach-flat-variety-thin"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-09T20:31:25.522Z",
+      "iteration": 7,
+      "tier": "core",
+      "cases": [
+        "soccer-coach"
+      ],
+      "action": "promote_ew",
+      "codes": [
+        "P1"
+      ],
+      "roots": [
+        "ball-pack-volleyball-look",
+        "no-vetted-icon",
+        "gym-flat-variety-thin"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-09T20:32:13.836Z",
+      "iteration": 8,
+      "tier": "core",
+      "cases": [
+        "soccer-coach"
+      ],
+      "action": "promote_ew",
+      "codes": [
+        "P1"
+      ],
+      "roots": [
+        "ball-pack-volleyball-look",
+        "no-vetted-icon",
+        "gym-flat-variety-thin"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "regressions": 0
     }
   ]
 }

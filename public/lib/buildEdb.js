@@ -27,7 +27,7 @@
  *     [5]     0x28             marker
  *     [6:8]   uint16           object id
  *     [8:12]  uint32           reference id
- *     [12:16] uint32           0 = draggable, 3 = locked
+ *     [12:16] uint32           0 = draggable, 1 = locked (ClassIn hand boards; not 3)
  *     [20:28] float32 x2       scale (1,1)
  *     [28:32] float32          x
  *     [32:36] float32          y
@@ -54,7 +54,8 @@ const PAGE = BOARD_H;               // one screen == one "page"
 const VERSION = '6.0.8.2791';
 const OUTER = [0x00, 0x00, 0x00, 0x04, 0x65, 0x64, 0x62, 0x00, 0x00, 0x32, 0x01];
 const UNLOCKED = 0;
-const LOCKED = 3;
+// EW1: hand-authored ClassIn boards lock scenery with 1 (not 3).
+const LOCKED = 1;
 
 // ── CRC32, needed for the gzip trailer ────────────────────────────
 let CRC_TABLE = null;
@@ -238,9 +239,18 @@ function tileToPng(text, {
   ctx.closePath();
   ctx.fillStyle = bg; ctx.fill();
   ctx.fillStyle = fg;
-  ctx.font = `700 ${size}px Poppins, sans-serif`;
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  ctx.fillText(text, w / 2, h / 2);
+  // Shrink type until the word fits — "toothbrush" on a 140px sort card
+  // used to clip to "oothbrusl" (bathroom quality loop).
+  const label = String(text || '');
+  const pad = Math.max(10, Math.round(w * 0.08));
+  let px = size;
+  while (px >= 14) {
+    ctx.font = `700 ${px}px Poppins, sans-serif`;
+    if (ctx.measureText(label).width <= w - pad) break;
+    px -= 1;
+  }
+  ctx.fillText(label, w / 2, h / 2, w - pad);
   return canvasToPng(c);
 }
 

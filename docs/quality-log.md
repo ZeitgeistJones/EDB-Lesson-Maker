@@ -15,3 +15,10 @@ Written by `npm run quality:judge` — do not hand-edit. Machine state lives in 
 - 2026-08-07 iter 1 (core) — **wishlist** M7 · hard 0 · metric 0 fail / 21 warn · roots: no-vetted-icon · asset gap logged
 - 2026-08-07 iter 1 (core) — **wishlist** M5, M7 · hard 0 · metric 2 fail / 25 warn · roots: outdoor-flat-variety-thin, no-vetted-icon · asset gap logged
 - 2026-08-07 iter 1 (all) — **wishlist** M7 · hard 0 · metric 3 fail / 139 warn · roots: no-vetted-icon · asset gap logged
+- 2026-08-09 iter 2 (core) — **fix_soft** S31, S15, S8, M9 · hard 0 · metric 1 fail / 16 warn · roots: frames-model-feelings-only, phonics-model-mismatch-focus, story-art-caption-steals, hollow-activity-no-kit, ball-pack-volleyball-look, no-vetted-icon, metric-noise-title-m1
+- 2026-08-09 iter 3 (core) — **fix_soft** S24 · hard 0 · metric 0 fail / 5 warn · roots: beach-flat-variety-thin, story-side-art-theme-mismatch
+- 2026-08-09 iter 4 (core) — **wishlist** M5, S17 · hard 0 · metric 0 fail / 5 warn · roots: home-flat-variety-thin, no-bathroom-king-kit · asset gap logged
+- 2026-08-09 iter 5 (core) — **fix_soft** M1, S17 · hard 0 · metric 0 fail / 19 warn · roots: clinic-flat-variety-thin, chrome-type-floor, clinic-king-was-dental
+- 2026-08-09 iter 6 (core) — **wishlist** M5 · hard 0 · metric 0 fail / 5 warn · roots: beach-flat-variety-thin · asset gap logged
+- 2026-08-09 iter 7 (core) — **promote_ew** P1 · hard 0 · metric 0 fail / 5 warn · roots: ball-pack-volleyball-look, no-vetted-icon, gym-flat-variety-thin
+- 2026-08-09 iter 8 (core) — **promote_ew** P1 · hard 0 · metric 0 fail / 5 warn · roots: ball-pack-volleyball-look, no-vetted-icon, gym-flat-variety-thin

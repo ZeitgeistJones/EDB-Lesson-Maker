@@ -382,6 +382,14 @@
     candidates.sort((a, b) => scoreWordForLevel(b, level, vocabSet) - scoreWordForLevel(a, level, vocabSet));
     // Prefer at least one vocab-sourced word in the set when available
     const vocabHits = candidates.filter((c) => c.source === 'vocab' || c.source === 'vocab-bank');
+    const hadGeminiRows = !!(raw && typeof raw === 'object'
+      && ((raw.targetWords || raw.target_words || []).length > 0));
+    const forcedOn = !!(meta && (meta.phonics === true || meta.phonics === 'on'));
+    // A1 auto-want used to pad every lesson with cat/dog from the bank — bathroom
+    // routines then taught "cat" on a shower/soap board (quality loop honesty).
+    // Only inject pure bank fillers when Gemini shipped rows or phonics is forced.
+    if (!vocabHits.length && !hadGeminiRows && !forcedOn) return null;
+
     let words = [];
     if (vocabHits.length) {
       words.push(vocabHits[0]);
@@ -425,6 +433,13 @@
     distractors = distractors.slice(0, Math.min(rules.maxDistractors, dockCap));
 
     const script = (raw && (raw.teacherScript || raw.teacher_script)) || {};
+    // Modeling line MUST name the focus word's graphemes. Gemini often ships a
+    // stale "c, then a, then t" while focusIndex points at map/pen after sort —
+    // kids see tiles for map and hear instructions for cat (PH1/PH2 honesty).
+    const focusGraphemes = (words[0] && words[0].graphemes) || [];
+    const focusModel = focusGraphemes.length
+      ? `Watch me drag ${focusGraphemes.join(', then ')} into the boxes.`
+      : 'Watch me drag each sound into a box.';
     return {
       level,
       rules: {
@@ -444,7 +459,7 @@
       focusIndex: 0,
       teacherScript: {
         warmup: script.warmup || rules.scriptHint,
-        modeling: script.modeling || 'Watch me drag each sound into a box.',
+        modeling: focusModel,
         check: script.check || 'Say the sounds, then say the whole word.',
       },
     };

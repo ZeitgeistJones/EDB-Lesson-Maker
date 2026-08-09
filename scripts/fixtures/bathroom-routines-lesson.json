@@ -42,8 +42,8 @@
     { "question": "Do you use a towel after a shower?", "sampleAnswer": "Yes, I do." }
   ],
   "activity": {
-    "title": "Match the bathroom words",
-    "prompt": "Match each word to the right picture.",
+    "title": "Sort the bathroom words",
+    "prompt": "Drag each word card into a bin. Say the word as you sort.",
     "templates": ["I use the ____.", "Wash with ____."]
   },
   "reviewSentences": [

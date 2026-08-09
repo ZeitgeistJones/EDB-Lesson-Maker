@@ -264,7 +264,8 @@
     { re: /\b(dentists?|dental|doctors?|clinic|hospital|nurse|tooth|teeth|medical)\b/, set: 'clinic-cool' },
     // No bare "station" — "Space Station" must not steal travel-air; train/bus station still match.
     { re: /\b(airport|travel|train|bus|plane|passport|(?:train|bus|transit|railway)\s*stations?)\b/, set: 'travel-air' },
-    { re: /\b(home|house|family|kitchen|apartment|bedroom|hotel)\b/, set: 'home-warm' },
+    // Bathroom / wash routines stay on home washes (not board-house default).
+    { re: /\b(home|house|family|kitchen|apartment|bedroom|hotel|bathroom|shower|bath|toilet)\b/, set: 'home-warm' },
     // Indoor gym before outdoor — "gym" must not land on park meadows.
     // Soccer/tennis/etc. beyond bare "gym" still lock court washes (not meadow).
     { re: /\b(gym|workout|athletic|basketball|fitness|sports?|soccer|football|tennis|baseball)\b/, set: 'gym-cool' },
