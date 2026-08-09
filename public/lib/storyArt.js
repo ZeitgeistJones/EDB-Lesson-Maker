@@ -6,7 +6,10 @@
  */
 (function () {
   const cache = new Map();
-  const STORAGE_PREFIX = 'storyArt:v1:';
+  // Bump this whenever the server PROMPT_VERSION or image model changes so the
+  // client stops serving stale session art (memory Map + sessionStorage).
+  const CLIENT_CACHE_VERSION = 'v2-charlock';
+  const STORAGE_PREFIX = `storyArt:${CLIENT_CACHE_VERSION}:`;
 
   function normalizePages(lesson) {
     const pages = (lesson && lesson.story && lesson.story.pages) || [];
@@ -21,6 +24,7 @@
   function cacheKey(lesson, level) {
     const pages = normalizePages(lesson);
     const raw = JSON.stringify({
+      v: CLIENT_CACHE_VERSION,
       title: lesson && lesson.title,
       level: level || '',
       pages: pages.map((p) => ({
