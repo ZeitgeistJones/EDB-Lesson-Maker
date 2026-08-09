@@ -162,16 +162,31 @@
     }
 
     if (hasVocab && boardPlan && boardPlan.canHonestMatchDock === false && !matchAssign) {
-      reasons.push(
-        'Match dock skipped — not enough vetted pictures to keep an honest N-to-N drag (text-only cards).'
-      );
+      const matchableN = boardPlan.vocabArt && boardPlan.vocabArt.matchable
+        ? boardPlan.vocabArt.matchable.length
+        : 0;
+      if (matchableN === 0) {
+        reasons.push(
+          'Match dock skipped — no vetted pictures for an honest N-to-N drag (text-only cards).'
+        );
+      } else {
+        reasons.push(
+          'Match dock skipped — vetted pictures would not fit the dock at ≥96px (text-only cards).'
+        );
+      }
     }
 
     const dropped = boardPlan && boardPlan.vocabArt && boardPlan.vocabArt.dropped;
-    if (dropped && dropped.length) {
+    if (dropped && dropped.length && matchAssign) {
       const names = dropped.map((d) => d.word).slice(0, 4).join(', ');
       reasons.push(
         `Dropped ${dropped.length} vocab word(s) from match dock (no vetted art): ${names}${dropped.length > 4 ? '…' : ''}.`
+      );
+    } else if (dropped && dropped.length && !matchAssign && boardPlan.canHonestMatchDock !== false) {
+      // Dock not assigned for another reason — still surface missing art.
+      const names = dropped.map((d) => d.word).slice(0, 4).join(', ');
+      reasons.push(
+        `No vetted art for ${dropped.length} vocab word(s): ${names}${dropped.length > 4 ? '…' : ''}.`
       );
     }
 
