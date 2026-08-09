@@ -109,6 +109,9 @@
     "bathroom-scale": "bath-scale",
     "bath-scale": "bath-scale",
     "kitchen-scale": "sci-scale",
-    "weighing-scale": "sci-scale"
+    "weighing-scale": "sci-scale",
+    "hole-punch": "office-hole-puncher",
+    "hole-puncher": "office-hole-puncher",
+    "holepuncher": "office-hole-puncher"
   }
 }
