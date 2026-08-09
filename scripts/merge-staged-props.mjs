@@ -238,7 +238,18 @@ function main() {
     const ordered = {};
     for (const k of Object.keys(manifest.props).sort()) ordered[k] = manifest.props[k];
     manifest.props = ordered;
-    fs.writeFileSync(MANIFEST, `${JSON.stringify(manifest, null, 2)}\n`);
+    // House inline serializer (matches import-prop.mjs) — never pretty-print the bank.
+    const inline = (v) => (Array.isArray(v) ? `[${v.map(inline).join(', ')}]` : JSON.stringify(v));
+    const pair = ([k, v]) => `${JSON.stringify(k)}: ${inline(v)}`;
+    const entryLine = (key, entry) =>
+      `    ${JSON.stringify(key)}: { ${Object.entries(entry).map(pair).join(', ')} }`;
+    const { props, ...head } = manifest;
+    const headLines = Object.entries(head).map((e) => `  ${pair(e)}`);
+    const propLines = Object.entries(props).map(([key, entry]) => entryLine(key, entry));
+    fs.writeFileSync(
+      MANIFEST,
+      `{\n${headLines.join(',\n')},\n  "props": {\n${propLines.join(',\n')}\n  }\n}\n`
+    );
   }
 
   console.log(`\nMerged ${merged} prop(s), skipped ${skipped}.`);
