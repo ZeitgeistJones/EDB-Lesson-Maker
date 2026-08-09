@@ -1,0 +1,52 @@
+{
+  "title": "Fruit Market",
+  "warmUp": {
+    "question": "What fruit do you like?",
+    "sampleAnswer": "I like apples."
+  },
+  "vocabulary": [
+    { "word": "apple", "emoji": "🍎", "sentence": "I buy an apple." },
+    { "word": "banana", "emoji": "🍌", "sentence": "The banana is yellow." },
+    { "word": "carrot", "emoji": "🥕", "sentence": "A carrot is orange." },
+    { "word": "tomato", "emoji": "🍅", "sentence": "The tomato is red." },
+    { "word": "lemon", "emoji": "🍋", "sentence": "The lemon is sour." },
+    { "word": "grape", "emoji": "🍇", "sentence": "I eat a grape." }
+  ],
+  "sentenceFrames": [
+    "I see a ____.",
+    "The ____ is fresh.",
+    "Please pass the ____."
+  ],
+  "story": {
+    "title": "At the Market",
+    "pages": [
+      {
+        "heading": "Morning stall",
+        "text": "Mom picks an apple and a banana.",
+        "visualTheme": "market",
+        "visualCaption": "Fruit stall"
+      },
+      {
+        "heading": "Veggies too",
+        "text": "We also buy a carrot and a tomato.",
+        "visualTheme": "market",
+        "visualCaption": "Veggie basket"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What does Mom pick?", "sampleAnswer": "An apple and a banana." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "Do you like lemons?", "sampleAnswer": "Yes, I do. / No, I don't." }
+  ],
+  "activity": {
+    "title": "Match the food words",
+    "prompt": "Match each word to the right picture.",
+    "templates": ["I see a ____.", "The ____ is fresh."]
+  },
+  "reviewSentences": [
+    "I buy an apple and a carrot at the market."
+  ]
+}

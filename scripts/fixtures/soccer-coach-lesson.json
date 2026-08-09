@@ -1,0 +1,52 @@
+{
+  "title": "Soccer Practice with Coach",
+  "warmUp": {
+    "question": "Who helps your team at practice?",
+    "sampleAnswer": "The coach helps us."
+  },
+  "vocabulary": [
+    { "word": "coach", "emoji": "🧑‍🏫", "sentence": "The coach blows the whistle." },
+    { "word": "whistle", "emoji": "📣", "sentence": "I hear the whistle." },
+    { "word": "practice", "emoji": "⚽", "sentence": "We have practice today." },
+    { "word": "effort", "emoji": "💪", "sentence": "Good effort, team!" },
+    { "word": "ball", "emoji": "⚽", "sentence": "Pass the ball." },
+    { "word": "teamwork", "emoji": "🤝", "sentence": "Teamwork wins games." }
+  ],
+  "sentenceFrames": [
+    "The coach says ____.",
+    "I hear the ____.",
+    "We need more ____."
+  ],
+  "story": {
+    "title": "Practice Day",
+    "pages": [
+      {
+        "heading": "On the field",
+        "text": "The coach smiles. The whistle is ready.",
+        "visualTheme": "soccer",
+        "visualCaption": "Soccer field"
+      },
+      {
+        "heading": "Hard work",
+        "text": "The team shows effort at practice.",
+        "visualTheme": "sports",
+        "visualCaption": "Kids practicing"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Who has the whistle?", "sampleAnswer": "The coach." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "Do you like soccer practice?", "sampleAnswer": "Yes, I do." }
+  ],
+  "activity": {
+    "title": "Match the soccer words",
+    "prompt": "Match each word to the right picture.",
+    "templates": ["I see a ____.", "The ____ helps us."]
+  },
+  "reviewSentences": [
+    "The coach blows the whistle at practice."
+  ]
+}

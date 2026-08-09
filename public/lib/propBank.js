@@ -599,12 +599,30 @@
     );
     if (prefixed.length === 1) return pick(prefixed[0]);
     if (prefixed.length > 1) {
-      // Prefer exact suffix match (job-teacher) over loose word hits. Group by
-      // base first so job-teacher / job-teacher-v2 count as one candidate, not
-      // two competing suffix matches.
+      // Prefer exact suffix match (job-teacher) over loose word hits.
       const tight = prefixed.filter((p) => p.key === key || p.key.endsWith('-' + key));
       const band = tight.length ? tight : prefixed;
-      band.sort((a, b) => a.key.length - b.key.length || a.key.localeCompare(b.key));
+      // Competing senses (ball→tennis|soccer|beach): rank by lesson-theme overlap.
+      // No theme signal among many candidates → null (empty beats wrong sport).
+      const theme = topicTokens(seed, q && q.tags);
+      const themeScore = (p) => {
+        let s = 0;
+        for (const t of norm(String(p.key || '').replace(/-/g, ' '))) {
+          if (theme.has(t)) s += 3;
+        }
+        for (const t of p.tags || []) {
+          if (theme.has(t)) s += 1;
+        }
+        if (p.pack && theme.has(slug(p.pack))) s += 2;
+        return s;
+      };
+      band.sort(
+        (a, b) =>
+          themeScore(b) - themeScore(a) ||
+          a.key.length - b.key.length ||
+          a.key.localeCompare(b.key)
+      );
+      if (band.length > 1 && themeScore(band[0]) === 0) return null;
       return pick(band[0]);
     }
 

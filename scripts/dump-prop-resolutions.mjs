@@ -57,6 +57,7 @@ await PB.ready();
 /** topic → words that used to metonymy-leak, soft nouns, or phase-2 policy cases */
 const CASES = [
   { topic: 'soccer', words: ['coach', 'practice', 'effort', 'teammate', 'stadium', 'whistle', 'teamwork', 'luck', 'ball', 'goal'] },
+  { topic: 'tennis lesson', words: ['ball', 'racket', 'net'] },
   { topic: 'doctor clinic', words: ['doctor', 'nurse', 'patient', 'clinic', 'stethoscope', 'help', 'safety', 'bandage', 'thermometer'] },
   { topic: 'school', words: ['teacher', 'student', 'homework', 'idea', 'success', 'time', 'fun', 'pencil', 'backpack', 'globe'] },
   { topic: 'dentist', words: ['dentist', 'toothbrush', 'floss', 'cavity', 'patient', 'tooth', 'smile'] },
