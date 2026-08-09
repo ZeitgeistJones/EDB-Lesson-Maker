@@ -55,8 +55,50 @@
     "attitude",
     "confidence"
   ],
-  "subjectLock": {},
-  "never": {},
-  "ambiguous": {},
-  "aliases": {}
+  "subjectLock": {
+    "coach": "person",
+    "doctor": "person",
+    "nurse": "person",
+    "teacher": "person",
+    "chef": "person",
+    "farmer": "person",
+    "dentist": "person",
+    "firefighter": "person",
+    "pilot": "person",
+    "police": "person",
+    "officer": "person",
+    "vet": "person",
+    "veterinarian": "person",
+    "librarian": "person",
+    "baker": "person",
+    "cashier": "person",
+    "patient": {
+      "topics": ["dentist", "dental", "teeth", "tooth", "cavity", "floss", "toothbrush"],
+      "allow": ["dental-kid-open-mouth"]
+    }
+  },
+  "never": {
+    "clinic": ["clinic-clipboard"],
+    "coach": ["whistle", "clipboard", "megaphone", "bus"],
+    "doctor": ["stethoscope", "wheelchair", "hospital", "swing"],
+    "teacher": ["blackboard", "chalkboard", "apple", "desk"],
+    "nurse": ["stethoscope", "wheelchair"],
+    "chef": ["job-chef-hat", "pan", "spatula"],
+    "oven": ["kitchen-oven-mitt"],
+    "gloves": ["clothing-gloves"],
+    "ball": ["beach-ball"],
+    "knife": ["camp-pocket-knife"],
+    "bucket": ["cleaning-bucket"],
+    "patient": ["job-doctor", "job-nurse", "stethoscope", "clinic-clipboard"]
+  },
+  "ambiguous": {
+    "clinic": true,
+    "student": true,
+    "teammate": true,
+    "stadium": true,
+    "homework": true
+  },
+  "aliases": {
+    "patient": "dental-kid-open-mouth"
+  }
 }

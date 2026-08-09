@@ -25,6 +25,7 @@
     "assets:ground-qa": "node scripts/qa-scene-ground.mjs",
     "assets:prop": "node scripts/import-prop.mjs",
     "assets:import-sheet": "node scripts/import-sheet.mjs",
+    "assets:merge-staged": "node scripts/merge-staged-props.mjs",
     "assets:prop-blobs": "node scripts/slice-blob-sheet.mjs",
     "assets:prop-blobs-import": "node scripts/import-blob-props.mjs",
     "assets:prop-qa": "node scripts/qa-props.mjs",

@@ -5,7 +5,8 @@
  *
  * Empty beats wrong. Tags never qualify a candidate into the pool — only key /
  * words-from-key / alias / pack-suffix / optional identity[] do. Tags may rank
- * inside that pool (capped). Soft nouns live in lib/propPolicy.json deny list.
+ * inside that pool (capped). Soft nouns live in lib/propPolicy.json deny list;
+ * subjectLock / never / ambiguous / aliases are phase-2 hard filters on top.
  * Chrome / slot-filling with no word uses pickDecor(role), not resolve().
  *
  * resolve() is synchronous so recipes (which run inside the synchronous
@@ -85,6 +86,112 @@
     return norm(word).some((t) => policy.deny.indexOf(t) >= 0);
   }
 
+  /** Topic/seed tokens used by subjectLock topic-gates. */
+  function topicTokens(seed, tags) {
+    const out = new Set(norm(seed));
+    for (const t of tags || []) {
+      for (const n of norm(t)) out.add(n);
+    }
+    return out;
+  }
+
+  /**
+   * Phase-2 subjectLock shapes:
+   *   string  → prop.subject must equal it (missing subject fails)
+   *   object  → { topics: [...], allow?: [propKeys] } topic-gate on lesson seed
+   */
+  function subjectLockEntry(word) {
+    if (!policy || !policy.subjectLock) return null;
+    const key = slug(word);
+    if (!key) return null;
+    const want = policy.subjectLock[key];
+    return want == null ? null : want;
+  }
+
+  function subjectTopicGate(word, seed, tags) {
+    const want = subjectLockEntry(word);
+    if (!want || typeof want !== 'object' || Array.isArray(want)) return { ok: true };
+    const need = Array.isArray(want.topics)
+      ? want.topics.map(slug).filter(Boolean)
+      : Array.isArray(want.requireTopic)
+        ? want.requireTopic.map(slug).filter(Boolean)
+        : [];
+    if (!need.length) return { ok: true };
+    const have = topicTokens(seed, tags);
+    const matched = need.some(
+      (t) => have.has(t) || [...have].some((h) => h.includes(t) || t.includes(h))
+    );
+    if (!matched) return { ok: false, reason: 'subject-lock' };
+    return { ok: true };
+  }
+
+  /**
+   * Homonyms / fuzzy place-words → null without an explicit sense.
+   * true | non-empty array | non-empty object all count as ambiguous.
+   */
+  function isAmbiguousWord(word) {
+    if (!policy || !policy.ambiguous) return false;
+    const key = slug(word);
+    if (!key) return false;
+    const entry = policy.ambiguous[key];
+    if (entry == null) return false;
+    if (Array.isArray(entry)) return entry.length > 0;
+    if (typeof entry === 'object') return Object.keys(entry).length > 0;
+    return !!entry;
+  }
+
+  /** Policy aliases overlay code PROP_ALIASES (policy wins on collision). */
+  function aliasFor(token) {
+    const key = slug(token);
+    if (!key) return null;
+    if (policy && policy.aliases && policy.aliases[key]) {
+      return slug(policy.aliases[key]);
+    }
+    return PROP_ALIASES[key] || null;
+  }
+
+  /**
+   * Drop props whose key / identity / words intersect policy.never[word].
+   * Entries may be prop keys or identity tokens.
+   */
+  function isNeverProp(word, prop) {
+    if (!policy || !policy.never || !prop) return false;
+    const key = slug(word);
+    const list = policy.never[key];
+    if (!Array.isArray(list) || !list.length) return false;
+    for (let i = 0; i < list.length; i++) {
+      const bad = slug(list[i]);
+      if (!bad) continue;
+      if (prop.key === bad || prop.key.endsWith('-' + bad)) return true;
+      if (prop.words && prop.words.includes(bad)) return true;
+      if (prop.identity && prop.identity.includes(bad)) return true;
+    }
+    return false;
+  }
+
+  function failsSubjectLock(word, prop) {
+    if (!prop) return false;
+    const want = subjectLockEntry(word);
+    if (want == null) return false;
+    // Object form: allow-list only (topic gate runs earlier in resolve).
+    if (typeof want === 'object' && !Array.isArray(want)) {
+      const allow = Array.isArray(want.allow) ? want.allow.map(slug).filter(Boolean) : [];
+      if (!allow.length) return false;
+      const allowSet = new Set(allow);
+      return !allowSet.has(prop.key) && !allowSet.has(baseOfProp(prop));
+    }
+    // String form: prop.subject must match (missing subject fails).
+    const have = prop.subject ? String(prop.subject).toLowerCase() : '';
+    return have !== String(want).toLowerCase();
+  }
+
+  function passesPolicyFilters(word, prop) {
+    if (!prop) return false;
+    if (isNeverProp(word, prop)) return false;
+    if (failsSubjectLock(word, prop)) return false;
+    return true;
+  }
+
   function norm(s) {
     return String(s || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(Boolean);
   }
@@ -114,6 +221,7 @@
     mic: 'microphone',
     card: 'flashcard-blank',
     dentist: 'dentist-character',
+    // patient → dental-kid only under subjectLock topic gate (dentist lessons).
     patient: 'dental-kid-open-mouth',
     floss: 'floss-pick',
     cavity: 'cavity-tooth',
@@ -298,6 +406,8 @@
         words: norm(key),
         // Optional future field; absent on most rows. Tags must not fill this.
         identity: [...new Set((row.identity || []).flatMap(norm))],
+        // person | object | place | scene | symbol — required for subjectLock.
+        subject: row.subject ? String(row.subject).toLowerCase() : null,
         aspect: row.aspect || 1,
         relativeScale: row.relativeScale == null ? 0.5 : row.relativeScale,
         anchor: row.anchor || 'bottom',
@@ -473,7 +583,7 @@
     let hit = find(key);
     if (hit) return pick(hit);
 
-    const alias = PROP_ALIASES[key];
+    const alias = aliasFor(key);
     if (alias) {
       hit = find(alias);
       if (hit) return pick(hit);
@@ -540,7 +650,7 @@
     if (prop.key === token || prop.key.endsWith('-' + token)) return true;
     if (prop.words && prop.words.includes(token)) return true;
     if (prop.identity && prop.identity.includes(token)) return true;
-    const alias = PROP_ALIASES[token];
+    const alias = aliasFor(token);
     if (alias && (prop.key === alias || prop.key.endsWith('-' + alias))) return true;
     return false;
   }
@@ -601,6 +711,31 @@
       });
       return null;
     }
+    // Topic-gated subjectLock (object form) — empty outside the allowed lesson.
+    if (word) {
+      const topicGate = subjectTopicGate(word, q.seed, q.tags);
+      if (!topicGate.ok) {
+        logResolution({
+          word: String(word),
+          picked: null,
+          score: 0,
+          reason: topicGate.reason || 'subject-lock',
+          topic: q.seed || null,
+        });
+        return null;
+      }
+    }
+    // Homonym / fuzzy place-word with no sense → empty (clinic↛clipboard).
+    if (word && isAmbiguousWord(word) && !q.sense) {
+      logResolution({
+        word: String(word),
+        picked: null,
+        score: 0,
+        reason: 'ambiguous',
+        topic: q.seed || null,
+      });
+      return null;
+    }
 
     const wantRole = q.role || null;
     const chrome = !!(wantRole && CHROME_ROLES[wantRole]);
@@ -631,7 +766,7 @@
     }
 
     const named = byWord(pool, q);
-    if (named) {
+    if (named && passesPolicyFilters(word, named)) {
       logResolution({
         word: word ? String(word) : null,
         picked: named.key,
@@ -641,6 +776,7 @@
       });
       return named;
     }
+    const blockedNamed = named && !passesPolicyFilters(word, named) ? named : null;
 
     // No word → no identity tokens. Tags alone cannot qualify (empty > wrong).
     if (!slug(word)) {
@@ -649,19 +785,21 @@
         tags: q.tags || [],
         picked: null,
         score: 0,
-        reason: 'no-identity',
+        reason: blockedNamed ? 'policy-block' : 'no-identity',
+        runnerUp: blockedNamed ? { key: blockedNamed.key, score: 0 } : null,
         topic: q.seed || null,
       });
       return null;
     }
 
-    const candidates = identityPool(pool, word);
+    const candidates = identityPool(pool, word).filter((p) => passesPolicyFilters(word, p));
     if (!candidates.length) {
       logResolution({
         word: String(word),
         picked: null,
         score: 0,
-        reason: 'no-identity',
+        reason: blockedNamed ? 'policy-block' : 'no-identity',
+        runnerUp: blockedNamed ? { key: blockedNamed.key, score: 0 } : null,
         topic: q.seed || null,
       });
       return null;
@@ -1059,6 +1197,7 @@
     fillsRect,
     loadPng,
     isDeniedWord,
+    isAmbiguousWord,
     PROP_REQUESTS,
     PROP_ALIASES,
     HOUSE_FAMILY,
