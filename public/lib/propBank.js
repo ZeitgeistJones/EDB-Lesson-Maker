@@ -83,8 +83,11 @@
     const key = slug(word);
     if (!key) return false;
     if (policy.deny.indexOf(key) >= 0) return true;
-    // Also deny when any token of a multi-word query is on the list.
-    return norm(word).some((t) => policy.deny.indexOf(t) >= 0);
+    // Token deny only for single-token queries. Multi-word phrases must not die
+    // because an abstract token is embedded ("power bank" ≠ denied "power").
+    const tokens = norm(word);
+    if (tokens.length !== 1) return false;
+    return policy.deny.indexOf(tokens[0]) >= 0;
   }
 
   /** Topic/seed tokens used by subjectLock topic-gates. */
@@ -645,7 +648,15 @@
         merged.push(p);
       }
     }
-    if (merged.length === 1) return pick(merged[0]);
+    if (merged.length === 1) {
+      const only = merged[0];
+      // Sole hit via singular→plural suffix only (sand → *-sands landmark) is a
+      // false friend — require theme overlap, same as a multi-match band.
+      const matchesBareOrStem =
+        identityHit(only, key) || (stem && identityHit(only, stem));
+      if (!matchesBareOrStem) return pickThemedBand(merged);
+      return pick(only);
+    }
     if (merged.length > 1) {
       const tight = merged.filter((p) =>
         tokens.some((t) => p.key === t || p.key.endsWith('-' + t))
