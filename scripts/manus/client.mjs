@@ -12,6 +12,30 @@ dotenv.config({ path: path.join(ROOT, '.env') });
 
 const BASE = 'https://api.manus.ai/v2';
 
+/**
+ * Known Manus skill IDs from skill.list — use in message.enable_skills / force_skills.
+ * Names are comments only; the API wants these IDs.
+ */
+export const MANUS_SKILLS = {
+  /** name: esl-asset-generator — contact sheets / prop packs */
+  ESL_ASSET_GENERATOR: 'L6pNb9BaysxKxawADNwTWE',
+  /** name: classin-lesson-quality-review-skill — board review (account default; review path does not force) */
+  CLASSIN_LESSON_REVIEW: 'KjagHR66epsrThXw8ryUdV',
+};
+
+/** Review callers pass this explicitly so asset-default lite does not leak into reviews. */
+export const REVIEW_AGENT_PROFILE = 'manus-1.6';
+
+/**
+ * Resolve agent_profile for task.create.
+ * MANUS_AGENT_PROFILE: manus-1.6 | manus-1.6-lite | manus-1.6-max (default manus-1.6-lite for asset creates).
+ */
+export function resolveAgentProfile(explicit) {
+  if (explicit != null && String(explicit).trim()) return String(explicit).trim();
+  // MANUS_AGENT_PROFILE — default agent_profile when callers omit it (asset path: lite).
+  return (process.env.MANUS_AGENT_PROFILE || '').trim() || 'manus-1.6-lite';
+}
+
 export function apiKey() {
   const key = (process.env.MANUS_API_KEY || '').trim();
   if (!key) {
@@ -52,19 +76,37 @@ async function api(method, route, body, { allowStatuses = [] } = {}) {
   return data;
 }
 
-/** Create a task. See https://open.manus.ai/docs/v2/task.create */
+/**
+ * Create a task. See https://open.manus.ai/docs/v2/task.create
+ *
+ * Options:
+ * - agent_profile — omit to use MANUS_AGENT_PROFILE / manus-1.6-lite (review should pass REVIEW_AGENT_PROFILE)
+ * - enable_skills / force_skills — Manus skill IDs on message (see MANUS_SKILLS)
+ */
 export async function createTask(opts) {
   const {
     message,
     title,
     structured_output_schema,
-    agent_profile = 'manus-1.6',
+    agent_profile,
     hide_in_task_list = false,
     interactive_mode = false,
+    enable_skills,
+    force_skills,
   } = opts;
+  const msg =
+    typeof message === 'string'
+      ? { content: message }
+      : { ...(message || {}) };
+  if (Array.isArray(enable_skills) && enable_skills.length) {
+    msg.enable_skills = enable_skills;
+  }
+  if (Array.isArray(force_skills) && force_skills.length) {
+    msg.force_skills = force_skills;
+  }
   const body = {
-    message: typeof message === 'string' ? { content: message } : message,
-    agent_profile,
+    message: msg,
+    agent_profile: resolveAgentProfile(agent_profile),
     hide_in_task_list,
     interactive_mode,
   };

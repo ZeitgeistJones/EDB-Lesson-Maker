@@ -189,6 +189,11 @@ tiles, rather than paying a human round trip per sheet in ChatGPT. Still eyeball
 the returned tiles as teacher + student — Manus's self-check catches geometry,
 not style drift or faint micro-text.
 
+**API wiring (asset tasks):** `createTask` defaults to `agent_profile`
+`manus-1.6-lite` (`MANUS_AGENT_PROFILE` override) and asset/spike callers pass
+`message.force_skills: [esl-asset-generator]` (id in `MANUS_SKILLS`). Board
+**review** stays on `manus-1.6` and does not force that skill.
+
 Validated Run-5 findings (fold these into the Manus instructions):
 
 - **Batch cap is HARD at 5 images per `generate_image` call.** There is no

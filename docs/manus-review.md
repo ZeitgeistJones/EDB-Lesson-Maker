@@ -84,3 +84,9 @@ Always fold Manus output into **producer + local checks** — see `.cursor/skill
 - https://open.manus.ai/docs/v2/task.create
 - https://open.manus.ai/docs/v2/task-lifecycle
 - https://open.manus.ai/docs/v2/authentication
+
+## Asset tasks (vs review)
+
+Board **review** always passes `agent_profile: manus-1.6` (`REVIEW_AGENT_PROFILE`) and does not attach `esl-asset-generator`.
+
+Asset / sheet-request / spike creates omit that override so they use **`MANUS_AGENT_PROFILE`** (default **`manus-1.6-lite`**) and pass `message.force_skills: [MANUS_SKILLS.ESL_ASSET_GENERATOR]` (`L6pNb9BaysxKxawADNwTWE`, name `esl-asset-generator`). See `scripts/manus/client.mjs` and `tmp/manus-attachment-spike-run.mjs`.

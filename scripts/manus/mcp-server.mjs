@@ -23,6 +23,7 @@ import {
   latestAgentStatus,
   extractStructuredOutput,
   apiKey,
+  REVIEW_AGENT_PROFILE,
 } from './client.mjs';
 import { REVIEW_SCHEMA, buildReviewBrief } from './review-schema.mjs';
 import { runBoardReview } from './review.mjs';
@@ -190,7 +191,7 @@ async function callTool(name, args) {
       focus: args.focus || [],
       notes: args.notes,
       passoff: args.passoff_path,
-      profile: args.agent_profile || 'manus-1.6',
+      profile: args.agent_profile || REVIEW_AGENT_PROFILE,
     });
   }
 
@@ -206,7 +207,7 @@ async function callTool(name, args) {
       title: args.title || (args.lesson_title ? `ClassIn review: ${args.lesson_title}` : undefined),
       message: { content },
       structured_output_schema: args.use_review_schema ? REVIEW_SCHEMA : undefined,
-      agent_profile: args.agent_profile || 'manus-1.6',
+      agent_profile: args.agent_profile || REVIEW_AGENT_PROFILE,
     });
     return {
       task_id: created.task_id,

@@ -14,6 +14,7 @@ import {
   fileContentPart,
   createTask,
   pollUntilDone,
+  REVIEW_AGENT_PROFILE,
 } from './client.mjs';
 import {
   REVIEW_SCHEMA,
@@ -156,11 +157,12 @@ export async function runBoardReview(opts) {
     content.push(contentPart);
   }
 
+  // Review stays on full profile (not asset lite) and does not force esl-asset-generator.
   const created = await createTask({
     title: `ClassIn review: ${pass.title}`,
     message: { content },
     structured_output_schema: REVIEW_SCHEMA,
-    agent_profile: opts.profile || 'manus-1.6',
+    agent_profile: opts.profile || REVIEW_AGENT_PROFILE,
     hide_in_task_list: false,
     interactive_mode: false,
   });
