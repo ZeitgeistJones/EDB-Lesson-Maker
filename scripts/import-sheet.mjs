@@ -272,18 +272,30 @@ if (flag('no-qa')) {
   process.exit(0);
 }
 
-const pngs = fs
-  .readdirSync(stageDir)
-  .filter((f) => f.toLowerCase().endsWith('.png'))
-  .sort();
-if (!pngs.length) {
+// Build the QA tile set from the explicit staged paths we just produced, NOT by
+// re-globbing stageDir. The gutter-cuff pre-clean drops an _edge-clean-*.png
+// intermediate (the whole pre-cleaned sheet) in this same dir, and a directory
+// glob would show it as a bogus extra "tile". Every real staged tile PNG has a
+// stagedPath (r.dest) in rowsOut; blocked/non-staged tiles have none and no PNG
+// on disk — so this list is exactly the real tiles and nothing else.
+const tileFiles = rowsOut
+  .map((e) => e.stagedPath)
+  .filter((p) => p && p.toLowerCase().endsWith('.png'))
+  .map((p) => path.resolve(ROOT, p))
+  .filter((p) => fs.existsSync(p));
+tileFiles.sort((a, b) => {
+  const fa = path.basename(a);
+  const fb = path.basename(b);
+  return fa < fb ? -1 : fa > fb ? 1 : 0;
+});
+if (!tileFiles.length) {
   console.log(`\nNo staged PNGs to QA (every tile was blocked). Skipping composite.`);
   process.exit(0);
 }
 
-const cells = pngs.map((f) => ({
-  name: f.replace(/\.png$/i, ''),
-  url: `data:image/png;base64,${fs.readFileSync(path.join(stageDir, f)).toString('base64')}`,
+const cells = tileFiles.map((p) => ({
+  name: path.basename(p).replace(/\.png$/i, ''),
+  url: `data:image/png;base64,${fs.readFileSync(p).toString('base64')}`,
 }));
 
 // Same four surfaces qa-props uses — light flat, dark flat, a scene tint, and a
