@@ -2738,6 +2738,502 @@
       "srcW": 512,
       "srcH": 332
     },
+    "art-button-blue": {
+      "file": "art-button-blue.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.95,
+      "srcW": 121,
+      "srcH": 128,
+      "pack": "art"
+    },
+    "art-canvas": {
+      "file": "art-canvas.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.92,
+      "srcW": 233,
+      "srcH": 254,
+      "pack": "art"
+    },
+    "art-chalk": {
+      "file": "art-chalk.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.02,
+      "srcW": 227,
+      "srcH": 223,
+      "pack": "art"
+    },
+    "art-charcoal": {
+      "file": "art-charcoal.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.99,
+      "srcW": 231,
+      "srcH": 234,
+      "pack": "art"
+    },
+    "art-clay": {
+      "file": "art-clay.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.32,
+      "srcW": 253,
+      "srcH": 192,
+      "pack": "art"
+    },
+    "art-crayons": {
+      "file": "art-crayons.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.76,
+      "srcW": 216,
+      "srcH": 285,
+      "pack": "art"
+    },
+    "art-easel": {
+      "file": "art-easel.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.6,
+      "srcW": 173,
+      "srcH": 288,
+      "pack": "art"
+    },
+    "art-eraser": {
+      "file": "art-eraser.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.98,
+      "srcW": 221,
+      "srcH": 226,
+      "pack": "art"
+    },
+    "art-felt": {
+      "file": "art-felt.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1,
+      "srcW": 246,
+      "srcH": 245,
+      "pack": "art"
+    },
+    "art-glitter": {
+      "file": "art-glitter.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.66,
+      "srcW": 176,
+      "srcH": 267,
+      "pack": "art"
+    },
+    "art-glue-bottle": {
+      "file": "art-glue-bottle.png",
+      "role": "hero",
+      "tags": [
+        "art",
+        "craft",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.45,
+      "srcW": 136,
+      "srcH": 303,
+      "pack": "art",
+      "stageFit": "fit"
+    },
+    "art-ink-pad": {
+      "file": "art-ink-pad.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.51,
+      "srcW": 287,
+      "srcH": 190,
+      "pack": "art"
+    },
+    "art-marker": {
+      "file": "art-marker.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.8,
+      "srcW": 193,
+      "srcH": 241,
+      "pack": "art"
+    },
+    "art-masking-tape": {
+      "file": "art-masking-tape.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.15,
+      "srcW": 254,
+      "srcH": 221,
+      "pack": "art"
+    },
+    "art-paintbrush": {
+      "file": "art-paintbrush.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.8,
+      "srcW": 234,
+      "srcH": 292,
+      "pack": "art"
+    },
+    "art-palette": {
+      "file": "art-palette.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.91,
+      "srcW": 243,
+      "srcH": 267,
+      "pack": "art"
+    },
+    "art-palette-knife": {
+      "file": "art-palette-knife.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.26,
+      "srcW": 310,
+      "srcH": 247,
+      "pack": "art"
+    },
+    "art-paper": {
+      "file": "art-paper.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.76,
+      "srcW": 207,
+      "srcH": 271,
+      "pack": "art"
+    },
+    "art-pencil": {
+      "file": "art-pencil.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.72,
+      "srcW": 197,
+      "srcH": 274,
+      "pack": "art"
+    },
+    "art-ruler": {
+      "file": "art-ruler.png",
+      "role": "hero",
+      "tags": [
+        "art",
+        "craft",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.77,
+      "srcW": 236,
+      "srcH": 305,
+      "pack": "art",
+      "stageFit": "fit"
+    },
+    "art-scissors": {
+      "file": "art-scissors.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.65,
+      "srcW": 181,
+      "srcH": 277,
+      "pack": "art"
+    },
+    "art-sharpener": {
+      "file": "art-sharpener.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.91,
+      "srcW": 235,
+      "srcH": 259,
+      "pack": "art"
+    },
+    "art-sketchbook": {
+      "file": "art-sketchbook.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.8,
+      "srcW": 214,
+      "srcH": 268,
+      "pack": "art"
+    },
+    "art-stamp": {
+      "file": "art-stamp.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.78,
+      "srcW": 215,
+      "srcH": 275,
+      "pack": "art"
+    },
+    "art-stencil": {
+      "file": "art-stencil.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.91,
+      "srcW": 231,
+      "srcH": 253,
+      "pack": "art"
+    },
+    "art-thread": {
+      "file": "art-thread.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.66,
+      "srcW": 178,
+      "srcH": 269,
+      "pack": "art"
+    },
+    "art-tripod-easel": {
+      "file": "art-tripod-easel.png",
+      "role": "hero",
+      "tags": [
+        "art",
+        "craft",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.7,
+      "srcW": 212,
+      "srcH": 301,
+      "pack": "art",
+      "stageFit": "fit"
+    },
+    "art-watercolor-set": {
+      "file": "art-watercolor-set.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.22,
+      "srcW": 290,
+      "srcH": 237,
+      "pack": "art"
+    },
+    "art-yarn": {
+      "file": "art-yarn.png",
+      "role": "object",
+      "tags": [
+        "art",
+        "craft",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.99,
+      "srcW": 253,
+      "srcH": 256,
+      "pack": "art"
+    },
     "baby-bathtub": {
       "file": "baby-bathtub.png",
       "role": "object",
