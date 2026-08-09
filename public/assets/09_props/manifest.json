@@ -28932,6 +28932,489 @@
       "srcW": 512,
       "srcH": 487
     },
+    "winter-balaclava": {
+      "file": "winter-balaclava.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.66,
+      "srcW": 183,
+      "srcH": 276,
+      "pack": "winter"
+    },
+    "winter-beanie": {
+      "file": "winter-beanie.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.91,
+      "srcW": 235,
+      "srcH": 259,
+      "pack": "winter"
+    },
+    "winter-boots": {
+      "file": "winter-boots.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.11,
+      "srcW": 259,
+      "srcH": 234,
+      "pack": "winter"
+    },
+    "winter-crampons": {
+      "file": "winter-crampons.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.27,
+      "srcW": 312,
+      "srcH": 246,
+      "pack": "winter"
+    },
+    "winter-earmuffs": {
+      "file": "winter-earmuffs.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.03,
+      "srcW": 256,
+      "srcH": 248,
+      "pack": "winter"
+    },
+    "winter-fireplace": {
+      "file": "winter-fireplace.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.25,
+      "srcW": 286,
+      "srcH": 229,
+      "pack": "winter"
+    },
+    "winter-goggles": {
+      "file": "winter-goggles.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.86,
+      "srcW": 289,
+      "srcH": 155,
+      "pack": "winter"
+    },
+    "winter-hand-warmer": {
+      "file": "winter-hand-warmer.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.81,
+      "srcW": 215,
+      "srcH": 265,
+      "pack": "winter"
+    },
+    "winter-hot-cocoa": {
+      "file": "winter-hot-cocoa.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.07,
+      "srcW": 241,
+      "srcH": 225,
+      "pack": "winter"
+    },
+    "winter-ice-axe": {
+      "file": "winter-ice-axe.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.78,
+      "srcW": 218,
+      "srcH": 278,
+      "pack": "winter"
+    },
+    "winter-ice-skate": {
+      "file": "winter-ice-skate.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.97,
+      "srcW": 231,
+      "srcH": 238,
+      "pack": "winter"
+    },
+    "winter-icicles": {
+      "file": "winter-icicles.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.81,
+      "srcW": 214,
+      "srcH": 265,
+      "pack": "winter"
+    },
+    "winter-igloo": {
+      "file": "winter-igloo.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.3,
+      "srcW": 280,
+      "srcH": 216,
+      "pack": "winter"
+    },
+    "winter-log": {
+      "file": "winter-log.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.34,
+      "srcW": 266,
+      "srcH": 198,
+      "pack": "winter"
+    },
+    "winter-mittens": {
+      "file": "winter-mittens.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.87,
+      "srcW": 225,
+      "srcH": 260,
+      "pack": "winter"
+    },
+    "winter-parka-green": {
+      "file": "winter-parka-green.png",
+      "role": "hero",
+      "tags": [
+        "winter",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.8,
+      "srcW": 247,
+      "srcH": 310,
+      "pack": "winter",
+      "stageFit": "fit"
+    },
+    "winter-parka-orange": {
+      "file": "winter-parka-orange.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.96,
+      "srcW": 279,
+      "srcH": 292,
+      "pack": "winter"
+    },
+    "winter-pine-tree": {
+      "file": "winter-pine-tree.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.75,
+      "srcW": 214,
+      "srcH": 287,
+      "pack": "winter"
+    },
+    "winter-pinecone": {
+      "file": "winter-pinecone.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.8,
+      "srcW": 212,
+      "srcH": 265,
+      "pack": "winter"
+    },
+    "winter-scarf": {
+      "file": "winter-scarf.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.8,
+      "srcW": 214,
+      "srcH": 266,
+      "pack": "winter"
+    },
+    "winter-shovel": {
+      "file": "winter-shovel.png",
+      "role": "hero",
+      "tags": [
+        "winter",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.54,
+      "srcW": 165,
+      "srcH": 307,
+      "pack": "winter",
+      "stageFit": "fit"
+    },
+    "winter-sled": {
+      "file": "winter-sled.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.3,
+      "srcW": 307,
+      "srcH": 237,
+      "pack": "winter"
+    },
+    "winter-snow-globe": {
+      "file": "winter-snow-globe.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.86,
+      "srcW": 236,
+      "srcH": 273,
+      "pack": "winter"
+    },
+    "winter-snow-pants": {
+      "file": "winter-snow-pants.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.51,
+      "srcW": 149,
+      "srcH": 293,
+      "pack": "winter"
+    },
+    "winter-snowball": {
+      "file": "winter-snowball.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.01,
+      "srcW": 227,
+      "srcH": 225,
+      "pack": "winter"
+    },
+    "winter-snowboard": {
+      "file": "winter-snowboard.png",
+      "role": "hero",
+      "tags": [
+        "winter",
+        "stage",
+        "build"
+      ],
+      "relativeScale": 0.9,
+      "anchor": "bottom",
+      "alpha": true,
+      "aspect": 0.78,
+      "srcW": 239,
+      "srcH": 308,
+      "pack": "winter",
+      "stageFit": "fit"
+    },
+    "winter-snowflake": {
+      "file": "winter-snowflake.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.91,
+      "srcW": 230,
+      "srcH": 253,
+      "pack": "winter"
+    },
+    "winter-socks": {
+      "file": "winter-socks.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.86,
+      "srcW": 241,
+      "srcH": 280,
+      "pack": "winter"
+    },
+    "winter-sweater": {
+      "file": "winter-sweater.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.07,
+      "srcW": 273,
+      "srcH": 256,
+      "pack": "winter"
+    },
+    "winter-thermos": {
+      "file": "winter-thermos.png",
+      "role": "object",
+      "tags": [
+        "winter",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.51,
+      "srcW": 144,
+      "srcH": 284,
+      "pack": "winter"
+    },
     "wizard-hat": {
       "file": "wizard-hat.png",
       "role": "dressPart",
