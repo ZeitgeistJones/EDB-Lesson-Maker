@@ -277,6 +277,11 @@
     't-shirt': 'clothes-tshirt',
     tshirt: 'clothes-tshirt',
     'tee-shirt': 'clothes-tshirt',
+    // Birthday party — piñata ñ folds badly (PropBank → pi-ata, VocabArt → piata);
+    // party-pinata exists; ASCII pinata already hits via -pinata suffix.
+    'pi-ata': 'party-pinata',
+    piata: 'party-pinata',
+    pinata: 'party-pinata',
   };
 
   /**
