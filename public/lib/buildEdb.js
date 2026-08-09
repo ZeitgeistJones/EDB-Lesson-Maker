@@ -199,6 +199,37 @@ function pngSize(b) {
 
 // ── helpers for turning page content into PNGs ────────────────────
 
+/** Sync fallback when canvas.toBlob is missing (rare). */
+function canvasToPngSync(canvas) {
+  const url = canvas.toDataURL('image/png');
+  return dataUrlToPng(url);
+}
+
+/**
+ * Encode canvas → PNG bytes via toBlob (async, non-blocking).
+ * toDataURL + atob was the bake hot-path bottleneck on every page/tile.
+ */
+function canvasToPng(canvas) {
+  if (typeof canvas.toBlob !== 'function') {
+    return Promise.resolve(canvasToPngSync(canvas));
+  }
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (!blob) {
+        try {
+          resolve(canvasToPngSync(canvas));
+        } catch (err) {
+          reject(err);
+        }
+        return;
+      }
+      blob.arrayBuffer()
+        .then((buf) => resolve(new Uint8Array(buf)))
+        .catch(reject);
+    }, 'image/png');
+  });
+}
+
 /** Rasterise a DOM element (one lesson page) to a PNG at board width. */
 async function elementToPng(el, width = BOARD_W, height = PAGE) {
   if (typeof html2canvas !== 'function') {
@@ -212,7 +243,7 @@ async function elementToPng(el, width = BOARD_W, height = PAGE) {
 }
 
 /** Draw an emoji (or any short string) as a transparent square PNG. */
-function glyphToPng(glyph, px = 128) {
+async function glyphToPng(glyph, px = 128) {
   const c = document.createElement('canvas');
   c.width = c.height = px;
   const ctx = c.getContext('2d');
@@ -224,7 +255,7 @@ function glyphToPng(glyph, px = 128) {
 }
 
 /** Draw a rounded word tile — used for sentence-building activities. */
-function tileToPng(text, {
+async function tileToPng(text, {
   w = 186, h = 54, bg = '#F5C518', fg = '#1E2A38', size = 24,
 } = {}) {
   const c = document.createElement('canvas');
@@ -254,15 +285,6 @@ function tileToPng(text, {
   return canvasToPng(c);
 }
 
-function canvasToPng(canvas) {
-  const url = canvas.toDataURL('image/png');
-  const b64 = url.slice(url.indexOf(',') + 1);
-  const bin = atob(b64);
-  const out = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
-  return out;
-}
-
 function dataUrlToPng(url) {
   const b64 = url.slice(url.indexOf(',') + 1);
   const bin = atob(b64);
@@ -271,6 +293,9 @@ function dataUrlToPng(url) {
   return out;
 }
 
+/** Bake-session memo: same src@w×h reuses one decode/raster promise. */
+const _assetPngCache = new Map();
+
 /** Load a path or data-URL into PNG bytes (SVGs rasterised via Image).
  * Letterboxes into w×h at the image's natural aspect — never stretches. */
 async function loadAssetPng(src, w, h) {
@@ -278,28 +303,36 @@ async function loadAssetPng(src, w, h) {
   if (typeof src === 'string' && src.startsWith('data:image/png')) {
     return dataUrlToPng(src);
   }
-  return new Promise((resolve) => {
+  const key = `${src}\0${w || 0}\0${h || 0}`;
+  if (_assetPngCache.has(key)) return _assetPngCache.get(key);
+  const pending = new Promise((resolve) => {
     const img = new Image();
     img.crossOrigin = 'anonymous';
-    img.onload = () => {
-      const nw = img.naturalWidth || 128;
-      const nh = img.naturalHeight || 128;
-      const c = document.createElement('canvas');
-      c.width = w || nw;
-      c.height = h || nh;
-      const ctx = c.getContext('2d');
-      const scale = Math.min(c.width / nw, c.height / nh);
-      const dw = nw * scale;
-      const dh = nh * scale;
-      ctx.drawImage(img, Math.round((c.width - dw) / 2), Math.round((c.height - dh) / 2), dw, dh);
-      resolve(canvasToPng(c));
+    img.onload = async () => {
+      try {
+        const nw = img.naturalWidth || 128;
+        const nh = img.naturalHeight || 128;
+        const c = document.createElement('canvas');
+        c.width = w || nw;
+        c.height = h || nh;
+        const ctx = c.getContext('2d');
+        const scale = Math.min(c.width / nw, c.height / nh);
+        const dw = nw * scale;
+        const dh = nh * scale;
+        ctx.drawImage(img, Math.round((c.width - dw) / 2), Math.round((c.height - dh) / 2), dw, dh);
+        resolve(await canvasToPng(c));
+      } catch (_) {
+        resolve(null);
+      }
     };
     img.onerror = () => resolve(null);
     img.src = src;
   });
+  _assetPngCache.set(key, pending);
+  return pending;
 }
 
-function placeholderPng(w, h, label) {
+async function placeholderPng(w, h, label) {
   const c = document.createElement('canvas');
   c.width = Math.max(24, w || 96);
   c.height = Math.max(24, h || 96);
@@ -449,7 +482,7 @@ function captionedArtPng(artBytes, label, w, h) {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(String(label || '').slice(0, 14), width / 2, chipY + chipH / 2, width - 8);
-      resolve(canvasToPng(c));
+      canvasToPng(c).then(resolve, () => resolve(artBytes));
     };
     img.onerror = () => resolve(artBytes);
     img.src = pngBytesToDataUrl(artBytes);
@@ -497,7 +530,7 @@ async function pieceToPng(piece, ctx) {
   // Word tiles (orderLine) carry meta.word for tracing — never steal the tile
   // into a picture just because that field is set.
   if (piece.kind === 'tile' || (piece.text && piece.kind !== 'text' && piece.kind !== 'emoji' && piece.kind !== 'image')) {
-    return tileToPng(piece.text || piece.label || '?', {
+    return await tileToPng(piece.text || piece.label || '?', {
       w: piece.w || 186,
       h: piece.h || 54,
     });
@@ -512,7 +545,7 @@ async function pieceToPng(piece, ctx) {
     }
     // Labeled: text-only beats wrong picture / bullet.
     if (wantCaption || piece.label) {
-      return tileToPng(piece.label || word, {
+      return await tileToPng(piece.label || word, {
         w: piece.w || 186,
         h: piece.h || 54,
       });
@@ -533,14 +566,14 @@ async function pieceToPng(piece, ctx) {
   }
   const glyph = piece.emoji && String(piece.emoji) !== '•' ? piece.emoji : null;
   if ((piece.kind === 'emoji' || glyph) && glyph) {
-    const g = glyphToPng(glyph, Math.max(piece.w || 96, piece.h || 96, 64));
+    const g = await glyphToPng(glyph, Math.max(piece.w || 96, piece.h || 96, 64));
     if (wantCaption && (piece.label || word)) {
       return captionedArtPng(g, piece.label || word, piece.w, piece.h);
     }
     return g;
   }
   if (piece.text && piece.kind !== 'text') {
-    return tileToPng(piece.text, { w: piece.w || 186, h: piece.h || 54 });
+    return await tileToPng(piece.text, { w: piece.w || 186, h: piece.h || 54 });
   }
   if (mustHaveArt) {
     throw new Error('pieceToPng: no vetted art for ' + (word || piece.role || 'matchPiece'));
@@ -678,9 +711,10 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
     if (sentence && Number.isInteger(slots.wrap)) {
       const y0 = slots.wrap * PAGE;
       const words = sentence.replace(/[.]$/, '').split(/\s+/).slice(0, 5);
-      [...words].sort(() => Math.random() - 0.5).forEach((word, i) => {
-        e.addImage(tileToPng(word), 104 + i * 222, y0 + 455, { w: 186, h: 54 });
-      });
+      const shuffledWords = [...words].sort(() => Math.random() - 0.5);
+      for (let i = 0; i < shuffledWords.length; i++) {
+        e.addImage(await tileToPng(shuffledWords[i]), 104 + i * 222, y0 + 455, { w: 186, h: 54 });
+      }
       e.addText(`Answer: ${sentence}`, 70, y0 + 535,
                 { size: 14, color: [255, 255, 255, 220], locked: true });
     }
@@ -702,7 +736,7 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
       pick = await window.SceneBackgrounds.pickFor(section, { index: 0 });
       bg = await window.SceneBackgrounds.loadPng(pick);
     } else {
-      bg = activityBackground('New Words', 'Drag each picture next to its word.',
+      bg = await activityBackground('New Words', 'Drag each picture next to its word.',
                               vocab.map((v) => v.word));
     }
     e.addImage(bg, 0, vocabPageIndex * PAGE, { w: BOARD_W, h: PAGE, locked: true });
@@ -741,7 +775,7 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
       pick = await window.SceneBackgrounds.pickFor(section, { index: 1 });
       bg = await window.SceneBackgrounds.loadPng(pick);
     } else {
-      bg = buildBackground('Build a Sentence',
+      bg = await buildBackground('Build a Sentence',
                            'Drag the word tiles into order, then read it out loud.');
     }
     e.addImage(bg, 0, idx * PAGE, { w: BOARD_W, h: PAGE, locked: true });
@@ -752,13 +786,13 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
     const gap = 16;
     const totalW = shuffled.length * pieceW + gap * Math.max(0, shuffled.length - 1);
     let x = Math.max(260, Math.min(1020 - totalW, Math.round((BOARD_W - totalW) / 2)));
-    shuffled.forEach((word) => {
+    for (const word of shuffled) {
       const yLocal = (pick && window.SceneBackgrounds)
         ? window.SceneBackgrounds.standOn(pick, pieceH)
         : 455;
-      e.addImage(tileToPng(word), x, idx * PAGE + yLocal, { w: pieceW, h: pieceH });
+      e.addImage(await tileToPng(word), x, idx * PAGE + yLocal, { w: pieceW, h: pieceH });
       x += pieceW + gap;
-    });
+    }
     e.addText(`Answer: ${sentence}`, 70, idx * PAGE + 535,
               { size: 14, color: [90, 105, 120, 255], locked: true });
   }
@@ -767,7 +801,7 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
 }
 
 // simple programmatic backgrounds for the activity pages
-function activityBackground(title, intro, words) {
+async function activityBackground(title, intro, words) {
   const c = document.createElement('canvas');
   c.width = BOARD_W; c.height = PAGE;
   const ctx = c.getContext('2d');
@@ -786,7 +820,7 @@ function activityBackground(title, intro, words) {
   return canvasToPng(c);
 }
 
-function buildBackground(title, intro) {
+async function buildBackground(title, intro) {
   const c = document.createElement('canvas');
   c.width = BOARD_W; c.height = PAGE;
   const ctx = c.getContext('2d');

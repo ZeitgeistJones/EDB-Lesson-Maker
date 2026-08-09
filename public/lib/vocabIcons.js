@@ -320,16 +320,24 @@
     return (await pathFor(word)) != null;
   }
 
+  /** Bake-session fetch memo — same pack path coalesces to one Promise. */
+  const _pngByPath = new Map();
+
   async function loadPng(word) {
     const path = await pathFor(word);
     if (!path) return null;
-    try {
-      const res = await fetch(path);
-      if (!res.ok) return null;
-      return new Uint8Array(await res.arrayBuffer());
-    } catch (_) {
-      return null;
-    }
+    if (_pngByPath.has(path)) return _pngByPath.get(path);
+    const pending = (async () => {
+      try {
+        const res = await fetch(path);
+        if (!res.ok) return null;
+        return new Uint8Array(await res.arrayBuffer());
+      } catch (_) {
+        return null;
+      }
+    })();
+    _pngByPath.set(path, pending);
+    return pending;
   }
 
   window.VocabIcons = {

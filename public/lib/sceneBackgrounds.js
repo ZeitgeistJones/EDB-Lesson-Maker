@@ -568,11 +568,26 @@
     return out;
   }
 
+  /** Bake-session fetch memo — same bg path coalesces to one Promise. */
+  const _pngByPath = new Map();
+
   /** Load a background as bytes, ready for EdbKit.addImage. */
   async function loadPng(pick) {
-    const res = await fetch(pick.path);
-    if (!res.ok) throw new Error(`background not found: ${pick.path}`);
-    return new Uint8Array(await res.arrayBuffer());
+    if (!pick || !pick.path) throw new Error('background pick missing path');
+    const path = pick.path;
+    if (_pngByPath.has(path)) return _pngByPath.get(path);
+    const pending = (async () => {
+      try {
+        const res = await fetch(path);
+        if (!res.ok) throw new Error(`background not found: ${path}`);
+        return new Uint8Array(await res.arrayBuffer());
+      } catch (err) {
+        _pngByPath.delete(path);
+        throw err;
+      }
+    })();
+    _pngByPath.set(path, pending);
+    return pending;
   }
 
   /**

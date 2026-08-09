@@ -1243,12 +1243,25 @@
    * duplicate into exportBoardPreview.drawPiece, which is how the stretch bug
    * came to exist twice.
    */
+  /** Bake-session fetch memo — same path coalesces to one in-flight Promise. */
+  const _pngByPath = new Map();
+
   async function loadPng(prop, opts) {
     if (!prop || !prop.path) return null;
     void (opts && opts.hue);
-    const res = await fetch(prop.path);
-    if (!res.ok) return null;
-    return new Uint8Array(await res.arrayBuffer());
+    const path = prop.path;
+    if (_pngByPath.has(path)) return _pngByPath.get(path);
+    const pending = (async () => {
+      try {
+        const res = await fetch(path);
+        if (!res.ok) return null;
+        return new Uint8Array(await res.arrayBuffer());
+      } catch (_) {
+        return null;
+      }
+    })();
+    _pngByPath.set(path, pending);
+    return pending;
   }
 
   window.PropBank = {
