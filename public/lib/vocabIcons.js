@@ -117,6 +117,12 @@
     // Pets — puppy/kitten share adult animal pack art (no dedicated cub PNGs)
     puppy: 'dog',
     kitten: 'cat',
+    // Shift20-C — mid-obscure → existing pack keys only (empty > wrong)
+    draw: 'pencil',
+    photography: 'camera',
+    jewelry: 'ring',
+    hardhat: 'helmet',
+    'hard hat': 'helmet',
   };
 
   /**

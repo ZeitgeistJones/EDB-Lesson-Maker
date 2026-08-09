@@ -218,7 +218,8 @@
     jar: 'reward-jar',
     star: 'reward-star',
     folder: 'file-folder',
-    tote: 'supply-caddy',
+    // bag-tote is the real tote; supply-caddy was a stand-in
+    tote: 'bag-tote',
     mat: 'desk-mat',
     tray: 'activity-tray',
     whiteboard: 'mini-whiteboard',
@@ -284,6 +285,58 @@
     pinata: 'party-pinata',
     // Pets — aquarium kit tank is the object (keys are aquarium-* parts, not -aquarium)
     aquarium: 'aquarium-tank',
+    // Shift20-C — shared-object mining. Alias only when: (1) bare word is NULL, or
+    // (2) identity-score picks a clear false friend. Do NOT pin hose/helmet/ladder/map/
+    // axe/scissors — topic theme-rank already picks the right prefix pack.
+    hammer: 'tool-hammer', // else hospital-reflex-hammer
+    wrench: 'tool-wrench',
+    screwdriver: 'tool-screwdriver',
+    pliers: 'tool-pliers',
+    brush: 'tool-paintbrush', // else arch-brush
+    'paint-brush': 'art-paintbrush',
+    bottle: 'drink-water-bottle', // else medicine-bottle
+    tire: 'auto-tire', // else farm-tractor-tire
+    button: 'sew-button', // else face-nose-button
+    // band-aid otherwise identity-hits gym-resistance-band via token "band"
+    bandaid: 'aid-bandaid-box',
+    'band-aid': 'aid-bandaid-box',
+    medicine: 'medicine-bottle',
+    seed: 'garden-seed-packet',
+    package: 'postal-parcel-box',
+    fabric: 'sew-fabric-bolt',
+    smoke: 'fire-smoke-detector',
+    hardhat: 'construction-hard-hat',
+    conditioner: 'salon-conditioner-bottle',
+    polaroid: 'photo-polaroid-camera',
+    film: 'photo-film-roll',
+    darkroom: 'photo-darkroom-tray',
+    letter: 'post-sealed-envelope',
+    'postage-stamp': 'post-stamp',
+    'messenger-bag': 'bag-messenger', // else beach-bag via token "bag"
+    jumpstart: 'auto-jumper-cables',
+    'jump-start': 'auto-jumper-cables',
+    trail: 'hike-trail-sign',
+    'camp-stove': 'hike-camping-stove',
+    flashlight: 'camp-flashlight',
+    binoculars: 'camp-binoculars',
+    photography: 'photo-film-camera',
+    draw: 'art-sketchbook',
+    keys: 'routine-keys',
+    keychain: 'acc-keychain',
+    eyeglasses: 'optic-eyeglasses',
+    necklace: 'acc-pearl-necklace',
+    ring: 'acc-ring', // else target-ring
+    thread: 'sew-thread-spool',
+    yarn: 'sew-yarn-ball',
+    thimble: 'sew-thimble',
+    bobbin: 'sew-bobbin',
+    loupe: 'clk-loupe',
+    carabiner: 'hike-carabiner',
+    multitool: 'hike-multi-tool',
+    'multi-tool': 'hike-multi-tool',
+    seedling: 'garden-seedling',
+    hatchet: 'fire-axe',
+    toolbox: 'construction-toolbox',
   };
 
   /**

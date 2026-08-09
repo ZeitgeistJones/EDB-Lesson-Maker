@@ -343,6 +343,17 @@ const TOPIC_CATALOG = [
       'bathroom scale', 'mouthwash', 'floss', 'faucet', 'bathrobe', 'plunger',
     ],
   },
+  // Shift20-C — shared tools / mid-obscure objects (matte title; trends alias wins)
+  {
+    id: 'tools-demand',
+    title: 'Tools and Hardware',
+    source: 'demand+shift20-C',
+    words: [
+      'hammer', 'wrench', 'screwdriver', 'pliers', 'drill', 'saw', 'nail', 'screw',
+      'flashlight', 'binoculars', 'rope', 'scissors', 'needle', 'brush', 'glue',
+      'tape', 'toolbox', 'hatchet', 'bandaid', 'thread', 'button', 'hardhat',
+    ],
+  },
   // Wave-3: 10 non-overlapping topics for parallel coverageloop runs
   // (not in prior sports/jobs/cafe/…/bathroom / camping / space set)
   {
