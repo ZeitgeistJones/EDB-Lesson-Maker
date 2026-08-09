@@ -39,6 +39,8 @@ const PERSON_WORDS = new Set([
   'construction worker', 'mail carrier', 'librarian', 'baker', 'cashier',
   'student', 'teammate', 'spotter', 'friend', 'officer', 'vet', 'waiter',
   'waitress', 'barista', 'patient', 'king', 'queen', 'knight',
+  'mother', 'father', 'brother', 'sister', 'grandma', 'grandpa', 'baby',
+  'customer', 'host', 'hostess',
 ]);
 
 /** Stable ordered catalog — shard N/K takes index % K === N-1 */
@@ -339,6 +341,109 @@ const TOPIC_CATALOG = [
       'shower', 'soap', 'toothbrush', 'toothpaste', 'towel', 'mirror', 'toilet',
       'sink', 'shampoo', 'bathtub', 'comb', 'hairbrush', 'razor', 'scale',
       'bathroom scale', 'mouthwash', 'floss', 'faucet', 'bathrobe', 'plunger',
+    ],
+  },
+  // Wave-3: 10 non-overlapping topics for parallel coverageloop runs
+  // (not in prior sports/jobs/cafe/…/bathroom / camping / space set)
+  {
+    id: 'family',
+    title: 'My Family',
+    source: 'demand+YL-common',
+    words: [
+      'family', 'mother', 'father', 'brother', 'sister', 'baby', 'grandma',
+      'grandpa', 'uncle', 'aunt', 'cousin', 'home', 'hug', 'photo',
+      'dinner', 'love', 'parents', 'kids', 'pet', 'house',
+    ],
+  },
+  {
+    id: 'clothes',
+    title: 'Clothes',
+    source: 'demand+YL-common',
+    words: [
+      'shirt', 'pants', 'dress', 'skirt', 'socks', 'shoes', 'hat', 'coat',
+      'jacket', 'gloves', 'scarf', 'boots', 'sweater', 't-shirt', 'shorts',
+      'pajamas', 'belt', 'tie', 'swimsuit', 'raincoat',
+    ],
+  },
+  {
+    id: 'weather',
+    title: 'Weather',
+    source: 'demand+YL-common',
+    words: [
+      'sunny', 'rainy', 'cloudy', 'windy', 'snowy', 'hot', 'cold', 'storm',
+      'rainbow', 'umbrella', 'lightning', 'thunder', 'fog', 'hail',
+      'temperature', 'forecast', 'drizzle', 'breeze', 'sunny day', 'raindrop',
+    ],
+  },
+  {
+    id: 'birthday-party',
+    title: 'Birthday Party',
+    source: 'demand+YL-common',
+    words: [
+      'birthday', 'cake', 'candle', 'balloon', 'present', 'gift', 'party',
+      'hat', 'card', 'piñata', 'streamer', 'confetti', 'ice cream', 'juice',
+      'invitation', 'wish', 'song', 'friend', 'candle cake', 'party bag',
+    ],
+  },
+  {
+    id: 'pets',
+    title: 'Pets',
+    source: 'demand+YL-common',
+    words: [
+      'dog', 'cat', 'fish', 'bird', 'hamster', 'rabbit', 'turtle', 'pet',
+      'leash', 'collar', 'pet food', 'cage', 'aquarium', 'bone', 'toy',
+      'vet', 'puppy', 'kitten', 'feather', 'bowl',
+    ],
+  },
+  {
+    id: 'dinosaurs',
+    title: 'Dinosaurs',
+    source: 'demand+YL-mid-obscure',
+    words: [
+      'dinosaur', 'T-rex', 'triceratops', 'stegosaurus', 'fossil', 'bone',
+      'egg', 'claw', 'tail', 'volcano', 'jungle', 'museum', 'skeleton',
+      'roar', 'spike', 'nest', 'herbivore', 'carnivore', 'footprint', 'extinct',
+    ],
+  },
+  {
+    id: 'fire-station',
+    title: 'Fire Station',
+    source: 'demand+YL-mid-obscure',
+    words: [
+      'firefighter', 'fire truck', 'hose', 'helmet', 'ladder', 'fire station',
+      'hydrant', 'axe', 'boots', 'uniform', 'siren', 'smoke', 'alarm',
+      'dalmatian', 'pole', 'mask', 'extinguisher', 'badge', 'radio', 'rescue',
+    ],
+  },
+  {
+    id: 'library',
+    title: 'Library',
+    source: 'demand+YL-mid-obscure',
+    words: [
+      'library', 'book', 'shelf', 'librarian', 'quiet', 'story', 'read',
+      'bookmark', 'magazine', 'dictionary', 'card', 'desk', 'computer',
+      'whisper', 'borrow', 'return', 'page', 'cover', 'fairy tale', 'map',
+    ],
+  },
+  {
+    id: 'submarine',
+    title: 'Submarine',
+    source: 'demand+YL-very-obscure',
+    words: [
+      'submarine', 'periscope', 'hatch', 'porthole', 'depth', 'ocean',
+      'sonar', 'propeller', 'captain', 'crew', 'torpedo', 'dive', 'surface',
+      'bubble', 'octopus', 'whale', 'coral', 'map', 'compass', 'engine',
+    ],
+  },
+  {
+    id: 'planetarium',
+    title: 'Planetarium',
+    source: 'demand+YL-very-obscure',
+    words: [
+      'planetarium', 'dome', 'projector', 'constellation', 'star', 'planet',
+      'orbit', 'telescope', 'galaxy', 'comet', 'moon', 'seat', 'dark',
+      'ticket', 'guide', 'solar system', 'nebula', 'meteor', 'night sky',
+      'astronomy',
     ],
   },
 ];
