@@ -4429,6 +4429,499 @@
       "bodyHue": 25,
       "pack": "music"
     },
+    "bath-bar-soap": {
+      "file": "bath-bar-soap.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.73,
+      "srcW": 286,
+      "srcH": 165,
+      "pack": "bathroom"
+    },
+    "bath-bath-mat": {
+      "file": "bath-bath-mat.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.59,
+      "srcW": 277,
+      "srcH": 174,
+      "pack": "bathroom"
+    },
+    "bath-bathrobe": {
+      "file": "bath-bathrobe.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.89,
+      "srcW": 230,
+      "srcH": 259,
+      "pack": "bathroom"
+    },
+    "bath-bathtub": {
+      "file": "bath-bathtub.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.73,
+      "srcW": 345,
+      "srcH": 200,
+      "pack": "bathroom"
+    },
+    "bath-comb": {
+      "file": "bath-comb.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.08,
+      "srcW": 243,
+      "srcH": 225,
+      "pack": "bathroom"
+    },
+    "bath-dental-floss": {
+      "file": "bath-dental-floss.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.17,
+      "srcW": 236,
+      "srcH": 202,
+      "pack": "bathroom"
+    },
+    "bath-faucet": {
+      "file": "bath-faucet.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.96,
+      "srcW": 206,
+      "srcH": 214,
+      "pack": "bathroom"
+    },
+    "bath-hair-dryer": {
+      "file": "bath-hair-dryer.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.02,
+      "srcW": 252,
+      "srcH": 247,
+      "pack": "bathroom"
+    },
+    "bath-hairbrush": {
+      "file": "bath-hairbrush.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.88,
+      "srcW": 221,
+      "srcH": 251,
+      "pack": "bathroom"
+    },
+    "bath-hand-towel": {
+      "file": "bath-hand-towel.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.29,
+      "srcW": 242,
+      "srcH": 188,
+      "pack": "bathroom"
+    },
+    "bath-laundry-basket": {
+      "file": "bath-laundry-basket.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.51,
+      "srcW": 280,
+      "srcH": 185,
+      "pack": "bathroom"
+    },
+    "bath-loofah": {
+      "file": "bath-loofah.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.85,
+      "srcW": 215,
+      "srcH": 252,
+      "pack": "bathroom"
+    },
+    "bath-mirror": {
+      "file": "bath-mirror.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.84,
+      "srcW": 216,
+      "srcH": 258,
+      "pack": "bathroom"
+    },
+    "bath-mouthwash": {
+      "file": "bath-mouthwash.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.58,
+      "srcW": 139,
+      "srcH": 241,
+      "pack": "bathroom"
+    },
+    "bath-plunger": {
+      "file": "bath-plunger.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.53,
+      "srcW": 138,
+      "srcH": 260,
+      "pack": "bathroom"
+    },
+    "bath-razor": {
+      "file": "bath-razor.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.81,
+      "srcW": 191,
+      "srcH": 235,
+      "pack": "bathroom"
+    },
+    "bath-scale": {
+      "file": "bath-scale.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.11,
+      "srcW": 249,
+      "srcH": 225,
+      "pack": "bathroom"
+    },
+    "bath-shower-head": {
+      "file": "bath-shower-head.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.08,
+      "srcW": 257,
+      "srcH": 238,
+      "pack": "bathroom"
+    },
+    "bath-sink": {
+      "file": "bath-sink.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.8,
+      "srcW": 213,
+      "srcH": 267,
+      "pack": "bathroom"
+    },
+    "bath-soap-dispenser": {
+      "file": "bath-soap-dispenser.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.66,
+      "srcW": 158,
+      "srcH": 240,
+      "pack": "bathroom"
+    },
+    "bath-sponge": {
+      "file": "bath-sponge.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.28,
+      "srcW": 276,
+      "srcH": 215,
+      "pack": "bathroom"
+    },
+    "bath-toilet": {
+      "file": "bath-toilet.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.65,
+      "srcW": 168,
+      "srcH": 259,
+      "pack": "bathroom"
+    },
+    "bath-toilet-paper": {
+      "file": "bath-toilet-paper.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.08,
+      "srcW": 225,
+      "srcH": 209,
+      "pack": "bathroom"
+    },
+    "bath-toothbrush": {
+      "file": "bath-toothbrush.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.65,
+      "srcW": 161,
+      "srcH": 247,
+      "pack": "bathroom"
+    },
+    "bath-toothbrush-holder": {
+      "file": "bath-toothbrush-holder.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.6,
+      "srcW": 156,
+      "srcH": 259,
+      "pack": "bathroom"
+    },
+    "bath-toothpaste": {
+      "file": "bath-toothpaste.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.5,
+      "srcW": 126,
+      "srcH": 251,
+      "pack": "bathroom"
+    },
+    "bath-towel-rack": {
+      "file": "bath-towel-rack.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.27,
+      "srcW": 270,
+      "srcH": 212,
+      "pack": "bathroom"
+    },
+    "bath-trash-can": {
+      "file": "bath-trash-can.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.81,
+      "srcW": 185,
+      "srcH": 227,
+      "pack": "bathroom"
+    },
+    "bath-washcloth": {
+      "file": "bath-washcloth.png",
+      "role": "object",
+      "tags": [
+        "bathroom",
+        "toiletries",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.12,
+      "srcW": 236,
+      "srcH": 211,
+      "pack": "bathroom"
+    },
     "beach-anchor": {
       "file": "beach-anchor.png",
       "role": "object",
