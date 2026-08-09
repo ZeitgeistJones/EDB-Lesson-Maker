@@ -149,10 +149,13 @@ for (const sheet of IMPORT_SHEETS) {
   const culled = rows.filter((e) => e.skip && !e.blocked);
   const soft = rows.filter((e) => e.forced && e.row && !e.blocked && !e.skip);
 
-  console.error(`\n=== MERGE ${sheet.pack} (${mergeReady.length} ready) ===`);
+  // --force replaces prior mis-slices (Call1 first landed under wrong --grid=8x4).
+  console.error(`\n=== MERGE ${sheet.pack} (${mergeReady.length} ready, --force) ===`);
   const merge = run('node', [
     'scripts/merge-staged-props.mjs',
     path.relative(ROOT, rowsFile).replace(/\\/g, '/'),
+    '--force',
+    '--skip=circus-star-wand-dup,post-clipboard-empty',
   ]);
 
   summary.imported.push({

@@ -257,3 +257,19 @@ prop is stylistically out of step with the pack, deserves a stronger one.
 
 **Process over artifacts:** fix import/prompt/gate rules, then regenerate — see
 [`.cursor/rules/fix-the-producer.mdc`](../../rules/fix-the-producer.mdc).
+
+## Manus Perfect-11 bulk runs (5+5+1)
+
+When the user asks for an **11-sheet** Manus prop supply run (one theme per
+sheet, mostly **portrait 4×8 / 32 cells**, quality **default**):
+
+1. **5 sheets per Manus call max** — an 11-sheet job is **3 calls: 5 + 5 + 1**.
+2. **One theme per sheet** — never mix topics across cells on one PNG.
+3. **Import as soon as sheets land** — credits gate *new* Manus calls, not
+   import/merge/commit. Detect real grid (Call1 wrongly shipped square **6×6**);
+   only black-field sheets are cutout-safe.
+4. **Credit gate for Call 2/3** — do **not** fire the next Manus call until the
+   user OKs credits (or an explicit “continue Perfect-11”). Import Call N first;
+   leave Call N+1 queued.
+5. Dinosaurs / probe sheets are bonus supply unless the user counts them toward
+   the 11.

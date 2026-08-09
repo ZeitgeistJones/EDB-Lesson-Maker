@@ -51,13 +51,15 @@ export const ESL_ASSET_GENERATOR_BRIEF_LINE =
 /**
  * Cursor ↔ Manus asset-call rules (esl-asset-generator skill lock).
  * No in-repo skill mirror — keep these in client + docs/manus-review.md.
- * Cost ceiling: ~11 sheets ≤ 3 generate_image calls (5+5+1) at default quality.
+ * Cost ceiling: ~11 sheets = 3 createTask calls (5+5+1) at default quality.
+ * Completion: count sheet PNGs — must be 11 before reporting Perfect-11 done.
  */
 export const ESL_ASSET_CURSOR_RULES = [
   'CURSOR ASSET RULES (mandatory):',
-  '1. DEDUPE — one sheet list / one createTask only. Never attach the same file twice; never fire a second identical run.',
+  '1. DEDUPE — never attach the same file twice; never fire a second identical run of the same sheet list.',
   '2. quality: default ONLY — never quality: high / quality="high". Skill overrides; high costs 3–5× with no gain for flat vector.',
   '3. PEOPLE / FACE sheets — accept soft-3D drift; do NOT ask Manus to repair or regenerate people or face-icon sheets for flatness.',
+  '4. PERFECT-11 BATCH — 11 sheets need 3 calls (5+5+1). Max ~5 sheets per call. Import each call when sheets land; wait for user credit OK before Call 2/3.',
 ].join('\n');
 
 /**
