@@ -370,13 +370,17 @@ async function wordArtPng(word, ctx) {
     const family = c.family
       || (c.lesson && PB.familyFor ? PB.familyFor(c.lesson) : null)
       || PB.HOUSE_FAMILY;
+    const minScore = (PB.DEFAULT_MIN_SCORE != null) ? PB.DEFAULT_MIN_SCORE : 4;
     const prop = PB.resolve({
       word,
       family,
       seed: c.seed || (c.lesson && c.lesson.title) || word,
       exclude: Array.from(c.usedPropKeys),
+      minScore,
     });
-    if (prop) {
+    const headOk = !window.VocabArt || typeof window.VocabArt.headNounOk !== 'function'
+      || window.VocabArt.headNounOk(word, prop);
+    if (prop && headOk) {
       const path = prop.path || prop.src || null;
       if (!path || !c.usedArtPaths.has(path)) {
         const png = await PB.loadPng(prop);
@@ -652,7 +656,8 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
   }
 
   // Legacy: spine slots without full plan
-  const vocab = (lesson.vocabulary || []).slice(0, 6);
+  const maxVocab = (window.VocabArt && window.VocabArt.MAX_BOARD_VOCAB) || 6;
+  const vocab = (lesson.vocabulary || []).slice(0, maxVocab);
   const hasSpine = pages.length > 0 && slots && Number.isInteger(slots.newWords);
 
   if (hasSpine) {
@@ -767,7 +772,8 @@ function activityBackground(title, intro, words) {
   c.width = BOARD_W; c.height = PAGE;
   const ctx = c.getContext('2d');
   paintChrome(ctx, title, intro, '#FDF8F0');
-  words.slice(0, 6).forEach((w, i) => {
+  const maxVocab = (window.VocabArt && window.VocabArt.MAX_BOARD_VOCAB) || 6;
+  words.slice(0, maxVocab).forEach((w, i) => {
     const y = 200 + i * 62;
     roundRect(ctx, 70, y, 530, 54, 11, '#FFFFFF', '#EEE8DC');
     ctx.fillStyle = '#17827C';

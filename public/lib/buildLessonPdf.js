@@ -139,8 +139,13 @@ function pageWarmUp(doc, lesson) {
   });
 }
 
+function maxBoardVocab() {
+  return (typeof window !== 'undefined' && window.VocabArt && window.VocabArt.MAX_BOARD_VOCAB) || 6;
+}
+
 async function pagesVocabulary(doc, lesson) {
-  const vocab = lesson.vocabulary.slice(0, 8);
+  // Same ceiling as board cards / VocabArt — never list words with no pad/dock.
+  const vocab = (lesson.vocabulary || []).slice(0, maxBoardVocab());
 
   bg(doc, C.white);
   sectionHeader(doc, 'New Words', C.purple);
@@ -464,6 +469,10 @@ async function buildLessonPdf(lesson, meta) {
     || null;
   if (!jsPDF) {
     throw new Error('jsPDF failed to load. Refresh the page and try again.');
+  }
+
+  if (typeof window !== 'undefined' && window.LessonPages && window.LessonPages.normalizeLesson) {
+    lesson = window.LessonPages.normalizeLesson(lesson);
   }
 
   const doc = new jsPDF({

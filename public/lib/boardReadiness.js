@@ -13,6 +13,10 @@
   const KIT_REASON_RE =
     /theme kit|theme stage kit|build\/stage board|heroProp|generic template/i;
 
+  function maxBoardVocab() {
+    return (window.VocabArt && window.VocabArt.MAX_BOARD_VOCAB) || 6;
+  }
+
   function vocabWords(lesson) {
     return ((lesson && lesson.vocabulary) || [])
       .map((v) => (typeof v === 'string' ? v : v && v.word))
@@ -155,6 +159,17 @@
     const hasVocab = vocabArt.total > 0;
     const matchAssign = assignments.find((a) => a.pageKey === 'newWords' && a.recipeId === 'matchDock');
 
+    // Generate may return 7 (30min) / 12 (60min); board + PDF only teach MAX.
+    const allWords = vocabWords(lesson);
+    const ceil = maxBoardVocab();
+    if (allWords.length > ceil) {
+      const overflow = allWords.slice(ceil);
+      const names = overflow.slice(0, 4).join(', ');
+      reasons.push(
+        `${overflow.length} vocab word(s) past board ceiling of ${ceil} (not on cards/PDF): ${names}${overflow.length > 4 ? '…' : ''}.`
+      );
+    }
+
     if (vocabArt.total > 0 && vocabArt.ratio < VOCAB_ART_FLOOR) {
       reasons.push(
         `Only ${vocabArt.hits}/${vocabArt.total} vocab words have board art (need ≥${Math.ceil(VOCAB_ART_FLOOR * 100)}%).`
@@ -287,5 +302,6 @@
     summaryLine,
     VOCAB_ART_FLOOR,
     KIT_REASON_RE,
+    maxBoardVocab,
   };
 })();

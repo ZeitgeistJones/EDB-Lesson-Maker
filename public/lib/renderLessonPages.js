@@ -514,10 +514,27 @@
    * Manus 2026-08: classical fixture put comprehension/creative/wrapUp at root
    * while the renderer only read story.comprehensionQuestions / reviewSentences.
    */
+  function maxBoardVocab() {
+    return (window.VocabArt && window.VocabArt.MAX_BOARD_VOCAB) || 6;
+  }
+
   function normalizeLesson(lesson) {
     if (!lesson || typeof lesson !== 'object') return lesson || {};
     if (!lesson.story || typeof lesson.story !== 'object') lesson.story = {};
     const story = lesson.story;
+
+    // Collapse duplicate vocabulary entries so padIndex / dock pieces stay 1:1.
+    if (Array.isArray(lesson.vocabulary)) {
+      const seen = new Set();
+      lesson.vocabulary = lesson.vocabulary.filter((v) => {
+        const w = typeof v === 'string' ? v : v && v.word;
+        if (!w) return false;
+        const key = String(w).toLowerCase().trim();
+        if (!key || seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    }
 
     if (!(story.comprehensionQuestions && story.comprehensionQuestions.length)
       && Array.isArray(lesson.comprehension) && lesson.comprehension.length) {
@@ -682,13 +699,12 @@
       position: 'relative',
       zIndex: '1',
     });
-    // Board-taught vocab only (match dock / sentences = first 6) — Manus S30:
+    // Board-taught vocab only (match dock / sentences = MAX_BOARD_VOCAB) — Manus S30:
     // aims must not advertise words that never appear on New Words.
-    const BOARD_VOCAB_N = 6;
     const aimWords = (lesson.vocabulary || [])
       .map((v) => (typeof v === 'string' ? v : v && v.word))
       .filter(Boolean)
-      .slice(0, BOARD_VOCAB_N);
+      .slice(0, maxBoardVocab());
     const title = el('div', {
       color: '#0f172a', fontSize: '62px', fontWeight: '800',
       maxWidth: '560px', lineHeight: '1.05',
@@ -894,7 +910,7 @@
         : 'Say each word together.',
       { flexShrink: '0' }
     ));
-    const words = (lesson.vocabulary || []).slice(0, 6);
+    const words = (lesson.vocabulary || []).slice(0, maxBoardVocab());
     const art = boardPlan && boardPlan.vocabArt;
     const rowByWord = new Map();
     ((art && art.rows) || []).forEach((r) => rowByWord.set(r.word, r));
@@ -1049,7 +1065,7 @@
     const p = pageShell(THEME_COLORS.vocab, { pageType: 'vocabSentences' });
     p.appendChild(header('New Words — In Sentences', '#7c3aed', { timing: '~5 min' }));
     const body = fillBody(p, { justifyContent: 'stretch', gap: '16px' });
-    const words = (lesson.vocabulary || []).slice(0, 6);
+    const words = (lesson.vocabulary || []).slice(0, maxBoardVocab());
     const n = Math.max(1, words.length);
     const cols = n <= 2 ? 1 : 2;
     const rows = Math.max(1, Math.ceil(n / cols));
@@ -1095,7 +1111,7 @@
     // words that are ON New Words, so it is not answer-leaking — it is the same
     // choice set students already met. Chips only; no per-frame mapping.
     const bankWords = (lesson.vocabulary || [])
-      .slice(0, 6)
+      .slice(0, maxBoardVocab())
       .map((v) => (typeof v === 'string' ? v : v.word))
       .filter(Boolean);
     if (bankWords.length) {
@@ -1389,15 +1405,20 @@
       // caption ("...felt worried") must not resolve to a 3D "worried" prop face.
       const decoOK = PB.decorativePacksFor ? PB.decorativePacksFor(lesson) : null;
       // Story side art is not a dock — allow sharp and soft props (conductor bust OK).
+      const minScore = (PB.DEFAULT_MIN_SCORE != null) ? PB.DEFAULT_MIN_SCORE : 4;
       for (const w of tryWords) {
         const prop = PB.resolve({
           word: w,
           seed: cue + '|' + w,
           family,
           exclude,
-          minScore: 3,
+          minScore,
         });
         if (!prop || !prop.path) continue;
+        if (window.VocabArt && typeof window.VocabArt.headNounOk === 'function'
+          && !window.VocabArt.headNounOk(w, prop)) {
+          continue;
+        }
         exclude.push(prop.key);
         if (PB.isDecorativeProp && PB.isDecorativeProp(prop) && decoOK && !decoOK.has(prop.pack)) continue;
         // Desk caption must not settle on loose orchestra furniture.
@@ -1409,8 +1430,15 @@
       // Soft fallback: allow stands only after musician keys failed.
       if (orchestraScene) {
         for (const w of ['orchestra-stands', 'conductor-podium']) {
-          const prop = PB.resolve({ word: w, seed: cue + '|fb|' + w, family, exclude, minScore: 3 });
-          if (prop && prop.path) return { type: 'prop', src: prop.path, key: prop.key };
+          const prop = PB.resolve({
+            word: w, seed: cue + '|fb|' + w, family, exclude, minScore,
+          });
+          if (!prop || !prop.path) continue;
+          if (window.VocabArt && typeof window.VocabArt.headNounOk === 'function'
+            && !window.VocabArt.headNounOk(w, prop)) {
+            continue;
+          }
+          return { type: 'prop', src: prop.path, key: prop.key };
         }
       }
     }
@@ -2089,7 +2117,7 @@
     const aims = (lesson.vocabulary || [])
       .map((v) => (typeof v === 'string' ? v : v && v.word))
       .filter(Boolean)
-      .slice(0, 6)
+      .slice(0, maxBoardVocab())
       .join(', ');
     if (aims) {
       const aimsLine = el('div', {
@@ -2125,7 +2153,7 @@
     const exitMissing = (lesson.vocabulary || [])
       .map((v) => (typeof v === 'string' ? v : v && v.word))
       .filter(Boolean)
-      .slice(0, 6)
+      .slice(0, maxBoardVocab())
       .filter((w) => !new RegExp(`\\b${String(w).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(exitHay));
     if (exitMissing.length) {
       const also = card(
@@ -2368,6 +2396,7 @@
     render, cleanup, buildSectionList, attachBgPicks, applyPackBg, applyStoryArt,
     normalizeLesson, comprehensionQuestions,
     storyFallbackVisual, themeEmoji,
+    maxBoardVocab,
     BOARD_W: W, BOARD_H: H,
   };
 })();

@@ -3,24 +3,37 @@
  * Match dock and readiness both call VocabArt.planFor so bake never invents a
  * Gemini emoji / bullet / wrong compound when tier-1 is missing.
  * Classic script → window.VocabArt
+ *
+ * MAX_BOARD_VOCAB is the single ceiling for board cards, match dock, wrap aims,
+ * and teacher PDF word lists. Generate may return more (30→7 / 60→12); overflow
+ * is a BoardReadiness draft reason, not silent truncation.
  */
 (function () {
+  /** Board + PDF teach at most this many vocab items (2×3 card grid / dock). */
+  const MAX_BOARD_VOCAB = 6;
+
   function slug(word) {
     return String(word || '')
       .trim()
       .toLowerCase()
-      .replace(/[^\w\s'-]/g, '')
+      // Strip apostrophes so "don't" → "dont" and can identityHit tier-2 props.
+      .replace(/['\u2019]/g, '')
+      .replace(/[^\w\s-]/g, '')
       .replace(/\s+/g, ' ')
       .trim()
       .replace(/\s+/g, '-');
   }
 
+  /** Raw vocabulary array capped to the board ceiling (objects or strings). */
+  function boardVocabulary(lesson) {
+    return ((lesson && lesson.vocabulary) || []).slice(0, MAX_BOARD_VOCAB);
+  }
+
   function vocabWords(lesson) {
-    return ((lesson && lesson.vocabulary) || [])
+    return boardVocabulary(lesson)
       .map((v) => (typeof v === 'string' ? v : v && v.word))
       .filter(Boolean)
-      .map((w) => String(w))
-      .slice(0, 6);
+      .map((w) => String(w));
   }
 
   /**
@@ -150,8 +163,11 @@
   }
 
   window.VocabArt = {
+    MAX_BOARD_VOCAB,
     planFor,
     headNounOk,
     vocabWords,
+    boardVocabulary,
+    slug,
   };
 })();

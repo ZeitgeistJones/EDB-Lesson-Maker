@@ -185,6 +185,9 @@ async function main() {
   const srcs = artTwin.matchable.map((r) => r.artSrc).filter(Boolean);
   assert(new Set(srcs).size === srcs.length, 'dedupe: unique artSrc among matchable');
 
+  assert(W.VocabArt.MAX_BOARD_VOCAB === 6, 'MAX_BOARD_VOCAB === 6');
+  assert(W.VocabArt.slug("don't") === 'dont', 'slug: don\'t → dont');
+
   console.log('OK vocab-art cases 1,3,4,6,7 + jobs/coach + dedupe', {
     soccerTier: soccer.tier,
     coachGlyph: glyph,

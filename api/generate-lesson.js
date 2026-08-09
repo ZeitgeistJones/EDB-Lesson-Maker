@@ -31,6 +31,8 @@ const CEFR_LEVELS = {
   C2: 'C2 (proficient: near-native subtlety, idiom and connotation)',
 };
 
+// Vocab counts may exceed the board ceiling (VocabArt.MAX_BOARD_VOCAB = 6).
+// Board + teacher PDF teach the first 6; overflow is a BoardReadiness draft reason.
 const DURATION_COUNTS = {
   30: { vocab: 7, questions: 4, storyPages: 2, comprehension: 3 },
   60: { vocab: 12, questions: 7, storyPages: 3, comprehension: 4 },
@@ -234,6 +236,7 @@ module.exports = async (req, res) => {
   const prompt = `You are an expert ESL curriculum designer. Generate a ${safeDuration}-minute structured lesson about "${topic}" for ${CEFR_LEVELS[safeLevel]} English learners.${focusLine}
 
 Generate exactly: ${counts.vocab} vocabulary items, 4 sentenceFrames, ${counts.questions} speakingQuestions, 4 activity templates, 3 reviewSentences.
+The ClassIn board and teacher PDF teach only the first 6 vocabulary items — put the most concrete, teachable target words first; any extras may appear in speaking/story but will not get board cards.
 
 Also generate a short illustrated story tied to the topic:
 - story.title: a catchy story title

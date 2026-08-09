@@ -37,8 +37,14 @@
     return a.slice(0, n);
   }
 
+  function maxBoardVocab() {
+    return (window.VocabArt && window.VocabArt.MAX_BOARD_VOCAB) || 6;
+  }
+
   function vocabList(lesson) {
-    return (lesson.vocabulary || []).filter((v) => v && (v.word || v.emoji)).slice(0, 6);
+    return (lesson.vocabulary || [])
+      .filter((v) => v && (v.word || v.emoji))
+      .slice(0, maxBoardVocab());
   }
 
   function reviewWords(lesson) {
@@ -613,7 +619,7 @@
         meta: { bin: bin.label },
       });
     });
-    const cards = vocabList(lesson).slice(0, 6);
+    const cards = vocabList(lesson);
     if (!cards.length) return;
     // Keep dock cards big enough to tap (M10) and wide enough for long words
     // ("toothbrush"). Prefer fewer wider tiles over clipped labels.
@@ -909,7 +915,7 @@
       const vocabKeys = ((lesson && lesson.vocabulary) || [])
         .map((v) => (typeof v === 'string' ? v : v && v.word))
         .filter(Boolean)
-        .slice(0, 6)
+        .slice(0, maxBoardVocab())
         .map((w) => 'feeling-' + String(w).toLowerCase())
         .filter((k) => ROLEPLAY_DOCK_FEELINGS.includes(k));
       if (vocabKeys.length) feelingsKeys = vocabKeys;
