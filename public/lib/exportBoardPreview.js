@@ -91,6 +91,15 @@
 
     const canvases = [];
     try {
+      // The piece-drawing loop pairs boardPlan.pages[i] with rendered.pageEls[i].
+      // If the plan spine and the render spine disagree on page count, pieces get
+      // drawn onto the wrong page — silently. Fail LOUD instead (buildEdb.js guards
+      // this on the bake path; the preview path must too).
+      if (boardPlan.pages && boardPlan.pages.length !== rendered.pageEls.length) {
+        throw new Error(
+          `Board plan page mismatch: ${boardPlan.pages.length} pages for ${rendered.pageEls.length} rendered`
+        );
+      }
       if (bgPicks && bgPicks.length !== rendered.pageEls.length) {
         throw new Error(
           `Background plan mismatch: ${bgPicks.length} picks for ${rendered.pageEls.length} pages`

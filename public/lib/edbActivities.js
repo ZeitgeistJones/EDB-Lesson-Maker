@@ -1460,6 +1460,14 @@
    * Build full board plan: spine pageKeys + layout pages with pieces.
    */
   function buildBoardPlan(lesson, meta) {
+    // Plan and render MUST see the same normalized lesson. render()/buildSectionList
+    // fold root-level creative/comprehension/wrapUp into story.* via normalizeLesson;
+    // if the plan is built on the raw drift-shape it can come out one page short of
+    // render()'s pageEls (e.g. includeCreative reads story.creativeQuestions). Normalize
+    // once here (mutates in place, idempotent) so both spines match.
+    if (window.LessonPages && window.LessonPages.normalizeLesson) {
+      lesson = window.LessonPages.normalizeLesson(lesson);
+    }
     const boardPlan = plan(lesson, meta);
     boardPlan.meta = meta || {};
     const L = window.EdbLayout;
