@@ -111,6 +111,7 @@ async function loadLibs() {
   const libs = [
     'public/lib/propBank.js',
     'public/lib/vocabIcons.js',
+    'public/lib/vocabArt.js',
     'public/lib/sceneBackgrounds.js',
     'public/lib/boardReadiness.js',
   ];

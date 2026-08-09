@@ -7,6 +7,8 @@
 
   let indexPromise = null;
   let indexCache = null;
+  /** Last load failure — cleared on success. Never permanently cache `{}` on error. */
+  let lastLoadError = null;
 
   function normalize(word) {
     return String(word || '')
@@ -175,19 +177,44 @@
   }
 
   /**
+   * Human-vetted glyph only — SAFE_EMOJI / EMOJI_OVERRIDES (and alias→SAFE).
+   * Never Gemini fallback, never bullet. Null = no curated glyph.
+   */
+  function curatedGlyph(word) {
+    const key = normalize(word);
+    if (!key) return null;
+    if (Object.prototype.hasOwnProperty.call(EMOJI_OVERRIDES, key)) {
+      return EMOJI_OVERRIDES[key];
+    }
+    if (Object.prototype.hasOwnProperty.call(SAFE_EMOJI, key)) {
+      return SAFE_EMOJI[key];
+    }
+    const alias = PACK_ALIASES[key];
+    if (alias && Object.prototype.hasOwnProperty.call(SAFE_EMOJI, alias)) {
+      return SAFE_EMOJI[alias];
+    }
+    return null;
+  }
+
+  /**
    * True when board art is human-vetted (not a Gemini guess): either a
-   * SAFE_EMOJI fallback or a resolved Twemoji pack key (incl. aliases).
-   * Requires ready()/loadIndex first for pack hits; SAFE_EMOJI works sync.
+   * curated glyph or a resolved Twemoji pack key (incl. aliases).
+   * Requires ready()/loadIndex first for pack hits; curated glyphs work sync.
    */
   function isCurated(word) {
     const key = normalize(word);
     if (!key) return false;
-    if (Object.prototype.hasOwnProperty.call(SAFE_EMOJI, key)) return true;
-    // Alias → SAFE_EMOJI (e.g. compose→music) without waiting on pack index.
-    const alias = PACK_ALIASES[key];
-    if (alias && Object.prototype.hasOwnProperty.call(SAFE_EMOJI, alias)) return true;
+    if (curatedGlyph(word)) return true;
     if (!indexCache) return false;
     return !!resolveKey(indexCache, word);
+  }
+
+  function indexReady() {
+    return !!indexCache;
+  }
+
+  function loadError() {
+    return lastLoadError;
   }
 
   function loadIndex() {
@@ -195,18 +222,21 @@
     if (!indexPromise) {
       indexPromise = fetch(INDEX_URL)
         .then((r) => {
-          if (!r.ok) throw new Error('Vocab icon index failed to load');
+          if (!r.ok) throw new Error('Vocab icon index failed to load (' + r.status + ')');
           return r.json();
         })
         .then((data) => {
-          indexCache = data || {};
+          // Empty object is a valid warm index (zero pack rows) — but only after
+          // a successful fetch. Failures must NOT lock a permanent cold cache.
+          indexCache = data && typeof data === 'object' ? data : {};
+          lastLoadError = null;
           return indexCache;
         })
         .catch((err) => {
           indexPromise = null;
-          console.warn(err);
-          indexCache = {};
-          return indexCache;
+          lastLoadError = err instanceof Error ? err : new Error(String(err));
+          console.warn('[VocabIcons] index load failed (retryable):', lastLoadError);
+          return Promise.reject(lastLoadError);
         });
     }
     return indexPromise;
@@ -298,7 +328,10 @@
     has,
     loadPng,
     emojiFor,
+    curatedGlyph,
     isCurated,
+    indexReady,
+    loadError,
     ready: loadIndex,
     CREDIT: 'Twemoji by Twitter, Inc and other contributors',
   };

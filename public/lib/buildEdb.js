@@ -301,11 +301,18 @@ function placeholderPng(w, h, label) {
   ctx.arcTo(c.width, c.height, 0, c.height, r); ctx.arcTo(0, c.height, 0, 0, r);
   ctx.arcTo(0, 0, c.width, 0, r); ctx.closePath();
   ctx.fill();
-  ctx.fillStyle = '#475569';
-  ctx.font = `700 ${Math.max(12, Math.floor(c.height * 0.22))}px Poppins, sans-serif`;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText(String(label || '?').slice(0, 12), c.width / 2, c.height / 2, c.width - 12);
+  // Never stamp piece.role ("matchPiece") as shippable art — blank plate only
+  // when a caller still needs a solid chip. Prefer null from pieceToPng instead.
+  const text = label != null && String(label).trim() && String(label) !== '•'
+    ? String(label).slice(0, 12)
+    : '';
+  if (text) {
+    ctx.fillStyle = '#475569';
+    ctx.font = `700 ${Math.max(12, Math.floor(c.height * 0.22))}px Poppins, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(text, c.width / 2, c.height / 2, c.width - 12);
+  }
   return canvasToPng(c);
 }
 
@@ -435,17 +442,34 @@ function captionedArtPng(artBytes, label, w, h) {
   });
 }
 
-/** Asset first → emoji/tile fallback → solid placeholder (never silent-drop). */
+/** Planned artSrc → wordArt → curated emoji → text tile. Never bullet / role label. */
 async function pieceToPng(piece, ctx) {
   const word = piece.meta && piece.meta.word;
+  const artSrc = piece.meta && piece.meta.artSrc;
   // Match-dock icons must NEVER bake answer-naming caption chips (Manus S26 /
   // skill v2). Words live on the numbered drop pads — pictures stay unlabeled.
   const isMatchIcon = piece.role === 'matchPiece';
   const wantCaption = !isMatchIcon && !!(piece.label || (piece.meta && piece.meta.captionChip));
-  // Explicit data-URL canvases (slot ghosts / solid pads) must win over word-art
-  // lookup — matchPad used to set meta.word and rendered tiny vocab icons on cards.
   const assetStr = piece.asset != null ? String(piece.asset) : '';
   const padRole = /^(matchPad|orderPad|buildSlot)$/.test(piece.role || '');
+  const isImageKind = piece.kind === 'image' || (!!piece.asset && !padRole && piece.kind !== 'emoji');
+
+  // VocabArt-planned path wins (match dock + any piece with meta.artSrc).
+  if (artSrc) {
+    const png = await loadAssetPng(artSrc, piece.w, piece.h);
+    if (png) {
+      if (wantCaption && (piece.label || word)) {
+        return captionedArtPng(png, piece.label || word, piece.w, piece.h);
+      }
+      return png;
+    }
+    if (isMatchIcon || piece.kind === 'image') {
+      throw new Error('pieceToPng: missing artSrc file for ' + (word || artSrc));
+    }
+  }
+
+  // Explicit data-URL canvases (slot ghosts / solid pads) must win over word-art
+  // lookup — matchPad used to set meta.word and rendered tiny vocab icons on cards.
   if (piece.asset && (assetStr.startsWith('data:') || padRole)) {
     const png = await loadAssetPng(piece.asset, piece.w, piece.h);
     if (png) {
@@ -471,6 +495,13 @@ async function pieceToPng(piece, ctx) {
       }
       return art;
     }
+    // Labeled: text-only beats wrong picture / bullet.
+    if (wantCaption || piece.label) {
+      return tileToPng(piece.label || word, {
+        w: piece.w || 186,
+        h: piece.h || 54,
+      });
+    }
   }
   if (piece.asset) {
     const png = await loadAssetPng(piece.asset, piece.w, piece.h);
@@ -480,18 +511,26 @@ async function pieceToPng(piece, ctx) {
       }
       return png;
     }
-  }
-  if (piece.kind === 'emoji' || piece.emoji) {
-    const glyph = glyphToPng(piece.emoji || '•', Math.max(piece.w || 96, piece.h || 96, 64));
-    if (wantCaption && (piece.label || word)) {
-      return captionedArtPng(glyph, piece.label || word, piece.w, piece.h);
+    if (isImageKind || isMatchIcon) {
+      throw new Error('pieceToPng: image asset failed to load (' + (word || piece.role || assetStr) + ')');
     }
-    return glyph;
+  }
+  const glyph = piece.emoji && String(piece.emoji) !== '•' ? piece.emoji : null;
+  if ((piece.kind === 'emoji' || glyph) && glyph) {
+    const g = glyphToPng(glyph, Math.max(piece.w || 96, piece.h || 96, 64));
+    if (wantCaption && (piece.label || word)) {
+      return captionedArtPng(g, piece.label || word, piece.w, piece.h);
+    }
+    return g;
   }
   if (piece.text && piece.kind !== 'text') {
     return tileToPng(piece.text, { w: piece.w || 186, h: piece.h || 54 });
   }
-  return placeholderPng(piece.w, piece.h, piece.role || piece.label || '?');
+  if (isMatchIcon || piece.kind === 'image') {
+    throw new Error('pieceToPng: no vetted art for ' + (word || piece.role || 'image'));
+  }
+  // Unlabeled chrome without art — blank plate, never role text / bullet.
+  return null;
 }
 
 /**
@@ -612,7 +651,8 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
         const v = shuffled[i];
         const col = i % 3, row = Math.floor(i / 3);
         const png = (await wordArtPng(v.word, artCtx))
-          || glyphToPng(v.emoji || '•');
+          || null;
+        if (!png) continue;
         e.addImage(png, 780 + col * 140, y0 + 280 + row * 130, { w: 88, h: 88 });
       }
     }
@@ -659,7 +699,8 @@ async function buildLessonEdb(lesson, meta, pageEls, boardPlanOrSlots) {
     for (let i = 0; i < shuffled.length; i++) {
       const v = shuffled[i];
       const png = (await wordArtPng(v.word, artCtx))
-        || glyphToPng(v.emoji || '•');
+        || null;
+      if (!png) continue;
       const yLocal = (pick && window.SceneBackgrounds)
         ? window.SceneBackgrounds.standOn(pick, pieceH)
         : (235 + Math.floor(i / 3) * 150);

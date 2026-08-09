@@ -889,6 +889,20 @@
       { flexShrink: '0' }
     ));
     const words = (lesson.vocabulary || []).slice(0, 6);
+    const art = boardPlan && boardPlan.vocabArt;
+    const rowByWord = new Map();
+    ((art && art.rows) || []).forEach((r) => rowByWord.set(r.word, r));
+    const matchableSet = new Set(((art && art.matchable) || []).map((r) => r.word));
+    // Pad numbers only for matchable words (honest N-to-N with the dock).
+    const padIndex = new Map();
+    let padN = 0;
+    words.forEach((v) => {
+      const w = v && v.word;
+      if (w && matchableSet.has(w)) {
+        padN += 1;
+        padIndex.set(w, padN);
+      }
+    });
     // Sparse lessons (2–3 words) must still fill the board — don't leave empty
     // 2×3 grid slots as dead space (minimal fixture M8/M9).
     const n = Math.max(1, words.length);
@@ -907,15 +921,20 @@
       height: '100%',
       alignContent: 'stretch',
     });
-    words.forEach((v, i) => {
-      const glyphHtml = interactive
-        ? ''
-        : `<div style="width:64px;height:64px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0">${esc(v.emoji || '•')}</div>`;
+    words.forEach((v) => {
+      const row = rowByWord.get(v.word);
+      const isMatch = interactive && matchableSet.has(v.word);
+      // Labeled / non-dock: vetted pack/glyph only — never Gemini emoji or bullet.
+      let glyphHtml = '';
+      if (!interactive && row && row.artSrc) {
+        glyphHtml = `<img src="${esc(row.artSrc)}" alt="" style="width:64px;height:64px;object-fit:contain;flex-shrink:0;border-radius:12px;background:#ede9fe">`;
+      } else if (!interactive && row && row.glyph) {
+        glyphHtml = `<div style="width:64px;height:64px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0">${esc(row.glyph)}</div>`;
+      }
       const wordPx = n <= 2 ? 56 : 44;
-      // Match-dock: numbered dashed pad under the word (S28 / Manus drop-zones).
-      // Painted into the page PNG so ClassIn + bake stay aligned (no EDB ghost overlay).
-      const dropPad = interactive
-        ? `<div data-match-pad="${i + 1}" style="margin-top:auto;width:82%;max-width:180px;min-height:60px;border:3px dashed #94a3b8;border-radius:10px;background:rgba(148,163,184,0.14);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:#64748b">${i + 1}</div>`
+      const padNum = isMatch ? padIndex.get(v.word) : null;
+      const dropPad = padNum
+        ? `<div data-match-pad="${padNum}" style="margin-top:auto;width:82%;max-width:180px;min-height:60px;border:3px dashed #94a3b8;border-radius:10px;background:rgba(148,163,184,0.14);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:#64748b">${padNum}</div>`
         : '';
       const writeLine = (!interactive && n <= 3)
         ? `<div style="margin-top:20px;font-size:24px;font-weight:700;color:#64748b;text-align:center;line-height:1.35;max-width:90%">Say the word. Drag the matching picture. Write it on the line.</div>
@@ -1216,7 +1235,8 @@
     if (t.includes('space') || t.includes('rocket') || t.includes('moon')) return '🚀';
     // Face/parts after places — "Make a Face" should not fall through to the book.
     if (/\b(face|eyes|nose|mouth|hair|smile|makeup)\b/.test(t)) return '😊';
-    return '📖';
+    // No fake 📖 — empty plate + readiness reason beats a dishonest book glyph.
+    return null;
   }
 
   function storyArtCue(lesson, page) {
@@ -1348,7 +1368,9 @@
         }
       }
     }
-    return { type: 'emoji', emoji: themeEmoji(cue) };
+    const emoji = themeEmoji(cue);
+    if (emoji) return { type: 'emoji', emoji };
+    return { type: 'none' };
   }
 
   /**
@@ -1361,6 +1383,7 @@
     slot.innerHTML = '';
     if (vis.type === 'prop') {
       slot.dataset.storyProp = vis.key || '1';
+      delete slot.dataset.storyArt;
       const plate = el('div', {
         flex: '1',
         minHeight: '0',
@@ -1394,6 +1417,22 @@
       return vis;
     }
     delete slot.dataset.storyProp;
+    if (vis.type === 'none' || !vis.emoji) {
+      // Caption-only plate — no fake book / bullet.
+      slot.dataset.storyArt = 'none';
+      slot.appendChild(el('div', {
+        flex: '1',
+        minHeight: bigEmoji ? '120px' : '80px',
+        width: '100%',
+        background: '#ffffff',
+        borderRadius: '14px',
+        boxShadow: '0 2px 8px rgba(15,23,42,0.06)',
+        position: 'relative',
+        zIndex: '1',
+      }));
+      return vis;
+    }
+    delete slot.dataset.storyArt;
     slot.appendChild(el('div', {
       fontSize: bigEmoji ? '96px' : '64px',
       lineHeight: '1',
@@ -2249,6 +2288,7 @@
   window.LessonPages = {
     render, cleanup, buildSectionList, attachBgPicks, applyPackBg, applyStoryArt,
     normalizeLesson, comprehensionQuestions,
+    storyFallbackVisual, themeEmoji,
     BOARD_W: W, BOARD_H: H,
   };
 })();

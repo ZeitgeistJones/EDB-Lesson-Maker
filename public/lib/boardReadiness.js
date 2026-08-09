@@ -21,11 +21,40 @@
   }
 
   /**
-   * Art hit = PropBank prop OR VocabIcons vetted pack glyph (not a Gemini guess).
-   * Shared PNG / prop key across two words does not count — matches bake
-   * uniqueness in wordArtPng (empty > duplicate match cards).
+   * Prefer VocabArt.planFor (same ladder as bake). Falls back to legacy
+   * pack/PropBank scan when VocabArt is unavailable or index is cold.
    */
-  function vocabArtHits(lesson) {
+  function vocabArtHits(lesson, boardPlan) {
+    const planned = boardPlan && boardPlan.vocabArt;
+    if (planned && Array.isArray(planned.rows)) {
+      const detail = planned.rows.map((r) => ({
+        word: r.word,
+        prop: r.propKey || null,
+        vetted: r.tier === 'pack' || r.tier === 'glyph',
+        tier: r.tier,
+        ok: !!r.matchable,
+      }));
+      const hits = detail.filter((d) => d.ok).length;
+      const total = detail.length;
+      return { hits, total, ratio: total ? hits / total : 1, detail };
+    }
+
+    if (window.VocabArt && typeof window.VocabArt.planFor === 'function'
+      && window.VocabIcons && typeof window.VocabIcons.indexReady === 'function'
+      && window.VocabIcons.indexReady()
+      && !(window.VocabIcons.loadError && window.VocabIcons.loadError())) {
+      try {
+        const PB = window.PropBank;
+        const art = window.VocabArt.planFor(lesson, {
+          family: PB && PB.familyFor ? PB.familyFor(lesson) : null,
+          seed: (lesson && lesson.title) || '',
+        });
+        return vocabArtHits(lesson, { vocabArt: art });
+      } catch (_) {
+        /* fall through to legacy */
+      }
+    }
+
     const words = vocabWords(lesson);
     const PB = window.PropBank;
     const VI = window.VocabIcons;
@@ -35,6 +64,7 @@
     const usedPaths = new Set();
     const detail = [];
     let hits = 0;
+    const floor = (PB && PB.DEFAULT_MIN_SCORE) || 4;
     for (const word of words) {
       let prop = null;
       let vetted = false;
@@ -45,16 +75,19 @@
         if (path && !usedPaths.has(path)) {
           vetted = true;
         } else if (!path) {
-          // SAFE_EMOJI curated with no pack file — still a distinct glyph hit.
           vetted = true;
         }
       }
 
       if (!vetted && PB && PB.loaded()) {
-        prop = PB.resolve({ word, seed, family, minScore: 3, exclude });
+        prop = PB.resolve({ word, seed, family, minScore: floor, exclude });
         const propPath = prop && (prop.path || prop.src);
         if (prop && propPath && usedPaths.has(propPath)) prop = null;
         if (prop && exclude.includes(prop.key)) prop = null;
+        if (prop && window.VocabArt && typeof window.VocabArt.headNounOk === 'function'
+          && !window.VocabArt.headNounOk(word, prop)) {
+          prop = null;
+        }
       }
 
       const ok = !!(prop || vetted);
@@ -80,6 +113,26 @@
     return [lesson && lesson.title, ...words].filter(Boolean).join(' ');
   }
 
+  function storyArtGaps(lesson, boardPlan) {
+    const meta = (boardPlan && boardPlan.meta) || {};
+    const pages = (window.EdbActivities && window.EdbActivities.storyPagesForBoard)
+      ? window.EdbActivities.storyPagesForBoard(lesson, meta)
+      : ((lesson && lesson.story && lesson.story.pages) || []).slice(0, 1);
+    if (!pages.length) return [];
+    const probe = window.LessonPages && typeof window.LessonPages.storyFallbackVisual === 'function'
+      ? window.LessonPages.storyFallbackVisual.bind(window.LessonPages)
+      : null;
+    if (!probe) return [];
+    const gaps = [];
+    pages.forEach((sp, i) => {
+      const vis = probe(lesson, sp);
+      if (!vis || vis.type === 'none' || (vis.type === 'emoji' && !vis.emoji)) {
+        gaps.push(i);
+      }
+    });
+    return gaps;
+  }
+
   /**
    * @param {object} lesson
    * @param {object} [boardPlan] from EdbActivities.buildBoardPlan / plan
@@ -94,15 +147,45 @@
     const PB = window.PropBank;
     const SB = window.SceneBackgrounds;
     const kit = PB && PB.assessKit ? PB.assessKit(lesson) : null;
-    const vocabArt = vocabArtHits(lesson);
+    const vocabArt = vocabArtHits(lesson, boardPlan);
 
     const assignments = (boardPlan && boardPlan.assignments) || [];
     const act = assignments.find((a) => a.pageKey === 'activity') || null;
     const activityRecipe = act ? act.recipeId : null;
+    const hasVocab = vocabArt.total > 0;
+    const matchAssign = assignments.find((a) => a.pageKey === 'newWords' && a.recipeId === 'matchDock');
 
     if (vocabArt.total > 0 && vocabArt.ratio < VOCAB_ART_FLOOR) {
       reasons.push(
         `Only ${vocabArt.hits}/${vocabArt.total} vocab words have board art (need ≥${Math.ceil(VOCAB_ART_FLOOR * 100)}%).`
+      );
+    }
+
+    if (hasVocab && boardPlan && boardPlan.canHonestMatchDock === false && !matchAssign) {
+      reasons.push(
+        'Match dock skipped — not enough vetted pictures to keep an honest N-to-N drag (text-only cards).'
+      );
+    }
+
+    const dropped = boardPlan && boardPlan.vocabArt && boardPlan.vocabArt.dropped;
+    if (dropped && dropped.length) {
+      const names = dropped.map((d) => d.word).slice(0, 4).join(', ');
+      reasons.push(
+        `Dropped ${dropped.length} vocab word(s) from match dock (no vetted art): ${names}${dropped.length > 4 ? '…' : ''}.`
+      );
+    }
+
+    const dockDrops = boardPlan && Number(boardPlan.dockDrops);
+    if (dockDrops > 0) {
+      reasons.push(
+        `Activity dock silently dropped ${dockDrops} piece(s) that would not fit the grab floor.`
+      );
+    }
+
+    const storyGaps = storyArtGaps(lesson, boardPlan);
+    if (storyGaps.length) {
+      reasons.push(
+        `Story page(s) ${storyGaps.map((i) => i + 1).join(', ')} have no vetted art (caption-only plate — not a fake book).`
       );
     }
 
@@ -116,15 +199,12 @@
           // Soft: different hero still ok if king stage
         }
       } else if (kit && !kit.ready && kit.hero) {
-        // Producer honesty: theme pack exists but soft/mushy docks were banned —
-        // do not ship as Ready with a hollow king stage.
         const soft = kit.softDockCount || 0;
         reasons.push(
           `Theme pack “${kit.pack}” has stage hero “${kit.hero.key}” but only ${kit.dockCount} sharp dock toys (need ≥6${soft ? `; ${soft} soft scraps blocked` : ''}). Regen docks at ≥120px short side.`
         );
       }
 
-      // Hollow activity: no kit, no hero, collage recipe — fine as draft text board
       if (!kit && activityRecipe && activityRecipe !== 'heroProp' && vocabArt.ratio < 0.75) {
         reasons.push(
           'No theme stage kit matched — activity is a generic template. Add a pack or accept a draft board.'
@@ -135,7 +215,6 @@
     let bg = null;
     if (SB && typeof SB.bgCoverage === 'function') {
       let manifest = opts.bgManifest || null;
-      // Prefer explicit manifest; sync cache may not exist until planFor/manifest().
       if (!manifest && typeof SB._cachedManifest === 'function') {
         manifest = SB._cachedManifest();
       }
@@ -172,6 +251,8 @@
       },
       activityRecipe,
       bg,
+      dockDrops: dockDrops || 0,
+      canHonestMatchDock: boardPlan ? !!boardPlan.canHonestMatchDock : null,
     };
   }
 

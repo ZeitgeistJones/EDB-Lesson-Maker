@@ -92,7 +92,8 @@
 
   /** Honest match-dock size from the real vocab dock zone (≥96px). Null = can't fit. */
   function matchDockSize(count) {
-    const n = Math.max(1, count || 1);
+    const n = Math.max(0, Number(count) || 0);
+    if (n < 1) return null;
     const zones = (window.EdbLayout && window.EdbLayout.ZONE_TEMPLATES
       && window.EdbLayout.ZONE_TEMPLATES.vocab) || {};
     const dock = zones.dock || { w: 450, h: 250 };
@@ -120,8 +121,29 @@
     return null;
   }
 
-  function canHonestMatchDock(lesson) {
+  /** Honest dock = matchable count fits ≥96px cells. Accepts a count or lesson. */
+  function canHonestMatchDock(lessonOrCount) {
+    if (typeof lessonOrCount === 'number') {
+      return !!matchDockSize(lessonOrCount);
+    }
+    const lesson = lessonOrCount;
+    if (lesson && lesson._vocabArt && Array.isArray(lesson._vocabArt.matchable)) {
+      return !!matchDockSize(lesson._vocabArt.matchable.length);
+    }
     return !!matchDockSize(vocabList(lesson).length);
+  }
+
+  /** Plan VocabArt once (throws if VocabIcons cold/errored). */
+  function planVocabArt(lesson, seed) {
+    if (!window.VocabArt || typeof window.VocabArt.planFor !== 'function') {
+      throw new Error('EdbActivities: VocabArt.planFor missing — load vocabArt.js');
+    }
+    const PB = window.PropBank;
+    const family = PB && PB.familyFor ? PB.familyFor(lesson) : null;
+    return window.VocabArt.planFor(lesson, {
+      family,
+      seed: seed || (lesson && lesson.title) || '',
+    });
   }
 
   /** 60-minute lessons ask Gemini for 3 story pages; 30-min keeps one fuller beat. */
@@ -291,30 +313,46 @@
 
   // ── Recipes ─────────────────────────────────────────────────────
 
-  function matchDock(lesson, page, layout) {
+  function matchDock(lesson, page, layout, ctx) {
     const L = layout || window.EdbLayout;
-    const vocab = vocabList(lesson);
-    if (!vocab.length) return;
-    const size = matchDockSize(vocab.length);
-    if (!size) return; // caller should fall back to icons-on-cards
+    const art = (ctx && ctx.vocabArt)
+      || (lesson && lesson._vocabArt)
+      || null;
+    const rows = art && Array.isArray(art.matchable) ? art.matchable : [];
+    if (!rows.length) return;
+    const size = matchDockSize(rows.length);
+    if (!size) return; // caller should fall back to text-only cards
     // Numbered drop pads live in makeVocab DOM (data-match-pad) so they stay
-    // under the word label. Placing EDB ghosts via bodyText math misaligned and
-    // covered the words — keep ClassIn targets as the word cards + pad chrome.
-    // No student-facing caption chips under icons (Manus skill v2 / S26): naming
-    // the word on the picture turns match into label→label. Icons must be 1:1
-    // clear via pack overrides (VocabIcons PACK_OVERRIDES). Do NOT set `label`
+    // under the word label. Match pieces are VocabArt matchable only — never
+    // raw Gemini emoji / bullet / wrong PropBank fill. Do NOT set `label`
     // — pieceToPng would bake answer-naming chips into the dock PNG.
-    L.placeDockRow(page, vocab.map((v) => ({
-      kind: 'emoji',
-      emoji: (window.VocabIcons && window.VocabIcons.emojiFor)
-        ? window.VocabIcons.emojiFor(v.word, v.emoji)
-        : (v.emoji || '•'),
-      role: 'matchPiece',
-      meta: { word: v.word },
-    })), { w: size.w, h: size.h, cols: size.cols, noShrink: true });
+    L.placeDockRow(page, rows.map((row) => {
+      const meta = {
+        word: row.word,
+        artSrc: row.artSrc || null,
+        artTier: row.tier,
+      };
+      if (row.artSrc) {
+        return {
+          kind: 'image',
+          asset: row.artSrc,
+          role: 'matchPiece',
+          meta,
+        };
+      }
+      return {
+        kind: 'emoji',
+        emoji: row.glyph,
+        role: 'matchPiece',
+        meta,
+      };
+    }), { w: size.w, h: size.h, cols: size.cols, noShrink: true });
     page.notes.push('recipe:matchDock');
     page.notes.push('recipe:matchDockPads');
     page.notes.push('recipe:matchDockNoCaptions');
+    if (art && art.dropped && art.dropped.length) {
+      page.notes.push('matchDockDropped:' + art.dropped.length);
+    }
   }
 
   function orderLine(lesson, page, layout) {
@@ -1001,6 +1039,7 @@
     // Tall-thin roleplay cutouts (musicians ~0.4–0.65) need height ≥ DOCK_MIN/aspect for
     // grabbable width; a 72px cap + 2 rows filters them all out except squat pieces.
     const tools = roleplayDockProps(lesson, prop, 18);
+    let dockPlaced = 0;
     if (tools.length && dock) {
       const gap = 6;
       const rowGap = 6;
@@ -1131,9 +1170,15 @@
               ? { propKey: t.key, propAspect: t.aspect, word: t.feelWord }
               : { propKey: t.key, propAspect: t.aspect },
           });
+          dockPlaced += 1;
           originX = x + w + gap;
         });
       }
+    }
+    const dockDropped = Math.max(0, tools.length - dockPlaced);
+    if (dockDropped > 0) {
+      page.notes.push('dockDropped:' + dockDropped);
+      page.dockDropped = dockDropped;
     }
     page.notes.push('recipe:heroProp');
   }
@@ -1259,9 +1304,17 @@
     const assignments = [];
     const kit = window.PropBank && window.PropBank.assessKit && window.PropBank.assessKit(lesson);
 
-    // New Words — honest dock only (≥96px); else chrome shows icons-on-cards
-    if (hasVocab && canHonestMatchDock(lesson)) {
-      assignments.push({ pageKey: 'newWords', recipeId: 'matchDock' });
+    // VocabArt ladder — pack → prop(+headNounOk) → curatedGlyph → none.
+    // Match dock only when matchable rows fit honestly (≥96px). Dropped words
+    // stay text-only on cards (no Gemini emoji / bullet pad).
+    const vocabArt = hasVocab ? planVocabArt(lesson, seed) : { rows: [], matchable: [], dropped: [] };
+    const honestMatch = vocabArt.matchable.length > 0 && canHonestMatchDock(vocabArt.matchable.length);
+    if (honestMatch) {
+      assignments.push({
+        pageKey: 'newWords',
+        recipeId: 'matchDock',
+        ctx: { vocabArt },
+      });
     }
 
     // Phonics — sound boxes + letter tiles when schema + gate allow
@@ -1299,7 +1352,13 @@
       }
     }
 
-    const planOut = { assignments, seed, kit: kit && kit.ready ? { pack: kit.pack, hero: kit.hero.key, docks: kit.dockCount } : null };
+    const planOut = {
+      assignments,
+      seed,
+      kit: kit && kit.ready ? { pack: kit.pack, hero: kit.hero.key, docks: kit.dockCount } : null,
+      vocabArt,
+      canHonestMatchDock: honestMatch,
+    };
     if (window.BoardReadiness && window.BoardReadiness.assess) {
       planOut.readiness = window.BoardReadiness.assess(lesson, planOut);
     }
@@ -1492,12 +1551,34 @@
     addPage('activity', actAssign && actAssign.recipeId === 'heroProp' ? 'heroStage' : 'activity');
     addPage('wrap', 'wrap');
 
+    // Hero dock overflow drops are known only after recipes place pieces —
+    // fold into plan + refresh readiness so Draft reasons stay honest.
+    let dockDrops = 0;
+    for (const p of pages) {
+      if (p && Number(p.dockDropped) > 0) dockDrops += Number(p.dockDropped);
+      else {
+        for (const n of (p && p.notes) || []) {
+          const m = /^dockDropped:(\d+)$/.exec(String(n));
+          if (m) dockDrops += Number(m[1]);
+        }
+      }
+    }
+    boardPlan.pages = pages;
+    boardPlan.indexByKey = indexByKey;
+    boardPlan.dockDrops = dockDrops;
+    if (window.BoardReadiness && window.BoardReadiness.assess) {
+      boardPlan.readiness = window.BoardReadiness.assess(lesson, boardPlan);
+    }
+
     return {
       pages,
       indexByKey,
       assignments: boardPlan.assignments,
       seed: boardPlan.seed,
       kit: boardPlan.kit || null,
+      vocabArt: boardPlan.vocabArt || null,
+      canHonestMatchDock: !!boardPlan.canHonestMatchDock,
+      dockDrops,
       readiness: boardPlan.readiness || null,
       // Back-compat slots
       slots: {

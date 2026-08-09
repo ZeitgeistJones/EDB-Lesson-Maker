@@ -23,6 +23,7 @@ const HARD = {
   H5: 'matchDock answer leak — vocab cards embed the dock icons (dishonest for students)',
   H6: 'Page count exceeds ClassIn board limit (50)',
   H7: 'Prop art drawn at the wrong aspect, or 09_props art on a piece with no PropBank provenance',
+  H10: 'Match dock shipped non-vetted art (Gemini emoji, bullet •, or role-label placeholder) — drop pair instead',
 };
 
 /**
@@ -124,6 +125,7 @@ const METRICS = {
     severity: 'soft',
     why: 'Postage-stamp dock icons students cannot grab in ClassIn',
   },
+  // M11 is a producer honesty flag (not a continuous metric) — see SOFT S60.
 };
 
 const REGRESSION = {
@@ -145,6 +147,7 @@ const SOFT = {
   // Accurate vocab images
   S15: 'Dock / match pictures clearly match the vocab word meaning',
   S9: 'No html2canvas checkerboard behind icons',
+  S60: 'Story side art is caption-only when no vetted prop — never fake 📖 book glyph (M11)',
 
   // Background variability + appropriateness
   S2: 'Drill pages use calm washes under card chrome — not write-on boards (chalk/cork/whiteboard)',

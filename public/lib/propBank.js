@@ -1242,6 +1242,7 @@
     loadPng,
     isDeniedWord,
     isAmbiguousWord,
+    identityHit,
     PROP_REQUESTS,
     PROP_ALIASES,
     HOUSE_FAMILY,
