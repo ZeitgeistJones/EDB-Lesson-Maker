@@ -156,23 +156,22 @@ async function main() {
   assert(failBox.window.VocabIcons.indexReady(), 'case3: same-instance retry warms index');
   assert(!failBox.window.VocabIcons.loadError(), 'case3: loadError cleared after retry');
 
-  // Case: jobs coach is glyph (cap), never Gemini teacher emoji as matchable artSrc
-  const jobs = {
-    title: 'Community Helpers',
+  // Case: soccer coach → job-coach prop (not whistle metonymy / not teacher emoji)
+  const soccerCoach = {
+    title: 'Soccer Practice with Coach',
     vocabulary: [
-      { word: 'teacher', emoji: '🧑‍🏫' },
       { word: 'coach', emoji: '🧑‍🏫' },
-      { word: 'doctor', emoji: '❌' },
+      { word: 'whistle', emoji: '📣' },
+      { word: 'ball', emoji: '⚽' },
     ],
   };
-  const artJobs = W.VocabArt.planFor(jobs, { seed: jobs.title });
+  const artJobs = W.VocabArt.planFor(soccerCoach, { seed: soccerCoach.title });
   const coachRow = artJobs.rows.find((r) => r.word === 'coach');
   assert(coachRow && coachRow.matchable, 'jobs: coach matchable');
-  assert(coachRow.tier === 'glyph' || coachRow.tier === 'pack' || coachRow.tier === 'prop', 'jobs: coach vetted tier');
+  assert(coachRow.tier === 'prop', 'jobs: coach prop tier (job-coach cutout)');
+  assert(coachRow.propKey === 'job-coach', 'jobs: coach→job-coach not whistle');
+  assert(coachRow.artSrc && /job-coach/.test(coachRow.artSrc), 'jobs: coach artSrc is job-coach');
   assert(coachRow.tier !== 'none', 'jobs: coach not dropped');
-  if (coachRow.tier === 'glyph') {
-    assert(coachRow.glyph === '🧢', 'jobs: coach glyph is cap not teacher');
-  }
 
   // Dedup: two words cannot claim the same pack src
   const twin = {
@@ -190,6 +189,7 @@ async function main() {
     soccerTier: soccer.tier,
     coachGlyph: glyph,
     coachTier: coachRow.tier,
+    coachProp: coachRow.propKey,
     dropped: art7.dropped.map((d) => d.word),
     grandfather: clock ? clock.key : null,
   });

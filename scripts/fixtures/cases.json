@@ -71,6 +71,28 @@
       "notes": "Story visualTheme lies (beach/kitchen); abstract adjectives in vocab"
     },
     {
+      "id": "soccer-coach",
+      "fixture": "soccer-coach-lesson.json",
+      "tier": "core",
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
+      "expectScene": "gym|sport|soccer|park|playground",
+      "notes": "PropBank F2 / VocabArt stress: coach→job-coach (not whistle); abstract effort/practice/teamwork may drop"
+    },
+    {
+      "id": "fruit-market",
+      "fixture": "fruit-market-lesson.json",
+      "tier": "core",
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
+      "expectScene": "market|supermarket|grocery|shop|cafeteria",
+      "notes": "Concrete produce props (apple/banana/carrot/tomato/lemon/grape) — prop-rich match dock smoke"
+    },
+    {
       "id": "travel",
       "fixture": "travel-lesson.json",
       "tier": "core",
@@ -279,6 +301,17 @@
       },
       "expectScene": "bathroom|home|house|bedroom",
       "notes": "Parallel quality loop — daily routines (avoid sports/fruit collision); home wash flats"
+    },
+    {
+      "id": "loop3-beach",
+      "fixture": "loop3-beach.json",
+      "tier": "adversarial",
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
+      "expectScene": "beach|ocean|shore|seaside",
+      "notes": "Parallel quality loop 3 — beach-warm (distinct outDir tmp/board-bg-verify-loop3-beach)"
     },
     {
       "id": "space",

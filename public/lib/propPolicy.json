@@ -87,6 +87,7 @@
     "knife": ["camp-pocket-knife"],
     "bucket": ["cleaning-bucket"],
     "sand": ["landmark-marina-bay-sands"],
+    "wave": ["hair-long-blonde-wave"],
     "patient": ["job-doctor", "job-nurse", "stethoscope", "clinic-clipboard"]
   },
   "ambiguous": {
@@ -115,6 +116,9 @@
     "hole-puncher": "office-hole-puncher",
     "holepuncher": "office-hole-puncher",
     "power-bank": "tech-power-bank",
-    "powerbank": "tech-power-bank"
+    "powerbank": "tech-power-bank",
+    "shell": "beach-seashell",
+    "seashell": "beach-seashell",
+    "sandcastle": "beach-sandcastle"
   }
 }
