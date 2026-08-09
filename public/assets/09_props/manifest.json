@@ -27141,20 +27141,173 @@
       "srcW": 512,
       "srcH": 508
     },
+    "tech-bluetooth-speaker": {
+      "file": "tech-bluetooth-speaker.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.62,
+      "srcW": 354,
+      "srcH": 135,
+      "pack": "tech"
+    },
+    "tech-calculator": {
+      "file": "tech-calculator.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.83,
+      "srcW": 166,
+      "srcH": 199,
+      "pack": "tech"
+    },
+    "tech-camera": {
+      "file": "tech-camera.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.4,
+      "srcW": 270,
+      "srcH": 193,
+      "pack": "tech"
+    },
     "tech-drone": {
       "file": "tech-drone.png",
       "role": "object",
       "tags": [
         "tech",
-        "drone",
-        "dock"
+        "gadgets",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.35,
+      "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.79,
-      "bodyHue": 215,
-      "srcW": 275,
+      "aspect": 2.15,
+      "srcW": 365,
+      "srcH": 170,
+      "pack": "tech"
+    },
+    "tech-ereader": {
+      "file": "tech-ereader.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.74,
+      "srcW": 165,
+      "srcH": 223,
+      "pack": "tech"
+    },
+    "tech-fitness-tracker": {
+      "file": "tech-fitness-tracker.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.66,
+      "srcW": 148,
+      "srcH": 225,
+      "pack": "tech"
+    },
+    "tech-flashlight": {
+      "file": "tech-flashlight.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.61,
+      "srcW": 331,
+      "srcH": 127,
+      "pack": "tech"
+    },
+    "tech-game-controller": {
+      "file": "tech-game-controller.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.53,
+      "srcW": 286,
+      "srcH": 187,
+      "pack": "tech"
+    },
+    "tech-hair-dryer": {
+      "file": "tech-hair-dryer.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.26,
+      "srcW": 248,
+      "srcH": 197,
+      "pack": "tech"
+    },
+    "tech-handheld-console": {
+      "file": "tech-handheld-console.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.16,
+      "srcW": 333,
       "srcH": 154,
       "pack": "tech"
     },
@@ -27181,16 +27334,33 @@
       "role": "object",
       "tags": [
         "tech",
-        "headphones",
-        "dock"
+        "gadgets",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.3,
+      "relativeScale": 0.45,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.96,
-      "bodyHue": 215,
-      "srcW": 250,
-      "srcH": 261,
+      "aspect": 1.06,
+      "srcW": 247,
+      "srcH": 233,
+      "pack": "tech"
+    },
+    "tech-keyboard": {
+      "file": "tech-keyboard.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.3,
+      "srcW": 334,
+      "srcH": 145,
       "pack": "tech"
     },
     "tech-laptop": {
@@ -27198,16 +27368,50 @@
       "role": "object",
       "tags": [
         "tech",
-        "laptop",
-        "dock"
+        "gadgets",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.4,
-      "anchor": "bottom",
+      "relativeScale": 0.45,
+      "anchor": "center",
       "alpha": true,
-      "aspect": 1.26,
-      "bodyHue": 205,
-      "srcW": 282,
-      "srcH": 223,
+      "aspect": 1.46,
+      "srcW": 307,
+      "srcH": 210,
+      "pack": "tech"
+    },
+    "tech-monitor": {
+      "file": "tech-monitor.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.46,
+      "srcW": 284,
+      "srcH": 194,
+      "pack": "tech"
+    },
+    "tech-mouse": {
+      "file": "tech-mouse.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.64,
+      "srcW": 145,
+      "srcH": 226,
       "pack": "tech"
     },
     "tech-power-bank": {
@@ -27215,17 +27419,16 @@
       "role": "object",
       "tags": [
         "tech",
-        "power",
-        "bank",
-        "dock"
+        "gadgets",
+        "dock",
+        "build"
       ],
       "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.4,
-      "bodyHue": 215,
-      "srcW": 278,
-      "srcH": 199,
+      "aspect": 0.92,
+      "srcW": 201,
+      "srcH": 219,
       "pack": "tech"
     },
     "tech-printer": {
@@ -27233,16 +27436,101 @@
       "role": "object",
       "tags": [
         "tech",
-        "printer",
-        "dock"
+        "gadgets",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.35,
-      "anchor": "bottom",
+      "relativeScale": 0.45,
+      "anchor": "center",
       "alpha": true,
-      "aspect": 1.14,
-      "bodyHue": 215,
-      "srcW": 260,
-      "srcH": 229,
+      "aspect": 1.37,
+      "srcW": 287,
+      "srcH": 210,
+      "pack": "tech"
+    },
+    "tech-projector": {
+      "file": "tech-projector.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 2.2,
+      "srcW": 282,
+      "srcH": 128,
+      "pack": "tech"
+    },
+    "tech-router": {
+      "file": "tech-router.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.47,
+      "srcW": 286,
+      "srcH": 194,
+      "pack": "tech"
+    },
+    "tech-smart-speaker": {
+      "file": "tech-smart-speaker.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.82,
+      "srcW": 181,
+      "srcH": 222,
+      "pack": "tech"
+    },
+    "tech-smartphone": {
+      "file": "tech-smartphone.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.52,
+      "srcW": 128,
+      "srcH": 248,
+      "pack": "tech"
+    },
+    "tech-smartwatch": {
+      "file": "tech-smartwatch.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.6,
+      "srcW": 143,
+      "srcH": 240,
       "pack": "tech"
     },
     "tech-tablet": {
@@ -27250,16 +27538,33 @@
       "role": "object",
       "tags": [
         "tech",
-        "tablet",
-        "dock"
+        "gadgets",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.3,
+      "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 0.82,
-      "bodyHue": 255,
-      "srcW": 215,
-      "srcH": 261,
+      "aspect": 0.73,
+      "srcW": 184,
+      "srcH": 253,
+      "pack": "tech"
+    },
+    "tech-television": {
+      "file": "tech-television.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.45,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 1.55,
+      "srcW": 320,
+      "srcH": 207,
       "pack": "tech"
     },
     "tech-usb-cable": {
@@ -27284,17 +27589,33 @@
       "role": "object",
       "tags": [
         "tech",
-        "vr",
-        "headset",
-        "dock"
+        "gadgets",
+        "dock",
+        "build"
       ],
-      "relativeScale": 0.3,
+      "relativeScale": 0.25,
       "anchor": "center",
       "alpha": true,
-      "aspect": 1.38,
-      "bodyHue": 225,
+      "aspect": 1.52,
       "srcW": 278,
-      "srcH": 201,
+      "srcH": 183,
+      "pack": "tech"
+    },
+    "tech-wall-charger": {
+      "file": "tech-wall-charger.png",
+      "role": "object",
+      "tags": [
+        "tech",
+        "gadgets",
+        "dock",
+        "build"
+      ],
+      "relativeScale": 0.25,
+      "anchor": "center",
+      "alpha": true,
+      "aspect": 0.58,
+      "srcW": 136,
+      "srcH": 236,
       "pack": "tech"
     },
     "tech-webcam": {
@@ -27302,16 +27623,16 @@
       "role": "object",
       "tags": [
         "tech",
-        "webcam",
-        "dock"
+        "gadgets",
+        "dock",
+        "build"
       ],
       "relativeScale": 0.25,
-      "anchor": "bottom",
+      "anchor": "center",
       "alpha": true,
-      "aspect": 0.77,
-      "bodyHue": 255,
-      "srcW": 215,
-      "srcH": 278,
+      "aspect": 0.79,
+      "srcW": 165,
+      "srcH": 210,
       "pack": "tech"
     },
     "telescope": {
