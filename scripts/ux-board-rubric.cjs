@@ -147,7 +147,8 @@ const SOFT = {
   // Accurate vocab images
   S15: 'Dock / match pictures clearly match the vocab word meaning',
   S9: 'No html2canvas checkerboard behind icons',
-  S60: 'Story side art is caption-only when no vetted prop — never fake 📖 book glyph (M11)',
+  // S72 — do not reuse S60 (second-conditional model, feelings-compass)
+  S72: 'Story side art is caption-only when no vetted prop — never fake 📖 book glyph (M11)',
 
   // Background variability + appropriateness
   S2: 'Drill pages use calm washes under card chrome — not write-on boards (chalk/cork/whiteboard)',
@@ -224,7 +225,7 @@ const SOFT = {
 const TIER_ORDER = ['honesty', 'readable', 'navigable', 'variety', 'charm'];
 
 const TIERS = {
-  honesty: ['H5', 'H1', 'S15', 'S8', 'M7', 'S19', 'S20', 'S26', 'S30', 'S31', 'S37', 'S51', 'S52', 'S57', 'S58', 'S59', 'S60', 'S63', 'S67', 'S69', 'S70', 'S71'],
+  honesty: ['H5', 'H1', 'H10', 'S15', 'S8', 'M7', 'S19', 'S20', 'S26', 'S30', 'S31', 'S37', 'S51', 'S52', 'S57', 'S58', 'S59', 'S60', 'S63', 'S67', 'S69', 'S70', 'S71', 'S72'],
   readable: ['H4', 'S1', 'S5', 'S11', 'S13', 'S9', 'M1', 'M2', 'M6', 'S35', 'S50', 'S55', 'S56', 'S62'],
   navigable: ['H3', 'H6', 'S4', 'S10', 'S14', 'M3', 'M8', 'S21', 'S23', 'S25', 'S27', 'S28', 'S29', 'S33', 'S54', 'S61', 'S64', 'S65', 'S66'],
   variety: ['H2', 'S2', 'S3', 'S6', 'S18', 'M5', 'S32', 'S34'],
@@ -235,7 +236,7 @@ const TIERS = {
 const PILLARS = {
   readable: ['S1', 'S5', 'S11', 'S13', 'M1', 'M2', 'M6'],
   navigable: ['S4', 'S10', 'S14', 'M3', 'M8', 'H3'],
-  accurateVocabArt: ['S15', 'S9', 'M7', 'H5'],
+  accurateVocabArt: ['S15', 'S9', 'M7', 'H5', 'H10', 'S72'],
   backgroundVariability: ['S2', 'S6', 'S18', 'M5', 'H2'],
   appropriateBackgrounds: ['S3', 'S8', 'H1'],
   funCharming: ['S7', 'S12', 'S16', 'S17', 'M4'],

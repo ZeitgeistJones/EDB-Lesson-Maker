@@ -65,6 +65,7 @@
       throw new Error('Board libraries failed to load. Refresh and try again.');
     }
     if (window.PropBank) await window.PropBank.ready();
+    if (window.VocabIcons && window.VocabIcons.ready) await window.VocabIcons.ready();
     const artCtx = {
       lesson,
       seed: (lesson && lesson.title) || '',

@@ -527,6 +527,7 @@ async function downloadEDB() {
     }
     const meta = lessonMeta();
     if (window.PropBank) await window.PropBank.ready();
+    if (window.VocabIcons && window.VocabIcons.ready) await window.VocabIcons.ready();
     const boardPlan = window.EdbActivities.buildBoardPlan(d, meta);
     await window.LessonPages.attachBgPicks(d, meta, boardPlan);
     const rendered = await window.LessonPages.render(d, meta, boardPlan);
