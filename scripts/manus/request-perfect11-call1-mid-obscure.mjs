@@ -1,6 +1,11 @@
 /**
- * Perfect 11-sheet run — CALL 1 ONLY (5 mid-obscure 4×8 sheets).
+ * Perfect 11-sheet run — CALL 1 ONLY (5 mid-obscure sheets).
  * One theme per sheet. quality: default. Do NOT re-run; do NOT fire call 2/3 here.
+ *
+ * DELIVERY NOTE (2026-08-09): Manus ignored portrait 4×8 black-field brief.
+ * Delivered 2048×2048 square 6×6 (36 cells). Only circus + post-office were
+ * true black-field; carnival/library/airport were white-field with labels.
+ * Call 2 brief must harden: portrait 4×8 ONLY, #000 field, ZERO text on tiles.
  *
  * Plan (dino probe already imported = sheet 1 of 11 supply):
  *   Done: dinosaurs

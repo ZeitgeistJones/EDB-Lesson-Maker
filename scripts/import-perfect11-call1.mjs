@@ -1,5 +1,8 @@
 /**
- * Stage + merge Perfect11 Call 1 sheets (5 × 4×8 / import --grid=8x4).
+ * Stage + merge Perfect11 Call 1 black-field sheets (2 × 6×6 / import --grid=6x6).
+ * Manus delivered 2048×2048 square 6×6 grids, not portrait 4×8.
+ * Skips carnival / library / airport (white-field + labels).
+ *
  *   node scripts/import-perfect11-call1.mjs
  */
 import fs from 'fs';
@@ -12,7 +15,11 @@ const NAMES = JSON.parse(
   fs.readFileSync(path.join(ROOT, 'scripts/fixtures/perfect11-call1-names.json'), 'utf8'),
 );
 
-const SHEETS = [
+const GRID = '6x6';
+const EXPECTED_CELLS = 36;
+
+/** Black-field sheets only — import-safe. */
+const IMPORT_SHEETS = [
   {
     file: '01-esl_sheet_1_circus.png',
     pack: 'circus',
@@ -20,34 +27,35 @@ const SHEETS = [
     namesKey: 'circus',
   },
   {
-    file: '02-esl_sheet_2_carnival.png',
-    pack: 'carnival',
-    prefix: 'carnival-',
-    namesKey: 'carnival',
-  },
-  {
-    file: '03-esl_sheet_3_library.png',
-    pack: 'library',
-    prefix: 'lib-',
-    namesKey: 'library',
-  },
-  {
     file: '04-esl_sheet_4_post_office.png',
     pack: 'post-office',
     prefix: 'post-',
     namesKey: 'post-office',
   },
+];
+
+/** White-field / labeled sheets — log skip, do not import. */
+const BLOCKED_SHEETS = [
+  {
+    file: '02-esl_sheet_2_carnival.png',
+    pack: 'carnival',
+    namesKey: 'carnival',
+  },
+  {
+    file: '03-esl_sheet_3_library.png',
+    pack: 'library',
+    namesKey: 'library',
+  },
   {
     file: '05-esl_sheet_5_airport.png',
     pack: 'airport',
-    prefix: 'air-',
     namesKey: 'airport',
   },
 ];
 
 const SRC_DIR = path.join(ROOT, 'tmp', 'manus-perfect11-call1');
 const STAGE_ROOT = path.join(ROOT, 'tmp', 'manus-import-perfect11-call1');
-const summary = [];
+const summary = { imported: [], blocked: [], errors: [] };
 
 function run(cmd, args) {
   const r = spawnSync(cmd, args, {
@@ -62,21 +70,45 @@ function run(cmd, args) {
   return r;
 }
 
-for (const sheet of SHEETS) {
+function blockedReason(namesKey) {
+  const entry = NAMES[namesKey];
+  if (entry && typeof entry === 'object' && entry.blocked) return entry.reason;
+  return 'white-field / labeled sheet — not black-field cutout-safe';
+}
+
+for (const sheet of BLOCKED_SHEETS) {
   const src = path.join(SRC_DIR, sheet.file);
-  if (!fs.existsSync(src)) throw new Error(`missing ${src}`);
+  const reason = blockedReason(sheet.namesKey);
+  const exists = fs.existsSync(src);
+  console.error(`\n=== SKIP ${sheet.pack} ===`);
+  console.error(`  file: ${sheet.file}`);
+  console.error(`  reason: ${reason}`);
+  summary.blocked.push({
+    pack: sheet.pack,
+    file: sheet.file,
+    reason,
+    sourceExists: exists,
+  });
+}
+
+for (const sheet of IMPORT_SHEETS) {
+  const src = path.join(SRC_DIR, sheet.file);
+  if (!fs.existsSync(src)) {
+    summary.errors.push({ pack: sheet.pack, error: `missing ${src}` });
+    throw new Error(`missing ${src}`);
+  }
   const names = NAMES[sheet.namesKey];
-  if (!names || names.length !== 32) {
-    throw new Error(`${sheet.namesKey} needs 32 names, got ${names && names.length}`);
+  if (!Array.isArray(names) || names.length !== EXPECTED_CELLS) {
+    throw new Error(`${sheet.namesKey} needs ${EXPECTED_CELLS} names, got ${names && names.length}`);
   }
   const stage = path.join(STAGE_ROOT, sheet.pack);
   fs.mkdirSync(stage, { recursive: true });
 
-  console.error(`\n=== STAGE ${sheet.pack} ===`);
+  console.error(`\n=== STAGE ${sheet.pack} (${GRID}) ===`);
   const imp = run(process.execPath, [
     path.join(ROOT, 'scripts/import-sheet.mjs'),
     src,
-    '--grid=8x4',
+    `--grid=${GRID}`,
     `--prefix=${sheet.prefix}`,
     `--names=${names.join(',')}`,
     '--roles=object',
@@ -95,17 +127,27 @@ for (const sheet of SHEETS) {
   if (!rowsFile) throw new Error(`no rows.json for ${sheet.pack}`);
 
   const rows = JSON.parse(fs.readFileSync(rowsFile, 'utf8'));
-  const mergeReady = rows.filter((e) => e.row && e.stagedPath && !e.blocked);
-  const hardBlocked = rows.filter((e) => e.blocked || (e.dedup === 'skip' && !e.row));
-  const dedupSkip = rows.filter((e) => e.dedup === 'skip');
-  const soft = rows.filter((e) => e.forced && e.row && !e.blocked);
 
-  // Cull obvious junk: hard-blocked already excluded; mark soft C1-like failures if any
-  // Also skip cells that failed C1/C6/C7 (blocked flag)
+  // Cull obvious junk: dup slugs, hard-blocked gate failures
+  const CULL_KEYS = new Set([
+    `${sheet.prefix}star-wand-dup`.replace(/-$/, '-'),
+    `${sheet.prefix}clipboard-empty`.replace(/-$/, '-'),
+  ]);
   for (const e of rows) {
     if (e.blocked) e.skip = true;
+    if (CULL_KEYS.has(e.key)) {
+      e.skip = true;
+      e.culled = true;
+      e.cullReason = 'duplicate tile on sheet';
+    }
   }
   fs.writeFileSync(rowsFile, JSON.stringify(rows, null, 2));
+
+  const mergeReady = rows.filter((e) => e.row && e.stagedPath && !e.blocked && !e.skip);
+  const hardBlocked = rows.filter((e) => e.blocked || (e.dedup === 'skip' && !e.row));
+  const dedupSkip = rows.filter((e) => e.dedup === 'skip');
+  const culled = rows.filter((e) => e.skip && !e.blocked);
+  const soft = rows.filter((e) => e.forced && e.row && !e.blocked && !e.skip);
 
   console.error(`\n=== MERGE ${sheet.pack} (${mergeReady.length} ready) ===`);
   const merge = run('node', [
@@ -113,13 +155,15 @@ for (const sheet of SHEETS) {
     path.relative(ROOT, rowsFile).replace(/\\/g, '/'),
   ]);
 
-  summary.push({
+  summary.imported.push({
     pack: sheet.pack,
     file: sheet.file,
+    grid: GRID,
     staged: rows.length,
     mergeReady: mergeReady.length,
     softForced: soft.length,
     hardBlocked: hardBlocked.length,
+    culled: culled.length,
     dedupSkip: dedupSkip.length,
     importExit: imp.status,
     mergeExit: merge.status,
