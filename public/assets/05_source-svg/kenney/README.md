@@ -7,7 +7,7 @@ See `tmp/asset-banks/kenney/INDEX.md` for pack list, ESL topic junctions, curate
 
 **Curate dock-ready singles:** `node scripts/kenney-curate.mjs`  
 **Merge into PropBank:** `node scripts/kenney-import.mjs` (keys `kenney-*`, `styleFamily=kenney-flat`)  
-**Live bank:** zoo animals, aquarium fish/seaweed, planets, simple-space ships/meteors, foliage — see `tmp/asset-banks/kenney/PROVENANCE.json`.
+**Live bank:** remastered zoo animals, aquarium fish/seaweed, planets, simple-space ships/meteors, foliage billboards + foliage-pack trees, board-game object icons (`kenney-bg-*`), dominoes — see `tmp/asset-banks/kenney/PROVENANCE.json`.
 
 **Official site:** https://kenney.nl/assets  
 

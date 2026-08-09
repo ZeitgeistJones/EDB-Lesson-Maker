@@ -20,14 +20,21 @@ const SKIP_NAME = /^(preview|sample|spritesheet|tilesheet|round|square|default|d
 const SKIP_PATH = /spritesheet|tilesheet|preview|sample/i;
 
 const SOURCES = {
-  'zoo-animals': path.join(BANK, 'by-pack', 'animal-pack', 'PNG', 'Round'),
+  // Remastered Round (~128–180px) supersedes original animal-pack Round.
+  'zoo-animals': path.join(BANK, 'by-pack', 'animal-pack-remastered', 'PNG', 'Round'),
   // Default is 64px; Double is 128px (clears MIN_DOCK_SRC).
   'aquarium-fish': path.join(BANK, 'by-pack', 'fish-pack', 'PNG', 'Double'),
   // Finished planet discs only — Parts/ is noise/light assembly textures.
   'space-planets': path.join(BANK, 'by-pack', 'planets', 'Planets'),
   'space-simple': path.join(BANK, 'by-pack', 'simple-space', 'PNG', 'Retina'),
   'nature-foliage': path.join(BANK, 'by-pack', 'foliage-sprites', 'PNG'),
+  // Foliage Pack Retina trees/bushes (separate from foliage-sprites billboards).
+  'nature-foliage-pack': path.join(BANK, 'by-pack', 'foliage-pack', 'PNG', 'Retina'),
   'sports-gym': path.join(BANK, 'by-pack', 'sports-pack', 'PNG', 'Blue'),
+  // Board-game object icons at 128px (Double). UI arrows culled at import.
+  'board-icons': path.join(BANK, 'by-pack', 'board-game-icons', 'PNG', 'Double (128px)'),
+  // Domino faces — one color set (Dark); ESL game props.
+  'games-domino': path.join(BANK, 'by-pack', 'domino-pack', 'PNG', 'Dark'),
 };
 
 function arg(name, fallback) {

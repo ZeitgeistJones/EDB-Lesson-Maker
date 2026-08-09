@@ -352,6 +352,30 @@
     'broken-pottery': 'gicon-broken-pottery',
     'sewing-needle': 'gicon-sewing-needle', // else sew-needle
     pottery: 'gicon-pottery', // NULL bare; not broken-pottery amphora
+    // Shift30-A — unique kenney remaster / board-icon shelves (empty > wrong).
+    narwhal: 'kenney-narwhal',
+    sloth: 'kenney-sloth',
+    walrus: 'kenney-walrus',
+    buffalo: 'kenney-buffalo',
+    moose: 'kenney-moose',
+    gorilla: 'kenney-gorilla',
+    chick: 'kenney-chick',
+    pouch: 'kenney-bg-pouch',
+    award: 'kenney-bg-award',
+    notepad: 'kenney-bg-notepad',
+    dice: 'kenney-bg-dice',
+    d6: 'kenney-bg-d6',
+    d20: 'kenney-bg-d20',
+    bishop: 'kenney-bg-chess-bishop',
+    rook: 'kenney-bg-chess-rook',
+    wheat: 'kenney-bg-resource-wheat',
+    lumber: 'kenney-bg-resource-lumber',
+    planks: 'kenney-bg-resource-planks',
+    watchtower: 'kenney-bg-structure-watchtower',
+    spinner: 'kenney-bg-spinner',
+    domino: 'kenney-domino-6-6',
+    lock: 'kenney-bg-lock-closed',
+    dollar: 'kenney-bg-dollar', // else aquarium-sand-dollar
   };
 
   /**

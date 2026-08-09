@@ -11,14 +11,19 @@
     "import": "npm run assets:kenney-import"
   },
   "packsImported": [
-    { "id": "animal-pack", "page": "https://kenney.nl/assets/animal-pack", "topic": "zoo-animals" },
+    { "id": "animal-pack-remastered", "page": "https://kenney.nl/assets/animal-pack-remastered", "topic": "zoo-animals" },
     { "id": "fish-pack", "page": "https://kenney.nl/assets/fish-pack", "topic": "aquarium-fish" },
     { "id": "planets", "page": "https://kenney.nl/assets/planets", "topic": "space-planets" },
     { "id": "simple-space", "page": "https://kenney.nl/assets/simple-space", "topic": "space-simple" },
-    { "id": "foliage-sprites", "page": "https://kenney.nl/assets/foliage-sprites", "topic": "nature-foliage" }
+    { "id": "foliage-sprites", "page": "https://kenney.nl/assets/foliage-sprites", "topic": "nature-foliage" },
+    { "id": "foliage-pack", "page": "https://kenney.nl/assets/foliage-pack", "topic": "nature-foliage-pack" },
+    { "id": "board-game-icons", "page": "https://kenney.nl/assets/board-game-icons", "topic": "board-icons" },
+    { "id": "domino-pack", "page": "https://kenney.nl/assets/domino-pack", "topic": "games-domino" }
   ],
   "packsSkipped": [
-    { "id": "sports-pack", "page": "https://kenney.nl/assets/sports-pack", "reason": "Blue sprites ~21px — below dock min" }
+    { "id": "sports-pack", "page": "https://kenney.nl/assets/sports-pack", "reason": "Blue sprites ~21px — below dock min" },
+    { "id": "generic-items", "page": "https://kenney.nl/assets/generic-items", "reason": "Most PNG short-side <120" },
+    { "id": "racing-pack", "page": "https://kenney.nl/assets/racing-pack", "reason": "Cars ~71px wide under dock min" }
   ],
   "importedAt": "2026-08-09"
 }

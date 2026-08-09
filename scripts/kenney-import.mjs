@@ -132,6 +132,84 @@ const TOPICS = {
       return `kenney-${stem}`;
     },
   },
+  'nature-foliage-pack': {
+    pack: 'nature',
+    tags: ['nature', 'foliage', 'tree', 'plant', 'kenney'],
+    relativeScale: 0.55,
+    anchor: 'bottom',
+    keep(stem) {
+      // Retina singles: foliagePack_NNN — skip leaves/ tilesheets via walk filters.
+      return /^foliagepack-\d+$/.test(stem);
+    },
+    key(stem) {
+      const m = stem.match(/^foliagepack-(\d+)$/);
+      return m ? `kenney-tree-${m[1]}` : `kenney-${stem}`;
+    },
+  },
+  'board-icons': {
+    pack: 'games',
+    tags: ['games', 'boardgame', 'kenney'],
+    relativeScale: 0.22,
+    anchor: 'center',
+    keep(stem) {
+      // Object nouns only — no UI arrows/hands/card-actions/people/chrome.
+      const exact = new Set([
+        'award',
+        'bow',
+        'campfire',
+        'dice',
+        'dice-1',
+        'dice-2',
+        'dice-3',
+        'dice-4',
+        'dice-5',
+        'dice-6',
+        'dollar',
+        'fire',
+        'hourglass',
+        'notepad',
+        'pouch',
+        'puzzle',
+        'shield',
+        'spinner',
+        'd6',
+        'd20',
+      ]);
+      if (exact.has(stem)) return true;
+      if (/^book-(closed|open)$/.test(stem)) return true;
+      if (/^chess-(bishop|king|knight|pawn|queen|rook)$/.test(stem)) return true;
+      if (/^crown-[ab]$/.test(stem)) return true;
+      if (/^flag-(square|triangle)$/.test(stem)) return true;
+      if (/^flask-(empty|full|half)$/.test(stem)) return true;
+      if (/^lock-(closed|open)$/.test(stem)) return true;
+      if (/^resource-(apple|iron|lumber|planks|wheat|wood)$/.test(stem)) return true;
+      if (/^structure-(church|farm|gate|house|tower|wall|watchtower)$/.test(stem)) return true;
+      if (/^suit-(clubs|diamonds|hearts|spades)$/.test(stem)) return true;
+      return false;
+    },
+    key(stem) {
+      return `kenney-bg-${stem}`;
+    },
+    scaleFor(stem) {
+      if (/^structure-/.test(stem)) return 0.35;
+      if (/^chess-/.test(stem)) return 0.2;
+      if (/^resource-/.test(stem)) return 0.2;
+      return 0.22;
+    },
+  },
+  'games-domino': {
+    pack: 'games',
+    tags: ['games', 'domino', 'kenney'],
+    relativeScale: 0.28,
+    anchor: 'center',
+    keep(stem) {
+      return /^tile-\d+-\d+$/.test(stem);
+    },
+    key(stem) {
+      const m = stem.match(/^tile-(\d+)-(\d+)$/);
+      return m ? `kenney-domino-${m[1]}-${m[2]}` : `kenney-${stem}`;
+    },
+  },
 };
 
 function writeManifest(manifest) {

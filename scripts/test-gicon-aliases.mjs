@@ -1,5 +1,5 @@
 /**
- * Verify Shift30 Track B gicon alias targets exist in manifest.
+ * Verify Shift30 alias targets (gicon-* and kenney-*) exist in manifest.
  *   node scripts/test-gicon-aliases.mjs
  */
 import fs from 'node:fs';
@@ -14,12 +14,14 @@ const policy = JSON.parse(
   fs.readFileSync(path.join(ROOT, 'public/lib/propPolicy.json'), 'utf8')
 );
 
-const GICON_ALIASES = Object.fromEntries(
-  Object.entries(policy.aliases).filter(([, v]) => String(v).startsWith('gicon-'))
+const SHELF_ALIASES = Object.fromEntries(
+  Object.entries(policy.aliases).filter(
+    ([, v]) => String(v).startsWith('gicon-') || String(v).startsWith('kenney-')
+  )
 );
 
 let fail = false;
-for (const [word, key] of Object.entries(GICON_ALIASES)) {
+for (const [word, key] of Object.entries(SHELF_ALIASES)) {
   const ok = !!(manifest.props && manifest.props[key]);
   if (!ok) {
     console.error(`MISSING manifest key: ${word} → ${key}`);
@@ -30,4 +32,4 @@ for (const [word, key] of Object.entries(GICON_ALIASES)) {
 }
 
 if (fail) process.exit(1);
-console.log(`\n${Object.keys(GICON_ALIASES).length} gicon alias targets verified.`);
+console.log(`\n${Object.keys(SHELF_ALIASES).length} gicon/kenney alias targets verified.`);
