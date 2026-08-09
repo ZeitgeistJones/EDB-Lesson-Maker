@@ -89,8 +89,8 @@ const PHASE2_EXPECT = [
   { topic: 'family', word: 'grandfather', picked: null },
   { topic: 'hearing', word: 'ear', picked: null },
   { topic: 'kitchen', word: 'coffee', picked: 'cafe-coffee-cup' },
-  // Exact key "table" is honest; coffee-table must not answer "coffee" (head-noun).
-  { topic: 'kitchen', word: 'coffee', picked: 'cafe-coffee-cup' },
+  // Exact key "table" is honest identity; compound coffee-table is head-"table" only.
+  { topic: 'kitchen', word: 'table', picked: 'table' },
 ];
 
 const lines = [];
