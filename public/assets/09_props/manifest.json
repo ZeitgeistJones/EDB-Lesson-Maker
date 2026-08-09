@@ -4743,7 +4743,9 @@
         "bathroom",
         "toiletries",
         "dock",
-        "build"
+        "build",
+        "shower",
+        "shower-head"
       ],
       "relativeScale": 0.45,
       "anchor": "center",

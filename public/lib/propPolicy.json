@@ -101,6 +101,9 @@
     "grape": "food-grapes",
     "grapes": "food-grapes",
     "stadium": "city-stadium",
-    "coffee": "cafe-coffee-cup"
+    "coffee": "cafe-coffee-cup",
+    "shower": "bath-shower-head",
+    "shower head": "bath-shower-head",
+    "straw": "drink-straw"
   }
 }
