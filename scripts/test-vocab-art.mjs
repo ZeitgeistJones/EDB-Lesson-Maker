@@ -156,9 +156,40 @@ async function main() {
   assert(failBox.window.VocabIcons.indexReady(), 'case3: same-instance retry warms index');
   assert(!failBox.window.VocabIcons.loadError(), 'case3: loadError cleared after retry');
 
-  console.log('OK vocab-art cases 1,3,4,6,7', {
+  // Case: jobs coach is glyph (cap), never Gemini teacher emoji as matchable artSrc
+  const jobs = {
+    title: 'Community Helpers',
+    vocabulary: [
+      { word: 'teacher', emoji: '🧑‍🏫' },
+      { word: 'coach', emoji: '🧑‍🏫' },
+      { word: 'doctor', emoji: '❌' },
+    ],
+  };
+  const artJobs = W.VocabArt.planFor(jobs, { seed: jobs.title });
+  const coachRow = artJobs.rows.find((r) => r.word === 'coach');
+  assert(coachRow && coachRow.matchable, 'jobs: coach matchable');
+  assert(coachRow.tier === 'glyph' || coachRow.tier === 'pack' || coachRow.tier === 'prop', 'jobs: coach vetted tier');
+  assert(coachRow.tier !== 'none', 'jobs: coach not dropped');
+  if (coachRow.tier === 'glyph') {
+    assert(coachRow.glyph === '🧢', 'jobs: coach glyph is cap not teacher');
+  }
+
+  // Dedup: two words cannot claim the same pack src
+  const twin = {
+    title: 'Twin share',
+    vocabulary: [
+      { word: 'soccer', emoji: 'x' },
+      { word: 'football', emoji: 'x' }, // often aliases toward soccer pack
+    ],
+  };
+  const artTwin = W.VocabArt.planFor(twin, { seed: twin.title });
+  const srcs = artTwin.matchable.map((r) => r.artSrc).filter(Boolean);
+  assert(new Set(srcs).size === srcs.length, 'dedupe: unique artSrc among matchable');
+
+  console.log('OK vocab-art cases 1,3,4,6,7 + jobs/coach + dedupe', {
     soccerTier: soccer.tier,
     coachGlyph: glyph,
+    coachTier: coachRow.tier,
     dropped: art7.dropped.map((d) => d.word),
     grandfather: clock ? clock.key : null,
   });
