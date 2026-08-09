@@ -79,6 +79,9 @@ const PHASE2_EXPECT = [
   { topic: 'soccer', word: 'coach', picked: null },
   { topic: 'soccer', word: 'effort', picked: null },
   { topic: 'kitchen', word: 'oven', picked: null },
+  { topic: 'soccer', word: 'ball', picked: 'soccer-ball' },
+  { topic: 'tennis lesson', word: 'ball', picked: 'sport-tennis-ball' },
+  { topic: 'fruit market', word: 'grape', picked: 'food-grapes' },
 ];
 
 const lines = [];
