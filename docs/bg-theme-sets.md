@@ -20,15 +20,21 @@ No API key required for the in-house path.
 
 ## Style lock (paste into every prompt)
 
-> Soft pastel wash background for an ESL lesson slide. Wide panoramic banner
-> (about 3:2). Same flat-vector feel as a children's book endpaper: gentle
-> gradients, muted colours, no harsh outlines. The **centre 70% must stay
+> Soft pastel **wash** background for an ESL lesson slide. Wide panoramic banner
+> (about 3:2). Same flat-vector feel as a children's book **endpaper**: gentle
+> gradients, muted colours, no harsh outlines. The **centre 70%+ must stay
 > empty and low-texture** — soft colour only — so white cards and icons can
-> sit on top. Tiny decorative hints only in the far corners or along the very
-> bottom edge. No people, no faces, no animals, no furniture close-ups, no
-> books, no vases, no windows with props, no text, no letters, no numbers, no
+> sit on top. Motifs are **thumbnail-sized** and only in the far corners or
+> along a thin bottom fringe. No people, no faces, no animals, no furniture,
+> no books, no vases, no windows with props, no text, no letters, no numbers, no
 > logos. Calm, uncluttered, classroom-safe. Each panel in a set must share the
 > **same hue family** and only change value / a small motif.
+>
+> **Anti-room (hard fail):** Do **not** ship a furnished room with an empty
+> wall strip in the middle. No tables/desks/beds/cabinets/shelves/counters as
+> scene layout. Target look = `fire-cool` / pool / police winners: near-empty
+> cream/teal wash + one tiny corner glyph — blank endpaper, not a cleared desk
+> zone. If it looks like a room → reject / say `again`.
 >
 > **Never flesh / skin washes.** Do not use peach-blush or pale rose as a
 > body-part metaphor (face lessons must not look like skin). Prefer **cool
@@ -36,6 +42,13 @@ No API key required for the in-house path.
 > paper, not leafy landscape fringes. Body-part topics use the house deck.
 > **Charm:** tiny corner easter eggs (eyes / tiny faces) only — never mid-frame
 > scenery or hills.
+
+**ChatGPT bulk queue:** paste-ready **MASTER v2** (2026-08-09, `next` /
+`again` / `skip` / `grid 2x2` / `grid 3x3` workflow) lives in the Desktop
+`ChatGPT_Prompt_Queue/prompts.txt` (primary). Default **2×2** (4 quiet flats
+per gen — safest empty-centre). Optional denser grids trade assets/gen for
+smaller cells / higher fail risk. Quiet-ok reference sheets from the Aug 2026
+haul: `tmp/bg-chat-keep/quiet-ok-2026-08-09/`.
 
 ## What a “set” is
 

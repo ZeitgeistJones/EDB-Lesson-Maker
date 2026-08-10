@@ -77,6 +77,7 @@ place** (see motif table in [`docs/bg-theme-sets.md`](../../../docs/bg-theme-set
 - **Identical corner layout** across panels a–d (same corner, same scale, same sticker energy)
 - Mid-frame clutter / busy shop interior / furniture close-ups
 - Motifs that also fit a different place equally well
+- **Furnished room + empty middle strip** (hard fail) — tables/desks/beds/cabinets/shelves as scene layout with a cleared centre for cards. Target = near-empty wash + thumbnail corner glyph (`fire-cool` / pool / police winners). If it reads as a room → reject and regen.
 
 ### Plan gate (before generate)
 
