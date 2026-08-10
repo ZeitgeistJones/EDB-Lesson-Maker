@@ -1,0 +1,44 @@
+{
+  "title": "Construction Site Day",
+  "warmUp": {
+    "question": "What do builders wear?",
+    "sampleAnswer": "They wear a hard hat."
+  },
+  "vocabulary": [
+    { "word": "crane", "emoji": "🏗️", "sentence": "The crane is tall." },
+    { "word": "helmet", "emoji": "⛑️", "sentence": "Wear a hard hat." },
+    { "word": "hammer", "emoji": "🔨", "sentence": "Use the hammer carefully." },
+    { "word": "ladder", "emoji": "🪜", "sentence": "Climb the ladder." },
+    { "word": "cone", "emoji": "🚧", "sentence": "Stay behind the cone." },
+    { "word": "truck", "emoji": "🚚", "sentence": "The dump truck is loud." }
+  ],
+  "sentenceFrames": [
+    "I see a ____.",
+    "Put on your ____.",
+    "Builders use a ____."
+  ],
+  "story": {
+    "title": "At the Site",
+    "pages": [
+      {
+        "heading": "Morning",
+        "text": "Ben wears a hard hat. A big crane lifts steel.",
+        "visualTheme": "construction",
+        "visualCaption": "Construction site"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What does Ben wear?", "sampleAnswer": "A hard hat." }
+    ],
+    "creativeQuestions": []
+  },
+  "speaking": {
+    "prompts": [
+      { "prompt": "What can you build?", "sampleAnswer": "I can build a house." }
+    ]
+  },
+  "activity": {
+    "title": "Build the Site",
+    "prompt": "Drag tools onto the crane stage."
+  }
+}

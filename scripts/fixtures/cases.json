@@ -380,6 +380,17 @@
       "notes": "King-stage probe — cafe-counter-stage hero + ROLEPLAY_DOCK_CAFE"
     },
     {
+      "id": "construction",
+      "fixture": "construction-lesson.json",
+      "tier": "adversarial",
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
+      "expectScene": "construction|building|city|outdoor",
+      "notes": "King-stage probe — construction-tower-crane hero + ROLEPLAY_DOCK_CONSTRUCTION"
+    },
+    {
       "id": "weather",
       "fixture": "weather-lesson.json",
       "tier": "adversarial",

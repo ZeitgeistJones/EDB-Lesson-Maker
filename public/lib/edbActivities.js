@@ -730,6 +730,7 @@
       { re: /\b(cafes?|caf[eé]s?|coffee\s*shops?|bakerys?|bake\s*shops?|restaurants?|diners?)\b/, key: 'cafe-counter-stage' },
       { re: /\b(farms?|barns?|tractors?|scarecrows?|hay\s*bales?)\b/, key: 'farm-barn' },
       { re: /\b(aquariums?|fish\s*tanks?|coral\s*reefs?)\b/, key: 'aquarium-tank' },
+      { re: /\b(construction|building\s*sites?|hard\s*hats?|excavators?|cranes?)\b/, key: 'construction-tower-crane' },
     ];
     for (const rule of STAGE_RULES) {
       if (rule.re.test(blob)) {
@@ -1001,6 +1002,24 @@
     'aquarium-pebble-a',
   ];
 
+  /** Construction site dock — tools kids drag onto the crane stage (not the crane). */
+  const ROLEPLAY_DOCK_CONSTRUCTION = [
+    'construction-hard-hat',
+    'construction-hammer',
+    'construction-traffic-cone',
+    'construction-shovel',
+    'construction-toolbox',
+    'construction-power-drill',
+    'construction-safety-vest',
+    'construction-step-ladder',
+    'construction-wheelbarrow',
+    'construction-blueprint',
+    'construction-hand-saw',
+    'construction-tape-measure',
+    'construction-dump-truck',
+    'construction-safety-goggles',
+  ];
+
   function roleplayDockProps(lesson, hero, count) {
     const PB = window.PropBank;
     if (!PB || !PB.loaded()) return [];
@@ -1079,6 +1098,11 @@
       || /\b(aquariums?|fish\s*tanks?|coral\s*reefs?)\b/.test(blob)
       || (kit && kit.pack === 'aquarium')
     );
+    const construction = !feelings && !face && !dental && !trampoline && !playground && !firehouse && !camping && !bathroom && !cafe && !farm && !aquarium && (
+      /construction-tower-crane|construction-excavator/.test(heroKey)
+      || /\b(construction|building\s*sites?|hard\s*hats?|excavators?|cranes?)\b/.test(blob)
+      || (kit && kit.pack === 'construction')
+    );
     const out = [];
     const exclude = [hero && hero.key].filter(Boolean);
 
@@ -1111,6 +1135,7 @@
     else if (cafe) prefer = ROLEPLAY_DOCK_CAFE;
     else if (farm) prefer = ROLEPLAY_DOCK_FARM;
     else if (aquarium) prefer = ROLEPLAY_DOCK_AQUARIUM;
+    else if (construction) prefer = ROLEPLAY_DOCK_CONSTRUCTION;
     else if (kit && kit.pack === 'castle') prefer = ROLEPLAY_DOCK_CASTLE;
     else if (kit && kit.pack === 'space') prefer = ROLEPLAY_DOCK_SPACE;
     else if (kit && kit.pack === 'music') prefer = ROLEPLAY_DOCK_MUSIC;
@@ -1134,6 +1159,7 @@
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_CAFE && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_FARM && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_AQUARIUM && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
+        if (!face && !feelings && prefer === ROLEPLAY_DOCK_CONSTRUCTION && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         exclude.push(p.key);
         out.push(p);
       }
@@ -1149,7 +1175,8 @@
       && !(playground && kit.pack !== 'playground')
       && !(cafe && kit.pack !== 'cafe')
       && !(farm && kit.pack !== 'farm')
-      && !(aquarium && kit.pack !== 'aquarium')) {
+      && !(aquarium && kit.pack !== 'aquarium')
+      && !(construction && kit.pack !== 'construction')) {
       for (const p of kit.docks) {
         if (out.length >= targetCount) break;
         if (exclude.includes(p.key)) continue;
