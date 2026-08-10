@@ -729,6 +729,7 @@
       // Cafe / farm — pack heroes exist; cues beat identity fallthrough.
       { re: /\b(cafes?|caf[eé]s?|coffee\s*shops?|bakerys?|bake\s*shops?|restaurants?|diners?)\b/, key: 'cafe-counter-stage' },
       { re: /\b(farms?|barns?|tractors?|scarecrows?|hay\s*bales?)\b/, key: 'farm-barn' },
+      { re: /\b(aquariums?|fish\s*tanks?|coral\s*reefs?)\b/, key: 'aquarium-tank' },
     ];
     for (const rule of STAGE_RULES) {
       if (rule.re.test(blob)) {
@@ -982,6 +983,24 @@
     'farm-water-pump',
   ];
 
+  /** Aquarium tank dock — fish/coral/tools kids place in the tank (not the tank hero). */
+  const ROLEPLAY_DOCK_AQUARIUM = [
+    'aquarium-fish-orange-a',
+    'aquarium-fish-blue',
+    'aquarium-fish-yellow',
+    'aquarium-fish-koi',
+    'aquarium-coral-pink',
+    'aquarium-coral-orange',
+    'aquarium-castle',
+    'aquarium-crab-orange',
+    'aquarium-lobster',
+    'aq-air-pump',
+    'aq-thermometer',
+    'aq-gravel-vacuum',
+    'aquarium-plant-seaweed-a',
+    'aquarium-pebble-a',
+  ];
+
   function roleplayDockProps(lesson, hero, count) {
     const PB = window.PropBank;
     if (!PB || !PB.loaded()) return [];
@@ -1055,6 +1074,11 @@
       || /\b(farms?|barns?|tractors?|scarecrows?|hay\s*bales?)\b/.test(blob)
       || (kit && kit.pack === 'farm')
     );
+    const aquarium = !feelings && !face && !dental && !trampoline && !playground && !firehouse && !camping && !bathroom && !cafe && !farm && (
+      /aquarium-tank|aq-tank/.test(heroKey)
+      || /\b(aquariums?|fish\s*tanks?|coral\s*reefs?)\b/.test(blob)
+      || (kit && kit.pack === 'aquarium')
+    );
     const out = [];
     const exclude = [hero && hero.key].filter(Boolean);
 
@@ -1086,6 +1110,7 @@
     else if (bathroom) prefer = ROLEPLAY_DOCK_BATH;
     else if (cafe) prefer = ROLEPLAY_DOCK_CAFE;
     else if (farm) prefer = ROLEPLAY_DOCK_FARM;
+    else if (aquarium) prefer = ROLEPLAY_DOCK_AQUARIUM;
     else if (kit && kit.pack === 'castle') prefer = ROLEPLAY_DOCK_CASTLE;
     else if (kit && kit.pack === 'space') prefer = ROLEPLAY_DOCK_SPACE;
     else if (kit && kit.pack === 'music') prefer = ROLEPLAY_DOCK_MUSIC;
@@ -1108,6 +1133,7 @@
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_BATH && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_CAFE && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_FARM && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
+        if (!face && !feelings && prefer === ROLEPLAY_DOCK_AQUARIUM && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         exclude.push(p.key);
         out.push(p);
       }
@@ -1122,7 +1148,8 @@
       && !(bathroom && kit.pack !== 'bathroom')
       && !(playground && kit.pack !== 'playground')
       && !(cafe && kit.pack !== 'cafe')
-      && !(farm && kit.pack !== 'farm')) {
+      && !(farm && kit.pack !== 'farm')
+      && !(aquarium && kit.pack !== 'aquarium')) {
       for (const p of kit.docks) {
         if (out.length >= targetCount) break;
         if (exclude.includes(p.key)) continue;
