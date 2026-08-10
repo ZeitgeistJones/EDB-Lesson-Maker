@@ -149,23 +149,26 @@
       if (tier === 'none' && PB && typeof PB.loaded === 'function' && PB.loaded()) {
         let prop = null;
         if (skipPackForSportBall) {
-          // Pin canonical soccer-ball (not orange/-vN rotate) for New Words honesty.
+          // Pin canonical soccer-ball. resolve() can rotate to soccer-ball-orange
+          // via SceneBackgrounds.rotate in browser bakes; orange fails headNounOk
+          // for word "ball" and the New Words pad disappears.
           prop = typeof PB.get === 'function' ? PB.get('soccer-ball') : null;
+          if (prop && family && prop.family && prop.family !== family) prop = null;
           if (!prop || !prop.path || usedSrc.has(prop.path)) {
             prop = PB.resolve({
               word: 'soccer-ball',
               family,
               seed,
-              exclude: exclude.slice(),
+              exclude: exclude.concat(['soccer-ball-orange']),
               minScore,
             });
           }
-          if (!prop || !prop.path || usedSrc.has(prop.path)) {
+          if (!prop || !prop.path || usedSrc.has(prop.path) || !headNounOk(word, prop)) {
             prop = PB.resolve({
               word,
               family,
               seed,
-              exclude: exclude.slice(),
+              exclude: exclude.concat(['soccer-ball-orange']),
               minScore,
             });
           }
