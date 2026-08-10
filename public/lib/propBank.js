@@ -1189,6 +1189,8 @@
     'station', 'park', 'shop', 'store', 'house', 'room', 'center', 'centre',
     'office', 'hall', 'building',
     'animal', 'animals',
+    // Bare vocab "music" must not let classical/orchestra kits steal school-clubs lessons.
+    'music',
   ]);
 
   /** Theme tokens from title + vocab + activity — used by kit + readiness. */

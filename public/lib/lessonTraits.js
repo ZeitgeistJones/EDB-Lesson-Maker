@@ -33,7 +33,10 @@
     hospital: /\b(doctor|clinic|hospital|nurse|medical|checkup|diagnosis|symptoms?|prescription|appointment|fever|sick)\b/,
     castle: /\b(castle|knight|dragon|royal|fortress|portcullis)\b/,
     trampoline: /\b(trampoline|bounce|backflip)\b/,
-    music: /\b(music|compose|composer|orchestra|symphony|concert|classical|melody|harmony|piano|violin)\b/,
+    // Performance music only — bare "music" as a school-club vocab word must not
+    // unlock the orchestra king (clubs regen → piano + musicians on a gym).
+    music: /\b(compose|composer|orchestra|symphony|concert|classical|melody|harmony|piano|violin)\b/,
+    clubs: /\b(club|clubs|hobby|hobbies|booth|fair)\b/,
     beach: /\b(beach|shore|seaside|sandcastle|ocean|seashell)\b/,
   };
 
@@ -73,6 +76,10 @@
   function isMusicTitle(lesson) {
     const topic = (lesson && lesson.title) || '';
     const topicBlob = [topic, ...vocabWords(lesson)].join(' ');
+    // School clubs with a "music" vocab card are not classical title lessons.
+    if (RE.clubs.test(topicBlob) && !/\b(orchestra|symphony|concert|compose|classical|piano|violin)\b/i.test(topicBlob)) {
+      return false;
+    }
     return !!(
       window.SceneBackgrounds &&
       window.SceneBackgrounds.moodsFor &&
@@ -101,7 +108,9 @@
     if (opts && opts.feelingsKing) return 'feelings';
     if (opts && opts.faceKing) return 'face';
     const c = String(cue || '');
+    const clubsTopic = RE.clubs.test(c.toLowerCase());
     for (const rule of KING_TYPE_RULES) {
+      if (clubsTopic && rule.type === 'music') continue;
       if (rule.re.test(c)) return rule.type;
     }
     return 'default';
