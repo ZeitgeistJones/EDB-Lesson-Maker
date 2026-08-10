@@ -1844,7 +1844,7 @@
           // used to paint over Q2 (clubs PDF "Sample answer" overlap).
           const sticky = p.lastChild;
           sticky.appendChild(el('div', {
-            fontSize: '16px',
+            fontSize: '20px',
             fontWeight: '700',
             color: '#166534',
             lineHeight: '1.2',
