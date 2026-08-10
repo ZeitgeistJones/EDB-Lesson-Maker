@@ -96,7 +96,7 @@ Anti-formula section.
 | `clinic-cool` | tooth outline, soft sparkle, pale alcove edge, exam-lamp glow | grass, hills, nature landscapes |
 | `travel-air` | paper plane, map-pin trail, soft cloud corner | beach shells, bakery tools, farm wheat |
 | `home-warm` | curtain fold, soft arch shadow, peach hill band at edge | outdoor meadow, clinic teal wall |
-| `outdoor-fresh` | grass fringe, leaf corner, soft sun | indoor shelves, dough, tooth icons |
+| `outdoor-fresh` | grass fringe, picnic blanket corner, zoo gate/rail watermark, tent + lantern | generic leaf/sun stickers only, identical hill formula, indoor shelves, dough, tooth icons |
 | `gym-cool` | basketball corner, court lane fringe, rolled mat, wall-pad edge | outdoor meadow, clinic tooth, bakery dough |
 | `beach-warm` | shell, wave fringe, sand dollar, sun corner | wheat, bakery loaf, clinic sparkles |
 | `bakery-warm` | flour-dust haze, dough ball, loaf / baguette, rolling pin, whisk | **wheat sheaf / farm grain**, generic leaves, beach composition copy |
@@ -219,13 +219,17 @@ arch shadow at the edge only.
 > home palette. Empty centre. No sofas, no lamps, no window plants in the
 > middle band.
 
-### 4. `outdoor-fresh` — park / zoo (when scene is not the hero)
-Palette: soft green + sky. Corner motifs: faint grass fringe at bottom, soft
-leaf corner. **Not** indoor gym — that is `gym-cool`.
+### 4. `outdoor-fresh` — park / zoo / camp (when scene is not the hero)
+Palette: soft sage + pale sky + cream haze. Place-true corner motifs (pick
+**different** ones per panel — do not recycle leaf/sun stickers): thin grass
+fringe (almost-plain `-a`), picnic blanket corner (park), zoo gate / enclosure
+rail watermark, tiny tent + lantern (camp). **Not** indoor gym — that is
+`gym-cool`. **Not** playground structures — that is `playground-fresh`.
 
 > [style lock] Generate a 2×2 grid of quiet ESL slide backgrounds. Shared
-> outdoor palette (sage, sky, soft sun). Empty centre. Not a playground photo;
-> not a full zoo habitat.
+> outdoor palette (sage, sky, cream). Empty centre. Distinct park / zoo / camp
+> corner glyphs — not a playground photo; not a full zoo habitat; no formula
+> leaf-only stickers.
 
 ### 4b. `gym-cool` — gym / sport / workout
 Palette: pale blue-grey indoor wall + soft teal. Corner motifs: basketball,

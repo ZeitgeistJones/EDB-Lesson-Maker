@@ -1258,7 +1258,7 @@
   },
   "outdoor-a": {
    "file": "flat_outdoor-a.png",
-   "tone": "outdoor fresh wash — soft hills + sun",
+   "tone": "outdoor fresh wash — almost-plain sage sky + thin grass fringe",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1267,7 +1267,7 @@
   },
   "outdoor-b": {
    "file": "flat_outdoor-b.png",
-   "tone": "outdoor fresh wash — hanging leaf corner",
+   "tone": "outdoor fresh wash — picnic blanket corner (park)",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1276,7 +1276,7 @@
   },
   "outdoor-c": {
    "file": "flat_outdoor-c.png",
-   "tone": "outdoor fresh wash — corner flowers",
+   "tone": "outdoor fresh wash — soft zoo gate watermark",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1285,7 +1285,7 @@
   },
   "outdoor-d": {
    "file": "flat_outdoor-d.png",
-   "tone": "outdoor fresh wash — soft cloud + flowers",
+   "tone": "outdoor fresh wash — tiny tent + lantern (camp)",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
