@@ -95,9 +95,69 @@ assert(partialHint === fullHint, 'student hint identical whether partial or full
 assert(/Drag each picture/i.test(fullHint), 'student hint keeps each picture');
 assert(!/not every word/i.test(partialHint), 'student hint must not announce missing pictures');
 
-console.log('OK readiness+vocabArt reasons + matchDock hint', {
+// Art floor: Ready needs ≥5/6 teachable art (was 50%).
+assert(Math.abs(W.BoardReadiness.VOCAB_ART_FLOOR - 5 / 6) < 1e-9, 'VOCAB_ART_FLOOR is 5/6');
+const floorPct = Math.ceil(W.BoardReadiness.VOCAB_ART_FLOOR * 100);
+const artFloorRe = new RegExp(
+  `Only \\d+/\\d+ vocab words have board art \\(need ≥${floorPct}%\\)`
+);
+
+function syntheticRows(hitCount, total) {
+  const rows = [];
+  for (let i = 0; i < total; i++) {
+    const ok = i < hitCount;
+    rows.push({
+      word: `w${i + 1}`,
+      matchable: ok,
+      tier: ok ? 'pack' : 'none',
+      propKey: null,
+    });
+  }
+  return rows;
+}
+
+function planFromRows(rows) {
+  return {
+    vocabArt: {
+      rows,
+      matchable: rows.filter((r) => r.matchable),
+      dropped: [], // keep focus on art-floor; other reasons filtered via plan shape
+    },
+    canHonestMatchDock: true,
+    assignments: [],
+    dockDrops: 0,
+  };
+}
+
+const sixWords = {
+  title: 'Art Floor Probe',
+  vocabulary: [1, 2, 3, 4, 5, 6].map((n) => ({ word: `w${n}` })),
+};
+const report3of6 = W.BoardReadiness.assess(
+  sixWords,
+  planFromRows(syntheticRows(3, 6)),
+  { ignoreKit: true }
+);
+assert(report3of6.status === 'draft', '3/6 art → Draft');
+assert(report3of6.reasons.some((r) => artFloorRe.test(r)), '3/6 art → art-floor reason');
+
+const report6of6 = W.BoardReadiness.assess(
+  sixWords,
+  planFromRows(syntheticRows(6, 6)),
+  { ignoreKit: true }
+);
+assert(
+  !report6of6.reasons.some((r) => /board art \(need ≥/i.test(r)),
+  '6/6 art → no art-floor reason'
+);
+
+console.log('OK readiness+vocabArt reasons + matchDock hint + art floor', {
   partial: report.reasons,
   noDock: report2.reasons,
   partialHint,
   fullHint,
+  floor: W.BoardReadiness.VOCAB_ART_FLOOR,
+  floorPct,
+  art3of6: report3of6.reasons,
+  art6of6Status: report6of6.status,
 });

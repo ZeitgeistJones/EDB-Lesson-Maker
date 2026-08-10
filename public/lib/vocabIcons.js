@@ -99,8 +99,8 @@
     exercise: 'ball',
     // music / song stay pack keys or SAFE_EMOJI — never piano.png (M7 match cards)
     lava: 'volcano',
-    eruption: 'volcano',
-    // ash stays SAFE_EMOJI — sharing volcano.png with eruption breaks match cards
+    // eruption/ash have dedicated pack PNGs (Sheet V12) — do not alias to volcano.png
+    // (shared art breaks match cards). Keep SAFE_EMOJI glyphs only as cold-pack fallback.
     seed: 'plant',
     team: 'ball',
     // hotel place noun — door.png is the vetted stand-in (not Gemini)

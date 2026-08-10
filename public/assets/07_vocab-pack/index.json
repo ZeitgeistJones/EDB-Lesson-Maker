@@ -1,4 +1,9 @@
 {
+ "abundant": {
+  "file": "abundant.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "after-school": {
   "file": "after-school.png",
   "emoji": "",
@@ -58,6 +63,11 @@
   "file": "artist.png",
   "emoji": "🧑‍🎨",
   "codepoint": "1f9d1-200d-1f3a8"
+ },
+ "ash": {
+  "file": "ash.png",
+  "emoji": "",
+  "source": "generated"
  },
  "astronaut": {
   "file": "astronaut.png",
@@ -659,6 +669,11 @@
   "emoji": "🚪",
   "codepoint": "1f6aa"
  },
+ "dormant": {
+  "file": "dormant.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "dough": {
   "file": "dough.png",
   "emoji": "",
@@ -741,6 +756,16 @@
  },
  "empty": {
   "file": "empty.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "eruption": {
+  "file": "eruption.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "evacuation": {
+  "file": "evacuation.png",
   "emoji": "",
   "source": "generated"
  },
@@ -911,6 +936,11 @@
  },
  "geology": {
   "file": "geology.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "geothermal": {
+  "file": "geothermal.png",
   "emoji": "",
   "source": "generated"
  },
@@ -1789,6 +1819,11 @@
   "emoji": "",
   "source": "generated"
  },
+ "seismic": {
+  "file": "seismic.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "shark": {
   "file": "shark.png",
   "emoji": "🦈",
@@ -2019,6 +2054,11 @@
   "emoji": "🧑‍🎓",
   "codepoint": "1f9d1-200d-1f393"
  },
+ "subterranean": {
+  "file": "subterranean.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "suitcase": {
   "file": "suitcase.png",
   "emoji": "🧳",
@@ -2198,6 +2238,11 @@
   "file": "tree.png",
   "emoji": "🌳",
   "codepoint": "1f333"
+ },
+ "tremors": {
+  "file": "tremors.png",
+  "emoji": "",
+  "source": "generated"
  },
  "trophy": {
   "file": "trophy.png",

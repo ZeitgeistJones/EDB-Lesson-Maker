@@ -1863,6 +1863,42 @@
    "quiet": true,
    "set": "garage-cool",
    "palette": "cool"
+  },
+  "beach-e": {
+   "file": "flat_beach-e.png",
+   "tone": "sand wash + shell corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "beach-warm",
+   "palette": "coast"
+  },
+  "beach-f": {
+   "file": "flat_beach-f.png",
+   "tone": "sand wash + wave fringe",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "beach-warm",
+   "palette": "coast"
+  },
+  "beach-g": {
+   "file": "flat_beach-g.png",
+   "tone": "sand wash + sand dollar",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "beach-warm",
+   "palette": "coast"
+  },
+  "beach-h": {
+   "file": "flat_beach-h.png",
+   "tone": "sand wash + starfish",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "beach-warm",
+   "palette": "coast"
   }
  }
 }

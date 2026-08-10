@@ -222,8 +222,29 @@ async function main() {
       quiet,
     };
     if (setId) flatEntry.set = setId;
-    console.log('\nPaste into public/assets/08_backgrounds/manifest.json under "flats":\n');
-    console.log(JSON.stringify({ [name]: flatEntry }, null, 2));
+    const palette = arg('palette', '');
+    if (palette) flatEntry.palette = palette;
+
+    // Auto-merge into manifest.flats (nested) — paste-only was easy to mis-apply
+    // at the root and wipe the file. Pass --no-manifest to print JSON only.
+    const manifestPath = path.join(ROOT, 'public', 'assets', '08_backgrounds', 'manifest.json');
+    if (!process.argv.includes('--no-manifest') && fs.existsSync(manifestPath)) {
+      const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+      if (!manifest.flats || typeof manifest.flats !== 'object') {
+        throw new Error('manifest.json missing flats{} — refuse to write at root');
+      }
+      if (manifest.flats[name] && !process.argv.includes('--force')) {
+        console.log(`\nManifest already has flats.${name} — pass --force to overwrite, or --no-manifest to print only.`);
+        console.log(JSON.stringify({ [name]: flatEntry }, null, 2));
+      } else {
+        manifest.flats[name] = flatEntry;
+        fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 1)}\n`);
+        console.log(`\nWrote flats.${name} → ${path.relative(ROOT, manifestPath)}`);
+      }
+    } else {
+      console.log('\nPaste into public/assets/08_backgrounds/manifest.json under "flats":\n');
+      console.log(JSON.stringify({ [name]: flatEntry }, null, 2));
+    }
     console.log(
       '\nThen: npm run test:bg-picks  (picker sanity)  and  npm run quality:full  (board bake)'
     );

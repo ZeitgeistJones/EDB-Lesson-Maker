@@ -7,7 +7,7 @@
  * Classic script → window.BoardReadiness
  */
 (function () {
-  const VOCAB_ART_FLOOR = 0.5; // ≥ half the words need real prop or vetted icon art
+  const VOCAB_ART_FLOOR = 5 / 6; // ≥5/6 words need real prop or vetted icon art (~83%)
 
   /** Reasons that are kit / hero-stage concerns (filterable via ignoreKit). */
   const KIT_REASON_RE =
