@@ -72,13 +72,13 @@ const clean = {
 const readyish = W.BoardReadiness.assess(clean, { assignments: [] }, { ignoreKit: true });
 assert(!readyish.reasons.some((r) => /S73:/i.test(r)), 'clean lesson no S73: ' + readyish.reasons.join(' | '));
 
-// Dishonest partial match hint
+// Partial art still drafts for missing pictures (admin) — student hint is not policed.
 const hollowArt = {
   rows: [{ word: 'chess', matchable: true }, { word: 'art', matchable: false }],
   matchable: [{ word: 'chess' }],
   dropped: [{ word: 'art' }],
 };
-const badHint = W.BoardReadiness.assess(
+const partialAdmin = W.BoardReadiness.assess(
   { title: 'X', vocabulary: [{ word: 'chess' }, { word: 'art' }], story: { pages: [{ text: 'Hi.' }], comprehensionQuestions: [] } },
   {
     vocabArt: hollowArt,
@@ -87,7 +87,8 @@ const badHint = W.BoardReadiness.assess(
   },
   { ignoreKit: true }
 );
-assert(badHint.reasons.some((r) => /each picture/i.test(r) && /partial|dropped/i.test(r)), 'dishonest hint: ' + badHint.reasons.join(' | '));
+assert(partialAdmin.reasons.some((r) => /Dropped 1 vocab/i.test(r)), 'admin dropped reason: ' + partialAdmin.reasons.join(' | '));
+assert(!partialAdmin.reasons.some((r) => /not every word/i.test(r)), 'no student-gap copy in Ready reasons');
 
 console.log('test-readiness-story-integrity: ok', {
   liveReasons: draftLive.reasons.filter((r) => /S73/.test(r)),

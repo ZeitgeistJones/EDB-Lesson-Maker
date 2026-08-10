@@ -69,7 +69,8 @@ const planPartial = {
 };
 const report = W.BoardReadiness.assess(hollow, planPartial, { ignoreKit: true });
 assert(report.reasons.some((r) => /Dropped 1 vocab/i.test(r)), 'reason: dropped vocab');
-assert(report.reasons.some((r) => /bin pictures only/i.test(r)), 'reason: partial hint honesty');
+assert(report.reasons.some((r) => /admin/i.test(r)), 'reason: admin-only gap note');
+assert(!report.reasons.some((r) => /not every word/i.test(r)), 'no student-gap copy in Ready reasons');
 assert(report.reasons.some((r) => /dock silently dropped 2/i.test(r)), 'reason: dockDrops');
 
 const planNoDock = {
@@ -80,12 +81,9 @@ const planNoDock = {
 const report2 = W.BoardReadiness.assess(hollow, planNoDock, { ignoreKit: true });
 assert(report2.reasons.some((r) => /Match dock skipped/i.test(r)), 'reason: match dock skipped');
 
-// Student hint honesty: partial art must not claim "each picture".
+// Student hint is always kid copy — never announces missing art (mapper/admin only).
 assert(W.EdbActivities.matchDockIsPartial(art) === true, 'partial: clubs-style drop');
 const partialHint = W.EdbActivities.matchDockStudentHint(art);
-assert(/bin/i.test(partialHint), 'partial hint mentions bin');
-assert(!/Drag each picture/i.test(partialHint), 'partial hint must not say Drag each picture');
-
 const fullArt = {
   rows: art.matchable,
   matchable: art.matchable,
@@ -93,7 +91,9 @@ const fullArt = {
 };
 assert(W.EdbActivities.matchDockIsPartial(fullArt) === false, 'full set not partial');
 const fullHint = W.EdbActivities.matchDockStudentHint(fullArt);
-assert(/Drag each picture/i.test(fullHint), 'full hint keeps each picture');
+assert(partialHint === fullHint, 'student hint identical whether partial or full');
+assert(/Drag each picture/i.test(fullHint), 'student hint keeps each picture');
+assert(!/not every word/i.test(partialHint), 'student hint must not announce missing pictures');
 
 console.log('OK readiness+vocabArt reasons + matchDock hint', {
   partial: report.reasons,

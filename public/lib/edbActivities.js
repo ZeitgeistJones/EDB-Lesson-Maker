@@ -154,12 +154,11 @@
 
   /**
    * Student-facing New Words / matchDock instruction.
-   * Full set → "each picture"; partial → bin-only honesty (clubs PDF miss).
+   * Always kid copy — never announce missing art ("not every word has a picture").
+   * Partial coverage stays on BoardReadiness / admin Draft reasons only.
+   * Pads + bin already only include matchable pictures, so "each picture" = each in the bin.
    */
-  function matchDockStudentHint(vocabArt) {
-    if (matchDockIsPartial(vocabArt)) {
-      return 'Say each word. Drag the pictures in the bin onto their numbered pads — not every word has a picture.';
-    }
+  function matchDockStudentHint(_vocabArt) {
     return 'Say each word. Drag each picture onto its numbered drop pad.';
   }
 

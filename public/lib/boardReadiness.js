@@ -195,7 +195,7 @@
     if (dropped && dropped.length && matchAssign) {
       const names = dropped.map((d) => d.word).slice(0, 4).join(', ');
       reasons.push(
-        `Dropped ${dropped.length} vocab word(s) from match dock (no vetted art): ${names}${dropped.length > 4 ? '…' : ''}. Student hint must say bin pictures only — not “each word”.`
+        `Dropped ${dropped.length} vocab word(s) from match dock (no vetted art): ${names}${dropped.length > 4 ? '…' : ''} (admin — student board does not announce this).`
       );
     } else if (dropped && dropped.length && !matchAssign && boardPlan.canHonestMatchDock !== false) {
       // Dock not assigned for another reason — still surface missing art.
@@ -245,21 +245,6 @@
           'S73: story page text truncates mid-sentence — finish the beat before Ready.'
         );
       }
-    }
-
-    if (
-      matchAssign
-      && boardPlan
-      && boardPlan.vocabArt
-      && boardPlan.vocabArt.dropped
-      && boardPlan.vocabArt.dropped.length
-      && boardPlan.matchDockHint
-      && /each picture/i.test(boardPlan.matchDockHint)
-      && !/not every word/i.test(boardPlan.matchDockHint)
-    ) {
-      reasons.push(
-        'Match dock hint still says “each picture” while VocabArt dropped words — use the partial bin hint.'
-      );
     }
 
     if (!opts.ignoreKit) {
