@@ -51,6 +51,8 @@ const SOURCES = {
   ),
   // Alien UFO Pack — most ships short-side <120; import culls manned/bursts.
   'space-ufo': path.join(BANK, 'by-pack', 'alien-ufo-pack', 'PNG'),
+  // Letter tiles 256px — Blue A–Z for phonics docks (one colour set).
+  'letter-tiles': path.join(BANK, 'by-pack', 'letter-tiles', 'PNG', 'Blue'),
 };
 
 function arg(name, fallback) {

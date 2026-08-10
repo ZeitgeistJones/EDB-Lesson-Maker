@@ -313,6 +313,20 @@ const TOPICS = {
       return `kenney-ufo-${stem}`;
     },
   },
+  'letter-tiles': {
+    pack: 'phonics',
+    tags: ['phonics', 'letters', 'alphabet', 'kenney'],
+    relativeScale: 0.22,
+    anchor: 'center',
+    keep(stem) {
+      // Blue A–Z tiles only — skip blank letter.png tile.
+      return /^letter-[a-z]$/.test(stem);
+    },
+    key(stem) {
+      const m = stem.match(/^letter-([a-z])$/);
+      return m ? `kenney-letter-${m[1]}` : `kenney-${stem}`;
+    },
+  },
 };
 
 function writeManifest(manifest) {
