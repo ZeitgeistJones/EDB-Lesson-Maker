@@ -904,14 +904,15 @@
     p.style.display = 'flex';
     p.style.flexDirection = 'column';
     p.appendChild(header('New Words', '#7c3aed', { timing: '~6 min' }));
-    p.appendChild(hint(
-      interactive
-        ? 'Say each word. Drag each picture onto its numbered drop pad.'
-        : 'Say each word together.',
-      { flexShrink: '0' }
-    ));
-    const words = (lesson.vocabulary || []).slice(0, maxBoardVocab());
     const art = boardPlan && boardPlan.vocabArt;
+    const EA = window.EdbActivities;
+    const matchHint = interactive
+      ? ((boardPlan && boardPlan.matchDockHint)
+        || (EA && EA.matchDockStudentHint && EA.matchDockStudentHint(art))
+        || 'Say each word. Drag each picture onto its numbered drop pad.')
+      : 'Say each word together.';
+    p.appendChild(hint(matchHint, { flexShrink: '0' }));
+    const words = (lesson.vocabulary || []).slice(0, maxBoardVocab());
     const rowByWord = new Map();
     ((art && art.rows) || []).forEach((r) => rowByWord.set(r.word, r));
     const matchableSet = new Set(((art && art.matchable) || []).map((r) => r.word));
@@ -2049,11 +2050,15 @@
     // Recipe owns the mechanic — never keep a fixture "Match each picture" prompt
     // when the board actually shipped sortBins / buildScene (soccer hollow loop).
     const actRecipe = recipeIdFor(boardPlan, 'activity');
+    const EA = window.EdbActivities;
+    const matchDockHint = (boardPlan && boardPlan.matchDockHint)
+      || (EA && EA.matchDockStudentHint && EA.matchDockStudentHint(boardPlan && boardPlan.vocabArt))
+      || 'Say each word. Drag each picture onto its numbered drop pad.';
     const recipeHint = {
       sortBins: 'Sort each word card into a bin. Say why it belongs there.',
       buildScene: 'Drag the pieces into the scene. Say a sentence with each word.',
       dressUp: 'Add the pieces to the character. Say what you added.',
-      matchDock: 'Say each word. Drag each picture onto its numbered drop pad.',
+      matchDock: matchDockHint,
     }[actRecipe];
     const activityTitle = actRecipe === 'sortBins'
       ? (lesson.activity?.title && !/match/i.test(lesson.activity.title)

@@ -139,6 +139,30 @@
     return !!matchDockSize(vocabList(lesson).length);
   }
 
+  /**
+   * True when some board words sit outside the match dock (no vetted picture).
+   * Student copy must not say "each picture / each word" in that case.
+   */
+  function matchDockIsPartial(vocabArt) {
+    if (!vocabArt) return false;
+    const matchableN = Array.isArray(vocabArt.matchable) ? vocabArt.matchable.length : 0;
+    const droppedN = Array.isArray(vocabArt.dropped) ? vocabArt.dropped.length : 0;
+    if (droppedN > 0) return true;
+    const rowsN = Array.isArray(vocabArt.rows) ? vocabArt.rows.length : 0;
+    return matchableN > 0 && rowsN > 0 && matchableN < rowsN;
+  }
+
+  /**
+   * Student-facing New Words / matchDock instruction.
+   * Full set → "each picture"; partial → bin-only honesty (clubs PDF miss).
+   */
+  function matchDockStudentHint(vocabArt) {
+    if (matchDockIsPartial(vocabArt)) {
+      return 'Say each word. Drag the pictures in the bin onto their numbered pads — not every word has a picture.';
+    }
+    return 'Say each word. Drag each picture onto its numbered drop pad.';
+  }
+
   /** Plan VocabArt once (throws if VocabIcons cold/errored).
    * topicSeed must be lesson title / theme text — never the RNG hashStr used for recipe picks.
    */
@@ -365,6 +389,10 @@
     if (art && art.dropped && art.dropped.length) {
       page.notes.push('matchDockDropped:' + art.dropped.length);
     }
+    if (matchDockIsPartial(art)) {
+      page.notes.push('recipe:matchDockPartialHint');
+    }
+    page.matchHint = matchDockStudentHint(art);
   }
 
   function orderLine(lesson, page, layout) {
@@ -1714,6 +1742,7 @@
       kit: kit && kit.ready ? { pack: kit.pack, hero: kit.hero.key, docks: kit.dockCount } : null,
       vocabArt,
       canHonestMatchDock: honestMatch,
+      matchDockHint: honestMatch ? matchDockStudentHint(vocabArt) : null,
     };
     if (window.BoardReadiness && window.BoardReadiness.assess) {
       planOut.readiness = window.BoardReadiness.assess(lesson, planOut);
@@ -1934,6 +1963,7 @@
       kit: boardPlan.kit || null,
       vocabArt: boardPlan.vocabArt || null,
       canHonestMatchDock: !!boardPlan.canHonestMatchDock,
+      matchDockHint: boardPlan.matchDockHint || null,
       dockDrops,
       readiness: boardPlan.readiness || null,
       // Back-compat slots
@@ -1965,6 +1995,8 @@
     normalizePhonics,
     canHonestMatchDock,
     matchDockSize,
+    matchDockIsPartial,
+    matchDockStudentHint,
     solidPng,
     slotGhostPng,
     stickyPng,

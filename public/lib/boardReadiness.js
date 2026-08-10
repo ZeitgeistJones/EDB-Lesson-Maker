@@ -195,7 +195,7 @@
     if (dropped && dropped.length && matchAssign) {
       const names = dropped.map((d) => d.word).slice(0, 4).join(', ');
       reasons.push(
-        `Dropped ${dropped.length} vocab word(s) from match dock (no vetted art): ${names}${dropped.length > 4 ? '…' : ''}.`
+        `Dropped ${dropped.length} vocab word(s) from match dock (no vetted art): ${names}${dropped.length > 4 ? '…' : ''}. Student hint must say bin pictures only — not “each word”.`
       );
     } else if (dropped && dropped.length && !matchAssign && boardPlan.canHonestMatchDock !== false) {
       // Dock not assigned for another reason — still surface missing art.

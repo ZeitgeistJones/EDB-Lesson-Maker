@@ -1,5 +1,5 @@
 /**
- * BoardReadiness + VocabArt reason smoke.
+ * BoardReadiness + VocabArt reason smoke + matchDock student-hint honesty.
  *   node scripts/test-readiness-vocab-art.mjs
  */
 import fs from 'node:fs';
@@ -40,6 +40,8 @@ for (const rel of [
   'public/lib/propBank.js',
   'public/lib/vocabIcons.js',
   'public/lib/vocabArt.js',
+  'public/lib/lessonTraits.js',
+  'public/lib/edbActivities.js',
   'public/lib/boardReadiness.js',
 ]) {
   vm.runInContext(fs.readFileSync(path.join(ROOT, rel), 'utf8'), sandbox, { filename: rel });
@@ -67,6 +69,7 @@ const planPartial = {
 };
 const report = W.BoardReadiness.assess(hollow, planPartial, { ignoreKit: true });
 assert(report.reasons.some((r) => /Dropped 1 vocab/i.test(r)), 'reason: dropped vocab');
+assert(report.reasons.some((r) => /bin pictures only/i.test(r)), 'reason: partial hint honesty');
 assert(report.reasons.some((r) => /dock silently dropped 2/i.test(r)), 'reason: dockDrops');
 
 const planNoDock = {
@@ -77,7 +80,24 @@ const planNoDock = {
 const report2 = W.BoardReadiness.assess(hollow, planNoDock, { ignoreKit: true });
 assert(report2.reasons.some((r) => /Match dock skipped/i.test(r)), 'reason: match dock skipped');
 
-console.log('OK readiness+vocabArt reasons', {
+// Student hint honesty: partial art must not claim "each picture".
+assert(W.EdbActivities.matchDockIsPartial(art) === true, 'partial: clubs-style drop');
+const partialHint = W.EdbActivities.matchDockStudentHint(art);
+assert(/bin/i.test(partialHint), 'partial hint mentions bin');
+assert(!/Drag each picture/i.test(partialHint), 'partial hint must not say Drag each picture');
+
+const fullArt = {
+  rows: art.matchable,
+  matchable: art.matchable,
+  dropped: [],
+};
+assert(W.EdbActivities.matchDockIsPartial(fullArt) === false, 'full set not partial');
+const fullHint = W.EdbActivities.matchDockStudentHint(fullArt);
+assert(/Drag each picture/i.test(fullHint), 'full hint keeps each picture');
+
+console.log('OK readiness+vocabArt reasons + matchDock hint', {
   partial: report.reasons,
   noDock: report2.reasons,
+  partialHint,
+  fullHint,
 });
