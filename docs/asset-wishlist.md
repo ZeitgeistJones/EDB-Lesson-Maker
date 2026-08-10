@@ -73,6 +73,7 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-09 | More distinct `clinic-cool` panels (stronger motif contrast across a–d) | hospital quality loop M5 — doctor/dentist/clown-clinic/loop2-doctor pageDiff~0.22; flats rotate keys but read as cousins | Regen clinic-a…d with clearer motif contrast (waiting room vs exam vs corridor vs night desk) | bg-flat-sets | open |
 | 2026-08-09 | `restaurant-warm` quiet flat set | restaurant place signal had no TOPIC_SETS row (bgGap / bakery steal risk) | ChatGPT quiet zip sheet → import | assets:bg --flat | wired — restaurant-a…d + TOPIC_SETS before bakery |
 | 2026-08-09 | `post-cool` quiet flat set | post office / mail lessons had no place wash | ChatGPT quiet zip sheet → import | assets:bg --flat | wired — post-a…d + TOPIC_SETS + PLACE_SIGNALS |
+| 2026-08-10 | `garage-cool` quiet flat set | garage / mechanic place signal had no TOPIC_SETS row | ChatGPT quiet zip 2×2 → import | assets:bg --flat --grid=2x2 | wired — garage-a…d + TOPIC_SETS + PLACE_SIGNALS |
 
 ## How agents append
 

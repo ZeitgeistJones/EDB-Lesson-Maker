@@ -109,6 +109,7 @@ Anti-formula section.
 | `playground-fresh` | slide-curve watermark, swing fringe, mulch fringe, sand-sky haze | dense park photo, gym court, furnished playrooms |
 | `restaurant-warm` | checkered fringe, napkin fold, chef-hat outline, cloche + steam | bakery dough-only, furnished dining room, outdoor meadow |
 | `post-cool` | airmail envelope, postmark waves, parcel box, pillar-box corner | supermarket aisle, furnished lobby, travel airport |
+| `garage-cool` | wrench + toolbox, tire watermark, floor jack + hazard fringe, gas can / gear | outdoor meadow, police badge, furnished repair bay, bus stop |
 
 **Bakery example (accept):** a flour haze · b dough + flour · c loaf silhouette ·
 d rolling pin. **Reject:** wheat / wheat / cookie-as-only-signal / leaf alcove.
@@ -134,6 +135,7 @@ d rolling pin. **Reject:** wheat / wheat / cookie-as-only-signal / leaf alcove.
 | `playground-fresh` | playground / play structure | wired (ChatGPT quiet-ok Aug 2026) |
 | `restaurant-warm` | restaurant / diner / dining | wired (quiet zip triage Aug 2026) |
 | `post-cool` | post office / mail / parcel | wired (quiet zip triage Aug 2026) |
+| `garage-cool` | garage / mechanic / auto shop | wired (quiet zip triage Aug 2026) |
 | `school-soft` | (legacy) superseded by `board-house` | kept on disk, not picker-default |
 | `face-soft` | **retired** — skin-tone peach read as literal skin | kept on disk, unwired |
 

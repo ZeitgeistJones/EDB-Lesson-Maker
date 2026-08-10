@@ -1827,6 +1827,42 @@
    "quiet": true,
    "set": "post-cool",
    "palette": "cool"
+  },
+  "garage-a": {
+   "file": "flat_garage-a.png",
+   "tone": "garage cool wash — wrench + toolbox corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "garage-cool",
+   "palette": "cool"
+  },
+  "garage-b": {
+   "file": "flat_garage-b.png",
+   "tone": "garage cool wash — tire + blue toolbox",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "garage-cool",
+   "palette": "cool"
+  },
+  "garage-c": {
+   "file": "flat_garage-c.png",
+   "tone": "garage cool wash — floor jack + hazard fringe",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "garage-cool",
+   "palette": "cool"
+  },
+  "garage-d": {
+   "file": "flat_garage-d.png",
+   "tone": "garage cool wash — gas can + gear corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "garage-cool",
+   "palette": "cool"
   }
  }
 }
