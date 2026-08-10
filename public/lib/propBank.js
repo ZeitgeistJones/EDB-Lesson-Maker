@@ -1182,11 +1182,13 @@
     'lab', 'drag', 'write', 'onto', 'blank', 'face', 'faces',
   ]);
 
-  // Ambiguous place nouns — score pack *name* only, never member tags/words.
+  // Ambiguous place/category nouns — score pack *name* only, never member tags/words.
   // "Fire Station" must not let every space prop tagged "station" beat fire-station.
+  // "animals" must not let aquarium kenney-fish (tagged animals) steal a zoo lesson.
   const WEAK_KIT_TOKENS = new Set([
     'station', 'park', 'shop', 'store', 'house', 'room', 'center', 'centre',
     'office', 'hall', 'building',
+    'animal', 'animals',
   ]);
 
   /** Theme tokens from title + vocab + activity — used by kit + readiness. */
