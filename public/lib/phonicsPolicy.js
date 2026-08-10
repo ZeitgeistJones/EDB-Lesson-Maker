@@ -499,6 +499,18 @@ Also generate phonics for a ClassIn sound-boxes page (teacher-led; teach letter 
     return lv === 'A1' || lv === 'A2';
   }
 
+  /**
+   * Map a grapheme to a Kenney letter-tile PropBank key when the tile is a
+   * single A–Z letter. Digraphs / teams (sh, ee, …) return null — callers keep
+   * a text tile fallback. Keys are `kenney-letter-a` … `kenney-letter-z`
+   * (pack=phonics, imported CC0).
+   */
+  function letterPropKey(grapheme) {
+    const g = String(grapheme || '').trim().toLowerCase();
+    if (!/^[a-z]$/.test(g)) return null;
+    return 'kenney-letter-' + g;
+  }
+
   return {
     LEVEL_RULES,
     FALLBACK_BANK,
@@ -513,5 +525,6 @@ Also generate phonics for a ClassIn sound-boxes page (teacher-led; teach letter 
     promptBlock,
     autoWantPhonics,
     vocabSetFromLesson,
+    letterPropKey,
   };
 });

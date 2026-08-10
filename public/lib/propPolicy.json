@@ -97,11 +97,11 @@
     "student": true,
     "teammate": true,
     "homework": true,
-    "goal": true,
-    "goals": true,
     "scale": true
   },
   "aliases": {
+    "goal": "soccer-goal",
+    "goals": "soccer-goal",
     "patient": "dental-kid-open-mouth",
     "grape": "food-grapes",
     "grapes": "food-grapes",

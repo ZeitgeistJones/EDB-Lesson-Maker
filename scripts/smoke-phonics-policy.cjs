@@ -61,4 +61,11 @@ const pOff = PhonicsPolicy.promptBlock('B1', false);
 assert(/CVC/.test(pA1) && /SINGLE-LETTER/.test(pA1), 'A1 prompt mentions CVC');
 assert(/Do NOT include a phonics object/.test(pOff), 'off prompt omits');
 
+// Single-letter graphemes → Kenney letter-tile keys; digraphs stay text.
+assert(PhonicsPolicy.letterPropKey('A') === 'kenney-letter-a', 'A → kenney-letter-a');
+assert(PhonicsPolicy.letterPropKey('z') === 'kenney-letter-z', 'z → kenney-letter-z');
+assert(PhonicsPolicy.letterPropKey('sh') == null, 'digraph sh → null (text fallback)');
+assert(PhonicsPolicy.letterPropKey('ee') == null, 'vowel team ee → null');
+assert(PhonicsPolicy.letterPropKey('') == null, 'empty → null');
+
 console.log('ok: phonics policy smoke');
