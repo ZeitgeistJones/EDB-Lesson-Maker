@@ -7,6 +7,7 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 - Do **not** drop unverified / scraped clipart into the repo to “close” a row
 - One row per distinct need; dedupe before adding
 - `Status`: `open` → `fetched` → `wired` (or `wont`)
+- **White-bg vocab sheets (`07_vocab-pack`):** prefer **Manus** (`esl-asset-generator`) for batch 3×3s — ChatGPT is optional fallback only. See `docs/prop-sheet-prompts.md` vocab section + `scripts/manus/request-white-vocab-*.mjs`.
 
 | Date | Need | Why (case / word / page) | Preferred type | Suggested source | Status |
 |------|------|--------------------------|----------------|------------------|--------|
@@ -64,7 +65,8 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-09 | Winter `clothing-gloves` usable under winter topics | `gloves` never-blocks clothing so first-aid can reach `aid-medical-glove`; winter→null today | Keep clothing-gloves; topic-aware never OR winter pack tags + theme rank | policy follow-up | open |
 | 2026-08-09 | More `beach-warm` quiet flats (beyond a–d) | loop3-beach M5≈0.40 — four washes ping-pong across 11 pages | 2–4 extra landscape quiet flats | `.cursor/skills/bg-flat-sets` in-house | open |
 | 2026-08-09 | Soccer `ball` pack icon (replace volleyball-looking `ball.png`) | soccer-coach New Words — pack tier wins over `soccer-ball` prop; kids see a volleyball | Flat soccer ball PNG in `07_vocab-pack` OR topic alias ball→soccer-ball under sport | pack refresh / VocabArt topic prefer | wired — VocabArt skips pack ball on sport lessons → soccer-ball prop; park/generic ball keeps pack |
-| 2026-08-09 | Abstract sports icons: `practice`, `effort`, `teamwork` (or keep deny) | soccer-coach M7 — correctly dropped today; no honest picture | Optional metaphor icons only if unmistakable; else leave text-only | curated pack or stay null | open |
+| 2026-08-09 | Abstract sports icons: `practice`, `effort`, `teamwork` (or keep deny) | soccer-coach M7 — correctly dropped today; no honest picture | Optional metaphor icons only if unmistakable; else leave text-only | Manus white vocab 3×3 (Sheet V11) / stay null | open — queued Manus with V10 |
+| 2026-08-10 | Hobbies / after-school vocab: `hobby`, `club`, `join`, `practice`, `team`, `coach`, `member`, `meeting`, `after-school` | Desktop queue #2 after clubs sheet wired; match-dock coverage for club/hobby units | White-bg 3×3 → `07_vocab-pack` | Manus `esl-asset-generator` (ChatGPT fallback) | open — Manus request script |
 | 2026-08-09 | More distinct `home-warm` panels (stronger motif contrast) | bathroom-routines M5 warn — home flats rotate but read as cousins | Regen home-a…d with clearer motif contrast | bg-flat-sets | open |
 | 2026-08-09 | Bathroom / wash routines king stage (sink or tub hero + toiletry dock ≥6 sharp) | bathroom-routines activity was honest sortBins after dental-steal fix; still thin charm (S17) | Black-field hero + dock sheet | Manus / prop-cutouts | wired — `bath-bathtub` hero + `ROLEPLAY_DOCK_BATH`; dental still wins first |
 | 2026-08-09 | Firehouse king stage (`fire-truck` + fire dock) | Fire station lessons needed heroProp not generic templates | Promote truck + wire fire dock/STAGE_RULES | prop-cutouts / edbActivities | wired — `fire-truck` hero + `ROLEPLAY_DOCK_FIRE` |

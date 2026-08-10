@@ -144,6 +144,8 @@ npm run assets:prop -- <sheet.png> --sheet --grid=3x3 \
 These go in `07_vocab-pack` (match-dock pictures), **not** `09_props`. Square 1:1, plain
 **white** background (not black), one subject, readable at ~96px. No text in the art.
 
+**Batch preference:** for white-bg vocab 3×3 sheets, ask **Manus** (`esl-asset-generator`, `quality: default` only) first — see `scripts/manus/client.mjs` + `docs/manus-review.md` asset rules. ChatGPT paste prompts below remain the optional fallback.
+
 ```
 VOCAB ICON STYLE:
 • Flat educational vector, soft muted palette, restrained shading
@@ -295,6 +297,52 @@ Keys: trampoline, backflip, bounce, balance, spotter, mat, jump, stretch, helmet
 **Status: wired** — `vocab-daily-3x3.png` → `07_vocab-pack`.
 
 Keys: floss, farm, kitchen, bread, bakery, oven, flour, cake, dough
+
+### Sheet V10 — Hobbies / after-school (wishlist + Desktop queue #2)
+
+**Status: open** — prefer Manus white 3×3 (`scripts/manus/request-white-vocab-hobbies-sports.mjs`). Do **not** redo clubs sheet (art/chess/sports/music/science/drama/robot/choir/math).
+
+```
+Generate a 3×3 grid of vocabulary icons for young ESL learners. Each panel ONE subject on solid white. Panels divided evenly, no divider lines.
+
+[VOCAB ICON STYLE]
+
+Reading order:
+1. hobby — knitting yarn ball + needles OR stamp collection cue (clear “hobby”, no text)
+2. club — simple membership badge/pin shape (blank, no letters)
+3. join — two puzzle pieces almost connecting
+4. practice — metronome OR simple target with arrows (no numbers)
+5. team — three plain kid silhouettes standing together (from behind OK)
+6. coach — whistle + clipboard (blank clipboard, no writing)
+7. member — simple ID card shape (blank, no text)
+8. meeting — round table with 3–4 empty chairs (top-down simple)
+9. after-school — backpack + clock face with NO numbers (hands only)
+
+Keys: hobby, club, join, practice, team, coach, member, meeting, after-school
+```
+
+### Sheet V11 — Sports abstract (wishlist + Desktop queue #3)
+
+**Status: open** — metaphors must be unmistakable; else leave word text-only. Prefer Manus white 3×3 (same request script as V10). Note: `practice` also appears on V10 — import sports last if both land.
+
+```
+Generate a 3×3 grid of vocabulary icons for young ESL learners. Each panel ONE subject on solid white. Panels divided evenly, no divider lines.
+
+[VOCAB ICON STYLE]
+
+Reading order — keep metaphors dead simple:
+1. practice — player kicking toward a cone (training cue)
+2. effort — person pushing a sled or climbing a small hill (strain clear, kid-safe)
+3. teamwork — two kids passing a ball to each other
+4. win — simple gold trophy (no engraving text)
+5. lose — simple silver medal with a small sad-but-kind face optional OR broken ribbon (no text)
+6. score — blank scoreboard shape with two empty boxes (NO digits)
+7. goalkeeper — gloves + goal silhouette
+8. whistle — metal whistle alone
+9. uniform — folded sports jersey (blank, no numbers/letters)
+
+Keys: practice, effort, teamwork, win, lose, score, goalkeeper, whistle, uniform
+```
 
 ## Not promptable (code)
 
