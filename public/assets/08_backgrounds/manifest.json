@@ -1647,6 +1647,114 @@
    "quiet": true,
    "set": "fire-cool",
    "palette": "cool"
+  },
+  "police-a": {
+   "file": "flat_police-a.png",
+   "tone": "plain slate haze",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "police-cool",
+   "palette": "cool"
+  },
+  "police-b": {
+   "file": "flat_police-b.png",
+   "tone": "badge corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "police-cool",
+   "palette": "cool"
+  },
+  "police-c": {
+   "file": "flat_police-c.png",
+   "tone": "door-arch fringe",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "police-cool",
+   "palette": "cool"
+  },
+  "police-d": {
+   "file": "flat_police-d.png",
+   "tone": "radio-wave fringe",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "police-cool",
+   "palette": "cool"
+  },
+  "pool-a": {
+   "file": "flat_pool-a.png",
+   "tone": "plain aqua haze",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "pool-cool",
+   "palette": "cool"
+  },
+  "pool-b": {
+   "file": "flat_pool-b.png",
+   "tone": "lane-line fringe",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "pool-cool",
+   "palette": "cool"
+  },
+  "pool-c": {
+   "file": "flat_pool-c.png",
+   "tone": "ripple corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "pool-cool",
+   "palette": "cool"
+  },
+  "pool-d": {
+   "file": "flat_pool-d.png",
+   "tone": "kickboard fringe",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "pool-cool",
+   "palette": "cool"
+  },
+  "playground-a": {
+   "file": "flat_playground-a.png",
+   "tone": "plain sand-sky haze",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "playground-fresh",
+   "palette": "outdoor"
+  },
+  "playground-b": {
+   "file": "flat_playground-b.png",
+   "tone": "slide-curve corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "playground-fresh",
+   "palette": "outdoor"
+  },
+  "playground-c": {
+   "file": "flat_playground-c.png",
+   "tone": "swing fringe",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "playground-fresh",
+   "palette": "outdoor"
+  },
+  "playground-d": {
+   "file": "flat_playground-d.png",
+   "tone": "mulch fringe",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "playground-fresh",
+   "palette": "outdoor"
   }
  }
 }

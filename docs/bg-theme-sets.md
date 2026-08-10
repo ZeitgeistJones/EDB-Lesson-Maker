@@ -104,6 +104,9 @@ Anti-formula section.
 | `classical-moon` | indigo haze, soft moon disc, tiny notes / ivy fringe (empty centre) | full terrace photos, piano mid-frame |
 | `aquarium-cool` | bubble cluster, seaweed fringe, tank waterline / glass rim, aqua haze | beach shells, sand, outdoor ocean horizon, farm wheat |
 | `fire-cool` | hydrant corner, ladder fringe, emergency-light glow, pale bay wall | outdoor meadow, campfire scene, clinic tooth, bakery dough |
+| `police-cool` | blank badge watermark, door-arch fringe, radio-wave arcs, slate haze | desks/bullpens, outdoor meadow, travel airport |
+| `pool-cool` | lane-line fringe, ripple arcs, kickboard watermark, aqua haze | beach shells, park meadow, locker-room furniture |
+| `playground-fresh` | slide-curve watermark, swing fringe, mulch fringe, sand-sky haze | dense park photo, gym court, furnished playrooms |
 
 **Bakery example (accept):** a flour haze · b dough + flour · c loaf silhouette ·
 d rolling pin. **Reject:** wheat / wheat / cookie-as-only-signal / leaf alcove.
@@ -124,6 +127,9 @@ d rolling pin. **Reject:** wheat / wheat / cookie-as-only-signal / leaf alcove.
 | `classical-moon` | compose / classical / orchestra / concert | wired (in-house Aug 2026) + title scene `classical-terrace-moonlit` |
 | `aquarium-cool` | aquarium / fish tank | wired (in-house Aug 2026) |
 | `fire-cool` | fire station / firefighter / fire truck | wired (ChatGPT sheet Aug 2026) |
+| `police-cool` | police station / patrol | wired (ChatGPT quiet-ok Aug 2026) |
+| `pool-cool` | swimming pool / swim | wired (ChatGPT quiet-ok Aug 2026) |
+| `playground-fresh` | playground / play structure | wired (ChatGPT quiet-ok Aug 2026) |
 | `school-soft` | (legacy) superseded by `board-house` | kept on disk, not picker-default |
 | `face-soft` | **retired** — skin-tone peach read as literal skin | kept on disk, unwired |
 

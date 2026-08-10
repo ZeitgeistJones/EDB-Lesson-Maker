@@ -1157,6 +1157,13 @@
     'lab', 'drag', 'write', 'onto', 'blank', 'face', 'faces',
   ]);
 
+  // Ambiguous place nouns — score pack *name* only, never member tags/words.
+  // "Fire Station" must not let every space prop tagged "station" beat fire-station.
+  const WEAK_KIT_TOKENS = new Set([
+    'station', 'park', 'shop', 'store', 'house', 'room', 'center', 'centre',
+    'office', 'hall', 'building',
+  ]);
+
   /** Theme tokens from title + vocab + activity — used by kit + readiness. */
   function themeTokens(lesson) {
     const words = [
@@ -1259,6 +1266,8 @@
       for (const p of members) {
         let hitTok = false;
         for (const t of tokens) {
+          // Weak tokens only unlock via pack name (handled above) — not tags.
+          if (WEAK_KIT_TOKENS.has(t)) continue;
           if (p.tags.includes(t)) {
             score += 3;
             hitTok = true;

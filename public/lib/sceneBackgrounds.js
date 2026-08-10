@@ -267,6 +267,12 @@
     // Firehouse before outdoor — do not let "fire" in campfire steal this; use firehouse words only.
     // Keep before outdoor so "firefighter" never falls through to park meadows.
     { re: /\b(fire\s*stations?|firehouses?|firefighters?|firemen|fireman|fire\s*trucks?|fire\s*engines?|fire\s*safety)\b/, set: 'fire-cool' },
+    // Police before outdoor / travel — not meadow, not transit "station".
+    { re: /\b(police\s*stations?|policemen|policeman|cops?|patrol)\b/, set: 'police-cool' },
+    // Pool before outdoor/beach — chlorine tile wash, not park meadow or ocean shore.
+    { re: /\b(swimming\s*pools?|pools?|swim(?:ming)?)\b/, set: 'pool-cool' },
+    // Playground before outdoor — play structure wash, not generic park meadow.
+    { re: /\b(playgrounds?|play\s*structures?)\b/, set: 'playground-fresh' },
     // Bathroom / wash routines stay on home washes (not board-house default).
     { re: /\b(home|house|family|kitchen|apartment|bedroom|hotel|bathroom|shower|bath|toilet)\b/, set: 'home-warm' },
     // Indoor gym before outdoor — "gym" must not land on park meadows.
@@ -274,7 +280,7 @@
     { re: /\b(gym|workout|athletic|basketball|fitness|sports?|soccer|football|tennis|baseball)\b/, set: 'gym-cool' },
     // Indoor tank washes before beach/ocean — "coral"/"tank" must not steal beach-warm.
     { re: /\b(aquariums?|fish\s*tanks?|coral\s*reefs?)\b/, set: 'aquarium-cool' },
-    { re: /\b(zoo|park|animal|forest|garden|nature|trampoline|volcano|lava|eruption|crater|farm|pool|swim|swimming|campsites?|camp(?:ing|fire)?|playgrounds?)\b/, set: 'outdoor-fresh' },
+    { re: /\b(zoo|park|animal|forest|garden|nature|trampoline|volcano|lava|eruption|crater|farm|campsites?|camp(?:ing|fire)?)\b/, set: 'outdoor-fresh' },
     { re: /\b(beach|ocean|sea|shore|seaside|island)\b/, set: 'beach-warm' },
     // Place nouns only — bare "bread" must not steal supermarket lessons onto bakery.
     { re: /\b(bakerys?|bake\s*shop|pastry\s*shop|cafes?|caf[eé]s?)\b/, set: 'bakery-warm' },
@@ -301,22 +307,26 @@
     /\b(dentists?|dental|doctors?|clinic|hospital|nurse|medical)\b/,
     /\b(airport|travel|train|bus|plane|passport|(?:train|bus|transit|railway)\s*stations?|hotel)\b/,
     /\b(fire\s*stations?|firehouses?|firefighters?|firemen|fireman|fire\s*trucks?|fire\s*engines?|fire\s*safety)\b/,
+    /\b(police\s*stations?|policemen|policeman|cops?|patrol)\b/,
     /\b(home|house|family|kitchen|apartment|bedroom)\b/,
     /\b(zoo|park|animal|forest|garden|nature|gym|sport|trampoline|volcano)\b/,
     /\b(aquariums?|fish\s*tanks?)\b/,
     /\b(beach|ocean|sea|shore|seaside|island)\b/,
     /\b(bakerys?|bake\s*shop|pastry|cafes?|caf[eé]|restaurants?|markets?|supermarkets?|grocery|groceries)\b/,
-    /\b(farm|campsites?|camp(?:ing)?|pool|swimming|playgrounds?)\b/,
+    /\b(farm|campsites?|camp(?:ing)?|pools?|swim(?:ming)?|playgrounds?)\b/,
   ];
 
   const TOPIC_PALETTE = [
     { re: /\b(dentists?|dental|doctors?|clinic|hospital|nurse|tooth|teeth|medical)\b/, want: ['cool', 'neutral', 'warm'] },
     { re: /\b(airport|travel|train|bus|plane|passport|(?:train|bus|transit|railway)\s*stations?)\b/, want: ['travel', 'cool', 'neutral'] },
     { re: /\b(fire\s*stations?|firehouses?|firefighters?|firemen|fireman|fire\s*trucks?|fire\s*engines?|fire\s*safety)\b/, want: ['cool', 'neutral', 'warm'] },
+    { re: /\b(police\s*stations?|policemen|policeman|cops?|patrol)\b/, want: ['cool', 'neutral', 'warm'] },
     { re: /\b(aquariums?|fish\s*tanks?|coral)\b/, want: ['cool', 'coast', 'neutral'] },
-    { re: /\b(beach|ocean|sea|shore|swim)\b/, want: ['coast', 'outdoor', 'cool'] },
+    { re: /\b(swimming\s*pools?|pools?|swim(?:ming)?)\b/, want: ['cool', 'coast', 'neutral'] },
+    { re: /\b(beach|ocean|sea|shore)\b/, want: ['coast', 'outdoor', 'cool'] },
     { re: /\b(volcano|lava|eruption|crater|ash|seismic|geothermal)\b/, want: ['outdoor', 'warm', 'cool'] },
-    { re: /\b(zoo|park|animal|forest|garden|nature|campsites?|camping|playgrounds?)\b/, want: ['outdoor', 'cool', 'warm'] },
+    { re: /\b(playgrounds?|play\s*structures?)\b/, want: ['outdoor', 'cool', 'warm'] },
+    { re: /\b(zoo|park|animal|forest|garden|nature|campsites?|camping)\b/, want: ['outdoor', 'cool', 'warm'] },
     // "Living in…" titles must not steal the home palette over a real place.
     { re: /\b(home|house|family|kitchen|apartment|bedroom)\b/, want: ['warm', 'neutral'] },
     { re: /\b(bakerys?|bake\s*shop|pastry|cafes?|caf[eé]|restaurants?)\b/, want: ['warm', 'neutral', 'cool'] },

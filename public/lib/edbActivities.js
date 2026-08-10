@@ -786,6 +786,26 @@
     'face-glasses-round',
   ];
 
+  /** Firehouse roleplay dock — sharp handheld tools (not space station junk). */
+  const ROLEPLAY_DOCK_FIRE = [
+    'fire-hose',
+    'fire-hydrant',
+    'fire-ladder',
+    'fire-axe',
+    'fire-helmet',
+    'fire-extinguisher',
+    'fire-alarm-bell',
+    'fire-flashlight',
+    'fire-gloves',
+    'fire-walkie-talkie',
+    'fire-safety-cone',
+    'fire-blanket',
+    'fire-mask',
+    'fire-megaphone',
+    'fire-water-bucket',
+    'fire-first-aid-kit',
+  ];
+
   /** Castle build dock — sharp cutouts only (MIN_DOCK_SRC / C8). */
   const ROLEPLAY_DOCK_CASTLE = [
     'castle-flag-red',
@@ -905,6 +925,11 @@
       heroKey === 'trampoline'
       || /trampolin|bounce|backflip/.test(blob)
     );
+    const firehouse = !feelings && !face && !dental && !trampoline && (
+      /fire-truck|fire-station|fire-hydrant|fire-hose/.test(heroKey)
+      || /\b(fire\s*stations?|firehouses?|firefighters?|firemen|fireman|fire\s*trucks?|fire\s*engines?|fire\s*safety)\b/.test(blob)
+      || (kit && (kit.pack === 'fire-station' || kit.pack === 'fire'))
+    );
     const out = [];
     const exclude = [hero && hero.key].filter(Boolean);
 
@@ -930,6 +955,7 @@
     else if (face) prefer = ROLEPLAY_DOCK_FACE;
     else if (dental) prefer = ROLEPLAY_DOCK_DENTAL;
     else if (trampoline) prefer = ROLEPLAY_DOCK_TRAMPOLINE;
+    else if (firehouse) prefer = ROLEPLAY_DOCK_FIRE;
     else if (kit && kit.pack === 'castle') prefer = ROLEPLAY_DOCK_CASTLE;
     else if (kit && kit.pack === 'space') prefer = ROLEPLAY_DOCK_SPACE;
     else if (kit && kit.pack === 'music') prefer = ROLEPLAY_DOCK_MUSIC;
@@ -945,6 +971,7 @@
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_SPACE && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_MUSIC && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_DENTAL && p.aspect && (p.aspect < 0.3 || p.aspect > 2.6)) continue;
+        if (!face && !feelings && prefer === ROLEPLAY_DOCK_FIRE && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         exclude.push(p.key);
         out.push(p);
       }
@@ -952,7 +979,9 @@
 
     // 2) Universal pack dock — rest of the matched kit (already sharp-filtered)
     // Feelings: only more feeling-* stickers — never eyes/nose hair from face-blank tags.
-    if (kit && kit.docks && kit.docks.length) {
+    // Firehouse: never top up from a wrong-pack kit (space "station" false friend).
+    if (kit && kit.docks && kit.docks.length
+      && !(firehouse && kit.pack !== 'fire-station' && kit.pack !== 'fire')) {
       for (const p of kit.docks) {
         if (out.length >= targetCount) break;
         if (exclude.includes(p.key)) continue;
