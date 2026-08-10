@@ -35,6 +35,22 @@ const SOURCES = {
   'board-icons': path.join(BANK, 'by-pack', 'board-game-icons', 'PNG', 'Double (128px)'),
   // Domino faces — one color set (Dark); ESL game props.
   'games-domino': path.join(BANK, 'by-pack', 'domino-pack', 'PNG', 'Dark'),
+  // Block Pack Double — town/farm objects (characters culled at import).
+  'town-blocks': path.join(BANK, 'by-pack', 'block-pack', 'PNG', 'Double (128px)'),
+  // Background Elements — castles/clouds/trees ≥120 (size gate in curate).
+  'bg-elements': path.join(BANK, 'by-pack', 'background-elements', 'PNG'),
+  // Boardgame pack playing cards (face cards culled at import).
+  'games-cards': path.join(BANK, 'by-pack', 'boardgame-pack', 'PNG', 'Cards'),
+  // Background Elements Remastered — Retina object cutouts (Default often <120).
+  'bg-elements-remaster': path.join(
+    BANK,
+    'by-pack',
+    'background-elements-remastered',
+    'PNG',
+    'Retina'
+  ),
+  // Alien UFO Pack — most ships short-side <120; import culls manned/bursts.
+  'space-ufo': path.join(BANK, 'by-pack', 'alien-ufo-pack', 'PNG'),
 };
 
 function arg(name, fallback) {

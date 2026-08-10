@@ -210,6 +210,109 @@ const TOPICS = {
       return m ? `kenney-domino-${m[1]}-${m[2]}` : `kenney-${stem}`;
     },
   },
+  'town-blocks': {
+    pack: 'places',
+    tags: ['places', 'town', 'farm', 'kenney'],
+    relativeScale: 0.4,
+    anchor: 'bottom',
+    keep(stem) {
+      // slugStem: foliageBush_large → foliagebush-large, tileCastle → tilecastle
+      if (/^character/.test(stem)) return false;
+      if (/^(detail|gravel)/.test(stem)) return false;
+      if (/^tile(dirt|goo|grass|lava|sand|snow|stone|water|wood)/.test(stem)) return false;
+      if (/^(box|cart|door|fence|foliage|ladder|market)/.test(stem)) return true;
+      if (/^tile(bridge|building|castle)/.test(stem)) return true;
+      return false;
+    },
+    key(stem) {
+      return `kenney-block-${stem}`;
+    },
+    scaleFor(stem) {
+      if (/^foliage/.test(stem)) return 0.5;
+      if (/^tilecastle/.test(stem)) return 0.45;
+      if (/^tilebuilding/.test(stem)) return 0.4;
+      if (/^market/.test(stem)) return 0.42;
+      if (/^box/.test(stem)) return 0.28;
+      return 0.38;
+    },
+  },
+  'bg-elements': {
+    pack: 'places',
+    tags: ['places', 'nature', 'weather', 'kenney'],
+    relativeScale: 0.45,
+    anchor: 'bottom',
+    keep(stem) {
+      if (/^(castle|cloud|tree|temple|piramid|pyramid)/.test(stem)) return true;
+      if (/^house-grey-side$/.test(stem)) return true;
+      return false;
+    },
+    key(stem) {
+      const fixed = stem === 'piramid' ? 'pyramid' : stem;
+      return `kenney-bgel-${fixed}`;
+    },
+    scaleFor(stem) {
+      if (/^cloud/.test(stem)) return 0.35;
+      if (/^tree/.test(stem)) return 0.5;
+      if (/^castle/.test(stem)) return 0.55;
+      return 0.45;
+    },
+  },
+  'games-cards': {
+    pack: 'games',
+    tags: ['games', 'cards', 'kenney'],
+    relativeScale: 0.32,
+    anchor: 'center',
+    keep(stem) {
+      // cardClubsJ → cardclubsj; cardBack_blue1 → cardback-blue1
+      if (/joker/.test(stem)) return false;
+      if (/(clubs|diamonds|hearts|spades)(j|q|k)$/.test(stem)) return false;
+      if (/^cardback/.test(stem)) return true;
+      if (/(clubs|diamonds|hearts|spades)(\d+|a)$/.test(stem)) return true;
+      return false;
+    },
+    key(stem) {
+      return `kenney-card-${stem.replace(/^card-?/, '')}`;
+    },
+  },
+  'bg-elements-remaster': {
+    pack: 'places',
+    tags: ['places', 'nature', 'weather', 'kenney'],
+    relativeScale: 0.45,
+    anchor: 'bottom',
+    keep(stem) {
+      // Retina nouns only — no people; size gate already applied in curate.
+      if (/^(bush|cactus|castle|cloud|fence|house|moon|pyramid|sun|tower|tree)/.test(stem)) {
+        return true;
+      }
+      return false;
+    },
+    key(stem) {
+      return `kenney-bgr-${stem}`;
+    },
+    scaleFor(stem) {
+      if (/^cloud/.test(stem)) return 0.35;
+      if (/^tree/.test(stem)) return 0.5;
+      if (/^house/.test(stem)) return 0.5;
+      if (/^tower/.test(stem)) return 0.48;
+      if (/^bush|^cactus/.test(stem)) return 0.28;
+      return 0.45;
+    },
+  },
+  'space-ufo': {
+    pack: 'space',
+    tags: ['space', 'ufo', 'kenney'],
+    relativeScale: 0.35,
+    anchor: 'center',
+    keep(stem) {
+      // Unmanned ships are <120 short-side. Manned = faces; laser bursts = chrome.
+      if (/manned|laser|burst|damage|alien|character|face/.test(stem)) return false;
+      if (/^ship/.test(stem)) return true;
+      return false;
+    },
+    key(stem) {
+      return `kenney-ufo-${stem}`;
+    },
+  },
 };
 
 function writeManifest(manifest) {
