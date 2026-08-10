@@ -1,4 +1,9 @@
 {
+ "after-school": {
+  "file": "after-school.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "airport gate": {
   "file": "gate.png",
   "emoji": "",
@@ -399,6 +404,11 @@
   "emoji": "☁️",
   "codepoint": "2601"
  },
+ "club": {
+  "file": "club.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "clumsy": {
   "file": "clumsy.png",
   "emoji": "",
@@ -406,6 +416,11 @@
  },
  "cluttered": {
   "file": "cluttered.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "coach": {
+  "file": "coach.png",
   "emoji": "",
   "source": "generated"
  },
@@ -624,6 +639,11 @@
   "emoji": "🍽️",
   "codepoint": "1f37d"
  },
+ "effort": {
+  "file": "effort.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "egg": {
   "file": "egg.png",
   "emoji": "🥚",
@@ -799,6 +819,11 @@
   "emoji": "🧤",
   "codepoint": "1f9e4"
  },
+ "goalkeeper": {
+  "file": "goalkeeper.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "grandfather": {
   "file": "grandfather.png",
   "emoji": "👴",
@@ -879,6 +904,11 @@
   "emoji": "🦛",
   "codepoint": "1f99b"
  },
+ "hobby": {
+  "file": "hobby.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "homework": {
   "file": "homework.png",
   "emoji": "📝",
@@ -953,6 +983,11 @@
   "file": "island.png",
   "emoji": "🏝️",
   "codepoint": "1f3dd"
+ },
+ "join": {
+  "file": "join.png",
+  "emoji": "",
+  "source": "generated"
  },
  "juice": {
   "file": "juice.png",
@@ -1029,6 +1064,11 @@
   "emoji": "🔒",
   "codepoint": "1f512"
  },
+ "lose": {
+  "file": "lose.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "luggage": {
   "file": "luggage.png",
   "emoji": "🛄",
@@ -1089,8 +1129,18 @@
   "emoji": "💊",
   "codepoint": "1f48a"
  },
+ "meeting": {
+  "file": "meeting.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "melody": {
   "file": "melody.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "member": {
+  "file": "member.png",
   "emoji": "",
   "source": "generated"
  },
@@ -1359,6 +1409,11 @@
   "emoji": "🥔",
   "codepoint": "1f954"
  },
+ "practice": {
+  "file": "practice.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "puzzle": {
   "file": "puzzle.png",
   "emoji": "🧩",
@@ -1493,6 +1548,11 @@
   "file": "scissors.png",
   "emoji": "✂️",
   "codepoint": "2702"
+ },
+ "score": {
+  "file": "score.png",
+  "emoji": "",
+  "source": "generated"
  },
  "seat": {
   "file": "seat.png",
@@ -1779,6 +1839,16 @@
   "emoji": "👩‍🏫",
   "codepoint": "1f469-200d-1f3eb"
  },
+ "team": {
+  "file": "team.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "teamwork": {
+  "file": "teamwork.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "tempo": {
   "file": "tempo.png",
   "emoji": "",
@@ -1914,6 +1984,11 @@
   "emoji": "☂️",
   "codepoint": "2602"
  },
+ "uniform": {
+  "file": "uniform.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "unused-metro": {
   "file": "unused-metro.png",
   "emoji": "",
@@ -1973,6 +2048,16 @@
   "file": "wheelchair.png",
   "emoji": "🦽",
   "codepoint": "1f9bd"
+ },
+ "whistle": {
+  "file": "whistle.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "win": {
+  "file": "win.png",
+  "emoji": "",
+  "source": "generated"
  },
  "wind": {
   "file": "wind.png",
