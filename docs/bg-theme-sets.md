@@ -90,6 +90,7 @@ Anti-formula section.
 | `supermarket-cool` | cart silhouette, blank price-tag, tote bag, aisle wall haze | outdoor meadow, bakery dough, clinic tooth |
 | `classical-moon` | indigo haze, soft moon disc, tiny notes / ivy fringe (empty centre) | full terrace photos, piano mid-frame |
 | `aquarium-cool` | bubble cluster, seaweed fringe, tank waterline / glass rim, aqua haze | beach shells, sand, outdoor ocean horizon, farm wheat |
+| `fire-cool` | hydrant corner, ladder fringe, emergency-light glow, pale bay wall | outdoor meadow, campfire scene, clinic tooth, bakery dough |
 
 **Bakery example (accept):** a flour haze · b dough + flour · c loaf silhouette ·
 d rolling pin. **Reject:** wheat / wheat / cookie-as-only-signal / leaf alcove.
@@ -109,6 +110,7 @@ d rolling pin. **Reject:** wheat / wheat / cookie-as-only-signal / leaf alcove.
 | `supermarket-cool` | supermarket / grocery / market | wired (in-house Aug 2026) |
 | `classical-moon` | compose / classical / orchestra / concert | wired (in-house Aug 2026) + title scene `classical-terrace-moonlit` |
 | `aquarium-cool` | aquarium / fish tank | wired (in-house Aug 2026) |
+| `fire-cool` | fire station / firefighter / fire truck | wired (ChatGPT sheet Aug 2026) |
 | `school-soft` | (legacy) superseded by `board-house` | kept on disk, not picker-default |
 | `face-soft` | **retired** — skin-tone peach read as literal skin | kept on disk, unwired |
 

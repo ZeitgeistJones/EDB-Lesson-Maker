@@ -1611,6 +1611,42 @@
    "textInk": "light",
    "quiet": true,
    "set": "classical-moon"
+  },
+  "fire-a": {
+   "file": "flat_fire-a.png",
+   "tone": "fire cool wash — plain pale wall",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "fire-cool",
+   "palette": "cool"
+  },
+  "fire-b": {
+   "file": "flat_fire-b.png",
+   "tone": "fire cool wash — hydrant corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "fire-cool",
+   "palette": "cool"
+  },
+  "fire-c": {
+   "file": "flat_fire-c.png",
+   "tone": "fire cool wash — ladder bottom fringe",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "fire-cool",
+   "palette": "cool"
+  },
+  "fire-d": {
+   "file": "flat_fire-d.png",
+   "tone": "fire cool wash — emergency light corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "fire-cool",
+   "palette": "cool"
   }
  }
 }

@@ -264,6 +264,9 @@
     { re: /\b(dentists?|dental|doctors?|clinic|hospital|nurse|tooth|teeth|medical)\b/, set: 'clinic-cool' },
     // No bare "station" — "Space Station" must not steal travel-air; train/bus station still match.
     { re: /\b(airport|travel|train|bus|plane|passport|(?:train|bus|transit|railway)\s*stations?)\b/, set: 'travel-air' },
+    // Firehouse before outdoor — do not let "fire" in campfire steal this; use firehouse words only.
+    // Keep before outdoor so "firefighter" never falls through to park meadows.
+    { re: /\b(fire\s*stations?|firehouses?|firefighters?|firemen|fireman|fire\s*trucks?|fire\s*engines?|fire\s*safety)\b/, set: 'fire-cool' },
     // Bathroom / wash routines stay on home washes (not board-house default).
     { re: /\b(home|house|family|kitchen|apartment|bedroom|hotel|bathroom|shower|bath|toilet)\b/, set: 'home-warm' },
     // Indoor gym before outdoor — "gym" must not land on park meadows.
@@ -297,6 +300,7 @@
   const PLACE_SIGNALS = [
     /\b(dentists?|dental|doctors?|clinic|hospital|nurse|medical)\b/,
     /\b(airport|travel|train|bus|plane|passport|(?:train|bus|transit|railway)\s*stations?|hotel)\b/,
+    /\b(fire\s*stations?|firehouses?|firefighters?|firemen|fireman|fire\s*trucks?|fire\s*engines?|fire\s*safety)\b/,
     /\b(home|house|family|kitchen|apartment|bedroom)\b/,
     /\b(zoo|park|animal|forest|garden|nature|gym|sport|trampoline|volcano)\b/,
     /\b(aquariums?|fish\s*tanks?)\b/,
@@ -308,6 +312,7 @@
   const TOPIC_PALETTE = [
     { re: /\b(dentists?|dental|doctors?|clinic|hospital|nurse|tooth|teeth|medical)\b/, want: ['cool', 'neutral', 'warm'] },
     { re: /\b(airport|travel|train|bus|plane|passport|(?:train|bus|transit|railway)\s*stations?)\b/, want: ['travel', 'cool', 'neutral'] },
+    { re: /\b(fire\s*stations?|firehouses?|firefighters?|firemen|fireman|fire\s*trucks?|fire\s*engines?|fire\s*safety)\b/, want: ['cool', 'neutral', 'warm'] },
     { re: /\b(aquariums?|fish\s*tanks?|coral)\b/, want: ['cool', 'coast', 'neutral'] },
     { re: /\b(beach|ocean|sea|shore|swim)\b/, want: ['coast', 'outdoor', 'cool'] },
     { re: /\b(volcano|lava|eruption|crater|ash|seismic|geothermal)\b/, want: ['outdoor', 'warm', 'cool'] },
