@@ -181,7 +181,7 @@ export function buildReviewBrief(meta = {}) {
     'Attached = baked board page JPGs (teacher + student eyes).',
     '',
     'Rubric dimensions (score each /5 in scorecard): EDB Alignment · ClassIn Delivery · PPT-like Quality · ESL Pedagogy · Completeness.',
-    'Heuristics to check: aims ⊆ board-taught vocab; grammar aim matches frames; timing chips if ≥45 min; warm-up no sampleAnswer; story arc complete in packet; ≤2–3 bg registers (flag ≥4); drop pads without answer-naming caption chips on student match; PropBank caption-before-glyph on story.',
+    'Heuristics to check: aims ⊆ board-taught vocab; grammar aim matches frames; timing chips if ≥45 min; warm-up no sampleAnswer; story arc complete in packet; story pages end in complete sentences (flag mid-name/mid-clause cuts like truncated "Ben"); comprehension questions must be answerable from the story text alone — flag invented facts (e.g. choir Q when story only has Anna at an art booth); silent StoryIntegrity repair is not enough — if baked boards still show mismatched Qs, cite S73 in blocking_issues/gate_holes; ≤2–3 bg registers (flag ≥4); drop pads without answer-naming caption chips on student match; PropBank caption-before-glyph on story.',
     'Prefer next_actions aimed at the producer (prompts, layouts, props, gates), not one-off Photoshop.',
     'If scorecard.overall > 4.0, fill zpd_challenges (Topic Expansion / Format Challenge / Pedagogical Stretch). Never treat a high score as “done forever.”',
     '',

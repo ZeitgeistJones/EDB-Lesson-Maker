@@ -98,6 +98,10 @@ Never hand-edit `tmp/board-bg-verify/report.json`. The judge CLI writes it, appe
 - Do backgrounds match the topic and change enough that the lesson doesn't feel copy-pasted?
 - Would I be embarrassed if a parent peeked at this board?
 - Does comprehension have real questions? Does wrap/exit ticket exist? Does the king hint ask for language, not only “drag toys”?
+- **Story ↔ comprehension integrity (S73):** Read every story page end-to-end, then every comprehension Q.
+  - Story body text must **end in a complete sentence** — flag mid-name / mid-clause cuts (clubs PDF: truncated “Ben”).
+  - Each comprehension question must be **answerable from the story text alone** — flag invented facts (clubs: Anna at art booth, Q asks why she chose the choir).
+  - Silent `StoryIntegrity` repair is **not enough** for a clean review: if the baked board still shows Qs that don’t match the body, file **S73** and treat as honesty fail.
 
 If student and teacher disagree, prefer **clarity + honesty** (readable, accurate, no
 answer leak), then charm.
@@ -105,7 +109,8 @@ answer leak), then charm.
 ## After Manus feedback
 
 When a Manus review returns, follow [manus-lesson-review](../manus-lesson-review/SKILL.md)
-**After feedback (REQUIRED)** — fold into producer + this loop’s soft codes (S19–S23),
+**After feedback (REQUIRED)** — fold into producer + this loop’s soft codes (S19–S23,
+**S73** story↔comprehension integrity, plus any other S\* named in the feedback),
 then re-bake. Do not only paste the JSON into chat.
 
 ## Product pillars
@@ -195,6 +200,9 @@ When the art is wrong or weak **and** no verified in-repo asset exists:
 - Prefer wishlist + honest stand-in over a misleading substitute
 - Adversarial cases (`abstract-words`, `bad-theme`, `minimal`, `overflow`) exist to catch
   the failure classes that already bit us. Treat their findings as first-class.
+- **S73** — story pages complete; comprehension grounded in story body; choir-style invented
+  facts are honesty fails. Do not mark clean because a silent repair ran upstream if the
+  JPGs still show mismatched Qs.
 
 ## Model note
 

@@ -67,6 +67,12 @@ so we don't hand-write them each time:
 Prefer contact + title, newWords, frames, **all storyN beats**, comprehension, activity, wrap when present.
 `pickImages` soft-max must never drop a middle story page (gate hole B1 on classical-compose).
 
+**Story ↔ comprehension (S73) — always look:** story pages must end in complete sentences
+(no mid-name cuts like truncated “Ben”); every comprehension Q must be answerable from the
+story body alone — flag choir-style invented facts (story: Anna at art booth; Q: why choir).
+Silent `StoryIntegrity` repair is **not** enough for a Manus pass: if baked JPGs still show
+Qs that don’t match the body, put it in `blocking_issues` / `gate_holes` and cite **S73**.
+
 ## How to run
 
 ```bash
@@ -100,6 +106,7 @@ Log lines append to `.cursor/ratings/manus-reviews.jsonl`.
 | Miss | Producer / check |
 |------|------------------|
 | Empty comprehension | `normalizeLesson`; S19 |
+| Story truncated mid-name + choir Q vs art-booth story | clubs PDF; `StoryIntegrity` + prompt; judges file **S73** (silent repair ≠ review pass) |
 | Warm sample on board | Warm-up hides sampleAnswer; S20 |
 | “Drag toys…” | King hints + speak/write; S21 |
 | No aims / weak wrap | Title aims + wrap exit ticket; S22/S23 |
@@ -135,5 +142,6 @@ Upstream skill after J4up self-update + ZPD pass — vs our original flat schema
 | Heuristic: aims ⊆ taught vocab; caption chips remove inference | S30; remove student match captions |
 | Heuristic: ≤2 bg registers / flag ≥4; wrap register | S32 navy wrap; palette still known soft |
 | Heuristic: grammar aim matches frames | S31 `grammarAimLine` |
+| Heuristic: story ends complete; comprehension grounded in body (no invented choir/facts) | **S73**; silent StoryIntegrity repair does not clear a review miss |
 
 Setup details: [docs/manus-review.md](../../docs/manus-review.md).
