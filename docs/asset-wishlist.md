@@ -8,6 +8,7 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 - One row per distinct need; dedupe before adding
 - `Status`: `open` → `fetched` → `wired` (or `wont`)
 - **White-bg vocab sheets (`07_vocab-pack`):** prefer **Manus** (`esl-asset-generator`) for batch 3×3s — ChatGPT is optional fallback only. See `docs/prop-sheet-prompts.md` vocab section + `scripts/manus/request-white-vocab-*.mjs`.
+- **Black-field props (`09_props`) for New Words:** OK when dock-sharp (`isDockSharp` / ≥120px short side) + identity-clear (`headNounOk`) and not soft/off-topic decorative. VocabArt fills pack gaps from props first; white sheets cover remaining gaps. Do not fire a Manus white batch for a word that already has a viable black cutout.
 
 | Date | Need | Why (case / word / page) | Preferred type | Suggested source | Status |
 |------|------|--------------------------|----------------|------------------|--------|

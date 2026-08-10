@@ -12,6 +12,7 @@ Gaps in **lesson content** — not art. For us (agent + you) when something teac
 
 | Date | Issue | Why (topic / level / page) | Likely producer | Status |
 |------|-------|----------------------------|-----------------|--------|
+| 2026-08-10 | Agents over-queued white vocab sheets for words that already have sharp black `09_props` cutouts | producer preference / New Words coverage | VocabArt: pack gaps + stand-in aliases yield to dock-sharp identity-tight props; exact pack rows (clubs sheet) stay; soft/decorative still gated. Wishlist note: black props OK for vocab when viable; Manus white for remaining gaps only | schema-fixed |
 | 2026-08-10 | New Words said “Drag each picture…” while only some words were matchable (chess+robot; art/choir/math/drama had no pads) | clubs PDF analyze | Pads stay matchable-only; **student hint never announces gaps** (admin BoardReadiness only). Later: fill pictures even if imperfect — not yet while mapper is in flux | schema-fixed |
 | 2026-08-07 | Title charm stacks a musician cutout on a terrace scene that already has a piano — awkward double-instrument title | Classical compose / Manus reviews | `titleCharmSrc` skips charm for music/classical packs | prompt-fixed |
 | 2026-08-07 | Story PropBank fallback: caption bled through alpha prop (absolute img) + desk caption → orchestra-stands | classical-compose story0 | `fillStoryArtSlot` relative plate + chip; desk-scene prefer in `storyFallbackVisual`; S24 soft gate | prompt-fixed |

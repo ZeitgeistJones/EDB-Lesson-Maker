@@ -207,7 +207,8 @@ async function main() {
   const srcs = artTwin.matchable.map((r) => r.artSrc).filter(Boolean);
   assert(new Set(srcs).size === srcs.length, 'dedupe: unique artSrc among matchable');
 
-  // Soft / decorative blob must not ship on New Words (gashapon-robot gate hole)
+  // Soft / decorative blob must not ship on New Words (gashapon-robot gate hole).
+  // Clubs white sheet now supplies exact pack rows — keep those; still refuse soft robots.
   const clubs = {
     title: 'All Kinds of School Clubs',
     vocabulary: [
@@ -228,19 +229,76 @@ async function main() {
     !(robotRow.artSrc && /gashapon-robot|space-robot-gray/.test(robotRow.artSrc)),
     'clubs: robot artSrc must not be soft robot PNG'
   );
-  assert(robotRow.tier === 'glyph' && robotRow.glyph === '🤖', 'clubs: robot → curated glyph until sharp art');
-  assert(robotRow.matchable, 'clubs: robot still matchable via glyph');
+  assert(robotRow.tier === 'pack' && /robot\.png/.test(robotRow.artSrc || ''), 'clubs: robot → exact pack');
+  assert(robotRow.matchable, 'clubs: robot matchable via pack');
   const chessRow = artClubs.rows.find((r) => r.word === 'chess');
   assert(chessRow && chessRow.tier === 'pack', 'clubs: chess pack tier');
   for (const w of ['art', 'choir', 'math', 'drama']) {
     const row = artClubs.rows.find((r) => r.word === w);
-    assert(row && row.tier === 'none', `clubs: ${w} still coverage-gap (none)`);
+    assert(row && row.tier === 'pack', `clubs: ${w} exact pack (vocab-clubs sheet)`);
   }
+
+  // Black-field props fill New Words when no pack icon (dock-sharp + identity-clear)
+  const propOnly = {
+    title: 'Sports Kit and Science Desk',
+    vocabulary: [
+      { word: 'clipboard' },
+      { word: 'eraser' },
+      { word: 'microscope' },
+      { word: 'glue' },
+      { word: 'goal' },
+      { word: 'cone' },
+    ],
+  };
+  const artProp = W.VocabArt.planFor(propOnly, { seed: propOnly.title });
+  const expectProp = {
+    clipboard: 'clipboard',
+    eraser: 'eraser',
+    glue: 'office-liquid-glue',
+    goal: 'soccer-goal',
+  };
+  for (const [w, wantKey] of Object.entries(expectProp)) {
+    const row = artProp.rows.find((r) => r.word === w);
+    assert(row && row.tier === 'prop', `prop-fill: ${w} prop tier (no pack)`);
+    assert(row.propKey === wantKey, `prop-fill: ${w}→${wantKey} (got ${row && row.propKey})`);
+    assert(row.matchable && row.artSrc, `prop-fill: ${w} matchable artSrc`);
+    assert(!W.VocabIcons.pathForSync(w), `prop-fill: ${w} still has no pack icon`);
+  }
+  const microRow = artProp.rows.find((r) => r.word === 'microscope');
+  assert(microRow && microRow.tier === 'prop', 'prop-fill: microscope prop tier');
+  assert(
+    microRow.propKey && /microscope/.test(microRow.propKey),
+    `prop-fill: microscope→*-microscope (got ${microRow && microRow.propKey})`
+  );
+  assert(!W.VocabIcons.pathForSync('microscope'), 'prop-fill: microscope still has no pack icon');
+  const coneRow = artProp.rows.find((r) => r.word === 'cone');
+  assert(coneRow && coneRow.tier === 'prop', 'prop-fill: cone prop tier');
+  assert(coneRow.propKey && /cone/.test(coneRow.propKey), 'prop-fill: cone→*-cone cutout');
+  assert(!W.VocabIcons.pathForSync('cone'), 'prop-fill: cone still has no pack icon');
+
+  // Stand-in pack (gym→basketball) yields to tight city-gym prop; dental brush keeps toothbrush pack
+  const gymLesson = {
+    title: 'Gym Class Today',
+    vocabulary: [{ word: 'gym' }, { word: 'clipboard' }],
+  };
+  const artGym = W.VocabArt.planFor(gymLesson, { seed: gymLesson.title });
+  const gymRow = artGym.rows.find((r) => r.word === 'gym');
+  assert(W.VocabIcons.isStandInPack('gym'), 'stand-in: gym pack is alias');
+  assert(gymRow && gymRow.tier === 'prop', 'stand-in: gym prefers tight prop over basketball pack');
+  assert(gymRow.propKey === 'city-gym', 'stand-in: gym→city-gym');
+  const dentalBrush = {
+    title: 'Brush Your Teeth Dental',
+    vocabulary: [{ word: 'brush' }, { word: 'toothpaste' }],
+  };
+  const artBrush = W.VocabArt.planFor(dentalBrush, { seed: dentalBrush.title });
+  const brushRow = artBrush.rows.find((r) => r.word === 'brush');
+  assert(brushRow && brushRow.tier === 'pack', 'stand-in: brush keeps toothbrush pack (not paintbrush)');
+  assert(/toothbrush/.test(brushRow.artSrc || ''), 'stand-in: brush artSrc toothbrush pack');
 
   assert(W.VocabArt.MAX_BOARD_VOCAB === 6, 'MAX_BOARD_VOCAB === 6');
   assert(W.VocabArt.slug("don't") === 'dont', 'slug: don\'t → dont');
 
-  console.log('OK vocab-art cases 1,3,4,6,7 + jobs/coach + sport-ball + dedupe + clubs-robot', {
+  console.log('OK vocab-art cases 1,3,4,6,7 + jobs/coach + sport-ball + dedupe + clubs-pack + prop-fill + stand-in', {
     soccerTier: soccer.tier,
     coachGlyph: glyph,
     coachTier: coachRow.tier,
@@ -249,7 +307,12 @@ async function main() {
     ballProp: ballRow.propKey,
     parkBallTier: parkBallRow.tier,
     robotTier: robotRow.tier,
-    robotGlyph: robotRow.glyph,
+    robotSrc: robotRow.artSrc,
+    gymProp: gymRow.propKey,
+    brushTier: brushRow.tier,
+    propFill: Object.fromEntries(
+      artProp.rows.map((r) => [r.word, r.propKey])
+    ),
     dropped: art7.dropped.map((d) => d.word),
     grandfather: clock ? clock.key : null,
   });

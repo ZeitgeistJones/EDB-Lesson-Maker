@@ -165,8 +165,9 @@
     story: '📜',
     planet: '🪐',
     space: '🌌',
-    // School clubs / STEM — both bank robots are soft blob splices (< MIN_DOCK_SRC);
-    // glyph until a sharp vocab-pack or dock-safe cutout lands.
+    // School clubs / STEM — glyph fallback if pack/prop cold; exact robot.png
+    // from vocab-clubs sheet wins when warm. Soft gashapon/space robots stay
+    // gated out of match via isDockSharp.
     robot: '🤖',
   };
 
@@ -268,39 +269,65 @@
   }
 
   function resolveKey(index, word) {
+    const hit = resolveKeyWithKind(index, word);
+    return hit ? hit.key : null;
+  }
+
+  /**
+   * How a pack PNG was chosen for this word.
+   * exact/plural = dedicated (or close inflection) art — keep for New Words.
+   * alias/override/token = stand-in — VocabArt may prefer a sharp black prop.
+   * @returns {{ key: string, kind: 'exact'|'override'|'alias'|'plural'|'token' }|null}
+   */
+  function resolveKeyWithKind(index, word) {
     const raw = normalize(word);
-    if (!raw) return null;
+    if (!raw || !index) return null;
 
     // Bad stand-ins (sponge-for-clean) — force the override before exact key.
     const override = PACK_OVERRIDES[raw];
     if (override) {
       const forced = lookupKey(index, override);
-      if (forced) return forced;
+      if (forced) return { key: forced, kind: 'override' };
     }
 
     let hit = lookupKey(index, raw);
-    if (hit) return hit;
+    if (hit) return { key: hit, kind: 'exact' };
 
     const alias = PACK_ALIASES[raw];
     if (alias) {
       hit = lookupKey(index, alias);
-      if (hit) return hit;
+      if (hit) return { key: hit, kind: 'alias' };
     }
 
     // plural → singular (simple trailing s) — skip -ous/-ss adjectives ("spacious")
     if (raw.length > 3 && raw.endsWith('s') && !raw.endsWith('ss') && !raw.endsWith('ous')) {
       hit = lookupKey(index, raw.slice(0, -1));
-      if (hit) return hit;
+      if (hit) return { key: hit, kind: 'plural' };
     }
 
     // multi-token → last token
     if (raw.includes(' ')) {
       const parts = raw.split(' ');
       hit = lookupKey(index, parts[parts.length - 1]);
-      if (hit) return hit;
+      if (hit) return { key: hit, kind: 'token' };
     }
 
     return null;
+  }
+
+  /**
+   * Sync pack match kind — only after ready()/loadIndex.
+   * Stand-ins (alias/override/token) are fair game for a sharper 09_props cutout.
+   */
+  function matchKindSync(word) {
+    if (!indexCache) return null;
+    const hit = resolveKeyWithKind(indexCache, word);
+    return hit ? hit.kind : null;
+  }
+
+  function isStandInPack(word) {
+    const kind = matchKindSync(word);
+    return kind === 'alias' || kind === 'override' || kind === 'token';
   }
 
   async function pathFor(word) {
@@ -352,6 +379,8 @@
   window.VocabIcons = {
     pathFor,
     pathForSync,
+    matchKindSync,
+    isStandInPack,
     has,
     loadPng,
     emojiFor,

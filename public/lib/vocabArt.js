@@ -4,6 +4,12 @@
  * Gemini emoji / bullet / wrong compound when tier-1 is missing.
  * Classic script → window.VocabArt
  *
+ * Black-field 09_props cutouts are first-class for New Words when dock-sharp +
+ * identity-clear (not soft blobs / off-topic decorative). Dedicated white
+ * 07_vocab-pack rows still win on exact/plural hits; stand-in pack aliases
+ * yield to a tighter prop when one resolves. White Manus sheets fill remaining
+ * gaps.
+ *
  * MAX_BOARD_VOCAB is the single ceiling for board cards, match dock, wrap aims,
  * and teacher PDF word lists. Generate may return more (30→7 / 60→12); overflow
  * is a BoardReadiness draft reason, not silent truncation.
@@ -56,6 +62,26 @@
       return false;
     }
     // Local mirror if PropBank export missing
+    for (const t of tokens) {
+      if (prop.key === t || (prop.key && prop.key.endsWith('-' + t))) return true;
+      if (prop.identity && prop.identity.includes(t)) return true;
+    }
+    return false;
+  }
+
+  /**
+   * Tight identity for preferring a prop over a pack stand-in.
+   * Exact key / *-word suffix / identity[] only — NOT propPolicy alias alone
+   * (alias-only would let brush→paintbrush steal dental toothbrush pack art).
+   */
+  function identityTight(word, prop) {
+    if (!prop || !word) return false;
+    const key = slug(word);
+    if (!key) return false;
+    const tokens = [key];
+    if (key.length > 3 && key.endsWith('s') && !key.endsWith('ss')) {
+      tokens.push(key.slice(0, -1));
+    }
     for (const t of tokens) {
       if (prop.key === t || (prop.key && prop.key.endsWith('-' + t))) return true;
       if (prop.identity && prop.identity.includes(t)) return true;
@@ -135,21 +161,26 @@
       // soccer-ball (or identity ball) can win at prop tier without replacing
       // the pack file (park / generic "ball" lessons keep the pack row).
       const skipPackForSportBall = sportBallLesson && (key === 'ball' || key === 'balls');
+      const packIsStandIn =
+        typeof VI.isStandInPack === 'function' ? VI.isStandInPack(word) : false;
 
-      // Tier 1 — curated VocabIcons pack PNG
+      // Tier 1 — curated VocabIcons pack PNG (exact/plural dedicated rows win;
+      // stand-ins may yield to a tighter prop below).
+      let packPath = null;
       if (!skipPackForSportBall) {
-        const packPath = typeof VI.pathForSync === 'function' ? VI.pathForSync(word) : null;
-        if (packPath && !usedSrc.has(packPath)) {
-          tier = 'pack';
-          artSrc = packPath;
-        }
+        packPath = typeof VI.pathForSync === 'function' ? VI.pathForSync(word) : null;
+        if (packPath && usedSrc.has(packPath)) packPath = null;
       }
 
       // Tier 2 — PropBank identity resolve + headNounOk (defense-in-depth).
       // Match picture bin uses the same sharp + decorative rules as roleplay
       // docks (MIN_DOCK_SRC / isDockSharp; decorativePacksFor). Soft blob
       // splices (e.g. gashapon-robot ~71px) must not ship enlarged on New Words.
-      if (tier === 'none' && PB && typeof PB.loaded === 'function' && PB.loaded()) {
+      // Always resolve when the bank is warm so stand-in packs can yield to a
+      // sharper cutout, and so no-pack words fill from 09_props aggressively.
+      let prop = null;
+      let propOk = false;
+      if (PB && typeof PB.loaded === 'function' && PB.loaded()) {
         const decoOK =
           typeof PB.decorativePacksFor === 'function'
             ? PB.decorativePacksFor(lesson)
@@ -166,7 +197,6 @@
           }
           return true;
         };
-        let prop = null;
         if (skipPackForSportBall) {
           // Pin canonical soccer-ball. resolve() can rotate to soccer-ball-orange
           // via SceneBackgrounds.rotate in browser bakes; orange fails headNounOk
@@ -180,6 +210,7 @@
               seed,
               exclude: exclude.concat(['soccer-ball-orange']),
               minScore,
+              allowUnthemedIdentity: true,
             });
           }
           if (!propOkForMatch(prop)) {
@@ -189,6 +220,7 @@
               seed,
               exclude: exclude.concat(['soccer-ball-orange']),
               minScore,
+              allowUnthemedIdentity: true,
             });
           }
         } else {
@@ -198,13 +230,39 @@
             seed,
             exclude: exclude.slice(),
             minScore,
+            allowUnthemedIdentity: true,
           });
         }
-        if (propOkForMatch(prop)) {
-          tier = 'prop';
-          artSrc = prop.path;
-          propKey = prop.key;
-        }
+        propOk = propOkForMatch(prop);
+      }
+
+      // Prefer viable black prop when: no pack, sport-ball skip, pack is a
+      // stand-in with tight head-noun cutout, or subjectLock:person with a
+      // matching person cutout (job-coach beats flat coach.png).
+      const lock =
+        typeof PB.subjectLockEntry === 'function' ? PB.subjectLockEntry(word) : null;
+      const preferPersonProp =
+        propOk
+        && typeof lock === 'string'
+        && lock === 'person'
+        && prop.subject === 'person'
+        && identityTight(word, prop);
+      const preferProp =
+        propOk
+        && (
+          !packPath
+          || skipPackForSportBall
+          || preferPersonProp
+          || (packIsStandIn && identityTight(word, prop))
+        );
+
+      if (preferProp) {
+        tier = 'prop';
+        artSrc = prop.path;
+        propKey = prop.key;
+      } else if (packPath) {
+        tier = 'pack';
+        artSrc = packPath;
       }
 
       // Tier 3 — curated glyph only (SAFE_EMOJI / EMOJI_OVERRIDES) — never Gemini
@@ -242,6 +300,7 @@
     MAX_BOARD_VOCAB,
     planFor,
     headNounOk,
+    identityTight,
     isSportBallLesson,
     vocabWords,
     boardVocabulary,

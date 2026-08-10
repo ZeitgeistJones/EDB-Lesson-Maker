@@ -738,8 +738,10 @@
       if (hit) return pick(hit);
     }
 
-    // Theme-rank a multi-match identity band; no theme signal → null.
-    const pickThemedBand = (band) => {
+    // Theme-rank a multi-match identity band; no theme signal → null
+    // (scene dressing: empty > wrong). VocabArt match may pass
+    // allowUnthemedIdentity so a tight *-word band still ships a sharp cutout.
+    const pickThemedBand = (band, tight) => {
       if (!band.length) return null;
       if (band.length === 1) return pick(band[0]);
       const theme = topicTokens(seed, q && q.tags);
@@ -760,7 +762,10 @@
           a.key.length - b.key.length ||
           a.key.localeCompare(b.key)
       );
-      if (themeScore(band[0]) === 0) return null;
+      if (themeScore(band[0]) === 0) {
+        if (tight && q && q.allowUnthemedIdentity) return pick(band[0]);
+        return null;
+      }
       return pick(band[0]);
     };
 
@@ -799,7 +804,7 @@
       // false friend — require theme overlap, same as a multi-match band.
       const matchesBareOrStem =
         identityHit(only, key) || (stem && identityHit(only, stem));
-      if (!matchesBareOrStem) return pickThemedBand(merged);
+      if (!matchesBareOrStem) return pickThemedBand(merged, false);
       return pick(only);
     }
     if (merged.length > 1) {
@@ -807,7 +812,7 @@
         tokens.some((t) => p.key === t || p.key.endsWith('-' + t))
       );
       const band = tight.length ? tight : merged;
-      return pickThemedBand(band);
+      return pickThemedBand(band, !!tight.length);
     }
     return null;
   }
@@ -884,10 +889,15 @@
   /**
    * Resolve one prop for a WORD (or null). Empty beats wrong.
    *
-   *   { role, word, tags, seed, index, exclude, minScore, family }
+   *   { role, word, tags, seed, index, exclude, minScore, family,
+   *     allowUnthemedIdentity }
    *
    * Ladder: deny → exact key / PROP_ALIASES / pack-suffix (byWord) → score only
    * inside an identity pool (tags rank, capped) → null.
+   *
+   * allowUnthemedIdentity: when a tight *-word band has no theme overlap,
+   * still pick the shortest key (VocabArt match). Scene dressing omits this
+   * so empty > wrong.
    *
    * Role-bucket fallback is gone from resolve. Chrome / slot-fill without a
    * word: use pickDecor(role) / pickByRole.
@@ -1434,7 +1444,9 @@
     loadPng,
     isDeniedWord,
     isAmbiguousWord,
+    subjectLockEntry,
     identityHit,
+    aliasFor,
     PROP_REQUESTS,
     PROP_ALIASES,
     HOUSE_FAMILY,
