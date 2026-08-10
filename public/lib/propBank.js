@@ -312,6 +312,8 @@
     package: 'postal-parcel-box',
     fabric: 'sew-fabric-bolt',
     smoke: 'fire-smoke-detector',
+    // Bare "alarm" has no exact key; fire-alarm-bell is the unique station bell.
+    alarm: 'fire-alarm-bell',
     hardhat: 'construction-hard-hat',
     conditioner: 'salon-conditioner-bottle',
     polaroid: 'photo-polaroid-camera',
@@ -324,6 +326,9 @@
     'jump-start': 'auto-jumper-cables',
     trail: 'hike-trail-sign',
     'camp-stove': 'hike-camping-stove',
+    // hiking (activity) → boot stand-in; do NOT alias camp→tent (both can co-appear).
+    // canoe: no canoe prop — leave gap (boat/rescue-boat would be false friends).
+    hiking: 'hike-hiking-boot',
     flashlight: 'camp-flashlight',
     binoculars: 'camp-binoculars',
     photography: 'photo-film-camera',

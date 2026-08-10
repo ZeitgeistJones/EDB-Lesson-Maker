@@ -347,6 +347,17 @@
       "notes": "New topic probe — campsite locks outdoor-fresh (was PLACE_SIGNALS gap)"
     },
     {
+      "id": "fire-station",
+      "fixture": "fire-station-lesson.json",
+      "tier": "adversarial",
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
+      "expectScene": "fire|station|emergency|city",
+      "notes": "Mid-obscure bank probe — concrete fire-* props (hydrant/hose/helmet/ladder/axe/alarm)"
+    },
+    {
       "id": "weather",
       "fixture": "weather-lesson.json",
       "tier": "adversarial",

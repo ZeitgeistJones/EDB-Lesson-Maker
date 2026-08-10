@@ -139,8 +139,10 @@
     return !!matchDockSize(vocabList(lesson).length);
   }
 
-  /** Plan VocabArt once (throws if VocabIcons cold/errored). */
-  function planVocabArt(lesson, seed) {
+  /** Plan VocabArt once (throws if VocabIcons cold/errored).
+   * topicSeed must be lesson title / theme text — never the RNG hashStr used for recipe picks.
+   */
+  function planVocabArt(lesson, topicSeed) {
     if (!window.VocabArt || typeof window.VocabArt.planFor !== 'function') {
       throw new Error('EdbActivities: VocabArt.planFor missing — load vocabArt.js');
     }
@@ -148,7 +150,7 @@
     const family = PB && PB.familyFor ? PB.familyFor(lesson) : null;
     return window.VocabArt.planFor(lesson, {
       family,
-      seed: seed || (lesson && lesson.title) || '',
+      seed: topicSeed || (lesson && lesson.title) || '',
     });
   }
 
@@ -1333,8 +1335,8 @@
    * one Peek sticky on the first speaking page.
    */
   function plan(lesson, meta) {
-    const seed = hashStr((lesson.title || '') + '|' + (meta?.level || '') + '|' + (meta?.duration || ''));
-    const pickBit = (n) => ((seed >>> n) & 1) === 1;
+    const rngSeed = hashStr((lesson.title || '') + '|' + (meta?.level || '') + '|' + (meta?.duration || ''));
+    const pickBit = (n) => ((rngSeed >>> n) & 1) === 1;
     const vocab = vocabList(lesson);
     const hasVocab = vocab.length > 0;
     const assignments = [];
@@ -1343,7 +1345,8 @@
     // VocabArt ladder — pack → prop(+headNounOk) → curatedGlyph → none.
     // Match dock only when matchable rows fit honestly (≥96px). Dropped words
     // stay text-only on cards (no Gemini emoji / bullet pad).
-    const vocabArt = hasVocab ? planVocabArt(lesson, seed) : { rows: [], matchable: [], dropped: [] };
+    // Topic seed = lesson title (theme-rank fire-* vs farm-*); never pass rngSeed.
+    const vocabArt = hasVocab ? planVocabArt(lesson, (lesson && lesson.title) || '') : { rows: [], matchable: [], dropped: [] };
     const honestMatch = vocabArt.matchable.length > 0 && canHonestMatchDock(vocabArt.matchable.length);
     if (honestMatch) {
       assignments.push({
@@ -1398,7 +1401,7 @@
 
     const planOut = {
       assignments,
-      seed,
+      seed: rngSeed,
       kit: kit && kit.ready ? { pack: kit.pack, hero: kit.hero.key, docks: kit.dockCount } : null,
       vocabArt,
       canHonestMatchDock: honestMatch,

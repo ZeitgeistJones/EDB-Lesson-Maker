@@ -1,0 +1,40 @@
+{
+  "title": "Fire Station Visit",
+  "warmUp": {
+    "question": "Have you seen a fire truck?",
+    "sampleAnswer": "Yes, it was red and loud."
+  },
+  "vocabulary": [
+    { "word": "hydrant", "emoji": "🚒", "sentence": "The hydrant is red." },
+    { "word": "hose", "emoji": "💧", "sentence": "Hold the hose." },
+    { "word": "helmet", "emoji": "⛑️", "sentence": "Wear a helmet." },
+    { "word": "ladder", "emoji": "🪜", "sentence": "Climb the ladder." },
+    { "word": "axe", "emoji": "🪓", "sentence": "The axe is heavy." },
+    { "word": "alarm", "emoji": "🔔", "sentence": "The alarm is loud." }
+  ],
+  "sentenceFrames": ["I see a ____.", "Put the ____ by the truck."],
+  "story": {
+    "title": "At the Fire Station",
+    "pages": [
+      {
+        "heading": "Ready to help",
+        "text": "Sam puts on a helmet. He holds a hose by the hydrant.",
+        "visualTheme": "fire-station",
+        "visualCaption": "Fire station gear"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is Sam?", "sampleAnswer": "He is at the fire station." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What does a firefighter use?", "sampleAnswer": "A hose and a ladder." }
+  ],
+  "activity": {
+    "title": "Gear Match",
+    "prompt": "Name the fire gear.",
+    "templates": ["This is a ____."]
+  },
+  "reviewSentences": ["The helmet is red.", "The hose is long."]
+}
