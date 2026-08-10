@@ -74,6 +74,7 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-09 | `restaurant-warm` quiet flat set | restaurant place signal had no TOPIC_SETS row (bgGap / bakery steal risk) | ChatGPT quiet zip sheet → import | assets:bg --flat | wired — restaurant-a…d + TOPIC_SETS before bakery |
 | 2026-08-09 | `post-cool` quiet flat set | post office / mail lessons had no place wash | ChatGPT quiet zip sheet → import | assets:bg --flat | wired — post-a…d + TOPIC_SETS + PLACE_SIGNALS |
 | 2026-08-10 | `garage-cool` quiet flat set | garage / mechanic place signal had no TOPIC_SETS row | ChatGPT quiet zip 2×2 → import | assets:bg --flat --grid=2x2 | wired — garage-a…d + TOPIC_SETS + PLACE_SIGNALS |
+| 2026-08-10 | Kenney letter-tiles A–Z (CC0 Blue 256px) | Phonics docks needed sharp alphabet tiles | `kenney-letter-a`…`z` pack=phonics | Kenney Letter Tiles → curate/import | wired |
 
 ## How agents append
 
