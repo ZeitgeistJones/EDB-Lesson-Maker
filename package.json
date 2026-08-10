@@ -48,6 +48,7 @@
     "story-art:illustrate": "node scripts/illustrate-fixture-story.mjs",
     "test:phonics": "node scripts/smoke-phonics-policy.cjs && node scripts/test-phonics-audit.cjs",
     "test:story-integrity": "node scripts/test-story-integrity.cjs",
+    "test:readiness-story": "node scripts/test-readiness-story-integrity.mjs",
     "manus:review": "node scripts/manus/review.mjs",
     "manus:dry": "node scripts/manus/review.mjs --dry-run",
     "manus:passoff": "node scripts/manus/write-passoff.mjs"

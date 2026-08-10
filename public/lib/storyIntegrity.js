@@ -10,7 +10,12 @@
 (function (root, factory) {
   const api = factory();
   if (typeof module === 'object' && module.exports) module.exports = api;
-  if (root) root.StoryIntegrity = api;
+  if (root) {
+    root.StoryIntegrity = api;
+    // Node vm sandboxes often expose a nested `window` object — mirror there so
+    // BoardReadiness (which reads window.StoryIntegrity) sees the same API.
+    if (root.window && root.window !== root) root.window.StoryIntegrity = api;
+  }
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   const STOP = new Set([
     'what', 'where', 'when', 'why', 'who', 'how', 'which', 'whose',

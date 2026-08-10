@@ -219,6 +219,49 @@
       );
     }
 
+    // S73 — story↔comprehension honesty (clubs PDF: choir Q / truncated "Ben").
+    // Silent StoryIntegrity repair is not Ready: surface Draft so teachers see it.
+    const SI = window.StoryIntegrity;
+    if (SI && typeof SI.audit === 'function') {
+      const prior = (lesson && lesson._storyIntegrity) || null;
+      const live = SI.audit(lesson);
+      const dropped = (prior && prior.droppedQuestions && prior.droppedQuestions.length)
+        ? prior.droppedQuestions
+        : (live.droppedQuestions || []);
+      const truncated = !!(prior && prior.truncatedRepaired)
+        || !!(live.truncatedRepaired)
+        || ((live.pages || []).some((p, i) => {
+          const raw = (((lesson.story && lesson.story.pages) || [])[i] || {}).text;
+          return SI.isTruncatedPageText && SI.isTruncatedPageText(raw);
+        }));
+      if (dropped.length) {
+        const names = dropped.slice(0, 2).map((q) => String(q).slice(0, 48)).join(' · ');
+        reasons.push(
+          `S73: ${dropped.length} comprehension question(s) not grounded in the story${names ? ` (${names}${dropped.length > 2 ? '…' : ''})` : ''} — fix story/Qs (repair alone keeps Draft).`
+        );
+      }
+      if (truncated) {
+        reasons.push(
+          'S73: story page text truncates mid-sentence — finish the beat before Ready.'
+        );
+      }
+    }
+
+    if (
+      matchAssign
+      && boardPlan
+      && boardPlan.vocabArt
+      && boardPlan.vocabArt.dropped
+      && boardPlan.vocabArt.dropped.length
+      && boardPlan.matchDockHint
+      && /each picture/i.test(boardPlan.matchDockHint)
+      && !/not every word/i.test(boardPlan.matchDockHint)
+    ) {
+      reasons.push(
+        'Match dock hint still says “each picture” while VocabArt dropped words — use the partial bin hint.'
+      );
+    }
+
     if (!opts.ignoreKit) {
       if (kit && kit.ready) {
         if (activityRecipe !== 'heroProp') {
