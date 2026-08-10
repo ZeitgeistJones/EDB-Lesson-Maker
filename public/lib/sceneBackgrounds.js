@@ -291,6 +291,8 @@
     // Garage / mechanic before outdoor — tools bay wash, not park meadow.
     // Avoid bare "workshop" (school art workshop) and bare "tools".
     { re: /\b(garages?|mechanics?|auto\s*shops?|auto\s*repairs?|car\s*repairs?|service\s*stations?)\b/, set: 'garage-cool' },
+    // Construction sites share garage-cool concrete/safety washes until a dedicated set exists.
+    { re: /\b(construction|building\s*sites?|hard\s*hats?|excavators?|cranes?)\b/, set: 'garage-cool' },
     // Supermarket aisle washes — not outdoor-fresh meadow.
     { re: /\b(markets?|supermarkets?|grocer(?:y|ies)|farmers?\s*markets?)\b/, set: 'supermarket-cool' },
     // Feelings / emotion compass — neutral house washes (stars/dots, no eggs).
