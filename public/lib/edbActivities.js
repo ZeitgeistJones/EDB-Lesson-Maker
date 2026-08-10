@@ -731,6 +731,8 @@
       { re: /\b(farms?|barns?|tractors?|scarecrows?|hay\s*bales?)\b/, key: 'farm-barn' },
       { re: /\b(aquariums?|fish\s*tanks?|coral\s*reefs?)\b/, key: 'aquarium-tank' },
       { re: /\b(construction|building\s*sites?|hard\s*hats?|excavators?|cranes?)\b/, key: 'construction-tower-crane' },
+      // Dollhouse — cutaway hero; home/furniture kits also win via assessKit.
+      { re: /\b(dollhouses?|doll\s*houses?|furniture|home\s*tour)\b/, key: 'dollhouse-cutaway' },
     ];
     for (const rule of STAGE_RULES) {
       if (rule.re.test(blob)) {
@@ -1020,6 +1022,48 @@
     'construction-safety-goggles',
   ];
 
+  /**
+   * Hospital bed dock — handheld clinic tools (not the bed hero).
+   * Hospital pack first; aid-/clinic cross-pack bits kids know from doctor visits.
+   */
+  const ROLEPLAY_DOCK_HOSPITAL = [
+    'hospital-syringe',
+    'hospital-reflex-hammer',
+    'hospital-tweezers',
+    'hospital-bandage-roll',
+    'hospital-face-mask',
+    'hospital-blood-pressure-monitor',
+    'hospital-heart-monitor',
+    'hospital-oxygen-tank',
+    'hospital-iv-drip',
+    'hospital-crutches',
+    'aid-stethoscope',
+    'aid-thermometer',
+    'aid-medicine-bottle',
+    'aid-tissue-box',
+  ];
+
+  /**
+   * Dollhouse cutaway dock — furniture kids place in rooms (not the cutaway /
+   * mini house / stairs).
+   */
+  const ROLEPLAY_DOCK_DOLLHOUSE = [
+    'dh-sofa-blue',
+    'dh-bed-pink',
+    'dh-table-round',
+    'dh-chair-yellow',
+    'dh-lamp-floor',
+    'dh-stove-teal',
+    'dh-play-kitchen',
+    'dh-bookshelf-green',
+    'dh-wardrobe-blue',
+    'dh-bathtub',
+    'dh-plant-pot',
+    'dh-teddy',
+    'dh-rug-oval',
+    'dh-window-curtains',
+  ];
+
   function roleplayDockProps(lesson, hero, count) {
     const PB = window.PropBank;
     if (!PB || !PB.loaded()) return [];
@@ -1055,53 +1099,67 @@
       /dental|dentist/.test(heroKey)
       || dentalCue.test(blob)
     );
-    const trampoline = !feelings && !face && !dental && (
+    // Hospital after dental — bed hero / clinic cues / hospital pack (not open-mouth).
+    const hospitalCue = (window.LessonTraits && window.LessonTraits.RE && window.LessonTraits.RE.hospital)
+      || /\b(doctor|clinic|hospital|nurse|medical|checkup|diagnosis|symptoms?|prescription|appointment|fever|sick)\b/;
+    const hospital = !feelings && !face && !dental && (
+      heroKey === 'hospital-bed'
+      || hospitalCue.test(blob)
+      || (kit && kit.pack === 'hospital')
+    );
+    const trampoline = !feelings && !face && !dental && !hospital && (
       heroKey === 'trampoline'
       || /trampolin|bounce|backflip/.test(blob)
     );
-    const playground = !feelings && !face && !dental && !trampoline && (
+    const playground = !feelings && !face && !dental && !hospital && !trampoline && (
       heroKey === 'playground-slide'
       || /\b(playgrounds?|play\s*structures?|slides?|seesaws?|swing\s*sets?)\b/.test(blob)
       || (kit && kit.pack === 'playground')
     );
-    const firehouse = !feelings && !face && !dental && !trampoline && !playground && (
+    const firehouse = !feelings && !face && !dental && !hospital && !trampoline && !playground && (
       /fire-truck|fire-station|fire-hydrant|fire-hose/.test(heroKey)
       || /\b(fire\s*stations?|firehouses?|firefighters?|firemen|fireman|fire\s*trucks?|fire\s*engines?|fire\s*safety)\b/.test(blob)
       || (kit && (kit.pack === 'fire-station' || kit.pack === 'fire'))
     );
     // Camping after firehouse — tent hero / camp cues / camping pack (not outdoor scrap).
-    const camping = !feelings && !face && !dental && !trampoline && !playground && !firehouse && (
+    const camping = !feelings && !face && !dental && !hospital && !trampoline && !playground && !firehouse && (
       heroKey === 'tent'
       || /\b(campsites?|camping|campfire|tents?)\b/.test(blob)
       || (kit && kit.pack === 'camping')
     );
     // Bathroom after dental+camping — wash cues / bathtub hero / bathroom pack.
     // Dental already gated above so toothbrush lessons keep the open-mouth dock.
-    const bathroom = !feelings && !face && !dental && !trampoline && !playground && !firehouse && !camping && (
+    const bathroom = !feelings && !face && !dental && !hospital && !trampoline && !playground && !firehouse && !camping && (
       /bath-bathtub|bath-sink/.test(heroKey)
       || /\b(bathrooms?|bathtub|bath\b|shower|wash\s*up|toiletries|routines?)\b/.test(blob)
       || (kit && kit.pack === 'bathroom')
     );
     // Cafe / farm after place stages — counter/barn heroes + pack cues.
-    const cafe = !feelings && !face && !dental && !trampoline && !playground && !firehouse && !camping && !bathroom && (
+    const cafe = !feelings && !face && !dental && !hospital && !trampoline && !playground && !firehouse && !camping && !bathroom && (
       /cafe-counter-stage|cafe-counter/.test(heroKey)
       || /\b(cafes?|caf[eé]s?|coffee\s*shops?|bakerys?|bake\s*shops?|restaurants?|diners?)\b/.test(blob)
       || (kit && kit.pack === 'cafe')
     );
-    const farm = !feelings && !face && !dental && !trampoline && !playground && !firehouse && !camping && !bathroom && !cafe && (
+    const farm = !feelings && !face && !dental && !hospital && !trampoline && !playground && !firehouse && !camping && !bathroom && !cafe && (
       /farm-barn|farm-tractor/.test(heroKey)
       || /\b(farms?|barns?|tractors?|scarecrows?|hay\s*bales?)\b/.test(blob)
       || (kit && kit.pack === 'farm')
     );
-    const aquarium = !feelings && !face && !dental && !trampoline && !playground && !firehouse && !camping && !bathroom && !cafe && !farm && (
+    const aquarium = !feelings && !face && !dental && !hospital && !trampoline && !playground && !firehouse && !camping && !bathroom && !cafe && !farm && (
       /aquarium-tank|aq-tank/.test(heroKey)
       || /\b(aquariums?|fish\s*tanks?|coral\s*reefs?)\b/.test(blob)
       || (kit && kit.pack === 'aquarium')
     );
-    const construction = !feelings && !face && !dental && !trampoline && !playground && !firehouse && !camping && !bathroom && !cafe && !farm && !aquarium && (
+    const construction = !feelings && !face && !dental && !hospital && !trampoline && !playground && !firehouse && !camping && !bathroom && !cafe && !farm && !aquarium && (
       /construction-tower-crane|construction-excavator/.test(heroKey)
       || /\b(construction|building\s*sites?|hard\s*hats?|excavators?|cranes?)\b/.test(blob)
       || (kit && kit.pack === 'construction')
+    );
+    // Dollhouse after construction — cutaway hero / furniture cues / dollhouse pack.
+    const dollhouse = !feelings && !face && !dental && !hospital && !trampoline && !playground && !firehouse && !camping && !bathroom && !cafe && !farm && !aquarium && !construction && (
+      heroKey === 'dollhouse-cutaway'
+      || /\b(dollhouses?|doll\s*houses?|furniture|home\s*tour)\b/.test(blob)
+      || (kit && kit.pack === 'dollhouse')
     );
     const out = [];
     const exclude = [hero && hero.key].filter(Boolean);
@@ -1122,11 +1180,12 @@
     }
     let targetCount = count;
 
-    // 1) Curated docks for feelings / face / dental / trampoline / castle / space
+    // 1) Curated docks for feelings / face / dental / hospital / trampoline / …
     let prefer = null;
     if (feelings) { prefer = feelingsKeys || ROLEPLAY_DOCK_FEELINGS; targetCount = prefer.length; }
     else if (face) prefer = ROLEPLAY_DOCK_FACE;
     else if (dental) prefer = ROLEPLAY_DOCK_DENTAL;
+    else if (hospital) { prefer = ROLEPLAY_DOCK_HOSPITAL; targetCount = prefer.length; }
     else if (trampoline) prefer = ROLEPLAY_DOCK_TRAMPOLINE;
     else if (playground) prefer = ROLEPLAY_DOCK_PLAYGROUND;
     else if (firehouse) prefer = ROLEPLAY_DOCK_FIRE;
@@ -1136,6 +1195,7 @@
     else if (farm) prefer = ROLEPLAY_DOCK_FARM;
     else if (aquarium) prefer = ROLEPLAY_DOCK_AQUARIUM;
     else if (construction) prefer = ROLEPLAY_DOCK_CONSTRUCTION;
+    else if (dollhouse) { prefer = ROLEPLAY_DOCK_DOLLHOUSE; targetCount = prefer.length; }
     else if (kit && kit.pack === 'castle') prefer = ROLEPLAY_DOCK_CASTLE;
     else if (kit && kit.pack === 'space') prefer = ROLEPLAY_DOCK_SPACE;
     else if (kit && kit.pack === 'music') prefer = ROLEPLAY_DOCK_MUSIC;
@@ -1160,6 +1220,8 @@
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_FARM && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_AQUARIUM && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_CONSTRUCTION && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
+        if (!face && !feelings && prefer === ROLEPLAY_DOCK_HOSPITAL && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
+        if (!face && !feelings && prefer === ROLEPLAY_DOCK_DOLLHOUSE && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         exclude.push(p.key);
         out.push(p);
       }
@@ -1167,7 +1229,7 @@
 
     // 2) Universal pack dock — rest of the matched kit (already sharp-filtered)
     // Feelings: only more feeling-* stickers — never eyes/nose hair from face-blank tags.
-    // Firehouse/camp/bath/playground/cafe/farm: never top up from a wrong-pack kit.
+    // Firehouse/camp/bath/playground/cafe/farm/hospital/dollhouse: never top up from a wrong-pack kit.
     if (kit && kit.docks && kit.docks.length
       && !(firehouse && kit.pack !== 'fire-station' && kit.pack !== 'fire')
       && !(camping && kit.pack !== 'camping')
@@ -1176,7 +1238,9 @@
       && !(cafe && kit.pack !== 'cafe')
       && !(farm && kit.pack !== 'farm')
       && !(aquarium && kit.pack !== 'aquarium')
-      && !(construction && kit.pack !== 'construction')) {
+      && !(construction && kit.pack !== 'construction')
+      && !(hospital && kit.pack !== 'hospital')
+      && !(dollhouse && kit.pack !== 'dollhouse')) {
       for (const p of kit.docks) {
         if (out.length >= targetCount) break;
         if (exclude.includes(p.key)) continue;
@@ -1515,27 +1579,48 @@
       });
     }
 
-    const tiles = focus.graphemes.map((g) => ({
-      kind: 'tile',
-      text: g,
-      role: 'letterTile',
-      meta: { grapheme: g, target: focus.word },
-    }));
-    data.distractors.forEach((d) => {
-      tiles.push({
+    /**
+     * Single A–Z → Kenney letter prop (kenney-flat via PropBank.get).
+     * Digraphs / teams / missing art → text tile fallback.
+     */
+    function letterTilePiece(grapheme, extraMeta) {
+      const g = String(grapheme || '');
+      const meta = Object.assign({ grapheme: g }, extraMeta || {});
+      const PP = window.PhonicsPolicy;
+      const key = PP && typeof PP.letterPropKey === 'function' ? PP.letterPropKey(g) : null;
+      if (key && PB && typeof PB.get === 'function') {
+        const prop = PB.get(key);
+        if (prop && prop.path) {
+          return {
+            kind: 'image',
+            asset: prop.path,
+            text: g,
+            role: 'letterTile',
+            meta: Object.assign(meta, { propKey: prop.key, propAspect: prop.aspect }),
+          };
+        }
+      }
+      return {
         kind: 'tile',
-        text: d,
+        text: g,
         role: 'letterTile',
-        meta: { grapheme: d, distractor: true },
-      });
+        meta,
+      };
+    }
+
+    const tiles = focus.graphemes.map((g) => letterTilePiece(g, { target: focus.word }));
+    data.distractors.forEach((d) => {
+      tiles.push(letterTilePiece(d, { distractor: true }));
     });
 
     const shuffled = pick(tiles, tiles.length, hashStr((lesson.title || '') + '|phonics'));
-    const maxLen = Math.max(1, ...shuffled.map((t) => String(t.text || '').length));
+    const maxLen = Math.max(1, ...shuffled.map((t) => String(t.text || (t.meta && t.meta.grapheme) || '').length));
     // Child touch targets — keep tiles large (esp. A1/A2).
     const tileW = Math.max(72, maxLen > 1 ? 88 : 72);
     L.placeDockRow(page, shuffled, { w: tileW, h: 72, noShrink: true });
+    const kenneyHits = shuffled.filter((t) => t.kind === 'image' && t.meta && t.meta.propKey).length;
     page.notes.push('recipe:phonicsSoundBoxes');
+    if (kenneyHits) page.notes.push('phonicsKenneyLetters:' + kenneyHits);
   }
 
   const RECIPES = {

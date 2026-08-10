@@ -503,6 +503,17 @@
         fit: 'contain',
         wired: true,
       },
+      // Letter dock — Kenney A–Z via PhonicsPolicy.letterPropKey + get(key).
+      // Digraphs / teams stay text tiles (no prop). Family is kenney-flat.
+      {
+        slot: 'letterTile',
+        role: 'object',
+        count: 14,
+        distinct: true,
+        themed: false,
+        fit: 'contain',
+        wired: true,
+      },
     ],
   };
 
@@ -678,6 +689,15 @@
   }
 
   /**
+   * Exact manifest key lookup — bypasses family / scoring.
+   * Needed for cross-family packs (e.g. kenney-letter-* on kenney-flat).
+   */
+  function get(key) {
+    if (!bank || key == null || key === '') return null;
+    return bank.byKey[String(key)] || null;
+  }
+
+  /**
    * All props in `pool` that share `hit`'s base — the variant set the picker
    * may rotate through. Sorted by key so base (<key>) precedes <key>-v2 and the
    * order never depends on manifest order. Returns [hit] when there is no set.
@@ -825,13 +845,18 @@
    * True when token is an identity hit on prop (never tags).
    * Compound keys only match on the head / pack-suffix (endsWith -token) or an
    * explicit identity[] entry — not on modifier tokens in words-from-key.
+   * Variants (variantOf / -vN) also match against their base key so
+   * soccer-ball-orange still head-matches "ball".
    */
   function identityHit(prop, token) {
     if (!prop || !token) return false;
     if (prop.key === token || prop.key.endsWith('-' + token)) return true;
+    const base = baseOfProp(prop);
+    if (base && base !== prop.key && (base === token || base.endsWith('-' + token))) return true;
     if (prop.identity && prop.identity.includes(token)) return true;
     const alias = aliasFor(token);
     if (alias && (prop.key === alias || prop.key.endsWith('-' + alias))) return true;
+    if (alias && base && (base === alias || base.endsWith('-' + alias))) return true;
     return false;
   }
 
@@ -1386,6 +1411,7 @@
     loaded,
     all,
     skipped,
+    get,
     resolve,
     pickDecor,
     pickByRole,

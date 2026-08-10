@@ -173,6 +173,28 @@ async function main() {
   assert(coachRow.artSrc && /job-coach/.test(coachRow.artSrc), 'jobs: coach artSrc is job-coach');
   assert(coachRow.tier !== 'none', 'jobs: coach not dropped');
 
+  // Sport lesson: ball skips volleyball pack → soccer-ball prop
+  const ballRow = artJobs.rows.find((r) => r.word === 'ball');
+  assert(ballRow && ballRow.matchable, 'sport-ball: ball matchable');
+  assert(ballRow.tier === 'prop', 'sport-ball: ball prop tier (not volleyball pack)');
+  assert(ballRow.propKey === 'soccer-ball', 'sport-ball: ball→soccer-ball');
+  assert(ballRow.artSrc && /soccer-ball/.test(ballRow.artSrc), 'sport-ball: artSrc soccer-ball');
+  assert(W.VocabArt.isSportBallLesson(soccerCoach, soccerCoach.title), 'sport-ball: lesson flagged sport');
+
+  // Non-sport: bare ball still uses pack (do not break park / generic ball)
+  const parkBall = {
+    title: 'Park Play Time',
+    vocabulary: [
+      { word: 'ball', emoji: '⚽' },
+      { word: 'slide', emoji: '🛝' },
+    ],
+  };
+  const artPark = W.VocabArt.planFor(parkBall, { seed: parkBall.title });
+  const parkBallRow = artPark.rows.find((r) => r.word === 'ball');
+  assert(parkBallRow && parkBallRow.tier === 'pack', 'park-ball: still pack tier');
+  assert(/ball\.png/.test(parkBallRow.artSrc || ''), 'park-ball: pack ball.png');
+  assert(!W.VocabArt.isSportBallLesson(parkBall, parkBall.title), 'park-ball: not sport lesson');
+
   // Dedup: two words cannot claim the same pack src
   const twin = {
     title: 'Twin share',
@@ -188,11 +210,14 @@ async function main() {
   assert(W.VocabArt.MAX_BOARD_VOCAB === 6, 'MAX_BOARD_VOCAB === 6');
   assert(W.VocabArt.slug("don't") === 'dont', 'slug: don\'t → dont');
 
-  console.log('OK vocab-art cases 1,3,4,6,7 + jobs/coach + dedupe', {
+  console.log('OK vocab-art cases 1,3,4,6,7 + jobs/coach + sport-ball + dedupe', {
     soccerTier: soccer.tier,
     coachGlyph: glyph,
     coachTier: coachRow.tier,
     coachProp: coachRow.propKey,
+    ballTier: ballRow.tier,
+    ballProp: ballRow.propKey,
+    parkBallTier: parkBallRow.tier,
     dropped: art7.dropped.map((d) => d.word),
     grandfather: clock ? clock.key : null,
   });

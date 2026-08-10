@@ -80,6 +80,28 @@
   }
 
   /**
+   * Sport / gym lessons where bare "ball" means soccer (pack ball.png is a
+   * volleyball stand-in — prefer soccer-ball prop instead of poisoning New Words).
+   */
+  function isSportBallLesson(lesson, seed) {
+    const bits = [
+      seed,
+      lesson && lesson.title,
+      lesson && lesson.activity && lesson.activity.title,
+      lesson && lesson.story && lesson.story.title,
+    ];
+    const pages = (lesson && lesson.story && lesson.story.pages) || [];
+    for (const p of pages) {
+      if (p && p.visualTheme) bits.push(p.visualTheme);
+      if (p && p.visualCaption) bits.push(p.visualCaption);
+    }
+    for (const w of vocabWords(lesson)) bits.push(w);
+    const blob = bits.filter(Boolean).join(' ').toLowerCase();
+    return /\b(soccer|football|sports?|sporty|gym|athletic|basketball|tennis|baseball|coach|whistle|goalkeeper|teamwork|kickoff|pitch)\b/.test(blob)
+      || /\bon the field\b/.test(blob);
+  }
+
+  /**
    * Plan art for each vocab word.
    * @returns {{ rows: object[], matchable: object[], dropped: object[] }}
    */
@@ -96,6 +118,7 @@
       || null;
     const seed = opts.seed != null ? opts.seed : ((lesson && lesson.title) || '');
     const minScore = (PB && PB.DEFAULT_MIN_SCORE) || 4;
+    const sportBallLesson = isSportBallLesson(lesson, seed);
 
     const usedSrc = new Set();
     const usedGlyph = new Set();
@@ -107,23 +130,54 @@
       let artSrc = null;
       let glyph = null;
       let propKey = null;
+      const key = slug(word);
+      // Pack ball.png reads as volleyball — skip tier-1 under sport lessons so
+      // soccer-ball (or identity ball) can win at prop tier without replacing
+      // the pack file (park / generic "ball" lessons keep the pack row).
+      const skipPackForSportBall = sportBallLesson && (key === 'ball' || key === 'balls');
 
       // Tier 1 — curated VocabIcons pack PNG
-      const packPath = typeof VI.pathForSync === 'function' ? VI.pathForSync(word) : null;
-      if (packPath && !usedSrc.has(packPath)) {
-        tier = 'pack';
-        artSrc = packPath;
+      if (!skipPackForSportBall) {
+        const packPath = typeof VI.pathForSync === 'function' ? VI.pathForSync(word) : null;
+        if (packPath && !usedSrc.has(packPath)) {
+          tier = 'pack';
+          artSrc = packPath;
+        }
       }
 
       // Tier 2 — PropBank identity resolve + headNounOk (defense-in-depth)
       if (tier === 'none' && PB && typeof PB.loaded === 'function' && PB.loaded()) {
-        const prop = PB.resolve({
-          word,
-          family,
-          seed,
-          exclude: exclude.slice(),
-          minScore,
-        });
+        let prop = null;
+        if (skipPackForSportBall) {
+          // Pin canonical soccer-ball (not orange/-vN rotate) for New Words honesty.
+          prop = typeof PB.get === 'function' ? PB.get('soccer-ball') : null;
+          if (!prop || !prop.path || usedSrc.has(prop.path)) {
+            prop = PB.resolve({
+              word: 'soccer-ball',
+              family,
+              seed,
+              exclude: exclude.slice(),
+              minScore,
+            });
+          }
+          if (!prop || !prop.path || usedSrc.has(prop.path)) {
+            prop = PB.resolve({
+              word,
+              family,
+              seed,
+              exclude: exclude.slice(),
+              minScore,
+            });
+          }
+        } else {
+          prop = PB.resolve({
+            word,
+            family,
+            seed,
+            exclude: exclude.slice(),
+            minScore,
+          });
+        }
         if (prop && prop.path && headNounOk(word, prop) && !usedSrc.has(prop.path)) {
           tier = 'prop';
           artSrc = prop.path;
@@ -166,6 +220,7 @@
     MAX_BOARD_VOCAB,
     planFor,
     headNounOk,
+    isSportBallLesson,
     vocabWords,
     boardVocabulary,
     slug,
