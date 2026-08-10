@@ -93,7 +93,7 @@ Anti-formula section.
 
 | Set | Good corner motifs | Bad / formula stand-ins |
 |-----|--------------------|-------------------------|
-| `clinic-cool` | tooth outline, soft sparkle, pale alcove edge, exam-lamp glow | grass, hills, nature landscapes |
+| `clinic-cool` | tooth outline, soft sparkle, pale alcove edge, exam-lamp glow, **blank** clipboard glyph (no letters) | grass, hills, nature landscapes, readable clipboard forms, mid-frame dental chair |
 | `travel-air` | paper plane, map-pin trail, soft cloud corner | beach shells, bakery tools, farm wheat |
 | `home-warm` | curtain fold, soft arch shadow, peach hill band at edge | outdoor meadow, clinic teal wall |
 | `outdoor-fresh` | grass fringe, picnic blanket corner, zoo gate/rail watermark, tent + lantern | generic leaf/sun stickers only, identical hill formula, indoor shelves, dough, tooth icons |

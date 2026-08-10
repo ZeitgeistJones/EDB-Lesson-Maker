@@ -1114,7 +1114,7 @@
   },
   "clinic-a": {
    "file": "flat_clinic-a.png",
-   "tone": "clinic cool — plain teal wall + white floor",
+   "tone": "clinic cool wash — plain teal white",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1123,7 +1123,7 @@
   },
   "clinic-b": {
    "file": "flat_clinic-b.png",
-   "tone": "clinic cool — corner sparkles",
+   "tone": "clinic cool wash — tiny tooth corner",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1132,7 +1132,7 @@
   },
   "clinic-c": {
    "file": "flat_clinic-c.png",
-   "tone": "clinic cool — tooth watermark",
+   "tone": "clinic cool wash — pale alcove fringe",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1141,7 +1141,7 @@
   },
   "clinic-d": {
    "file": "flat_clinic-d.png",
-   "tone": "clinic cool — right alcove",
+   "tone": "clinic cool wash — bandage roll corner",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
