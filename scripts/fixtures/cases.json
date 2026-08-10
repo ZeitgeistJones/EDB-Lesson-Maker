@@ -358,6 +358,28 @@
       "notes": "Mid-obscure bank probe — concrete fire-* props (hydrant/hose/helmet/ladder/axe/alarm)"
     },
     {
+      "id": "playground",
+      "fixture": "playground-lesson.json",
+      "tier": "adversarial",
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
+      "expectScene": "playground|park|outdoor|garden",
+      "notes": "King-stage probe — playground-slide hero + ROLEPLAY_DOCK_PLAYGROUND"
+    },
+    {
+      "id": "cafe",
+      "fixture": "cafe-lesson.json",
+      "tier": "adversarial",
+      "meta": {
+        "level": "A1",
+        "duration": "30"
+      },
+      "expectScene": "cafe|bakery|kitchen|restaurant",
+      "notes": "King-stage probe — cafe-counter-stage hero + ROLEPLAY_DOCK_CAFE"
+    },
+    {
       "id": "weather",
       "fixture": "weather-lesson.json",
       "tier": "adversarial",

@@ -1,0 +1,40 @@
+{
+  "title": "Playground Fun",
+  "warmUp": {
+    "question": "Do you like the playground?",
+    "sampleAnswer": "Yes, I like the slide."
+  },
+  "vocabulary": [
+    { "word": "slide", "emoji": "🛝", "sentence": "I go down the slide." },
+    { "word": "swing", "emoji": "🪑", "sentence": "I sit on the swing." },
+    { "word": "seesaw", "emoji": "⚖️", "sentence": "We ride the seesaw." },
+    { "word": "ball", "emoji": "⚽", "sentence": "Kick the ball." },
+    { "word": "sandbox", "emoji": "🏖️", "sentence": "Dig in the sandbox." },
+    { "word": "playground", "emoji": "🏞️", "sentence": "We play at the playground." }
+  ],
+  "sentenceFrames": ["I see a ____.", "Put the ____ by the slide."],
+  "story": {
+    "title": "At the Playground",
+    "pages": [
+      {
+        "heading": "Park play",
+        "text": "Mia climbs the slide. Sam sits on the swing near the seesaw.",
+        "visualTheme": "playground",
+        "visualCaption": "On the playground"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is Mia?", "sampleAnswer": "She is at the playground." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What do you play on?", "sampleAnswer": "I play on the slide." }
+  ],
+  "activity": {
+    "title": "Park Match",
+    "prompt": "Name the park toy.",
+    "templates": ["This is a ____."]
+  },
+  "reviewSentences": ["I like the playground.", "The slide is fun."]
+}

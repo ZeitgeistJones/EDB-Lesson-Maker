@@ -726,6 +726,9 @@
       { re: /\b(campsites?|camping|campfire|tents?)\b/, key: 'tent' },
       { re: /\b(bathrooms?|bathtub|bath\b|shower|wash\s*up|toiletries|routines?)\b/, key: 'bath-bathtub' },
       { re: /\b(playgrounds?|play\s*structures?|slides?|seesaws?|swing\s*sets?)\b/, key: 'playground-slide' },
+      // Cafe / farm — pack heroes exist; cues beat identity fallthrough.
+      { re: /\b(cafes?|caf[eé]s?|coffee\s*shops?|bakerys?|bake\s*shops?|restaurants?|diners?)\b/, key: 'cafe-counter-stage' },
+      { re: /\b(farms?|barns?|tractors?|scarecrows?|hay\s*bales?)\b/, key: 'farm-barn' },
     ];
     for (const rule of STAGE_RULES) {
       if (rule.re.test(blob)) {
@@ -943,6 +946,42 @@
     'park-trash-can',
   ];
 
+  /** Cafe / bakery counter dock — handheld food + tools (not the counter hero / furniture). */
+  const ROLEPLAY_DOCK_CAFE = [
+    'cafe-coffee-cup',
+    'cafe-latte',
+    'cafe-croissant',
+    'cafe-muffin',
+    'cafe-cookie',
+    'cafe-sandwich',
+    'cafe-donut',
+    'cafe-plate',
+    'cafe-menu',
+    'cafe-pastry-tongs',
+    'cafe-milk-pitcher',
+    'cafe-takeout-cup',
+    'cafe-teapot',
+    'cafe-napkin',
+  ];
+
+  /** Farm barn dock — handheld tools + small yard toys (not the barn hero / big sheds). */
+  const ROLEPLAY_DOCK_FARM = [
+    'farm-pitchfork',
+    'farm-shovel',
+    'farm-rake',
+    'farm-hoe',
+    'farm-shears',
+    'farm-hay-bale',
+    'farm-basket',
+    'farm-crate',
+    'farm-milk-can',
+    'farm-wheelbarrow',
+    'farm-scarecrow',
+    'farm-rope',
+    'farm-barrel',
+    'farm-water-pump',
+  ];
+
   function roleplayDockProps(lesson, hero, count) {
     const PB = window.PropBank;
     if (!PB || !PB.loaded()) return [];
@@ -1005,6 +1044,17 @@
       || /\b(bathrooms?|bathtub|bath\b|shower|wash\s*up|toiletries|routines?)\b/.test(blob)
       || (kit && kit.pack === 'bathroom')
     );
+    // Cafe / farm after place stages — counter/barn heroes + pack cues.
+    const cafe = !feelings && !face && !dental && !trampoline && !playground && !firehouse && !camping && !bathroom && (
+      /cafe-counter-stage|cafe-counter/.test(heroKey)
+      || /\b(cafes?|caf[eé]s?|coffee\s*shops?|bakerys?|bake\s*shops?|restaurants?|diners?)\b/.test(blob)
+      || (kit && kit.pack === 'cafe')
+    );
+    const farm = !feelings && !face && !dental && !trampoline && !playground && !firehouse && !camping && !bathroom && !cafe && (
+      /farm-barn|farm-tractor/.test(heroKey)
+      || /\b(farms?|barns?|tractors?|scarecrows?|hay\s*bales?)\b/.test(blob)
+      || (kit && kit.pack === 'farm')
+    );
     const out = [];
     const exclude = [hero && hero.key].filter(Boolean);
 
@@ -1034,6 +1084,8 @@
     else if (firehouse) prefer = ROLEPLAY_DOCK_FIRE;
     else if (camping) prefer = ROLEPLAY_DOCK_CAMP;
     else if (bathroom) prefer = ROLEPLAY_DOCK_BATH;
+    else if (cafe) prefer = ROLEPLAY_DOCK_CAFE;
+    else if (farm) prefer = ROLEPLAY_DOCK_FARM;
     else if (kit && kit.pack === 'castle') prefer = ROLEPLAY_DOCK_CASTLE;
     else if (kit && kit.pack === 'space') prefer = ROLEPLAY_DOCK_SPACE;
     else if (kit && kit.pack === 'music') prefer = ROLEPLAY_DOCK_MUSIC;
@@ -1054,6 +1106,8 @@
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_FIRE && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_CAMP && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_BATH && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
+        if (!face && !feelings && prefer === ROLEPLAY_DOCK_CAFE && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
+        if (!face && !feelings && prefer === ROLEPLAY_DOCK_FARM && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         exclude.push(p.key);
         out.push(p);
       }
@@ -1061,12 +1115,14 @@
 
     // 2) Universal pack dock — rest of the matched kit (already sharp-filtered)
     // Feelings: only more feeling-* stickers — never eyes/nose hair from face-blank tags.
-    // Firehouse/camp/bath/playground: never top up from a wrong-pack kit (space "station" false friend).
+    // Firehouse/camp/bath/playground/cafe/farm: never top up from a wrong-pack kit.
     if (kit && kit.docks && kit.docks.length
       && !(firehouse && kit.pack !== 'fire-station' && kit.pack !== 'fire')
       && !(camping && kit.pack !== 'camping')
       && !(bathroom && kit.pack !== 'bathroom')
-      && !(playground && kit.pack !== 'playground')) {
+      && !(playground && kit.pack !== 'playground')
+      && !(cafe && kit.pack !== 'cafe')
+      && !(farm && kit.pack !== 'farm')) {
       for (const p of kit.docks) {
         if (out.length >= targetCount) break;
         if (exclude.includes(p.key)) continue;
