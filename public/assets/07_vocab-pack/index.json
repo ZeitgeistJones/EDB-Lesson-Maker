@@ -39,6 +39,11 @@
   "emoji": "📅",
   "source": "generated"
  },
+ "archaeology": {
+  "file": "archaeology.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "arrival": {
   "file": "arrival.png",
   "emoji": "🛬",
@@ -57,7 +62,7 @@
  "astronaut": {
   "file": "astronaut.png",
   "emoji": "🧑‍🚀",
-  "codepoint": "1f9d1-200d-1f680"
+  "source": "generated"
  },
  "avocado": {
   "file": "avocado.png",
@@ -77,7 +82,7 @@
  "backpack": {
   "file": "backpack.png",
   "emoji": "🎒",
-  "codepoint": "1f392"
+  "source": "generated"
  },
  "bag": {
   "file": "bag.png",
@@ -149,6 +154,11 @@
   "emoji": "🏖️",
   "source": "generated"
  },
+ "beachcombing": {
+  "file": "beachcombing.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "bear": {
   "file": "bear.png",
   "emoji": "🐻",
@@ -172,12 +182,22 @@
  "bicycle": {
   "file": "bicycle.png",
   "emoji": "🚲",
-  "codepoint": "1f6b2"
+  "source": "generated"
+ },
+ "binoculars": {
+  "file": "binoculars.png",
+  "emoji": "",
+  "source": "generated"
  },
  "bird": {
   "file": "bird.png",
   "emoji": "🐦",
   "codepoint": "1f426"
+ },
+ "birdhouse": {
+  "file": "birdhouse.png",
+  "emoji": "",
+  "source": "generated"
  },
  "boarding-pass": {
   "file": "boarding-pass.png",
@@ -194,10 +214,20 @@
   "emoji": "📕",
   "codepoint": "1f4d5"
  },
+ "book-stack": {
+  "file": "book-stack.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "books": {
+  "file": "books.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "boots": {
   "file": "boots.png",
   "emoji": "🥾",
-  "codepoint": "1f97e"
+  "source": "generated"
  },
  "bored": {
   "file": "bored.png",
@@ -289,6 +319,11 @@
   "emoji": "🗓️",
   "codepoint": "1f5d3"
  },
+ "calligraphy": {
+  "file": "calligraphy.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "camel": {
   "file": "camel.png",
   "emoji": "🐫",
@@ -297,7 +332,12 @@
  "camera": {
   "file": "camera.png",
   "emoji": "📷",
-  "codepoint": "1f4f7"
+  "source": "generated"
+ },
+ "campfire": {
+  "file": "campfire.png",
+  "emoji": "",
+  "source": "generated"
  },
  "camping": {
   "file": "camping.png",
@@ -339,6 +379,11 @@
   "emoji": "🐱",
   "codepoint": "1f431"
  },
+ "cave": {
+  "file": "cave.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "cello-ivory": {
   "file": "cello-ivory.png",
   "emoji": "",
@@ -358,6 +403,11 @@
   "file": "chef.png",
   "emoji": "👨‍🍳",
   "codepoint": "1f468-200d-1f373"
+ },
+ "chemistry": {
+  "file": "chemistry.png",
+  "emoji": "",
+  "source": "generated"
  },
  "cherry": {
   "file": "cherry.png",
@@ -384,6 +434,11 @@
   "emoji": "",
   "source": "generated"
  },
+ "chop": {
+  "file": "chop.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "church": {
   "file": "church.png",
   "emoji": "⛪",
@@ -393,6 +448,11 @@
   "file": "clean.png",
   "emoji": "🧽",
   "codepoint": "1f9fd"
+ },
+ "climb": {
+  "file": "climb.png",
+  "emoji": "",
+  "source": "generated"
  },
  "clock": {
   "file": "clock.png",
@@ -447,7 +507,7 @@
  "compass": {
   "file": "compass.png",
   "emoji": "🧭",
-  "codepoint": "1f9ed"
+  "source": "generated"
  },
  "compose": {
   "file": "compose.png",
@@ -529,6 +589,11 @@
   "emoji": "🛃",
   "source": "generated"
  },
+ "cycle": {
+  "file": "cycle.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "cycling": {
   "file": "cycling.png",
   "emoji": "🚴",
@@ -537,7 +602,7 @@
  "dance": {
   "file": "dance.png",
   "emoji": "💃",
-  "codepoint": "1f483"
+  "source": "generated"
  },
  "delayed": {
   "file": "delayed.png",
@@ -558,6 +623,11 @@
   "file": "desert.png",
   "emoji": "🏜️",
   "codepoint": "1f3dc"
+ },
+ "desk-globe": {
+  "file": "desk-globe.png",
+  "emoji": "",
+  "source": "generated"
  },
  "diagnosis": {
   "file": "diagnosis.png",
@@ -624,6 +694,11 @@
   "emoji": "🥁",
   "codepoint": "1f941"
  },
+ "drums": {
+  "file": "drums.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "duck": {
   "file": "duck.png",
   "emoji": "🦆",
@@ -633,6 +708,16 @@
   "file": "ear.png",
   "emoji": "👂",
   "codepoint": "1f442"
+ },
+ "earth": {
+  "file": "earth.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "easel": {
+  "file": "easel.png",
+  "emoji": "",
+  "source": "generated"
  },
  "eat": {
   "file": "eat.png",
@@ -754,6 +839,16 @@
   "emoji": "🌸",
   "codepoint": "1f338"
  },
+ "flower-press": {
+  "file": "flower-press.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "flute": {
+  "file": "flute.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "foot": {
   "file": "foot.png",
   "emoji": "🦶",
@@ -763,6 +858,11 @@
   "file": "football.png",
   "emoji": "🏈",
   "codepoint": "1f3c8"
+ },
+ "forest": {
+  "file": "forest.png",
+  "emoji": "",
+  "source": "generated"
  },
  "fox": {
   "file": "fox.png",
@@ -789,10 +889,30 @@
   "emoji": "",
   "source": "generated"
  },
+ "galaxy": {
+  "file": "galaxy.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "game": {
   "file": "game.png",
   "emoji": "🎮",
   "codepoint": "1f3ae"
+ },
+ "garden": {
+  "file": "garden.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "gardening": {
+  "file": "gardening.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "geology": {
+  "file": "geology.png",
+  "emoji": "",
+  "source": "generated"
  },
  "gift": {
   "file": "gift.png",
@@ -812,7 +932,7 @@
  "globe": {
   "file": "globe.png",
   "emoji": "🌍",
-  "codepoint": "1f30d"
+  "source": "generated"
  },
  "glove": {
   "file": "glove.png",
@@ -821,6 +941,11 @@
  },
  "goalkeeper": {
   "file": "goalkeeper.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "graffiti": {
+  "file": "graffiti.png",
   "emoji": "",
   "source": "generated"
  },
@@ -844,10 +969,15 @@
   "emoji": "🌿",
   "codepoint": "1f33f"
  },
+ "green-suitcase": {
+  "file": "green-suitcase.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "guitar": {
   "file": "guitar.png",
   "emoji": "🎸",
-  "codepoint": "1f3b8"
+  "source": "generated"
  },
  "hair": {
   "file": "hair.png",
@@ -889,6 +1019,11 @@
   "emoji": "🎧",
   "codepoint": "1f3a7"
  },
+ "headphones": {
+  "file": "headphones.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "heart": {
   "file": "heart.png",
   "emoji": "❤️",
@@ -896,6 +1031,16 @@
  },
  "helmet": {
   "file": "helmet.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "hiking-boots": {
+  "file": "hiking-boots.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "hills": {
+  "file": "hills.png",
   "emoji": "",
   "source": "generated"
  },
@@ -949,6 +1094,11 @@
   "emoji": "🏠",
   "codepoint": "1f3e0"
  },
+ "houseplant": {
+  "file": "houseplant.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "huge": {
   "file": "huge.png",
   "emoji": "",
@@ -956,6 +1106,11 @@
  },
  "hungry": {
   "file": "hungry.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "hurdle": {
+  "file": "hurdle.png",
   "emoji": "",
   "source": "generated"
  },
@@ -976,6 +1131,11 @@
  },
  "inspire": {
   "file": "inspire.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "instant-camera": {
+  "file": "instant-camera.png",
   "emoji": "",
   "source": "generated"
  },
@@ -1003,6 +1163,11 @@
   "file": "kangaroo.png",
   "emoji": "🦘",
   "codepoint": "1f998"
+ },
+ "kerosene-lantern": {
+  "file": "kerosene-lantern.png",
+  "emoji": "",
+  "source": "generated"
  },
  "key": {
   "file": "key.png",
@@ -1038,6 +1203,11 @@
   "file": "lamp.png",
   "emoji": "💡",
   "codepoint": "1f4a1"
+ },
+ "lantern": {
+  "file": "lantern.png",
+  "emoji": "",
+  "source": "generated"
  },
  "leaf": {
   "file": "leaf.png",
@@ -1087,7 +1257,7 @@
  "map": {
   "file": "map.png",
   "emoji": "🗺️",
-  "codepoint": "1f5fa"
+  "source": "generated"
  },
  "mask": {
   "file": "mask.png",
@@ -1164,6 +1334,11 @@
   "emoji": "🪞",
   "codepoint": "1fa9e"
  },
+ "model-plane": {
+  "file": "model-plane.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "money": {
   "file": "money.png",
   "emoji": "💰",
@@ -1198,6 +1373,11 @@
   "file": "mountain.png",
   "emoji": "⛰️",
   "codepoint": "26f0"
+ },
+ "mountains": {
+  "file": "mountains.png",
+  "emoji": "",
+  "source": "generated"
  },
  "mouse": {
   "file": "mouse.png",
@@ -1254,6 +1434,16 @@
   "emoji": "👩‍⚕️",
   "source": "generated"
  },
+ "oasis": {
+  "file": "oasis.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "observatory": {
+  "file": "observatory.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "ocean": {
   "file": "ocean.png",
   "emoji": "",
@@ -1287,7 +1477,7 @@
  "paint": {
   "file": "paint.png",
   "emoji": "🎨",
-  "codepoint": "1f3a8"
+  "source": "generated"
  },
  "pancake": {
   "file": "pancake.png",
@@ -1354,10 +1544,15 @@
   "emoji": "📱",
   "codepoint": "1f4f1"
  },
+ "photography": {
+  "file": "photography.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "piano": {
   "file": "piano.png",
   "emoji": "🎹",
-  "codepoint": "1f3b9"
+  "source": "generated"
  },
  "pig": {
   "file": "pig.png",
@@ -1392,7 +1587,12 @@
  "plant": {
   "file": "plant.png",
   "emoji": "🪴",
-  "codepoint": "1fab4"
+  "source": "generated"
+ },
+ "podcast": {
+  "file": "podcast.png",
+  "emoji": "",
+  "source": "generated"
  },
  "police": {
   "file": "police.png",
@@ -1408,6 +1608,11 @@
   "file": "potato.png",
   "emoji": "🥔",
   "codepoint": "1f954"
+ },
+ "pottery": {
+  "file": "pottery.png",
+  "emoji": "",
+  "source": "generated"
  },
  "practice": {
   "file": "practice.png",
@@ -1479,10 +1684,20 @@
   "emoji": "",
   "source": "generated"
  },
+ "robotics": {
+  "file": "robotics.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "rocket": {
   "file": "rocket.png",
   "emoji": "🚀",
-  "codepoint": "1f680"
+  "source": "generated"
+ },
+ "rover": {
+  "file": "rover.png",
+  "emoji": "",
+  "source": "generated"
  },
  "ruler": {
   "file": "ruler.png",
@@ -1518,6 +1733,16 @@
   "file": "sandwich.png",
   "emoji": "🥪",
   "codepoint": "1f96a"
+ },
+ "satellite": {
+  "file": "satellite.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "saturn": {
+  "file": "saturn.png",
+  "emoji": "",
+  "source": "generated"
  },
  "scared": {
   "file": "scared.png",
@@ -1604,6 +1829,11 @@
   "emoji": "🛒",
   "codepoint": "1f6d2"
  },
+ "shoreline": {
+  "file": "shoreline.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "shower": {
   "file": "shower.png",
   "emoji": "🚿",
@@ -1643,6 +1873,11 @@
   "file": "sleep.png",
   "emoji": "🛌",
   "codepoint": "1f6cc"
+ },
+ "sleeping-bag": {
+  "file": "sleeping-bag.png",
+  "emoji": "",
+  "source": "generated"
  },
  "sleepy": {
   "file": "sleepy.png",
@@ -1809,6 +2044,11 @@
   "emoji": "😲",
   "codepoint": "1f632"
  },
+ "swamp": {
+  "file": "swamp.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "swim": {
   "file": "swim.png",
   "emoji": "🏊",
@@ -1821,6 +2061,11 @@
  },
  "table": {
   "file": "table.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "tambourine": {
+  "file": "tambourine.png",
   "emoji": "",
   "source": "generated"
  },
@@ -1849,6 +2094,11 @@
   "emoji": "",
   "source": "generated"
  },
+ "telescope": {
+  "file": "telescope.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "tempo": {
   "file": "tempo.png",
   "emoji": "",
@@ -1862,7 +2112,7 @@
  "tent": {
   "file": "tent.png",
   "emoji": "⛺",
-  "codepoint": "26fa"
+  "source": "generated"
  },
  "thermometer": {
   "file": "thermometer.png",
@@ -1962,7 +2212,7 @@
  "trumpet": {
   "file": "trumpet.png",
   "emoji": "🎺",
-  "codepoint": "1f3ba"
+  "source": "generated"
  },
  "trumpet-ivory": {
   "file": "trumpet-ivory.png",
@@ -1979,6 +2229,16 @@
   "emoji": "🐢",
   "codepoint": "1f422"
  },
+ "typewriter": {
+  "file": "typewriter.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "ukulele": {
+  "file": "ukulele.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "umbrella": {
   "file": "umbrella.png",
   "emoji": "☂️",
@@ -1994,10 +2254,15 @@
   "emoji": "",
   "source": "generated"
  },
+ "vacuum": {
+  "file": "vacuum.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "violin": {
   "file": "violin.png",
   "emoji": "🎻",
-  "codepoint": "1f3bb"
+  "source": "generated"
  },
  "violin-ivory": {
   "file": "violin-ivory.png",
@@ -2007,12 +2272,17 @@
  "volcano": {
   "file": "volcano.png",
   "emoji": "🌋",
-  "codepoint": "1f30b"
+  "source": "generated"
  },
  "walk": {
   "file": "walk.png",
   "emoji": "🚶",
   "codepoint": "1f6b6"
+ },
+ "walk-dog": {
+  "file": "walk-dog.png",
+  "emoji": "",
+  "source": "generated"
  },
  "wallet": {
   "file": "wallet.png",
@@ -2029,6 +2299,16 @@
   "emoji": "💧",
   "codepoint": "1f4a7"
  },
+ "waterfall": {
+  "file": "waterfall.png",
+  "emoji": "",
+  "source": "generated"
+ },
+ "watering-can": {
+  "file": "watering-can.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "watermelon": {
   "file": "watermelon.png",
   "emoji": "🍉",
@@ -2039,10 +2319,20 @@
   "emoji": "",
   "source": "generated"
  },
+ "weaving": {
+  "file": "weaving.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "whale": {
   "file": "whale.png",
   "emoji": "🐳",
   "codepoint": "1f433"
+ },
+ "wheelbarrow": {
+  "file": "wheelbarrow.png",
+  "emoji": "",
+  "source": "generated"
  },
  "wheelchair": {
   "file": "wheelchair.png",
@@ -2074,6 +2364,11 @@
   "emoji": "🐺",
   "codepoint": "1f43a"
  },
+ "woodworking": {
+  "file": "woodworking.png",
+  "emoji": "",
+  "source": "generated"
+ },
  "worried": {
   "file": "worried.png",
   "emoji": "😟",
@@ -2083,6 +2378,11 @@
   "file": "write.png",
   "emoji": "✍️",
   "codepoint": "270d"
+ },
+ "xylophone": {
+  "file": "xylophone.png",
+  "emoji": "",
+  "source": "generated"
  },
  "zebra": {
   "file": "zebra.png",

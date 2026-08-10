@@ -370,6 +370,22 @@ Reading order — object / still-life, not kid-action scenes:
 Keys: eruption, ash, seismic, abundant, dormant, evacuation, geothermal, subterranean, tremors
 ```
 
+### Sheets V13–V18 — Manus zip 2026-08-10 (`all_generated_images (1).zip`)
+
+**Status: wired** — imported into `07_vocab-pack` (480 keys). Inventory:
+`docs/manus-white-vocab-import-2026-08-10.md`.
+
+| Sheet | Theme | Keys (summary) |
+|-------|--------|----------------|
+| V13 | Music instruments | piano, violin, drums, guitar, trumpet, flute, xylophone, tambourine, headphones |
+| V14 | Space | rocket, telescope, saturn, rover, earth, satellite, observatory, astronaut, galaxy |
+| V15 | Camping | tent, campfire, lantern, backpack, sleeping-bag, compass, map, boots, binoculars |
+| V16 | Biomes / places | waterfall, oasis, volcano, cave, forest, hills, shoreline, swamp, mountains |
+| V17 | Hobby objects + garden tools | typewriter, easel, books, watering-can, wheelbarrow, birdhouse, … |
+| V18 | Specialty hobbies 4×4 + action verbs | archaeology…woodworking; hurdle, garden, vacuum, chop, climb, walk-dog, cycle, … |
+
+**Skipped from zip:** sports abstract dups (already V11); ~12 kid-activity character grids (weak at 96px — prefer still-life next Manus batch); numeral alarm-clock cell culled.
+
 ## Not promptable (code)
 
 - **Programmatic prop recolouring** — already has `bodyHue` in the manifest; no art to generate.

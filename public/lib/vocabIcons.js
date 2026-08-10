@@ -119,10 +119,36 @@
     kitten: 'cat',
     // Shift20-C — mid-obscure → existing pack keys only (empty > wrong)
     draw: 'pencil',
+    // photography has dedicated pack art (Manus 2026-08-10) — alias only if missing
     photography: 'camera',
     jewelry: 'ring',
     hardhat: 'helmet',
     'hard hat': 'helmet',
+    // Manus white zip 2026-08-10 — phrase / inflection → pack slug
+    'sleeping bag': 'sleeping-bag',
+    sleepingbag: 'sleeping-bag',
+    'walk the dog': 'walk-dog',
+    'walk dog': 'walk-dog',
+    walkingdog: 'walk-dog',
+    cycling: 'cycle',
+    bike: 'bicycle',
+    drum: 'drums',
+    'drum set': 'drums',
+    drumset: 'drums',
+    'xylophone mallets': 'xylophone',
+    earphone: 'headphones',
+    earphones: 'headphones',
+    binocular: 'binoculars',
+    'camp fire': 'campfire',
+    'water fall': 'waterfall',
+    'house plant': 'houseplant',
+    'watering can': 'watering-can',
+    'wheel barrow': 'wheelbarrow',
+    'bird house': 'birdhouse',
+    'instant camera': 'instant-camera',
+    polaroid: 'instant-camera',
+    ukelele: 'ukulele',
+    uke: 'ukulele',
   };
 
   /**
