@@ -303,9 +303,35 @@ function pagesStory(doc, lesson) {
     }
 
     card(doc, textX, 66, textW, 112, C.warmYellow, 5);
-    drawText(doc, page.text || '', textX + 8, 78, textW - 16, {
-      size: 13, color: C.dark, lineH: 6.2,
-    });
+    // Fit story body inside the card — overflow used to paint past the box and
+    // look like a mid-name truncate ("…paintings. Ben") on the PDF.
+    {
+      const boxTop = 78;
+      const boxBottom = 66 + 112 - 8;
+      const maxH = boxBottom - boxTop;
+      let size = 13;
+      let lineH = 6.2;
+      let fitted = [];
+      const raw = String(page.text || '');
+      while (size >= 9) {
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(size);
+        fitted = doc.splitTextToSize(strip(raw), textW - 16);
+        lineH = size * 0.48;
+        if (fitted.length * lineH <= maxH) break;
+        size -= 1;
+      }
+      const maxLines = Math.max(1, Math.floor(maxH / Math.max(lineH, 4.5)));
+      if (fitted.length > maxLines) {
+        fitted = fitted.slice(0, maxLines);
+        const last = fitted.length - 1;
+        fitted[last] = String(fitted[last] || '').replace(/\s+$/, '') + '…';
+      }
+      ink(doc, C.dark);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(size);
+      doc.text(fitted, textX + 8, boxTop, { maxWidth: textW - 16, lineHeightFactor: 1.35 });
+    }
 
     drawText(doc, i === 0 ? 'Read together. Point to new words as you go.' : 'Finish the story. Check understanding as you read.', M, H - 16, W - 2 * M, {
       size: 9, italic: true, color: C.gray, align: 'center',

@@ -6,6 +6,7 @@
 // Variables, not in a committed .env file.
 
 const PhonicsPolicy = require('../public/lib/phonicsPolicy.js');
+const StoryIntegrity = require('../public/lib/storyIntegrity.js');
 
 const API_KEY = process.env.GEMINI_API_KEY;
 // Flash-Lite handles structured JSON well and is less capacity-starved than
@@ -243,6 +244,7 @@ Also generate a short illustrated story tied to the topic:
 - story.pages: EXACTLY ${counts.storyPages} pages. Each page needs heading, text (2–4 short paragraphs suitable for ${safeLevel} learners; use some lesson vocabulary), visualTheme (exactly one of: park, school, home, city, beach, nature, kitchen, sports), and visualCaption (short paint-able scene: who + where + action — concrete nouns a story illustration or PropBank cutout can depict; not abstract mood alone)
 - story.comprehensionQuestions: EXACTLY ${counts.comprehension} reading comprehension questions about the story, each with a sampleAnswer
 - story.creativeQuestions: EXACTLY 2 open-ended creative questions related to the story (imagining, personal connection, or continuing the story) — no sample answers
+${StoryIntegrity.promptRules()}
 ${phonicsBlock}
 
 All content appropriate for ${safeLevel} ESL learners. Sentence frames and activity templates should contain a literal "___" blank.
@@ -290,6 +292,12 @@ Put comprehension under story.comprehensionQuestions (never only a top-level "co
         lesson = JSON.parse(text);
       } catch (e) {
         return res.status(502).json({ error: 'Model did not return valid JSON.' });
+      }
+
+      try {
+        StoryIntegrity.repairLesson(lesson);
+      } catch (e) {
+        console.warn('storyIntegrity.repairLesson failed:', e && e.message);
       }
 
       return res.status(200).json({ lesson, level: safeLevel, duration: safeDuration });

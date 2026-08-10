@@ -560,6 +560,11 @@
       lesson.reviewSentences = lesson.wrapUp.slice();
     }
 
+    // Drop comprehension that invents story facts; trim mid-sentence page cuts.
+    if (window.StoryIntegrity && typeof window.StoryIntegrity.repairLesson === 'function') {
+      window.StoryIntegrity.repairLesson(lesson);
+    }
+
     return lesson;
   }
 
@@ -1811,25 +1816,30 @@
             borderRadius: '14px',
             padding: '10px 16px',
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
+            gap: '4px',
+            zIndex: '2',
+            boxShadow: '0 6px 18px rgba(15,23,42,0.08)',
+          }));
+          // Label lives INSIDE the sticky — an absolute hint under the bay
+          // used to paint over Q2 (clubs PDF "Sample answer" overlap).
+          const sticky = p.lastChild;
+          sticky.appendChild(el('div', {
+            fontSize: '16px',
+            fontWeight: '700',
+            color: '#166534',
+            lineHeight: '1.2',
+          }, 'Sample answer'));
+          sticky.appendChild(el('div', {
             fontSize: '22px',
             fontStyle: 'italic',
             color: '#166534',
             textAlign: 'center',
-            zIndex: '2',
-            boxShadow: '0 6px 18px rgba(15,23,42,0.08)',
+            lineHeight: '1.25',
           }, esc(item.sampleAnswer || '')));
-          p.appendChild(hint('Sample answer', {
-            position: 'absolute',
-            left: r.x + 'px',
-            top: (r.y + r.h + 8) + 'px',
-            fontSize: '22px',
-            fontWeight: '700',
-            marginBottom: '0',
-            zIndex: '2',
-          }));
-          col.appendChild(el('div', { height: '96px', marginBottom: '8px', flexShrink: '0' }));
+          col.appendChild(el('div', { height: Math.max(96, r.h + 16) + 'px', marginBottom: '8px', flexShrink: '0' }));
         }
       });
       // Fill the lower board so Peek pages aren't a top-strip (M8).
