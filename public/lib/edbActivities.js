@@ -720,11 +720,12 @@
       { re: /trampolin|bounce|backflip/, key: 'trampoline' },
       { re: /castle|medieval|knight|drawbridge|portcullis|royal/, key: 'castle-wall-gate' },
       { re: /\b(beach|shore|seaside|sandcastle)\b/, key: 'beach-sandcastle' },
-      // Fire / camp / bath — pack heroes exist; cues beat identity fallthrough.
+      // Fire / camp / bath / playground — pack heroes exist; cues beat identity fallthrough.
       // Dental/hospital already won in CURATED_STAGE_FIRST (bathroom must not steal open-mouth).
       { re: /\b(fire\s*stations?|firehouses?|firefighters?|firemen|fireman|fire\s*trucks?|fire\s*engines?|fire\s*safety)\b/, key: 'fire-truck' },
       { re: /\b(campsites?|camping|campfire|tents?)\b/, key: 'tent' },
       { re: /\b(bathrooms?|bathtub|bath\b|shower|wash\s*up|toiletries|routines?)\b/, key: 'bath-bathtub' },
+      { re: /\b(playgrounds?|play\s*structures?|slides?|seesaws?|swing\s*sets?)\b/, key: 'playground-slide' },
     ];
     for (const rule of STAGE_RULES) {
       if (rule.re.test(blob)) {
@@ -844,7 +845,6 @@
     'bath-sponge',
     'bath-mouthwash',
     'bath-shower-head',
-    'bath-sink',
   ];
 
   /** Castle build dock — sharp cutouts only (MIN_DOCK_SRC / C8). */
@@ -927,6 +927,22 @@
     'sport-skateboard',
   ];
 
+  /** Playground / park dock — park pieces kids drag onto the slide king (not the slide itself). */
+  const ROLEPLAY_DOCK_PLAYGROUND = [
+    'park-seesaw',
+    'park-swing-set',
+    'park-sandbox',
+    'park-monkey-bars',
+    'park-crawl-tunnel',
+    'park-dome-climber',
+    'park-spring-rider',
+    'park-basketball-hoop',
+    'park-flower-box',
+    'park-foam-mats',
+    'playground-ball',
+    'park-trash-can',
+  ];
+
   function roleplayDockProps(lesson, hero, count) {
     const PB = window.PropBank;
     if (!PB || !PB.loaded()) return [];
@@ -966,20 +982,25 @@
       heroKey === 'trampoline'
       || /trampolin|bounce|backflip/.test(blob)
     );
-    const firehouse = !feelings && !face && !dental && !trampoline && (
+    const playground = !feelings && !face && !dental && !trampoline && (
+      heroKey === 'playground-slide'
+      || /\b(playgrounds?|play\s*structures?|slides?|seesaws?|swing\s*sets?)\b/.test(blob)
+      || (kit && kit.pack === 'playground')
+    );
+    const firehouse = !feelings && !face && !dental && !trampoline && !playground && (
       /fire-truck|fire-station|fire-hydrant|fire-hose/.test(heroKey)
       || /\b(fire\s*stations?|firehouses?|firefighters?|firemen|fireman|fire\s*trucks?|fire\s*engines?|fire\s*safety)\b/.test(blob)
       || (kit && (kit.pack === 'fire-station' || kit.pack === 'fire'))
     );
     // Camping after firehouse — tent hero / camp cues / camping pack (not outdoor scrap).
-    const camping = !feelings && !face && !dental && !trampoline && !firehouse && (
+    const camping = !feelings && !face && !dental && !trampoline && !playground && !firehouse && (
       heroKey === 'tent'
       || /\b(campsites?|camping|campfire|tents?)\b/.test(blob)
       || (kit && kit.pack === 'camping')
     );
     // Bathroom after dental+camping — wash cues / bathtub hero / bathroom pack.
     // Dental already gated above so toothbrush lessons keep the open-mouth dock.
-    const bathroom = !feelings && !face && !dental && !trampoline && !firehouse && !camping && (
+    const bathroom = !feelings && !face && !dental && !trampoline && !playground && !firehouse && !camping && (
       /bath-bathtub|bath-sink/.test(heroKey)
       || /\b(bathrooms?|bathtub|bath\b|shower|wash\s*up|toiletries|routines?)\b/.test(blob)
       || (kit && kit.pack === 'bathroom')
@@ -1009,6 +1030,7 @@
     else if (face) prefer = ROLEPLAY_DOCK_FACE;
     else if (dental) prefer = ROLEPLAY_DOCK_DENTAL;
     else if (trampoline) prefer = ROLEPLAY_DOCK_TRAMPOLINE;
+    else if (playground) prefer = ROLEPLAY_DOCK_PLAYGROUND;
     else if (firehouse) prefer = ROLEPLAY_DOCK_FIRE;
     else if (camping) prefer = ROLEPLAY_DOCK_CAMP;
     else if (bathroom) prefer = ROLEPLAY_DOCK_BATH;
@@ -1027,6 +1049,8 @@
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_SPACE && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_MUSIC && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_DENTAL && p.aspect && (p.aspect < 0.3 || p.aspect > 2.6)) continue;
+        if (!face && !feelings && prefer === ROLEPLAY_DOCK_TRAMPOLINE && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
+        if (!face && !feelings && prefer === ROLEPLAY_DOCK_PLAYGROUND && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_FIRE && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_CAMP && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_BATH && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
@@ -1037,11 +1061,12 @@
 
     // 2) Universal pack dock — rest of the matched kit (already sharp-filtered)
     // Feelings: only more feeling-* stickers — never eyes/nose hair from face-blank tags.
-    // Firehouse/camp/bath: never top up from a wrong-pack kit (space "station" false friend).
+    // Firehouse/camp/bath/playground: never top up from a wrong-pack kit (space "station" false friend).
     if (kit && kit.docks && kit.docks.length
       && !(firehouse && kit.pack !== 'fire-station' && kit.pack !== 'fire')
       && !(camping && kit.pack !== 'camping')
-      && !(bathroom && kit.pack !== 'bathroom')) {
+      && !(bathroom && kit.pack !== 'bathroom')
+      && !(playground && kit.pack !== 'playground')) {
       for (const p of kit.docks) {
         if (out.length >= targetCount) break;
         if (exclude.includes(p.key)) continue;
