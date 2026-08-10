@@ -720,6 +720,11 @@
       { re: /trampolin|bounce|backflip/, key: 'trampoline' },
       { re: /castle|medieval|knight|drawbridge|portcullis|royal/, key: 'castle-wall-gate' },
       { re: /\b(beach|shore|seaside|sandcastle)\b/, key: 'beach-sandcastle' },
+      // Fire / camp / bath — pack heroes exist; cues beat identity fallthrough.
+      // Dental/hospital already won in CURATED_STAGE_FIRST (bathroom must not steal open-mouth).
+      { re: /\b(fire\s*stations?|firehouses?|firefighters?|firemen|fireman|fire\s*trucks?|fire\s*engines?|fire\s*safety)\b/, key: 'fire-truck' },
+      { re: /\b(campsites?|camping|campfire|tents?)\b/, key: 'tent' },
+      { re: /\b(bathrooms?|bathtub|bath\b|shower|wash\s*up|toiletries|routines?)\b/, key: 'bath-bathtub' },
     ];
     for (const rule of STAGE_RULES) {
       if (rule.re.test(blob)) {
@@ -804,6 +809,42 @@
     'fire-megaphone',
     'fire-water-bucket',
     'fire-first-aid-kit',
+  ];
+
+  /** Camp pack-the-tent dock — handheld camp/hike tools (not the tent hero). */
+  const ROLEPLAY_DOCK_CAMP = [
+    'camp-flashlight',
+    'camp-campfire',
+    'camp-map',
+    'camp-hiking-boot',
+    'camp-sleeping-bag',
+    'camp-canteen',
+    'camp-compass',
+    'camp-binoculars',
+    'camp-marshmallow-stick',
+    'camp-matchbox',
+    'camp-pocket-knife',
+    'camp-pine-tree',
+  ];
+
+  /** Bathroom wash dock — toiletries only (dental open-mouth wins first via dentalCue). */
+  const ROLEPLAY_DOCK_BATH = [
+    'bath-toothbrush',
+    'bath-toothpaste',
+    'bath-soap',
+    'bath-bar-soap',
+    'bath-shampoo',
+    'bath-towel-blue',
+    'bath-hand-towel',
+    'bath-washcloth',
+    'bath-mirror',
+    'bath-hairbrush',
+    'bath-comb',
+    'bath-loofah',
+    'bath-sponge',
+    'bath-mouthwash',
+    'bath-shower-head',
+    'bath-sink',
   ];
 
   /** Castle build dock — sharp cutouts only (MIN_DOCK_SRC / C8). */
@@ -930,6 +971,19 @@
       || /\b(fire\s*stations?|firehouses?|firefighters?|firemen|fireman|fire\s*trucks?|fire\s*engines?|fire\s*safety)\b/.test(blob)
       || (kit && (kit.pack === 'fire-station' || kit.pack === 'fire'))
     );
+    // Camping after firehouse — tent hero / camp cues / camping pack (not outdoor scrap).
+    const camping = !feelings && !face && !dental && !trampoline && !firehouse && (
+      heroKey === 'tent'
+      || /\b(campsites?|camping|campfire|tents?)\b/.test(blob)
+      || (kit && kit.pack === 'camping')
+    );
+    // Bathroom after dental+camping — wash cues / bathtub hero / bathroom pack.
+    // Dental already gated above so toothbrush lessons keep the open-mouth dock.
+    const bathroom = !feelings && !face && !dental && !trampoline && !firehouse && !camping && (
+      /bath-bathtub|bath-sink/.test(heroKey)
+      || /\b(bathrooms?|bathtub|bath\b|shower|wash\s*up|toiletries|routines?)\b/.test(blob)
+      || (kit && kit.pack === 'bathroom')
+    );
     const out = [];
     const exclude = [hero && hero.key].filter(Boolean);
 
@@ -956,6 +1010,8 @@
     else if (dental) prefer = ROLEPLAY_DOCK_DENTAL;
     else if (trampoline) prefer = ROLEPLAY_DOCK_TRAMPOLINE;
     else if (firehouse) prefer = ROLEPLAY_DOCK_FIRE;
+    else if (camping) prefer = ROLEPLAY_DOCK_CAMP;
+    else if (bathroom) prefer = ROLEPLAY_DOCK_BATH;
     else if (kit && kit.pack === 'castle') prefer = ROLEPLAY_DOCK_CASTLE;
     else if (kit && kit.pack === 'space') prefer = ROLEPLAY_DOCK_SPACE;
     else if (kit && kit.pack === 'music') prefer = ROLEPLAY_DOCK_MUSIC;
@@ -972,6 +1028,8 @@
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_MUSIC && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_DENTAL && p.aspect && (p.aspect < 0.3 || p.aspect > 2.6)) continue;
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_FIRE && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
+        if (!face && !feelings && prefer === ROLEPLAY_DOCK_CAMP && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
+        if (!face && !feelings && prefer === ROLEPLAY_DOCK_BATH && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         exclude.push(p.key);
         out.push(p);
       }
@@ -979,9 +1037,11 @@
 
     // 2) Universal pack dock — rest of the matched kit (already sharp-filtered)
     // Feelings: only more feeling-* stickers — never eyes/nose hair from face-blank tags.
-    // Firehouse: never top up from a wrong-pack kit (space "station" false friend).
+    // Firehouse/camp/bath: never top up from a wrong-pack kit (space "station" false friend).
     if (kit && kit.docks && kit.docks.length
-      && !(firehouse && kit.pack !== 'fire-station' && kit.pack !== 'fire')) {
+      && !(firehouse && kit.pack !== 'fire-station' && kit.pack !== 'fire')
+      && !(camping && kit.pack !== 'camping')
+      && !(bathroom && kit.pack !== 'bathroom')) {
       for (const p of kit.docks) {
         if (out.length >= targetCount) break;
         if (exclude.includes(p.key)) continue;

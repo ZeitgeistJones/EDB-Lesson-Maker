@@ -67,7 +67,15 @@ assignment is `heroProp` (not the default side-art `activity` zones).
 |----------|--------------|-----------|
 | `dental-kid-open-mouth` | dentist, tooth, floss, cavity… | `ROLEPLAY_DOCK_DENTAL` |
 | `face-blank` | face, hair, eyes, nose, make-a-face… | `ROLEPLAY_DOCK_FACE` |
-| `trampoline` | trampoline, bounce… | themed objects / tools |
+| `trampoline` | trampoline, bounce… | `ROLEPLAY_DOCK_TRAMPOLINE` |
+| `fire-truck` | fire station, firefighter, fire truck… | `ROLEPLAY_DOCK_FIRE` |
+| `tent` | campsite, camping, campfire, tent… | `ROLEPLAY_DOCK_CAMP` |
+| `bath-bathtub` | bathroom, bath, shower, wash-up… | `ROLEPLAY_DOCK_BATH` |
+
+Dental / hospital stay in `CURATED_STAGE_FIRST` so bathroom wash cues never steal
+the open-mouth patient. Camping / bathroom docks mirror firehouse: cue or
+`kit.pack`, and kit top-up refuses the wrong pack. Pack heroes must share the
+lesson `family` (matte camping cannot keep a glossy-only tent).
 
 ## Stage hero vs floor hero
 

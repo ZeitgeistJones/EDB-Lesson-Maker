@@ -66,9 +66,13 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-09 | Soccer `ball` pack icon (replace volleyball-looking `ball.png`) | soccer-coach New Words — pack tier wins over `soccer-ball` prop; kids see a volleyball | Flat soccer ball PNG in `07_vocab-pack` OR topic alias ball→soccer-ball under sport | pack refresh / VocabArt topic prefer | open |
 | 2026-08-09 | Abstract sports icons: `practice`, `effort`, `teamwork` (or keep deny) | soccer-coach M7 — correctly dropped today; no honest picture | Optional metaphor icons only if unmistakable; else leave text-only | curated pack or stay null | open |
 | 2026-08-09 | More distinct `home-warm` panels (stronger motif contrast) | bathroom-routines M5 warn — home flats rotate but read as cousins | Regen home-a…d with clearer motif contrast | bg-flat-sets | open |
-| 2026-08-09 | Bathroom / wash routines king stage (sink or tub hero + toiletry dock ≥6 sharp) | bathroom-routines activity is honest sortBins after dental-steal fix; still thin charm (S17) | Black-field hero + dock sheet | Manus / prop-cutouts | open |
+| 2026-08-09 | Bathroom / wash routines king stage (sink or tub hero + toiletry dock ≥6 sharp) | bathroom-routines activity was honest sortBins after dental-steal fix; still thin charm (S17) | Black-field hero + dock sheet | Manus / prop-cutouts | wired — `bath-bathtub` hero + `ROLEPLAY_DOCK_BATH`; dental still wins first |
+| 2026-08-09 | Firehouse king stage (`fire-truck` + fire dock) | Fire station lessons needed heroProp not generic templates | Promote truck + wire fire dock/STAGE_RULES | prop-cutouts / edbActivities | wired — `fire-truck` hero + `ROLEPLAY_DOCK_FIRE` |
+| 2026-08-09 | Campsite king stage (`tent` + camp dock) | Camping pack had glossy tent exiled from matte kit → sortBins hollow | Drop tent glossy family; wire camp dock | propBank family + edbActivities | wired — `tent` matte hero + `ROLEPLAY_DOCK_CAMP` |
 | 2026-08-09 | Warm-up coloring outline for bathroom / daily wash | bathroom warm uses generic star (no banked PNG) | 2×2 coloring crop in `10_coloring/` | assets:coloring | open |
 | 2026-08-09 | More distinct `clinic-cool` panels (stronger motif contrast across a–d) | hospital quality loop M5 — doctor/dentist/clown-clinic/loop2-doctor pageDiff~0.22; flats rotate keys but read as cousins | Regen clinic-a…d with clearer motif contrast (waiting room vs exam vs corridor vs night desk) | bg-flat-sets | open |
+| 2026-08-09 | `restaurant-warm` quiet flat set | restaurant place signal had no TOPIC_SETS row (bgGap / bakery steal risk) | ChatGPT quiet zip sheet → import | assets:bg --flat | wired — restaurant-a…d + TOPIC_SETS before bakery |
+| 2026-08-09 | `post-cool` quiet flat set | post office / mail lessons had no place wash | ChatGPT quiet zip sheet → import | assets:bg --flat | wired — post-a…d + TOPIC_SETS + PLACE_SIGNALS |
 
 ## How agents append
 

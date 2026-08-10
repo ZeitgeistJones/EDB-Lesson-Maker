@@ -282,8 +282,12 @@
     { re: /\b(aquariums?|fish\s*tanks?|coral\s*reefs?)\b/, set: 'aquarium-cool' },
     { re: /\b(zoo|park|animal|forest|garden|nature|trampoline|volcano|lava|eruption|crater|farm|campsites?|camp(?:ing|fire)?)\b/, set: 'outdoor-fresh' },
     { re: /\b(beach|ocean|sea|shore|seaside|island)\b/, set: 'beach-warm' },
+    // Restaurant before bakery — dining rooms stay off café/bakery washes.
+    { re: /\b(restaurants?|diners?|dining)\b/, set: 'restaurant-warm' },
     // Place nouns only — bare "bread" must not steal supermarket lessons onto bakery.
     { re: /\b(bakerys?|bake\s*shop|pastry\s*shop|cafes?|caf[eé]s?)\b/, set: 'bakery-warm' },
+    // Post office / mail before supermarket — parcels are not grocery.
+    { re: /\b(post\s*offices?|mailboxes?|postage|parcels?|postmarks?)\b/, set: 'post-cool' },
     // Supermarket aisle washes — not outdoor-fresh meadow.
     { re: /\b(markets?|supermarkets?|grocer(?:y|ies)|farmers?\s*markets?)\b/, set: 'supermarket-cool' },
     // Feelings / emotion compass — neutral house washes (stars/dots, no eggs).
@@ -312,7 +316,8 @@
     /\b(zoo|park|animal|forest|garden|nature|gym|sport|trampoline|volcano)\b/,
     /\b(aquariums?|fish\s*tanks?)\b/,
     /\b(beach|ocean|sea|shore|seaside|island)\b/,
-    /\b(bakerys?|bake\s*shop|pastry|cafes?|caf[eé]|restaurants?|markets?|supermarkets?|grocery|groceries)\b/,
+    /\b(bakerys?|bake\s*shop|pastry|cafes?|caf[eé]|restaurants?|diners?|dining|markets?|supermarkets?|grocery|groceries)\b/,
+    /\b(post\s*offices?|mailboxes?|postage|parcels?)\b/,
     /\b(farm|campsites?|camp(?:ing)?|pools?|swim(?:ming)?|playgrounds?)\b/,
   ];
 
@@ -329,7 +334,9 @@
     { re: /\b(zoo|park|animal|forest|garden|nature|campsites?|camping)\b/, want: ['outdoor', 'cool', 'warm'] },
     // "Living in…" titles must not steal the home palette over a real place.
     { re: /\b(home|house|family|kitchen|apartment|bedroom)\b/, want: ['warm', 'neutral'] },
-    { re: /\b(bakerys?|bake\s*shop|pastry|cafes?|caf[eé]|restaurants?)\b/, want: ['warm', 'neutral', 'cool'] },
+    { re: /\b(restaurants?|diners?|dining)\b/, want: ['warm', 'neutral', 'cool'] },
+    { re: /\b(bakerys?|bake\s*shop|pastry|cafes?|caf[eé])\b/, want: ['warm', 'neutral', 'cool'] },
+    { re: /\b(post\s*offices?|mailboxes?|postage|parcels?)\b/, want: ['cool', 'neutral', 'warm'] },
     { re: /\b(markets?|supermarkets?|grocery|groceries)\b/, want: ['cool', 'neutral', 'warm'] },
     { re: /\b(school|classroom|teacher|library|museum|weather)\b/, want: ['neutral', 'cool', 'warm'] },
     { re: /\b(gym|sport|trampoline|play|workout|athletic|soccer|football|tennis)\b/, want: ['cool', 'outdoor', 'warm'] },

@@ -107,6 +107,8 @@ Anti-formula section.
 | `police-cool` | blank badge watermark, door-arch fringe, radio-wave arcs, slate haze | desks/bullpens, outdoor meadow, travel airport |
 | `pool-cool` | lane-line fringe, ripple arcs, kickboard watermark, aqua haze | beach shells, park meadow, locker-room furniture |
 | `playground-fresh` | slide-curve watermark, swing fringe, mulch fringe, sand-sky haze | dense park photo, gym court, furnished playrooms |
+| `restaurant-warm` | checkered fringe, napkin fold, chef-hat outline, cloche + steam | bakery dough-only, furnished dining room, outdoor meadow |
+| `post-cool` | airmail envelope, postmark waves, parcel box, pillar-box corner | supermarket aisle, furnished lobby, travel airport |
 
 **Bakery example (accept):** a flour haze · b dough + flour · c loaf silhouette ·
 d rolling pin. **Reject:** wheat / wheat / cookie-as-only-signal / leaf alcove.
@@ -130,6 +132,8 @@ d rolling pin. **Reject:** wheat / wheat / cookie-as-only-signal / leaf alcove.
 | `police-cool` | police station / patrol | wired (ChatGPT quiet-ok Aug 2026) |
 | `pool-cool` | swimming pool / swim | wired (ChatGPT quiet-ok Aug 2026) |
 | `playground-fresh` | playground / play structure | wired (ChatGPT quiet-ok Aug 2026) |
+| `restaurant-warm` | restaurant / diner / dining | wired (quiet zip triage Aug 2026) |
+| `post-cool` | post office / mail / parcel | wired (quiet zip triage Aug 2026) |
 | `school-soft` | (legacy) superseded by `board-house` | kept on disk, not picker-default |
 | `face-soft` | **retired** — skin-tone peach read as literal skin | kept on disk, unwired |
 

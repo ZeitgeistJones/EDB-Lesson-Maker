@@ -1755,6 +1755,78 @@
    "quiet": true,
    "set": "playground-fresh",
    "palette": "outdoor"
+  },
+  "restaurant-a": {
+   "file": "flat_restaurant-a.png",
+   "tone": "restaurant warm wash — plain cream checkered fringe",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "restaurant-warm",
+   "palette": "warm"
+  },
+  "restaurant-b": {
+   "file": "flat_restaurant-b.png",
+   "tone": "restaurant warm wash — napkin corner motif",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "restaurant-warm",
+   "palette": "warm"
+  },
+  "restaurant-c": {
+   "file": "flat_restaurant-c.png",
+   "tone": "restaurant warm wash — chef hat corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "restaurant-warm",
+   "palette": "warm"
+  },
+  "restaurant-d": {
+   "file": "flat_restaurant-d.png",
+   "tone": "restaurant warm wash — cloche corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "restaurant-warm",
+   "palette": "warm"
+  },
+  "post-a": {
+   "file": "flat_post-a.png",
+   "tone": "post cool wash — airmail envelope corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "post-cool",
+   "palette": "cool"
+  },
+  "post-b": {
+   "file": "flat_post-b.png",
+   "tone": "post cool wash — postmark horn corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "post-cool",
+   "palette": "cool"
+  },
+  "post-c": {
+   "file": "flat_post-c.png",
+   "tone": "post cool wash — parcel box corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "post-cool",
+   "palette": "cool"
+  },
+  "post-d": {
+   "file": "flat_post-d.png",
+   "tone": "post cool wash — pillar box corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "post-cool",
+   "palette": "cool"
   }
  }
 }
