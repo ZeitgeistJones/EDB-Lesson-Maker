@@ -79,8 +79,9 @@
     const t = String(text || '').replace(/\s+/g, ' ').trim();
     if (!t) return false;
     if (/[.!?…]"?\s*$/.test(t) || /[.!?…]['’]?\s*$/.test(t)) return false;
-    // "…paintings. Ben" / "…gym to find something new" cut mid-thought
+    // "…paintings. Ben" / "…he loves to" / cut mid-thought
     if (/\b[A-Z][a-z]{1,12}$/.test(t)) return true;
+    if (/\b(to|the|a|an|and|or|of|for|with|at|in|on|he|she|they|we|i)$/i.test(t)) return true;
     if (/[a-z,;:]$/.test(t)) return true;
     return false;
   }
@@ -98,10 +99,12 @@
   }
 
   /**
-   * Grounded = opinion/future OK, else every distinctive question token that is
-   * also lesson vocab (or a proper-ish name ≥5 letters) must appear in the story.
+   * Grounded = opinion/future OK, else distinctive question/sample tokens that are
+   * lesson vocab (or proper-ish ≥5 letters) must appear in the story.
+   * "Which club does Sam join?" with sample "the art club" fails if art/join facts
+   * never appear in the body (clubs regen miss).
    */
-  function questionGrounded(question, storyBlob, lesson) {
+  function questionGrounded(question, storyBlob, lesson, sampleAnswer) {
     const q = String(question || '').trim();
     if (!q) return false;
     const blob = String(storyBlob || '').toLowerCase();
@@ -109,15 +112,23 @@
     if (isOpinionOrFuture(q)) return true;
 
     const vocab = vocabTokens(lesson);
-    const tokens = contentTokens(q);
-    if (!tokens.length) return true;
+    const qTokens = contentTokens(q);
+    const sampleTokens = contentTokens(sampleAnswer);
+    const tokens = qTokens.concat(sampleTokens.filter((t) => qTokens.indexOf(t) < 0));
+    if (!tokens.length) {
+      // Bare which/where with no content tokens — still require a non-empty story.
+      return blob.length >= 40;
+    }
 
     const must = tokens.filter((t) => vocab.has(t) || t.length >= 5);
     const check = must.length ? must : tokens;
     const missing = check.filter((t) => !blob.includes(t));
-    // Allow 0 missing. One soft miss OK only when ≥2 other hits (typo tolerance).
     if (missing.length === 0) return true;
     const hits = check.length - missing.length;
+    // Literal which/what/where recall: do not allow soft miss when sample invents vocab.
+    if (/\b(which|what|where|who)\b/i.test(q) && sampleTokens.some((t) => vocab.has(t) && !blob.includes(t))) {
+      return false;
+    }
     return missing.length === 1 && hits >= 2;
   }
 
@@ -135,7 +146,7 @@
     rawQs.forEach((q) => {
       const question = typeof q === 'string' ? q : (q && (q.question || q.text)) || '';
       const sampleAnswer = typeof q === 'string' ? '' : (q && (q.sampleAnswer || q.answer)) || '';
-      if (questionGrounded(question, blob, lesson)) {
+      if (questionGrounded(question, blob, lesson, sampleAnswer)) {
         kept.push(typeof q === 'string' ? { question, sampleAnswer: '' } : Object.assign({}, q, { question, sampleAnswer }));
       } else {
         dropped.push(question);
@@ -173,7 +184,7 @@
   function promptRules() {
     return [
       'STORY INTEGRITY (hard):',
-      '- Every story.pages[].text must be COMPLETE sentences that end with . ! or ? — never cut off mid-name or mid-clause (bad: "She liked the paintings. Ben").',
+      '- Every story.pages[].text must be COMPLETE sentences that end with . ! or ? — never cut off mid-name or mid-clause (bad: "She liked the paintings. Ben"). Keep each page short enough to read on one ClassIn board card (~2–5 short sentences).',
       '- story.comprehensionQuestions must be answerable from the story text alone. Do NOT ask about people, places, clubs, or choices the story never states (bad: story has Anna at the art booth, question asks why she chose the choir).',
       '- Literal recall questions must use names/facts that appear in story.pages. Opinion / "what do you think" / next-year questions are OK.',
       '- sampleAnswer must also stay consistent with the story body.',

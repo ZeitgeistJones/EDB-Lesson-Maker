@@ -56,4 +56,24 @@ assert.equal(ok.story.comprehensionQuestions.length, 1, 'grounded choir Q kept')
 
 assert.ok(StoryIntegrity.promptRules().includes('STORY INTEGRITY'), 'prompt rules exported');
 
+// Board-clip class: ends on dangling "to"
+assert.ok(StoryIntegrity.isTruncatedPageText('He likes to draw, but he loves to'), 'loves-to truncate');
+const loves = {
+  vocabulary: [{ word: 'art' }, { word: 'music' }],
+  story: {
+    pages: [{ text: 'Today is the club fair. Sam looks at the art booth. He likes to draw, but he loves to' }],
+    comprehensionQuestions: [
+      { question: 'Where is the club fair?', sampleAnswer: 'At school.' },
+      { question: 'Which club does Sam join?', sampleAnswer: 'He joins the art club.' },
+    ],
+  },
+};
+const lovesSummary = StoryIntegrity.repairLesson(loves);
+assert.ok(lovesSummary.truncatedRepaired, 'repair loves-to');
+assert.ok(!/loves to\s*$/i.test(loves.story.pages[0].text), 'trimmed dangling to');
+assert.ok(
+  !loves.story.comprehensionQuestions.some((q) => /which club/i.test(q.question)),
+  'drop which-club when join fact absent: ' + JSON.stringify(loves.story.comprehensionQuestions)
+);
+
 console.log('test-story-integrity: ok');

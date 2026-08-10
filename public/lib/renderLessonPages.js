@@ -1578,11 +1578,25 @@
 
     const storyText = String(page?.text || '');
     const solo = !!(opts && opts.solo);
-    // One merged 30-min beat (or any solo page) should fill the board; scale up.
-    // Short multi-page beats need big type so the card doesn't look empty (M3/S12).
-    const textSize = solo
-      ? (storyText.length <= 220 ? 56 : storyText.length <= 360 ? 48 : 40)
-      : (storyText.length <= 50 ? 52 : storyText.length <= 100 ? 44 : storyText.length <= 160 ? 34 : 28);
+    // Fit type to the board — solo+banner used to ship 56px and clip mid-clause
+    // ("…he loves to") behind overflow:hidden (clubs board-preview miss).
+    function storyBodyFontPx(text, isSolo) {
+      const n = String(text || '').length;
+      if (isSolo) {
+        if (n <= 80) return 36;
+        if (n <= 120) return 30;
+        if (n <= 180) return 26;
+        if (n <= 260) return 22;
+        if (n <= 360) return 20;
+        return 18;
+      }
+      if (n <= 50) return 44;
+      if (n <= 100) return 36;
+      if (n <= 160) return 30;
+      if (n <= 240) return 26;
+      return 22;
+    }
+    const textSize = storyBodyFontPx(storyText, solo);
 
     if (solo) {
       const caption = page?.visualCaption || page?.visualTheme;
@@ -1591,16 +1605,16 @@
       }
       // Banner slot for realtime story art (separate from the reading card).
       const banner = el('div', {
-        height: '180px',
+        height: '140px',
         flexShrink: '0',
         borderRadius: '16px',
-        marginBottom: '12px',
+        marginBottom: '10px',
         overflow: 'hidden',
         background: 'linear-gradient(200deg, #fff7ed, #fdba74)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '12px',
+        padding: '10px',
         boxSizing: 'border-box',
       });
       banner.dataset.storyArt = String(index);
@@ -1611,16 +1625,16 @@
       // Story body ink is near-black + heavier weight so it never washes out on the
       // light card (S62 / Judge B: medium-gray body read as low contrast projected).
       const text = card(
-        `<div data-story-body style="font-size:${textSize}px;line-height:1.45;color:#0f172a;font-weight:700;width:100%">${esc(storyText)}</div>`,
+        `<div data-story-body style="font-size:${textSize}px;line-height:1.4;color:#0f172a;font-weight:700;width:100%;overflow-wrap:anywhere">${esc(storyText)}</div>`,
         {
           flex: '1',
           marginBottom: '0',
           marginTop: '4px',
           minHeight: '0',
-          padding: '28px 36px',
+          padding: '20px 28px',
           display: 'flex',
           alignItems: 'flex-start',
-          overflow: 'hidden',
+          overflow: 'auto',
         }
       );
       content.appendChild(text);
