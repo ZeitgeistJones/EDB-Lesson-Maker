@@ -1255,6 +1255,9 @@
     if (/\b(music|compose|composer|composition|orchestra|melody|harmony|guitar|piano|violin|concert|classical|symphony|strum|tempo|rhythm|performance)\b/.test(t)) return '🎼';
     // Castle before gym — "courtyard" must not hit includes('court') → basketball.
     if (/\b(castle|knight|dragon|medieval|moat|portcullis|drawbridge|royal|king|queen|fortress)\b/.test(t)) return '🏰';
+    // Club fair / booths before gym — "walked around the gym" at a Club Fair
+    // must not become a lone basketball (clubs PDF story plate).
+    if (/\b(club|booth|poster|hobby)\b/.test(t)) return '🏫';
     if (/\b(gym|workout|athletic)\b/.test(t) || /\bcourt\b/.test(t)) return '🏀';
     if (t.includes('dentist') || t.includes('dental') || t.includes('tooth') || t.includes('teeth')) return '🦷';
     if (t.includes('doctor') || t.includes('clinic') || t.includes('hospital') || t.includes('sick') || t.includes('checkup')) return '🏥';
