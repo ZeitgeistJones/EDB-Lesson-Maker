@@ -445,11 +445,14 @@
   function card(html, extra) {
     // One card language: white, soft shadow, 18px radius, roomy padding.
     // Dark slabs are never the default — ink policy may still darken headers.
+    // Always set backgroundColor (not only background) so bake/rasterizers
+    // don't punch checkerboard holes at rounded corners on photo flats.
     const n = el('div', Object.assign({
       background: '#ffffff',
+      backgroundColor: '#ffffff',
       borderRadius: '18px',
       padding: '20px 24px',
-      boxShadow: '0 8px 24px rgba(15,23,42,0.08)',
+      boxShadow: '0 2px 10px rgba(15,23,42,0.07)',
       marginBottom: '14px',
       fontSize: '22px',
       color: '#0f172a',
@@ -1830,6 +1833,7 @@
             height: r.h + 'px',
             boxSizing: 'border-box',
             background: '#ffffff',
+            backgroundColor: '#ffffff',
             borderRadius: '14px',
             padding: '10px 16px',
             display: 'flex',
@@ -1838,7 +1842,8 @@
             justifyContent: 'center',
             gap: '4px',
             zIndex: '2',
-            boxShadow: '0 6px 18px rgba(15,23,42,0.08)',
+            boxShadow: 'none',
+            border: '2px solid #bbf7d0',
           }));
           // Label lives INSIDE the sticky — an absolute hint under the bay
           // used to paint over Q2 (clubs PDF "Sample answer" overlap).
@@ -1862,7 +1867,7 @@
       // Fill the lower board so Peek pages aren't a top-strip (M8).
       const notes = card(
         `<div style="font-size:22px;font-weight:700;color:#64748b;margin-bottom:10px;flex-shrink:0">Notes / more answers</div>
-         <div style="border:2px dashed #86efac;border-radius:14px;flex:1;min-height:160px;background:rgba(240,253,244,0.85)"></div>`,
+         <div style="border:2px dashed #86efac;border-radius:14px;flex:1;min-height:160px;background:#f0fdf4;background-color:#f0fdf4"></div>`,
         {
           flex: '1 1 0%',
           marginBottom: '0',
