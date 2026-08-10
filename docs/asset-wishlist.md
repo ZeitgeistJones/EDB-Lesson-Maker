@@ -7,7 +7,7 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 - Do **not** drop unverified / scraped clipart into the repo to “close” a row
 - One row per distinct need; dedupe before adding
 - `Status`: `open` → `fetched` → `wired` (or `wont`)
-- **White-bg vocab sheets (`07_vocab-pack`):** prefer **Manus** (`esl-asset-generator`) for batch 3×3s — ChatGPT is optional fallback only. See `docs/prop-sheet-prompts.md` vocab section + `scripts/manus/request-white-vocab-*.mjs`.
+- **White-bg vocab sheets (`07_vocab-pack`):** prefer **Manus** (`esl-asset-generator`) for batch 3×3s — ChatGPT is optional fallback only. See `docs/prop-sheet-prompts.md` vocab section + `scripts/manus/request-white-vocab-*.mjs`. Prefer **OBJECT / still-life** icons over character-action scenes (action scenes mush at ~96px).
 - **Black-field props (`09_props`) for New Words:** OK when dock-sharp (`isDockSharp` / ≥120px short side) + identity-clear (`headNounOk`) and not soft/off-topic decorative. VocabArt fills pack gaps from props first; white sheets cover remaining gaps. Do not fire a Manus white batch for a word that already has a viable black cutout.
 
 | Date | Need | Why (case / word / page) | Preferred type | Suggested source | Status |
@@ -50,7 +50,7 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-07 | Vocab icons: trampoline unit (`trampoline`, `backflip`, `bounce`, `balance`, `spotter`, `mat`) | trampoline New Words M7 | Vocab pack sheet | Art mode batch | wired — Sheet V8 `vocab-trampoline-3x3` |
 | 2026-08-07 | Vocab icons: beach (`sand`, `shell`, `wave`, `ocean`, …) | loop2-beach M7 | Vocab pack | Sheet V7 | wired — `vocab-beach-3x3` |
 | 2026-08-07 | Vocab icons: `farm`, `kitchen`, distinct `bread`/`bakery`/`oven`/`flour` | farm/home/bakery M7 + dup glyphs | Vocab pack | Sheet V9 | wired — `vocab-daily-3x3` |
-| 2026-08-07 | Vocab icons: volcano abstracts (`abundant`, `seismic`, …) + distinct `eruption`/`ash` | volcano M7 | Vocab pack sheet | Art mode follow-up | open |
+| 2026-08-07 | Vocab icons: volcano abstracts (`eruption`, `ash`, `seismic`, `abundant`, `dormant`, `evacuation`, `geothermal`, `subterranean`, `tremors`) — deferred `remnant`/`vulnerable`/`trauma` | volcano M7 — none in pack yet | Vocab pack Sheet V12 | Manus `scripts/manus/request-white-vocab-volcano-abstracts.mjs` | open — pending Manus art |
 | 2026-08-07 | `supermarket-cool` quiet flat set | supermarket fixture was on outdoor-fresh meadow | 4 in-house aisle washes (cart / blank tag / tote) | Native GenerateImage | wired — `supermarket-a`…`d`, TOPIC_SETS |
 | 2026-08-07 | `aquarium-cool` quiet flat set | aquarium lessons risk beach-warm steal via ocean/coral; no tank set | 4 in-house aqua tank washes (bubbles / seaweed / waterline) | Native GenerateImage | wired — `aquarium-a`…`d`, TOPIC_SETS before beach |
 | 2026-08-07 | Campsite / playground TOPIC_SETS row | campsite+playground were PLACE_SIGNALS-only → false bgGap | Wire into `outdoor-fresh` | picker fix | wired — camp/camping/campsite/playground in outdoor-fresh |

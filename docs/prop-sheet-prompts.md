@@ -146,11 +146,14 @@ These go in `07_vocab-pack` (match-dock pictures), **not** `09_props`. Square 1:
 
 **Batch preference:** for white-bg vocab 3×3 sheets, ask **Manus** (`esl-asset-generator`, `quality: default` only) first — see `scripts/manus/client.mjs` + `docs/manus-review.md` asset rules. ChatGPT paste prompts below remain the optional fallback.
 
+**Still-life preference:** prefer **OBJECT / still-life** icons over character-action / kid-activity scenes when possible. Busy people scenes mush at ~96px dock size (hobbies/sports Manus zip was ~70% action scenes and read weak in-dock).
+
 ```
 VOCAB ICON STYLE:
 • Flat educational vector, soft muted palette, restrained shading
 • Square 1:1 image, solid white (#FFFFFF) background edge to edge
 • Exactly ONE subject, centered, ~10% margin
+• Prefer object / still-life metaphors over multi-figure action scenes
 • No black field, no photo, no glossy 3D, no text/letters/numbers/logos
 • Must read clearly at small dock size (~96px)
 ```
@@ -300,7 +303,7 @@ Keys: floss, farm, kitchen, bread, bakery, oven, flour, cake, dough
 
 ### Sheet V10 — Hobbies / after-school (wishlist + Desktop queue #2)
 
-**Status: open** — prefer Manus white 3×3 (`scripts/manus/request-white-vocab-hobbies-sports.mjs`). Do **not** redo clubs sheet (art/chess/sports/music/science/drama/robot/choir/math).
+**Status: wired** — Manus white 3×3 (`scripts/manus/request-white-vocab-hobbies-sports.mjs`) → `07_vocab-pack`. Do **not** redo clubs sheet (art/chess/sports/music/science/drama/robot/choir/math).
 
 ```
 Generate a 3×3 grid of vocabulary icons for young ESL learners. Each panel ONE subject on solid white. Panels divided evenly, no divider lines.
@@ -323,7 +326,7 @@ Keys: hobby, club, join, practice, team, coach, member, meeting, after-school
 
 ### Sheet V11 — Sports abstract (wishlist + Desktop queue #3)
 
-**Status: open** — metaphors must be unmistakable; else leave word text-only. Prefer Manus white 3×3 (same request script as V10). Note: `practice` also appears on V10 — import sports last if both land.
+**Status: wired** — Manus white 3×3 (same request script as V10) → `07_vocab-pack`. Sports `practice` overwrote hobbies `practice` on import. Metaphors must stay unmistakable; else leave word text-only.
 
 ```
 Generate a 3×3 grid of vocabulary icons for young ESL learners. Each panel ONE subject on solid white. Panels divided evenly, no divider lines.
@@ -342,6 +345,29 @@ Reading order — keep metaphors dead simple:
 9. uniform — folded sports jersey (blank, no numbers/letters)
 
 Keys: practice, effort, teamwork, win, lose, score, goalkeeper, whistle, uniform
+```
+
+### Sheet V12 — Volcano abstracts (wishlist)
+
+**Status: open** — prefer Manus white 3×3 (`scripts/manus/request-white-vocab-volcano-abstracts.mjs`). Still-life / object metaphors only. Deferred (no tile this batch): `remnant`, `vulnerable`, `trauma`.
+
+```
+Generate a 3×3 grid of vocabulary icons for young ESL learners. Each panel ONE subject on solid white. Panels divided evenly, no divider lines.
+
+[VOCAB ICON STYLE]
+
+Reading order — object / still-life, not kid-action scenes:
+1. eruption — volcano cone with lava / ash plume (no fleeing people)
+2. ash — grey ash pile OR ash on a simple rooftop silhouette
+3. seismic — seismograph with wavy needle OR cracked ground ripples (NO digits/letters)
+4. abundant — overflowing crate / basket (no text on crate)
+5. dormant — quiet snow-capped volcano, closed crater, no smoke/lava
+6. evacuation — EXIT-arrow road sign shape + empty backpack (arrows only, NO letters)
+7. geothermal — hot-spring pool with steam OR simple geyser plume
+8. subterranean — cutaway tunnel / cave mouth going underground
+9. tremors — cups/jars rattling on a table with ripple lines (no people)
+
+Keys: eruption, ash, seismic, abundant, dormant, evacuation, geothermal, subterranean, tremors
 ```
 
 ## Not promptable (code)
