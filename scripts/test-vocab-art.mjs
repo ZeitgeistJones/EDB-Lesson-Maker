@@ -207,10 +207,40 @@ async function main() {
   const srcs = artTwin.matchable.map((r) => r.artSrc).filter(Boolean);
   assert(new Set(srcs).size === srcs.length, 'dedupe: unique artSrc among matchable');
 
+  // Soft / decorative blob must not ship on New Words (gashapon-robot gate hole)
+  const clubs = {
+    title: 'All Kinds of School Clubs',
+    vocabulary: [
+      { word: 'art' },
+      { word: 'choir' },
+      { word: 'math' },
+      { word: 'drama' },
+      { word: 'chess' },
+      { word: 'robot' },
+    ],
+  };
+  const artClubs = W.VocabArt.planFor(clubs, { seed: clubs.title });
+  const robotRow = artClubs.rows.find((r) => r.word === 'robot');
+  assert(robotRow, 'clubs: robot row present');
+  assert(robotRow.propKey !== 'gashapon-robot', 'clubs: robot must not use soft gashapon-robot');
+  assert(robotRow.propKey !== 'space-robot-gray', 'clubs: robot must not use soft space-robot-gray');
+  assert(
+    !(robotRow.artSrc && /gashapon-robot|space-robot-gray/.test(robotRow.artSrc)),
+    'clubs: robot artSrc must not be soft robot PNG'
+  );
+  assert(robotRow.tier === 'glyph' && robotRow.glyph === '🤖', 'clubs: robot → curated glyph until sharp art');
+  assert(robotRow.matchable, 'clubs: robot still matchable via glyph');
+  const chessRow = artClubs.rows.find((r) => r.word === 'chess');
+  assert(chessRow && chessRow.tier === 'pack', 'clubs: chess pack tier');
+  for (const w of ['art', 'choir', 'math', 'drama']) {
+    const row = artClubs.rows.find((r) => r.word === w);
+    assert(row && row.tier === 'none', `clubs: ${w} still coverage-gap (none)`);
+  }
+
   assert(W.VocabArt.MAX_BOARD_VOCAB === 6, 'MAX_BOARD_VOCAB === 6');
   assert(W.VocabArt.slug("don't") === 'dont', 'slug: don\'t → dont');
 
-  console.log('OK vocab-art cases 1,3,4,6,7 + jobs/coach + sport-ball + dedupe', {
+  console.log('OK vocab-art cases 1,3,4,6,7 + jobs/coach + sport-ball + dedupe + clubs-robot', {
     soccerTier: soccer.tier,
     coachGlyph: glyph,
     coachTier: coachRow.tier,
@@ -218,6 +248,8 @@ async function main() {
     ballTier: ballRow.tier,
     ballProp: ballRow.propKey,
     parkBallTier: parkBallRow.tier,
+    robotTier: robotRow.tier,
+    robotGlyph: robotRow.glyph,
     dropped: art7.dropped.map((d) => d.word),
     grandfather: clock ? clock.key : null,
   });

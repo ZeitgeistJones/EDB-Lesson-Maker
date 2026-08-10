@@ -75,6 +75,8 @@ Gaps noticed during the **board quality loop**. Prefer appending here over forci
 | 2026-08-09 | `post-cool` quiet flat set | post office / mail lessons had no place wash | ChatGPT quiet zip sheet → import | assets:bg --flat | wired — post-a…d + TOPIC_SETS + PLACE_SIGNALS |
 | 2026-08-10 | `garage-cool` quiet flat set | garage / mechanic place signal had no TOPIC_SETS row | ChatGPT quiet zip 2×2 → import | assets:bg --flat --grid=2x2 | wired — garage-a…d + TOPIC_SETS + PLACE_SIGNALS |
 | 2026-08-10 | Kenney letter-tiles A–Z (CC0 Blue 256px) | Phonics docks needed sharp alphabet tiles | `kenney-letter-a`…`z` pack=phonics | Kenney Letter Tiles → curate/import | wired |
+| 2026-08-10 | Sharp `robot` vocab icon (≥120px short side) | School clubs New Words — `gashapon-robot` / `space-robot-gray` are soft blob splices; VocabArt now refuses them (SAFE_EMOJI 🤖 interim) | Flat pack PNG in `07_vocab-pack` or sharp black-field cutout | prop-cutouts / vocab sheet | open |
+| 2026-08-10 | School-club vocab icons: `art`, `choir`, `math`, `drama` (and ideally pack `robot`) | "All Kinds of School Clubs" — only chess (+ soft robot before gate) had match art; same coverage-gap family | Distinct pack PNGs / curated glyphs | ChatGPT vocab sheet / Twemoji where unambiguous | open |
 
 ## How agents append
 

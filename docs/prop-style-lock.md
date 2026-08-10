@@ -265,8 +265,11 @@ hints, generic selectors skip the pack.
 
 **What is gated vs what is not**
 
-- **Gated:** generic dock fill and story-fallback visual resolve — they skip
-  decorative props unless the lesson topic invites the pack via hints.
+- **Gated:** generic dock fill, story-fallback visual resolve, and **VocabArt
+  match / New Words picture bin** (`planFor` tier-2) — they skip decorative
+  props unless the lesson topic invites the pack via hints. VocabArt also
+  refuses soft splices (`!isDockSharp` / short side &lt; `MIN_DOCK_SRC`) so mushy
+  gashapon/space blobs cannot enlarge onto match pads.
 - **Not gated:** curated / explicit resolves (feelings dock, kit docks, pinned
   keys). Those still work on any lesson that asks for them by name.
 

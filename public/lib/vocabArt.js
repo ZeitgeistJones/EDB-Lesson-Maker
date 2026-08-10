@@ -145,8 +145,27 @@
         }
       }
 
-      // Tier 2 — PropBank identity resolve + headNounOk (defense-in-depth)
+      // Tier 2 — PropBank identity resolve + headNounOk (defense-in-depth).
+      // Match picture bin uses the same sharp + decorative rules as roleplay
+      // docks (MIN_DOCK_SRC / isDockSharp; decorativePacksFor). Soft blob
+      // splices (e.g. gashapon-robot ~71px) must not ship enlarged on New Words.
       if (tier === 'none' && PB && typeof PB.loaded === 'function' && PB.loaded()) {
+        const decoOK =
+          typeof PB.decorativePacksFor === 'function'
+            ? PB.decorativePacksFor(lesson)
+            : new Set();
+        const propOkForMatch = (p) => {
+          if (!p || !p.path || usedSrc.has(p.path) || !headNounOk(word, p)) return false;
+          if (typeof PB.isDockSharp === 'function' && !PB.isDockSharp(p)) return false;
+          if (
+            typeof PB.isDecorativeProp === 'function'
+            && PB.isDecorativeProp(p)
+            && !decoOK.has(p.pack)
+          ) {
+            return false;
+          }
+          return true;
+        };
         let prop = null;
         if (skipPackForSportBall) {
           // Pin canonical soccer-ball. resolve() can rotate to soccer-ball-orange
@@ -154,7 +173,7 @@
           // for word "ball" and the New Words pad disappears.
           prop = typeof PB.get === 'function' ? PB.get('soccer-ball') : null;
           if (prop && family && prop.family && prop.family !== family) prop = null;
-          if (!prop || !prop.path || usedSrc.has(prop.path)) {
+          if (!propOkForMatch(prop)) {
             prop = PB.resolve({
               word: 'soccer-ball',
               family,
@@ -163,7 +182,7 @@
               minScore,
             });
           }
-          if (!prop || !prop.path || usedSrc.has(prop.path) || !headNounOk(word, prop)) {
+          if (!propOkForMatch(prop)) {
             prop = PB.resolve({
               word,
               family,
@@ -181,7 +200,7 @@
             minScore,
           });
         }
-        if (prop && prop.path && headNounOk(word, prop) && !usedSrc.has(prop.path)) {
+        if (propOkForMatch(prop)) {
           tier = 'prop';
           artSrc = prop.path;
           propKey = prop.key;

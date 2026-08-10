@@ -165,6 +165,9 @@
     story: '📜',
     planet: '🪐',
     space: '🌌',
+    // School clubs / STEM — both bank robots are soft blob splices (< MIN_DOCK_SRC);
+    // glyph until a sharp vocab-pack or dock-safe cutout lands.
+    robot: '🤖',
   };
 
   /**
