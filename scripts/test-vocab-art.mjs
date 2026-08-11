@@ -298,7 +298,34 @@ async function main() {
   assert(W.VocabArt.MAX_BOARD_VOCAB === 6, 'MAX_BOARD_VOCAB === 6');
   assert(W.VocabArt.slug("don't") === 'dont', 'slug: don\'t → dont');
 
-  console.log('OK vocab-art cases 1,3,4,6,7 + jobs/coach + sport-ball + dedupe + clubs-pack + prop-fill + stand-in', {
+  // Coverage adapt — promote picturable overflow into the board six (same topic).
+  const adaptLesson = {
+    title: 'Weekend Sports Club',
+    vocabulary: [
+      { word: 'xqzaaa' },
+      { word: 'xqzbbb' },
+      { word: 'xqzccc' },
+      { word: 'xqzddd' },
+      { word: 'xqzeee' },
+      { word: 'xqzfff' },
+      { word: 'soccer' },
+      { word: 'pencil' },
+    ],
+  };
+  const adapt = W.VocabArt.adaptBoardVocabulary(adaptLesson, { seed: adaptLesson.title });
+  assert(adapt.adapted, 'adapt: reorders when overflow has art');
+  const boardSix = adaptLesson.vocabulary.slice(0, 6).map((v) => v.word);
+  assert(boardSix.includes('soccer'), 'adapt: soccer promoted onto board');
+  assert(boardSix.includes('pencil'), 'adapt: pencil promoted onto board');
+  assert(!boardSix.includes('xqzaaa') || adapt.board.includes('soccer'), 'adapt: board prefers art words');
+  const again = W.VocabArt.adaptBoardVocabulary(adaptLesson, { seed: adaptLesson.title });
+  assert(again.adapted === adapt.adapted, 'adapt: idempotent flag');
+  assert(
+    adaptLesson.vocabulary.slice(0, 6).map((v) => v.word).join('|') === boardSix.join('|'),
+    'adapt: second call does not reshuffle'
+  );
+
+  console.log('OK vocab-art cases 1,3,4,6,7 + jobs/coach + sport-ball + dedupe + clubs-pack + prop-fill + stand-in + adapt', {
     soccerTier: soccer.tier,
     coachGlyph: glyph,
     coachTier: coachRow.tier,
@@ -310,6 +337,8 @@ async function main() {
     robotSrc: robotRow.artSrc,
     gymProp: gymRow.propKey,
     brushTier: brushRow.tier,
+    adaptBoard: boardSix,
+    adaptPromoted: adapt.promoted,
     propFill: Object.fromEntries(
       artProp.rows.map((r) => [r.word, r.propKey])
     ),

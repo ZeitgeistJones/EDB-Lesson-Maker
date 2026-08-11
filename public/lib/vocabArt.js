@@ -13,10 +13,18 @@
  * MAX_BOARD_VOCAB is the single ceiling for board cards, match dock, wrap aims,
  * and teacher PDF word lists. Generate may return more (30→7 / 60→12); overflow
  * is a BoardReadiness draft reason, not silent truncation.
+ *
+ * Coverage adapt (same topic, no silent topic drift): before planning art for
+ * the board, reorder vocabulary so the teachable MAX_BOARD_VOCAB slice prefers
+ * words with real pack/prop/glyph art. Overflow stays on the lesson for story/
+ * speaking; Ready still requires the adapted slice to clear the art floor.
  */
 (function () {
   /** Board + PDF teach at most this many vocab items (2×3 card grid / dock). */
   const MAX_BOARD_VOCAB = 6;
+
+  /** Tier rank for adapt sort — higher = prefer on the board slice. */
+  const TIER_RANK = { prop: 3, pack: 3, glyph: 2, none: 0 };
 
   function slug(word) {
     return String(word || '')
@@ -30,16 +38,121 @@
       .replace(/\s+/g, '-');
   }
 
-  /** Raw vocabulary array capped to the board ceiling (objects or strings). */
+  function entryWord(v) {
+    if (typeof v === 'string') return String(v);
+    if (v && v.word) return String(v.word);
+    return '';
+  }
+
+  /**
+   * Raw vocabulary array capped to the board ceiling (objects or strings).
+   * Call adaptBoardVocabulary(lesson) once in plan/bake so this slice is the
+   * art-preferred order — not blindly generate's first six.
+   */
   function boardVocabulary(lesson) {
     return ((lesson && lesson.vocabulary) || []).slice(0, MAX_BOARD_VOCAB);
   }
 
   function vocabWords(lesson) {
     return boardVocabulary(lesson)
-      .map((v) => (typeof v === 'string' ? v : v && v.word))
-      .filter(Boolean)
-      .map((w) => String(w));
+      .map((v) => entryWord(v))
+      .filter(Boolean);
+  }
+
+  function allVocabEntries(lesson) {
+    return ((lesson && lesson.vocabulary) || []).slice();
+  }
+
+  /**
+   * Reorder lesson.vocabulary in place: best-art words first (stable), so the
+   * board/PDF ceiling teaches what we can picture. Same topic — never swaps
+   * the lesson theme. Idempotent via lesson._vocabAdapted.
+   *
+   * @returns {{ adapted: boolean, board: string[], overflow: string[], promoted: string[] }}
+   */
+  function adaptBoardVocabulary(lesson, opts) {
+    opts = opts || {};
+    const empty = { adapted: false, board: [], overflow: [], promoted: [] };
+    if (!lesson || !Array.isArray(lesson.vocabulary) || !lesson.vocabulary.length) {
+      return empty;
+    }
+    if (lesson._vocabAdapted && lesson._vocabAdapted.done) {
+      const words = vocabWords(lesson);
+      const all = allVocabEntries(lesson).map(entryWord).filter(Boolean);
+      return {
+        adapted: !!lesson._vocabAdapted.changed,
+        board: words,
+        overflow: all.slice(MAX_BOARD_VOCAB),
+        promoted: lesson._vocabAdapted.promoted || [],
+      };
+    }
+
+    assertIconsWarm();
+    const entries = allVocabEntries(lesson);
+    if (entries.length <= MAX_BOARD_VOCAB) {
+      lesson._vocabAdapted = { done: true, changed: false, promoted: [] };
+      return {
+        adapted: false,
+        board: entries.map(entryWord).filter(Boolean),
+        overflow: [],
+        promoted: [],
+      };
+    }
+
+    // Score the full list (allWords) — same topic, pick the picture-able six.
+    const planned = planFor(lesson, {
+      family: opts.family,
+      seed: opts.seed != null ? opts.seed : ((lesson && lesson.title) || ''),
+      allWords: true,
+    });
+
+    const byWord = new Map();
+    for (const row of planned.rows || []) {
+      byWord.set(String(row.word).toLowerCase(), row);
+    }
+
+    const ranked = entries.map((entry, index) => {
+      const w = entryWord(entry);
+      const row = byWord.get(w.toLowerCase()) || { tier: 'none', matchable: false };
+      return {
+        entry,
+        index,
+        word: w,
+        rank: TIER_RANK[row.tier] || 0,
+        matchable: !!row.matchable,
+      };
+    });
+    ranked.sort((a, b) => {
+      if (b.rank !== a.rank) return b.rank - a.rank;
+      return a.index - b.index;
+    });
+
+    const boardItems = ranked.slice(0, MAX_BOARD_VOCAB);
+    const overflowItems = ranked.slice(MAX_BOARD_VOCAB).sort((a, b) => a.index - b.index);
+    // Keep overflow in original relative order after the board slice.
+    const next = boardItems.map((r) => r.entry).concat(overflowItems.map((r) => r.entry));
+    const before = entries.map(entryWord).filter(Boolean).slice(0, MAX_BOARD_VOCAB);
+    const after = boardItems.map((r) => r.word).filter(Boolean);
+    const changed = before.join('|').toLowerCase() !== after.join('|').toLowerCase();
+    const promoted = after.filter((w, i) => {
+      const prev = before[i] && String(before[i]).toLowerCase();
+      return String(w).toLowerCase() !== prev && !before.map((x) => String(x).toLowerCase()).includes(String(w).toLowerCase());
+    });
+
+    lesson.vocabulary = next;
+    lesson._vocabAdapted = {
+      done: true,
+      changed,
+      promoted,
+      before,
+      after,
+    };
+    return {
+      adapted: changed,
+      board: after,
+      overflow: overflowItems.map((r) => r.word).filter(Boolean),
+      promoted,
+    };
   }
 
   /**
@@ -121,7 +234,11 @@
       if (p && p.visualTheme) bits.push(p.visualTheme);
       if (p && p.visualCaption) bits.push(p.visualCaption);
     }
-    for (const w of vocabWords(lesson)) bits.push(w);
+    for (const w of ((lesson && lesson.vocabulary) || [])
+      .map((v) => (typeof v === 'string' ? v : v && v.word))
+      .filter(Boolean)) {
+      bits.push(w);
+    }
     const blob = bits.filter(Boolean).join(' ').toLowerCase();
     return /\b(soccer|football|sports?|sporty|gym|athletic|basketball|tennis|baseball|coach|whistle|goalkeeper|teamwork|kickoff|pitch)\b/.test(blob)
       || /\bon the field\b/.test(blob);
@@ -129,6 +246,8 @@
 
   /**
    * Plan art for each vocab word.
+   * @param {object} [opts.allWords] when true, score the full vocabulary list
+   *   (adapt scan) instead of the board ceiling slice.
    * @returns {{ rows: object[], matchable: object[], dropped: object[] }}
    */
   function planFor(lesson, opts) {
@@ -137,7 +256,9 @@
 
     const VI = window.VocabIcons;
     const PB = window.PropBank;
-    const words = vocabWords(lesson);
+    const words = opts.allWords
+      ? allVocabEntries(lesson).map(entryWord).filter(Boolean)
+      : vocabWords(lesson);
     const family = opts.family
       || (PB && PB.familyFor ? PB.familyFor(lesson) : null)
       || (PB && PB.HOUSE_FAMILY)
@@ -299,6 +420,7 @@
   window.VocabArt = {
     MAX_BOARD_VOCAB,
     planFor,
+    adaptBoardVocabulary,
     headNounOk,
     identityTight,
     isSportBallLesson,

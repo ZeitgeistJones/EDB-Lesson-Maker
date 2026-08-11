@@ -151,7 +151,47 @@ assert(
   '6/6 art → no art-floor reason'
 );
 
-console.log('OK readiness+vocabArt reasons + matchDock hint + art floor', {
+// Coverage adapt reason surfaces when overflow was reordered onto the board six.
+const adaptReadyLesson = {
+  title: 'Adapt Ready Probe',
+  vocabulary: [
+    { word: 'xqzaaa' },
+    { word: 'xqzbbb' },
+    { word: 'xqzccc' },
+    { word: 'xqzddd' },
+    { word: 'xqzeee' },
+    { word: 'xqzfff' },
+    { word: 'soccer' },
+    { word: 'pencil' },
+  ],
+};
+const adaptInfo = W.VocabArt.adaptBoardVocabulary(adaptReadyLesson, {
+  seed: adaptReadyLesson.title,
+});
+assert(adaptInfo.adapted, 'adapt probe: changed order');
+const adaptPlan = {
+  vocabArt: W.VocabArt.planFor(adaptReadyLesson, { seed: adaptReadyLesson.title }),
+  canHonestMatchDock: true,
+  assignments: [],
+  dockDrops: 0,
+  vocabAdapt: adaptInfo,
+};
+const adaptReport = W.BoardReadiness.assess(adaptReadyLesson, adaptPlan, { ignoreKit: true });
+assert(
+  adaptReport.reasons.some((r) => /Board adapted to art coverage/i.test(r)),
+  'adapt: readiness names art-coverage reorder'
+);
+
+// No-hero activity prefers sortBins (recipe adapt) — not dressUp lottery.
+const noHeroLesson = {
+  title: 'Abstract Patience Practice',
+  vocabulary: [{ word: 'patient' }, { word: 'kind' }, { word: 'honest' }],
+};
+const noHeroPlan = W.EdbActivities.plan(noHeroLesson, { level: 'A2', duration: 30 });
+const actRecipe = (noHeroPlan.assignments || []).find((a) => a.pageKey === 'activity');
+assert(actRecipe && actRecipe.recipeId === 'sortBins', 'recipe adapt: no hero → sortBins');
+
+console.log('OK readiness+vocabArt reasons + matchDock hint + art floor + adapt', {
   partial: report.reasons,
   noDock: report2.reasons,
   partialHint,
@@ -160,4 +200,6 @@ console.log('OK readiness+vocabArt reasons + matchDock hint + art floor', {
   floorPct,
   art3of6: report3of6.reasons,
   art6of6Status: report6of6.status,
+  adaptReasons: adaptReport.reasons,
+  noHeroRecipe: actRecipe && actRecipe.recipeId,
 });

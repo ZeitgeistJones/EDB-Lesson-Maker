@@ -1709,7 +1709,20 @@
    */
   function plan(lesson, meta) {
     const rngSeed = hashStr((lesson.title || '') + '|' + (meta?.level || '') + '|' + (meta?.duration || ''));
-    const pickBit = (n) => ((rngSeed >>> n) & 1) === 1;
+
+    // Same-topic coverage adapt: put picture-able words in the board six before
+    // recipe pick / readiness. Never drifts the lesson theme.
+    let vocabAdapt = null;
+    if (window.VocabArt && typeof window.VocabArt.adaptBoardVocabulary === 'function') {
+      try {
+        vocabAdapt = window.VocabArt.adaptBoardVocabulary(lesson, {
+          seed: (lesson && lesson.title) || '',
+        });
+      } catch (_) {
+        vocabAdapt = null;
+      }
+    }
+
     const vocab = vocabList(lesson);
     const hasVocab = vocab.length > 0;
     const assignments = [];
@@ -1765,9 +1778,11 @@
           recipeId: 'sortBins',
         });
       } else {
+        // No hero + no honest match dock — prefer sortBins (taught words as
+        // cards) over dressUp/buildScene that need a prop kit we don't have.
         assignments.push({
           pageKey: 'activity',
-          recipeId: pickBit(5) ? 'dressUp' : (pickBit(6) ? 'sortBins' : 'buildScene'),
+          recipeId: 'sortBins',
         });
       }
     }
@@ -1777,6 +1792,7 @@
       seed: rngSeed,
       kit: kit && kit.ready ? { pack: kit.pack, hero: kit.hero.key, docks: kit.dockCount } : null,
       vocabArt,
+      vocabAdapt: vocabAdapt || null,
       canHonestMatchDock: honestMatch,
       matchDockHint: honestMatch ? matchDockStudentHint(vocabArt) : null,
     };

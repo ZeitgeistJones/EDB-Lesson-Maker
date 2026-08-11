@@ -160,13 +160,26 @@
     const matchAssign = assignments.find((a) => a.pageKey === 'newWords' && a.recipeId === 'matchDock');
 
     // Generate may return 7 (30min) / 12 (60min); board + PDF only teach MAX.
+    // After coverage adapt, overflow = words past the art-preferred board six.
     const allWords = vocabWords(lesson);
     const ceil = maxBoardVocab();
+    const adapted = lesson && lesson._vocabAdapted;
     if (allWords.length > ceil) {
       const overflow = allWords.slice(ceil);
       const names = overflow.slice(0, 4).join(', ');
+      if (adapted && adapted.changed) {
+        const boardNames = (adapted.after || allWords.slice(0, ceil)).slice(0, 4).join(', ');
+        reasons.push(
+          `Board adapted to art coverage — teaches ${boardNames}${(adapted.after || []).length > 4 ? '…' : ''}; ${overflow.length} more not on cards/PDF: ${names}${overflow.length > 4 ? '…' : ''}.`
+        );
+      } else {
+        reasons.push(
+          `${overflow.length} vocab word(s) past board ceiling of ${ceil} (not on cards/PDF): ${names}${overflow.length > 4 ? '…' : ''}.`
+        );
+      }
+    } else if (adapted && adapted.changed && adapted.promoted && adapted.promoted.length) {
       reasons.push(
-        `${overflow.length} vocab word(s) past board ceiling of ${ceil} (not on cards/PDF): ${names}${overflow.length > 4 ? '…' : ''}.`
+        `Board vocab reordered for art coverage (promoted: ${adapted.promoted.slice(0, 4).join(', ')}${adapted.promoted.length > 4 ? '…' : ''}).`
       );
     }
 
