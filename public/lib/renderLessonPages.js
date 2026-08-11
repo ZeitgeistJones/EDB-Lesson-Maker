@@ -521,6 +521,21 @@
     return (window.VocabArt && window.VocabArt.MAX_BOARD_VOCAB) || 6;
   }
 
+  /** Respect adaptBoardVocabulary.boardCount (3–6 pictured words). */
+  function boardVocabCeil(lesson) {
+    const adapted = lesson && lesson._vocabAdapted;
+    const n = Number(adapted && adapted.boardCount);
+    if (n >= 1 && n <= maxBoardVocab()) return n;
+    return maxBoardVocab();
+  }
+
+  function boardVocabList(lesson) {
+    if (window.VocabArt && typeof window.VocabArt.boardVocabulary === 'function') {
+      return window.VocabArt.boardVocabulary(lesson);
+    }
+    return (lesson.vocabulary || []).slice(0, boardVocabCeil(lesson));
+  }
+
   function normalizeLesson(lesson) {
     if (!lesson || typeof lesson !== 'object') return lesson || {};
     if (!lesson.story || typeof lesson.story !== 'object') lesson.story = {};
@@ -707,12 +722,11 @@
       position: 'relative',
       zIndex: '1',
     });
-    // Board-taught vocab only (match dock / sentences = MAX_BOARD_VOCAB) — Manus S30:
+    // Board-taught vocab only (match dock / sentences = adapted board ceil) — Manus S30:
     // aims must not advertise words that never appear on New Words.
-    const aimWords = (lesson.vocabulary || [])
+    const aimWords = boardVocabList(lesson)
       .map((v) => (typeof v === 'string' ? v : v && v.word))
-      .filter(Boolean)
-      .slice(0, maxBoardVocab());
+      .filter(Boolean);
     const title = el('div', {
       color: '#0f172a', fontSize: '62px', fontWeight: '800',
       maxWidth: '560px', lineHeight: '1.05',
@@ -920,7 +934,7 @@
         || 'Say each word. Drag each picture onto its numbered drop pad.')
       : 'Say each word together.';
     p.appendChild(hint(matchHint, { flexShrink: '0' }));
-    const words = (lesson.vocabulary || []).slice(0, maxBoardVocab());
+    const words = boardVocabList(lesson);
     const rowByWord = new Map();
     ((art && art.rows) || []).forEach((r) => rowByWord.set(r.word, r));
     const matchableSet = new Set(((art && art.matchable) || []).map((r) => r.word));
@@ -1074,7 +1088,7 @@
     const p = pageShell(THEME_COLORS.vocab, { pageType: 'vocabSentences' });
     p.appendChild(header('New Words — In Sentences', '#7c3aed', { timing: '~5 min' }));
     const body = fillBody(p, { justifyContent: 'stretch', gap: '16px' });
-    const words = (lesson.vocabulary || []).slice(0, maxBoardVocab());
+    const words = boardVocabList(lesson);
     const n = Math.max(1, words.length);
     const cols = n <= 2 ? 1 : 2;
     const rows = Math.max(1, Math.ceil(n / cols));
@@ -1119,8 +1133,7 @@
     // "I would feel ___ if someone ___." (two blanks, no cue). It restates the
     // words that are ON New Words, so it is not answer-leaking — it is the same
     // choice set students already met. Chips only; no per-frame mapping.
-    const bankWords = (lesson.vocabulary || [])
-      .slice(0, maxBoardVocab())
+    const bankWords = boardVocabList(lesson)
       .map((v) => (typeof v === 'string' ? v : v.word))
       .filter(Boolean);
     if (bankWords.length) {
