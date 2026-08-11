@@ -1899,6 +1899,40 @@
    "quiet": true,
    "set": "beach-warm",
    "palette": "coast"
+  },
+  "home-e": {
+   "file": "flat_home-e.png",
+   "tone": "cream wash + curtain corner",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "home-warm"
+  },
+  "home-f": {
+   "file": "flat_home-f.png",
+   "tone": "cream-lavender wash + soft arch",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "home-warm"
+  },
+  "home-g": {
+   "file": "flat_home-g.png",
+   "tone": "home warm wash — soft arch shadow",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "home-warm",
+   "palette": "warm"
+  },
+  "home-h": {
+   "file": "flat_home-h.png",
+   "tone": "home warm wash — window sash fringe",
+   "mood": "calm",
+   "textInk": "dark",
+   "quiet": true,
+   "set": "home-warm",
+   "palette": "warm"
   }
  }
 }

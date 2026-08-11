@@ -921,6 +921,8 @@
     'feeling-sleepy',
     'feeling-proud',
     'feeling-silly',
+    'feeling-excited',
+    'feeling-tired',
   ];
 
   /** Classical concert roleplay — cream/gold musicians for the terrace stage. */
@@ -1195,15 +1197,25 @@
     // pad — 12 sources for 6 taught words overloads B1 and adds unnameable distractors
     // (Manus QCVsgMcb: DRAG_SOURCE_COUNT == TARGET_VOCAB_COUNT). Derive the exact
     // first-6 feelings from lesson vocab; fall back to the curated list if empty.
+    // S59: dock art is vocab-pack PNGs. Allow taught words with pack art even when
+    // no feeling-* prop cutout exists (excited/tired landmine — roster filter used
+    // to drop them silently → short dock / S49).
     let feelingsKeys = null;
     if (feelings) {
-      const vocabKeys = ((lesson && lesson.vocabulary) || [])
+      const VI = window.VocabIcons;
+      const packSync = VI && typeof VI.pathForSync === 'function' ? VI.pathForSync.bind(VI) : null;
+      const taught = ((lesson && lesson.vocabulary) || [])
         .map((v) => (typeof v === 'string' ? v : v && v.word))
         .filter(Boolean)
         .slice(0, maxBoardVocab())
-        .map((w) => 'feeling-' + String(w).toLowerCase())
-        .filter((k) => ROLEPLAY_DOCK_FEELINGS.includes(k));
-      if (vocabKeys.length) feelingsKeys = vocabKeys;
+        .map((w) => String(w).toLowerCase());
+      const keys = [];
+      for (const word of taught) {
+        const k = 'feeling-' + word;
+        const packPath = packSync ? packSync(word) : null;
+        if (ROLEPLAY_DOCK_FEELINGS.includes(k) || packPath) keys.push(k);
+      }
+      if (keys.length) feelingsKeys = keys;
     }
     let targetCount = count;
 
@@ -1251,6 +1263,31 @@
         if (!face && !feelings && prefer === ROLEPLAY_DOCK_DOLLHOUSE && p.aspect && (p.aspect < 0.3 || p.aspect > 3.5)) continue;
         exclude.push(p.key);
         out.push(p);
+      }
+    }
+
+    // Feelings: taught words with pack art but no sharp feeling-* prop — still ship
+    // a pack-backed dock piece (S59). Never silently shorten the dock.
+    if (feelings && feelingsKeys) {
+      const VI = window.VocabIcons;
+      const packSync = VI && typeof VI.pathForSync === 'function' ? VI.pathForSync.bind(VI) : null;
+      const have = new Set(out.map((p) => p.key));
+      for (const k of feelingsKeys) {
+        if (out.length >= targetCount) break;
+        if (have.has(k) || exclude.includes(k)) continue;
+        const word = String(k).replace(/^feeling-/, '');
+        const packPath = packSync ? packSync(word) : null;
+        if (!packPath) continue;
+        exclude.push(k);
+        have.add(k);
+        out.push({
+          key: k,
+          path: packPath,
+          aspect: 1,
+          feelWord: word,
+          relativeScale: 0.35,
+          anchor: 'center',
+        });
       }
     }
 
