@@ -5,9 +5,29 @@
  * downloadable with an honest warning — never silently "done" when hollow.
  *
  * Classic script → window.BoardReadiness
+ *
+ * ── The art floor is measured over the ADAPTED BOARD, not the whole list ────
+ * VocabArt.adaptBoardVocabulary decides how many words the board teaches
+ * (boardCount: 4, 5, or 6 — see the policy block in vocabArt.js). Everything
+ * here scores that slice:
+ *
+ *   boardCount 6, 6 pictured → 6/6 = 1.00 → Ready
+ *   boardCount 5, 5 pictured → 5/5 = 1.00 → Ready   (honest short board)
+ *   boardCount 4, 4 pictured → 4/4 = 1.00 → Ready   (honest short board)
+ *   boardCount 4, 3 pictured → 3/4 = 0.75 → Draft   (too few to be honest)
+ *
+ * That last row is the point: when fewer than four words can be pictured, the
+ * policy holds the board at four and the ratio fails on purpose, so the teacher
+ * gets a Draft with a real reason instead of a padded page that looks finished.
+ *
+ * Previously vocabWords() returned the FULL vocabulary list despite a comment
+ * saying it was board-sliced, so the legacy fallback path scored the floor over
+ * all 7 or 12 generated words and produced false Drafts whenever VocabArt was
+ * cold. It is board-sliced now; allVocabWords() is the full list, used only for
+ * the overflow check.
  */
 (function () {
-  const VOCAB_ART_FLOOR = 5 / 6; // ≥5/6 words need real prop or vetted icon art (~83%)
+  const VOCAB_ART_FLOOR = 5 / 6; // ≥5/6 of the BOARD words need real art (~83%)
 
   /** Reasons that are kit / hero-stage concerns (filterable via ignoreKit). */
   const KIT_REASON_RE =
@@ -17,11 +37,34 @@
     return (window.VocabArt && window.VocabArt.MAX_BOARD_VOCAB) || 6;
   }
 
-  function vocabWords(lesson) {
+  /** How many cells the board actually teaches (adapted). */
+  function boardCount(lesson) {
+    if (window.VocabArt && typeof window.VocabArt.boardCount === 'function') {
+      return window.VocabArt.boardCount(lesson);
+    }
+    const all = (lesson && lesson.vocabulary) || [];
+    const adapted = lesson && lesson._vocabAdapted;
+    return Math.min(
+      maxBoardVocab(),
+      all.length || maxBoardVocab(),
+      Math.max(1, Number(adapted && adapted.boardCount) || maxBoardVocab())
+    );
+  }
+
+  /** Every word the lesson generated — used for the overflow reason only. */
+  function allVocabWords(lesson) {
     return ((lesson && lesson.vocabulary) || [])
       .map((v) => (typeof v === 'string' ? v : v && v.word))
       .filter(Boolean)
       .map((w) => String(w));
+  }
+
+  /** The words the board and PDF actually teach. */
+  function vocabWords(lesson) {
+    if (window.VocabArt && typeof window.VocabArt.vocabWords === 'function') {
+      return window.VocabArt.vocabWords(lesson);
+    }
+    return allVocabWords(lesson).slice(0, boardCount(lesson));
   }
 
   /**
@@ -59,6 +102,7 @@
       }
     }
 
+    // Legacy scan — board slice only, same as the ladder above.
     const words = vocabWords(lesson);
     const PB = window.PropBank;
     const VI = window.VocabIcons;
@@ -160,18 +204,10 @@
     const matchAssign = assignments.find((a) => a.pageKey === 'newWords' && a.recipeId === 'matchDock');
 
     // Generate may return 7 (30min) / 12 (60min); board + PDF teach the adapted
-    // slice (≤6; may shorten to 3–5 pictured words).
-    const allWords = vocabWords(lesson);
+    // slice (4–6 words — see the boardCount policy in vocabArt.js).
     const adapted = lesson && lesson._vocabAdapted;
-    const ceil = Math.min(
-      maxBoardVocab(),
-      Math.max(1, Number(adapted && adapted.boardCount) || maxBoardVocab())
-    );
-    // vocabWords already board-sliced — compare full list for overflow.
-    const fullWords = ((lesson && lesson.vocabulary) || [])
-      .map((v) => (typeof v === 'string' ? v : v && v.word))
-      .filter(Boolean)
-      .map((w) => String(w));
+    const ceil = boardCount(lesson);
+    const fullWords = allVocabWords(lesson);
     if (fullWords.length > ceil) {
       const overflow = fullWords.slice(ceil);
       const names = overflow.slice(0, 4).join(', ');
@@ -183,13 +219,11 @@
           `${overflow.length} vocab word(s) past board ceiling of ${ceil} (not on cards/PDF): ${names}${overflow.length > 4 ? '…' : ''}.`
         );
       }
-    } else if (adapted && adapted.changed && adapted.promoted && adapted.promoted.length) {
-      // Reorder-only with no overflow past ceil — non-blocking note skipped; UI shows adapt.
     }
 
     if (vocabArt.total > 0 && vocabArt.ratio < VOCAB_ART_FLOOR) {
       reasons.push(
-        `Only ${vocabArt.hits}/${vocabArt.total} vocab words have board art (need ≥${Math.ceil(VOCAB_ART_FLOOR * 100)}%).`
+        `Only ${vocabArt.hits}/${vocabArt.total} board words have art (need ≥${Math.ceil(VOCAB_ART_FLOOR * 100)}%). Bank art for more words in this topic, or accept a draft board.`
       );
     }
 
@@ -208,17 +242,17 @@
       }
     }
 
-    const dropped = boardPlan && boardPlan.vocabArt && boardPlan.vocabArt.dropped;
-    if (dropped && dropped.length && matchAssign) {
-      const names = dropped.map((d) => d.word).slice(0, 4).join(', ');
+    const artDropped = boardPlan && boardPlan.vocabArt && boardPlan.vocabArt.dropped;
+    if (artDropped && artDropped.length && matchAssign) {
+      const names = artDropped.map((d) => d.word).slice(0, 4).join(', ');
       reasons.push(
-        `Dropped ${dropped.length} vocab word(s) from match dock (no vetted art): ${names}${dropped.length > 4 ? '…' : ''} (admin — student board does not announce this).`
+        `Dropped ${artDropped.length} vocab word(s) from match dock (no vetted art): ${names}${artDropped.length > 4 ? '…' : ''} (admin — student board does not announce this).`
       );
-    } else if (dropped && dropped.length && !matchAssign && boardPlan.canHonestMatchDock !== false) {
+    } else if (artDropped && artDropped.length && !matchAssign && boardPlan.canHonestMatchDock !== false) {
       // Dock not assigned for another reason — still surface missing art.
-      const names = dropped.map((d) => d.word).slice(0, 4).join(', ');
+      const names = artDropped.map((d) => d.word).slice(0, 4).join(', ');
       reasons.push(
-        `No vetted art for ${dropped.length} vocab word(s): ${names}${dropped.length > 4 ? '…' : ''}.`
+        `No vetted art for ${artDropped.length} vocab word(s): ${names}${artDropped.length > 4 ? '…' : ''}.`
       );
     }
 
@@ -242,7 +276,7 @@
     if (SI && typeof SI.audit === 'function') {
       const prior = (lesson && lesson._storyIntegrity) || null;
       const live = SI.audit(lesson);
-      const dropped = (prior && prior.droppedQuestions && prior.droppedQuestions.length)
+      const droppedQs = (prior && prior.droppedQuestions && prior.droppedQuestions.length)
         ? prior.droppedQuestions
         : (live.droppedQuestions || []);
       const truncated = !!(prior && prior.truncatedRepaired)
@@ -251,10 +285,10 @@
           const raw = (((lesson.story && lesson.story.pages) || [])[i] || {}).text;
           return SI.isTruncatedPageText && SI.isTruncatedPageText(raw);
         }));
-      if (dropped.length) {
-        const names = dropped.slice(0, 2).map((q) => String(q).slice(0, 48)).join(' · ');
+      if (droppedQs.length) {
+        const names = droppedQs.slice(0, 2).map((q) => String(q).slice(0, 48)).join(' · ');
         reasons.push(
-          `S73: ${dropped.length} comprehension question(s) not grounded in the story${names ? ` (${names}${dropped.length > 2 ? '…' : ''})` : ''} — fix story/Qs (repair alone keeps Draft).`
+          `S73: ${droppedQs.length} comprehension question(s) not grounded in the story${names ? ` (${names}${droppedQs.length > 2 ? '…' : ''})` : ''} — fix story/Qs (repair alone keeps Draft).`
         );
       }
       if (truncated) {
@@ -325,13 +359,18 @@
         ratio: Number(vocabArt.ratio.toFixed(2)),
         detail: vocabArt.detail,
       },
+      // boardCount / generated let the UI say "board teaches 4 of 7 words"
+      // instead of only "reordered for art coverage".
       vocabAdapt: vocabAdapted && vocabAdapted.changed
         ? {
             adapted: true,
             promoted: vocabAdapted.promoted || [],
             board: vocabAdapted.after || vocabAdapted.board || [],
+            boardCount: ceil,
+            generated: fullWords.length,
+            shortened: ceil < Math.min(maxBoardVocab(), fullWords.length),
           }
-        : { adapted: false },
+        : { adapted: false, boardCount: ceil, generated: fullWords.length, shortened: false },
       activityRecipe,
       bg,
       dockDrops: dockDrops || 0,
@@ -356,5 +395,6 @@
     VOCAB_ART_FLOOR,
     KIT_REASON_RE,
     maxBoardVocab,
+    boardCount,
   };
 })();

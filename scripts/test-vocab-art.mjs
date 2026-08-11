@@ -298,7 +298,10 @@ async function main() {
   assert(W.VocabArt.MAX_BOARD_VOCAB === 6, 'MAX_BOARD_VOCAB === 6');
   assert(W.VocabArt.slug("don't") === 'dont', 'slug: don\'t → dont');
 
-  // Coverage adapt — promote picturable overflow into the board six (same topic).
+  // Coverage adapt — 4/5 policy (MIN_BOARD_VOCAB=4; never ship skinny 3).
+  assert(W.VocabArt.MIN_BOARD_VOCAB === 4, 'MIN_BOARD_VOCAB === 4');
+
+  // 2 pictured → board holds floor at 4 (fillers) — Ready will Draft on art floor.
   const adaptLesson = {
     title: 'Weekend Sports Club',
     vocabulary: [
@@ -314,44 +317,89 @@ async function main() {
   };
   const adapt = W.VocabArt.adaptBoardVocabulary(adaptLesson, { seed: adaptLesson.title });
   assert(adapt.adapted, 'adapt: reorders when overflow has art');
-  const boardSix = adaptLesson.vocabulary.slice(0, 6).map((v) => v.word);
-  assert(boardSix.includes('soccer'), 'adapt: soccer promoted onto board');
-  assert(boardSix.includes('pencil'), 'adapt: pencil promoted onto board');
-  assert(!boardSix.includes('xqzaaa') || adapt.board.includes('soccer'), 'adapt: board prefers art words');
+  assert(adapt.boardCount === 4, 'adapt: 2 pictured → boardCount floor 4');
+  assert(adapt.pictured === 2, 'adapt: pictured count 2 (pack/prop only)');
+  const boardFour = W.VocabArt.vocabWords(adaptLesson);
+  assert(boardFour.length === 4, 'adapt: vocabWords length 4');
+  assert(boardFour.includes('soccer') && boardFour.includes('pencil'), 'adapt: soccer+pencil on board');
   const again = W.VocabArt.adaptBoardVocabulary(adaptLesson, { seed: adaptLesson.title });
   assert(again.adapted === adapt.adapted, 'adapt: idempotent flag');
   assert(
-    adaptLesson.vocabulary.slice(0, 6).map((v) => v.word).join('|') === boardSix.join('|'),
+    W.VocabArt.vocabWords(adaptLesson).join('|') === boardFour.join('|'),
     'adapt: second call does not reshuffle'
   );
 
-  // Short honest board: ≥3 pictured words → don't pad the six with none-tier.
-  const shortLesson = {
-    title: 'Short Honest Board',
+  // 5 pictured → honest boardCount 5, no none-tier padding.
+  const fiveLesson = {
+    title: 'Five Picture Ready',
+    vocabulary: [
+      { word: 'xqzaaa' },
+      { word: 'xqzbbb' },
+      { word: 'soccer' },
+      { word: 'pencil' },
+      { word: 'microscope' },
+      { word: 'clipboard' },
+      { word: 'eraser' },
+    ],
+  };
+  const five = W.VocabArt.adaptBoardVocabulary(fiveLesson, { seed: fiveLesson.title });
+  assert(five.boardCount === 5, 'five: boardCount 5');
+  assert(five.pictured === 5, 'five: pictured 5');
+  assert(W.VocabArt.vocabWords(fiveLesson).length === 5, 'five: vocabWords 5');
+  const fiveArt = W.VocabArt.planFor(fiveLesson, { seed: fiveLesson.title });
+  assert(fiveArt.rows.length === 5 && fiveArt.dropped.length === 0, 'five: planFor 5/5 matchable');
+
+  // 4 pictured → honest boardCount 4.
+  const fourLesson = {
+    title: 'Four Picture Ready',
+    vocabulary: [
+      { word: 'xqzaaa' },
+      { word: 'xqzbbb' },
+      { word: 'xqzccc' },
+      { word: 'soccer' },
+      { word: 'pencil' },
+      { word: 'microscope' },
+      { word: 'clipboard' },
+    ],
+  };
+  const four = W.VocabArt.adaptBoardVocabulary(fourLesson, { seed: fourLesson.title });
+  assert(four.boardCount === 4 && four.pictured === 4, 'four: boardCount 4');
+  assert(W.VocabArt.vocabWords(fourLesson).length === 4, 'four: vocabWords 4');
+
+  // 3 pictured → still floor at 4 (no skinny 3-card page this pass).
+  const threeLesson = {
+    title: 'Three Picture Floor',
     vocabulary: [
       { word: 'xqzaaa' },
       { word: 'xqzbbb' },
       { word: 'xqzccc' },
       { word: 'xqzddd' },
-      { word: 'xqzeee' },
       { word: 'soccer' },
       { word: 'pencil' },
       { word: 'microscope' },
     ],
   };
-  const short = W.VocabArt.adaptBoardVocabulary(shortLesson, { seed: shortLesson.title });
-  assert(short.adapted, 'shorten: adapted');
-  assert(shortLesson._vocabAdapted.shortened, 'shorten: flag set');
-  assert(shortLesson._vocabAdapted.boardCount === 3, 'shorten: boardCount 3');
-  const shortBoard = W.VocabArt.vocabWords(shortLesson);
-  assert(shortBoard.length === 3, 'shorten: vocabWords length 3');
-  assert(shortBoard.includes('soccer') && shortBoard.includes('pencil') && shortBoard.includes('microscope'), 'shorten: three pictured');
-  const shortArt = W.VocabArt.planFor(shortLesson, { seed: shortLesson.title });
-  assert(shortArt.rows.length === 3, 'shorten: planFor rows 3');
-  assert(shortArt.dropped.length === 0, 'shorten: no none-tier on board');
-  assert(shortArt.matchable.length === 3, 'shorten: all matchable');
+  const three = W.VocabArt.adaptBoardVocabulary(threeLesson, { seed: threeLesson.title });
+  assert(three.boardCount === 4, 'three: floor stays 4 (not 3)');
+  assert(three.pictured === 3, 'three: pictured 3');
 
-  console.log('OK vocab-art cases 1,3,4,6,7 + jobs/coach + sport-ball + dedupe + clubs-pack + prop-fill + stand-in + adapt', {
+  // 6-word lesson with 4 pictured must adapt (no early-return on length≤6).
+  const sixThin = {
+    title: 'Six Word Thin Art',
+    vocabulary: [
+      { word: 'xqzaaa' },
+      { word: 'xqzbbb' },
+      { word: 'soccer' },
+      { word: 'pencil' },
+      { word: 'microscope' },
+      { word: 'clipboard' },
+    ],
+  };
+  const sixAdapt = W.VocabArt.adaptBoardVocabulary(sixThin, { seed: sixThin.title });
+  assert(sixAdapt.boardCount === 4, 'six-thin: shortens to 4');
+  assert(sixAdapt.adapted, 'six-thin: adapt runs on ≤6 lists');
+
+  console.log('OK vocab-art + adapt 4/5 policy', {
     soccerTier: soccer.tier,
     coachGlyph: glyph,
     coachTier: coachRow.tier,
@@ -363,8 +411,10 @@ async function main() {
     robotSrc: robotRow.artSrc,
     gymProp: gymRow.propKey,
     brushTier: brushRow.tier,
-    adaptBoard: boardSix,
-    adaptPromoted: adapt.promoted,
+    adaptBoard: boardFour,
+    fiveCount: five.boardCount,
+    fourCount: four.boardCount,
+    threeCount: three.boardCount,
     propFill: Object.fromEntries(
       artProp.rows.map((r) => [r.word, r.propKey])
     ),

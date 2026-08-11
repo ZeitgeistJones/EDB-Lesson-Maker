@@ -438,10 +438,18 @@ async function refreshBoardStatus(lesson) {
     const kitLine = report.kit
       ? `<div><strong>Kit:</strong> ${report.kit.pack} · hero ${report.kit.hero} · ${report.kit.docks} dock pieces</div>`
       : '<div><strong>Kit:</strong> none matched</div>';
-    const adapt = (plan && plan.vocabAdapt) || (lesson && lesson._vocabAdapted);
-    const adaptLine = adapt && adapt.adapted
-      ? `<div><strong>Vocab:</strong> reordered for art coverage (same topic)${adapt.promoted && adapt.promoted.length ? ` — promoted ${adapt.promoted.slice(0, 4).join(', ')}${adapt.promoted.length > 4 ? '…' : ''}` : ''}</div>`
+    const adapt = (report && report.vocabAdapt)
+      || (plan && plan.vocabAdapt)
+      || (lesson && lesson._vocabAdapted);
+    const adaptOn = !!(adapt && (adapt.adapted || adapt.changed));
+    const boardN = adapt && Number(adapt.boardCount);
+    const genN = adapt && Number(adapt.generated);
+    const countLine = (boardN && genN && genN > boardN)
+      ? `<div><strong>Board teaches:</strong> ${boardN} of ${genN} words — the ${boardN} we can picture. The rest stay in the story and speaking pages.</div>`
       : '';
+    const adaptLine = adaptOn
+      ? countLine + `<div><strong>Vocab:</strong> reordered for art coverage (same topic)${adapt.promoted && adapt.promoted.length ? ` — promoted ${adapt.promoted.slice(0, 4).join(', ')}${adapt.promoted.length > 4 ? '…' : ''}` : ''}</div>`
+      : countLine;
     const reasons = (report.reasons || []).length
       ? `<ul>${report.reasons.map((r) => `<li>${r}</li>`).join('')}</ul>`
       : '';

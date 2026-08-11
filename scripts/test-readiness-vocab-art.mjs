@@ -99,7 +99,7 @@ assert(!/not every word/i.test(partialHint), 'student hint must not announce mis
 assert(Math.abs(W.BoardReadiness.VOCAB_ART_FLOOR - 5 / 6) < 1e-9, 'VOCAB_ART_FLOOR is 5/6');
 const floorPct = Math.ceil(W.BoardReadiness.VOCAB_ART_FLOOR * 100);
 const artFloorRe = new RegExp(
-  `Only \\d+/\\d+ vocab words have board art \\(need ≥${floorPct}%\\)`
+  `Only \\d+/\\d+ board words have art \\(need ≥${floorPct}%\\)`
 );
 
 function syntheticRows(hitCount, total) {
@@ -147,7 +147,7 @@ const report6of6 = W.BoardReadiness.assess(
   { ignoreKit: true }
 );
 assert(
-  !report6of6.reasons.some((r) => /board art \(need ≥/i.test(r)),
+  !report6of6.reasons.some((r) => /board words have art \(need ≥/i.test(r)),
   '6/6 art → no art-floor reason'
 );
 
@@ -177,8 +177,9 @@ const adaptPlan = {
   vocabAdapt: adaptInfo,
 };
 const adaptReport = W.BoardReadiness.assess(adaptReadyLesson, adaptPlan, { ignoreKit: true });
+assert(adaptReadyLesson._vocabAdapted.boardCount === 4, 'adapt probe: floor boardCount 4');
 assert(
-  adaptReport.reasons.some((r) => /Only 2\/6 vocab words have board art/i.test(r)),
+  adaptReport.reasons.some((r) => /Only 2\/4 board words have art/i.test(r)),
   'adapt: still Drafts when padded board misses art floor'
 );
 assert(
@@ -186,39 +187,79 @@ assert(
   'adapt: overflow after reorder is non-blocking (UI adapt line only)'
 );
 
-// Short honest board clears art floor (3 pictured, no none-tier padding).
-const shortHonest = {
-  title: 'Short Honest Ready',
+// 5 pictured → Ready (art floor clears).
+const fiveHonest = {
+  title: 'Five Honest Ready',
   vocabulary: [
     { word: 'xqzaaa' },
     { word: 'xqzbbb' },
-    { word: 'xqzccc' },
-    { word: 'xqzddd' },
-    { word: 'xqzeee' },
     { word: 'soccer' },
     { word: 'pencil' },
     { word: 'microscope' },
+    { word: 'clipboard' },
+    { word: 'eraser' },
   ],
 };
-const shortInfo = W.VocabArt.adaptBoardVocabulary(shortHonest, { seed: shortHonest.title });
-assert(shortHonest._vocabAdapted.shortened && shortHonest._vocabAdapted.boardCount === 3, 'short ready: boardCount 3');
-const shortArt = W.VocabArt.planFor(shortHonest, { seed: shortHonest.title });
-const shortReport = W.BoardReadiness.assess(
-  shortHonest,
+const fiveInfo = W.VocabArt.adaptBoardVocabulary(fiveHonest, { seed: fiveHonest.title });
+assert(fiveHonest._vocabAdapted.boardCount === 5, 'five ready: boardCount 5');
+const fiveArt = W.VocabArt.planFor(fiveHonest, { seed: fiveHonest.title });
+const fiveReport = W.BoardReadiness.assess(
+  fiveHonest,
   {
-    vocabArt: shortArt,
+    vocabArt: fiveArt,
     canHonestMatchDock: true,
-    assignments: [{ pageKey: 'newWords', recipeId: 'matchDock', ctx: { vocabArt: shortArt } }],
+    assignments: [{ pageKey: 'newWords', recipeId: 'matchDock', ctx: { vocabArt: fiveArt } }],
     dockDrops: 0,
-    vocabAdapt: shortInfo,
+    vocabAdapt: fiveInfo,
   },
   { ignoreKit: true }
 );
 assert(
-  !shortReport.reasons.some((r) => /board art \(need ≥/i.test(r)),
-  'short ready: no art-floor Draft'
+  !fiveReport.reasons.some((r) => /board words have art \(need ≥/i.test(r)),
+  'five ready: no art-floor Draft'
 );
-assert(shortReport.vocabArt.hits === 3 && shortReport.vocabArt.total === 3, 'short ready: 3/3 hits');
+assert(fiveReport.vocabArt.hits === 5 && fiveReport.vocabArt.total === 5, 'five ready: 5/5 hits');
+
+// 4 pictured → Ready.
+const fourHonest = {
+  title: 'Four Honest Ready',
+  vocabulary: [
+    { word: 'xqzaaa' },
+    { word: 'xqzbbb' },
+    { word: 'xqzccc' },
+    { word: 'soccer' },
+    { word: 'pencil' },
+    { word: 'microscope' },
+    { word: 'clipboard' },
+  ],
+};
+const fourInfo = W.VocabArt.adaptBoardVocabulary(fourHonest, { seed: fourHonest.title });
+assert(fourHonest._vocabAdapted.boardCount === 4, 'four ready: boardCount 4');
+const fourArt = W.VocabArt.planFor(fourHonest, { seed: fourHonest.title });
+const fourReport = W.BoardReadiness.assess(
+  fourHonest,
+  {
+    vocabArt: fourArt,
+    canHonestMatchDock: true,
+    assignments: [{ pageKey: 'newWords', recipeId: 'matchDock', ctx: { vocabArt: fourArt } }],
+    dockDrops: 0,
+    vocabAdapt: fourInfo,
+  },
+  { ignoreKit: true }
+);
+assert(fourReport.vocabArt.hits === 4 && fourReport.vocabArt.total === 4, 'four ready: 4/4 hits');
+assert(
+  !fourReport.reasons.some((r) => /board words have art \(need ≥/i.test(r)),
+  'four ready: no art-floor Draft'
+);
+
+// sortBins on N=4 uses adapted boardVocabCount (not hard 6).
+W.EdbActivities.plan(fourHonest, { level: 'A2', duration: 30 });
+assert(W.EdbActivities.boardVocabCount(fourHonest) === 4, 'sortBins: boardVocabCount 4');
+assert(
+  ((fourHonest.vocabulary || []).filter((v) => v && (v.word || v.emoji)).slice(0, W.EdbActivities.boardVocabCount(fourHonest))).length === 4,
+  'sortBins: adapted list length 4'
+);
 
 // No-hero activity prefers sortBins (recipe adapt) — not dressUp lottery.
 const noHeroLesson = {
@@ -239,6 +280,7 @@ console.log('OK readiness+vocabArt reasons + matchDock hint + art floor + adapt'
   art3of6: report3of6.reasons,
   art6of6Status: report6of6.status,
   adaptReasons: adaptReport.reasons,
-  shortReady: { hits: shortReport.vocabArt.hits, total: shortReport.vocabArt.total, status: shortReport.status },
+  fiveReady: { hits: fiveReport.vocabArt.hits, total: fiveReport.vocabArt.total, status: fiveReport.status },
+  fourReady: { hits: fourReport.vocabArt.hits, total: fourReport.vocabArt.total, status: fourReport.status },
   noHeroRecipe: actRecipe && actRecipe.recipeId,
 });

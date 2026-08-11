@@ -15,13 +15,46 @@
  * is a BoardReadiness draft reason, not silent truncation.
  *
  * Coverage adapt (same topic, no silent topic drift): before planning art for
- * the board, reorder vocabulary so the teachable MAX_BOARD_VOCAB slice prefers
- * words with real pack/prop/glyph art. Overflow stays on the lesson for story/
- * speaking; Ready still requires the adapted slice to clear the art floor.
+ * the board, reorder vocabulary so the teachable slice prefers words with real
+ * pack/prop/glyph art. Overflow stays on the lesson for story/speaking; Ready
+ * still requires the adapted slice to clear the art floor.
+ *
+ * ── boardCount policy (locked 2026-08-11) ───────────────────────────────────
+ * Let `pictured` = words in the FULL vocabulary list that resolve to tier
+ * prop / pack when each word is scored independently. Glyph (curated emoji)
+ * stays matchable on the dock but does NOT count toward the 4/5 shorten
+ * decision — an emoji board is not a dense professional board.
+ *
+ *   pictured ≥ 6 → boardCount 6   (2×3 grid, unchanged)
+ *   pictured = 5 → boardCount 5   honest short board
+ *   pictured = 4 → boardCount 4   honest short board
+ *   pictured ≤ 3 → boardCount MIN_BOARD_VOCAB (4): the pictured words first,
+ *                  then the best-ranked remaining words as fillers. The art
+ *                  floor then fails and BoardReadiness returns Draft. We do
+ *                  NOT ship a 3-card page dressed as a finished board.
+ *
+ * boardCount never exceeds the number of words the lesson actually has.
+ * Every downstream surface (New Words cards, match dock, title aims, sentence
+ * frame word bank, wrap exit, teacher PDF vocab page) must render exactly
+ * boardCount cells — no ghost sixth slot.
+ *
+ * Two changes from the first adapt pass, both deliberate:
+ *  1. Adapt now runs for 6-word lessons too. Previously it early-returned when
+ *     the list was ≤ MAX_BOARD_VOCAB, so the common 6-word lesson could never
+ *     shorten and sat at Draft forever on a 3/6 art ratio.
+ *  2. The adapt scan scores each word independently (no cross-word art dedupe).
+ *     The old scan reused planFor's usedSrc/exclude sets across the whole list,
+ *     so a word could be scored tier:none only because an OVERFLOW word ahead
+ *     of it consumed the same PNG — then it got demoted off the board for a
+ *     collision that would never have happened on the real six.
+ * ───────────────────────────────────────────────────────────────────────────
  */
 (function () {
   /** Board + PDF teach at most this many vocab items (2×3 card grid / dock). */
   const MAX_BOARD_VOCAB = 6;
+
+  /** Never shorten the board below this. 3-card layouts are out of scope. */
+  const MIN_BOARD_VOCAB = 4;
 
   /** Tier rank for adapt sort — higher = prefer on the board slice. */
   const TIER_RANK = { prop: 3, pack: 3, glyph: 2, none: 0 };
@@ -48,15 +81,24 @@
    * Raw vocabulary array capped to the board ceiling (objects or strings).
    * Call adaptBoardVocabulary(lesson) once in plan/bake so this slice is the
    * art-preferred order — not blindly generate's first six. When adapt shortens
-   * the board to 3–5 pictured words, boardCount shrinks the slice.
+   * the board, boardCount shrinks the slice (never below MIN_BOARD_VOCAB
+   * unless the lesson itself has fewer words).
    */
   function boardVocabulary(lesson) {
+    const all = (lesson && lesson.vocabulary) || [];
     const adapted = lesson && lesson._vocabAdapted;
+    const raw = Number(adapted && adapted.boardCount);
     const n = Math.min(
       MAX_BOARD_VOCAB,
-      Math.max(1, Number(adapted && adapted.boardCount) || MAX_BOARD_VOCAB)
+      all.length || MAX_BOARD_VOCAB,
+      Math.max(1, raw || MAX_BOARD_VOCAB)
     );
-    return ((lesson && lesson.vocabulary) || []).slice(0, n);
+    return all.slice(0, n);
+  }
+
+  /** How many cells every board/PDF surface should draw. Single source of truth. */
+  function boardCount(lesson) {
+    return boardVocabulary(lesson).length;
   }
 
   function vocabWords(lesson) {
@@ -70,52 +112,85 @@
   }
 
   /**
+   * Decide the board size from how many words we can actually picture.
+   * See the boardCount policy block at the top of this file.
+   *
+   * @param {number} pictured count of tier prop/pack/glyph words in the full list
+   * @param {number} available total words the lesson has
+   */
+  function plannedBoardCount(pictured, available) {
+    const cap = Math.min(MAX_BOARD_VOCAB, Math.max(1, available));
+    if (pictured >= MAX_BOARD_VOCAB) return cap;
+    if (pictured >= MIN_BOARD_VOCAB) return Math.min(pictured, cap);
+    // Too few pictured words to be honest about — hold the floor at 4 and let
+    // the art ratio fail so BoardReadiness ships Draft with a real reason.
+    return Math.min(MIN_BOARD_VOCAB, cap);
+  }
+
+  /**
    * Reorder lesson.vocabulary in place: best-art words first (stable), so the
    * board/PDF ceiling teaches what we can picture. Same topic — never swaps
    * the lesson theme. Idempotent via lesson._vocabAdapted.
    *
-   * @returns {{ adapted: boolean, board: string[], overflow: string[], promoted: string[] }}
+   * @returns {{ adapted: boolean, board: string[], overflow: string[],
+   *             promoted: string[], boardCount: number, pictured: number }}
    */
   function adaptBoardVocabulary(lesson, opts) {
     opts = opts || {};
-    const empty = { adapted: false, board: [], overflow: [], promoted: [] };
+    const empty = {
+      adapted: false, board: [], overflow: [], promoted: [], boardCount: 0, pictured: 0,
+    };
     if (!lesson || !Array.isArray(lesson.vocabulary) || !lesson.vocabulary.length) {
       return empty;
     }
+
+    // Already adapted — replay the stored decision, never rescore.
     if (lesson._vocabAdapted && lesson._vocabAdapted.done) {
+      const meta = lesson._vocabAdapted;
       const words = vocabWords(lesson);
       const all = allVocabEntries(lesson).map(entryWord).filter(Boolean);
-      const n = Number(lesson._vocabAdapted.boardCount) || MAX_BOARD_VOCAB;
       return {
-        adapted: !!lesson._vocabAdapted.changed,
+        adapted: !!meta.changed,
         board: words,
-        overflow: all.slice(n),
-        promoted: lesson._vocabAdapted.promoted || [],
+        overflow: all.slice(words.length),
+        promoted: meta.promoted || [],
+        boardCount: words.length,
+        pictured: Number(meta.pictured) || 0,
       };
     }
 
-    assertIconsWarm();
     const entries = allVocabEntries(lesson);
-    if (entries.length <= MAX_BOARD_VOCAB) {
+
+    // A single-word lesson has nothing to reorder — settle it without touching
+    // VocabIcons so a cold index can't throw on a list that needs no scoring.
+    if (entries.length <= 1) {
       lesson._vocabAdapted = {
         done: true,
         changed: false,
         promoted: [],
         boardCount: entries.length,
+        pictured: 0,
+        shortened: false,
       };
       return {
         adapted: false,
         board: entries.map(entryWord).filter(Boolean),
         overflow: [],
         promoted: [],
+        boardCount: entries.length,
+        pictured: 0,
       };
     }
 
-    // Score the full list (allWords) — same topic, pick the picture-able six.
+    assertIconsWarm();
+
+    // Score the FULL list, each word independently (no cross-word dedupe) —
+    // same topic, we are only asking "can this word be pictured at all?".
     const planned = planFor(lesson, {
       family: opts.family,
       seed: opts.seed != null ? opts.seed : ((lesson && lesson.title) || ''),
       allWords: true,
+      independent: true,
     });
 
     const byWord = new Map();
@@ -130,6 +205,7 @@
         entry,
         index,
         word: w,
+        tier: row.tier || 'none',
         rank: TIER_RANK[row.tier] || 0,
         matchable: !!row.matchable,
       };
@@ -139,31 +215,25 @@
       return a.index - b.index;
     });
 
-    // Prefer a shorter honest board (3–5 pictured words) over padding the six
-    // with none-tier fillers that force Draft on the art floor. Below 3 pictured
-    // words, keep the full six and let Ready/Draft stay honest about the hole.
-    const pictured = ranked.filter((r) => r.rank > 0);
-    let boardItems;
-    if (pictured.length >= MAX_BOARD_VOCAB) {
-      boardItems = pictured.slice(0, MAX_BOARD_VOCAB);
-    } else if (pictured.length >= 3) {
-      boardItems = pictured.slice();
-    } else {
-      boardItems = ranked.slice(0, MAX_BOARD_VOCAB);
-    }
+    // Pack/prop only — glyph ranks for sort preference but not for "pictured".
+    const pictured = ranked.filter((r) => r.tier === 'prop' || r.tier === 'pack');
+    const target = plannedBoardCount(pictured.length, ranked.length);
+    // ranked is already best-art-first, so the top `target` rows are the
+    // pictured words plus (only when pictured < 4) the best available fillers.
+    const boardItems = ranked.slice(0, target);
+
     const boardKeys = new Set(boardItems.map((r) => r.index));
     const overflowItems = ranked
       .filter((r) => !boardKeys.has(r.index))
       .sort((a, b) => a.index - b.index);
     // Keep overflow in original relative order after the board slice.
     const next = boardItems.map((r) => r.entry).concat(overflowItems.map((r) => r.entry));
+
     const before = entries.map(entryWord).filter(Boolean).slice(0, MAX_BOARD_VOCAB);
     const after = boardItems.map((r) => r.word).filter(Boolean);
-    const changed = before.join('|').toLowerCase() !== after.join('|').toLowerCase();
-    const promoted = after.filter((w, i) => {
-      const prev = before[i] && String(before[i]).toLowerCase();
-      return String(w).toLowerCase() !== prev && !before.map((x) => String(x).toLowerCase()).includes(String(w).toLowerCase());
-    });
+    const beforeLower = before.map((w) => String(w).toLowerCase());
+    const changed = beforeLower.join('|') !== after.map((w) => String(w).toLowerCase()).join('|');
+    const promoted = after.filter((w) => !beforeLower.includes(String(w).toLowerCase()));
 
     lesson.vocabulary = next;
     lesson._vocabAdapted = {
@@ -173,13 +243,20 @@
       before,
       after,
       boardCount: boardItems.length,
-      shortened: boardItems.length < MAX_BOARD_VOCAB && pictured.length >= 3,
+      pictured: pictured.length,
+      generated: entries.length,
+      shortened: boardItems.length < MAX_BOARD_VOCAB,
+      // Cached scan so plan()/BoardReadiness can skip a second full-list
+      // planFor if they want it. Board-slice planning still runs normally.
+      scan: (planned.rows || []).map((r) => ({ word: r.word, tier: r.tier })),
     };
     return {
       adapted: changed,
       board: after,
       overflow: overflowItems.map((r) => r.word).filter(Boolean),
       promoted,
+      boardCount: boardItems.length,
+      pictured: pictured.length,
     };
   }
 
@@ -276,6 +353,11 @@
    * Plan art for each vocab word.
    * @param {object} [opts.allWords] when true, score the full vocabulary list
    *   (adapt scan) instead of the board ceiling slice.
+   * @param {object} [opts.independent] when true, score each word on its own —
+   *   no usedSrc / usedGlyph / exclude carry-over between words. Used by the
+   *   adapt scan so an overflow word cannot steal art from a board word and
+   *   fake a tier:none. Never use for the real bake — the board still needs
+   *   one-picture-per-word dedupe.
    * @returns {{ rows: object[], matchable: object[], dropped: object[] }}
    */
   function planFor(lesson, opts) {
@@ -284,6 +366,7 @@
 
     const VI = window.VocabIcons;
     const PB = window.PropBank;
+    const independent = !!opts.independent;
     const words = opts.allWords
       ? allVocabEntries(lesson).map(entryWord).filter(Boolean)
       : vocabWords(lesson);
@@ -318,7 +401,7 @@
       let packPath = null;
       if (!skipPackForSportBall) {
         packPath = typeof VI.pathForSync === 'function' ? VI.pathForSync(word) : null;
-        if (packPath && usedSrc.has(packPath)) packPath = null;
+        if (packPath && !independent && usedSrc.has(packPath)) packPath = null;
       }
 
       // Tier 2 — PropBank identity resolve + headNounOk (defense-in-depth).
@@ -335,7 +418,8 @@
             ? PB.decorativePacksFor(lesson)
             : new Set();
         const propOkForMatch = (p) => {
-          if (!p || !p.path || usedSrc.has(p.path) || !headNounOk(word, p)) return false;
+          if (!p || !p.path || !headNounOk(word, p)) return false;
+          if (!independent && usedSrc.has(p.path)) return false;
           if (typeof PB.isDockSharp === 'function' && !PB.isDockSharp(p)) return false;
           if (
             typeof PB.isDecorativeProp === 'function'
@@ -346,6 +430,7 @@
           }
           return true;
         };
+        const excludeNow = independent ? [] : exclude.slice();
         if (skipPackForSportBall) {
           // Pin canonical soccer-ball. resolve() can rotate to soccer-ball-orange
           // via SceneBackgrounds.rotate in browser bakes; orange fails headNounOk
@@ -357,7 +442,7 @@
               word: 'soccer-ball',
               family,
               seed,
-              exclude: exclude.concat(['soccer-ball-orange']),
+              exclude: excludeNow.concat(['soccer-ball-orange']),
               minScore,
               allowUnthemedIdentity: true,
             });
@@ -367,7 +452,7 @@
               word,
               family,
               seed,
-              exclude: exclude.concat(['soccer-ball-orange']),
+              exclude: excludeNow.concat(['soccer-ball-orange']),
               minScore,
               allowUnthemedIdentity: true,
             });
@@ -377,7 +462,7 @@
             word,
             family,
             seed,
-            exclude: exclude.slice(),
+            exclude: excludeNow,
             minScore,
             allowUnthemedIdentity: true,
           });
@@ -389,7 +474,7 @@
       // stand-in with tight head-noun cutout, or subjectLock:person with a
       // matching person cutout (job-coach beats flat coach.png).
       const lock =
-        typeof PB.subjectLockEntry === 'function' ? PB.subjectLockEntry(word) : null;
+        PB && typeof PB.subjectLockEntry === 'function' ? PB.subjectLockEntry(word) : null;
       const preferPersonProp =
         propOk
         && typeof lock === 'string'
@@ -417,17 +502,19 @@
       // Tier 3 — curated glyph only (SAFE_EMOJI / EMOJI_OVERRIDES) — never Gemini
       if (tier === 'none' && typeof VI.curatedGlyph === 'function') {
         const g = VI.curatedGlyph(word);
-        if (g && g !== '•' && !usedGlyph.has(g)) {
+        if (g && g !== '•' && (independent || !usedGlyph.has(g))) {
           tier = 'glyph';
           glyph = g;
         }
       }
 
-      if (tier === 'pack' || tier === 'prop') {
-        usedSrc.add(artSrc);
-        if (propKey) exclude.push(propKey);
-      } else if (tier === 'glyph') {
-        usedGlyph.add(glyph);
+      if (!independent) {
+        if (tier === 'pack' || tier === 'prop') {
+          usedSrc.add(artSrc);
+          if (propKey) exclude.push(propKey);
+        } else if (tier === 'glyph') {
+          usedGlyph.add(glyph);
+        }
       }
 
       rows.push({
@@ -447,13 +534,16 @@
 
   window.VocabArt = {
     MAX_BOARD_VOCAB,
+    MIN_BOARD_VOCAB,
     planFor,
     adaptBoardVocabulary,
+    plannedBoardCount,
     headNounOk,
     identityTight,
     isSportBallLesson,
     vocabWords,
     boardVocabulary,
+    boardCount,
     slug,
   };
 })();

@@ -41,10 +41,30 @@
     return (window.VocabArt && window.VocabArt.MAX_BOARD_VOCAB) || 6;
   }
 
+  /** How many cells the board teaches after coverage adapt (4–6). */
+  function boardVocabCount(lesson) {
+    if (window.VocabArt && typeof window.VocabArt.boardCount === 'function') {
+      return window.VocabArt.boardCount(lesson);
+    }
+    const all = (lesson && lesson.vocabulary) || [];
+    const adapted = lesson && lesson._vocabAdapted;
+    return Math.min(
+      maxBoardVocab(),
+      all.length || maxBoardVocab(),
+      Math.max(1, Number(adapted && adapted.boardCount) || maxBoardVocab())
+    );
+  }
+
+  /**
+   * The words every recipe is allowed to lay out. MUST be the adapted board
+   * slice, not the raw ceiling — otherwise sortBins ships 6 cards on the
+   * activity page while New Words teaches 4, and the two pages disagree about
+   * what the lesson is.
+   */
   function vocabList(lesson) {
     return (lesson.vocabulary || [])
       .filter((v) => v && (v.word || v.emoji))
-      .slice(0, maxBoardVocab());
+      .slice(0, boardVocabCount(lesson));
   }
 
   function reviewWords(lesson) {
@@ -1207,7 +1227,7 @@
       const taught = ((lesson && lesson.vocabulary) || [])
         .map((v) => (typeof v === 'string' ? v : v && v.word))
         .filter(Boolean)
-        .slice(0, maxBoardVocab())
+        .slice(0, boardVocabCount(lesson))
         .map((w) => String(w).toLowerCase());
       const keys = [];
       for (const word of taught) {
@@ -2046,6 +2066,7 @@
     wantsPhonics,
     normalizePhonics,
     canHonestMatchDock,
+    boardVocabCount,
     matchDockSize,
     matchDockIsPartial,
     matchDockStudentHint,

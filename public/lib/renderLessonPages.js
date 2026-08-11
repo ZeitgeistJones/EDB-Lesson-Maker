@@ -521,7 +521,7 @@
     return (window.VocabArt && window.VocabArt.MAX_BOARD_VOCAB) || 6;
   }
 
-  /** Respect adaptBoardVocabulary.boardCount (3–6 pictured words). */
+  /** Respect adaptBoardVocabulary.boardCount (4–6 words; never 3 this pass). */
   function boardVocabCeil(lesson) {
     const adapted = lesson && lesson._vocabAdapted;
     const n = Number(adapted && adapted.boardCount);
@@ -948,11 +948,13 @@
         padIndex.set(w, padN);
       }
     });
-    // Sparse lessons (2–3 words) must still fill the board — don't leave empty
-    // 2×3 grid slots as dead space (minimal fixture M8/M9).
+    // Shortened boards must still fill the page. cols=2 + ceil(n/2) rows leaves
+    // a dead cell whenever n is odd — N=5 was six cells for five cards. The odd
+    // card spans both columns instead, so 4 and 5 both fill edge to edge.
     const n = Math.max(1, words.length);
     const cols = n <= 2 ? 1 : 2;
     const rows = Math.max(1, Math.ceil(n / cols));
+    const spanLast = cols === 2 && n % 2 === 1;
     const grid = el('div', {
       display: 'grid',
       gridTemplateColumns: cols === 1 ? '1fr' : '1fr 1fr',
@@ -976,7 +978,7 @@
       } else if (!interactive && row && row.glyph) {
         glyphHtml = `<div style="width:64px;height:64px;border-radius:12px;background:#ede9fe;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0">${esc(row.glyph)}</div>`;
       }
-      const wordPx = n <= 2 ? 56 : 44;
+      const wordPx = n <= 2 ? 56 : n <= 3 ? 52 : n <= 5 ? 48 : 44;
       const padNum = isMatch ? padIndex.get(v.word) : null;
       const dropPad = padNum
         ? `<div data-match-pad="${padNum}" style="margin-top:auto;width:82%;max-width:180px;min-height:60px;border:3px dashed #94a3b8;border-radius:10px;background:rgba(148,163,184,0.14);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:#64748b">${padNum}</div>`
@@ -1006,6 +1008,9 @@
         }
       ));
     });
+    if (spanLast && grid.lastChild) {
+      grid.lastChild.style.gridColumn = '1 / -1';
+    }
     p.appendChild(grid);
     // Framed "picture bin" behind the draggable faces so the match dock reads as an
     // intentional tray hugging the cards — not icons floating in dead right-column
@@ -1092,6 +1097,7 @@
     const n = Math.max(1, words.length);
     const cols = n <= 2 ? 1 : 2;
     const rows = Math.max(1, Math.ceil(n / cols));
+    const spanLast = cols === 2 && n % 2 === 1;
     const grid = el('div', {
       display: 'grid',
       gridTemplateColumns: cols === 1 ? '1fr' : '1fr 1fr',
@@ -1117,6 +1123,9 @@
         }
       ));
     });
+    if (spanLast && grid.lastChild) {
+      grid.lastChild.style.gridColumn = '1 / -1';
+    }
     body.appendChild(grid);
     return p;
   }
