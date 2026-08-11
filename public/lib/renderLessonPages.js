@@ -2164,10 +2164,9 @@
     p.appendChild(el('div', {
       color: '#f8fafc', fontSize: '56px', fontWeight: '800', textAlign: 'center', marginTop: '8px',
     }, 'Great Job!'));
-    const aims = (lesson.vocabulary || [])
+    const aims = boardVocabList(lesson)
       .map((v) => (typeof v === 'string' ? v : v && v.word))
       .filter(Boolean)
-      .slice(0, maxBoardVocab())
       .join(', ');
     if (aims) {
       const aimsLine = el('div', {
@@ -2200,10 +2199,9 @@
     });
     // Manus B3: exit must recycle all board-taught words, not only 3 sentences.
     const exitHay = review.join(' ').toLowerCase();
-    const exitMissing = (lesson.vocabulary || [])
+    const exitMissing = boardVocabList(lesson)
       .map((v) => (typeof v === 'string' ? v : v && v.word))
       .filter(Boolean)
-      .slice(0, maxBoardVocab())
       .filter((w) => !new RegExp(`\\b${String(w).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(exitHay));
     if (exitMissing.length) {
       const also = card(
