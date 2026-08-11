@@ -349,7 +349,7 @@ Keys: practice, effort, teamwork, win, lose, score, goalkeeper, whistle, uniform
 
 ### Sheet V12 — Volcano abstracts (wishlist)
 
-**Status: wired** — in-house white 3×3 (`assets-inbox/vocab-volcano-abstracts-3x3.png` → `07_vocab-pack`) when Manus key unavailable; Manus script remains `scripts/manus/request-white-vocab-volcano-abstracts.mjs` for regen. Deferred (no tile): `remnant`, `vulnerable`, `trauma`.
+**Status: wired** — Manus task `MKgPYijPVwKuYpZXAxjkUW` → `01-volcano_abstracts_sheet_1.png` imported into `07_vocab-pack` (replaced earlier in-house sheet). Script: `scripts/manus/request-white-vocab-volcano-abstracts.mjs`. Deferred (no tile): `remnant`, `vulnerable`, `trauma`.
 
 ```
 Generate a 3×3 grid of vocabulary icons for young ESL learners. Each panel ONE subject on solid white. Panels divided evenly, no divider lines.
