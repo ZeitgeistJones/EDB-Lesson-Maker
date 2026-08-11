@@ -176,22 +176,15 @@
       const overflow = fullWords.slice(ceil);
       const names = overflow.slice(0, 4).join(', ');
       if (adapted && adapted.changed) {
-        const boardNames = (adapted.after || fullWords.slice(0, ceil)).slice(0, 4).join(', ');
-        const shortNote = adapted.shortened
-          ? ` (${ceil} pictured words — shortened for art honesty)`
-          : '';
-        reasons.push(
-          `Board adapted to art coverage — teaches ${boardNames}${(adapted.after || []).length > 4 ? '…' : ''}${shortNote}; ${overflow.length} more not on cards/PDF: ${names}${overflow.length > 4 ? '…' : ''}.`
-        );
+        // Adapted overflow is expected (same topic, art-preferred board) — do not
+        // block Ready. Teachers see the adapt line in UI / vocabAdapt on the report.
       } else {
         reasons.push(
           `${overflow.length} vocab word(s) past board ceiling of ${ceil} (not on cards/PDF): ${names}${overflow.length > 4 ? '…' : ''}.`
         );
       }
     } else if (adapted && adapted.changed && adapted.promoted && adapted.promoted.length) {
-      reasons.push(
-        `Board vocab reordered for art coverage (promoted: ${adapted.promoted.slice(0, 4).join(', ')}${adapted.promoted.length > 4 ? '…' : ''}).`
-      );
+      // Reorder-only with no overflow past ceil — non-blocking note skipped; UI shows adapt.
     }
 
     if (vocabArt.total > 0 && vocabArt.ratio < VOCAB_ART_FLOOR) {

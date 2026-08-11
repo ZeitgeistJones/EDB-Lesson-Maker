@@ -178,8 +178,12 @@ const adaptPlan = {
 };
 const adaptReport = W.BoardReadiness.assess(adaptReadyLesson, adaptPlan, { ignoreKit: true });
 assert(
-  adaptReport.reasons.some((r) => /Board adapted to art coverage/i.test(r)),
-  'adapt: readiness names art-coverage reorder'
+  adaptReport.reasons.some((r) => /Only 2\/6 vocab words have board art/i.test(r)),
+  'adapt: still Drafts when padded board misses art floor'
+);
+assert(
+  !adaptReport.reasons.some((r) => /Board adapted to art coverage/i.test(r)),
+  'adapt: overflow after reorder is non-blocking (UI adapt line only)'
 );
 
 // Short honest board clears art floor (3 pictured, no none-tier padding).
