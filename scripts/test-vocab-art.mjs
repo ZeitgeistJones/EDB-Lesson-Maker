@@ -325,6 +325,32 @@ async function main() {
     'adapt: second call does not reshuffle'
   );
 
+  // Short honest board: ≥3 pictured words → don't pad the six with none-tier.
+  const shortLesson = {
+    title: 'Short Honest Board',
+    vocabulary: [
+      { word: 'xqzaaa' },
+      { word: 'xqzbbb' },
+      { word: 'xqzccc' },
+      { word: 'xqzddd' },
+      { word: 'xqzeee' },
+      { word: 'soccer' },
+      { word: 'pencil' },
+      { word: 'microscope' },
+    ],
+  };
+  const short = W.VocabArt.adaptBoardVocabulary(shortLesson, { seed: shortLesson.title });
+  assert(short.adapted, 'shorten: adapted');
+  assert(shortLesson._vocabAdapted.shortened, 'shorten: flag set');
+  assert(shortLesson._vocabAdapted.boardCount === 3, 'shorten: boardCount 3');
+  const shortBoard = W.VocabArt.vocabWords(shortLesson);
+  assert(shortBoard.length === 3, 'shorten: vocabWords length 3');
+  assert(shortBoard.includes('soccer') && shortBoard.includes('pencil') && shortBoard.includes('microscope'), 'shorten: three pictured');
+  const shortArt = W.VocabArt.planFor(shortLesson, { seed: shortLesson.title });
+  assert(shortArt.rows.length === 3, 'shorten: planFor rows 3');
+  assert(shortArt.dropped.length === 0, 'shorten: no none-tier on board');
+  assert(shortArt.matchable.length === 3, 'shorten: all matchable');
+
   console.log('OK vocab-art cases 1,3,4,6,7 + jobs/coach + sport-ball + dedupe + clubs-pack + prop-fill + stand-in + adapt', {
     soccerTier: soccer.tier,
     coachGlyph: glyph,

@@ -11,9 +11,11 @@ If something breaks, fix the **machinery that will fire next time** — prompts,
 |---------|------------------------|
 | Formulaic / anonymous quiet flats | `.cursor/skills/bg-flat-sets` + `docs/bg-theme-sets.md` |
 | Lesson ships without kit / hollow download | `BoardReadiness` / plan / prop kit assessment |
+| Board teaches generate's first 6 while overflow had picturable words / hollow match | `VocabArt.adaptBoardVocabulary` + recipe pick in `edbActivities.plan` (same topic — never silent theme drift) |
 | Bad prop keying or gate-blind art | import / prompt rules in `.cursor/skills/prop-cutouts` |
-| Wrong activity shape (cards vs king stage) | recipes + `.cursor/skills/king-stage-edb` |
+| Wrong activity shape (cards vs king stage) | recipes + `.cursor/skills/king-stage-edb` (no hero → `sortBins`, not dressUp lottery) |
 | Weird lesson English / story≠questions / CEFR mismatch | prompts in `api/generate-lesson.js` + log row in `docs/content-wishlist.md` |
+| StoryArt API down / quota | Caption + PropBank plates stay Ready path; StoryArt is opportunistic only |
 
 **OK:** regenerating after the process fix; one-off data typos / a single manifest typo.
 

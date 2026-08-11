@@ -150,7 +150,9 @@ async function pagesVocabulary(doc, lesson) {
       window.VocabArt.adaptBoardVocabulary(lesson, { seed: (lesson && lesson.title) || '' });
     } catch (_) { /* cold icons — fall through to raw slice */ }
   }
-  const vocab = (lesson.vocabulary || []).slice(0, maxBoardVocab());
+  const adaptedN = lesson && lesson._vocabAdapted && Number(lesson._vocabAdapted.boardCount);
+  const ceil = Math.min(maxBoardVocab(), Math.max(1, adaptedN || maxBoardVocab()));
+  const vocab = (lesson.vocabulary || []).slice(0, ceil);
 
   bg(doc, C.white);
   sectionHeader(doc, 'New Words', C.purple);

@@ -182,6 +182,40 @@ assert(
   'adapt: readiness names art-coverage reorder'
 );
 
+// Short honest board clears art floor (3 pictured, no none-tier padding).
+const shortHonest = {
+  title: 'Short Honest Ready',
+  vocabulary: [
+    { word: 'xqzaaa' },
+    { word: 'xqzbbb' },
+    { word: 'xqzccc' },
+    { word: 'xqzddd' },
+    { word: 'xqzeee' },
+    { word: 'soccer' },
+    { word: 'pencil' },
+    { word: 'microscope' },
+  ],
+};
+const shortInfo = W.VocabArt.adaptBoardVocabulary(shortHonest, { seed: shortHonest.title });
+assert(shortHonest._vocabAdapted.shortened && shortHonest._vocabAdapted.boardCount === 3, 'short ready: boardCount 3');
+const shortArt = W.VocabArt.planFor(shortHonest, { seed: shortHonest.title });
+const shortReport = W.BoardReadiness.assess(
+  shortHonest,
+  {
+    vocabArt: shortArt,
+    canHonestMatchDock: true,
+    assignments: [{ pageKey: 'newWords', recipeId: 'matchDock', ctx: { vocabArt: shortArt } }],
+    dockDrops: 0,
+    vocabAdapt: shortInfo,
+  },
+  { ignoreKit: true }
+);
+assert(
+  !shortReport.reasons.some((r) => /board art \(need ≥/i.test(r)),
+  'short ready: no art-floor Draft'
+);
+assert(shortReport.vocabArt.hits === 3 && shortReport.vocabArt.total === 3, 'short ready: 3/3 hits');
+
 // No-hero activity prefers sortBins (recipe adapt) — not dressUp lottery.
 const noHeroLesson = {
   title: 'Abstract Patience Practice',
@@ -201,5 +235,6 @@ console.log('OK readiness+vocabArt reasons + matchDock hint + art floor + adapt'
   art3of6: report3of6.reasons,
   art6of6Status: report6of6.status,
   adaptReasons: adaptReport.reasons,
+  shortReady: { hits: shortReport.vocabArt.hits, total: shortReport.vocabArt.total, status: shortReport.status },
   noHeroRecipe: actRecipe && actRecipe.recipeId,
 });

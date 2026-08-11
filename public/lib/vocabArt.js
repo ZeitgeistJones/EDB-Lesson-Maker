@@ -47,10 +47,16 @@
   /**
    * Raw vocabulary array capped to the board ceiling (objects or strings).
    * Call adaptBoardVocabulary(lesson) once in plan/bake so this slice is the
-   * art-preferred order — not blindly generate's first six.
+   * art-preferred order — not blindly generate's first six. When adapt shortens
+   * the board to 3–5 pictured words, boardCount shrinks the slice.
    */
   function boardVocabulary(lesson) {
-    return ((lesson && lesson.vocabulary) || []).slice(0, MAX_BOARD_VOCAB);
+    const adapted = lesson && lesson._vocabAdapted;
+    const n = Math.min(
+      MAX_BOARD_VOCAB,
+      Math.max(1, Number(adapted && adapted.boardCount) || MAX_BOARD_VOCAB)
+    );
+    return ((lesson && lesson.vocabulary) || []).slice(0, n);
   }
 
   function vocabWords(lesson) {
@@ -79,10 +85,11 @@
     if (lesson._vocabAdapted && lesson._vocabAdapted.done) {
       const words = vocabWords(lesson);
       const all = allVocabEntries(lesson).map(entryWord).filter(Boolean);
+      const n = Number(lesson._vocabAdapted.boardCount) || MAX_BOARD_VOCAB;
       return {
         adapted: !!lesson._vocabAdapted.changed,
         board: words,
-        overflow: all.slice(MAX_BOARD_VOCAB),
+        overflow: all.slice(n),
         promoted: lesson._vocabAdapted.promoted || [],
       };
     }
@@ -90,7 +97,12 @@
     assertIconsWarm();
     const entries = allVocabEntries(lesson);
     if (entries.length <= MAX_BOARD_VOCAB) {
-      lesson._vocabAdapted = { done: true, changed: false, promoted: [] };
+      lesson._vocabAdapted = {
+        done: true,
+        changed: false,
+        promoted: [],
+        boardCount: entries.length,
+      };
       return {
         adapted: false,
         board: entries.map(entryWord).filter(Boolean),
@@ -127,8 +139,22 @@
       return a.index - b.index;
     });
 
-    const boardItems = ranked.slice(0, MAX_BOARD_VOCAB);
-    const overflowItems = ranked.slice(MAX_BOARD_VOCAB).sort((a, b) => a.index - b.index);
+    // Prefer a shorter honest board (3–5 pictured words) over padding the six
+    // with none-tier fillers that force Draft on the art floor. Below 3 pictured
+    // words, keep the full six and let Ready/Draft stay honest about the hole.
+    const pictured = ranked.filter((r) => r.rank > 0);
+    let boardItems;
+    if (pictured.length >= MAX_BOARD_VOCAB) {
+      boardItems = pictured.slice(0, MAX_BOARD_VOCAB);
+    } else if (pictured.length >= 3) {
+      boardItems = pictured.slice();
+    } else {
+      boardItems = ranked.slice(0, MAX_BOARD_VOCAB);
+    }
+    const boardKeys = new Set(boardItems.map((r) => r.index));
+    const overflowItems = ranked
+      .filter((r) => !boardKeys.has(r.index))
+      .sort((a, b) => a.index - b.index);
     // Keep overflow in original relative order after the board slice.
     const next = boardItems.map((r) => r.entry).concat(overflowItems.map((r) => r.entry));
     const before = entries.map(entryWord).filter(Boolean).slice(0, MAX_BOARD_VOCAB);
@@ -146,6 +172,8 @@
       promoted,
       before,
       after,
+      boardCount: boardItems.length,
+      shortened: boardItems.length < MAX_BOARD_VOCAB && pictured.length >= 3,
     };
     return {
       adapted: changed,

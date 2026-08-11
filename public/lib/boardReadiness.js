@@ -159,18 +159,29 @@
     const hasVocab = vocabArt.total > 0;
     const matchAssign = assignments.find((a) => a.pageKey === 'newWords' && a.recipeId === 'matchDock');
 
-    // Generate may return 7 (30min) / 12 (60min); board + PDF only teach MAX.
-    // After coverage adapt, overflow = words past the art-preferred board six.
+    // Generate may return 7 (30min) / 12 (60min); board + PDF teach the adapted
+    // slice (≤6; may shorten to 3–5 pictured words).
     const allWords = vocabWords(lesson);
-    const ceil = maxBoardVocab();
     const adapted = lesson && lesson._vocabAdapted;
-    if (allWords.length > ceil) {
-      const overflow = allWords.slice(ceil);
+    const ceil = Math.min(
+      maxBoardVocab(),
+      Math.max(1, Number(adapted && adapted.boardCount) || maxBoardVocab())
+    );
+    // vocabWords already board-sliced — compare full list for overflow.
+    const fullWords = ((lesson && lesson.vocabulary) || [])
+      .map((v) => (typeof v === 'string' ? v : v && v.word))
+      .filter(Boolean)
+      .map((w) => String(w));
+    if (fullWords.length > ceil) {
+      const overflow = fullWords.slice(ceil);
       const names = overflow.slice(0, 4).join(', ');
       if (adapted && adapted.changed) {
-        const boardNames = (adapted.after || allWords.slice(0, ceil)).slice(0, 4).join(', ');
+        const boardNames = (adapted.after || fullWords.slice(0, ceil)).slice(0, 4).join(', ');
+        const shortNote = adapted.shortened
+          ? ` (${ceil} pictured words — shortened for art honesty)`
+          : '';
         reasons.push(
-          `Board adapted to art coverage — teaches ${boardNames}${(adapted.after || []).length > 4 ? '…' : ''}; ${overflow.length} more not on cards/PDF: ${names}${overflow.length > 4 ? '…' : ''}.`
+          `Board adapted to art coverage — teaches ${boardNames}${(adapted.after || []).length > 4 ? '…' : ''}${shortNote}; ${overflow.length} more not on cards/PDF: ${names}${overflow.length > 4 ? '…' : ''}.`
         );
       } else {
         reasons.push(
