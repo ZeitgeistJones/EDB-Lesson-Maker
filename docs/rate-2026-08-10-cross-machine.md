@@ -61,3 +61,7 @@ I **don’t have** the other machine’s score table in front of me. Treat this 
 ## Evidence this machine *did* have (so “no context” isn’t total)
 
 Recent main work in view: Manus white vocab imports, volcano V12 (+ deferred V12b queued), Ready `VOCAB_ART_FLOOR` → 5/6, beach-warm e–h, home-warm a–d place-true / e–h unset for picker, feelings dock pack-backed excited/tired fix, story integrity already gated (S73). That supports **need/edge/quality-mid**—not **UX-high**.
+
+## Follow-up (2026-08-10 night, other Cursor) — drove the agreed raise lever
+
+Reconciled overall ~72. Shipped **same-topic coverage adapt** (`VocabArt.adaptBoardVocabulary`): board/PDF teach an art-preferred six; activity without a king stage → `sortBins` (not dressUp lottery); StoryArt stays opportunistic for Ready. Next: more recipe shapes + offline Manus into the bank — not live Manus-in-generate, not silent topic drift.

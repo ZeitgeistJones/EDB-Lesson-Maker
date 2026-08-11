@@ -453,15 +453,16 @@ async function refreshBoardStatus(lesson) {
       adaptLine +
       reasons;
     // Local testing log — ignored on static/Vercel hosts; never blocks UI.
-    logAppRun('preview', lesson, report);
+    logAppRun('preview', lesson, report, plan && plan.vocabAdapt);
   } catch (e) {
     console.warn('Board readiness check failed', e);
   }
 }
 
-function logAppRun(event, lesson, report) {
+function logAppRun(event, lesson, report, vocabAdapt) {
   try {
     const meta = lessonMeta();
+    const adapt = vocabAdapt || (report && report.vocabAdapt) || (lesson && lesson._vocabAdapted) || null;
     const payload = {
       event,
       title: lesson && lesson.title,
@@ -475,6 +476,14 @@ function logAppRun(event, lesson, report) {
             activityRecipe: report.activityRecipe || null,
             kit: report.kit || null,
             vocabArt: report.vocabArt || null,
+            vocabAdapt: report.vocabAdapt || null,
+          }
+        : null,
+      vocabAdapt: adapt && (adapt.adapted || adapt.changed)
+        ? {
+            adapted: true,
+            promoted: adapt.promoted || [],
+            board: adapt.after || adapt.board || [],
           }
         : null,
       vocab: (lesson && lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v && v.word)).filter(Boolean),
