@@ -308,6 +308,7 @@
     }
 
     const status = filtered.length ? 'draft' : 'ready';
+    const vocabAdapted = (lesson && lesson._vocabAdapted) || (boardPlan && boardPlan.vocabAdapt) || null;
     return {
       status,
       reasons: filtered,
@@ -320,6 +321,13 @@
         ratio: Number(vocabArt.ratio.toFixed(2)),
         detail: vocabArt.detail,
       },
+      vocabAdapt: vocabAdapted && vocabAdapted.changed
+        ? {
+            adapted: true,
+            promoted: vocabAdapted.promoted || [],
+            board: vocabAdapted.after || vocabAdapted.board || [],
+          }
+        : { adapted: false },
       activityRecipe,
       bg,
       dockDrops: dockDrops || 0,
