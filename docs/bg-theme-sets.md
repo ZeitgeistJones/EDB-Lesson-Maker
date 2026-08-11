@@ -95,7 +95,7 @@ Anti-formula section.
 |-----|--------------------|-------------------------|
 | `clinic-cool` | tooth outline, soft sparkle, pale alcove edge, exam-lamp glow, **blank** clipboard glyph (no letters) | grass, hills, nature landscapes, readable clipboard forms, mid-frame dental chair |
 | `travel-air` | paper plane, map-pin trail, soft cloud corner | beach shells, bakery tools, farm wheat |
-| `home-warm` | curtain fold, soft arch shadow, peach hill band at edge, lamp-glow blob, window sash fringe (a–d legacy hills/leaf; e–h place-true) | outdoor meadow, clinic teal wall, formula leaf stickers |
+| `home-warm` | curtain fold, lamp-glow blob, soft arch shadow, window sash fringe on `home-a`…`d` (picker open/mid/close). Legacy hill/leaf PNGs kept as `home-e`…`h` without `set` | outdoor meadow, clinic teal wall, formula leaf stickers |
 | `outdoor-fresh` | grass fringe, picnic blanket corner, zoo gate/rail watermark, tent + lantern | generic leaf/sun stickers only, identical hill formula, indoor shelves, dough, tooth icons |
 | `gym-cool` | basketball corner, court lane fringe, rolled mat, wall-pad edge | outdoor meadow, clinic tooth, bakery dough |
 | `beach-warm` | shell, wave fringe, sand dollar, sun corner | wheat, bakery loaf, clinic sparkles |
@@ -214,9 +214,10 @@ faint cloud band at top only.
 ### 3. `home-warm` — family / house / daily routine
 Palette: peach, cream, soft gold (cool-to-warm wall washes OK). Corner motifs
 must differ across panels: curtain fold, lamp-glow blob (no fixture), soft
-arch shadow, window sash fringe, peach hill band at edge. Not outdoor meadow /
-leaf stickers. Panels `home-e`…`h` carry the clearer place-true glyphs;
-`home-a`…`d` kept as legacy soft hills.
+arch shadow, window sash fringe. Not outdoor meadow / leaf stickers. Picker
+open/mid/close use sorted `a` / `b`–`c` / last — place-true glyphs on
+`home-a`…`d`. Legacy hill/leaf cousins stay as `home-e`…`h` **without** `set`
+so they do not steal the close pin.
 
 > [style lock] Generate a 2×2 grid of quiet ESL slide backgrounds. Shared warm
 > home palette. Empty centre. Thumbnail home glyphs only in corners — no sofas,

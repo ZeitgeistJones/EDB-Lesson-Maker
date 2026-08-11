@@ -1222,7 +1222,7 @@
   },
   "home-a": {
    "file": "flat_home-a.png",
-   "tone": "home warm wash — peach hill band",
+   "tone": "home warm wash — curtain fold corner",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1231,7 +1231,7 @@
   },
   "home-b": {
    "file": "flat_home-b.png",
-   "tone": "home warm wash — sage corner wave",
+   "tone": "home warm wash — lamp glow blob",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1240,7 +1240,7 @@
   },
   "home-c": {
    "file": "flat_home-c.png",
-   "tone": "home warm wash — leaf corner + hill",
+   "tone": "home warm wash — soft arch shadow",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1249,7 +1249,7 @@
   },
   "home-d": {
    "file": "flat_home-d.png",
-   "tone": "home warm wash — peach dots",
+   "tone": "home warm wash — window sash fringe",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
@@ -1902,36 +1902,34 @@
   },
   "home-e": {
    "file": "flat_home-e.png",
-   "tone": "cream wash + curtain corner",
+   "tone": "home warm wash — peach hill band (legacy, no set)",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
-   "set": "home-warm"
+   "palette": "warm"
   },
   "home-f": {
    "file": "flat_home-f.png",
-   "tone": "cream-lavender wash + soft arch",
+   "tone": "home warm wash — sage corner wave (legacy, no set)",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
-   "set": "home-warm"
+   "palette": "warm"
   },
   "home-g": {
    "file": "flat_home-g.png",
-   "tone": "home warm wash — soft arch shadow",
+   "tone": "home warm wash — leaf corner + hill (legacy, no set)",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
-   "set": "home-warm",
    "palette": "warm"
   },
   "home-h": {
    "file": "flat_home-h.png",
-   "tone": "home warm wash — window sash fringe",
+   "tone": "home warm wash — peach dots (legacy, no set)",
    "mood": "calm",
    "textInk": "dark",
    "quiet": true,
-   "set": "home-warm",
    "palette": "warm"
   }
  }
