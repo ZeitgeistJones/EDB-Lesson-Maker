@@ -3,6 +3,10 @@
  *
  * Memory Map + sessionStorage so a refresh still hydrates board downloads
  * without re-billing Gemini for the same lesson fingerprint.
+ *
+ * Opportunistic only: BoardReadiness / Ready must not depend on StoryArt
+ * succeeding. Caption + PropBank story plates are the reliable path; generative
+ * panels are a bonus when the API is warm (quota/429 must not block Ready).
  */
 (function () {
   const cache = new Map();

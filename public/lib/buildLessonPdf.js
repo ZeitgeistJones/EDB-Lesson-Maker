@@ -144,7 +144,12 @@ function maxBoardVocab() {
 }
 
 async function pagesVocabulary(doc, lesson) {
-  // Same ceiling as board cards / VocabArt — never list words with no pad/dock.
+  // Same ceiling + art-preferred order as board cards (adapt mutates in place).
+  if (window.VocabArt && typeof window.VocabArt.adaptBoardVocabulary === 'function') {
+    try {
+      window.VocabArt.adaptBoardVocabulary(lesson, { seed: (lesson && lesson.title) || '' });
+    } catch (_) { /* cold icons — fall through to raw slice */ }
+  }
   const vocab = (lesson.vocabulary || []).slice(0, maxBoardVocab());
 
   bg(doc, C.white);
