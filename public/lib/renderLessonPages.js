@@ -1130,12 +1130,17 @@
     return p;
   }
 
-  function makeFrames(lesson) {
-    const p = pageShell(THEME_COLORS.vocab, { pageType: 'frames' });
+  function makeFrames(lesson, boardPlan) {
+    // Draggable word tiles live in the dock (frameTiles recipe) — reserve the
+    // footer so the frame stack never sits on top of them.
+    const interactive = hasRecipe(boardPlan, 'frames');
+    const p = pageShell(THEME_COLORS.vocab, { pageType: 'frames', reserveDock: interactive });
     const col = chromeColumn(p);
     col.appendChild(header('Sentence Frames', '#7c3aed', { timing: '~6 min' }));
     // "fill the blank" (singular) was wrong — Frame 3 has TWO blanks (S60/Judge A).
-    col.appendChild(hint('Listen and say each frame first. Then fill the blanks and write your sentence.', {
+    col.appendChild(hint(interactive
+      ? 'Listen and say each frame first. Then drag a word into each blank and read it out loud.'
+      : 'Listen and say each frame first. Then fill the blanks and write your sentence.', {
       marginBottom: '8px', flexShrink: '0',
     }));
     // Word bank — reinforces the taught vocab and scaffolds open frames like
@@ -1145,7 +1150,10 @@
     const bankWords = boardVocabList(lesson)
       .map((v) => (typeof v === 'string' ? v : v.word))
       .filter(Boolean);
-    if (bankWords.length) {
+    // Interactive: the draggable dock tiles ARE the word bank. Painting static
+    // chips too would show every word twice and leave students dragging past a
+    // dead copy of the same list.
+    if (bankWords.length && !interactive) {
       const bank = el('div', {
         display: 'flex',
         flexWrap: 'wrap',
@@ -1248,10 +1256,24 @@
       marginBottom: '14px',
     });
     body.dataset.framesBody = '1';
+    // Blank runs become numbered drop pads sized to hold a dock tile. Segments
+    // come from EdbActivities so the pad count and the tile count cannot drift.
+    const EA = window.EdbActivities;
+    let padNo = 0;
+    const frameHtml = (f) => {
+      if (!interactive || !EA || typeof EA.frameSegments !== 'function') return esc(f);
+      return EA.frameSegments(f).map((seg) => {
+        if (!seg.blank) return esc(seg.text);
+        padNo += 1;
+        // inline-block keeps the pad on the text baseline so a wrapped B1 frame
+        // does not push the pad onto a line of its own.
+        return `<span data-frame-blank="${padNo}" style="display:inline-block;vertical-align:middle;min-width:${Math.round(fontPx * 4.2)}px;height:${Math.round(fontPx * 1.5)}px;margin:0 4px;border:3px dashed #94a3b8;border-radius:10px;background:rgba(148,163,184,0.14)"></span>`;
+      }).join('');
+    };
     frames.forEach((f, i) => {
       body.appendChild(card(
         `<div style="font-size:22px;font-weight:700;color:#64748b;margin-bottom:6px;flex-shrink:0">Frame ${i + 1}</div>
-         <div data-frame-text style="font-size:${fontPx}px;font-weight:800;color:#1e293b;line-height:${FRAME_LINE_HEIGHT};padding-bottom:0.18em;margin-bottom:8px;flex-shrink:0;overflow:visible;word-break:break-word">${esc(f)}</div>
+         <div data-frame-text style="font-size:${fontPx}px;font-weight:800;color:#1e293b;line-height:${FRAME_LINE_HEIGHT};padding-bottom:0.18em;margin-bottom:8px;flex-shrink:0;overflow:visible;word-break:break-word">${frameHtml(f)}</div>
          <div style="border-bottom:3px dashed #94a3b8;flex:1;min-height:18px;width:100%"></div>`,
         {
           padding: '14px 22px',
@@ -2333,7 +2355,7 @@
       push(makePhonics(lesson, boardPlan, m), 'phonics');
     }
     push(makeVocabSentences(lesson), 'vocabSentences');
-    push(makeFrames(lesson), 'frames');
+    push(makeFrames(lesson, boardPlan), 'frames');
 
     const boardStories = storyPagesForBoard(lesson, m);
     if (!boardStories.length) {

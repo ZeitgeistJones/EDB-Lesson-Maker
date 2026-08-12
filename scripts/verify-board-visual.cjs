@@ -645,7 +645,7 @@ async function measureInPage({ lesson, meta, BOARD_W, BOARD_H, MAX_PAGES, MAX_UN
     // Dock / tray pieces are meant to sit below chrome; they are not collisions.
     const DOCK_ROLES = {
       matchPiece: 1, letterTile: 1, dockPiece: 1, dressPart: 1, buildPart: 1,
-      orderTile: 1, sortCard: 1, buildSlot: 0,
+      orderTile: 1, sortCard: 1, frameWord: 1, buildSlot: 0,
     };
     if (!boardPlan.pages || !pageMetrics) return fails;
     boardPlan.pages.forEach((pg, i) => {

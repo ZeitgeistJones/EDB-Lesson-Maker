@@ -170,6 +170,52 @@
    * True when some board words sit outside the match dock (no vetted picture).
    * Student copy must not say "each picture / each word" in that case.
    */
+  /**
+   * Split a sentence frame into text / blank segments.
+   * Single source of truth for "where are the blanks" — the DOM drop pads in
+   * renderLessonPages and the tile count here must never disagree, or students
+   * get more tiles than holes (or worse, a hole with no tile).
+   */
+  function frameSegments(frameText) {
+    const s = String(frameText || '');
+    const out = [];
+    const re = /_{2,}/g;
+    let last = 0;
+    let m;
+    while ((m = re.exec(s))) {
+      if (m.index > last) out.push({ text: s.slice(last, m.index) });
+      out.push({ blank: true });
+      last = m.index + m[0].length;
+    }
+    if (last < s.length) out.push({ text: s.slice(last) });
+    return out;
+  }
+
+  /** Frames that actually reach the board (makeFrames slices to 3). */
+  function boardFrames(lesson) {
+    return ((lesson && lesson.sentenceFrames) || []).slice(0, 3).map((f) => String(f || ''));
+  }
+
+  /** Total drop slots across the frames on the board. */
+  function frameBlankCount(lesson) {
+    return boardFrames(lesson).reduce(
+      (n, f) => n + frameSegments(f).filter((seg) => seg.blank).length,
+      0
+    );
+  }
+
+  /**
+   * Honest frame tiles = at least one blank to fill and ≥2 words to choose
+   * between. One tile is not a choice — that is a labelled hole, not an
+   * activity, so leave those frames as plain write-on lines.
+   * Unlike matchDock this needs no art bank: word tiles are text, so every
+   * lesson with real frames can carry it.
+   */
+  function canHonestFrameTiles(lesson) {
+    const words = vocabList(lesson).map((v) => v && v.word).filter(Boolean);
+    return frameBlankCount(lesson) >= 1 && words.length >= 2;
+  }
+
   function matchDockIsPartial(vocabArt) {
     if (!vocabArt) return false;
     const matchableN = Array.isArray(vocabArt.matchable) ? vocabArt.matchable.length : 0;
@@ -1759,8 +1805,51 @@
     if (kenneyHits) page.notes.push('phonicsKenneyLetters:' + kenneyHits);
   }
 
+  /**
+   * Sentence Frames — one draggable word tile per taught word, dropped into the
+   * blanks. Drop pads live in makeFrames DOM (data-frame-blank) so they stay
+   * inside the sentence. Tiles are text, never art: a word with no picture
+   * (hike, gear, routine) is still fully draggable here.
+   */
+  function frameTiles(lesson, page, layout) {
+    const L = layout || window.EdbLayout;
+    const words = vocabList(lesson).map((v) => (v && v.word) || '').filter(Boolean);
+    const blanks = frameBlankCount(lesson);
+    if (!words.length || !blanks) return;
+    const dock = L.zoneRect(page, 'dock');
+    const gap = 14;
+    const n = words.length;
+    const longest = words.reduce((m, w) => Math.max(m, w.length), 0);
+    // Word tiles must stay readable at arm's length on the ClassIn board — size
+    // from the longest word, then fit the dock (second row before going tiny).
+    let tileW = Math.min(210, Math.max(96, longest * 13 + 26));
+    let tileH = 60;
+    if (dock && dock.w) {
+      const oneRowW = Math.floor((dock.w - gap * Math.max(0, n - 1)) / n);
+      if (oneRowW >= 96) {
+        tileW = Math.min(tileW, oneRowW);
+      } else {
+        const cols = Math.ceil(n / 2);
+        tileW = Math.max(88, Math.floor((dock.w - gap * Math.max(0, cols - 1)) / cols));
+      }
+      tileH = Math.max(52, Math.min(64, dock.h - 6));
+    }
+    L.placeDockRow(page, words.map((w) => ({
+      kind: 'tile',
+      text: w,
+      role: 'frameWord',
+      meta: { word: w },
+    })), { w: tileW, h: tileH });
+    page.notes.push('recipe:frameTiles');
+    page.notes.push('frameBlanks:' + blanks);
+    // More holes than tiles means a student runs out of words mid-frame. Frames
+    // may legitimately reuse a word, so this is a signal, not a failure.
+    if (blanks > n) page.notes.push('frameBlanksExceedTiles:' + (blanks - n));
+  }
+
   const RECIPES = {
     matchDock,
+    frameTiles,
     orderLine,
     hideSeek,
     revealReward,
@@ -1812,6 +1901,12 @@
         recipeId: 'matchDock',
         ctx: { vocabArt },
       });
+    }
+
+    // Sentence Frames — draggable word tiles into the blanks. Text tiles need no
+    // art bank, so this rides thin-art lessons the match dock has to skip.
+    if (canHonestFrameTiles(lesson)) {
+      assignments.push({ pageKey: 'frames', recipeId: 'frameTiles' });
     }
 
     // Phonics — sound boxes + letter tiles when schema + gate allow
@@ -2122,6 +2217,10 @@
     wantsPhonics,
     normalizePhonics,
     canHonestMatchDock,
+    canHonestFrameTiles,
+    frameSegments,
+    frameBlankCount,
+    boardFrames,
     boardVocabCount,
     matchDockSize,
     matchDockIsPartial,

@@ -374,6 +374,68 @@ assert(
   `sortBins bins fill targetBay height (bay ${bay.h}, bins ${sortBinPieces.map((b) => b.h).join(',')})`
 );
 
+// Sentence-frame word tiles. Text tiles need no art bank, so a thin-art lesson
+// the match dock must skip still gets draggable frames.
+const framesLesson = {
+  title: 'Weekend Camping Adventure',
+  vocabulary: [{ word: 'tent' }, { word: 'campfire' }, { word: 'hike' }, { word: 'gear' }],
+  sentenceFrames: [
+    'I would like to __ because it is good for my health.',
+    'If we go camping, we will need to bring __ with us.',
+    'I prefer to __ when I am in the nature.',
+  ],
+};
+framesLesson._boardVocabCount = 4;
+assert(W.EdbActivities.frameBlankCount(framesLesson) === 3, 'frame blanks counted across 3 frames');
+assert(W.EdbActivities.canHonestFrameTiles(framesLesson) === true, 'frame tiles allowed: 3 blanks + 4 words');
+
+// Segment split must round-trip the sentence, or DOM pads land in the wrong place.
+const segs = W.EdbActivities.frameSegments('I prefer to __ when I am __ home.');
+assert(segs.filter((s) => s.blank).length === 2, 'frameSegments finds both blanks');
+assert(
+  segs.map((s) => (s.blank ? '__' : s.text)).join('') === 'I prefer to __ when I am __ home.',
+  'frameSegments round-trips the frame text'
+);
+
+// One word is not a choice — leave those frames as write-on lines.
+assert(
+  W.EdbActivities.canHonestFrameTiles({
+    vocabulary: [{ word: 'tent' }], sentenceFrames: ['I will bring my __.'], _boardVocabCount: 1,
+  }) === false,
+  'frame tiles floor: 1 word rejected'
+);
+// No blanks → nothing to drag into.
+assert(
+  W.EdbActivities.canHonestFrameTiles({
+    vocabulary: [{ word: 'tent' }, { word: 'gear' }],
+    sentenceFrames: ['Tell your partner about your weekend.'],
+    _boardVocabCount: 2,
+  }) === false,
+  'frame tiles floor: no blanks rejected'
+);
+
+// Tiles land inside the frames dock — one per taught word, none stranded.
+const framePage = W.EdbLayout.createPage('frames');
+W.EdbActivities.RECIPES.frameTiles(framesLesson, framePage, W.EdbLayout);
+const frameWordTiles = (framePage.unlocked || []).filter((p) => p.role === 'frameWord');
+assert(frameWordTiles.length === 4, `frameTiles places one tile per word, got ${frameWordTiles.length}`);
+const frameDock = W.EdbLayout.zoneRect(framePage, 'dock');
+assert(
+  frameWordTiles.every((t) => t.x >= frameDock.x - 1 && t.y >= frameDock.y - 1
+    && t.x + t.w <= frameDock.x + frameDock.w + 1 && t.y + t.h <= frameDock.y + frameDock.h + 1),
+  'frameTiles stay inside the frames dock'
+);
+// Thin art must not cost the lesson its frame tiles — this is the whole point.
+const thinArtPlan = W.EdbActivities.plan(framesLesson, { level: 'B1', duration: 30 });
+assert(
+  thinArtPlan.canHonestMatchDock === false,
+  'camping lesson is below the match floor (guards the case below)'
+);
+assert(
+  thinArtPlan.assignments.some((a) => a.pageKey === 'frames' && a.recipeId === 'frameTiles'),
+  'frame tiles still assigned when the match dock is skipped'
+);
+
 // A board that teaches nothing is never Ready. plan() assigns no recipes when
 // the lesson has no vocab, so New Words and the activity page ship empty —
 // this used to score 0/0 = ratio 1 and pass the art floor as "Ready to teach".
