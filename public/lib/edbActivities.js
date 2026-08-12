@@ -788,12 +788,53 @@
       }
     }
 
-    // Identity word lookups only — tag-only hero scoring removed (empty > wrong).
+    // Identity word lookups — gated (empty > wrong). A hero-sized hit from a bare
+    // tag is only accepted when the key head-matches that tag, or the prop's pack
+    // is shared with the lesson theme. Otherwise "sink" on a pottery lesson ships
+    // bath-sink as the king stage.
     for (const t of tags) {
       const hit = PB.resolve({ word: t, seed, family });
-      if (isHeroSized(hit)) return hit;
+      if (!isHeroSized(hit)) continue;
+      if (heroIdentityOk(hit, t, tags, PB, seed, family)) return hit;
     }
     return null;
+  }
+
+  /** Key head equals / is prefixed by the token that found the prop. */
+  function heroKeyHeadMatchesToken(hit, token) {
+    const key = String((hit && hit.key) || '').toLowerCase();
+    const t = String(token || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+    if (!key || !t || t.length < 3) return false;
+    const head = key.split(/[-_]/)[0];
+    return head === t || key.startsWith(t + '-') || key.startsWith(t + '_');
+  }
+
+  /**
+   * Identity-loop gate: accept only when the hero is thematically tied to the lesson.
+   * - key head-matches the finding token (trampoline ← trampoline), OR
+   * - prop pack name matches a lesson theme token, OR
+   * - a *different* theme token also resolves into the same pack
+   *   (soap + sink → bathroom OK; sink alone on pottery → reject).
+   */
+  function heroIdentityOk(hit, foundBy, tags, PB, seed, family) {
+    if (heroKeyHeadMatchesToken(hit, foundBy)) return true;
+    const pack = hit && hit.pack ? String(hit.pack).toLowerCase() : '';
+    if (!pack) return false;
+    for (const t of tags) {
+      const tl = String(t || '').toLowerCase();
+      if (!tl) continue;
+      // Pack name ↔ theme token (exact, or long substring — avoid "room"⊂"bathroom").
+      if (tl === pack) return true;
+      if (tl.length >= 5 && (pack.includes(tl) || tl.includes(pack))) return true;
+    }
+    const found = String(foundBy || '').toLowerCase();
+    for (const t of tags) {
+      const tl = String(t || '').toLowerCase();
+      if (!tl || tl === found) continue;
+      const other = PB.resolve({ word: t, seed, family });
+      if (other && other.pack && String(other.pack).toLowerCase() === pack) return true;
+    }
+    return false;
   }
 
   /**
@@ -1781,7 +1822,11 @@
     // Always resolve via findHeroProp so "Round 1" cannot keep a false-ready
     // castle kit ahead of face-blank (S43).
     if (hasVocab) {
-      const hero = findHeroProp(lesson);
+      let hero = findHeroProp(lesson);
+      // A king with zero roleplay dock pieces is not a stage — fall to sortBins.
+      if (hero && roleplayDockProps(lesson, hero, 18).length === 0) {
+        hero = null;
+      }
       const kitMatchesHero = !!(kit && kit.ready && kit.hero && hero && kit.hero.key === hero.key);
       if (hero) {
         assignments.push({

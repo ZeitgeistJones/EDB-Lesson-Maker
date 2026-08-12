@@ -270,6 +270,45 @@ const noHeroPlan = W.EdbActivities.plan(noHeroLesson, { level: 'A2', duration: 3
 const actRecipe = (noHeroPlan.assignments || []).find((a) => a.pageKey === 'activity');
 assert(actRecipe && actRecipe.recipeId === 'sortBins', 'recipe adapt: no hero → sortBins');
 
+// Identity-loop gate: hero-sized prop from a bare tag must share theme with the lesson.
+// "sink" alone on pottery must NOT ship bath-sink (empty > wrong → sortBins).
+const potterySink = {
+  title: 'Learning Pottery',
+  vocabulary: [
+    { word: 'clay' },
+    { word: 'wheel' },
+    { word: 'glaze' },
+    { word: 'sink' },
+    { word: 'bowl' },
+    { word: 'vase' },
+  ],
+};
+assert(
+  !W.EdbActivities.findHeroProp(potterySink),
+  'hero identity: pottery+sink must not ship bath-sink'
+);
+const potteryPlan = W.EdbActivities.plan(potterySink, { level: 'A2', duration: 30 });
+const potteryAct = (potteryPlan.assignments || []).find((a) => a.pageKey === 'activity');
+assert(
+  potteryAct && potteryAct.recipeId === 'sortBins',
+  'hero identity: pottery+sink activity → sortBins'
+);
+
+// Bathroom theme still clears a bath hero (stage rule / kit / gated identity).
+const bathLesson = {
+  title: 'Bathroom Routine',
+  vocabulary: [
+    { word: 'sink' },
+    { word: 'soap' },
+    { word: 'towel' },
+    { word: 'toothbrush' },
+    { word: 'shampoo' },
+    { word: 'comb' },
+  ],
+};
+const bathHero = W.EdbActivities.findHeroProp(bathLesson);
+assert(bathHero && /^bath-/.test(bathHero.key), `bathroom theme hero, got ${bathHero && bathHero.key}`);
+
 console.log('OK readiness+vocabArt reasons + matchDock hint + art floor + adapt', {
   partial: report.reasons,
   noDock: report2.reasons,
@@ -283,4 +322,6 @@ console.log('OK readiness+vocabArt reasons + matchDock hint + art floor + adapt'
   fiveReady: { hits: fiveReport.vocabArt.hits, total: fiveReport.vocabArt.total, status: fiveReport.status },
   fourReady: { hits: fourReport.vocabArt.hits, total: fourReport.vocabArt.total, status: fourReport.status },
   noHeroRecipe: actRecipe && actRecipe.recipeId,
+  potteryAct: potteryAct && potteryAct.recipeId,
+  bathHero: bathHero && bathHero.key,
 });
