@@ -91,3 +91,70 @@ During vision / dual-lens review, if you think “I’d rather have X but we don
 2. Keep the best **legal** stand-in already in-repo (emoji / pack / scene).
 3. Note the wishlist id/need in `uxVerdict.wishlist` when writing the quality report.
 4. Do **not** block the loop on fetching unless the user asked to fetch now.
+
+---
+
+## 2026-08-12 — B1 band Coverage@Demand (`npm run coverageloop`)
+
+Six B1 topics were added to `TOPIC_CATALOG` (`b1-routines`, `b1-outdoors`,
+`b1-feelings`, `b1-school-life`, `b1-money`, `b1-environment`). Adding them
+moved global Coverage@Demand from **83.9% → 75.0%** — the old number was high
+because the catalog was almost entirely A1/A2 concrete nouns.
+
+**B1 band coverage today: 11%.** (`b1-school-life` is 0% — zero of 15 words.)
+
+The 84 B1 gaps split three ways:
+
+| what to draw | count | action |
+|---|---|---|
+| `object` — still life | 13 | commission (below) |
+| `expression` — faces | 14 | **one** sheet covers all 14 |
+| `abstract` — no honest still life | **57** | **do not commission** |
+
+**Ceiling if we bank every drawable word: 40%.** The Ready art floor is 84%.
+
+| topic | now | ceiling | can ever pass |
+|---|---|---|---|
+| b1-feelings | 13% | 100% | yes — the face sheet does it alone |
+| b1-outdoors | 28% | 56% | no |
+| b1-environment | 7% | 40% | no |
+| b1-routines | 6% | 18% | no |
+| b1-school-life | 0% | 13% | no |
+| b1-money | 13% | 13% | no |
+
+So B1 boards outside feelings cannot reach Ready on art coverage no matter how
+much art we bank. That is a gate question, not an asset question — logged in
+`docs/content-wishlist.md`. Bank the two commissions below because they are
+cheap and real, not because they will move status.
+
+### Commission 1 — B1 feelings face sheet (highest value, one sheet)
+
+`calm, anxious, cheerful, confident, disappointed, embarrassed, frustrated,
+grateful, homesick, jealous, lonely, nervous, overwhelmed, relieved`
+
+Same face, 14 expressions, so students read the emotion and not a new character.
+See `docs/face-kit.md` for the existing plates to match.
+
+### Commission 2 — B1 still-life objects (13)
+
+`assignment, container, gear, hike, landfill, litter, pollution, presentation,
+recycle, scenery, snooze, sunrise, wilderness`
+
+Still life only — these are B1, so the temptation to draw a kid *doing* the verb
+is strong and it mushes at ~96px. `hike` is boots + trail marker, not a hiking
+child. `gear` is a packed kit laid out. `recycle` is the bin and the symbol.
+
+### Do not commission (57)
+
+`achieve, adventure, afford, allowance, bargain, borrow, budget, chaotic,
+climate, commute, concentrate, deadline, discount, distraction, expense,
+explore, feedback, freshen up, grade, habit, impact, improve, income, invest,
+lend, motivation, navigate, organized, oversleep, participate, prepare,
+prioritize, productive, progress, protect, punctual, reduce, remote, research,
+responsible, reuse, revise, routine, rugged, rush, save, schedule, set off,
+skip, spend, struggle, sustainable, throw away, value, wander, wind down, worth`
+
+There is no honest still life for "worth" or "prioritize". These words belong to
+sentence frames and text tiles (`frameTiles`), which need no art bank at all.
+`suggestedArtType` in `scripts/asset-coverage-loop.mjs` now classifies these as
+`abstract` so future wishlists stop asking anyone to draw them.

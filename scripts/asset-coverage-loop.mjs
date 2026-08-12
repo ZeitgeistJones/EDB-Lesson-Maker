@@ -457,6 +457,73 @@ const TOPIC_CATALOG = [
       'astronomy',
     ],
   },
+
+  // --- B1 band -------------------------------------------------------------
+  // The catalog above is almost entirely A1/A2 concrete nouns, which is why
+  // global Coverage@Demand reads high while real B1 boards keep landing in
+  // Draft. B1 vocab is abstract nouns, verb phrases and adjectives — the exact
+  // shapes the pack/prop ladder has no answer for. These rows exist so that
+  // failure is measured instead of inferred from one-off lessons.
+  {
+    id: 'b1-routines',
+    title: 'B1 Morning Routine',
+    source: 'demand+B1',
+    words: [
+      'alarm', 'routine', 'freshen up', 'skip', 'oversleep', 'commute',
+      'prioritize', 'schedule', 'productive', 'organized', 'rush', 'prepare',
+      'energy', 'habit', 'snooze', 'punctual', 'chaotic', 'calm',
+    ],
+  },
+  {
+    id: 'b1-outdoors',
+    title: 'B1 Camping and Outdoors',
+    source: 'demand+B1',
+    words: [
+      'hike', 'gear', 'campfire', 'tent', 'wilderness', 'trail', 'shelter',
+      'navigate', 'pack', 'explore', 'scenery', 'wander', 'remote', 'rugged',
+      'sunrise', 'wind down', 'set off', 'adventure',
+    ],
+  },
+  {
+    id: 'b1-feelings',
+    title: 'B1 Talking About Feelings',
+    source: 'demand+B1',
+    words: [
+      'nervous', 'proud', 'lonely', 'excited', 'frustrated', 'confident',
+      'anxious', 'relieved', 'grateful', 'overwhelmed', 'calm', 'disappointed',
+      'jealous', 'embarrassed', 'cheerful', 'homesick',
+    ],
+  },
+  {
+    id: 'b1-school-life',
+    title: 'B1 School and Study',
+    source: 'demand+B1',
+    words: [
+      'deadline', 'revise', 'assignment', 'presentation', 'progress', 'effort',
+      'concentrate', 'struggle', 'improve', 'feedback', 'grade', 'research',
+      'motivation', 'distraction', 'achieve', 'participate',
+    ],
+  },
+  {
+    id: 'b1-money',
+    title: 'B1 Money and Choices',
+    source: 'demand+B1',
+    words: [
+      'budget', 'save', 'spend', 'afford', 'borrow', 'lend', 'income',
+      'expense', 'bargain', 'waste', 'invest', 'discount', 'receipt',
+      'allowance', 'worth', 'value',
+    ],
+  },
+  {
+    id: 'b1-environment',
+    title: 'B1 Environment and Habits',
+    source: 'demand+B1',
+    words: [
+      'recycle', 'reuse', 'waste', 'pollution', 'litter', 'energy', 'reduce',
+      'sustainable', 'habit', 'impact', 'protect', 'climate', 'landfill',
+      'container', 'responsible', 'throw away',
+    ],
+  },
 ];
 
 function parseArgs(argv) {
@@ -654,8 +721,56 @@ function selectTopics(opts) {
   return catalog;
 }
 
+/**
+ * Feelings — one expression sheet covers the whole set, so these rank as a
+ * single high-reuse commission rather than N separate still lifes.
+ */
+const EXPRESSION_WORDS = new Set([
+  'nervous', 'proud', 'lonely', 'excited', 'frustrated', 'confident', 'anxious',
+  'relieved', 'grateful', 'overwhelmed', 'calm', 'disappointed', 'jealous',
+  'embarrassed', 'cheerful', 'homesick', 'shy', 'angry', 'sad', 'happy',
+  'tired', 'bored', 'surprised', 'scared', 'worried', 'curious', 'confused',
+  'annoyed', 'hopeful', 'ashamed',
+]);
+
+/**
+ * Words with no honest still-life form. A photo of "prioritize" or "worth"
+ * does not exist, so commissioning art for them wastes a sheet and invites a
+ * vague plate that means nothing at 96px. These are not a coverage debt to pay
+ * down — they are words the board should teach through sentence frames and
+ * text tiles instead of pictures.
+ */
+const ABSTRACT_WORDS = new Set([
+  // judgement / value
+  'worth', 'value', 'impact', 'progress', 'effort', 'quality', 'benefit',
+  // process verbs with no single frame
+  'prioritize', 'achieve', 'participate', 'improve', 'prepare', 'struggle',
+  'concentrate', 'revise', 'research', 'explore', 'navigate', 'wander',
+  'protect', 'reduce', 'reuse', 'afford', 'borrow', 'lend', 'invest', 'spend',
+  'save', 'skip', 'rush', 'oversleep', 'commute', 'set off', 'wind down',
+  'freshen up', 'throw away',
+  // states / dispositions
+  'organized', 'productive', 'punctual', 'chaotic', 'responsible', 'remote',
+  'rugged', 'sustainable', 'motivation', 'distraction', 'habit', 'routine',
+  'schedule', 'deadline', 'feedback', 'grade', 'income', 'expense', 'budget',
+  'allowance', 'bargain', 'discount', 'adventure', 'climate',
+]);
+
+/**
+ * What a human should actually draw for this word.
+ *   person     — character plate
+ *   expression — face sheet (feelings share one commission)
+ *   object     — still life, the default and the only cheap win
+ *   abstract   — do NOT commission; route to text tiles / frames
+ * Unknown words fall through to `object`: the cost of a missed still life is
+ * lower than the cost of wrongly telling someone not to draw something.
+ */
 function suggestedArtType(word) {
-  return PERSON_WORDS.has(String(word).toLowerCase()) ? 'person' : 'object';
+  const w = String(word).toLowerCase();
+  if (PERSON_WORDS.has(w)) return 'person';
+  if (EXPRESSION_WORDS.has(w)) return 'expression';
+  if (ABSTRACT_WORDS.has(w)) return 'abstract';
+  return 'object';
 }
 
 function scoreBucket(W, topicTitle, word) {
