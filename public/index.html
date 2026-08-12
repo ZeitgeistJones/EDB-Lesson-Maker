@@ -444,9 +444,13 @@ async function refreshBoardStatus(lesson) {
     const adaptOn = !!(adapt && (adapt.adapted || adapt.changed));
     const boardN = adapt && Number(adapt.boardCount);
     const genN = adapt && Number(adapt.generated);
-    const countLine = (boardN && genN && genN > boardN)
-      ? `<div><strong>Board teaches:</strong> ${boardN} of ${genN} words — the ${boardN} we can picture. The rest stay in the story and speaking pages.</div>`
-      : '';
+    const artHits = report && report.vocabArt ? Number(report.vocabArt.hits) : 0;
+    let countLine = '';
+    if (boardN && genN && genN > boardN) {
+      countLine = artHits > 0
+        ? `<div><strong>Board teaches:</strong> ${boardN} of ${genN} words — the ${boardN} we can picture. The rest stay in the story and speaking pages.</div>`
+        : `<div><strong>Board teaches:</strong> ${boardN} of ${genN} words — no art for any of them yet. The rest stay in the story and speaking pages.</div>`;
+    }
     const adaptLine = adaptOn
       ? countLine + `<div><strong>Vocab:</strong> reordered for art coverage (same topic)${adapt.promoted && adapt.promoted.length ? ` — promoted ${adapt.promoted.slice(0, 4).join(', ')}${adapt.promoted.length > 4 ? '…' : ''}` : ''}</div>`
       : countLine;
