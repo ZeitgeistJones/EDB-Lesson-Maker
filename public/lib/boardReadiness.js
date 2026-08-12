@@ -83,7 +83,9 @@
       }));
       const hits = detail.filter((d) => d.ok).length;
       const total = detail.length;
-      return { hits, total, ratio: total ? hits / total : 1, detail };
+      // No board words = nothing pictured. Ratio 1 here used to read as a
+      // perfect score and slipped an empty board past the art floor.
+      return { hits, total, ratio: total ? hits / total : 0, detail };
     }
 
     if (window.VocabArt && typeof window.VocabArt.planFor === 'function'
@@ -153,7 +155,7 @@
         ok,
       });
     }
-    return { hits, total: words.length, ratio: words.length ? hits / words.length : 1, detail };
+    return { hits, total: words.length, ratio: words.length ? hits / words.length : 0, detail };
   }
 
   function topicBlob(lesson) {
@@ -219,6 +221,14 @@
           `${overflow.length} vocab word(s) past board ceiling of ${ceil} (not on cards/PDF): ${names}${overflow.length > 4 ? '…' : ''}.`
         );
       }
+    }
+
+    // A board with no words teaches nothing: New Words and the activity page
+    // ship empty, and plan() assigns no recipes. Never Ready.
+    if (vocabArt.total === 0) {
+      reasons.push(
+        'Board teaches no vocabulary words — New Words and the activity page would ship empty.'
+      );
     }
 
     if (vocabArt.total > 0 && vocabArt.ratio < VOCAB_ART_FLOOR) {

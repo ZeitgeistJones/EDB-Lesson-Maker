@@ -419,6 +419,12 @@ async function ensureStoryArtApplied(pageEls) {
   return window.LessonPages.applyStoryArt(pageEls, result);
 }
 
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
 async function refreshBoardStatus(lesson) {
   const box = document.getElementById('board-status');
   if (!box) return;
@@ -452,10 +458,10 @@ async function refreshBoardStatus(lesson) {
         : `<div><strong>Board teaches:</strong> ${boardN} of ${genN} words — no art for any of them yet. The rest stay in the story and speaking pages.</div>`;
     }
     const adaptLine = adaptOn
-      ? countLine + `<div><strong>Vocab:</strong> reordered for art coverage (same topic)${adapt.promoted && adapt.promoted.length ? ` — promoted ${adapt.promoted.slice(0, 4).join(', ')}${adapt.promoted.length > 4 ? '…' : ''}` : ''}</div>`
+      ? countLine + `<div><strong>Vocab:</strong> reordered for art coverage (same topic)${adapt.promoted && adapt.promoted.length ? ` — promoted ${esc(adapt.promoted.slice(0, 4).join(', '))}${adapt.promoted.length > 4 ? '…' : ''}` : ''}</div>`
       : countLine;
     const reasons = (report.reasons || []).length
-      ? `<ul>${report.reasons.map((r) => `<li>${r}</li>`).join('')}</ul>`
+      ? `<ul>${report.reasons.map((r) => `<li>${esc(r)}</li>`).join('')}</ul>`
       : '';
     box.innerHTML =
       `<strong>${report.status === 'ready' ? 'Ready to teach' : 'Draft board'}</strong>` +
@@ -468,6 +474,17 @@ async function refreshBoardStatus(lesson) {
     logAppRun('preview', lesson, report, plan && plan.vocabAdapt);
   } catch (e) {
     console.warn('Board readiness check failed', e);
+    // Fail closed: an unjudged board must never look like a clean one. Without
+    // this the box stays hidden, state.readiness stays null, and Download waves
+    // the board through with no Ready/Draft at all.
+    const why = String((e && e.message) || e);
+    state.readiness = { status: 'unverified', reasons: [why] };
+    box.style.display = 'block';
+    box.className = 'board-status draft';
+    box.innerHTML =
+      '<strong>Not checked</strong> · could not judge this board' +
+      `<ul><li>${esc(why)}</li></ul>` +
+      '<div>Reload and generate again before you teach from this one.</div>';
   }
 }
 
@@ -512,7 +529,14 @@ function logAppRun(event, lesson, report, vocabAdapt) {
 
 function confirmDraftDownload(kind) {
   const r = state.readiness;
-  if (!r || r.status === 'ready') return true;
+  if (r && r.status === 'ready') return true;
+  // No report = the check never finished. Say so instead of waving it through.
+  if (!r || r.status === 'unverified') {
+    const why = (r && (r.reasons || [])[0]) || 'The readiness check did not finish.';
+    return window.confirm(
+      `This board was never checked — download ${kind} anyway?\n\n• ${why}\n\nIt may be missing pictures, cards, or the activity page.`
+    );
+  }
   const why = (r.reasons || []).join('\n• ') || 'Board may be thin.';
   return window.confirm(
     `This board is marked Draft — download ${kind} anyway?\n\n• ${why}\n\nReady boards use theme kits when available and enough vocab art.`
@@ -522,6 +546,9 @@ function confirmDraftDownload(kind) {
 async function downloadPDF() {
   const d = state.lessonData;
   if (!d) return;
+  // The PDF carries the same story + comprehension questions the board does, so
+  // S73 truncation / ungrounded Qs reach the teacher here too.
+  if (!confirmDraftDownload('lesson PDF')) return;
   const btn = document.getElementById('btn-pdf');
   const original = btn.textContent;
   btn.textContent = 'Building PDF…';

@@ -374,6 +374,31 @@ assert(
   `sortBins bins fill targetBay height (bay ${bay.h}, bins ${sortBinPieces.map((b) => b.h).join(',')})`
 );
 
+// A board that teaches nothing is never Ready. plan() assigns no recipes when
+// the lesson has no vocab, so New Words and the activity page ship empty —
+// this used to score 0/0 = ratio 1 and pass the art floor as "Ready to teach".
+const noVocab = { title: 'Learning Pottery', vocabulary: [] };
+const noVocabPlan = W.EdbActivities.plan(noVocab, { level: 'B1', duration: 30 });
+assert(noVocabPlan.assignments.length === 0, 'empty vocab → no recipes assigned');
+const noVocabReport = W.BoardReadiness.assess(noVocab, noVocabPlan, { ignoreKit: true });
+assert(noVocabReport.status === 'draft', 'empty vocab → draft, not ready');
+assert(
+  noVocabReport.reasons.some((r) => /teaches no vocabulary words/i.test(r)),
+  'empty vocab reason: ' + noVocabReport.reasons.join(' | ')
+);
+assert(noVocabReport.vocabArt.ratio === 0, 'empty board scores 0 art, not a perfect 1');
+assert(
+  !/Ready to teach/.test(W.BoardReadiness.summaryLine(noVocabReport)),
+  'empty board summary does not say Ready to teach'
+);
+// Kit gates on (the real Download path) must reach the same verdict.
+const noVocab2 = { title: 'Learning Pottery', vocabulary: [] };
+const noVocabKit = W.BoardReadiness.assess(
+  noVocab2,
+  W.EdbActivities.plan(noVocab2, { level: 'B1', duration: 30 })
+);
+assert(noVocabKit.status === 'draft', 'empty vocab → draft with kit gates on too');
+
 console.log('OK readiness+vocabArt reasons + matchDock hint + art floor + adapt', {
   partial: report.reasons,
   noDock: report2.reasons,
