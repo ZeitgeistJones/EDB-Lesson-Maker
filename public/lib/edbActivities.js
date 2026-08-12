@@ -657,11 +657,14 @@
       { label: 'Things', fill: '#dbeafe' },
       { label: 'Ideas', fill: '#dcfce7' },
     ];
-    const binW = Math.floor((bay.w - 40) / 2);
-    const binH = Math.min(180, bay.h - 20);
+    // Fill the whole targetBay — small corner bins read as stranded chrome, not one activity.
+    const pad = 12;
+    const gapBins = 16;
+    const binW = Math.max(80, Math.floor((bay.w - pad * 2 - gapBins) / 2));
+    const binH = Math.max(120, bay.h - pad * 2);
     bins.forEach((bin, i) => {
-      const cellX = bay.x + 10 + i * (binW + 20);
-      const cellY = bay.y + 10;
+      const cellX = bay.x + pad + i * (binW + gapBins);
+      const cellY = bay.y + pad;
       const asset = solidPng(binW, binH, bin.fill, bin.label, '#1e293b');
       L.place(page, {
         locked: true,
@@ -677,31 +680,32 @@
     });
     const cards = vocabList(lesson);
     if (!cards.length) return;
-    // Keep dock cards big enough to tap (M10) and wide enough for long words
-    // ("toothbrush"). Prefer fewer wider tiles over clipped labels.
+    // Never silently drop a taught word — shrink the cards or wrap to a second row.
     const dock = L.zoneRect(page, 'dock');
     const gap = 14;
     const longest = cards.reduce((n, v) => Math.max(n, String(v.word || '').length), 0);
-    const minWForWord = Math.min(200, Math.max(96, longest * 13 + 24));
-    let cardW = Math.max(140, minWForWord);
-    let cardH = 72;
-    let fit = cards;
+    const minWForWord = Math.min(180, Math.max(72, longest * 11 + 20));
+    let cardW = Math.max(96, minWForWord);
+    let cardH = 64;
     if (dock && dock.w) {
-      const maxN = Math.max(2, Math.floor((dock.w + gap) / (minWForWord + gap)));
-      if (fit.length > maxN) fit = fit.slice(0, maxN);
-      cardW = Math.max(
-        minWForWord,
-        Math.min(200, Math.floor((dock.w - gap * Math.max(0, fit.length - 1)) / fit.length))
-      );
-      cardH = Math.max(56, Math.min(72, Math.round(cardW * 0.45)));
+      const n = cards.length;
+      const oneRowW = Math.floor((dock.w - gap * Math.max(0, n - 1)) / n);
+      if (oneRowW >= 72) {
+        cardW = Math.min(180, Math.max(72, oneRowW));
+        cardH = Math.max(52, Math.min(72, Math.round(cardW * 0.45)));
+      } else {
+        const cols = Math.ceil(n / 2);
+        cardW = Math.min(160, Math.max(72, Math.floor((dock.w - gap * Math.max(0, cols - 1)) / cols)));
+        cardH = Math.max(48, Math.min(64, Math.floor((dock.h - gap) / 2)));
+      }
     }
-    L.placeDockRow(page, fit.map((v) => ({
+    L.placeDockRow(page, cards.map((v) => ({
       kind: 'tile',
       text: v.word,
       emoji: v.emoji,
       role: 'sortCard',
       meta: { word: v.word },
-    })), { w: cardW, h: cardH, noShrink: true });
+    })), { w: cardW, h: cardH });
     page.notes.push('recipe:sortBins');
   }
 

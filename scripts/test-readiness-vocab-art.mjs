@@ -34,13 +34,49 @@ function assert(cond, msg) {
   }
 }
 
-const sandbox = { window: {}, console, fetch: fileFetch };
+const sandbox = {
+  window: {},
+  console,
+  fetch: fileFetch,
+  document: {
+    createElement(tag) {
+      if (tag !== 'canvas') return {};
+      const c = {
+        width: 0,
+        height: 0,
+        getContext() {
+          return {
+            fillStyle: '',
+            font: '',
+            textAlign: '',
+            textBaseline: '',
+            beginPath() {},
+            moveTo() {},
+            arcTo() {},
+            closePath() {},
+            fill() {},
+            fillText() {},
+            fillRect() {},
+            stroke() {},
+            strokeRect() {},
+            setLineDash() {},
+          };
+        },
+        toDataURL() {
+          return 'data:image/png;base64,xx';
+        },
+      };
+      return c;
+    },
+  },
+};
 vm.createContext(sandbox);
 for (const rel of [
   'public/lib/propBank.js',
   'public/lib/vocabIcons.js',
   'public/lib/vocabArt.js',
   'public/lib/lessonTraits.js',
+  'public/lib/edbLayout.js',
   'public/lib/edbActivities.js',
   'public/lib/boardReadiness.js',
 ]) {
@@ -314,6 +350,29 @@ assert(W.EdbActivities.canHonestMatchDock(1) === false, 'matchDock floor: 1 reje
 assert(W.EdbActivities.canHonestMatchDock(2) === false, 'matchDock floor: 2 rejected');
 assert(W.EdbActivities.canHonestMatchDock(3) === true, 'matchDock floor: 3 allowed');
 assert(W.EdbActivities.canHonestMatchDock(4) === true, 'matchDock floor: 4 allowed');
+
+// sortBins keeps every taught board word (no silent slice) and fills targetBay height.
+const chessClub = {
+  title: 'Joining the Chess Club',
+  vocabulary: [
+    { word: 'chess' },
+    { word: 'king' },
+    { word: 'queen' },
+    { word: 'grandmaster' },
+  ],
+};
+chessClub._boardVocabCount = 4;
+const sortPage = W.EdbLayout.createPage('activity');
+W.EdbActivities.RECIPES.sortBins(chessClub, sortPage, W.EdbLayout);
+const sortCards = (sortPage.unlocked || []).filter((p) => p.role === 'sortCard');
+assert(sortCards.length === 4, `sortBins keeps all 4 cards, got ${sortCards.length}`);
+const sortBinPieces = (sortPage.locked || []).filter((p) => p.role === 'sortBin');
+assert(sortBinPieces.length === 2, `sortBins places 2 bins, got ${sortBinPieces.length}`);
+const bay = W.EdbLayout.zoneRect(sortPage, 'targetBay');
+assert(
+  sortBinPieces.every((b) => b.h >= bay.h - 30),
+  `sortBins bins fill targetBay height (bay ${bay.h}, bins ${sortBinPieces.map((b) => b.h).join(',')})`
+);
 
 console.log('OK readiness+vocabArt reasons + matchDock hint + art floor + adapt', {
   partial: report.reasons,
