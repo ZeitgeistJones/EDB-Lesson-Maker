@@ -68,6 +68,7 @@
     never: {},
     ambiguous: {},
     aliases: {},
+    senses: {},
   };
 
   function normalizePolicy(raw) {
@@ -82,6 +83,7 @@
       never: p.never && typeof p.never === 'object' ? p.never : {},
       ambiguous: p.ambiguous && typeof p.ambiguous === 'object' ? p.ambiguous : {},
       aliases: p.aliases && typeof p.aliases === 'object' ? p.aliases : {},
+      senses: p.senses && typeof p.senses === 'object' ? p.senses : {},
     };
   }
 
@@ -134,6 +136,41 @@
     );
     if (!matched) return { ok: false, reason: 'subject-lock' };
     return { ok: true };
+  }
+
+  /**
+   * Sense lock for polysemous vocab (propPolicy.senses).
+   *
+   * The bank holds ONE picture per word, but a word can carry two senses that
+   * are both ordinary ESL vocabulary — a bat is a baseball bat and a nocturnal
+   * animal, a seal is a wax seal and an arctic mammal. Resolution is keyed on
+   * the string alone, so the same picture ships for both and one of the two
+   * lessons teaches the wrong word.
+   *
+   * `needs` lists the words that confirm the banked sense is the taught one.
+   * Returns true when the word is unlocked or the lesson corroborates it;
+   * false means the caller must drop to no art. Empty beats wrong.
+   */
+  function senseNeedsFor(word) {
+    if (!policy || !policy.senses) return null;
+    const entry = policy.senses[slug(word)];
+    if (!entry || !Array.isArray(entry.needs) || !entry.needs.length) return null;
+    return entry.needs;
+  }
+
+  function senseCorroborated(word, contextWords) {
+    const needs = senseNeedsFor(word);
+    if (!needs) return true;
+    const self = slug(word);
+    const ctx = new Set();
+    for (const raw of contextWords || []) {
+      for (const tok of norm(raw)) ctx.add(tok);
+      const whole = slug(raw);
+      if (whole) ctx.add(whole);
+    }
+    // The word cannot corroborate itself — "bat" in a bat lesson proves nothing.
+    ctx.delete(self);
+    return needs.some((n) => ctx.has(slug(n)));
   }
 
   /**
@@ -1444,6 +1481,8 @@
     loadPng,
     isDeniedWord,
     isAmbiguousWord,
+    senseNeedsFor,
+    senseCorroborated,
     subjectLockEntry,
     identityHit,
     aliasFor,

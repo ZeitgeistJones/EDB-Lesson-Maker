@@ -182,3 +182,11 @@ in `findHeroProp` would be over-fitting — the honest fix is adding kitchen tag
 to `bath-sink` and `bath-sponge` (or banking kitchen-specific versions). Held as
 a `KNOWN` case in `scripts/test-hero-theme.mjs` so the behaviour is asserted
 rather than drifting.
+
+### Open: `light` resolves to a dentist lamp
+
+"Lamps and Lighting" (`light, lamp, bulb, switch`) corroborates the lamp sense
+correctly, then resolves to `dental-light` — a dentist's overhead lamp. The
+sense is right and the prop is wrong, so this is prop ranking, not sense: a
+generic lamp/ceiling-light cutout would win it. Worth one still life next time
+a sheet is commissioned. Asserted in `scripts/test-vocab-sense.mjs`.

@@ -52,7 +52,8 @@
     "manus:review": "node scripts/manus/review.mjs",
     "manus:dry": "node scripts/manus/review.mjs --dry-run",
     "manus:passoff": "node scripts/manus/write-passoff.mjs",
-    "test:hero-theme": "node scripts/test-hero-theme.mjs"
+    "test:hero-theme": "node scripts/test-hero-theme.mjs",
+    "test:vocab-sense": "node scripts/test-vocab-sense.mjs"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

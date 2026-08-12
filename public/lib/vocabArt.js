@@ -383,12 +383,30 @@
     const exclude = [];
     const rows = [];
 
+    // Sense corroboration reads the WHOLE lesson, not the board slice: the
+    // title and the sibling vocab are what say whether "bat" is the animal or
+    // the baseball bat. Built once — every word checks against the same context.
+    const senseContext = [
+      (lesson && lesson.title) || '',
+      ...allVocabEntries(lesson).map(entryWord).filter(Boolean),
+    ];
+
     for (const word of words) {
       let tier = 'none';
       let artSrc = null;
       let glyph = null;
       let propKey = null;
       const key = slug(word);
+      // Polysemous word whose banked picture shows the other sense — ship no
+      // picture rather than teach the wrong one (propPolicy.senses).
+      if (PB && typeof PB.senseCorroborated === 'function'
+        && !PB.senseCorroborated(word, senseContext)) {
+        rows.push({
+          word, tier: 'none', artSrc: null, glyph: null, propKey: null,
+          matchable: false, reason: 'sense-mismatch',
+        });
+        continue;
+      }
       // Pack ball.png reads as volleyball — skip tier-1 under sport lessons so
       // soccer-ball (or identity ball) can win at prop tier without replacing
       // the pack file (park / generic "ball" lessons keep the pack row).

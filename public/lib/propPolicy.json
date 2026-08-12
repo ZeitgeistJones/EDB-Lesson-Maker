@@ -71,26 +71,83 @@
     "baker": "person",
     "cashier": "person",
     "patient": {
-      "topics": ["dentist", "dental", "teeth", "tooth", "cavity", "floss", "toothbrush"],
-      "allow": ["dental-kid-open-mouth"]
+      "topics": [
+        "dentist",
+        "dental",
+        "teeth",
+        "tooth",
+        "cavity",
+        "floss",
+        "toothbrush"
+      ],
+      "allow": [
+        "dental-kid-open-mouth"
+      ]
     }
   },
   "never": {
-    "clinic": ["clinic-clipboard"],
-    "coach": ["whistle", "clipboard", "megaphone", "bus"],
-    "doctor": ["stethoscope", "wheelchair", "hospital", "swing"],
-    "teacher": ["blackboard", "chalkboard", "apple", "desk"],
-    "nurse": ["stethoscope", "wheelchair"],
-    "chef": ["job-chef-hat", "pan", "spatula"],
-    "oven": ["kitchen-oven-mitt"],
-    "ball": ["beach-ball"],
-    "knife": ["camp-pocket-knife"],
-    "bucket": ["cleaning-bucket"],
-    "sand": ["landmark-marina-bay-sands"],
-    "wave": ["hair-long-blonde-wave"],
-    "patient": ["job-doctor", "job-nurse", "stethoscope", "clinic-clipboard"],
-    "propeller": ["gashapon-hat-propeller", "gashapon"],
-    "bubble": ["speech-bubble", "speech"]
+    "clinic": [
+      "clinic-clipboard"
+    ],
+    "coach": [
+      "whistle",
+      "clipboard",
+      "megaphone",
+      "bus"
+    ],
+    "doctor": [
+      "stethoscope",
+      "wheelchair",
+      "hospital",
+      "swing"
+    ],
+    "teacher": [
+      "blackboard",
+      "chalkboard",
+      "apple",
+      "desk"
+    ],
+    "nurse": [
+      "stethoscope",
+      "wheelchair"
+    ],
+    "chef": [
+      "job-chef-hat",
+      "pan",
+      "spatula"
+    ],
+    "oven": [
+      "kitchen-oven-mitt"
+    ],
+    "ball": [
+      "beach-ball"
+    ],
+    "knife": [
+      "camp-pocket-knife"
+    ],
+    "bucket": [
+      "cleaning-bucket"
+    ],
+    "sand": [
+      "landmark-marina-bay-sands"
+    ],
+    "wave": [
+      "hair-long-blonde-wave"
+    ],
+    "patient": [
+      "job-doctor",
+      "job-nurse",
+      "stethoscope",
+      "clinic-clipboard"
+    ],
+    "propeller": [
+      "gashapon-hat-propeller",
+      "gashapon"
+    ],
+    "bubble": [
+      "speech-bubble",
+      "speech"
+    ]
   },
   "ambiguous": {
     "clinic": true,
@@ -220,5 +277,297 @@
     "domino": "kenney-domino-6-6",
     "lock": "kenney-bg-lock-closed",
     "dollar": "kenney-bg-dollar"
+  },
+  "senses": {
+    "_comment": "Sense lock for polysemous vocab. The banked art shows ONE sense; `needs` lists words from the lesson (title + vocab) that confirm that sense is the one being taught. No confirmation -> no picture, because a baseball bat on a lesson about nocturnal animals teaches the wrong word. Add a row whenever a word's art is right in one topic and wrong in another.",
+    "bat": {
+      "art": "baseball bat",
+      "needs": [
+        "ball",
+        "glove",
+        "base",
+        "baseball",
+        "softball",
+        "cricket",
+        "swing",
+        "hit",
+        "pitch",
+        "bases",
+        "sport",
+        "sports",
+        "game",
+        "team"
+      ]
+    },
+    "seal": {
+      "art": "postal wax seal",
+      "needs": [
+        "letter",
+        "envelope",
+        "stamp",
+        "post",
+        "postal",
+        "mail",
+        "wax",
+        "document",
+        "sending"
+      ]
+    },
+    "nail": {
+      "art": "carpentry nail",
+      "needs": [
+        "hammer",
+        "wood",
+        "screw",
+        "shelf",
+        "tool",
+        "tools",
+        "board",
+        "build",
+        "building",
+        "fix",
+        "repair",
+        "diy",
+        "plank"
+      ]
+    },
+    "mouse": {
+      "art": "animal mouse",
+      "needs": [
+        "animal",
+        "animals",
+        "cage",
+        "cheese",
+        "pet",
+        "pets",
+        "rabbit",
+        "hamster",
+        "tail",
+        "rodent",
+        "cat",
+        "whiskers",
+        "burrow"
+      ]
+    },
+    "glasses": {
+      "art": "eyeglasses",
+      "needs": [
+        "eye",
+        "eyes",
+        "see",
+        "seeing",
+        "read",
+        "reading",
+        "optician",
+        "lens",
+        "frame",
+        "sight",
+        "vision",
+        "wear",
+        "blurry",
+        "optometrist",
+        "accessory",
+        "accessories",
+        "bag",
+        "bags",
+        "wear",
+        "wearing",
+        "hat",
+        "scarf",
+        "belt",
+        "watch",
+        "purse"
+      ]
+    },
+    "ring": {
+      "art": "wedding ring",
+      "needs": [
+        "wedding",
+        "marry",
+        "married",
+        "bride",
+        "groom",
+        "finger",
+        "jewel",
+        "jewellery",
+        "jewelry",
+        "gold",
+        "diamond",
+        "engagement",
+        "accessory",
+        "accessories",
+        "bag",
+        "bags",
+        "wear",
+        "wearing",
+        "necklace",
+        "bracelet",
+        "earring",
+        "earrings",
+        "watch"
+      ]
+    },
+    "plant": {
+      "art": "potted plant",
+      "needs": [
+        "garden",
+        "gardening",
+        "seed",
+        "seeds",
+        "soil",
+        "water",
+        "grow",
+        "growing",
+        "pot",
+        "leaf",
+        "leaves",
+        "flower",
+        "green",
+        "roots",
+        "sunlight"
+      ]
+    },
+    "bank": {
+      "art": "bank building",
+      "needs": [
+        "money",
+        "save",
+        "saving",
+        "savings",
+        "account",
+        "cash",
+        "coin",
+        "coins",
+        "deposit",
+        "loan",
+        "teller",
+        "atm",
+        "card",
+        "pay",
+        "city",
+        "street",
+        "town",
+        "downtown",
+        "building",
+        "buildings",
+        "shop",
+        "shops",
+        "bill",
+        "bills"
+      ]
+    },
+    "light": {
+      "art": "lamp / light fitting",
+      "needs": [
+        "lamp",
+        "bulb",
+        "lightbulb",
+        "switch",
+        "bright",
+        "dark",
+        "darkness",
+        "electricity",
+        "shine",
+        "lighting",
+        "torch"
+      ]
+    },
+    "trunk": {
+      "art": "tree trunk",
+      "needs": [
+        "tree",
+        "trees",
+        "branch",
+        "branches",
+        "root",
+        "roots",
+        "leaf",
+        "leaves",
+        "bark",
+        "forest",
+        "wood"
+      ]
+    },
+    "court": {
+      "art": "sports court",
+      "needs": [
+        "tennis",
+        "basketball",
+        "racket",
+        "net",
+        "serve",
+        "ball",
+        "game",
+        "match",
+        "player",
+        "volleyball"
+      ]
+    },
+    "spring": {
+      "art": "the season",
+      "needs": [
+        "season",
+        "seasons",
+        "summer",
+        "autumn",
+        "winter",
+        "fall",
+        "blossom",
+        "warmer",
+        "flowers",
+        "weather"
+      ]
+    },
+    "match": {
+      "art": "a lit match",
+      "needs": [
+        "fire",
+        "flame",
+        "campfire",
+        "candle",
+        "light",
+        "burn",
+        "smoke",
+        "matchbox",
+        "stove"
+      ]
+    },
+    "pupil": {
+      "art": "school pupil",
+      "needs": [
+        "school",
+        "teacher",
+        "class",
+        "classroom",
+        "lesson",
+        "study",
+        "student",
+        "desk",
+        "homework"
+      ]
+    },
+    "star": {
+      "art": "a sky star",
+      "needs": [
+        "sky",
+        "moon",
+        "planet",
+        "planets",
+        "space",
+        "telescope",
+        "constellation",
+        "galaxy",
+        "astronomy",
+        "stars",
+        "universe",
+        "comet",
+        "planetarium",
+        "observatory",
+        "astronaut",
+        "rocket",
+        "orbit",
+        "nebula"
+      ]
+    }
   }
 }
