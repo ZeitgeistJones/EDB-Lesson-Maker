@@ -122,3 +122,30 @@ When you see bad English/teaching and can’t (or shouldn’t) auto-fix it in th
 - Sentence frames / activity templates without a usable `___` blank
 - Speaking samples that don’t fit the topic
 - Duplicate or near-duplicate vocab that makes matching pointless
+
+---
+
+## 2026-08-12 — open row: the Ready art floor is unreachable at B1
+
+**Not a Gemini prompt bug — a gate assumption.** `BoardReadiness.VOCAB_ART_FLOOR`
+(~84%) assumes every taught word can be pictured. That holds at A1/A2, where
+vocab is concrete nouns. At B1 it does not: the `coverageloop` B1 band shows 57
+of 84 gap words (`worth`, `prioritize`, `motivation`, `budget`…) have no honest
+still-life form at all.
+
+Banking every drawable B1 word takes the band from 11% to **40%** — still well
+under the floor. So a well-made B1 board is marked Draft for teaching abstract
+vocabulary, which is what B1 *is*. Full numbers in `docs/asset-wishlist.md`.
+
+Two consequences worth deciding on (product call, not logged as agreed):
+
+1. Teachers see Draft on boards that are fine, which erodes the signal exactly
+   as much as a false Ready does — Draft stops meaning anything if it is the
+   normal state for a whole level.
+2. The honest measure may be *"is every picturable word pictured, and do the
+   unpicturable ones get a real text activity?"* rather than a raw art ratio.
+   `frameTiles` (drag word tiles into frame blanks) is that text activity and
+   needs no art bank, so the second half is already shippable.
+
+Do not change the floor without an explicit product ask — it is in the locked
+architecture table. Logged here so the next pass has the numbers.
