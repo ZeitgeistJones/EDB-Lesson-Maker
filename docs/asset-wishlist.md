@@ -115,7 +115,7 @@ The 84 B1 gaps split three ways:
 
 | topic | now | ceiling | can ever pass |
 |---|---|---|---|
-| b1-feelings | 13% | 100% | yes — the face sheet does it alone |
+| b1-feelings | 13% | ~45% | partly — see the correction below |
 | b1-outdoors | 28% | 56% | no |
 | b1-environment | 7% | 40% | no |
 | b1-routines | 6% | 18% | no |
@@ -127,13 +127,28 @@ much art we bank. That is a gate question, not an asset question — logged in
 `docs/content-wishlist.md`. Bank the two commissions below because they are
 cheap and real, not because they will move status.
 
-### Commission 1 — B1 feelings face sheet (highest value, one sheet)
+### Commission 1 — B1 feelings face sheet (partly viable)
 
-`calm, anxious, cheerful, confident, disappointed, embarrassed, frustrated,
-grateful, homesick, jealous, lonely, nervous, overwhelmed, relieved`
+**Corrected 2026-08-12.** The 100% ceiling above was wrong. It counted all 14 as
+drawable because they are emotions, without asking whether a student could tell
+them apart in a picture. They cannot: `grateful`, `relieved` and `cheerful` are
+three warm smiles, and `homesick` and `lonely` are the same downturned face. A
+match dock built from those teaches nothing — the student is guessing.
 
-Same face, 14 expressions, so students read the emotion and not a new character.
-See `docs/face-kit.md` for the existing plates to match.
+Only the visually distinct ones are worth drawing:
+
+`embarrassed` (blush), `nervous` / `anxious`, `confident`, `frustrated` (as
+distinct from plain angry)
+
+Same face, one sheet, so students read the emotion and not a new character. See
+`docs/face-kit.md` for the existing plates to match, and check the existing
+`feelings` pack first — it already holds 16 dock-sharp faces (angry, bored,
+cold, confused, happy, hot, love, proud, sad, scared, shy, sick, silly, sleepy,
+surprised, worried), so a general emotions sheet re-banks ground we hold.
+
+The rest — `grateful, homesick, jealous, lonely, relieved, overwhelmed,
+disappointed, calm` — belong with the abstract words below. They are taught
+through sentence frames, not pictures.
 
 ### Commission 2 — B1 still-life objects (13)
 
@@ -158,3 +173,12 @@ There is no honest still life for "worth" or "prioritize". These words belong to
 sentence frames and text tiles (`frameTiles`), which need no art bank at all.
 `suggestedArtType` in `scripts/asset-coverage-loop.mjs` now classifies these as
 `abstract` so future wishlists stop asking anyone to draw them.
+
+### Open: `sink` and `sponge` are tagged bathroom-only
+
+A washing-up lesson (`plate, sponge, sink, dry`) scores the bathroom pack and
+stages a bathtub, because those two props carry only bathroom tags. Guarding it
+in `findHeroProp` would be over-fitting — the honest fix is adding kitchen tags
+to `bath-sink` and `bath-sponge` (or banking kitchen-specific versions). Held as
+a `KNOWN` case in `scripts/test-hero-theme.mjs` so the behaviour is asserted
+rather than drifting.

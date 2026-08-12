@@ -800,58 +800,104 @@
       || /\b(doctor|clinic|hospital|nurse|medical|checkup|diagnosis|symptoms?|prescription|appointment|fever|sick)\b/;
     const CURATED_STAGE_FIRST = [
       { re: /\b(feeling|feelings|emotion|emotions|mood)\b|\b(worried|scared|shy|confused|proud|surprised|happy|sad|angry|bored|sleepy|excited|tired)\b/, key: 'face-blank' },
-      { re: /\bface\b|\bhair\b|\beyes?\b|\bnose\b|\bear\b|make.?a.?face|blank.?face/, key: 'face-blank' },
-      { re: dentalCue, key: 'dental-kid-open-mouth' },
+      // "wash your face" / "brush teeth" is a bathroom lesson, not make-a-face.
+      { re: /\bface\b|\bhair\b|\beyes?\b|\bnose\b|\bear\b|make.?a.?face|blank.?face/, key: 'face-blank', not: /\b(bathrooms?|bathtub|toothbrush|tooth|teeth|towel|soap|shampoo|shower)\b/ },
+      // `tooth`/`teeth` alone is a bathroom word — "brush teeth" in a morning
+      // routine is not a dentist visit. Needs an actual dentistry cue.
+      { re: dentalCue, key: 'dental-kid-open-mouth', needs: /\b(dentist|dental|cavity|floss|filling|molar|plaque|check.?up)\b/ },
       // Clinic/doctor lessons stage the hospital bed — not the dental open mouth
       // (clown-clinic / loop2-doctor quality loop). Dental cue wins first.
       { re: hospitalCue, key: 'hospital-bed' },
     ];
-    for (const rule of CURATED_STAGE_FIRST) {
-      if (rule.re.test(blob)) {
-        const hit = PB.resolve({ word: rule.key, seed, family });
-        if (isHeroSized(hit)) return hit;
-      }
-    }
-
-    // Pack kits — banking a pack with a hero is enough (castle, jobs…).
-    const kit = PB.assessKit && PB.assessKit(lesson);
-    if (kit && kit.ready && kit.hero && isHeroSized(kit.hero)) return kit.hero;
-
     // Remaining curated stages (trampoline / castle / beach) after kits.
     // Beach sandcastle is also kit-promoted (hero-scale); rule is belt-and-suspenders
     // so "sand" never falls through to landmark-marina-bay-sands.
+    // `re` alone is a strong cue — the word only means this theme.
+    // `needs` marks a POLYSEMOUS cue that must be corroborated by a second
+    // theme word before it can claim a king stage: "routine" is a bathroom cue
+    // in "wash your face, brush your teeth" and an organiser cue in "my
+    // productive morning routine", and staging a bathtub on the second is the
+    // wrong-hero trust bug. `not` disqualifies a neighbouring theme that owns
+    // the same word. Empty beats wrong — an uncorroborated cue falls through to
+    // the gated identity loop and usually to sortBins, which is the honest end.
     const STAGE_RULES = [
       { re: /trampolin|bounce|backflip/, key: 'trampoline' },
-      { re: /castle|medieval|knight|drawbridge|portcullis|royal/, key: 'castle-wall-gate' },
+      // Beach before castle: "sandcastle" matches /castle/ too, and the castle
+      // gatehouse is the wrong stage for a beach lesson.
       { re: /\b(beach|shore|seaside|sandcastle)\b/, key: 'beach-sandcastle' },
+      { re: /castle|medieval|knight|drawbridge|portcullis|royal/, key: 'castle-wall-gate', not: /\b(sand|sandcastle|beach)\b/ },
       // Fire / camp / bath / playground — pack heroes exist; cues beat identity fallthrough.
       // Dental/hospital already won in CURATED_STAGE_FIRST (bathroom must not steal open-mouth).
       { re: /\b(fire\s*stations?|firehouses?|firefighters?|firemen|fireman|fire\s*trucks?|fire\s*engines?|fire\s*safety)\b/, key: 'fire-truck' },
-      { re: /\b(campsites?|camping|campfire|tents?)\b/, key: 'tent' },
-      { re: /\b(bathrooms?|bathtub|bath\b|shower|wash\s*up|toiletries|routines?)\b/, key: 'bath-bathtub' },
-      { re: /\b(playgrounds?|play\s*structures?|slides?|seesaws?|swing\s*sets?)\b/, key: 'playground-slide' },
+      { re: /\b(campsites?|camping|campfire)\b/, key: 'tent' },
+      // A tent is also a circus tent, a market stall and a refugee shelter.
+      { re: /\btents?\b/, key: 'tent', needs: /\b(camp|camping|campsite|campfire|outdoors?|hike|hiking|forest|woods|sleeping\s*bag|backpack)\b/, not: /\b(circus|carnival|acrobat|clown|trapeze|marquee)\b/ },
+      { re: /\b(bathrooms?|bathtub|toiletries)\b/, key: 'bath-bathtub' },
+      // "routine" / "shower" / "wash up" are bathroom words only next to one.
+      // Deliberately no `sink` corroborator — a pottery sink used to ship the
+      // bath-sink king stage, which is the bug this whole gate exists for.
+      { re: /\b(bath\b|showers?|wash\s*up|routines?)\b/, key: 'bath-bathtub', needs: /\b(bathrooms?|bathtub|toilet|tooth|teeth|toothbrush|towel|soap|shampoo|mirror|bathe|bathing|wash\s*(?:your\s*)?face)\b/ },
+      { re: /\b(playgrounds?|play\s*structures?|seesaws?|swing\s*sets?)\b/, key: 'playground-slide' },
+      // A slide is also a presentation slide and a microscope slide.
+      { re: /\bslides?\b/, key: 'playground-slide', needs: /\b(playgrounds?|park|recess|seesaws?|swings?|climbing\s*frame|jungle\s*gym|monkey\s*bars|sandpit)\b/ },
       // Cafe / farm — pack heroes exist; cues beat identity fallthrough.
       { re: /\b(cafes?|caf[eé]s?|coffee\s*shops?|bakerys?|bake\s*shops?|restaurants?|diners?)\b/, key: 'cafe-counter-stage' },
       { re: /\b(farms?|barns?|tractors?|scarecrows?|hay\s*bales?)\b/, key: 'farm-barn' },
       { re: /\b(aquariums?|fish\s*tanks?|coral\s*reefs?)\b/, key: 'aquarium-tank' },
-      { re: /\b(construction|building\s*sites?|hard\s*hats?|excavators?|cranes?)\b/, key: 'construction-tower-crane' },
+      { re: /\b(construction|building\s*sites?|hard\s*hats?|excavators?)\b/, key: 'construction-tower-crane' },
+      // A crane is also a bird.
+      { re: /\bcranes?\b/, key: 'construction-tower-crane', needs: /\b(construction|building\s*sites?|hard\s*hats?|excavators?|cement|scaffold(?:ing)?|builders?|bulldozer|digger)\b/ },
       // Dollhouse — cutaway hero; home/furniture kits also win via assessKit.
       { re: /\b(dollhouses?|doll\s*houses?|furniture|home\s*tour)\b/, key: 'dollhouse-cutaway' },
     ];
-    for (const rule of STAGE_RULES) {
-      if (rule.re.test(blob)) {
-        const hit = PB.resolve({ word: rule.key, seed, family });
-        if (isHeroSized(hit)) return hit;
+    // Vetoes are collected from BOTH rule tables before anything resolves. A
+    // curated refusal has to outrank the pack-kit and identity paths that run
+    // in between, or the guards are decorative: the playground kit would still
+    // hand back the slide for a lesson about presentation slides.
+    const vetoed = new Set();
+    // Tokens a rule considered and refused. Vetoing the KEY alone is not enough:
+    // "slide" refused as a playground cue still resolves to a legacy prop keyed
+    // `slide` with no pack, which head-matches itself and walks through the
+    // identity gate. The word was judged off-theme, so it must not pick a hero
+    // by any route.
+    const vetoedTokens = new Set();
+    const ruleWins = (rule) => {
+      if (!rule.re.test(blob)) return false;
+      if ((rule.needs && !rule.needs.test(blob)) || (rule.not && rule.not.test(blob))) {
+        vetoed.add(rule.key);
+        for (const t of tags) if (rule.re.test(String(t || ''))) vetoedTokens.add(t);
+        return false;
       }
+      return true;
+    };
+    const winners = [];
+    for (const rule of CURATED_STAGE_FIRST) if (ruleWins(rule)) winners.push(rule);
+    for (const rule of STAGE_RULES) if (ruleWins(rule)) winners.push(rule);
+
+    // A curated rule that WON now outranks the pack kit. Rules used to run after
+    // kits because they were unconditional and too eager; now that a polysemous
+    // cue must be corroborated, a winning rule is the stronger signal — it read
+    // the lesson, while the kit only counted prop tags. "wash face / brush teeth
+    // / towel" is a bathroom lesson even though the dollhouse pack scores higher.
+    for (const rule of winners) {
+      const hit = PB.resolve({ word: rule.key, seed, family });
+      if (isHeroSized(hit)) return hit;
     }
+
+    // Pack kits — banking a pack with a hero is enough (castle, jobs…).
+    const kit = PB.assessKit && PB.assessKit(lesson);
+    if (kit && kit.ready && kit.hero && isHeroSized(kit.hero) && !vetoed.has(kit.hero.key)) return kit.hero;
 
     // Identity word lookups — gated (empty > wrong). A hero-sized hit from a bare
     // tag is only accepted when the key head-matches that tag, or the prop's pack
     // is shared with the lesson theme. Otherwise "sink" on a pottery lesson ships
     // bath-sink as the king stage.
     for (const t of tags) {
+      if (vetoedTokens.has(t)) continue;
       const hit = PB.resolve({ word: t, seed, family });
       if (!isHeroSized(hit)) continue;
+      // A curated rule already looked at this key for this lesson and said no.
+      if (hit && vetoed.has(hit.key)) continue;
       if (heroIdentityOk(hit, t, tags, PB, seed, family)) return hit;
     }
     return null;
