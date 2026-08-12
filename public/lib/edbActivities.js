@@ -147,16 +147,23 @@
     return null;
   }
 
-  /** Honest dock = matchable count fits ≥96px cells. Accepts a count or lesson. */
+  /** Honest dock = ≥3 matchable pieces that fit ≥96px cells. Accepts a count or lesson.
+   *  1–2 draggable pictures is not a matching activity — text-only cards instead. */
   function canHonestMatchDock(lessonOrCount) {
+    const MIN_MATCHABLE = 3;
     if (typeof lessonOrCount === 'number') {
+      if (lessonOrCount < MIN_MATCHABLE) return false;
       return !!matchDockSize(lessonOrCount);
     }
     const lesson = lessonOrCount;
     if (lesson && lesson._vocabArt && Array.isArray(lesson._vocabArt.matchable)) {
-      return !!matchDockSize(lesson._vocabArt.matchable.length);
+      const n = lesson._vocabArt.matchable.length;
+      if (n < MIN_MATCHABLE) return false;
+      return !!matchDockSize(n);
     }
-    return !!matchDockSize(vocabList(lesson).length);
+    const n = vocabList(lesson).length;
+    if (n < MIN_MATCHABLE) return false;
+    return !!matchDockSize(n);
   }
 
   /**

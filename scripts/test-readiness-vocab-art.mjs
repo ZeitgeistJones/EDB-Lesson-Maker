@@ -309,6 +309,12 @@ const bathLesson = {
 const bathHero = W.EdbActivities.findHeroProp(bathLesson);
 assert(bathHero && /^bath-/.test(bathHero.key), `bathroom theme hero, got ${bathHero && bathHero.key}`);
 
+// Match dock floor: 1–2 matchable words is not a matching activity; 3+ can dock.
+assert(W.EdbActivities.canHonestMatchDock(1) === false, 'matchDock floor: 1 rejected');
+assert(W.EdbActivities.canHonestMatchDock(2) === false, 'matchDock floor: 2 rejected');
+assert(W.EdbActivities.canHonestMatchDock(3) === true, 'matchDock floor: 3 allowed');
+assert(W.EdbActivities.canHonestMatchDock(4) === true, 'matchDock floor: 4 allowed');
+
 console.log('OK readiness+vocabArt reasons + matchDock hint + art floor + adapt', {
   partial: report.reasons,
   noDock: report2.reasons,
