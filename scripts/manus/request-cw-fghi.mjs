@@ -108,6 +108,8 @@ const SAME_BUS =
   'REGISTERED FAMILY wx-bus-shelter. SAME camera, SAME glass/metal shelter, SAME bench, SAME blank timetable panel (ZERO letters/numbers), SAME curb. Only weather/light change. Open curb/shelter floor. No people no logos.';
 const SAME_ATTIC =
   'REGISTERED FAMILY wx-attic. SAME camera, SAME attic room, SAME dormer window, SAME trunk, SAME rafters. Only weather/light outside the glass. Open floor center. No people no text.';
+const SAME_PATIO =
+  'REGISTERED FAMILY wx-patio-umb. SAME camera, SAME patio tiles, SAME round table, SAME umbrella pole, SAME planter. Only weather/umbrella state change. Open patio floor. No people no text.';
 
 export const WAVES = {
   f1: {
@@ -1155,6 +1157,36 @@ export const WAVES = {
       ]),
     ],
   },
+  f16: {
+    id: 'cw-f16-wx-greenhouse-path',
+    harvest_family: 'weather-seasons',
+    family: 'weather-seasons',
+    title: 'CW FGHI F16 — weather family patio umbrella',
+    kind: 'stage',
+    sheets: [
+      sh('S1', 'wx patio umbrella family 2x2', 'landscape-contact-2x2', [
+        s('wx-patio-umb-sunny', `${SAME_PATIO} STATE sunny: open umbrella shade, dry tiles. Affordance: sit under shade.`, GATE.wx, { family_id: 'wx-patio-umb' }),
+        s('wx-patio-umb-rain', `${SAME_PATIO} STATE rain: umbrella open, wet tiles, drip edge. Affordance: stay under umbrella.`, GATE.wx, { family_id: 'wx-patio-umb' }),
+        s('wx-patio-umb-snow', `${SAME_PATIO} STATE snow: umbrella closed/folded, berms on tiles. Affordance: packed path only.`, GATE.wx, { family_id: 'wx-patio-umb' }),
+        s('wx-patio-umb-dusk', `${SAME_PATIO} STATE dusk: string lights on, umbrella open, dry. Affordance: evening sit.`, GATE.wx, { family_id: 'wx-patio-umb' }),
+      ]),
+    ],
+  },
+  g15: {
+    id: 'cw-g15-bookstore-cafe',
+    harvest_family: 'everyday-life',
+    family: 'everyday-life',
+    title: 'CW FGHI G15 — bookstore + cafe life',
+    kind: 'stage',
+    sheets: [
+      sh('S1', 'bookstore cafe 2x2', 'landscape-contact-2x2', [
+        s('life-bookstore-aisle', 'bookstore aisle: shelves at edges with blank spine shapes, open floor. No people no titles readable.', GATE.life),
+        s('life-bookstore-reading', 'bookstore reading nook: empty armchair + lamp at edge, open floor. No people no magazines with text.', GATE.life),
+        s('life-cafe-counter', 'cafe counter: empty stools at edge, open floor, blank menu board shape (ZERO letters). No people.', GATE.life),
+        s('life-cafe-window-seat', 'cafe window booth: empty table at edge, open floor. No people no logos.', GATE.life),
+      ]),
+    ],
+  },
 };
 
 export const WAVE_ORDER = [
@@ -1175,6 +1207,7 @@ export const WAVE_ORDER = [
   'f13', 'g12', 'h12', 'j12',
   'f14', 'g13', 'h13', 'j13',
   'f15', 'g14', 'h14', 'j14',
+  'f16', 'g15',
 ];
 
 function isRateLimitError(err) {
