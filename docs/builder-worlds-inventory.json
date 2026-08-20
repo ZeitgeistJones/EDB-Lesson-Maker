@@ -1,0 +1,116 @@
+{
+  "kind": "builder-worlds",
+  "prefix": "bw-",
+  "estate_audit": [
+    {
+      "bank": "BE-K5 town→country route tiles/base",
+      "class": "ALREADY_DEEP",
+      "note": "Do not clone another route kit."
+    },
+    {
+      "bank": "CW A+B empty biomes + habitat companions",
+      "class": "ALREADY_DEEP",
+      "note": "Ecosystem worlds exist."
+    },
+    {
+      "bank": "Aggressive S1 zoo/forest/desert/beach settings",
+      "class": "ALREADY_DEEP",
+      "note": "Place washes, not modular builders."
+    },
+    {
+      "bank": "CW CDE + S4 cutaways",
+      "class": "ALREADY_DEEP",
+      "note": "Not modular builders."
+    },
+    {
+      "bank": "Marketplace/bakery/ferry/marina civic stages",
+      "class": "PARTIAL",
+      "note": "Empty stages exist; modular atoms missing."
+    },
+    {
+      "bank": "Builder-world modular kits",
+      "class": "MISSING",
+      "note": "This stockpile."
+    }
+  ],
+  "skipped_as_deep": [
+    "route tiles (K5)",
+    "habitat biomes (CW A+B)",
+    "zoo enclosure clones",
+    "object/building cutaway still-lifes",
+    "orchestra wedges (JKLM)",
+    "Mia/Leo poses",
+    "classroom noun dumps",
+    "tiny fasteners"
+  ],
+  "waves": {
+    "canal-lock": {
+      "family_id": "bw-canal-lock",
+      "title": "BW canal-lock — gated chamber sequence kit",
+      "play_pattern": "Open/close gates; move boat chamber→chamber",
+      "task_id": "gEBkuSQLdPBep3wcQXDmw6",
+      "task_url": "https://manus.im/app/gEBkuSQLdPBep3wcQXDmw6",
+      "agent_status": null,
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\builder-worlds\\canal-lock\\sheets",
+      "expected_sheets": 4,
+      "cell_count": 28,
+      "sheets": [],
+      "finished_at": null,
+      "holds": []
+    }
+  },
+  "families": {
+    "bw-canal-lock": {
+      "family_id": "bw-canal-lock",
+      "wave": "canal-lock",
+      "play_pattern": "Open/close gates; move boat chamber→chamber",
+      "why_novel": "No modular lock atoms; CDE dam is cutaway only",
+      "siblings": [
+        "bw-canal-lock-base-corridor",
+        "bw-canal-lock-mod-chamber-a",
+        "bw-canal-lock-mod-chamber-b",
+        "bw-canal-lock-mod-gate-closed",
+        "bw-canal-lock-mod-gate-open",
+        "bw-canal-lock-conn-gate-pocket",
+        "bw-canal-lock-conn-towpath-segment",
+        "bw-canal-lock-conn-ladder-rungs",
+        "bw-canal-lock-mod-water-high",
+        "bw-canal-lock-mod-water-low",
+        "bw-canal-lock-tok-narrowboat",
+        "bw-canal-lock-tok-small-boat",
+        "bw-canal-lock-tok-barge",
+        "bw-canal-lock-tok-mooring-rope",
+        "bw-canal-lock-tok-life-ring",
+        "bw-canal-lock-tok-bollard",
+        "bw-canal-lock-tok-crate",
+        "bw-canal-lock-tok-duck",
+        "bw-canal-lock-tok-fish-splash",
+        "bw-canal-lock-prob-gate-stuck",
+        "bw-canal-lock-prob-leak-spray",
+        "bw-canal-lock-prob-debris-log",
+        "bw-canal-lock-prob-rope-tangle",
+        "bw-canal-lock-prob-low-water-mud",
+        "bw-canal-lock-prob-missing-gate",
+        "bw-canal-lock-prob-overflow-foam",
+        "bw-canal-lock-prob-crack-wall",
+        "bw-canal-lock-prob-repair-patch"
+      ],
+      "manus_task_id": "gEBkuSQLdPBep3wcQXDmw6",
+      "task_url": "https://manus.im/app/gEBkuSQLdPBep3wcQXDmw6",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\builder-worlds\\canal-lock\\sheets",
+      "status": "fired",
+      "qa": ""
+    }
+  },
+  "running_total": {
+    "tasks": 1,
+    "sheets_downloaded": 0,
+    "kits_planned": 8,
+    "kits_done": 0,
+    "asset_cells": 28,
+    "novelty_pct": 100,
+    "zoo_amusement_route_share_pct": 0
+  },
+  "updated_at": "2026-08-20T05:25:51.881Z",
+  "families_count": 1
+}

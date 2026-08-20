@@ -110,6 +110,8 @@ const SAME_ATTIC =
   'REGISTERED FAMILY wx-attic. SAME camera, SAME attic room, SAME dormer window, SAME trunk, SAME rafters. Only weather/light outside the glass. Open floor center. No people no text.';
 const SAME_PATIO =
   'REGISTERED FAMILY wx-patio-umb. SAME camera, SAME patio tiles, SAME round table, SAME umbrella pole, SAME planter. Only weather/umbrella state change. Open patio floor. No people no text.';
+const SAME_CARPORT =
+  'REGISTERED FAMILY wx-carport. SAME camera, SAME open carport posts + roof, SAME driveway strip, SAME side trash bins (blank), SAME house wall. Only weather/light change. Open driveway center. No people no cars as subjects no text.';
 
 export const WAVES = {
   f1: {
@@ -1187,6 +1189,52 @@ export const WAVES = {
       ]),
     ],
   },
+  f17: {
+    id: 'cw-f17-wx-carport',
+    harvest_family: 'weather-seasons',
+    family: 'weather-seasons',
+    title: 'CW FGHI F17 — weather family carport',
+    kind: 'stage',
+    sheets: [
+      sh('S1', 'wx carport family 2x2', 'landscape-contact-2x2', [
+        s('wx-carport-sunny', `${SAME_CARPORT} STATE sunny: dry driveway, hard shade under roof. Affordance: stand in shade, open drive.`, GATE.wx, { family_id: 'wx-carport' }),
+        s('wx-carport-rain', `${SAME_CARPORT} STATE rain: wet drive sheen, drip line at roof edge. Affordance: stay under roof.`, GATE.wx, { family_id: 'wx-carport' }),
+        s('wx-carport-snow', `${SAME_CARPORT} STATE snow: packed berms, clear strip under roof. Affordance: packed path only.`, GATE.wx, { family_id: 'wx-carport' }),
+        s('wx-carport-dusk', `${SAME_CARPORT} STATE dusk: porch light on wall, dry. Affordance: evening wait under roof.`, GATE.wx, { family_id: 'wx-carport' }),
+      ]),
+    ],
+  },
+  h15: {
+    id: 'cw-h15-science-book-fair',
+    harvest_family: 'occasions',
+    family: 'occasions',
+    title: 'CW FGHI H15 — science-fair / book-fair stages',
+    kind: 'stage',
+    sheets: [
+      sh('S1', 'school fair occasions 2x2', 'landscape-contact-2x2', [
+        s('occ-science-fair-hall', 'school hall science fair: empty trifold board shapes at edges (ZERO letters), open aisle floor. No people.', GATE.ok),
+        s('occ-science-demo-table', 'demo table at edge with blank trays, open floor center. No people no posters with text.', GATE.ok),
+        s('occ-book-fair-tables', 'book fair: tables with blank book spine shapes at edges, open aisle. No titles readable, no people.', GATE.ok),
+        s('occ-book-fair-checkout', 'book fair checkout table at edge (blank cash box shape), open floor. No people no price tags.', GATE.ok),
+      ]),
+    ],
+  },
+  j15: {
+    id: 'cw-j15-places-o',
+    harvest_family: 'countries',
+    family: 'countries',
+    title: 'CW FGHI J15 — country PLACE worlds O (4)',
+    kind: 'stage',
+    cultural_review_required: true,
+    sheets: [
+      sh('S1', 'place worlds O 2x2', 'landscape-contact-2x2', [
+        s('place-olive-grove-path', 'olive grove dirt path between trunks, open packed path. Landscape. NO flags maps seals labels.', GATE.place, { country_hint: 'GR' }),
+        s('place-fjord-dock-slip', 'quiet fjord slip with empty wooden dock edge, open board floor. Everyday. NO flags maps seals labels.', GATE.place, { country_hint: 'NO' }),
+        s('place-adobe-lane', 'adobe-wall residential lane, open packed center. Everyday housing. NO flags maps seals labels.', GATE.place, { country_hint: 'PE' }),
+        s('place-rice-terrace-path', 'rice terrace path along a bund, open packed path. Landscape/work. NO flags maps seals labels.', GATE.place, { country_hint: 'PH' }),
+      ]),
+    ],
+  },
 };
 
 export const WAVE_ORDER = [
@@ -1208,6 +1256,7 @@ export const WAVE_ORDER = [
   'f14', 'g13', 'h13', 'j13',
   'f15', 'g14', 'h14', 'j14',
   'f16', 'g15',
+  'f17', 'h15', 'j15',
 ];
 
 function isRateLimitError(err) {

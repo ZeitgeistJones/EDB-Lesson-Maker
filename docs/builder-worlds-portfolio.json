@@ -1,0 +1,355 @@
+{
+  "kind": "builder-worlds-portfolio",
+  "stockpile_only": true,
+  "art_partition": "harvested/builder-worlds/",
+  "prefix": "bw-",
+  "manus_slot_policy": "1 of 4 global; max 1 in-flight under builder-worlds/ (shared stream A+B)",
+  "stream_partition": {
+    "A": ["canal-lock", "kaiten-belt", "beehive-stack", "harbor-berth"],
+    "B": ["bakery-line", "market-stall", "theatre-wings", "camping-pitch"],
+    "A_runner": "scripts/manus/request-builder-worlds.mjs",
+    "B_runner": "scripts/manus/request-builder-worlds-b.mjs"
+  },
+  "novelty": {
+    "prompt_named_families": ["zoo", "amusement", "route", "habitats", "cutaways"],
+    "selected_count": 8,
+    "prompt_named_in_selected": 0,
+    "novelty_pct": 100,
+    "zoo_amusement_route_share_pct": 0
+  },
+  "estate_audit": [
+    {
+      "bank": "BE-K5 town→country route tiles/base",
+      "class": "ALREADY_DEEP",
+      "note": "Modular path system owned by board-enabling; do not clone"
+    },
+    {
+      "bank": "CW A+B empty biomes + habitat companions",
+      "class": "ALREADY_DEEP",
+      "note": "Ecosystem worlds exist"
+    },
+    {
+      "bank": "Aggressive S1 zoo/forest/desert/beach/river/cave/island settings",
+      "class": "ALREADY_DEEP",
+      "note": "Place washes, not modular builders"
+    },
+    {
+      "bank": "CW CDE + S4 cutaways",
+      "class": "ALREADY_DEEP",
+      "note": "Scene/object cutaways — not modular builders"
+    },
+    {
+      "bank": "CW c10 network/emergency route worlds",
+      "class": "PARTIAL",
+      "note": "Route illustrations; K5 owns modular tiles"
+    },
+    {
+      "bank": "Marketplace/bakery/ferry/marina civic stages",
+      "class": "PARTIAL",
+      "note": "Empty stages exist; modular atoms missing"
+    },
+    {
+      "bank": "Builder-world modular kits",
+      "class": "MISSING",
+      "note": "This stockpile"
+    }
+  ],
+  "skipped_as_deep": [
+    "route tiles (K5)",
+    "habitat biomes (CW A+B)",
+    "zoo enclosure clones",
+    "object/building cutaway still-lifes",
+    "orchestra wedges (JKLM)",
+    "Mia/Leo poses",
+    "classroom noun dumps",
+    "tiny fasteners"
+  ],
+  "killed": [
+    {
+      "id": "treehouse-platforms",
+      "reason": "needs physics/snapping feel"
+    },
+    {
+      "id": "bridge-span-tiles",
+      "reason": "ClassIn-fiddly + overlaps K5 REG"
+    },
+    {
+      "id": "airport-jet-bridge",
+      "reason": "fiddly scale + brand-airport feel"
+    },
+    {
+      "id": "zoo-enclosure",
+      "reason": "ALREADY_DEEP + prompt-named"
+    },
+    {
+      "id": "dino-zoo",
+      "reason": "trivial zoo swap"
+    },
+    {
+      "id": "amusement-ride-plaza",
+      "reason": "prompt-named + brand imitation risk"
+    },
+    {
+      "id": "habitat-biome-builder",
+      "reason": "ALREADY_DEEP A+B"
+    },
+    {
+      "id": "town-route-tile-pack",
+      "reason": "K5 owns"
+    },
+    {
+      "id": "object-cutaway-wall",
+      "reason": "ALREADY_DEEP S4/CDE"
+    },
+    {
+      "id": "recycling-sort-line",
+      "reason": "logo/mark risk"
+    },
+    {
+      "id": "space-mission-pad",
+      "reason": "brand-sci-fi + weak ESL payoff"
+    },
+    {
+      "id": "castle-wall-builder",
+      "reason": "branded imitation / weak language"
+    },
+    {
+      "id": "parking-garage",
+      "reason": "route-adjacent + fiddly"
+    },
+    {
+      "id": "classroom-seating",
+      "reason": "ordinary / fiddly"
+    },
+    {
+      "id": "puppet-booth",
+      "reason": "visual-weak / niche"
+    }
+  ],
+  "brainstorm_count": 30,
+  "families": [
+    {
+      "id": "bw-canal-lock",
+      "slug": "canal-lock",
+      "selected": true,
+      "rank": 1,
+      "scores": {
+        "play": 5,
+        "reuse": 4,
+        "distinctiveness": 5,
+        "language": 5,
+        "hard_to_recreate_later": 5,
+        "manus_suitability": 5,
+        "total": 29
+      },
+      "cluster": "water-works",
+      "prompt_named": false,
+      "play_pattern": "Open/close gates; move boat chamber to chamber",
+      "why_novel": "No modular lock atoms; CDE has dam cutaway only",
+      "manus_brief_outline": "1 empty lock corridor base; chamber/gate modules; water-level overlays; boat tokens; stuck-gate / leak problems",
+      "kit_parts": ["base", "modules", "connectors", "tokens", "problems"]
+    },
+    {
+      "id": "bw-kaiten-belt",
+      "slug": "kaiten-belt",
+      "selected": true,
+      "rank": 2,
+      "scores": {
+        "play": 5,
+        "reuse": 4,
+        "distinctiveness": 5,
+        "language": 5,
+        "hard_to_recreate_later": 5,
+        "manus_suitability": 4,
+        "total": 28
+      },
+      "cluster": "food-service",
+      "prompt_named": false,
+      "play_pattern": "Circulate plates along a loop; serve/claim",
+      "why_novel": "No belt-loop builder; cafe settings are rooms",
+      "manus_brief_outline": "1 belt-loop base; curve/straight belt modules; dish tokens; spill/empty-plate problems",
+      "kit_parts": ["base", "modules", "connectors", "tokens", "problems"]
+    },
+    {
+      "id": "bw-beehive-stack",
+      "slug": "beehive-stack",
+      "selected": true,
+      "rank": 3,
+      "scores": {
+        "play": 5,
+        "reuse": 4,
+        "distinctiveness": 5,
+        "language": 4,
+        "hard_to_recreate_later": 5,
+        "manus_suitability": 5,
+        "total": 28
+      },
+      "cluster": "nature-craft",
+      "prompt_named": false,
+      "play_pattern": "Stack boxes; pull frames; inspect",
+      "why_novel": "No hive modular kit; bee vocab is tokens only",
+      "manus_brief_outline": "1 apiary pad base; box/frame modules; bee/comb tokens; cracked-frame / swarm overlays",
+      "kit_parts": ["base", "modules", "connectors", "tokens", "problems"]
+    },
+    {
+      "id": "bw-harbor-berth",
+      "slug": "harbor-berth",
+      "selected": true,
+      "rank": 4,
+      "scores": {
+        "play": 5,
+        "reuse": 5,
+        "distinctiveness": 4,
+        "language": 5,
+        "hard_to_recreate_later": 4,
+        "manus_suitability": 5,
+        "total": 28
+      },
+      "cluster": "waterfront",
+      "prompt_named": false,
+      "play_pattern": "Berth boats; load crates",
+      "why_novel": "Marina stage exists; berth-slip modules do not",
+      "manus_brief_outline": "1 quay base; slip/pier modules; bollard connectors; boat+crate tokens; spill/loose-line problems",
+      "kit_parts": ["base", "modules", "connectors", "tokens", "problems"]
+    },
+    {
+      "id": "bw-bakery-line",
+      "slug": "bakery-line",
+      "selected": true,
+      "rank": 5,
+      "scores": {
+        "play": 5,
+        "reuse": 5,
+        "distinctiveness": 4,
+        "language": 5,
+        "hard_to_recreate_later": 4,
+        "manus_suitability": 5,
+        "total": 28
+      },
+      "cluster": "food-service",
+      "prompt_named": false,
+      "play_pattern": "Sequence dough→tray→oven→cool along counters",
+      "why_novel": "Bakery shop stage exists; production-line modules do not",
+      "manus_brief_outline": "1 kitchen-line base; counter/oven modules; dough-state tokens; burn/spill overlays",
+      "kit_parts": ["base", "modules", "connectors", "tokens", "problems"]
+    },
+    {
+      "id": "bw-market-stall",
+      "slug": "market-stall",
+      "selected": true,
+      "rank": 6,
+      "scores": {
+        "play": 4,
+        "reuse": 5,
+        "distinctiveness": 3,
+        "language": 5,
+        "hard_to_recreate_later": 4,
+        "manus_suitability": 5,
+        "total": 26
+      },
+      "cluster": "civic-trade",
+      "prompt_named": false,
+      "play_pattern": "Stock stalls under awnings",
+      "why_novel": "Marketplace stage is a place wash; stall atoms missing",
+      "manus_brief_outline": "1 arcade base; stall shells; awning connectors; produce tokens; empty-stall problems",
+      "kit_parts": ["base", "modules", "connectors", "tokens", "problems"]
+    },
+    {
+      "id": "bw-theatre-wings",
+      "slug": "theatre-wings",
+      "selected": true,
+      "rank": 7,
+      "scores": {
+        "play": 4,
+        "reuse": 4,
+        "distinctiveness": 4,
+        "language": 4,
+        "hard_to_recreate_later": 4,
+        "manus_suitability": 5,
+        "total": 25
+      },
+      "cluster": "perform",
+      "prompt_named": false,
+      "play_pattern": "Dress empty stage with flats/props",
+      "why_novel": "Theater setting is empty hall; wing kit missing",
+      "manus_brief_outline": "1 stage base; flat/wing modules; prop tokens; wrong-curtain overlays",
+      "kit_parts": ["base", "modules", "connectors", "tokens", "problems"]
+    },
+    {
+      "id": "bw-camping-pitch",
+      "slug": "camping-pitch",
+      "selected": true,
+      "rank": 8,
+      "scores": {
+        "play": 4,
+        "reuse": 4,
+        "distinctiveness": 4,
+        "language": 4,
+        "hard_to_recreate_later": 4,
+        "manus_suitability": 5,
+        "total": 25
+      },
+      "cluster": "outdoor",
+      "prompt_named": false,
+      "play_pattern": "Pitch tent + ring + trail markers",
+      "why_novel": "Forest/camp settings exist; pitch kit missing",
+      "manus_brief_outline": "1 clearing base; tent-pad modules; peg connectors; camp tokens; rain/fallen-tent problems",
+      "kit_parts": ["base", "modules", "connectors", "tokens", "problems"]
+    },
+    {
+      "id": "bw-ferry-apron",
+      "slug": "ferry-apron",
+      "selected": false,
+      "rank": 9,
+      "scores": {
+        "play": 4,
+        "reuse": 4,
+        "distinctiveness": 4,
+        "language": 4,
+        "hard_to_recreate_later": 4,
+        "manus_suitability": 4,
+        "total": 24
+      },
+      "cluster": "waterfront",
+      "prompt_named": false,
+      "play_pattern": "Queue vehicles onto ramp lanes",
+      "why_novel": "Ferry deck stage exists; loading-apron modules do not",
+      "manus_brief_outline": "runway only",
+      "kit_parts": ["base", "modules", "connectors", "tokens", "problems"]
+    },
+    {
+      "id": "bw-cargo-hold",
+      "slug": "cargo-hold",
+      "selected": false,
+      "rank": 10,
+      "scores": {
+        "play": 4,
+        "reuse": 4,
+        "distinctiveness": 4,
+        "language": 4,
+        "hard_to_recreate_later": 4,
+        "manus_suitability": 4,
+        "total": 24
+      },
+      "cluster": "logistics",
+      "prompt_named": false,
+      "play_pattern": "Stow crates into bay with nets",
+      "why_novel": "Logistics scenes exist; hold-stow kit does not",
+      "manus_brief_outline": "runway only",
+      "kit_parts": ["base", "modules", "connectors", "tokens", "problems"]
+    }
+  ],
+  "fire_order_A": [
+    "canal-lock",
+    "kaiten-belt",
+    "beehive-stack",
+    "harbor-berth"
+  ],
+  "fire_order_B": [
+    "bakery-line",
+    "market-stall",
+    "theatre-wings",
+    "camping-pitch"
+  ],
+  "updated_at": "2026-08-20T05:15:00.000Z"
+}
