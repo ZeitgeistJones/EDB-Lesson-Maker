@@ -4,7 +4,7 @@
   "ow_prefix": "ow-",
   "waves": {
     "ki-pets-variation": {
-      "family_id": "ki-ki-pets-variation",
+      "family_id": "ki-pets-variation",
       "title": "KI pets body-types + pet-life (3×3 ×3)",
       "lane": "pets",
       "stockpile": "kid-interest",
@@ -12,17 +12,33 @@
       "in_prompt_named": true,
       "task_id": "6qPVew3M4mRqdiJQdMx9rk",
       "task_url": "https://manus.im/app/6qPVew3M4mRqdiJQdMx9rk",
-      "agent_status": null,
+      "agent_status": "stopped",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\pets\\ki-pets-variation\\sheets",
       "expected_sheets": 3,
       "cell_count": 27,
-      "sheets": [],
-      "finished_at": null,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3942084,
+          "name": "ki-pets-cat-other-pets-3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4231061,
+          "name": "ki-pets-dog-body-types-3x3.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4204624,
+          "name": "ki-pets-pet-life-gear-3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T07:28:32.731Z",
       "holds": [],
-      "qa": ""
+      "qa": "PASS"
     },
     "ki-creator-digital": {
-      "family_id": "ki-ki-creator-digital",
+      "family_id": "ki-creator-digital",
       "title": "KI creator + unbranded gaming (3×3 ×3)",
       "lane": "gaming-digital",
       "stockpile": "kid-interest",
@@ -30,14 +46,30 @@
       "in_prompt_named": true,
       "task_id": "DAMfTjTgd8kJ9HCquMJrjK",
       "task_url": "https://manus.im/app/DAMfTjTgd8kJ9HCquMJrjK",
-      "agent_status": null,
+      "agent_status": "stopped",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\gaming-digital\\ki-creator-digital\\sheets",
       "expected_sheets": 3,
       "cell_count": 27,
-      "sheets": [],
-      "finished_at": null,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3676202,
+          "name": "S1_unbranded_gaming_3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4443011,
+          "name": "S2_creator_video_kit_3x3.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3399198,
+          "name": "S3_creator_new_actions_gear_3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T07:27:30.554Z",
       "holds": [],
-      "qa": ""
+      "qa": "PASS"
     },
     "ow-wave1-three-worlds": {
       "family_id": "ow-wave1",
@@ -48,14 +80,292 @@
       "in_prompt_named": false,
       "task_id": "j5m4GXumXEW6yuQC9BFMZb",
       "task_url": "https://manus.im/app/j5m4GXumXEW6yuQC9BFMZb",
-      "agent_status": null,
+      "agent_status": "stopped",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\leisure\\ow-wave1-three-worlds\\sheets",
       "expected_sheets": 3,
       "cell_count": 3,
-      "sheets": [],
-      "finished_at": null,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 5507407,
+          "name": "ow-lakeside-marina.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4336754,
+          "name": "ow-maker-fair.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4411679,
+          "name": "ow-skate-plaza.png"
+        }
+      ],
+      "finished_at": "2026-08-20T07:34:05.314Z",
       "holds": [],
-      "qa": ""
+      "qa": "PASS"
+    },
+    "ki-leisure-vehicles": {
+      "family_id": "ki-leisure-vehicles",
+      "title": "KI leisure vehicles (3×3 ×3)",
+      "lane": "vehicles-leisure",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "task_id": "SBzAbq63gA4J2wedY3XUfW",
+      "task_url": "https://manus.im/app/SBzAbq63gA4J2wedY3XUfW",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\vehicles-leisure\\ki-leisure-vehicles\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4102117,
+          "name": "ki-leisure-vehicles_S1_kart-fair-vehicles.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4313562,
+          "name": "ki-leisure-vehicles_S2_boards-wheels.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3690052,
+          "name": "ki-leisure-vehicles_S3_ramps-ride-gear.png"
+        }
+      ],
+      "finished_at": "2026-08-20T07:33:01.993Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-crafts-sensory": {
+      "family_id": "ki-crafts-sensory",
+      "title": "KI crafts sensory + actions (3×3 ×3)",
+      "lane": "crafts-maker",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "task_id": "nYrDitJBoPqSFbRWfxZKiR",
+      "task_url": "https://manus.im/app/nYrDitJBoPqSFbRWfxZKiR",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\crafts-maker\\ki-crafts-sensory\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3910733,
+          "name": "ki-crafts-sensory_S1.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3509234,
+          "name": "ki-crafts-sensory_S2.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3626443,
+          "name": "ki-crafts-sensory_S3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T07:32:29.823Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-discovered-clubs": {
+      "family_id": "ki-discovered-clubs",
+      "title": "KI discovered kid clubs / mid-obscure (3×3 ×3)",
+      "lane": "other-discovered",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "auyywsZ67FdxwNVXJqjw3H",
+      "task_url": "https://manus.im/app/auyywsZ67FdxwNVXJqjw3H",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\other-discovered\\ki-discovered-clubs\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4231276,
+          "name": "ki-disc-play-clubs-3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3833465,
+          "name": "ki-disc-science-collect-3x3.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3966478,
+          "name": "ki-disc-tech-clubs-3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T07:37:37.972Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-sports-active": {
+      "family_id": "ki-sports-active",
+      "title": "KI active sports gear beyond balls (3×3 ×3)",
+      "lane": "sports",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "task_id": "EVH9cBHnz53N9JsavYpso9",
+      "task_url": "https://manus.im/app/EVH9cBHnz53N9JsavYpso9",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\sports\\ki-sports-active\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3707327,
+          "name": "ki-sports-active_S1_racket-court-water_3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3824189,
+          "name": "ki-sports-active_S2_gym-martial-winter_3x3.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4465214,
+          "name": "ki-sports-active_S3_discovered-sports_3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T07:37:09.734Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ow-wave2-adventure": {
+      "family_id": "ow-wave2",
+      "title": "OW wave2 — island cove + observatory + treehouse forest (FULL-PAGE ×3)",
+      "lane": "overview",
+      "stockpile": "overview-worlds",
+      "novelty": "mixed",
+      "in_prompt_named": false,
+      "task_id": "gcyf6g9fKGL7jxr8zVXPiJ",
+      "task_url": "https://manus.im/app/gcyf6g9fKGL7jxr8zVXPiJ",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\nature-adventure\\ow-wave2-adventure\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 3,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4455666,
+          "name": "ow-island-cove.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4471572,
+          "name": "ow-observatory-ridge.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 5279920,
+          "name": "ow-treehouse-forest.png"
+        }
+      ],
+      "finished_at": "2026-08-20T07:36:38.031Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-music-life": {
+      "family_id": "ki-music-life",
+      "title": "KI music-life kit (not more identical guitars)",
+      "lane": "music",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "task_id": "XZ239bTKjnxcTnqff9rMZv",
+      "task_url": "https://manus.im/app/XZ239bTKjnxcTnqff9rMZv",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\music\\ki-music-life\\sheets",
+      "expected_sheets": 2,
+      "cell_count": 18,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4027316,
+          "name": "ki_music_instruments_topup_3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3583636,
+          "name": "ki_music_life_3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T07:43:40.970Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-hobby-social": {
+      "family_id": "ki-hobby-social",
+      "title": "KI social hobby kits (sleepover/fort/stand) NEW-heavy",
+      "lane": "hobbies",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "hKqXn4CprD2JRJLTaAXvRY",
+      "task_url": "https://manus.im/app/hKqXn4CprD2JRJLTaAXvRY",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\hobbies\\ki-hobby-social\\sheets",
+      "expected_sheets": 2,
+      "cell_count": 18,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3677910,
+          "name": "ki-hobby-social-club-life.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3788997,
+          "name": "ki-hobby-social-sleepover-fort.png"
+        }
+      ],
+      "finished_at": "2026-08-20T07:42:47.818Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ow-wave3-town-event": {
+      "family_id": "ow-wave3",
+      "title": "OW wave3 — winter festival + community campus + harbor market (FULL-PAGE ×3)",
+      "lane": "overview",
+      "stockpile": "overview-worlds",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "task_id": "Lias84sgcchAPNsskZzUn7",
+      "task_url": "https://manus.im/app/Lias84sgcchAPNsskZzUn7",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\town-community\\ow-wave3-town-event\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 3,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4969586,
+          "name": "ow-wave3-community-center.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4799119,
+          "name": "ow-wave3-harbor-night-market.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4649054,
+          "name": "ow-wave3-town-event-winter-festival.png"
+        }
+      ],
+      "finished_at": "2026-08-20T07:42:49.236Z",
+      "holds": [],
+      "qa": "PASS"
     }
   },
   "families": {
@@ -161,20 +471,384 @@
       "manus_task_id": "j5m4GXumXEW6yuQC9BFMZb",
       "task_url": "https://manus.im/app/j5m4GXumXEW6yuQC9BFMZb",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\leisure\\ow-wave1-three-worlds\\sheets",
-      "status": "fired",
-      "qa": ""
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-creator-digital": {
+      "family_id": "ki-creator-digital",
+      "wave": "ki-creator-digital",
+      "lane": "gaming-digital",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "why": "THIN gaming/creator — ring-light/green-screen missing; no brands/UI",
+      "siblings": [
+        "ki-game-controller-standard",
+        "ki-game-controller-alt",
+        "ki-game-handheld-console",
+        "ki-game-vr-headset",
+        "ki-game-gaming-headset",
+        "ki-game-blank-monitor",
+        "ki-game-keyboard",
+        "ki-game-mouse",
+        "ki-game-chair-gaming",
+        "ki-creator-ring-light",
+        "ki-creator-webcam",
+        "ki-creator-boom-mic",
+        "ki-creator-camera-on-tripod",
+        "ki-creator-softbox-light",
+        "ki-creator-laptop-blank",
+        "ki-creator-tablet-blank",
+        "ki-creator-headphones-studio",
+        "ki-creator-pop-filter",
+        "ki-creator-green-screen-stand",
+        "ki-creator-stop-motion-rig",
+        "ki-creator-karaoke-mic",
+        "ki-creator-mic-stand",
+        "ki-creator-cable-coil",
+        "ki-creator-clapperboard-blank",
+        "ki-creator-reflector-disk",
+        "ki-creator-gimbal",
+        "ki-creator-sd-card-holder"
+      ],
+      "manus_task_id": "DAMfTjTgd8kJ9HCquMJrjK",
+      "task_url": "https://manus.im/app/DAMfTjTgd8kJ9HCquMJrjK",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\gaming-digital\\ki-creator-digital\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-pets-variation": {
+      "family_id": "ki-pets-variation",
+      "wave": "ki-pets-variation",
+      "lane": "pets",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "why": "PARTIAL pets — need distinguishable body types + gear, not breed trivia",
+      "siblings": [
+        "ki-pets-dog-short-stocky",
+        "ki-pets-dog-tall-slim",
+        "ki-pets-dog-fluffy-round",
+        "ki-pets-dog-long-low",
+        "ki-pets-dog-pointy-ear",
+        "ki-pets-dog-floppy-ear",
+        "ki-pets-puppy-small",
+        "ki-pets-dog-lying",
+        "ki-pets-dog-sitting",
+        "ki-pets-cat-sleek",
+        "ki-pets-cat-fluffy",
+        "ki-pets-kitten",
+        "ki-pets-hamster",
+        "ki-pets-rabbit",
+        "ki-pets-guinea-pig",
+        "ki-pets-goldfish-bowl",
+        "ki-pets-turtle",
+        "ki-pets-budgie-perch",
+        "ki-pets-pet-carrier",
+        "ki-pets-food-bowl",
+        "ki-pets-water-bowl",
+        "ki-pets-leash-collar",
+        "ki-pets-litter-box",
+        "ki-pets-scratching-post",
+        "ki-pets-bird-cage",
+        "ki-pets-aquarium-tank",
+        "ki-pets-pet-bed"
+      ],
+      "manus_task_id": "6qPVew3M4mRqdiJQdMx9rk",
+      "task_url": "https://manus.im/app/6qPVew3M4mRqdiJQdMx9rk",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\pets\\ki-pets-variation\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-leisure-vehicles": {
+      "family_id": "ki-leisure-vehicles",
+      "wave": "ki-leisure-vehicles",
+      "lane": "vehicles-leisure",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "why": "MISSING go-kart / bumper / pedal boat depth",
+      "siblings": [
+        "ki-veh-go-kart",
+        "ki-veh-bumper-car",
+        "ki-veh-pedal-boat",
+        "ki-veh-mini-train-car",
+        "ki-veh-snow-tube",
+        "ki-veh-sled",
+        "ki-veh-gondola-cabin",
+        "ki-veh-carousel-horse",
+        "ki-veh-water-ride-boat",
+        "ki-veh-skateboard",
+        "ki-veh-longboard",
+        "ki-veh-scooter-kick",
+        "ki-veh-roller-skates",
+        "ki-veh-inline-skates",
+        "ki-veh-surfboard",
+        "ki-veh-bodyboard",
+        "ki-veh-paddleboard",
+        "ki-veh-bmx-bike",
+        "ki-veh-skate-ramp-quarter",
+        "ki-veh-skate-rail",
+        "ki-veh-helmet",
+        "ki-veh-knee-pads",
+        "ki-veh-life-jacket",
+        "ki-veh-unicycle",
+        "ki-veh-pogo-stick",
+        "ki-veh-stilts",
+        "ki-veh-balance-bike"
+      ],
+      "manus_task_id": "SBzAbq63gA4J2wedY3XUfW",
+      "task_url": "https://manus.im/app/SBzAbq63gA4J2wedY3XUfW",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\vehicles-leisure\\ki-leisure-vehicles\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-crafts-sensory": {
+      "family_id": "ki-crafts-sensory",
+      "wave": "ki-crafts-sensory",
+      "lane": "crafts-maker",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "why": "THIN crafts — slime/origami missing; need action still-lifes",
+      "siblings": [
+        "ki-craft-slime-tub",
+        "ki-craft-slime-stretch",
+        "ki-craft-clay-block",
+        "ki-craft-clay-tools",
+        "ki-craft-pottery-wheel",
+        "ki-craft-bead-tray",
+        "ki-craft-yarn-ball",
+        "ki-craft-origami-stack",
+        "ki-craft-glue-scissors",
+        "ki-craft-cardboard-fort",
+        "ki-craft-paint-set",
+        "ki-craft-embroidery-hoop",
+        "ki-craft-friendship-loom",
+        "ki-craft-sand-art-bottle",
+        "ki-craft-face-paint-palette",
+        "ki-craft-rubber-stamp-set",
+        "ki-craft-model-glider",
+        "ki-craft-tape-measure",
+        "ki-craft-action-pour",
+        "ki-craft-action-mix",
+        "ki-craft-action-roll",
+        "ki-craft-action-cut",
+        "ki-craft-action-fold",
+        "ki-craft-action-glue",
+        "ki-craft-action-paint",
+        "ki-craft-action-thread",
+        "ki-craft-action-build"
+      ],
+      "manus_task_id": "nYrDitJBoPqSFbRWfxZKiR",
+      "task_url": "https://manus.im/app/nYrDitJBoPqSFbRWfxZKiR",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\crafts-maker\\ki-crafts-sensory\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-discovered-clubs": {
+      "family_id": "ki-discovered-clubs",
+      "wave": "ki-discovered-clubs",
+      "lane": "other-discovered",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "≥40% novelty — magic, marble-run, DJ, science kits NOT named in prompt",
+      "siblings": [
+        "ki-disc-marble-run-tower",
+        "ki-disc-marbles-set",
+        "ki-disc-magic-hat",
+        "ki-disc-magic-wand",
+        "ki-disc-magic-cards-blank",
+        "ki-disc-juggling-clubs",
+        "ki-disc-yo-yo",
+        "ki-disc-bubble-machine",
+        "ki-disc-pinata",
+        "ki-disc-dj-deck",
+        "ki-disc-synth-keyboard",
+        "ki-disc-drum-pad",
+        "ki-disc-walkie-pair",
+        "ki-disc-rc-car",
+        "ki-disc-robot-kit-large",
+        "ki-disc-telescope-tripod",
+        "ki-disc-binoculars",
+        "ki-disc-weather-station",
+        "ki-disc-fossil-dig-tray",
+        "ki-disc-fossil-bone",
+        "ki-disc-terrarium-jar",
+        "ki-disc-ant-farm",
+        "ki-disc-crystal-jar",
+        "ki-disc-volcano-model",
+        "ki-disc-rock-tumbler",
+        "ki-disc-gem-pouch",
+        "ki-disc-stamp-album"
+      ],
+      "manus_task_id": "auyywsZ67FdxwNVXJqjw3H",
+      "task_url": "https://manus.im/app/auyywsZ67FdxwNVXJqjw3H",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\other-discovered\\ki-discovered-clubs\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-sports-active": {
+      "family_id": "ki-sports-active",
+      "wave": "ki-sports-active",
+      "lane": "sports",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "why": "THIN badminton/kayak/gym/martial — skip endless balls",
+      "siblings": [
+        "ki-sport-badminton-racket",
+        "ki-sport-shuttlecock",
+        "ki-sport-tennis-racket",
+        "ki-sport-kayak",
+        "ki-sport-paddle",
+        "ki-sport-frisbee",
+        "ki-sport-kite",
+        "ki-sport-fishing-rod",
+        "ki-sport-climbing-holds",
+        "ki-sport-gym-rings",
+        "ki-sport-balance-beam",
+        "ki-sport-martial-belt",
+        "ki-sport-martial-pads",
+        "ki-sport-snowboard",
+        "ki-sport-skis-poles",
+        "ki-sport-ice-skates",
+        "ki-sport-trampoline-mat",
+        "ki-sport-chalk-bag",
+        "ki-sport-archery-bow",
+        "ki-sport-archery-target",
+        "ki-sport-fencing-mask",
+        "ki-sport-fencing-foil",
+        "ki-sport-lacrosse-stick",
+        "ki-sport-hockey-stick",
+        "ki-sport-hockey-puck",
+        "ki-sport-parkour-box",
+        "ki-sport-cheer-poms"
+      ],
+      "manus_task_id": "EVH9cBHnz53N9JsavYpso9",
+      "task_url": "https://manus.im/app/EVH9cBHnz53N9JsavYpso9",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\sports\\ki-sports-active\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ow-wave2": {
+      "family_id": "ow-wave2",
+      "wave": "ow-wave2-adventure",
+      "lane": "overview",
+      "stockpile": "overview-worlds",
+      "novelty": "mixed",
+      "in_prompt_named": false,
+      "why": "Breadth of adventure/fantasy overviews; 2/3 discovered-new",
+      "siblings": [
+        "ow-island-cove",
+        "ow-observatory-ridge",
+        "ow-treehouse-forest"
+      ],
+      "manus_task_id": "gcyf6g9fKGL7jxr8zVXPiJ",
+      "task_url": "https://manus.im/app/gcyf6g9fKGL7jxr8zVXPiJ",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\nature-adventure\\ow-wave2-adventure\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-music-life": {
+      "family_id": "ki-music-life",
+      "wave": "ki-music-life",
+      "lane": "music",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "why": "PARTIAL music-life — stands/headphones/amp as a kit",
+      "siblings": [
+        "ki-music-mic-on-stand",
+        "ki-music-amp-blank",
+        "ki-music-headphones",
+        "ki-music-music-stand",
+        "ki-music-instrument-case",
+        "ki-music-guitar-strap",
+        "ki-music-drumsticks",
+        "ki-music-capo",
+        "ki-music-tuner-clip",
+        "ki-music-sax",
+        "ki-music-trumpet",
+        "ki-music-flute",
+        "ki-music-ukulele",
+        "ki-music-violin",
+        "ki-music-drum-kit-compact",
+        "ki-music-xylophone",
+        "ki-music-tambourine",
+        "ki-music-harmonica"
+      ],
+      "manus_task_id": "XZ239bTKjnxcTnqff9rMZv",
+      "task_url": "https://manus.im/app/XZ239bTKjnxcTnqff9rMZv",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\music\\ki-music-life\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-hobby-social": {
+      "family_id": "ki-hobby-social",
+      "wave": "ki-hobby-social",
+      "lane": "hobbies",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Kid social life depth — pillow fort, lemonade stand, projector",
+      "siblings": [
+        "ki-hobby-sleeping-bag",
+        "ki-hobby-pillow-fort",
+        "ki-hobby-blanket-fort",
+        "ki-hobby-flashlight",
+        "ki-hobby-board-game-box",
+        "ki-hobby-dice-set",
+        "ki-hobby-playing-cards-blank",
+        "ki-hobby-popcorn-bowl",
+        "ki-hobby-projector-sheet",
+        "ki-hobby-lemonade-stand",
+        "ki-hobby-bike-repair-stand",
+        "ki-hobby-hammock",
+        "ki-hobby-treasure-chest",
+        "ki-hobby-compass",
+        "ki-hobby-medal-blank",
+        "ki-hobby-trophy-blank",
+        "ki-hobby-science-fair-board",
+        "ki-hobby-badge-sash"
+      ],
+      "manus_task_id": "hKqXn4CprD2JRJLTaAXvRY",
+      "task_url": "https://manus.im/app/hKqXn4CprD2JRJLTaAXvRY",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\hobbies\\ki-hobby-social\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ow-wave3": {
+      "family_id": "ow-wave3",
+      "wave": "ow-wave3-town-event",
+      "lane": "overview",
+      "stockpile": "overview-worlds",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "why": "Event + town community overviews",
+      "siblings": [
+        "ow-winter-festival",
+        "ow-community-center",
+        "ow-harbor-night-market"
+      ],
+      "manus_task_id": "Lias84sgcchAPNsskZzUn7",
+      "task_url": "https://manus.im/app/Lias84sgcchAPNsskZzUn7",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\town-community\\ow-wave3-town-event\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
     }
   },
   "running_total": {
-    "tasks": 3,
-    "sheets_downloaded": 0,
+    "tasks": 11,
+    "sheets_downloaded": 31,
     "waves_planned": 11,
-    "waves_done": 0,
-    "asset_cells": 57,
-    "families": 3,
-    "novelty_discovered_families": 1,
-    "prompt_named_families": 2,
-    "novelty_pct": 33
+    "waves_done": 11,
+    "asset_cells": 207,
+    "families": 13,
+    "novelty_discovered_families": 3,
+    "prompt_named_families": 9,
+    "novelty_pct": 23
   },
-  "updated_at": "2026-08-20T07:24:47.740Z"
+  "updated_at": "2026-08-20T07:43:40.983Z"
 }

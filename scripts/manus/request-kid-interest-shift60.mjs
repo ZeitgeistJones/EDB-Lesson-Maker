@@ -897,7 +897,15 @@ function writeDocStub(inv) {
   const events = eventMatch ? eventMatch[1].trim() : '_none yet_';
   lines.push(events || '_none yet_');
   lines.push('');
-  fs.writeFileSync(path.join(ROOT, TRACKED_DOC_REL), `${lines.join('\n')}\n`);
+  const out = `${lines.join('\n')}\n`;
+  const dest = path.join(ROOT, TRACKED_DOC_REL);
+  try {
+    fs.writeFileSync(dest, out);
+  } catch (err) {
+    const alt = path.join(ROOT, 'docs', 'kid-interest-shift60-log.write.tmp.md');
+    fs.writeFileSync(alt, out);
+    console.error(JSON.stringify({ phase: 'log-write-fallback', err: String(err.message || err), alt }));
+  }
 }
 
 function waveIsDone(wave) {
