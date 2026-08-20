@@ -1944,14 +1944,25 @@
       "in_prompt_named": false,
       "task_id": "CUFVasA9UdkVbKrXZL2io6",
       "task_url": "https://manus.im/app/CUFVasA9UdkVbKrXZL2io6",
-      "agent_status": null,
+      "agent_status": "stopped",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\music\\ki-vinyl-dj-deep\\sheets",
       "expected_sheets": 2,
       "cell_count": 18,
-      "sheets": [],
-      "finished_at": null,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4132474,
+          "name": "ki-vinyl-dj-deep_S1_dj-kit_3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3249044,
+          "name": "ki-vinyl-dj-deep_S2_booth_3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T19:13:17.402Z",
       "holds": [],
-      "qa": ""
+      "qa": "PASS"
     },
     "ow-wave30-clubs": {
       "family_id": "ow-wave30",
@@ -1962,14 +1973,30 @@
       "in_prompt_named": false,
       "task_id": "AWU5E3YppWAsYK6AxMYQT5",
       "task_url": "https://manus.im/app/AWU5E3YppWAsYK6AxMYQT5",
-      "agent_status": null,
+      "agent_status": "stopped",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\leisure\\ow-wave30-clubs\\sheets",
       "expected_sheets": 3,
       "cell_count": 3,
-      "sheets": [],
-      "finished_at": null,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4652634,
+          "name": "ow-bakery-street.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4677111,
+          "name": "ow-escape-loft.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4630117,
+          "name": "ow-ice-rink-complex.png"
+        }
+      ],
+      "finished_at": "2026-08-20T19:13:14.262Z",
       "holds": [],
-      "qa": ""
+      "qa": "PASS"
     },
     "ki-martial-dojo": {
       "family_id": "ki-martial-dojo",
@@ -1984,6 +2011,92 @@
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\sports\\ki-martial-dojo\\sheets",
       "expected_sheets": 2,
       "cell_count": 18,
+      "sheets": [],
+      "finished_at": null,
+      "holds": [],
+      "qa": ""
+    },
+    "ow-wave31-outdoors": {
+      "family_id": "ow-wave31",
+      "title": "OW wave31 — skate night + bird marsh + dig quarry (FULL-PAGE ×3)",
+      "lane": "overview",
+      "stockpile": "overview-worlds",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "bqPVcUFHjWo2MU8pxddZXf",
+      "task_url": "https://manus.im/app/bqPVcUFHjWo2MU8pxddZXf",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\nature-adventure\\ow-wave31-outdoors\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 3,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4980588,
+          "name": "ow-wave31-outdoors-ow-bird-marsh.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4237806,
+          "name": "ow-wave31-outdoors-ow-dig-quarry.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4408260,
+          "name": "ow-wave31-outdoors-ow-skate-plaza-night.png"
+        }
+      ],
+      "finished_at": "2026-08-20T19:16:10.685Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-radio-ham": {
+      "family_id": "ki-radio-ham",
+      "title": "KI radio + ham club NEW (3×3 ×3)",
+      "lane": "other-discovered",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "UgghRcaWe3jecj4GQKXAV8",
+      "task_url": "https://manus.im/app/UgghRcaWe3jecj4GQKXAV8",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\other-discovered\\ki-radio-ham\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3490441,
+          "name": "ki-radio-ham-antennas-3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3931879,
+          "name": "ki-radio-ham-club-desk-3x3.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3519691,
+          "name": "ki-radio-ham-radios-3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T19:16:46.981Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-skate-street-deep": {
+      "family_id": "ki-skate-street-deep",
+      "title": "KI skate street depth (3×3 ×3)",
+      "lane": "vehicles-leisure",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "task_id": "atQ8gfhw6BMyLeAYQgvrku",
+      "task_url": "https://manus.im/app/atQ8gfhw6BMyLeAYQgvrku",
+      "agent_status": null,
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\vehicles-leisure\\ki-skate-street-deep\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
       "sheets": [],
       "finished_at": null,
       "holds": [],
@@ -4338,8 +4451,8 @@
       "manus_task_id": "CUFVasA9UdkVbKrXZL2io6",
       "task_url": "https://manus.im/app/CUFVasA9UdkVbKrXZL2io6",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\music\\ki-vinyl-dj-deep\\sheets",
-      "status": "fired",
-      "qa": ""
+      "status": "generated_raw",
+      "qa": "PASS"
     },
     "ow-wave30": {
       "family_id": "ow-wave30",
@@ -4357,8 +4470,8 @@
       "manus_task_id": "AWU5E3YppWAsYK6AxMYQT5",
       "task_url": "https://manus.im/app/AWU5E3YppWAsYK6AxMYQT5",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\leisure\\ow-wave30-clubs\\sheets",
-      "status": "fired",
-      "qa": ""
+      "status": "generated_raw",
+      "qa": "PASS"
     },
     "ki-martial-dojo": {
       "family_id": "ki-martial-dojo",
@@ -4393,18 +4506,123 @@
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\sports\\ki-martial-dojo\\sheets",
       "status": "fired",
       "qa": ""
+    },
+    "ow-wave31": {
+      "family_id": "ow-wave31",
+      "wave": "ow-wave31-outdoors",
+      "lane": "overview",
+      "stockpile": "overview-worlds",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "NEW outdoor overviews",
+      "siblings": [
+        "ow-skate-plaza-night",
+        "ow-bird-marsh",
+        "ow-dig-quarry"
+      ],
+      "manus_task_id": "bqPVcUFHjWo2MU8pxddZXf",
+      "task_url": "https://manus.im/app/bqPVcUFHjWo2MU8pxddZXf",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\nature-adventure\\ow-wave31-outdoors\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-radio-ham": {
+      "family_id": "ki-radio-ham",
+      "wave": "ki-radio-ham",
+      "lane": "other-discovered",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Discovered tech club — ham/radio kit not in prompt",
+      "siblings": [
+        "ki-radio-handheld-radio",
+        "ki-radio-base-station",
+        "ki-radio-walkie-pair-radio",
+        "ki-radio-shortwave",
+        "ki-radio-cb-mic",
+        "ki-radio-headset-radio",
+        "ki-radio-morse-key",
+        "ki-radio-swr-meter-blank",
+        "ki-radio-power-supply",
+        "ki-radio-antenna-mast",
+        "ki-radio-yagi",
+        "ki-radio-dipole",
+        "ki-radio-magnetic-mount",
+        "ki-radio-coax-coil",
+        "ki-radio-balun",
+        "ki-radio-ground-plane",
+        "ki-radio-portable-mast",
+        "ki-radio-antenna-analyzer-blank",
+        "ki-radio-logbook-blank",
+        "ki-radio-qsl-card-blank",
+        "ki-radio-world-map-blank",
+        "ki-radio-desk-lamp-radio",
+        "ki-radio-clock-utc-blank",
+        "ki-radio-badge-radio",
+        "ki-radio-go-box",
+        "ki-radio-solar-panel-small",
+        "ki-radio-trophy-radio"
+      ],
+      "manus_task_id": "UgghRcaWe3jecj4GQKXAV8",
+      "task_url": "https://manus.im/app/UgghRcaWe3jecj4GQKXAV8",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\other-discovered\\ki-radio-ham\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-skate-street-deep": {
+      "family_id": "ki-skate-street-deep",
+      "wave": "ki-skate-street-deep",
+      "lane": "vehicles-leisure",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "why": "Vehicles/boards still thin — street skate parts + obstacles",
+      "siblings": [
+        "ki-sk8-deck-blank",
+        "ki-sk8-longboard-deck",
+        "ki-sk8-cruiser-deck",
+        "ki-sk8-trucks",
+        "ki-sk8-wheels-set",
+        "ki-sk8-bearings-pack",
+        "ki-sk8-grip-tape",
+        "ki-sk8-skate-tool",
+        "ki-sk8-complete-board",
+        "ki-sk8-manual-pad",
+        "ki-sk8-kicker-ramp",
+        "ki-sk8-rail-flatbar",
+        "ki-sk8-pyramid",
+        "ki-sk8-stairs-set",
+        "ki-sk8-ledge-skate",
+        "ki-sk8-bowl-section",
+        "ki-sk8-spine",
+        "ki-sk8-bank-to-wall",
+        "ki-sk8-helmet-skate",
+        "ki-sk8-pads-set",
+        "ki-sk8-skate-backpack",
+        "ki-sk8-wax",
+        "ki-sk8-water-bottle-sk8",
+        "ki-sk8-beanie",
+        "ki-sk8-hoodie",
+        "ki-sk8-medal-skate",
+        "ki-sk8-trophy-skate"
+      ],
+      "manus_task_id": "atQ8gfhw6BMyLeAYQgvrku",
+      "task_url": "https://manus.im/app/atQ8gfhw6BMyLeAYQgvrku",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\vehicles-leisure\\ki-skate-street-deep\\sheets",
+      "status": "fired",
+      "qa": ""
     }
   },
   "running_total": {
-    "tasks": 61,
-    "sheets_downloaded": 166,
+    "tasks": 64,
+    "sheets_downloaded": 177,
     "waves_planned": 64,
-    "waves_done": 58,
-    "asset_cells": 1341,
-    "families": 63,
-    "novelty_discovered_families": 42,
-    "prompt_named_families": 20,
+    "waves_done": 62,
+    "asset_cells": 1398,
+    "families": 66,
+    "novelty_discovered_families": 44,
+    "prompt_named_families": 21,
     "novelty_pct": 67
   },
-  "updated_at": "2026-08-20T19:10:59.931Z"
+  "updated_at": "2026-08-20T19:16:46.997Z"
 }

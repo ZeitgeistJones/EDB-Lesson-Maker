@@ -9,10 +9,10 @@ Tracked: `scripts/manus/request-kid-interest-shift60.mjs`, audit/portfolio docs,
 | Metric | Count |
 |---|---:|
 | Waves planned | 64 |
-| Tasks | 61 |
-| Sheets downloaded | 166 |
-| Waves done | 58 |
-| Asset cells | 1341 |
+| Tasks | 64 |
+| Sheets downloaded | 177 |
+| Waves done | 62 |
+| Asset cells | 1398 |
 | Novelty (discovered families %) | 67% |
 
 ## Waves
@@ -73,14 +73,14 @@ Tracked: `scripts/manus/request-kid-interest-shift60.mjs`, audit/portfolio docs,
 - **ki-camping-outdoors** `ki-camping-outdoors` — generated_raw — novelty=discovered-new — https://manus.im/app/G7z7jWoGsxKPjfQQsphoT3 — 3 sheets / 27 cells — Discovered outdoors hobby — camping kit depth not in original prompt
 - **ki-fishing-tackle** `ki-fishing-tackle` — generated_raw — novelty=discovered-new — https://manus.im/app/9mPXFDamHSbZVhkrSgYDnX — 3 sheets / 27 cells — Discovered — fishing kit beyond one rod
 - **ki-baking-cafe** `ki-baking-cafe` — generated_raw — novelty=discovered-new — https://manus.im/app/krByKKVnadExWiV3vhB8BW — 3 sheets / 27 cells — Discovered — bakery cafe props beyond basic cook kit
-- **ki-radio-ham** `ki-radio-ham` — unfired — novelty=discovered-new — unfired — 3 sheets / 27 cells — Discovered tech club — ham/radio kit not in prompt
-- **ki-skate-street-deep** `ki-skate-street-deep` — unfired — novelty=prompt-direction — unfired — 3 sheets / 27 cells — Vehicles/boards still thin — street skate parts + obstacles
+- **ki-radio-ham** `ki-radio-ham` — generated_raw — novelty=discovered-new — https://manus.im/app/UgghRcaWe3jecj4GQKXAV8 — 3 sheets / 27 cells — Discovered tech club — ham/radio kit not in prompt
+- **ki-skate-street-deep** `ki-skate-street-deep` — fired — novelty=prompt-direction — https://manus.im/app/atQ8gfhw6BMyLeAYQgvrku — 3 sheets / 27 cells — Vehicles/boards still thin — street skate parts + obstacles
 - **ki-ice-hockey-club** `ki-ice-hockey-club` — generated_raw — novelty=discovered-new — https://manus.im/app/hfbH6UQxjgrdfsYgeoWyoL — 2 sheets / 18 cells — Discovered hockey depth
 - **ki-escape-room-props** `ki-escape-room-props` — generated_raw — novelty=discovered-new — https://manus.im/app/KmNTfDNMgw4tMZx2rFUEvP — 2 sheets / 18 cells — Discovered mystery/puzzle props
-- **ki-vinyl-dj-deep** `ki-vinyl-dj-deep` — fired — novelty=discovered-new — https://manus.im/app/CUFVasA9UdkVbKrXZL2io6 — 2 sheets / 18 cells — Discovered DJ/vinyl depth
-- **ow-wave30-clubs** `ow-wave30` — fired — novelty=discovered-new — https://manus.im/app/AWU5E3YppWAsYK6AxMYQT5 — 3 sheets / 3 cells — NEW overviews for hockey/pastry/escape
+- **ki-vinyl-dj-deep** `ki-vinyl-dj-deep` — generated_raw — novelty=discovered-new — https://manus.im/app/CUFVasA9UdkVbKrXZL2io6 — 2 sheets / 18 cells — Discovered DJ/vinyl depth
+- **ow-wave30-clubs** `ow-wave30` — generated_raw — novelty=discovered-new — https://manus.im/app/AWU5E3YppWAsYK6AxMYQT5 — 3 sheets / 3 cells — NEW overviews for hockey/pastry/escape
 - **ki-martial-dojo** `ki-martial-dojo` — fired — novelty=prompt-direction — https://manus.im/app/mCk4h38DGWsn2aU3xg7DPY — 2 sheets / 18 cells — Martial thin — dojo kit
-- **ow-wave31-outdoors** `ow-wave31` — unfired — novelty=discovered-new — unfired — 3 sheets / 3 cells — NEW outdoor overviews
+- **ow-wave31-outdoors** `ow-wave31` — generated_raw — novelty=discovered-new — https://manus.im/app/bqPVcUFHjWo2MU8pxddZXf — 3 sheets / 3 cells — NEW outdoor overviews
 
 ## Events
 
@@ -403,3 +403,20 @@ _none yet_
 - 2026-08-20T19:10:58.184Z — FIRED ow-wave30-clubs → https://manus.im/app/AWU5E3YppWAsYK6AxMYQT5
 
 - 2026-08-20T19:10:59.939Z — FIRED ki-martial-dojo → https://manus.im/app/mCk4h38DGWsn2aU3xg7DPY
+
+- 2026-08-20T19:13:11.907Z — DOWNLOADED ki-vinyl-dj-deep qa=PASS sheets=2 large=2/2 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\music\ki-vinyl-dj-deep\sheets
+
+- 2026-08-20T19:13:14.304Z — DOWNLOADED ow-wave30-clubs qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\leisure\ow-wave30-clubs\sheets
+
+- 2026-08-20T19:13:17.444Z — DOWNLOADED ki-vinyl-dj-deep qa=PASS sheets=2 large=2/2 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\music\ki-vinyl-dj-deep\sheets
+
+- 2026-08-20T19:14:23.809Z — FIRED ow-wave31-outdoors → https://manus.im/app/bqPVcUFHjWo2MU8pxddZXf
+
+- 2026-08-20T19:14:25.351Z — FIRED ki-radio-ham → https://manus.im/app/UgghRcaWe3jecj4GQKXAV8
+
+- 2026-08-20T19:15:29.885Z — FIRED ki-skate-street-deep → https://manus.im/app/atQ8gfhw6BMyLeAYQgvrku
+
+- 2026-08-20T19:16:10.728Z — DOWNLOADED ow-wave31-outdoors qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\nature-adventure\ow-wave31-outdoors\sheets
+
+- 2026-08-20T19:16:47.015Z — DOWNLOADED ki-radio-ham qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-radio-ham\sheets
+
