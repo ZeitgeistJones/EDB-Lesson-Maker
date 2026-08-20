@@ -19,6 +19,13 @@ Stockpile only. No producer / PropBank / recipe wiring.
 
 Lead (A) owns ranks 1–4: canal-lock, kaiten-belt, beehive-stack, harbor-berth.
 
+## Waves (B fire order)
+
+- bakery-line
+- market-stall
+- theatre-wings
+- camping-pitch
+
 ## Kit grammar (every family)
 
 - **base** — one empty full-page landscape play world (~35–50% open band)
@@ -42,17 +49,20 @@ Hard locks: no baked text/letters/numbers/logos; no zoo / amusement / route-tile
 
 | Metric | Count |
 |---|---:|
-| Tasks | 0 |
-| Sheets downloaded | 0 |
-| Bases | 0 |
-| Modules+connectors | 0 |
-| Tokens | 0 |
-| Problems/states | 0 |
-| RAW | 0 |
+| Tasks | 4 |
+| Sheets downloaded | 16 |
+| Bases | 4 |
+| Modules+connectors | 48 |
+| Tokens | 36 |
+| Problems/states | 36 |
+| RAW | 124 |
 
 ## Waves
 
-_none yet_
+- **bakery-line** bakery-line — https://manus.im/app/UJyotW6mTuLXfKS2hDCK3Z — sheets 4/4 — cells 31 — done
+- **market-stall** market-stall — https://manus.im/app/brppDoNMLNM8fxa3ewzDyb — sheets 4/4 — cells 31 — done
+- **theatre-wings** theatre-wings — https://manus.im/app/5MWhbRd4BQRguqpV33wx8b — sheets 4/4 — cells 31 — done
+- **camping-pitch** camping-pitch — https://manus.im/app/CkPqqeB2z6VERh6nCEjhjT — sheets 4/4 — cells 31 — done
 
 <!-- TOTALS:END -->
 
@@ -61,3 +71,6 @@ _none yet_
 - Stockpile only.
 - Free-drag modular — connectors are visual, not REG edge-join tiles.
 - Grade: play scale, empty base, no baked labels, problem states readable without text.
+- All 4 B families: **16/16** large sheets downloaded (4 each).
+- Slot note: first B fire overlapped stream A `canal-lock` because in-flight walk missed `<family>/run.json` (nested-only). Fixed walker before later waves; B itself stayed sequential (1 at a time).
+- Sheet filenames from Manus may permute modules/tokens/problems order; keys.json remains source of truth for cell lists.

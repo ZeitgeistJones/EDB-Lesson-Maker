@@ -344,32 +344,32 @@ const CMP1_SHEETS = [
 ];
 
 export const WAVES = {
-  bak1: {
-    id: 'bak1',
+  'bakery-line': {
+    id: 'bakery-line',
     stream: STREAM,
     family: 'bakery-line',
     partition: 'bakery-line',
     title: 'BW-B bakery-line kit (base+modules+tokens+states)',
     sheets: BAK1_SHEETS,
   },
-  mkt1: {
-    id: 'mkt1',
+  'market-stall': {
+    id: 'market-stall',
     stream: STREAM,
     family: 'market-stall',
     partition: 'market-stall',
     title: 'BW-B market-stall kit (base+modules+tokens+states)',
     sheets: MKT1_SHEETS,
   },
-  thw1: {
-    id: 'thw1',
+  'theatre-wings': {
+    id: 'theatre-wings',
     stream: STREAM,
     family: 'theatre-wings',
     partition: 'theatre-wings',
     title: 'BW-B theatre-wings kit (base+modules+tokens+states)',
     sheets: THW1_SHEETS,
   },
-  cmp1: {
-    id: 'cmp1',
+  'camping-pitch': {
+    id: 'camping-pitch',
     stream: STREAM,
     family: 'camping-pitch',
     partition: 'camping-pitch',
@@ -378,7 +378,7 @@ export const WAVES = {
   },
 };
 
-export const WAVE_ORDER = ['bak1', 'mkt1', 'thw1', 'cmp1'];
+export const WAVE_ORDER = ['bakery-line', 'market-stall', 'theatre-wings', 'camping-pitch'];
 
 function ensurePartition(name) {
   const dir = path.join(STOCKPILE, name);
@@ -388,7 +388,8 @@ function ensurePartition(name) {
 }
 
 function waveDir(wave) {
-  return path.join(STOCKPILE, wave.partition, wave.id);
+  // Match stream A layout: harvested/builder-worlds/<family>/
+  return path.join(STOCKPILE, wave.partition);
 }
 
 function arg(name, fallback = '') {
@@ -683,18 +684,32 @@ function writeDocTotals(inv) {
 function listAllRuns() {
   const hits = [];
   if (!fs.existsSync(STOCKPILE)) return hits;
-  for (const fam of fs.readdirSync(STOCKPILE, { withFileTypes: true })) {
-    if (!fam.isDirectory()) continue;
-    const famDir = path.join(STOCKPILE, fam.name);
-    for (const wave of fs.readdirSync(famDir, { withFileTypes: true })) {
-      if (!wave.isDirectory()) continue;
-      const runPath = path.join(famDir, wave.name, 'run.json');
-      if (!fs.existsSync(runPath)) continue;
-      try {
-        const run = JSON.parse(fs.readFileSync(runPath, 'utf8'));
-        hits.push({ family: fam.name, wave: wave.name, runPath, run });
-      } catch {
-        /* skip */
+  // Walk any run.json under builder-worlds/ (stream A uses <family>/run.json;
+  // nested <family>/<wave>/run.json also supported).
+  const stack = [STOCKPILE];
+  while (stack.length) {
+    const dir = stack.pop();
+    let ents;
+    try {
+      ents = fs.readdirSync(dir, { withFileTypes: true });
+    } catch {
+      continue;
+    }
+    for (const ent of ents) {
+      const p = path.join(dir, ent.name);
+      if (ent.isDirectory()) stack.push(p);
+      else if (ent.name === 'run.json') {
+        try {
+          const run = JSON.parse(fs.readFileSync(p, 'utf8'));
+          hits.push({
+            family: path.basename(path.dirname(p)),
+            wave: run.wave || path.basename(path.dirname(p)),
+            runPath: p,
+            run,
+          });
+        } catch {
+          /* skip */
+        }
       }
     }
   }

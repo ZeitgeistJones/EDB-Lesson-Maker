@@ -1,0 +1,1291 @@
+{
+  "kind": "builder-worlds-b",
+  "stream": "B",
+  "prefix": "bw-",
+  "families": [
+    "bakery-line",
+    "market-stall",
+    "theatre-wings",
+    "camping-pitch"
+  ],
+  "waves": {
+    "bakery-line": {
+      "id": "bakery-line",
+      "stream": "B",
+      "family": "bakery-line",
+      "partition": "bakery-line",
+      "title": "BW-B bakery-line kit (base+modules+tokens+states)",
+      "task_id": "UJyotW6mTuLXfKS2hDCK3Z",
+      "task_url": "https://manus.im/app/UJyotW6mTuLXfKS2hDCK3Z",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\builder-worlds\\bakery-line\\sheets",
+      "expected_sheets": 4,
+      "concept_count": 31,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4407475,
+          "name": "bw-bakery-line-base.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3359349,
+          "name": "bw-bakery-line-modules-connectors.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3581052,
+          "name": "bw-bakery-line-problems-states.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 3402870,
+          "name": "bw-bakery-line-tokens.png"
+        }
+      ],
+      "items": [
+        {
+          "key": "bw-bakery-line-base",
+          "family": "bakery-line",
+          "part": "base",
+          "kind": "stage",
+          "sheet_id": "bak1-base",
+          "format": "fullpage-landscape",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-mod-dough-bench",
+          "family": "bakery-line",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "bak1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-mod-tray-rack",
+          "family": "bakery-line",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "bak1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-mod-oven-mouth",
+          "family": "bakery-line",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "bak1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-mod-cool-rack",
+          "family": "bakery-line",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "bak1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-mod-mixer-pad",
+          "family": "bakery-line",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "bak1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-mod-proof-box",
+          "family": "bakery-line",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "bak1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-con-counter-join",
+          "family": "bakery-line",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "bak1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-con-tray-rail",
+          "family": "bakery-line",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "bak1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-con-oven-hinge",
+          "family": "bakery-line",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "bak1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-con-shelf-bracket",
+          "family": "bakery-line",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "bak1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-con-flour-chute",
+          "family": "bakery-line",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "bak1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-con-pass-window",
+          "family": "bakery-line",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "bak1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-tok-dough-ball",
+          "family": "bakery-line",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "bak1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-tok-dough-flat",
+          "family": "bakery-line",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "bak1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-tok-raw-loaf",
+          "family": "bakery-line",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "bak1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-tok-baked-loaf",
+          "family": "bakery-line",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "bak1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-tok-rolling-pin",
+          "family": "bakery-line",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "bak1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-tok-oven-mitt",
+          "family": "bakery-line",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "bak1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-tok-sheet-pan",
+          "family": "bakery-line",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "bak1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-tok-flour-scoop",
+          "family": "bakery-line",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "bak1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-tok-pastry-brush",
+          "family": "bakery-line",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "bak1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-st-burnt-loaf",
+          "family": "bakery-line",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "bak1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-st-spill-flour",
+          "family": "bakery-line",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "bak1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-st-empty-tray",
+          "family": "bakery-line",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "bak1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-st-overflow-tray",
+          "family": "bakery-line",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "bak1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-st-cracked-bowl",
+          "family": "bakery-line",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "bak1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-st-dough-stuck",
+          "family": "bakery-line",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "bak1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-st-oven-smoke",
+          "family": "bakery-line",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "bak1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-st-tidy-loaf",
+          "family": "bakery-line",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "bak1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-bak-st-repaired-bowl",
+          "family": "bakery-line",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "bak1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-20T05:34:45.182Z"
+    },
+    "market-stall": {
+      "id": "market-stall",
+      "stream": "B",
+      "family": "market-stall",
+      "partition": "market-stall",
+      "title": "BW-B market-stall kit (base+modules+tokens+states)",
+      "task_id": "brppDoNMLNM8fxa3ewzDyb",
+      "task_url": "https://manus.im/app/brppDoNMLNM8fxa3ewzDyb",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\builder-worlds\\market-stall\\sheets",
+      "expected_sheets": 4,
+      "concept_count": 31,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4064275,
+          "name": "bw-market-stall-base.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3646557,
+          "name": "bw-market-stall-modules-connectors.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 2900836,
+          "name": "bw-market-stall-problems-states.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 3966401,
+          "name": "bw-market-stall-tokens.png"
+        }
+      ],
+      "items": [
+        {
+          "key": "bw-market-stall-base",
+          "family": "market-stall",
+          "part": "base",
+          "kind": "stage",
+          "sheet_id": "mkt1-base",
+          "format": "fullpage-landscape",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-mod-stall-shell",
+          "family": "market-stall",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "mkt1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-mod-stall-shelves",
+          "family": "market-stall",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "mkt1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-mod-corner-stall",
+          "family": "market-stall",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "mkt1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-mod-tall-end",
+          "family": "market-stall",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "mkt1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-mod-crate-table",
+          "family": "market-stall",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "mkt1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-mod-hanging-rail",
+          "family": "market-stall",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "mkt1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-con-awning-span",
+          "family": "market-stall",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "mkt1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-con-awning-pole",
+          "family": "market-stall",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "mkt1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-con-stall-beam",
+          "family": "market-stall",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "mkt1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-con-crate-shelf",
+          "family": "market-stall",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "mkt1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-con-bunting-blank",
+          "family": "market-stall",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "mkt1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-con-hook-bar",
+          "family": "market-stall",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "mkt1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-tok-basket-empty",
+          "family": "market-stall",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "mkt1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-tok-produce-pile",
+          "family": "market-stall",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "mkt1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-tok-flower-bunch",
+          "family": "market-stall",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "mkt1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-tok-cheese-wheel",
+          "family": "market-stall",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "mkt1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-tok-cloth-bolt",
+          "family": "market-stall",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "mkt1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-tok-jar-blank",
+          "family": "market-stall",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "mkt1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-tok-scale-pan",
+          "family": "market-stall",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "mkt1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-tok-crate-full",
+          "family": "market-stall",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "mkt1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-tok-hanging-bag",
+          "family": "market-stall",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "mkt1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-st-empty-stall",
+          "family": "market-stall",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "mkt1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-st-collapsed-awning",
+          "family": "market-stall",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "mkt1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-st-spilled-basket",
+          "family": "market-stall",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "mkt1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-st-torn-awning",
+          "family": "market-stall",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "mkt1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-st-broken-shelf",
+          "family": "market-stall",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "mkt1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-st-stocked-stall",
+          "family": "market-stall",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "mkt1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-st-fixed-awning",
+          "family": "market-stall",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "mkt1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-st-upright-basket",
+          "family": "market-stall",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "mkt1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-mkt-st-fixed-shelf",
+          "family": "market-stall",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "mkt1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-20T05:36:23.565Z"
+    },
+    "theatre-wings": {
+      "id": "theatre-wings",
+      "stream": "B",
+      "family": "theatre-wings",
+      "partition": "theatre-wings",
+      "title": "BW-B theatre-wings kit (base+modules+tokens+states)",
+      "task_id": "5MWhbRd4BQRguqpV33wx8b",
+      "task_url": "https://manus.im/app/5MWhbRd4BQRguqpV33wx8b",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\builder-worlds\\theatre-wings\\sheets",
+      "expected_sheets": 4,
+      "concept_count": 31,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4214278,
+          "name": "bw-theatre-wings-base.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3661861,
+          "name": "bw-theatre-wings-modules-connectors.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3829420,
+          "name": "bw-theatre-wings-problems-states.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 3275903,
+          "name": "bw-theatre-wings-prop-tokens.png"
+        }
+      ],
+      "items": [
+        {
+          "key": "bw-theatre-wings-base",
+          "family": "theatre-wings",
+          "part": "base",
+          "kind": "stage",
+          "sheet_id": "thw1-base",
+          "format": "fullpage-landscape",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-mod-flat-left",
+          "family": "theatre-wings",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "thw1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-mod-flat-right",
+          "family": "theatre-wings",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "thw1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-mod-backdrop",
+          "family": "theatre-wings",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "thw1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-mod-curtain-half",
+          "family": "theatre-wings",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "thw1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-mod-prop-table",
+          "family": "theatre-wings",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "thw1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-mod-platform-riser",
+          "family": "theatre-wings",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "thw1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-con-flat-foot",
+          "family": "theatre-wings",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "thw1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-con-curtain-rod",
+          "family": "theatre-wings",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "thw1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-con-wing-hinge",
+          "family": "theatre-wings",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "thw1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-con-sandbag",
+          "family": "theatre-wings",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "thw1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-con-rope-loop",
+          "family": "theatre-wings",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "thw1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-con-clamp",
+          "family": "theatre-wings",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "thw1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-tok-chair-prop",
+          "family": "theatre-wings",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "thw1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-tok-box-prop",
+          "family": "theatre-wings",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "thw1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-tok-tree-flat",
+          "family": "theatre-wings",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "thw1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-tok-moon-disc",
+          "family": "theatre-wings",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "thw1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-tok-lantern",
+          "family": "theatre-wings",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "thw1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-tok-stool",
+          "family": "theatre-wings",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "thw1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-tok-mask-blank",
+          "family": "theatre-wings",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "thw1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-tok-script-blank",
+          "family": "theatre-wings",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "thw1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-tok-spotlight-cone",
+          "family": "theatre-wings",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "thw1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-st-wrong-curtain",
+          "family": "theatre-wings",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "thw1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-st-fallen-flat",
+          "family": "theatre-wings",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "thw1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-st-tangled-rope",
+          "family": "theatre-wings",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "thw1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-st-missing-prop-gap",
+          "family": "theatre-wings",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "thw1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-st-ripped-backdrop",
+          "family": "theatre-wings",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "thw1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-st-neat-curtain",
+          "family": "theatre-wings",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "thw1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-st-upright-flat",
+          "family": "theatre-wings",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "thw1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-st-coiled-rope",
+          "family": "theatre-wings",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "thw1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-thw-st-set-prop-table",
+          "family": "theatre-wings",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "thw1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-20T05:39:01.966Z"
+    },
+    "camping-pitch": {
+      "id": "camping-pitch",
+      "stream": "B",
+      "family": "camping-pitch",
+      "partition": "camping-pitch",
+      "title": "BW-B camping-pitch kit (base+modules+tokens+states)",
+      "task_id": "CkPqqeB2z6VERh6nCEjhjT",
+      "task_url": "https://manus.im/app/CkPqqeB2z6VERh6nCEjhjT",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\builder-worlds\\camping-pitch\\sheets",
+      "expected_sheets": 4,
+      "concept_count": 31,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3739277,
+          "name": "bw-camp-modules-connectors-4x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4154639,
+          "name": "bw-camp-problems-states-3x3.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 1539946,
+          "name": "bw-camp-tokens-3x3.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 4782252,
+          "name": "bw-camping-pitch-base.png"
+        }
+      ],
+      "items": [
+        {
+          "key": "bw-camping-pitch-base",
+          "family": "camping-pitch",
+          "part": "base",
+          "kind": "stage",
+          "sheet_id": "cmp1-base",
+          "format": "fullpage-landscape",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-mod-tent-pad",
+          "family": "camping-pitch",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "cmp1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-mod-fire-ring",
+          "family": "camping-pitch",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "cmp1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-mod-picnic-table",
+          "family": "camping-pitch",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "cmp1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-mod-trail-post",
+          "family": "camping-pitch",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "cmp1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-mod-gear-tarp",
+          "family": "camping-pitch",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "cmp1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-mod-log-bench",
+          "family": "camping-pitch",
+          "part": "module",
+          "kind": "module",
+          "sheet_id": "cmp1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-con-tent-peg",
+          "family": "camping-pitch",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "cmp1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-con-guy-line",
+          "family": "camping-pitch",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "cmp1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-con-pole-joint",
+          "family": "camping-pitch",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "cmp1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-con-carabiner",
+          "family": "camping-pitch",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "cmp1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-con-stake-loop",
+          "family": "camping-pitch",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "cmp1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-con-zipper-pull",
+          "family": "camping-pitch",
+          "part": "connector",
+          "kind": "connector",
+          "sheet_id": "cmp1-mod",
+          "format": "black-contact-4x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-tok-tent-collapsed",
+          "family": "camping-pitch",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "cmp1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-tok-tent-pitched",
+          "family": "camping-pitch",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "cmp1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-tok-sleeping-bag",
+          "family": "camping-pitch",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "cmp1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-tok-lantern",
+          "family": "camping-pitch",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "cmp1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-tok-backpack",
+          "family": "camping-pitch",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "cmp1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-tok-camp-stool",
+          "family": "camping-pitch",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "cmp1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-tok-cooler",
+          "family": "camping-pitch",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "cmp1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-tok-kindling",
+          "family": "camping-pitch",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "cmp1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-tok-water-jug",
+          "family": "camping-pitch",
+          "part": "token",
+          "kind": "token",
+          "sheet_id": "cmp1-tok",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-st-fallen-tent",
+          "family": "camping-pitch",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "cmp1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-st-rain-puddle",
+          "family": "camping-pitch",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "cmp1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-st-wet-gear",
+          "family": "camping-pitch",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "cmp1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-st-broken-peg",
+          "family": "camping-pitch",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "cmp1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-st-smoky-ring",
+          "family": "camping-pitch",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "cmp1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-st-pitched-good",
+          "family": "camping-pitch",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "cmp1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-st-dry-pad",
+          "family": "camping-pitch",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "cmp1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-st-packed-gear",
+          "family": "camping-pitch",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "cmp1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        },
+        {
+          "key": "bw-cmp-st-fixed-peg",
+          "family": "camping-pitch",
+          "part": "problem",
+          "kind": "state",
+          "sheet_id": "cmp1-prob",
+          "format": "black-contact-3x3",
+          "review_status": "raw"
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-20T05:43:41.810Z"
+    }
+  },
+  "running_total": {
+    "tasks_used": 4,
+    "sheets_downloaded": 16,
+    "bases": 4,
+    "modules_connectors": 48,
+    "tokens": 36,
+    "problems_states": 36,
+    "raw": 124,
+    "assets": 124
+  }
+}
