@@ -905,14 +905,30 @@
       "in_prompt_named": false,
       "task_id": "aVWQoHfaEtghbaYtovJPzd",
       "task_url": "https://manus.im/app/aVWQoHfaEtghbaYtovJPzd",
-      "agent_status": null,
+      "agent_status": "stopped",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\hobbies\\ki-cooking-kid\\sheets",
       "expected_sheets": 3,
       "cell_count": 27,
-      "sheets": [],
-      "finished_at": null,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3755550,
+          "name": "ki-cook-bake-tools-3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 1879459,
+          "name": "ki-cook-kitchen-3x3.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 2205255,
+          "name": "ki-cook-treats-3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:26:57.328Z",
       "holds": [],
-      "qa": ""
+      "qa": "PASS"
     },
     "ki-sports-street-deep": {
       "family_id": "ki-sports-street-deep",
@@ -944,7 +960,7 @@
           "name": "ki-sports-street-deep_S3_track-swim_3x3.png"
         }
       ],
-      "finished_at": "2026-08-20T08:19:28.873Z",
+      "finished_at": "2026-08-20T08:20:59.352Z",
       "holds": [],
       "qa": "PASS"
     },
@@ -957,14 +973,30 @@
       "in_prompt_named": true,
       "task_id": "PsPkrtcFQCnroX4Qi7ZEjA",
       "task_url": "https://manus.im/app/PsPkrtcFQCnroX4Qi7ZEjA",
-      "agent_status": null,
+      "agent_status": "stopped",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\crafts-maker\\ki-origami-paper-craft\\sheets",
       "expected_sheets": 3,
       "cell_count": 27,
-      "sheets": [],
-      "finished_at": null,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3478488,
+          "name": "ki-origami-forms-3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4393876,
+          "name": "ki-origami-kirigami-mobiles-3x3.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3934188,
+          "name": "ki-origami-paper-craft-tools-3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:21:08.052Z",
       "holds": [],
-      "qa": ""
+      "qa": "PASS"
     },
     "ki-fair-rides-deep": {
       "family_id": "ki-fair-rides-deep",
@@ -975,8 +1007,180 @@
       "in_prompt_named": true,
       "task_id": "irB7p2w5UFJCpGJynifhD3",
       "task_url": "https://manus.im/app/irB7p2w5UFJCpGJynifhD3",
-      "agent_status": null,
+      "agent_status": "stopped",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\vehicles-leisure\\ki-fair-rides-deep\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3457276,
+          "name": "ki-fair-carnival-games-3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3985639,
+          "name": "ki-fair-food-carts-3x3.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4470074,
+          "name": "ki-fair-rides-vehicles-3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:28:48.724Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-photography-club": {
+      "family_id": "ki-photography-club",
+      "title": "KI photography club NEW (3×3 ×3)",
+      "lane": "other-discovered",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "cH74Rx7xtt7bcjXv4Nzwfb",
+      "task_url": "https://manus.im/app/cH74Rx7xtt7bcjXv4Nzwfb",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\other-discovered\\ki-photography-club\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3949833,
+          "name": "ki-photography-club-cameras-3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 1798398,
+          "name": "ki-photography-club-print-darkroom-3x3.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4159445,
+          "name": "ki-photography-club-studio-kit-3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:46:45.067Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-robotics-club": {
+      "family_id": "ki-robotics-club",
+      "title": "KI robotics club NEW (3×3 ×3)",
+      "lane": "other-discovered",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "L5BrYfY89SAsJ9EwysnVEb",
+      "task_url": "https://manus.im/app/L5BrYfY89SAsJ9EwysnVEb",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\other-discovered\\ki-robotics-club\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 1937984,
+          "name": "ki-robotics-club-S1-robots-3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3753125,
+          "name": "ki-robotics-club-S2-parts-field-3x3.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3484483,
+          "name": "ki-robotics-club-S3-club-day-3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:46:48.021Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-magic-show-deep": {
+      "family_id": "ki-magic-show-deep",
+      "title": "KI magic show kit deep NEW (3×3 ×3)",
+      "lane": "other-discovered",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "LmFdFUwmh8im4GS7KkDojs",
+      "task_url": "https://manus.im/app/LmFdFUwmh8im4GS7KkDojs",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\other-discovered\\ki-magic-show-deep\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3813681,
+          "name": "ki-magic-show-deep-S1-classic-tricks.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3895107,
+          "name": "ki-magic-show-deep-S2-stage-boxes.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3750790,
+          "name": "ki-magic-show-deep-S3-show-kit.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:46:59.147Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-bike-park-gear": {
+      "family_id": "ki-bike-park-gear",
+      "title": "KI bike park + scooter park gear (3×3 ×3)",
+      "lane": "vehicles-leisure",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "task_id": "JkG7YzqY3pUnR58MYt5oss",
+      "task_url": "https://manus.im/app/JkG7YzqY3pUnR58MYt5oss",
+      "agent_status": null,
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\vehicles-leisure\\ki-bike-park-gear\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [],
+      "finished_at": null,
+      "holds": [],
+      "qa": ""
+    },
+    "ki-slime-lab-deep": {
+      "family_id": "ki-slime-lab-deep",
+      "title": "KI slime lab depth (3×3 ×3)",
+      "lane": "crafts-maker",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "task_id": "F6CPozRdRDuobsgnH4xGKs",
+      "task_url": "https://manus.im/app/F6CPozRdRDuobsgnH4xGKs",
+      "agent_status": null,
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\crafts-maker\\ki-slime-lab-deep\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [],
+      "finished_at": null,
+      "holds": [],
+      "qa": ""
+    },
+    "ki-scuba-snorkel": {
+      "family_id": "ki-scuba-snorkel",
+      "title": "KI scuba + snorkel club NEW (3×3 ×3)",
+      "lane": "sports",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "hgXqbu8ztZu3tndHcHj4z6",
+      "task_url": "https://manus.im/app/hgXqbu8ztZu3tndHcHj4z6",
+      "agent_status": null,
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\sports\\ki-scuba-snorkel\\sheets",
       "expected_sheets": 3,
       "cell_count": 27,
       "sheets": [],
@@ -2084,8 +2288,8 @@
       "manus_task_id": "aVWQoHfaEtghbaYtovJPzd",
       "task_url": "https://manus.im/app/aVWQoHfaEtghbaYtovJPzd",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\hobbies\\ki-cooking-kid\\sheets",
-      "status": "fired",
-      "qa": ""
+      "status": "generated_raw",
+      "qa": "PASS"
     },
     "ki-sports-street-deep": {
       "family_id": "ki-sports-street-deep",
@@ -2170,8 +2374,8 @@
       "manus_task_id": "PsPkrtcFQCnroX4Qi7ZEjA",
       "task_url": "https://manus.im/app/PsPkrtcFQCnroX4Qi7ZEjA",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\crafts-maker\\ki-origami-paper-craft\\sheets",
-      "status": "fired",
-      "qa": ""
+      "status": "generated_raw",
+      "qa": "PASS"
     },
     "ki-fair-rides-deep": {
       "family_id": "ki-fair-rides-deep",
@@ -2212,4 +2416,279 @@
       ],
       "manus_task_id": "irB7p2w5UFJCpGJynifhD3",
       "task_url": "https://manus.im/app/irB7p2w5UFJCpGJynifhD3",
-      "
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\vehicles-leisure\\ki-fair-rides-deep\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-photography-club": {
+      "family_id": "ki-photography-club",
+      "wave": "ki-photography-club",
+      "lane": "other-discovered",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Discovered hobby — kid photo club beyond one instant camera",
+      "siblings": [
+        "ki-photo-dslr-blank",
+        "ki-photo-mirrorless-blank",
+        "ki-photo-instant-camera",
+        "ki-photo-action-cam",
+        "ki-photo-film-camera",
+        "ki-photo-disposable-cam",
+        "ki-photo-camera-bag",
+        "ki-photo-lens-prime",
+        "ki-photo-lens-cap",
+        "ki-photo-tripod-full",
+        "ki-photo-monopod",
+        "ki-photo-light-stand",
+        "ki-photo-softbox-square",
+        "ki-photo-backdrop-roll",
+        "ki-photo-reflector-5in1",
+        "ki-photo-light-meter",
+        "ki-photo-remote-shutter",
+        "ki-photo-memory-card-case",
+        "ki-photo-photo-printer",
+        "ki-photo-photo-stack",
+        "ki-photo-album-photo",
+        "ki-photo-negatives-sleeve",
+        "ki-photo-loupe",
+        "ki-photo-light-table",
+        "ki-photo-clip-string",
+        "ki-photo-developing-tray",
+        "ki-photo-trophy-photo"
+      ],
+      "manus_task_id": "cH74Rx7xtt7bcjXv4Nzwfb",
+      "task_url": "https://manus.im/app/cH74Rx7xtt7bcjXv4Nzwfb",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\other-discovered\\ki-photography-club\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-robotics-club": {
+      "family_id": "ki-robotics-club",
+      "wave": "ki-robotics-club",
+      "lane": "other-discovered",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Discovered STEM club — robot competition kit not in prompt",
+      "siblings": [
+        "ki-robo-bot-wheeled",
+        "ki-robo-bot-legged",
+        "ki-robo-bot-arm",
+        "ki-robo-drone-quad",
+        "ki-robo-rover",
+        "ki-robo-sumo-bot",
+        "ki-robo-line-follower",
+        "ki-robo-claw-bot",
+        "ki-robo-humanoid-simple",
+        "ki-robo-controller-pad",
+        "ki-robo-sensor-ultrasonic",
+        "ki-robo-sensor-color",
+        "ki-robo-motor-gearbox",
+        "ki-robo-wheel-omni",
+        "ki-robo-track-mat",
+        "ki-robo-field-wall",
+        "ki-robo-charging-dock",
+        "ki-robo-toolbox-robo",
+        "ki-robo-laptop-code-blank",
+        "ki-robo-tablet-code-blank",
+        "ki-robo-usb-cable",
+        "ki-robo-battery-pack",
+        "ki-robo-pit-table",
+        "ki-robo-team-flag-blank",
+        "ki-robo-stopwatch",
+        "ki-robo-cone-marker",
+        "ki-robo-trophy-robo"
+      ],
+      "manus_task_id": "L5BrYfY89SAsJ9EwysnVEb",
+      "task_url": "https://manus.im/app/L5BrYfY89SAsJ9EwysnVEb",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\other-discovered\\ki-robotics-club\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-magic-show-deep": {
+      "family_id": "ki-magic-show-deep",
+      "wave": "ki-magic-show-deep",
+      "lane": "other-discovered",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Discovered — expand beyond hat/wand into stage magic props",
+      "siblings": [
+        "ki-magic-top-hat",
+        "ki-magic-wand-star",
+        "ki-magic-rabbit-plush",
+        "ki-magic-dove-cage",
+        "ki-magic-card-fan-blank",
+        "ki-magic-coin-trick",
+        "ki-magic-silk-scarves",
+        "ki-magic-foam-balls",
+        "ki-magic-thumb-tip",
+        "ki-magic-mystery-box",
+        "ki-magic-linking-rings",
+        "ki-magic-rope-cut",
+        "ki-magic-cups-balls",
+        "ki-magic-changing-bag",
+        "ki-magic-flower-bouquet-appear",
+        "ki-magic-levitation-hoop",
+        "ki-magic-sword-box-safe",
+        "ki-magic-mirror-box",
+        "ki-magic-cape-magic",
+        "ki-magic-gloves-white",
+        "ki-magic-table-drape",
+        "ki-magic-curtain-backdrop",
+        "ki-magic-spotlight-magic",
+        "ki-magic-ticket-magic-blank",
+        "ki-magic-poster-blank",
+        "ki-magic-wand-case",
+        "ki-magic-trophy-magic"
+      ],
+      "manus_task_id": "LmFdFUwmh8im4GS7KkDojs",
+      "task_url": "https://manus.im/app/LmFdFUwmh8im4GS7KkDojs",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\other-discovered\\ki-magic-show-deep\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-bike-park-gear": {
+      "family_id": "ki-bike-park-gear",
+      "wave": "ki-bike-park-gear",
+      "lane": "vehicles-leisure",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "why": "Fun vehicles depth — bike/scooter park modules beyond one BMX",
+      "siblings": [
+        "ki-bike-mountain-bike",
+        "ki-bike-bmx-park",
+        "ki-bike-dirt-jumper",
+        "ki-bike-scooter-pro-park",
+        "ki-bike-razor-style",
+        "ki-bike-tricycle",
+        "ki-bike-tandem-bike",
+        "ki-bike-recumbent",
+        "ki-bike-cargo-bike",
+        "ki-bike-quarter-pipe",
+        "ki-bike-half-pipe",
+        "ki-bike-funbox",
+        "ki-bike-spine-ramp",
+        "ki-bike-grind-rail-long",
+        "ki-bike-ledge-box",
+        "ki-bike-bank-ramp",
+        "ki-bike-pump-track-bump",
+        "ki-bike-start-gate",
+        "ki-bike-full-face-helmet",
+        "ki-bike-elbow-pads",
+        "ki-bike-wrist-guards",
+        "ki-bike-bike-pump",
+        "ki-bike-multi-tool",
+        "ki-bike-water-bottle-cage",
+        "ki-bike-bike-lock",
+        "ki-bike-bike-light",
+        "ki-bike-medal-race"
+      ],
+      "manus_task_id": "JkG7YzqY3pUnR58MYt5oss",
+      "task_url": "https://manus.im/app/JkG7YzqY3pUnR58MYt5oss",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\vehicles-leisure\\ki-bike-park-gear\\sheets",
+      "status": "fired",
+      "qa": ""
+    },
+    "ki-slime-lab-deep": {
+      "family_id": "ki-slime-lab-deep",
+      "wave": "ki-slime-lab-deep",
+      "lane": "crafts-maker",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "why": "Crafts slime still thin — lab kit + textures + tools",
+      "siblings": [
+        "ki-slime-butter-slime",
+        "ki-slime-cloud-slime",
+        "ki-slime-clear-slime",
+        "ki-slime-glow-slime",
+        "ki-slime-foam-beads",
+        "ki-slime-glitter-slime",
+        "ki-slime-magnetic-slime",
+        "ki-slime-color-change",
+        "ki-slime-slime-stretch-arc",
+        "ki-slime-beaker",
+        "ki-slime-funnel",
+        "ki-slime-dropper",
+        "ki-slime-mixing-stick",
+        "ki-slime-activator-bottle",
+        "ki-slime-glue-bottle-craft",
+        "ki-slime-scale-lab",
+        "ki-slime-goggles-lab",
+        "ki-slime-lab-coat-kid",
+        "ki-slime-slime-caddy",
+        "ki-slime-mini-tubs-set",
+        "ki-slime-charm-addins",
+        "ki-slime-foam-clay",
+        "ki-slime-putty-tin",
+        "ki-slime-kinetic-sand",
+        "ki-slime-sand-molds",
+        "ki-slime-scented-oils",
+        "ki-slime-trophy-slime"
+      ],
+      "manus_task_id": "F6CPozRdRDuobsgnH4xGKs",
+      "task_url": "https://manus.im/app/F6CPozRdRDuobsgnH4xGKs",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\crafts-maker\\ki-slime-lab-deep\\sheets",
+      "status": "fired",
+      "qa": ""
+    },
+    "ki-scuba-snorkel": {
+      "family_id": "ki-scuba-snorkel",
+      "wave": "ki-scuba-snorkel",
+      "lane": "sports",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Discovered water hobby — not in original prompt",
+      "siblings": [
+        "ki-dive-mask-snorkel",
+        "ki-dive-fins",
+        "ki-dive-wetsuit",
+        "ki-dive-bcd-vest",
+        "ki-dive-tank",
+        "ki-dive-regulator",
+        "ki-dive-dive-computer-blank",
+        "ki-dive-weight-belt",
+        "ki-dive-dive-flag",
+        "ki-dive-underwater-camera",
+        "ki-dive-dive-slate-blank",
+        "ki-dive-torch-dive",
+        "ki-dive-mesh-bag",
+        "ki-dive-booties",
+        "ki-dive-gloves-dive",
+        "ki-dive-surface-float",
+        "ki-dive-coral-display",
+        "ki-dive-shell-net",
+        "ki-dive-kickboard",
+        "ki-dive-pull-buoy",
+        "ki-dive-pace-clock-blank",
+        "ki-dive-lane-line",
+        "ki-dive-starting-block",
+        "ki-dive-lifebuoy",
+        "ki-dive-pool-noodle",
+        "ki-dive-goggles-race",
+        "ki-dive-trophy-dive"
+      ],
+      "manus_task_id": "hgXqbu8ztZu3tndHcHj4z6",
+      "task_url": "https://manus.im/app/hgXqbu8ztZu3tndHcHj4z6",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\sports\\ki-scuba-snorkel\\sheets",
+      "status": "fired",
+      "qa": ""
+    }
+  },
+  "running_total": {
+    "tasks": 37,
+    "sheets_downloaded": 97,
+    "waves_planned": 44,
+    "waves_done": 34,
+    "asset_cells": 810,
+    "families": 39,
+    "novelty_discovered_families": 21,
+    "prompt_named_families": 17,
+    "novelty_pct": 54
+  },
+  "updated_at": "2026-08-20T18:39:06.519Z"
+}
