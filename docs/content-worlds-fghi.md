@@ -11,17 +11,17 @@ Songs excluded. No flags/maps/seals. Festival + country + wedding: `cultural_rev
 | Weather families (registered) | 20 |
 | Country PLACE worlds | 68 |
 | Festival stages | 20 |
-| Stage cells planned | 296 |
+| Stage cells planned | 312 |
 | Companion cells planned | 45 |
-| Waves / tasks planned | 66 |
+| Waves / tasks planned | 70 |
 
 ## Running totals
 
 | Metric | Count |
 |---|---:|
-| Tasks | 4 |
-| Sheets downloaded | 4 |
-| Stage cells harvested | 16 |
+| Tasks | 5 |
+| Sheets downloaded | 5 |
+| Stage cells harvested | 20 |
 | Companion cells harvested | 0 |
 
 ## Waves
@@ -92,6 +92,10 @@ Songs excluded. No flags/maps/seals. Festival + country + wedding: `cultural_rev
 - **f17** — https://manus.im/app/PMzCZZq6KuA3X8NfiTjFDs — sheets 1 — cells 4
 - **h15** — https://manus.im/app/7DEMLBrWZBtnZSDJtCQjuq — sheets 1 — cells 4
 - **j15** — https://manus.im/app/5xMvrKuZkvgpEfdK6JukQc — sheets 1 — cells 4
+- **f18** — https://manus.im/app/nipWTCm5C7z8ApAbGU6eJa — sheets 1 — cells 4
+- **g16** — CW FGHI G16 — post office + parcel life — unfired — cells 4
+- **h16** — CW FGHI H16 — career-day / open-house stages — unfired — cells 4
+- **j16** — CW FGHI J16 — country PLACE worlds P (4) — unfired — cells 4
 
 ## research_gate
 
