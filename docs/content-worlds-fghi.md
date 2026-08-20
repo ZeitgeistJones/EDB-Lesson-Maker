@@ -19,9 +19,9 @@ Songs excluded. No flags/maps/seals. Festival + country + wedding: `cultural_rev
 
 | Metric | Count |
 |---|---:|
-| Tasks | 3 |
-| Sheets downloaded | 3 |
-| Stage cells harvested | 12 |
+| Tasks | 4 |
+| Sheets downloaded | 4 |
+| Stage cells harvested | 16 |
 | Companion cells harvested | 0 |
 
 ## Waves
@@ -91,7 +91,7 @@ Songs excluded. No flags/maps/seals. Festival + country + wedding: `cultural_rev
 - **g15** — https://manus.im/app/iDSpL3KXMwEDcyZvc9VKcb — sheets 1 — cells 4
 - **f17** — https://manus.im/app/PMzCZZq6KuA3X8NfiTjFDs — sheets 1 — cells 4
 - **h15** — https://manus.im/app/7DEMLBrWZBtnZSDJtCQjuq — sheets 1 — cells 4
-- **j15** — CW FGHI J15 — country PLACE worlds O (4) — unfired — cells 4
+- **j15** — https://manus.im/app/5xMvrKuZkvgpEfdK6JukQc — sheets 1 — cells 4
 
 ## research_gate
 

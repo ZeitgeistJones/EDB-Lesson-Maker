@@ -112,6 +112,8 @@ const SAME_PATIO =
   'REGISTERED FAMILY wx-patio-umb. SAME camera, SAME patio tiles, SAME round table, SAME umbrella pole, SAME planter. Only weather/umbrella state change. Open patio floor. No people no text.';
 const SAME_CARPORT =
   'REGISTERED FAMILY wx-carport. SAME camera, SAME open carport posts + roof, SAME driveway strip, SAME side trash bins (blank), SAME house wall. Only weather/light change. Open driveway center. No people no cars as subjects no text.';
+const SAME_FOUNTAIN =
+  'REGISTERED FAMILY wx-park-fountain. SAME camera, SAME round fountain rim, SAME four benches, SAME two trees, SAME paved ring. Only weather/light/water state change. Open paving center. No people no text.';
 
 export const WAVES = {
   f1: {
@@ -1235,6 +1237,67 @@ export const WAVES = {
       ]),
     ],
   },
+  f18: {
+    id: 'cw-f18-wx-fountain',
+    harvest_family: 'weather-seasons',
+    family: 'weather-seasons',
+    title: 'CW FGHI F18 — weather family park fountain',
+    kind: 'stage',
+    sheets: [
+      sh('S1', 'wx park fountain family 2x2', 'landscape-contact-2x2', [
+        s('wx-park-fountain-sunny', `${SAME_FOUNTAIN} STATE sunny: dry paving, water jet on. Affordance: sit bench, walk ring.`, GATE.wx, { family_id: 'wx-park-fountain' }),
+        s('wx-park-fountain-rain', `${SAME_FOUNTAIN} STATE rain: wet paving, jets mingled with rain. Affordance: leave open ring, huddle under tree.`, GATE.wx, { family_id: 'wx-park-fountain' }),
+        s('wx-park-fountain-snow', `${SAME_FOUNTAIN} STATE snow: fountain off/iced rim, packed path. Affordance: packed path only.`, GATE.wx, { family_id: 'wx-park-fountain' }),
+        s('wx-park-fountain-dusk', `${SAME_FOUNTAIN} STATE dusk: soft lights on rim, dry. Affordance: evening sit.`, GATE.wx, { family_id: 'wx-park-fountain' }),
+      ]),
+    ],
+  },
+  g16: {
+    id: 'cw-g16-post-office',
+    harvest_family: 'everyday-life',
+    family: 'everyday-life',
+    title: 'CW FGHI G16 — post office + parcel life',
+    kind: 'stage',
+    sheets: [
+      sh('S1', 'post office life 2x2', 'landscape-contact-2x2', [
+        s('life-post-lobby', 'post office lobby: counter at edge (blank), open tile floor. No people no logos no stamps with letters.', GATE.life),
+        s('life-parcel-shelf', 'parcel pickup shelf wall at edge (blank boxes), open floor. No people no tracking numbers.', GATE.life),
+        s('life-mailbox-row', 'outdoor mailbox bank at edge, open sidewalk floor. Blank doors. No people no numbers readable.', GATE.life),
+        s('life-sorting-bay', 'back sorting bay: empty carts at edge, open floor. No people no labels.', GATE.life),
+      ]),
+    ],
+  },
+  h16: {
+    id: 'cw-h16-career-day',
+    harvest_family: 'occasions',
+    family: 'occasions',
+    title: 'CW FGHI H16 — career-day / open-house stages',
+    kind: 'stage',
+    sheets: [
+      sh('S1', 'school visit occasions 2x2', 'landscape-contact-2x2', [
+        s('occ-career-day-booths', 'career-day booth row: empty tables at edges, open aisle. Blank trifolds (ZERO letters). No people.', GATE.ok),
+        s('occ-open-house-hallway', 'open-house hallway: classroom doors ajar at edges, open floor. No people no name plates with text.', GATE.ok),
+        s('occ-parent-night-gym', 'parent night gym: empty chair arcs at edges, open floor center. No people no banner letters.', GATE.ok),
+        s('occ-volunteer-sign-table', 'volunteer sign-in table at edge (blank clipboard shape), open lobby floor. No people no text.', GATE.ok),
+      ]),
+    ],
+  },
+  j16: {
+    id: 'cw-j16-places-p',
+    harvest_family: 'countries',
+    family: 'countries',
+    title: 'CW FGHI J16 — country PLACE worlds P (4)',
+    kind: 'stage',
+    cultural_review_required: true,
+    sheets: [
+      sh('S1', 'place worlds P 2x2', 'landscape-contact-2x2', [
+        s('place-souk-covered-aisle', 'covered souk aisle, open paved center, stalls at edges (blank cloths). Everyday market. NO flags maps seals labels.', GATE.place, { country_hint: 'TN' }),
+        s('place-alpine-chalet-lane', 'alpine village lane with chalet eaves, open packed path. Everyday. NO flags maps seals labels.', GATE.place, { country_hint: 'CH' }),
+        s('place-mangrove-boardwalk', 'mangrove boardwalk, open board floor, water at edges. Landscape. NO flags maps seals labels.', GATE.place, { country_hint: 'MY' }),
+        s('place-pueblo-plaza', 'small pueblo-style plaza, adobe edges, open packed center. Everyday. NO flags maps seals labels.', GATE.place, { country_hint: 'US' }),
+      ]),
+    ],
+  },
 };
 
 export const WAVE_ORDER = [
@@ -1257,6 +1320,7 @@ export const WAVE_ORDER = [
   'f15', 'g14', 'h14', 'j14',
   'f16', 'g15',
   'f17', 'h15', 'j15',
+  'f18', 'g16', 'h16', 'j16',
 ];
 
 function isRateLimitError(err) {
