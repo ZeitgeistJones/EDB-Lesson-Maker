@@ -1,0 +1,1470 @@
+{
+  "meta": {
+    "generated_at": "2026-08-20T21:55:00Z",
+    "scope": "bounded_asset_completion_orphaned_overviews",
+    "total_orphans": 63,
+    "scoring_factors": [
+      "PLAY (activity surface potential)",
+      "STORY (narrative richness)",
+      "REUSE (multi-lesson applicability)",
+      "CONTINUITY_GAIN (family completeness unlock)",
+      "DESTINATIONS (kids-first kid-friendly zones)",
+      "APPEAL (child engagement)",
+      "KID_INTEREST (ESL relevance)",
+      "HARD_TO_RECREATE (uniqueness)",
+      "MULTI_TOPIC (curriculum breadth)"
+    ],
+    "triage_buckets": {
+      "COMPLETE_NOW": "High value; 1-3 coordinated views unlock continuity",
+      "STANDALONE_FINE": "Useful as-is (intro/route/builder)",
+      "EXISTING_ASSETS_MAY_ALREADY_SOLVE_IT": "Search estate first before Manus",
+      "SKIP_LOW_VALUE": "Weak/niche/not worth Manus spend"
+    }
+  },
+  "triage_results": [
+    {
+      "key": "ow-treehouse-forest",
+      "category": "overview",
+      "triage": "COMPLETE_NOW",
+      "priority": "HIGH",
+      "score_breakdown": {
+        "PLAY": 9,
+        "STORY": 8,
+        "REUSE": 9,
+        "CONTINUITY_GAIN": 8,
+        "DESTINATIONS": 8,
+        "APPEAL": 10,
+        "KID_INTEREST": 9,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 8
+      },
+      "composite_score": 76,
+      "rationale": "Treehouse is top-tier kid destination with massive play potential. Multiple rooms/levels = natural zoom family. High reuse (nature, adventure, home, shelter). No good treehouse interior in estate.",
+      "proposed_family": [
+        "OVERVIEW: existing ow-treehouse-forest",
+        "LOCATION: treehouse-exterior-with-ladder",
+        "ACTIVITY: treehouse-room-interior (play surface with rope, hatch, window)"
+      ],
+      "min_views": 2
+    },
+    {
+      "key": "ow-dino-dig-site",
+      "category": "other-discovered",
+      "triage": "COMPLETE_NOW",
+      "priority": "HIGH",
+      "score_breakdown": {
+        "PLAY": 9,
+        "STORY": 9,
+        "REUSE": 8,
+        "CONTINUITY_GAIN": 7,
+        "DESTINATIONS": 7,
+        "APPEAL": 10,
+        "KID_INTEREST": 10,
+        "HARD_TO_RECREATE": 9,
+        "MULTI_TOPIC": 7
+      },
+      "composite_score": 76,
+      "rationale": "Dino = peak kid interest. Dig pit, fossil table, tent = rich play surfaces. High topic range (dinosaurs, science, archaeology, discovery). No dig-site interior in estate.",
+      "proposed_family": [
+        "OVERVIEW: existing ow-dino-dig-site",
+        "LOCATION: dig-pit-with-fossils (excavation surface)",
+        "ACTIVITY: fossil-cleaning-tent-interior (workstation surface)"
+      ],
+      "min_views": 2
+    },
+    {
+      "key": "ow-aquarium-campus",
+      "category": "overview",
+      "triage": "COMPLETE_NOW",
+      "priority": "HIGH",
+      "score_breakdown": {
+        "PLAY": 8,
+        "STORY": 8,
+        "REUSE": 9,
+        "CONTINUITY_GAIN": 8,
+        "DESTINATIONS": 9,
+        "APPEAL": 10,
+        "KID_INTEREST": 9,
+        "HARD_TO_RECREATE": 8,
+        "MULTI_TOPIC": 8
+      },
+      "composite_score": 77,
+      "rationale": "Aquarium is high-value kid destination. Currently only zoo ground plate (loose connection). Underwater viewing room = massive play/story surface. High reuse (animals, ocean, science, visit).",
+      "proposed_family": [
+        "OVERVIEW: existing ow-aquarium-campus",
+        "LOCATION: aquarium-entrance-hall",
+        "ACTIVITY: underwater-viewing-tunnel (glass walls with fish, play-rich surface)"
+      ],
+      "min_views": 2,
+      "note": "Fills zoo-aquarium-zoom partial chain gap"
+    },
+    {
+      "key": "ow-climbing-gym-yard",
+      "category": "leisure",
+      "triage": "COMPLETE_NOW",
+      "priority": "MEDIUM_HIGH",
+      "score_breakdown": {
+        "PLAY": 9,
+        "STORY": 6,
+        "REUSE": 7,
+        "CONTINUITY_GAIN": 6,
+        "DESTINATIONS": 8,
+        "APPEAL": 9,
+        "KID_INTEREST": 8,
+        "HARD_TO_RECREATE": 6,
+        "MULTI_TOPIC": 6
+      },
+      "composite_score": 65,
+      "rationale": "Climbing wall = unique physical activity surface. Indoor gym with holds/routes = strong play. Decent reuse (sports, leisure, challenge, safety). No indoor climbing in estate.",
+      "proposed_family": [
+        "OVERVIEW: existing ow-climbing-gym-yard",
+        "ACTIVITY: climbing-wall-interior (holds, routes, mats — play surface)"
+      ],
+      "min_views": 1
+    },
+    {
+      "key": "ow-escape-room-plaza",
+      "category": "other-discovered",
+      "triage": "COMPLETE_NOW",
+      "priority": "MEDIUM_HIGH",
+      "score_breakdown": {
+        "PLAY": 10,
+        "STORY": 9,
+        "REUSE": 7,
+        "CONTINUITY_GAIN": 7,
+        "DESTINATIONS": 7,
+        "APPEAL": 9,
+        "KID_INTEREST": 8,
+        "HARD_TO_RECREATE": 8,
+        "MULTI_TOPIC": 7
+      },
+      "composite_score": 72,
+      "rationale": "Escape room = natural puzzle/clue/mystery play surface. Room with locked boxes, hidden keys = peak ESL activity. Good reuse (problem-solving, teamwork, discovery). ow-escape-loft exists but plaza stronger kid entry.",
+      "proposed_family": [
+        "OVERVIEW: existing ow-escape-room-plaza",
+        "ACTIVITY: escape-room-interior (puzzles, clues, locks — rich play)"
+      ],
+      "min_views": 1,
+      "note": "ow-escape-loft also orphan but lower priority duplicate"
+    },
+    {
+      "key": "ow-ice-cream-park",
+      "category": "event",
+      "triage": "COMPLETE_NOW",
+      "priority": "MEDIUM_HIGH",
+      "score_breakdown": {
+        "PLAY": 7,
+        "STORY": 7,
+        "REUSE": 8,
+        "CONTINUITY_GAIN": 6,
+        "DESTINATIONS": 9,
+        "APPEAL": 10,
+        "KID_INTEREST": 10,
+        "HARD_TO_RECREATE": 5,
+        "MULTI_TOPIC": 7
+      },
+      "composite_score": 69,
+      "rationale": "Ice cream = peak kid appeal. Vendor/counter = transactional play. High reuse (food, treats, ordering, summer). Easier to gen than most but strong payoff.",
+      "proposed_family": [
+        "OVERVIEW: existing ow-ice-cream-park",
+        "ACTIVITY: ice-cream-vendor-cart (counter, flavors, cones — transaction surface)"
+      ],
+      "min_views": 1
+    },
+    {
+      "key": "ow-film-backlot",
+      "category": "other-discovered",
+      "triage": "COMPLETE_NOW",
+      "priority": "MEDIUM",
+      "score_breakdown": {
+        "PLAY": 8,
+        "STORY": 9,
+        "REUSE": 7,
+        "CONTINUITY_GAIN": 6,
+        "DESTINATIONS": 7,
+        "APPEAL": 8,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 8,
+        "MULTI_TOPIC": 8
+      },
+      "composite_score": 68,
+      "rationale": "Film set = unique behind-scenes creative environment. Director chair, camera, props = rich play. Good multi-topic (media, careers, creativity, storytelling). Unique asset.",
+      "proposed_family": [
+        "OVERVIEW: existing ow-film-backlot",
+        "ACTIVITY: film-set-interior (camera, props, director-chair — behind-scenes play)"
+      ],
+      "min_views": 1
+    },
+    {
+      "key": "ow-mountain-lodge-village",
+      "category": "leisure",
+      "triage": "COMPLETE_NOW",
+      "priority": "MEDIUM",
+      "score_breakdown": {
+        "PLAY": 7,
+        "STORY": 8,
+        "REUSE": 8,
+        "CONTINUITY_GAIN": 7,
+        "DESTINATIONS": 8,
+        "APPEAL": 8,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 7
+      },
+      "composite_score": 67,
+      "rationale": "Lodge = cozy shelter story. Fireplace, gear, bunks = inviting interior. Good reuse (travel, shelter, mountain, vacation). ow-mountain-resort duplicate is weaker.",
+      "proposed_family": [
+        "OVERVIEW: existing ow-mountain-lodge-village",
+        "ACTIVITY: lodge-common-room (fireplace, gear, cozy — winter shelter play)"
+      ],
+      "min_views": 1
+    },
+    {
+      "key": "ow-music-conservatory",
+      "category": "town-community",
+      "triage": "COMPLETE_NOW",
+      "priority": "MEDIUM",
+      "score_breakdown": {
+        "PLAY": 7,
+        "STORY": 7,
+        "REUSE": 8,
+        "CONTINUITY_GAIN": 6,
+        "DESTINATIONS": 7,
+        "APPEAL": 7,
+        "KID_INTEREST": 8,
+        "HARD_TO_RECREATE": 6,
+        "MULTI_TOPIC": 9
+      },
+      "composite_score": 65,
+      "rationale": "Music school = education destination. Practice room with piano, stands = instrument play. Strong multi-topic (music, learning, practice, performance). Complements school zoom.",
+      "proposed_family": [
+        "OVERVIEW: existing ow-music-conservatory",
+        "ACTIVITY: music-practice-room (piano, stands, instruments — play surface)"
+      ],
+      "min_views": 1
+    },
+    {
+      "key": "ow-birthday-park",
+      "category": "event",
+      "triage": "EXISTING_ASSETS_MAY_ALREADY_SOLVE_IT",
+      "priority": "CHECK_FIRST",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 7,
+        "CONTINUITY_GAIN": 5,
+        "DESTINATIONS": 7,
+        "APPEAL": 9,
+        "KID_INTEREST": 8,
+        "HARD_TO_RECREATE": 4,
+        "MULTI_TOPIC": 6
+      },
+      "composite_score": 59,
+      "rationale": "Birthday party = high kid appeal but likely covered. Check kid-interest for birthday/party scene. If gap, table-with-cake-and-presents surface is easy add.",
+      "search_estate": [
+        "ki-* birthday",
+        "party-*",
+        "celebration-*",
+        "cake-table"
+      ]
+    },
+    {
+      "key": "ow-baseball-diamond",
+      "category": "leisure",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 5,
+        "STORY": 5,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 5,
+        "APPEAL": 6,
+        "KID_INTEREST": 6,
+        "HARD_TO_RECREATE": 4,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 45,
+      "rationale": "Sports field overview OK as route/intro. Dugout close-up adds little play value. Field already visible. Niche sport (region-specific). Low ROI for Manus spend.",
+      "note": "Overview sufficient for baseball/sports field reference"
+    },
+    {
+      "key": "ow-golf-driving-range",
+      "category": "leisure",
+      "triage": "SKIP_LOW_VALUE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 4,
+        "STORY": 4,
+        "REUSE": 5,
+        "CONTINUITY_GAIN": 2,
+        "DESTINATIONS": 4,
+        "APPEAL": 5,
+        "KID_INTEREST": 4,
+        "HARD_TO_RECREATE": 3,
+        "MULTI_TOPIC": 4
+      },
+      "composite_score": 35,
+      "rationale": "Golf = adult leisure, low kid engagement. Overview serves reference. Close-up tee adds minimal play. Niche sport. Skip.",
+      "note": "Low kid appeal, niche use case"
+    },
+    {
+      "key": "ow-graduation-lawn",
+      "category": "event",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 4,
+        "STORY": 6,
+        "REUSE": 5,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 5,
+        "APPEAL": 6,
+        "KID_INTEREST": 5,
+        "HARD_TO_RECREATE": 3,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 42,
+      "rationale": "Graduation ceremony = adult event. Overview OK for school milestone context. Stage close-up low play value. One-time use case.",
+      "note": "Event overview sufficient"
+    },
+    {
+      "key": "ow-parade-route-block",
+      "category": "event",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 5,
+        "STORY": 6,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 5,
+        "APPEAL": 7,
+        "KID_INTEREST": 6,
+        "HARD_TO_RECREATE": 4,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 47,
+      "rationale": "Parade = event overview serves well. Float close-up adds little. Overview shows parade nature adequately.",
+      "note": "Overview sufficient for event context"
+    },
+    {
+      "key": "ow-wedding-garden",
+      "category": "event",
+      "triage": "SKIP_LOW_VALUE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 3,
+        "STORY": 5,
+        "REUSE": 4,
+        "CONTINUITY_GAIN": 2,
+        "DESTINATIONS": 4,
+        "APPEAL": 5,
+        "KID_INTEREST": 4,
+        "HARD_TO_RECREATE": 3,
+        "MULTI_TOPIC": 4
+      },
+      "composite_score": 34,
+      "rationale": "Wedding = adult event, minimal ESL kid relevance. Overview adequate. Skip close-up.",
+      "note": "Adult event, low kid engagement"
+    },
+    {
+      "key": "ow-kite-hill-meadow",
+      "category": "event",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 6,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 6,
+        "APPEAL": 7,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 4,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 50,
+      "rationale": "Kite flying = outdoor play overview. Field with kites visible serves need. Close ground view adds little. Park/playground already covers outdoor play.",
+      "note": "Overview adequate for kite activity"
+    },
+    {
+      "key": "ow-hedge-maze-garden",
+      "category": "other-discovered",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 7,
+        "STORY": 7,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 4,
+        "DESTINATIONS": 5,
+        "APPEAL": 7,
+        "KID_INTEREST": 6,
+        "HARD_TO_RECREATE": 6,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 53,
+      "rationale": "Hedge maze = puzzle/path play. Overview aerial shows maze structure adequately. Ground-level adds little new context. Standalone works.",
+      "note": "Overhead maze view sufficient"
+    },
+    {
+      "key": "ow-treasure-hunt-fort",
+      "category": "other-discovered",
+      "triage": "EXISTING_ASSETS_MAY_ALREADY_SOLVE_IT",
+      "priority": "CHECK_FIRST",
+      "score_breakdown": {
+        "PLAY": 8,
+        "STORY": 8,
+        "REUSE": 7,
+        "CONTINUITY_GAIN": 5,
+        "DESTINATIONS": 6,
+        "APPEAL": 8,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 6,
+        "MULTI_TOPIC": 6
+      },
+      "composite_score": 61,
+      "rationale": "Fort = play structure, but check if beach-fort or castle-tower covers. Search kid-interest for fort/treasure scenes. If gap exists, fort-interior worth considering.",
+      "search_estate": [
+        "fort",
+        "tower",
+        "castle",
+        "treasure"
+      ]
+    },
+    {
+      "key": "ow-glow-garden",
+      "category": "leisure",
+      "triage": "SKIP_LOW_VALUE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 5,
+        "STORY": 6,
+        "REUSE": 5,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 5,
+        "APPEAL": 7,
+        "KID_INTEREST": 6,
+        "HARD_TO_RECREATE": 5,
+        "MULTI_TOPIC": 4
+      },
+      "composite_score": 46,
+      "rationale": "Glow garden = aesthetic novelty. Overview shows concept. Close-up adds little play. Niche destination.",
+      "note": "Visual novelty only, low play value"
+    },
+    {
+      "key": "ow-play-atrium-yard",
+      "category": "leisure",
+      "triage": "SKIP_LOW_VALUE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 5,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 6,
+        "APPEAL": 6,
+        "KID_INTEREST": 6,
+        "HARD_TO_RECREATE": 3,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 46,
+      "rationale": "Indoor play space = covered by existing playground/school-gym. Generic atrium adds little unique value.",
+      "note": "Redundant with existing play spaces"
+    },
+    {
+      "key": "ow-bike-park",
+      "category": "overview",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 5,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 6,
+        "APPEAL": 7,
+        "KID_INTEREST": 6,
+        "HARD_TO_RECREATE": 4,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 48,
+      "rationale": "Bike park = outdoor rec. Overview shows ramps/track. Close-up adds little. ow-bike-trail-hub sibling. One serves both.",
+      "note": "Overview sufficient for bike activity"
+    },
+    {
+      "key": "ow-bike-trail-hub",
+      "category": "transport",
+      "triage": "SKIP_LOW_VALUE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 5,
+        "STORY": 5,
+        "REUSE": 5,
+        "CONTINUITY_GAIN": 2,
+        "DESTINATIONS": 5,
+        "APPEAL": 6,
+        "KID_INTEREST": 5,
+        "HARD_TO_RECREATE": 3,
+        "MULTI_TOPIC": 4
+      },
+      "composite_score": 40,
+      "rationale": "Bike trail = transport route. Duplicate with bike-park. Skip one. Park stronger.",
+      "note": "Duplicate concept with ow-bike-park"
+    },
+    {
+      "key": "ow-garage-rooftop",
+      "category": "transport",
+      "triage": "SKIP_LOW_VALUE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 4,
+        "STORY": 4,
+        "REUSE": 5,
+        "CONTINUITY_GAIN": 2,
+        "DESTINATIONS": 4,
+        "APPEAL": 5,
+        "KID_INTEREST": 4,
+        "HARD_TO_RECREATE": 3,
+        "MULTI_TOPIC": 4
+      },
+      "composite_score": 35,
+      "rationale": "Parking garage = infrastructure, not kid destination. Low play value. Skip.",
+      "note": "Infrastructure, not kid-focused"
+    },
+    {
+      "key": "ow-rv-campground",
+      "category": "transport",
+      "triage": "EXISTING_ASSETS_MAY_ALREADY_SOLVE_IT",
+      "priority": "CHECK_FIRST",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 7,
+        "CONTINUITY_GAIN": 5,
+        "DESTINATIONS": 6,
+        "APPEAL": 7,
+        "KID_INTEREST": 6,
+        "HARD_TO_RECREATE": 5,
+        "MULTI_TOPIC": 6
+      },
+      "composite_score": 55,
+      "rationale": "Campground = outdoor adventure. Check BW camping-pitch plates (already connected to ow-canyon-camp). If no RV-specific interior, RV-camper-interior small add.",
+      "search_estate": [
+        "camping",
+        "camper",
+        "rv",
+        "trailer"
+      ],
+      "note": "BW camping-pitch may already solve"
+    },
+    {
+      "key": "ow-wave31-waterways-ow-dry-dock-yard",
+      "category": "transport",
+      "triage": "SKIP_LOW_VALUE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 4,
+        "STORY": 5,
+        "REUSE": 5,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 4,
+        "APPEAL": 5,
+        "KID_INTEREST": 4,
+        "HARD_TO_RECREATE": 5,
+        "MULTI_TOPIC": 4
+      },
+      "composite_score": 39,
+      "rationale": "Dry dock = industrial, low kid appeal. Infrastructure focus. Skip.",
+      "note": "Industrial, low play value"
+    },
+    {
+      "key": "ow-wave31-waterways-ow-river-barge-dock",
+      "category": "transport",
+      "triage": "SKIP_LOW_VALUE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 4,
+        "STORY": 5,
+        "REUSE": 5,
+        "CONTINUITY_GAIN": 2,
+        "DESTINATIONS": 4,
+        "APPEAL": 5,
+        "KID_INTEREST": 4,
+        "HARD_TO_RECREATE": 4,
+        "MULTI_TOPIC": 4
+      },
+      "composite_score": 37,
+      "rationale": "Barge dock = commercial transport. Low kid engagement. Canal-lock BW plates stronger waterworks. Skip.",
+      "note": "Commercial transport, redundant with canal-lock"
+    },
+    {
+      "key": "ow-wave31-outdoors-ow-bird-marsh",
+      "category": "overview",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 5,
+        "STORY": 6,
+        "REUSE": 7,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 5,
+        "APPEAL": 6,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 5,
+        "MULTI_TOPIC": 6
+      },
+      "composite_score": 50,
+      "rationale": "Bird marsh = nature observation. Overview adequate for habitat context. Boardwalk close-up adds little. Nature topics covered.",
+      "note": "Nature overview sufficient"
+    },
+    {
+      "key": "ow-wave31-outdoors-ow-dig-quarry",
+      "category": "overview",
+      "triage": "SKIP_LOW_VALUE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 5,
+        "STORY": 5,
+        "REUSE": 5,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 4,
+        "APPEAL": 5,
+        "KID_INTEREST": 5,
+        "HARD_TO_RECREATE": 5,
+        "MULTI_TOPIC": 4
+      },
+      "composite_score": 41,
+      "rationale": "Quarry = industrial site. Lower kid appeal than dino-dig. Overview sufficient. Skip close.",
+      "note": "Industrial, lower engagement than dino-dig"
+    },
+    {
+      "key": "ow-mountain-resort",
+      "category": "overview",
+      "triage": "SKIP_LOW_VALUE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 5,
+        "STORY": 6,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 6,
+        "APPEAL": 6,
+        "KID_INTEREST": 5,
+        "HARD_TO_RECREATE": 4,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 46,
+      "rationale": "Mountain resort = duplicate with ow-mountain-lodge-village. Lodge stronger interior potential. Skip resort.",
+      "note": "Duplicate with mountain-lodge-village"
+    },
+    {
+      "key": "ow-observatory-ridge",
+      "category": "overview",
+      "triage": "EXISTING_ASSETS_MAY_ALREADY_SOLVE_IT",
+      "priority": "CHECK_FIRST",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 7,
+        "CONTINUITY_GAIN": 5,
+        "DESTINATIONS": 6,
+        "APPEAL": 7,
+        "KID_INTEREST": 8,
+        "HARD_TO_RECREATE": 6,
+        "MULTI_TOPIC": 7
+      },
+      "composite_score": 59,
+      "rationale": "Observatory = space/science education. Check if ow-planetarium-garden + science-museum cover. If gap, telescope-room interior = good science surface.",
+      "search_estate": [
+        "planetarium",
+        "observatory",
+        "telescope",
+        "space-*"
+      ]
+    },
+    {
+      "key": "ow-planetarium-garden",
+      "category": "other-discovered",
+      "triage": "EXISTING_ASSETS_MAY_ALREADY_SOLVE_IT",
+      "priority": "CHECK_FIRST",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 7,
+        "CONTINUITY_GAIN": 5,
+        "DESTINATIONS": 7,
+        "APPEAL": 8,
+        "KID_INTEREST": 8,
+        "HARD_TO_RECREATE": 6,
+        "MULTI_TOPIC": 7
+      },
+      "composite_score": 61,
+      "rationale": "Planetarium = education destination. Connected to ow-science-museum (compatible). Check if dome-theater interior exists. If gap, star-projection-theater = strong science play.",
+      "search_estate": [
+        "planetarium",
+        "dome",
+        "star",
+        "projection"
+      ],
+      "note": "Already compatible with science-museum"
+    },
+    {
+      "key": "ow-science-museum",
+      "category": "overview",
+      "triage": "EXISTING_ASSETS_MAY_ALREADY_SOLVE_IT",
+      "priority": "CHECK_FIRST",
+      "score_breakdown": {
+        "PLAY": 7,
+        "STORY": 7,
+        "REUSE": 8,
+        "CONTINUITY_GAIN": 6,
+        "DESTINATIONS": 7,
+        "APPEAL": 8,
+        "KID_INTEREST": 8,
+        "HARD_TO_RECREATE": 5,
+        "MULTI_TOPIC": 8
+      },
+      "composite_score": 64,
+      "rationale": "Science museum = education hub. Compatible with planetarium. Check if exhibit-hall interior exists. If gap, science-exhibit-room = good multi-topic surface.",
+      "search_estate": [
+        "museum",
+        "exhibit",
+        "science"
+      ],
+      "note": "Already compatible with planetarium"
+    },
+    {
+      "key": "ow-wave3-community-center",
+      "category": "overview",
+      "triage": "SKIP_LOW_VALUE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 5,
+        "STORY": 5,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 5,
+        "APPEAL": 5,
+        "KID_INTEREST": 5,
+        "HARD_TO_RECREATE": 3,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 42,
+      "rationale": "Community center = generic. Covered by school/library/cafe. No unique value. Skip.",
+      "note": "Generic, covered by other destinations"
+    },
+    {
+      "key": "ow-escape-loft",
+      "category": "overview",
+      "triage": "SKIP_LOW_VALUE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 7,
+        "STORY": 7,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 4,
+        "DESTINATIONS": 5,
+        "APPEAL": 7,
+        "KID_INTEREST": 6,
+        "HARD_TO_RECREATE": 6,
+        "MULTI_TOPIC": 6
+      },
+      "composite_score": 54,
+      "rationale": "Escape theme duplicate with ow-escape-room-plaza. Plaza stronger as public destination. Skip loft.",
+      "note": "Duplicate with escape-room-plaza"
+    },
+    {
+      "key": "ow-radio-tower-hill",
+      "category": "other-discovered",
+      "triage": "SKIP_LOW_VALUE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 4,
+        "STORY": 5,
+        "REUSE": 5,
+        "CONTINUITY_GAIN": 2,
+        "DESTINATIONS": 4,
+        "APPEAL": 5,
+        "KID_INTEREST": 4,
+        "HARD_TO_RECREATE": 5,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 39,
+      "rationale": "Radio tower = infrastructure, niche tech. Low kid engagement. Skip.",
+      "note": "Infrastructure, low kid appeal"
+    },
+    {
+      "key": "ow-beanstalk-tower",
+      "category": "fantasy",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 7,
+        "STORY": 9,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 4,
+        "DESTINATIONS": 6,
+        "APPEAL": 8,
+        "KID_INTEREST": 8,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 60,
+      "rationale": "Beanstalk = strong fairy-tale imagery. Overview shows climb/scale. Cloud-castle overview (separate) serves giant world. Standalone adequate.",
+      "note": "Fairy-tale overview sufficient"
+    },
+    {
+      "key": "ow-cloud-castle",
+      "category": "fantasy",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 7,
+        "STORY": 8,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 4,
+        "DESTINATIONS": 6,
+        "APPEAL": 9,
+        "KID_INTEREST": 8,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 60,
+      "rationale": "Cloud castle = fantasy landmark. Overview shows sky-world. Castle room = generic (other fantasy interiors exist). Standalone works.",
+      "note": "Fantasy overview sufficient"
+    },
+    {
+      "key": "ow-coral-plaza",
+      "category": "fantasy",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 6,
+        "APPEAL": 8,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 55,
+      "rationale": "Coral reef = underwater fantasy. Overview adequate. Aquarium-viewing-tunnel (proposed elsewhere) covers underwater interior better. Standalone OK.",
+      "note": "Underwater fantasy overview sufficient"
+    },
+    {
+      "key": "ow-crystal-cave-plaza",
+      "category": "fantasy",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 6,
+        "APPEAL": 8,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 55,
+      "rationale": "Crystal cave = fantasy landmark. Overview shows environment. Cave-rafting and lava-tube cover cave exploration. Standalone OK.",
+      "note": "Fantasy cave overview sufficient"
+    },
+    {
+      "key": "ow-dragon-cliffs",
+      "category": "fantasy",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 7,
+        "STORY": 8,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 4,
+        "DESTINATIONS": 6,
+        "APPEAL": 9,
+        "KID_INTEREST": 9,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 61,
+      "rationale": "Dragon = peak fantasy. Overview shows lair/nest. Dragon cave interior = creature IP risk (Phoenix/Mermaid in same wave37 bucket). Standalone safer.",
+      "note": "Fantasy overview avoids creature IP risk"
+    },
+    {
+      "key": "ow-haunted-manor-grounds",
+      "category": "fantasy",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 7,
+        "STORY": 8,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 4,
+        "DESTINATIONS": 6,
+        "APPEAL": 8,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 6,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 57,
+      "rationale": "Haunted manor = spooky theme. Overview adequate. Interior = generic house (other homes exist). Halloween niche. Standalone OK.",
+      "note": "Spooky overview sufficient"
+    },
+    {
+      "key": "ow-ice-palace",
+      "category": "fantasy",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 6,
+        "APPEAL": 8,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 55,
+      "rationale": "Ice palace = winter fantasy. Overview shows environment. Castle room = generic. Standalone works.",
+      "note": "Fantasy winter overview sufficient"
+    },
+    {
+      "key": "ow-moonbase-playground",
+      "category": "fantasy",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 7,
+        "STORY": 7,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 4,
+        "DESTINATIONS": 6,
+        "APPEAL": 9,
+        "KID_INTEREST": 9,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 6
+      },
+      "composite_score": 61,
+      "rationale": "Moonbase = space fantasy. Overview shows dome/rovers. Starship-hangar (wave37 sibling) covers space interior. Standalone OK.",
+      "note": "Space overview sufficient, hangar covers interior"
+    },
+    {
+      "key": "ow-mushroom-village",
+      "category": "fantasy",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 6,
+        "APPEAL": 8,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 55,
+      "rationale": "Mushroom village = whimsical fantasy. Overview adequate. House interior = generic fantasy home. Standalone OK.",
+      "note": "Fantasy village overview sufficient"
+    },
+    {
+      "key": "ow-wave25-candy-kingdom-plaza",
+      "category": "fantasy",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 7,
+        "STORY": 7,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 4,
+        "DESTINATIONS": 7,
+        "APPEAL": 9,
+        "KID_INTEREST": 9,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 61,
+      "rationale": "Candy world = high kid appeal. Overview shows sweet landscape. Shop interior = covered by bakery/sweet-shop. Standalone OK.",
+      "note": "Sweet fantasy overview sufficient"
+    },
+    {
+      "key": "ow-wave25-giant-toy-attic-world",
+      "category": "fantasy",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 7,
+        "STORY": 8,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 4,
+        "DESTINATIONS": 6,
+        "APPEAL": 9,
+        "KID_INTEREST": 9,
+        "HARD_TO_RECREATE": 8,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 62,
+      "rationale": "Giant toy world = imaginative scale-shift. Overview shows tiny-in-giant-world. Niche fantasy. Standalone adequate.",
+      "note": "Scale-shift fantasy overview sufficient"
+    },
+    {
+      "key": "ow-wave25-paper-craft-village",
+      "category": "fantasy",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 6,
+        "APPEAL": 7,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 6
+      },
+      "composite_score": 55,
+      "rationale": "Paper craft world = art theme fantasy. Overview adequate. Art classroom covers craft. Standalone OK.",
+      "note": "Craft fantasy overview sufficient"
+    },
+    {
+      "key": "ow-wave37-space-myth-mermaid-lagoon",
+      "category": "fantasy",
+      "triage": "SKIP_LOW_VALUE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 5,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 5,
+        "APPEAL": 8,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 4
+      },
+      "composite_score": 52,
+      "rationale": "Mermaid = creature IP risk (Disney). Overview OK. Interior = creature focus risk. Skip close-up.",
+      "note": "Creature IP risk"
+    },
+    {
+      "key": "ow-wave37-space-myth-phoenix-roost",
+      "category": "fantasy",
+      "triage": "SKIP_LOW_VALUE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 5,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 5,
+        "APPEAL": 7,
+        "KID_INTEREST": 6,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 4
+      },
+      "composite_score": 50,
+      "rationale": "Phoenix = mythical creature. Overview OK. Nest interior = creature focus. Skip.",
+      "note": "Creature-focused, niche"
+    },
+    {
+      "key": "ow-wave37-space-myth-starship-hangar",
+      "category": "fantasy",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 7,
+        "STORY": 7,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 4,
+        "DESTINATIONS": 6,
+        "APPEAL": 9,
+        "KID_INTEREST": 9,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 6
+      },
+      "composite_score": 61,
+      "rationale": "Starship hangar = space facility. Overview shows ships/dock. Interior = space tech, good sci-fi. Could complete moonbase-playground orbit BUT sci-fi interiors risk complex tech art. Standalone safer.",
+      "note": "Space overview sufficient, tech interior risk"
+    },
+    {
+      "key": "ow-bird-cliff-coast",
+      "category": "nature-adventure",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 5,
+        "STORY": 6,
+        "REUSE": 7,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 5,
+        "APPEAL": 6,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 6,
+        "MULTI_TOPIC": 6
+      },
+      "composite_score": 51,
+      "rationale": "Bird cliffs = nature observation. Overview adequate for habitat. Close-up adds little. Bird-marsh sibling. Standalone OK.",
+      "note": "Nature observation overview sufficient"
+    },
+    {
+      "key": "ow-canyon-camp",
+      "category": "nature-adventure",
+      "triage": "EXISTING_ASSETS_MAY_ALREADY_SOLVE_IT",
+      "priority": "CHECK_FIRST",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 7,
+        "CONTINUITY_GAIN": 5,
+        "DESTINATIONS": 6,
+        "APPEAL": 7,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 5,
+        "MULTI_TOPIC": 6
+      },
+      "composite_score": 56,
+      "rationale": "Canyon camp = outdoor adventure. Already connected to BW camping-pitch-04. Check if tent-interior exists in KI or BW. If gap, tent-interior = small add.",
+      "search_estate": [
+        "tent",
+        "camping",
+        "camp"
+      ],
+      "note": "BW camping-pitch-04 connection exists"
+    },
+    {
+      "key": "ow-cave-rafting",
+      "category": "nature-adventure",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 6,
+        "APPEAL": 7,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 6,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 53,
+      "rationale": "Cave rafting = adventure activity. Overview shows cave river. Raft close-up = niche water sport. Lava-tube sibling. Standalone OK.",
+      "note": "Adventure overview sufficient"
+    },
+    {
+      "key": "ow-desert-oasis-ruins",
+      "category": "nature-adventure",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 5,
+        "APPEAL": 7,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 6
+      },
+      "composite_score": 54,
+      "rationale": "Desert oasis = exotic landscape. Overview adequate for exploration theme. Ruins interior = archaeology (dino-dig stronger). Standalone OK.",
+      "note": "Exotic landscape overview sufficient"
+    },
+    {
+      "key": "ow-glacier-lake",
+      "category": "nature-adventure",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 5,
+        "STORY": 6,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 5,
+        "APPEAL": 6,
+        "KID_INTEREST": 6,
+        "HARD_TO_RECREATE": 6,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 48,
+      "rationale": "Glacier = cold landscape. Overview adequate. Ice cave close-up = niche. Arctic-camp sibling covers cold base. Standalone OK.",
+      "note": "Cold landscape overview sufficient"
+    },
+    {
+      "key": "ow-lava-tube-cave",
+      "category": "nature-adventure",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 5,
+        "APPEAL": 7,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 7,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 53,
+      "rationale": "Lava tube = volcanic cave. Overview shows cave formation. Cave-rafting sibling covers cave exploration. Standalone OK.",
+      "note": "Volcanic cave overview sufficient"
+    },
+    {
+      "key": "ow-redwood-trail",
+      "category": "nature-adventure",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 5,
+        "STORY": 6,
+        "REUSE": 7,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 5,
+        "APPEAL": 6,
+        "KID_INTEREST": 6,
+        "HARD_TO_RECREATE": 5,
+        "MULTI_TOPIC": 6
+      },
+      "composite_score": 49,
+      "rationale": "Redwood forest = nature trail. Overview adequate for big trees. Rainforest-canopy sibling covers tree exploration. Standalone OK.",
+      "note": "Forest trail overview sufficient"
+    },
+    {
+      "key": "ow-salt-flat-playa",
+      "category": "nature-adventure",
+      "triage": "SKIP_LOW_VALUE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 4,
+        "STORY": 5,
+        "REUSE": 5,
+        "CONTINUITY_GAIN": 2,
+        "DESTINATIONS": 4,
+        "APPEAL": 5,
+        "KID_INTEREST": 4,
+        "HARD_TO_RECREATE": 6,
+        "MULTI_TOPIC": 4
+      },
+      "composite_score": 39,
+      "rationale": "Salt flat = barren landscape. Low visual interest, low play value. Niche geography lesson. Skip.",
+      "note": "Low visual interest, niche"
+    },
+    {
+      "key": "ow-sand-dune-park",
+      "category": "nature-adventure",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 5,
+        "STORY": 5,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 5,
+        "APPEAL": 6,
+        "KID_INTEREST": 6,
+        "HARD_TO_RECREATE": 5,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 46,
+      "rationale": "Sand dunes = desert play. Overview adequate. Beach covers sand play better. Standalone OK.",
+      "note": "Desert overview sufficient"
+    },
+    {
+      "key": "ow-waterfall-gorge",
+      "category": "nature-adventure",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 7,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 5,
+        "APPEAL": 7,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 6,
+        "MULTI_TOPIC": 6
+      },
+      "composite_score": 54,
+      "rationale": "Waterfall = dramatic nature. Overview shows scale. Base close-up adds little. Hot-springs sibling covers water features. Standalone OK.",
+      "note": "Water feature overview sufficient"
+    },
+    {
+      "key": "ow-wave17-nature2-arctic-camp",
+      "category": "nature-adventure",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 7,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 6,
+        "APPEAL": 7,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 6,
+        "MULTI_TOPIC": 6
+      },
+      "composite_score": 55,
+      "rationale": "Arctic camp = polar base. Overview adequate for cold/research setting. Tent-interior covered by camping-pitch. Standalone OK.",
+      "note": "Polar base overview sufficient"
+    },
+    {
+      "key": "ow-wave17-nature2-hot-springs-terrace",
+      "category": "nature-adventure",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 6,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 6,
+        "APPEAL": 7,
+        "KID_INTEREST": 6,
+        "HARD_TO_RECREATE": 6,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 51,
+      "rationale": "Hot springs = thermal water feature. Overview adequate. Pool close-up = generic water. Standalone OK.",
+      "note": "Thermal feature overview sufficient"
+    },
+    {
+      "key": "ow-wave17-nature2-rainforest-canopy",
+      "category": "nature-adventure",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 7,
+        "REUSE": 7,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 5,
+        "APPEAL": 7,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 6,
+        "MULTI_TOPIC": 6
+      },
+      "composite_score": 54,
+      "rationale": "Rainforest canopy = treetop view. Overview shows layers. Treehouse-forest covers tree interior better. Standalone OK.",
+      "note": "Canopy overview sufficient, treehouse covers interior"
+    },
+    {
+      "key": "ow-zipline-valley",
+      "category": "nature-adventure",
+      "triage": "STANDALONE_FINE",
+      "priority": "N/A",
+      "score_breakdown": {
+        "PLAY": 6,
+        "STORY": 6,
+        "REUSE": 6,
+        "CONTINUITY_GAIN": 3,
+        "DESTINATIONS": 6,
+        "APPEAL": 7,
+        "KID_INTEREST": 7,
+        "HARD_TO_RECREATE": 5,
+        "MULTI_TOPIC": 5
+      },
+      "composite_score": 51,
+      "rationale": "Zipline = adventure activity. Overview shows cable/valley. Platform close-up = niche adventure sport. Standalone OK.",
+      "note": "Adventure activity overview sufficient"
+    }
+  ],
+  "summary": {
+    "COMPLETE_NOW": {
+      "count": 9,
+      "items": [
+        "ow-treehouse-forest",
+        "ow-dino-dig-site",
+        "ow-aquarium-campus",
+        "ow-climbing-gym-yard",
+        "ow-escape-room-plaza",
+        "ow-ice-cream-park",
+        "ow-film-backlot",
+        "ow-mountain-lodge-village",
+        "ow-music-conservatory"
+      ]
+    },
+    "EXISTING_ASSETS_MAY_ALREADY_SOLVE_IT": {
+      "count": 7,
+      "items": [
+        "ow-birthday-park",
+        "ow-treasure-hunt-fort",
+        "ow-rv-campground",
+        "ow-observatory-ridge",
+        "ow-planetarium-garden",
+        "ow-science-museum",
+        "ow-canyon-camp"
+      ]
+    },
+    "STANDALONE_FINE": {
+      "count": 32,
+      "items": [
+        "ow-baseball-diamond",
+        "ow-graduation-lawn",
+        "ow-parade-route-block",
+        "ow-kite-hill-meadow",
+        "ow-hedge-maze-garden",
+        "ow-bike-park",
+        "ow-wave31-outdoors-ow-bird-marsh",
+        "ow-beanstalk-tower",
+        "ow-cloud-castle",
+        "ow-coral-plaza",
+        "ow-crystal-cave-plaza",
+        "ow-dragon-cliffs",
+        "ow-haunted-manor-grounds",
+        "ow-ice-palace",
+        "ow-moonbase-playground",
+        "ow-mushroom-village",
+        "ow-wave25-candy-kingdom-plaza",
+        "ow-wave25-giant-toy-attic-world",
+        "ow-wave25-paper-craft-village",
+        "ow-wave37-space-myth-starship-hangar",
+        "ow-bird-cliff-coast",
+        "ow-cave-rafting",
+        "ow-desert-oasis-ruins",
+        "ow-glacier-lake",
+        "ow-lava-tube-cave",
+        "ow-redwood-trail",
+        "ow-sand-dune-park",
+        "ow-waterfall-gorge",
+        "ow-wave17-nature2-arctic-camp",
+        "ow-wave17-nature2-hot-springs-terrace",
+        "ow-wave17-nature2-rainforest-canopy",
+        "ow-zipline-valley"
+      ]
+    },
+    "SKIP_LOW_VALUE": {
+      "count": 15,
+      "items": [
+        "ow-golf-driving-range",
+        "ow-wedding-garden",
+        "ow-glow-garden",
+        "ow-play-atrium-yard",
+        "ow-bike-trail-hub",
+        "ow-garage-rooftop",
+        "ow-wave31-waterways-ow-dry-dock-yard",
+        "ow-wave31-waterways-ow-river-barge-dock",
+        "ow-wave31-outdoors-ow-dig-quarry",
+        "ow-mountain-resort",
+        "ow-wave3-community-center",
+        "ow-escape-loft",
+        "ow-radio-tower-hill",
+        "ow-wave37-space-myth-mermaid-lagoon",
+        "ow-wave37-space-myth-phoenix-roost",
+        "ow-salt-flat-playa"
+      ]
+    }
+  }
+}

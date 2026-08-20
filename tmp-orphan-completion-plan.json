@@ -1,0 +1,280 @@
+{
+  "meta": {
+    "generated_at": "2026-08-20T22:10:00Z",
+    "scope": "bounded_asset_completion_final_plan",
+    "triage_complete": true,
+    "existing_estate_search_complete": true
+  },
+  "triage_summary": {
+    "total_orphans": 63,
+    "COMPLETE_NOW": 9,
+    "EXISTING_SOLVED": 2,
+    "STANDALONE_FINE": 32,
+    "SKIP_LOW_VALUE": 15,
+    "REMAINING_CHECK": 5
+  },
+  "existing_assets_resolved": [
+    {
+      "key": "ow-birthday-park",
+      "resolution": "SOLVED",
+      "existing_asset": "party-room",
+      "note": "Party-room interior (line 510 in manifest) covers birthday party surface. Overview alone sufficient."
+    },
+    {
+      "key": "ow-treasure-hunt-fort",
+      "resolution": "SOLVED",
+      "existing_asset": "castle-hallway",
+      "note": "Castle-hallway interior (line 764) covers fort/castle interior. Overview alone sufficient."
+    },
+    {
+      "key": "ow-rv-campground",
+      "resolution": "PARTIALLY_COVERED",
+      "existing_asset": "ow-bw-camping-pitch-01, ow-bw-camping-pitch-04",
+      "note": "BW camping pitch plates exist. No tent-interior but camping covered. Lower priority than top 9. SKIP for this bounded task."
+    },
+    {
+      "key": "ow-canyon-camp",
+      "resolution": "PARTIALLY_COVERED",
+      "existing_asset": "ow-bw-camping-pitch-04 (already connected)",
+      "note": "Already has compatible BW connection. SKIP for this bounded task."
+    },
+    {
+      "key": "ow-observatory-ridge",
+      "resolution": "GAP_EXISTS",
+      "existing_asset": "NONE",
+      "note": "NO telescope room interior exists. Could add but lower ROI than top 9. Consider for future wave."
+    },
+    {
+      "key": "ow-planetarium-garden",
+      "resolution": "GAP_EXISTS",
+      "existing_asset": "NONE",
+      "note": "NO dome theater interior. Already compatible with science-museum. Could form science-campus cluster but complex. Consider for future wave."
+    },
+    {
+      "key": "ow-science-museum",
+      "resolution": "GAP_EXISTS",
+      "existing_asset": "NONE",
+      "note": "NO exhibit hall interior. Part of potential science-campus cluster (museum+planetarium+observatory). Multi-part coordination. Consider for future wave."
+    }
+  ],
+  "final_complete_now_list": [
+    {
+      "rank": 1,
+      "key": "ow-treehouse-forest",
+      "priority": "HIGH",
+      "composite_score": 76,
+      "family_views": 2,
+      "manus_cells": [
+        {
+          "concept": "treehouse-exterior-approach",
+          "brief": "TREEHOUSE LADDER VIEW — mid-scale outdoor view looking up at wooden treehouse in large tree. Rope ladder, platform edge, window visible. Ground/trunk base, path approach. Open negative space for prop play. No people. No text. Kids-first destination.",
+          "view_role": "location",
+          "parent_overview": "ow-treehouse-forest"
+        },
+        {
+          "concept": "treehouse-room-interior",
+          "brief": "TREEHOUSE ROOM INTERIOR — cozy wooden room inside treehouse. Window with forest view, rope through hatch, small table, cushion, storage box. Warm wood tones. Play surface for hide/discover activities. No people. No text. Safe adventure shelter.",
+          "view_role": "activity",
+          "parent_overview": "ow-treehouse-forest"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "key": "ow-dino-dig-site",
+      "priority": "HIGH",
+      "composite_score": 76,
+      "family_views": 2,
+      "manus_cells": [
+        {
+          "concept": "dig-pit-excavation",
+          "brief": "DINO DIG PIT — mid-scale excavation pit with fossil bones partially visible in dirt/rock layers. Tools (brush, trowel) nearby, grid markers, working area. Desert/canyon setting. Play surface for discovery/archaeology. No people. No text. Science adventure.",
+          "view_role": "location",
+          "parent_overview": "ow-dino-dig-site"
+        },
+        {
+          "concept": "fossil-tent-workstation",
+          "brief": "FOSSIL CLEANING TENT — interior tent workspace with table, fossils laid out, magnifying glass, cleaning brushes, field notebook, specimen boxes. Canvas tent walls, field lighting. Archaeology workstation play surface. No people. No text. Discovery station.",
+          "view_role": "activity",
+          "parent_overview": "ow-dino-dig-site"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "key": "ow-aquarium-campus",
+      "priority": "HIGH",
+      "composite_score": 77,
+      "family_views": 2,
+      "manus_cells": [
+        {
+          "concept": "aquarium-entrance-lobby",
+          "brief": "AQUARIUM ENTRANCE — mid-scale interior lobby with info desk, aquarium tanks visible in background, coral reef display nearby, directional signs (pictogram only, no text), open floor. Welcoming public space. No people. No text words. Marine education gateway.",
+          "view_role": "location",
+          "parent_overview": "ow-aquarium-campus"
+        },
+        {
+          "concept": "underwater-viewing-tunnel",
+          "brief": "UNDERWATER VIEWING TUNNEL — dramatic curved glass tunnel interior with ocean view walls. Fish, coral, rays visible through glass. Blue ambient light. Path with viewing spots. Rich marine life play surface. No people. No text. Immersive ocean experience.",
+          "view_role": "activity",
+          "parent_overview": "ow-aquarium-campus"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "key": "ow-escape-room-plaza",
+      "priority": "MEDIUM_HIGH",
+      "composite_score": 72,
+      "family_views": 1,
+      "manus_cells": [
+        {
+          "concept": "escape-room-puzzle-chamber",
+          "brief": "ESCAPE ROOM INTERIOR — themed puzzle chamber with locked boxes, number pad, hidden compartments, clue boards (symbols/pictograms only), mysterious props. Moody lighting, adventure theme. Rich puzzle/mystery play surface. No people. No text words. Problem-solving destination.",
+          "view_role": "activity",
+          "parent_overview": "ow-escape-room-plaza"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "key": "ow-climbing-gym-yard",
+      "priority": "MEDIUM_HIGH",
+      "composite_score": 65,
+      "family_views": 1,
+      "manus_cells": [
+        {
+          "concept": "climbing-wall-gym-interior",
+          "brief": "INDOOR CLIMBING WALL — interior gym with tall climbing wall featuring colorful holds (no text/numbers on holds), safety mats below, routes marked by hold colors. High ceiling, gym lighting. Physical challenge play surface. No people. No text. Active sports destination.",
+          "view_role": "activity",
+          "parent_overview": "ow-climbing-gym-yard"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "key": "ow-ice-cream-park",
+      "priority": "MEDIUM_HIGH",
+      "composite_score": 69,
+      "family_views": 1,
+      "manus_cells": [
+        {
+          "concept": "ice-cream-vendor-cart",
+          "brief": "ICE CREAM CART — close-up vendor cart/stand with flavor display (visual flavor tubs, no text labels), serving counter, cones, toppings visible, umbrella shade. Park setting. Transaction/ordering play surface. No people. No text words. Treat destination.",
+          "view_role": "activity",
+          "parent_overview": "ow-ice-cream-park"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "key": "ow-film-backlot",
+      "priority": "MEDIUM",
+      "composite_score": 68,
+      "family_views": 1,
+      "manus_cells": [
+        {
+          "concept": "film-set-studio-interior",
+          "brief": "FILM SET INTERIOR — behind-scenes movie set with camera on tripod, director chair, clapperboard (no text), props scattered, lighting equipment, green screen or set pieces. Creative workspace. Media/storytelling play surface. No people. No text words. Behind-the-scenes creative destination.",
+          "view_role": "activity",
+          "parent_overview": "ow-film-backlot"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "key": "ow-mountain-lodge-village",
+      "priority": "MEDIUM",
+      "composite_score": 67,
+      "family_views": 1,
+      "manus_cells": [
+        {
+          "concept": "lodge-fireplace-common-room",
+          "brief": "MOUNTAIN LODGE INTERIOR — cozy common room with stone fireplace (warm glow), wooden furniture, ski/hiking gear on wall, large window with mountain view, rug. Warm shelter atmosphere. Winter/mountain stay play surface. No people. No text. Cozy retreat destination.",
+          "view_role": "activity",
+          "parent_overview": "ow-mountain-lodge-village"
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "key": "ow-music-conservatory",
+      "priority": "MEDIUM",
+      "composite_score": 65,
+      "family_views": 1,
+      "manus_cells": [
+        {
+          "concept": "music-practice-room",
+          "brief": "MUSIC PRACTICE ROOM — small practice room interior with upright piano, music stand (no sheet music text), instrument case, chair, soundproofing panels, window. Education space. Music/instrument learning play surface. No people. No text words. Music education destination.",
+          "view_role": "activity",
+          "parent_overview": "ow-music-conservatory"
+        }
+      ]
+    }
+  ],
+  "manus_generation_summary": {
+    "total_worlds_to_complete": 9,
+    "total_new_views_to_generate": 13,
+    "batch_strategy": "3-5 concurrent, prioritize HIGH first",
+    "batches": [
+      {
+        "batch_id": "batch_1_high_priority",
+        "worlds": [
+          "ow-treehouse-forest",
+          "ow-dino-dig-site",
+          "ow-aquarium-campus"
+        ],
+        "total_cells": 6,
+        "note": "Top 3 high-value destinations"
+      },
+      {
+        "batch_id": "batch_2_medium_high",
+        "worlds": [
+          "ow-escape-room-plaza",
+          "ow-climbing-gym-yard",
+          "ow-ice-cream-park"
+        ],
+        "total_cells": 3,
+        "note": "Medium-high single-view additions"
+      },
+      {
+        "batch_id": "batch_3_medium",
+        "worlds": [
+          "ow-film-backlot",
+          "ow-mountain-lodge-village",
+          "ow-music-conservatory"
+        ],
+        "total_cells": 3,
+        "note": "Medium-priority single-view additions"
+      },
+      {
+        "batch_id": "batch_4_overflow",
+        "worlds": [],
+        "total_cells": 0,
+        "note": "Reserved for any revisions or escalations"
+      }
+    ]
+  },
+  "success_criteria": {
+    "primary": "9 orphan overviews gain minimum viable zoom families (1-3 views each)",
+    "quality_gate": "REG_A/B/C after generation; FAIL if unusable",
+    "revision_budget": "Initial + 1 targeted revision per unusually valuable world",
+    "harvest_paths": "harvested/overview-worlds/ OR harvested/world-zoom-completions/",
+    "doc_updates": "world-zoom-relationships.md + .json",
+    "commit_scope": "docs + scripts only, NO PNG git-add"
+  },
+  "avoided_spend_summary": {
+    "EXISTING_SOLVED": 2,
+    "items_not_generated": [
+      "ow-birthday-park (party-room exists)",
+      "ow-treasure-hunt-fort (castle-hallway exists)"
+    ],
+    "STANDALONE_FINE": 32,
+    "note": "32 overviews adequate alone; no close-up needed",
+    "SKIP_LOW_VALUE": 15,
+    "note": "15 overviews low ROI; not worth Manus",
+    "total_orphans_not_requiring_completion": 49,
+    "completion_rate": "14% (9/63) require new views",
+    "efficiency": "High - focused on kids-first destinations with clear play value"
+  }
+}
