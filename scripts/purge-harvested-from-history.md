@@ -116,6 +116,8 @@ git push
 
 Files remain on your disk. Blobs remain in old commits until Path A.
 
+**Never `git add -f harvested/...`.** Force-add bypasses `.gitignore` and puts PNGs back on main (stockpile agents did this after the first ignore commit).
+
 ---
 
 ## Approve force-push?
