@@ -4,7 +4,7 @@ Stockpile only. No producer / PropBank / recipe wiring.
 
 - Runner: `scripts/manus/request-builder-worlds-b.mjs`
 - Art: `harvested/builder-worlds/<family>/` (PNG — do **not** git-add)
-- Tracked: this log + `harvested/builder-worlds/b-inventory.json`
+- Tracked: this log + `docs/builder-worlds-b-inventory.json` (local mirror also at `harvested/builder-worlds/b-inventory.json`, gitignored)
 - Slot: **1** Manus in-flight under `builder-worlds/` (shared with stream A — B refuses fire if any open run exists)
 - Portfolio: lower half of `docs/builder-worlds-portfolio.json` ranked selected set
 
