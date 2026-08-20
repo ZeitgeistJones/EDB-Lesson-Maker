@@ -11,17 +11,17 @@ Songs excluded. No flags/maps/seals. Festival + country + wedding: `cultural_rev
 | Weather families (registered) | 20 |
 | Country PLACE worlds | 68 |
 | Festival stages | 20 |
-| Stage cells planned | 260 |
+| Stage cells planned | 276 |
 | Companion cells planned | 45 |
-| Waves / tasks planned | 57 |
+| Waves / tasks planned | 61 |
 
 ## Running totals
 
 | Metric | Count |
 |---|---:|
-| Tasks | 55 |
-| Sheets downloaded | 75 |
-| Stage cells harvested | 252 |
+| Tasks | 56 |
+| Sheets downloaded | 76 |
+| Stage cells harvested | 256 |
 | Companion cells harvested | 45 |
 
 ## Waves
@@ -83,6 +83,10 @@ Songs excluded. No flags/maps/seals. Festival + country + wedding: `cultural_rev
 - **g13** — CW FGHI G13 — fire station + police lobby life — unfired — cells 4
 - **h13** — https://manus.im/app/MCTpJSoiQfUDZd6ftrFaA8 — sheets 1 — cells 4
 - **j13** — CW FGHI J13 — country PLACE worlds M (4) — unfired — cells 4
+- **f15** — CW FGHI F15 — weather family attic window — unfired — cells 4
+- **g14** — https://manus.im/app/FbHXfXna6Thqcz8t8Za8iQ — sheets 1 — cells 4
+- **h14** — CW FGHI H14 — lost-and-found / orientation stages — unfired — cells 4
+- **j14** — CW FGHI J14 — country PLACE worlds N (4) — unfired — cells 4
 
 ## research_gate
 
