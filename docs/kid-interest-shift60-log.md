@@ -8,12 +8,12 @@ Tracked: `scripts/manus/request-kid-interest-shift60.mjs`, audit/portfolio docs,
 
 | Metric | Count |
 |---|---:|
-| Waves planned | 24 |
-| Tasks | 20 |
-| Sheets downloaded | 46 |
-| Waves done | 16 |
-| Asset cells | 402 |
-| Novelty (discovered families %) | 50% |
+| Waves planned | 31 |
+| Tasks | 31 |
+| Sheets downloaded | 79 |
+| Waves done | 28 |
+| Asset cells | 648 |
+| Novelty (discovered families %) | 52% |
 
 ## Waves
 
@@ -33,14 +33,21 @@ Tracked: `scripts/manus/request-kid-interest-shift60.mjs`, audit/portfolio docs,
 - **ki-circus-skills** `ki-circus-skills` — generated_raw — novelty=discovered-new — https://manus.im/app/UUtFbtvWNp5oM64L6CQXP3 — 3 sheets / 27 cells — Unusual kid clubs — circus arts not in prompt
 - **ow-wave4-play-districts** `ow-wave4` — generated_raw — novelty=discovered-new — https://manus.im/app/4d6WseXRZQezWASKZBjMWB — 3 sheets / 3 cells — Breadth overviews — sports/waterpark/shop not yet stocked as OW
 - **ki-makerspace-large** `ki-makerspace-large` — generated_raw — novelty=discovered-new — https://manus.im/app/mNDxuWdBJvnX9oX52oHYhd — 3 sheets / 27 cells — Maker depth beyond slime — board-scale tools, not micro fasteners
-- **ki-outdoor-adventure-gear** `ki-outdoor-adventure-gear` — fired — novelty=discovered-new — https://manus.im/app/HVwzHrkK4m2e3jBGnViDCq — 3 sheets / 27 cells — Skip camping clone — zipline/geocache/trail kits not in prompt
-- **ki-dance-stage** `ki-dance-stage` — fired — novelty=prompt-direction — https://manus.im/app/GAUrBE8MFxfqzC77B2QaaR — 3 sheets / 27 cells — THIN dance/performance — mic/karaoke adjacent, stage props
-- **ow-wave5-learn-play** `ow-wave5` — fired — novelty=discovered-new — https://manus.im/app/U3JegbtM7QBHRnT9RVkGPC — 3 sheets / 3 cells — Learn/play campuses — aquarium/museum/makerspace as overview worlds
-- **ki-tabletop-party** `ki-tabletop-party` — fired — novelty=discovered-new — https://manus.im/app/YzzUrWTRLxpyzRZabPquPV — 3 sheets / 27 cells — Board/card THIN — invent party/tabletop without IP
-- **ki-pet-training** `ki-pet-training` — unfired — novelty=prompt-direction — unfired — 2 sheets / 18 cells — Pet-life depth — training gear beyond body types
-- **ki-music-electronic** `ki-music-electronic` — unfired — novelty=discovered-new — unfired — 2 sheets / 18 cells — Music creation modern — DJ/synth depth beyond acoustic
-- **ki-gaming-desk-depth** `ki-gaming-desk-depth` — unfired — novelty=discovered-new — unfired — 2 sheets / 18 cells — Gaming THIN still — desk ecosystem without brands/UI
-- **ow-wave6-transit-nature** `ow-wave6` — unfired — novelty=prompt-direction — unfired — 3 sheets / 3 cells — Transport + mountain resort breadth from prompt seeds
+- **ki-outdoor-adventure-gear** `ki-outdoor-adventure-gear` — generated_raw — novelty=discovered-new — https://manus.im/app/HVwzHrkK4m2e3jBGnViDCq — 3 sheets / 27 cells — Skip camping clone — zipline/geocache/trail kits not in prompt
+- **ki-dance-stage** `ki-dance-stage` — generated_raw — novelty=prompt-direction — https://manus.im/app/GAUrBE8MFxfqzC77B2QaaR — 3 sheets / 27 cells — THIN dance/performance — mic/karaoke adjacent, stage props
+- **ow-wave5-learn-play** `ow-wave5` — generated_raw — novelty=discovered-new — https://manus.im/app/U3JegbtM7QBHRnT9RVkGPC — 3 sheets / 3 cells — Learn/play campuses — aquarium/museum/makerspace as overview worlds
+- **ki-tabletop-party** `ki-tabletop-party` — generated_raw — novelty=discovered-new — https://manus.im/app/YzzUrWTRLxpyzRZabPquPV — 3 sheets / 27 cells — Board/card THIN — invent party/tabletop without IP
+- **ki-pet-training** `ki-pet-training` — generated_raw — novelty=prompt-direction — https://manus.im/app/Wvjyy8xp2DGi2t9KTxvmMy — 2 sheets / 18 cells — Pet-life depth — training gear beyond body types
+- **ki-music-electronic** `ki-music-electronic` — generated_raw — novelty=discovered-new — https://manus.im/app/XLincLiFQFihvJjP95zh9G — 2 sheets / 18 cells — Music creation modern — DJ/synth depth beyond acoustic
+- **ki-gaming-desk-depth** `ki-gaming-desk-depth` — generated_raw — novelty=discovered-new — https://manus.im/app/mhSC3fRaHAYyGbdxkDk3aU — 2 sheets / 18 cells — Gaming THIN still — desk ecosystem without brands/UI
+- **ow-wave6-transit-nature** `ow-wave6` — generated_raw — novelty=prompt-direction — https://manus.im/app/5Wzc35N8eBCbVemSsoUDTP — 3 sheets / 3 cells — Transport + mountain resort breadth from prompt seeds
+- **ki-puppet-theatre** `ki-puppet-theatre` — generated_raw — novelty=discovered-new — https://manus.im/app/2iSrsfk7pM527tTvNEB9o9 — 3 sheets / 27 cells — Discovered hobby — puppet/shadow theatre not in original prompt
+- **ki-garden-grow** `ki-garden-grow` — generated_raw — novelty=discovered-new — https://manus.im/app/VGipyjZdq78U3yarMf8TXz — 3 sheets / 27 cells — Discovered hobby — kid gardening / greenhouse not named in prompt
+- **ki-astronomy-club** `ki-astronomy-club` — generated_raw — novelty=discovered-new — https://manus.im/app/8gugzEq3au7pZhUvV8b7Km — 3 sheets / 27 cells — Discovered club — stargazing kit beyond one telescope
+- **ki-cooking-kid** `ki-cooking-kid` — fired — novelty=discovered-new — https://manus.im/app/aVWQoHfaEtghbaYtovJPzd — 3 sheets / 27 cells — Discovered hobby — kid kitchen club gear not in original prompt
+- **ki-sports-street-deep** `ki-sports-street-deep` — generated_raw — novelty=prompt-direction — https://manus.im/app/bdUyFtN5a65WuivTDmEFwi — 3 sheets / 27 cells — Sports beyond balls — street/court mid-obscure gear still thin
+- **ki-origami-paper-craft** `ki-origami-paper-craft` — fired — novelty=prompt-direction — https://manus.im/app/PsPkrtcFQCnroX4Qi7ZEjA — 3 sheets / 27 cells — Crafts still thin on finished origami forms + paper actions
+- **ki-fair-rides-deep** `ki-fair-rides-deep` — fired — novelty=prompt-direction — https://manus.im/app/irB7p2w5UFJCpGJynifhD3 — 3 sheets / 27 cells — Fun vehicles still thin — fair/carnival ride modules
 
 ## Events
 
@@ -127,3 +134,67 @@ _none yet_
 - 2026-08-20T07:56:23.608Z — FIRED ki-tabletop-party → https://manus.im/app/YzzUrWTRLxpyzRZabPquPV
 
 - 2026-08-20T07:57:02.961Z — DOWNLOADED ki-circus-skills qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-circus-skills\sheets
+
+- 2026-08-20T07:58:35.224Z — DOWNLOADED ow-wave5-learn-play qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\town-community\ow-wave5-learn-play\sheets
+
+- 2026-08-20T07:59:00.624Z — DOWNLOADED ow-wave5-learn-play qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\town-community\ow-wave5-learn-play\sheets
+
+- 2026-08-20T07:59:24.550Z — DOWNLOADED ki-outdoor-adventure-gear qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\sports\ki-outdoor-adventure-gear\sheets
+
+- 2026-08-20T07:59:29.768Z — DOWNLOADED ki-outdoor-adventure-gear qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\sports\ki-outdoor-adventure-gear\sheets
+
+- 2026-08-20T07:59:31.932Z — DOWNLOADED ki-tabletop-party qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\hobbies\ki-tabletop-party\sheets
+
+- 2026-08-20T07:59:40.713Z — DOWNLOADED ki-tabletop-party qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\hobbies\ki-tabletop-party\sheets
+
+- 2026-08-20T08:00:27.993Z — DOWNLOADED ki-outdoor-adventure-gear qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\sports\ki-outdoor-adventure-gear\sheets
+
+- 2026-08-20T08:00:29.217Z — DOWNLOADED ow-wave5-learn-play qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\town-community\ow-wave5-learn-play\sheets
+
+- 2026-08-20T08:00:47.263Z — FIRED ki-pet-training → https://manus.im/app/Wvjyy8xp2DGi2t9KTxvmMy
+
+- 2026-08-20T08:00:52.356Z — FIRED ki-music-electronic → https://manus.im/app/XLincLiFQFihvJjP95zh9G
+
+- 2026-08-20T08:01:13.708Z — DOWNLOADED ki-tabletop-party qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\hobbies\ki-tabletop-party\sheets
+
+- 2026-08-20T08:01:31.931Z — FIRED ki-gaming-desk-depth → https://manus.im/app/mhSC3fRaHAYyGbdxkDk3aU
+
+- 2026-08-20T08:01:39.608Z — FIRED ki-puppet-theatre → https://manus.im/app/2iSrsfk7pM527tTvNEB9o9
+
+- 2026-08-20T08:03:08.020Z — DOWNLOADED ki-music-electronic qa=PASS sheets=2 large=2/2 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\music\ki-music-electronic\sheets
+
+- 2026-08-20T08:03:17.669Z — DOWNLOADED ki-gaming-desk-depth qa=PASS sheets=2 large=2/2 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\gaming-digital\ki-gaming-desk-depth\sheets
+
+- 2026-08-20T08:07:49.943Z — DOWNLOADED ki-music-electronic qa=PASS sheets=2 large=2/2 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\music\ki-music-electronic\sheets
+
+- 2026-08-20T08:07:50.464Z — DOWNLOADED ki-puppet-theatre qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-puppet-theatre\sheets
+
+- 2026-08-20T08:08:29.245Z — FIRED ki-garden-grow → https://manus.im/app/VGipyjZdq78U3yarMf8TXz
+
+- 2026-08-20T08:08:29.639Z — FIRED ki-astronomy-club → https://manus.im/app/8gugzEq3au7pZhUvV8b7Km
+
+- 2026-08-20T08:09:31.988Z — DOWNLOADED ki-dance-stage qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\hobbies\ki-dance-stage\sheets
+
+- 2026-08-20T08:09:37.948Z — DOWNLOADED ki-dance-stage qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\hobbies\ki-dance-stage\sheets
+
+- 2026-08-20T08:09:38.664Z — DOWNLOADED ki-dance-stage qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\hobbies\ki-dance-stage\sheets
+
+- 2026-08-20T08:10:45.717Z — FIRED ow-wave6-transit-nature → https://manus.im/app/5Wzc35N8eBCbVemSsoUDTP
+
+- 2026-08-20T08:12:38.380Z — DOWNLOADED ow-wave6-transit-nature qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\transport\ow-wave6-transit-nature\sheets
+
+- 2026-08-20T08:13:11.702Z — DOWNLOADED ki-astronomy-club qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-astronomy-club\sheets
+
+- 2026-08-20T08:14:09.748Z — DOWNLOADED ki-pet-training qa=PASS sheets=2 large=2/2 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\pets\ki-pet-training\sheets
+
+- 2026-08-20T08:14:24.842Z — DOWNLOADED ki-pet-training qa=PASS sheets=2 large=2/2 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\pets\ki-pet-training\sheets
+
+- 2026-08-20T08:16:23.412Z — FIRED ki-cooking-kid → https://manus.im/app/aVWQoHfaEtghbaYtovJPzd
+
+- 2026-08-20T08:16:30.677Z — FIRED ki-sports-street-deep → https://manus.im/app/bdUyFtN5a65WuivTDmEFwi
+
+- 2026-08-20T08:16:36.614Z — FIRED ki-origami-paper-craft → https://manus.im/app/PsPkrtcFQCnroX4Qi7ZEjA
+
+- 2026-08-20T08:16:42.214Z — FIRED ki-fair-rides-deep → https://manus.im/app/irB7p2w5UFJCpGJynifhD3
+
+- 2026-08-20T08:18:22.949Z — DOWNLOADED ki-garden-grow qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-garden-grow\

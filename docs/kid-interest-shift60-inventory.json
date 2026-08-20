@@ -546,14 +546,30 @@
       "in_prompt_named": false,
       "task_id": "HVwzHrkK4m2e3jBGnViDCq",
       "task_url": "https://manus.im/app/HVwzHrkK4m2e3jBGnViDCq",
-      "agent_status": null,
+      "agent_status": "stopped",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\sports\\ki-outdoor-adventure-gear\\sheets",
       "expected_sheets": 3,
       "cell_count": 27,
-      "sheets": [],
-      "finished_at": null,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4026678,
+          "name": "ki-outdoor-adventure-gear_S1-trail-kit.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3926166,
+          "name": "ki-outdoor-adventure-gear_S2-geo-nature.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4101291,
+          "name": "ki-outdoor-adventure-gear_S3-snow-play.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:00:27.971Z",
       "holds": [],
-      "qa": ""
+      "qa": "PASS"
     },
     "ki-dance-stage": {
       "family_id": "ki-dance-stage",
@@ -564,14 +580,30 @@
       "in_prompt_named": true,
       "task_id": "GAUrBE8MFxfqzC77B2QaaR",
       "task_url": "https://manus.im/app/GAUrBE8MFxfqzC77B2QaaR",
-      "agent_status": null,
+      "agent_status": "stopped",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\hobbies\\ki-dance-stage\\sheets",
       "expected_sheets": 3,
       "cell_count": 27,
-      "sheets": [],
-      "finished_at": null,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3947817,
+          "name": "ki-dance-stage_S1_dance-gear_3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3790799,
+          "name": "ki-dance-stage_S2_karaoke-theater_3x3.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3831334,
+          "name": "ki-dance-stage_S3_cheer-baton_3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:09:38.519Z",
       "holds": [],
-      "qa": ""
+      "qa": "PASS"
     },
     "ow-wave5-learn-play": {
       "family_id": "ow-wave5",
@@ -582,14 +614,30 @@
       "in_prompt_named": false,
       "task_id": "U3JegbtM7QBHRnT9RVkGPC",
       "task_url": "https://manus.im/app/U3JegbtM7QBHRnT9RVkGPC",
-      "agent_status": null,
+      "agent_status": "stopped",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\town-community\\ow-wave5-learn-play\\sheets",
       "expected_sheets": 3,
       "cell_count": 3,
-      "sheets": [],
-      "finished_at": null,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4768362,
+          "name": "ow-aquarium-campus.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 5613440,
+          "name": "ow-makerspace-campus.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4667811,
+          "name": "ow-science-museum.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:00:29.181Z",
       "holds": [],
-      "qa": ""
+      "qa": "PASS"
     },
     "ki-tabletop-party": {
       "family_id": "ki-tabletop-party",
@@ -600,8 +648,335 @@
       "in_prompt_named": false,
       "task_id": "YzzUrWTRLxpyzRZabPquPV",
       "task_url": "https://manus.im/app/YzzUrWTRLxpyzRZabPquPV",
-      "agent_status": null,
+      "agent_status": "stopped",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\hobbies\\ki-tabletop-party\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3992985,
+          "name": "S1_tabletop_3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4671057,
+          "name": "S2_party_games_3x3.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4003408,
+          "name": "S3_sleepover_extras_3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:01:13.681Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-pet-training": {
+      "family_id": "ki-pet-training",
+      "title": "KI pet training + care extras (3×3 ×2)",
+      "lane": "pets",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "task_id": "Wvjyy8xp2DGi2t9KTxvmMy",
+      "task_url": "https://manus.im/app/Wvjyy8xp2DGi2t9KTxvmMy",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\pets\\ki-pet-training\\sheets",
+      "expected_sheets": 2,
+      "cell_count": 18,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3518474,
+          "name": "ki-pet-training-S1-training-gear-3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 1570422,
+          "name": "ki-pet-training-S2-care-extras-3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:14:24.733Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-music-electronic": {
+      "family_id": "ki-music-electronic",
+      "title": "KI electronic music desk NEW (3×3 ×2)",
+      "lane": "music",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "XLincLiFQFihvJjP95zh9G",
+      "task_url": "https://manus.im/app/XLincLiFQFihvJjP95zh9G",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\music\\ki-music-electronic\\sheets",
+      "expected_sheets": 2,
+      "cell_count": 18,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3757091,
+          "name": "ki-emusc-band-extras-3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4241459,
+          "name": "ki-emusc-elec-music-3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:07:49.917Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-gaming-desk-depth": {
+      "family_id": "ki-gaming-desk-depth",
+      "title": "KI gaming desk depth NEW (3×3 ×2)",
+      "lane": "gaming-digital",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "mhSC3fRaHAYyGbdxkDk3aU",
+      "task_url": "https://manus.im/app/mhSC3fRaHAYyGbdxkDk3aU",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\gaming-digital\\ki-gaming-desk-depth\\sheets",
+      "expected_sheets": 2,
+      "cell_count": 18,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3747510,
+          "name": "ki-gdesk-desk-ecosystem.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3687248,
+          "name": "ki-gdesk-play-accessories.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:03:17.640Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-puppet-theatre": {
+      "family_id": "ki-puppet-theatre",
+      "title": "KI puppet + shadow theatre NEW (3×3 ×3)",
+      "lane": "other-discovered",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "2iSrsfk7pM527tTvNEB9o9",
+      "task_url": "https://manus.im/app/2iSrsfk7pM527tTvNEB9o9",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\other-discovered\\ki-puppet-theatre\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 1651629,
+          "name": "ki-puppet-theatre-S1-puppets.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3636387,
+          "name": "ki-puppet-theatre-S2-shadow-theatre.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 1880979,
+          "name": "ki-puppet-theatre-S3-costume-craft.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:07:50.436Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-garden-grow": {
+      "family_id": "ki-garden-grow",
+      "title": "KI garden grow + greenhouse kid NEW (3×3 ×3)",
+      "lane": "other-discovered",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "VGipyjZdq78U3yarMf8TXz",
+      "task_url": "https://manus.im/app/VGipyjZdq78U3yarMf8TXz",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\other-discovered\\ki-garden-grow\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3962895,
+          "name": "ki-garden-grow-S1-grow-gear-3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 1880948,
+          "name": "ki-garden-grow-S2-plants-harvest-3x3.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 1701411,
+          "name": "ki-garden-grow-S3-greenhouse-kit-3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:18:22.328Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-astronomy-club": {
+      "family_id": "ki-astronomy-club",
+      "title": "KI astronomy club NEW (3×3 ×3)",
+      "lane": "other-discovered",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "8gugzEq3au7pZhUvV8b7Km",
+      "task_url": "https://manus.im/app/8gugzEq3au7pZhUvV8b7Km",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\other-discovered\\ki-astronomy-club\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3757187,
+          "name": "ki-astronomy-club-S1-astro-gear-3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3949883,
+          "name": "ki-astronomy-club-S2-observatory-kit-3x3.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4189632,
+          "name": "ki-astronomy-club-S3-space-play-3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:13:11.578Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ow-wave6-transit-nature": {
+      "family_id": "ow-wave6",
+      "title": "OW wave6 — station district + airport edge + mountain resort (FULL-PAGE ×3)",
+      "lane": "overview",
+      "stockpile": "overview-worlds",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "task_id": "5Wzc35N8eBCbVemSsoUDTP",
+      "task_url": "https://manus.im/app/5Wzc35N8eBCbVemSsoUDTP",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\transport\\ow-wave6-transit-nature\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 3,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4242226,
+          "name": "ow-airport-edge.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4747983,
+          "name": "ow-mountain-resort.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 5357337,
+          "name": "ow-station-district.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:12:38.274Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-cooking-kid": {
+      "family_id": "ki-cooking-kid",
+      "title": "KI kid cooking / baking club NEW (3×3 ×3)",
+      "lane": "hobbies",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "aVWQoHfaEtghbaYtovJPzd",
+      "task_url": "https://manus.im/app/aVWQoHfaEtghbaYtovJPzd",
+      "agent_status": null,
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\hobbies\\ki-cooking-kid\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [],
+      "finished_at": null,
+      "holds": [],
+      "qa": ""
+    },
+    "ki-sports-street-deep": {
+      "family_id": "ki-sports-street-deep",
+      "title": "KI street + court sports depth (3×3 ×3)",
+      "lane": "sports",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "task_id": "bdUyFtN5a65WuivTDmEFwi",
+      "task_url": "https://manus.im/app/bdUyFtN5a65WuivTDmEFwi",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\sports\\ki-sports-street-deep\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4271135,
+          "name": "ki-sports-street-deep_S1_street-sports_3x3.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3866752,
+          "name": "ki-sports-street-deep_S2_court-field_3x3.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3531185,
+          "name": "ki-sports-street-deep_S3_track-swim_3x3.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:19:28.873Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ki-origami-paper-craft": {
+      "family_id": "ki-origami-paper-craft",
+      "title": "KI origami + paper craft depth (3×3 ×3)",
+      "lane": "crafts-maker",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "task_id": "PsPkrtcFQCnroX4Qi7ZEjA",
+      "task_url": "https://manus.im/app/PsPkrtcFQCnroX4Qi7ZEjA",
+      "agent_status": null,
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\crafts-maker\\ki-origami-paper-craft\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 27,
+      "sheets": [],
+      "finished_at": null,
+      "holds": [],
+      "qa": ""
+    },
+    "ki-fair-rides-deep": {
+      "family_id": "ki-fair-rides-deep",
+      "title": "KI fair rides + carnival vehicles depth (3×3 ×3)",
+      "lane": "vehicles-leisure",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "task_id": "irB7p2w5UFJCpGJynifhD3",
+      "task_url": "https://manus.im/app/irB7p2w5UFJCpGJynifhD3",
+      "agent_status": null,
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\vehicles-leisure\\ki-fair-rides-deep\\sheets",
       "expected_sheets": 3,
       "cell_count": 27,
       "sheets": [],
@@ -1311,8 +1686,8 @@
       "manus_task_id": "HVwzHrkK4m2e3jBGnViDCq",
       "task_url": "https://manus.im/app/HVwzHrkK4m2e3jBGnViDCq",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\sports\\ki-outdoor-adventure-gear\\sheets",
-      "status": "fired",
-      "qa": ""
+      "status": "generated_raw",
+      "qa": "PASS"
     },
     "ki-dance-stage": {
       "family_id": "ki-dance-stage",
@@ -1354,8 +1729,8 @@
       "manus_task_id": "GAUrBE8MFxfqzC77B2QaaR",
       "task_url": "https://manus.im/app/GAUrBE8MFxfqzC77B2QaaR",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\hobbies\\ki-dance-stage\\sheets",
-      "status": "fired",
-      "qa": ""
+      "status": "generated_raw",
+      "qa": "PASS"
     },
     "ow-wave5": {
       "family_id": "ow-wave5",
@@ -1373,8 +1748,8 @@
       "manus_task_id": "U3JegbtM7QBHRnT9RVkGPC",
       "task_url": "https://manus.im/app/U3JegbtM7QBHRnT9RVkGPC",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\town-community\\ow-wave5-learn-play\\sheets",
-      "status": "fired",
-      "qa": ""
+      "status": "generated_raw",
+      "qa": "PASS"
     },
     "ki-tabletop-party": {
       "family_id": "ki-tabletop-party",
@@ -1416,20 +1791,425 @@
       "manus_task_id": "YzzUrWTRLxpyzRZabPquPV",
       "task_url": "https://manus.im/app/YzzUrWTRLxpyzRZabPquPV",
       "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\hobbies\\ki-tabletop-party\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-pet-training": {
+      "family_id": "ki-pet-training",
+      "wave": "ki-pet-training",
+      "lane": "pets",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "why": "Pet-life depth — training gear beyond body types",
+      "siblings": [
+        "ki-ptrain-clicker",
+        "ki-ptrain-treat-pouch",
+        "ki-ptrain-agility-hoop",
+        "ki-ptrain-agility-tunnel",
+        "ki-ptrain-agility-weave",
+        "ki-ptrain-frisbee-dog",
+        "ki-ptrain-rope-toy",
+        "ki-ptrain-ball-launcher",
+        "ki-ptrain-grooming-brush",
+        "ki-ptrain-nail-clippers",
+        "ki-ptrain-shampoo-bottle",
+        "ki-ptrain-towel-pet",
+        "ki-ptrain-carrier-backpack",
+        "ki-ptrain-harness",
+        "ki-ptrain-id-tag-blank",
+        "ki-ptrain-vet-kit",
+        "ki-ptrain-scale-pet",
+        "ki-ptrain-trophy-agility"
+      ],
+      "manus_task_id": "Wvjyy8xp2DGi2t9KTxvmMy",
+      "task_url": "https://manus.im/app/Wvjyy8xp2DGi2t9KTxvmMy",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\pets\\ki-pet-training\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-music-electronic": {
+      "family_id": "ki-music-electronic",
+      "wave": "ki-music-electronic",
+      "lane": "music",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Music creation modern — DJ/synth depth beyond acoustic",
+      "siblings": [
+        "ki-emusc-midi-keyboard",
+        "ki-emusc-drum-machine",
+        "ki-emusc-mixer-blank",
+        "ki-emusc-loop-pedal",
+        "ki-emusc-sampler-pad",
+        "ki-emusc-vinyl-deck",
+        "ki-emusc-cassette-deck",
+        "ki-emusc-mic-usb",
+        "ki-emusc-studio-monitors",
+        "ki-emusc-effects-pedal",
+        "ki-emusc-cable-snake",
+        "ki-emusc-rack-case",
+        "ki-emusc-metronome",
+        "ki-emusc-pitch-pipe",
+        "ki-emusc-music-backpack",
+        "ki-emusc-setlist-blank",
+        "ki-emusc-glow-wristbands",
+        "ki-emusc-stage-box"
+      ],
+      "manus_task_id": "XLincLiFQFihvJjP95zh9G",
+      "task_url": "https://manus.im/app/XLincLiFQFihvJjP95zh9G",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\music\\ki-music-electronic\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-gaming-desk-depth": {
+      "family_id": "ki-gaming-desk-depth",
+      "wave": "ki-gaming-desk-depth",
+      "lane": "gaming-digital",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Gaming THIN still — desk ecosystem without brands/UI",
+      "siblings": [
+        "ki-gdesk-desk-pad",
+        "ki-gdesk-rgb-lamp",
+        "ki-gdesk-cubecase-pc",
+        "ki-gdesk-capture-card",
+        "ki-gdesk-stream-deck-blank",
+        "ki-gdesk-mic-arm-clamp",
+        "ki-gdesk-webcam-cover",
+        "ki-gdesk-controller-stand",
+        "ki-gdesk-headset-stand",
+        "ki-gdesk-racing-wheel",
+        "ki-gdesk-flight-stick",
+        "ki-gdesk-dance-pad",
+        "ki-gdesk-arcade-stick",
+        "ki-gdesk-portable-battery",
+        "ki-gdesk-cartridge-blank",
+        "ki-gdesk-disc-case",
+        "ki-gdesk-amiibo-like-figure",
+        "ki-gdesk-snack-cup-holder"
+      ],
+      "manus_task_id": "mhSC3fRaHAYyGbdxkDk3aU",
+      "task_url": "https://manus.im/app/mhSC3fRaHAYyGbdxkDk3aU",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\gaming-digital\\ki-gaming-desk-depth\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-puppet-theatre": {
+      "family_id": "ki-puppet-theatre",
+      "wave": "ki-puppet-theatre",
+      "lane": "other-discovered",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Discovered hobby — puppet/shadow theatre not in original prompt",
+      "siblings": [
+        "ki-pup-hand-puppet",
+        "ki-pup-sock-puppet",
+        "ki-pup-finger-puppets",
+        "ki-pup-marionette",
+        "ki-pup-rod-puppet",
+        "ki-pup-puppet-stage",
+        "ki-pup-curtain-rail",
+        "ki-pup-prop-tiny-table",
+        "ki-pup-prop-tiny-tree",
+        "ki-pup-shadow-screen",
+        "ki-pup-shadow-figures",
+        "ki-pup-overhead-lamp",
+        "ki-pup-paper-lantern",
+        "ki-pup-story-scroll",
+        "ki-pup-felt-board",
+        "ki-pup-felt-shapes",
+        "ki-pup-voice-changer-toy",
+        "ki-pup-theatre-trunk",
+        "ki-pup-cape",
+        "ki-pup-mask-blank",
+        "ki-pup-wig-simple",
+        "ki-pup-fairy-wings",
+        "ki-pup-wizard-hat",
+        "ki-pup-pirate-hat",
+        "ki-pup-superhero-mask",
+        "ki-pup-prop-wand-star",
+        "ki-pup-dress-up-rack"
+      ],
+      "manus_task_id": "2iSrsfk7pM527tTvNEB9o9",
+      "task_url": "https://manus.im/app/2iSrsfk7pM527tTvNEB9o9",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\other-discovered\\ki-puppet-theatre\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-garden-grow": {
+      "family_id": "ki-garden-grow",
+      "wave": "ki-garden-grow",
+      "lane": "other-discovered",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Discovered hobby — kid gardening / greenhouse not named in prompt",
+      "siblings": [
+        "ki-grow-watering-can",
+        "ki-grow-garden-trowel",
+        "ki-grow-hand-rake",
+        "ki-grow-seedling-tray",
+        "ki-grow-plant-pots",
+        "ki-grow-grow-light",
+        "ki-grow-mister-bottle",
+        "ki-grow-soil-bag",
+        "ki-grow-garden-gloves",
+        "ki-grow-tomato-plant",
+        "ki-grow-herb-pots",
+        "ki-grow-sunflower",
+        "ki-grow-strawberry-planter",
+        "ki-grow-pumpkin",
+        "ki-grow-carrot-bunch",
+        "ki-grow-wheelbarrow-kid",
+        "ki-grow-compost-bin",
+        "ki-grow-rain-barrel",
+        "ki-grow-mini-greenhouse",
+        "ki-grow-cold-frame",
+        "ki-grow-trellis",
+        "ki-grow-birdhouse",
+        "ki-grow-bee-hotel",
+        "ki-grow-garden-sign-blank",
+        "ki-grow-hose-reel",
+        "ki-grow-kneeler-pad",
+        "ki-grow-harvest-basket"
+      ],
+      "manus_task_id": "VGipyjZdq78U3yarMf8TXz",
+      "task_url": "https://manus.im/app/VGipyjZdq78U3yarMf8TXz",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\other-discovered\\ki-garden-grow\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-astronomy-club": {
+      "family_id": "ki-astronomy-club",
+      "wave": "ki-astronomy-club",
+      "lane": "other-discovered",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Discovered club — stargazing kit beyond one telescope",
+      "siblings": [
+        "ki-astro-telescope-long",
+        "ki-astro-spotting-scope",
+        "ki-astro-star-finder",
+        "ki-astro-red-flashlight",
+        "ki-astro-star-chart-blank",
+        "ki-astro-meteorite-sample",
+        "ki-astro-globe-celestial",
+        "ki-astro-moon-model",
+        "ki-astro-planet-mobile",
+        "ki-astro-observatory-dome-mini",
+        "ki-astro-camera-astro",
+        "ki-astro-filter-wheel",
+        "ki-astro-eyepiece-set",
+        "ki-astro-dew-shield",
+        "ki-astro-camping-chair",
+        "ki-astro-thermos-astro",
+        "ki-astro-night-sky-blanket",
+        "ki-astro-binoculars-astro",
+        "ki-astro-rocket-model",
+        "ki-astro-launch-pad-mini",
+        "ki-astro-astronaut-helmet",
+        "ki-astro-space-glove",
+        "ki-astro-rover-toy",
+        "ki-astro-satellite-model",
+        "ki-astro-orbit-rings",
+        "ki-astro-solar-system-kit",
+        "ki-astro-trophy-astro"
+      ],
+      "manus_task_id": "8gugzEq3au7pZhUvV8b7Km",
+      "task_url": "https://manus.im/app/8gugzEq3au7pZhUvV8b7Km",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\other-discovered\\ki-astronomy-club\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ow-wave6": {
+      "family_id": "ow-wave6",
+      "wave": "ow-wave6-transit-nature",
+      "lane": "overview",
+      "stockpile": "overview-worlds",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "why": "Transport + mountain resort breadth from prompt seeds",
+      "siblings": [
+        "ow-station-district",
+        "ow-airport-edge",
+        "ow-mountain-resort"
+      ],
+      "manus_task_id": "5Wzc35N8eBCbVemSsoUDTP",
+      "task_url": "https://manus.im/app/5Wzc35N8eBCbVemSsoUDTP",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\transport\\ow-wave6-transit-nature\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-cooking-kid": {
+      "family_id": "ki-cooking-kid",
+      "wave": "ki-cooking-kid",
+      "lane": "hobbies",
+      "stockpile": "kid-interest",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Discovered hobby — kid kitchen club gear not in original prompt",
+      "siblings": [
+        "ki-cook-mixing-bowl",
+        "ki-cook-whisk",
+        "ki-cook-wooden-spoon",
+        "ki-cook-measuring-cups",
+        "ki-cook-rolling-pin",
+        "ki-cook-cookie-cutters",
+        "ki-cook-muffin-tin",
+        "ki-cook-oven-mitt",
+        "ki-cook-apron",
+        "ki-cook-cupcakes",
+        "ki-cook-cookies",
+        "ki-cook-pizza-raw",
+        "ki-cook-sandwich-stack",
+        "ki-cook-smoothie",
+        "ki-cook-fruit-skewers",
+        "ki-cook-pancake-stack",
+        "ki-cook-bento-box",
+        "ki-cook-picnic-basket",
+        "ki-cook-toy-oven",
+        "ki-cook-blender",
+        "ki-cook-toaster",
+        "ki-cook-cutting-board",
+        "ki-cook-recipe-card-blank",
+        "ki-cook-spice-jars",
+        "ki-cook-timer-kitchen",
+        "ki-cook-cooling-rack",
+        "ki-cook-cake-stand"
+      ],
+      "manus_task_id": "aVWQoHfaEtghbaYtovJPzd",
+      "task_url": "https://manus.im/app/aVWQoHfaEtghbaYtovJPzd",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\hobbies\\ki-cooking-kid\\sheets",
       "status": "fired",
       "qa": ""
-    }
-  },
-  "running_total": {
-    "tasks": 20,
-    "sheets_downloaded": 46,
-    "waves_planned": 24,
-    "waves_done": 16,
-    "asset_cells": 402,
-    "families": 22,
-    "novelty_discovered_families": 11,
-    "prompt_named_families": 10,
-    "novelty_pct": 50
-  },
-  "updated_at": "2026-08-20T07:57:02.947Z"
-}
+    },
+    "ki-sports-street-deep": {
+      "family_id": "ki-sports-street-deep",
+      "wave": "ki-sports-street-deep",
+      "lane": "sports",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "why": "Sports beyond balls — street/court mid-obscure gear still thin",
+      "siblings": [
+        "ki-sst-jump-rope",
+        "ki-sst-hula-sport",
+        "ki-sst-hacky-sack",
+        "ki-sst-diabolo-sport",
+        "ki-sst-scooter-pro",
+        "ki-sst-fingerboard",
+        "ki-sst-basketball-hoop-mini",
+        "ki-sst-netball-hoop",
+        "ki-sst-cricket-bat",
+        "ki-sst-volleyball",
+        "ki-sst-volleyball-net-post",
+        "ki-sst-badminton-net",
+        "ki-sst-table-tennis-paddle",
+        "ki-sst-table-tennis-table",
+        "ki-sst-bowling-pin-set",
+        "ki-sst-bowling-ball",
+        "ki-sst-croquet-mallet",
+        "ki-sst-bocce-set",
+        "ki-sst-starting-block",
+        "ki-sst-relay-baton",
+        "ki-sst-hurdle",
+        "ki-sst-vaulting-pole",
+        "ki-sst-discus",
+        "ki-sst-javelin-soft",
+        "ki-sst-swim-cap",
+        "ki-sst-kickboard-race",
+        "ki-sst-lane-rope"
+      ],
+      "manus_task_id": "bdUyFtN5a65WuivTDmEFwi",
+      "task_url": "https://manus.im/app/bdUyFtN5a65WuivTDmEFwi",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\sports\\ki-sports-street-deep\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ki-origami-paper-craft": {
+      "family_id": "ki-origami-paper-craft",
+      "wave": "ki-origami-paper-craft",
+      "lane": "crafts-maker",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "why": "Crafts still thin on finished origami forms + paper actions",
+      "siblings": [
+        "ki-ori-crane",
+        "ki-ori-boat",
+        "ki-ori-frog",
+        "ki-ori-flower",
+        "ki-ori-butterfly",
+        "ki-ori-star",
+        "ki-ori-heart",
+        "ki-ori-fox",
+        "ki-ori-cat",
+        "ki-ori-paper-stack",
+        "ki-ori-bone-folder",
+        "ki-ori-craft-punch",
+        "ki-ori-corner-rounder",
+        "ki-ori-washi-set",
+        "ki-ori-paper-quilling",
+        "ki-ori-pop-up-card",
+        "ki-ori-paper-chains",
+        "ki-ori-snowflake-cut",
+        "ki-ori-kirigami-panel",
+        "ki-ori-paper-mobile",
+        "ki-ori-wind-spinner",
+        "ki-ori-lantern-fold",
+        "ki-ori-fan-fold",
+        "ki-ori-envelope-craft",
+        "ki-ori-gift-box",
+        "ki-ori-bow-ribbon",
+        "ki-ori-scrap-bin"
+      ],
+      "manus_task_id": "PsPkrtcFQCnroX4Qi7ZEjA",
+      "task_url": "https://manus.im/app/PsPkrtcFQCnroX4Qi7ZEjA",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\kid-interest\\crafts-maker\\ki-origami-paper-craft\\sheets",
+      "status": "fired",
+      "qa": ""
+    },
+    "ki-fair-rides-deep": {
+      "family_id": "ki-fair-rides-deep",
+      "wave": "ki-fair-rides-deep",
+      "lane": "vehicles-leisure",
+      "stockpile": "kid-interest",
+      "novelty": "prompt-direction",
+      "in_prompt_named": true,
+      "why": "Fun vehicles still thin — fair/carnival ride modules",
+      "siblings": [
+        "ki-fair-ferris-cabin",
+        "ki-fair-teacup-ride",
+        "ki-fair-bumper-boat",
+        "ki-fair-chair-swing",
+        "ki-fair-roller-coaster-car",
+        "ki-fair-log-flume-boat",
+        "ki-fair-haunted-cart",
+        "ki-fair-train-engine-mini",
+        "ki-fair-pony-carousel",
+        "ki-fair-strength-hammer",
+        "ki-fair-strength-tower",
+        "ki-fair-duck-pond",
+        "ki-fair-balloon-dart-booth",
+        "ki-fair-milk-bottle-stack",
+        "ki-fair-ring-toss-booth",
+        "ki-fair-claw-machine",
+        "ki-fair-prize-plush",
+        "ki-fair-ticket-roll",
+        "ki-fair-popcorn-cart",
+        "ki-fair-cotton-candy-machine",
+        "ki-fair-ice-cream-cart",
+        "ki-fair-pretzel-stand",
+        "ki-fair-lemonade-barrel",
+        "ki-fair-corn-dog-tray",
+        "ki-fair-funnel-cake-plate",
+        "ki-fair-candy-apple",
+        "ki-fair-picnic-bench"
+      ],
+      "manus_task_id": "irB7p2w5UFJCpGJynifhD3",
+      "task_url": "https://manus.im/app/irB7p2w5UFJCpGJynifhD3",
+      "

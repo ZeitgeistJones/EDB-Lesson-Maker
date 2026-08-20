@@ -1344,6 +1344,14 @@ export const WAVE_ORDER = [
   'ki-music-electronic',
   'ki-gaming-desk-depth',
   'ow-wave6-transit-nature',
+  // aggro wave3 — majority discovered-new
+  'ki-puppet-theatre',
+  'ki-garden-grow',
+  'ki-astronomy-club',
+  'ki-cooking-kid',
+  'ki-sports-street-deep',
+  'ki-origami-paper-craft',
+  'ki-fair-rides-deep',
 ];
 
 function arg(name, fallback = '') {
