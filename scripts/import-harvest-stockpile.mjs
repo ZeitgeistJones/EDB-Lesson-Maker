@@ -15,6 +15,8 @@
  *   node scripts/import-harvest-stockpile.mjs --limit=5
  *   node scripts/import-harvest-stockpile.mjs --also=builder,be,cw
  *   node scripts/import-harvest-stockpile.mjs --only=also --also=builder,be,cw
+ *   node scripts/import-harvest-stockpile.mjs --audit
+ *   node scripts/import-harvest-stockpile.mjs --proof
  *
  * Does NOT git-add harvested PNGs. Writes public/assets only.
  */
@@ -23,6 +25,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { WAVES as KI_WAVES } from './manus/request-kid-interest-shift60.mjs';
+import { shouldSkipLooseHarvestPath } from './lib/asset-wiring-rules.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const KI_INV = path.join(ROOT, 'docs/kid-interest-shift60-inventory.json');
@@ -61,7 +64,22 @@ const LANES = (() => {
       )
     : null;
 })();
-const SKIP_EXISTING = process.argv.includes('--skip-existing');
+const FAMILIES = (() => {
+  const a = process.argv.find((x) => x.startsWith('--families='));
+  return a
+    ? new Set(
+        a
+          .slice(11)
+          .split(',')
+          .map((s) => s.trim())
+          .filter(Boolean)
+      )
+    : null;
+})();
+// Existing keys are immutable by default at stockpile scale. A deliberate
+// replacement requires --replace-existing; --skip-existing remains accepted.
+const REPLACE_EXISTING = process.argv.includes('--replace-existing');
+const SKIP_EXISTING = !REPLACE_EXISTING || process.argv.includes('--skip-existing');
 const WORKER = (() => {
   const a = process.argv.find((x) => x.startsWith('--worker='));
   return a ? a.slice(9) : 'main';
@@ -230,8 +248,8 @@ function importOwSheet(familyId, bucket, sheetPath, nameHint) {
     `--name=${name}`,
     `--category=${bucket || 'overview'}`,
     `--tags=${tags}`,
-    '--force',
   ];
+  if (REPLACE_EXISTING) args.push('--force');
   const r = runNode(args, `ow:${name}`);
   return r.status === 0;
 }
@@ -249,6 +267,7 @@ async function importKidInterest() {
   const waves = Object.values(inv.waves).filter((w) => {
     const id = String(w.family_id || '');
     if (id.startsWith('ow-') || w.stockpile === 'overview-worlds') return false;
+    if (FAMILIES && !FAMILIES.has(id)) return false;
     if (!( (w.qa || '').toUpperCase() === 'PASS' || !(w.holds || []).length )) return false;
     if (LANES && !LANES.has(w.lane) && !LANES.has(w.bucket)) return false;
     return true;
@@ -341,6 +360,7 @@ async function importOverviewWorlds() {
   for (const w of families) {
     if (done + fail >= LIMIT) break;
     if ((w.qa && String(w.qa).toUpperCase() === 'JUNK') || (w.holds || []).length > 3) continue;
+    if (FAMILIES && !FAMILIES.has(String(w.family_id || ''))) continue;
     if (LANES && !LANES.has(w.bucket) && !LANES.has(w.lane)) continue;
     const sheetDir = w.sheet_dir;
     if (!sheetDir || !fs.existsSync(sheetDir)) continue;
@@ -414,6 +434,13 @@ function importLooseContactDir(rootRel, pack, prefix) {
       }
       if (!/\.png$/i.test(ent.name)) continue;
       if (!/^\d+\.png$/i.test(ent.name) && !/^ow-/i.test(ent.name)) continue;
+      // Family rules fail closed for multi-view, registered-state, and other
+      // specialized board assets. A landscape contact sheet is not one scene.
+      if (shouldSkipLooseHarvestPath(p)) {
+        logLine({ skip: 'specialized-family', path: p });
+        skipped++;
+        continue;
+      }
       // Heuristic: large landscape → background
       try {
         const fd = fs.openSync(p, 'r');
@@ -454,6 +481,19 @@ function importLooseContactDir(rootRel, pack, prefix) {
 }
 
 async function main() {
+  if (process.argv.includes('--audit') || process.argv.includes('--proof')) {
+    const auditArgs = [path.join(ROOT, 'scripts/audit-asset-wiring.mjs')];
+    if (process.argv.includes('--proof')) auditArgs.push('--proof');
+    const outputArg = process.argv.find((value) => value.startsWith('--output='));
+    if (outputArg) auditArgs.push(outputArg);
+    const result = spawnSync(process.execPath, auditArgs, {
+      cwd: ROOT,
+      stdio: 'inherit',
+    });
+    process.exitCode = result.status == null ? 1 : result.status;
+    return;
+  }
+
   fs.mkdirSync(STAGE_ROOT, { recursive: true });
   logLine({
     start: true,
@@ -462,7 +502,9 @@ async function main() {
     dry: DRY,
     also: ALSO,
     lanes: LANES ? [...LANES] : null,
+    families: FAMILIES ? [...FAMILIES] : null,
     skipExisting: SKIP_EXISTING,
+    replaceExisting: REPLACE_EXISTING,
   });
 
   const summary = {};
