@@ -1,0 +1,625 @@
+{
+  "kind": "overview-worlds-aggro",
+  "ow_prefix": "ow-",
+  "prior_done": [
+    {
+      "id": "ow-wave1-three-worlds",
+      "bucket": "leisure",
+      "worlds": [
+        "skate-plaza",
+        "lakeside-marina",
+        "maker-fair"
+      ],
+      "task_id": "j5m4GXumXEW6yuQC9BFMZb"
+    },
+    {
+      "id": "ow-wave2-adventure",
+      "bucket": "nature-adventure",
+      "worlds": [
+        "island-cove",
+        "observatory-ridge",
+        "treehouse-forest"
+      ],
+      "task_id": "gcyf6g9fKGL7jxr8zVXPiJ"
+    },
+    {
+      "id": "ow-wave3-town-event",
+      "bucket": "town-community",
+      "worlds": [
+        "winter-festival",
+        "community-center",
+        "harbor-night-market"
+      ],
+      "task_id": "Lias84sgcchAPNsskZzUn7"
+    },
+    {
+      "id": "ow-wave4-play-districts",
+      "bucket": "leisure",
+      "worlds": [
+        "sports-complex",
+        "waterpark",
+        "shopping-district"
+      ],
+      "task_id": "4d6WseXRZQezWASKZBjMWB"
+    }
+  ],
+  "waves": {
+    "ow-wave7-canal-ferry": {
+      "family_id": "ow-wave7",
+      "title": "OW wave7 — monorail park + canal village + ferry terminal (FULL-PAGE ×3)",
+      "bucket": "transport",
+      "novelty": "mixed",
+      "in_prompt_named": true,
+      "task_id": "cqcbKTpTMSTwtuFdXSd6ef",
+      "task_url": "https://manus.im/app/cqcbKTpTMSTwtuFdXSd6ef",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\transport\\ow-wave7-canal-ferry\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 3,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 5045140,
+          "name": "ow-canal-lock-village.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 5362988,
+          "name": "ow-ferry-island-terminal.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4724577,
+          "name": "ow-monorail-park.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:01:30.385Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ow-wave8-fantasy": {
+      "family_id": "ow-wave8",
+      "title": "OW wave8 — cloud castle + crystal cave + dragon cliffs (FULL-PAGE ×3)",
+      "bucket": "fantasy",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "KAEaeeDQDyJS5WzCCL4qSN",
+      "task_url": "https://manus.im/app/KAEaeeDQDyJS5WzCCL4qSN",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\fantasy\\ow-wave8-fantasy\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 3,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4418696,
+          "name": "ow-cloud-castle.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4666663,
+          "name": "ow-crystal-cave-plaza.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4975099,
+          "name": "ow-dragon-cliffs.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:01:00.532Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ow-wave9-event": {
+      "family_id": "ow-wave9",
+      "title": "OW wave9 — sports day + lantern fair + school open day (FULL-PAGE ×3)",
+      "bucket": "event",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "nCT6yaG5X4aR2bVzVkd7km",
+      "task_url": "https://manus.im/app/nCT6yaG5X4aR2bVzVkd7km",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\event\\ow-wave9-event\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 3,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4787304,
+          "name": "ow-wave9-event-lantern-autumn-fair.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4327410,
+          "name": "ow-wave9-event-school-open-campus.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4549846,
+          "name": "ow-wave9-event-sports-day-field.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:15:59.929Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ow-wave10-nature": {
+      "family_id": "ow-wave10",
+      "title": "OW wave10 — canyon camp + waterfall gorge + desert oasis (FULL-PAGE ×3)",
+      "bucket": "nature-adventure",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "W7ACtsZrjK3h96eoXQKvHH",
+      "task_url": "https://manus.im/app/W7ACtsZrjK3h96eoXQKvHH",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\nature-adventure\\ow-wave10-nature\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 3,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4922217,
+          "name": "ow-canyon-camp.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 5000116,
+          "name": "ow-desert-oasis-ruins.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4924997,
+          "name": "ow-waterfall-gorge.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:07:47.075Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ow-wave11-town": {
+      "family_id": "ow-wave11",
+      "title": "OW wave11 — main street + library garden + rooftop neighborhood (FULL-PAGE ×3)",
+      "bucket": "town-community",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "GPZRpnVQ8aGkJuHiPuUsVy",
+      "task_url": "https://manus.im/app/GPZRpnVQ8aGkJuHiPuUsVy",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\town-community\\ow-wave11-town\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 3,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 5075756,
+          "name": "ow-wave11-town_S1_main-street-block.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 5148689,
+          "name": "ow-wave11-town_S2_library-garden.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 5666238,
+          "name": "ow-wave11-town_S3_rooftop-neighborhood.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:22:08.119Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ow-wave12-leisure": {
+      "family_id": "ow-wave12",
+      "title": "OW wave12 — boardwalk + mountain lodge + play atrium yard (FULL-PAGE ×3)",
+      "bucket": "leisure",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "DYYvwzhFhd5zQint6DJwhH",
+      "task_url": "https://manus.im/app/DYYvwzhFhd5zQint6DJwhH",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\leisure\\ow-wave12-leisure\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 3,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 2084445,
+          "name": "ow-beach-boardwalk.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 5159827,
+          "name": "ow-mountain-lodge-village.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4839433,
+          "name": "ow-play-atrium-yard.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:32:30.904Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ow-wave13-discovered": {
+      "family_id": "ow-wave13",
+      "title": "OW wave13 — dino dig + farm adventure + zoo campus (FULL-PAGE ×3)",
+      "bucket": "other-discovered",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "jfKXbgWYc8DLR9xsVtjJyt",
+      "task_url": "https://manus.im/app/jfKXbgWYc8DLR9xsVtjJyt",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\other-discovered\\ow-wave13-discovered\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 3,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4227925,
+          "name": "ow-dino-dig-site.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4859460,
+          "name": "ow-farm-adventure-yard.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3972559,
+          "name": "ow-zoo-campus.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:25:26.479Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ow-wave14-wheels-water": {
+      "family_id": "ow-wave14",
+      "title": "OW wave14 — bike hub + seaplane dock + tram village (FULL-PAGE ×3)",
+      "bucket": "transport",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "HR9psEY6dBV3ddNfJfJALy",
+      "task_url": "https://manus.im/app/HR9psEY6dBV3ddNfJfJALy",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\transport\\ow-wave14-wheels-water\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 3,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4433539,
+          "name": "ow-bike-trail-hub.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4773642,
+          "name": "ow-seaplane-dock.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4378441,
+          "name": "ow-tram-village.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:27:44.058Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ow-wave15-fantasy2": {
+      "family_id": "ow-wave15",
+      "title": "OW wave15 — moonbase + magic greenhouse + coral plaza (FULL-PAGE ×3)",
+      "bucket": "fantasy",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "4MHoEVjnuCVPQzaxYvgx8A",
+      "task_url": "https://manus.im/app/4MHoEVjnuCVPQzaxYvgx8A",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\fantasy\\ow-wave15-fantasy2\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 3,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4630293,
+          "name": "ow-coral-plaza.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4597837,
+          "name": "ow-magic-greenhouse.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4812651,
+          "name": "ow-moonbase-playground.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:30:18.242Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ow-wave16-event2": {
+      "family_id": "ow-wave16",
+      "title": "OW wave16 — carnival midway + kite meadow + ice cream park (FULL-PAGE ×3)",
+      "bucket": "event",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "KaNmV8Tpk4XGWqjqmu5ARw",
+      "task_url": "https://manus.im/app/KaNmV8Tpk4XGWqjqmu5ARw",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\event\\ow-wave16-event2\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 3,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4311608,
+          "name": "ow-carnival-midway.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4760893,
+          "name": "ow-ice-cream-park.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4235848,
+          "name": "ow-kite-hill-meadow.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:42:20.173Z",
+      "holds": [],
+      "qa": "PASS"
+    },
+    "ow-wave17-nature2": {
+      "family_id": "ow-wave17",
+      "title": "OW wave17 — rainforest canopy + arctic camp + hot springs (FULL-PAGE ×3)",
+      "bucket": "nature-adventure",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "task_id": "5zmFJgxDTKS5FqoEqJ7TZg",
+      "task_url": "https://manus.im/app/5zmFJgxDTKS5FqoEqJ7TZg",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\nature-adventure\\ow-wave17-nature2\\sheets",
+      "expected_sheets": 3,
+      "cell_count": 3,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4335223,
+          "name": "ow-wave17-nature2-arctic-camp.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4550909,
+          "name": "ow-wave17-nature2-hot-springs-terrace.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 5365802,
+          "name": "ow-wave17-nature2-rainforest-canopy.png"
+        }
+      ],
+      "finished_at": "2026-08-20T08:41:54.532Z",
+      "holds": [],
+      "qa": "PASS"
+    }
+  },
+  "families": {
+    "ow-wave7": {
+      "family_id": "ow-wave7",
+      "wave": "ow-wave7-canal-ferry",
+      "bucket": "transport",
+      "novelty": "mixed",
+      "in_prompt_named": true,
+      "why": "Transport overviews; invent beyond sibling station/airport/mountain",
+      "siblings": [
+        "ow-monorail-park",
+        "ow-canal-lock-village",
+        "ow-ferry-island-terminal"
+      ],
+      "manus_task_id": "cqcbKTpTMSTwtuFdXSd6ef",
+      "task_url": "https://manus.im/app/cqcbKTpTMSTwtuFdXSd6ef",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\transport\\ow-wave7-canal-ferry\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ow-wave8": {
+      "family_id": "ow-wave8",
+      "wave": "ow-wave8-fantasy",
+      "bucket": "fantasy",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Fantasy mini-worlds — invent beyond treehouse; soft not scary",
+      "siblings": [
+        "ow-cloud-castle",
+        "ow-crystal-cave-plaza",
+        "ow-dragon-cliffs"
+      ],
+      "manus_task_id": "KAEaeeDQDyJS5WzCCL4qSN",
+      "task_url": "https://manus.im/app/KAEaeeDQDyJS5WzCCL4qSN",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\fantasy\\ow-wave8-fantasy\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ow-wave9": {
+      "family_id": "ow-wave9",
+      "wave": "ow-wave9-event",
+      "bucket": "event",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Event campus overviews — blank banners only",
+      "siblings": [
+        "ow-sports-day-field",
+        "ow-lantern-autumn-fair",
+        "ow-school-open-campus"
+      ],
+      "manus_task_id": "nCT6yaG5X4aR2bVzVkd7km",
+      "task_url": "https://manus.im/app/nCT6yaG5X4aR2bVzVkd7km",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\event\\ow-wave9-event\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ow-wave10": {
+      "family_id": "ow-wave10",
+      "wave": "ow-wave10-nature",
+      "bucket": "nature-adventure",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Nature-adventure breadth beyond island/treehouse",
+      "siblings": [
+        "ow-canyon-camp",
+        "ow-waterfall-gorge",
+        "ow-desert-oasis-ruins"
+      ],
+      "manus_task_id": "W7ACtsZrjK3h96eoXQKvHH",
+      "task_url": "https://manus.im/app/W7ACtsZrjK3h96eoXQKvHH",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\nature-adventure\\ow-wave10-nature\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ow-wave11": {
+      "family_id": "ow-wave11",
+      "wave": "ow-wave11-town",
+      "bucket": "town-community",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Town-community depth beyond festival/market",
+      "siblings": [
+        "ow-main-street-block",
+        "ow-library-garden",
+        "ow-rooftop-neighborhood"
+      ],
+      "manus_task_id": "GPZRpnVQ8aGkJuHiPuUsVy",
+      "task_url": "https://manus.im/app/GPZRpnVQ8aGkJuHiPuUsVy",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\town-community\\ow-wave11-town\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ow-wave12": {
+      "family_id": "ow-wave12",
+      "wave": "ow-wave12-leisure",
+      "bucket": "leisure",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Leisure beyond skate/marina/maker",
+      "siblings": [
+        "ow-beach-boardwalk",
+        "ow-mountain-lodge-village",
+        "ow-play-atrium-yard"
+      ],
+      "manus_task_id": "DYYvwzhFhd5zQint6DJwhH",
+      "task_url": "https://manus.im/app/DYYvwzhFhd5zQint6DJwhH",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\leisure\\ow-wave12-leisure\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ow-wave13": {
+      "family_id": "ow-wave13",
+      "wave": "ow-wave13-discovered",
+      "bucket": "other-discovered",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "≥40% novelty lane — invent kid-magnet worlds not in seeds",
+      "siblings": [
+        "ow-dino-dig-site",
+        "ow-farm-adventure-yard",
+        "ow-zoo-campus"
+      ],
+      "manus_task_id": "jfKXbgWYc8DLR9xsVtjJyt",
+      "task_url": "https://manus.im/app/jfKXbgWYc8DLR9xsVtjJyt",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\other-discovered\\ow-wave13-discovered\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ow-wave14": {
+      "family_id": "ow-wave14",
+      "wave": "ow-wave14-wheels-water",
+      "bucket": "transport",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "More transport — bike/seaplane/tram; avoid sibling station/airport",
+      "siblings": [
+        "ow-bike-trail-hub",
+        "ow-seaplane-dock",
+        "ow-tram-village"
+      ],
+      "manus_task_id": "HR9psEY6dBV3ddNfJfJALy",
+      "task_url": "https://manus.im/app/HR9psEY6dBV3ddNfJfJALy",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\transport\\ow-wave14-wheels-water\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ow-wave15": {
+      "family_id": "ow-wave15",
+      "wave": "ow-wave15-fantasy2",
+      "bucket": "fantasy",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Second fantasy pass — sci-fi soft + underwater",
+      "siblings": [
+        "ow-moonbase-playground",
+        "ow-magic-greenhouse",
+        "ow-coral-plaza"
+      ],
+      "manus_task_id": "4MHoEVjnuCVPQzaxYvgx8A",
+      "task_url": "https://manus.im/app/4MHoEVjnuCVPQzaxYvgx8A",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\fantasy\\ow-wave15-fantasy2\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ow-wave16": {
+      "family_id": "ow-wave16",
+      "wave": "ow-wave16-event2",
+      "bucket": "event",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "More event/leisure magnets — generic rides only",
+      "siblings": [
+        "ow-carnival-midway",
+        "ow-kite-hill-meadow",
+        "ow-ice-cream-park"
+      ],
+      "manus_task_id": "KaNmV8Tpk4XGWqjqmu5ARw",
+      "task_url": "https://manus.im/app/KaNmV8Tpk4XGWqjqmu5ARw",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\event\\ow-wave16-event2\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    },
+    "ow-wave17": {
+      "family_id": "ow-wave17",
+      "wave": "ow-wave17-nature2",
+      "bucket": "nature-adventure",
+      "novelty": "discovered-new",
+      "in_prompt_named": false,
+      "why": "Final nature stretch toward 40-world soft target",
+      "siblings": [
+        "ow-rainforest-canopy",
+        "ow-arctic-camp",
+        "ow-hot-springs-terrace"
+      ],
+      "manus_task_id": "5zmFJgxDTKS5FqoEqJ7TZg",
+      "task_url": "https://manus.im/app/5zmFJgxDTKS5FqoEqJ7TZg",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\overview-worlds\\nature-adventure\\ow-wave17-nature2\\sheets",
+      "status": "generated_raw",
+      "qa": "PASS"
+    }
+  },
+  "running_total": {
+    "tasks": 11,
+    "sheets_downloaded": 33,
+    "waves_planned": 11,
+    "waves_done": 11,
+    "worlds_total_est": 45,
+    "prior_worlds": 12,
+    "families": 11,
+    "novelty_discovered_families": 10,
+    "novelty_pct": 91,
+    "target_min": 25,
+    "target_max": 40
+  },
+  "updated_at": "2026-08-20T08:42:20.956Z"
+}
