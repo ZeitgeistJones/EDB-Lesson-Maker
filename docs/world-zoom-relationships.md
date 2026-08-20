@@ -17,12 +17,15 @@ Conservatism note: SAME_WORLD only for intentional coordinated families (K3 4-vi
 
 | Bucket | Count |
 |---|---:|
-| multi_view_families | 15 |
+| multi_view_families | 24 |
 | zoom_chains | 10 |
 | compatible_links | 54 |
-| orphaned_overviews | 63 |
+| orphaned_overviews | 54 |
+| world_zoom_completions | 9 |
 | live_background_scenes | 249 |
 | strongest_story_sequences | 6 |
+
+**Note**: 9 orphan overviews completed with 12 total zoom views (COMPLETE_NOW set 2026-08-20). New families: treehouse-zoom, dino-dig-zoom, aquarium-zoom, escape-room-zoom, climbing-gym-zoom, ice-cream-zoom, film-backlot-zoom, mountain-lodge-zoom, music-conservatory-zoom. Assets in `harvested/world-zoom-completions/` stockpile. See `docs/world-zoom-completions-log.md`.
 
 ---
 
@@ -726,3 +729,24 @@ Family / wave ids: `be-k1-bathroom`, `be-k1-kitchen`, `be-k1-bedroom`, `be-k1-li
 - `docs/board-archetype-consolidation.md`
 
 Machine-readable twin: `docs/world-zoom-relationships.json`
+
+---
+
+## Orphan overview zoom completions (2026-08-20)
+
+Manus tasks had images; empty harvest was a **poll/download bug** (wrong message shape), not empty generation.
+
+| Family | Parent | QA | Live scene keys |
+|---|---|---|---|
+| treehouse-zoom-family | ow-treehouse-forest | REG_A | ow-treehouse-forest-treehouse-exterior-approach, ow-treehouse-forest-treehouse-room-interior |
+| dino-dig-zoom-family | ow-dino-dig-site | REG_A | ow-dino-dig-site-dig-pit-excavation, ow-dino-dig-site-fossil-tent-workstation |
+| aquarium-zoom-family | ow-aquarium-campus | REG_A | ow-aquarium-campus-aquarium-entrance-lobby, ow-aquarium-campus-underwater-viewing-tunnel |
+| escape-room-zoom-family | ow-escape-room-plaza | REG_A | ow-escape-room-plaza-escape-room-puzzle-chamber |
+| climbing-gym-zoom-family | ow-climbing-gym-yard | REG_A | ow-climbing-gym-yard-climbing-wall-gym-interior |
+| ice-cream-zoom-family | ow-ice-cream-park | REG_A | ow-ice-cream-park-ice-cream-vendor-cart |
+| film-backlot-zoom-family | ow-film-backlot | REG_A | ow-film-backlot-film-set-studio-interior |
+| mountain-lodge-zoom-family | ow-mountain-lodge-village | REG_A | ow-mountain-lodge-village-lodge-fireplace-common-room |
+| music-conservatory-zoom-family | ow-music-conservatory | REG_A | ow-music-conservatory-music-practice-room |
+
+**Counts:** 9 families, 12 live zoom scenes imported. Producer fix: attach parent from `public/assets/08_backgrounds/img/{parent}.png`; poll via attachments + file blocks.
+

@@ -1,0 +1,222 @@
+{
+  "worlds": {
+    "wz-treehouse-forest": {
+      "world_id": "wz-treehouse-forest",
+      "task_id": "nvK9UcjSvPTV4w2Pih5DYK",
+      "task_url": "https://manus.im/app/nvK9UcjSvPTV4w2Pih5DYK",
+      "started_at": "2026-08-20T22:15:23.239Z",
+      "priority": "HIGH",
+      "min_views": 2,
+      "parent_overview": "ow-treehouse-forest",
+      "finished_at": "2026-08-20T22:24:15.481Z",
+      "agent_status": "stopped",
+      "saved": [
+        {
+          "filename": "treehouse-zoom-exterior-approach.png",
+          "bytes": 4509259,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\world-zoom-completions\\wz-treehouse-forest\\sheets\\treehouse-zoom-exterior-approach.png"
+        },
+        {
+          "filename": "treehouse-zoom-room-interior.png",
+          "bytes": 4602020,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\world-zoom-completions\\wz-treehouse-forest\\sheets\\treehouse-zoom-room-interior.png"
+        }
+      ],
+      "qa": "REG_A",
+      "imported_scenes": [
+        "ow-treehouse-forest-treehouse-exterior-approach",
+        "ow-treehouse-forest-treehouse-room-interior"
+      ]
+    },
+    "wz-dino-dig-site": {
+      "world_id": "wz-dino-dig-site",
+      "task_id": "MzTQDNYbHFLdJDEXwe2Z6w",
+      "task_url": "https://manus.im/app/MzTQDNYbHFLdJDEXwe2Z6w",
+      "started_at": "2026-08-20T22:15:25.376Z",
+      "priority": "HIGH",
+      "min_views": 2,
+      "parent_overview": "ow-dino-dig-site",
+      "finished_at": "2026-08-20T22:24:29.098Z",
+      "agent_status": "stopped",
+      "saved": [
+        {
+          "filename": "ow-dino-dig-site-dig-pit-excavation.png",
+          "bytes": 3873009,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\world-zoom-completions\\wz-dino-dig-site\\sheets\\ow-dino-dig-site-dig-pit-excavation.png"
+        },
+        {
+          "filename": "ow-dino-dig-site-fossil-tent-workstation.png",
+          "bytes": 4797615,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\world-zoom-completions\\wz-dino-dig-site\\sheets\\ow-dino-dig-site-fossil-tent-workstation.png"
+        }
+      ],
+      "qa": "REG_A",
+      "imported_scenes": [
+        "ow-dino-dig-site-dig-pit-excavation",
+        "ow-dino-dig-site-fossil-tent-workstation"
+      ]
+    },
+    "wz-aquarium-campus": {
+      "world_id": "wz-aquarium-campus",
+      "task_id": "5nH6oQhaZYfYiejUnHrTGR",
+      "task_url": "https://manus.im/app/5nH6oQhaZYfYiejUnHrTGR",
+      "started_at": "2026-08-20T22:15:27.583Z",
+      "priority": "HIGH",
+      "min_views": 2,
+      "parent_overview": "ow-aquarium-campus",
+      "finished_at": "2026-08-20T22:24:42.482Z",
+      "agent_status": "stopped",
+      "saved": [
+        {
+          "filename": "ow-aquarium-campus-aquarium-entrance-lobby.png",
+          "bytes": 4719720,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\world-zoom-completions\\wz-aquarium-campus\\sheets\\ow-aquarium-campus-aquarium-entrance-lobby.png"
+        },
+        {
+          "filename": "ow-aquarium-campus-underwater-viewing-tunnel.png",
+          "bytes": 5304925,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\world-zoom-completions\\wz-aquarium-campus\\sheets\\ow-aquarium-campus-underwater-viewing-tunnel.png"
+        }
+      ],
+      "qa": "REG_A",
+      "imported_scenes": [
+        "ow-aquarium-campus-aquarium-entrance-lobby",
+        "ow-aquarium-campus-underwater-viewing-tunnel"
+      ]
+    },
+    "wz-escape-room-plaza": {
+      "world_id": "wz-escape-room-plaza",
+      "task_id": "X63ufhARBHpUCgT6khYoEN",
+      "task_url": "https://manus.im/app/X63ufhARBHpUCgT6khYoEN",
+      "started_at": "2026-08-20T22:15:45.108Z",
+      "priority": "MEDIUM_HIGH",
+      "min_views": 1,
+      "parent_overview": "ow-escape-room-plaza",
+      "finished_at": "2026-08-20T22:24:16.776Z",
+      "agent_status": "stopped",
+      "saved": [
+        {
+          "filename": "ow-escape-room-plaza-escape-room-puzzle-chamber.png",
+          "bytes": 4402491,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\world-zoom-completions\\wz-escape-room-plaza\\sheets\\ow-escape-room-plaza-escape-room-puzzle-chamber.png"
+        }
+      ],
+      "qa": "REG_A",
+      "imported_scenes": [
+        "ow-escape-room-plaza-escape-room-puzzle-chamber"
+      ]
+    },
+    "wz-climbing-gym-yard": {
+      "world_id": "wz-climbing-gym-yard",
+      "task_id": "UCgF2enfRNP2BXjrfenFmd",
+      "task_url": "https://manus.im/app/UCgF2enfRNP2BXjrfenFmd",
+      "started_at": "2026-08-20T22:15:47.270Z",
+      "priority": "MEDIUM_HIGH",
+      "min_views": 1,
+      "parent_overview": "ow-climbing-gym-yard",
+      "finished_at": "2026-08-20T22:24:29.995Z",
+      "agent_status": "stopped",
+      "saved": [
+        {
+          "filename": "ow-climbing-gym-yard-climbing-wall-gym-interior.png",
+          "bytes": 4171784,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\world-zoom-completions\\wz-climbing-gym-yard\\sheets\\ow-climbing-gym-yard-climbing-wall-gym-interior.png"
+        }
+      ],
+      "qa": "REG_A",
+      "imported_scenes": [
+        "ow-climbing-gym-yard-climbing-wall-gym-interior"
+      ]
+    },
+    "wz-ice-cream-park": {
+      "world_id": "wz-ice-cream-park",
+      "task_id": "PtCBhG7iS2s4Pm433NGCUz",
+      "task_url": "https://manus.im/app/PtCBhG7iS2s4Pm433NGCUz",
+      "started_at": "2026-08-20T22:31:06.086Z",
+      "priority": "MEDIUM_HIGH",
+      "min_views": 1,
+      "parent_overview": "ow-ice-cream-park",
+      "finished_at": "2026-08-20T22:34:55.104Z",
+      "agent_status": "stopped",
+      "saved": [
+        {
+          "filename": "ice-cream-vendor-cart.png",
+          "bytes": 4188928,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\world-zoom-completions\\wz-ice-cream-park\\sheets\\ice-cream-vendor-cart.png"
+        }
+      ],
+      "qa": "REG_A",
+      "imported_scenes": [
+        "ow-ice-cream-park-ice-cream-vendor-cart"
+      ]
+    },
+    "wz-film-backlot": {
+      "world_id": "wz-film-backlot",
+      "task_id": "ZytNirx4vVpqoDRkzJbmad",
+      "task_url": "https://manus.im/app/ZytNirx4vVpqoDRkzJbmad",
+      "started_at": "2026-08-20T22:31:08.237Z",
+      "priority": "MEDIUM",
+      "min_views": 1,
+      "parent_overview": "ow-film-backlot",
+      "finished_at": "2026-08-20T22:34:55.110Z",
+      "agent_status": "stopped",
+      "saved": [
+        {
+          "filename": "film-set-studio-interior.png",
+          "bytes": 4271545,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\world-zoom-completions\\wz-film-backlot\\sheets\\film-set-studio-interior.png"
+        }
+      ],
+      "qa": "REG_A",
+      "imported_scenes": [
+        "ow-film-backlot-film-set-studio-interior"
+      ]
+    },
+    "wz-mountain-lodge-village": {
+      "world_id": "wz-mountain-lodge-village",
+      "task_id": "kyvp63VHXp7Gbneq76W9Ut",
+      "task_url": "https://manus.im/app/kyvp63VHXp7Gbneq76W9Ut",
+      "started_at": "2026-08-20T22:31:10.439Z",
+      "priority": "MEDIUM",
+      "min_views": 1,
+      "parent_overview": "ow-mountain-lodge-village",
+      "finished_at": "2026-08-20T22:34:55.112Z",
+      "agent_status": "stopped",
+      "saved": [
+        {
+          "filename": "lodge-fireplace-common-room.png",
+          "bytes": 5228944,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\world-zoom-completions\\wz-mountain-lodge-village\\sheets\\lodge-fireplace-common-room.png"
+        }
+      ],
+      "qa": "REG_A",
+      "imported_scenes": [
+        "ow-mountain-lodge-village-lodge-fireplace-common-room"
+      ]
+    },
+    "wz-music-conservatory": {
+      "world_id": "wz-music-conservatory",
+      "task_id": "M3FfN2k9PuyUf5WdmwxTKZ",
+      "task_url": "https://manus.im/app/M3FfN2k9PuyUf5WdmwxTKZ",
+      "started_at": "2026-08-20T22:31:12.615Z",
+      "priority": "MEDIUM",
+      "min_views": 1,
+      "parent_overview": "ow-music-conservatory",
+      "finished_at": "2026-08-20T22:34:55.114Z",
+      "agent_status": "stopped",
+      "saved": [
+        {
+          "filename": "music-practice-room.png",
+          "bytes": 4307457,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\world-zoom-completions\\wz-music-conservatory\\sheets\\music-practice-room.png"
+        }
+      ],
+      "qa": "REG_A",
+      "imported_scenes": [
+        "ow-music-conservatory-music-practice-room"
+      ]
+    }
+  },
+  "created_at": "2026-08-20T22:15:23.239Z",
+  "updated_at": "2026-08-20T22:34:55.115Z"
+}

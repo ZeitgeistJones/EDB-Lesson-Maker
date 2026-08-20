@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T21:45:21.155Z",
+  "generated_at": "2026-08-20T22:35:46.444Z",
   "scope": "stockpile_discovery_only",
   "conservatism": "SAME_WORLD only for intentional coordinated families (K3 4-view; OW waterpark2 zones; OW wave11 town districts; OW wave15 harbor-resort triad). All overview→classic plate links are COMPATIBLE unless noted. OW thematic wave siblings (e.g. skate+marina+maker-fair) are NOT same_world.",
   "multi_view_families": [
@@ -815,6 +815,273 @@
         "ow-wave15-harbor-resort-ow-arcade-pier",
         "ow-wave15-harbor-resort-ow-stables-ranch"
       ]
+    },
+    {
+      "view_family_id": "treehouse-zoom-family",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "overview_zoom_completion"
+      ],
+      "source": "orphan-world-zoom-completions",
+      "parent_overview": "ow-treehouse-forest",
+      "registration_grade": "REG_A",
+      "harvest_dir": "harvested/world-zoom-completions/wz-treehouse-forest/sheets",
+      "live_background_keys": [
+        "ow-treehouse-forest-treehouse-exterior-approach",
+        "ow-treehouse-forest-treehouse-room-interior"
+      ],
+      "views": [
+        "treehouse-exterior-approach",
+        "treehouse-room-interior"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "treehouse-exterior-approach",
+          "sibling_id": "ow-treehouse-forest-treehouse-exterior-approach",
+          "relationship": "same_world_view",
+          "note": "Zoom completion view for orphaned overview"
+        },
+        {
+          "view_role": "treehouse-room-interior",
+          "sibling_id": "ow-treehouse-forest-treehouse-room-interior",
+          "relationship": "same_world_view",
+          "note": "Zoom completion view for orphaned overview"
+        }
+      ],
+      "pedagogy": "overview_to_zoom_continuity"
+    },
+    {
+      "view_family_id": "dino-dig-zoom-family",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "overview_zoom_completion"
+      ],
+      "source": "orphan-world-zoom-completions",
+      "parent_overview": "ow-dino-dig-site",
+      "registration_grade": "REG_A",
+      "harvest_dir": "harvested/world-zoom-completions/wz-dino-dig-site/sheets",
+      "live_background_keys": [
+        "ow-dino-dig-site-dig-pit-excavation",
+        "ow-dino-dig-site-fossil-tent-workstation"
+      ],
+      "views": [
+        "dig-pit-excavation",
+        "fossil-tent-workstation"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "dig-pit-excavation",
+          "sibling_id": "ow-dino-dig-site-dig-pit-excavation",
+          "relationship": "same_world_view",
+          "note": "Zoom completion view for orphaned overview"
+        },
+        {
+          "view_role": "fossil-tent-workstation",
+          "sibling_id": "ow-dino-dig-site-fossil-tent-workstation",
+          "relationship": "same_world_view",
+          "note": "Zoom completion view for orphaned overview"
+        }
+      ],
+      "pedagogy": "overview_to_zoom_continuity"
+    },
+    {
+      "view_family_id": "aquarium-zoom-family",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "overview_zoom_completion"
+      ],
+      "source": "orphan-world-zoom-completions",
+      "parent_overview": "ow-aquarium-campus",
+      "registration_grade": "REG_A",
+      "harvest_dir": "harvested/world-zoom-completions/wz-aquarium-campus/sheets",
+      "live_background_keys": [
+        "ow-aquarium-campus-aquarium-entrance-lobby",
+        "ow-aquarium-campus-underwater-viewing-tunnel"
+      ],
+      "views": [
+        "aquarium-entrance-lobby",
+        "underwater-viewing-tunnel"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "aquarium-entrance-lobby",
+          "sibling_id": "ow-aquarium-campus-aquarium-entrance-lobby",
+          "relationship": "same_world_view",
+          "note": "Zoom completion view for orphaned overview"
+        },
+        {
+          "view_role": "underwater-viewing-tunnel",
+          "sibling_id": "ow-aquarium-campus-underwater-viewing-tunnel",
+          "relationship": "same_world_view",
+          "note": "Zoom completion view for orphaned overview"
+        }
+      ],
+      "pedagogy": "overview_to_zoom_continuity"
+    },
+    {
+      "view_family_id": "escape-room-zoom-family",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "overview_zoom_completion"
+      ],
+      "source": "orphan-world-zoom-completions",
+      "parent_overview": "ow-escape-room-plaza",
+      "registration_grade": "REG_A",
+      "harvest_dir": "harvested/world-zoom-completions/wz-escape-room-plaza/sheets",
+      "live_background_keys": [
+        "ow-escape-room-plaza-escape-room-puzzle-chamber"
+      ],
+      "views": [
+        "escape-room-puzzle-chamber"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "escape-room-puzzle-chamber",
+          "sibling_id": "ow-escape-room-plaza-escape-room-puzzle-chamber",
+          "relationship": "same_world_view",
+          "note": "Zoom completion view for orphaned overview"
+        }
+      ],
+      "pedagogy": "overview_to_zoom_continuity"
+    },
+    {
+      "view_family_id": "climbing-gym-zoom-family",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "overview_zoom_completion"
+      ],
+      "source": "orphan-world-zoom-completions",
+      "parent_overview": "ow-climbing-gym-yard",
+      "registration_grade": "REG_A",
+      "harvest_dir": "harvested/world-zoom-completions/wz-climbing-gym-yard/sheets",
+      "live_background_keys": [
+        "ow-climbing-gym-yard-climbing-wall-gym-interior"
+      ],
+      "views": [
+        "climbing-wall-gym-interior"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "climbing-wall-gym-interior",
+          "sibling_id": "ow-climbing-gym-yard-climbing-wall-gym-interior",
+          "relationship": "same_world_view",
+          "note": "Zoom completion view for orphaned overview"
+        }
+      ],
+      "pedagogy": "overview_to_zoom_continuity"
+    },
+    {
+      "view_family_id": "ice-cream-zoom-family",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "overview_zoom_completion"
+      ],
+      "source": "orphan-world-zoom-completions",
+      "parent_overview": "ow-ice-cream-park",
+      "registration_grade": "REG_A",
+      "harvest_dir": "harvested/world-zoom-completions/wz-ice-cream-park/sheets",
+      "live_background_keys": [
+        "ow-ice-cream-park-ice-cream-vendor-cart"
+      ],
+      "views": [
+        "ice-cream-vendor-cart"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "ice-cream-vendor-cart",
+          "sibling_id": "ow-ice-cream-park-ice-cream-vendor-cart",
+          "relationship": "same_world_view",
+          "note": "Zoom completion view for orphaned overview"
+        }
+      ],
+      "pedagogy": "overview_to_zoom_continuity"
+    },
+    {
+      "view_family_id": "film-backlot-zoom-family",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "overview_zoom_completion"
+      ],
+      "source": "orphan-world-zoom-completions",
+      "parent_overview": "ow-film-backlot",
+      "registration_grade": "REG_A",
+      "harvest_dir": "harvested/world-zoom-completions/wz-film-backlot/sheets",
+      "live_background_keys": [
+        "ow-film-backlot-film-set-studio-interior"
+      ],
+      "views": [
+        "film-set-studio-interior"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "film-set-studio-interior",
+          "sibling_id": "ow-film-backlot-film-set-studio-interior",
+          "relationship": "same_world_view",
+          "note": "Zoom completion view for orphaned overview"
+        }
+      ],
+      "pedagogy": "overview_to_zoom_continuity"
+    },
+    {
+      "view_family_id": "mountain-lodge-zoom-family",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "overview_zoom_completion"
+      ],
+      "source": "orphan-world-zoom-completions",
+      "parent_overview": "ow-mountain-lodge-village",
+      "registration_grade": "REG_A",
+      "harvest_dir": "harvested/world-zoom-completions/wz-mountain-lodge-village/sheets",
+      "live_background_keys": [
+        "ow-mountain-lodge-village-lodge-fireplace-common-room"
+      ],
+      "views": [
+        "lodge-fireplace-common-room"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "lodge-fireplace-common-room",
+          "sibling_id": "ow-mountain-lodge-village-lodge-fireplace-common-room",
+          "relationship": "same_world_view",
+          "note": "Zoom completion view for orphaned overview"
+        }
+      ],
+      "pedagogy": "overview_to_zoom_continuity"
+    },
+    {
+      "view_family_id": "music-conservatory-zoom-family",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "overview_zoom_completion"
+      ],
+      "source": "orphan-world-zoom-completions",
+      "parent_overview": "ow-music-conservatory",
+      "registration_grade": "REG_A",
+      "harvest_dir": "harvested/world-zoom-completions/wz-music-conservatory/sheets",
+      "live_background_keys": [
+        "ow-music-conservatory-music-practice-room"
+      ],
+      "views": [
+        "music-practice-room"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "music-practice-room",
+          "sibling_id": "ow-music-conservatory-music-practice-room",
+          "relationship": "same_world_view",
+          "note": "Zoom completion view for orphaned overview"
+        }
+      ],
+      "pedagogy": "overview_to_zoom_continuity"
     }
   ],
   "zoom_chains": [
@@ -2068,12 +2335,6 @@
       "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
     },
     {
-      "key": "ow-climbing-gym-yard",
-      "file": "ow-climbing-gym-yard.png",
-      "category": "leisure",
-      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
-    },
-    {
       "key": "ow-cloud-castle",
       "file": "ow-cloud-castle.png",
       "category": "fantasy",
@@ -2098,12 +2359,6 @@
       "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
     },
     {
-      "key": "ow-dino-dig-site",
-      "file": "ow-dino-dig-site.png",
-      "category": "other-discovered",
-      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
-    },
-    {
       "key": "ow-dragon-cliffs",
       "file": "ow-dragon-cliffs.png",
       "category": "fantasy",
@@ -2113,18 +2368,6 @@
       "key": "ow-escape-loft",
       "file": "ow-escape-loft.png",
       "category": "overview",
-      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
-    },
-    {
-      "key": "ow-escape-room-plaza",
-      "file": "ow-escape-room-plaza.png",
-      "category": "other-discovered",
-      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
-    },
-    {
-      "key": "ow-film-backlot",
-      "file": "ow-film-backlot.png",
-      "category": "other-discovered",
       "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
     },
     {
@@ -2170,12 +2413,6 @@
       "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
     },
     {
-      "key": "ow-ice-cream-park",
-      "file": "ow-ice-cream-park.png",
-      "category": "event",
-      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
-    },
-    {
       "key": "ow-ice-palace",
       "file": "ow-ice-palace.png",
       "category": "fantasy",
@@ -2200,12 +2437,6 @@
       "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
     },
     {
-      "key": "ow-mountain-lodge-village",
-      "file": "ow-mountain-lodge-village.png",
-      "category": "leisure",
-      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
-    },
-    {
       "key": "ow-mountain-resort",
       "file": "ow-mountain-resort.png",
       "category": "overview",
@@ -2215,12 +2446,6 @@
       "key": "ow-mushroom-village",
       "file": "ow-mushroom-village.png",
       "category": "fantasy",
-      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
-    },
-    {
-      "key": "ow-music-conservatory",
-      "file": "ow-music-conservatory.png",
-      "category": "town-community",
       "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
     },
     {
@@ -2287,12 +2512,6 @@
       "key": "ow-treasure-hunt-fort",
       "file": "ow-treasure-hunt-fort.png",
       "category": "other-discovered",
-      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
-    },
-    {
-      "key": "ow-treehouse-forest",
-      "file": "ow-treehouse-forest.png",
-      "category": "overview",
       "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
     },
     {
@@ -2619,11 +2838,111 @@
     "docs/board-archetype-consolidation.md"
   ],
   "counts": {
-    "multi_view_families": 15,
+    "multi_view_families": 24,
     "zoom_chains": 10,
     "compatible_links": 54,
-    "orphaned_overviews": 63,
-    "live_background_scenes": 249,
+    "orphaned_overviews": 55,
+    "world_zoom_completions": 9,
+    "live_background_scenes": 261,
     "strongest_story_sequences": 6
+  },
+  "world_zoom_completions_note": "9 orphan overviews completed with 12 total zoom views (COMPLETE_NOW set). See docs/world-zoom-completions-log.md for details. New families: treehouse-zoom, dino-dig-zoom, aquarium-zoom, escape-room-zoom, climbing-gym-zoom, ice-cream-zoom, film-backlot-zoom, mountain-lodge-zoom, music-conservatory-zoom. Assets remain in harvested/world-zoom-completions/ stockpile (not wired to lessons).",
+  "orphan_zoom_completions": {
+    "updated_at": "2026-08-20T22:35:46.445Z",
+    "worlds": {
+      "wz-treehouse-forest": {
+        "qa": "REG_A",
+        "min_views": 2,
+        "parent_overview": "ow-treehouse-forest",
+        "saved_count": 2,
+        "imported_scenes": [
+          "ow-treehouse-forest-treehouse-exterior-approach",
+          "ow-treehouse-forest-treehouse-room-interior"
+        ],
+        "task_id": "nvK9UcjSvPTV4w2Pih5DYK"
+      },
+      "wz-dino-dig-site": {
+        "qa": "REG_A",
+        "min_views": 2,
+        "parent_overview": "ow-dino-dig-site",
+        "saved_count": 2,
+        "imported_scenes": [
+          "ow-dino-dig-site-dig-pit-excavation",
+          "ow-dino-dig-site-fossil-tent-workstation"
+        ],
+        "task_id": "MzTQDNYbHFLdJDEXwe2Z6w"
+      },
+      "wz-aquarium-campus": {
+        "qa": "REG_A",
+        "min_views": 2,
+        "parent_overview": "ow-aquarium-campus",
+        "saved_count": 2,
+        "imported_scenes": [
+          "ow-aquarium-campus-aquarium-entrance-lobby",
+          "ow-aquarium-campus-underwater-viewing-tunnel"
+        ],
+        "task_id": "5nH6oQhaZYfYiejUnHrTGR"
+      },
+      "wz-escape-room-plaza": {
+        "qa": "REG_A",
+        "min_views": 1,
+        "parent_overview": "ow-escape-room-plaza",
+        "saved_count": 1,
+        "imported_scenes": [
+          "ow-escape-room-plaza-escape-room-puzzle-chamber"
+        ],
+        "task_id": "X63ufhARBHpUCgT6khYoEN"
+      },
+      "wz-climbing-gym-yard": {
+        "qa": "REG_A",
+        "min_views": 1,
+        "parent_overview": "ow-climbing-gym-yard",
+        "saved_count": 1,
+        "imported_scenes": [
+          "ow-climbing-gym-yard-climbing-wall-gym-interior"
+        ],
+        "task_id": "UCgF2enfRNP2BXjrfenFmd"
+      },
+      "wz-ice-cream-park": {
+        "qa": "REG_A",
+        "min_views": 1,
+        "parent_overview": "ow-ice-cream-park",
+        "saved_count": 1,
+        "imported_scenes": [
+          "ow-ice-cream-park-ice-cream-vendor-cart"
+        ],
+        "task_id": "PtCBhG7iS2s4Pm433NGCUz"
+      },
+      "wz-film-backlot": {
+        "qa": "REG_A",
+        "min_views": 1,
+        "parent_overview": "ow-film-backlot",
+        "saved_count": 1,
+        "imported_scenes": [
+          "ow-film-backlot-film-set-studio-interior"
+        ],
+        "task_id": "ZytNirx4vVpqoDRkzJbmad"
+      },
+      "wz-mountain-lodge-village": {
+        "qa": "REG_A",
+        "min_views": 1,
+        "parent_overview": "ow-mountain-lodge-village",
+        "saved_count": 1,
+        "imported_scenes": [
+          "ow-mountain-lodge-village-lodge-fireplace-common-room"
+        ],
+        "task_id": "kyvp63VHXp7Gbneq76W9Ut"
+      },
+      "wz-music-conservatory": {
+        "qa": "REG_A",
+        "min_views": 1,
+        "parent_overview": "ow-music-conservatory",
+        "saved_count": 1,
+        "imported_scenes": [
+          "ow-music-conservatory-music-practice-room"
+        ],
+        "task_id": "M3FfN2k9PuyUf5WdmwxTKZ"
+      }
+    }
   }
 }
