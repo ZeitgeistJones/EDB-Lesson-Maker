@@ -39,27 +39,41 @@ Two-shot registration grades: `REG_A` / `REG_B` / `REG_C` / `REG_FAIL` (matched 
 | Metric | Count |
 |---|---:|
 | Waves planned | 3 |
-| Tasks | 1 |
-| Sheets downloaded | 0 |
+| Tasks | 3 |
+| Sheets downloaded | 10 |
 | Singles planned | 60 |
-| Singles harvested | 0 |
+| Singles harvested | 60 |
 | Two-shots planned | 15 |
-| Two-shots harvested | 0 |
-| Two-shots graded | 0 |
-| REG_A | 0 |
-| REG_B | 0 |
-| REG_C | 0 |
-| REG_FAIL | 0 |
+| Two-shots harvested | 15 |
+| Two-shots graded | 15 |
+| REG_A | 4 |
+| REG_B | 2 |
+| REG_C | 3 |
+| REG_FAIL | 6 |
 
 ## Waves
 
-- **k2-mia** `be-epi-mia-singles` — fired — 30 cells — https://manus.im/app/ERwMeJKfnLWbFAyeCTnFWn
-- **k2-leo** `be-epi-leo-singles` — unfired — 30 cells — unfired
-- **k2-2shot** `be-epi-twoshots` — unfired — 15 cells — unfired
+- **k2-mia** `be-epi-mia-singles` — downloaded — 30 cells — https://manus.im/app/ERwMeJKfnLWbFAyeCTnFWn
+- **k2-leo** `be-epi-leo-singles` — downloaded — 30 cells — https://manus.im/app/awPJEGHWjT673mRFKn7zPw
+- **k2-2shot** `be-epi-twoshots` — downloaded — 15 cells — https://manus.im/app/4L642vk8gM5UjQ3Ss4wTJa
 
 ## Two-shot REG grades
 
-_None graded yet._
+- `be-epi-2shot-barrier-cup-whisper` — REG_FAIL — white-field cells — remop black required
+- `be-epi-2shot-leo-hides-mia-searches` — REG_FAIL — white-field cells — remop black required
+- `be-epi-2shot-leo-knows-mia-unaware` — REG_C — both knowing smiles; wrong asymmetry
+- `be-epi-2shot-leo-whisper-mia-receive` — REG_FAIL — white-field cells — remop black required
+- `be-epi-2shot-mia-discovers-leo-unaware` — REG_C — both attend the box — not unaware
+- `be-epi-2shot-mia-explains-leo-doubts` — REG_A — explain vs crossed-arms doubt
+- `be-epi-2shot-mia-hidden-card-leo-curious` — REG_FAIL — white-field cells — remop black required
+- `be-epi-2shot-mia-hides-leo-looks` — REG_A — hide + suspicious look locks
+- `be-epi-2shot-mia-knows-leo-unaware` — REG_C — asymmetry weak — both read mutually aware
+- `be-epi-2shot-mia-looks-leo-away` — REG_B — attention asymmetry readable
+- `be-epi-2shot-mia-points-leo-follows` — REG_A — shared off-panel gaze
+- `be-epi-2shot-mia-sees-clue-leo-misses` — REG_FAIL — eyeline OK but white-field cells — not cutout-ready
+- `be-epi-2shot-secret-handoff` — REG_B — shared object pass; usable
+- `be-epi-2shot-share-secret-smile` — REG_FAIL — white-field cells — remop black required
+- `be-epi-2shot-whisper-pair-mia-to-leo` — REG_A — whisper receive eyeline locks
 
 ## QA notes
 
