@@ -87,8 +87,8 @@
       "siblings": [
         "be-k5-base-map"
       ],
-      "registration_grade": "FIRED",
-      "grade_notes": "",
+      "registration_grade": "REG_B",
+      "grade_notes": "Excellent town→country hybrid play world; isometric lock strong. Cross-match to tiles only REG_C (tiles flatter).",
       "manus_task_id": "G263bHWsaTTyqPCJ6MMYGq",
       "task_url": "https://manus.im/app/G263bHWsaTTyqPCJ6MMYGq",
       "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\route-world\\k5-base\\sheets",
@@ -100,9 +100,9 @@
     "sheets_downloaded": 3,
     "waves_planned": 6,
     "waves_done": 2,
-    "families_graded": 1,
+    "families_graded": 2,
     "reg_a": 0,
-    "reg_b": 0,
+    "reg_b": 1,
     "reg_c": 1,
     "reg_fail": 0,
     "asset_cells": 17
@@ -124,5 +124,5 @@
       "note": "This stockpile — one coherent system."
     }
   ],
-  "updated_at": "2026-08-20T05:03:20.837Z"
+  "updated_at": "2026-08-20T05:24:17.833Z"
 }

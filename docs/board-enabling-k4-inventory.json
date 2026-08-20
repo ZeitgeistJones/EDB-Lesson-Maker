@@ -1,8 +1,256 @@
 {
   "kind": "board-enabling-k4",
   "prefix": "be-k4-",
-  "waves": {},
-  "families": {},
+  "waves": {
+    "k4-01": {
+      "family_id": "be-k4-pairs-01",
+      "title": "BE-K4 pairs 1–4 clue↔object",
+      "kind": "correspondence",
+      "task_id": "c8N7aGxqtFtGUVbyiFiMRC",
+      "task_url": "https://manus.im/app/c8N7aGxqtFtGUVbyiFiMRC",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\evidence-correspondence\\k4-01\\sheets",
+      "expected_sheets": 1,
+      "cell_count": 8,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3446080,
+          "name": "be-k4-pairs-01_S1.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:24:17.012Z",
+      "holds": []
+    },
+    "k4-02": {
+      "family_id": "be-k4-pairs-02",
+      "title": "BE-K4 pairs 5–8 clue↔object",
+      "kind": "correspondence",
+      "task_id": "nLwGfuWBNq6JBxuFsdd9B8",
+      "task_url": "https://manus.im/app/nLwGfuWBNq6JBxuFsdd9B8",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\evidence-correspondence\\k4-02\\sheets",
+      "expected_sheets": 1,
+      "cell_count": 8,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3653214,
+          "name": "be-k4-pairs-02-S1.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:28:56.910Z",
+      "holds": []
+    },
+    "k4-03": {
+      "family_id": "be-k4-pairs-03",
+      "title": "BE-K4 pairs 9–12 clue↔object",
+      "kind": "correspondence",
+      "task_id": "cbuHFs9DBiyzz63y67YUcs",
+      "task_url": "https://manus.im/app/cbuHFs9DBiyzz63y67YUcs",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\evidence-correspondence\\k4-03\\sheets",
+      "expected_sheets": 1,
+      "cell_count": 8,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4157305,
+          "name": "be-k4-pairs-03-S1-pairs-9-12.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:30:44.005Z",
+      "holds": []
+    },
+    "k4-04": {
+      "family_id": "be-k4-pairs-04",
+      "title": "BE-K4 pairs 13–16 clue↔object",
+      "kind": "correspondence",
+      "task_id": "LsK9bzJeudrsM2xjTzB5iy",
+      "task_url": "https://manus.im/app/LsK9bzJeudrsM2xjTzB5iy",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\evidence-correspondence\\k4-04\\sheets",
+      "expected_sheets": 1,
+      "cell_count": 8,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3946997,
+          "name": "be-k4-pairs-04_S1.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:32:32.504Z",
+      "holds": []
+    },
+    "k4-05": {
+      "family_id": "be-k4-pairs-05",
+      "title": "BE-K4 pairs 17–20 clue↔object",
+      "kind": "correspondence",
+      "task_id": "H5UuRPvnRzPrqkS9986owu",
+      "task_url": "https://manus.im/app/H5UuRPvnRzPrqkS9986owu",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\evidence-correspondence\\k4-05\\sheets",
+      "expected_sheets": 1,
+      "cell_count": 8,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3828820,
+          "name": "be-k4-pairs-05-S1.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:34:21.094Z",
+      "holds": []
+    },
+    "k4-06": {
+      "family_id": "be-k4-pairs-06",
+      "title": "BE-K4 pairs 21–24 clue↔object",
+      "kind": "correspondence",
+      "task_id": "U7jQqLbKuv9Qm88Ebqi7vf",
+      "task_url": "https://manus.im/app/U7jQqLbKuv9Qm88Ebqi7vf",
+      "agent_status": null,
+      "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\evidence-correspondence\\k4-06\\sheets",
+      "expected_sheets": 1,
+      "cell_count": 8,
+      "sheets": [],
+      "finished_at": null,
+      "holds": []
+    }
+  },
+  "families": {
+    "be-k4-pairs-01": {
+      "family_id": "be-k4-pairs-01",
+      "wave": "k4-01",
+      "kind": "correspondence",
+      "reuse_note": "plate-crumbs→cake, melted-ice-cream-puddle→ice-cream, apple-core→apple, sandwich-crumbs→sandwich",
+      "siblings": [
+        "be-k4-clue-plate-crumbs",
+        "be-k4-obj-cake",
+        "be-k4-clue-melted-ice-cream-puddle",
+        "be-k4-obj-ice-cream",
+        "be-k4-clue-apple-core",
+        "be-k4-obj-apple",
+        "be-k4-clue-sandwich-crumbs",
+        "be-k4-obj-sandwich"
+      ],
+      "registration_grade": "REG_A",
+      "grade_notes": "Clean 4x2 clue↔counterpart; style lock strong; kid-readable not micro.",
+      "manus_task_id": "c8N7aGxqtFtGUVbyiFiMRC",
+      "task_url": "https://manus.im/app/c8N7aGxqtFtGUVbyiFiMRC",
+      "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\evidence-correspondence\\k4-01\\sheets",
+      "status": "generated_raw"
+    },
+    "be-k4-pairs-02": {
+      "family_id": "be-k4-pairs-02",
+      "wave": "k4-02",
+      "kind": "correspondence",
+      "reuse_note": "cup-ring→cup, banana-peel→banana",
+      "siblings": [
+        "be-k4-clue-cup-ring",
+        "be-k4-obj-cup",
+        "be-k4-clue-banana-peel",
+        "be-k4-obj-banana",
+        "be-k4-clue-juice-spill-trail",
+        "be-k4-obj-juice-box",
+        "be-k4-clue-chocolate-smear",
+        "be-k4-obj-chocolate-bar"
+      ],
+      "registration_grade": "FIRED",
+      "grade_notes": "",
+      "manus_task_id": "nLwGfuWBNq6JBxuFsdd9B8",
+      "task_url": "https://manus.im/app/nLwGfuWBNq6JBxuFsdd9B8",
+      "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\evidence-correspondence\\k4-02\\sheets",
+      "status": "generated_raw"
+    },
+    "be-k4-pairs-03": {
+      "family_id": "be-k4-pairs-03",
+      "wave": "k4-03",
+      "kind": "correspondence",
+      "reuse_note": "muddy-paw-prints→dog, wet-boot-prints→boot, wet-umbrella-drip→umbrella, leaf-trail-indoors→leaf",
+      "siblings": [
+        "be-k4-clue-muddy-paw-prints",
+        "be-k4-obj-dog",
+        "be-k4-clue-wet-boot-prints",
+        "be-k4-obj-boot",
+        "be-k4-clue-wet-umbrella-drip",
+        "be-k4-obj-umbrella",
+        "be-k4-clue-leaf-trail-indoors",
+        "be-k4-obj-leaf"
+      ],
+      "registration_grade": "FIRED",
+      "grade_notes": "",
+      "manus_task_id": "cbuHFs9DBiyzz63y67YUcs",
+      "task_url": "https://manus.im/app/cbuHFs9DBiyzz63y67YUcs",
+      "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\evidence-correspondence\\k4-03\\sheets",
+      "status": "generated_raw"
+    },
+    "be-k4-pairs-04": {
+      "family_id": "be-k4-pairs-04",
+      "wave": "k4-04",
+      "kind": "correspondence",
+      "reuse_note": "sand-spill-from-shoe→shoe, bike-tire-track→bicycle",
+      "siblings": [
+        "be-k4-clue-sand-spill-from-shoe",
+        "be-k4-obj-shoe",
+        "be-k4-clue-bike-tire-track",
+        "be-k4-obj-bicycle",
+        "be-k4-clue-snow-boot-print",
+        "be-k4-obj-winter-boot",
+        "be-k4-clue-doormat-mud",
+        "be-k4-obj-doormat"
+      ],
+      "registration_grade": "FIRED",
+      "grade_notes": "",
+      "manus_task_id": "LsK9bzJeudrsM2xjTzB5iy",
+      "task_url": "https://manus.im/app/LsK9bzJeudrsM2xjTzB5iy",
+      "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\evidence-correspondence\\k4-04\\sheets",
+      "status": "generated_raw"
+    },
+    "be-k4-pairs-05": {
+      "family_id": "be-k4-pairs-05",
+      "wave": "k4-05",
+      "kind": "correspondence",
+      "reuse_note": "single-glove→glove, scarf-on-rail→scarf, broken-shoelace→shoe, ribbon-fragment→ribbon",
+      "siblings": [
+        "be-k4-clue-single-glove",
+        "be-k4-obj-glove-pair",
+        "be-k4-clue-scarf-on-rail",
+        "be-k4-obj-scarf",
+        "be-k4-clue-broken-shoelace",
+        "be-k4-obj-shoe",
+        "be-k4-clue-ribbon-fragment",
+        "be-k4-obj-ribbon-gift"
+      ],
+      "registration_grade": "FIRED",
+      "grade_notes": "",
+      "manus_task_id": "H5UuRPvnRzPrqkS9986owu",
+      "task_url": "https://manus.im/app/H5UuRPvnRzPrqkS9986owu",
+      "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\evidence-correspondence\\k4-05\\sheets",
+      "status": "generated_raw"
+    },
+    "be-k4-pairs-06": {
+      "family_id": "be-k4-pairs-06",
+      "wave": "k4-06",
+      "kind": "correspondence",
+      "reuse_note": "sock-mismatch→sock, hat-on-floor→hat, balloon-string-stub→balloon",
+      "siblings": [
+        "be-k4-clue-sock-mismatch",
+        "be-k4-obj-sock",
+        "be-k4-clue-hat-on-floor",
+        "be-k4-obj-hat",
+        "be-k4-clue-coat-on-chair-back",
+        "be-k4-obj-coat",
+        "be-k4-clue-balloon-string-stub",
+        "be-k4-obj-balloon"
+      ],
+      "registration_grade": "FIRED",
+      "grade_notes": "",
+      "manus_task_id": "U7jQqLbKuv9Qm88Ebqi7vf",
+      "task_url": "https://manus.im/app/U7jQqLbKuv9Qm88Ebqi7vf",
+      "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\evidence-correspondence\\k4-06\\sheets",
+      "status": "fired"
+    }
+  },
   "pairs": [
     {
       "slug": "plate-crumbs",
@@ -286,16 +534,16 @@
     }
   ],
   "running_total": {
-    "tasks": 0,
-    "sheets_downloaded": 0,
+    "tasks": 6,
+    "sheets_downloaded": 5,
     "waves_planned": 11,
-    "waves_done": 0,
-    "families_graded": 0,
-    "reg_a": 0,
+    "waves_done": 5,
+    "families_graded": 1,
+    "reg_a": 1,
     "reg_b": 0,
     "reg_c": 0,
     "reg_fail": 0,
-    "asset_cells": 0,
+    "asset_cells": 48,
     "pairs": 40
   },
   "residue_audit": [
@@ -325,5 +573,5 @@
       "note": "This stockpile."
     }
   ],
-  "updated_at": "2026-08-20T04:41:39.198Z"
+  "updated_at": "2026-08-20T05:34:22.240Z"
 }
