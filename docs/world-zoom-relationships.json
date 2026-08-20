@@ -1,0 +1,2629 @@
+{
+  "generated_at": "2026-08-20T21:45:21.155Z",
+  "scope": "stockpile_discovery_only",
+  "conservatism": "SAME_WORLD only for intentional coordinated families (K3 4-view; OW waterpark2 zones; OW wave11 town districts; OW wave15 harbor-resort triad). All overview→classic plate links are COMPATIBLE unless noted. OW thematic wave siblings (e.g. skate+marina+maker-fair) are NOT same_world.",
+  "multi_view_families": [
+    {
+      "view_family_id": "be-k3-workshop",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "same_world_interior"
+      ],
+      "source": "board-enabling-k3",
+      "wave": "k3-08",
+      "slug": "workshop",
+      "registration_grade": "REG_B",
+      "k1_twin": "be-k1-workshop",
+      "asymmetry": "hidden sawhorse: visible wide+overhead; hidden doorway+window",
+      "harvest_sheet": "harvested/board-enabling/multi-view-environments/k3-08/sheets/01.png",
+      "live_background_key": "ow-be-multi-view-environments-k3-08-01",
+      "views": [
+        "wide",
+        "doorway",
+        "window",
+        "overhead"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "wide",
+          "view_direction": "establishing",
+          "view_scale": "room_wide",
+          "sibling_id": "be-k3-workshop-wide",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "doorway",
+          "view_direction": "entrance",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-workshop-doorway",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "window",
+          "view_direction": "partial_occluded",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-workshop-window",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "overhead",
+          "view_direction": "planish_topdown",
+          "view_scale": "plan",
+          "sibling_id": "be-k3-workshop-overhead",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        }
+      ],
+      "pedagogy": "information_asymmetry_same_place"
+    },
+    {
+      "view_family_id": "be-k3-clinic",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "same_world_interior"
+      ],
+      "source": "board-enabling-k3",
+      "wave": "k3-09",
+      "slug": "clinic",
+      "registration_grade": "REG_A",
+      "k1_twin": "be-k1-clinic",
+      "asymmetry": "far counter tray: visible wide+overhead; hidden doorway+window",
+      "harvest_sheet": "harvested/board-enabling/multi-view-environments/k3-09/sheets/01.png",
+      "live_background_key": "ow-be-multi-view-environments-k3-09-01",
+      "views": [
+        "wide",
+        "doorway",
+        "window",
+        "overhead"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "wide",
+          "view_direction": "establishing",
+          "view_scale": "room_wide",
+          "sibling_id": "be-k3-clinic-wide",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "doorway",
+          "view_direction": "entrance",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-clinic-doorway",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "window",
+          "view_direction": "partial_occluded",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-clinic-window",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "overhead",
+          "view_direction": "planish_topdown",
+          "view_scale": "plan",
+          "sibling_id": "be-k3-clinic-overhead",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        }
+      ],
+      "pedagogy": "information_asymmetry_same_place"
+    },
+    {
+      "view_family_id": "be-k3-bus",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "same_world_interior"
+      ],
+      "source": "board-enabling-k3",
+      "wave": "k3-10",
+      "slug": "bus",
+      "registration_grade": "REG_A",
+      "k1_twin": "be-k1-bus",
+      "asymmetry": "mitten under bench: visible wide+overhead; hidden doorway+window",
+      "harvest_sheet": "harvested/board-enabling/multi-view-environments/k3-10/sheets/01.png",
+      "live_background_key": "ow-be-multi-view-environments-k3-10-01",
+      "views": [
+        "wide",
+        "doorway",
+        "window",
+        "overhead"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "wide",
+          "view_direction": "establishing",
+          "view_scale": "room_wide",
+          "sibling_id": "be-k3-bus-wide",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "doorway",
+          "view_direction": "entrance",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-bus-doorway",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "window",
+          "view_direction": "partial_occluded",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-bus-window",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "overhead",
+          "view_direction": "planish_topdown",
+          "view_scale": "plan",
+          "sibling_id": "be-k3-bus-overhead",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        }
+      ],
+      "pedagogy": "information_asymmetry_same_place"
+    },
+    {
+      "view_family_id": "be-k3-platform",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "same_world_interior"
+      ],
+      "source": "board-enabling-k3",
+      "wave": "k3-11",
+      "slug": "platform",
+      "registration_grade": "REG_A",
+      "k1_twin": "be-k1-platform",
+      "asymmetry": "far-post suitcase: visible wide+overhead; hidden doorway+window",
+      "harvest_sheet": "harvested/board-enabling/multi-view-environments/k3-11/sheets/01.png",
+      "live_background_key": "ow-be-multi-view-environments-k3-11-01",
+      "views": [
+        "wide",
+        "doorway",
+        "window",
+        "overhead"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "wide",
+          "view_direction": "establishing",
+          "view_scale": "room_wide",
+          "sibling_id": "be-k3-platform-wide",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "doorway",
+          "view_direction": "entrance",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-platform-doorway",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "window",
+          "view_direction": "partial_occluded",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-platform-window",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "overhead",
+          "view_direction": "planish_topdown",
+          "view_scale": "plan",
+          "sibling_id": "be-k3-platform-overhead",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        }
+      ],
+      "pedagogy": "information_asymmetry_same_place"
+    },
+    {
+      "view_family_id": "be-k3-greenhouse",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "same_world_interior"
+      ],
+      "source": "board-enabling-k3",
+      "wave": "k3-12",
+      "slug": "greenhouse",
+      "registration_grade": "REG_B",
+      "k1_twin": "be-k1-greenhouse",
+      "asymmetry": "tipped can behind bench: visible wide+overhead; hidden doorway+window",
+      "harvest_sheet": "harvested/board-enabling/multi-view-environments/k3-12/sheets/01.png",
+      "live_background_key": "ow-be-multi-view-environments-k3-12-01",
+      "views": [
+        "wide",
+        "doorway",
+        "window",
+        "overhead"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "wide",
+          "view_direction": "establishing",
+          "view_scale": "room_wide",
+          "sibling_id": "be-k3-greenhouse-wide",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "doorway",
+          "view_direction": "entrance",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-greenhouse-doorway",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "window",
+          "view_direction": "partial_occluded",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-greenhouse-window",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "overhead",
+          "view_direction": "planish_topdown",
+          "view_scale": "plan",
+          "sibling_id": "be-k3-greenhouse-overhead",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        }
+      ],
+      "pedagogy": "information_asymmetry_same_place"
+    },
+    {
+      "view_family_id": "be-k3-kitchen",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "same_world_interior"
+      ],
+      "source": "board-enabling-k3",
+      "wave": "k3-01",
+      "slug": "kitchen",
+      "registration_grade": "REG_A",
+      "k1_twin": "be-k1-kitchen",
+      "asymmetry": "spill under table: visible wide+overhead; hidden doorway+window",
+      "harvest_sheet": "harvested/board-enabling/multi-view-environments/k3-01/sheets/01.png",
+      "live_background_key": "ow-be-multi-view-environments-k3-01-01",
+      "views": [
+        "wide",
+        "doorway",
+        "window",
+        "overhead"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "wide",
+          "view_direction": "establishing",
+          "view_scale": "room_wide",
+          "sibling_id": "be-k3-kitchen-wide",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "doorway",
+          "view_direction": "entrance",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-kitchen-doorway",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "window",
+          "view_direction": "partial_occluded",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-kitchen-window",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "overhead",
+          "view_direction": "planish_topdown",
+          "view_scale": "plan",
+          "sibling_id": "be-k3-kitchen-overhead",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        }
+      ],
+      "pedagogy": "information_asymmetry_same_place"
+    },
+    {
+      "view_family_id": "be-k3-bedroom",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "same_world_interior"
+      ],
+      "source": "board-enabling-k3",
+      "wave": "k3-02",
+      "slug": "bedroom",
+      "registration_grade": "REG_A",
+      "k1_twin": "be-k1-bedroom",
+      "asymmetry": "under-bed gift: visible wide+overhead; hidden doorway+window",
+      "harvest_sheet": "harvested/board-enabling/multi-view-environments/k3-02/sheets/01.png",
+      "live_background_key": "ow-be-multi-view-environments-k3-02-01",
+      "views": [
+        "wide",
+        "doorway",
+        "window",
+        "overhead"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "wide",
+          "view_direction": "establishing",
+          "view_scale": "room_wide",
+          "sibling_id": "be-k3-bedroom-wide",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "doorway",
+          "view_direction": "entrance",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-bedroom-doorway",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "window",
+          "view_direction": "partial_occluded",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-bedroom-window",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "overhead",
+          "view_direction": "planish_topdown",
+          "view_scale": "plan",
+          "sibling_id": "be-k3-bedroom-overhead",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        }
+      ],
+      "pedagogy": "information_asymmetry_same_place"
+    },
+    {
+      "view_family_id": "be-k3-living",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "same_world_interior"
+      ],
+      "source": "board-enabling-k3",
+      "wave": "k3-03",
+      "slug": "living",
+      "registration_grade": "REG_B",
+      "k1_twin": "be-k1-living",
+      "asymmetry": "side-table remote: visible wide+overhead; hidden doorway+window",
+      "harvest_sheet": "harvested/board-enabling/multi-view-environments/k3-03/sheets/01.png",
+      "live_background_key": "ow-be-multi-view-environments-k3-03-01",
+      "views": [
+        "wide",
+        "doorway",
+        "window",
+        "overhead"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "wide",
+          "view_direction": "establishing",
+          "view_scale": "room_wide",
+          "sibling_id": "be-k3-living-wide",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "doorway",
+          "view_direction": "entrance",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-living-doorway",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "window",
+          "view_direction": "partial_occluded",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-living-window",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "overhead",
+          "view_direction": "planish_topdown",
+          "view_scale": "plan",
+          "sibling_id": "be-k3-living-overhead",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        }
+      ],
+      "pedagogy": "information_asymmetry_same_place"
+    },
+    {
+      "view_family_id": "be-k3-cafe",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "same_world_interior"
+      ],
+      "source": "board-enabling-k3",
+      "wave": "k3-04",
+      "slug": "cafe",
+      "registration_grade": "REG_B",
+      "k1_twin": "be-k1-cafe",
+      "asymmetry": "right-booth cup: visible wide+overhead; hidden doorway+window",
+      "harvest_sheet": "harvested/board-enabling/multi-view-environments/k3-04/sheets/01.png",
+      "live_background_key": "ow-be-multi-view-environments-k3-04-01",
+      "views": [
+        "wide",
+        "doorway",
+        "window",
+        "overhead"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "wide",
+          "view_direction": "establishing",
+          "view_scale": "room_wide",
+          "sibling_id": "be-k3-cafe-wide",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "doorway",
+          "view_direction": "entrance",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-cafe-doorway",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "window",
+          "view_direction": "partial_occluded",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-cafe-window",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "overhead",
+          "view_direction": "planish_topdown",
+          "view_scale": "plan",
+          "sibling_id": "be-k3-cafe-overhead",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        }
+      ],
+      "pedagogy": "information_asymmetry_same_place"
+    },
+    {
+      "view_family_id": "be-k3-shop",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "same_world_interior"
+      ],
+      "source": "board-enabling-k3",
+      "wave": "k3-05",
+      "slug": "shop",
+      "registration_grade": "REG_A",
+      "k1_twin": "be-k1-shop",
+      "asymmetry": "open cash drawer: visible wide+overhead; hidden doorway+window",
+      "harvest_sheet": "harvested/board-enabling/multi-view-environments/k3-05/sheets/01.png",
+      "live_background_key": "ow-be-multi-view-environments-k3-05-01",
+      "views": [
+        "wide",
+        "doorway",
+        "window",
+        "overhead"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "wide",
+          "view_direction": "establishing",
+          "view_scale": "room_wide",
+          "sibling_id": "be-k3-shop-wide",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "doorway",
+          "view_direction": "entrance",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-shop-doorway",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "window",
+          "view_direction": "partial_occluded",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-shop-window",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "overhead",
+          "view_direction": "planish_topdown",
+          "view_scale": "plan",
+          "sibling_id": "be-k3-shop-overhead",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        }
+      ],
+      "pedagogy": "information_asymmetry_same_place"
+    },
+    {
+      "view_family_id": "be-k3-library",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "same_world_interior"
+      ],
+      "source": "board-enabling-k3",
+      "wave": "k3-06",
+      "slug": "library",
+      "registration_grade": "REG_A",
+      "k1_twin": "be-k1-library",
+      "asymmetry": "under-table backpack: visible wide+overhead; hidden doorway+window",
+      "harvest_sheet": "harvested/board-enabling/multi-view-environments/k3-06/sheets/01.png",
+      "live_background_key": "ow-be-multi-view-environments-k3-06-01",
+      "views": [
+        "wide",
+        "doorway",
+        "window",
+        "overhead"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "wide",
+          "view_direction": "establishing",
+          "view_scale": "room_wide",
+          "sibling_id": "be-k3-library-wide",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "doorway",
+          "view_direction": "entrance",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-library-doorway",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "window",
+          "view_direction": "partial_occluded",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-library-window",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "overhead",
+          "view_direction": "planish_topdown",
+          "view_scale": "plan",
+          "sibling_id": "be-k3-library-overhead",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        }
+      ],
+      "pedagogy": "information_asymmetry_same_place"
+    },
+    {
+      "view_family_id": "be-k3-classroom",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_view",
+        "same_world_interior"
+      ],
+      "source": "board-enabling-k3",
+      "wave": "k3-07",
+      "slug": "classroom",
+      "registration_grade": "REG_A",
+      "k1_twin": "be-k1-classroom",
+      "asymmetry": "under-desk lunchbox: visible wide+overhead; hidden doorway+window",
+      "harvest_sheet": "harvested/board-enabling/multi-view-environments/k3-07/sheets/01.png",
+      "live_background_key": "ow-be-multi-view-environments-k3-07-01",
+      "views": [
+        "wide",
+        "doorway",
+        "window",
+        "overhead"
+      ],
+      "sibling_views": [
+        {
+          "view_role": "wide",
+          "view_direction": "establishing",
+          "view_scale": "room_wide",
+          "sibling_id": "be-k3-classroom-wide",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "doorway",
+          "view_direction": "entrance",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-classroom-doorway",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "window",
+          "view_direction": "partial_occluded",
+          "view_scale": "threshold",
+          "sibling_id": "be-k3-classroom-window",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        },
+        {
+          "view_role": "overhead",
+          "view_direction": "planish_topdown",
+          "view_scale": "plan",
+          "sibling_id": "be-k3-classroom-overhead",
+          "relationship": "same_world_view",
+          "note": "Cell on 2x2 contact sheet (not separate PNG per view)"
+        }
+      ],
+      "pedagogy": "information_asymmetry_same_place"
+    },
+    {
+      "view_family_id": "ow-wave41-waterpark-campus",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_alt_view",
+        "same_world_overview"
+      ],
+      "source": "overview-worlds",
+      "wave": "ow-wave41-waterpark2",
+      "slug": "waterpark-campus",
+      "registration_grade": null,
+      "note": "Conservative SAME_WORLD: one wave manufactured three zones of the same waterpark campus (not four camera views of one room).",
+      "harvest_sheet_dir": "harvested/overview-worlds/leisure/ow-wave41-waterpark2/sheets",
+      "sibling_views": [
+        {
+          "view_role": "wave_pool_plaza",
+          "sibling_id": "ow-wave41-waterpark2-S1-wave-pool-plaza",
+          "relationship": "same_world_alt_view",
+          "view_scale": "district_zone",
+          "harvest_file": "harvested/overview-worlds/leisure/ow-wave41-waterpark2/sheets/01.png",
+          "live_background_key": "ow-wave41-waterpark2-s1-wave-pool-plaza"
+        },
+        {
+          "view_role": "lazy_river_island",
+          "sibling_id": "ow-wave41-waterpark2-S2-lazy-river-island",
+          "relationship": "same_world_alt_view",
+          "view_scale": "district_zone",
+          "harvest_file": "harvested/overview-worlds/leisure/ow-wave41-waterpark2/sheets/02.png",
+          "live_background_key": "ow-wave41-waterpark2-s2-lazy-river-island"
+        },
+        {
+          "view_role": "slide_canyon",
+          "sibling_id": "ow-wave41-waterpark2-S3-slide-canyon",
+          "relationship": "same_world_alt_view",
+          "view_scale": "district_zone",
+          "harvest_file": "harvested/overview-worlds/leisure/ow-wave41-waterpark2/sheets/03.png",
+          "live_background_key": "ow-wave41-waterpark2-s3-slide-canyon"
+        }
+      ],
+      "views": [
+        "wave_pool_plaza",
+        "lazy_river_island",
+        "slide_canyon"
+      ]
+    },
+    {
+      "view_family_id": "ow-wave11-town-districts",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_alt_view",
+        "same_world_overview"
+      ],
+      "source": "overview-worlds",
+      "wave": "ow-wave11-town",
+      "slug": "town-districts",
+      "note": "Conservative SAME_WORLD: single town wave with three coordinated district overviews (street / garden / rooftop).",
+      "harvest_sheet_dir": "harvested/overview-worlds/town-community/ow-wave11-town/sheets",
+      "sibling_views": [
+        {
+          "view_role": "main_street_block",
+          "sibling_id": "ow-wave11-town_S1_main-street-block",
+          "relationship": "same_world_alt_view",
+          "view_scale": "district",
+          "harvest_file": "harvested/overview-worlds/town-community/ow-wave11-town/sheets/01.png",
+          "live_background_key": "ow-wave11-town-s1-main-street-block"
+        },
+        {
+          "view_role": "library_garden",
+          "sibling_id": "ow-wave11-town_S2_library-garden",
+          "relationship": "same_world_alt_view",
+          "view_scale": "district",
+          "harvest_file": "harvested/overview-worlds/town-community/ow-wave11-town/sheets/02.png",
+          "live_background_key": "ow-wave11-town-s2-library-garden"
+        },
+        {
+          "view_role": "rooftop_neighborhood",
+          "sibling_id": "ow-wave11-town_S3_rooftop-neighborhood",
+          "relationship": "same_world_alt_view",
+          "view_scale": "district",
+          "harvest_file": "harvested/overview-worlds/town-community/ow-wave11-town/sheets/03.png",
+          "live_background_key": "ow-wave11-town-s3-rooftop-neighborhood"
+        }
+      ],
+      "views": [
+        "main_street_block",
+        "library_garden",
+        "rooftop_neighborhood"
+      ]
+    },
+    {
+      "view_family_id": "ow-wave15-harbor-resort-campus",
+      "relationship_class": "SAME_WORLD",
+      "relationship_types": [
+        "same_world_alt_view",
+        "same_world_overview"
+      ],
+      "source": "overview-worlds / kid-interest ow-wave15-harbor-resort",
+      "wave": "ow-wave15-harbor-resort",
+      "slug": "harbor-resort",
+      "note": "Conservative SAME_WORLD: one harbor-resort manufacture wave with named sibling overviews (dive / arcade pier / stables).",
+      "sibling_views": [
+        {
+          "view_role": "dive_cove",
+          "sibling_id": "ow-wave15-harbor-resort-ow-dive-cove",
+          "relationship": "same_world_alt_view",
+          "view_scale": "district",
+          "live_background_key": "ow-wave15-harbor-resort-ow-dive-cove"
+        },
+        {
+          "view_role": "arcade_pier",
+          "sibling_id": "ow-wave15-harbor-resort-ow-arcade-pier",
+          "relationship": "same_world_alt_view",
+          "view_scale": "district",
+          "live_background_key": "ow-wave15-harbor-resort-ow-arcade-pier"
+        },
+        {
+          "view_role": "stables_ranch",
+          "sibling_id": "ow-wave15-harbor-resort-ow-stables-ranch",
+          "relationship": "same_world_alt_view",
+          "view_scale": "district",
+          "live_background_key": "ow-wave15-harbor-resort-ow-stables-ranch"
+        }
+      ],
+      "views": [
+        "ow-wave15-harbor-resort-ow-dive-cove",
+        "ow-wave15-harbor-resort-ow-arcade-pier",
+        "ow-wave15-harbor-resort-ow-stables-ranch"
+      ]
+    }
+  ],
+  "zoom_chains": [
+    {
+      "chain_id": "school-world-zoom",
+      "theme": "school",
+      "completeness": "strong",
+      "steps": [
+        {
+          "scale": "OVERWORLD",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "ow-wave9-event-school-open-campus",
+              "file": "ow-wave9-event-school-open-campus.png",
+              "category": "event"
+            },
+            {
+              "key": "ow-university-quad",
+              "file": "ow-university-quad.png",
+              "category": "town-community"
+            },
+            {
+              "key": "ow-art-school-yard",
+              "file": "ow-art-school-yard.png",
+              "category": "town-community"
+            }
+          ]
+        },
+        {
+          "scale": "DISTRICT",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "ow-wave11-town-s2-library-garden",
+              "file": "ow-wave11-town-s2-library-garden.png",
+              "category": "town-community"
+            }
+          ]
+        },
+        {
+          "scale": "EXTERIOR",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "school-playground",
+              "file": "school-playground.png",
+              "category": "school"
+            },
+            {
+              "key": "playground-park",
+              "file": "playground-park.png",
+              "category": "outdoor-community"
+            }
+          ]
+        },
+        {
+          "scale": "INTERIOR",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "school-classroom",
+              "file": "school-classroom.png",
+              "category": "school"
+            },
+            {
+              "key": "classroom-bright",
+              "file": "classroom-bright.png",
+              "category": "school"
+            },
+            {
+              "key": "school-hallway",
+              "file": "school-hallway.png",
+              "category": "school"
+            },
+            {
+              "key": "school-library",
+              "file": "school-library.png",
+              "category": "school"
+            },
+            {
+              "key": "school-gym",
+              "file": "school-gym.png",
+              "category": "school"
+            },
+            {
+              "key": "school-cafeteria",
+              "file": "school-cafeteria.png",
+              "category": "school"
+            }
+          ]
+        },
+        {
+          "scale": "MULTI_VIEW_SAME_WORLD",
+          "relationship": "same_world_view",
+          "assets": [
+            {
+              "key": "be-k3-classroom",
+              "harvest": "harvested/board-enabling/multi-view-environments/k3-07/sheets/01.png",
+              "live_sheet": "ow-be-multi-view-environments-k3-07-01",
+              "views": [
+                "wide",
+                "doorway",
+                "window",
+                "overhead"
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": "Strongest academic zoom: campus overview → playground exterior → room interiors; K3 classroom is intentional same-world 4-view."
+    },
+    {
+      "chain_id": "town-main-street-zoom",
+      "theme": "town",
+      "completeness": "strong",
+      "steps": [
+        {
+          "scale": "OVERWORLD",
+          "relationship": "same_world_overview",
+          "assets": [
+            {
+              "key": "ow-wave11-town-s1-main-street-block",
+              "file": "ow-wave11-town-s1-main-street-block.png",
+              "category": "town-community"
+            },
+            {
+              "key": "ow-wave11-town-s3-rooftop-neighborhood",
+              "file": "ow-wave11-town-s3-rooftop-neighborhood.png",
+              "category": "town-community"
+            }
+          ]
+        },
+        {
+          "scale": "STREET",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "ow-bakery-street",
+              "file": "ow-bakery-street.png",
+              "category": "overview"
+            },
+            {
+              "key": "ow-bakery-square",
+              "file": "ow-bakery-square.png",
+              "category": "town-community"
+            },
+            {
+              "key": "town-shops",
+              "file": "town-shops.png",
+              "category": "commercial"
+            },
+            {
+              "key": "ow-food-truck-plaza",
+              "file": "ow-food-truck-plaza.png",
+              "category": "event"
+            }
+          ]
+        },
+        {
+          "scale": "EXTERIOR_MARKET",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "ow-farmers-market",
+              "file": "ow-farmers-market.png",
+              "category": "town-community"
+            },
+            {
+              "key": "farmers-market",
+              "file": "farmers-market.png",
+              "category": "outdoor-community"
+            },
+            {
+              "key": "ow-flower-market",
+              "file": "ow-flower-market.png",
+              "category": "town-community"
+            },
+            {
+              "key": "ow-flea-market-alley",
+              "file": "ow-flea-market-alley.png",
+              "category": "town-community"
+            },
+            {
+              "key": "ow-night-market-alley",
+              "file": "ow-night-market-alley.png",
+              "category": "leisure"
+            },
+            {
+              "key": "ow-wave3-harbor-night-market",
+              "file": "ow-wave3-harbor-night-market.png",
+              "category": "overview"
+            }
+          ]
+        },
+        {
+          "scale": "INTERIOR",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "cafe",
+              "file": "cafe.png",
+              "category": "commercial"
+            },
+            {
+              "key": "bakery",
+              "file": "bakery.png",
+              "category": "commercial"
+            },
+            {
+              "key": "kitchen",
+              "file": "kitchen.png",
+              "category": "home-interior"
+            },
+            {
+              "key": "ki-bake-cafe-scene",
+              "file": "ki-bake-cafe-scene.png",
+              "category": "kid-interest"
+            }
+          ]
+        },
+        {
+          "scale": "MULTI_VIEW_SAME_WORLD",
+          "relationship": "same_world_view",
+          "assets": [
+            {
+              "key": "be-k3-cafe",
+              "harvest": "harvested/board-enabling/multi-view-environments/k3-04/sheets/01.png",
+              "live_sheet": "ow-be-multi-view-environments-k3-04-01"
+            },
+            {
+              "key": "be-k3-shop",
+              "harvest": "harvested/board-enabling/multi-view-environments/k3-05/sheets/01.png",
+              "live_sheet": "ow-be-multi-view-environments-k3-05-01"
+            },
+            {
+              "key": "be-k3-library",
+              "harvest": "harvested/board-enabling/multi-view-environments/k3-06/sheets/01.png",
+              "live_sheet": "ow-be-multi-view-environments-k3-06-01"
+            }
+          ]
+        }
+      ],
+      "notes": "Town overview siblings (wave11) are SAME_WORLD districts; cafe/shop/library classic plates are COMPATIBLE to those overviews unless using K3 sheets."
+    },
+    {
+      "chain_id": "farm-world-zoom",
+      "theme": "farm",
+      "completeness": "partial",
+      "steps": [
+        {
+          "scale": "OVERWORLD",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "ow-farm-adventure-yard",
+              "file": "ow-farm-adventure-yard.png",
+              "category": "other-discovered"
+            },
+            {
+              "key": "ow-wave15-harbor-resort-ow-stables-ranch",
+              "file": "ow-wave15-harbor-resort-ow-stables-ranch.png",
+              "category": "overview"
+            },
+            {
+              "key": "ow-harvest-fair",
+              "file": "ow-harvest-fair.png",
+              "category": "event"
+            }
+          ]
+        },
+        {
+          "scale": "EXTERIOR",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "farm",
+              "file": "farm.png",
+              "category": "outdoor-nature"
+            },
+            {
+              "key": "farmers-market",
+              "file": "farmers-market.png",
+              "category": "outdoor-community"
+            },
+            {
+              "key": "ow-farmers-market",
+              "file": "ow-farmers-market.png",
+              "category": "town-community"
+            }
+          ]
+        },
+        {
+          "scale": "INTERIOR",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "kitchen",
+              "file": "kitchen.png",
+              "category": "home-interior"
+            }
+          ],
+          "note": "No dedicated barn/stall interior in live 08_backgrounds; kitchen is weak thematic only."
+        }
+      ],
+      "notes": "Overview + yard/market exteriors exist; true farm interior / animal-stall close-up gap."
+    },
+    {
+      "chain_id": "amusement-waterpark-zoom",
+      "theme": "amusement",
+      "completeness": "strong",
+      "steps": [
+        {
+          "scale": "OVERWORLD",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "ow-wave4-play-districts-waterpark",
+              "file": "ow-wave4-play-districts-waterpark.png",
+              "category": "overview"
+            },
+            {
+              "key": "ow-carnival-midway",
+              "file": "ow-carnival-midway.png",
+              "category": "event"
+            },
+            {
+              "key": "ow-maker-fair",
+              "file": "ow-maker-fair.png",
+              "category": "overview"
+            }
+          ]
+        },
+        {
+          "scale": "DISTRICT_SAME_WORLD",
+          "relationship": "same_world_alt_view",
+          "assets": [
+            {
+              "key": "ow-wave41-waterpark2-s1-wave-pool-plaza",
+              "file": "ow-wave41-waterpark2-s1-wave-pool-plaza.png",
+              "category": "leisure"
+            },
+            {
+              "key": "ow-wave41-waterpark2-s2-lazy-river-island",
+              "file": "ow-wave41-waterpark2-s2-lazy-river-island.png",
+              "category": "leisure"
+            },
+            {
+              "key": "ow-wave41-waterpark2-s3-slide-canyon",
+              "file": "ow-wave41-waterpark2-s3-slide-canyon.png",
+              "category": "leisure"
+            }
+          ]
+        },
+        {
+          "scale": "EXTERIOR_CLOSE",
+          "relationship": "compatible_closeup",
+          "assets": [
+            {
+              "key": "water-park",
+              "file": "water-park.png",
+              "category": "outdoor-community"
+            },
+            {
+              "key": "arcade",
+              "file": "arcade.png",
+              "category": "commercial"
+            },
+            {
+              "key": "ow-wave15-harbor-resort-ow-arcade-pier",
+              "file": "ow-wave15-harbor-resort-ow-arcade-pier.png",
+              "category": "overview"
+            }
+          ]
+        }
+      ],
+      "notes": "Waterpark campus has intentional zone siblings; classic water-park plate is compatible close/mid, not claimed same geometry."
+    },
+    {
+      "chain_id": "zoo-aquarium-zoom",
+      "theme": "zoo",
+      "completeness": "partial",
+      "steps": [
+        {
+          "scale": "OVERWORLD",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "ow-zoo-campus",
+              "file": "ow-zoo-campus.png",
+              "category": "other-discovered"
+            },
+            {
+              "key": "ow-aquarium-campus",
+              "file": "ow-aquarium-campus.png",
+              "category": "overview"
+            }
+          ]
+        },
+        {
+          "scale": "EXTERIOR_CLOSE",
+          "relationship": "compatible_closeup",
+          "assets": [
+            {
+              "key": "zoo",
+              "file": "zoo.png",
+              "category": "outdoor-community"
+            }
+          ]
+        },
+        {
+          "scale": "INTERIOR",
+          "relationship": null,
+          "assets": [],
+          "note": "No live aquarium-room / enclosure interior keys in 08_backgrounds manifest."
+        }
+      ],
+      "notes": "Campus overview → zoo ground plate only; enclosure interiors not in live backgrounds."
+    },
+    {
+      "chain_id": "beach-harbor-zoom",
+      "theme": "beach",
+      "completeness": "strong",
+      "steps": [
+        {
+          "scale": "OVERWORLD",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "ow-beach-boardwalk",
+              "file": "ow-beach-boardwalk.png",
+              "category": "leisure"
+            },
+            {
+              "key": "ow-island-cove",
+              "file": "ow-island-cove.png",
+              "category": "overview"
+            },
+            {
+              "key": "ow-lakeside-marina",
+              "file": "ow-lakeside-marina.png",
+              "category": "overview"
+            },
+            {
+              "key": "ow-ferry-island-terminal",
+              "file": "ow-ferry-island-terminal.png",
+              "category": "transport"
+            },
+            {
+              "key": "ow-wave31-waterways-ow-lighthouse-cove",
+              "file": "ow-wave31-waterways-ow-lighthouse-cove.png",
+              "category": "transport"
+            }
+          ]
+        },
+        {
+          "scale": "DISTRICT_SAME_WORLD",
+          "relationship": "same_world_alt_view",
+          "assets": [
+            {
+              "key": "ow-wave15-harbor-resort-ow-dive-cove",
+              "file": "ow-wave15-harbor-resort-ow-dive-cove.png",
+              "category": "overview"
+            },
+            {
+              "key": "ow-wave15-harbor-resort-ow-arcade-pier",
+              "file": "ow-wave15-harbor-resort-ow-arcade-pier.png",
+              "category": "overview"
+            },
+            {
+              "key": "ow-wave15-harbor-resort-ow-stables-ranch",
+              "file": "ow-wave15-harbor-resort-ow-stables-ranch.png",
+              "category": "overview"
+            }
+          ]
+        },
+        {
+          "scale": "EXTERIOR_CLOSE",
+          "relationship": "compatible_closeup",
+          "assets": [
+            {
+              "key": "beach-resort",
+              "file": "beach-resort.png",
+              "category": "outdoor-nature"
+            }
+          ]
+        },
+        {
+          "scale": "RELATED_BUILDER",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "ow-bw-canal-lock-01",
+              "file": "ow-bw-canal-lock-01.png",
+              "category": "builder-world"
+            },
+            {
+              "key": "ow-bw-canal-lock-02",
+              "file": "ow-bw-canal-lock-02.png",
+              "category": "builder-world"
+            },
+            {
+              "key": "ow-bw-canal-lock-03",
+              "file": "ow-bw-canal-lock-03.png",
+              "category": "builder-world"
+            },
+            {
+              "key": "ow-bw-canal-lock-04",
+              "file": "ow-bw-canal-lock-04.png",
+              "category": "builder-world"
+            }
+          ],
+          "note": "Builder modular sequence plates + canal village overview are compatible waterworks, not same-camera."
+        }
+      ],
+      "notes": "Rich coastal overworld; beach-resort is best live close/mid plate; canal-lock BW plates reinforce canal village OW."
+    },
+    {
+      "chain_id": "transit-hub-zoom",
+      "theme": "transport",
+      "completeness": "strong",
+      "steps": [
+        {
+          "scale": "OVERWORLD",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "ow-station-district",
+              "file": "ow-station-district.png",
+              "category": "overview"
+            },
+            {
+              "key": "ow-airport-edge",
+              "file": "ow-airport-edge.png",
+              "category": "overview"
+            },
+            {
+              "key": "ow-subway-plaza",
+              "file": "ow-subway-plaza.png",
+              "category": "transport"
+            },
+            {
+              "key": "ow-bus-depot",
+              "file": "ow-bus-depot.png",
+              "category": "transport"
+            },
+            {
+              "key": "ow-monorail-park",
+              "file": "ow-monorail-park.png",
+              "category": "transport"
+            },
+            {
+              "key": "ow-tram-village",
+              "file": "ow-tram-village.png",
+              "category": "transport"
+            },
+            {
+              "key": "ow-helipad-plaza",
+              "file": "ow-helipad-plaza.png",
+              "category": "transport"
+            }
+          ]
+        },
+        {
+          "scale": "STREET",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "bus-stop",
+              "file": "bus-stop.png",
+              "category": "transport-exterior"
+            },
+            {
+              "key": "train-platform",
+              "file": "train-platform.png",
+              "category": "transport-exterior"
+            }
+          ]
+        },
+        {
+          "scale": "INTERIOR",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "bus-interior",
+              "file": "bus-interior.png",
+              "category": "transport-interior"
+            }
+          ]
+        },
+        {
+          "scale": "MULTI_VIEW_SAME_WORLD",
+          "relationship": "same_world_view",
+          "assets": [
+            {
+              "key": "be-k3-bus",
+              "harvest": "harvested/board-enabling/multi-view-environments/k3-10/sheets/01.png",
+              "live_sheet": "ow-be-multi-view-environments-k3-10-01"
+            },
+            {
+              "key": "be-k3-platform",
+              "harvest": "harvested/board-enabling/multi-view-environments/k3-11/sheets/01.png",
+              "live_sheet": "ow-be-multi-view-environments-k3-11-01"
+            }
+          ]
+        }
+      ],
+      "notes": "Transit overviews + stop/platform street plates + bus interior; K3 bus/platform are same-world view sets."
+    },
+    {
+      "chain_id": "home-interior-zoom",
+      "theme": "home",
+      "completeness": "multi_view_heavy",
+      "steps": [
+        {
+          "scale": "OVERWORLD",
+          "relationship": null,
+          "assets": [],
+          "note": "No dedicated home-campus overview in live OW set."
+        },
+        {
+          "scale": "INTERIOR_MULTI_VIEW",
+          "relationship": "same_world_view",
+          "assets": [
+            {
+              "key": "be-k3-kitchen",
+              "harvest": "harvested/board-enabling/multi-view-environments/k3-01/sheets/01.png",
+              "live_sheet": "ow-be-multi-view-environments-k3-01-01",
+              "classic": "kitchen"
+            },
+            {
+              "key": "be-k3-bedroom",
+              "harvest": "harvested/board-enabling/multi-view-environments/k3-02/sheets/01.png",
+              "live_sheet": "ow-be-multi-view-environments-k3-02-01",
+              "classic": null
+            },
+            {
+              "key": "be-k3-living",
+              "harvest": "harvested/board-enabling/multi-view-environments/k3-03/sheets/01.png",
+              "live_sheet": "ow-be-multi-view-environments-k3-03-01",
+              "classic": null
+            }
+          ]
+        }
+      ],
+      "notes": "Home is interior-multi-view rich (K3) but overview-poor."
+    },
+    {
+      "chain_id": "civic-helper-zoom",
+      "theme": "civic",
+      "completeness": "partial",
+      "steps": [
+        {
+          "scale": "OVERWORLD",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "ow-fire-station-campus",
+              "file": "ow-fire-station-campus.png",
+              "category": "town-community"
+            },
+            {
+              "key": "ow-police-community-plaza",
+              "file": "ow-police-community-plaza.png",
+              "category": "town-community"
+            },
+            {
+              "key": "ow-hospital-garden",
+              "file": "ow-hospital-garden.png",
+              "category": "town-community"
+            },
+            {
+              "key": "ow-recycling-center",
+              "file": "ow-recycling-center.png",
+              "category": "other-discovered"
+            }
+          ]
+        },
+        {
+          "scale": "EXTERIOR_CLOSE",
+          "relationship": "compatible_closeup",
+          "assets": [
+            {
+              "key": "fire-station",
+              "file": "fire-station.png",
+              "category": "commercial"
+            },
+            {
+              "key": "police-station",
+              "file": "police-station.png",
+              "category": "commercial"
+            },
+            {
+              "key": "vet-clinic",
+              "file": "vet-clinic.png",
+              "category": "medical"
+            }
+          ]
+        },
+        {
+          "scale": "MULTI_VIEW_SAME_WORLD",
+          "relationship": "same_world_view",
+          "assets": [
+            {
+              "key": "be-k3-clinic",
+              "harvest": "harvested/board-enabling/multi-view-environments/k3-09/sheets/01.png",
+              "live_sheet": "ow-be-multi-view-environments-k3-09-01"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chain_id": "canal-waterworks-zoom",
+      "theme": "canal",
+      "completeness": "unexpected_strong",
+      "steps": [
+        {
+          "scale": "OVERWORLD",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "ow-canal-lock-village",
+              "file": "ow-canal-lock-village.png",
+              "category": "transport"
+            },
+            {
+              "key": "ow-fishing-village",
+              "file": "ow-fishing-village.png",
+              "category": "town-community"
+            },
+            {
+              "key": "ow-tram-village",
+              "file": "ow-tram-village.png",
+              "category": "transport"
+            }
+          ]
+        },
+        {
+          "scale": "BUILDER_SEQUENCE",
+          "relationship": "compatible_world_view",
+          "assets": [
+            {
+              "key": "ow-bw-canal-lock-01",
+              "file": "ow-bw-canal-lock-01.png",
+              "category": "builder-world"
+            },
+            {
+              "key": "ow-bw-canal-lock-02",
+              "file": "ow-bw-canal-lock-02.png",
+              "category": "builder-world"
+            },
+            {
+              "key": "ow-bw-canal-lock-03",
+              "file": "ow-bw-canal-lock-03.png",
+              "category": "builder-world"
+            },
+            {
+              "key": "ow-bw-canal-lock-04",
+              "file": "ow-bw-canal-lock-04.png",
+              "category": "builder-world"
+            }
+          ],
+          "note": "Builder kit plates — sequence/state play surface, not camera viewpoints."
+        }
+      ],
+      "notes": "ow-canal-lock-village overview unexpectedly pairs with live ow-bw-canal-lock-* builder plates."
+    }
+  ],
+  "compatible_links": [
+    {
+      "from": "ow-zoo-campus",
+      "to": "zoo",
+      "relationship": "compatible_closeup",
+      "theme": "zoo",
+      "why": "campus overview → ground zoo plate",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-aquarium-campus",
+      "to": "zoo",
+      "relationship": "compatible_closeup",
+      "theme": "zoo",
+      "why": "aquarium campus overview → animal park plate (loose)",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-farm-adventure-yard",
+      "to": "farm",
+      "relationship": "compatible_closeup",
+      "theme": "farm",
+      "why": "farm adventure overview → countryside farm plate",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-farm-adventure-yard",
+      "to": "farmers-market",
+      "relationship": "compatible_world_view",
+      "theme": "farm",
+      "why": "farm campus → market exterior",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-farmers-market",
+      "to": "farmers-market",
+      "relationship": "compatible_world_view",
+      "theme": "town",
+      "why": "OW market overview twin of classic farmers-market",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-wave9-event-school-open-campus",
+      "to": "school-playground",
+      "relationship": "compatible_world_view",
+      "theme": "school",
+      "why": "school campus overview → playground exterior",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-wave9-event-school-open-campus",
+      "to": "school-classroom",
+      "relationship": "compatible_world_view",
+      "theme": "school",
+      "why": "school campus overview → classroom interior",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-wave9-event-school-open-campus",
+      "to": "school-hallway",
+      "relationship": "compatible_world_view",
+      "theme": "school",
+      "why": "school campus overview → hallway",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-wave9-event-school-open-campus",
+      "to": "school-library",
+      "relationship": "compatible_world_view",
+      "theme": "school",
+      "why": "school campus overview → library",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-wave9-event-school-open-campus",
+      "to": "school-gym",
+      "relationship": "compatible_world_view",
+      "theme": "school",
+      "why": "school campus overview → gym",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-wave9-event-school-open-campus",
+      "to": "school-cafeteria",
+      "relationship": "compatible_world_view",
+      "theme": "school",
+      "why": "school campus overview → cafeteria",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-wave11-town-s2-library-garden",
+      "to": "school-library",
+      "relationship": "compatible_world_view",
+      "theme": "town",
+      "why": "library garden district → library interior",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-wave11-town-s1-main-street-block",
+      "to": "town-shops",
+      "relationship": "compatible_world_view",
+      "theme": "town",
+      "why": "main street overview → shop street plate",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-wave11-town-s1-main-street-block",
+      "to": "cafe",
+      "relationship": "compatible_world_view",
+      "theme": "town",
+      "why": "main street overview → cafe interior",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-bakery-street",
+      "to": "bakery",
+      "relationship": "compatible_world_view",
+      "theme": "town",
+      "why": "bakery street overview → bakery interior",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-bakery-square",
+      "to": "bakery",
+      "relationship": "compatible_world_view",
+      "theme": "town",
+      "why": "bakery square → bakery interior",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-bakery-square",
+      "to": "ki-bake-cafe-scene",
+      "relationship": "compatible_world_view",
+      "theme": "town",
+      "why": "bakery square → bake cafe scene",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-wave4-play-districts-waterpark",
+      "to": "water-park",
+      "relationship": "compatible_closeup",
+      "theme": "amusement",
+      "why": "waterpark overview → water-park plate",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-wave41-waterpark2-s1-wave-pool-plaza",
+      "to": "water-park",
+      "relationship": "compatible_closeup",
+      "theme": "amusement",
+      "why": "wave-pool zone → classic water-park",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-carnival-midway",
+      "to": "arcade",
+      "relationship": "compatible_closeup",
+      "theme": "amusement",
+      "why": "carnival midway → arcade interior/close",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-wave15-harbor-resort-ow-arcade-pier",
+      "to": "arcade",
+      "relationship": "compatible_closeup",
+      "theme": "amusement",
+      "why": "arcade pier overview → arcade plate",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-beach-boardwalk",
+      "to": "beach-resort",
+      "relationship": "compatible_closeup",
+      "theme": "beach",
+      "why": "boardwalk overview → beach resort plate",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-island-cove",
+      "to": "beach-resort",
+      "relationship": "compatible_closeup",
+      "theme": "beach",
+      "why": "island cove overview → beach resort",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-lakeside-marina",
+      "to": "ow-ferry-island-terminal",
+      "relationship": "compatible_world_view",
+      "theme": "beach",
+      "why": "marina overview ↔ ferry terminal (waterfront cohort)",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-canal-lock-village",
+      "to": "ow-bw-canal-lock-01",
+      "relationship": "compatible_world_view",
+      "theme": "canal",
+      "why": "canal village overview → canal-lock builder plate",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-canal-lock-village",
+      "to": "ow-bw-canal-lock-02",
+      "relationship": "compatible_world_view",
+      "theme": "canal",
+      "why": "canal village overview → canal-lock builder plate",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-station-district",
+      "to": "train-platform",
+      "relationship": "compatible_world_view",
+      "theme": "transport",
+      "why": "station district → platform street",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-station-district",
+      "to": "bus-stop",
+      "relationship": "compatible_world_view",
+      "theme": "transport",
+      "why": "station district → bus stop",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-bus-depot",
+      "to": "bus-interior",
+      "relationship": "compatible_world_view",
+      "theme": "transport",
+      "why": "bus depot overview → bus interior",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-bus-depot",
+      "to": "bus-stop",
+      "relationship": "compatible_world_view",
+      "theme": "transport",
+      "why": "bus depot → bus stop",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-airport-edge",
+      "to": "ow-helipad-plaza",
+      "relationship": "compatible_world_view",
+      "theme": "transport",
+      "why": "airport edge ↔ helipad plaza",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-fire-station-campus",
+      "to": "fire-station",
+      "relationship": "compatible_closeup",
+      "theme": "civic",
+      "why": "fire campus overview → fire-station plate",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-police-community-plaza",
+      "to": "police-station",
+      "relationship": "compatible_closeup",
+      "theme": "civic",
+      "why": "police plaza overview → police-station",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-hospital-garden",
+      "to": "vet-clinic",
+      "relationship": "compatible_closeup",
+      "theme": "civic",
+      "why": "hospital garden → clinic plate (loose care theme)",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-makerspace-campus",
+      "to": "ow-maker-fair",
+      "relationship": "compatible_world_view",
+      "theme": "town",
+      "why": "makerspace campus ↔ maker fair grounds",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-science-museum",
+      "to": "ow-planetarium-garden",
+      "relationship": "compatible_world_view",
+      "theme": "town",
+      "why": "science museum ↔ planetarium garden",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-wave4-play-districts-shopping-district",
+      "to": "town-shops",
+      "relationship": "compatible_world_view",
+      "theme": "town",
+      "why": "shopping district overview → town-shops",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-magic-greenhouse",
+      "to": "ow-cw-weather-seasons-cw-f16-wx-greenhouse-path-01",
+      "relationship": "compatible_world_view",
+      "theme": "nature",
+      "why": "magic greenhouse fantasy ↔ wx greenhouse path",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "be-k3-cafe",
+      "to": "cafe",
+      "relationship": "compatible_world_view",
+      "theme": "town",
+      "why": "K3 cafe multi-view family ↔ classic cafe plate (compatible, not same registration)",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "be-k3-kitchen",
+      "to": "kitchen",
+      "relationship": "compatible_world_view",
+      "theme": "home",
+      "why": "K3 kitchen multi-view ↔ classic kitchen",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "be-k3-classroom",
+      "to": "school-classroom",
+      "relationship": "compatible_world_view",
+      "theme": "school",
+      "why": "K3 classroom multi-view ↔ classic school-classroom",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "be-k3-classroom",
+      "to": "classroom-bright",
+      "relationship": "compatible_world_view",
+      "theme": "school",
+      "why": "K3 classroom multi-view ↔ classroom-bright",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "be-k3-library",
+      "to": "school-library",
+      "relationship": "compatible_world_view",
+      "theme": "school",
+      "why": "K3 library multi-view ↔ school-library",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "be-k3-bus",
+      "to": "bus-stop",
+      "relationship": "compatible_world_view",
+      "theme": "transport",
+      "why": "K3 bus-shelter multi-view ↔ bus-stop",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "be-k3-bus",
+      "to": "bus-interior",
+      "relationship": "compatible_world_view",
+      "theme": "transport",
+      "why": "K3 bus family ↔ bus-interior (compatible place type)",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "be-k3-platform",
+      "to": "train-platform",
+      "relationship": "compatible_world_view",
+      "theme": "transport",
+      "why": "K3 platform multi-view ↔ train-platform",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "be-k3-clinic",
+      "to": "vet-clinic",
+      "relationship": "compatible_world_view",
+      "theme": "civic",
+      "why": "K3 clinic multi-view ↔ vet-clinic plate",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "be-k3-greenhouse",
+      "to": "ow-magic-greenhouse",
+      "relationship": "compatible_world_view",
+      "theme": "nature",
+      "why": "K3 greenhouse multi-view ↔ magic greenhouse overview",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-bw-bakery-line-01",
+      "to": "bakery",
+      "relationship": "compatible_closeup",
+      "theme": "town",
+      "why": "builder bakery line plate → bakery interior",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-bw-bakery-line-01",
+      "to": "ow-bakery-street",
+      "relationship": "compatible_world_view",
+      "theme": "town",
+      "why": "builder bakery line → bakery street overview",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-bw-market-stall-01",
+      "to": "ow-farmers-market",
+      "relationship": "compatible_world_view",
+      "theme": "town",
+      "why": "builder market stall → farmers market overview",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-bw-market-stall-02",
+      "to": "farmers-market",
+      "relationship": "compatible_world_view",
+      "theme": "town",
+      "why": "builder market stall → farmers-market plate",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-bw-camping-pitch-01",
+      "to": "ow-rv-campground",
+      "relationship": "compatible_world_view",
+      "theme": "nature",
+      "why": "camping pitch builder → RV campground overview",
+      "class": "COMPATIBLE"
+    },
+    {
+      "from": "ow-bw-camping-pitch-04",
+      "to": "ow-canyon-camp",
+      "relationship": "compatible_world_view",
+      "theme": "nature",
+      "why": "camping pitch builder → canyon camp overview",
+      "class": "COMPATIBLE"
+    }
+  ],
+  "orphaned_overviews": [
+    {
+      "key": "ow-baseball-diamond",
+      "file": "ow-baseball-diamond.png",
+      "category": "leisure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-beanstalk-tower",
+      "file": "ow-beanstalk-tower.png",
+      "category": "fantasy",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-bike-park",
+      "file": "ow-bike-park.png",
+      "category": "overview",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-bike-trail-hub",
+      "file": "ow-bike-trail-hub.png",
+      "category": "transport",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-bird-cliff-coast",
+      "file": "ow-bird-cliff-coast.png",
+      "category": "nature-adventure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-birthday-park",
+      "file": "ow-birthday-park.png",
+      "category": "event",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-canyon-camp",
+      "file": "ow-canyon-camp.png",
+      "category": "nature-adventure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-cave-rafting",
+      "file": "ow-cave-rafting.png",
+      "category": "nature-adventure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-climbing-gym-yard",
+      "file": "ow-climbing-gym-yard.png",
+      "category": "leisure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-cloud-castle",
+      "file": "ow-cloud-castle.png",
+      "category": "fantasy",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-coral-plaza",
+      "file": "ow-coral-plaza.png",
+      "category": "fantasy",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-crystal-cave-plaza",
+      "file": "ow-crystal-cave-plaza.png",
+      "category": "fantasy",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-desert-oasis-ruins",
+      "file": "ow-desert-oasis-ruins.png",
+      "category": "nature-adventure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-dino-dig-site",
+      "file": "ow-dino-dig-site.png",
+      "category": "other-discovered",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-dragon-cliffs",
+      "file": "ow-dragon-cliffs.png",
+      "category": "fantasy",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-escape-loft",
+      "file": "ow-escape-loft.png",
+      "category": "overview",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-escape-room-plaza",
+      "file": "ow-escape-room-plaza.png",
+      "category": "other-discovered",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-film-backlot",
+      "file": "ow-film-backlot.png",
+      "category": "other-discovered",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-garage-rooftop",
+      "file": "ow-garage-rooftop.png",
+      "category": "transport",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-glacier-lake",
+      "file": "ow-glacier-lake.png",
+      "category": "nature-adventure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-glow-garden",
+      "file": "ow-glow-garden.png",
+      "category": "leisure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-golf-driving-range",
+      "file": "ow-golf-driving-range.png",
+      "category": "leisure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-graduation-lawn",
+      "file": "ow-graduation-lawn.png",
+      "category": "event",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-haunted-manor-grounds",
+      "file": "ow-haunted-manor-grounds.png",
+      "category": "fantasy",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-hedge-maze-garden",
+      "file": "ow-hedge-maze-garden.png",
+      "category": "other-discovered",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-ice-cream-park",
+      "file": "ow-ice-cream-park.png",
+      "category": "event",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-ice-palace",
+      "file": "ow-ice-palace.png",
+      "category": "fantasy",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-kite-hill-meadow",
+      "file": "ow-kite-hill-meadow.png",
+      "category": "event",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-lava-tube-cave",
+      "file": "ow-lava-tube-cave.png",
+      "category": "nature-adventure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-moonbase-playground",
+      "file": "ow-moonbase-playground.png",
+      "category": "fantasy",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-mountain-lodge-village",
+      "file": "ow-mountain-lodge-village.png",
+      "category": "leisure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-mountain-resort",
+      "file": "ow-mountain-resort.png",
+      "category": "overview",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-mushroom-village",
+      "file": "ow-mushroom-village.png",
+      "category": "fantasy",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-music-conservatory",
+      "file": "ow-music-conservatory.png",
+      "category": "town-community",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-observatory-ridge",
+      "file": "ow-observatory-ridge.png",
+      "category": "overview",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-parade-route-block",
+      "file": "ow-parade-route-block.png",
+      "category": "event",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-planetarium-garden",
+      "file": "ow-planetarium-garden.png",
+      "category": "other-discovered",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-play-atrium-yard",
+      "file": "ow-play-atrium-yard.png",
+      "category": "leisure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-radio-tower-hill",
+      "file": "ow-radio-tower-hill.png",
+      "category": "other-discovered",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-redwood-trail",
+      "file": "ow-redwood-trail.png",
+      "category": "nature-adventure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-rv-campground",
+      "file": "ow-rv-campground.png",
+      "category": "transport",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-salt-flat-playa",
+      "file": "ow-salt-flat-playa.png",
+      "category": "nature-adventure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-sand-dune-park",
+      "file": "ow-sand-dune-park.png",
+      "category": "nature-adventure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-science-museum",
+      "file": "ow-science-museum.png",
+      "category": "overview",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-treasure-hunt-fort",
+      "file": "ow-treasure-hunt-fort.png",
+      "category": "other-discovered",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-treehouse-forest",
+      "file": "ow-treehouse-forest.png",
+      "category": "overview",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-waterfall-gorge",
+      "file": "ow-waterfall-gorge.png",
+      "category": "nature-adventure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-wave17-nature2-arctic-camp",
+      "file": "ow-wave17-nature2-arctic-camp.png",
+      "category": "nature-adventure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-wave17-nature2-hot-springs-terrace",
+      "file": "ow-wave17-nature2-hot-springs-terrace.png",
+      "category": "nature-adventure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-wave17-nature2-rainforest-canopy",
+      "file": "ow-wave17-nature2-rainforest-canopy.png",
+      "category": "nature-adventure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-wave25-candy-kingdom-plaza",
+      "file": "ow-wave25-candy-kingdom-plaza.png",
+      "category": "fantasy",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-wave25-giant-toy-attic-world",
+      "file": "ow-wave25-giant-toy-attic-world.png",
+      "category": "fantasy",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-wave25-paper-craft-village",
+      "file": "ow-wave25-paper-craft-village.png",
+      "category": "fantasy",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-wave3-community-center",
+      "file": "ow-wave3-community-center.png",
+      "category": "overview",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-wave31-outdoors-ow-bird-marsh",
+      "file": "ow-wave31-outdoors-ow-bird-marsh.png",
+      "category": "overview",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-wave31-outdoors-ow-dig-quarry",
+      "file": "ow-wave31-outdoors-ow-dig-quarry.png",
+      "category": "overview",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-wave31-waterways-ow-dry-dock-yard",
+      "file": "ow-wave31-waterways-ow-dry-dock-yard.png",
+      "category": "transport",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-wave31-waterways-ow-river-barge-dock",
+      "file": "ow-wave31-waterways-ow-river-barge-dock.png",
+      "category": "transport",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-wave37-space-myth-mermaid-lagoon",
+      "file": "ow-wave37-space-myth-mermaid-lagoon.png",
+      "category": "fantasy",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-wave37-space-myth-phoenix-roost",
+      "file": "ow-wave37-space-myth-phoenix-roost.png",
+      "category": "fantasy",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-wave37-space-myth-starship-hangar",
+      "file": "ow-wave37-space-myth-starship-hangar.png",
+      "category": "fantasy",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-wedding-garden",
+      "file": "ow-wedding-garden.png",
+      "category": "event",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    },
+    {
+      "key": "ow-zipline-valley",
+      "file": "ow-zipline-valley.png",
+      "category": "nature-adventure",
+      "gap": "overview_only_no_useful_closeup_or_interior_in_live_08_backgrounds"
+    }
+  ],
+  "strongest_story_sequences": [
+    {
+      "rank": 1,
+      "id": "school-campus-to-classroom-multiview",
+      "sequence": [
+        "ow-wave9-event-school-open-campus",
+        "school-playground",
+        "school-hallway",
+        "school-classroom",
+        "be-k3-classroom (wide→doorway→window→overhead)"
+      ],
+      "why": "Full overworld→exterior→interior plus intentional same-world 4-view for hide/reveal pedagogy."
+    },
+    {
+      "rank": 2,
+      "id": "town-block-to-cafe-shop",
+      "sequence": [
+        "ow-wave11-town-s1-main-street-block",
+        "ow-wave11-town-s3-rooftop-neighborhood",
+        "town-shops / ow-bakery-street",
+        "cafe or bakery",
+        "be-k3-cafe / be-k3-shop multi-view"
+      ],
+      "why": "Coordinated town district overviews + commercial interiors + K3 same-world views."
+    },
+    {
+      "rank": 3,
+      "id": "waterpark-zone-tour",
+      "sequence": [
+        "ow-wave4-play-districts-waterpark",
+        "ow-wave41-waterpark2-s1-wave-pool-plaza",
+        "ow-wave41-waterpark2-s2-lazy-river-island",
+        "ow-wave41-waterpark2-s3-slide-canyon",
+        "water-park"
+      ],
+      "why": "Campus overview → intentional zone siblings → classic close plate."
+    },
+    {
+      "rank": 4,
+      "id": "harbor-resort-triad",
+      "sequence": [
+        "ow-wave15-harbor-resort-ow-dive-cove",
+        "ow-wave15-harbor-resort-ow-arcade-pier",
+        "ow-wave15-harbor-resort-ow-stables-ranch",
+        "beach-resort / arcade"
+      ],
+      "why": "One manufacture wave yields three district overviews with live close companions."
+    },
+    {
+      "rank": 5,
+      "id": "transit-station-to-vehicle",
+      "sequence": [
+        "ow-station-district / ow-bus-depot",
+        "bus-stop or train-platform",
+        "bus-interior",
+        "be-k3-bus / be-k3-platform multi-view"
+      ],
+      "why": "Transit overworld + street furniture + vehicle interior + registered multi-view shelters."
+    },
+    {
+      "rank": 6,
+      "id": "canal-village-to-lock-kit",
+      "sequence": [
+        "ow-canal-lock-village",
+        "ow-bw-canal-lock-01…04"
+      ],
+      "why": "Unexpected overview→builder sequence connection for waterworks storytelling."
+    }
+  ],
+  "k1_state_ladders_note": {
+    "kind": "registered_scene_states",
+    "relationship": "NOT_viewpoints",
+    "note": "K1 families are same-camera state ladders (baseline→wrong→damaged→repaired→emptied→consequence), not scale/viewpoint multi-view. Twin locked to K3 worlds for place identity.",
+    "family_ids": [
+      "be-k1-bathroom",
+      "be-k1-kitchen",
+      "be-k1-bedroom",
+      "be-k1-living",
+      "be-k1-workshop",
+      "be-k1-clinic",
+      "be-k1-cafe",
+      "be-k1-shop",
+      "be-k1-playground",
+      "be-k1-library",
+      "be-k1-porch"
+    ],
+    "harvest_root": "harvested/board-enabling/registered-scene-states/"
+  },
+  "worlds_with_several_perspectives": [
+    {
+      "world": "classroom/school",
+      "perspectives": [
+        "campus overview",
+        "playground exterior",
+        "hallway",
+        "classroom/library/gym/cafeteria interiors",
+        "K3 4-view",
+        "K1 state ladder twin"
+      ],
+      "count_hint": 10
+    },
+    {
+      "world": "cafe/shop/town street",
+      "perspectives": [
+        "wave11 town districts",
+        "bakery street/square",
+        "classic cafe/bakery/town-shops",
+        "K3 cafe+shop 4-view"
+      ],
+      "count_hint": 8
+    },
+    {
+      "world": "waterpark/amusement",
+      "perspectives": [
+        "district overview",
+        "3 zone siblings",
+        "water-park+arcade closes"
+      ],
+      "count_hint": 6
+    },
+    {
+      "world": "transit (bus/platform)",
+      "perspectives": [
+        "station/bus-depot overviews",
+        "bus-stop/platform",
+        "bus-interior",
+        "K3 bus+platform 4-view"
+      ],
+      "count_hint": 7
+    },
+    {
+      "world": "harbor/beach",
+      "perspectives": [
+        "boardwalk/cove/marina overviews",
+        "harbor-resort triad",
+        "beach-resort close"
+      ],
+      "count_hint": 7
+    },
+    {
+      "world": "home rooms",
+      "perspectives": [
+        "K3 kitchen/bedroom/living 4-view each",
+        "classic kitchen"
+      ],
+      "count_hint": 5
+    },
+    {
+      "world": "clinic/care",
+      "perspectives": [
+        "hospital garden overview",
+        "vet-clinic",
+        "K3 clinic 4-view"
+      ],
+      "count_hint": 4
+    },
+    {
+      "world": "canal waterworks",
+      "perspectives": [
+        "canal-lock village overview",
+        "4 builder canal-lock plates"
+      ],
+      "count_hint": 5
+    }
+  ],
+  "unexpected_connections": [
+    {
+      "from": "ow-canal-lock-village",
+      "to": [
+        "ow-bw-canal-lock-01",
+        "ow-bw-canal-lock-02",
+        "ow-bw-canal-lock-03",
+        "ow-bw-canal-lock-04"
+      ],
+      "why": "Overview village + builder modular lock sequence live in the same background bank."
+    },
+    {
+      "from": "ow-bakery-street / ow-bakery-square",
+      "to": [
+        "ow-bw-bakery-line-01",
+        "bakery",
+        "ki-bake-cafe-scene"
+      ],
+      "why": "Bakery overworld unexpectedly bridges builder line kit + classic bakery + kid-interest bake cafe."
+    },
+    {
+      "from": "ow-magic-greenhouse",
+      "to": [
+        "be-k3-greenhouse",
+        "ow-cw-weather-seasons-cw-f16-wx-greenhouse-path-01"
+      ],
+      "why": "Fantasy greenhouse overview sits near K3 greenhouse multi-view and CW weather greenhouse path."
+    },
+    {
+      "from": "ow-farmers-market",
+      "to": [
+        "ow-bw-market-stall-01",
+        "ow-bw-market-stall-02",
+        "farmers-market"
+      ],
+      "why": "Market overview + builder stall plates + classic farmers-market plate."
+    }
+  ],
+  "sources_inspected": [
+    "harvested/overview-worlds/",
+    "docs/overview-worlds-inventory.json",
+    "docs/overview-worlds-log.md",
+    "harvested/board-enabling/multi-view-environments/",
+    "docs/board-enabling-k3.md",
+    "docs/board-enabling-k3-inventory.json",
+    "harvested/board-enabling/registered-scene-states/",
+    "docs/board-enabling-k1.md",
+    "docs/board-enabling-k1-inventory.json",
+    "public/assets/08_backgrounds/manifest.json",
+    "docs/kid-interest-shift60-inventory.json",
+    "docs/builder-worlds-portfolio.md",
+    "docs/builder-worlds-inventory.json",
+    "docs/horizontal-harvest-shortlist.md",
+    "docs/board-archetype-consolidation.md"
+  ],
+  "counts": {
+    "multi_view_families": 15,
+    "zoom_chains": 10,
+    "compatible_links": 54,
+    "orphaned_overviews": 63,
+    "live_background_scenes": 249,
+    "strongest_story_sequences": 6
+  }
+}
