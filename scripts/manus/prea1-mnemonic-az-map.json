@@ -1,0 +1,42 @@
+{
+  "convention": "common-sound-first",
+  "locked_at": "2026-08-18",
+  "note": "Pre-A1 ESL synthetic phonics. One picture = the letter's most common SOUND, not the letter name. Same mnemonic object for uppercase and lowercase. Letterform must stay a clear letter; the object is a cue, not a letter-shaped illustration.",
+  "rules": [
+    "Short vowels only: A /æ/, E /ɛ/, I /ɪ/, O /ɒ/, U /ʌ/.",
+    "C is hard /k/ (cat), never city /s/.",
+    "G is hard /g/ (goat), never giraffe /dʒ/.",
+    "X is /ks/ as in fox (final cluster), not x-ray letter-name /ɛks/.",
+    "Y is consonant /j/ as in yo-yo, not fly /aɪ/ or happy /i/.",
+    "Q is /kw/ as in queen (qu).",
+    "S is /s/ (snake), not /z/ or /ʃ/."
+  ],
+  "letters": {
+    "a": { "upper": "A", "sound": "/æ/", "sound_label": "short a", "mnemonic": "apple", "slug": "apple", "avoid": "acorn, apron, alien (long a / letter name)" },
+    "b": { "upper": "B", "sound": "/b/", "sound_label": "b", "mnemonic": "ball", "slug": "ball", "avoid": "" },
+    "c": { "upper": "C", "sound": "/k/", "sound_label": "hard c", "mnemonic": "cat", "slug": "cat", "avoid": "city, ice, circle (soft c)" },
+    "d": { "upper": "D", "sound": "/d/", "sound_label": "d", "mnemonic": "dog", "slug": "dog", "avoid": "" },
+    "e": { "upper": "E", "sound": "/ɛ/", "sound_label": "short e", "mnemonic": "egg", "slug": "egg", "avoid": "eagle, ear, equal (long e)" },
+    "f": { "upper": "F", "sound": "/f/", "sound_label": "f", "mnemonic": "fish", "slug": "fish", "avoid": "" },
+    "g": { "upper": "G", "sound": "/g/", "sound_label": "hard g", "mnemonic": "goat", "slug": "goat", "avoid": "giraffe, giant, gem (soft g)" },
+    "h": { "upper": "H", "sound": "/h/", "sound_label": "h", "mnemonic": "hat", "slug": "hat", "avoid": "" },
+    "i": { "upper": "I", "sound": "/ɪ/", "sound_label": "short i", "mnemonic": "insect", "slug": "insect", "avoid": "ice, island, ivy (long i)" },
+    "j": { "upper": "J", "sound": "/dʒ/", "sound_label": "j", "mnemonic": "jam", "slug": "jam", "avoid": "" },
+    "k": { "upper": "K", "sound": "/k/", "sound_label": "k", "mnemonic": "kite", "slug": "kite", "avoid": "" },
+    "l": { "upper": "L", "sound": "/l/", "sound_label": "l", "mnemonic": "leaf", "slug": "leaf", "avoid": "" },
+    "m": { "upper": "M", "sound": "/m/", "sound_label": "m", "mnemonic": "moon", "slug": "moon", "avoid": "" },
+    "n": { "upper": "N", "sound": "/n/", "sound_label": "n", "mnemonic": "nest", "slug": "nest", "avoid": "" },
+    "o": { "upper": "O", "sound": "/ɒ/", "sound_label": "short o", "mnemonic": "octopus", "slug": "octopus", "avoid": "open, oval, ocean (long o)" },
+    "p": { "upper": "P", "sound": "/p/", "sound_label": "p", "mnemonic": "pig", "slug": "pig", "avoid": "" },
+    "q": { "upper": "Q", "sound": "/kw/", "sound_label": "qu", "mnemonic": "queen", "slug": "queen", "avoid": "" },
+    "r": { "upper": "R", "sound": "/r/", "sound_label": "r", "mnemonic": "rabbit", "slug": "rabbit", "avoid": "" },
+    "s": { "upper": "S", "sound": "/s/", "sound_label": "s", "mnemonic": "snake", "slug": "snake", "avoid": "" },
+    "t": { "upper": "T", "sound": "/t/", "sound_label": "t", "mnemonic": "turtle", "slug": "turtle", "avoid": "" },
+    "u": { "upper": "U", "sound": "/ʌ/", "sound_label": "short u", "mnemonic": "umbrella", "slug": "umbrella", "avoid": "unicorn, uniform (long u /yu/)" },
+    "v": { "upper": "V", "sound": "/v/", "sound_label": "v", "mnemonic": "van", "slug": "van", "avoid": "" },
+    "w": { "upper": "W", "sound": "/w/", "sound_label": "w", "mnemonic": "web", "slug": "web", "avoid": "" },
+    "x": { "upper": "X", "sound": "/ks/", "sound_label": "ks", "mnemonic": "fox", "slug": "fox", "avoid": "x-ray (letter name). Fox shows final /ks/; letter X stays clearly an X." },
+    "y": { "upper": "Y", "sound": "/j/", "sound_label": "consonant y", "mnemonic": "yo-yo", "slug": "yo-yo", "avoid": "yellow is OK but yo-yo is locked; not fly, cry, happy" },
+    "z": { "upper": "Z", "sound": "/z/", "sound_label": "z", "mnemonic": "zebra", "slug": "zebra", "avoid": "" }
+  }
+}

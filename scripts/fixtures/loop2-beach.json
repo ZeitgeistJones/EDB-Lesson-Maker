@@ -1,0 +1,40 @@
+{
+  "title": "Beach Day Fun",
+  "warmUp": {
+    "question": "Do you like the beach?",
+    "sampleAnswer": "Yes, I like the beach."
+  },
+  "vocabulary": [
+    { "word": "beach", "emoji": "🏖️", "sentence": "We go to the beach." },
+    { "word": "sand", "emoji": "🏝️", "sentence": "The sand is warm." },
+    { "word": "shell", "emoji": "🐚", "sentence": "I find a shell." },
+    { "word": "wave", "emoji": "🌊", "sentence": "A big wave comes." },
+    { "word": "sun", "emoji": "☀️", "sentence": "The sun is bright." },
+    { "word": "ocean", "emoji": "🌊", "sentence": "The ocean is blue." }
+  ],
+  "sentenceFrames": ["I see a ____.", "The ____ is fun."],
+  "story": {
+    "title": "Beach Day",
+    "pages": [
+      {
+        "heading": "At the beach",
+        "text": "Mia plays in the sand. She finds a shell by the wave.",
+        "visualTheme": "beach",
+        "visualCaption": "On the shore"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is Mia?", "sampleAnswer": "She is at the beach." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What do you do at the beach?", "sampleAnswer": "I play in the sand." }
+  ],
+  "activity": {
+    "title": "Beach Find",
+    "prompt": "Say what you find.",
+    "templates": ["I find a ____."]
+  },
+  "reviewSentences": ["I like the beach.", "The sun is warm."]
+}

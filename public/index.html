@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lesson Board Builder</title>
+<script src="lib/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #f8f9fb; }
+  .app { max-width: 720px; margin: 0 auto; padding: 16px; min-height: 100vh; }
+  .header { background: linear-gradient(135deg, #4f46e5, #7c3aed); padding: 24px 20px 18px; border-radius: 16px; color: #fff; margin-bottom: 20px; }
+  .header-sub { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; margin-bottom: 2px; }
+  .header-title { font-size: 22px; font-weight: 800; }
+  .card { background: #fff; border-radius: 14px; padding: 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); margin-bottom: 14px; }
+  .label { font-size: 13px; font-weight: 700; color: #475569; margin-bottom: 8px; display: block; }
+  .topic-input { width: 100%; padding: 14px 16px; border-radius: 10px; border: 2px solid #e2e8f0; font-size: 16px; color: #1e293b; outline: none; font-family: inherit; }
+  .topic-input:focus { border-color: #6366f1; }
+  .topic-input::placeholder { color: #94a3b8; }
+  .field-hint { font-size: 12px; color: #94a3b8; margin-top: 8px; }
+  .btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .opt-btn { flex: 1; min-width: 0; padding: 12px 8px; border-radius: 10px; border: 2px solid #e2e8f0; background: #fff; color: #475569; font-size: 14px; font-weight: 600; cursor: pointer; text-align: center; transition: all 0.15s; font-family: inherit; }
+  /* Five CEFR buttons wrap cleanly on mobile. */
+  #level-row .opt-btn { min-width: 90px; }
+  .opt-btn.active { border-color: #6366f1; background: #eef2ff; color: #4338ca; }
+  .opt-btn .sub { font-size: 11px; font-weight: 400; opacity: 0.6; display: block; margin-top: 2px; }
+  .generate-btn { width: 100%; padding: 16px; border-radius: 12px; border: none; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; font-size: 17px; font-weight: 700; cursor: pointer; font-family: inherit; letter-spacing: 0.3px; transition: opacity 0.15s; }
+  .generate-btn:disabled { background: #e2e8f0; color: #94a3b8; cursor: default; }
+  .generate-btn:not(:disabled):hover { opacity: 0.92; }
+  .loading { text-align: center; padding: 60px 20px; }
+  .spinner { display: inline-block; width: 44px; height: 44px; border: 4px solid #e2e8f0; border-top-color: #6366f1; border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { margin-top: 18px; font-size: 16px; color: #64748b; font-weight: 500; }
+  .preview-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
+  .preview-title { font-size: 20px; font-weight: 800; color: #1e293b; }
+  .preview-meta { font-size: 13px; color: #94a3b8; }
+  .slide-preview { background: #f1f5f9; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; border-left: 4px solid #6366f1; }
+  .slide-num { font-size: 11px; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .slide-title { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+  .slide-content { font-size: 13px; color: #64748b; line-height: 1.5; }
+  .slide-content em { color: #4338ca; font-style: normal; font-weight: 600; }
+  .action-row { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+  .download-btn { flex: 1; padding: 16px; border-radius: 12px; border: none; background: linear-gradient(135deg, #10b981, #059669); color: #fff; font-size: 17px; font-weight: 700; cursor: pointer; font-family: inherit; }
+  .download-btn:hover { opacity: 0.92; }
+  .board-status {
+    margin: 12px 0 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .board-status.ready { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+  .board-status.draft { background: #fffbeb; color: #92400e; border: 1px solid #fcd34d; }
+  .board-status ul { margin: 8px 0 0; padding-left: 18px; }
+  .story-art-status {
+    margin: 0 0 14px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.4;
+    background: #f5f3ff;
+    color: #5b21b6;
+    border: 1px solid #ddd6fe;
+    display: none;
+  }
+  .story-art-status.ready { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
+  .story-art-status.fail { background: #fffbeb; color: #92400e; border-color: #fcd34d; }
+  .new-btn { padding: 16px 24px; border-radius: 12px; border: 2px solid #e2e8f0; background: #fff; color: #475569; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; }
+  .error { background: #fef2f2; border: 1px solid #fecaca; border-radius: 10px; padding: 12px 16px; color: #dc2626; font-size: 14px; margin-bottom: 14px; }
+  .info { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 12px 16px; color: #1e40af; font-size: 13px; margin-bottom: 14px; line-height: 1.5; }
+  .slide-preview.blue { border-left-color: #3b82f6; }
+  .slide-preview.coral { border-left-color: #f97066; }
+  .slide-preview.green { border-left-color: #10b981; }
+  .slide-preview.yellow { border-left-color: #f59e0b; }
+  .slide-preview.purple { border-left-color: #8b5cf6; }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <div id="screen-input">
+    <div class="header">
+      <div class="header-sub">ESL Lesson Generator</div>
+      <div class="header-title">Lesson Board Builder</div>
+    </div>
+    <div class="info">
+      Type a topic to generate one lesson you can export two ways:
+      <strong>PDF</strong> for print / document view, and
+      <strong>Interactive Board</strong> (`.edb`) — the same lesson as a drag-and-drop blackboard
+      (full pages + activities on New Words and Wrap).
+    </div>
+    <div class="card">
+      <label class="label">What is the lesson about?</label>
+      <input class="topic-input" id="topic" type="text" placeholder='e.g. "my birthday party at the zoo, focus on interjections"' />
+      <div class="field-hint">Describe the topic and any grammar focus in one go.</div>
+    </div>
+    <div class="card">
+      <label class="label">Student Level</label>
+      <div class="btn-row" id="level-row">
+        <button class="opt-btn" data-val="Pre-A1" onclick="pickLevel(this)">Pre-A1<span class="sub">Starter</span></button>
+        <button class="opt-btn" data-val="A1" onclick="pickLevel(this)">A1<span class="sub">Beginner</span></button>
+        <button class="opt-btn" data-val="A2" onclick="pickLevel(this)">A2<span class="sub">Elementary</span></button>
+        <button class="opt-btn active" data-val="B1" onclick="pickLevel(this)">B1<span class="sub">Intermediate</span></button>
+        <button class="opt-btn" data-val="B2" onclick="pickLevel(this)">B2<span class="sub">Upper Int.</span></button>
+      </div>
+    </div>
+    <div class="card">
+      <label class="label">Class Length</label>
+      <div class="btn-row" id="duration-row">
+        <button class="opt-btn active" data-val="30" onclick="pickDuration(this)">30 min<span class="sub">5–7 words · 2 story pages</span></button>
+        <button class="opt-btn" data-val="60" onclick="pickDuration(this)">60 min<span class="sub">11–12 words · 3 story pages</span></button>
+      </div>
+    </div>
+    <div class="card">
+      <label class="label">Phonics page</label>
+      <div class="btn-row" id="phonics-row">
+        <button class="opt-btn active" data-val="auto" onclick="pickPhonics(this)">Auto<span class="sub">Pre-A1–A2 + keywords</span></button>
+        <button class="opt-btn" data-val="on" onclick="pickPhonics(this)">On<span class="sub">Always include</span></button>
+        <button class="opt-btn" data-val="off" onclick="pickPhonics(this)">Off<span class="sub">Never include</span></button>
+      </div>
+    </div>
+    <div id="error-box" class="error" style="display:none;"></div>
+    <button class="generate-btn" id="gen-btn" onclick="generate()">Generate Lesson</button>
+  </div>
+
+  <div id="screen-loading" style="display:none;">
+    <div class="header">
+      <div class="header-sub">ESL Lesson Generator</div>
+      <div class="header-title">Lesson Board Builder</div>
+    </div>
+    <div class="loading">
+      <div class="spinner"></div>
+      <div class="loading-text" id="loading-msg">Designing your lesson…</div>
+    </div>
+  </div>
+
+  <div id="screen-preview" style="display:none;">
+    <div class="header">
+      <div class="header-sub">ESL Lesson Generator</div>
+      <div class="header-title">Lesson Board Builder</div>
+    </div>
+    <div class="preview-header">
+      <div>
+        <div class="preview-title" id="preview-title"></div>
+        <div class="preview-meta" id="preview-meta"></div>
+      </div>
+    </div>
+    <div id="board-status" class="board-status" style="display:none;"></div>
+    <div id="story-art-status" class="story-art-status"></div>
+    <div id="slides-preview"></div>
+    <div class="action-row">
+      <button class="download-btn" id="btn-pdf" onclick="downloadPDF()">Download Lesson PDF</button>
+      <button class="download-btn" id="btn-edb" onclick="downloadEDB()">Download Board (.edb)</button>
+      <button class="download-btn" id="btn-board-pdf" onclick="downloadBoardPreview('pdf')" style="background:linear-gradient(135deg,#0f766e,#14b8a6)">Board Preview PDF</button>
+      <button class="download-btn" id="btn-board-png" onclick="downloadBoardPreview('png')" style="background:linear-gradient(135deg,#0369a1,#0ea5e9)">Board Preview PNG</button>
+      <button class="new-btn" onclick="reset()">New</button>
+    </div>
+  </div>
+</div>
+
+<script src="lib/buildLessonPdf.js"></script>
+<script src="lib/edbLayout.js"></script>
+<script src="lib/topicIdentity.js"></script>
+<script src="lib/producerQuality.js"></script>
+<script src="lib/lessonTraits.js"></script>
+<script src="lib/edbActivities.js"></script>
+<script src="lib/vocabIcons.js"></script>
+<script src="lib/sceneBackgrounds.js"></script>
+<script src="lib/propBank.js"></script>
+<script src="lib/vocabArt.js"></script>
+<script src="lib/phonicsPolicy.js"></script>
+<script src="lib/storyIntegrity.js"></script>
+<script src="lib/boardReadiness.js"></script>
+<script src="lib/coloringOutlines.js"></script>
+<script src="lib/storyArtCacheVersion.js"></script>
+<script src="lib/storyArt.js"></script>
+<script src="lib/storyScene.js"></script>
+<script src="lib/producerBridge.js"></script>
+<script src="lib/boardDesignTokens.js"></script>
+<script src="lib/renderLessonPages.js"></script>
+<script src="lib/buildEdb.js"></script>
+<script src="lib/exportBoardPreview.js"></script>
+<script>
+let state = {
+  level: 'B1',
+  duration: '30',
+  phonics: 'auto',
+  lessonData: null,
+  readiness: null,
+  storyArt: null,
+  storyArtPromise: null,
+};
+const MAX_STORY_PAGES = (window.EdbActivities && window.EdbActivities.MAX_STORY_PAGES) || 3;
+const SUPPORTED_LEVELS = ['Pre-A1', 'A1', 'A2', 'B1', 'B2'];
+function normalizeLevel(level) {
+  return SUPPORTED_LEVELS.includes(level) ? level : 'B1';
+}
+function storyArtInternalEnabled() {
+  try {
+    const params = new URLSearchParams(window.location.search || '');
+    return params.get('storyArt') === '1'
+      || window.__ENABLE_STORY_ART__ === true
+      || window.localStorage.getItem('storyArtInternal') === '1';
+  } catch (_) {
+    return window.__ENABLE_STORY_ART__ === true;
+  }
+}
+
+function pickLevel(btn) {
+  document.querySelectorAll('#level-row .opt-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  state.level = normalizeLevel(btn.dataset.val);
+}
+function pickDuration(btn) {
+  document.querySelectorAll('#duration-row .opt-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  state.duration = btn.dataset.val;
+}
+function pickPhonics(btn) {
+  document.querySelectorAll('#phonics-row .opt-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  state.phonics = btn.dataset.val;
+}
+function lessonMeta() {
+  const meta = { level: normalizeLevel(state.level), duration: state.duration };
+  if (state.phonics === 'on') meta.phonics = 'on';
+  if (state.phonics === 'off') meta.phonics = 'off';
+  return meta;
+}
+function showScreen(name) {
+  ['input', 'loading', 'preview'].forEach(s => {
+    document.getElementById('screen-' + s).style.display = s === name ? 'block' : 'none';
+  });
+}
+
+const loadingMsgs = ['Designing your lesson…', 'Picking vocabulary…', 'Writing sentence frames…', 'Laying out pages…', 'Almost ready…'];
+let loadingInterval;
+
+async function generate() {
+  const topic = document.getElementById('topic').value.trim();
+  const errBox = document.getElementById('error-box');
+  errBox.style.display = 'none';
+  if (!topic) return;
+
+  showScreen('loading');
+  let msgIdx = 0;
+  loadingInterval = setInterval(() => {
+    msgIdx = (msgIdx + 1) % loadingMsgs.length;
+    document.getElementById('loading-msg').textContent = loadingMsgs[msgIdx];
+  }, 2200);
+
+  try {
+    const resp = await fetch('/api/generate-lesson', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        topic,
+        level: normalizeLevel(state.level),
+        duration: state.duration,
+        phonics: state.phonics === 'auto' ? undefined : state.phonics,
+      }),
+    });
+    const raw = await resp.text();
+    let data;
+    try {
+      data = raw ? JSON.parse(raw) : {};
+    } catch {
+      throw new Error(raw.slice(0, 300) || `Server error (${resp.status})`);
+    }
+    if (!resp.ok) throw new Error(data.error || `Server error (${resp.status})`);
+
+    state.lessonData = data.lesson;
+    state.level = normalizeLevel(data.level);
+    state.duration = data.duration;
+    clearInterval(loadingInterval);
+    showPreview(data.lesson);
+  } catch (e) {
+    clearInterval(loadingInterval);
+    showScreen('input');
+    errBox.textContent = e.message || 'Something went wrong generating the lesson.';
+    errBox.style.display = 'block';
+  }
+}
+
+function showPreview(d) {
+  document.getElementById('preview-title').textContent = d.title;
+  const storyPages = Math.min(d.story?.pages?.length || 2, MAX_STORY_PAGES);
+  const phonicsOn = window.EdbActivities && window.EdbActivities.includePhonics
+    ? window.EdbActivities.includePhonics(d, lessonMeta())
+    : !!d.phonics;
+  const pageCount = (d.speakingQuestions?.length || 0) + 9 + storyPages + (phonicsOn ? 1 : 0);
+  document.getElementById('preview-meta').textContent = `${state.level} · ${state.duration} min · ~${pageCount} pages`;
+
+  // Judge board readiness async (needs PropBank). Text preview stays instant.
+  refreshBoardStatus(d);
+  kickoffStoryArt(d);
+
+  const c = document.getElementById('slides-preview');
+  c.innerHTML = '';
+  const story = d.story || {};
+  const sections = [
+    { title: d.title, content: 'Title page', cls: 'blue' },
+    { title: 'Warm-Up', content: `"${d.warmUp.question}" — Sample: ${d.warmUp.sampleAnswer}`, cls: 'coral' },
+    { title: 'New Words', content: d.vocabulary.map(v => `${v.emoji} <em>${v.word}</em>`).join(' &nbsp; '), cls: 'purple' },
+  ];
+  if (phonicsOn && d.phonics) {
+    const words = (d.phonics.targetWords || []).map(w =>
+      `${w.emoji || ''} <em>${w.word}</em> [${(w.graphemes || []).join('-')}]`
+    ).join(' · ');
+    sections.push({ title: 'Sound Boxes', content: words || 'Phonics sound boxes', cls: 'yellow' });
+  }
+  sections.push(
+    { title: 'New Words — In Sentences', content: d.vocabulary.map(v => `<em>${v.word}</em>: ${v.sentence}`).join('<br>'), cls: 'purple' },
+    { title: 'Sentence Frames', content: d.sentenceFrames.map(f => `<em>${f}</em>`).join('<br>'), cls: 'yellow' },
+  );
+
+  (story.pages || []).slice(0, MAX_STORY_PAGES).forEach((p, i) => {
+    sections.push({
+      title: i === 0 ? `Story: ${story.title || 'Let\'s Read!'}` : `Story (cont.): ${p.heading || ''}`,
+      content: `<em>${p.visualTheme || 'scene'}</em> — ${p.visualCaption || ''}<br>${p.text || ''}` +
+        `<div class="story-art-thumb" data-story-art-preview="${i}" style="margin-top:10px;display:none;"></div>`,
+      cls: 'coral',
+    });
+  });
+
+  sections.push(
+    {
+      title: 'Reading Comprehension',
+      content: (story.comprehensionQuestions || []).map((q, i) => `${i + 1}. ${q.question}`).join('<br>'),
+      cls: 'blue',
+    },
+    {
+      title: 'Your Ideas!',
+      content: (story.creativeQuestions || []).map((q, i) => `${i + 1}. ${q}`).join('<br>'),
+      cls: 'green',
+    },
+    { title: "Let's Talk!", content: d.speakingQuestions.map((q, i) => `${i + 1}. ${q.question}`).join('<br>'), cls: 'green' },
+    { title: d.activity.title, content: `${d.activity.prompt}<br>${d.activity.templates.map(t => `<em>${t}</em>`).join('<br>')}`, cls: 'coral' },
+    { title: 'Great Job!', content: 'Review: ' + d.reviewSentences.map(s => `<em>${s}</em>`).join(' · '), cls: 'blue' },
+  );
+
+  sections.forEach((s, i) => {
+    const div = document.createElement('div');
+    div.className = `slide-preview ${s.cls}`;
+    div.innerHTML = `<div class="slide-num">Page ${i + 1}</div><div class="slide-title">${s.title}</div><div class="slide-content">${s.content}</div>`;
+    c.appendChild(div);
+  });
+
+  showScreen('preview');
+}
+
+function setStoryArtStatus(msg, kind) {
+  const box = document.getElementById('story-art-status');
+  if (!box) return;
+  if (!msg) {
+    box.style.display = 'none';
+    box.textContent = '';
+    box.className = 'story-art-status';
+    return;
+  }
+  box.style.display = 'block';
+  box.className = 'story-art-status' + (kind ? ' ' + kind : '');
+  box.textContent = msg;
+}
+
+function paintStoryArtThumbs(result) {
+  if (!result || !Array.isArray(result.pages)) return;
+  result.pages.forEach((p) => {
+    if (!p || !p.dataUrl) return;
+    const slot = document.querySelector(`[data-story-art-preview="${p.index}"]`);
+    if (!slot) return;
+    slot.style.display = 'block';
+    slot.innerHTML = '';
+    const img = document.createElement('img');
+    img.src = p.dataUrl;
+    img.alt = 'Story illustration';
+    img.style.width = '100%';
+    img.style.maxHeight = '180px';
+    img.style.objectFit = 'cover';
+    img.style.borderRadius = '10px';
+    slot.appendChild(img);
+  });
+}
+
+function kickoffStoryArt(lesson) {
+  state.storyArt = null;
+  state.storyArtPromise = null;
+  if (!storyArtInternalEnabled() || !window.StoryArt) {
+    setStoryArtStatus('');
+    return;
+  }
+  setStoryArtStatus('Illustrating story… (downloads will include art once ready)');
+  const promise = window.StoryArt.generate(lesson, lessonMeta())
+    .then((result) => {
+      state.storyArt = result;
+      const hits = (result.pages || []).filter((p) => p && p.dataUrl).length;
+      const total = (result.pages || []).length;
+      if (result.disabled) {
+        setStoryArtStatus('Internal story art disabled. Using quiet flats.', 'fail');
+      } else if (hits) {
+        setStoryArtStatus(`Story art ready — ${hits}/${total} page(s). Will bake into board download.`, 'ready');
+        paintStoryArtThumbs(result);
+      } else {
+        setStoryArtStatus(
+          `Story art unavailable (${result.error || 'gate/timeout'}). Using quiet flats.`,
+          'fail'
+        );
+      }
+      return result;
+    })
+    .catch((err) => {
+      console.warn('Story art failed', err);
+      setStoryArtStatus('Story art failed — using quiet flats.', 'fail');
+      return null;
+    });
+  state.storyArtPromise = promise;
+}
+
+async function ensureStoryArtApplied(pageEls) {
+  if (!window.LessonPages || !window.LessonPages.applyStoryArt) return 0;
+  let result = state.storyArt;
+  if (!result && state.storyArtPromise) {
+    try { result = await state.storyArtPromise; } catch (_) { /* keep null */ }
+  }
+  if (!result && storyArtInternalEnabled() && window.StoryArt && state.lessonData) {
+    result = window.StoryArt.getCached(state.lessonData, state.level);
+  }
+  if (!result) return 0;
+  return window.LessonPages.applyStoryArt(pageEls, result);
+}
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
+async function refreshBoardStatus(lesson) {
+  const box = document.getElementById('board-status');
+  if (!box) return;
+  box.style.display = 'none';
+  state.readiness = null;
+  try {
+    if (window.PropBank) await window.PropBank.ready();
+    if (window.VocabIcons && window.VocabIcons.ready) await window.VocabIcons.ready();
+    if (!window.EdbActivities || !window.BoardReadiness) return;
+    const plan = window.EdbActivities.plan
+      ? window.EdbActivities.plan(lesson, lessonMeta())
+      : window.EdbActivities.buildBoardPlan(lesson, lessonMeta());
+    const report = (plan && plan.readiness) || window.BoardReadiness.assess(lesson, plan);
+    state.readiness = report;
+    box.style.display = 'block';
+    box.className = 'board-status ' + (report.status === 'ready' ? 'ready' : 'draft');
+    const kitLine = report.kit
+      ? `<div><strong>Kit:</strong> ${report.kit.pack} · hero ${report.kit.hero} · ${report.kit.docks} dock pieces</div>`
+      : '<div><strong>Kit:</strong> none matched</div>';
+    const adapt = (report && report.vocabAdapt)
+      || (plan && plan.vocabAdapt)
+      || (lesson && lesson._vocabAdapted);
+    const adaptOn = !!(adapt && (adapt.adapted || adapt.changed));
+    const boardN = adapt && Number(adapt.boardCount);
+    const genN = adapt && Number(adapt.generated);
+    const artHits = report && report.vocabArt ? Number(report.vocabArt.hits) : 0;
+    let countLine = '';
+    if (boardN && genN && genN > boardN) {
+      countLine = artHits > 0
+        ? `<div><strong>Board teaches:</strong> ${boardN} of ${genN} words — the ${boardN} we can picture. The rest stay in the story and speaking pages.</div>`
+        : `<div><strong>Board teaches:</strong> ${boardN} of ${genN} words — no art for any of them yet. The rest stay in the story and speaking pages.</div>`;
+    }
+    const adaptLine = adaptOn
+      ? countLine + `<div><strong>Vocab:</strong> reordered for art coverage (same topic)${adapt.promoted && adapt.promoted.length ? ` — promoted ${esc(adapt.promoted.slice(0, 4).join(', '))}${adapt.promoted.length > 4 ? '…' : ''}` : ''}</div>`
+      : countLine;
+    const reasons = (report.reasons || []).length
+      ? `<ul>${report.reasons.map((r) => `<li>${esc(r)}</li>`).join('')}</ul>`
+      : '';
+    box.innerHTML =
+      `<strong>${report.status === 'ready' ? 'Ready to teach' : 'Draft board'}</strong>` +
+      ` · vocab art ${report.vocabArt.hits}/${report.vocabArt.total}` +
+      (report.activityRecipe ? ` · activity ${report.activityRecipe}` : '') +
+      kitLine +
+      adaptLine +
+      reasons;
+    // Local testing log — ignored on static/Vercel hosts; never blocks UI.
+    logAppRun('preview', lesson, report, plan && plan.vocabAdapt);
+  } catch (e) {
+    console.warn('Board readiness check failed', e);
+    // Fail closed: an unjudged board must never look like a clean one. Without
+    // this the box stays hidden, state.readiness stays null, and Download waves
+    // the board through with no Ready/Draft at all.
+    const why = String((e && e.message) || e);
+    state.readiness = { status: 'unverified', reasons: [why] };
+    box.style.display = 'block';
+    box.className = 'board-status draft';
+    box.innerHTML =
+      '<strong>Not checked</strong> · could not judge this board' +
+      `<ul><li>${esc(why)}</li></ul>` +
+      '<div>Reload and generate again before you teach from this one.</div>';
+  }
+}
+
+function logAppRun(event, lesson, report, vocabAdapt) {
+  try {
+    const meta = lessonMeta();
+    const adapt = vocabAdapt || (report && report.vocabAdapt) || (lesson && lesson._vocabAdapted) || null;
+    const payload = {
+      event,
+      title: lesson && lesson.title,
+      topic: (document.getElementById('topic') || {}).value || null,
+      level: meta.level,
+      duration: meta.duration,
+      readiness: report
+        ? {
+            status: report.status,
+            reasons: report.reasons || [],
+            activityRecipe: report.activityRecipe || null,
+            kit: report.kit || null,
+            vocabArt: report.vocabArt || null,
+            vocabAdapt: report.vocabAdapt || null,
+          }
+        : null,
+      vocabAdapt: adapt && (adapt.adapted || adapt.changed)
+        ? {
+            adapted: true,
+            promoted: adapt.promoted || [],
+            board: adapt.after || adapt.board || [],
+          }
+        : null,
+      vocab: (lesson && lesson.vocabulary || []).map((v) => (typeof v === 'string' ? v : v && v.word)).filter(Boolean),
+      warmUp: lesson && lesson.warmUp ? { question: lesson.warmUp.question } : null,
+      activityTitle: lesson && lesson.activity && lesson.activity.title,
+    };
+    fetch('/api/log-run', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }).catch(() => {});
+  } catch (_) { /* ignore */ }
+}
+
+function confirmDraftDownload(kind) {
+  const r = state.readiness;
+  if (r && r.status === 'ready') return true;
+  // No report = the check never finished. Say so instead of waving it through.
+  if (!r || r.status === 'unverified') {
+    const why = (r && (r.reasons || [])[0]) || 'The readiness check did not finish.';
+    return window.confirm(
+      `This board was never checked — download ${kind} anyway?\n\n• ${why}\n\nIt may be missing pictures, cards, or the activity page.`
+    );
+  }
+  const why = (r.reasons || []).join('\n• ') || 'Board may be thin.';
+  return window.confirm(
+    `This board is marked Draft — download ${kind} anyway?\n\n• ${why}\n\nReady boards use theme kits when available and enough vocab art.`
+  );
+}
+
+async function downloadPDF() {
+  const d = state.lessonData;
+  if (!d) return;
+  // The PDF carries the same story + comprehension questions the board does, so
+  // S73 truncation / ungrounded Qs reach the teacher here too.
+  if (!confirmDraftDownload('lesson PDF')) return;
+  const btn = document.getElementById('btn-pdf');
+  const original = btn.textContent;
+  btn.textContent = 'Building PDF…';
+  btn.disabled = true;
+  try {
+    await buildLessonPdf(d, lessonMeta());
+  } catch (e) {
+    alert('Could not build the PDF: ' + e.message);
+  } finally {
+    btn.textContent = original;
+    btn.disabled = false;
+  }
+}
+
+async function downloadEDB() {
+  const d = state.lessonData;
+  if (!d) return;
+  if (!confirmDraftDownload('board (.edb)')) return;
+  const btn = document.getElementById('btn-edb');
+  const original = btn.textContent;
+  btn.textContent = 'Building board…';
+  btn.disabled = true;
+  let host = null;
+  try {
+    if (!window.LessonPages || !window.EdbKit) {
+      throw new Error('Board libraries failed to load. Refresh and try again.');
+    }
+    if (!window.EdbLayout || !window.EdbActivities) {
+      throw new Error('Layout/activity libraries failed to load. Refresh and try again.');
+    }
+    const meta = lessonMeta();
+    if (window.PropBank) await window.PropBank.ready();
+    if (window.VocabIcons && window.VocabIcons.ready) await window.VocabIcons.ready();
+    const boardPlan = window.EdbActivities.buildBoardPlan(d, meta);
+    await window.LessonPages.attachBgPicks(d, meta, boardPlan);
+    const rendered = await window.LessonPages.render(d, meta, boardPlan);
+    host = rendered.host;
+    await ensureStoryArtApplied(rendered.pageEls);
+    await Promise.all(
+      [...host.querySelectorAll('img')].map((img) => {
+        if (img.complete) return Promise.resolve();
+        return new Promise((resolve) => {
+          img.onload = resolve;
+          img.onerror = resolve;
+          setTimeout(resolve, 2000);
+        });
+      })
+    );
+    await new Promise((r) => setTimeout(r, 100));
+    const blob = await window.EdbKit.buildLessonEdb(
+      d,
+      meta,
+      rendered.pageEls,
+      boardPlan
+    );
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = (d.title || 'lesson').replace(/[^a-zA-Z0-9 ]/g, '').replace(/\s+/g, '-') + '.edb';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    logAppRun('download-edb', d, state.readiness);
+  } catch (e) {
+    alert('Could not build the board: ' + e.message);
+  } finally {
+    if (host && window.LessonPages) window.LessonPages.cleanup(host);
+    btn.textContent = original;
+    btn.disabled = false;
+  }
+}
+
+async function downloadBoardPreview(format) {
+  const d = state.lessonData;
+  if (!d) return;
+  if (!confirmDraftDownload(format === 'png' ? 'PNG preview' : 'PDF preview')) return;
+  if (!window.exportBoardPreview) {
+    alert('Board preview library failed to load. Refresh and try again.');
+    return;
+  }
+  const btn = document.getElementById(format === 'png' ? 'btn-board-png' : 'btn-board-pdf');
+  const original = btn.textContent;
+  btn.textContent = format === 'png' ? 'Building PNG…' : 'Building preview…';
+  btn.disabled = true;
+  try {
+    await window.exportBoardPreview(
+      d,
+      lessonMeta(),
+      format
+    );
+  } catch (e) {
+    alert('Could not build board preview: ' + e.message);
+  } finally {
+    btn.textContent = original;
+    btn.disabled = false;
+  }
+}
+
+function reset() {
+  state.lessonData = null;
+  state.storyArt = null;
+  state.storyArtPromise = null;
+  setStoryArtStatus('');
+  document.getElementById('topic').value = '';
+  showScreen('input');
+}
+
+/** Console debug: previewBackgrounds() — table of section → scene/flat picks. */
+window.previewBackgrounds = async function () {
+  const d = state.lessonData;
+  if (!d) return console.warn('generate a lesson first');
+  if (!window.SceneBackgrounds || !window.LessonPages) {
+    return console.warn('SceneBackgrounds / LessonPages not loaded');
+  }
+  const meta = lessonMeta();
+  const sections = window.LessonPages.buildSectionList(d, meta);
+  const plan = await window.SceneBackgrounds.planFor(sections);
+  console.table(plan.map((p, i) => ({
+    section: sections[i].title,
+    type: p.type,
+    background: p.name,
+    score: p.score ?? '-',
+    groundY: p.groundY ?? '-',
+    why: p.reason ?? (p.runnersUp || []).join(', '),
+  })));
+  return plan;
+};
+
+document.getElementById('topic').addEventListener('keydown', e => { if (e.key === 'Enter') generate(); });
+</script>
+</body>
+</html>

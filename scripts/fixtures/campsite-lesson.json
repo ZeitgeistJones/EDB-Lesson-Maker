@@ -1,0 +1,40 @@
+{
+  "title": "Campsite Fun",
+  "warmUp": {
+    "question": "Have you been camping?",
+    "sampleAnswer": "Yes, I slept in a tent."
+  },
+  "vocabulary": [
+    { "word": "tent", "emoji": "⛺", "sentence": "We sleep in a tent." },
+    { "word": "campfire", "emoji": "🔥", "sentence": "The campfire is warm." },
+    { "word": "backpack", "emoji": "🎒", "sentence": "My backpack is heavy." },
+    { "word": "map", "emoji": "🗺️", "sentence": "Look at the map." },
+    { "word": "flashlight", "emoji": "🔦", "sentence": "Use the flashlight." },
+    { "word": "camp", "emoji": "🏕️", "sentence": "We camp tonight." }
+  ],
+  "sentenceFrames": ["I see a ____.", "Put the ____ by the tent."],
+  "story": {
+    "title": "At the Campsite",
+    "pages": [
+      {
+        "heading": "Night camp",
+        "text": "Ben puts up a tent. He sits by the campfire with a flashlight.",
+        "visualTheme": "campsite",
+        "visualCaption": "Campsite at dusk"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is Ben?", "sampleAnswer": "He is at the campsite." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What do you take camping?", "sampleAnswer": "I take a tent and a backpack." }
+  ],
+  "activity": {
+    "title": "Pack the Camp",
+    "prompt": "Say what goes in the backpack.",
+    "templates": ["Put the ____ in the backpack."]
+  },
+  "reviewSentences": ["I like to camp.", "The tent is small."]
+}

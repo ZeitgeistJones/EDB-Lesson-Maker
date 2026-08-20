@@ -1,0 +1,63 @@
+{
+  "title": "Circus Comes to Town",
+  "warmUp": {
+    "question": "Have you ever been to a circus?",
+    "sampleAnswer": "Yes, I saw a clown and a tent."
+  },
+  "vocabulary": [
+    { "word": "circus", "emoji": "🎪", "sentence": "The circus is in town." },
+    { "word": "clown", "emoji": "🤡", "sentence": "The clown makes me laugh." },
+    { "word": "tent", "emoji": "⛺", "sentence": "The big tent is red." },
+    { "word": "acrobat", "emoji": "🤸", "sentence": "The acrobat flies high." },
+    { "word": "ticket", "emoji": "🎫", "sentence": "I buy a ticket." },
+    { "word": "happy", "emoji": "😊", "sentence": "I feel happy at the show." }
+  ],
+  "sentenceFrames": [
+    "I see a ____ at the circus.",
+    "The ____ is under the tent.",
+    "My ticket is for the ____."
+  ],
+  "phonics": null,
+  "story": {
+    "title": "Under the Big Tent",
+    "pages": [
+      {
+        "heading": "The tent goes up",
+        "text": "Workers raise the red tent. Kids buy tickets. A clown waves hello.",
+        "visualTheme": "circus",
+        "visualCaption": "Circus tent and ticket booth with a waving clown"
+      },
+      {
+        "heading": "The show begins",
+        "text": "An acrobat swings high. The clown juggles. Everyone feels happy.",
+        "visualTheme": "circus",
+        "visualCaption": "Acrobat on a trapeze above a clown with juggling clubs"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What goes up first?", "sampleAnswer": "The tent." },
+      { "question": "Who makes people laugh?", "sampleAnswer": "The clown." }
+    ],
+    "creativeQuestions": [
+      "What act would you watch first at the circus?",
+      "Would you rather be a clown or an acrobat? Why?"
+    ]
+  },
+  "speakingQuestions": [
+    { "question": "What do you see at a circus?", "sampleAnswer": "I see a tent, a clown, and acrobats." },
+    { "question": "How do you feel at a show?", "sampleAnswer": "I feel happy." }
+  ],
+  "activity": {
+    "title": "Match the circus words",
+    "prompt": "Match each word to the right picture.",
+    "templates": [
+      "This is a circus tent.",
+      "This is a clown.",
+      "This is a ticket."
+    ]
+  },
+  "reviewSentences": [
+    "The circus tent is full of happy people.",
+    "I buy a ticket to see the clown and acrobat."
+  ]
+}

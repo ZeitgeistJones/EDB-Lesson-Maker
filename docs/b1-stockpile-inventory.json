@@ -1,0 +1,1383 @@
+{
+  "spec": "b1-visual-operating-system",
+  "updated_at": "2026-08-18T23:12:46.339Z",
+  "running_total": {
+    "proposals_reviewed": 301,
+    "generate": 53,
+    "reuse_existing": 61,
+    "code_later": 136,
+    "defer_b2": 51,
+    "waves_fired": 4,
+    "waves_downloaded": 4,
+    "sheets_downloaded": 23,
+    "sheets_large": 23,
+    "concepts_banked_raw": 53,
+    "failed": 0,
+    "held": 0,
+    "safety_skipped": 0,
+    "generate_pass": 53,
+    "generate_hold": 0
+  },
+  "waves": {
+    "wave2-p0-narrative-complication": {
+      "phase": "P0",
+      "family": "narrative-reaction-complication",
+      "title": "B1 Wave 2 P0 narrative one-complication overlays",
+      "task_id": "3Tg7Szj7Gt2Kri3RNDNsQD",
+      "task_url": "https://manus.im/app/3Tg7Szj7Gt2Kri3RNDNsQD",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave2-p0-narrative-complication\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3628722,
+          "name": "b1_visual_operating_system_black_contact_sheet.png"
+        }
+      ],
+      "large_sheet_count": 1,
+      "expected_sheets": 1,
+      "concept_count": 14,
+      "banked_raw": 14,
+      "failed": 0,
+      "held": 0,
+      "items": [
+        {
+          "key": "b1-complication-rain-starts",
+          "concept": "complication-rain-starts",
+          "brief": "single rain cloud appears over school trip plan, one concrete complication only, no text",
+          "family": "narrative-reaction-complication",
+          "phase": "P0",
+          "task": "wave2-p0-narrative-complication",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave2-p0-narrative-complication\\sheets",
+          "manus_task_id": "3Tg7Szj7Gt2Kri3RNDNsQD",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/01.blackfield.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/01.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 1,
+            "recovered_locally": true
+          }
+        },
+        {
+          "key": "b1-complication-place-closed",
+          "concept": "complication-place-closed",
+          "brief": "friendly closed gate/door at park or club with no readable sign, one problem only",
+          "family": "narrative-reaction-complication",
+          "phase": "P0",
+          "task": "wave2-p0-narrative-complication",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave2-p0-narrative-complication\\sheets",
+          "manus_task_id": "3Tg7Szj7Gt2Kri3RNDNsQD",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/01.blackfield.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/01.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 2,
+            "recovered_locally": true
+          }
+        },
+        {
+          "key": "b1-complication-item-missing",
+          "concept": "complication-item-missing",
+          "brief": "child checks bag and one needed item is missing, no labels",
+          "family": "narrative-reaction-complication",
+          "phase": "P0",
+          "task": "wave2-p0-narrative-complication",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave2-p0-narrative-complication\\sheets",
+          "manus_task_id": "3Tg7Szj7Gt2Kri3RNDNsQD",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/01.blackfield.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/01.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 3,
+            "recovered_locally": true
+          }
+        },
+        {
+          "key": "b1-complication-short-delay",
+          "concept": "complication-short-delay",
+          "brief": "bus or activity paused beside simple clock cue, no numbers or words",
+          "family": "narrative-reaction-complication",
+          "phase": "P0",
+          "task": "wave2-p0-narrative-complication",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave2-p0-narrative-complication\\sheets",
+          "manus_task_id": "3Tg7Szj7Gt2Kri3RNDNsQD",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/01.blackfield.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/01.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 4,
+            "recovered_locally": true
+          }
+        },
+        {
+          "key": "b1-complication-path-blocked",
+          "concept": "complication-path-blocked",
+          "brief": "safe fallen branch blocks a simple walking path, no danger and no extra problems",
+          "family": "narrative-reaction-complication",
+          "phase": "P0",
+          "task": "wave2-p0-narrative-complication",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave2-p0-narrative-complication\\sheets",
+          "manus_task_id": "3Tg7Szj7Gt2Kri3RNDNsQD",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/01.blackfield.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/01.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 5,
+            "recovered_locally": true
+          }
+        },
+        {
+          "key": "b1-complication-item-unavailable",
+          "concept": "complication-item-unavailable",
+          "brief": "empty shelf spot where wanted snack/toy should be, no text",
+          "family": "narrative-reaction-complication",
+          "phase": "P0",
+          "task": "wave2-p0-narrative-complication",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave2-p0-narrative-complication\\sheets",
+          "manus_task_id": "3Tg7Szj7Gt2Kri3RNDNsQD",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/01.blackfield.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/01.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 6,
+            "recovered_locally": true
+          }
+        },
+        {
+          "key": "b1-reaction-notice-problem",
+          "concept": "reaction-notice-problem",
+          "brief": "child notices one problem with calm surprised face and pointing gesture, no speech text",
+          "family": "narrative-reaction-complication",
+          "phase": "P0",
+          "task": "wave2-p0-narrative-complication",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave2-p0-narrative-complication\\sheets",
+          "manus_task_id": "3Tg7Szj7Gt2Kri3RNDNsQD",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/01.blackfield.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/01.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 7,
+            "recovered_locally": true
+          }
+        },
+        {
+          "key": "b1-reaction-worried-to-ready",
+          "concept": "reaction-worried-to-ready",
+          "brief": "child shifts from worried to ready-to-act in two small paired bubbles, no text",
+          "family": "narrative-reaction-complication",
+          "phase": "P0",
+          "task": "wave2-p0-narrative-complication",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave2-p0-narrative-complication\\sheets",
+          "manus_task_id": "3Tg7Szj7Gt2Kri3RNDNsQD",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/01.blackfield.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/01.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 8,
+            "recovered_locally": true
+          }
+        },
+        {
+          "key": "b1-action-ask-help",
+          "concept": "action-ask-help",
+          "brief": "child politely asks teacher/friend for help using blank speech bubble, no words",
+          "family": "narrative-reaction-complication",
+          "phase": "P0",
+          "task": "wave2-p0-narrative-complication",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave2-p0-narrative-complication\\sheets",
+          "manus_task_id": "3Tg7Szj7Gt2Kri3RNDNsQD",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/01.blackfield.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/01.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 9,
+            "recovered_locally": true
+          }
+        },
+        {
+          "key": "b1-action-change-plan",
+          "concept": "action-change-plan",
+          "brief": "child moves star pin from one simple plan card to another, no labels",
+          "family": "narrative-reaction-complication",
+          "phase": "P0",
+          "task": "wave2-p0-narrative-complication",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave2-p0-narrative-complication\\sheets",
+          "manus_task_id": "3Tg7Szj7Gt2Kri3RNDNsQD",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/01.blackfield.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/01.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 10,
+            "recovered_locally": true
+          }
+        },
+        {
+          "key": "b1-action-try-again",
+          "concept": "action-try-again",
+          "brief": "child tries the same simple task again with loop cue, no word",
+          "family": "narrative-reaction-complication",
+          "phase": "P0",
+          "task": "wave2-p0-narrative-complication",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave2-p0-narrative-complication\\sheets",
+          "manus_task_id": "3Tg7Szj7Gt2Kri3RNDNsQD",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/01.blackfield.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/01.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 11,
+            "recovered_locally": true
+          }
+        },
+        {
+          "key": "b1-action-choose-backup",
+          "concept": "action-choose-backup",
+          "brief": "child chooses backup object/activity from two options, no letters",
+          "family": "narrative-reaction-complication",
+          "phase": "P0",
+          "task": "wave2-p0-narrative-complication",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave2-p0-narrative-complication\\sheets",
+          "manus_task_id": "3Tg7Szj7Gt2Kri3RNDNsQD",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/01.blackfield.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/01.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 12,
+            "recovered_locally": true
+          }
+        },
+        {
+          "key": "b1-outcome-problem-solved",
+          "concept": "outcome-problem-solved",
+          "brief": "single complication clears and activity continues happily, no text",
+          "family": "narrative-reaction-complication",
+          "phase": "P0",
+          "task": "wave2-p0-narrative-complication",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave2-p0-narrative-complication\\sheets",
+          "manus_task_id": "3Tg7Szj7Gt2Kri3RNDNsQD",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/01.blackfield.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/01.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 13,
+            "recovered_locally": true
+          }
+        },
+        {
+          "key": "b1-outcome-plan-restored",
+          "concept": "outcome-plan-restored",
+          "brief": "changed plan works; child reaches simple goal with calm celebration, no text",
+          "family": "narrative-reaction-complication",
+          "phase": "P0",
+          "task": "wave2-p0-narrative-complication",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave2-p0-narrative-complication\\sheets",
+          "manus_task_id": "3Tg7Szj7Gt2Kri3RNDNsQD",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/01.blackfield.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/01.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 14,
+            "recovered_locally": true
+          }
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T22:44:47.223Z",
+      "qa_status": "pass",
+      "qa_notes": [
+        "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+        "Wave 2 white cells were A: Manus blank/white art, not slicing. First mop task had cleaner semantics; local flood-fill removed border-connected white backplates."
+      ],
+      "replacement_sheets": [
+        {
+          "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/01.blackfield.png",
+          "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/01.png",
+          "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+          "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+          "disposition": "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+          "recovered_locally": true,
+          "note": "Wave 2 white cells were A: Manus blank/white art, not slicing. First mop task had cleaner semantics; local flood-fill removed border-connected white backplates."
+        }
+      ]
+    },
+    "wave4-p2-grammar-self-repair": {
+      "phase": "P2",
+      "family": "semantic-grammar-self-repair",
+      "title": "B1 Wave 4 P2 semantic grammar and self-repair",
+      "task_id": "YazrNzvZVzhanzpQbs6bh6",
+      "task_url": "https://manus.im/app/YazrNzvZVzhanzpQbs6bh6",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave4-p2-grammar-self-repair\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4183764,
+          "name": "b1-grammar-background-event-overlay.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3411232,
+          "name": "b1-grammar-condition-result-path.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3883417,
+          "name": "b1-grammar-experience-now-bridge.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 4016960,
+          "name": "b1-grammar-plan-changed-overlay.png"
+        },
+        {
+          "file": "05.png",
+          "bytes": 4078924,
+          "name": "b1-grammar-speaker-relayed-message.png"
+        },
+        {
+          "file": "06.png",
+          "bytes": 3715686,
+          "name": "b1-turn-keep-going-path.png"
+        },
+        {
+          "file": "07.png",
+          "bytes": 4180892,
+          "name": "b1-turn-pause-and-continue.png"
+        },
+        {
+          "file": "08.png",
+          "bytes": 4140824,
+          "name": "b1-turn-self-correction-swap.png"
+        },
+        {
+          "file": "09.png",
+          "bytes": 3572525,
+          "name": "b1-turn-thought-group-beads.png"
+        }
+      ],
+      "large_sheet_count": 9,
+      "expected_sheets": 1,
+      "concept_count": 9,
+      "banked_raw": 9,
+      "failed": 0,
+      "held": 0,
+      "items": [
+        {
+          "key": "b1-grammar-background-event-overlay",
+          "concept": "grammar-background-event-overlay",
+          "brief": "faded background activity with one foreground event card, no tense labels",
+          "family": "semantic-grammar-overlays",
+          "phase": "P2",
+          "task": "wave4-p2-grammar-self-repair",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave4-p2-grammar-self-repair\\sheets",
+          "manus_task_id": "YazrNzvZVzhanzpQbs6bh6",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: semantic relation mini-scenes replace off-brief decorative vocabulary objects.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 1,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-grammar-experience-now-bridge",
+          "concept": "grammar-experience-now-bridge",
+          "brief": "memory bubble connects to present skill/result card, no text",
+          "family": "semantic-grammar-overlays",
+          "phase": "P2",
+          "task": "wave4-p2-grammar-self-repair",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave4-p2-grammar-self-repair\\sheets",
+          "manus_task_id": "YazrNzvZVzhanzpQbs6bh6",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: semantic relation mini-scenes replace off-brief decorative vocabulary objects.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 2,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-grammar-condition-result-path",
+          "concept": "grammar-condition-result-path",
+          "brief": "simple if-condition picture gate leads to one result tile, no words",
+          "family": "semantic-grammar-overlays",
+          "phase": "P2",
+          "task": "wave4-p2-grammar-self-repair",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave4-p2-grammar-self-repair\\sheets",
+          "manus_task_id": "YazrNzvZVzhanzpQbs6bh6",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: semantic relation mini-scenes replace off-brief decorative vocabulary objects.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 3,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-grammar-plan-changed-overlay",
+          "concept": "grammar-plan-changed-overlay",
+          "brief": "planned route/card gently shifts to changed route/card, no labels",
+          "family": "semantic-grammar-overlays",
+          "phase": "P2",
+          "task": "wave4-p2-grammar-self-repair",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave4-p2-grammar-self-repair\\sheets",
+          "manus_task_id": "YazrNzvZVzhanzpQbs6bh6",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: semantic relation mini-scenes replace off-brief decorative vocabulary objects.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 4,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-grammar-speaker-relayed-message",
+          "concept": "grammar-speaker-relayed-message",
+          "brief": "child speaker bubble passes blank message card to another child, no text",
+          "family": "semantic-grammar-overlays",
+          "phase": "P2",
+          "task": "wave4-p2-grammar-self-repair",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave4-p2-grammar-self-repair\\sheets",
+          "manus_task_id": "YazrNzvZVzhanzpQbs6bh6",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: semantic relation mini-scenes replace off-brief decorative vocabulary objects.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 5,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-turn-thought-group-beads",
+          "concept": "turn-thought-group-beads",
+          "brief": "three small idea beads grouped into one speaking turn, no words",
+          "family": "longer-turn-self-repair",
+          "phase": "P2",
+          "task": "wave4-p2-grammar-self-repair",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave4-p2-grammar-self-repair\\sheets",
+          "manus_task_id": "YazrNzvZVzhanzpQbs6bh6",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: semantic relation mini-scenes replace off-brief decorative vocabulary objects.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 6,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-turn-pause-and-continue",
+          "concept": "turn-pause-and-continue",
+          "brief": "child pauses with calm bead then continues to next idea card, no text",
+          "family": "longer-turn-self-repair",
+          "phase": "P2",
+          "task": "wave4-p2-grammar-self-repair",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave4-p2-grammar-self-repair\\sheets",
+          "manus_task_id": "YazrNzvZVzhanzpQbs6bh6",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: semantic relation mini-scenes replace off-brief decorative vocabulary objects.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 7,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-turn-self-correction-swap",
+          "concept": "turn-self-correction-swap",
+          "brief": "speaker swaps one mistaken picture card for a better one mid-turn, no labels",
+          "family": "longer-turn-self-repair",
+          "phase": "P2",
+          "task": "wave4-p2-grammar-self-repair",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave4-p2-grammar-self-repair\\sheets",
+          "manus_task_id": "YazrNzvZVzhanzpQbs6bh6",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: semantic relation mini-scenes replace off-brief decorative vocabulary objects.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 8,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-turn-keep-going-path",
+          "concept": "turn-keep-going-path",
+          "brief": "speech path continues after small pause marker, no written script",
+          "family": "longer-turn-self-repair",
+          "phase": "P2",
+          "task": "wave4-p2-grammar-self-repair",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave4-p2-grammar-self-repair\\sheets",
+          "manus_task_id": "YazrNzvZVzhanzpQbs6bh6",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: semantic relation mini-scenes replace off-brief decorative vocabulary objects.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 9,
+            "recovered_locally": false
+          }
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T22:45:59.620Z",
+      "qa_status": "pass",
+      "qa_notes": [
+        "PASS: semantic relation mini-scenes replace off-brief decorative vocabulary objects."
+      ],
+      "replacement_sheets": [
+        {
+          "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+          "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+          "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+          "disposition": "PASS: semantic relation mini-scenes replace off-brief decorative vocabulary objects.",
+          "recovered_locally": false
+        }
+      ]
+    },
+    "wave3-p1-information-tracking": {
+      "phase": "P1",
+      "family": "information-discourse-tracking",
+      "title": "B1 Wave 3 P1 information and discourse tracking",
+      "task_id": "EBD6YwKmNVQbPuJHcH8gbR",
+      "task_url": "https://manus.im/app/EBD6YwKmNVQbPuJHcH8gbR",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave3-p1-information-tracking\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 5415275,
+          "name": "b1-info-practical-relay-chain.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4328092,
+          "name": "b1-info-source-to-key-facts-to-recipient.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4056275,
+          "name": "b1-info-two-key-facts-bundle.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 3869443,
+          "name": "b1-info-update-changes-plan.png"
+        },
+        {
+          "file": "05.png",
+          "bytes": 3979827,
+          "name": "b1-track-local-inference-clue-to-answer.png"
+        },
+        {
+          "file": "06.png",
+          "bytes": 4739973,
+          "name": "b1-track-main-point-support-local-clue.png"
+        },
+        {
+          "file": "07.png",
+          "bytes": 4226399,
+          "name": "b1-track-supporting-detail-pin-cluster.png"
+        },
+        {
+          "file": "08.png",
+          "bytes": 4252931,
+          "name": "b1-viewpoint-opinion-reason-outcome.png"
+        },
+        {
+          "file": "09.png",
+          "bytes": 4508944,
+          "name": "b1-viewpoint-predict-outcome-check.png"
+        },
+        {
+          "file": "10.png",
+          "bytes": 4293866,
+          "name": "b1-viewpoint-prediction-changed-by-new-fact.png"
+        },
+        {
+          "file": "11.png",
+          "bytes": 4703497,
+          "name": "b1-viewpoint-two-familiar-perspectives.png"
+        }
+      ],
+      "large_sheet_count": 11,
+      "expected_sheets": 1,
+      "concept_count": 11,
+      "banked_raw": 11,
+      "failed": 0,
+      "held": 0,
+      "items": [
+        {
+          "key": "b1-info-source-to-key-facts-to-recipient",
+          "concept": "info-source-to-key-facts-to-recipient",
+          "brief": "notice/chat/schedule source sends two key fact cards to a child recipient, no readable text",
+          "family": "source-key-facts-recipient",
+          "phase": "P1",
+          "task": "wave3-p1-information-tracking",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave3-p1-information-tracking\\sheets",
+          "manus_task_id": "EBD6YwKmNVQbPuJHcH8gbR",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: no readable baked text; information relations remain visually understandable.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 1,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-info-practical-relay-chain",
+          "concept": "info-practical-relay-chain",
+          "brief": "child receives one update card and passes it to friend/teacher, no speech text",
+          "family": "source-key-facts-recipient",
+          "phase": "P1",
+          "task": "wave3-p1-information-tracking",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave3-p1-information-tracking\\sheets",
+          "manus_task_id": "EBD6YwKmNVQbPuJHcH8gbR",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: no readable baked text; information relations remain visually understandable.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 2,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-info-two-key-facts-bundle",
+          "concept": "info-two-key-facts-bundle",
+          "brief": "two concrete fact pins bundled from one source card, no labels",
+          "family": "source-key-facts-recipient",
+          "phase": "P1",
+          "task": "wave3-p1-information-tracking",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave3-p1-information-tracking\\sheets",
+          "manus_task_id": "EBD6YwKmNVQbPuJHcH8gbR",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: no readable baked text; information relations remain visually understandable.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 3,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-info-update-changes-plan",
+          "concept": "info-update-changes-plan",
+          "brief": "source update card moves star pin on a simple plan card, no text",
+          "family": "source-key-facts-recipient",
+          "phase": "P1",
+          "task": "wave3-p1-information-tracking",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave3-p1-information-tracking\\sheets",
+          "manus_task_id": "EBD6YwKmNVQbPuJHcH8gbR",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: no readable baked text; information relations remain visually understandable.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 4,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-track-main-point-support-local-clue",
+          "concept": "track-main-point-support-local-clue",
+          "brief": "large main picture card with two supporting clues and one small local clue, no words",
+          "family": "reading-listening-discourse-tracking",
+          "phase": "P1",
+          "task": "wave3-p1-information-tracking",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave3-p1-information-tracking\\sheets",
+          "manus_task_id": "EBD6YwKmNVQbPuJHcH8gbR",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: no readable baked text; information relations remain visually understandable.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 5,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-track-local-inference-clue-to-answer",
+          "concept": "track-local-inference-clue-to-answer",
+          "brief": "visible clue on scene points to a simple answer card, no text",
+          "family": "reading-listening-discourse-tracking",
+          "phase": "P1",
+          "task": "wave3-p1-information-tracking",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave3-p1-information-tracking\\sheets",
+          "manus_task_id": "EBD6YwKmNVQbPuJHcH8gbR",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: no readable baked text; information relations remain visually understandable.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 6,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-track-supporting-detail-pin-cluster",
+          "concept": "track-supporting-detail-pin-cluster",
+          "brief": "two or three detail pins attach to one main point card, no labels",
+          "family": "reading-listening-discourse-tracking",
+          "phase": "P1",
+          "task": "wave3-p1-information-tracking",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave3-p1-information-tracking\\sheets",
+          "manus_task_id": "EBD6YwKmNVQbPuJHcH8gbR",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: no readable baked text; information relations remain visually understandable.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 7,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-viewpoint-predict-outcome-check",
+          "concept": "viewpoint-predict-outcome-check",
+          "brief": "child makes simple prediction bubble, later outcome card checks it, no text",
+          "family": "viewpoint-prediction-outcome",
+          "phase": "P1",
+          "task": "wave3-p1-information-tracking",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave3-p1-information-tracking\\sheets",
+          "manus_task_id": "EBD6YwKmNVQbPuJHcH8gbR",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: no readable baked text; information relations remain visually understandable.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 8,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-viewpoint-opinion-reason-outcome",
+          "concept": "viewpoint-opinion-reason-outcome",
+          "brief": "child opinion heart links to one reason picture and simple outcome tile, no words",
+          "family": "viewpoint-prediction-outcome",
+          "phase": "P1",
+          "task": "wave3-p1-information-tracking",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave3-p1-information-tracking\\sheets",
+          "manus_task_id": "EBD6YwKmNVQbPuJHcH8gbR",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: no readable baked text; information relations remain visually understandable.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 9,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-viewpoint-two-familiar-perspectives",
+          "concept": "viewpoint-two-familiar-perspectives",
+          "brief": "two children look at same object/activity with different simple preference bubbles, no text",
+          "family": "viewpoint-prediction-outcome",
+          "phase": "P1",
+          "task": "wave3-p1-information-tracking",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave3-p1-information-tracking\\sheets",
+          "manus_task_id": "EBD6YwKmNVQbPuJHcH8gbR",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: no readable baked text; information relations remain visually understandable.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 10,
+            "recovered_locally": false
+          }
+        },
+        {
+          "key": "b1-viewpoint-prediction-changed-by-new-fact",
+          "concept": "viewpoint-prediction-changed-by-new-fact",
+          "brief": "new fact card gently changes a prediction bubble, no writing",
+          "family": "viewpoint-prediction-outcome",
+          "phase": "P1",
+          "task": "wave3-p1-information-tracking",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave3-p1-information-tracking\\sheets",
+          "manus_task_id": "EBD6YwKmNVQbPuJHcH8gbR",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS: no readable baked text; information relations remain visually understandable.",
+          "replacement": {
+            "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+            "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+            "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+            "cell_index": 11,
+            "recovered_locally": false
+          }
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T22:47:56.519Z",
+      "qa_status": "pass",
+      "qa_notes": [
+        "PASS: no readable baked text; information relations remain visually understandable."
+      ],
+      "replacement_sheets": [
+        {
+          "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+          "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+          "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+          "disposition": "PASS: no readable baked text; information relations remain visually understandable.",
+          "recovered_locally": false
+        }
+      ]
+    },
+    "wave1-p0-relationship-core": {
+      "phase": "P0",
+      "family": "relationship-core",
+      "title": "B1 Wave 1 P0 relationship core",
+      "task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+      "task_url": "https://manus.im/app/ZoJWcYDMRwLcRDSBvbQAk8",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3834366,
+          "name": "b1_wave1_sheet1.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 1132502,
+          "name": "b1_wave1_sheet2.png"
+        }
+      ],
+      "large_sheet_count": 2,
+      "expected_sheets": 2,
+      "concept_count": 19,
+      "banked_raw": 19,
+      "failed": 0,
+      "held": 0,
+      "items": [
+        {
+          "key": "b1-discourse-topic-detail-example",
+          "concept": "discourse-topic-detail-example",
+          "brief": "topic card opens into one concrete detail card and one example picture card, no text",
+          "family": "connected-discourse",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-discourse-main-point-supporting-detail",
+          "concept": "discourse-main-point-supporting-detail",
+          "brief": "large simple idea tile connected to two smaller supporting picture tiles, no labels",
+          "family": "connected-discourse",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-discourse-brief-explanation-lightbulb",
+          "concept": "discourse-brief-explanation-lightbulb",
+          "brief": "child gives a short explanation shown as one lightbulb linked to a familiar object, no speech text",
+          "family": "connected-discourse",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-discourse-example-to-general-idea",
+          "concept": "discourse-example-to-general-idea",
+          "brief": "specific example picture gently lifts into a broader idea cloud, no words",
+          "family": "connected-discourse",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-reason-why-it-matters-ripple",
+          "concept": "reason-why-it-matters-ripple",
+          "brief": "one small problem picture creates a clear effect ripple on a familiar activity, no text",
+          "family": "reason-cause-evidence-lite",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-reason-observation-to-choice",
+          "concept": "reason-observation-to-choice",
+          "brief": "child notices one visible clue, then points to a practical choice card, no words",
+          "family": "reason-cause-evidence-lite",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-reason-example-supports-answer",
+          "concept": "reason-example-supports-answer",
+          "brief": "one example picture card props up a simple answer tile, no labels",
+          "family": "reason-cause-evidence-lite",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-reason-cause-effect-familiar-scene",
+          "concept": "reason-cause-effect-familiar-scene",
+          "brief": "rain cloud causes picnic blanket to move under shelter, one concrete cause only, no text",
+          "family": "reason-cause-evidence-lite",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-problem-notice-matters-options-choice-outcome",
+          "concept": "problem-notice-matters-options-choice-outcome",
+          "brief": "five tiny picture beads show notice, impact, options, chosen action, simple outcome; no text",
+          "family": "problem-solution",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-problem-options-two-paths",
+          "concept": "problem-options-two-paths",
+          "brief": "one familiar problem splits into two practical option paths, no labels",
+          "family": "problem-solution",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-problem-chosen-option-star",
+          "concept": "problem-chosen-option-star",
+          "brief": "star marker selects one option card and leads to calm outcome tile, no text",
+          "family": "problem-solution",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-problem-impact-on-activity",
+          "concept": "problem-impact-on-activity",
+          "brief": "single blocked/missing item clearly affects a game or class activity, no extra problems",
+          "family": "problem-solution",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-choose-three-practical-options",
+          "concept": "choose-three-practical-options",
+          "brief": "three familiar activity/item option cards with one selected by a star, no labels",
+          "family": "compare-choose-justify",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-choose-criteria-comfort-weather-cost",
+          "concept": "choose-criteria-comfort-weather-cost",
+          "brief": "three simple criteria icons shown as weather, comfort, and token count without numbers or words",
+          "family": "compare-choose-justify",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-choose-reason-links-to-option",
+          "concept": "choose-reason-links-to-option",
+          "brief": "selected option links to one visible reason clue and outcome tile, no text",
+          "family": "compare-choose-justify",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-conversation-add-detail-follow-up",
+          "concept": "conversation-add-detail-follow-up",
+          "brief": "listener asks for one more detail using blank bubble and small detail card, no words",
+          "family": "conversation-expansion-follow-up-clarification",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-conversation-clarify-one-point",
+          "concept": "conversation-clarify-one-point",
+          "brief": "speaker points to one unclear picture card and clarifies with a second clean card, no text",
+          "family": "conversation-expansion-follow-up-clarification",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-conversation-follow-up-after-answer",
+          "concept": "conversation-follow-up-after-answer",
+          "brief": "question bubble leads to answer bubble then one small follow-up bubble, no text",
+          "family": "conversation-expansion-follow-up-clarification",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        },
+        {
+          "key": "b1-conversation-check-understanding",
+          "concept": "conversation-check-understanding",
+          "brief": "two children compare same picture card with gentle check glow, no words",
+          "family": "conversation-expansion-follow-up-clarification",
+          "phase": "P0",
+          "task": "wave1-p0-relationship-core",
+          "classification": "GENERATE",
+          "status": "generated_raw",
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-b1-stockpile\\wave1-p0-relationship-core\\sheets",
+          "manus_task_id": "ZoJWcYDMRwLcRDSBvbQAk8",
+          "obvious_fail": false,
+          "qa_status": "pass",
+          "qa_note": "PASS from original clean Wave 1 stockpile QA."
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T22:50:33.563Z",
+      "qa_status": "pass",
+      "qa_notes": []
+    }
+  },
+  "durable_root": "harvested/manus-b1-stockpile",
+  "no_wiring": true,
+  "b1_held_wave_mop": {
+    "checkpoint": "8a5f0ed8",
+    "original_generate": 53,
+    "previous_clean": 19,
+    "mop_candidates": 34,
+    "recovered_locally": 14,
+    "regenerated_accepted": 34,
+    "final_pass": 53,
+    "remaining_hold": 0,
+    "final_sources": {
+      "wave2-p0-narrative-complication": {
+        "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/01.blackfield.png",
+        "raw_replacement": "held-wave-mop/2026-08-18T23-01-44-347Z/01.png",
+        "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+        "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+        "disposition": "PASS after deterministic local black-field rebuild of the accepted Manus replacement; raw Manus still preserved.",
+        "recovered_locally": true,
+        "note": "Wave 2 white cells were A: Manus blank/white art, not slicing. First mop task had cleaner semantics; local flood-fill removed border-connected white backplates."
+      },
+      "wave3-p1-information-tracking": {
+        "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/02.png",
+        "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+        "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+        "disposition": "PASS: no readable baked text; information relations remain visually understandable.",
+        "recovered_locally": false
+      },
+      "wave4-p2-grammar-self-repair": {
+        "sheet": "held-wave-mop/2026-08-18T23-01-44-347Z/03.png",
+        "task_id": "Vv2uhtpKsZqz4pCx7zRxtw",
+        "task_url": "https://manus.im/app/Vv2uhtpKsZqz4pCx7zRxtw",
+        "disposition": "PASS: semantic relation mini-scenes replace off-brief decorative vocabulary objects.",
+        "recovered_locally": false
+      }
+    },
+    "preserved_extra_runs": [
+      {
+        "path": "held-wave-mop/2026-08-18T23-05-22-836Z",
+        "task_id": "WpJyizVUEsTYaaYPfu6ny6",
+        "task_url": "https://manus.im/app/WpJyizVUEsTYaaYPfu6ny6",
+        "disposition": "Preserved but not selected: black-field rebuild passed mechanically, but rain-starts added a second blocked-path complication."
+      }
+    ],
+    "closed_at": "2026-08-18T23:12:46.339Z"
+  }
+}

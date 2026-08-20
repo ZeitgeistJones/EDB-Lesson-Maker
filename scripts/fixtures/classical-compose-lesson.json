@@ -1,0 +1,81 @@
+{
+  "title": "Composing a Classical Masterpiece",
+  "warmUp": {
+    "question": "What is your favorite instrument and why do you like the sound it makes?",
+    "sampleAnswer": "My favorite instrument is the violin because it sounds very emotional and soulful."
+  },
+  "vocabulary": [
+    { "word": "compose", "emoji": "🎼", "sentence": "He decided to compose a new piece of music for the orchestra." },
+    { "word": "melody", "emoji": "🎵", "sentence": "The catchy melody stayed in my head all day long." },
+    { "word": "orchestra", "emoji": "🎻", "sentence": "The orchestra played perfectly under the conductor's lead." },
+    { "word": "harmony", "emoji": "🎶", "sentence": "The singers created beautiful harmony during the chorus." },
+    { "word": "inspire", "emoji": "💡", "sentence": "Beautiful scenery can often inspire musicians to write songs." },
+    { "word": "tempo", "emoji": "⏳", "sentence": "The conductor increased the tempo to make the song exciting." },
+    { "word": "rhythm", "emoji": "🥁", "sentence": "You need a steady rhythm to keep the beat of the song." },
+    { "word": "performance", "emoji": "🎭", "sentence": "The audience cheered loudly after the final musical performance." },
+    { "word": "expressive", "emoji": "😊", "sentence": "Her piano playing was very expressive and full of feeling." },
+    { "word": "draft", "emoji": "✍️", "sentence": "I finished the first draft of my song before lunch." },
+    { "word": "strum", "emoji": "🎸", "sentence": "It is relaxing to strum a guitar in the evening." },
+    { "word": "masterpiece", "emoji": "🏆", "sentence": "Critics called the new symphony a true musical masterpiece." }
+  ],
+  "sentenceFrames": [
+    "I believe that composing music is ___ because ___.",
+    "If I could compose a song, I would add ___ to make it feel ___.",
+    "The most important part of a song is the ___ because it makes the listener feel ___.",
+    "I am planning to ___ my song by adding more harmony."
+  ],
+  "story": {
+    "title": "The Composer's Quiet Home",
+    "pages": [
+      {
+        "heading": "The Composer's Quiet Home",
+        "text": "Elias sat in his living room, staring at a blank sheet of music. He wanted to compose a beautiful song for the local orchestra, but he felt stuck. He needed something to inspire him.",
+        "visualCaption": "A musician sitting at a desk with papers."
+      },
+      {
+        "heading": "Crafting the Melody",
+        "text": "He sat at his piano and tried different notes. Suddenly, a soft melody appeared. He wrote down the notes, feeling excited about his work. It was the start of a masterpiece.",
+        "visualCaption": "Elias playing piano near a window."
+      },
+      {
+        "heading": "The Final Performance",
+        "text": "Weeks later, the orchestra played his music. The rhythm was perfect and the harmony sounded heavenly. Elias smiled, knowing he had finally shared his heart through his art.",
+        "visualCaption": "An orchestra performing on a stage."
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Why did Elias feel stuck at the beginning of the story?", "sampleAnswer": "He wanted to compose but felt stuck and needed inspiration." },
+      { "question": "What instrument did Elias use to find his melody?", "sampleAnswer": "His piano." },
+      { "question": "How did Elias feel when the melody finally appeared?", "sampleAnswer": "Excited about his work." },
+      { "question": "What was the final result of his hard work?", "sampleAnswer": "The orchestra performed his music." }
+    ],
+    "creativeQuestions": [
+      "If you could compose a song about your life, what kind of tempo would it have?",
+      "Imagine the orchestra is performing your own melody. Who would you invite to listen?"
+    ]
+  },
+  "speaking": [
+    { "question": "Do you prefer listening to classical music or modern pop music?", "sampleAnswer": "I prefer classical music because it feels emotional." },
+    { "question": "Why is it difficult to compose a long musical piece?", "sampleAnswer": "It takes time, practice, and inspiration." },
+    { "question": "Does music help you study or work better?", "sampleAnswer": "Yes, a steady tempo helps me focus." },
+    { "question": "Would you like to learn how to play an instrument? Which one?", "sampleAnswer": "Yes, I would like to play the violin." },
+    { "question": "What makes a song sound like a masterpiece to you?", "sampleAnswer": "A strong melody and expressive harmony." },
+    { "question": "Have you ever tried to write your own lyrics or music?", "sampleAnswer": "I wrote a short draft once." },
+    { "question": "How does the tempo of a song change your mood?", "sampleAnswer": "A fast tempo makes me feel excited." }
+  ],
+  "activity": {
+    "title": "My Song Blueprint",
+    "prompt": "Use the templates below to plan your own musical masterpiece.",
+    "templates": [
+      "The title of my song will be ___, and it will focus on the theme of ___.",
+      "I will use the ___ instrument because it creates a very ___ sound.",
+      "The rhythm of the song should be ___ so that the audience feels ___.",
+      "To finish the composition, I need to ___."
+    ]
+  },
+  "reviewSentences": [
+    "It takes a lot of practice to compose a professional piece of music.",
+    "The harmony between the violin and the cello was absolutely perfect.",
+    "I hope this performance will inspire the audience to learn an instrument."
+  ]
+}

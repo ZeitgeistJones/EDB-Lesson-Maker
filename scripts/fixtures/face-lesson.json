@@ -1,0 +1,92 @@
+{
+  "title": "Make a Face",
+  "warmUp": {
+    "question": "Look at a friend. What is one thing you notice on their face?",
+    "sampleAnswer": "I notice a big smile."
+  },
+  "vocabulary": [
+    { "word": "face", "emoji": "🙂", "sentence": "I draw a face." },
+    { "word": "eyes", "emoji": "👀", "sentence": "My eyes are blue." },
+    { "word": "nose", "emoji": "👃", "sentence": "I have a small nose." },
+    { "word": "mouth", "emoji": "👄", "sentence": "My mouth can smile." },
+    { "word": "hair", "emoji": "💇", "sentence": "I have long hair." },
+    { "word": "smile", "emoji": "😊", "sentence": "I smile at my friend." }
+  ],
+  "sentenceFrames": [
+    "I have ____ eyes.",
+    "My ____ is big / small.",
+    "I ____ with my mouth.",
+    "My hair is ____."
+  ],
+  "phonics": {
+    "targetWords": [
+      {
+        "word": "face",
+        "graphemes": ["f", "a", "ce"],
+        "emoji": "🙂",
+        "topicRelevance": "Lesson vocab — silent-e"
+      },
+      {
+        "word": "smile",
+        "graphemes": ["s", "m", "i", "le"],
+        "emoji": "😊",
+        "topicRelevance": "Lesson vocab — silent-e"
+      },
+      {
+        "word": "nose",
+        "graphemes": ["n", "o", "se"],
+        "emoji": "👃",
+        "topicRelevance": "Lesson vocab — silent-e"
+      }
+    ],
+    "distractors": ["b", "t", "p", "r"],
+    "teacherScript": {
+      "warmup": "Say face slowly. How many sounds?",
+      "modeling": "Watch me drag f, then a, then ce.",
+      "check": "Which box has two letters?"
+    }
+  },
+  "story": {
+    "title": "Mia Makes a Face",
+    "pages": [
+      {
+        "heading": "Art time",
+        "text": "Mia gets a blank face. She picks eyes, a nose, and a big smile. Her friend laughs.",
+        "visualTheme": "school",
+        "visualCaption": "Kids at an art table"
+      },
+      {
+        "heading": "A new friend",
+        "text": "Mia adds curly hair and round glasses. Now the face looks like her brother!",
+        "visualTheme": "school",
+        "visualCaption": "Finished face collage"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What does Mia start with?", "sampleAnswer": "A blank face." },
+      { "question": "What does she add after the smile?", "sampleAnswer": "Curly hair and round glasses." },
+      { "question": "What does the face look like at the end?", "sampleAnswer": "Her brother." }
+    ],
+    "creativeQuestions": [
+      "What hair would you give your face?",
+      "Would your face smile or frown? Why?"
+    ]
+  },
+  "speakingQuestions": [
+    { "question": "What color is your hair?", "sampleAnswer": "My hair is black." },
+    { "question": "Do you wear glasses?", "sampleAnswer": "No, I don't." }
+  ],
+  "activity": {
+    "title": "Make a Face",
+    "prompt": "Drag eyes, nose, mouth, and hair onto the blank face.",
+    "templates": [
+      "My face has ____ eyes.",
+      "I give my face ____ hair.",
+      "My face can ____."
+    ]
+  },
+  "wrapUp": {
+    "review": "Say one face word you used today.",
+    "exitTicket": "Draw or drag one smile before you go."
+  }
+}

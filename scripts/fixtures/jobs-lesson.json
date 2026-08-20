@@ -1,0 +1,40 @@
+{
+  "title": "Jobs in Our Town",
+  "warmUp": {
+    "question": "What job do you want?",
+    "sampleAnswer": "I want to be a teacher."
+  },
+  "vocabulary": [
+    { "word": "teacher", "emoji": "👩‍🏫", "sentence": "The teacher helps." },
+    { "word": "builder", "emoji": "👷", "sentence": "The builder works." },
+    { "word": "chef", "emoji": "👨‍🍳", "sentence": "The chef cooks." },
+    { "word": "pilot", "emoji": "✈️", "sentence": "The pilot flies." },
+    { "word": "farmer", "emoji": "🧑‍🌾", "sentence": "The farmer works." },
+    { "word": "job", "emoji": "💼", "sentence": "I like this job." }
+  ],
+  "sentenceFrames": ["I want to be a ____.", "The ____ helps people."],
+  "story": {
+    "title": "Busy Town",
+    "pages": [
+      {
+        "heading": "Morning",
+        "text": "The teacher goes to school. The builder makes a wall. The chef cooks lunch.",
+        "visualTheme": "town",
+        "visualCaption": "Town jobs"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Who cooks lunch?", "sampleAnswer": "The chef." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What job is fun?", "sampleAnswer": "Being a pilot is fun." }
+  ],
+  "activity": {
+    "title": "Job Match",
+    "prompt": "Say the job.",
+    "templates": ["This is a ____."]
+  },
+  "reviewSentences": ["I want a job.", "The teacher is nice."]
+}

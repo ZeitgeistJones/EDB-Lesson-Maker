@@ -1,0 +1,44 @@
+{
+  "title": "Sunny Beach Day",
+  "warmUp": {
+    "question": "Do you like the beach?",
+    "sampleAnswer": "Yes, I like the beach."
+  },
+  "vocabulary": [
+    { "word": "beach", "emoji": "🏖️", "sentence": "We go to the beach." },
+    { "word": "sand", "emoji": "🏝️", "sentence": "The sand is warm." },
+    { "word": "shell", "emoji": "🐚", "sentence": "I find a shell." },
+    { "word": "wave", "emoji": "🌊", "sentence": "A big wave comes." },
+    { "word": "sun", "emoji": "☀️", "sentence": "The sun is bright." },
+    { "word": "towel", "emoji": "🏖️", "sentence": "I sit on my towel." }
+  ],
+  "sentenceFrames": ["I see a ____.", "The ____ is fun.", "I play in the ____."],
+  "story": {
+    "title": "At the Shore",
+    "pages": [
+      {
+        "heading": "Sunny shore",
+        "text": "Leo runs on the warm sand. He finds a shell by a big wave.",
+        "visualTheme": "beach",
+        "visualCaption": "On the sunny shore"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is Leo?", "sampleAnswer": "He is at the beach." },
+      { "question": "What does Leo find?", "sampleAnswer": "He finds a shell." }
+    ],
+    "creativeQuestions": [
+      { "question": "What do you take to the beach?", "sampleAnswer": "I take a towel." }
+    ]
+  },
+  "speakingQuestions": [
+    { "question": "What do you do at the beach?", "sampleAnswer": "I play in the sand." },
+    { "question": "Do you like the sun or the wave?", "sampleAnswer": "I like the sun." }
+  ],
+  "activity": {
+    "title": "Beach Find",
+    "prompt": "Say what you find on the shore.",
+    "templates": ["I find a ____.", "I see a ____."]
+  },
+  "reviewSentences": ["I like the beach.", "The sun is warm.", "I find a shell."]
+}

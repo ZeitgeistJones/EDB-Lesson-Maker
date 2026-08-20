@@ -1,0 +1,40 @@
+{
+  "title": "Weather Today",
+  "warmUp": {
+    "question": "What is the weather today?",
+    "sampleAnswer": "It is sunny."
+  },
+  "vocabulary": [
+    { "word": "sunny", "emoji": "☀️", "sentence": "It is sunny." },
+    { "word": "rainy", "emoji": "🌧️", "sentence": "It is rainy." },
+    { "word": "cloudy", "emoji": "☁️", "sentence": "It is cloudy." },
+    { "word": "windy", "emoji": "💨", "sentence": "It is windy." },
+    { "word": "snowy", "emoji": "❄️", "sentence": "It is snowy." },
+    { "word": "hot", "emoji": "🌡️", "sentence": "It is hot." }
+  ],
+  "sentenceFrames": ["It is ____.", "Today is ____."],
+  "story": {
+    "title": "Looking Outside",
+    "pages": [
+      {
+        "heading": "Sky check",
+        "text": "Mia looks outside. It is cloudy, then rainy. Later it is windy.",
+        "visualTheme": "weather",
+        "visualCaption": "Checking the weather"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What does Mia see first?", "sampleAnswer": "It is cloudy." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What weather do you like?", "sampleAnswer": "I like sunny days." }
+  ],
+  "activity": {
+    "title": "Weather Match",
+    "prompt": "Say the weather.",
+    "templates": ["It is ____."]
+  },
+  "reviewSentences": ["It is sunny today.", "I like rainy days."]
+}

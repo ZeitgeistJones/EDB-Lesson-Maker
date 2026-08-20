@@ -1,0 +1,12 @@
+{
+  "framework": null,
+  "outputDirectory": "public",
+  "functions": {
+    "api/generate-lesson.js": {
+      "maxDuration": 60
+    },
+    "api/generate-story-art.js": {
+      "maxDuration": 120
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "title": "Soccer Practice with Coach",
+  "level": "A1",
+  "duration": "30",
+  "knownIssues": [
+    "Gym-cool flats may show basketball court corners on a soccer lesson — soft theme-chrome drift; escalate only if worse than known",
+    "Match dock honesty: no answer-naming caption chips (S26); ≥3 match floor already gated",
+    "StoryArt opportunistic only — PropBank caption plate is Ready path",
+    "Comprehension thinness on some soccer bakes is a known soft — flag only if THIS bake invents facts (S73)"
+  ],
+  "justFixed": [
+    "Activity recipe = fixSentence (formulaic) — not sortBins / king lottery when soft-gated heroes lose",
+    "SHIPPABLE_KING_KEYS soft-gate: unproven kings never steal activity from formulaic recipes",
+    "Plan order: heroProp → fixSentence → oddOneOut → mysteryHints → sortBins"
+  ],
+  "localChecks": [
+    "quality bake soccer-coach: hardFailures=[]; activity recipe=fixSentence; M7=1",
+    "page-8: wrong pill on 'balls' + dock tiles ball/whistle/coach",
+    "Standing division-of-labor: spelling/clipping/warm-leak/match-captions handled locally"
+  ],
+  "focus": [
+    "PRIMARY: fixSentence UX/pedagogy at A1 — is the single-error pill + 3-tile dock teachable and honest (no answer already obvious beyond the error highlight)?",
+    "Instruction clarity for ClassIn drag-in; distractor quality (whistle/coach vs ball)",
+    "New misses only on activity page; still judge whole lesson"
+  ],
+  "notes": "Shift30 formulaic-activity pass — soccer-coach fixSentence. Standing bar: What do you think of this lesson? ALWAYS weakest_link; ONE escalation_homework."
+}

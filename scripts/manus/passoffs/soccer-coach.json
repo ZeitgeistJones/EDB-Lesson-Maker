@@ -1,0 +1,27 @@
+{
+  "title": "Soccer Practice with Coach",
+  "level": "A1",
+  "duration": "30",
+  "knownIssues": [
+    "Match dock honesty floor ≥3 matchable pieces (S26) — this bake ships 6/6 matchable",
+    "Activity recipe = fixSentence when sentences buildable — not sortBins; do not flag as recipe substitution",
+    "Wrap uses navy confetti end-card (known formulaic wrap chrome) — escalate only if soccer pitch wash is also wrong on activity",
+    "StoryArt opportunistic only — PropBank caption plate is Ready path"
+  ],
+  "justFixed": [
+    "soccer-fresh pitch HOLDS expected: title/story/activity on soccer-a/b/d (not picnic outdoor-b)",
+    "Speech-cue frame gate + blows-the ____ fixture",
+    "Frame tile multiplicity: expandFrameTileWords duplicates intended fills (whistle×2)",
+    "Mid drill house wash; fixSentence production cue"
+  ],
+  "localChecks": [
+    "activity=soccer-b; recipe=fixSentence; hardFailures=[]",
+    "Standing division-of-labor: spelling/clipping/warm-leak/match-captions handled locally"
+  ],
+  "focus": [
+    "PRIMARY: frames solvable with enough whistle tiles + soccer pitch register",
+    "fixSentence honesty + story↔comprehension",
+    "New misses only; still judge whole lesson"
+  ],
+  "notes": "Post frame-multiplicity. Standing bar: What do you think? ALWAYS weakest_link; ONE escalation_homework."
+}

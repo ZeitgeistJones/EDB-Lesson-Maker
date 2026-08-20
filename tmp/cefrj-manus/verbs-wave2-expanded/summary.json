@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-08-16T18:43:57.129Z",
+  "matchRule": "verifiedPackHit after Wave1 pack",
+  "totals": {
+    "candidatesChecked": 1875,
+    "alreadyCovered": 1053,
+    "keep": 168,
+    "review": 103,
+    "rejected": 540,
+    "skippedPolicy": 11
+  },
+  "keepByFirstLevel": {
+    "A1": 1,
+    "A2": 9,
+    "B1": 59,
+    "B2": 99,
+    "other": 0
+  },
+  "outputs": {
+    "keptList": "tmp/cefrj-manus/manus-verbs-wave2.txt",
+    "waveDir": "tmp/cefrj-manus/verbs-wave2-expanded/"
+  },
+  "note": "Permissive picturability scrub. No Manus send. High-confidence = keep bucket."
+}

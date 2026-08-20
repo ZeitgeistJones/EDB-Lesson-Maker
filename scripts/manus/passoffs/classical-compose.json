@@ -1,0 +1,25 @@
+{
+  "title": "Writing a Symphony for the Orchestra",
+  "level": "B1",
+  "duration": "60",
+  "knownIssues": [
+    "Full generative StoryArt still interim — PropBank musician-* cutouts (not scene paintings)",
+    "Match dock deliberately has NO answer-naming caption chips on drag pieces (S26) — words live on numbered pads"
+  ],
+  "justFixed": [
+    "Grammar aim names second conditional when frames use If…would (S31)",
+    "King hint frosted card + charcoal story caption chips (S40)",
+    "Music roleplay dock spare-room +12% musician scale",
+    "Match drop pads slightly larger",
+    "Dedicated inspire.png + S38/S39 + S26 pads/no chips + wrap peer on-board"
+  ],
+  "localChecks": [
+    "verify-classical-compose.mjs: ok through S40",
+    "Manus bNsAKJdTgbQNTAe6qSFQwr pass/100 — all just_fixed HOLDS"
+  ],
+  "focus": [
+    "Ship / upload EDB when ready",
+    "ZPD next (wishlist): two-round peer eval OR composer’s-choice constraint — do not reopen S26 chips"
+  ],
+  "notes": "manusloop RUN_COUNT=1 complete. Soft dock/pad pre-send; post-fold S31/S40. Prior 3Jr6 pass/99. Standing bar: don't re-report locally-gated mechanical/rendering misses (spend judgment on pedagogy/level-fit/generalization); ALWAYS name a weakest_link even on a pass; propose exactly ONE escalating generalization challenge (escalation_homework) the human accepts or declines."
+}

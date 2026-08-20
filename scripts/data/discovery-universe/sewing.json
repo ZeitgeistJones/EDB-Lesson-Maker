@@ -1,0 +1,305 @@
+{
+  "id": "sewing",
+  "labels": [
+    "sewing",
+    "fabric"
+  ],
+  "usefulness": 0.65,
+  "picturable": 0.9,
+  "hardToSubstitute": 0.55,
+  "topics": [
+    "sewing kit",
+    "fabric shop",
+    "button box",
+    "tailor studio",
+    "embroidery corner",
+    "knitting circle",
+    "quilt making",
+    "costume atelier",
+    "patch repair",
+    "fashion pattern",
+    "yarn store",
+    "loom workshop"
+  ],
+  "concepts": [
+    {
+      "word": "needle",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "thread",
+      "usefulness": 0.8,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "material"
+      ]
+    },
+    {
+      "word": "spool",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "thimble",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "pin cushion",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "seam ripper",
+      "usefulness": 0.45,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "bobbin",
+      "usefulness": 0.45,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "pattern",
+      "usefulness": 0.6,
+      "picturable": 0.8,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "plan"
+      ]
+    },
+    {
+      "word": "hem",
+      "usefulness": 0.55,
+      "picturable": 0.75,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "seam",
+      "usefulness": 0.55,
+      "picturable": 0.75,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "buttonhole",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "zipper",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "fastener"
+      ]
+    },
+    {
+      "word": "snap",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "fastener"
+      ]
+    },
+    {
+      "word": "hook",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "fastener"
+      ]
+    },
+    {
+      "word": "velcro",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "fastener"
+      ]
+    },
+    {
+      "word": "ribbon",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "material"
+      ]
+    },
+    {
+      "word": "lace",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "material"
+      ]
+    },
+    {
+      "word": "felt",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "material"
+      ]
+    },
+    {
+      "word": "denim",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "material"
+      ]
+    },
+    {
+      "word": "silk",
+      "usefulness": 0.65,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "material"
+      ]
+    },
+    {
+      "word": "wool",
+      "usefulness": 0.75,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "material"
+      ]
+    },
+    {
+      "word": "yarn",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "material"
+      ]
+    },
+    {
+      "word": "knitting needle",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "crochet hook",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "loom",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "quilt",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "product"
+      ]
+    },
+    {
+      "word": "patch",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "repair"
+      ]
+    },
+    {
+      "word": "embroidery hoop",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "scissors",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "measuring tape",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "mannequin",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "tool"
+      ]
+    }
+  ]
+}

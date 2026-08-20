@@ -1,0 +1,2916 @@
+{
+  "spec": "b1-visual-operating-system-classification",
+  "updated_at": "2026-08-18T22:50:33.575Z",
+  "source": "Wave 0 reconstructed from B1 cultivation prompt; no checked-in 301-component B1 proposal file was found.",
+  "total_proposals_reviewed": 301,
+  "counts": {
+    "GENERATE": 53,
+    "REUSE_EXISTING": 61,
+    "CODE_LATER": 136,
+    "DEFER_B2": 51
+  },
+  "by_family": {
+    "connected-discourse": {
+      "GENERATE": 4,
+      "REUSE_EXISTING": 5,
+      "CODE_LATER": 16,
+      "DEFER_B2": 5
+    },
+    "reason-cause-evidence-lite": {
+      "GENERATE": 4,
+      "REUSE_EXISTING": 5,
+      "CODE_LATER": 15,
+      "DEFER_B2": 6
+    },
+    "narrative-reaction-complication": {
+      "GENERATE": 14,
+      "REUSE_EXISTING": 10,
+      "CODE_LATER": 15,
+      "DEFER_B2": 6
+    },
+    "problem-solution": {
+      "GENERATE": 4,
+      "REUSE_EXISTING": 7,
+      "CODE_LATER": 14,
+      "DEFER_B2": 5
+    },
+    "compare-choose-justify": {
+      "GENERATE": 3,
+      "REUSE_EXISTING": 5,
+      "CODE_LATER": 17,
+      "DEFER_B2": 5
+    },
+    "conversation-expansion-follow-up-clarification": {
+      "GENERATE": 4,
+      "REUSE_EXISTING": 9,
+      "CODE_LATER": 20,
+      "DEFER_B2": 8
+    },
+    "source-key-facts-recipient": {
+      "GENERATE": 4,
+      "REUSE_EXISTING": 5,
+      "CODE_LATER": 11,
+      "DEFER_B2": 5
+    },
+    "reading-listening-discourse-tracking": {
+      "GENERATE": 3,
+      "REUSE_EXISTING": 5,
+      "CODE_LATER": 12,
+      "DEFER_B2": 4
+    },
+    "viewpoint-prediction-outcome": {
+      "GENERATE": 4,
+      "REUSE_EXISTING": 4,
+      "CODE_LATER": 12,
+      "DEFER_B2": 5
+    },
+    "semantic-grammar-overlays": {
+      "GENERATE": 5,
+      "REUSE_EXISTING": 3,
+      "CODE_LATER": 2,
+      "DEFER_B2": 1
+    },
+    "longer-turn-self-repair": {
+      "GENERATE": 4,
+      "REUSE_EXISTING": 3,
+      "CODE_LATER": 2,
+      "DEFER_B2": 1
+    }
+  },
+  "durable_root": "harvested/manus-b1-stockpile",
+  "tracked_inventory": "docs/b1-stockpile-inventory.json",
+  "code_later": "docs/b1-code-later.json",
+  "level_model": "B1 connected familiar meaning + brief explanation + one concrete complication + adapt/follow-up + simple outcome. A2 links; B1 structures.",
+  "one_complication_rule": "One concrete problem at a time: notice -> why it matters -> 2-3 options -> choose -> outcome.",
+  "routing": {
+    "generate": "missing, pictorially useful B1 relationship/state/action overlays",
+    "reuse_existing": "A2/lower-level assets already communicate the renamed relation",
+    "code_later": "rectangles, rails, tables, grids, text fields, SVG arrows, labels, reasons/opinions/text, checklists, instructions",
+    "defer_b2": "debate, persuasion, rebuttal, source credibility, academic synthesis, negotiation, abstract societal, multi-layer contingency, essays, irony/tone/bias"
+  },
+  "proposals": [
+    {
+      "key": "b1-discourse-topic-detail-example",
+      "concept": "discourse-topic-detail-example",
+      "brief": "topic card opens into one concrete detail card and one example picture card, no text",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-discourse-main-point-supporting-detail",
+      "concept": "discourse-main-point-supporting-detail",
+      "brief": "large simple idea tile connected to two smaller supporting picture tiles, no labels",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-discourse-brief-explanation-lightbulb",
+      "concept": "discourse-brief-explanation-lightbulb",
+      "brief": "child gives a short explanation shown as one lightbulb linked to a familiar object, no speech text",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-discourse-example-to-general-idea",
+      "concept": "discourse-example-to-general-idea",
+      "brief": "specific example picture gently lifts into a broader idea cloud, no words",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-discourse-add-link",
+      "concept": "discourse-add-link",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-conn-and-link-chain",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-discourse-contrast-link",
+      "concept": "discourse-contrast-link",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-conn-but-contrast-split",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-discourse-cause-link",
+      "concept": "discourse-cause-link",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-conn-because-cause-spark",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-discourse-sequence-link",
+      "concept": "discourse-sequence-link",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-conn-sequence-bridge-3",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-discourse-start-middle-end",
+      "concept": "discourse-start-middle-end",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-story-begin-token,a2-story-continue-token,a2-story-end-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-connected-discourse-structural-ui-01",
+      "concept": "connected-discourse-structural-ui-01",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-connected-discourse-structural-ui-02",
+      "concept": "connected-discourse-structural-ui-02",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-connected-discourse-structural-ui-03",
+      "concept": "connected-discourse-structural-ui-03",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-connected-discourse-structural-ui-04",
+      "concept": "connected-discourse-structural-ui-04",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-connected-discourse-structural-ui-05",
+      "concept": "connected-discourse-structural-ui-05",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-connected-discourse-structural-ui-06",
+      "concept": "connected-discourse-structural-ui-06",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-connected-discourse-structural-ui-07",
+      "concept": "connected-discourse-structural-ui-07",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-connected-discourse-structural-ui-08",
+      "concept": "connected-discourse-structural-ui-08",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-connected-discourse-structural-ui-09",
+      "concept": "connected-discourse-structural-ui-09",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-connected-discourse-structural-ui-10",
+      "concept": "connected-discourse-structural-ui-10",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-connected-discourse-structural-ui-11",
+      "concept": "connected-discourse-structural-ui-11",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-connected-discourse-structural-ui-12",
+      "concept": "connected-discourse-structural-ui-12",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-connected-discourse-structural-ui-13",
+      "concept": "connected-discourse-structural-ui-13",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-connected-discourse-structural-ui-14",
+      "concept": "connected-discourse-structural-ui-14",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-connected-discourse-structural-ui-15",
+      "concept": "connected-discourse-structural-ui-15",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-connected-discourse-structural-ui-16",
+      "concept": "connected-discourse-structural-ui-16",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-discourse-abstract-theme-map",
+      "concept": "discourse-abstract-theme-map",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-discourse-counterpoint-link",
+      "concept": "discourse-counterpoint-link",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-discourse-register-tone-map",
+      "concept": "discourse-register-tone-map",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-discourse-long-paragraph-plan",
+      "concept": "discourse-long-paragraph-plan",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-discourse-source-synthesis-web",
+      "concept": "discourse-source-synthesis-web",
+      "family": "connected-discourse",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-reason-why-it-matters-ripple",
+      "concept": "reason-why-it-matters-ripple",
+      "brief": "one small problem picture creates a clear effect ripple on a familiar activity, no text",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-reason-observation-to-choice",
+      "concept": "reason-observation-to-choice",
+      "brief": "child notices one visible clue, then points to a practical choice card, no words",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-reason-example-supports-answer",
+      "concept": "reason-example-supports-answer",
+      "brief": "one example picture card props up a simple answer tile, no labels",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-reason-cause-effect-familiar-scene",
+      "concept": "reason-cause-effect-familiar-scene",
+      "brief": "rain cloud causes picnic blanket to move under shelter, one concrete cause only, no text",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-reason-because-token",
+      "concept": "reason-because-token",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-conn-because-cause-spark",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-reason-cause-domino",
+      "concept": "reason-cause-domino",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-conn-cause-domino-pair",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-reason-attribute-pin",
+      "concept": "reason-attribute-pin",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-comp-attribute-evidence-pin",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-reason-one-reason-dot",
+      "concept": "reason-one-reason-dot",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-comp-one-reason-because-dot",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-reason-detail-pin",
+      "concept": "reason-detail-pin",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-evidence-action-pin",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-reason-cause-evidence-lite-structural-ui-01",
+      "concept": "reason-cause-evidence-lite-structural-ui-01",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reason-cause-evidence-lite-structural-ui-02",
+      "concept": "reason-cause-evidence-lite-structural-ui-02",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reason-cause-evidence-lite-structural-ui-03",
+      "concept": "reason-cause-evidence-lite-structural-ui-03",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reason-cause-evidence-lite-structural-ui-04",
+      "concept": "reason-cause-evidence-lite-structural-ui-04",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reason-cause-evidence-lite-structural-ui-05",
+      "concept": "reason-cause-evidence-lite-structural-ui-05",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reason-cause-evidence-lite-structural-ui-06",
+      "concept": "reason-cause-evidence-lite-structural-ui-06",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reason-cause-evidence-lite-structural-ui-07",
+      "concept": "reason-cause-evidence-lite-structural-ui-07",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reason-cause-evidence-lite-structural-ui-08",
+      "concept": "reason-cause-evidence-lite-structural-ui-08",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reason-cause-evidence-lite-structural-ui-09",
+      "concept": "reason-cause-evidence-lite-structural-ui-09",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reason-cause-evidence-lite-structural-ui-10",
+      "concept": "reason-cause-evidence-lite-structural-ui-10",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reason-cause-evidence-lite-structural-ui-11",
+      "concept": "reason-cause-evidence-lite-structural-ui-11",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reason-cause-evidence-lite-structural-ui-12",
+      "concept": "reason-cause-evidence-lite-structural-ui-12",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reason-cause-evidence-lite-structural-ui-13",
+      "concept": "reason-cause-evidence-lite-structural-ui-13",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reason-cause-evidence-lite-structural-ui-14",
+      "concept": "reason-cause-evidence-lite-structural-ui-14",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reason-cause-evidence-lite-structural-ui-15",
+      "concept": "reason-cause-evidence-lite-structural-ui-15",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reason-source-credibility-scale",
+      "concept": "reason-source-credibility-scale",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-reason-evidence-weighting-balance",
+      "concept": "reason-evidence-weighting-balance",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-reason-rebuttal-token",
+      "concept": "reason-rebuttal-token",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-reason-counterclaim-web",
+      "concept": "reason-counterclaim-web",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-reason-academic-citation-card",
+      "concept": "reason-academic-citation-card",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-reason-bias-warning-map",
+      "concept": "reason-bias-warning-map",
+      "family": "reason-cause-evidence-lite",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-complication-rain-starts",
+      "concept": "complication-rain-starts",
+      "brief": "single rain cloud appears over school trip plan, one concrete complication only, no text",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-complication-place-closed",
+      "concept": "complication-place-closed",
+      "brief": "friendly closed gate/door at park or club with no readable sign, one problem only",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-complication-item-missing",
+      "concept": "complication-item-missing",
+      "brief": "child checks bag and one needed item is missing, no labels",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-complication-short-delay",
+      "concept": "complication-short-delay",
+      "brief": "bus or activity paused beside simple clock cue, no numbers or words",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-complication-path-blocked",
+      "concept": "complication-path-blocked",
+      "brief": "safe fallen branch blocks a simple walking path, no danger and no extra problems",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-complication-item-unavailable",
+      "concept": "complication-item-unavailable",
+      "brief": "empty shelf spot where wanted snack/toy should be, no text",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-reaction-notice-problem",
+      "concept": "reaction-notice-problem",
+      "brief": "child notices one problem with calm surprised face and pointing gesture, no speech text",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-reaction-worried-to-ready",
+      "concept": "reaction-worried-to-ready",
+      "brief": "child shifts from worried to ready-to-act in two small paired bubbles, no text",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-action-ask-help",
+      "concept": "action-ask-help",
+      "brief": "child politely asks teacher/friend for help using blank speech bubble, no words",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-action-change-plan",
+      "concept": "action-change-plan",
+      "brief": "child moves star pin from one simple plan card to another, no labels",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-action-try-again",
+      "concept": "action-try-again",
+      "brief": "child tries the same simple task again with loop cue, no word",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-action-choose-backup",
+      "concept": "action-choose-backup",
+      "brief": "child chooses backup object/activity from two options, no letters",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-outcome-problem-solved",
+      "concept": "outcome-problem-solved",
+      "brief": "single complication clears and activity continues happily, no text",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-outcome-plan-restored",
+      "concept": "outcome-plan-restored",
+      "brief": "changed plan works; child reaches simple goal with calm celebration, no text",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-narrative-begin",
+      "concept": "narrative-begin",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-story-begin-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-narrative-continue",
+      "concept": "narrative-continue",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-story-continue-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-narrative-end",
+      "concept": "narrative-end",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-story-end-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-narrative-simple-problem",
+      "concept": "narrative-simple-problem",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-story-simple-problem-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-narrative-response",
+      "concept": "narrative-response",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-story-response-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-narrative-outcome",
+      "concept": "narrative-outcome",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-story-outcome-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-narrative-feeling-change",
+      "concept": "narrative-feeling-change",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-story-feeling-change-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-narrative-delayed",
+      "concept": "narrative-delayed",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-travel-delayed-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-narrative-unavailable",
+      "concept": "narrative-unavailable",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-trans-unavailable-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-narrative-clash",
+      "concept": "narrative-clash",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-plan-clash-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-narrative-reaction-complication-structural-ui-01",
+      "concept": "narrative-reaction-complication-structural-ui-01",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-narrative-reaction-complication-structural-ui-02",
+      "concept": "narrative-reaction-complication-structural-ui-02",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-narrative-reaction-complication-structural-ui-03",
+      "concept": "narrative-reaction-complication-structural-ui-03",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-narrative-reaction-complication-structural-ui-04",
+      "concept": "narrative-reaction-complication-structural-ui-04",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-narrative-reaction-complication-structural-ui-05",
+      "concept": "narrative-reaction-complication-structural-ui-05",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-narrative-reaction-complication-structural-ui-06",
+      "concept": "narrative-reaction-complication-structural-ui-06",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-narrative-reaction-complication-structural-ui-07",
+      "concept": "narrative-reaction-complication-structural-ui-07",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-narrative-reaction-complication-structural-ui-08",
+      "concept": "narrative-reaction-complication-structural-ui-08",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-narrative-reaction-complication-structural-ui-09",
+      "concept": "narrative-reaction-complication-structural-ui-09",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-narrative-reaction-complication-structural-ui-10",
+      "concept": "narrative-reaction-complication-structural-ui-10",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-narrative-reaction-complication-structural-ui-11",
+      "concept": "narrative-reaction-complication-structural-ui-11",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-narrative-reaction-complication-structural-ui-12",
+      "concept": "narrative-reaction-complication-structural-ui-12",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-narrative-reaction-complication-structural-ui-13",
+      "concept": "narrative-reaction-complication-structural-ui-13",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-narrative-reaction-complication-structural-ui-14",
+      "concept": "narrative-reaction-complication-structural-ui-14",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-narrative-one-complication-frame-grid",
+      "concept": "narrative-one-complication-frame-grid",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Narrative frame grids are structural UI; the art bank only needs pictorial complication/action/outcome pieces."
+    },
+    {
+      "key": "b1-narrative-two-complication-chain",
+      "concept": "narrative-two-complication-chain",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-narrative-blame-and-compensation",
+      "concept": "narrative-blame-and-compensation",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-narrative-ironic-ending",
+      "concept": "narrative-ironic-ending",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-narrative-mixed-motives",
+      "concept": "narrative-mixed-motives",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-narrative-social-conflict-arc",
+      "concept": "narrative-social-conflict-arc",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-narrative-long-essay-retell",
+      "concept": "narrative-long-essay-retell",
+      "family": "narrative-reaction-complication",
+      "wave": 2,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-problem-notice-matters-options-choice-outcome",
+      "concept": "problem-notice-matters-options-choice-outcome",
+      "brief": "five tiny picture beads show notice, impact, options, chosen action, simple outcome; no text",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-problem-options-two-paths",
+      "concept": "problem-options-two-paths",
+      "brief": "one familiar problem splits into two practical option paths, no labels",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-problem-chosen-option-star",
+      "concept": "problem-chosen-option-star",
+      "brief": "star marker selects one option card and leads to calm outcome tile, no text",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-problem-impact-on-activity",
+      "concept": "problem-impact-on-activity",
+      "brief": "single blocked/missing item clearly affects a game or class activity, no extra problems",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-problem-simple-problem-token",
+      "concept": "problem-simple-problem-token",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-story-simple-problem-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-problem-response-token",
+      "concept": "problem-response-token",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-story-response-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-problem-outcome-token",
+      "concept": "problem-outcome-token",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-story-outcome-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-problem-missing-step",
+      "concept": "problem-missing-step",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-proc-missing-step-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-problem-wrong-step",
+      "concept": "problem-wrong-step",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-proc-wrong-step-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-problem-retry",
+      "concept": "problem-retry",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-proc-retry-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-problem-mistake-fix",
+      "concept": "problem-mistake-fix",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-trans-mistake-fix-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-problem-solution-structural-ui-01",
+      "concept": "problem-solution-structural-ui-01",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-problem-solution-structural-ui-02",
+      "concept": "problem-solution-structural-ui-02",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-problem-solution-structural-ui-03",
+      "concept": "problem-solution-structural-ui-03",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-problem-solution-structural-ui-04",
+      "concept": "problem-solution-structural-ui-04",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-problem-solution-structural-ui-05",
+      "concept": "problem-solution-structural-ui-05",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-problem-solution-structural-ui-06",
+      "concept": "problem-solution-structural-ui-06",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-problem-solution-structural-ui-07",
+      "concept": "problem-solution-structural-ui-07",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-problem-solution-structural-ui-08",
+      "concept": "problem-solution-structural-ui-08",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-problem-solution-structural-ui-09",
+      "concept": "problem-solution-structural-ui-09",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-problem-solution-structural-ui-10",
+      "concept": "problem-solution-structural-ui-10",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-problem-solution-structural-ui-11",
+      "concept": "problem-solution-structural-ui-11",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-problem-solution-structural-ui-12",
+      "concept": "problem-solution-structural-ui-12",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-problem-solution-structural-ui-13",
+      "concept": "problem-solution-structural-ui-13",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-problem-solution-structural-ui-14",
+      "concept": "problem-solution-structural-ui-14",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-problem-negotiated-compromise",
+      "concept": "problem-negotiated-compromise",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-problem-refund-compensation",
+      "concept": "problem-refund-compensation",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-problem-policy-exception",
+      "concept": "problem-policy-exception",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-problem-multi-step-contingency",
+      "concept": "problem-multi-step-contingency",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-problem-formal-complaint",
+      "concept": "problem-formal-complaint",
+      "family": "problem-solution",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-choose-three-practical-options",
+      "concept": "choose-three-practical-options",
+      "brief": "three familiar activity/item option cards with one selected by a star, no labels",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-choose-criteria-comfort-weather-cost",
+      "concept": "choose-criteria-comfort-weather-cost",
+      "brief": "three simple criteria icons shown as weather, comfort, and token count without numbers or words",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-choose-reason-links-to-option",
+      "concept": "choose-reason-links-to-option",
+      "brief": "selected option links to one visible reason clue and outcome tile, no text",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-compare-bigger-smaller",
+      "concept": "compare-bigger-smaller",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-comp-bigger-smaller",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-compare-faster-slower",
+      "concept": "compare-faster-slower",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-comp-faster-slower",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-compare-equal-balance",
+      "concept": "compare-equal-balance",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-comp-equal-balance",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-compare-preference-heart-choice",
+      "concept": "compare-preference-heart-choice",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-comp-preference-heart-choice",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-compare-evidence-pin",
+      "concept": "compare-evidence-pin",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-comp-attribute-evidence-pin",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-01",
+      "concept": "compare-choose-justify-structural-ui-01",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-02",
+      "concept": "compare-choose-justify-structural-ui-02",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-03",
+      "concept": "compare-choose-justify-structural-ui-03",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-04",
+      "concept": "compare-choose-justify-structural-ui-04",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-05",
+      "concept": "compare-choose-justify-structural-ui-05",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-06",
+      "concept": "compare-choose-justify-structural-ui-06",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-07",
+      "concept": "compare-choose-justify-structural-ui-07",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-08",
+      "concept": "compare-choose-justify-structural-ui-08",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-09",
+      "concept": "compare-choose-justify-structural-ui-09",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-10",
+      "concept": "compare-choose-justify-structural-ui-10",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-11",
+      "concept": "compare-choose-justify-structural-ui-11",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-12",
+      "concept": "compare-choose-justify-structural-ui-12",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-13",
+      "concept": "compare-choose-justify-structural-ui-13",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-14",
+      "concept": "compare-choose-justify-structural-ui-14",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-15",
+      "concept": "compare-choose-justify-structural-ui-15",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-16",
+      "concept": "compare-choose-justify-structural-ui-16",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-choose-justify-structural-ui-17",
+      "concept": "compare-choose-justify-structural-ui-17",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-compare-debate-pro-con",
+      "concept": "compare-debate-pro-con",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-compare-weighted-decision-matrix",
+      "concept": "compare-weighted-decision-matrix",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-compare-tradeoff-negotiation",
+      "concept": "compare-tradeoff-negotiation",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-compare-persuasive-ranking",
+      "concept": "compare-persuasive-ranking",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-compare-abstract-values-choice",
+      "concept": "compare-abstract-values-choice",
+      "family": "compare-choose-justify",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-conversation-add-detail-follow-up",
+      "concept": "conversation-add-detail-follow-up",
+      "brief": "listener asks for one more detail using blank bubble and small detail card, no words",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-conversation-clarify-one-point",
+      "concept": "conversation-clarify-one-point",
+      "brief": "speaker points to one unclear picture card and clarifies with a second clean card, no text",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-conversation-follow-up-after-answer",
+      "concept": "conversation-follow-up-after-answer",
+      "brief": "question bubble leads to answer bubble then one small follow-up bubble, no text",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-conversation-check-understanding",
+      "concept": "conversation-check-understanding",
+      "brief": "two children compare same picture card with gentle check glow, no words",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-conversation-start",
+      "concept": "conversation-start",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-social-start-conversation",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-conversation-continue",
+      "concept": "conversation-continue",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-social-continue-conversation",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-conversation-close",
+      "concept": "conversation-close",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-social-close-conversation",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-conversation-repeat-clarify",
+      "concept": "conversation-repeat-clarify",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-social-repeat-clarify-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-conversation-repeat",
+      "concept": "conversation-repeat",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a1-conv-repeat-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-conversation-slow",
+      "concept": "conversation-slow",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a1-conv-slow-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-conversation-again",
+      "concept": "conversation-again",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a1-conv-again-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-conversation-listen",
+      "concept": "conversation-listen",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a1-conv-listen-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-conversation-say",
+      "concept": "conversation-say",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a1-conv-say-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-01",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-01",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-02",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-02",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-03",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-03",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-04",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-04",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-05",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-05",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-06",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-06",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-07",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-07",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-08",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-08",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-09",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-09",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-10",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-10",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-11",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-11",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-12",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-12",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-13",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-13",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-14",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-14",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-15",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-15",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-16",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-16",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-17",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-17",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-18",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-18",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-19",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-19",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-expansion-follow-up-clarification-structural-ui-20",
+      "concept": "conversation-expansion-follow-up-clarification-structural-ui-20",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-conversation-diplomatic-disagreement",
+      "concept": "conversation-diplomatic-disagreement",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-conversation-persuasive-follow-up",
+      "concept": "conversation-persuasive-follow-up",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-conversation-negotiation-turns",
+      "concept": "conversation-negotiation-turns",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-conversation-face-saving-repair",
+      "concept": "conversation-face-saving-repair",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-conversation-debate-turn-token",
+      "concept": "conversation-debate-turn-token",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-conversation-complaint-resolution",
+      "concept": "conversation-complaint-resolution",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-conversation-subtext-tone",
+      "concept": "conversation-subtext-tone",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-conversation-extended-interview",
+      "concept": "conversation-extended-interview",
+      "family": "conversation-expansion-follow-up-clarification",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-info-source-to-key-facts-to-recipient",
+      "concept": "info-source-to-key-facts-to-recipient",
+      "brief": "notice/chat/schedule source sends two key fact cards to a child recipient, no readable text",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-info-practical-relay-chain",
+      "concept": "info-practical-relay-chain",
+      "brief": "child receives one update card and passes it to friend/teacher, no speech text",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-info-two-key-facts-bundle",
+      "concept": "info-two-key-facts-bundle",
+      "brief": "two concrete fact pins bundled from one source card, no labels",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-info-update-changes-plan",
+      "concept": "info-update-changes-plan",
+      "brief": "source update card moves star pin on a simple plan card, no text",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-info-known-card",
+      "concept": "info-known-card",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-info-known-lit-card",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-info-hidden-pocket",
+      "concept": "info-hidden-pocket",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-info-hidden-fact-pocket",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-info-dossier-complete",
+      "concept": "info-dossier-complete",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-info-dossier-complete",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-info-reading-notice-skin",
+      "concept": "info-reading-notice-skin",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-read-notice-skin",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-info-reading-chat-skin",
+      "concept": "info-reading-chat-skin",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-read-chat-skin",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-source-key-facts-recipient-structural-ui-01",
+      "concept": "source-key-facts-recipient-structural-ui-01",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-source-key-facts-recipient-structural-ui-02",
+      "concept": "source-key-facts-recipient-structural-ui-02",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-source-key-facts-recipient-structural-ui-03",
+      "concept": "source-key-facts-recipient-structural-ui-03",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-source-key-facts-recipient-structural-ui-04",
+      "concept": "source-key-facts-recipient-structural-ui-04",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-source-key-facts-recipient-structural-ui-05",
+      "concept": "source-key-facts-recipient-structural-ui-05",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-source-key-facts-recipient-structural-ui-06",
+      "concept": "source-key-facts-recipient-structural-ui-06",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-source-key-facts-recipient-structural-ui-07",
+      "concept": "source-key-facts-recipient-structural-ui-07",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-source-key-facts-recipient-structural-ui-08",
+      "concept": "source-key-facts-recipient-structural-ui-08",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-source-key-facts-recipient-structural-ui-09",
+      "concept": "source-key-facts-recipient-structural-ui-09",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-source-key-facts-recipient-structural-ui-10",
+      "concept": "source-key-facts-recipient-structural-ui-10",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-source-key-facts-recipient-structural-ui-11",
+      "concept": "source-key-facts-recipient-structural-ui-11",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-info-source-credibility-check",
+      "concept": "info-source-credibility-check",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-info-research-dashboard",
+      "concept": "info-research-dashboard",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-info-three-source-synthesis",
+      "concept": "info-three-source-synthesis",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-info-conflicting-source-resolution",
+      "concept": "info-conflicting-source-resolution",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-info-citation-map",
+      "concept": "info-citation-map",
+      "family": "source-key-facts-recipient",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-track-main-point-support-local-clue",
+      "concept": "track-main-point-support-local-clue",
+      "brief": "large main picture card with two supporting clues and one small local clue, no words",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-track-local-inference-clue-to-answer",
+      "concept": "track-local-inference-clue-to-answer",
+      "brief": "visible clue on scene points to a simple answer card, no text",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-track-supporting-detail-pin-cluster",
+      "concept": "track-supporting-detail-pin-cluster",
+      "brief": "two or three detail pins attach to one main point card, no labels",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-track-heard-detail-pin",
+      "concept": "track-heard-detail-pin",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-listen-heard-detail-pin",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-track-missing-detail-pin",
+      "concept": "track-missing-detail-pin",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-listen-missing-detail-pin",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-track-verify-token",
+      "concept": "track-verify-token",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-listen-verify-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-track-detail-bundle",
+      "concept": "track-detail-bundle",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-listen-detail-bundle",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-track-article-skin",
+      "concept": "track-article-skin",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-read-article-skin",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-reading-listening-discourse-tracking-structural-ui-01",
+      "concept": "reading-listening-discourse-tracking-structural-ui-01",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reading-listening-discourse-tracking-structural-ui-02",
+      "concept": "reading-listening-discourse-tracking-structural-ui-02",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reading-listening-discourse-tracking-structural-ui-03",
+      "concept": "reading-listening-discourse-tracking-structural-ui-03",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reading-listening-discourse-tracking-structural-ui-04",
+      "concept": "reading-listening-discourse-tracking-structural-ui-04",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reading-listening-discourse-tracking-structural-ui-05",
+      "concept": "reading-listening-discourse-tracking-structural-ui-05",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reading-listening-discourse-tracking-structural-ui-06",
+      "concept": "reading-listening-discourse-tracking-structural-ui-06",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reading-listening-discourse-tracking-structural-ui-07",
+      "concept": "reading-listening-discourse-tracking-structural-ui-07",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reading-listening-discourse-tracking-structural-ui-08",
+      "concept": "reading-listening-discourse-tracking-structural-ui-08",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reading-listening-discourse-tracking-structural-ui-09",
+      "concept": "reading-listening-discourse-tracking-structural-ui-09",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reading-listening-discourse-tracking-structural-ui-10",
+      "concept": "reading-listening-discourse-tracking-structural-ui-10",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reading-listening-discourse-tracking-structural-ui-11",
+      "concept": "reading-listening-discourse-tracking-structural-ui-11",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-reading-listening-discourse-tracking-structural-ui-12",
+      "concept": "reading-listening-discourse-tracking-structural-ui-12",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-track-implied-attitude-map",
+      "concept": "track-implied-attitude-map",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-track-irony-detection",
+      "concept": "track-irony-detection",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-track-bias-map",
+      "concept": "track-bias-map",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-track-author-purpose-analysis",
+      "concept": "track-author-purpose-analysis",
+      "family": "reading-listening-discourse-tracking",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-viewpoint-predict-outcome-check",
+      "concept": "viewpoint-predict-outcome-check",
+      "brief": "child makes simple prediction bubble, later outcome card checks it, no text",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-viewpoint-opinion-reason-outcome",
+      "concept": "viewpoint-opinion-reason-outcome",
+      "brief": "child opinion heart links to one reason picture and simple outcome tile, no words",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-viewpoint-two-familiar-perspectives",
+      "concept": "viewpoint-two-familiar-perspectives",
+      "brief": "two children look at same object/activity with different simple preference bubbles, no text",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-viewpoint-prediction-changed-by-new-fact",
+      "concept": "viewpoint-prediction-changed-by-new-fact",
+      "brief": "new fact card gently changes a prediction bubble, no writing",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-viewpoint-preference-heart",
+      "concept": "viewpoint-preference-heart",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-comp-preference-heart-choice",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-viewpoint-reason-dot",
+      "concept": "viewpoint-reason-dot",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-comp-one-reason-because-dot",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-viewpoint-outcome",
+      "concept": "viewpoint-outcome",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-story-outcome-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-viewpoint-maybe",
+      "concept": "viewpoint-maybe",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-plan-maybe-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-viewpoint-prediction-outcome-structural-ui-01",
+      "concept": "viewpoint-prediction-outcome-structural-ui-01",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-viewpoint-prediction-outcome-structural-ui-02",
+      "concept": "viewpoint-prediction-outcome-structural-ui-02",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-viewpoint-prediction-outcome-structural-ui-03",
+      "concept": "viewpoint-prediction-outcome-structural-ui-03",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-viewpoint-prediction-outcome-structural-ui-04",
+      "concept": "viewpoint-prediction-outcome-structural-ui-04",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-viewpoint-prediction-outcome-structural-ui-05",
+      "concept": "viewpoint-prediction-outcome-structural-ui-05",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-viewpoint-prediction-outcome-structural-ui-06",
+      "concept": "viewpoint-prediction-outcome-structural-ui-06",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-viewpoint-prediction-outcome-structural-ui-07",
+      "concept": "viewpoint-prediction-outcome-structural-ui-07",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-viewpoint-prediction-outcome-structural-ui-08",
+      "concept": "viewpoint-prediction-outcome-structural-ui-08",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-viewpoint-prediction-outcome-structural-ui-09",
+      "concept": "viewpoint-prediction-outcome-structural-ui-09",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-viewpoint-prediction-outcome-structural-ui-10",
+      "concept": "viewpoint-prediction-outcome-structural-ui-10",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-viewpoint-prediction-outcome-structural-ui-11",
+      "concept": "viewpoint-prediction-outcome-structural-ui-11",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-viewpoint-prediction-outcome-structural-ui-12",
+      "concept": "viewpoint-prediction-outcome-structural-ui-12",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Structural rectangles/rails/cards/text fields should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b1-viewpoint-persuasive-stance",
+      "concept": "viewpoint-persuasive-stance",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-viewpoint-counterfactual-outcome",
+      "concept": "viewpoint-counterfactual-outcome",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-viewpoint-rebuttal-chain",
+      "concept": "viewpoint-rebuttal-chain",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-viewpoint-social-issue-position",
+      "concept": "viewpoint-social-issue-position",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-viewpoint-hypothesis-test",
+      "concept": "viewpoint-hypothesis-test",
+      "family": "viewpoint-prediction-outcome",
+      "wave": 3,
+      "phase": "P1",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-grammar-background-event-overlay",
+      "concept": "grammar-background-event-overlay",
+      "brief": "faded background activity with one foreground event card, no tense labels",
+      "family": "semantic-grammar-overlays",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-grammar-experience-now-bridge",
+      "concept": "grammar-experience-now-bridge",
+      "brief": "memory bubble connects to present skill/result card, no text",
+      "family": "semantic-grammar-overlays",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-grammar-condition-result-path",
+      "concept": "grammar-condition-result-path",
+      "brief": "simple if-condition picture gate leads to one result tile, no words",
+      "family": "semantic-grammar-overlays",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-grammar-plan-changed-overlay",
+      "concept": "grammar-plan-changed-overlay",
+      "brief": "planned route/card gently shifts to changed route/card, no labels",
+      "family": "semantic-grammar-overlays",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-grammar-speaker-relayed-message",
+      "concept": "grammar-speaker-relayed-message",
+      "brief": "child speaker bubble passes blank message card to another child, no text",
+      "family": "semantic-grammar-overlays",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-grammar-past-memory",
+      "concept": "grammar-past-memory",
+      "family": "semantic-grammar-overlays",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-state-past-memory-bubble",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-grammar-now-spotlight",
+      "concept": "grammar-now-spotlight",
+      "family": "semantic-grammar-overlays",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-state-now-spotlight",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-grammar-change-arrow",
+      "concept": "grammar-change-arrow",
+      "family": "semantic-grammar-overlays",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-state-change-arrow",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-grammar-tense-chart",
+      "concept": "grammar-tense-chart",
+      "family": "semantic-grammar-overlays",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Tense charts and labels are structural/text UI."
+    },
+    {
+      "key": "b1-grammar-rule-boxes",
+      "concept": "grammar-rule-boxes",
+      "family": "semantic-grammar-overlays",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Rule boxes are text fields and should be rendered later."
+    },
+    {
+      "key": "b1-grammar-mixed-conditionals",
+      "concept": "grammar-mixed-conditionals",
+      "family": "semantic-grammar-overlays",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    },
+    {
+      "key": "b1-turn-thought-group-beads",
+      "concept": "turn-thought-group-beads",
+      "brief": "three small idea beads grouped into one speaking turn, no words",
+      "family": "longer-turn-self-repair",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-turn-pause-and-continue",
+      "concept": "turn-pause-and-continue",
+      "brief": "child pauses with calm bead then continues to next idea card, no text",
+      "family": "longer-turn-self-repair",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-turn-self-correction-swap",
+      "concept": "turn-self-correction-swap",
+      "brief": "speaker swaps one mistaken picture card for a better one mid-turn, no labels",
+      "family": "longer-turn-self-repair",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-turn-keep-going-path",
+      "concept": "turn-keep-going-path",
+      "brief": "speech path continues after small pause marker, no written script",
+      "family": "longer-turn-self-repair",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b1-turn-pause-bead",
+      "concept": "turn-pause-bead",
+      "family": "longer-turn-self-repair",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-prosody-pause-bead",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-turn-chunk-bracket",
+      "concept": "turn-chunk-bracket",
+      "family": "longer-turn-self-repair",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-prosody-chunk-bracket",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-turn-replace-token",
+      "concept": "turn-replace-token",
+      "family": "longer-turn-self-repair",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-write-replace-token",
+      "reason": "Existing A2/lower-level asset already communicates this relation."
+    },
+    {
+      "key": "b1-turn-script-lines",
+      "concept": "turn-script-lines",
+      "family": "longer-turn-self-repair",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Longer-turn scripts are dynamic lesson text."
+    },
+    {
+      "key": "b1-turn-speaking-rubric",
+      "concept": "turn-speaking-rubric",
+      "family": "longer-turn-self-repair",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Rubrics/checklists are structural UI."
+    },
+    {
+      "key": "b1-turn-rhetorical-repair",
+      "concept": "turn-rhetorical-repair",
+      "family": "longer-turn-self-repair",
+      "wave": 4,
+      "phase": "P2",
+      "classification": "DEFER_B2",
+      "reason": "This requires B2-level reasoning, negotiation, stance, source credibility, or abstract synthesis."
+    }
+  ]
+}

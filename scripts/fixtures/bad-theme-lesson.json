@@ -1,0 +1,51 @@
+{
+  "title": "Lunch in the School Cafeteria",
+  "warmUp": {
+    "question": "What do you eat for lunch at school?",
+    "sampleAnswer": "I eat rice and soup."
+  },
+  "vocabulary": [
+    { "word": "tray", "emoji": "🍱", "sentence": "Carry your tray carefully." },
+    { "word": "queue", "emoji": "🧍", "sentence": "We wait in the queue." },
+    { "word": "napkin", "emoji": "🧻", "sentence": "Take a napkin, please." },
+    { "word": "delicious", "emoji": "😋", "sentence": "The soup is delicious." }
+  ],
+  "sentenceFrames": [
+    "I would like ____, please.",
+    "My lunch is ____.",
+    "Can I have a ____?"
+  ],
+  "story": {
+    "title": "Sam Forgets His Tray",
+    "pages": [
+      {
+        "heading": "Sam Forgets His Tray",
+        "text": "Sam waits in the lunch queue. He forgets his tray.",
+        "visualTheme": "airport terminal",
+        "visualCaption": "In the cafeteria lunch line"
+      },
+      {
+        "heading": "A Delicious Lunch",
+        "text": "His friend shares a napkin. The soup is delicious.",
+        "visualTheme": "swimming pool",
+        "visualCaption": "At the cafeteria table"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What does Sam forget?", "sampleAnswer": "He forgets his tray." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "Do you like school lunch?", "sampleAnswer": "Yes, it is delicious." },
+    { "question": "Who do you sit with at lunch?", "sampleAnswer": "I sit with my friends." }
+  ],
+  "activity": {
+    "title": "Cafeteria Role Play",
+    "prompt": "Order lunch from your partner.",
+    "templates": ["I would like ____.", "Here is your ____."]
+  },
+  "reviewSentences": [
+    "We carry our trays in the cafeteria."
+  ]
+}

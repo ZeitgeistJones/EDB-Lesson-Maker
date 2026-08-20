@@ -1,0 +1,299 @@
+{
+  "id": "labs",
+  "labels": [
+    "labs",
+    "science"
+  ],
+  "usefulness": 0.8,
+  "picturable": 0.9,
+  "hardToSubstitute": 0.45,
+  "topics": [
+    "chemistry lab",
+    "microscope station",
+    "space science lab",
+    "robotics lab",
+    "weather station",
+    "plant experiment",
+    "magnet table",
+    "circuit board bench",
+    "telescope night",
+    "periodic table wall",
+    "dissection tray",
+    "beaker rainbow",
+    "safety goggles drill",
+    "science fair",
+    "DNA model"
+  ],
+  "concepts": [
+    {
+      "word": "beaker",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "glassware"
+      ]
+    },
+    {
+      "word": "flask",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "glassware"
+      ]
+    },
+    {
+      "word": "test tube",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "glassware"
+      ]
+    },
+    {
+      "word": "pipette",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "bunsen burner",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "tripod",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "petri dish",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "glassware"
+      ]
+    },
+    {
+      "word": "microscope",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "slide",
+      "usefulness": 0.6,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "supply"
+      ]
+    },
+    {
+      "word": "lens",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "telescope",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "magnet",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "compass",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "battery",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "wire",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "bulb",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "switch",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "robot",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "word": "sensor",
+      "usefulness": 0.55,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "goggles",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "ppe"
+      ]
+    },
+    {
+      "word": "lab coat",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "ppe"
+      ]
+    },
+    {
+      "word": "funnel",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "balance scale",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "thermometer",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "molecule",
+      "usefulness": 0.5,
+      "picturable": 0.8,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "model"
+      ]
+    },
+    {
+      "word": "atom",
+      "usefulness": 0.55,
+      "picturable": 0.8,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "model"
+      ]
+    },
+    {
+      "word": "dna helix",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "model"
+      ]
+    },
+    {
+      "word": "periodic table",
+      "usefulness": 0.6,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "chart"
+      ]
+    },
+    {
+      "word": "specimen",
+      "usefulness": 0.55,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "word": "dropper",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "hiking-trekking": [
+    "hiking-boot", "backpack", "compass", "water-bottle",
+    "walking-stick", "map-blank", "tent", "sleeping-bag",
+    "flashlight", "pocket-knife", "first-aid-kit", "carabiner",
+    "binoculars", "sun-hat", "trail-sign", "whistle",
+    "energy-bar", "camping-stove", "matches", "thermal-flask",
+    "rain-poncho", "insect-repellent", "sunblock", "climbing-rope",
+    "crampons", "ice-axe", "gaiters", "dry-bag",
+    "solar-charger", "multi-tool", "camping-mug", "emergency-blanket"
+  ],
+  "postal-service": [
+    "envelope", "parcel-box", "postage-stamp", "mailbox",
+    "mail-truck", "delivery-bag", "letter-scale", "ink-pad",
+    "rubber-stamp", "packing-tape", "bubble-wrap", "fragile-sticker",
+    "shipping-label-blank", "postmark", "sorting-bin", "mail-slot",
+    "pen", "clipboard", "postcard-blank", "airmail-envelope",
+    "registered-mail-tag", "priority-mail-box", "mail-trolley", "hand-truck",
+    "scanner", "uniform-cap", "counter-bell", "stamp-dispenser",
+    "key", "wax-seal", "seal-heater", "string-roll"
+  ],
+  "hair-salon-barber": [
+    "scissors", "hair-dryer", "comb", "hairbrush",
+    "spray-bottle", "barber-pole", "hair-clipper", "razor",
+    "shaving-brush", "shampoo-bottle", "conditioner-bottle", "hair-gel",
+    "hairspray", "hair-dye-bowl", "hair-dye-brush", "salon-chair",
+    "cape", "towel", "mirror", "hair-clip",
+    "bobby-pin", "hair-roller", "curling-iron", "flat-iron",
+    "wash-basin", "apron", "neck-duster", "hair-pick",
+    "thinning-shears", "mustache-wax", "aftershave", "appointment-book-blank"
+  ],
+  "photography": [
+    "dslr-camera", "film-camera", "lens", "tripod",
+    "flash", "memory-card", "film-roll", "camera-bag",
+    "light-stand", "reflector", "softbox", "lens-cap",
+    "lens-hood", "shutter-remote", "light-meter", "polaroid-camera",
+    "polaroid-photo", "darkroom-tray", "film-enlarger", "negative-strip",
+    "developing-tank", "chemical-bottle", "timer", "red-light-bulb",
+    "squeegee", "clothes-peg", "monopod", "gimbal",
+    "battery", "charger", "cleaning-kit", "lens-cloth"
+  ],
+  "archaeology": [
+    "trowel", "brush", "shovel", "pickaxe",
+    "sieve", "measuring-tape", "compass", "magnifying-glass",
+    "ancient-vase", "pottery-shard", "dinosaur-bone", "skull",
+    "stone-tool", "arrowhead", "gold-coin", "jewel",
+    "scroll-blank", "clay-tablet-blank", "sarcophagus", "mummy",
+    "pyramid", "temple-pillar", "ruin-wall", "field-notebook",
+    "pencil", "camera", "level", "wooden-stake",
+    "grid-string", "wheelbarrow", "tent", "lantern"
+  ],
+  "tailor-sewing": [
+    "sewing-machine", "mannequin", "measuring-tape", "fabric-scissors",
+    "thread-spool", "needle", "pincushion", "button",
+    "zipper", "thimble", "seam-ripper", "safety-pin",
+    "iron", "ironing-board", "chalk-marker", "pattern-paper-blank",
+    "fabric-bolt", "sewing-box", "bobbin", "presser-foot",
+    "elastic-band", "ribbon", "hook-and-eye", "snap-fastener",
+    "shoulder-pad", "velcro-strip", "pinking-shears", "embroidery-hoop",
+    "knitting-needle", "crochet-hook", "yarn-ball", "garment-bag"
+  ],
+  "bakery-backroom": [
+    "rolling-pin", "flour-bag", "egg", "whisk",
+    "mixing-bowl", "baking-tray", "oven-mitt", "apron",
+    "cooling-rack", "measuring-cup", "pastry-brush", "dough-scraper",
+    "piping-bag", "bread-loaf", "baguette", "croissant",
+    "muffin", "cupcake", "cookie", "pretzel",
+    "donut", "cake-stand", "scale", "timer",
+    "yeast-packet", "sugar-bowl", "butter-block", "milk-carton",
+    "rolling-rack", "dough-mixer", "proofing-basket", "bread-knife"
+  ],
+  "car-repair-shop": [
+    "wrench", "screwdriver", "hammer", "pliers",
+    "car-jack", "tire", "engine-block", "battery",
+    "spark-plug", "oil-can", "oil-filter", "air-filter",
+    "radiator", "fan-belt", "brake-disc", "exhaust-pipe",
+    "steering-wheel", "gear-stick", "headlight", "windshield-wiper",
+    "car-key", "gas-cap", "funnel", "creeper",
+    "toolbox", "pneumatic-drill", "jumper-cables", "tire-pressure-gauge",
+    "car-lift", "shop-light", "grease-gun", "shop-rag"
+  ],
+  "garden-center": [
+    "watering-can", "trowel", "rake", "hoe",
+    "shovel", "wheelbarrow", "garden-hose", "pruning-shears",
+    "flower-pot", "seed-packet-blank", "bag-of-soil", "watering-wand",
+    "lawn-mower", "leaf-blower", "garden-fork", "hedge-trimmer",
+    "garden-gloves", "bird-feeder", "bird-house", "trellis",
+    "garden-bench", "plant-label-blank", "sun-hat", "rubber-boots",
+    "watering-timer", "sprinkler", "compost-bin", "hand-sprayer",
+    "picket-fence", "garden-gnome", "wind-chime", "garden-solar-light"
+  ],
+  "optician-eye-clinic": [
+    "eyeglasses", "sunglasses", "contact-lens", "lens-case",
+    "eye-chart", "phoropter", "ophthalmoscope", "magnifying-glass",
+    "eye-drops", "lens-cleaning-spray", "microfibre-cloth", "eyeglass-case",
+    "trial-frame", "trial-lens", "occluder", "slit-lamp",
+    "tonometer", "mirror", "penlight", "clipboard",
+    "appointment-card-blank", "frame-display", "nose-pad", "temple-tip",
+    "eyeglass-chain", "screwdriver-kit", "eye-patch", "pupil-gauge",
+    "anatomical-eye-model", "medical-torch", "vision-tester", "clinic-chair"
+  ],
+  "recycling-center": [
+    "blue-bin", "green-bin", "yellow-bin", "recycling-symbol",
+    "glass-bottle", "aluminum-can", "plastic-bottle", "cardboard-box",
+    "newspaper", "battery", "light-bulb", "e-waste",
+    "compost-bag", "scrap-metal", "old-tire", "oil-jug",
+    "paint-can", "milk-carton", "egg-carton", "magazine-blank",
+    "envelope", "plastic-jug", "crumpled-foil", "soda-can",
+    "glass-jar", "cork", "plastic-bag", "clothes-bundle",
+    "wood-pallet", "hazard-sign", "scale", "sorting-line"
+  ]
+}

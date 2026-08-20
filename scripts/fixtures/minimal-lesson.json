@@ -1,0 +1,40 @@
+{
+  "title": "A Day at the Park",
+  "warmUp": {
+    "question": "Do you like the park?",
+    "sampleAnswer": "Yes, I do."
+  },
+  "vocabulary": [
+    { "word": "swing", "emoji": "🛝", "sentence": "I like the swing." },
+    { "word": "slide", "emoji": "🛝", "sentence": "The slide is fast." }
+  ],
+  "sentenceFrames": [
+    "I like the ____."
+  ],
+  "story": {
+    "title": "At the Park",
+    "pages": [
+      {
+        "heading": "At the Park",
+        "text": "Ben runs to the swing.",
+        "visualTheme": "playground",
+        "visualCaption": "On the playground"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where does Ben run?", "sampleAnswer": "He runs to the swing." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "Do you play at the park?", "sampleAnswer": "Yes, every day." }
+  ],
+  "activity": {
+    "title": "Park Play",
+    "prompt": "Say what you like.",
+    "templates": ["I like the ____."]
+  },
+  "reviewSentences": [
+    "I like the swing."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "title": "The Clown at the Gym",
+  "level": "B1",
+  "duration": "60",
+  "knownIssues": [
+    "S74/S75: comprehension floor (≥2 grounded Qs) + bankable frames — do not re-litigate unless THIS bake still fails the contract",
+    "Dock / activity theme honesty: sortBins 'Things vs Ideas' for four adjectives (clumsy/spacious/athletic/energetic) may be pedagogically hollow — flag if worse than known soft",
+    "Timing chips: headers scale with declared duration (S29 / timingChip) — title claims 60 min; verify chips still coherent",
+    "PhonicsPolicy vocabHit required (1b096de) — omit phonics when no topic vocabHit; gate_holes if a cat/dog bank still ships",
+    "Match ≥3 floor: this board shows 4 match pads — do not reopen the floor itself",
+    "Sense lock: athletic→basketball / energetic→⚡ glyph / abstract adjective art — known soft; fail only if wrong-sense or unteachable",
+    "Match dock NO answer captions (S26); StoryArt opportunistic — PropBank caption Ready path",
+    "Do not reopen: same-topic adapt, Manus-in-Generate, StoryArt-as-Ready, 84% floor"
+  ],
+  "justFixed": [
+    "Crew folds already on main for trampoline/face/castle (0755b37, 12deb07, 1b096de) — S74/S75, phonics vocabHit, timingChip scale, dock theme patterns",
+    "Gym-cool quiet flat set on chrome pages; school-gym / gym flats for place theme",
+    "M7=1 pack/glyph art for clumsy/spacious/athletic/energetic; matchable count 4 (≥3)",
+    "Activity recipe sortBins (Interactive Gym Circuit) — no false king/dressUp lottery"
+  ],
+  "localChecks": [
+    "verify-board-visual gym: hardFailures=[]; M7=1; vocabUnvetted=[]; vocabWordCount=4",
+    "pageKeys: title/warm/newWords/vocabSentences/frames/story0/story1/comprehension/speaking:0/activity/wrap — no phonics page on this bake",
+    "Local smells: review notes Story visualTheme lies (beach/kitchen); abstract adjectives; athletic art is basketball; energetic is glyph; sortBins Things/Ideas for adjectives; soft M1@speaking:0 (20px), M3@story1 sparse",
+    "Standing division-of-labor: spelling/clipping/warm-leak/match-captions/drag-label-free handled locally"
+  ],
+  "focus": [
+    "PRIMARY: B1 gym pedagogy — are adjective vocab + Things/Ideas sort teachable for a clown-at-gym story, or should bins/recipe lock to topic sense?",
+    "Story↔comprehension grounding (S73) + S74/S75 still hold on baked boards",
+    "Sense-honest art + grammar-aim vs frames (opinion/planning claim)",
+    "New misses only; do not re-litigate match captions, StoryArt-as-Ready, or match≥3 floor"
+  ],
+  "notes": "Manusloop crew30-x4 Track B — gym ONLY (dentist+soccer-coach owned by parallel agents; trampoline/face/castle already folded). Standing bar: skip mechanical re-reports; ALWAYS weakest_link; ONE escalation_homework."
+}

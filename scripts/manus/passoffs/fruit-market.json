@@ -1,0 +1,35 @@
+{
+  "title": "Fruit Market",
+  "level": "A1",
+  "duration": "30",
+  "knownIssues": [
+    "Match dock NO answer captions (S26)",
+    "StoryArt opportunistic — PropBank caption plate is Ready path",
+    "Do not reopen: same-topic adapt, Manus-in-Generate, StoryArt-as-Ready, 84% floor, ≥3 match floor",
+    "Phonics omit when no vocabHit (1b096de / 12deb07) — THIS bake has no phonics page (good); gate_holes if off-topic cat/dog appears",
+    "S74/S75 landed after trampoline/castle Manus — comprehension floor ≥2 grounded Qs + bankable frame blanks; THIS fixture may still ship 1 Q",
+    "Vocab sense lock: fruit/veg words must keep honest produce art (no cafe bakery icon swap)",
+    "frameTiles is the intentional text activity for frames (drag word tiles into blanks) — do not demand a second text recipe",
+    "Navy wrap S32 intentional when used"
+  ],
+  "justFixed": [
+    "PhonicsPolicy vocabHit required — omit page when topic rows fail CEFR (no bank pad)",
+    "S74 color/grounded comprehension floor + S75 frameBlankBankable",
+    "Match ≥3 floor + numbered pads (S28)",
+    "grammarAimLine honesty for see/have/sequencing (may not yet match THIS title aim)",
+    "frameTiles recipe on frames page with taught-vocab dock tiles"
+  ],
+  "localChecks": [
+    "verify-board-visual fruit-market: hardFailures=[]; M7=1; vocabUnvetted=[]; match pads=6 (≥3)",
+    "metricFlags: warn M1@speaking:0 (20px) — mechanical soft",
+    "Local smells on THIS bake: comprehension shows 1 Q only; grammar aim still opinion/planning vs I see / The ___ is fresh / Please pass frames; activity heroProp dock is cafe/bakery scrap (coffee/bread/croissant…) not fruit/veg targets; no phonics page (omit OK); frameTiles present with 6 vocab tiles",
+    "Standing division-of-labor for mechanical gates"
+  ],
+  "focus": [
+    "PRIMARY: Fruit Market activity — dock theme honesty vs taught produce vocab; production cue on hero stage",
+    "Comprehension thinness (1 Q) + story↔Q grounding vs S74 claim; grammar-aim contract vs frames",
+    "Sense lock on match/newWords produce art; frameTiles teachability",
+    "New misses only; do not re-litigate match captions or StoryArt-as-Ready"
+  ],
+  "notes": "Manusloop crew30-x4 Track B — fruit-market only. Standing bar: skip mechanical re-reports; ALWAYS weakest_link; ONE escalation_homework."
+}

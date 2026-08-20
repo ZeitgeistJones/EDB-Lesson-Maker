@@ -1,0 +1,296 @@
+{
+  "id": "clothing",
+  "labels": [
+    "clothing",
+    "accessories"
+  ],
+  "usefulness": 0.85,
+  "picturable": 0.93,
+  "hardToSubstitute": 0.3,
+  "topics": [
+    "wardrobe basics",
+    "winter layers",
+    "summer outfits",
+    "shoe store",
+    "hat collection",
+    "uniform day",
+    "costume party",
+    "laundry room",
+    "jewelry box",
+    "scarf rack",
+    "raincoat corner",
+    "sports kit bag"
+  ],
+  "concepts": [
+    {
+      "word": "hoodie",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "top"
+      ]
+    },
+    {
+      "word": "cardigan",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "top"
+      ]
+    },
+    {
+      "word": "vest",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "top"
+      ]
+    },
+    {
+      "word": "blouse",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "top"
+      ]
+    },
+    {
+      "word": "overalls",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "outfit"
+      ]
+    },
+    {
+      "word": "romper",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "outfit"
+      ]
+    },
+    {
+      "word": "leggings",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "bottom"
+      ]
+    },
+    {
+      "word": "shorts",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "bottom"
+      ]
+    },
+    {
+      "word": "skirt",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "bottom"
+      ]
+    },
+    {
+      "word": "sandal",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "shoe"
+      ]
+    },
+    {
+      "word": "loafer",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "shoe"
+      ]
+    },
+    {
+      "word": "boot",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "shoe"
+      ]
+    },
+    {
+      "word": "sneaker",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "shoe"
+      ]
+    },
+    {
+      "word": "slipper",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "shoe"
+      ]
+    },
+    {
+      "word": "mitten",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "accessory"
+      ]
+    },
+    {
+      "word": "glove",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "accessory"
+      ]
+    },
+    {
+      "word": "scarf",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "accessory"
+      ]
+    },
+    {
+      "word": "beanie",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "hat"
+      ]
+    },
+    {
+      "word": "beret",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "hat"
+      ]
+    },
+    {
+      "word": "cap",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "hat"
+      ]
+    },
+    {
+      "word": "visor",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "hat"
+      ]
+    },
+    {
+      "word": "belt",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "accessory"
+      ]
+    },
+    {
+      "word": "buckle",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "cuff",
+      "usefulness": 0.55,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "collar",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "pocket",
+      "usefulness": 0.7,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "button",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "fastener"
+      ]
+    },
+    {
+      "word": "laces",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "fastener"
+      ]
+    },
+    {
+      "word": "hanger",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "ironing board",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "tool"
+      ]
+    }
+  ]
+}

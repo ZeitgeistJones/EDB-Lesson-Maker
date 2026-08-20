@@ -1,0 +1,90 @@
+{
+  "title": "A Day at the Zoo",
+  "warmUp": {
+    "question": "What animals can you see at the zoo?",
+    "sampleAnswer": "I can see a lion and a bear."
+  },
+  "vocabulary": [
+    { "word": "zoo", "emoji": "🦁", "sentence": "We go to the zoo." },
+    { "word": "lion", "emoji": "🦁", "sentence": "The lion is big." },
+    { "word": "bear", "emoji": "🐻", "sentence": "The bear eats fish." },
+    { "word": "cage", "emoji": "🔲", "sentence": "The bird is in a cage." },
+    { "word": "feed", "emoji": "🍎", "sentence": "We feed the animals." },
+    { "word": "map", "emoji": "🗺️", "sentence": "Look at the zoo map." }
+  ],
+  "sentenceFrames": [
+    "I see a ____ at the zoo.",
+    "The ____ is in a cage.",
+    "We ____ the animals."
+  ],
+  "phonics": {
+    "targetWords": [
+      {
+        "word": "cat",
+        "graphemes": ["c", "a", "t"],
+        "emoji": "🐱",
+        "topicRelevance": "A small zoo animal kids know"
+      },
+      {
+        "word": "fish",
+        "graphemes": ["f", "i", "sh"],
+        "emoji": "🐟",
+        "topicRelevance": "Bear food / aquarium"
+      },
+      {
+        "word": "jump",
+        "graphemes": ["j", "u", "m", "p"],
+        "emoji": "🦘",
+        "topicRelevance": "How animals move"
+      }
+    ],
+    "distractors": ["b", "o", "n", "e", "r"],
+    "teacherScript": {
+      "warmup": "Say cat slowly: /c/ /a/ /t/. How many sounds?",
+      "modeling": "Watch me drag c, then a, then t into the boxes.",
+      "check": "Which box has two letters in fish?"
+    }
+  },
+  "story": {
+    "title": "Zoo Trip",
+    "pages": [
+      {
+        "heading": "At the gate",
+        "text": "Mia holds the zoo map. She wants to see the lion first.",
+        "visualTheme": "zoo",
+        "visualCaption": "Zoo entrance"
+      },
+      {
+        "heading": "Big cats",
+        "text": "The lion walks in its space. A bear waits near the water.",
+        "visualTheme": "zoo",
+        "visualCaption": "Lion and bear habitats"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What does Mia hold?", "sampleAnswer": "The zoo map." },
+      { "question": "Which animal does she want to see first?", "sampleAnswer": "The lion." }
+    ],
+    "creativeQuestions": [
+      "What animal would you feed at the zoo?",
+      "Draw a path on the map to your favorite animal."
+    ]
+  },
+  "speakingQuestions": [
+    { "question": "Which zoo animal is your favorite?", "sampleAnswer": "I like the lion." },
+    { "question": "What do you feed a bear?", "sampleAnswer": "Fish and fruit." }
+  ],
+  "activity": {
+    "title": "Zoo Map Talk",
+    "prompt": "Point to animals on the map and say their names.",
+    "templates": [
+      "This is the ____.",
+      "The ____ is near the ____.",
+      "We can feed the ____."
+    ]
+  },
+  "reviewSentences": [
+    "We see a lion at the zoo.",
+    "The bear eats fish near the water."
+  ]
+}

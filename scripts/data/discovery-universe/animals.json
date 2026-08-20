@@ -1,0 +1,647 @@
+{
+  "id": "animals",
+  "labels": [
+    "animals",
+    "habitats"
+  ],
+  "usefulness": 0.85,
+  "picturable": 0.95,
+  "hardToSubstitute": 0.35,
+  "topics": [
+    "shark anatomy",
+    "coral reef tour",
+    "zoo mammals",
+    "farm animals",
+    "rainforest animals",
+    "arctic animals",
+    "desert animals",
+    "insect safari",
+    "bird watching",
+    "pet care day",
+    "ocean mammals",
+    "reptile house",
+    "butterfly garden",
+    "savanna safari",
+    "pond life",
+    "wetland birds",
+    "animal babies",
+    "animal homes",
+    "animal footprints",
+    "underwater creatures"
+  ],
+  "concepts": [
+    {
+      "word": "fin",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "gill",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "scale",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "tail",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "paw",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "claw",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "beak",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "wing",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "feather",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "mane",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "horn",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "antler",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "tusk",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "trunk",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "snout",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "whisker",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "fur",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "hide",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "shell",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "hump",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "hoof",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "talon",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "webbed foot",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "proboscis",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "antenna",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "stinger",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "fang",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "quill",
+      "usefulness": 0.65,
+      "picturable": 0.92,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part",
+        "animal"
+      ]
+    },
+    {
+      "word": "shark",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "dolphin",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "whale",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "octopus",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "jellyfish",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "seahorse",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "starfish",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "coral",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "habitat"
+      ]
+    },
+    {
+      "word": "anemone",
+      "usefulness": 0.5,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "habitat"
+      ]
+    },
+    {
+      "word": "penguin",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "polar bear",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "seal",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "walrus",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "camel",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "lizard",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "snake",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "turtle",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "frog",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "toad",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "butterfly",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "caterpillar",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "cocoon",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "life-cycle"
+      ]
+    },
+    {
+      "word": "chrysalis",
+      "usefulness": 0.5,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "life-cycle"
+      ]
+    },
+    {
+      "word": "hive",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "home"
+      ]
+    },
+    {
+      "word": "nest",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "home"
+      ]
+    },
+    {
+      "word": "burrow",
+      "usefulness": 0.65,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "home"
+      ]
+    },
+    {
+      "word": "den",
+      "usefulness": 0.65,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "home"
+      ]
+    },
+    {
+      "word": "web",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "home"
+      ]
+    },
+    {
+      "word": "herd",
+      "usefulness": 0.55,
+      "picturable": 0.7,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "group"
+      ]
+    },
+    {
+      "word": "flock",
+      "usefulness": 0.55,
+      "picturable": 0.7,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "group"
+      ]
+    },
+    {
+      "word": "cub",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "baby"
+      ]
+    },
+    {
+      "word": "calf",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "baby"
+      ]
+    },
+    {
+      "word": "chick",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "baby"
+      ]
+    },
+    {
+      "word": "foal",
+      "usefulness": 0.6,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "baby"
+      ]
+    },
+    {
+      "word": "pup",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "baby"
+      ]
+    },
+    {
+      "word": "track",
+      "usefulness": 0.65,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "sign"
+      ]
+    },
+    {
+      "word": "pawprint",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "sign"
+      ]
+    }
+  ]
+}

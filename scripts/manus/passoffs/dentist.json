@@ -1,0 +1,31 @@
+{
+  "title": "Dentists are nice!",
+  "level": "A1",
+  "duration": "30",
+  "knownIssues": [
+    "Match dock NO answer-naming caption chips (S26) — intentional",
+    "StoryArt opportunistic only — PropBank dental-kid-open-mouth plate is Ready path",
+    "Do not reopen: same-topic adapt, Manus-in-Generate, StoryArt-as-Ready, 84% floor, ≥3 match floor",
+    "ALREADY FOLDED (do not re-litigate as new work): trampoline MZJkXah7 → S74/S75, dock theme lock, timingChip (0755b37 + WIP); face Ehp2RiDr → phonics omit when illegal, grammarAimLine have/possession, hair dock (WIP); castle S4DZYhCM FAIL → phonics vocabHit, castle dock lock, StoryIntegrity color STOP, see/naming grammar (WIP)",
+    "PhonicsPolicy vocabHit / omit (1b096de) — THIS bake may still show cat/bank-pad; use gate_holes if claimed omit is absent on THIS bake, do not invent a new phonics class",
+    "Navy wrap bookend is S32 when used — do not recolor"
+  ],
+  "justFixed": [
+    "Dental open-mouth heroProp (dental-kid-open-mouth) + dental tool dock — king stage, not dressUp lottery",
+    "M7=1 pack art for dentist/tooth/smile/clean/brush/floss",
+    "S28 numbered match pads; S21 king speak/write cue",
+    "Producer gates landed after trampoline/face/castle Manus (S74/S75, phonics vocabHit, grammarAimLine honesty) — verify they hold on dental topic"
+  ],
+  "localChecks": [
+    "verify-board-visual dentist: hardFailures=[]; M7=1; pageCount=11",
+    "Local smells on THIS bake: title charm may be bathtub (off-theme); phonics may show cat; dental dock may leak bathroom (soap/faucet/milk/bucket); clean→soap icon soft",
+    "Standing division-of-labor: spelling/clipping/match-captions/drag-label-free handled locally — do not re-score those"
+  ],
+  "focus": [
+    "PRIMARY: Dental Health Planner king stage — open-mouth hero dominates; dock tools honest to taught dental vocab (dentist/tooth/smile/clean/brush/floss); production cue strength at A1",
+    "Match dock honesty — pads/pieces map to board vocab without bathroom/generic leak; no answer captions (S26)",
+    "CEFR A1 fit — frames, aims, phonics topic fit vs omit, grammar-aim contract on dental frames",
+    "New misses only — skip re-litigating trampoline/face/castle folds unless THIS bake is worse"
+  ],
+  "notes": "Manusloop crew30-x4 Track B pass 4/4 — dentist. Standing bar: skip locally-gated mechanical misses; ALWAYS name weakest_link; ONE escalation_homework."
+}

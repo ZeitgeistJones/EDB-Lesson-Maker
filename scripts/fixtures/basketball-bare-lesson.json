@@ -1,0 +1,45 @@
+{
+  "title": "Playing Basketball with Friends",
+  "warmUp": {
+    "question": "Do you play sports?",
+    "sampleAnswer": "Yes, I do."
+  },
+  "vocabulary": [
+    { "word": "ball" },
+    { "word": "team" },
+    { "word": "score" },
+    { "word": "court" }
+  ],
+  "sentenceFrames": [],
+  "story": {
+    "title": "Game Day",
+    "pages": [
+      {
+        "heading": "Court",
+        "text": "We play on the court with friends.",
+        "visualTheme": "sports",
+        "visualCaption": "Kids on a court"
+      },
+      {
+        "heading": "Team",
+        "text": "Our team has the ball. We score!",
+        "visualTheme": "sports",
+        "visualCaption": "Kids pass the ball"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where do they play?", "sampleAnswer": "On the court." },
+      { "question": "What does the team have?", "sampleAnswer": "The ball." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "Do you like basketball?", "sampleAnswer": "Yes, I do." }
+  ],
+  "activity": {
+    "title": "Odd one out",
+    "prompt": "Find the odd one.",
+    "templates": ["This is a ____."]
+  },
+  "reviewSentences": []
+}

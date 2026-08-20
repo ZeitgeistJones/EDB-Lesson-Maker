@@ -1,0 +1,219 @@
+# Asset wishlist (fetch later)
+
+Gaps noticed during the **board quality loop**. Prefer appending here over forcing a bad substitute (wrong emoji, scraped clipart, or “close enough” art that fails the student lens).
+
+**Rules**
+- Commercial-safe sources only — see `public/assets/LICENSE.md`
+- Do **not** drop unverified / scraped clipart into the repo to “close” a row
+- One row per distinct need; dedupe before adding
+- `Status`: `open` → `fetched` → `wired` (or `wont`)
+- **White-bg vocab sheets (`07_vocab-pack`):** prefer **Manus** (`esl-asset-generator`) for batch 3×3s — ChatGPT is optional fallback only. See `docs/prop-sheet-prompts.md` vocab section + `scripts/manus/request-white-vocab-*.mjs`. Prefer **OBJECT / still-life** icons over character-action scenes (action scenes mush at ~96px).
+- **Black-field props (`09_props`) for New Words:** OK when dock-sharp (`isDockSharp` / ≥120px short side) + identity-clear (`headNounOk`) and not soft/off-topic decorative. VocabArt fills pack gaps from props first; white sheets cover remaining gaps. Do not fire a Manus white batch for a word that already has a viable black cutout. After `adaptBoardVocabulary`, Manus batches should target words that stay `tier:none` on the board six — not every overflow noun.
+
+| Date | Need | Why (case / word / page) | Preferred type | Suggested source | Status |
+|------|------|--------------------------|----------------|------------------|--------|
+| 2026-08-14 | Volcanic `smoke` pack icon (plume, not detector) | Volcano New Words showed `fire-smoke-detector` (spinner lookalike) | White still-life plume | In-house `smoke.png` + drop bare alias | wired |
+| 2026-08-14 | Dedicated `volcano-cool` quiet flats | Volcano locked `outdoor-fresh` picnic grass | Place-true ash/crater/ember washes | bg-flat-sets in-house | wired |
+| 2026-08-14 | Re-key full astronauts (helmet+boots inside frame) + dedicated space quiet flats | Going-to-space cover: clipped `job-astronaut` / mush `space-astronaut-orange-*` | Black-field person cutouts with ≥3% top margin (C10); space-cool 4-flat set | Manus `4TdGFmADoJW5BzFToSUpeg` imported + merged (C10 pass); orange aliased a–d; space-cool flats still separate | partial — figures wired; flats pending |
+| 2026-08-14 | Full-res black-field kitchen/bakery tool sheet (whisk, spatula, blender, apron, timer+) — **no white plates** | densify plates / C6 wire holes | Black 3×3 light-material tools | Manus `Yo4yLxJLbPhWpY7ZEGFAmM` K1 still C6-quarantined (wire holes). S1 soccer leftovers merged (duffel/pinnies/tactics/balls/sport-whistle/water-bottle); `whistle` still soft | partial — kitchen wire still open |
+| 2026-08-14 | Kitchen/bakery **king hero** (counter / open fridge / mixing-bowl stage) | Kitchen lessons have no shippable king — activity falls to oddOneOut/thisOrThat after frames demote fixSentence | Black-field groundable kitchen stage ≥0.75 | prop-cutouts / Manus — only if shippable | open |
+| 2026-08-14 | Re-key `soccer-ball.png` + `sport-soccer.png` (white fringe) | Sports New Words / title — white halo; dockSafe:false | Black-field alpha soccer ball with no white edge bleed | In-house navy/blue panel ball passed C1–C9; mirrored to `sport-soccer` / `sports-soccer-ball` | wired |
+| 2026-08-13 | Sports `net` vocab icon (goal + mesh) | sports-demand Coverage@Demand gap | White still-life soccer goal/net | In-house `net.png` + index row (shift60) | wired |
+| 2026-08-13 | ChatGPT `esl_vocab_icons_all.zip` white 3×3 batch | Gaps across home/utility/sport/music/urban/school | White still-life pack cells | Imported gap-only cells (~34); skipped banked + thermostat numerals; `tape→tape-dispenser` | wired |
+| 2026-08-13 | Kitchen/city/music Coverage@Demand object gaps | apron/bowl/knife/spoon/pan/pot/mixer/cello/mailbox | White still-life singles | In-house GenerateImage → pack (shift60) | wired |
+| 2026-08-13 | `team` pack without white plate (alpha cutout people group) | basketball-bare dock — white square behind silhouettes | Re-key or regen white-bg team icon | In-house regen 3 kids jerseys, no plate/border; dropped team→ball alias | wired |
+| 2026-08-12 | Perfect-11 BLACK soft+densify (gashapon→music) | crew30 soft under-dock + densifiers | Black 8×4 packs | Manus `DMD9rZWxguhKeiB5e4SEp4` | wired — gate-pass cells merged (`gash-`/`cas-`/`aq-`/`nat-`/`spc-` + densify kitchen/sports/music); bathroom/school/farm were already banked; C6 netting/hole tiles skipped |
+| 2026-08-11 | Sports/gym **king hero** (court / hoop stage, scale ≥0.75) + sharp docks | Basketball lessons empty→sortBins after playground veto (analyze e82ca8d0); sports pack has 0 heroes | Black-field groundable court/hoop hero | Manus / prop-cutouts → promote `sport-basketball-hoop` or new stage | wired — basketball-hoop-stage + sports heroKey (Shift120 3QR5Nhn) |
+| 2026-08-11 | Distinct `clean` (teeth) icon — not bar soap | dentist New Words; Manus mfLN soft — soap reads bathroom not dental clean | White still-life sparkling tooth / shine | `PACK_OVERRIDES.clean→clean-tooth` (+ soap fallback); sponge `clean.png` never wins | wired |
+| 2026-08-12 | Re-prompt `scenery` full-bleed (no picture frame) | crew30 B1-S2 Manus tile drew landscape *inside* a frame → at 96px reads “painting” not scenery; wired anyway | White still-life, edge-to-edge view | In-house regen full-bleed hills/river (no frame) shift60 | wired |
+| 2026-08-12 | crew30 wave1 white vocab banked | Coverage@Demand 75.2%→87.1% after 14 sheets / ~117 icons; feelings sheet is portrait → importer needs `--grid=3x2` not `2x3` | — | `tmp/manus-crew30/fetch/IMPORT_LOG.md` | wired |
+| 2026-08-10 | Post-adapt `tier:none` board words (after prop fill) | Producer now art-prefers the board six — white sheets fill remaining holes, not every overflow word | White 3×3 Manus still-life | `scripts/manus/request-white-vocab-*.mjs` | open |
+| 2026-08-03 | Better icon for abstract size/space words (`spacious`, `cramped`, `huge`) beyond stadium metaphor | gym New Words dock — stadium works for spacious but not a full abstract-size set | Twemoji pack alias or CC0 vocab PNG | Twemoji / project `03_vocab-icons` | wired — Sheet V2 room scenes in `07_vocab-pack` |
+| 2026-08-03 | Activity-page collage props (shelf toys, sortables) for EW4 | Soft S17 — activity pages still thin / low charm | Verified cutouts in `09_props` | Project OpenAI props + LICENSE ledger | open |
+| 2026-08-03 | Distinct art for `swing` vs `slide` — both rendered 🛝 | minimal fixture New Words: two different words showed the same picture | Two distinct playground icons | CC0 icon set or generated prop | closed — `slide` is 🛝, `swing` is now a keyed prop in `09_props` (`swing.png`, anchor `top`) |
+| 2026-08-05 | `swing` dock icon in `07_vocab-pack` | Prop exists for scene dressing, but matchDock M7 still soft-warns (pack/curated only) | Copy/key `09_props/swing.png` into vocab pack, or a white-bg dock icon | Existing prop / ChatGPT vocab sheet | wired — generated white-bg `swing.png` in vocab pack |
+| 2026-08-05 | Big `trampoline` hero prop | Backflip lesson — activity needed a groundable trampoline, not postage-stamp gym mats | Black-field cutout, scale ~0.9, anchor bottom | User-made black-field art → `assets:prop` | wired — `09_props/trampoline.png` (C5 forced: U-legs disconnect in erosion mask) |
+| 2026-08-03 | Room-quality adjectives: `cramped`, `tidy`, `cosy`, `cluttered` | abstract-words fixture — no vetted glyph, falls back to a Gemini guess | Contrasting mini-scene pairs (tidy vs cluttered room) | Generated — no emoji or icon set expresses these | wired — Sheet V2 (`assets:vocab-sheet`) |
+| 2026-08-03 | Cafeteria nouns: `tray`, `queue`, `napkin`, `delicious` | bad-theme fixture — unvetted glyphs | Vocab icons | Generated — absent from Twemoji | wired — Sheet V4 |
+| 2026-08-03 | Air-travel procedure words: `security`, `turbulence`, `connection` | overflow fixture — the rest of the travel unit now resolves from the rebuilt pack | Vocab icons | Generated — absent from Twemoji | wired — Sheet V3 (+ passport, boarding-pass, suitcase, gate, runway, customs) |
+| 2026-08-04 | Purpose-drawn `doctor` vs `nurse` pair | Both resolve to Twemoji health workers that differ only by hair, which is thin for a young-learner match task | Two clearly different characters | Generated, or Open Peeps composition | wired — Sheet V1 clinic characters |
+| 2026-08-04 | `patient`, `diagnosis`, `clumsy`, `table` | Dropped rather than aliased to a near-enough picture (patient shared the hospital building, diagnosis a clipboard, clumsy a cartwheel, table a ping-pong paddle) | Vocab icons | Generated | wired — Sheet V1 |
+| 2026-08-04 | Scene backgrounds: hotel lobby, office, stadium, party room, snowy street, train platform, vet clinic | Common ESL units with no scene; picker falls back to a flat | 1536x1024 board scenes with a clear centre band | ChatGPT free grids → `assets:bg` | wired — plus 13 bonus scenes (water park, swamp, polar, reef, buffet, ballroom, ice rink, haunted, moon, dorm, gymnastics, river, dock) |
+| 2026-08-04 | Aspect-preserving prop draw in `loadAssetPng` (`public/lib/buildEdb.js`) | It stretches prop art to the recipe's `w`/`h` with no aspect preservation, so a wide prop in a square slot distorts — `activity-tray` is 2.23:1 and `umbrella` 0.52:1 | Code fix, not art | `09_props/manifest.json` now records `aspect` per prop, so this is fixable at wiring time | wired — letterbox in `loadAssetPng` + `exportBoardPreview.drawPiece` |
+| 2026-08-04 | Programmatic prop recolouring — remap the `bodyHue` band, leave neutral trim alone | Colour lessons and activities that call for a specific colour ("find the red one") currently have no way to get one; the pack ships one colour per prop | Code pass over existing cutouts | `bodyHue` is already measured into the manifest by `scripts/import-prop.mjs`; style lock requires one body hue plus neutrals | open |
+| 2026-08-04 | Wire `09_props` into board rendering | Nothing consumes the pack at runtime: `pieceToPng` never looks at it and recipes still draw covers and trays with `solidPng()`, so 40 keyed cutouts sit unused | Code fix, not art | `09_props/manifest.json` (role, tags, aspect, relativeScale, anchor) | wired — PropBank + sortBins/coverAnswer + scene dressing |
+| 2026-08-04 | Re-generate 6 unkeyable legacy props: `sorting-bin-green`, `prize-flap`, `tile-blue`, `sound-boxes`, `word-strip`, `pencil` | Cut from contact sheets or washed with their own colour to the frame border, so `assets:prop --convert` refuses them at C1; `sound-boxes` and `word-strip` are also truncated at the frame edge | Single-prop black-field generations | `docs/prop-style-lock.md` template → `assets:prop` | wired — all six roles covered (`sorting-bin-green`, `reward-flap`, and phonics sheet replacements for the four crops) |
+| 2026-08-03 | Activity-page collage props (shelf toys, sortables) for EW4 | Soft S17 — activity pages still thin / low charm | Verified cutouts in `09_props` | Project OpenAI props + LICENSE ledger | wired — scene dressing places 1–3 locked props on activity scenes |
+| 2026-08-04 | Medical / clinic prop sheet (9) | doctor + clown-clinic scene dressing has zero medical-tagged props | Matte 3×3 sheet | `docs/prop-sheet-prompts.md` Sheet 1 | wired — 9 medical props imported |
+| 2026-08-04 | Gym / sports prop sheet (9) | gym fixture theme void | Matte 3×3 sheet | `docs/prop-sheet-prompts.md` Sheet 2 | wired — 9 gym props imported |
+| 2026-08-04 | Cafeteria prop sheet (9) | bad-theme / cafeteria coverage thin | Matte 3×3 sheet | `docs/prop-sheet-prompts.md` Sheet 3 | wired — 9 cafeteria props imported |
+| 2026-08-05 | Home scene-dressing props (matte) | demand: home/matte below tag floor | In-house 3×3 + import | Native GenerateImage sheet | wired — sofa, floor-lamp, coffee-table, house-plant, throw-pillow, picture-frame, rug, remote-control, wall-clock |
+| 2026-08-05 | Park scene-dressing props (matte) | demand: park/matte thin (only swing) | Nine parallel one-offs (sheet gens kept white-tiling) | Native GenerateImage singles | wired — slide, seesaw, sandbox, park-bench, merry-go-round, playground-ball, kite, picnic-table, drinking-fountain |
+| 2026-08-05 | Dental unit pack by CEFR (vocab + EDB props) | A1 props wired (2 ChatGPT sheets); still need white-bg vocab icons for floss/cavity/dentist/smile | Vocab icons + black-field props | ChatGPT sheets | partial — props wired Aug 5; vocab dock icons still open |
+| 2026-08-07 | Castle roleplay dock toys at ≥120px short side (ideally ≥256) | Soft blob-sheet splices (~56–90px) were banned from docks (MIN_DOCK_SRC) — castle king stage ships without mushy toys until regen | Black-field sheet, one prop per large cell | ChatGPT / in-house sheet → `assets:prop-blobs` with C8 | wired — 8 in-house sharp docks (crown/shield/sword/key/door/torch/tower-roof/flag) |
+| 2026-08-07 | Vocab icons: music unit (`drum`, `sing`, `dance`, `song` distinct from `piano`) | music fixture M7 — piano.png reused for music/piano/song | Vocab pack | Twemoji `music`/`song` + drop piano aliases | wired |
+| 2026-08-07 | Vocab icon: `room` (hotel unit) | hotel fixture unvetted Gemini glyph | Vocab pack | Alias `room`→`door` (pack PNG) | wired |
+| 2026-08-06 | Vocab icons: `zoo`, `cage`, `feed` | zoo-phonics — still open from earlier bake | Vocab pack | ChatGPT vocab sheet | wired — Sheet V6 `vocab-zoo-3x3` |
+| 2026-08-06 | Vocab icon: `floss` | dentist fixture soft M7 | Vocab pack | Dental sheet | wired — Sheet V9 `vocab-daily-3x3` |
+| 2026-08-06 | Vocab icons: `face`, `hair` (+ eyes/smile/castle/bridge/flag on same sheet) | face fixture New Words — unvetted glyphs | Vocab pack | Sheet V5 | wired — same `vocab-castle-face-3x3` |
+| 2026-08-05 | `lollipop` / candy / cookie prop for dental roleplay | Open-mouth king dock — teach “sugar vs brush”; no sweet/candy cutout in `09_props` (apple/milk/cup stand in) | Black-field object cutout | ChatGPT / GenerateImage one-off | wired — `food-lollipop` + `food-cookie` + `food-wrapped-candy-pink` on `ROLEPLAY_DOCK_DENTAL` (candy-cane dockSafe:false skipped) |
+| 2026-08-05 | Face kit extras as one-prop-per-cell sheets | Labeled collage (beards/mustaches/freckles/masks/hearing aids/…) cannot import; v1 has blank+features+color hair only | Black-field 4×4 sheets, one item per cell | ChatGPT | open |
+| 2026-08-05 | Dark hair 4×4 face sheet (optional) | Color hair sheet wired; dark/varied set still in assets-inbox if we want more styles | `--sheet --grid=4x4` | Existing ChatGPT sheet | open |
+| 2026-08-05 | `face-soft` quiet flat set | Face lessons were on generic/school washes; need blush-cream deck under make-a-face | 4 in-house landscape flats | Native GenerateImage | retired — skin wash felt creepy; face → `board-house` |
+| 2026-08-05 | `board-house` quiet flat set | Shared ClassIn default backdrop (cream/sage/sky) lesson-to-lesson | 4 in-house landscape flats | Native GenerateImage | wired — `house-a`…`d`, DEFAULT_SET |
+| 2026-08-06 | `gym-cool` quiet flat set | Gym fixture was locked to outdoor park meadows (M5 fail / place mismatch) | 4 in-house indoor court washes | Native GenerateImage | wired — `gym-a`…`d`, TOPIC_SETS before outdoor |
+| 2026-08-07 | More distinct `outdoor-fresh` panels (or park scene mix) | minimal / trampoline / zoo M5 — flats rotate but look copy-pasted | Regen outdoor set with stronger motif contrast | bg-flat-sets — shift60 regen a–d (grass / picnic / zoo-gate icon / tent+lantern); midSd ≤5.7; rejected habitat/campsite scenes | wired |
+| 2026-08-07 | Vocab icons: trampoline unit (`trampoline`, `backflip`, `bounce`, `balance`, `spotter`, `mat`) | trampoline New Words M7 | Vocab pack sheet | Art mode batch | wired — Sheet V8 `vocab-trampoline-3x3` |
+| 2026-08-07 | Vocab icons: beach (`sand`, `shell`, `wave`, `ocean`, …) | loop2-beach M7 | Vocab pack | Sheet V7 | wired — `vocab-beach-3x3` |
+| 2026-08-07 | Vocab icons: `farm`, `kitchen`, distinct `bread`/`bakery`/`oven`/`flour` | farm/home/bakery M7 + dup glyphs | Vocab pack | Sheet V9 | wired — `vocab-daily-3x3` |
+| 2026-08-07 | Vocab icons: volcano abstracts (`eruption`, `ash`, `seismic`, `abundant`, `dormant`, `evacuation`, `geothermal`, `subterranean`, `tremors`) — deferred `remnant`/`vulnerable`/`trauma` | volcano M7 | Vocab pack Sheet V12 | Manus `MKgPYijPVwKuYpZXAxjkUW` (ESL asset skill) | wired — Manus sheet imported 2026-08-10; remnant/vulnerable/trauma still deferred |
+| 2026-08-09 | More `beach-warm` quiet flats (beyond a–d) | loop3-beach M5≈0.40 — four washes ping-pong across 11 pages | 2–4 extra landscape quiet flats | `.cursor/skills/bg-flat-sets` in-house | wired — beach-e…h (shell / wave / sand dollar / starfish) |
+| 2026-08-10 | Music / space / camping / biome / hobby-object / specialty-hobby white vocab | Manus zip fill pack gaps | Vocab pack Sheets V13–V18 | `all_generated_images (1).zip` | wired — `docs/manus-white-vocab-import-2026-08-10.md` |
+| 2026-08-07 | `supermarket-cool` quiet flat set | supermarket fixture was on outdoor-fresh meadow | 4 in-house aisle washes (cart / blank tag / tote) | Native GenerateImage | wired — `supermarket-a`…`d`, TOPIC_SETS |
+| 2026-08-07 | `aquarium-cool` quiet flat set | aquarium lessons risk beach-warm steal via ocean/coral; no tank set | 4 in-house aqua tank washes (bubbles / seaweed / waterline) | Native GenerateImage | wired — `aquarium-a`…`d`, TOPIC_SETS before beach |
+| 2026-08-07 | Campsite / playground TOPIC_SETS row | campsite+playground were PLACE_SIGNALS-only → false bgGap | Wire into `outdoor-fresh` | picker fix | wired — camp/camping/campsite/playground in outdoor-fresh |
+| 2026-08-07 | Space pack dock toys at ≥120px short side | space kit has hero modules but 0 sharp docks (all objects ~60–100px) — BoardReadiness drafts hollow stage | Black-field sheet, one prop per large cell | ChatGPT / in-house → `assets:prop` | wired — 10 in-house sharp docks (helmet/jetpack/wrench/flag/dish/flashlight/radio/o2/moon-rock/cubesat) |
+| 2026-08-07 | Vocab icons: library (`shelf`, `quiet` distinct from `library`/`book`/`story`) | library fixture M7 — shared glyphs | Vocab pack | Twemoji / sheet | wired — Twemoji `shelf`/`quiet`/`story` pack rows + dropped quiet→library / story→book aliases |
+| 2026-08-07 | Vocab icons: classical compose unit (`compose`, `melody`, `harmony`, `tempo`, …) | Composing a Classical Masterpiece — 0/12 board art | Pack aliases + SAFE_EMOJI | Producer vocabIcons | wired — aliases to music/song/violin/drum/guitar/notebook/star/mask/dance/trophy; harmony/tempo SAFE |
+| 2026-08-07 | Music stage kit (piano hero + instrument dock ≥6 sharp) | Classical compose lessons fall to dressUp | Black-field instruments | in-house / Kenney | wired — pack=music grand-piano hero + 16 sharp docks from 3 ChatGPT 3×3 sheets |
+| 2026-08-07 | Classical terrace title scene + ivory/gold vocab pack | Composing a Classical Masterpiece needs matching hero BG + dock art | Scene + vocab PNGs | User terrace + in-house icons | wired — `classical-terrace-moonlit` title; `classical-moon` flats; 12 dedicated vocab icons |
+| 2026-08-07 | Dedicated `inspire` vocab icon (retire brain stand-in) | classical-compose match dock — starburst ambiguous, brain interim | Pack PNG ivory/gold lightbulb+lyre | In-house GenerateImage → `inspire.png` | wired — override removed; verify requires inspire.png |
+| 2026-08-08 | White-key prop pack for **health** (doctor, dentist, first-aid, sick/hurt) and **community** (helpers + places: post office, market, bus stop) | shift10 gptbrief/assetswarm coverage scan — no fixtures and no keyed prop pack | White-key prop cutouts in `09_props` | In-house white-key swarm — EDGE-RISK: medical accuracy + cultural sensitivity, prompts need careful review not a blind swarm | open |
+| 2026-08-09 | `job-coach` person cutout (subject:person) | Soccer/sports New Words — PropBank coach→null (empty>whistle); dock used 🧢 interim | Black-field standing coach | Manus hnGqvrq38ZJV3287uWRRbh → merged `job-coach.png` (+5 job people). Soft-3D vs house flat — acceptable for people pack; VocabArt coach→prop tier | wired |
+| 2026-08-09 | `soccer-goal` post+net dock prop | `goal`/`goals` moved deny→ambiguous until honest art exists | Black-field goal frame | Manus / prop-cutouts | wired — `soccer-goal` in bank; propPolicy aliases goal/goals → soccer-goal |
+| 2026-08-09 | Winter `clothing-gloves` usable under winter topics | `gloves` never-blocks clothing so first-aid can reach `aid-medical-glove`; winter→null today | Keep clothing-gloves; topic-aware never OR winter pack tags + theme rank | policy follow-up | open |
+| 2026-08-09 | Soccer `ball` pack icon (replace volleyball-looking `ball.png`) | soccer-coach New Words — pack tier wins over `soccer-ball` prop; kids see a volleyball | Flat soccer ball PNG in `07_vocab-pack` OR topic alias ball→soccer-ball under sport | pack refresh / VocabArt topic prefer | wired — VocabArt skips pack ball on sport lessons → soccer-ball prop; park/generic ball keeps pack |
+| 2026-08-09 | Abstract sports icons: `practice`, `effort`, `teamwork` (or keep deny) | soccer-coach M7 — correctly dropped today; no honest picture | Optional metaphor icons only if unmistakable; else leave text-only | Manus white vocab 3×3 (Sheet V11) / stay null | wired — Manus kaqhoCYzbH8YrB5xKMaSo4 sports sheet (+ win/lose/score/goalkeeper/whistle/uniform); sports `practice` overwrote hobbies |
+| 2026-08-10 | Hobbies / after-school vocab: `hobby`, `club`, `join`, `practice`, `team`, `coach`, `member`, `meeting`, `after-school` | Desktop queue #2 after clubs sheet wired; match-dock coverage for club/hobby units | White-bg 3×3 → `07_vocab-pack` | Manus `esl-asset-generator` (ChatGPT fallback) | wired — Manus kaqhoCYzbH8YrB5xKMaSo4 hobbies sheet → `07_vocab-pack` |
+| 2026-08-09 | More distinct `home-warm` panels (stronger motif contrast) | bathroom-routines M5 warn — home flats rotate but read as cousins | Regen home-a…d with clearer motif contrast | bg-flat-sets | wired — a–d place-true (curtain/lamp/arch/sash); e–h legacy hills kept, no set |
+| 2026-08-09 | Bathroom / wash routines king stage (sink or tub hero + toiletry dock ≥6 sharp) | bathroom-routines activity was honest sortBins after dental-steal fix; still thin charm (S17) | Black-field hero + dock sheet | Manus / prop-cutouts | wired — `bath-bathtub` hero + `ROLEPLAY_DOCK_BATH`; dental still wins first |
+| 2026-08-09 | Firehouse king stage (`fire-truck` + fire dock) | Fire station lessons needed heroProp not generic templates | Promote truck + wire fire dock/STAGE_RULES | prop-cutouts / edbActivities | wired — `fire-truck` hero + `ROLEPLAY_DOCK_FIRE` |
+| 2026-08-09 | Campsite king stage (`tent` + camp dock) | Camping pack had glossy tent exiled from matte kit → sortBins hollow | Drop tent glossy family; wire camp dock | propBank family + edbActivities | wired — `tent` matte hero + `ROLEPLAY_DOCK_CAMP` |
+| 2026-08-09 | Warm-up coloring outline for bathroom / daily wash | bathroom warm uses generic star (no banked PNG) | 2×2 coloring crop in `10_coloring/` | assets:coloring | wired — `coloringOutlines.js` BATHROOM SVG (toothbrush + toothpaste); RULES `bathroom` regex |
+| 2026-08-09 | More distinct `clinic-cool` panels (stronger motif contrast across a–d) | hospital quality loop M5 — doctor/dentist/clown-clinic/loop2-doctor pageDiff~0.22; flats rotate keys but read as cousins | Regen clinic-a…d with clearer motif contrast (waiting room vs exam vs corridor vs night desk) | bg-flat-sets | wired — regen plain / tooth / alcove / bandage-roll corners (blank clipboard rejected — baked text) |
+| 2026-08-09 | `restaurant-warm` quiet flat set | restaurant place signal had no TOPIC_SETS row (bgGap / bakery steal risk) | ChatGPT quiet zip sheet → import | assets:bg --flat | wired — restaurant-a…d + TOPIC_SETS before bakery |
+| 2026-08-09 | `post-cool` quiet flat set | post office / mail lessons had no place wash | ChatGPT quiet zip sheet → import | assets:bg --flat | wired — post-a…d + TOPIC_SETS + PLACE_SIGNALS |
+| 2026-08-10 | `garage-cool` quiet flat set | garage / mechanic place signal had no TOPIC_SETS row | ChatGPT quiet zip 2×2 → import | assets:bg --flat --grid=2x2 | wired — garage-a…d + TOPIC_SETS + PLACE_SIGNALS |
+| 2026-08-10 | Kenney letter-tiles A–Z (CC0 Blue 256px) | Phonics docks needed sharp alphabet tiles | `kenney-letter-a`…`z` pack=phonics | Kenney Letter Tiles → curate/import | wired |
+| 2026-08-10 | Sharp `robot` vocab icon (≥120px short side) | School clubs New Words — `gashapon-robot` / `space-robot-gray` are soft blob splices; VocabArt now refuses them (SAFE_EMOJI 🤖 interim) | Flat pack PNG in `07_vocab-pack` or sharp black-field cutout | prop-cutouts / vocab sheet | wired — `robot.png` from vocab-clubs-3x3 |
+| 2026-08-10 | School-club vocab icons: `art`, `choir`, `math`, `drama` (and ideally pack `robot`) | "All Kinds of School Clubs" — only chess (+ soft robot before gate) had match art; same coverage-gap family | Distinct pack PNGs / curated glyphs | ChatGPT vocab sheet / Twemoji where unambiguous | wired — vocab-clubs-3x3 → art,chess,sports,music,science,drama,robot,choir,math |
+
+## How agents append
+
+During vision / dual-lens review, if you think “I’d rather have X but we don’t”:
+
+1. Add one table row (`Status: open`).
+2. Keep the best **legal** stand-in already in-repo (emoji / pack / scene).
+3. Note the wishlist id/need in `uxVerdict.wishlist` when writing the quality report.
+4. Do **not** block the loop on fetching unless the user asked to fetch now.
+
+---
+
+## 2026-08-12 — B1 band Coverage@Demand (`npm run coverageloop`)
+
+Six B1 topics were added to `TOPIC_CATALOG` (`b1-routines`, `b1-outdoors`,
+`b1-feelings`, `b1-school-life`, `b1-money`, `b1-environment`). Adding them
+moved global Coverage@Demand from **83.9% → 75.0%** — the old number was high
+because the catalog was almost entirely A1/A2 concrete nouns.
+
+**B1 band coverage today: 11%.** (`b1-school-life` is 0% — zero of 15 words.)
+
+The 84 B1 gaps split three ways:
+
+| what to draw | count | action |
+|---|---|---|
+| `object` — still life | 13 | commission (below) |
+| `expression` — faces | 14 | **one** sheet covers all 14 |
+| `abstract` — no honest still life | **57** | **do not commission** |
+
+**Ceiling if we bank every drawable word: 40%.** The Ready art floor is 84%.
+
+| topic | now | ceiling | can ever pass |
+|---|---|---|---|
+| b1-feelings | 13% | ~45% | partly — see the correction below |
+| b1-outdoors | 28% | 56% | no |
+| b1-environment | 7% | 40% | no |
+| b1-routines | 6% | 18% | no |
+| b1-school-life | 0% | 13% | no |
+| b1-money | 13% | 13% | no |
+
+So B1 boards outside feelings cannot reach Ready on art coverage no matter how
+much art we bank. That is a gate question, not an asset question — logged in
+`docs/content-wishlist.md`. Bank the two commissions below because they are
+cheap and real, not because they will move status.
+
+### Commission 1 — B1 feelings face sheet (partly viable)
+
+**Corrected 2026-08-12.** The 100% ceiling above was wrong. It counted all 14 as
+drawable because they are emotions, without asking whether a student could tell
+them apart in a picture. They cannot: `grateful`, `relieved` and `cheerful` are
+three warm smiles, and `homesick` and `lonely` are the same downturned face. A
+match dock built from those teaches nothing — the student is guessing.
+
+Only the visually distinct ones are worth drawing:
+
+`embarrassed` (blush), `nervous` / `anxious`, `confident`, `frustrated` (as
+distinct from plain angry)
+
+Same face, one sheet, so students read the emotion and not a new character. See
+`docs/face-kit.md` for the existing plates to match, and check the existing
+`feelings` pack first — it already holds 16 dock-sharp faces (angry, bored,
+cold, confused, happy, hot, love, proud, sad, scared, shy, sick, silly, sleepy,
+surprised, worried), so a general emotions sheet re-banks ground we hold.
+
+The rest — `grateful, homesick, jealous, lonely, relieved, overwhelmed,
+disappointed, calm` — belong with the abstract words below. They are taught
+through sentence frames, not pictures.
+
+### Commission 2 — B1 still-life objects (13)
+
+`assignment, container, gear, hike, landfill, litter, pollution, presentation,
+recycle, scenery, snooze, sunrise, wilderness`
+
+Still life only — these are B1, so the temptation to draw a kid *doing* the verb
+is strong and it mushes at ~96px. `hike` is boots + trail marker, not a hiking
+child. `gear` is a packed kit laid out. `recycle` is the bin and the symbol.
+
+### Do not commission (57)
+
+`achieve, adventure, afford, allowance, bargain, borrow, budget, chaotic,
+climate, commute, concentrate, deadline, discount, distraction, expense,
+explore, feedback, freshen up, grade, habit, impact, improve, income, invest,
+lend, motivation, navigate, organized, oversleep, participate, prepare,
+prioritize, productive, progress, protect, punctual, reduce, remote, research,
+responsible, reuse, revise, routine, rugged, rush, save, schedule, set off,
+skip, spend, struggle, sustainable, throw away, value, wander, wind down, worth`
+
+There is no honest still life for "worth" or "prioritize". These words belong to
+sentence frames and text tiles (`frameTiles`), which need no art bank at all.
+`suggestedArtType` in `scripts/asset-coverage-loop.mjs` now classifies these as
+`abstract` so future wishlists stop asking anyone to draw them.
+
+### Done: `sink` / `sponge` wash-up → kitchen theme (2026-08-12)
+
+Washing-up (`plate, sponge, sink, dry`) now resolves to **kitchen** with
+`heroKey: bath-sink` (inject into kitchen pack for assessKit ready). Cooking
+without wash-up cues (`spatula/pan/chef`) is kitchen with **no** king — empty >
+bathtub steal. Sink/sponge gained `kitchen`/`dishes`/`washing-up` tags; bathroom
+routines still pin `bath-bathtub`.
+
+### Open: `light` resolves to a dentist lamp
+
+"Lamps and Lighting" (`light, lamp, bulb, switch`) corroborates the lamp sense
+correctly, then resolves to `dental-light` — a dentist's overhead lamp. The
+sense is right and the prop is wrong, so this is prop ranking, not sense: a
+generic lamp/ceiling-light cutout would win it. Worth one still life next time
+a sheet is commissioned. Asserted in `scripts/test-vocab-sense.mjs`.
+
+## 2026-08-12 — Crew30 Manus white vocab QA (post-import)
+
+Wave1 import raised Coverage@Demand **75.2% → 87.1%**. Spot-check (teacher/student):
+
+| Word | Verdict | Action |
+|------|---------|--------|
+| `camp` | Word **"camp"** painted on tile | **Culled** from `07_vocab-pack` — re-prompt still-life tent, no text |
+| `lamp` | White L-corner scrap artifact | Re-prompt clean household lamp (also helps dental-light ranking) |
+| `scenery` | Sheet cell was picture-framed | Re-prompt full-bleed landscape (no ornate frame) |
+| Most others | Readable still-lifes at dock size | Keep |
+
+Importer note: feelings sheet needed `--grid=3x2` + pad name (INDEX said `2x3` / 5 names).

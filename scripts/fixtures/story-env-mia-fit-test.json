@@ -1,0 +1,192 @@
+{
+  "title": "Mia Env Fit Test",
+  "warmUp": {
+    "question": "Where is Mia?",
+    "sampleAnswer": "Mia is at home."
+  },
+  "vocabulary": [
+    { "word": "classroom", "emoji": "🏫", "sentence": "Mia is in the classroom." },
+    { "word": "home", "emoji": "🏠", "sentence": "Mia is at home." },
+    { "word": "bedroom", "emoji": "🛏️", "sentence": "Mia is in the bedroom." },
+    { "word": "pool", "emoji": "🏊", "sentence": "Mia is by the pool." },
+    { "word": "soccer", "emoji": "⚽", "sentence": "Mia is on the field." },
+    { "word": "zoo", "emoji": "🦓", "sentence": "Mia is at the zoo." }
+  ],
+  "sentenceFrames": [
+    "Mia is at the ____.",
+    "I see Mia ____."
+  ],
+  "story": {
+    "title": "Mia Visits Places",
+    "pages": [
+      {
+        "heading": "Classroom",
+        "text": "Mia stands in the classroom.",
+        "visualTheme": "school",
+        "visualCaption": "classroom",
+        "storyScene": {
+          "templateId": "locationActivity",
+          "actionVerb": "stands",
+          "slots": {
+            "backdrop": { "propKey": "story-env-classroom" },
+            "actor": { "who": "mia", "pose": "idle", "emotion": "happy" }
+          }
+        }
+      },
+      {
+        "heading": "Home",
+        "text": "Mia stands at home.",
+        "visualTheme": "home",
+        "visualCaption": "home",
+        "storyScene": {
+          "templateId": "locationActivity",
+          "actionVerb": "stands",
+          "slots": {
+            "backdrop": { "propKey": "story-env-home" },
+            "actor": { "who": "mia", "pose": "idle", "emotion": "happy" }
+          }
+        }
+      },
+      {
+        "heading": "Bedroom",
+        "text": "Mia stands in the bedroom.",
+        "visualTheme": "home",
+        "visualCaption": "bedroom",
+        "storyScene": {
+          "templateId": "locationActivity",
+          "actionVerb": "stands",
+          "slots": {
+            "backdrop": { "propKey": "story-env-bedroom" },
+            "actor": { "who": "mia", "pose": "idle", "emotion": "happy" }
+          }
+        }
+      },
+      {
+        "heading": "Pool",
+        "text": "Mia stands by the pool.",
+        "visualTheme": "sports",
+        "visualCaption": "pool",
+        "storyScene": {
+          "templateId": "locationActivity",
+          "actionVerb": "stands",
+          "slots": {
+            "backdrop": { "propKey": "story-env-pool-edge" },
+            "actor": { "who": "mia", "pose": "idle", "emotion": "happy" }
+          }
+        }
+      },
+      {
+        "heading": "Soccer field",
+        "text": "Mia stands on the soccer field.",
+        "visualTheme": "sports",
+        "visualCaption": "soccer field",
+        "storyScene": {
+          "templateId": "locationActivity",
+          "actionVerb": "stands",
+          "slots": {
+            "backdrop": { "propKey": "story-env-soccer-field" },
+            "actor": { "who": "mia", "pose": "idle", "emotion": "happy" }
+          }
+        }
+      },
+      {
+        "heading": "Zoo",
+        "text": "Mia stands at the zoo.",
+        "visualTheme": "animals",
+        "visualCaption": "zoo",
+        "storyScene": {
+          "templateId": "locationActivity",
+          "actionVerb": "stands",
+          "slots": {
+            "backdrop": { "propKey": "story-env-zoo" },
+            "actor": { "who": "mia", "pose": "idle", "emotion": "happy" }
+          }
+        }
+      },
+      {
+        "heading": "Woods",
+        "text": "Mia stands in the woods.",
+        "visualTheme": "nature",
+        "visualCaption": "woods",
+        "storyScene": {
+          "templateId": "locationActivity",
+          "actionVerb": "stands",
+          "slots": {
+            "backdrop": { "propKey": "story-env-woods" },
+            "actor": { "who": "mia", "pose": "idle", "emotion": "happy" }
+          }
+        }
+      },
+      {
+        "heading": "Hotel desk",
+        "text": "Mia stands at the hotel desk.",
+        "visualTheme": "travel",
+        "visualCaption": "hotel lobby",
+        "storyScene": {
+          "templateId": "locationActivity",
+          "actionVerb": "stands",
+          "slots": {
+            "backdrop": { "propKey": "story-env-hotel-lobby" },
+            "actor": { "who": "mia", "pose": "idle", "emotion": "happy" }
+          }
+        }
+      },
+      {
+        "heading": "Bus interior",
+        "text": "Mia stands on the bus.",
+        "visualTheme": "travel",
+        "visualCaption": "bus interior",
+        "storyScene": {
+          "templateId": "locationActivity",
+          "actionVerb": "stands",
+          "slots": {
+            "backdrop": { "propKey": "story-env-bus-interior" },
+            "actor": { "who": "mia", "pose": "idle", "emotion": "happy" }
+          }
+        }
+      },
+      {
+        "heading": "Pasture",
+        "text": "Mia stands in the pasture.",
+        "visualTheme": "nature",
+        "visualCaption": "pasture",
+        "storyScene": {
+          "templateId": "locationActivity",
+          "actionVerb": "stands",
+          "slots": {
+            "backdrop": { "propKey": "story-env-pasture" },
+            "actor": { "who": "mia", "pose": "idle", "emotion": "happy" }
+          }
+        }
+      },
+      {
+        "heading": "Grass strip",
+        "text": "Mia stands on the grass.",
+        "visualTheme": "nature",
+        "visualCaption": "grass field",
+        "storyScene": {
+          "templateId": "locationActivity",
+          "actionVerb": "stands",
+          "slots": {
+            "backdrop": { "propKey": "story-env-grass-field" },
+            "actor": { "who": "mia", "pose": "idle", "emotion": "happy" }
+          }
+        }
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is Mia?", "sampleAnswer": "At home." }
+    ],
+    "creativeQuestions": [
+      { "question": "Where do you like to go?", "sampleAnswer": "I like the park." }
+    ]
+  },
+  "speakingQuestions": [
+    { "question": "Where are you?", "sampleAnswer": "I am at home." }
+  ],
+  "activity": {
+    "title": "Match the places",
+    "prompt": "Match each place.",
+    "templates": ["Mia is at the ____."]
+  }
+}

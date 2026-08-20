@@ -1,0 +1,1654 @@
+{
+  "generatedAt": "2026-08-16T19:21:34.310Z",
+  "note": "No re-filter. Group1 = kept168 + approved60. Group2 = remaining review. Exact pack dedupe only. Manus not sent.",
+  "inputs": {
+    "kept168": 168,
+    "approved60": 60,
+    "review103": 103,
+    "otherReview": 43,
+    "approvedNotInReview": []
+  },
+  "group1": {
+    "count": 228,
+    "byOrigin": {
+      "kept168": 168,
+      "approved60": 60
+    },
+    "skipped": [],
+    "rows": [
+      {
+        "word": "absorb",
+        "key": "absorb",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "ache",
+        "key": "ache",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "adorn",
+        "key": "adorn",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "alert",
+        "key": "alert",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "amaze",
+        "key": "amaze",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "amplify",
+        "key": "amplify",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "amuse",
+        "key": "amuse",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "animate",
+        "key": "animate",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "applaud",
+        "key": "applaud",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "arise",
+        "key": "arise",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "arouse",
+        "key": "arouse",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "arrest",
+        "key": "arrest",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "bathe",
+        "key": "bathe",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "beautify",
+        "key": "beautify",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "bellow",
+        "key": "bellow",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "bind",
+        "key": "bind",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "blast",
+        "key": "blast",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "blaze",
+        "key": "blaze",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "bleed",
+        "key": "bleed",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "blur",
+        "key": "blur",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "bomb",
+        "key": "bomb",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "bore",
+        "key": "bore",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "breed",
+        "key": "breed",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "broadcast",
+        "key": "broadcast",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "broaden",
+        "key": "broaden",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "bump",
+        "key": "bump",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "burgle",
+        "key": "burgle",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "bust",
+        "key": "bust",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "bustle",
+        "key": "bustle",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "butcher",
+        "key": "butcher",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "choke",
+        "key": "choke",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "clog",
+        "key": "clog",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "collapse",
+        "key": "collapse",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "construct",
+        "key": "construct",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "cool",
+        "key": "cool",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "crash",
+        "key": "crash",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "cultivate",
+        "key": "cultivate",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "cure",
+        "key": "cure",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "damage",
+        "key": "damage",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "decay",
+        "key": "decay",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "defeat",
+        "key": "defeat",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "defend",
+        "key": "defend",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "demolish",
+        "key": "demolish",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "deposit",
+        "key": "deposit",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "descend",
+        "key": "descend",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "destroy",
+        "key": "destroy",
+        "cefr": "A2",
+        "origin": "kept168"
+      },
+      {
+        "word": "detach",
+        "key": "detach",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "devastate",
+        "key": "devastate",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "dial",
+        "key": "dial",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "die",
+        "key": "die",
+        "cefr": "A2",
+        "origin": "kept168"
+      },
+      {
+        "word": "disconnect",
+        "key": "disconnect",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "displace",
+        "key": "displace",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "disrupt",
+        "key": "disrupt",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "distribute",
+        "key": "distribute",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "divert",
+        "key": "divert",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "divorce",
+        "key": "divorce",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "double",
+        "key": "double",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "drown",
+        "key": "drown",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "emerge",
+        "key": "emerge",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "endanger",
+        "key": "endanger",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "engulf",
+        "key": "engulf",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "entertain",
+        "key": "entertain",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "erupt",
+        "key": "erupt",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "evacuate",
+        "key": "evacuate",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "execute",
+        "key": "execute",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "explode",
+        "key": "explode",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "extract",
+        "key": "extract",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "fade",
+        "key": "fade",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "faint",
+        "key": "faint",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "falter",
+        "key": "falter",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "fax",
+        "key": "fax",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "fit",
+        "key": "fit",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "flow",
+        "key": "flow",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "flunk",
+        "key": "flunk",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "freak",
+        "key": "freak",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "free",
+        "key": "free",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "grip",
+        "key": "grip",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "harm",
+        "key": "harm",
+        "cefr": "A2",
+        "origin": "kept168"
+      },
+      {
+        "word": "haunt",
+        "key": "haunt",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "heal",
+        "key": "heal",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "heap",
+        "key": "heap",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "hijack",
+        "key": "hijack",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "hire",
+        "key": "hire",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "horrify",
+        "key": "horrify",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "hover",
+        "key": "hover",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "hush",
+        "key": "hush",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "illuminate",
+        "key": "illuminate",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "immerse",
+        "key": "immerse",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "imprison",
+        "key": "imprison",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "indent",
+        "key": "indent",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "inject",
+        "key": "inject",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "injure",
+        "key": "injure",
+        "cefr": "A2",
+        "origin": "kept168"
+      },
+      {
+        "word": "inscribe",
+        "key": "inscribe",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "inspect",
+        "key": "inspect",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "intrude",
+        "key": "intrude",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "invade",
+        "key": "invade",
+        "cefr": "A2",
+        "origin": "kept168"
+      },
+      {
+        "word": "itch",
+        "key": "itch",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "kill",
+        "key": "kill",
+        "cefr": "A1",
+        "origin": "kept168"
+      },
+      {
+        "word": "lay",
+        "key": "lay",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "lengthen",
+        "key": "lengthen",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "lighten",
+        "key": "lighten",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "magnify",
+        "key": "magnify",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "mess",
+        "key": "mess",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "mumble",
+        "key": "mumble",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "mutter",
+        "key": "mutter",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "navigate",
+        "key": "navigate",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "outgrow",
+        "key": "outgrow",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "overtake",
+        "key": "overtake",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "overthrow",
+        "key": "overthrow",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "overturn",
+        "key": "overturn",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "paralyze",
+        "key": "paralyze",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "pave",
+        "key": "pave",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "poison",
+        "key": "poison",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "purify",
+        "key": "purify",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "radiate",
+        "key": "radiate",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "reclaim",
+        "key": "reclaim",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "recover",
+        "key": "recover",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "redo",
+        "key": "redo",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "retreat",
+        "key": "retreat",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "rise",
+        "key": "rise",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "rob",
+        "key": "rob",
+        "cefr": "A2",
+        "origin": "kept168"
+      },
+      {
+        "word": "ruin",
+        "key": "ruin",
+        "cefr": "A2",
+        "origin": "kept168"
+      },
+      {
+        "word": "scare",
+        "key": "scare",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "scold",
+        "key": "scold",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "seize",
+        "key": "seize",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "shoplift",
+        "key": "shoplift",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "shrink",
+        "key": "shrink",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "slap",
+        "key": "slap",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "sob",
+        "key": "sob",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "spoil",
+        "key": "spoil",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "stab",
+        "key": "stab",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "stammer",
+        "key": "stammer",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "startle",
+        "key": "startle",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "starve",
+        "key": "starve",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "steal",
+        "key": "steal",
+        "cefr": "A2",
+        "origin": "kept168"
+      },
+      {
+        "word": "stink",
+        "key": "stink",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "straighten",
+        "key": "straighten",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "strangle",
+        "key": "strangle",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "stream",
+        "key": "stream",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "stride",
+        "key": "stride",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "strip",
+        "key": "strip",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "struggle",
+        "key": "struggle",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "stun",
+        "key": "stun",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "subtract",
+        "key": "subtract",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "suck",
+        "key": "suck",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "sunbathe",
+        "key": "sunbathe",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "surrender",
+        "key": "surrender",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "surround",
+        "key": "surround",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "swell",
+        "key": "swell",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "tease",
+        "key": "tease",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "terrify",
+        "key": "terrify",
+        "cefr": "A2",
+        "origin": "kept168"
+      },
+      {
+        "word": "tick",
+        "key": "tick",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "tighten",
+        "key": "tighten",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "toil",
+        "key": "toil",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "torture",
+        "key": "torture",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "uncover",
+        "key": "uncover",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "undo",
+        "key": "undo",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "upload",
+        "key": "upload",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "vanish",
+        "key": "vanish",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "vibrate",
+        "key": "vibrate",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "warm",
+        "key": "warm",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "warn",
+        "key": "warn",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "weaken",
+        "key": "weaken",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "wed",
+        "key": "wed",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "widen",
+        "key": "widen",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "wither",
+        "key": "wither",
+        "cefr": "B1",
+        "origin": "kept168"
+      },
+      {
+        "word": "worsen",
+        "key": "worsen",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "wound",
+        "key": "wound",
+        "cefr": "B2",
+        "origin": "kept168"
+      },
+      {
+        "word": "accompany",
+        "key": "accompany",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "advance",
+        "key": "advance",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "aid",
+        "key": "aid",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "announce",
+        "key": "announce",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "annoy",
+        "key": "annoy",
+        "cefr": "A2",
+        "origin": "approved60"
+      },
+      {
+        "word": "apologize",
+        "key": "apologize",
+        "cefr": "A2",
+        "origin": "approved60"
+      },
+      {
+        "word": "approach",
+        "key": "approach",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "arrange",
+        "key": "arrange",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "assist",
+        "key": "assist",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "attract",
+        "key": "attract",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "avoid",
+        "key": "avoid",
+        "cefr": "A2",
+        "origin": "approved60"
+      },
+      {
+        "word": "babysit",
+        "key": "babysit",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "bless",
+        "key": "bless",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "browse",
+        "key": "browse",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "bully",
+        "key": "bully",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "cancel",
+        "key": "cancel",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "capture",
+        "key": "capture",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "cheat",
+        "key": "cheat",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "clear",
+        "key": "clear",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "commute",
+        "key": "commute",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "compete",
+        "key": "compete",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "conceal",
+        "key": "conceal",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "confront",
+        "key": "confront",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "disturb",
+        "key": "disturb",
+        "cefr": "A2",
+        "origin": "approved60"
+      },
+      {
+        "word": "donate",
+        "key": "donate",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "download",
+        "key": "download",
+        "cefr": "A2",
+        "origin": "approved60"
+      },
+      {
+        "word": "earn",
+        "key": "earn",
+        "cefr": "A2",
+        "origin": "approved60"
+      },
+      {
+        "word": "edit",
+        "key": "edit",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "enclose",
+        "key": "enclose",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "equip",
+        "key": "equip",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "exhibit",
+        "key": "exhibit",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "extend",
+        "key": "extend",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "forbid",
+        "key": "forbid",
+        "cefr": "A2",
+        "origin": "approved60"
+      },
+      {
+        "word": "illustrate",
+        "key": "illustrate",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "install",
+        "key": "install",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "interrupt",
+        "key": "interrupt",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "introduce",
+        "key": "introduce",
+        "cefr": "A1",
+        "origin": "approved60"
+      },
+      {
+        "word": "investigate",
+        "key": "investigate",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "launch",
+        "key": "launch",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "locate",
+        "key": "locate",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "manufacture",
+        "key": "manufacture",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "merge",
+        "key": "merge",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "operate",
+        "key": "operate",
+        "cefr": "A2",
+        "origin": "approved60"
+      },
+      {
+        "word": "organize",
+        "key": "organize",
+        "cefr": "A2",
+        "origin": "approved60"
+      },
+      {
+        "word": "praise",
+        "key": "praise",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "prevent",
+        "key": "prevent",
+        "cefr": "A2",
+        "origin": "approved60"
+      },
+      {
+        "word": "produce",
+        "key": "produce",
+        "cefr": "A2",
+        "origin": "approved60"
+      },
+      {
+        "word": "protect",
+        "key": "protect",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "protest",
+        "key": "protest",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "rebuild",
+        "key": "rebuild",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "replace",
+        "key": "replace",
+        "cefr": "A2",
+        "origin": "approved60"
+      },
+      {
+        "word": "restore",
+        "key": "restore",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "teach",
+        "key": "teach",
+        "cefr": "A1",
+        "origin": "approved60"
+      },
+      {
+        "word": "thank",
+        "key": "thank",
+        "cefr": "A1",
+        "origin": "approved60"
+      },
+      {
+        "word": "threaten",
+        "key": "threaten",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "transfer",
+        "key": "transfer",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "transform",
+        "key": "transform",
+        "cefr": "B1",
+        "origin": "approved60"
+      },
+      {
+        "word": "transport",
+        "key": "transport",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "withdraw",
+        "key": "withdraw",
+        "cefr": "B2",
+        "origin": "approved60"
+      },
+      {
+        "word": "witness",
+        "key": "witness",
+        "cefr": "B1",
+        "origin": "approved60"
+      }
+    ]
+  },
+  "group2": {
+    "count": 43,
+    "origin": "review_other",
+    "skipped": [],
+    "rows": [
+      {
+        "word": "adore",
+        "key": "adore",
+        "cefr": "B2",
+        "origin": "review_other"
+      },
+      {
+        "word": "alter",
+        "key": "alter",
+        "cefr": "B2",
+        "origin": "review_other"
+      },
+      {
+        "word": "appear",
+        "key": "appear",
+        "cefr": "A2",
+        "origin": "review_other"
+      },
+      {
+        "word": "appoint",
+        "key": "appoint",
+        "cefr": "B1",
+        "origin": "review_other"
+      },
+      {
+        "word": "back",
+        "key": "back",
+        "cefr": "B1",
+        "origin": "review_other"
+      },
+      {
+        "word": "ban",
+        "key": "ban",
+        "cefr": "B2",
+        "origin": "review_other"
+      },
+      {
+        "word": "bare",
+        "key": "bare",
+        "cefr": "B2",
+        "origin": "review_other"
+      },
+      {
+        "word": "begin",
+        "key": "begin",
+        "cefr": "A1",
+        "origin": "review_other"
+      },
+      {
+        "word": "bet",
+        "key": "bet",
+        "cefr": "B1",
+        "origin": "review_other"
+      },
+      {
+        "word": "bid",
+        "key": "bid",
+        "cefr": "B2",
+        "origin": "review_other"
+      },
+      {
+        "word": "clone",
+        "key": "clone",
+        "cefr": "A2",
+        "origin": "review_other"
+      },
+      {
+        "word": "come",
+        "key": "come",
+        "cefr": "A1",
+        "origin": "review_other"
+      },
+      {
+        "word": "encounter",
+        "key": "encounter",
+        "cefr": "B2",
+        "origin": "review_other"
+      },
+      {
+        "word": "enjoy",
+        "key": "enjoy",
+        "cefr": "A1",
+        "origin": "review_other"
+      },
+      {
+        "word": "export",
+        "key": "export",
+        "cefr": "B2",
+        "origin": "review_other"
+      },
+      {
+        "word": "expose",
+        "key": "expose",
+        "cefr": "B1",
+        "origin": "review_other"
+      },
+      {
+        "word": "found",
+        "key": "found",
+        "cefr": "B2",
+        "origin": "review_other"
+      },
+      {
+        "word": "go",
+        "key": "go",
+        "cefr": "A1",
+        "origin": "review_other"
+      },
+      {
+        "word": "hear",
+        "key": "hear",
+        "cefr": "A1",
+        "origin": "review_other"
+      },
+      {
+        "word": "import",
+        "key": "import",
+        "cefr": "B2",
+        "origin": "review_other"
+      },
+      {
+        "word": "learn",
+        "key": "learn",
+        "cefr": "A1",
+        "origin": "review_other"
+      },
+      {
+        "word": "license",
+        "key": "license",
+        "cefr": "A2",
+        "origin": "review_other"
+      },
+      {
+        "word": "limit",
+        "key": "limit",
+        "cefr": "B1",
+        "origin": "review_other"
+      },
+      {
+        "word": "link",
+        "key": "link",
+        "cefr": "B1",
+        "origin": "review_other"
+      },
+      {
+        "word": "live",
+        "key": "live",
+        "cefr": "A1",
+        "origin": "review_other"
+      },
+      {
+        "word": "modify",
+        "key": "modify",
+        "cefr": "B1",
+        "origin": "review_other"
+      },
+      {
+        "word": "multiply",
+        "key": "multiply",
+        "cefr": "B2",
+        "origin": "review_other"
+      },
+      {
+        "word": "oppose",
+        "key": "oppose",
+        "cefr": "A2",
+        "origin": "review_other"
+      },
+      {
+        "word": "process",
+        "key": "process",
+        "cefr": "B2",
+        "origin": "review_other"
+      },
+      {
+        "word": "project",
+        "key": "project",
+        "cefr": "B2",
+        "origin": "review_other"
+      },
+      {
+        "word": "quit",
+        "key": "quit",
+        "cefr": "A2",
+        "origin": "review_other"
+      },
+      {
+        "word": "rebel",
+        "key": "rebel",
+        "cefr": "B2",
+        "origin": "review_other"
+      },
+      {
+        "word": "reduce",
+        "key": "reduce",
+        "cefr": "B1",
+        "origin": "review_other"
+      },
+      {
+        "word": "remind",
+        "key": "remind",
+        "cefr": "A2",
+        "origin": "review_other"
+      },
+      {
+        "word": "repeat",
+        "key": "repeat",
+        "cefr": "A1",
+        "origin": "review_other"
+      },
+      {
+        "word": "retire",
+        "key": "retire",
+        "cefr": "A2",
+        "origin": "review_other"
+      },
+      {
+        "word": "see",
+        "key": "see",
+        "cefr": "A1",
+        "origin": "review_other"
+      },
+      {
+        "word": "settle",
+        "key": "settle",
+        "cefr": "B1",
+        "origin": "review_other"
+      },
+      {
+        "word": "shift",
+        "key": "shift",
+        "cefr": "B1",
+        "origin": "review_other"
+      },
+      {
+        "word": "stay",
+        "key": "stay",
+        "cefr": "A1",
+        "origin": "review_other"
+      },
+      {
+        "word": "translate",
+        "key": "translate",
+        "cefr": "B1",
+        "origin": "review_other"
+      },
+      {
+        "word": "transmit",
+        "key": "transmit",
+        "cefr": "B2",
+        "origin": "review_other"
+      },
+      {
+        "word": "try",
+        "key": "try",
+        "cefr": "A2",
+        "origin": "review_other"
+      }
+    ]
+  }
+}

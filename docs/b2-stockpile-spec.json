@@ -1,0 +1,4017 @@
+{
+  "spec": "b2-final-vertical-cultivation-classification",
+  "updated_at": "2026-08-18T23:32:16.535Z",
+  "source": "B2 final vertical cultivation prompt plus existing Pre-A1/A1/A2/B1 ledgers and live bank reuse scan.",
+  "product_ceiling": true,
+  "future_only": [
+    "C1",
+    "C2"
+  ],
+  "no_wiring": true,
+  "total_proposals_reviewed": 413,
+  "counts": {
+    "proposals_reviewed": 413,
+    "generate": 55,
+    "reuse_existing": 103,
+    "code_later": 179,
+    "defer_c1": 76,
+    "hold": 0
+  },
+  "by_family": {
+    "argument-architecture": {
+      "GENERATE": 6,
+      "REUSE_EXISTING": 5,
+      "CODE_LATER": 12,
+      "DEFER_C1": 5
+    },
+    "trade-offs": {
+      "GENERATE": 6,
+      "REUSE_EXISTING": 4,
+      "CODE_LATER": 10,
+      "DEFER_C1": 4
+    },
+    "multi-perspective": {
+      "GENERATE": 5,
+      "REUSE_EXISTING": 5,
+      "CODE_LATER": 9,
+      "DEFER_C1": 5
+    },
+    "two-source-synthesis": {
+      "GENERATE": 5,
+      "REUSE_EXISTING": 3,
+      "CODE_LATER": 9,
+      "DEFER_C1": 5
+    },
+    "idea-hierarchy": {
+      "GENERATE": 3,
+      "REUSE_EXISTING": 6,
+      "CODE_LATER": 7,
+      "DEFER_C1": 2
+    },
+    "multi-constraint": {
+      "GENERATE": 6,
+      "REUSE_EXISTING": 4,
+      "CODE_LATER": 14,
+      "DEFER_C1": 6
+    },
+    "negotiation-counterproposal": {
+      "GENERATE": 4,
+      "REUSE_EXISTING": 6,
+      "CODE_LATER": 10,
+      "DEFER_C1": 6
+    },
+    "hypothetical-risk": {
+      "GENERATE": 3,
+      "REUSE_EXISTING": 7,
+      "CODE_LATER": 9,
+      "DEFER_C1": 5
+    },
+    "reading-stance-purpose": {
+      "GENERATE": 3,
+      "REUSE_EXISTING": 6,
+      "CODE_LATER": 10,
+      "DEFER_C1": 5
+    },
+    "multi-speaker-listening": {
+      "GENERATE": 3,
+      "REUSE_EXISTING": 6,
+      "CODE_LATER": 9,
+      "DEFER_C1": 4
+    },
+    "presentation-audience": {
+      "GENERATE": 2,
+      "REUSE_EXISTING": 5,
+      "CODE_LATER": 12,
+      "DEFER_C1": 3
+    },
+    "mediation-organize-simplify": {
+      "GENERATE": 2,
+      "REUSE_EXISTING": 6,
+      "CODE_LATER": 9,
+      "DEFER_C1": 3
+    },
+    "floor-management": {
+      "GENERATE": 1,
+      "REUSE_EXISTING": 7,
+      "CODE_LATER": 9,
+      "DEFER_C1": 3
+    },
+    "audience-register": {
+      "GENERATE": 1,
+      "REUSE_EXISTING": 7,
+      "CODE_LATER": 11,
+      "DEFER_C1": 3
+    },
+    "writing-revision": {
+      "GENERATE": 2,
+      "REUSE_EXISTING": 7,
+      "CODE_LATER": 13,
+      "DEFER_C1": 2
+    },
+    "narrative-extension": {
+      "GENERATE": 2,
+      "REUSE_EXISTING": 8,
+      "CODE_LATER": 10,
+      "DEFER_C1": 4
+    },
+    "grammar-semantic-relations": {
+      "GENERATE": 1,
+      "REUSE_EXISTING": 8,
+      "CODE_LATER": 12,
+      "DEFER_C1": 2
+    },
+    "sophisticated-argument-rhetoric": {
+      "GENERATE": 0,
+      "REUSE_EXISTING": 3,
+      "CODE_LATER": 4,
+      "DEFER_C1": 9
+    }
+  },
+  "durable_root": "harvested/manus-b2-stockpile",
+  "tracked_inventory": "docs/b2-stockpile-inventory.json",
+  "code_later": "docs/b2-code-later.json",
+  "level_model": "A2 links; B1 structures and adapts; B2 shapes, weighs, and answers back.",
+  "routing": {
+    "generate": "Genuinely missing pictorial B2 relations in young-learner school/club/sport/trip contexts.",
+    "reuse_existing": "Existing semantic assets already communicate the relation; folder/name match is not required.",
+    "code_later": "Boxes, grids, rails, tables, arrows, paragraph/sentence containers, labels, dynamic text, writing, scores, Venn regions, highlights, and layouts.",
+    "defer_c1": "Sophisticated argument/rhetoric, rebuttal chains, irony/bias, academic research, 3+ complex sources, diplomacy, high-stakes negotiation, long essays, mixed conditionals, abstract policy."
+  },
+  "proposals": [
+    {
+      "key": "b2-argument-main-claim-with-two-supports",
+      "concept": "argument-main-claim-with-two-supports",
+      "brief": "one large central picture idea held up by two smaller concrete support picture cards, no labels",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-argument-support-stronger-than-example",
+      "concept": "argument-support-stronger-than-example",
+      "brief": "two support cards under one claim where one clearly bears more visual weight than the other, no numbers or words",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-argument-position-answers-counterpoint-lite",
+      "concept": "argument-position-answers-counterpoint-lite",
+      "brief": "child holds a chosen view card while calmly answering one opposite view card with a practical picture cue, no text",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-argument-evidence-changes-view",
+      "concept": "argument-evidence-changes-view",
+      "brief": "new concrete clue card gently turns a child from one view card toward another, no writing",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-argument-weak-support-wobbles",
+      "concept": "argument-weak-support-wobbles",
+      "brief": "support picture card visibly wobbles under a claim tile while a stronger support stands firm, no text",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-argument-view-reason-response-loop",
+      "concept": "argument-view-reason-response-loop",
+      "brief": "view card links to reason object, then to response bubble, as one compact loop, no words",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-argument-simple-reason",
+      "concept": "argument-simple-reason",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-reason-example-supports-answer",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-argument-opinion-reason-outcome",
+      "concept": "argument-opinion-reason-outcome",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-viewpoint-opinion-reason-outcome",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-argument-one-evidence-pin",
+      "concept": "argument-one-evidence-pin",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-comp-attribute-evidence-pin",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-argument-cause-link",
+      "concept": "argument-cause-link",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-conn-because-cause-spark",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-argument-two-familiar-perspectives",
+      "concept": "argument-two-familiar-perspectives",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-viewpoint-two-familiar-perspectives",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-argument-architecture-code-later-01",
+      "concept": "argument-architecture-code_later-01",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-argument-architecture-code-later-02",
+      "concept": "argument-architecture-code_later-02",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-argument-architecture-code-later-03",
+      "concept": "argument-architecture-code_later-03",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-argument-architecture-code-later-04",
+      "concept": "argument-architecture-code_later-04",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-argument-architecture-code-later-05",
+      "concept": "argument-architecture-code_later-05",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-argument-architecture-code-later-06",
+      "concept": "argument-architecture-code_later-06",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-argument-architecture-code-later-07",
+      "concept": "argument-architecture-code_later-07",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-argument-architecture-code-later-08",
+      "concept": "argument-architecture-code_later-08",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-argument-architecture-code-later-09",
+      "concept": "argument-architecture-code_later-09",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-argument-architecture-code-later-10",
+      "concept": "argument-architecture-code_later-10",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-argument-architecture-code-later-11",
+      "concept": "argument-architecture-code_later-11",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-argument-architecture-code-later-12",
+      "concept": "argument-architecture-code_later-12",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-argument-rebuttal-chain",
+      "concept": "argument-rebuttal-chain",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-argument-rhetorical-strategy",
+      "concept": "argument-rhetorical-strategy",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-argument-academic-claim-citation",
+      "concept": "argument-academic-claim-citation",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-argument-ironic-position",
+      "concept": "argument-ironic-position",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-argument-abstract-policy-case",
+      "concept": "argument-abstract-policy-case",
+      "family": "argument-architecture",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-tradeoff-comfort-vs-speed",
+      "concept": "tradeoff-comfort-vs-speed",
+      "brief": "school trip choice between comfy slow route and faster less comfy route, both visible, no words",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-tradeoff-fun-vs-safety-margin",
+      "concept": "tradeoff-fun-vs-safety-margin",
+      "brief": "club activity choice shows exciting option balanced against safer prepared option, no danger and no text",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-tradeoff-cost-token-vs-quality-object",
+      "concept": "tradeoff-cost-token-vs-quality-object",
+      "brief": "two school project materials: cheaper plain option and better limited-token option, no prices or numbers",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-tradeoff-time-vs-detail",
+      "concept": "tradeoff-time-vs-detail",
+      "brief": "quick simple poster beside slower detailed poster with blank surfaces only, no writing",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-tradeoff-team-preference-split",
+      "concept": "tradeoff-team-preference-split",
+      "brief": "team choice card pulled toward two different activity preferences by two children, no labels",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-tradeoff-compromise-middle-option",
+      "concept": "tradeoff-compromise-middle-option",
+      "brief": "middle choice keeps part of two competing child-friendly goals, no words",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-tradeoff-simple-compare-balance",
+      "concept": "tradeoff-simple-compare-balance",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-conn-contrast-balance-scale",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-tradeoff-preference-choice",
+      "concept": "tradeoff-preference-choice",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-comp-preference-heart-choice",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-tradeoff-three-options",
+      "concept": "tradeoff-three-options",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-choose-three-practical-options",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-tradeoff-options-two-paths",
+      "concept": "tradeoff-options-two-paths",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-problem-options-two-paths",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-trade-offs-code-later-01",
+      "concept": "trade-offs-code_later-01",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-trade-offs-code-later-02",
+      "concept": "trade-offs-code_later-02",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-trade-offs-code-later-03",
+      "concept": "trade-offs-code_later-03",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-trade-offs-code-later-04",
+      "concept": "trade-offs-code_later-04",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-trade-offs-code-later-05",
+      "concept": "trade-offs-code_later-05",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-trade-offs-code-later-06",
+      "concept": "trade-offs-code_later-06",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-trade-offs-code-later-07",
+      "concept": "trade-offs-code_later-07",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-trade-offs-code-later-08",
+      "concept": "trade-offs-code_later-08",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-trade-offs-code-later-09",
+      "concept": "trade-offs-code_later-09",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-trade-offs-code-later-10",
+      "concept": "trade-offs-code_later-10",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-tradeoff-roi-matrix",
+      "concept": "tradeoff-roi-matrix",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-tradeoff-political-values",
+      "concept": "tradeoff-political-values",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-tradeoff-ethical-dilemma",
+      "concept": "tradeoff-ethical-dilemma",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-tradeoff-formal-cost-benefit-analysis",
+      "concept": "tradeoff-formal-cost-benefit-analysis",
+      "family": "trade-offs",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-perspective-student-teacher-parent-view",
+      "concept": "perspective-student-teacher-parent-view",
+      "brief": "same school event seen by student, teacher, and parent icons from three gentle viewpoints, no labels",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-perspective-main-vs-another-view",
+      "concept": "perspective-main-vs-another-view",
+      "brief": "one main view card in front with another view card respectfully beside it, no text",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-perspective-group-project-roles-differ",
+      "concept": "perspective-group-project-roles-differ",
+      "brief": "designer, builder, and presenter children each notice different part of same project, no words",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-perspective-audience-needs-differ",
+      "concept": "perspective-audience-needs-differ",
+      "brief": "younger child and older child react differently to same blank poster, no readable content",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-perspective-view-changes-after-listening",
+      "concept": "perspective-view-changes-after-listening",
+      "brief": "child listens to another view bubble and adjusts own choice card slightly, no text",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-perspective-two-familiar-perspectives",
+      "concept": "perspective-two-familiar-perspectives",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-viewpoint-two-familiar-perspectives",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-perspective-opinion-reason-outcome",
+      "concept": "perspective-opinion-reason-outcome",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-viewpoint-opinion-reason-outcome",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-perspective-predict-outcome-check",
+      "concept": "perspective-predict-outcome-check",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-viewpoint-predict-outcome-check",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-perspective-listener-check",
+      "concept": "perspective-listener-check",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-conversation-check-understanding",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-perspective-preference-heart",
+      "concept": "perspective-preference-heart",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-comp-preference-heart-choice",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-multi-perspective-code-later-01",
+      "concept": "multi-perspective-code_later-01",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-perspective-code-later-02",
+      "concept": "multi-perspective-code_later-02",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-perspective-code-later-03",
+      "concept": "multi-perspective-code_later-03",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-perspective-code-later-04",
+      "concept": "multi-perspective-code_later-04",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-perspective-code-later-05",
+      "concept": "multi-perspective-code_later-05",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-perspective-code-later-06",
+      "concept": "multi-perspective-code_later-06",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-perspective-code-later-07",
+      "concept": "multi-perspective-code_later-07",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-perspective-code-later-08",
+      "concept": "multi-perspective-code_later-08",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-perspective-code-later-09",
+      "concept": "multi-perspective-code_later-09",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-perspective-ideological-debate",
+      "concept": "perspective-ideological-debate",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-perspective-cultural-diplomacy",
+      "concept": "perspective-cultural-diplomacy",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-perspective-subtext-irony",
+      "concept": "perspective-subtext-irony",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-perspective-author-bias",
+      "concept": "perspective-author-bias",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-perspective-formal-stakeholder-analysis",
+      "concept": "perspective-formal-stakeholder-analysis",
+      "family": "multi-perspective",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-source-a-source-b-overlap",
+      "concept": "source-a-source-b-overlap",
+      "brief": "two blank source cards share one matching concrete clue in the middle, no labels",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-source-a-adds-missing-detail",
+      "concept": "source-a-adds-missing-detail",
+      "brief": "second blank source card adds one missing puzzle/detail piece to first source card, no text",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-source-conflict-check-needed",
+      "concept": "source-conflict-check-needed",
+      "brief": "two blank source cards show conflicting simple activity facts and a child checks a neutral clue, no words",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-source-combine-into-revised-plan",
+      "concept": "source-combine-into-revised-plan",
+      "brief": "two source clue cards feed into one revised school trip plan card, no readable plan text",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-source-new-update-overrides-old",
+      "concept": "source-new-update-overrides-old",
+      "brief": "fresh update card gently replaces older source card for a plan choice, no dates or text",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-source-to-key-facts-recipient",
+      "concept": "source-to-key-facts-recipient",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-info-source-to-key-facts-to-recipient",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-source-two-key-facts-bundle",
+      "concept": "source-two-key-facts-bundle",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-info-two-key-facts-bundle",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-source-update-changes-plan",
+      "concept": "source-update-changes-plan",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-info-update-changes-plan",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-two-source-synthesis-code-later-01",
+      "concept": "two-source-synthesis-code_later-01",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-two-source-synthesis-code-later-02",
+      "concept": "two-source-synthesis-code_later-02",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-two-source-synthesis-code-later-03",
+      "concept": "two-source-synthesis-code_later-03",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-two-source-synthesis-code-later-04",
+      "concept": "two-source-synthesis-code_later-04",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-two-source-synthesis-code-later-05",
+      "concept": "two-source-synthesis-code_later-05",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-two-source-synthesis-code-later-06",
+      "concept": "two-source-synthesis-code_later-06",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-two-source-synthesis-code-later-07",
+      "concept": "two-source-synthesis-code_later-07",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-two-source-synthesis-code-later-08",
+      "concept": "two-source-synthesis-code_later-08",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-two-source-synthesis-code-later-09",
+      "concept": "two-source-synthesis-code_later-09",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-source-credibility-ranking",
+      "concept": "source-credibility-ranking",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-source-author-bias-detection",
+      "concept": "source-author-bias-detection",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-source-three-plus-academic-synthesis",
+      "concept": "source-three-plus-academic-synthesis",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-source-research-citation-map",
+      "concept": "source-research-citation-map",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-source-media-literacy-rhetoric",
+      "concept": "source-media-literacy-rhetoric",
+      "family": "two-source-synthesis",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-hierarchy-main-idea-branching-support",
+      "concept": "hierarchy-main-idea-branching-support",
+      "brief": "large main idea object branches into two smaller support objects and one tiny example, no labels",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-hierarchy-example-under-category",
+      "concept": "hierarchy-example-under-category",
+      "brief": "small example card nests visually under a broader category card, no words",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-hierarchy-important-vs-extra-detail",
+      "concept": "hierarchy-important-vs-extra-detail",
+      "brief": "important detail card glows near main idea while extra detail sits smaller to the side, no text",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-hierarchy-b1-main-support",
+      "concept": "hierarchy-b1-main-support",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-discourse-main-point-supporting-detail",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-hierarchy-topic-detail-example",
+      "concept": "hierarchy-topic-detail-example",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-discourse-topic-detail-example",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-hierarchy-example-general-idea",
+      "concept": "hierarchy-example-general-idea",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-discourse-example-to-general-idea",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-hierarchy-a2-idea-card",
+      "concept": "hierarchy-a2-idea-card",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-write-idea-card",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-hierarchy-a2-detail-bundle",
+      "concept": "hierarchy-a2-detail-bundle",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-listen-detail-bundle",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-hierarchy-a2-evidence-pin",
+      "concept": "hierarchy-a2-evidence-pin",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-comp-attribute-evidence-pin",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-idea-hierarchy-code-later-01",
+      "concept": "idea-hierarchy-code_later-01",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-idea-hierarchy-code-later-02",
+      "concept": "idea-hierarchy-code_later-02",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-idea-hierarchy-code-later-03",
+      "concept": "idea-hierarchy-code_later-03",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-idea-hierarchy-code-later-04",
+      "concept": "idea-hierarchy-code_later-04",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-idea-hierarchy-code-later-05",
+      "concept": "idea-hierarchy-code_later-05",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-idea-hierarchy-code-later-06",
+      "concept": "idea-hierarchy-code_later-06",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-idea-hierarchy-code-later-07",
+      "concept": "idea-hierarchy-code_later-07",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-hierarchy-abstract-thesis-map",
+      "concept": "hierarchy-abstract-thesis-map",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-hierarchy-essay-outline-rhetoric",
+      "concept": "hierarchy-essay-outline-rhetoric",
+      "family": "idea-hierarchy",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-constraint-weather-time-equipment-tension",
+      "concept": "constraint-weather-time-equipment-tension",
+      "brief": "trip or club plan squeezed by weather, time, and equipment cues at once, no words/numbers",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-constraint-competing-goals-pull-plan",
+      "concept": "constraint-competing-goals-pull-plan",
+      "brief": "two or three child-friendly goals gently pull the same plan card in different directions, no labels",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-constraint-revised-plan-after-two-blocks",
+      "concept": "constraint-revised-plan-after-two-blocks",
+      "brief": "plan card revised after two visible constraints appear, such as rain plus missing ball, no text",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-constraint-priority-star-among-limits",
+      "concept": "constraint-priority-star-among-limits",
+      "brief": "child places priority star on one constraint while others remain visible, no words",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-constraint-compromise-keeps-core-goal",
+      "concept": "constraint-compromise-keeps-core-goal",
+      "brief": "compromise plan keeps the main activity goal while changing time/place/tool, no text",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-constraint-counterproposal-solves-one-limit",
+      "concept": "constraint-counterproposal-solves-one-limit",
+      "brief": "friend offers alternate plan card that solves one visible constraint but leaves another, no words",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-constraint-one-complication",
+      "concept": "constraint-one-complication",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-complication-rain-starts,b1-complication-item-missing,b1-complication-short-delay",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-constraint-plan-clash",
+      "concept": "constraint-plan-clash",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-plan-clash-token",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-constraint-update-changes-plan",
+      "concept": "constraint-update-changes-plan",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-info-update-changes-plan",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-constraint-options-choice-outcome",
+      "concept": "constraint-options-choice-outcome",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-problem-notice-matters-options-choice-outcome",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-multi-constraint-code-later-01",
+      "concept": "multi-constraint-code_later-01",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-constraint-code-later-02",
+      "concept": "multi-constraint-code_later-02",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-constraint-code-later-03",
+      "concept": "multi-constraint-code_later-03",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-constraint-code-later-04",
+      "concept": "multi-constraint-code_later-04",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-constraint-code-later-05",
+      "concept": "multi-constraint-code_later-05",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-constraint-code-later-06",
+      "concept": "multi-constraint-code_later-06",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-constraint-code-later-07",
+      "concept": "multi-constraint-code_later-07",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-constraint-code-later-08",
+      "concept": "multi-constraint-code_later-08",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-constraint-code-later-09",
+      "concept": "multi-constraint-code_later-09",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-constraint-code-later-10",
+      "concept": "multi-constraint-code_later-10",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-constraint-code-later-11",
+      "concept": "multi-constraint-code_later-11",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-constraint-code-later-12",
+      "concept": "multi-constraint-code_later-12",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-constraint-code-later-13",
+      "concept": "multi-constraint-code_later-13",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-constraint-code-later-14",
+      "concept": "multi-constraint-code_later-14",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-constraint-formal-risk-register",
+      "concept": "constraint-formal-risk-register",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-constraint-legal-policy-exception",
+      "concept": "constraint-legal-policy-exception",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-constraint-high-stakes-negotiation",
+      "concept": "constraint-high-stakes-negotiation",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-constraint-systemic-tradeoff",
+      "concept": "constraint-systemic-tradeoff",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-constraint-mixed-conditional-chain",
+      "concept": "constraint-mixed-conditional-chain",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-constraint-abstract-resource-allocation",
+      "concept": "constraint-abstract-resource-allocation",
+      "family": "multi-constraint",
+      "wave": 1,
+      "phase": "P0",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-counterproposal-group-project-alternative",
+      "concept": "counterproposal-group-project-alternative",
+      "brief": "one child proposes an alternate project plan card to a team, no words",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-counterproposal-keeps-other-person-goal",
+      "concept": "counterproposal-keeps-other-person-goal",
+      "brief": "alternate plan visibly keeps friend goal while changing tool/place/time cue, no text",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-counterproposal-before-after-plan",
+      "concept": "counterproposal-before-after-plan",
+      "brief": "original plan card beside revised compromise plan card with blank surfaces only, no labels",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-counterproposal-small-concession",
+      "concept": "counterproposal-small-concession",
+      "brief": "child gives up one small option token to keep group plan moving, no words",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-negotiation-agree",
+      "concept": "negotiation-agree",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-conversation-follow-up-after-answer,a2-social-continue-conversation",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-negotiation-suggest",
+      "concept": "negotiation-suggest",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-action-change-plan",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-negotiation-two-options",
+      "concept": "negotiation-two-options",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-problem-options-two-paths",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-negotiation-backup-choice",
+      "concept": "negotiation-backup-choice",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-action-choose-backup",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-negotiation-check-understanding",
+      "concept": "negotiation-check-understanding",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-conversation-check-understanding",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-negotiation-practical-choice",
+      "concept": "negotiation-practical-choice",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-comp-preference-heart-choice",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-negotiation-counterproposal-code-later-01",
+      "concept": "negotiation-counterproposal-code_later-01",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-negotiation-counterproposal-code-later-02",
+      "concept": "negotiation-counterproposal-code_later-02",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-negotiation-counterproposal-code-later-03",
+      "concept": "negotiation-counterproposal-code_later-03",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-negotiation-counterproposal-code-later-04",
+      "concept": "negotiation-counterproposal-code_later-04",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-negotiation-counterproposal-code-later-05",
+      "concept": "negotiation-counterproposal-code_later-05",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-negotiation-counterproposal-code-later-06",
+      "concept": "negotiation-counterproposal-code_later-06",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-negotiation-counterproposal-code-later-07",
+      "concept": "negotiation-counterproposal-code_later-07",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-negotiation-counterproposal-code-later-08",
+      "concept": "negotiation-counterproposal-code_later-08",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-negotiation-counterproposal-code-later-09",
+      "concept": "negotiation-counterproposal-code_later-09",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-negotiation-counterproposal-code-later-10",
+      "concept": "negotiation-counterproposal-code_later-10",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-negotiation-diplomatic-face-saving",
+      "concept": "negotiation-diplomatic-face-saving",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-negotiation-high-stakes-dispute",
+      "concept": "negotiation-high-stakes-dispute",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-negotiation-contract-terms",
+      "concept": "negotiation-contract-terms",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-negotiation-multi-party-mediation",
+      "concept": "negotiation-multi-party-mediation",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-negotiation-rhetorical-pressure",
+      "concept": "negotiation-rhetorical-pressure",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-negotiation-policy-exception",
+      "concept": "negotiation-policy-exception",
+      "family": "negotiation-counterproposal",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-hypothetical-possible-vs-actual-outcome",
+      "concept": "hypothetical-possible-vs-actual-outcome",
+      "brief": "possible outcome bubble beside actual outcome tile after activity, no words",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-hypothetical-risk-preparation",
+      "concept": "hypothetical-risk-preparation",
+      "brief": "child prepares backup item for a possible familiar problem, no text",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-hypothetical-if-plan-risk-result",
+      "concept": "hypothetical-if-plan-risk-result",
+      "brief": "plan card with one possible risk cloud and a prepared result card, no if/result words",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-risk-prediction-condition",
+      "concept": "risk-prediction-condition",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-viewpoint-predict-outcome-check",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-risk-prediction-changed-by-new-fact",
+      "concept": "risk-prediction-changed-by-new-fact",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-viewpoint-prediction-changed-by-new-fact",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-risk-a2-plan-clash",
+      "concept": "risk-a2-plan-clash",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-plan-clash-token",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-risk-a2-delayed",
+      "concept": "risk-a2-delayed",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-travel-delayed-token",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-risk-b1-complication",
+      "concept": "risk-b1-complication",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-complication-short-delay",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-risk-b1-backup-choice",
+      "concept": "risk-b1-backup-choice",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-action-choose-backup",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-risk-b1-try-again",
+      "concept": "risk-b1-try-again",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-action-try-again",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-hypothetical-risk-code-later-01",
+      "concept": "hypothetical-risk-code_later-01",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-hypothetical-risk-code-later-02",
+      "concept": "hypothetical-risk-code_later-02",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-hypothetical-risk-code-later-03",
+      "concept": "hypothetical-risk-code_later-03",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-hypothetical-risk-code-later-04",
+      "concept": "hypothetical-risk-code_later-04",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-hypothetical-risk-code-later-05",
+      "concept": "hypothetical-risk-code_later-05",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-hypothetical-risk-code-later-06",
+      "concept": "hypothetical-risk-code_later-06",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-hypothetical-risk-code-later-07",
+      "concept": "hypothetical-risk-code_later-07",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-hypothetical-risk-code-later-08",
+      "concept": "hypothetical-risk-code_later-08",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-hypothetical-risk-code-later-09",
+      "concept": "hypothetical-risk-code_later-09",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-hypothetical-mixed-conditional-regret",
+      "concept": "hypothetical-mixed-conditional-regret",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-hypothetical-complex-contingency-tree",
+      "concept": "hypothetical-complex-contingency-tree",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-hypothetical-legal-risk",
+      "concept": "hypothetical-legal-risk",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-hypothetical-abstract-probability-model",
+      "concept": "hypothetical-abstract-probability-model",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-hypothetical-counterfactual-history",
+      "concept": "hypothetical-counterfactual-history",
+      "family": "hypothetical-risk",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-reading-purpose-scan-vs-study",
+      "concept": "reading-purpose-scan-vs-study",
+      "brief": "same blank article skin viewed with quick scan magnifier and careful study magnifier, no text",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-reading-stance-agree-question-check",
+      "concept": "reading-stance-agree-question-check",
+      "brief": "child reacts to blank source with agree card, question card, and check clue, no labels",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-reading-purpose-match-source-to-task",
+      "concept": "reading-purpose-match-source-to-task",
+      "brief": "source skin matched to task object such as club notice to trip plan, no readable writing",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-reading-notice-skin",
+      "concept": "reading-notice-skin",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-read-notice-skin",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-reading-article-skin",
+      "concept": "reading-article-skin",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-read-article-skin",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-reading-chat-skin",
+      "concept": "reading-chat-skin",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-read-chat-skin",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-reading-key-facts",
+      "concept": "reading-key-facts",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-info-two-key-facts-bundle",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-reading-update-plan",
+      "concept": "reading-update-plan",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-info-update-changes-plan",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-reading-detail-pin",
+      "concept": "reading-detail-pin",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-listen-heard-detail-pin",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-reading-stance-purpose-code-later-01",
+      "concept": "reading-stance-purpose-code_later-01",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-reading-stance-purpose-code-later-02",
+      "concept": "reading-stance-purpose-code_later-02",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-reading-stance-purpose-code-later-03",
+      "concept": "reading-stance-purpose-code_later-03",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-reading-stance-purpose-code-later-04",
+      "concept": "reading-stance-purpose-code_later-04",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-reading-stance-purpose-code-later-05",
+      "concept": "reading-stance-purpose-code_later-05",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-reading-stance-purpose-code-later-06",
+      "concept": "reading-stance-purpose-code_later-06",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-reading-stance-purpose-code-later-07",
+      "concept": "reading-stance-purpose-code_later-07",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-reading-stance-purpose-code-later-08",
+      "concept": "reading-stance-purpose-code_later-08",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-reading-stance-purpose-code-later-09",
+      "concept": "reading-stance-purpose-code_later-09",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-reading-stance-purpose-code-later-10",
+      "concept": "reading-stance-purpose-code_later-10",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-reading-irony",
+      "concept": "reading-irony",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-reading-bias-detection",
+      "concept": "reading-bias-detection",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-reading-rhetorical-purpose",
+      "concept": "reading-rhetorical-purpose",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-reading-academic-source-evaluation",
+      "concept": "reading-academic-source-evaluation",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-reading-author-position-analysis",
+      "concept": "reading-author-position-analysis",
+      "family": "reading-stance-purpose",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-listening-speaker-a-vs-b-views",
+      "concept": "listening-speaker-a-vs-b-views",
+      "brief": "two speakers give different blank bubble views about same activity card, no words",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-listening-speaker-agrees-then-adds",
+      "concept": "listening-speaker-agrees-then-adds",
+      "brief": "second speaker agrees with first picture bubble then adds one new clue card, no text",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-listening-speaker-corrects-detail",
+      "concept": "listening-speaker-corrects-detail",
+      "brief": "speaker gently corrects one detail card from another speaker, no labels",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-listening-detail-bundle",
+      "concept": "listening-detail-bundle",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-listen-detail-bundle",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-listening-revise-token",
+      "concept": "listening-revise-token",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-listen-revise-token",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-listening-verify-token",
+      "concept": "listening-verify-token",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-listen-verify-token",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-listening-relayed-message",
+      "concept": "listening-relayed-message",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-grammar-speaker-relayed-message",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-listening-clarify-one-point",
+      "concept": "listening-clarify-one-point",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-conversation-clarify-one-point",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-listening-check-understanding",
+      "concept": "listening-check-understanding",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-conversation-check-understanding",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-multi-speaker-listening-code-later-01",
+      "concept": "multi-speaker-listening-code_later-01",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-speaker-listening-code-later-02",
+      "concept": "multi-speaker-listening-code_later-02",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-speaker-listening-code-later-03",
+      "concept": "multi-speaker-listening-code_later-03",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-speaker-listening-code-later-04",
+      "concept": "multi-speaker-listening-code_later-04",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-speaker-listening-code-later-05",
+      "concept": "multi-speaker-listening-code_later-05",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-speaker-listening-code-later-06",
+      "concept": "multi-speaker-listening-code_later-06",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-speaker-listening-code-later-07",
+      "concept": "multi-speaker-listening-code_later-07",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-speaker-listening-code-later-08",
+      "concept": "multi-speaker-listening-code_later-08",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-multi-speaker-listening-code-later-09",
+      "concept": "multi-speaker-listening-code_later-09",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-listening-subtext-tone",
+      "concept": "listening-subtext-tone",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-listening-implicit-bias",
+      "concept": "listening-implicit-bias",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-listening-diplomatic-disagreement",
+      "concept": "listening-diplomatic-disagreement",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-listening-lecture-synthesis",
+      "concept": "listening-lecture-synthesis",
+      "family": "multi-speaker-listening",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-presentation-audience-reaction-adjust",
+      "concept": "presentation-audience-reaction-adjust",
+      "brief": "presenter notices audience confusion and swaps to simpler picture card, no text",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-presentation-main-point-then-example-prop",
+      "concept": "presentation-main-point-then-example-prop",
+      "brief": "presenter shows one main object then a concrete example prop, blank board only, no words",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-presentation-audience-child-badge",
+      "concept": "presentation-audience-child-badge",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-write-audience-child-badge",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-presentation-purpose-badge",
+      "concept": "presentation-purpose-badge",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-write-purpose-badge",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-presentation-main-support",
+      "concept": "presentation-main-support",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-discourse-main-point-supporting-detail",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-presentation-add-detail",
+      "concept": "presentation-add-detail",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-conversation-add-detail-follow-up",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-presentation-check-understanding",
+      "concept": "presentation-check-understanding",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-conversation-check-understanding",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-presentation-audience-code-later-01",
+      "concept": "presentation-audience-code_later-01",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-presentation-audience-code-later-02",
+      "concept": "presentation-audience-code_later-02",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-presentation-audience-code-later-03",
+      "concept": "presentation-audience-code_later-03",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-presentation-audience-code-later-04",
+      "concept": "presentation-audience-code_later-04",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-presentation-audience-code-later-05",
+      "concept": "presentation-audience-code_later-05",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-presentation-audience-code-later-06",
+      "concept": "presentation-audience-code_later-06",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-presentation-audience-code-later-07",
+      "concept": "presentation-audience-code_later-07",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-presentation-audience-code-later-08",
+      "concept": "presentation-audience-code_later-08",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-presentation-audience-code-later-09",
+      "concept": "presentation-audience-code_later-09",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-presentation-audience-code-later-10",
+      "concept": "presentation-audience-code_later-10",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-presentation-audience-code-later-11",
+      "concept": "presentation-audience-code_later-11",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-presentation-audience-code-later-12",
+      "concept": "presentation-audience-code_later-12",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-presentation-persuasive-rhetoric",
+      "concept": "presentation-persuasive-rhetoric",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-presentation-formal-speech-structure",
+      "concept": "presentation-formal-speech-structure",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-presentation-sensitive-audience-diplomacy",
+      "concept": "presentation-sensitive-audience-diplomacy",
+      "family": "presentation-audience",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-mediation-complex-to-simple-picture",
+      "concept": "mediation-complex-to-simple-picture",
+      "brief": "child turns a busy blank source card into two simple picture cards for a friend, no words",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-mediation-organize-mixed-ideas",
+      "concept": "mediation-organize-mixed-ideas",
+      "brief": "mixed idea objects sorted into two clear piles with no labels",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-mediation-key-facts-bundle",
+      "concept": "mediation-key-facts-bundle",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-info-two-key-facts-bundle",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-mediation-source-recipient",
+      "concept": "mediation-source-recipient",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-info-source-to-key-facts-to-recipient",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-mediation-topic-detail-example",
+      "concept": "mediation-topic-detail-example",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-discourse-topic-detail-example",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-mediation-simplify-clarify",
+      "concept": "mediation-simplify-clarify",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-conversation-clarify-one-point",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-mediation-dossier-complete",
+      "concept": "mediation-dossier-complete",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-info-dossier-complete",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-mediation-revise-token",
+      "concept": "mediation-revise-token",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-listen-revise-token",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-mediation-organize-simplify-code-later-01",
+      "concept": "mediation-organize-simplify-code_later-01",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-mediation-organize-simplify-code-later-02",
+      "concept": "mediation-organize-simplify-code_later-02",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-mediation-organize-simplify-code-later-03",
+      "concept": "mediation-organize-simplify-code_later-03",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-mediation-organize-simplify-code-later-04",
+      "concept": "mediation-organize-simplify-code_later-04",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-mediation-organize-simplify-code-later-05",
+      "concept": "mediation-organize-simplify-code_later-05",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-mediation-organize-simplify-code-later-06",
+      "concept": "mediation-organize-simplify-code_later-06",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-mediation-organize-simplify-code-later-07",
+      "concept": "mediation-organize-simplify-code_later-07",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-mediation-organize-simplify-code-later-08",
+      "concept": "mediation-organize-simplify-code_later-08",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-mediation-organize-simplify-code-later-09",
+      "concept": "mediation-organize-simplify-code_later-09",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-mediation-conflict-resolution-diplomacy",
+      "concept": "mediation-conflict-resolution-diplomacy",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-mediation-academic-summary",
+      "concept": "mediation-academic-summary",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-mediation-sensitive-register-shift",
+      "concept": "mediation-sensitive-register-shift",
+      "family": "mediation-organize-simplify",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-floor-management-turn-balance",
+      "concept": "floor-management-turn-balance",
+      "brief": "group discussion where quiet child receives turn token while eager speaker waits, no text",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-floor-start-conversation",
+      "concept": "floor-start-conversation",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-social-start-conversation",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-floor-continue-conversation",
+      "concept": "floor-continue-conversation",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-social-continue-conversation",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-floor-close-conversation",
+      "concept": "floor-close-conversation",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-social-close-conversation",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-floor-repeat-clarify",
+      "concept": "floor-repeat-clarify",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-social-repeat-clarify-token",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-floor-follow-up-after-answer",
+      "concept": "floor-follow-up-after-answer",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-conversation-follow-up-after-answer",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-floor-add-detail",
+      "concept": "floor-add-detail",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-conversation-add-detail-follow-up",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-floor-check-understanding",
+      "concept": "floor-check-understanding",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-conversation-check-understanding",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-floor-management-code-later-01",
+      "concept": "floor-management-code_later-01",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-floor-management-code-later-02",
+      "concept": "floor-management-code_later-02",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-floor-management-code-later-03",
+      "concept": "floor-management-code_later-03",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-floor-management-code-later-04",
+      "concept": "floor-management-code_later-04",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-floor-management-code-later-05",
+      "concept": "floor-management-code_later-05",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-floor-management-code-later-06",
+      "concept": "floor-management-code_later-06",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-floor-management-code-later-07",
+      "concept": "floor-management-code_later-07",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-floor-management-code-later-08",
+      "concept": "floor-management-code_later-08",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-floor-management-code-later-09",
+      "concept": "floor-management-code_later-09",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-floor-debate-moderation",
+      "concept": "floor-debate-moderation",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-floor-face-saving-interruption",
+      "concept": "floor-face-saving-interruption",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-floor-formal-meeting-procedure",
+      "concept": "floor-formal-meeting-procedure",
+      "family": "floor-management",
+      "wave": 2,
+      "phase": "P1",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-register-friendly-vs-careful-tone",
+      "concept": "register-friendly-vs-careful-tone",
+      "brief": "same blank message card shown as friendly peer version and careful teacher version through posture/expression only, no words",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-register-audience-child",
+      "concept": "register-audience-child",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-write-audience-child-badge",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-register-purpose-badge",
+      "concept": "register-purpose-badge",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-write-purpose-badge",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-register-email-skin",
+      "concept": "register-email-skin",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-read-email-skin",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-register-chat-skin",
+      "concept": "register-chat-skin",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-read-chat-skin",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-register-invitation-skin",
+      "concept": "register-invitation-skin",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-read-invitation-skin",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-register-notice-skin",
+      "concept": "register-notice-skin",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-read-notice-skin",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-register-poster-skin",
+      "concept": "register-poster-skin",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-read-poster-skin",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-audience-register-code-later-01",
+      "concept": "audience-register-code_later-01",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-audience-register-code-later-02",
+      "concept": "audience-register-code_later-02",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-audience-register-code-later-03",
+      "concept": "audience-register-code_later-03",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-audience-register-code-later-04",
+      "concept": "audience-register-code_later-04",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-audience-register-code-later-05",
+      "concept": "audience-register-code_later-05",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-audience-register-code-later-06",
+      "concept": "audience-register-code_later-06",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-audience-register-code-later-07",
+      "concept": "audience-register-code_later-07",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-audience-register-code-later-08",
+      "concept": "audience-register-code_later-08",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-audience-register-code-later-09",
+      "concept": "audience-register-code_later-09",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-audience-register-code-later-10",
+      "concept": "audience-register-code_later-10",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-audience-register-code-later-11",
+      "concept": "audience-register-code_later-11",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-register-irony",
+      "concept": "register-irony",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-register-sarcasm",
+      "concept": "register-sarcasm",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-register-diplomatic-softening",
+      "concept": "register-diplomatic-softening",
+      "family": "audience-register",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-revision-reorder-for-main-point",
+      "concept": "revision-reorder-for-main-point",
+      "brief": "picture idea cards reordered so main point comes first, no text",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-revision-add-supporting-example",
+      "concept": "revision-add-supporting-example",
+      "brief": "blank paragraph card gains one supporting example picture tile, no writing",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-revision-move-token",
+      "concept": "revision-move-token",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-write-move-token",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-revision-replace-token",
+      "concept": "revision-replace-token",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-write-replace-token",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-revision-expand-token",
+      "concept": "revision-expand-token",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-write-expand-token",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-revision-check-icon-set",
+      "concept": "revision-check-icon-set",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-write-check-icon-set",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-revision-idea-card",
+      "concept": "revision-idea-card",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-write-idea-card",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-revision-connector-tray",
+      "concept": "revision-connector-tray",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-write-connector-tray-visual",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-revision-b1-clarify",
+      "concept": "revision-b1-clarify",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-conversation-clarify-one-point",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-writing-revision-code-later-01",
+      "concept": "writing-revision-code_later-01",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-writing-revision-code-later-02",
+      "concept": "writing-revision-code_later-02",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-writing-revision-code-later-03",
+      "concept": "writing-revision-code_later-03",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-writing-revision-code-later-04",
+      "concept": "writing-revision-code_later-04",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-writing-revision-code-later-05",
+      "concept": "writing-revision-code_later-05",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-writing-revision-code-later-06",
+      "concept": "writing-revision-code_later-06",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-writing-revision-code-later-07",
+      "concept": "writing-revision-code_later-07",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-writing-revision-code-later-08",
+      "concept": "writing-revision-code_later-08",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-writing-revision-code-later-09",
+      "concept": "writing-revision-code_later-09",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-writing-revision-code-later-10",
+      "concept": "writing-revision-code_later-10",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-writing-revision-code-later-11",
+      "concept": "writing-revision-code_later-11",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-writing-revision-code-later-12",
+      "concept": "writing-revision-code_later-12",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-writing-revision-code-later-13",
+      "concept": "writing-revision-code_later-13",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-revision-long-essay-argument",
+      "concept": "revision-long-essay-argument",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-revision-rhetorical-style",
+      "concept": "revision-rhetorical-style",
+      "family": "writing-revision",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-narrative-choice-changes-ending",
+      "concept": "narrative-choice-changes-ending",
+      "brief": "child choice at story fork clearly changes the ending scene, no text",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-narrative-two-constraints-one-resolution",
+      "concept": "narrative-two-constraints-one-resolution",
+      "brief": "story problem includes two visible familiar constraints and one practical resolution, no words",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-narrative-b1-one-complication",
+      "concept": "narrative-b1-one-complication",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-complication-rain-starts,b1-complication-item-missing",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-narrative-problem-solved",
+      "concept": "narrative-problem-solved",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-outcome-problem-solved",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-narrative-change-plan",
+      "concept": "narrative-change-plan",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-action-change-plan",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-narrative-backup-choice",
+      "concept": "narrative-backup-choice",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-action-choose-backup",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-narrative-a2-begin",
+      "concept": "narrative-a2-begin",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-story-begin-token",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-narrative-a2-continue",
+      "concept": "narrative-a2-continue",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-story-continue-token",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-narrative-a2-end",
+      "concept": "narrative-a2-end",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-story-end-token",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-narrative-feeling-change",
+      "concept": "narrative-feeling-change",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-story-feeling-change-token",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-narrative-extension-code-later-01",
+      "concept": "narrative-extension-code_later-01",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-narrative-extension-code-later-02",
+      "concept": "narrative-extension-code_later-02",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-narrative-extension-code-later-03",
+      "concept": "narrative-extension-code_later-03",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-narrative-extension-code-later-04",
+      "concept": "narrative-extension-code_later-04",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-narrative-extension-code-later-05",
+      "concept": "narrative-extension-code_later-05",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-narrative-extension-code-later-06",
+      "concept": "narrative-extension-code_later-06",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-narrative-extension-code-later-07",
+      "concept": "narrative-extension-code_later-07",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-narrative-extension-code-later-08",
+      "concept": "narrative-extension-code_later-08",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-narrative-extension-code-later-09",
+      "concept": "narrative-extension-code_later-09",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-narrative-extension-code-later-10",
+      "concept": "narrative-extension-code_later-10",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-narrative-ironic-ending",
+      "concept": "narrative-ironic-ending",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-narrative-unreliable-narrator",
+      "concept": "narrative-unreliable-narrator",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-narrative-symbolic-theme",
+      "concept": "narrative-symbolic-theme",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-narrative-long-literary-analysis",
+      "concept": "narrative-long-literary-analysis",
+      "family": "narrative-extension",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-grammar-actual-vs-possible-result",
+      "concept": "grammar-actual-vs-possible-result",
+      "brief": "actual result tile beside possible result bubble in a familiar school plan, no grammar chart or words",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "GENERATE",
+      "note": ""
+    },
+    {
+      "key": "b2-grammar-before-after",
+      "concept": "grammar-before-after",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-state-before-clean-table,a2-state-after-finished-craft",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-grammar-change-arrow",
+      "concept": "grammar-change-arrow",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "a2-state-change-arrow",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-grammar-condition-result",
+      "concept": "grammar-condition-result",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-grammar-condition-result",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-grammar-background-main-event",
+      "concept": "grammar-background-main-event",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-grammar-background-main-event",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-grammar-plan-changed",
+      "concept": "grammar-plan-changed",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-grammar-plan-changed",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-grammar-relayed-message",
+      "concept": "grammar-relayed-message",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-grammar-speaker-relayed-message",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-grammar-self-repair",
+      "concept": "grammar-self-repair",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-self-repair-swap-card",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-grammar-prediction-check",
+      "concept": "grammar-prediction-check",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-viewpoint-predict-outcome-check",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-grammar-semantic-relations-code-later-01",
+      "concept": "grammar-semantic-relations-code_later-01",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-grammar-semantic-relations-code-later-02",
+      "concept": "grammar-semantic-relations-code_later-02",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-grammar-semantic-relations-code-later-03",
+      "concept": "grammar-semantic-relations-code_later-03",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-grammar-semantic-relations-code-later-04",
+      "concept": "grammar-semantic-relations-code_later-04",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-grammar-semantic-relations-code-later-05",
+      "concept": "grammar-semantic-relations-code_later-05",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-grammar-semantic-relations-code-later-06",
+      "concept": "grammar-semantic-relations-code_later-06",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-grammar-semantic-relations-code-later-07",
+      "concept": "grammar-semantic-relations-code_later-07",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-grammar-semantic-relations-code-later-08",
+      "concept": "grammar-semantic-relations-code_later-08",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-grammar-semantic-relations-code-later-09",
+      "concept": "grammar-semantic-relations-code_later-09",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-grammar-semantic-relations-code-later-10",
+      "concept": "grammar-semantic-relations-code_later-10",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-grammar-semantic-relations-code-later-11",
+      "concept": "grammar-semantic-relations-code_later-11",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-grammar-semantic-relations-code-later-12",
+      "concept": "grammar-semantic-relations-code_later-12",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-grammar-mixed-conditionals",
+      "concept": "grammar-mixed-conditionals",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-grammar-modal-nuance-diplomacy",
+      "concept": "grammar-modal-nuance-diplomacy",
+      "family": "grammar-semantic-relations",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-rhetoric-basic-viewpoint",
+      "concept": "rhetoric-basic-viewpoint",
+      "family": "sophisticated-argument-rhetoric",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-viewpoint-two-familiar-perspectives",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-rhetoric-basic-reason",
+      "concept": "rhetoric-basic-reason",
+      "family": "sophisticated-argument-rhetoric",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-viewpoint-opinion-reason-outcome",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-rhetoric-basic-source-fact",
+      "concept": "rhetoric-basic-source-fact",
+      "family": "sophisticated-argument-rhetoric",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "REUSE_EXISTING",
+      "existing": "b1-info-source-to-key-facts-to-recipient",
+      "reason": "Existing lower-level or live-bank asset already communicates this meaning; semantic reuse preferred over new art."
+    },
+    {
+      "key": "b2-sophisticated-argument-rhetoric-code-later-01",
+      "concept": "sophisticated-argument-rhetoric-code_later-01",
+      "family": "sophisticated-argument-rhetoric",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-sophisticated-argument-rhetoric-code-later-02",
+      "concept": "sophisticated-argument-rhetoric-code_later-02",
+      "family": "sophisticated-argument-rhetoric",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-sophisticated-argument-rhetoric-code-later-03",
+      "concept": "sophisticated-argument-rhetoric-code_later-03",
+      "family": "sophisticated-argument-rhetoric",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-sophisticated-argument-rhetoric-code-later-04",
+      "concept": "sophisticated-argument-rhetoric-code_later-04",
+      "family": "sophisticated-argument-rhetoric",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "CODE_LATER",
+      "reason": "Boxes, grids, rails, labels, writing areas, arrows, scores, highlights, or dynamic text should be code-rendered later, not illustrated."
+    },
+    {
+      "key": "b2-rhetoric-rebuttal-chain",
+      "concept": "rhetoric-rebuttal-chain",
+      "family": "sophisticated-argument-rhetoric",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-rhetoric-concession-refutation",
+      "concept": "rhetoric-concession-refutation",
+      "family": "sophisticated-argument-rhetoric",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-rhetoric-irony-bias",
+      "concept": "rhetoric-irony-bias",
+      "family": "sophisticated-argument-rhetoric",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-rhetoric-academic-research-synthesis",
+      "concept": "rhetoric-academic-research-synthesis",
+      "family": "sophisticated-argument-rhetoric",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-rhetoric-persuasive-appeals",
+      "concept": "rhetoric-persuasive-appeals",
+      "family": "sophisticated-argument-rhetoric",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-rhetoric-policy-debate",
+      "concept": "rhetoric-policy-debate",
+      "family": "sophisticated-argument-rhetoric",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-rhetoric-high-stakes-negotiation",
+      "concept": "rhetoric-high-stakes-negotiation",
+      "family": "sophisticated-argument-rhetoric",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-rhetoric-long-form-essay-logic",
+      "concept": "rhetoric-long-form-essay-logic",
+      "family": "sophisticated-argument-rhetoric",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    },
+    {
+      "key": "b2-rhetoric-diplomatic-subtext",
+      "concept": "rhetoric-diplomatic-subtext",
+      "family": "sophisticated-argument-rhetoric",
+      "wave": 3,
+      "phase": "P2",
+      "classification": "DEFER_C1",
+      "reason": "Deferred to C1/C2: sophisticated argument, rhetoric, bias/irony, academic synthesis, high-stakes negotiation, long-form writing, or abstract policy."
+    }
+  ]
+}

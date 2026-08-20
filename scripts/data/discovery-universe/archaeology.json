@@ -1,0 +1,345 @@
+{
+  "id": "archaeology",
+  "labels": [
+    "archaeology",
+    "medieval"
+  ],
+  "usefulness": 0.7,
+  "picturable": 0.9,
+  "hardToSubstitute": 0.55,
+  "topics": [
+    "dig site",
+    "museum vault",
+    "castle tour",
+    "knight armor",
+    "medieval market",
+    "pyramid chamber",
+    "tomb exploration",
+    "ruins walk",
+    "scroll library",
+    "siege weapons",
+    "moat and drawbridge",
+    "viking longship",
+    "roman mosaic",
+    "hieroglyph wall",
+    "treasure chest",
+    "catapult demo"
+  ],
+  "concepts": [
+    {
+      "word": "trowel",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "brush",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "shard",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "find"
+      ]
+    },
+    {
+      "word": "pottery shard",
+      "usefulness": 0.5,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "find"
+      ]
+    },
+    {
+      "word": "artifact",
+      "usefulness": 0.7,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "find"
+      ]
+    },
+    {
+      "word": "relic",
+      "usefulness": 0.55,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "find"
+      ]
+    },
+    {
+      "word": "sarcophagus",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "find"
+      ]
+    },
+    {
+      "word": "mummy",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "find"
+      ]
+    },
+    {
+      "word": "hieroglyph",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "writing"
+      ]
+    },
+    {
+      "word": "scroll",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "doc"
+      ]
+    },
+    {
+      "word": "parchment",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "doc"
+      ]
+    },
+    {
+      "word": "quill",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "inkwell",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "helmet",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "armor"
+      ]
+    },
+    {
+      "word": "breastplate",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "armor"
+      ]
+    },
+    {
+      "word": "gauntlet",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "armor"
+      ]
+    },
+    {
+      "word": "shield",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "armor"
+      ]
+    },
+    {
+      "word": "sword",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "word": "lance",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "word": "catapult",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "word": "trebuchet",
+      "usefulness": 0.45,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "weapon"
+      ]
+    },
+    {
+      "word": "drawbridge",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "castle"
+      ]
+    },
+    {
+      "word": "moat",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "castle"
+      ]
+    },
+    {
+      "word": "turret",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "castle"
+      ]
+    },
+    {
+      "word": "battlement",
+      "usefulness": 0.45,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "castle"
+      ]
+    },
+    {
+      "word": "portcullis",
+      "usefulness": 0.4,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.75,
+      "tags": [
+        "castle"
+      ]
+    },
+    {
+      "word": "throne",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "furniture"
+      ]
+    },
+    {
+      "word": "tapestry",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "decor"
+      ]
+    },
+    {
+      "word": "chalice",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "vessel"
+      ]
+    },
+    {
+      "word": "goblet",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "vessel"
+      ]
+    },
+    {
+      "word": "mosaic",
+      "usefulness": 0.6,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "art"
+      ]
+    },
+    {
+      "word": "obelisk",
+      "usefulness": 0.5,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "monument"
+      ]
+    },
+    {
+      "word": "sphinx",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "monument"
+      ]
+    },
+    {
+      "word": "longship",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "vessel"
+      ]
+    },
+    {
+      "word": "chest",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "container"
+      ]
+    }
+  ]
+}

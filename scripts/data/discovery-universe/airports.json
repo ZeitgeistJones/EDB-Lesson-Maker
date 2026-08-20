@@ -1,0 +1,309 @@
+{
+  "id": "airports",
+  "labels": [
+    "airports",
+    "travel"
+  ],
+  "usefulness": 0.8,
+  "picturable": 0.88,
+  "hardToSubstitute": 0.4,
+  "topics": [
+    "airport check-in",
+    "boarding gate",
+    "baggage claim",
+    "security line",
+    "airplane cabin",
+    "runway tour",
+    "passport control",
+    "hotel lobby",
+    "train station",
+    "bus terminal",
+    "cruise embarkation",
+    "travel packing",
+    "ticket counter",
+    "customs desk",
+    "airport lounge",
+    "taxi stand"
+  ],
+  "concepts": [
+    {
+      "word": "boarding pass",
+      "usefulness": 0.8,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "doc"
+      ]
+    },
+    {
+      "word": "passport",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "doc"
+      ]
+    },
+    {
+      "word": "visa",
+      "usefulness": 0.55,
+      "picturable": 0.75,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "doc"
+      ]
+    },
+    {
+      "word": "luggage",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "bag"
+      ]
+    },
+    {
+      "word": "suitcase",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "bag"
+      ]
+    },
+    {
+      "word": "carry-on",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "bag"
+      ]
+    },
+    {
+      "word": "tag",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "label"
+      ]
+    },
+    {
+      "word": "trolley",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "conveyor",
+      "usefulness": 0.55,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "word": "scanner",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "word": "metal detector",
+      "usefulness": 0.6,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "word": "gate",
+      "usefulness": 0.75,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "place"
+      ]
+    },
+    {
+      "word": "runway",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "place"
+      ]
+    },
+    {
+      "word": "cockpit",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "place"
+      ]
+    },
+    {
+      "word": "cabin",
+      "usefulness": 0.7,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "place"
+      ]
+    },
+    {
+      "word": "aisle",
+      "usefulness": 0.7,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "place"
+      ]
+    },
+    {
+      "word": "tray table",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "seatbelt",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "overhead bin",
+      "usefulness": 0.6,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "life vest",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "safety"
+      ]
+    },
+    {
+      "word": "oxygen mask",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "safety"
+      ]
+    },
+    {
+      "word": "jet bridge",
+      "usefulness": 0.5,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.65,
+      "tags": [
+        "place"
+      ]
+    },
+    {
+      "word": "hangar",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "place"
+      ]
+    },
+    {
+      "word": "control tower",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "place"
+      ]
+    },
+    {
+      "word": "itinerary",
+      "usefulness": 0.5,
+      "picturable": 0.7,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "doc"
+      ]
+    },
+    {
+      "word": "boarding gate",
+      "usefulness": 0.7,
+      "picturable": 0.8,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "place"
+      ]
+    },
+    {
+      "word": "customs",
+      "usefulness": 0.55,
+      "picturable": 0.7,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "place"
+      ]
+    },
+    {
+      "word": "duty-free",
+      "usefulness": 0.5,
+      "picturable": 0.75,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "place"
+      ]
+    },
+    {
+      "word": "porter",
+      "usefulness": 0.5,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "person"
+      ]
+    },
+    {
+      "word": "pilot",
+      "usefulness": 0.85,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "person"
+      ]
+    },
+    {
+      "word": "flight attendant",
+      "usefulness": 0.7,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "person"
+      ]
+    }
+  ]
+}

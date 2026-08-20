@@ -1,0 +1,299 @@
+{
+  "id": "emergency",
+  "labels": [
+    "emergency",
+    "rescue"
+  ],
+  "usefulness": 0.85,
+  "picturable": 0.92,
+  "hardToSubstitute": 0.4,
+  "topics": [
+    "fire station",
+    "rescue drill",
+    "lifeguard beach",
+    "mountain rescue",
+    "flood response",
+    "search dog team",
+    "helicopter rescue",
+    "coast guard",
+    "smoke alarm check",
+    "evacuation route",
+    "disaster kit",
+    "police station",
+    "911 call center",
+    "firefighter gear",
+    "safety cone zone"
+  ],
+  "concepts": [
+    {
+      "word": "hydrant",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "equipment"
+      ]
+    },
+    {
+      "word": "hose",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "equipment"
+      ]
+    },
+    {
+      "word": "nozzle",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "axe",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "helmet",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "ppe"
+      ]
+    },
+    {
+      "word": "turnout coat",
+      "usefulness": 0.5,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "ppe"
+      ]
+    },
+    {
+      "word": "oxygen tank",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "equipment"
+      ]
+    },
+    {
+      "word": "siren",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "signal"
+      ]
+    },
+    {
+      "word": "flare",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "signal"
+      ]
+    },
+    {
+      "word": "beacon",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "signal"
+      ]
+    },
+    {
+      "word": "life ring",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "rescue"
+      ]
+    },
+    {
+      "word": "life jacket",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "rescue"
+      ]
+    },
+    {
+      "word": "buoy",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "rescue"
+      ]
+    },
+    {
+      "word": "stretcher",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "rescue"
+      ]
+    },
+    {
+      "word": "ladder",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "equipment"
+      ]
+    },
+    {
+      "word": "cone",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "safety"
+      ]
+    },
+    {
+      "word": "barrier",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "safety"
+      ]
+    },
+    {
+      "word": "flashlight",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "whistle",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "signal"
+      ]
+    },
+    {
+      "word": "radio",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "gear"
+      ]
+    },
+    {
+      "word": "harness",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "gear"
+      ]
+    },
+    {
+      "word": "carabiner",
+      "usefulness": 0.5,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.65,
+      "tags": [
+        "gear"
+      ]
+    },
+    {
+      "word": "rappel rope",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "gear"
+      ]
+    },
+    {
+      "word": "smoke detector",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "safety"
+      ]
+    },
+    {
+      "word": "extinguisher",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "equipment"
+      ]
+    },
+    {
+      "word": "megaphone",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "gear"
+      ]
+    },
+    {
+      "word": "badge",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "id"
+      ]
+    },
+    {
+      "word": "handcuff",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "patrol car",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "vehicle"
+      ]
+    },
+    {
+      "word": "fire engine",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "vehicle"
+      ]
+    }
+  ]
+}

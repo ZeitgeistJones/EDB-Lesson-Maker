@@ -1,0 +1,45 @@
+{
+  "title": "Snack and Coat Day",
+  "warmUp": {
+    "question": "What do you eat for a snack?",
+    "sampleAnswer": "I eat an apple."
+  },
+  "vocabulary": [
+    { "word": "apple", "emoji": "🍎" },
+    { "word": "banana", "emoji": "🍌" },
+    { "word": "hat", "emoji": "🎩" },
+    { "word": "coat", "emoji": "🧥" }
+  ],
+  "sentenceFrames": [],
+  "story": {
+    "title": "Snack and Coat",
+    "pages": [
+      {
+        "heading": "Snack",
+        "text": "I eat an apple and a banana.",
+        "visualTheme": "kitchen",
+        "visualCaption": "Fruit snack"
+      },
+      {
+        "heading": "Coat",
+        "text": "I put on my hat and coat.",
+        "visualTheme": "home",
+        "visualCaption": "Kid with coat"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What do I eat?", "sampleAnswer": "An apple and a banana." },
+      { "question": "What do I put on?", "sampleAnswer": "My hat and coat." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "Can you eat a coat?", "sampleAnswer": "No." }
+  ],
+  "activity": {
+    "title": "Yes or no sort",
+    "prompt": "Sort the words.",
+    "templates": ["Can you eat it?"]
+  },
+  "reviewSentences": []
+}

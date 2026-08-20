@@ -1,0 +1,3182 @@
+{
+  "spec": "prea1-visual-language",
+  "updated_at": "2026-08-18T01:41:19.725Z",
+  "running_total": {
+    "waves_fired": 8,
+    "waves_downloaded": 8,
+    "sheets_downloaded": 32,
+    "sheets_large": 32,
+    "concepts_planned": 309,
+    "concepts_banked_raw": 309
+  },
+  "planned": {
+    "wave1-instructions": {
+      "family": "instructions",
+      "sheets": 5,
+      "concepts": 42
+    },
+    "wave2-tpr": {
+      "family": "tpr",
+      "sheets": 4,
+      "concepts": 30
+    },
+    "wave3-relations": {
+      "family": "relations",
+      "sheets": 5,
+      "concepts": 55
+    },
+    "wave4-phonology": {
+      "family": "phonology",
+      "sheets": 4,
+      "concepts": 40
+    },
+    "wave5-prewriting": {
+      "family": "prewriting",
+      "sheets": 4,
+      "concepts": 43
+    },
+    "wave6-mnemonic-az": {
+      "family": "mnemonic-az",
+      "sheets": 4,
+      "concepts": 52
+    },
+    "wave7-articulation": {
+      "family": "articulation",
+      "sheets": 2,
+      "concepts": 18
+    },
+    "wave8-surfaces": {
+      "family": "surfaces",
+      "sheets": 4,
+      "concepts": 29
+    }
+  },
+  "waves": {
+    "wave2-tpr": {
+      "kind": "tpr",
+      "family": "tpr",
+      "title": "ESL Pre-A1 wave2 — TPR command action atoms",
+      "task_id": "kGY333erxEVCGiSVvokVDD",
+      "task_url": "https://manus.im/app/kGY333erxEVCGiSVvokVDD",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\tmp\\manus-prea1-stockpile\\wave2-tpr\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3500764,
+          "name": "classroom-body"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3897749,
+          "name": "move-stop"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3889626,
+          "name": "hands-care"
+        },
+        {
+          "file": "04.png",
+          "bytes": 1976046,
+          "name": "rest-play"
+        }
+      ],
+      "large_sheet_count": 4,
+      "concept_count": 30,
+      "banked_raw": 30,
+      "items": [
+        {
+          "concept": "stand-up",
+          "key": "prea1-tpr-stand-up",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "sit-down",
+          "key": "prea1-tpr-sit-down",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "look",
+          "key": "prea1-tpr-look",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "listen",
+          "key": "prea1-tpr-listen",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "point",
+          "key": "prea1-tpr-point",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "touch",
+          "key": "prea1-tpr-touch",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "show",
+          "key": "prea1-tpr-show",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "give",
+          "key": "prea1-tpr-give",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "take",
+          "key": "prea1-tpr-take",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "open",
+          "key": "prea1-tpr-open",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "close",
+          "key": "prea1-tpr-close",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "come",
+          "key": "prea1-tpr-come",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "go",
+          "key": "prea1-tpr-go",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stop",
+          "key": "prea1-tpr-stop",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "clap",
+          "key": "prea1-tpr-clap",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "jump",
+          "key": "prea1-tpr-jump",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "turn-around",
+          "key": "prea1-tpr-turn-around",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "walk",
+          "key": "prea1-tpr-walk",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "run",
+          "key": "prea1-tpr-run",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "wave",
+          "key": "prea1-tpr-wave",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "pick-up",
+          "key": "prea1-tpr-pick-up",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "put-down",
+          "key": "prea1-tpr-put-down",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "hold",
+          "key": "prea1-tpr-hold",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "reach",
+          "key": "prea1-tpr-reach",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "wash",
+          "key": "prea1-tpr-wash",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "brush",
+          "key": "prea1-tpr-brush",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "eat",
+          "key": "prea1-tpr-eat",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "drink",
+          "key": "prea1-tpr-drink",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "sleep",
+          "key": "prea1-tpr-sleep",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "play",
+          "key": "prea1-tpr-play",
+          "family": "tpr",
+          "manus_task_id": "kGY333erxEVCGiSVvokVDD",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T01:29:17.085Z",
+      "holds": [
+        "Same child family as wave1; action atoms read clearly. Keep."
+      ],
+      "raw_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\tmp\\manus-prea1-stockpile\\wave2-tpr"
+    },
+    "wave4-phonology": {
+      "kind": "phonology",
+      "family": "phonology",
+      "title": "ESL Pre-A1 wave4 — phonological-awareness toolkit",
+      "task_id": "WqmsX38B7NhvywgZCx6MZE",
+      "task_url": "https://manus.im/app/WqmsX38B7NhvywgZCx6MZE",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\tmp\\manus-prea1-stockpile\\wave4-phonology\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 5625091,
+          "name": "listen-family"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3239806,
+          "name": "word-train-slots"
+        },
+        {
+          "file": "03.png",
+          "bytes": 1431333,
+          "name": "beat-kit"
+        },
+        {
+          "file": "04.png",
+          "bytes": 1198296,
+          "name": "elkonin-rhyme"
+        }
+      ],
+      "large_sheet_count": 4,
+      "concept_count": 40,
+      "banked_raw": 40,
+      "items": [
+        {
+          "concept": "ear",
+          "key": "prea1-pa-ear",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "sound-wave",
+          "key": "prea1-pa-sound-wave",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "quiet",
+          "key": "prea1-pa-quiet",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "listening-mascot",
+          "key": "prea1-pa-listening-mascot",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "start-flag",
+          "key": "prea1-pa-start-flag",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "finish-flag",
+          "key": "prea1-pa-finish-flag",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "first-marker",
+          "key": "prea1-pa-first-marker",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "last-marker",
+          "key": "prea1-pa-last-marker",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "sound-magnifier",
+          "key": "prea1-pa-sound-magnifier",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "word-train",
+          "key": "prea1-pa-word-train",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "train-slot",
+          "key": "prea1-pa-train-slot",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "comparison-surface",
+          "key": "prea1-pa-comparison-surface",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "same-sound",
+          "key": "prea1-pa-same-sound",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "different-sound",
+          "key": "prea1-pa-different-sound",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "letter-slot",
+          "key": "prea1-pa-letter-slot",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "picture-slot",
+          "key": "prea1-pa-picture-slot",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "sound-token-slot",
+          "key": "prea1-pa-sound-token-slot",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "mouth-cue-slot",
+          "key": "prea1-pa-mouth-cue-slot",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "clap",
+          "key": "prea1-pa-clap",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "drum",
+          "key": "prea1-pa-drum",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "beat-1",
+          "key": "prea1-pa-beat-1",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "beat-2",
+          "key": "prea1-pa-beat-2",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "beat-3",
+          "key": "prea1-pa-beat-3",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "beat-4",
+          "key": "prea1-pa-beat-4",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "hop-stone",
+          "key": "prea1-pa-hop-stone",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "beat-path",
+          "key": "prea1-pa-beat-path",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "rest-token",
+          "key": "prea1-pa-rest-token",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "sound-box-2",
+          "key": "prea1-pa-sound-box-2",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "sound-box-3",
+          "key": "prea1-pa-sound-box-3",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "sound-box-4",
+          "key": "prea1-pa-sound-box-4",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "chip",
+          "key": "prea1-pa-chip",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "push-together",
+          "key": "prea1-pa-push-together",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "pull-apart",
+          "key": "prea1-pa-pull-apart",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stretch-snail",
+          "key": "prea1-pa-stretch-snail",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "blend-arrow",
+          "key": "prea1-pa-blend-arrow",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "rhyme-house",
+          "key": "prea1-pa-rhyme-house",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "rhyme-bridge",
+          "key": "prea1-pa-rhyme-bridge",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "sound-family-bucket",
+          "key": "prea1-pa-sound-family-bucket",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "join",
+          "key": "prea1-pa-join",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "split",
+          "key": "prea1-pa-split",
+          "family": "phonology",
+          "manus_task_id": "WqmsX38B7NhvywgZCx6MZE",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T01:28:05.114Z",
+      "holds": [
+        "Listen family + tokens landed. Some jpg-compressed sheets in zip. Keep PNG copies."
+      ],
+      "raw_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\tmp\\manus-prea1-stockpile\\wave4-phonology"
+    },
+    "wave1-instructions": {
+      "kind": "instructions",
+      "family": "instructions",
+      "title": "ESL Pre-A1 wave1 — instruction + feedback visuals",
+      "task_id": "CRN24G6CaHLJob4LpxGw8T",
+      "task_url": "https://manus.im/app/CRN24G6CaHLJob4LpxGw8T",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\tmp\\manus-prea1-stockpile\\wave1-instructions\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3115748,
+          "name": "greet-attention"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3576398,
+          "name": "board-actions"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3834827,
+          "name": "turns-talk"
+        },
+        {
+          "file": "04.png",
+          "bytes": 1267747,
+          "name": "feedback-gestures"
+        },
+        {
+          "file": "05.png",
+          "bytes": 1448658,
+          "name": "ui-token-family"
+        }
+      ],
+      "large_sheet_count": 5,
+      "concept_count": 42,
+      "banked_raw": 42,
+      "items": [
+        {
+          "concept": "hello",
+          "key": "prea1-instr-hello",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "goodbye",
+          "key": "prea1-instr-goodbye",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "look",
+          "key": "prea1-instr-look",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "listen",
+          "key": "prea1-instr-listen",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "repeat",
+          "key": "prea1-instr-repeat",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "think",
+          "key": "prea1-instr-think",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "wait",
+          "key": "prea1-instr-wait",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stop",
+          "key": "prea1-instr-stop",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "go",
+          "key": "prea1-instr-go",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "show-me",
+          "key": "prea1-instr-show-me",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "point",
+          "key": "prea1-instr-point",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "touch",
+          "key": "prea1-instr-touch",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "choose",
+          "key": "prea1-instr-choose",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "drag",
+          "key": "prea1-instr-drag",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "match",
+          "key": "prea1-instr-match",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "trace",
+          "key": "prea1-instr-trace",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "colour",
+          "key": "prea1-instr-colour",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "say",
+          "key": "prea1-instr-say",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "my-turn",
+          "key": "prea1-instr-my-turn",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "your-turn",
+          "key": "prea1-instr-your-turn",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "yes",
+          "key": "prea1-instr-yes",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "no",
+          "key": "prea1-instr-no",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "help",
+          "key": "prea1-instr-help",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "finished",
+          "key": "prea1-instr-finished",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "again",
+          "key": "prea1-instr-again",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "slow-down",
+          "key": "prea1-instr-slow-down",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "quiet",
+          "key": "prea1-instr-quiet",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "good-job",
+          "key": "prea1-instr-good-job",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "try-again",
+          "key": "prea1-instr-try-again",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "question",
+          "key": "prea1-instr-question",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "celebration",
+          "key": "prea1-instr-celebration",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "calm-breathe",
+          "key": "prea1-instr-calm-breathe",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "correct",
+          "key": "prea1-ui-correct",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "try-again",
+          "key": "prea1-ui-try-again",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "target-glow",
+          "key": "prea1-ui-target-glow",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "hidden",
+          "key": "prea1-ui-hidden",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "revealed",
+          "key": "prea1-ui-revealed",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "turn-token",
+          "key": "prea1-ui-turn-token",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "finish-flag",
+          "key": "prea1-ui-finish-flag",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "audio-cue",
+          "key": "prea1-ui-audio-cue",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "start-marker",
+          "key": "prea1-ui-start-marker",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "celebration-sparkle",
+          "key": "prea1-ui-celebration-sparkle",
+          "family": "instructions",
+          "manus_task_id": "CRN24G6CaHLJob4LpxGw8T",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T01:25:31.440Z",
+      "holds": [
+        "Some cells use white plates/gutters (later keying C1). Keep raw.",
+        "UI token family is glossy/glow on purpose (drop-zone glow)."
+      ],
+      "raw_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\tmp\\manus-prea1-stockpile\\wave1-instructions"
+    },
+    "wave3-relations": {
+      "kind": "relations",
+      "family": "relations",
+      "title": "ESL Pre-A1 wave3 — concept/relationship systems",
+      "task_id": "goSmf8cCjXKXzEZKiCUngA",
+      "task_url": "https://manus.im/app/goSmf8cCjXKXzEZKiCUngA",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\tmp\\manus-prea1-stockpile\\wave3-relations\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4090483,
+          "name": "identity"
+        },
+        {
+          "file": "02.png",
+          "bytes": 1546384,
+          "name": "physical-pairs-a"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3420145,
+          "name": "physical-pairs-b"
+        },
+        {
+          "file": "04.png",
+          "bytes": 1768689,
+          "name": "spatial-tokens"
+        },
+        {
+          "file": "05.png",
+          "bytes": 3563474,
+          "name": "anchors-movables"
+        }
+      ],
+      "large_sheet_count": 5,
+      "concept_count": 55,
+      "banked_raw": 55,
+      "items": [
+        {
+          "concept": "same",
+          "key": "prea1-rel-same",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "different",
+          "key": "prea1-rel-different",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "match",
+          "key": "prea1-rel-match",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "not-match",
+          "key": "prea1-rel-not-match",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "one",
+          "key": "prea1-rel-one",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "many",
+          "key": "prea1-rel-many",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "all",
+          "key": "prea1-rel-all",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "first",
+          "key": "prea1-rel-first",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "last",
+          "key": "prea1-rel-last",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "big",
+          "key": "prea1-rel-big",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "small",
+          "key": "prea1-rel-small",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "long",
+          "key": "prea1-rel-long",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "short",
+          "key": "prea1-rel-short",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "tall",
+          "key": "prea1-rel-tall",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "short-height",
+          "key": "prea1-rel-short-height",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "full",
+          "key": "prea1-rel-full",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "empty",
+          "key": "prea1-rel-empty",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "clean",
+          "key": "prea1-rel-clean",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "dirty",
+          "key": "prea1-rel-dirty",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "open",
+          "key": "prea1-rel-open",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "closed",
+          "key": "prea1-rel-closed",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "hot",
+          "key": "prea1-rel-hot",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "cold",
+          "key": "prea1-rel-cold",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "wet",
+          "key": "prea1-rel-wet",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "dry",
+          "key": "prea1-rel-dry",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "fast",
+          "key": "prea1-rel-fast",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "slow",
+          "key": "prea1-rel-slow",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "heavy",
+          "key": "prea1-rel-heavy",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "light",
+          "key": "prea1-rel-light",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "broken",
+          "key": "prea1-rel-broken",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "fixed",
+          "key": "prea1-rel-fixed",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "in",
+          "key": "prea1-rel-in",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "on",
+          "key": "prea1-rel-on",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "under",
+          "key": "prea1-rel-under",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "next-to",
+          "key": "prea1-rel-next-to",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "behind",
+          "key": "prea1-rel-behind",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "between",
+          "key": "prea1-rel-between",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "above",
+          "key": "prea1-rel-above",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "below",
+          "key": "prea1-rel-below",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "up",
+          "key": "prea1-rel-up",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "down",
+          "key": "prea1-rel-down",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "near",
+          "key": "prea1-rel-near",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "far",
+          "key": "prea1-rel-far",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "box",
+          "key": "prea1-rel-box",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "table",
+          "key": "prea1-rel-table",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "chair",
+          "key": "prea1-rel-chair",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "bed",
+          "key": "prea1-rel-bed",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "tree",
+          "key": "prea1-rel-tree",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "shelf",
+          "key": "prea1-rel-shelf",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "block",
+          "key": "prea1-rel-block",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "ball",
+          "key": "prea1-rel-ball",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "cup",
+          "key": "prea1-rel-cup",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "bag",
+          "key": "prea1-rel-bag",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "hoop",
+          "key": "prea1-rel-hoop",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        },
+        {
+          "concept": "mat",
+          "key": "prea1-rel-mat",
+          "family": "relations",
+          "manus_task_id": "goSmf8cCjXKXzEZKiCUngA",
+          "sheet_file": "05.png",
+          "sheet_id": "S5",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T01:31:28.671Z",
+      "holds": [
+        "Physical-pairs-A may be grouped collage rather than a strict 16-cell one-concept grid. Keep raw; slice later with blob/grid judgement.",
+        "Identity sheet has white cell plates."
+      ],
+      "raw_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\tmp\\manus-prea1-stockpile\\wave3-relations"
+    },
+    "wave5-prewriting": {
+      "kind": "prewriting",
+      "family": "prewriting",
+      "title": "ESL Pre-A1 wave5 — pre-writing / motor system",
+      "task_id": "frZY8AUykYfExqKXrAHHys",
+      "task_url": "https://manus.im/app/frZY8AUykYfExqKXrAHHys",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\tmp\\manus-prea1-stockpile\\wave5-prewriting\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3712250,
+          "name": "strokes"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3420854,
+          "name": "easy-paths"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3176410,
+          "name": "writing-supports"
+        },
+        {
+          "file": "04.png",
+          "bytes": 3292982,
+          "name": "construction-pieces"
+        }
+      ],
+      "large_sheet_count": 4,
+      "concept_count": 43,
+      "banked_raw": 43,
+      "items": [
+        {
+          "concept": "stroke-vertical",
+          "key": "prea1-pw-stroke-vertical",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stroke-horizontal",
+          "key": "prea1-pw-stroke-horizontal",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stroke-diag-down-left",
+          "key": "prea1-pw-stroke-diag-down-left",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stroke-diag-down-right",
+          "key": "prea1-pw-stroke-diag-down-right",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stroke-circle",
+          "key": "prea1-pw-stroke-circle",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stroke-oval",
+          "key": "prea1-pw-stroke-oval",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stroke-c-curve",
+          "key": "prea1-pw-stroke-c-curve",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stroke-s-curve",
+          "key": "prea1-pw-stroke-s-curve",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stroke-hook",
+          "key": "prea1-pw-stroke-hook",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stroke-loop",
+          "key": "prea1-pw-stroke-loop",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stroke-zigzag",
+          "key": "prea1-pw-stroke-zigzag",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stroke-wave",
+          "key": "prea1-pw-stroke-wave",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stroke-dots",
+          "key": "prea1-pw-stroke-dots",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stroke-cross",
+          "key": "prea1-pw-stroke-cross",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stroke-u-curve",
+          "key": "prea1-pw-stroke-u-curve",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stroke-arch",
+          "key": "prea1-pw-stroke-arch",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "path-wide-horizontal",
+          "key": "prea1-pw-path-wide-horizontal",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "path-wide-vertical",
+          "key": "prea1-pw-path-wide-vertical",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "path-wide-curve",
+          "key": "prea1-pw-path-wide-curve",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "path-wide-circle",
+          "key": "prea1-pw-path-wide-circle",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "path-mountain",
+          "key": "prea1-pw-path-mountain",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "path-valley",
+          "key": "prea1-pw-path-valley",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "path-spiral-easy",
+          "key": "prea1-pw-path-spiral-easy",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "path-bumps",
+          "key": "prea1-pw-path-bumps",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "path-snake",
+          "key": "prea1-pw-path-snake",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "support-baseline",
+          "key": "prea1-pw-support-baseline",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "support-midline",
+          "key": "prea1-pw-support-midline",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "support-sky-grass-ground",
+          "key": "prea1-pw-support-sky-grass-ground",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "support-letter-box",
+          "key": "prea1-pw-support-letter-box",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "support-start-dot",
+          "key": "prea1-pw-support-start-dot",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "support-name-strip",
+          "key": "prea1-pw-support-name-strip",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "support-lined-strip",
+          "key": "prea1-pw-support-lined-strip",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "support-arrow-start",
+          "key": "prea1-pw-support-arrow-start",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "support-trace-guide",
+          "key": "prea1-pw-support-trace-guide",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "piece-long-line",
+          "key": "prea1-pw-piece-long-line",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "piece-short-line",
+          "key": "prea1-pw-piece-short-line",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "piece-diagonal",
+          "key": "prea1-pw-piece-diagonal",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "piece-small-curve",
+          "key": "prea1-pw-piece-small-curve",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "piece-large-curve",
+          "key": "prea1-pw-piece-large-curve",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "piece-loop",
+          "key": "prea1-pw-piece-loop",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "piece-circle",
+          "key": "prea1-pw-piece-circle",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "piece-oval",
+          "key": "prea1-pw-piece-oval",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "piece-hook",
+          "key": "prea1-pw-piece-hook",
+          "family": "prewriting",
+          "manus_task_id": "frZY8AUykYfExqKXrAHHys",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T01:30:32.152Z",
+      "holds": [
+        "Strokes are puffy 3D toys on white cells. Usable atoms; not instructional A-Z letters. Keep."
+      ],
+      "raw_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\tmp\\manus-prea1-stockpile\\wave5-prewriting"
+    },
+    "wave6-mnemonic-az": {
+      "kind": "mnemonic-az",
+      "family": "mnemonic-az",
+      "title": "ESL Pre-A1 wave6 — mnemonic alphabet (locked mapping)",
+      "task_id": "ehELea6ozUVjKR9epCF4sP",
+      "task_url": "https://manus.im/app/ehELea6ozUVjKR9epCF4sP",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\tmp\\manus-prea1-stockpile\\wave6-mnemonic-az\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4283361,
+          "name": "uppercase-a-p"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4226714,
+          "name": "uppercase-q-z"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3653197,
+          "name": "lowercase-a-p"
+        },
+        {
+          "file": "04.png",
+          "bytes": 3654896,
+          "name": "lowercase-q-z"
+        }
+      ],
+      "large_sheet_count": 4,
+      "concept_count": 52,
+      "banked_raw": 52,
+      "items": [
+        {
+          "concept": "a-apple-upper",
+          "key": "prea1-letter-a-apple-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "b-ball-upper",
+          "key": "prea1-letter-b-ball-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "c-cat-upper",
+          "key": "prea1-letter-c-cat-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "d-dog-upper",
+          "key": "prea1-letter-d-dog-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "e-egg-upper",
+          "key": "prea1-letter-e-egg-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "f-fish-upper",
+          "key": "prea1-letter-f-fish-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "g-goat-upper",
+          "key": "prea1-letter-g-goat-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "h-hat-upper",
+          "key": "prea1-letter-h-hat-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "i-insect-upper",
+          "key": "prea1-letter-i-insect-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "j-jam-upper",
+          "key": "prea1-letter-j-jam-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "k-kite-upper",
+          "key": "prea1-letter-k-kite-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "l-leaf-upper",
+          "key": "prea1-letter-l-leaf-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "m-moon-upper",
+          "key": "prea1-letter-m-moon-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "n-nest-upper",
+          "key": "prea1-letter-n-nest-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "o-octopus-upper",
+          "key": "prea1-letter-o-octopus-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "p-pig-upper",
+          "key": "prea1-letter-p-pig-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "q-queen-upper",
+          "key": "prea1-letter-q-queen-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "r-rabbit-upper",
+          "key": "prea1-letter-r-rabbit-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "s-snake-upper",
+          "key": "prea1-letter-s-snake-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "t-turtle-upper",
+          "key": "prea1-letter-t-turtle-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "u-umbrella-upper",
+          "key": "prea1-letter-u-umbrella-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "v-van-upper",
+          "key": "prea1-letter-v-van-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "w-web-upper",
+          "key": "prea1-letter-w-web-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "x-fox-upper",
+          "key": "prea1-letter-x-fox-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "y-yo-yo-upper",
+          "key": "prea1-letter-y-yo-yo-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "z-zebra-upper",
+          "key": "prea1-letter-z-zebra-upper",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "a-apple-lower",
+          "key": "prea1-letter-a-apple-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "b-ball-lower",
+          "key": "prea1-letter-b-ball-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "c-cat-lower",
+          "key": "prea1-letter-c-cat-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "d-dog-lower",
+          "key": "prea1-letter-d-dog-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "e-egg-lower",
+          "key": "prea1-letter-e-egg-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "f-fish-lower",
+          "key": "prea1-letter-f-fish-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "g-goat-lower",
+          "key": "prea1-letter-g-goat-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "h-hat-lower",
+          "key": "prea1-letter-h-hat-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "i-insect-lower",
+          "key": "prea1-letter-i-insect-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "j-jam-lower",
+          "key": "prea1-letter-j-jam-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "k-kite-lower",
+          "key": "prea1-letter-k-kite-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "l-leaf-lower",
+          "key": "prea1-letter-l-leaf-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "m-moon-lower",
+          "key": "prea1-letter-m-moon-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "n-nest-lower",
+          "key": "prea1-letter-n-nest-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "o-octopus-lower",
+          "key": "prea1-letter-o-octopus-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "p-pig-lower",
+          "key": "prea1-letter-p-pig-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "q-queen-lower",
+          "key": "prea1-letter-q-queen-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "r-rabbit-lower",
+          "key": "prea1-letter-r-rabbit-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "s-snake-lower",
+          "key": "prea1-letter-s-snake-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "t-turtle-lower",
+          "key": "prea1-letter-t-turtle-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "u-umbrella-lower",
+          "key": "prea1-letter-u-umbrella-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "v-van-lower",
+          "key": "prea1-letter-v-van-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "w-web-lower",
+          "key": "prea1-letter-w-web-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "x-fox-lower",
+          "key": "prea1-letter-x-fox-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "y-yo-yo-lower",
+          "key": "prea1-letter-y-yo-yo-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "z-zebra-lower",
+          "key": "prea1-letter-z-zebra-lower",
+          "family": "mnemonic-az",
+          "manus_task_id": "ehELea6ozUVjKR9epCF4sP",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T01:34:06.826Z",
+      "holds": [
+        "Locked mapping followed (apple/egg/insect/octopus/umbrella, hard C cat, hard G goat, X fox /ks/, Y yo-yo).",
+        "Lowercase q-z sheet mixed a few uppercase glyphs (V/W/X/Z). Keep; mop those four later if import needs case-pure lower."
+      ],
+      "raw_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\tmp\\manus-prea1-stockpile\\wave6-mnemonic-az"
+    },
+    "wave7-articulation": {
+      "kind": "articulation",
+      "family": "articulation",
+      "title": "ESL Pre-A1 wave7 — compact articulation kit",
+      "task_id": "ZFPTm74FFjov4f74VgL2BC",
+      "task_url": "https://manus.im/app/ZFPTm74FFjov4f74VgL2BC",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\tmp\\manus-prea1-stockpile\\wave7-articulation\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3912396,
+          "name": "visible-mouth"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3399708,
+          "name": "sensory-sideviews"
+        }
+      ],
+      "large_sheet_count": 2,
+      "concept_count": 18,
+      "banked_raw": 18,
+      "items": [
+        {
+          "concept": "lips-together",
+          "key": "prea1-art-lips-together",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "lips-apart",
+          "key": "prea1-art-lips-apart",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "lip-to-teeth",
+          "key": "prea1-art-lip-to-teeth",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "tongue-between-teeth",
+          "key": "prea1-art-tongue-between-teeth",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "tongue-behind-teeth",
+          "key": "prea1-art-tongue-behind-teeth",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "tongue-tip-up",
+          "key": "prea1-art-tongue-tip-up",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "lips-rounded",
+          "key": "prea1-art-lips-rounded",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "lips-spread",
+          "key": "prea1-art-lips-spread",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "jaw-open",
+          "key": "prea1-art-jaw-open",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "hand-on-throat",
+          "key": "prea1-art-hand-on-throat",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "airflow",
+          "key": "prea1-art-airflow",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "voice-on",
+          "key": "prea1-art-voice-on",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "voice-off",
+          "key": "prea1-art-voice-off",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "long-air",
+          "key": "prea1-art-long-air",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "quick-pop",
+          "key": "prea1-art-quick-pop",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "mirror",
+          "key": "prea1-art-mirror",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "stretch",
+          "key": "prea1-art-stretch",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "side-view",
+          "key": "prea1-art-side-view",
+          "family": "articulation",
+          "manus_task_id": "ZFPTm74FFjov4f74VgL2BC",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T01:33:40.160Z",
+      "holds": [
+        "Mouth sheet + sensory/side-view sheet both usable. Not IPA. Keep."
+      ],
+      "raw_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\tmp\\manus-prea1-stockpile\\wave7-articulation"
+    },
+    "wave8-surfaces": {
+      "kind": "surfaces",
+      "family": "surfaces",
+      "title": "ESL Pre-A1 wave8 — interaction surface shells",
+      "task_id": "kmHxSTb3vPoDwqjGDVsttj",
+      "task_url": "https://manus.im/app/kmHxSTb3vPoDwqjGDVsttj",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\tmp\\manus-prea1-stockpile\\wave8-surfaces\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 1484549,
+          "name": "choice-listen-drag"
+        },
+        {
+          "file": "02.png",
+          "bytes": 2387577,
+          "name": "memory-sort-hide"
+        },
+        {
+          "file": "03.png",
+          "bytes": 1549977,
+          "name": "build-trace-sequence"
+        },
+        {
+          "file": "04.png",
+          "bytes": 1237097,
+          "name": "story-parking"
+        }
+      ],
+      "large_sheet_count": 4,
+      "concept_count": 29,
+      "banked_raw": 29,
+      "items": [
+        {
+          "concept": "choice-2",
+          "key": "prea1-surf-choice-2",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "choice-3",
+          "key": "prea1-surf-choice-3",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "choice-4",
+          "key": "prea1-surf-choice-4",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "listen-drag-2",
+          "key": "prea1-surf-listen-drag-2",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "listen-drag-3",
+          "key": "prea1-surf-listen-drag-3",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "listen-drag-4",
+          "key": "prea1-surf-listen-drag-4",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "listen-drag-6",
+          "key": "prea1-surf-listen-drag-6",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "pair-match",
+          "key": "prea1-surf-pair-match",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "line-match",
+          "key": "prea1-surf-line-match",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "01.png",
+          "sheet_id": "S1",
+          "obvious_fail": false
+        },
+        {
+          "concept": "memory-match",
+          "key": "prea1-surf-memory-match",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "bin-sort-2",
+          "key": "prea1-surf-bin-sort-2",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "bin-sort-3",
+          "key": "prea1-surf-bin-sort-3",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "hide-3",
+          "key": "prea1-surf-hide-3",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "hide-4",
+          "key": "prea1-surf-hide-4",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "hide-6",
+          "key": "prea1-surf-hide-6",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "where-is-it",
+          "key": "prea1-surf-where-is-it",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "feed",
+          "key": "prea1-surf-feed",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "place",
+          "key": "prea1-surf-place",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "02.png",
+          "sheet_id": "S2",
+          "obvious_fail": false
+        },
+        {
+          "concept": "build-face",
+          "key": "prea1-surf-build-face",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "build-body",
+          "key": "prea1-surf-build-body",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "build-dress",
+          "key": "prea1-surf-build-dress",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "build-letter",
+          "key": "prea1-surf-build-letter",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "build-scene",
+          "key": "prea1-surf-build-scene",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "trace-follow",
+          "key": "prea1-surf-trace-follow",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "sequence-2",
+          "key": "prea1-surf-sequence-2",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "sequence-3",
+          "key": "prea1-surf-sequence-3",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "sequence-4",
+          "key": "prea1-surf-sequence-4",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "03.png",
+          "sheet_id": "S3",
+          "obvious_fail": false
+        },
+        {
+          "concept": "story-2-frame",
+          "key": "prea1-surf-story-2-frame",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        },
+        {
+          "concept": "story-3-frame",
+          "key": "prea1-surf-story-3-frame",
+          "family": "surfaces",
+          "manus_task_id": "kmHxSTb3vPoDwqjGDVsttj",
+          "sheet_file": "04.png",
+          "sheet_id": "S4",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T01:38:31.768Z",
+      "holds": [
+        "Empty shells with mid-tone wells. Story-parking sheet only fills 2 cells as planned. Keep."
+      ],
+      "raw_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\tmp\\manus-prea1-stockpile\\wave8-surfaces"
+    }
+  },
+  "harvest_notes": {
+    "downloader": "zip attachments are extracted; numbered 01.png are real PNGs",
+    "no_import": true,
+    "no_safety_blocks": true,
+    "mnemonic_map": "scripts/manus/prea1-mnemonic-az-map.json"
+  }
+}

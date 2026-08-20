@@ -1,0 +1,23 @@
+{
+  "title": "Dentists are nice!",
+  "level": "A1",
+  "duration": "30",
+  "knownIssues": [
+    "Navy wrap S32 when used is intentional palette",
+    "clean→soap icon soft mismatch is on the asset wishlist",
+    "Prior folds already on main: dental≠bathtub, dental dock, hygiene aim, phonics omit, S74/S75, timingChip, dentalFlush gutter, orphan page wipe"
+  ],
+  "justFixed": [
+    "dentalFlush left gutter + milder scale so hint clears hero hair",
+    "Orphan page-N.jpg wipe + pickImages pageCount cap (no stale wrap siblings)",
+    "Chrome ≥22px on speaking sample labels"
+  ],
+  "localChecks": [
+    "verify-board-visual dentist: hardFailures=[]; M7=1; pageCount=10"
+  ],
+  "focus": [
+    "Emphasis tilt: visual / UX / design — still judge the whole lesson",
+    "Especially interested in: hero occlusion, dock crush, image-match honesty, dead space, readability"
+  ],
+  "notes": "manus-ux30 dentist — What do you think of this lesson? Everything fair game."
+}

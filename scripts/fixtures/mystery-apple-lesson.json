@@ -1,0 +1,38 @@
+{
+  "title": "One Fruit Card",
+  "warmUp": {
+    "question": "What fruit do you like?",
+    "sampleAnswer": "I like apples."
+  },
+  "vocabulary": [
+    { "word": "apple", "emoji": "🍎" },
+    { "word": "perseverance" },
+    { "word": "gratitude" }
+  ],
+  "sentenceFrames": [],
+  "story": {
+    "title": "Snack Time",
+    "pages": [
+      {
+        "heading": "Snack",
+        "text": "I eat an apple. The apple is red and sweet.",
+        "visualTheme": "kitchen",
+        "visualCaption": "Kid with apple"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What do I eat?", "sampleAnswer": "An apple." },
+      { "question": "Is the apple red?", "sampleAnswer": "Yes." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "Do you like apples?", "sampleAnswer": "Yes." }
+  ],
+  "activity": {
+    "title": "Mystery word",
+    "prompt": "Guess the word.",
+    "templates": ["I see a ____."]
+  },
+  "reviewSentences": []
+}

@@ -1,0 +1,37 @@
+{
+  "title": "Two Pets Choice",
+  "warmUp": {
+    "question": "Do you like pets?",
+    "sampleAnswer": "Yes, I like dogs."
+  },
+  "vocabulary": [
+    { "word": "dog", "emoji": "🐶" },
+    { "word": "cat", "emoji": "🐱" }
+  ],
+  "sentenceFrames": [],
+  "story": {
+    "title": "Pet Day",
+    "pages": [
+      {
+        "heading": "Friends",
+        "text": "I see a dog and a cat. The dog is big. The cat is soft.",
+        "visualTheme": "pets",
+        "visualCaption": "Dog and cat"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What animals do I see?", "sampleAnswer": "A dog and a cat." },
+      { "question": "Is the dog big?", "sampleAnswer": "Yes." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "Do you like dogs or cats?", "sampleAnswer": "I like dogs." }
+  ],
+  "activity": {
+    "title": "This or that",
+    "prompt": "Pick one pet.",
+    "templates": ["I like ______."]
+  },
+  "reviewSentences": []
+}

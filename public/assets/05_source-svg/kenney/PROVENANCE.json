@@ -1,0 +1,44 @@
+{
+  "license": "CC0 1.0 Universal",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "attribution": "Kenney (https://kenney.nl) — credit appreciated, not required",
+  "site": "https://kenney.nl/assets",
+  "commercialUse": true,
+  "stagingBank": "tmp/asset-banks/kenney/ (gitignored; see PROVENANCE.json + INDEX.md there)",
+  "propBankKeys": "kenney-* in public/assets/09_props (styleFamily=kenney-flat)",
+  "producer": {
+    "curate": "npm run assets:kenney-curate",
+    "import": "npm run assets:kenney-import"
+  },
+  "packsImported": [
+    { "id": "animal-pack-remastered", "page": "https://kenney.nl/assets/animal-pack-remastered", "topic": "zoo-animals" },
+    { "id": "fish-pack", "page": "https://kenney.nl/assets/fish-pack", "topic": "aquarium-fish" },
+    { "id": "planets", "page": "https://kenney.nl/assets/planets", "topic": "space-planets" },
+    { "id": "simple-space", "page": "https://kenney.nl/assets/simple-space", "topic": "space-simple" },
+    { "id": "foliage-sprites", "page": "https://kenney.nl/assets/foliage-sprites", "topic": "nature-foliage" },
+    { "id": "foliage-pack", "page": "https://kenney.nl/assets/foliage-pack", "topic": "nature-foliage-pack" },
+    { "id": "board-game-icons", "page": "https://kenney.nl/assets/board-game-icons", "topic": "board-icons" },
+    { "id": "domino-pack", "page": "https://kenney.nl/assets/domino-pack", "topic": "games-domino" },
+    { "id": "block-pack", "page": "https://kenney.nl/assets/block-pack", "topic": "town-blocks", "notes": "Double 128px; characters + terrain tiles culled → kenney-block-*" },
+    { "id": "background-elements", "page": "https://kenney.nl/assets/background-elements", "topic": "bg-elements", "notes": "≥120 castles/clouds/trees → kenney-bgel-*" },
+    { "id": "boardgame-pack", "page": "https://kenney.nl/assets/boardgame-pack", "topic": "games-cards", "notes": "Cards only; J/Q/K/Joker culled → kenney-card-*" },
+    { "id": "background-elements-remastered", "page": "https://kenney.nl/assets/background-elements-remastered", "topic": "bg-elements-remaster", "notes": "Retina ≥120 → kenney-bgr-*" }
+  ],
+  "packsSkipped": [
+    { "id": "sports-pack", "page": "https://kenney.nl/assets/sports-pack", "reason": "Blue sprites ~21px — below dock min" },
+    { "id": "generic-items", "page": "https://kenney.nl/assets/generic-items", "reason": "Most PNG short-side <120" },
+    { "id": "racing-pack", "page": "https://kenney.nl/assets/racing-pack", "reason": "Cars ~71px wide under dock min" },
+    { "id": "alien-ufo-pack", "page": "https://kenney.nl/assets/alien-ufo-pack", "reason": "Unmanned ships short-side ~67; ≥120 leftovers are manned (faces) or laser bursts (chrome)" }
+  ],
+  "importedAt": "2026-08-09",
+  "crew30": {
+    "mergedProps": 173,
+    "topics": {
+      "town-blocks": 41,
+      "bg-elements": 32,
+      "games-cards": 55,
+      "bg-elements-remaster": 45,
+      "space-ufo": 0
+    }
+  }
+}

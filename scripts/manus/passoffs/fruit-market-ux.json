@@ -1,0 +1,23 @@
+{
+  "title": "Fruit Market",
+  "level": "A1",
+  "duration": "30",
+  "knownIssues": [
+    "Activity is sortBins (Things/Ideas) until a produce stage hero exists — empty beats wrong cafe",
+    "Navy wrap S32 + supermarket quiet flats intentional when used",
+    "Prior folds on main: cafe/farm/gashapon king banned, grammar see/request, S74 2nd Q, orphan wipe, mid-board sortBins fill"
+  ],
+  "justFixed": [
+    "No cafe/farm/gashapon king on Fruit Market",
+    "Orphan page-N wipe + pickImages pageCount cap",
+    "Activity bodyText strip + full mid-board targetBay for sortBins"
+  ],
+  "localChecks": [
+    "verify-board-visual fruit-market: hardFailures=[]; M7=1; pageCount=10; recipe=sortBins"
+  ],
+  "focus": [
+    "Emphasis tilt: visual / UX / design — still judge the whole lesson",
+    "Especially interested in: produce art honesty, sortBins fill/dead-space, overlay/overflow, backgrounds, readability"
+  ],
+  "notes": "manus-ux30 fruit-market — What do you think of this lesson? Everything fair game."
+}

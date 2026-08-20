@@ -1,0 +1,27 @@
+{
+  "title": "Playing Basketball with Friends",
+  "level": "A2",
+  "duration": "30",
+  "knownIssues": [
+    "No basketball-hoop king (soft-gated) — formulaic oddOneOut is intentional",
+    "Wrap navy confetti end-card is known formulaic wrap chrome",
+    "court may be unvetted glyph-only (M7 soft); score pack icon is abstract UI chrome (asset wishlist)",
+    "StoryArt opportunistic only"
+  ],
+  "justFixed": [
+    "Manus HOLDS verified: ball chrome gate, MatchDock twin, points/number ruleHint, Why scaffold, mid gym wash",
+    "Speaking: yes/no production cue + always-visible I like ____ frame (below Peek) + wrap peer check names today’s words",
+    "Story aim-coverage: friends + score appear in story text; S76 Draft if missing",
+    "Bare hollow omit; mid house wash"
+  ],
+  "localChecks": [
+    "hardFailures=[]; activity=gym-c; recipe=oddOneOut; speaking has speakFrame",
+    "Standing division-of-labor: spelling/clipping/warm-leak/match-captions handled locally"
+  ],
+  "focus": [
+    "PRIMARY: production chain — story → speaking frame → wrap peer check with named words",
+    "oddOneOut still solvable with points/number rule?",
+    "New misses only; still judge whole lesson"
+  ],
+  "notes": "Post speaking-frame + S76. Standing bar: What do you think? ALWAYS weakest_link; ONE escalation_homework."
+}

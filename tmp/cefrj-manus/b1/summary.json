@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-08-16T21:02:06.729Z",
+  "level": "B1",
+  "note": "B1 shortlist — same light scrub as A1/A2. Live pack exact-dedupe. No Manus sent.",
+  "nouns": {
+    "cefrjB1Rows": 1266,
+    "alreadyInPack": 370,
+    "rawMissingAfterDedupe": 896,
+    "keptForManus": 716,
+    "review": 0,
+    "rejected": 180
+  },
+  "verbs": {
+    "cefrjB1Rows": 464,
+    "alreadyInPack": 269,
+    "rawMissingAfterDedupe": 195,
+    "keptForManus": 193,
+    "review": 2,
+    "rejected": 0
+  },
+  "adjectives": {
+    "cefrjB1Rows": 512,
+    "alreadyInPack": 30,
+    "rawMissingAfterDedupe": 482,
+    "keptForManus": 473,
+    "review": 0,
+    "rejected": 9
+  }
+}

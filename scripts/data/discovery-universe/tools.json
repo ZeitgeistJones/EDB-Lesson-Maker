@@ -1,0 +1,296 @@
+{
+  "id": "tools",
+  "labels": [
+    "tools",
+    "workshop"
+  ],
+  "usefulness": 0.8,
+  "picturable": 0.95,
+  "hardToSubstitute": 0.4,
+  "topics": [
+    "toolbox basics",
+    "hardware aisle",
+    "garage shelf",
+    "diy repair",
+    "measuring bench",
+    "power tool demo",
+    "nail and screw",
+    "paint station",
+    "drill press",
+    "workbench",
+    "ladder jobs",
+    "safety gear shelf"
+  ],
+  "concepts": [
+    {
+      "word": "screwdriver",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "phillips",
+      "usefulness": 0.45,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "allen key",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "pliers",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "clamp",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "saw",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "hacksaw",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "drill",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "bit",
+      "usefulness": 0.6,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "nail",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "fastener"
+      ]
+    },
+    {
+      "word": "screw",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "fastener"
+      ]
+    },
+    {
+      "word": "bolt",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "fastener"
+      ]
+    },
+    {
+      "word": "nut",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "fastener"
+      ]
+    },
+    {
+      "word": "washer",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "fastener"
+      ]
+    },
+    {
+      "word": "tape measure",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "square",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "level",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "utility knife",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "file",
+      "usefulness": 0.6,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "mallet",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "sledgehammer",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "crowbar",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "toolbox",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "container"
+      ]
+    },
+    {
+      "word": "workbench",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "furniture"
+      ]
+    },
+    {
+      "word": "vise",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "sandpaper",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "supply"
+      ]
+    },
+    {
+      "word": "paintbrush",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "roller",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "tray",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "earmuff",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "ppe"
+      ]
+    }
+  ]
+}

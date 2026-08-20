@@ -1,0 +1,30 @@
+{
+  "circus": [
+    "tent", "ring", "golden-hoop", "podium", "unicycle", "unicycle-gray",
+    "juggling-clubs", "cannon", "juggling-balls", "tightrope-poles", "ticket-roll", "trapeze-rings",
+    "balance-pole", "colorful-ball", "hula-hoop", "top-hat", "magician-wand", "star-wand",
+    "cotton-candy", "star-wand-dup", "megaphone", "popcorn-bucket", "banner", "trapeze-bar",
+    "safety-net", "bass-drum", "trumpet", "cymbals", "wagon", "torch",
+    "fire-hoop", "mallet", "star-cape", "bow-tie", "ruffled-collar", "whistle"
+  ],
+  "post-office": [
+    "blue-mailbox", "red-postbox", "envelope", "sealed-envelope", "open-envelope", "clipboard",
+    "small-parcel", "large-parcel", "mail-kiosk", "scale", "wall-mailbox", "mail-locker",
+    "mail-bag", "shipping-label", "packing-tape", "stamp", "postcard", "postcard-back",
+    "pen", "rubber-bands", "bubble-mailer", "tube", "twine", "paper-cutter",
+    "bell", "mail-sorter", "hand-truck", "delivery-truck", "mail-slot", "wax-stick",
+    "stamp-pad", "airmail-envelope", "glue-stick", "letter-opener", "clipboard-empty", "po-box"
+  ],
+  "carnival": {
+    "blocked": true,
+    "reason": "white-field sheet with painted labels — not black-field cutout-safe"
+  },
+  "library": {
+    "blocked": true,
+    "reason": "white-field sheet with painted labels — not black-field cutout-safe"
+  },
+  "airport": {
+    "blocked": true,
+    "reason": "white-field sheet with painted labels on tiles — not black-field cutout-safe"
+  }
+}

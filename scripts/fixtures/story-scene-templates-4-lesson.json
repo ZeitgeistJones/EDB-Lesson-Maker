@@ -1,0 +1,103 @@
+{
+  "title": "Friends Go Out",
+  "warmUp": {
+    "question": "Who do you talk to?",
+    "sampleAnswer": "I talk to my friend."
+  },
+  "vocabulary": [
+    { "word": "friend", "emoji": "🤝", "sentence": "Leo is my friend." },
+    { "word": "mom", "emoji": "👩", "sentence": "Mom stands with us." },
+    { "word": "door", "emoji": "🚪", "sentence": "Mia walks to the door." },
+    { "word": "lion", "emoji": "🦁", "sentence": "Mia sees a big lion." },
+    { "word": "talk", "emoji": "💬", "sentence": "Mia talks to Leo." },
+    { "word": "listen", "emoji": "👂", "sentence": "Leo listens." }
+  ],
+  "sentenceFrames": [
+    "I see a ____.",
+    "I walk to the ____.",
+    "I talk to my ____."
+  ],
+  "story": {
+    "title": "A Day With Friends",
+    "pages": [
+      {
+        "heading": "Together",
+        "text": "Mom stands with Mia and Leo. They are happy.",
+        "visualTheme": "family",
+        "visualCaption": "Mom, Mia, and Leo together",
+        "storyScene": {
+          "templateId": "group3",
+          "actionVerb": "stand",
+          "slots": {
+            "left": { "who": "mia", "pose": "idle", "emotion": "happy" },
+            "center": { "propKey": "family-mom", "scaleClass": "actor", "facing": "front" },
+            "right": { "who": "leo", "pose": "idle", "emotion": "happy" }
+          }
+        }
+      },
+      {
+        "heading": "To the door",
+        "text": "Mia walks to the door. The door is big.",
+        "visualTheme": "home",
+        "visualCaption": "Mia walks to the door",
+        "storyScene": {
+          "templateId": "travel",
+          "actionVerb": "walks",
+          "slots": {
+            "vehicleOrGoal": { "propKey": "door", "scaleClass": "landmark" },
+            "actor": { "who": "mia", "pose": "walk", "emotion": "happy" }
+          }
+        }
+      },
+      {
+        "heading": "A big lion",
+        "text": "Mia sees a big lion. The lion is strong.",
+        "visualTheme": "zoo",
+        "visualCaption": "Mia sees a big lion",
+        "storyScene": {
+          "templateId": "heroFocus",
+          "actionVerb": "sees",
+          "slots": {
+            "hero": { "propKey": "animal-lion", "scaleClass": "hero" },
+            "witness": { "who": "mia", "pose": "idle", "emotion": "happy" }
+          }
+        }
+      },
+      {
+        "heading": "Talk time",
+        "text": "Mia talks to Leo. Leo listens.",
+        "visualTheme": "friends",
+        "visualCaption": "Mia talks. Leo listens.",
+        "storyScene": {
+          "templateId": "dialogue",
+          "actionVerb": "talks",
+          "slots": {
+            "speakerA": { "who": "mia", "pose": "talk", "emotion": "happy" },
+            "speakerB": { "who": "leo", "pose": "listen", "emotion": "happy" }
+          }
+        }
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Who stands with Mia and Leo?", "sampleAnswer": "Mom." },
+      { "question": "Where does Mia walk?", "sampleAnswer": "To the door." },
+      { "question": "What does Mia see?", "sampleAnswer": "A big lion." },
+      { "question": "Who listens?", "sampleAnswer": "Leo." }
+    ],
+    "creativeQuestions": [
+      { "question": "Who do you talk to?", "sampleAnswer": "I talk to my friend." }
+    ]
+  },
+  "speakingQuestions": [
+    { "question": "Do you walk to school?", "sampleAnswer": "Yes, I do." },
+    { "question": "Can you see a lion at the zoo?", "sampleAnswer": "Yes, I can." }
+  ],
+  "activity": {
+    "title": "Match the story words",
+    "prompt": "Match each word to the picture.",
+    "templates": ["I see a ____.", "I walk to the ____."]
+  },
+  "reviewSentences": [
+    "Mom stands with Mia and Leo. Mia walks to the door. Mia sees a lion. Mia talks to Leo."
+  ]
+}

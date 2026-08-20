@@ -1,0 +1,29 @@
+{
+  "title": "Building Our Royal Castle",
+  "level": "A1",
+  "duration": "30",
+  "knownIssues": [
+    "Match dock NO answer-naming caption chips (S26)",
+    "StoryArt opportunistic — PropBank castle plate is Ready path",
+    "Do not reopen: same-topic adapt, Manus-in-Generate, StoryArt-as-Ready, 84% floor, ≥3 match floor",
+    "Bake JPG may still show pre-fix phonics cat/big — producer now omits illegal A1 topic phonics (commit 12deb07); judge pedagogy on remaining pages and call gate_holes if claimed fix is absent on THIS bake"
+  ],
+  "justFixed": [
+    "Castle heroProp + sharp dock (flag/crown/shield/sword/key/door/torch)",
+    "M7=1 pack art for board six",
+    "PhonicsPolicy: omit page when topic magic-e/illegal rows would bank-pad cat/dog (12deb07) — THIS bake may predate; flag if still showing",
+    "S74/S75 comprehension floor + bankable frames; grammarAimLine have/possession + sequencing"
+  ],
+  "localChecks": [
+    "verify-board-visual castle: hardFailures=[]; M7=1",
+    "Local smells on THIS bake: phonics shows big/cat (off-topic); comprehension appears single-Q; grammar aim still opinion/planning vs I see/The knight frames",
+    "Standing division-of-labor for mechanical gates"
+  ],
+  "focus": [
+    "PRIMARY: My Castle Builder pedagogy — dock vs taught vocab (castle/knight/dragon/door/flag/bridge), production cue",
+    "Phonics topic fit vs omit gate (gate_holes if bake still ships cat/dog after claimed omit)",
+    "Comprehension thinness + story grounding; grammar-aim contract",
+    "New misses only"
+  ],
+  "notes": "Manusloop crew30-x4 pass 3/4 — castle. Standing bar: skip mechanical re-reports; ALWAYS weakest_link; ONE escalation_homework."
+}

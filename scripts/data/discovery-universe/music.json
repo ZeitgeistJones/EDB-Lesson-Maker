@@ -1,0 +1,300 @@
+{
+  "id": "music",
+  "labels": [
+    "music",
+    "theater"
+  ],
+  "usefulness": 0.8,
+  "picturable": 0.92,
+  "hardToSubstitute": 0.4,
+  "topics": [
+    "orchestra pit",
+    "band practice",
+    "piano lesson",
+    "drum circle",
+    "choir stage",
+    "theater rehearsal",
+    "puppet show",
+    "costume rack",
+    "makeup mirror",
+    "spotlight cue",
+    "microphone night",
+    "guitar shop",
+    "ballet barre",
+    "stage curtains",
+    "prop closet",
+    "ticket booth"
+  ],
+  "concepts": [
+    {
+      "word": "violin",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "cello",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "flute",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "clarinet",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "trumpet",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "trombone",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "saxophone",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "harp",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "xylophone",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "tambourine",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "cymbal",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "drumstick",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "accessory"
+      ]
+    },
+    {
+      "word": "baton",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "accessory"
+      ]
+    },
+    {
+      "word": "metronome",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "music stand",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "furniture"
+      ]
+    },
+    {
+      "word": "sheet music",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "doc"
+      ]
+    },
+    {
+      "word": "microphone",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "gear"
+      ]
+    },
+    {
+      "word": "amp",
+      "usefulness": 0.6,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "gear"
+      ]
+    },
+    {
+      "word": "curtain",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "stage"
+      ]
+    },
+    {
+      "word": "spotlight",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "stage"
+      ]
+    },
+    {
+      "word": "mask",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "prop"
+      ]
+    },
+    {
+      "word": "wig",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "costume"
+      ]
+    },
+    {
+      "word": "script",
+      "usefulness": 0.65,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "doc"
+      ]
+    },
+    {
+      "word": "puppet",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "prop"
+      ]
+    },
+    {
+      "word": "marquee",
+      "usefulness": 0.5,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "place"
+      ]
+    },
+    {
+      "word": "balcony",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "place"
+      ]
+    },
+    {
+      "word": "orchestra",
+      "usefulness": 0.55,
+      "picturable": 0.75,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "group"
+      ]
+    },
+    {
+      "word": "pointe shoe",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "costume"
+      ]
+    },
+    {
+      "word": "tutu",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "costume"
+      ]
+    },
+    {
+      "word": "leotard",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "costume"
+      ]
+    }
+  ]
+}

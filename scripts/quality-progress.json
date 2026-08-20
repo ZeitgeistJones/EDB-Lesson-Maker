@@ -1,0 +1,1831 @@
+{
+  "note": "Append-only quality area snapshots.",
+  "snapshots": [
+    {
+      "at": "2026-08-07T01:20:07.721Z",
+      "tier": "all",
+      "cases": 20,
+      "iteration": 2,
+      "hard": 0,
+      "metricFails": 18,
+      "metricWarns": 145,
+      "m5Fails": 10,
+      "m7Fails": 3,
+      "layoutFails": 5,
+      "unvettedWords": 26,
+      "wishlistOpen": 7,
+      "meanM5": 0.363,
+      "meanM7": 0.767,
+      "pillarAvg": null,
+      "regressions": 69,
+      "note": null
+    },
+    {
+      "at": "2026-08-07T01:25:21.774Z",
+      "tier": "core",
+      "cases": 3,
+      "iteration": 1,
+      "hard": 0,
+      "metricFails": 2,
+      "metricWarns": 25,
+      "m5Fails": 1,
+      "m7Fails": 1,
+      "layoutFails": 0,
+      "unvettedWords": 6,
+      "wishlistOpen": 7,
+      "meanM5": 0.311,
+      "meanM7": 0.444,
+      "pillarAvg": 2.583,
+      "regressions": 7,
+      "note": null
+    },
+    {
+      "at": "2026-08-07T01:36:04.973Z",
+      "tier": "all",
+      "cases": 20,
+      "iteration": 1,
+      "hard": 0,
+      "metricFails": 3,
+      "metricWarns": 139,
+      "m5Fails": 0,
+      "m7Fails": 3,
+      "layoutFails": 0,
+      "unvettedWords": 26,
+      "wishlistOpen": 9,
+      "meanM5": 0.533,
+      "meanM7": 0.767,
+      "pillarAvg": null,
+      "regressions": 71,
+      "note": null
+    },
+    {
+      "at": "2026-08-07T01:53:46.900Z",
+      "tier": "all",
+      "cases": 20,
+      "iteration": 2,
+      "hard": 0,
+      "metricFails": 1,
+      "metricWarns": 137,
+      "m5Fails": 0,
+      "m7Fails": 1,
+      "layoutFails": 0,
+      "unvettedWords": 10,
+      "wishlistOpen": 7,
+      "meanM5": 0.532,
+      "meanM7": 0.95,
+      "pillarAvg": null,
+      "regressions": 0,
+      "note": null,
+      "rates": {
+        "pages": 227,
+        "cases": 20,
+        "M1": {
+          "scope": "page",
+          "hits": 102,
+          "warns": 102,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.449
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.004
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.004
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 22,
+          "warns": 22,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.097
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 8,
+          "warns": 8,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.035
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 20,
+          "rate": 0.05
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 2,
+          "warns": 2,
+          "fails": 0,
+          "denom": 20,
+          "rate": 0.1
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 0,
+          "fails": 1,
+          "denom": 20,
+          "rate": 0.05
+        }
+      },
+      "pages": 227
+    },
+    {
+      "at": "2026-08-07T04:54:27.270Z",
+      "tier": "all",
+      "cases": 20,
+      "pages": 227,
+      "iteration": 2,
+      "hard": 20,
+      "metricFails": 1,
+      "metricWarns": 34,
+      "m5Fails": 0,
+      "m7Fails": 1,
+      "layoutFails": 0,
+      "unvettedWords": 10,
+      "wishlistOpen": 7,
+      "meanM5": 0.533,
+      "meanM7": 0.95,
+      "pillarAvg": null,
+      "regressions": 16,
+      "rates": {
+        "pages": 227,
+        "cases": 20,
+        "M1": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.004
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 22,
+          "warns": 22,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.097
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 8,
+          "warns": 8,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.035
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 20,
+          "rate": 0.05
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 2,
+          "warns": 2,
+          "fails": 0,
+          "denom": 20,
+          "rate": 0.1
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 0,
+          "fails": 1,
+          "denom": 20,
+          "rate": 0.05
+        }
+      },
+      "note": null
+    },
+    {
+      "at": "2026-08-07T04:56:22.248Z",
+      "tier": "all",
+      "cases": 20,
+      "pages": 227,
+      "iteration": 2,
+      "hard": 0,
+      "metricFails": 1,
+      "metricWarns": 40,
+      "m5Fails": 0,
+      "m7Fails": 1,
+      "layoutFails": 0,
+      "unvettedWords": 10,
+      "wishlistOpen": 7,
+      "meanM5": 0.537,
+      "meanM7": 0.95,
+      "pillarAvg": null,
+      "regressions": 34,
+      "rates": {
+        "pages": 227,
+        "cases": 20,
+        "M1": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.004
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 22,
+          "warns": 22,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.097
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 6,
+          "warns": 6,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.026
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 8,
+          "warns": 8,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.035
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 20,
+          "rate": 0.05
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 2,
+          "warns": 2,
+          "fails": 0,
+          "denom": 20,
+          "rate": 0.1
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 0,
+          "fails": 1,
+          "denom": 20,
+          "rate": 0.05
+        }
+      },
+      "note": null
+    },
+    {
+      "at": "2026-08-07T05:27:21.463Z",
+      "tier": "all",
+      "cases": 20,
+      "pages": 227,
+      "iteration": 2,
+      "hard": 0,
+      "metricFails": 15,
+      "metricWarns": 15,
+      "m5Fails": 0,
+      "m7Fails": 1,
+      "layoutFails": 0,
+      "unvettedWords": 10,
+      "wishlistOpen": 7,
+      "meanM5": 0.521,
+      "meanM7": 0.95,
+      "pillarAvg": null,
+      "regressions": 30,
+      "rates": {
+        "pages": 227,
+        "cases": 20,
+        "M1": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 14,
+          "warns": 0,
+          "fails": 14,
+          "denom": 227,
+          "rate": 0.062
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.004
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 8,
+          "warns": 8,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.035
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 20,
+          "rate": 0.05
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 5,
+          "warns": 5,
+          "fails": 0,
+          "denom": 20,
+          "rate": 0.25
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 0,
+          "fails": 1,
+          "denom": 20,
+          "rate": 0.05
+        }
+      },
+      "note": null
+    },
+    {
+      "at": "2026-08-07T05:29:07.315Z",
+      "tier": "all",
+      "cases": 20,
+      "pages": 227,
+      "iteration": 2,
+      "hard": 0,
+      "metricFails": 1,
+      "metricWarns": 16,
+      "m5Fails": 0,
+      "m7Fails": 1,
+      "layoutFails": 0,
+      "unvettedWords": 10,
+      "wishlistOpen": 7,
+      "meanM5": 0.519,
+      "meanM7": 0.95,
+      "pillarAvg": null,
+      "regressions": 16,
+      "rates": {
+        "pages": 227,
+        "cases": 20,
+        "M1": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.004
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 8,
+          "warns": 8,
+          "fails": 0,
+          "denom": 227,
+          "rate": 0.035
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 20,
+          "rate": 0.05
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 6,
+          "warns": 6,
+          "fails": 0,
+          "denom": 20,
+          "rate": 0.3
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 0,
+          "fails": 1,
+          "denom": 20,
+          "rate": 0.05
+        }
+      },
+      "note": null
+    },
+    {
+      "at": "2026-08-09T20:22:54.435Z",
+      "tier": "core",
+      "cases": 3,
+      "pages": 33,
+      "iteration": 2,
+      "hard": 0,
+      "metricFails": 1,
+      "metricWarns": 16,
+      "m5Fails": 0,
+      "m7Fails": 0,
+      "layoutFails": 1,
+      "unvettedWords": 3,
+      "wishlistOpen": 10,
+      "meanM5": 0.417,
+      "meanM7": 0.833,
+      "pillarAvg": 2.25,
+      "regressions": 6,
+      "rates": {
+        "pages": 33,
+        "cases": 3,
+        "M1": {
+          "scope": "page",
+          "hits": 12,
+          "warns": 12,
+          "fails": 0,
+          "denom": 33,
+          "rate": 0.364
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 33,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 33,
+          "rate": 0
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 33,
+          "rate": 0
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 33,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 1,
+          "warns": 0,
+          "fails": 1,
+          "denom": 33,
+          "rate": 0.03
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 33,
+          "rate": 0
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 3,
+          "rate": 0
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 3,
+          "warns": 3,
+          "fails": 0,
+          "denom": 3,
+          "rate": 1
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 3,
+          "rate": 0.333
+        }
+      },
+      "note": null
+    },
+    {
+      "at": "2026-08-09T20:24:57.382Z",
+      "tier": "core",
+      "cases": 1,
+      "pages": 11,
+      "iteration": 3,
+      "hard": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "m5Fails": 0,
+      "m7Fails": 0,
+      "layoutFails": 0,
+      "unvettedWords": 0,
+      "wishlistOpen": 10,
+      "meanM5": 0.404,
+      "meanM7": 1,
+      "pillarAvg": 2.5,
+      "regressions": 0,
+      "rates": {
+        "pages": 11,
+        "cases": 1,
+        "M1": {
+          "scope": "page",
+          "hits": 4,
+          "warns": 4,
+          "fails": 0,
+          "denom": 11,
+          "rate": 0.364
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 11,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 11,
+          "rate": 0
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 11,
+          "rate": 0
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 11,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 11,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 11,
+          "rate": 0
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 1,
+          "rate": 0
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 1,
+          "rate": 1
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 1,
+          "rate": 0
+        }
+      },
+      "note": null
+    },
+    {
+      "at": "2026-08-09T20:28:52.822Z",
+      "tier": "core",
+      "cases": 1,
+      "pages": 10,
+      "iteration": 4,
+      "hard": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "m5Fails": 0,
+      "m7Fails": 0,
+      "layoutFails": 0,
+      "unvettedWords": 0,
+      "wishlistOpen": 10,
+      "meanM5": 0.435,
+      "meanM7": 1,
+      "pillarAvg": 2,
+      "regressions": 0,
+      "rates": {
+        "pages": 10,
+        "cases": 1,
+        "M1": {
+          "scope": "page",
+          "hits": 4,
+          "warns": 4,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0.4
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 1,
+          "rate": 0
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 1,
+          "rate": 1
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 1,
+          "rate": 0
+        }
+      },
+      "note": null
+    },
+    {
+      "at": "2026-08-09T20:29:05.337Z",
+      "tier": "core",
+      "cases": 4,
+      "pages": 42,
+      "iteration": 5,
+      "hard": 0,
+      "metricFails": 0,
+      "metricWarns": 19,
+      "m5Fails": 0,
+      "m7Fails": 0,
+      "layoutFails": 0,
+      "unvettedWords": 0,
+      "wishlistOpen": 10,
+      "meanM5": 0.415,
+      "meanM7": 1,
+      "pillarAvg": 2.5,
+      "regressions": 20,
+      "rates": {
+        "pages": 42,
+        "cases": 4,
+        "M1": {
+          "scope": "page",
+          "hits": 15,
+          "warns": 15,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0.357
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 4,
+          "rate": 0
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 4,
+          "warns": 4,
+          "fails": 0,
+          "denom": 4,
+          "rate": 1
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 4,
+          "rate": 0
+        }
+      },
+      "note": null
+    },
+    {
+      "at": "2026-08-09T20:29:28.261Z",
+      "tier": "core",
+      "cases": 1,
+      "pages": 11,
+      "iteration": 6,
+      "hard": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "m5Fails": 0,
+      "m7Fails": 0,
+      "layoutFails": 0,
+      "unvettedWords": 0,
+      "wishlistOpen": 10,
+      "meanM5": 0.404,
+      "meanM7": 1,
+      "pillarAvg": 2.75,
+      "regressions": 0,
+      "rates": {
+        "pages": 11,
+        "cases": 1,
+        "M1": {
+          "scope": "page",
+          "hits": 4,
+          "warns": 4,
+          "fails": 0,
+          "denom": 11,
+          "rate": 0.364
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 11,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 11,
+          "rate": 0
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 11,
+          "rate": 0
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 11,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 11,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 11,
+          "rate": 0
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 1,
+          "rate": 0
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 1,
+          "rate": 1
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 1,
+          "rate": 0
+        }
+      },
+      "note": null
+    },
+    {
+      "at": "2026-08-09T20:32:13.841Z",
+      "tier": "core",
+      "cases": 1,
+      "pages": 10,
+      "iteration": 8,
+      "hard": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "m5Fails": 0,
+      "m7Fails": 0,
+      "layoutFails": 0,
+      "unvettedWords": 3,
+      "wishlistOpen": 15,
+      "meanM5": 0.481,
+      "meanM7": 0.5,
+      "pillarAvg": 2.333,
+      "regressions": 0,
+      "rates": {
+        "pages": 10,
+        "cases": 1,
+        "M1": {
+          "scope": "page",
+          "hits": 4,
+          "warns": 4,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0.4
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 1,
+          "rate": 0
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 1,
+          "rate": 0
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 1,
+          "rate": 1
+        }
+      },
+      "note": null
+    },
+    {
+      "at": "2026-08-09T20:33:08.512Z",
+      "tier": "core",
+      "cases": 4,
+      "pages": 42,
+      "iteration": 9,
+      "hard": 0,
+      "metricFails": 0,
+      "metricWarns": 4,
+      "m5Fails": 0,
+      "m7Fails": 0,
+      "layoutFails": 0,
+      "unvettedWords": 0,
+      "wishlistOpen": 16,
+      "meanM5": 0.415,
+      "meanM7": 1,
+      "pillarAvg": 2.75,
+      "regressions": 20,
+      "rates": {
+        "pages": 42,
+        "cases": 4,
+        "M1": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 42,
+          "rate": 0
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 4,
+          "rate": 0
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 4,
+          "warns": 4,
+          "fails": 0,
+          "denom": 4,
+          "rate": 1
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 4,
+          "rate": 0
+        }
+      },
+      "note": null
+    },
+    {
+      "at": "2026-08-13T04:40:33.094Z",
+      "tier": "core",
+      "cases": 1,
+      "pages": 10,
+      "iteration": 10,
+      "hard": 0,
+      "metricFails": 0,
+      "metricWarns": 0,
+      "m5Fails": 0,
+      "m7Fails": 0,
+      "layoutFails": 0,
+      "unvettedWords": 0,
+      "wishlistOpen": 12,
+      "meanM5": 0.513,
+      "meanM7": 1,
+      "pillarAvg": 2.417,
+      "regressions": 0,
+      "rates": {
+        "pages": 10,
+        "cases": 1,
+        "M1": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 10,
+          "rate": 0
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 1,
+          "rate": 0
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 1,
+          "rate": 0
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 1,
+          "rate": 0
+        }
+      },
+      "note": null
+    },
+    {
+      "at": "2026-08-13T20:03:07.686Z",
+      "tier": "core",
+      "cases": 2,
+      "pages": 18,
+      "iteration": 11,
+      "hard": 0,
+      "metricFails": 0,
+      "metricWarns": 0,
+      "m5Fails": 0,
+      "m7Fails": 0,
+      "layoutFails": 0,
+      "unvettedWords": 1,
+      "wishlistOpen": 12,
+      "meanM5": 0.68,
+      "meanM7": 0.928,
+      "pillarAvg": 2.625,
+      "regressions": 0,
+      "rates": {
+        "pages": 18,
+        "cases": 2,
+        "M1": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 18,
+          "rate": 0
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 18,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 18,
+          "rate": 0
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 18,
+          "rate": 0
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 18,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 18,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 18,
+          "rate": 0
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 2,
+          "rate": 0
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 2,
+          "rate": 0
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 2,
+          "rate": 0
+        }
+      },
+      "note": null
+    },
+    {
+      "at": "2026-08-13T20:29:10.360Z",
+      "tier": "core",
+      "cases": 2,
+      "pages": 16,
+      "iteration": 12,
+      "hard": 0,
+      "metricFails": 1,
+      "metricWarns": 2,
+      "m5Fails": 0,
+      "m7Fails": 1,
+      "layoutFails": 0,
+      "unvettedWords": 3,
+      "wishlistOpen": 14,
+      "meanM5": 0.745,
+      "meanM7": 0.428,
+      "pillarAvg": 2.333,
+      "regressions": 0,
+      "rates": {
+        "pages": 16,
+        "cases": 2,
+        "M1": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 16,
+          "rate": 0
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 16,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 16,
+          "rate": 0.063
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 16,
+          "rate": 0
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 16,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 16,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 1,
+          "warns": 1,
+          "fails": 0,
+          "denom": 16,
+          "rate": 0.063
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 2,
+          "rate": 0
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 2,
+          "rate": 0
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 1,
+          "warns": 0,
+          "fails": 1,
+          "denom": 2,
+          "rate": 0.5
+        }
+      },
+      "note": null
+    },
+    {
+      "at": "2026-08-14T01:53:36.593Z",
+      "tier": "core",
+      "cases": 3,
+      "pages": 25,
+      "iteration": 13,
+      "hard": 0,
+      "metricFails": 1,
+      "metricWarns": 0,
+      "m5Fails": 0,
+      "m7Fails": 0,
+      "layoutFails": 0,
+      "unvettedWords": 0,
+      "wishlistOpen": 8,
+      "meanM5": 0.762,
+      "meanM7": 1,
+      "pillarAvg": 2.667,
+      "regressions": 0,
+      "rates": {
+        "pages": 25,
+        "cases": 3,
+        "M1": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 25,
+          "rate": 0
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 25,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 1,
+          "warns": 0,
+          "fails": 1,
+          "denom": 25,
+          "rate": 0.04
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 25,
+          "rate": 0
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 25,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 25,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 25,
+          "rate": 0
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 3,
+          "rate": 0
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 3,
+          "rate": 0
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 3,
+          "rate": 0
+        }
+      },
+      "note": null
+    },
+    {
+      "at": "2026-08-14T04:04:29.458Z",
+      "tier": "core",
+      "cases": 2,
+      "pages": 18,
+      "iteration": 14,
+      "hard": 0,
+      "metricFails": 0,
+      "metricWarns": 0,
+      "m5Fails": 0,
+      "m7Fails": 0,
+      "layoutFails": 0,
+      "unvettedWords": 0,
+      "wishlistOpen": 8,
+      "meanM5": 0.667,
+      "meanM7": 1,
+      "pillarAvg": 2.5,
+      "regressions": 0,
+      "rates": {
+        "pages": 18,
+        "cases": 2,
+        "M1": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 18,
+          "rate": 0
+        },
+        "M2": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 18,
+          "rate": 0
+        },
+        "M3": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 18,
+          "rate": 0
+        },
+        "M6": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 18,
+          "rate": 0
+        },
+        "M8": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 18,
+          "rate": 0
+        },
+        "M9": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 18,
+          "rate": 0
+        },
+        "M10": {
+          "scope": "page",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 18,
+          "rate": 0
+        },
+        "M4": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 2,
+          "rate": 0
+        },
+        "M5": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 2,
+          "rate": 0
+        },
+        "M7": {
+          "scope": "case",
+          "hits": 0,
+          "warns": 0,
+          "fails": 0,
+          "denom": 2,
+          "rate": 0
+        }
+      },
+      "note": null
+    }
+  ],
+  "updatedAt": "2026-08-14T04:04:29.462Z"
+}

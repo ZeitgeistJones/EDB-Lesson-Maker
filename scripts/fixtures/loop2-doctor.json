@@ -1,0 +1,40 @@
+{
+  "title": "Doctor Visit",
+  "warmUp": {
+    "question": "When do you see a doctor?",
+    "sampleAnswer": "When I feel sick."
+  },
+  "vocabulary": [
+    { "word": "doctor", "emoji": "🩺", "sentence": "The doctor helps me." },
+    { "word": "nurse", "emoji": "👩‍⚕️", "sentence": "The nurse is kind." },
+    { "word": "medicine", "emoji": "💊", "sentence": "I take medicine." },
+    { "word": "fever", "emoji": "🤒", "sentence": "I have a fever." },
+    { "word": "hospital", "emoji": "🏥", "sentence": "The hospital is big." },
+    { "word": "sick", "emoji": "🤒", "sentence": "I feel sick." }
+  ],
+  "sentenceFrames": ["I feel ____.", "The doctor gives me ____."],
+  "story": {
+    "title": "At the Clinic",
+    "pages": [
+      {
+        "heading": "Feeling sick",
+        "text": "Mia feels sick. The doctor and nurse help her at the hospital.",
+        "visualTheme": "clinic",
+        "visualCaption": "Doctor visit"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "How does Mia feel?", "sampleAnswer": "She feels sick." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "Who helps you when you are sick?", "sampleAnswer": "A doctor." }
+  ],
+  "activity": {
+    "title": "Clinic Role Play",
+    "prompt": "Be the doctor.",
+    "templates": ["How do you feel?", "I feel ____."]
+  },
+  "reviewSentences": ["I see the doctor.", "The nurse is kind."]
+}

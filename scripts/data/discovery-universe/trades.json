@@ -1,0 +1,383 @@
+{
+  "id": "trades",
+  "labels": [
+    "trades",
+    "locksmith",
+    "postal",
+    "pottery"
+  ],
+  "usefulness": 0.75,
+  "picturable": 0.92,
+  "hardToSubstitute": 0.5,
+  "topics": [
+    "locksmith bench",
+    "pottery wheel",
+    "postal kiln",
+    "carpenter shop",
+    "plumber van",
+    "electrician kit",
+    "welder booth",
+    "masonry wall",
+    "glassblower studio",
+    "blacksmith forge",
+    "painter scaffold",
+    "roofer ladder",
+    "mechanic garage",
+    "jeweler bench",
+    "cobbler shop",
+    "barber chair"
+  ],
+  "concepts": [
+    {
+      "word": "lockpick",
+      "usefulness": 0.4,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.75,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "deadbolt",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "keyhole",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "tumbler",
+      "usefulness": 0.4,
+      "picturable": 0.8,
+      "hardToSubstitute": 0.75,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "clay",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "material"
+      ]
+    },
+    {
+      "word": "kiln",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "word": "pottery wheel",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "word": "glaze",
+      "usefulness": 0.55,
+      "picturable": 0.8,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "material"
+      ]
+    },
+    {
+      "word": "anvil",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "tongs",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "hammer",
+      "usefulness": 0.9,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.2,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "chisel",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "plane",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "vise",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "wrench",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "pipe wrench",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "plunger",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "pipe",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "valve",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "wire stripper",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "multimeter",
+      "usefulness": 0.5,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "circuit breaker",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "socket",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "solder",
+      "usefulness": 0.5,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "material"
+      ]
+    },
+    {
+      "word": "welding mask",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "ppe"
+      ]
+    },
+    {
+      "word": "trowel",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "mortar",
+      "usefulness": 0.55,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "material"
+      ]
+    },
+    {
+      "word": "brick",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "material"
+      ]
+    },
+    {
+      "word": "blowpipe",
+      "usefulness": 0.45,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "bellows",
+      "usefulness": 0.5,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.65,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "forge",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "place"
+      ]
+    },
+    {
+      "word": "lathe",
+      "usefulness": 0.5,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.65,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "word": "sandpaper",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "supply"
+      ]
+    },
+    {
+      "word": "level",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "plumb bob",
+      "usefulness": 0.4,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.75,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "awl",
+      "usefulness": 0.45,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "last",
+      "usefulness": 0.35,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.8,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "clippers",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "razor",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    }
+  ]
+}

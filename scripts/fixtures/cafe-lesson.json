@@ -1,0 +1,40 @@
+{
+  "title": "Cafe Order",
+  "warmUp": {
+    "question": "Do you like coffee shops?",
+    "sampleAnswer": "Yes, I like muffins."
+  },
+  "vocabulary": [
+    { "word": "coffee", "emoji": "☕", "sentence": "I drink coffee." },
+    { "word": "croissant", "emoji": "🥐", "sentence": "I eat a croissant." },
+    { "word": "muffin", "emoji": "🧁", "sentence": "The muffin is sweet." },
+    { "word": "menu", "emoji": "📋", "sentence": "Look at the menu." },
+    { "word": "latte", "emoji": "🥛", "sentence": "I order a latte." },
+    { "word": "cafe", "emoji": "🏪", "sentence": "We go to the cafe." }
+  ],
+  "sentenceFrames": ["I want a ____.", "Put the ____ on the counter."],
+  "story": {
+    "title": "At the Cafe",
+    "pages": [
+      {
+        "heading": "Morning order",
+        "text": "Tom looks at the menu. He orders a latte and a croissant.",
+        "visualTheme": "cafe",
+        "visualCaption": "Inside the cafe"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is Tom?", "sampleAnswer": "He is at the cafe." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What do you order at a cafe?", "sampleAnswer": "I order a muffin." }
+  ],
+  "activity": {
+    "title": "Counter Order",
+    "prompt": "Say what you want.",
+    "templates": ["I want a ____."]
+  },
+  "reviewSentences": ["I like the cafe.", "The coffee is hot."]
+}

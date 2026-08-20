@@ -1,0 +1,611 @@
+{
+  "updatedAt": "2026-08-14T04:04:29.449Z",
+  "iteration": 14,
+  "softRoots": [
+    "no-vetted-icon",
+    "ink-policy-measured-no-scrim-on-calm",
+    "no-medical-props",
+    "no-gym-props",
+    "worksheet-heavy-middle-pages",
+    "creative-question-object-coercion",
+    "swing-prop-not-pack-icon",
+    "roleplay-dock-vocab-override",
+    "warm-coloring-metric-blind",
+    "warm-sparse-non-coloring",
+    "story-side-art-theme-mismatch",
+    "gym-flat-variety-thin",
+    "metric-noise-dock-pack",
+    "outdoor-flat-variety-thin",
+    "frames-model-feelings-only",
+    "phonics-model-mismatch-focus",
+    "story-art-caption-steals",
+    "hollow-activity-no-kit",
+    "ball-pack-volleyball-look",
+    "metric-noise-title-m1",
+    "beach-flat-variety-thin",
+    "home-flat-variety-thin",
+    "no-bathroom-king-kit",
+    "clinic-flat-variety-thin",
+    "chrome-type-floor",
+    "clinic-king-was-dental",
+    "fixsentence-production-cue",
+    "thin-fixture-art-gap",
+    "pack-art-clarity",
+    "thin-board-matchdock-m3",
+    "matchDock-inline-shipped",
+    "sport-soccer-white-fringe",
+    "grammarAim-pass-the-fixed"
+  ],
+  "markers": [
+    "done:EW1"
+  ],
+  "history": [
+    {
+      "at": "2026-08-05T00:53:54.852Z",
+      "iteration": 2,
+      "tier": "core",
+      "cases": [
+        "doctor",
+        "clown-clinic",
+        "gym",
+        "travel",
+        "school"
+      ],
+      "action": "fix_soft",
+      "codes": [
+        "R1"
+      ],
+      "roots": [
+        "ink-policy-measured-no-scrim-on-calm",
+        "no-medical-props",
+        "no-gym-props",
+        "no-vetted-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "regressions": 19
+    },
+    {
+      "at": "2026-08-05T01:48:27.039Z",
+      "iteration": 3,
+      "tier": "core",
+      "cases": [
+        "doctor",
+        "clown-clinic",
+        "gym",
+        "travel",
+        "school"
+      ],
+      "action": "note_soft",
+      "codes": [],
+      "roots": [
+        "worksheet-heavy-middle-pages"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-05T01:51:00.968Z",
+      "iteration": 4,
+      "tier": "all",
+      "cases": [
+        "doctor",
+        "clown-clinic",
+        "gym",
+        "travel",
+        "school",
+        "abstract-words",
+        "bad-theme",
+        "minimal",
+        "overflow"
+      ],
+      "action": "fix_soft",
+      "codes": [
+        "S14",
+        "S14"
+      ],
+      "roots": [
+        "creative-question-object-coercion",
+        "swing-prop-not-pack-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 13,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-05T01:53:56.254Z",
+      "iteration": 5,
+      "tier": "all",
+      "cases": [
+        "doctor",
+        "clown-clinic",
+        "gym",
+        "travel",
+        "school",
+        "abstract-words",
+        "bad-theme",
+        "minimal",
+        "overflow"
+      ],
+      "action": "wishlist",
+      "codes": [
+        "M7"
+      ],
+      "roots": [
+        "swing-prop-not-pack-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 13,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-05T23:32:23.632Z",
+      "iteration": 6,
+      "tier": "core",
+      "cases": [
+        "dentist",
+        "zoo-phonics"
+      ],
+      "action": "wishlist",
+      "codes": [
+        "M7"
+      ],
+      "roots": [
+        "no-vetted-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 17,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-06T16:34:17.262Z",
+      "iteration": 7,
+      "tier": "core",
+      "cases": [
+        "doctor",
+        "dentist",
+        "face",
+        "castle",
+        "zoo-phonics"
+      ],
+      "action": "fix_hard",
+      "codes": [
+        "H4"
+      ],
+      "roots": [
+        "roleplay-dock-vocab-override",
+        "warm-coloring-metric-blind",
+        "no-vetted-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 3,
+      "metricWarns": 41,
+      "regressions": 14
+    },
+    {
+      "at": "2026-08-06T23:46:34.030Z",
+      "iteration": 8,
+      "tier": "core",
+      "cases": [
+        "doctor",
+        "dentist",
+        "face",
+        "castle",
+        "clown-clinic",
+        "gym",
+        "travel",
+        "school",
+        "volcano",
+        "trampoline",
+        "zoo-phonics"
+      ],
+      "action": "fix_soft",
+      "codes": [
+        "S8",
+        "S10",
+        "R1",
+        "R1"
+      ],
+      "roots": [
+        "warm-sparse-non-coloring",
+        "warm-coloring-metric-blind",
+        "story-side-art-theme-mismatch",
+        "no-vetted-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 13,
+      "metricWarns": 91,
+      "regressions": 56
+    },
+    {
+      "at": "2026-08-06T23:52:38.812Z",
+      "iteration": 9,
+      "tier": "core",
+      "cases": [
+        "face",
+        "castle",
+        "gym"
+      ],
+      "action": "stop_cap",
+      "codes": [],
+      "roots": [
+        "gym-flat-variety-thin",
+        "no-vetted-icon",
+        "metric-noise-dock-pack"
+      ],
+      "hardFailures": 0,
+      "metricFails": 1,
+      "metricWarns": 20,
+      "regressions": 6
+    },
+    {
+      "at": "2026-08-07T00:09:48.711Z",
+      "iteration": 1,
+      "tier": "core",
+      "cases": [
+        "face",
+        "castle",
+        "gym"
+      ],
+      "action": "wishlist",
+      "codes": [
+        "M7"
+      ],
+      "roots": [
+        "no-vetted-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 21,
+      "regressions": 6
+    },
+    {
+      "at": "2026-08-07T01:25:21.770Z",
+      "iteration": 1,
+      "tier": "core",
+      "cases": [
+        "trampoline",
+        "minimal",
+        "loop2-bakery"
+      ],
+      "action": "wishlist",
+      "codes": [
+        "M5",
+        "M7"
+      ],
+      "roots": [
+        "outdoor-flat-variety-thin",
+        "no-vetted-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 2,
+      "metricWarns": 25,
+      "regressions": 7
+    },
+    {
+      "at": "2026-08-07T01:36:45.086Z",
+      "iteration": 1,
+      "tier": "all",
+      "cases": [
+        "doctor",
+        "dentist",
+        "face",
+        "castle",
+        "clown-clinic",
+        "gym",
+        "travel",
+        "school",
+        "volcano",
+        "trampoline",
+        "zoo-phonics",
+        "abstract-words",
+        "bad-theme",
+        "minimal",
+        "overflow",
+        "loop2-beach",
+        "loop2-bakery",
+        "loop2-farm",
+        "loop2-doctor",
+        "loop2-home"
+      ],
+      "action": "wishlist",
+      "codes": [
+        "M7"
+      ],
+      "roots": [
+        "no-vetted-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 3,
+      "metricWarns": 139,
+      "regressions": 71
+    },
+    {
+      "at": "2026-08-09T20:22:54.411Z",
+      "iteration": 2,
+      "tier": "core",
+      "cases": [
+        "soccer-coach",
+        "fruit-market",
+        "zoo-phonics"
+      ],
+      "action": "fix_soft",
+      "codes": [
+        "S31",
+        "S15",
+        "S8",
+        "M9"
+      ],
+      "roots": [
+        "frames-model-feelings-only",
+        "phonics-model-mismatch-focus",
+        "story-art-caption-steals",
+        "hollow-activity-no-kit",
+        "ball-pack-volleyball-look",
+        "no-vetted-icon",
+        "metric-noise-title-m1"
+      ],
+      "hardFailures": 0,
+      "metricFails": 1,
+      "metricWarns": 16,
+      "regressions": 6
+    },
+    {
+      "at": "2026-08-09T20:24:57.371Z",
+      "iteration": 3,
+      "tier": "core",
+      "cases": [
+        "loop3-beach"
+      ],
+      "action": "fix_soft",
+      "codes": [
+        "S24"
+      ],
+      "roots": [
+        "beach-flat-variety-thin",
+        "story-side-art-theme-mismatch"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-09T20:28:52.816Z",
+      "iteration": 4,
+      "tier": "core",
+      "cases": [
+        "bathroom-routines"
+      ],
+      "action": "wishlist",
+      "codes": [
+        "M5",
+        "S17"
+      ],
+      "roots": [
+        "home-flat-variety-thin",
+        "no-bathroom-king-kit"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-09T20:29:05.332Z",
+      "iteration": 5,
+      "tier": "core",
+      "cases": [
+        "doctor",
+        "dentist",
+        "clown-clinic",
+        "loop2-doctor"
+      ],
+      "action": "fix_soft",
+      "codes": [
+        "M1",
+        "S17"
+      ],
+      "roots": [
+        "clinic-flat-variety-thin",
+        "chrome-type-floor",
+        "clinic-king-was-dental"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 19,
+      "regressions": 20
+    },
+    {
+      "at": "2026-08-09T20:29:28.253Z",
+      "iteration": 6,
+      "tier": "core",
+      "cases": [
+        "loop3-beach"
+      ],
+      "action": "wishlist",
+      "codes": [
+        "M5"
+      ],
+      "roots": [
+        "beach-flat-variety-thin"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-09T20:31:25.522Z",
+      "iteration": 7,
+      "tier": "core",
+      "cases": [
+        "soccer-coach"
+      ],
+      "action": "promote_ew",
+      "codes": [
+        "P1"
+      ],
+      "roots": [
+        "ball-pack-volleyball-look",
+        "no-vetted-icon",
+        "gym-flat-variety-thin"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-09T20:32:13.836Z",
+      "iteration": 8,
+      "tier": "core",
+      "cases": [
+        "soccer-coach"
+      ],
+      "action": "promote_ew",
+      "codes": [
+        "P1"
+      ],
+      "roots": [
+        "ball-pack-volleyball-look",
+        "no-vetted-icon",
+        "gym-flat-variety-thin"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 5,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-09T20:33:08.502Z",
+      "iteration": 9,
+      "tier": "core",
+      "cases": [
+        "doctor",
+        "dentist",
+        "clown-clinic",
+        "loop2-doctor"
+      ],
+      "action": "wishlist",
+      "codes": [
+        "M5"
+      ],
+      "roots": [
+        "clinic-flat-variety-thin"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 4,
+      "regressions": 20
+    },
+    {
+      "at": "2026-08-13T04:40:33.085Z",
+      "iteration": 10,
+      "tier": "core",
+      "cases": [
+        "soccer-coach"
+      ],
+      "action": "fix_soft",
+      "codes": [
+        "S21"
+      ],
+      "roots": [
+        "fixsentence-production-cue",
+        "thin-fixture-art-gap"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 0,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-13T20:03:07.684Z",
+      "iteration": 11,
+      "tier": "core",
+      "cases": [
+        "soccer-coach",
+        "basketball-bare"
+      ],
+      "action": "promote_ew",
+      "codes": [
+        "P1"
+      ],
+      "roots": [
+        "pack-art-clarity",
+        "outdoor-flat-variety-thin"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 0,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-13T20:29:10.359Z",
+      "iteration": 12,
+      "tier": "core",
+      "cases": [
+        "basketball-bare",
+        "mystery-apple"
+      ],
+      "action": "fix_soft",
+      "codes": [
+        "M5"
+      ],
+      "roots": [
+        "pack-art-clarity",
+        "outdoor-flat-variety-thin",
+        "no-vetted-icon"
+      ],
+      "hardFailures": 0,
+      "metricFails": 1,
+      "metricWarns": 2,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-14T01:53:36.589Z",
+      "iteration": 13,
+      "tier": "core",
+      "cases": [
+        "two-pets-choice",
+        "snack-coat-day",
+        "kitchen-helpers"
+      ],
+      "action": "stop_cap",
+      "codes": [],
+      "roots": [
+        "thin-board-matchdock-m3"
+      ],
+      "hardFailures": 0,
+      "metricFails": 1,
+      "metricWarns": 0,
+      "regressions": 0
+    },
+    {
+      "at": "2026-08-14T04:04:29.449Z",
+      "iteration": 14,
+      "tier": "core",
+      "cases": [
+        "soccer-coach",
+        "basketball-bare"
+      ],
+      "action": "stop_cap",
+      "codes": [],
+      "roots": [
+        "matchDock-inline-shipped",
+        "sport-soccer-white-fringe",
+        "grammarAim-pass-the-fixed"
+      ],
+      "hardFailures": 0,
+      "metricFails": 0,
+      "metricWarns": 0,
+      "regressions": 0
+    }
+  ]
+}

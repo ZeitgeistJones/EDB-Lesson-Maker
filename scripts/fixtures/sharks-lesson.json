@@ -1,0 +1,40 @@
+{
+  "title": "Sea Animals",
+  "warmUp": {
+    "question": "What sea animals do you know?",
+    "sampleAnswer": "I know sharks and dolphins."
+  },
+  "vocabulary": [
+    { "word": "shark", "emoji": "🦈", "sentence": "The shark is big." },
+    { "word": "dolphin", "emoji": "🐬", "sentence": "The dolphin jumps." },
+    { "word": "whale", "emoji": "🐋", "sentence": "I see a whale." },
+    { "word": "fish", "emoji": "🐟", "sentence": "The fish is small." },
+    { "word": "ocean", "emoji": "🌊", "sentence": "The ocean is blue." },
+    { "word": "swim", "emoji": "🏊", "sentence": "Fish can swim." }
+  ],
+  "sentenceFrames": ["I see a ____.", "The ____ can swim."],
+  "story": {
+    "title": "In the Ocean",
+    "pages": [
+      {
+        "heading": "Big blue",
+        "text": "Mia looks in the ocean. She sees a dolphin and a fish near a shark.",
+        "visualTheme": "ocean",
+        "visualCaption": "Ocean animals"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What does Mia see?", "sampleAnswer": "She sees a dolphin and a fish." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "Which sea animal do you like?", "sampleAnswer": "I like dolphins." }
+  ],
+  "activity": {
+    "title": "Ocean Talk",
+    "prompt": "Say what you see in the ocean.",
+    "templates": ["I see a ____."]
+  },
+  "reviewSentences": ["I like sea animals.", "The shark is big."]
+}

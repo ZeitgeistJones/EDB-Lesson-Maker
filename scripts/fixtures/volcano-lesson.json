@@ -1,0 +1,78 @@
+{
+  "title": "Living in the Shadow of the Crater",
+  "warmUp": {
+    "question": "What are the psychological implications of residing in a region prone to seismic or volcanic instability?",
+    "sampleAnswer": "People may feel constant anxiety, or they may become unusually resilient."
+  },
+  "vocabulary": [
+    { "word": "abundant", "emoji": "📦", "sentence": "Geothermal energy is abundant near the crater." },
+    { "word": "remnant", "emoji": "🗿", "sentence": "Ash is a remnant of the last eruption." },
+    { "word": "vulnerable", "emoji": "⚠️", "sentence": "Villages on the slope are vulnerable." },
+    { "word": "geothermal", "emoji": "♨️", "sentence": "Geothermal heat warms the homes." },
+    { "word": "subterranean", "emoji": "🕳️", "sentence": "Subterranean magma feeds the volcano." },
+    { "word": "trauma", "emoji": "💔", "sentence": "The trauma of evacuation stays with them." },
+    { "word": "dormant", "emoji": "😴", "sentence": "The volcano looked dormant for years." },
+    { "word": "evacuation", "emoji": "🚪", "sentence": "Evacuation routes are marked clearly." },
+    { "word": "seismic", "emoji": "📉", "sentence": "Seismic tremors woke the village." },
+    { "word": "tremors", "emoji": "🫨", "sentence": "Night tremors rattled the windows." },
+    { "word": "eruption", "emoji": "🌋", "sentence": "The eruption lit the sky red." },
+    { "word": "ash", "emoji": "🌫️", "sentence": "Ash coated every rooftop." }
+  ],
+  "sentenceFrames": [
+    "People who live near a volcano must ____.",
+    "Geothermal energy is ____ because ____.",
+    "After the evacuation, families felt ____."
+  ],
+  "story": {
+    "title": "The Silent Sentinel",
+    "pages": [
+      {
+        "heading": "The Silent Sentinel",
+        "text": "The crater watched the village for decades. Most people called it dormant.",
+        "visualTheme": "nature",
+        "visualCaption": "Village by the crater"
+      },
+      {
+        "heading": "Signs of Awakening",
+        "text": "Seismic tremors grew stronger. Ash drifted onto the rooftops.",
+        "visualTheme": "nature",
+        "visualCaption": "Ash on the roofs"
+      },
+      {
+        "heading": "The Aftermath",
+        "text": "After the eruption, geothermal vents still warmed the valley. Trauma remained.",
+        "visualTheme": "home",
+        "visualCaption": "Homes after the ash"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Why did people stay near the crater?", "sampleAnswer": "Because geothermal heat and habit made them stay." },
+      { "question": "What warned the village?", "sampleAnswer": "Seismic tremors and ash." },
+      { "question": "What remained after the eruption?", "sampleAnswer": "Geothermal vents and trauma." }
+    ],
+    "creativeQuestions": [
+      "Would you stay if you lived next to a volcano? Why?",
+      "Design a short evacuation announcement for the village."
+    ]
+  },
+  "speakingQuestions": [
+    { "question": "Is living near a volcano worth the risk?", "sampleAnswer": "It depends on the benefits like geothermal power versus the danger." },
+    { "question": "How should a community prepare for an eruption?", "sampleAnswer": "Clear evacuation routes and drills." },
+    { "question": "What positive things can volcanoes provide?", "sampleAnswer": "Geothermal energy and fertile soil." },
+    { "question": "How does trauma change a community after disaster?", "sampleAnswer": "People may support each other more, or some may leave forever." }
+  ],
+  "activity": {
+    "title": "The Crisis Management Workshop",
+    "steps": [
+      "List three evacuation priorities.",
+      "Decide who speaks to the village first.",
+      "Name one geothermal benefit to keep.",
+      "Write one sentence to calm children during tremors."
+    ]
+  },
+  "reviewSentences": [
+    "The dormant volcano produced sudden tremors.",
+    "Evacuation saved the most vulnerable families.",
+    "Geothermal heat is abundant near the crater."
+  ]
+}

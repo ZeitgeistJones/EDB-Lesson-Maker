@@ -1,0 +1,296 @@
+{
+  "id": "body",
+  "labels": [
+    "body parts",
+    "health"
+  ],
+  "usefulness": 0.9,
+  "picturable": 0.88,
+  "hardToSubstitute": 0.25,
+  "topics": [
+    "face features",
+    "hand and fingers",
+    "foot and toes",
+    "skeleton basics",
+    "sense organs",
+    "doctor checkup body",
+    "sports body parts",
+    "yoga stretch",
+    "mirror face",
+    "hygiene routine",
+    "teeth care",
+    "hair salon"
+  ],
+  "concepts": [
+    {
+      "word": "eyebrow",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "face"
+      ]
+    },
+    {
+      "word": "eyelash",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "face"
+      ]
+    },
+    {
+      "word": "nostril",
+      "usefulness": 0.6,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "face"
+      ]
+    },
+    {
+      "word": "chin",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "face"
+      ]
+    },
+    {
+      "word": "forehead",
+      "usefulness": 0.75,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "face"
+      ]
+    },
+    {
+      "word": "cheek",
+      "usefulness": 0.8,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "face"
+      ]
+    },
+    {
+      "word": "jaw",
+      "usefulness": 0.65,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "face"
+      ]
+    },
+    {
+      "word": "tongue",
+      "usefulness": 0.85,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "mouth"
+      ]
+    },
+    {
+      "word": "gum",
+      "usefulness": 0.55,
+      "picturable": 0.8,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "mouth"
+      ]
+    },
+    {
+      "word": "molar",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "tooth"
+      ]
+    },
+    {
+      "word": "incisor",
+      "usefulness": 0.45,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.65,
+      "tags": [
+        "tooth"
+      ]
+    },
+    {
+      "word": "knuckle",
+      "usefulness": 0.6,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "hand"
+      ]
+    },
+    {
+      "word": "palm",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "hand"
+      ]
+    },
+    {
+      "word": "wrist",
+      "usefulness": 0.8,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "arm"
+      ]
+    },
+    {
+      "word": "elbow",
+      "usefulness": 0.85,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "arm"
+      ]
+    },
+    {
+      "word": "shoulder",
+      "usefulness": 0.85,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "arm"
+      ]
+    },
+    {
+      "word": "ankle",
+      "usefulness": 0.8,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "leg"
+      ]
+    },
+    {
+      "word": "heel",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "foot"
+      ]
+    },
+    {
+      "word": "sole",
+      "usefulness": 0.65,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "foot"
+      ]
+    },
+    {
+      "word": "spine",
+      "usefulness": 0.7,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "bone"
+      ]
+    },
+    {
+      "word": "rib",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "bone"
+      ]
+    },
+    {
+      "word": "skull",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "bone"
+      ]
+    },
+    {
+      "word": "hip",
+      "usefulness": 0.7,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "body"
+      ]
+    },
+    {
+      "word": "waist",
+      "usefulness": 0.7,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "body"
+      ]
+    },
+    {
+      "word": "navel",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "body"
+      ]
+    },
+    {
+      "word": "lung",
+      "usefulness": 0.65,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "organ"
+      ]
+    },
+    {
+      "word": "heart",
+      "usefulness": 0.9,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.2,
+      "tags": [
+        "organ"
+      ]
+    },
+    {
+      "word": "brain",
+      "usefulness": 0.75,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "organ"
+      ]
+    },
+    {
+      "word": "muscle",
+      "usefulness": 0.7,
+      "picturable": 0.8,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "body"
+      ]
+    },
+    {
+      "word": "vein",
+      "usefulness": 0.5,
+      "picturable": 0.8,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "body"
+      ]
+    }
+  ]
+}

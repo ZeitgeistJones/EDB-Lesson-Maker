@@ -1,0 +1,5764 @@
+{
+  "keep": [
+    {
+      "word": "absorb",
+      "key": "absorb",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "ache",
+      "key": "ache",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "adorn",
+      "key": "adorn",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "alert",
+      "key": "alert",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "amaze",
+      "key": "amaze",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "amplify",
+      "key": "amplify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "amuse",
+      "key": "amuse",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "animate",
+      "key": "animate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "applaud",
+      "key": "applaud",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "arise",
+      "key": "arise",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "arouse",
+      "key": "arouse",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "arrest",
+      "key": "arrest",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "bathe",
+      "key": "bathe",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "beautify",
+      "key": "beautify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "bellow",
+      "key": "bellow",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "bind",
+      "key": "bind",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "blast",
+      "key": "blast",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "blaze",
+      "key": "blaze",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "bleed",
+      "key": "bleed",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "blur",
+      "key": "blur",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "bomb",
+      "key": "bomb",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "bore",
+      "key": "bore",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "breed",
+      "key": "breed",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "broadcast",
+      "key": "broadcast",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "broaden",
+      "key": "broaden",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "bump",
+      "key": "bump",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "burgle",
+      "key": "burgle",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "bust",
+      "key": "bust",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "bustle",
+      "key": "bustle",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "butcher",
+      "key": "butcher",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "choke",
+      "key": "choke",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "clog",
+      "key": "clog",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "collapse",
+      "key": "collapse",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "construct",
+      "key": "construct",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "cool",
+      "key": "cool",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "crash",
+      "key": "crash",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "cultivate",
+      "key": "cultivate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "cure",
+      "key": "cure",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "damage",
+      "key": "damage",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "decay",
+      "key": "decay",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "defeat",
+      "key": "defeat",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "defend",
+      "key": "defend",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "demolish",
+      "key": "demolish",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "deposit",
+      "key": "deposit",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "descend",
+      "key": "descend",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "destroy",
+      "key": "destroy",
+      "levels": "A2",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "keep"
+    },
+    {
+      "word": "detach",
+      "key": "detach",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "devastate",
+      "key": "devastate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "dial",
+      "key": "dial",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "die",
+      "key": "die",
+      "levels": "A2",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "keep"
+    },
+    {
+      "word": "disconnect",
+      "key": "disconnect",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "displace",
+      "key": "displace",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "disrupt",
+      "key": "disrupt",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "distribute",
+      "key": "distribute",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "divert",
+      "key": "divert",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "divorce",
+      "key": "divorce",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "double",
+      "key": "double",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "drown",
+      "key": "drown",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "emerge",
+      "key": "emerge",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "endanger",
+      "key": "endanger",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "engulf",
+      "key": "engulf",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "entertain",
+      "key": "entertain",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "erupt",
+      "key": "erupt",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "evacuate",
+      "key": "evacuate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "execute",
+      "key": "execute",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "explode",
+      "key": "explode",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "extract",
+      "key": "extract",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "fade",
+      "key": "fade",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "faint",
+      "key": "faint",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "falter",
+      "key": "falter",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "fax",
+      "key": "fax",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "fit",
+      "key": "fit",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "flow",
+      "key": "flow",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "flunk",
+      "key": "flunk",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "freak",
+      "key": "freak",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "free",
+      "key": "free",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "grip",
+      "key": "grip",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "harm",
+      "key": "harm",
+      "levels": "A2",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "keep"
+    },
+    {
+      "word": "haunt",
+      "key": "haunt",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "heal",
+      "key": "heal",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "heap",
+      "key": "heap",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "hijack",
+      "key": "hijack",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "hire",
+      "key": "hire",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "horrify",
+      "key": "horrify",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "hover",
+      "key": "hover",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "hush",
+      "key": "hush",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "illuminate",
+      "key": "illuminate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "immerse",
+      "key": "immerse",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "imprison",
+      "key": "imprison",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "indent",
+      "key": "indent",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "inject",
+      "key": "inject",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "injure",
+      "key": "injure",
+      "levels": "A2",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "keep"
+    },
+    {
+      "word": "inscribe",
+      "key": "inscribe",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "inspect",
+      "key": "inspect",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "intrude",
+      "key": "intrude",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "invade",
+      "key": "invade",
+      "levels": "A2",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "keep"
+    },
+    {
+      "word": "itch",
+      "key": "itch",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "kill",
+      "key": "kill",
+      "levels": "A1",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "keep"
+    },
+    {
+      "word": "lay",
+      "key": "lay",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "lengthen",
+      "key": "lengthen",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "lighten",
+      "key": "lighten",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "magnify",
+      "key": "magnify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "mess",
+      "key": "mess",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "mumble",
+      "key": "mumble",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "mutter",
+      "key": "mutter",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "navigate",
+      "key": "navigate",
+      "levels": "B2",
+      "sources": "cefrj,topic:b1-outdoors",
+      "bucket": "keep"
+    },
+    {
+      "word": "outgrow",
+      "key": "outgrow",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "overtake",
+      "key": "overtake",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "overthrow",
+      "key": "overthrow",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "overturn",
+      "key": "overturn",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "paralyze",
+      "key": "paralyze",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "pave",
+      "key": "pave",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "poison",
+      "key": "poison",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "purify",
+      "key": "purify",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "radiate",
+      "key": "radiate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "reclaim",
+      "key": "reclaim",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "recover",
+      "key": "recover",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "redo",
+      "key": "redo",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "retreat",
+      "key": "retreat",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "rise",
+      "key": "rise",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "rob",
+      "key": "rob",
+      "levels": "A2",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "keep"
+    },
+    {
+      "word": "ruin",
+      "key": "ruin",
+      "levels": "A2",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "keep"
+    },
+    {
+      "word": "scare",
+      "key": "scare",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "scold",
+      "key": "scold",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "seize",
+      "key": "seize",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "shoplift",
+      "key": "shoplift",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "shrink",
+      "key": "shrink",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "slap",
+      "key": "slap",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "sob",
+      "key": "sob",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "spoil",
+      "key": "spoil",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "stab",
+      "key": "stab",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "stammer",
+      "key": "stammer",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "startle",
+      "key": "startle",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "starve",
+      "key": "starve",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "steal",
+      "key": "steal",
+      "levels": "A2",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "keep"
+    },
+    {
+      "word": "stink",
+      "key": "stink",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "straighten",
+      "key": "straighten",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "strangle",
+      "key": "strangle",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "stream",
+      "key": "stream",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "stride",
+      "key": "stride",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "strip",
+      "key": "strip",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "struggle",
+      "key": "struggle",
+      "levels": "B2",
+      "sources": "cefrj,topic:b1-school-life",
+      "bucket": "keep"
+    },
+    {
+      "word": "stun",
+      "key": "stun",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "subtract",
+      "key": "subtract",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "suck",
+      "key": "suck",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "sunbathe",
+      "key": "sunbathe",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "surrender",
+      "key": "surrender",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "surround",
+      "key": "surround",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "swell",
+      "key": "swell",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "tease",
+      "key": "tease",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "terrify",
+      "key": "terrify",
+      "levels": "A2",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "keep"
+    },
+    {
+      "word": "tick",
+      "key": "tick",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "tighten",
+      "key": "tighten",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "toil",
+      "key": "toil",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "torture",
+      "key": "torture",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "uncover",
+      "key": "uncover",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "undo",
+      "key": "undo",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "upload",
+      "key": "upload",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "vanish",
+      "key": "vanish",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "vibrate",
+      "key": "vibrate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "warm",
+      "key": "warm",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "warn",
+      "key": "warn",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "weaken",
+      "key": "weaken",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "wed",
+      "key": "wed",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "widen",
+      "key": "widen",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "wither",
+      "key": "wither",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "worsen",
+      "key": "worsen",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    },
+    {
+      "word": "wound",
+      "key": "wound",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "keep"
+    }
+  ],
+  "review": [
+    {
+      "word": "accompany",
+      "key": "accompany",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "adore",
+      "key": "adore",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "advance",
+      "key": "advance",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "aid",
+      "key": "aid",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "alter",
+      "key": "alter",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "announce",
+      "key": "announce",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "annoy",
+      "key": "annoy",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "apologize",
+      "key": "apologize",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "appear",
+      "key": "appear",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "appoint",
+      "key": "appoint",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "approach",
+      "key": "approach",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "arrange",
+      "key": "arrange",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "assist",
+      "key": "assist",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "attract",
+      "key": "attract",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "avoid",
+      "key": "avoid",
+      "levels": "A2",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "babysit",
+      "key": "babysit",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "back",
+      "key": "back",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "ban",
+      "key": "ban",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "bare",
+      "key": "bare",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "begin",
+      "key": "begin",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "bet",
+      "key": "bet",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "bid",
+      "key": "bid",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "bless",
+      "key": "bless",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "browse",
+      "key": "browse",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "bully",
+      "key": "bully",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "cancel",
+      "key": "cancel",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "capture",
+      "key": "capture",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "cheat",
+      "key": "cheat",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "clear",
+      "key": "clear",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "clone",
+      "key": "clone",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "come",
+      "key": "come",
+      "levels": "A1",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "commute",
+      "key": "commute",
+      "levels": "B2",
+      "sources": "cefrj,topic:b1-routines",
+      "bucket": "review"
+    },
+    {
+      "word": "compete",
+      "key": "compete",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "conceal",
+      "key": "conceal",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "confront",
+      "key": "confront",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "disturb",
+      "key": "disturb",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "donate",
+      "key": "donate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "download",
+      "key": "download",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "earn",
+      "key": "earn",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "edit",
+      "key": "edit",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "enclose",
+      "key": "enclose",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "encounter",
+      "key": "encounter",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "enjoy",
+      "key": "enjoy",
+      "levels": "A1",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "equip",
+      "key": "equip",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "exhibit",
+      "key": "exhibit",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "export",
+      "key": "export",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "expose",
+      "key": "expose",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "extend",
+      "key": "extend",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "forbid",
+      "key": "forbid",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "found",
+      "key": "found",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "go",
+      "key": "go",
+      "levels": "A1",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "hear",
+      "key": "hear",
+      "levels": "A1",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "illustrate",
+      "key": "illustrate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "import",
+      "key": "import",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "install",
+      "key": "install",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "interrupt",
+      "key": "interrupt",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "introduce",
+      "key": "introduce",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "investigate",
+      "key": "investigate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "launch",
+      "key": "launch",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "learn",
+      "key": "learn",
+      "levels": "A1",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "license",
+      "key": "license",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "limit",
+      "key": "limit",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "link",
+      "key": "link",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "live",
+      "key": "live",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "locate",
+      "key": "locate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "manufacture",
+      "key": "manufacture",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "merge",
+      "key": "merge",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "modify",
+      "key": "modify",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "multiply",
+      "key": "multiply",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "operate",
+      "key": "operate",
+      "levels": "A2",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "oppose",
+      "key": "oppose",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "organize",
+      "key": "organize",
+      "levels": "A2",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "praise",
+      "key": "praise",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "prevent",
+      "key": "prevent",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "process",
+      "key": "process",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "produce",
+      "key": "produce",
+      "levels": "A2",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "project",
+      "key": "project",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "protect",
+      "key": "protect",
+      "levels": "B1",
+      "sources": "cefrj,topic:b1-environment",
+      "bucket": "review"
+    },
+    {
+      "word": "protest",
+      "key": "protest",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "quit",
+      "key": "quit",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "rebel",
+      "key": "rebel",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "rebuild",
+      "key": "rebuild",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "reduce",
+      "key": "reduce",
+      "levels": "B1",
+      "sources": "cefrj,topic:b1-environment",
+      "bucket": "review"
+    },
+    {
+      "word": "remind",
+      "key": "remind",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "repeat",
+      "key": "repeat",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "replace",
+      "key": "replace",
+      "levels": "A2",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "restore",
+      "key": "restore",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "retire",
+      "key": "retire",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "see",
+      "key": "see",
+      "levels": "A1",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "settle",
+      "key": "settle",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "shift",
+      "key": "shift",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "stay",
+      "key": "stay",
+      "levels": "A1",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "teach",
+      "key": "teach",
+      "levels": "A1",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "thank",
+      "key": "thank",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "threaten",
+      "key": "threaten",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "transfer",
+      "key": "transfer",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "transform",
+      "key": "transform",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "translate",
+      "key": "translate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "transmit",
+      "key": "transmit",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "transport",
+      "key": "transport",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "try",
+      "key": "try",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "review"
+    },
+    {
+      "word": "withdraw",
+      "key": "withdraw",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "review"
+    },
+    {
+      "word": "witness",
+      "key": "witness",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "review"
+    }
+  ],
+  "rejected": [
+    {
+      "word": "abandon",
+      "key": "abandon",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "abolish",
+      "key": "abolish",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "accept",
+      "key": "accept",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "access",
+      "key": "access",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "accomplish",
+      "key": "accomplish",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "accumulate",
+      "key": "accumulate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "accuse",
+      "key": "accuse",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "accustom",
+      "key": "accustom",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "achieve",
+      "key": "achieve",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt,topic:b1-school-life",
+      "bucket": "reject"
+    },
+    {
+      "word": "acknowledge",
+      "key": "acknowledge",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "acquire",
+      "key": "acquire",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "adapt",
+      "key": "adapt",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "adjust",
+      "key": "adjust",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "admire",
+      "key": "admire",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "admit",
+      "key": "admit",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "adopt",
+      "key": "adopt",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "advertise",
+      "key": "advertise",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "advise",
+      "key": "advise",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "affect",
+      "key": "affect",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "afford",
+      "key": "afford",
+      "levels": "B1",
+      "sources": "cefrj,topic:b1-money",
+      "bucket": "reject"
+    },
+    {
+      "word": "agonize",
+      "key": "agonize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "agree",
+      "key": "agree",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "allow",
+      "key": "allow",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "alternate",
+      "key": "alternate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "analyze",
+      "key": "analyze",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "anticipate",
+      "key": "anticipate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "appeal",
+      "key": "appeal",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "apply",
+      "key": "apply",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "appreciate",
+      "key": "appreciate",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "approve",
+      "key": "approve",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "argue",
+      "key": "argue",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "articulate",
+      "key": "articulate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "aspire",
+      "key": "aspire",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "assert",
+      "key": "assert",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "assess",
+      "key": "assess",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "assign",
+      "key": "assign",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "associate",
+      "key": "associate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "assume",
+      "key": "assume",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "assure",
+      "key": "assure",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "astonish",
+      "key": "astonish",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "attain",
+      "key": "attain",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "attend",
+      "key": "attend",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "attribute",
+      "key": "attribute",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "authorize",
+      "key": "authorize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "await",
+      "key": "await",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "bankrupt",
+      "key": "bankrupt",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "become",
+      "key": "become",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "behave",
+      "key": "behave",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "believe",
+      "key": "believe",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "belong",
+      "key": "belong",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "benefit",
+      "key": "benefit",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "bestow",
+      "key": "bestow",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "betray",
+      "key": "betray",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "bewilder",
+      "key": "bewilder",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "blame",
+      "key": "blame",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "boast",
+      "key": "boast",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "boost",
+      "key": "boost",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "bother",
+      "key": "bother",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "burden",
+      "key": "burden",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "calculate",
+      "key": "calculate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "care",
+      "key": "care",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "categorize",
+      "key": "categorize",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "cause",
+      "key": "cause",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "cease",
+      "key": "cease",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "certify",
+      "key": "certify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "change",
+      "key": "change",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "characterize",
+      "key": "characterize",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "cherish",
+      "key": "cherish",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "claim",
+      "key": "claim",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "clarify",
+      "key": "clarify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "classify",
+      "key": "classify",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "coincide",
+      "key": "coincide",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "combine",
+      "key": "combine",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "commemorate",
+      "key": "commemorate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "comment",
+      "key": "comment",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "commit",
+      "key": "commit",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "communicate",
+      "key": "communicate",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "compare",
+      "key": "compare",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "compensate",
+      "key": "compensate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "compile",
+      "key": "compile",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "complain",
+      "key": "complain",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "complete",
+      "key": "complete",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "complicate",
+      "key": "complicate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "compromise",
+      "key": "compromise",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "compute",
+      "key": "compute",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "concede",
+      "key": "concede",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "conceive",
+      "key": "conceive",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "concentrate",
+      "key": "concentrate",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt,topic:b1-school-life",
+      "bucket": "reject"
+    },
+    {
+      "word": "conclude",
+      "key": "conclude",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "condemn",
+      "key": "condemn",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "confess",
+      "key": "confess",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "confine",
+      "key": "confine",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "confirm",
+      "key": "confirm",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "confuse",
+      "key": "confuse",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "congratulate",
+      "key": "congratulate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "conquer",
+      "key": "conquer",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "consider",
+      "key": "consider",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "consist",
+      "key": "consist",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "console",
+      "key": "console",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "constitute",
+      "key": "constitute",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "consult",
+      "key": "consult",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "consume",
+      "key": "consume",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "contain",
+      "key": "contain",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "contaminate",
+      "key": "contaminate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "continue",
+      "key": "continue",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "contradict",
+      "key": "contradict",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "contribute",
+      "key": "contribute",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "control",
+      "key": "control",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "convert",
+      "key": "convert",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "convey",
+      "key": "convey",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "convince",
+      "key": "convince",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "cooperate",
+      "key": "cooperate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "cope",
+      "key": "cope",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "correct",
+      "key": "correct",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "correspond",
+      "key": "correspond",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "criticize",
+      "key": "criticize",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "dare",
+      "key": "dare",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "debit",
+      "key": "debit",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "deceive",
+      "key": "deceive",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "decide",
+      "key": "decide",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "declare",
+      "key": "declare",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "decline",
+      "key": "decline",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "decrease",
+      "key": "decrease",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "dedicate",
+      "key": "dedicate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "deduce",
+      "key": "deduce",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "deem",
+      "key": "deem",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "define",
+      "key": "define",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "defy",
+      "key": "defy",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "dehumanize",
+      "key": "dehumanize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "delete",
+      "key": "delete",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "delight",
+      "key": "delight",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "demand",
+      "key": "demand",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "demonstrate",
+      "key": "demonstrate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "deny",
+      "key": "deny",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "depend",
+      "key": "depend",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "deprive",
+      "key": "deprive",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "derive",
+      "key": "derive",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "describe",
+      "key": "describe",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "deserve",
+      "key": "deserve",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "design",
+      "key": "design",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "desire",
+      "key": "desire",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "despise",
+      "key": "despise",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "detect",
+      "key": "detect",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "determine",
+      "key": "determine",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "develop",
+      "key": "develop",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "devote",
+      "key": "devote",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "differ",
+      "key": "differ",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "dignify",
+      "key": "dignify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "direct",
+      "key": "direct",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "disable",
+      "key": "disable",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "disagree",
+      "key": "disagree",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "disappoint",
+      "key": "disappoint",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "disapprove",
+      "key": "disapprove",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "discourage",
+      "key": "discourage",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "discover",
+      "key": "discover",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "discredit",
+      "key": "discredit",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "discriminate",
+      "key": "discriminate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "discuss",
+      "key": "discuss",
+      "levels": "A1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "disillusion",
+      "key": "disillusion",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "dismiss",
+      "key": "dismiss",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "disqualify",
+      "key": "disqualify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "distinguish",
+      "key": "distinguish",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "distract",
+      "key": "distract",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "dominate",
+      "key": "dominate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "downsize",
+      "key": "downsize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "dread",
+      "key": "dread",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "ease",
+      "key": "ease",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "educate",
+      "key": "educate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "elect",
+      "key": "elect",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "eliminate",
+      "key": "eliminate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "embarrass",
+      "key": "embarrass",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "emphasize",
+      "key": "emphasize",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "employ",
+      "key": "employ",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "enable",
+      "key": "enable",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "encourage",
+      "key": "encourage",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "end",
+      "key": "end",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "endorse",
+      "key": "endorse",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "endure",
+      "key": "endure",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "enforce",
+      "key": "enforce",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "engage",
+      "key": "engage",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "enhance",
+      "key": "enhance",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "enrich",
+      "key": "enrich",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "enroll",
+      "key": "enroll",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "ensure",
+      "key": "ensure",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "entitle",
+      "key": "entitle",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "equal",
+      "key": "equal",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "establish",
+      "key": "establish",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "estimate",
+      "key": "estimate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "evaluate",
+      "key": "evaluate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "evolve",
+      "key": "evolve",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "exalt",
+      "key": "exalt",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "examine",
+      "key": "examine",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "exceed",
+      "key": "exceed",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "excel",
+      "key": "excel",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "exclaim",
+      "key": "exclaim",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "exclude",
+      "key": "exclude",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "excuse",
+      "key": "excuse",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "exist",
+      "key": "exist",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "expect",
+      "key": "expect",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "experience",
+      "key": "experience",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "experiment",
+      "key": "experiment",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "explain",
+      "key": "explain",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "exploit",
+      "key": "exploit",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "facilitate",
+      "key": "facilitate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "fail",
+      "key": "fail",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "familiarize",
+      "key": "familiarize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "fancy",
+      "key": "fancy",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "fascinate",
+      "key": "fascinate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "finance",
+      "key": "finance",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "fine",
+      "key": "fine",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "focus",
+      "key": "focus",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "force",
+      "key": "force",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "foresee",
+      "key": "foresee",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "forget",
+      "key": "forget",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "forgive",
+      "key": "forgive",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "form",
+      "key": "form",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "format",
+      "key": "format",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "fulfill",
+      "key": "fulfill",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "function",
+      "key": "function",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "fund",
+      "key": "fund",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "furnish",
+      "key": "furnish",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "gain",
+      "key": "gain",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "generalize",
+      "key": "generalize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "generate",
+      "key": "generate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "get",
+      "key": "get",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "glorify",
+      "key": "glorify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "gossip",
+      "key": "gossip",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "govern",
+      "key": "govern",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "grant",
+      "key": "grant",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "grieve",
+      "key": "grieve",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "guarantee",
+      "key": "guarantee",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "happen",
+      "key": "happen",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "hate",
+      "key": "hate",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "hesitate",
+      "key": "hesitate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "hope",
+      "key": "hope",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "hospitalize",
+      "key": "hospitalize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "humanize",
+      "key": "humanize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "humiliate",
+      "key": "humiliate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "identify",
+      "key": "identify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "idolize",
+      "key": "idolize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "ignore",
+      "key": "ignore",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "imagine",
+      "key": "imagine",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "imitate",
+      "key": "imitate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "immigrate",
+      "key": "immigrate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "impair",
+      "key": "impair",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "implement",
+      "key": "implement",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "imply",
+      "key": "imply",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "impose",
+      "key": "impose",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "impress",
+      "key": "impress",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "improve",
+      "key": "improve",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt,topic:b1-school-life",
+      "bucket": "reject"
+    },
+    {
+      "word": "include",
+      "key": "include",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "increase",
+      "key": "increase",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "incur",
+      "key": "incur",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "indicate",
+      "key": "indicate",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "indulge",
+      "key": "indulge",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "industrialize",
+      "key": "industrialize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "infect",
+      "key": "infect",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "infer",
+      "key": "infer",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "influence",
+      "key": "influence",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "inform",
+      "key": "inform",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "infringe",
+      "key": "infringe",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "inhabit",
+      "key": "inhabit",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "inherit",
+      "key": "inherit",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "inquire",
+      "key": "inquire",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "insist",
+      "key": "insist",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "instill",
+      "key": "instill",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "instruct",
+      "key": "instruct",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "insult",
+      "key": "insult",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "integrate",
+      "key": "integrate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "intend",
+      "key": "intend",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "interact",
+      "key": "interact",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "interest",
+      "key": "interest",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "interfere",
+      "key": "interfere",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "interpret",
+      "key": "interpret",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "invest",
+      "key": "invest",
+      "levels": "B1",
+      "sources": "cefrj,topic:b1-money",
+      "bucket": "reject"
+    },
+    {
+      "word": "invoke",
+      "key": "invoke",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "involve",
+      "key": "involve",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "irritate",
+      "key": "irritate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "issue",
+      "key": "issue",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "italicize",
+      "key": "italicize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "jeopardize",
+      "key": "jeopardize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "judge",
+      "key": "judge",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "justify",
+      "key": "justify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "keep",
+      "key": "keep",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "know",
+      "key": "know",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "last",
+      "key": "last",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "legislate",
+      "key": "legislate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "lessen",
+      "key": "lessen",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "let",
+      "key": "let",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "liberate",
+      "key": "liberate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "like",
+      "key": "like",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "linger",
+      "key": "linger",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "maintain",
+      "key": "maintain",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "manage",
+      "key": "manage",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "manipulate",
+      "key": "manipulate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "matter",
+      "key": "matter",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "mean",
+      "key": "mean",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "mechanize",
+      "key": "mechanize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "meditate",
+      "key": "meditate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "memorize",
+      "key": "memorize",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "mind",
+      "key": "mind",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "minimize",
+      "key": "minimize",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "mislead",
+      "key": "mislead",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "miss",
+      "key": "miss",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "mistreat",
+      "key": "mistreat",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "misunderstand",
+      "key": "misunderstand",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "modernize",
+      "key": "modernize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "mortify",
+      "key": "mortify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "motivate",
+      "key": "motivate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "mourn",
+      "key": "mourn",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "muse",
+      "key": "muse",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "mystify",
+      "key": "mystify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "narrate",
+      "key": "narrate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "need",
+      "key": "need",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "negotiate",
+      "key": "negotiate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "note",
+      "key": "note",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt,topic:music-demand",
+      "bucket": "reject"
+    },
+    {
+      "word": "nourish",
+      "key": "nourish",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "obey",
+      "key": "obey",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "object",
+      "key": "object",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "observe",
+      "key": "observe",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "obsess",
+      "key": "obsess",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "obtain",
+      "key": "obtain",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "occasion",
+      "key": "occasion",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "occupy",
+      "key": "occupy",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "occur",
+      "key": "occur",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "offend",
+      "key": "offend",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "oppress",
+      "key": "oppress",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "originate",
+      "key": "originate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "outdistance",
+      "key": "outdistance",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "outdo",
+      "key": "outdo",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "outlive",
+      "key": "outlive",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "outshine",
+      "key": "outshine",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "outweigh",
+      "key": "outweigh",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "overbook",
+      "key": "overbook",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "overcome",
+      "key": "overcome",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "overemphasize",
+      "key": "overemphasize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "overestimate",
+      "key": "overestimate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "overhear",
+      "key": "overhear",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "overlook",
+      "key": "overlook",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "overshadow",
+      "key": "overshadow",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "overstep",
+      "key": "overstep",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "overwhelm",
+      "key": "overwhelm",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "owe",
+      "key": "owe",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "own",
+      "key": "own",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "pardon",
+      "key": "pardon",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "participate",
+      "key": "participate",
+      "levels": "B1",
+      "sources": "cefrj,topic:b1-school-life",
+      "bucket": "reject"
+    },
+    {
+      "word": "penalize",
+      "key": "penalize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "penetrate",
+      "key": "penetrate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "perceive",
+      "key": "perceive",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "permeate",
+      "key": "permeate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "permit",
+      "key": "permit",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "persist",
+      "key": "persist",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "personify",
+      "key": "personify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "persuade",
+      "key": "persuade",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "place",
+      "key": "place",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "plan",
+      "key": "plan",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "plead",
+      "key": "plead",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "please",
+      "key": "please",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "ponder",
+      "key": "ponder",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "popularize",
+      "key": "popularize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "possess",
+      "key": "possess",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "postpone",
+      "key": "postpone",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "precede",
+      "key": "precede",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "predicate",
+      "key": "predicate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "predict",
+      "key": "predict",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "prefer",
+      "key": "prefer",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "prejudge",
+      "key": "prejudge",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "preoccupy",
+      "key": "preoccupy",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "prescribe",
+      "key": "prescribe",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "preserve",
+      "key": "preserve",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "prevail",
+      "key": "prevail",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "price",
+      "key": "price",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "proceed",
+      "key": "proceed",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "proclaim",
+      "key": "proclaim",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "progress",
+      "key": "progress",
+      "levels": "B2",
+      "sources": "cefrj,topic:b1-school-life",
+      "bucket": "reject"
+    },
+    {
+      "word": "prohibit",
+      "key": "prohibit",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "promote",
+      "key": "promote",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "prompt",
+      "key": "prompt",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "pronounce",
+      "key": "pronounce",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "propose",
+      "key": "propose",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "prosecute",
+      "key": "prosecute",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "prosper",
+      "key": "prosper",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "prove",
+      "key": "prove",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "provide",
+      "key": "provide",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "publicize",
+      "key": "publicize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "publish",
+      "key": "publish",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "punish",
+      "key": "punish",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "purchase",
+      "key": "purchase",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "pursue",
+      "key": "pursue",
+      "levels": "A2",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "qualify",
+      "key": "qualify",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "quantify",
+      "key": "quantify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "quarrel",
+      "key": "quarrel",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "quote",
+      "key": "quote",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "range",
+      "key": "range",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "rate",
+      "key": "rate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "react",
+      "key": "react",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "realize",
+      "key": "realize",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "recall",
+      "key": "recall",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "recite",
+      "key": "recite",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "reckon",
+      "key": "reckon",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "recognize",
+      "key": "recognize",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "recollect",
+      "key": "recollect",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "recommend",
+      "key": "recommend",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "reconsider",
+      "key": "reconsider",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "recruit",
+      "key": "recruit",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "refer",
+      "key": "refer",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "reflect",
+      "key": "reflect",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "refuse",
+      "key": "refuse",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "refute",
+      "key": "refute",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "regain",
+      "key": "regain",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "regard",
+      "key": "regard",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "register",
+      "key": "register",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "regret",
+      "key": "regret",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "regulate",
+      "key": "regulate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "reject",
+      "key": "reject",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "rejoin",
+      "key": "rejoin",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "relate",
+      "key": "relate",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "relieve",
+      "key": "relieve",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "rely",
+      "key": "rely",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "remain",
+      "key": "remain",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "remark",
+      "key": "remark",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "remember",
+      "key": "remember",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "renew",
+      "key": "renew",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "reorganize",
+      "key": "reorganize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "repay",
+      "key": "repay",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "represent",
+      "key": "represent",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "repress",
+      "key": "repress",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "reproduce",
+      "key": "reproduce",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "reprove",
+      "key": "reprove",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "require",
+      "key": "require",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "resemble",
+      "key": "resemble",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "reserve",
+      "key": "reserve",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "resign",
+      "key": "resign",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "resist",
+      "key": "resist",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "resolve",
+      "key": "resolve",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "respect",
+      "key": "respect",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "respond",
+      "key": "respond",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "restrict",
+      "key": "restrict",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "result",
+      "key": "result",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "resume",
+      "key": "resume",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "retain",
+      "key": "retain",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "retard",
+      "key": "retard",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "retell",
+      "key": "retell",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "retrieve",
+      "key": "retrieve",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "reunify",
+      "key": "reunify",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "reveal",
+      "key": "reveal",
+      "levels": "A2",
+      "sources": "cefrj,prior:manus-verbs-a1-a2.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "reverse",
+      "key": "reverse",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "revise",
+      "key": "revise",
+      "levels": "B1",
+      "sources": "cefrj,topic:b1-school-life",
+      "bucket": "reject"
+    },
+    {
+      "word": "revive",
+      "key": "revive",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "revolutionize",
+      "key": "revolutionize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "reward",
+      "key": "reward",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "rewrite",
+      "key": "rewrite",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "rhyme",
+      "key": "rhyme",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "rid",
+      "key": "rid",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "riddle",
+      "key": "riddle",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "risk",
+      "key": "risk",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "round",
+      "key": "round",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "rule",
+      "key": "rule",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "sack",
+      "key": "sack",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "safeguard",
+      "key": "safeguard",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "satisfy",
+      "key": "satisfy",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "say",
+      "key": "say",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "seem",
+      "key": "seem",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "select",
+      "key": "select",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "sense",
+      "key": "sense",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "sentence",
+      "key": "sentence",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "separate",
+      "key": "separate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "service",
+      "key": "service",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "signify",
+      "key": "signify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "simplify",
+      "key": "simplify",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "slow",
+      "key": "slow",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "socialize",
+      "key": "socialize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "solve",
+      "key": "solve",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "soothe",
+      "key": "soothe",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "span",
+      "key": "span",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "spare",
+      "key": "spare",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "specialize",
+      "key": "specialize",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "specify",
+      "key": "specify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "speed",
+      "key": "speed",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "sponsor",
+      "key": "sponsor",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "state",
+      "key": "state",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "stimulate",
+      "key": "stimulate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "strengthen",
+      "key": "strengthen",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "stress",
+      "key": "stress",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "strive",
+      "key": "strive",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "submit",
+      "key": "submit",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "subside",
+      "key": "subside",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "substitute",
+      "key": "substitute",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "succeed",
+      "key": "succeed",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "sue",
+      "key": "sue",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "suffer",
+      "key": "suffer",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "suggest",
+      "key": "suggest",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "summarize",
+      "key": "summarize",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "supervise",
+      "key": "supervise",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "supply",
+      "key": "supply",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "support",
+      "key": "support",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "suppose",
+      "key": "suppose",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "suppress",
+      "key": "suppress",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "surprise",
+      "key": "surprise",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "survive",
+      "key": "survive",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-review.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "suspect",
+      "key": "suspect",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "suspend",
+      "key": "suspend",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "sustain",
+      "key": "sustain",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "swear",
+      "key": "swear",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "sympathize",
+      "key": "sympathize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "tell",
+      "key": "tell",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "tempt",
+      "key": "tempt",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "tend",
+      "key": "tend",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "testify",
+      "key": "testify",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "think",
+      "key": "think",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "thirst",
+      "key": "thirst",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "time",
+      "key": "time",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "tolerate",
+      "key": "tolerate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "trouble",
+      "key": "trouble",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "trust",
+      "key": "trust",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "underestimate",
+      "key": "underestimate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "undergo",
+      "key": "undergo",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "understand",
+      "key": "understand",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "undertake",
+      "key": "undertake",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "unify",
+      "key": "unify",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "unite",
+      "key": "unite",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "update",
+      "key": "update",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "upgrade",
+      "key": "upgrade",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "upset",
+      "key": "upset",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "urge",
+      "key": "urge",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "use",
+      "key": "use",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "usher",
+      "key": "usher",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "utilize",
+      "key": "utilize",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "utter",
+      "key": "utter",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "value",
+      "key": "value",
+      "levels": "B2",
+      "sources": "cefrj,topic:b1-money",
+      "bucket": "reject"
+    },
+    {
+      "word": "vary",
+      "key": "vary",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "verse",
+      "key": "verse",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "view",
+      "key": "view",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "violate",
+      "key": "violate",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "volunteer",
+      "key": "volunteer",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "want",
+      "key": "want",
+      "levels": "A1",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "wonder",
+      "key": "wonder",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "worry",
+      "key": "worry",
+      "levels": "A2",
+      "sources": "cefrj,prior:verbs-rejected.txt",
+      "bucket": "reject"
+    },
+    {
+      "word": "yearn",
+      "key": "yearn",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    },
+    {
+      "word": "yield",
+      "key": "yield",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "reject"
+    }
+  ],
+  "skipped": [
+    {
+      "word": "circle",
+      "key": "circle",
+      "levels": "B1",
+      "sources": "cefrj",
+      "bucket": "skip"
+    },
+    {
+      "word": "cuddle",
+      "key": "cuddle",
+      "levels": "",
+      "sources": "picturable-verbs",
+      "bucket": "skip"
+    },
+    {
+      "word": "embrace",
+      "key": "embrace",
+      "levels": "",
+      "sources": "picturable-verbs",
+      "bucket": "skip"
+    },
+    {
+      "word": "hug",
+      "key": "hug",
+      "levels": "A2",
+      "sources": "cefrj,picturable-verbs,prior:manus-verbs-a1-a2.txt,topic:family",
+      "bucket": "skip"
+    },
+    {
+      "word": "kiss",
+      "key": "kiss",
+      "levels": "B1",
+      "sources": "cefrj,picturable-verbs",
+      "bucket": "skip"
+    },
+    {
+      "word": "pee",
+      "key": "pee",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "skip"
+    },
+    {
+      "word": "rape",
+      "key": "rape",
+      "levels": "B2",
+      "sources": "cefrj",
+      "bucket": "skip"
+    },
+    {
+      "word": "snuggle",
+      "key": "snuggle",
+      "levels": "",
+      "sources": "picturable-verbs",
+      "bucket": "skip"
+    },
+    {
+      "word": "spit",
+      "key": "spit",
+      "levels": "",
+      "sources": "picturable-verbs",
+      "bucket": "skip"
+    },
+    {
+      "word": "stilts",
+      "key": "stilts",
+      "levels": "",
+      "sources": "picturable-verbs",
+      "bucket": "skip"
+    },
+    {
+      "word": "undress",
+      "key": "undress",
+      "levels": "B1",
+      "sources": "cefrj,picturable-verbs",
+      "bucket": "skip"
+    }
+  ]
+}

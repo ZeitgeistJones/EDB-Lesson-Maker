@@ -1,0 +1,94 @@
+{
+  "spec": "a1-visual-operating-system",
+  "locked_level": "A1 controlled recombination",
+  "firewall": [
+    "no baked English sentences",
+    "no fake text in micro-text shells",
+    "no A2 past narratives",
+    "no route giving",
+    "no shopping negotiations",
+    "no because-reasoning",
+    "no paragraphs",
+    "no open roleplay"
+  ],
+  "waves": {
+    "p0-1-sentence-architecture": {
+      "phase": "P0.1",
+      "family": "sentence-architecture-kit",
+      "title": "A1 P0.1 sentence architecture kit",
+      "sheets": 2,
+      "concepts": 16
+    },
+    "p0-2-question-answer-system": {
+      "phase": "P0.2",
+      "family": "question-answer-system",
+      "title": "A1 P0.2 question to answer visual system",
+      "sheets": 2,
+      "concepts": 15
+    },
+    "p0-3-reference-pronoun-ownership": {
+      "phase": "P0.3",
+      "family": "reference-pronoun-ownership",
+      "title": "A1 P0.3 reference, pronoun, ownership",
+      "sheets": 2,
+      "concepts": 15
+    },
+    "p0-4-micro-text-shells": {
+      "phase": "P0.4",
+      "family": "micro-text-shells",
+      "title": "A1 P0.4 micro-text visual shells",
+      "sheets": 3,
+      "concepts": 12
+    },
+    "p0-5-listening-detail-boards": {
+      "phase": "P0.5",
+      "family": "listening-detail-boards",
+      "title": "A1 P0.5 listening-for-detail boards",
+      "sheets": 2,
+      "concepts": 12
+    },
+    "p0-6-conversation-turn-system": {
+      "phase": "P0.6",
+      "family": "conversation-turn-system",
+      "title": "A1 P0.6 conversation and turn system",
+      "sheets": 2,
+      "concepts": 14
+    },
+    "p1-1-clock-calendar-schedule": {
+      "phase": "P1.1",
+      "family": "clock-calendar-schedule",
+      "title": "A1 P1.1 clock, calendar, schedule",
+      "sheets": 1,
+      "concepts": 4
+    },
+    "p1-2-quantity-price-request": {
+      "phase": "P1.2",
+      "family": "quantity-price-request",
+      "title": "A1 P1.2 quantity, price, request",
+      "sheets": 1,
+      "concepts": 4
+    },
+    "p1-3-picture-sequence": {
+      "phase": "P1.3",
+      "family": "picture-sequence",
+      "title": "A1 P1.3 picture sequence shells",
+      "sheets": 1,
+      "concepts": 4
+    },
+    "p1-4-picture-difference": {
+      "phase": "P1.4",
+      "family": "picture-difference",
+      "title": "A1 P1.4 picture difference systems",
+      "sheets": 1,
+      "concepts": 4
+    },
+    "p1-5-supported-writing-scaffolds": {
+      "phase": "P1.5",
+      "family": "supported-writing-scaffolds",
+      "title": "A1 P1.5 supported writing scaffolds",
+      "sheets": 1,
+      "concepts": 4
+    }
+  },
+  "durable_root": "harvested/manus-a1-stockpile"
+}

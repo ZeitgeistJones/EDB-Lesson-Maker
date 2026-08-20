@@ -1,0 +1,6 @@
+# Full generated visual evidence is kept locally; commit compact summaries,
+# indexes, decisions, and representative pass samples instead.
+cells/
+sheets/pending_visual/
+sheets/redo/
+sheets/review/

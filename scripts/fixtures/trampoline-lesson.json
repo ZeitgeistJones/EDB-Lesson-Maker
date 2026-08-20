@@ -1,0 +1,63 @@
+{
+  "title": "Learning how to do a backflip on my trampoline",
+  "warmUp": {
+    "question": "Have you ever tried a sport that felt a little scary at first?",
+    "sampleAnswer": "Yes — I was nervous the first time I tried."
+  },
+  "vocabulary": [
+    { "word": "trampoline", "emoji": "🤸", "sentence": "I jump on the trampoline." },
+    { "word": "backflip", "emoji": "🔄", "sentence": "A backflip is a flip backward." },
+    { "word": "bounce", "emoji": "⬆️", "sentence": "Bounce with bent knees." },
+    { "word": "balance", "emoji": "⚖️", "sentence": "Keep your balance in the air." },
+    { "word": "spotter", "emoji": "👀", "sentence": "A spotter watches you land." },
+    { "word": "mat", "emoji": "🟩", "sentence": "Soft mats protect the landing." }
+  ],
+  "sentenceFrames": [
+    "First I ____ on the trampoline.",
+    "A spotter helps me keep my ____.",
+    "I put a soft ____ under the trampoline."
+  ],
+  "story": {
+    "title": "Flip Day",
+    "pages": [
+      {
+        "heading": "In the backyard",
+        "text": "Mia stands on the trampoline. Her brother is the spotter.",
+        "visualTheme": "home",
+        "visualCaption": "Backyard trampoline"
+      },
+      {
+        "heading": "The first bounce",
+        "text": "She bounces, keeps her balance, and tries a small backflip.",
+        "visualTheme": "sports",
+        "visualCaption": "Bounce and flip"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Who helps Mia?", "sampleAnswer": "Her brother is the spotter." },
+      { "question": "Where does Mia stand?", "sampleAnswer": "She stands on the trampoline." },
+      { "question": "What does Mia try after she bounces?", "sampleAnswer": "She tries a small backflip." }
+    ],
+    "creativeQuestions": [
+      "What safety rule would you make for trampoline day?",
+      "Describe your first bounce in three words."
+    ]
+  },
+  "speakingQuestions": [
+    { "question": "Why do you need a spotter for a backflip?", "sampleAnswer": "A spotter helps you land safely." },
+    { "question": "What do you bend when you bounce?", "sampleAnswer": "I bend my knees." }
+  ],
+  "activity": {
+    "title": "Trampoline Lab",
+    "prompt": "Drag the trampoline. Talk through each bounce step.",
+    "templates": [
+      "Name three bounce steps.",
+      "Point to where the spotter stands.",
+      "Say one safety rule out loud."
+    ]
+  },
+  "reviewSentences": [
+    "I bounce on the trampoline with a spotter.",
+    "A backflip needs balance and practice."
+  ]
+}

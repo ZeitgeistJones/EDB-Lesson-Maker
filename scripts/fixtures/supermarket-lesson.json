@@ -1,0 +1,40 @@
+{
+  "title": "Supermarket Shopping",
+  "warmUp": {
+    "question": "Do you go to the supermarket?",
+    "sampleAnswer": "Yes, I buy milk."
+  },
+  "vocabulary": [
+    { "word": "apple", "emoji": "🍎", "sentence": "I buy an apple." },
+    { "word": "bread", "emoji": "🍞", "sentence": "The bread is fresh." },
+    { "word": "milk", "emoji": "🥛", "sentence": "We need milk." },
+    { "word": "cart", "emoji": "🛒", "sentence": "Push the cart." },
+    { "word": "shop", "emoji": "🛍️", "sentence": "We shop today." },
+    { "word": "bag", "emoji": "👜", "sentence": "Put it in the bag." }
+  ],
+  "sentenceFrames": ["I see a ____.", "Put the ____ in the cart."],
+  "story": {
+    "title": "At the Supermarket",
+    "pages": [
+      {
+        "heading": "In the aisle",
+        "text": "Ben pushes a cart. He puts milk and bread in the bag.",
+        "visualTheme": "supermarket",
+        "visualCaption": "Supermarket aisle"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is Ben?", "sampleAnswer": "He is at the supermarket." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What do you buy at the supermarket?", "sampleAnswer": "I buy apples and milk." }
+  ],
+  "activity": {
+    "title": "Cart Fill",
+    "prompt": "Say what goes in the cart.",
+    "templates": ["Put the ____ in the cart."]
+  },
+  "reviewSentences": ["I like to shop.", "The cart is full."]
+}

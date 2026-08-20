@@ -1,0 +1,45 @@
+{
+  "title": "First Day at School",
+  "warmUp": {
+    "question": "What do you bring to school?",
+    "sampleAnswer": "I bring a pencil and a book."
+  },
+  "vocabulary": [
+    { "word": "teacher", "emoji": "👩‍🏫", "sentence": "The teacher smiles." },
+    { "word": "classroom", "emoji": "🏫", "sentence": "Our classroom is big." },
+    { "word": "pencil", "emoji": "✏️", "sentence": "I need a pencil." },
+    { "word": "friend", "emoji": "🤝", "sentence": "I make a friend." }
+  ],
+  "sentenceFrames": [
+    "My teacher is ____.",
+    "I sit in the ____.",
+    "This is my ____."
+  ],
+  "story": {
+    "title": "Hello, Class!",
+    "pages": [
+      {
+        "heading": "Morning",
+        "text": "Lina walks into the classroom. Her teacher says hello.",
+        "visualTheme": "school",
+        "visualCaption": "Classroom"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Who says hello?", "sampleAnswer": "The teacher." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "Who is your teacher?", "sampleAnswer": "Ms. Lee." },
+    { "question": "Do you like school?", "sampleAnswer": "Yes, I do." }
+  ],
+  "activity": {
+    "title": "Classroom Tour",
+    "prompt": "Point and name things in the room.",
+    "templates": ["This is the ____.", "I see a ____."]
+  },
+  "reviewSentences": [
+    "The classroom is ready for school."
+  ]
+}

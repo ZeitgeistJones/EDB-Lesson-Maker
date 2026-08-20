@@ -1,0 +1,319 @@
+{
+  "id": "factories",
+  "labels": [
+    "factories",
+    "rail",
+    "ships"
+  ],
+  "usefulness": 0.7,
+  "picturable": 0.88,
+  "hardToSubstitute": 0.5,
+  "topics": [
+    "factory floor",
+    "assembly line",
+    "shipping dock",
+    "freight train",
+    "rail yard",
+    "cargo ship",
+    "harbor crane",
+    "warehouse aisle",
+    "conveyor belt",
+    "steel mill",
+    "paper mill",
+    "bottle plant",
+    "locomotive cab",
+    "container port",
+    "engine room",
+    "signal box"
+  ],
+  "concepts": [
+    {
+      "word": "conveyor belt",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "word": "pallet",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "equipment"
+      ]
+    },
+    {
+      "word": "forklift",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "word": "crate",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "container"
+      ]
+    },
+    {
+      "word": "barrel",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "container"
+      ]
+    },
+    {
+      "word": "drum",
+      "usefulness": 0.6,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "container"
+      ]
+    },
+    {
+      "word": "crane",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "word": "hook",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "pulley",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "word": "gear",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "lever",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "valve",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "smokestack",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "locomotive",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "vehicle"
+      ]
+    },
+    {
+      "word": "freight car",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "vehicle"
+      ]
+    },
+    {
+      "word": "caboose",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "vehicle"
+      ]
+    },
+    {
+      "word": "rail",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "sleeper",
+      "usefulness": 0.4,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "signal",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "equipment"
+      ]
+    },
+    {
+      "word": "coupling",
+      "usefulness": 0.4,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "anchor",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "ship"
+      ]
+    },
+    {
+      "word": "hull",
+      "usefulness": 0.55,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "ship"
+      ]
+    },
+    {
+      "word": "deck",
+      "usefulness": 0.65,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "ship"
+      ]
+    },
+    {
+      "word": "mast",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "ship"
+      ]
+    },
+    {
+      "word": "sail",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "ship"
+      ]
+    },
+    {
+      "word": "rudder",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "ship"
+      ]
+    },
+    {
+      "word": "funnel",
+      "usefulness": 0.5,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "ship"
+      ]
+    },
+    {
+      "word": "container",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "cargo"
+      ]
+    },
+    {
+      "word": "gangway",
+      "usefulness": 0.45,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.65,
+      "tags": [
+        "ship"
+      ]
+    },
+    {
+      "word": "boiler",
+      "usefulness": 0.5,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "word": "press",
+      "usefulness": 0.5,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "word": "mold",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "tool"
+      ]
+    }
+  ]
+}

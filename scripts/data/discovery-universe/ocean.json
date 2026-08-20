@@ -1,0 +1,299 @@
+{
+  "id": "ocean",
+  "labels": [
+    "ocean",
+    "fish"
+  ],
+  "usefulness": 0.8,
+  "picturable": 0.92,
+  "hardToSubstitute": 0.4,
+  "topics": [
+    "tide pool",
+    "fishing boat",
+    "aquarium tank",
+    "scuba dive",
+    "lighthouse coast",
+    "beach cleanup",
+    "whale watch",
+    "kelp forest",
+    "shipwreck dive",
+    "pier fishing",
+    "surf lesson",
+    "marine lab",
+    "pearl diving",
+    "harbor seals",
+    "coral nursery"
+  ],
+  "concepts": [
+    {
+      "word": "tide pool",
+      "usefulness": 0.65,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "place"
+      ]
+    },
+    {
+      "word": "seaweed",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "plant"
+      ]
+    },
+    {
+      "word": "kelp",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "plant"
+      ]
+    },
+    {
+      "word": "plankton",
+      "usefulness": 0.4,
+      "picturable": 0.7,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "life"
+      ]
+    },
+    {
+      "word": "clam",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "oyster",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "mussel",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "crab",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "lobster",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "shrimp",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "eel",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "ray",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "urchin",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "snorkel",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "gear"
+      ]
+    },
+    {
+      "word": "mask",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "gear"
+      ]
+    },
+    {
+      "word": "fin",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "gear"
+      ]
+    },
+    {
+      "word": "tank",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "gear"
+      ]
+    },
+    {
+      "word": "regulator",
+      "usefulness": 0.45,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "gear"
+      ]
+    },
+    {
+      "word": "lighthouse",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "structure"
+      ]
+    },
+    {
+      "word": "buoy",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "marker"
+      ]
+    },
+    {
+      "word": "net",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "hook",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "bait",
+      "usefulness": 0.6,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "supply"
+      ]
+    },
+    {
+      "word": "reel",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "surfboard",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "gear"
+      ]
+    },
+    {
+      "word": "paddle",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "gear"
+      ]
+    },
+    {
+      "word": "pearl",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "find"
+      ]
+    },
+    {
+      "word": "shell",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "find"
+      ]
+    },
+    {
+      "word": "driftwood",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "find"
+      ]
+    },
+    {
+      "word": "shipwreck",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "place"
+      ]
+    }
+  ]
+}

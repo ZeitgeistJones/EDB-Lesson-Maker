@@ -1,0 +1,52 @@
+{
+  "title": "Bathroom Routines",
+  "warmUp": {
+    "question": "What do you do in the bathroom?",
+    "sampleAnswer": "I wash my hands."
+  },
+  "vocabulary": [
+    { "word": "shower", "emoji": "🚿", "sentence": "I take a shower." },
+    { "word": "soap", "emoji": "🧼", "sentence": "Use soap and water." },
+    { "word": "toothbrush", "emoji": "🪥", "sentence": "Brush with a toothbrush." },
+    { "word": "towel", "emoji": "🧺", "sentence": "Dry with a towel." },
+    { "word": "mirror", "emoji": "🪞", "sentence": "Look in the mirror." },
+    { "word": "toilet", "emoji": "🚽", "sentence": "Flush the toilet." }
+  ],
+  "sentenceFrames": [
+    "I use the ____.",
+    "Please pass the ____.",
+    "Wash with ____."
+  ],
+  "story": {
+    "title": "Morning Wash",
+    "pages": [
+      {
+        "heading": "Wake up",
+        "text": "I take a shower and use soap.",
+        "visualTheme": "bathroom",
+        "visualCaption": "Shower time"
+      },
+      {
+        "heading": "Brush",
+        "text": "I brush with my toothbrush and look in the mirror.",
+        "visualTheme": "bathroom",
+        "visualCaption": "Sink and mirror"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What does the child use in the shower?", "sampleAnswer": "Soap." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "Do you use a towel after a shower?", "sampleAnswer": "Yes, I do." }
+  ],
+  "activity": {
+    "title": "Sort the bathroom words",
+    "prompt": "Drag each word card into a bin. Say the word as you sort.",
+    "templates": ["I use the ____.", "Wash with ____."]
+  },
+  "reviewSentences": [
+    "I take a shower and dry with a towel."
+  ]
+}

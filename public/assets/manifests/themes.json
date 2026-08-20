@@ -1,0 +1,58 @@
+{
+  "board": { "width": 1280, "height": 590 },
+  "characters": {
+    "setA": [
+      "assets/01_characters/alex.png",
+      "assets/01_characters/bailey.png",
+      "assets/01_characters/casey.png",
+      "assets/01_characters/drew.png",
+      "assets/01_characters/eden.png",
+      "assets/01_characters/finley.png"
+    ],
+    "setB": [
+      "assets/01_characters/humaaans-style/mia.png",
+      "assets/01_characters/humaaans-style/noah.png",
+      "assets/01_characters/humaaans-style/ava.png",
+      "assets/01_characters/humaaans-style/liam.png",
+      "assets/01_characters/humaaans-style/zoe.png",
+      "assets/01_characters/humaaans-style/owen.png"
+    ]
+  },
+  "decorations": [
+    "assets/04_decoration-ui/star.svg",
+    "assets/04_decoration-ui/confetti.svg"
+  ],
+  "vocabIcons": [
+    "assets/03_vocab-icons/apple.svg",
+    "assets/03_vocab-icons/book.svg",
+    "assets/03_vocab-icons/ball.svg",
+    "assets/03_vocab-icons/house.svg",
+    "assets/03_vocab-icons/sun.svg",
+    "assets/03_vocab-icons/tree.svg"
+  ],
+  "covers": [
+    "assets/04_decoration-ui/star.svg",
+    "assets/04_decoration-ui/confetti.svg"
+  ],
+  "flaps": [
+    "assets/04_decoration-ui/star.svg"
+  ],
+  "parts": [
+    "assets/03_vocab-icons/apple.svg",
+    "assets/03_vocab-icons/book.svg",
+    "assets/03_vocab-icons/ball.svg",
+    "assets/03_vocab-icons/house.svg",
+    "assets/03_vocab-icons/sun.svg",
+    "assets/03_vocab-icons/tree.svg"
+  ],
+  "visualThemes": {
+    "park": "assets/02_scenes-backgrounds/park/park-bg.svg",
+    "school": "assets/02_scenes-backgrounds/school/school-bg.svg",
+    "home": "assets/02_scenes-backgrounds/home/home-bg.svg",
+    "city": "assets/02_scenes-backgrounds/city/city-bg.svg",
+    "beach": "assets/02_scenes-backgrounds/beach/beach-bg.svg",
+    "nature": "assets/02_scenes-backgrounds/nature/nature-bg.svg",
+    "kitchen": "assets/02_scenes-backgrounds/kitchen/kitchen-bg.svg",
+    "sports": "assets/02_scenes-backgrounds/sports/sports-bg.svg"
+  }
+}

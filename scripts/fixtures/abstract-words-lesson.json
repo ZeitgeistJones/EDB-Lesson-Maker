@@ -1,0 +1,54 @@
+{
+  "title": "Our Spacious New Apartment",
+  "warmUp": {
+    "question": "Is your bedroom spacious or cramped?",
+    "sampleAnswer": "My bedroom is small but tidy."
+  },
+  "vocabulary": [
+    { "word": "spacious", "emoji": "🏟️", "sentence": "The new living room is spacious." },
+    { "word": "cramped", "emoji": "📦", "sentence": "The old kitchen was cramped." },
+    { "word": "tidy", "emoji": "🧹", "sentence": "Please keep your desk tidy." },
+    { "word": "cosy", "emoji": "🛋️", "sentence": "The bedroom feels cosy at night." },
+    { "word": "cluttered", "emoji": "🧺", "sentence": "The hallway is cluttered with boxes." }
+  ],
+  "sentenceFrames": [
+    "My room is ____.",
+    "The kitchen feels ____.",
+    "I want a ____ home."
+  ],
+  "story": {
+    "title": "Moving Day",
+    "pages": [
+      {
+        "heading": "Moving Day",
+        "text": "Mia opens the door. The living room is spacious and bright.",
+        "visualTheme": "living room",
+        "visualCaption": "Inside the new living room"
+      },
+      {
+        "heading": "The Last Box",
+        "text": "The hallway is cluttered, but soon every room is tidy.",
+        "visualTheme": "living room",
+        "visualCaption": "Boxes in the hallway"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "How does the living room feel?", "sampleAnswer": "It is spacious and bright." }
+    ],
+    "creativeQuestions": [
+      { "question": "Would you like a spacious or a cosy home?", "sampleAnswer": "I would like a cosy home." }
+    ]
+  },
+  "speakingQuestions": [
+    { "question": "Is your home spacious?", "sampleAnswer": "No, it is quite cramped." },
+    { "question": "How do you keep your room tidy?", "sampleAnswer": "I put my things in boxes." }
+  ],
+  "activity": {
+    "title": "Tidy or Cluttered?",
+    "prompt": "Sort the rooms into tidy or cluttered.",
+    "templates": ["This room is ____.", "I feel ____ here."]
+  },
+  "reviewSentences": [
+    "Our new apartment is spacious and tidy."
+  ]
+}

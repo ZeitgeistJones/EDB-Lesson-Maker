@@ -1,0 +1,58 @@
+node_modules/
+.env
+.vercel
+.tmp-assets/
+_edb_study_*/
+_parse_edb_*.js
+public/assets/**/_crop_demo/
+# Transient manifest lock / atomic-write files (scripts/lib/manifest-lock.mjs)
+public/assets/**/*.lock
+public/assets/**/*.tmp
+assets-inbox/*
+!assets-inbox/.gitkeep
+!assets-inbox/manus-cefrj-nouns-w1/
+!assets-inbox/manus-cefrj-nouns-w1/.gitkeep
+!assets-inbox/manus-cefrj-verbs-w1/
+!assets-inbox/manus-cefrj-verbs-w1/.gitkeep
+!assets-inbox/manus-cefrj-verbs-w2/
+!assets-inbox/manus-cefrj-verbs-w2/.gitkeep
+!assets-inbox/manus-cefrj-verbs-w2/**
+!assets-inbox/manus-cefrj-verbs-w2-other/
+!assets-inbox/manus-cefrj-verbs-w2-other/.gitkeep
+!assets-inbox/manus-cefrj-verbs-w2-other/**
+# Ignore tmp contents, but keep the game-icons CC-BY attribution ledger tracked.
+tmp/*
+!tmp/asset-banks/
+tmp/asset-banks/*
+!tmp/asset-banks/game-icons/
+tmp/asset-banks/game-icons/*
+!tmp/asset-banks/game-icons/ATTRIBUTION.md
+!tmp/cefrj-manus/
+tmp/cefrj-manus/*
+!tmp/cefrj-manus/wave1-import-playbook.md
+!tmp/cefrj-manus/wave1-redo-list.md
+!tmp/cefrj-manus/manus-verbs-wave2.txt
+!tmp/cefrj-manus/manus-verbs-wave2-primary.txt
+!tmp/cefrj-manus/manus-verbs-wave2-other.txt
+!tmp/cefrj-manus/verbs-wave2-expanded/
+!tmp/cefrj-manus/verbs-wave2-expanded/**
+!tmp/cefrj-manus/verbs-wave2-batches/
+!tmp/cefrj-manus/verbs-wave2-batches/**
+!tmp/cefrj-manus/b1/
+!tmp/cefrj-manus/b1/**
+# Vocab image audit reports (keep latest summary tracked)
+!tmp/vocab-image-audit/
+tmp/vocab-image-audit/*
+!tmp/vocab-image-audit/report.md
+!tmp/vocab-image-audit/latest.json
+!tmp/vocab-image-audit/words.csv
+# Pre-A1 harvest inventory (raw sheets stay ignored)
+!tmp/manus-prea1-stockpile/
+tmp/manus-prea1-stockpile/*
+!tmp/manus-prea1-stockpile/inventory.json
+!tmp/manus-prea1-stockpile/mnemonic-az-map.json
+# Producer topic-streak evidence (local only)
+producer-tests/
+# Manus / stockpile warehouse — NEVER commit (blows Vercel Hobby git clone)
+# Live lesson art is public/assets (PropBank). harvested/ is producer-only.
+harvested/

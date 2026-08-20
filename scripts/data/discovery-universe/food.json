@@ -1,0 +1,484 @@
+{
+  "id": "food",
+  "labels": [
+    "food",
+    "kitchen"
+  ],
+  "usefulness": 0.9,
+  "picturable": 0.92,
+  "hardToSubstitute": 0.3,
+  "topics": [
+    "kitchen tools",
+    "breakfast foods",
+    "fruit market",
+    "vegetable garden plate",
+    "bakery visit",
+    "pizza making",
+    "sushi counter",
+    "ice cream shop",
+    "camping cookout",
+    "school lunch",
+    "tea time",
+    "smoothie bar",
+    "barbecue picnic",
+    "noodle kitchen",
+    "dessert tray",
+    "spice rack",
+    "dairy aisle",
+    "seafood stall",
+    "sandwich station",
+    "soup kitchen"
+  ],
+  "concepts": [
+    {
+      "word": "ladle",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "whisk",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "spatula",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "colander",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "grater",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "peeler",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "rolling pin",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "cutting board",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "mixing bowl",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "measuring cup",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "oven mitt",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "apron",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "clothing"
+      ]
+    },
+    {
+      "word": "wok",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "skillet",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "toaster",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "appliance"
+      ]
+    },
+    {
+      "word": "blender",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "appliance"
+      ]
+    },
+    {
+      "word": "kettle",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "appliance"
+      ]
+    },
+    {
+      "word": "croissant",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "food"
+      ]
+    },
+    {
+      "word": "bagel",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "food"
+      ]
+    },
+    {
+      "word": "waffle",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "food"
+      ]
+    },
+    {
+      "word": "pancake",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "food"
+      ]
+    },
+    {
+      "word": "omelette",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "food"
+      ]
+    },
+    {
+      "word": "yogurt",
+      "usefulness": 0.75,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "food"
+      ]
+    },
+    {
+      "word": "granola",
+      "usefulness": 0.6,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "food"
+      ]
+    },
+    {
+      "word": "mango",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "fruit"
+      ]
+    },
+    {
+      "word": "papaya",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "fruit"
+      ]
+    },
+    {
+      "word": "pomegranate",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "fruit"
+      ]
+    },
+    {
+      "word": "blueberry",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "fruit"
+      ]
+    },
+    {
+      "word": "raspberry",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "fruit"
+      ]
+    },
+    {
+      "word": "zucchini",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "veg"
+      ]
+    },
+    {
+      "word": "eggplant",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "veg"
+      ]
+    },
+    {
+      "word": "asparagus",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "veg"
+      ]
+    },
+    {
+      "word": "artichoke",
+      "usefulness": 0.5,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.65,
+      "tags": [
+        "veg"
+      ]
+    },
+    {
+      "word": "radish",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "veg"
+      ]
+    },
+    {
+      "word": "leek",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "veg"
+      ]
+    },
+    {
+      "word": "dough",
+      "usefulness": 0.7,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "ingredient"
+      ]
+    },
+    {
+      "word": "yeast",
+      "usefulness": 0.45,
+      "picturable": 0.7,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "ingredient"
+      ]
+    },
+    {
+      "word": "flour",
+      "usefulness": 0.75,
+      "picturable": 0.8,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "ingredient"
+      ]
+    },
+    {
+      "word": "icing",
+      "usefulness": 0.65,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "ingredient"
+      ]
+    },
+    {
+      "word": "sprinkle",
+      "usefulness": 0.6,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "ingredient"
+      ]
+    },
+    {
+      "word": "chopstick",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "utensil"
+      ]
+    },
+    {
+      "word": "napkin",
+      "usefulness": 0.8,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "table"
+      ]
+    },
+    {
+      "word": "placemat",
+      "usefulness": 0.6,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "table"
+      ]
+    },
+    {
+      "word": "thermos",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "container"
+      ]
+    },
+    {
+      "word": "lunchbox",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "container"
+      ]
+    },
+    {
+      "word": "skewer",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "tongs",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "funnel",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "mortar",
+      "usefulness": 0.5,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.65,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "pestle",
+      "usefulness": 0.5,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.65,
+      "tags": [
+        "tool"
+      ]
+    }
+  ]
+}

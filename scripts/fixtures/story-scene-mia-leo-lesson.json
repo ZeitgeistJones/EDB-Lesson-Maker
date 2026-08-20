@@ -1,0 +1,105 @@
+{
+  "title": "Mia and Leo Share",
+  "warmUp": {
+    "question": "Who is your friend?",
+    "sampleAnswer": "My friend is Mia."
+  },
+  "vocabulary": [
+    { "word": "apple", "emoji": "🍎", "sentence": "Mia finds an apple." },
+    { "word": "ball", "emoji": "⚽", "sentence": "Leo holds a ball." },
+    { "word": "book", "emoji": "📖", "sentence": "Mia gives Leo a book." },
+    { "word": "desk", "emoji": "🪑", "sentence": "They read at a desk." },
+    { "word": "friend", "emoji": "🤝", "sentence": "Leo is my friend." },
+    { "word": "share", "emoji": "🎁", "sentence": "Friends share." }
+  ],
+  "sentenceFrames": [
+    "I see a ____.",
+    "Mia finds a ____.",
+    "Leo holds a ____."
+  ],
+  "story": {
+    "title": "A Good Day",
+    "pages": [
+      {
+        "heading": "The apple",
+        "text": "Mia finds an apple. The apple is red.",
+        "visualTheme": "fruit",
+        "visualCaption": "Mia finds an apple",
+        "storyScene": {
+          "templateId": "charObject",
+          "actionVerb": "finds",
+          "slots": {
+            "actor": { "who": "mia", "pose": "reach", "emotion": "happy" },
+            "object": { "propKey": "apple", "scaleClass": "fruit" }
+          }
+        }
+      },
+      {
+        "heading": "The ball",
+        "text": "Leo holds a ball. The ball is big.",
+        "visualTheme": "sports",
+        "visualCaption": "Leo holds a ball",
+        "storyScene": {
+          "templateId": "action",
+          "actionVerb": "holds",
+          "slots": {
+            "actor": { "who": "leo", "pose": "hold", "emotion": "happy" },
+            "support": { "propKey": "soccer-ball", "scaleClass": "ball" }
+          }
+        }
+      },
+      {
+        "heading": "The book",
+        "text": "Mia gives Leo a book. Leo smiles.",
+        "visualTheme": "school",
+        "visualCaption": "Mia gives Leo a book",
+        "storyScene": {
+          "templateId": "exchange",
+          "actionVerb": "gives",
+          "slots": {
+            "giver": { "who": "mia", "pose": "hold", "emotion": "happy" },
+            "receiver": { "who": "leo", "pose": "reach", "emotion": "happy" },
+            "item": { "propKey": "sch-hardcover-book", "scaleClass": "held" }
+          }
+        }
+      },
+      {
+        "heading": "At the desk",
+        "text": "Mia and Leo sit at a desk. They read the book.",
+        "visualTheme": "school",
+        "visualCaption": "They read at a desk",
+        "storyScene": {
+          "templateId": "locationActivity",
+          "actionVerb": "sit",
+          "slots": {
+            "backdrop": { "propKey": "sch-desk", "scaleClass": "furniture" },
+            "prop": { "propKey": "sch-hardcover-book", "scaleClass": "book" },
+            "actor": { "who": "mia", "pose": "sit", "emotion": "happy" },
+            "actorB": { "who": "leo", "pose": "sit", "emotion": "happy" }
+          }
+        }
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What does Mia find?", "sampleAnswer": "An apple." },
+      { "question": "What does Leo hold?", "sampleAnswer": "A ball." },
+      { "question": "What does Mia give Leo?", "sampleAnswer": "A book." },
+      { "question": "Where do they read?", "sampleAnswer": "At a desk." }
+    ],
+    "creativeQuestions": [
+      { "question": "What do you share with a friend?", "sampleAnswer": "I share a book." }
+    ]
+  },
+  "speakingQuestions": [
+    { "question": "Do you like apples?", "sampleAnswer": "Yes, I do." },
+    { "question": "Can you hold a ball?", "sampleAnswer": "Yes, I can." }
+  ],
+  "activity": {
+    "title": "Match the story words",
+    "prompt": "Match each word to the picture.",
+    "templates": ["I see a ____.", "Friends share a ____."]
+  },
+  "reviewSentences": [
+    "Mia finds an apple. Leo holds a ball. Friends share a book."
+  ]
+}

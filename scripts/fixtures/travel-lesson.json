@@ -1,0 +1,45 @@
+{
+  "title": "Airport Travel Day",
+  "warmUp": {
+    "question": "Where do airplanes take off?",
+    "sampleAnswer": "They take off at the airport."
+  },
+  "vocabulary": [
+    { "word": "passport", "emoji": "🛂", "sentence": "Show your passport." },
+    { "word": "ticket", "emoji": "🎫", "sentence": "I have my ticket." },
+    { "word": "suitcase", "emoji": "🧳", "sentence": "Pack your suitcase." },
+    { "word": "boarding gate", "emoji": "🚪", "sentence": "Go to the boarding gate." }
+  ],
+  "sentenceFrames": [
+    "My ____ is ready.",
+    "Please go to ____.",
+    "I need my ____."
+  ],
+  "story": {
+    "title": "At the Airport",
+    "pages": [
+      {
+        "heading": "Check-in",
+        "text": "Sam shows his passport and ticket.",
+        "visualTheme": "airport",
+        "visualCaption": "Check-in desk"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What does Sam show?", "sampleAnswer": "His passport and ticket." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "Have you flown on a plane?", "sampleAnswer": "Yes, once." },
+    { "question": "What do you pack?", "sampleAnswer": "I pack clothes." }
+  ],
+  "activity": {
+    "title": "Airport Role Play",
+    "prompt": "Ask for the gate number.",
+    "templates": ["Where is gate ____?", "My suitcase is ____."]
+  },
+  "reviewSentences": [
+    "Show your passport at the gate."
+  ]
+}

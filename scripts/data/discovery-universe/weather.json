@@ -1,0 +1,299 @@
+{
+  "id": "weather",
+  "labels": [
+    "weather",
+    "space"
+  ],
+  "usefulness": 0.8,
+  "picturable": 0.85,
+  "hardToSubstitute": 0.45,
+  "topics": [
+    "storm watch",
+    "rainbow day",
+    "snow day kit",
+    "weather map",
+    "tornado drill",
+    "sunny picnic",
+    "foggy morning",
+    "planetarium visit",
+    "moon phases",
+    "rocket launch",
+    "astronaut suit",
+    "comet night",
+    "constellation chart",
+    "satellite dish",
+    "space station"
+  ],
+  "concepts": [
+    {
+      "word": "cloud",
+      "usefulness": 0.9,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.2,
+      "tags": [
+        "weather"
+      ]
+    },
+    {
+      "word": "raindrop",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "weather"
+      ]
+    },
+    {
+      "word": "snowflake",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "weather"
+      ]
+    },
+    {
+      "word": "hail",
+      "usefulness": 0.6,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "weather"
+      ]
+    },
+    {
+      "word": "lightning",
+      "usefulness": 0.8,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "weather"
+      ]
+    },
+    {
+      "word": "thunder",
+      "usefulness": 0.5,
+      "picturable": 0.5,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "weather"
+      ]
+    },
+    {
+      "word": "rainbow",
+      "usefulness": 0.9,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.2,
+      "tags": [
+        "weather"
+      ]
+    },
+    {
+      "word": "umbrella",
+      "usefulness": 0.9,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.2,
+      "tags": [
+        "gear"
+      ]
+    },
+    {
+      "word": "raincoat",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "clothing"
+      ]
+    },
+    {
+      "word": "boots",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "clothing"
+      ]
+    },
+    {
+      "word": "anemometer",
+      "usefulness": 0.45,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "barometer",
+      "usefulness": 0.45,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "weather vane",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "thermometer",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "tornado",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "weather"
+      ]
+    },
+    {
+      "word": "hurricane",
+      "usefulness": 0.65,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "weather"
+      ]
+    },
+    {
+      "word": "fog",
+      "usefulness": 0.65,
+      "picturable": 0.75,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "weather"
+      ]
+    },
+    {
+      "word": "frost",
+      "usefulness": 0.65,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "weather"
+      ]
+    },
+    {
+      "word": "planet",
+      "usefulness": 0.8,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "space"
+      ]
+    },
+    {
+      "word": "moon",
+      "usefulness": 0.9,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.2,
+      "tags": [
+        "space"
+      ]
+    },
+    {
+      "word": "crater",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "space"
+      ]
+    },
+    {
+      "word": "rocket",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "space"
+      ]
+    },
+    {
+      "word": "spacesuit",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "space"
+      ]
+    },
+    {
+      "word": "helmet",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "space"
+      ]
+    },
+    {
+      "word": "satellite",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "space"
+      ]
+    },
+    {
+      "word": "comet",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "space"
+      ]
+    },
+    {
+      "word": "asteroid",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "space"
+      ]
+    },
+    {
+      "word": "orbit",
+      "usefulness": 0.45,
+      "picturable": 0.7,
+      "hardToSubstitute": 0.65,
+      "tags": [
+        "space"
+      ]
+    },
+    {
+      "word": "telescope",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "instrument"
+      ]
+    },
+    {
+      "word": "constellation",
+      "usefulness": 0.55,
+      "picturable": 0.8,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "space"
+      ]
+    }
+  ]
+}

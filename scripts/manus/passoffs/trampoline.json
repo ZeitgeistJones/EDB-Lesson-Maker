@@ -1,0 +1,30 @@
+{
+  "title": "Learning how to do a backflip on my trampoline",
+  "level": "A2",
+  "duration": "30",
+  "knownIssues": [
+    "Match dock deliberately has NO answer-naming caption chips (S26)",
+    "StoryArt opportunistic only — PropBank caption plate is Ready path; do not fail for missing generative StoryArt",
+    "Navy/slate wrap bookend is S32 when theme uses it — outdoor flats here are intentional for park trampoline",
+    "Do not reopen: same-topic adapt, Manus-in-Generate, StoryArt-as-Ready, 84% floor, ≥3 match floor"
+  ],
+  "justFixed": [
+    "King trampoline uses heroProp (not buildScene slots) with trampoline.png stage",
+    "Vocab pack art for all 6 board words (trampoline/backflip/bounce/balance/spotter/mat) — M7=1",
+    "S21 king hint includes speak cue (say your bounce plan)",
+    "S28 numbered match pads on New Words"
+  ],
+  "localChecks": [
+    "verify-board-visual trampoline: hardFailures=[] ; M7=1 ; vocabUnvetted=[]",
+    "metricFlags: warn M1@speaking:0 (20px) — mechanical readability soft",
+    "Local smell packet (not yet gated): comprehension shows only 1 Q; king hint text clipped under hero; trampoline dock ships 12 gym scrap (skateboard/dumbbell/frisbee) vs backflip safety theme",
+    "Standing division-of-labor: spelling/clipping/warm-leak/match-captions/drag-label-free handled locally"
+  ],
+  "focus": [
+    "PRIMARY: pedagogy + ClassIn fit on Trampoline Lab — is the 12-piece gym dock coherent for a backflip lesson, or should dock = safety/spotter/mat theme and/or capped near taught vocab?",
+    "Comprehension thinness (1 recall Q) + story↔Q grounding (S73)",
+    "King instruction contrast/clip vs hero — gate_holes if localChecks claimed OK but still fails",
+    "Otherwise new misses only; do not re-litigate match captions or StoryArt-as-Ready"
+  ],
+  "notes": "Manusloop crew30-x4 pass 1/4 — trampoline. Standing bar: skip locally-gated mechanical misses; ALWAYS name weakest_link even on pass; propose exactly ONE escalation_homework generalization the human triages."
+}

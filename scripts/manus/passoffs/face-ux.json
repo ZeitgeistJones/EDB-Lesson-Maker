@@ -1,0 +1,23 @@
+{
+  "title": "Make a Face",
+  "level": "A1",
+  "duration": "30",
+  "knownIssues": [
+    "Navy wrap S32 intentional when used",
+    "Prior folds on main: phonics omit, hair dock, have-aim, S74/S75, orphan wipe"
+  ],
+  "justFixed": [
+    "face-blank heroProp + dressPart dock",
+    "Hair in roleplay dock when hair is taught",
+    "Phonics omitted when face vocab fails A1 CVC",
+    "Orphan page-N wipe + pickImages pageCount cap"
+  ],
+  "localChecks": [
+    "verify-board-visual face: hardFailures=[]; M7=1; pageCount=11"
+  ],
+  "focus": [
+    "Emphasis tilt: visual / UX / design — still judge the whole lesson",
+    "Especially interested in: dock density/sizing, image-match honesty, overlay, readability, dead space"
+  ],
+  "notes": "manus-ux30 face — What do you think of this lesson? Everything fair game."
+}

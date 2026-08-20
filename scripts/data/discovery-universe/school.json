@@ -1,0 +1,300 @@
+{
+  "id": "school",
+  "labels": [
+    "school",
+    "sports"
+  ],
+  "usefulness": 0.9,
+  "picturable": 0.9,
+  "hardToSubstitute": 0.3,
+  "topics": [
+    "classroom desk",
+    "art room",
+    "gym class",
+    "soccer practice",
+    "basketball court",
+    "swimming pool",
+    "track meet",
+    "library corner",
+    "science fair booth",
+    "music room",
+    "playground",
+    "cafeteria line",
+    "school bus",
+    "trophy case",
+    "locker room",
+    "field day"
+  ],
+  "concepts": [
+    {
+      "word": "chalkboard",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "furniture"
+      ]
+    },
+    {
+      "word": "whiteboard",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "furniture"
+      ]
+    },
+    {
+      "word": "marker",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "supply"
+      ]
+    },
+    {
+      "word": "eraser",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "supply"
+      ]
+    },
+    {
+      "word": "gluestick",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "supply"
+      ]
+    },
+    {
+      "word": "crayon",
+      "usefulness": 0.9,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.2,
+      "tags": [
+        "supply"
+      ]
+    },
+    {
+      "word": "protractor",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "compass",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "binder",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "supply"
+      ]
+    },
+    {
+      "word": "folder",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "supply"
+      ]
+    },
+    {
+      "word": "locker",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "furniture"
+      ]
+    },
+    {
+      "word": "whistle",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "sports"
+      ]
+    },
+    {
+      "word": "jersey",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "sports"
+      ]
+    },
+    {
+      "word": "cleat",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "sports"
+      ]
+    },
+    {
+      "word": "shin guard",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "sports"
+      ]
+    },
+    {
+      "word": "goalpost",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "sports"
+      ]
+    },
+    {
+      "word": "net",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "sports"
+      ]
+    },
+    {
+      "word": "bat",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "sports"
+      ]
+    },
+    {
+      "word": "racket",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "sports"
+      ]
+    },
+    {
+      "word": "puck",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "sports"
+      ]
+    },
+    {
+      "word": "helmet",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "sports"
+      ]
+    },
+    {
+      "word": "medal",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "award"
+      ]
+    },
+    {
+      "word": "trophy",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "award"
+      ]
+    },
+    {
+      "word": "scoreboard",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "equipment"
+      ]
+    },
+    {
+      "word": "bleacher",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "furniture"
+      ]
+    },
+    {
+      "word": "hurdle",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "sports"
+      ]
+    },
+    {
+      "word": "baton",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "sports"
+      ]
+    },
+    {
+      "word": "kickboard",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "swim"
+      ]
+    },
+    {
+      "word": "goggles",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "swim"
+      ]
+    },
+    {
+      "word": "floatie",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "swim"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "title": "Aquarium Visit",
+  "warmUp": {
+    "question": "Have you been to an aquarium?",
+    "sampleAnswer": "Yes, I saw fish."
+  },
+  "vocabulary": [
+    { "word": "fish", "emoji": "🐟", "sentence": "I see a fish." },
+    { "word": "tank", "emoji": "🫧", "sentence": "The tank is big." },
+    { "word": "bubble", "emoji": "💭", "sentence": "Bubbles go up." },
+    { "word": "coral", "emoji": "🪸", "sentence": "Coral is pink." },
+    { "word": "seaweed", "emoji": "🌿", "sentence": "Seaweed is green." },
+    { "word": "water", "emoji": "💧", "sentence": "The water is blue." }
+  ],
+  "sentenceFrames": ["I see a ____.", "The ____ is in the tank."],
+  "story": {
+    "title": "At the Aquarium",
+    "pages": [
+      {
+        "heading": "Big tank",
+        "text": "Mia looks in the tank. She sees fish and bubbles near the coral.",
+        "visualTheme": "aquarium",
+        "visualCaption": "Aquarium tank"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is Mia?", "sampleAnswer": "She is at the aquarium." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What do you see at an aquarium?", "sampleAnswer": "I see fish and coral." }
+  ],
+  "activity": {
+    "title": "Tank Talk",
+    "prompt": "Say what is in the tank.",
+    "templates": ["There is a ____."]
+  },
+  "reviewSentences": ["I like the aquarium.", "The fish is small."]
+}

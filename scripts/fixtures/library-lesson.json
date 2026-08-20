@@ -1,0 +1,40 @@
+{
+  "title": "Library Quiet Time",
+  "warmUp": {
+    "question": "Do you like the library?",
+    "sampleAnswer": "Yes, I like quiet books."
+  },
+  "vocabulary": [
+    { "word": "book", "emoji": "📚", "sentence": "I read a book." },
+    { "word": "read", "emoji": "👀", "sentence": "We read together." },
+    { "word": "library", "emoji": "🏛️", "sentence": "The library is quiet." },
+    { "word": "shelf", "emoji": "🗄️", "sentence": "The shelf is tall." },
+    { "word": "story", "emoji": "📖", "sentence": "This story is fun." },
+    { "word": "quiet", "emoji": "🤫", "sentence": "Please be quiet." }
+  ],
+  "sentenceFrames": ["I see a ____.", "The ____ is in the library."],
+  "story": {
+    "title": "At the Library",
+    "pages": [
+      {
+        "heading": "Quiet shelves",
+        "text": "Mia finds a book on the shelf. She reads a quiet story.",
+        "visualTheme": "library",
+        "visualCaption": "Library shelves"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is Mia?", "sampleAnswer": "She is at the library." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What do you do in a library?", "sampleAnswer": "I read a book." }
+  ],
+  "activity": {
+    "title": "Library Match",
+    "prompt": "Name what you see.",
+    "templates": ["This is a ____."]
+  },
+  "reviewSentences": ["I like the library.", "The book is quiet."]
+}

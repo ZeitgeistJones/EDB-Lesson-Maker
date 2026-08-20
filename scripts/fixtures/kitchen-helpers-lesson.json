@@ -1,0 +1,51 @@
+{
+  "title": "Kitchen Helpers",
+  "level": "A2",
+  "warmUp": {
+    "question": "What do you use in the kitchen?",
+    "sampleAnswer": "I use a whisk."
+  },
+  "vocabulary": [
+    { "word": "whisk", "sentence": "I use a whisk to mix the eggs." },
+    { "word": "spatula", "sentence": "I flip the pancake with a spatula." },
+    { "word": "grater", "sentence": "I grate the cheese with a grater." },
+    { "word": "blender", "sentence": "I make a smoothie in the blender." },
+    { "word": "timer", "sentence": "I set the timer for ten minutes." },
+    { "word": "apron", "sentence": "I put on my apron before I cook." }
+  ],
+  "sentenceFrames": [
+    "If I am cooking, I will use a ____.",
+    "Before I start, I put on my ____.",
+    "I use a ____ to mix the soup.",
+    "I set the ____ when I bake."
+  ],
+  "story": {
+    "title": "The Big Sunday Breakfast",
+    "pages": [
+      {
+        "heading": "Cook",
+        "text": "Leo and Maya are standing in the kitchen wearing aprons. Maya uses a grater for the cheese. Leo sets the timer and mixes eggs with a whisk.",
+        "visualTheme": "kitchen",
+        "visualCaption": "Kids cooking breakfast"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What does Maya use the grater for?", "sampleAnswer": "The cheese." },
+      { "question": "Why do Leo and Maya set the timer?", "sampleAnswer": "So the food cooks for the right time." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "Which kitchen tool do you like best?", "sampleAnswer": "I like the whisk." }
+  ],
+  "activity": {
+    "title": "Kitchen helpers",
+    "prompt": "Choose a tool and say your sentence."
+  },
+  "reviewSentences": [
+    "I use a whisk.",
+    "I wear an apron.",
+    "I set the timer.",
+    "I use a spatula."
+  ]
+}

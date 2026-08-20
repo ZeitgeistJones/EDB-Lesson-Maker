@@ -1,0 +1,73 @@
+# manus-feelings-compass
+
+type: manusloop  
+case: feelings-compass  
+repo: `C:\dev\PPT-Lesson-Maker-for-Classin`
+
+Re-runnable: `/manusloop run manus-feelings-compass`
+
+## Product intent
+
+Abstract-vocab stress test away from classical/music. Feelings B1 board:
+face-blank king + feeling-* dock; aims⊆board vocab; second-conditional honesty;
+no match answer captions; full story packet; two-round Feelings Lab (S41) with
+Round 2 If…would (S45); leading feeling captions (S44); wrap timing (S46).
+
+## Stages
+
+### 1 — Base
+```bash
+node scripts/verify-feelings-compass.mjs
+```
+
+### 2 — Manus
+```bash
+npm run manus:review -- tmp/board-bg-verify/feelings-compass --passoff=scripts/manus/passoffs/feelings-compass.json
+```
+Body: `.cursor/loops/manus-feelings-compass/last-response.md`
+
+### 3 — Fix map
+| Finding | Fix |
+|---------|-----|
+| Face parts on feelings dock | Stop pad with non-feeling kit/tag resolve |
+| Make-a-face hint leak | feelingsKing hint before faceKing |
+| Classical flats on feelings | TOPIC_SETS feelings → board-face |
+| Emotion prop resolve | PROP_ALIASES worried→feeling-worried etc. |
+| Check→checkmark story | feelings prefer + stop words; caption leads with feeling |
+| One-shot activity | Two-round Feelings Lab (S41) + If…would Round 2 (S45) |
+| Round→castle-*-round | KIT_STOP + curated stage before kit (S43) |
+| Write/say no strip | feelingsKing prodWrite under hint (S44) |
+| Wrap no timing | makeWrap ~3 min chip (S46) |
+| Manus null review | structured_success requires value; post-stop retries |
+| Navy wrap / OCR frames | Reject (S32 / false OCR) |
+
+### 4 — Audit
+```bash
+node scripts/verify-feelings-compass.mjs --story-art=auto
+```
+Soft: S42 no feeling-* story props.
+New gates (S49, Manus QCVsgMcb): DRAG_SOURCE_COUNT == TARGET_VOCAB_COUNT (dock==6);
+comprehension board must show inferential Q (not dropped past slice); creative cards on-board.
+New gate (S48, Manus S9VxcmZA): multi-panel StoryArt cache must carry charLock (v2-charlock);
+stale caches soft-flag → regenerate with --story-art=1 to enforce recurring-character consistency.
+
+## Last run (NEW-BAR ×2 — commit 2d5e971 brief)
+
+- **When:** 2026-08-08 (manusloop ×2 under the upgraded pass-off brief)
+- **Local:** verify ok (fails=[]; soft=[]; feelingDockCount=6; StoryArt 3/3; charLock=true; timingChipCount=11)
+- **Manus (pass 1):** [S9VxcmZA](https://manus.im/app/S9VxcmZA3PyjoDxw98E4Uh) pass/91 (overall 4.6). Directives fired: weakest_link=palette register count; escalation_homework=Feelings Compass Wheel 2D-classification scene. Only real producer finding = StoryArt character drift (Mia hair color p6↔p7).
+- **Fold (pass 1):** StoryArt character-lock machinery (api/generate-story-art.js) — first panel establishes the one main character, later panels ride the established panel as an extra reference image ("reuse exact identity"); PROMPT_VERSION=v2-charlock bumped into cacheKey so the fix regenerates; charLock flag persisted in cache meta. New verify soft S48 flags stale (pre-charLock) multi-panel caches. Regenerated art (sa_f0e7613a): Mia now consistent (brown pigtails, yellow+green-stripe top, denim overalls) across worried→surprised→happy. Palette register + Frame-3 hint declined (S32 / S26–S58 answer-giving risk).
+- **Manus (pass 2):** [WTF5sfEP](https://manus.im/app/WTF5sfEP5agaojUcTS8Usu) pass/99 (overall 4.96). CHARACTER-LOCK verified HOLDS (Manus: "maintains Mia as a single visual reference across S5–S7"). weakest_link + a Priority-1 "Blocking" both re-raised the navy wrap (S32 intentional) — a division-of-labor miss (KNOWN item escalated to Blocking). escalation_homework: B2+ Debates/Evaluation two-round slide type.
+- **Fold (pass 2):** No lesson recolor (respect S32). Durable brief tightening in review-schema.mjs directive #2: KNOWN human-declared-intentional items may not be escalated into blocking_issues or Blocking/High next_actions; prefer a non-gated/non-known item for weakest_link; only fall back to a KNOWN item tagged [known-intentional]. Stops the anti-inflation nag from re-litigating settled calls.
+- **When (prior ×2 — StoryArt validation):** 2026-08-08
+- **Local:** verify ok (fails=[]; soft=[]; feelingDockCount=6; StoryArt 3/3; timingChipCount=11)
+- **Manus trail:**
+  - pass4 (prev) [3Uc8](https://manus.im/app/3Uc8A7mGCQFSVZLbZPSGq6) pass
+  - ×2 pass1 [QCVsgMcb](https://manus.im/app/QCVsgMcb6FhkXQekQSVbuC) pass/90 — StoryArt HOLDS ("consistent Mia design", "visual engagement boost")
+  - ×2 pass2 [ERcBCTg7](https://manus.im/app/ERcBCTg788aBRC3BWfhjUs) pass/4.9 — classin_fit.gaps=[]; S49 trio CLEARED; StoryArt HOLDS
+- **Fold (pass1):** S49 producer trio — feelings dock capped to taught vocab (12→6, edbActivities.roleplayDockProps); comprehension surfaces inferential Q instead of dropping it (renderLessonPages.makeComprehension); creative prompt 36→30px + box 140→100 so Idea 2 fits. Verify gained S49 gates.
+- **Pass2:** clean pass — no new fold needed. Only Low/optional notes (navy variant = S32 intentional; abstract-vocab→scene-image gate = speculative future-topic, logged not implemented).
+- **StoryArt:** validated live twice — illustrated S5–S7 panels recurring Mia, scene↔caption fit; disk cache green (`--story-art=auto`, cacheKey sa_c6d870f0). Illustrated panels lifted scorecard (StoryArt "visual engagement boost" strength both passes).
+- **Assets:** none generated — StoryArt cache hit; feeling-* pack sufficient
+- **Leftover soft:** palette register soft (navy S32 held); ZPD stretch (StoryArt on process/sequence topic; student-authored "My Compass" scene for B1→B2)
+- **Next:** optional — generalize StoryArt to a process/sequence topic; consider student-generated content loop

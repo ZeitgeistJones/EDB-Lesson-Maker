@@ -1,0 +1,18 @@
+BOARD BACKGROUNDS
+=================
+
+SCENES (40 files: school-*, commercial, medical, transport-interior,
+transport-exterior, outdoor-nature, outdoor-community, home-interior,
+home-exterior — see manifest.json)
+  Generated with OpenAI image models for this project.
+  Ownership of output sits with the account holder under OpenAI's terms.
+  Verify current terms before commercial resale.
+
+FLATS (4 files: flat_whiteboard, flat_chalkboard, flat_cork, flat_desk)
+  Generated with OpenAI image models for this project (same terms as scenes).
+  Universal teaching surfaces for non-location pages (vocab / phonics / drills).
+  Verify current OpenAI terms before commercial resale.
+
+Board size 1280x590. Each scene declares a groundY in manifest.json:
+the pixel row where the standing surface begins. Place a piece so its
+BASE sits on that row and it will look like it's standing on the floor.

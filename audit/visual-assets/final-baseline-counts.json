@@ -1,0 +1,205 @@
+{
+  "art_redo_top_reasons": {
+    "ambiguous_concept": 22,
+    "bad_anatomy": 2,
+    "excess_dead_space": 2,
+    "generation_artifact": 77,
+    "identity_drift": 10,
+    "pair_mismatch": 2,
+    "poor_cavity": 31,
+    "text_artifact": 207,
+    "too_small": 1,
+    "weak_contrast": 60,
+    "wrong_concept": 59
+  },
+  "audit_schema_version": "2026-08-18-final-baseline-v1",
+  "checkpoint": "audit/visual-assets/snapshots/final-baseline-prewrite-2026-08-18T171404-413379+0000",
+  "dispositions": {
+    "ART_REDO": 465,
+    "PASS": 11246,
+    "PIPELINE_REBUILD": 1669,
+    "REVIEW": 605,
+    "SOURCE_CORRUPT": 17
+  },
+  "freshly_re_reviewed_evidence_sheet_count": 7,
+  "live_vs_raw_harvest": {
+    "live": {
+      "ART_REDO": 456,
+      "PASS": 10504,
+      "PIPELINE_REBUILD": 767,
+      "REVIEW": 605
+    },
+    "raw_harvest": {
+      "ART_REDO": 9,
+      "PASS": 742,
+      "PIPELINE_REBUILD": 902,
+      "SOURCE_CORRUPT": 17
+    }
+  },
+  "major_family": {
+    "B2/raw settings": {
+      "PIPELINE_REBUILD": 110,
+      "SOURCE_CORRUPT": 12
+    },
+    "Pre-A1 functional": {
+      "ART_REDO": 9,
+      "PASS": 223,
+      "PIPELINE_REBUILD": 105,
+      "SOURCE_CORRUPT": 5
+    },
+    "background": {
+      "PASS": 125,
+      "PIPELINE_REBUILD": 3
+    },
+    "heroes": {
+      "PASS": 1341,
+      "PIPELINE_REBUILD": 723,
+      "REVIEW": 4
+    },
+    "hide/reveal": {
+      "ART_REDO": 7,
+      "PASS": 47,
+      "PIPELINE_REBUILD": 7,
+      "REVIEW": 3
+    },
+    "letters/literacy": {
+      "ART_REDO": 4,
+      "PASS": 233,
+      "PIPELINE_REBUILD": 6,
+      "REVIEW": 2
+    },
+    "props": {
+      "PASS": 2677,
+      "PIPELINE_REBUILD": 634,
+      "REVIEW": 547
+    },
+    "story cast/actions/roles/environments": {
+      "ART_REDO": 94,
+      "PASS": 301,
+      "PIPELINE_REBUILD": 34,
+      "REVIEW": 4
+    },
+    "vocab": {
+      "ART_REDO": 351,
+      "PASS": 6299,
+      "PIPELINE_REBUILD": 47,
+      "REVIEW": 45
+    }
+  },
+  "no_manus_or_generation_calls": true,
+  "pipeline_recovered_count": 519,
+  "pipeline_scope_count": 2205,
+  "queues": {
+    "art_redo": {
+      "count": 465,
+      "csv": "audit/visual-assets/queues/art-redo-regeneration-queue.csv",
+      "jsonl": "audit/visual-assets/queues/art-redo-regeneration-queue.jsonl"
+    },
+    "review": {
+      "count": 605,
+      "csv": "audit/visual-assets/queues/review-queue.csv",
+      "jsonl": "audit/visual-assets/queues/review-queue.jsonl"
+    },
+    "source_corrupt": {
+      "count": 17,
+      "csv": "audit/visual-assets/queues/source-corrupt-queue.csv",
+      "jsonl": "audit/visual-assets/queues/source-corrupt-queue.jsonl"
+    },
+    "unresolved_pipeline": {
+      "count": 1669,
+      "csv": "audit/visual-assets/queues/unresolved-pipeline-queue.csv",
+      "jsonl": "audit/visual-assets/queues/unresolved-pipeline-queue.jsonl"
+    }
+  },
+  "rates": {
+    "ART_REDO": "3.32%",
+    "PASS": "80.32%",
+    "PIPELINE_REBUILD": "11.92%",
+    "REVIEW": "4.32%",
+    "SOURCE_CORRUPT": "0.12%"
+  },
+  "sheets": {
+    "art_redo": [
+      "audit/visual-assets/sheets/art-redo/Pre-A1-functional--ambiguous_concept-001.jpg",
+      "audit/visual-assets/sheets/art-redo/Pre-A1-functional--bad_crop-001.jpg",
+      "audit/visual-assets/sheets/art-redo/Pre-A1-functional--wrong_concept-001.jpg",
+      "audit/visual-assets/sheets/art-redo/hide-reveal--bad_alpha-001.jpg",
+      "audit/visual-assets/sheets/art-redo/hide-reveal--white_plate-001.jpg",
+      "audit/visual-assets/sheets/art-redo/letters-literacy--background_contamination-001.jpg",
+      "audit/visual-assets/sheets/art-redo/letters-literacy--generation_artifact-001.jpg",
+      "audit/visual-assets/sheets/art-redo/story-cast-actions-roles-environments--bad_alpha-001.jpg",
+      "audit/visual-assets/sheets/art-redo/story-cast-actions-roles-environments--bad_alpha-002.jpg",
+      "audit/visual-assets/sheets/art-redo/story-cast-actions-roles-environments--bad_alpha-003.jpg",
+      "audit/visual-assets/sheets/art-redo/story-cast-actions-roles-environments--bad_alpha-004.jpg",
+      "audit/visual-assets/sheets/art-redo/story-cast-actions-roles-environments--identity_drift-001.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--ambiguous_concept-001.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--bad_alpha-001.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--bad_crop-001.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--bad_crop-002.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--bad_crop-003.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--blank-001.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--edge_cutoff-001.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--generation_artifact-001.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--text_artifact-001.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--text_artifact-002.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--text_artifact-003.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--text_artifact-004.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--text_artifact-005.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--text_artifact-006.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--text_artifact-007.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--text_artifact-008.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--text_artifact-009.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--wrong_concept-001.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--wrong_concept-002.jpg",
+      "audit/visual-assets/sheets/art-redo/vocab--wrong_concept-003.jpg"
+    ],
+    "repaired_rejudged": [
+      "audit/visual-assets/sheets/repaired/prea1-relations/prea1-relations-samples.jpg",
+      "audit/visual-assets/sheets/repaired/mnemonic-az/mnemonic-az-samples.jpg",
+      "audit/visual-assets/sheets/repaired/edb-setting-variants/edb-setting-variants-samples.jpg",
+      "audit/visual-assets/sheets/repaired/white-light-keyed-objects/white-light-keyed-objects-samples.jpg",
+      "audit/visual-assets/sheets/repaired/farm-tree-identity/farm-tree-identity-samples.jpg",
+      "audit/visual-assets/sheets/repaired/black-block-postprocess/black-block-postprocess-samples.jpg",
+      "audit/visual-assets/sheets/repaired/b2-extracted-cells/b2-extracted-cells-samples.jpg"
+    ],
+    "review": [
+      "audit/visual-assets/sheets/review/heroes--excess_dead_space-001.jpg",
+      "audit/visual-assets/sheets/review/hide-reveal--no_reason_code-001.jpg",
+      "audit/visual-assets/sheets/review/letters-literacy--no_reason_code-001.jpg",
+      "audit/visual-assets/sheets/review/props--exact_duplicate-001.jpg",
+      "audit/visual-assets/sheets/review/props--exact_duplicate-002.jpg",
+      "audit/visual-assets/sheets/review/props--exact_duplicate-003.jpg",
+      "audit/visual-assets/sheets/review/props--exact_duplicate-004.jpg",
+      "audit/visual-assets/sheets/review/props--exact_duplicate-005.jpg",
+      "audit/visual-assets/sheets/review/props--exact_duplicate-006.jpg",
+      "audit/visual-assets/sheets/review/props--exact_duplicate-007.jpg",
+      "audit/visual-assets/sheets/review/props--exact_duplicate-008.jpg",
+      "audit/visual-assets/sheets/review/props--exact_duplicate-009.jpg",
+      "audit/visual-assets/sheets/review/props--exact_duplicate-010.jpg",
+      "audit/visual-assets/sheets/review/props--exact_duplicate-011.jpg",
+      "audit/visual-assets/sheets/review/props--exact_duplicate-012.jpg",
+      "audit/visual-assets/sheets/review/props--exact_duplicate-013.jpg",
+      "audit/visual-assets/sheets/review/props--exact_duplicate-014.jpg",
+      "audit/visual-assets/sheets/review/props--exact_duplicate-015.jpg",
+      "audit/visual-assets/sheets/review/props--low_resolution-001.jpg",
+      "audit/visual-assets/sheets/review/props--low_resolution-002.jpg",
+      "audit/visual-assets/sheets/review/props--low_resolution-003.jpg",
+      "audit/visual-assets/sheets/review/props--low_resolution-004.jpg",
+      "audit/visual-assets/sheets/review/props--low_resolution-005.jpg",
+      "audit/visual-assets/sheets/review/props--low_resolution-006.jpg",
+      "audit/visual-assets/sheets/review/props--low_resolution-007.jpg",
+      "audit/visual-assets/sheets/review/props--low_resolution-008.jpg",
+      "audit/visual-assets/sheets/review/props--low_resolution-009.jpg",
+      "audit/visual-assets/sheets/review/props--too_small-001.jpg",
+      "audit/visual-assets/sheets/review/story-cast-actions-roles-environments--exact_duplicate-001.jpg",
+      "audit/visual-assets/sheets/review/vocab--ambiguous_concept-001.jpg",
+      "audit/visual-assets/sheets/review/vocab--exact_duplicate-001.jpg",
+      "audit/visual-assets/sheets/review/vocab--no_reason_code-001.jpg",
+      "audit/visual-assets/sheets/review/vocab--no_reason_code-002.jpg",
+      "audit/visual-assets/sheets/review/vocab--too_small-001.jpg",
+      "audit/visual-assets/sheets/review/vocab--weak_contrast-001.jpg"
+    ]
+  },
+  "total": 14002,
+  "updated_at": "2026-08-18T17:24:02.899375+00:00"
+}

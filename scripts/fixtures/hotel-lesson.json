@@ -1,0 +1,40 @@
+{
+  "title": "Hotel Stay",
+  "warmUp": {
+    "question": "Have you stayed in a hotel?",
+    "sampleAnswer": "Yes, I stayed in a hotel."
+  },
+  "vocabulary": [
+    { "word": "hotel", "emoji": "🏨", "sentence": "We stay at a hotel." },
+    { "word": "room", "emoji": "🚪", "sentence": "Our room is big." },
+    { "word": "key", "emoji": "🔑", "sentence": "Here is the key." },
+    { "word": "bed", "emoji": "🛏️", "sentence": "The bed is soft." },
+    { "word": "towel", "emoji": "🧺", "sentence": "I need a towel." },
+    { "word": "luggage", "emoji": "🧳", "sentence": "Put the luggage down." }
+  ],
+  "sentenceFrames": ["I see a ____.", "The ____ is in my room."],
+  "story": {
+    "title": "At the Hotel",
+    "pages": [
+      {
+        "heading": "Check in",
+        "text": "Mia gets a key at the hotel. She puts her luggage by the bed.",
+        "visualTheme": "hotel lobby",
+        "visualCaption": "Hotel lobby"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is Mia?", "sampleAnswer": "She is at the hotel." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What do you take to a hotel?", "sampleAnswer": "I take luggage." }
+  ],
+  "activity": {
+    "title": "Pack the Room",
+    "prompt": "Say what is in the room.",
+    "templates": ["There is a ____."]
+  },
+  "reviewSentences": ["I like the hotel.", "The bed is soft."]
+}

@@ -1,0 +1,72 @@
+{
+  "title": "Flying Across the World",
+  "warmUp": {
+    "question": "Have you ever taken a long flight, and what did you do to pass the time?",
+    "sampleAnswer": "I watched two movies and slept for a few hours."
+  },
+  "vocabulary": [
+    { "word": "passport", "emoji": "🛂", "sentence": "Show your passport at the desk." },
+    { "word": "boarding pass", "emoji": "🎫", "sentence": "Keep your boarding pass ready." },
+    { "word": "suitcase", "emoji": "🧳", "sentence": "My suitcase is very heavy." },
+    { "word": "security", "emoji": "🛃", "sentence": "We wait at security." },
+    { "word": "departure", "emoji": "🛫", "sentence": "Check the departure board." },
+    { "word": "arrival", "emoji": "🛬", "sentence": "The arrival time is late." },
+    { "word": "seatbelt", "emoji": "💺", "sentence": "Please fasten your seatbelt." },
+    { "word": "turbulence", "emoji": "🌪️", "sentence": "The turbulence was bumpy." },
+    { "word": "customs", "emoji": "🛄", "sentence": "We walk through customs." },
+    { "word": "delayed", "emoji": "⏰", "sentence": "Our flight is delayed." },
+    { "word": "connection", "emoji": "🔁", "sentence": "I missed my connection." },
+    { "word": "jet lag", "emoji": "😴", "sentence": "Jet lag makes me tired." }
+  ],
+  "sentenceFrames": [
+    "My flight is ____.",
+    "I need to find the ____.",
+    "Could you show me your ____, please?",
+    "We are waiting for the ____.",
+    "The ____ was longer than I expected."
+  ],
+  "story": {
+    "title": "The Longest Layover",
+    "pages": [
+      {
+        "heading": "The Longest Layover",
+        "text": "Nadia checks the departure board. Her flight is delayed by four hours, so she misses her connection.",
+        "visualTheme": "airport terminal",
+        "visualCaption": "Waiting at the departure gate"
+      },
+      {
+        "heading": "Landing at Last",
+        "text": "After turbulence and a long queue at customs, Nadia finally collects her suitcase.",
+        "visualTheme": "airport terminal",
+        "visualCaption": "Baggage claim after landing"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Why does Nadia miss her connection?", "sampleAnswer": "Her first flight is delayed by four hours." },
+      { "question": "What happens after she lands?", "sampleAnswer": "She waits at customs and collects her suitcase." }
+    ],
+    "creativeQuestions": [
+      { "question": "What would you pack for a very long flight?", "sampleAnswer": "I would pack a book, snacks, and headphones." }
+    ]
+  },
+  "speakingQuestions": [
+    { "question": "How do you feel about flying?", "sampleAnswer": "I like it, but turbulence makes me nervous." },
+    { "question": "What is the longest trip you have taken?", "sampleAnswer": "I flew for twelve hours to visit my family." },
+    { "question": "How do you deal with jet lag?", "sampleAnswer": "I try to sleep at the new local time." },
+    { "question": "What do you always keep in your hand luggage?", "sampleAnswer": "My passport, my phone, and a charger." }
+  ],
+  "activity": {
+    "title": "Airport Announcement Role Play",
+    "prompt": "Read the delayed flight announcement and help your partner find the right gate.",
+    "templates": [
+      "Flight ____ to ____ is delayed.",
+      "Please go to gate ____.",
+      "Passengers for ____ should proceed to ____."
+    ]
+  },
+  "reviewSentences": [
+    "Our flight was delayed, so we missed the connection.",
+    "Please keep your passport and boarding pass ready.",
+    "After customs we collected our suitcases."
+  ]
+}

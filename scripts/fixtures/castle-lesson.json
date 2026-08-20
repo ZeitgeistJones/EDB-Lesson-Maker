@@ -1,0 +1,67 @@
+{
+  "title": "Building Our Royal Castle",
+  "warmUp": {
+    "question": "What buildings do you see in stories or movies?",
+    "sampleAnswer": "I see tall towers and big walls."
+  },
+  "vocabulary": [
+    { "word": "castle", "emoji": "🏰", "sentence": "This is a castle." },
+    { "word": "knight", "emoji": "🛡️", "sentence": "The knight is brave." },
+    { "word": "dragon", "emoji": "🐉", "sentence": "I see a dragon." },
+    { "word": "door", "emoji": "🚪", "sentence": "Open the door." },
+    { "word": "flag", "emoji": "🚩", "sentence": "The flag is red." },
+    { "word": "bridge", "emoji": "🌉", "sentence": "Cross the bridge." }
+  ],
+  "sentenceFrames": [
+    "I see a ___.",
+    "The ___ is big.",
+    "The knight is at the ___.",
+    "I put a ___ on the castle."
+  ],
+  "phonics": null,
+  "story": {
+    "title": "The Brave Knight",
+    "pages": [
+      {
+        "heading": "At the castle",
+        "text": "I see a big castle. The castle has a red flag. I see a green tree near the castle.",
+        "visualTheme": "city",
+        "visualCaption": "Castle courtyard"
+      },
+      {
+        "heading": "Knight and dragon",
+        "text": "I see a knight. The knight is at the door. I see a dragon on the bridge. It is a good dragon.",
+        "visualTheme": "city",
+        "visualCaption": "Bridge and dragon"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What color is the flag?", "sampleAnswer": "The flag is red." },
+      { "question": "Where is the knight?", "sampleAnswer": "The knight is at the door." },
+      { "question": "Where is the dragon?", "sampleAnswer": "The dragon is on the bridge." }
+    ],
+    "creativeQuestions": [
+      "What is the dragon's name?",
+      "If you live in the castle, what do you do?"
+    ]
+  },
+  "speakingQuestions": [
+    { "question": "Is the bridge long or short?", "sampleAnswer": "It is long." },
+    { "question": "Do you like dragons?", "sampleAnswer": "Yes, I like dragons." }
+  ],
+  "activity": {
+    "title": "My Castle Builder",
+    "prompt": "Build a castle. Drag roofs, flags, knights, and a dragon onto the wall.",
+    "templates": [
+      "I put a ___ on the castle.",
+      "The ___ is next to the door.",
+      "My castle has a ___.",
+      "I see a ___."
+    ]
+  },
+  "reviewSentences": [
+    "I see a big castle.",
+    "The knight is at the door.",
+    "The dragon is on the bridge."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Lesson Title",
+  "level": "B1",
+  "duration": "60",
+  "knownIssues": [
+    "Optional: we've been working on miss A (intentional for now unless THIS bake is worse)"
+  ],
+  "justFixed": [
+    "Producer change 1 — please verify if you can",
+    "Producer change 2"
+  ],
+  "localChecks": [
+    "verify script claimed ok — context only; still grade the board"
+  ],
+  "focus": [
+    "Optional emphasis tilt (e.g. visual/UX) — still judge the whole lesson"
+  ],
+  "notes": "Standing bar: What do you think of this lesson? Everything is fair game. ALWAYS weakest_link; ONE escalation_homework."
+}

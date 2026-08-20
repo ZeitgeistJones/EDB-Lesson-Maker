@@ -1,0 +1,29 @@
+{
+  "title": "Reading the Feelings Compass",
+  "level": "B1",
+  "duration": "60",
+  "knownIssues": [
+    "Match dock deliberately has NO answer-naming caption chips (S26)",
+    "Feelings pack reuses face-blank as stage (intentional)",
+    "Navy wrap bookend is S32 — do not recolor mint; wrap B3 rejected",
+    "Manus OCR letter-sub on frames (mv/shv) — false positive; frames already correct"
+  ],
+  "justFixed": [
+    "StoryArt CHARACTER-LOCK (commit c419065, v2-charlock): S5-S7 now enforce recurring-character continuity — the first panel establishes the one main character (Mia), later panels receive that panel as an extra reference image and must reuse the exact identity (hair color, hairstyle, skin tone, outfit). Fixes prior Manus S9VxcmZA finding that Mia's hair color shifted between beats. Regenerated art: brown pigtails + yellow/green-stripe top + denim overalls held across worried->surprised->happy.",
+    "Generative StoryArt LIVE (commit 51a1670): S5-S7 render illustrated scenes from disk cache — scene matches caption + feeling arc.",
+    "S46 wrap timing chip ~3 min",
+    "S45 Round 2 If I felt…would + inferential comprehension",
+    "S41–S44 two-round Lab, write strip under hint, leading feeling captions, S43 castle-round"
+  ],
+  "localChecks": [
+    "verify-feelings-compass.mjs --story-art=auto: ok (fails=[]; soft=[]; StoryArt applied 3/3; charLock=true; timingChipCount=11)",
+    "S48 gate: multi-panel StoryArt cache must carry charLock (v2-charlock) or soft-flag to regenerate",
+    "Manusloop new-bar pass 1 — https://manus.im/app/S9VxcmZA3PyjoDxw98E4Uh pass/91"
+  ],
+  "focus": [
+    "PRIMARY: verify StoryArt CHARACTER-LOCK (S5-S7) — is Mia now the SAME character across all three beats (hair color/style, skin, outfit)? confirm the pass-1 drift is gone; scene-caption fit + feeling arc still hold",
+    "Otherwise optional polish only — palette soft",
+    "Do not re-ask navy wrap or frame OCR"
+  ],
+  "notes": "Manusloop feelings-compass — StoryArt validation pass 2026-08-08. Standing bar: don't re-report locally-gated mechanical/rendering misses (spend judgment on pedagogy/level-fit/generalization); ALWAYS name a weakest_link even on a pass; propose exactly ONE escalating generalization challenge (escalation_homework) the human accepts or declines."
+}

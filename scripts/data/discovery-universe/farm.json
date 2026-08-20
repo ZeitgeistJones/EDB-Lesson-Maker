@@ -1,0 +1,300 @@
+{
+  "id": "farm",
+  "labels": [
+    "farm",
+    "garden"
+  ],
+  "usefulness": 0.85,
+  "picturable": 0.93,
+  "hardToSubstitute": 0.35,
+  "topics": [
+    "farm morning",
+    "barn chores",
+    "vegetable patch",
+    "orchard harvest",
+    "chicken coop",
+    "dairy barn",
+    "tractor day",
+    "greenhouse tour",
+    "compost pile",
+    "beekeeping",
+    "seed starting",
+    "irrigation ditch",
+    "hayloft",
+    "farmers market",
+    "scarecrow field",
+    "pumpkin patch"
+  ],
+  "concepts": [
+    {
+      "word": "tractor",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "machine"
+      ]
+    },
+    {
+      "word": "plow",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "hoe",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "rake",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "shovel",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "pitchfork",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "wheelbarrow",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "watering can",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "hose",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "seedling",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "plant"
+      ]
+    },
+    {
+      "word": "sprout",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "plant"
+      ]
+    },
+    {
+      "word": "compost",
+      "usefulness": 0.55,
+      "picturable": 0.8,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "material"
+      ]
+    },
+    {
+      "word": "mulch",
+      "usefulness": 0.5,
+      "picturable": 0.8,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "material"
+      ]
+    },
+    {
+      "word": "fence",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "structure"
+      ]
+    },
+    {
+      "word": "gate",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "structure"
+      ]
+    },
+    {
+      "word": "silo",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "structure"
+      ]
+    },
+    {
+      "word": "hay bale",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "product"
+      ]
+    },
+    {
+      "word": "trough",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "equipment"
+      ]
+    },
+    {
+      "word": "coop",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "structure"
+      ]
+    },
+    {
+      "word": "hen",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "rooster",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "sheep",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "goat",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "pig",
+      "usefulness": 0.85,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.25,
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "word": "scarecrow",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "garden"
+      ]
+    },
+    {
+      "word": "greenhouse",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "structure"
+      ]
+    },
+    {
+      "word": "trellis",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "structure"
+      ]
+    },
+    {
+      "word": "pruner",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "shears",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "word": "beehive",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "structure"
+      ]
+    }
+  ]
+}

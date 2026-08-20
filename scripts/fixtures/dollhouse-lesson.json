@@ -1,0 +1,40 @@
+{
+  "title": "Dollhouse Home Tour",
+  "warmUp": {
+    "question": "What rooms are in a dollhouse?",
+    "sampleAnswer": "A kitchen and a bedroom."
+  },
+  "vocabulary": [
+    { "word": "sofa", "emoji": "🛋️", "sentence": "I sit on the sofa." },
+    { "word": "bed", "emoji": "🛏️", "sentence": "I sleep in the bed." },
+    { "word": "table", "emoji": "🪵", "sentence": "Put it on the table." },
+    { "word": "lamp", "emoji": "💡", "sentence": "Turn on the lamp." },
+    { "word": "kitchen", "emoji": "🍳", "sentence": "We cook in the kitchen." },
+    { "word": "furniture", "emoji": "🪑", "sentence": "The furniture is small." }
+  ],
+  "sentenceFrames": ["This is the ____.", "Put the ____ in the room."],
+  "story": {
+    "title": "Tiny House",
+    "pages": [
+      {
+        "heading": "Inside the dollhouse",
+        "text": "Mia puts the sofa next to the lamp. The kitchen has a little table.",
+        "visualTheme": "home",
+        "visualCaption": "Dollhouse rooms"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Where is the table?", "sampleAnswer": "In the kitchen." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "What furniture is in your bedroom?", "sampleAnswer": "A bed and a lamp." }
+  ],
+  "activity": {
+    "title": "Furnish the Dollhouse",
+    "prompt": "Drag furniture into the rooms.",
+    "templates": ["I put the ____ here."]
+  },
+  "reviewSentences": ["The dollhouse has furniture.", "The sofa is blue."]
+}

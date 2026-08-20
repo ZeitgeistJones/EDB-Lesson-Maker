@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "generatedBy": "scripts/seed-discovery-universe.mjs",
+  "domainCount": 19,
+  "crossTemplates": {
+    "habitats_food": [
+      "{a} habitat picnic",
+      "{a} kitchen safari",
+      "cooking with {a}",
+      "{b} on the {a} trail"
+    ],
+    "trades_medical": [
+      "{a} clinic tools",
+      "{b} workshop safety",
+      "{a} meets {b}",
+      "repair and care: {a}"
+    ],
+    "archaeology_medieval": [
+      "{a} castle dig",
+      "medieval {a} market",
+      "{a} ruin walk",
+      "{b} artifact lab"
+    ],
+    "labs_music": [
+      "{a} sound lab",
+      "stage science: {a}",
+      "{b} instrument study",
+      "{a} theater experiment"
+    ],
+    "factories_emergency": [
+      "{a} rescue drill",
+      "port emergency: {a}",
+      "{b} factory safety",
+      "{a} rail response"
+    ]
+  },
+  "note": "Pack-blind discovery banks. Not auto-merged into esl-picturable-source.json."
+}

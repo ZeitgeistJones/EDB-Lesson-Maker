@@ -1,0 +1,1648 @@
+{
+  "spec": "a1-visual-operating-system",
+  "updated_at": "2026-08-18T18:25:54.172Z",
+  "running_total": {
+    "waves_fired": 11,
+    "waves_downloaded": 11,
+    "sheets_downloaded": 79,
+    "sheets_large": 79,
+    "concepts_planned": 104,
+    "concepts_banked_raw": 104
+  },
+  "waves": {
+    "p0-1-sentence-architecture": {
+      "phase": "P0.1",
+      "family": "sentence-architecture-kit",
+      "title": "A1 P0.1 sentence architecture kit",
+      "task_id": "df9wdKwf4UA5c5gctXb8Ep",
+      "task_url": "https://manus.im/app/df9wdKwf4UA5c5gctXb8Ep",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a1-stockpile\\p0-1-sentence-architecture\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3441115,
+          "name": "a1-sent-model-partial-blank-board.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3467645,
+          "name": "a1-sent-swap-slot-board.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 1560089,
+          "name": "a1-sent-who-action-object-board.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 3456206,
+          "name": "a1-sent-who-action-object-location-board.png"
+        },
+        {
+          "file": "05.png",
+          "bytes": 1656037,
+          "name": "a1-sentence-slot-tokens-contact-sheet.png"
+        }
+      ],
+      "large_sheet_count": 5,
+      "concept_count": 16,
+      "banked_raw": 16,
+      "items": [
+        {
+          "key": "a1-sent-who-action-object-board",
+          "concept": "sent-who-action-object-board",
+          "brief": "landscape board: three large linked slots for WHO + ACTION + OBJECT, empty picture wells, visible reading rail, no text",
+          "family": "sentence-architecture-kit",
+          "phase": "P0.1",
+          "format": "landscape-shells",
+          "manus_task_id": "df9wdKwf4UA5c5gctXb8Ep",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-sent-who-action-object-location-board",
+          "concept": "sent-who-action-object-location-board",
+          "brief": "landscape board: WHO + ACTION + OBJECT + LOCATION slots, location zone visually distinct as a place pad",
+          "family": "sentence-architecture-kit",
+          "phase": "P0.1",
+          "format": "landscape-shells",
+          "manus_task_id": "df9wdKwf4UA5c5gctXb8Ep",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-sent-model-partial-blank-board",
+          "concept": "sent-model-partial-blank-board",
+          "brief": "landscape board with three rows: model row, partial row, blank build row; all slots empty and text-ready",
+          "family": "sentence-architecture-kit",
+          "phase": "P0.1",
+          "format": "landscape-shells",
+          "manus_task_id": "df9wdKwf4UA5c5gctXb8Ep",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-sent-swap-slot-board",
+          "concept": "sent-swap-slot-board",
+          "brief": "landscape board showing one sentence rail with one highlighted replaceable slot and side dock for alternatives",
+          "family": "sentence-architecture-kit",
+          "phase": "P0.1",
+          "format": "landscape-shells",
+          "manus_task_id": "df9wdKwf4UA5c5gctXb8Ep",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-sent-who-slot",
+          "concept": "sent-who-slot",
+          "brief": "empty WHO/person slot token with friendly person silhouette cue, no word",
+          "family": "sentence-architecture-kit",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "manus_task_id": "df9wdKwf4UA5c5gctXb8Ep",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-sent-action-slot",
+          "concept": "sent-action-slot",
+          "brief": "empty ACTION slot token with motion cue / verb spark, no word",
+          "family": "sentence-architecture-kit",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "manus_task_id": "df9wdKwf4UA5c5gctXb8Ep",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-sent-object-slot",
+          "concept": "sent-object-slot",
+          "brief": "empty OBJECT slot token with small object tray cue, no word",
+          "family": "sentence-architecture-kit",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "manus_task_id": "df9wdKwf4UA5c5gctXb8Ep",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-sent-location-slot",
+          "concept": "sent-location-slot",
+          "brief": "empty LOCATION slot token with map-pin/place-pad cue, no word",
+          "family": "sentence-architecture-kit",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "manus_task_id": "df9wdKwf4UA5c5gctXb8Ep",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-sent-time-slot",
+          "concept": "sent-time-slot",
+          "brief": "empty TIME slot token with clock/sun cue, no numbers",
+          "family": "sentence-architecture-kit",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "manus_task_id": "df9wdKwf4UA5c5gctXb8Ep",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-sent-linker-arrow",
+          "concept": "sent-linker-arrow",
+          "brief": "soft connector arrow/token between slots, no text",
+          "family": "sentence-architecture-kit",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "manus_task_id": "df9wdKwf4UA5c5gctXb8Ep",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-sent-build-rail-3",
+          "concept": "sent-build-rail-3",
+          "brief": "three-slot sentence rail as a draggable strip, blank wells",
+          "family": "sentence-architecture-kit",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "manus_task_id": "df9wdKwf4UA5c5gctXb8Ep",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-sent-build-rail-4",
+          "concept": "sent-build-rail-4",
+          "brief": "four-slot sentence rail as a draggable strip, blank wells",
+          "family": "sentence-architecture-kit",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "manus_task_id": "df9wdKwf4UA5c5gctXb8Ep",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-sent-choice-dock-3",
+          "concept": "sent-choice-dock-3",
+          "brief": "small dock with three empty alternative slots",
+          "family": "sentence-architecture-kit",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "manus_task_id": "df9wdKwf4UA5c5gctXb8Ep",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-sent-choice-dock-4",
+          "concept": "sent-choice-dock-4",
+          "brief": "small dock with four empty alternative slots",
+          "family": "sentence-architecture-kit",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "manus_task_id": "df9wdKwf4UA5c5gctXb8Ep",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-sent-check-target",
+          "concept": "sent-check-target",
+          "brief": "empty target/check surface for completed build, no checkmark word",
+          "family": "sentence-architecture-kit",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "manus_task_id": "df9wdKwf4UA5c5gctXb8Ep",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-sent-error-swap-cue",
+          "concept": "sent-error-swap-cue",
+          "brief": "gentle swap/try-again cue token, no text",
+          "family": "sentence-architecture-kit",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "manus_task_id": "df9wdKwf4UA5c5gctXb8Ep",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T18:05:42.881Z"
+    },
+    "p0-2-question-answer-system": {
+      "phase": "P0.2",
+      "family": "question-answer-system",
+      "title": "A1 P0.2 question to answer visual system",
+      "task_id": "McKC2RWoXBH8RfihHcDJXq",
+      "task_url": "https://manus.im/app/McKC2RWoXBH8RfihHcDJXq",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a1-stockpile\\p0-2-question-answer-system\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3374661,
+          "name": "a1-qa-ability-cue.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3187631,
+          "name": "a1-qa-answer-bubble-empty.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3357101,
+          "name": "a1-qa-answer-type-cues-4x4.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 3506295,
+          "name": "a1-qa-ask-pick-answer-board.png"
+        },
+        {
+          "file": "05.png",
+          "bytes": 3005735,
+          "name": "a1-qa-colour-cue.png"
+        },
+        {
+          "file": "06.png",
+          "bytes": 3407951,
+          "name": "a1-qa-how-many-cue.png"
+        },
+        {
+          "file": "07.png",
+          "bytes": 3863959,
+          "name": "a1-qa-listen-answer-board.png"
+        },
+        {
+          "file": "08.png",
+          "bytes": 3753312,
+          "name": "a1-qa-possession-cue.png"
+        },
+        {
+          "file": "09.png",
+          "bytes": 3072507,
+          "name": "a1-qa-preference-cue.png"
+        },
+        {
+          "file": "10.png",
+          "bytes": 3078040,
+          "name": "a1-qa-question-bubble-empty.png"
+        },
+        {
+          "file": "11.png",
+          "bytes": 3295196,
+          "name": "a1-qa-two-speaker-rail.png"
+        },
+        {
+          "file": "12.png",
+          "bytes": 2841176,
+          "name": "a1-qa-what-cue.png"
+        },
+        {
+          "file": "13.png",
+          "bytes": 2784591,
+          "name": "a1-qa-when-cue.png"
+        },
+        {
+          "file": "14.png",
+          "bytes": 2469649,
+          "name": "a1-qa-where-cue.png"
+        },
+        {
+          "file": "15.png",
+          "bytes": 2467769,
+          "name": "a1-qa-who-cue.png"
+        },
+        {
+          "file": "16.png",
+          "bytes": 2472823,
+          "name": "a1-qa-yes-no-cue.png"
+        }
+      ],
+      "large_sheet_count": 16,
+      "concept_count": 15,
+      "banked_raw": 15,
+      "items": [
+        {
+          "key": "a1-qa-two-speaker-rail",
+          "concept": "qa-two-speaker-rail",
+          "brief": "landscape board: two speaker avatars, question slot, answer slot, turn path between them, no text",
+          "family": "question-answer-system",
+          "phase": "P0.2",
+          "format": "landscape-shells",
+          "manus_task_id": "McKC2RWoXBH8RfihHcDJXq",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-qa-listen-answer-board",
+          "concept": "qa-listen-answer-board",
+          "brief": "landscape board: ear/speaker cue, question surface, answer choice dock, empty response zone",
+          "family": "question-answer-system",
+          "phase": "P0.2",
+          "format": "landscape-shells",
+          "manus_task_id": "McKC2RWoXBH8RfihHcDJXq",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-qa-ask-pick-answer-board",
+          "concept": "qa-ask-pick-answer-board",
+          "brief": "landscape board: one large visual question bubble pointing to answer-type surface and three empty choices",
+          "family": "question-answer-system",
+          "phase": "P0.2",
+          "format": "landscape-shells",
+          "manus_task_id": "McKC2RWoXBH8RfihHcDJXq",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-qa-who-cue",
+          "concept": "qa-who-cue",
+          "brief": "answer-type cue: asks for a person; empty person silhouette frame, no word",
+          "family": "question-answer-system",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "manus_task_id": "McKC2RWoXBH8RfihHcDJXq",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-qa-what-cue",
+          "concept": "qa-what-cue",
+          "brief": "answer-type cue: asks for an object; empty object tray / mystery object silhouette, no word",
+          "family": "question-answer-system",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "manus_task_id": "McKC2RWoXBH8RfihHcDJXq",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-qa-where-cue",
+          "concept": "qa-where-cue",
+          "brief": "answer-type cue: asks for a place; map pin over empty place pad, no word",
+          "family": "question-answer-system",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "manus_task_id": "McKC2RWoXBH8RfihHcDJXq",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-qa-how-many-cue",
+          "concept": "qa-how-many-cue",
+          "brief": "answer-type cue: asks for quantity; grouped empty counting dots/chips, no digits",
+          "family": "question-answer-system",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "manus_task_id": "McKC2RWoXBH8RfihHcDJXq",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-qa-colour-cue",
+          "concept": "qa-colour-cue",
+          "brief": "answer-type cue: asks for colour; paint palette / colour swatch slots, no labels",
+          "family": "question-answer-system",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "manus_task_id": "McKC2RWoXBH8RfihHcDJXq",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-qa-when-cue",
+          "concept": "qa-when-cue",
+          "brief": "answer-type cue: asks for time; blank clock/calendar cue, no numbers",
+          "family": "question-answer-system",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "manus_task_id": "McKC2RWoXBH8RfihHcDJXq",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-qa-yes-no-cue",
+          "concept": "qa-yes-no-cue",
+          "brief": "answer-type cue: two response pads with friendly agree/disagree icon shapes, no words",
+          "family": "question-answer-system",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "manus_task_id": "McKC2RWoXBH8RfihHcDJXq",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-qa-possession-cue",
+          "concept": "qa-possession-cue",
+          "brief": "answer-type cue: owner badge pointing to object well",
+          "family": "question-answer-system",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "manus_task_id": "McKC2RWoXBH8RfihHcDJXq",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-qa-preference-cue",
+          "concept": "qa-preference-cue",
+          "brief": "answer-type cue: heart/choice between two empty wells, no text",
+          "family": "question-answer-system",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "manus_task_id": "McKC2RWoXBH8RfihHcDJXq",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-qa-ability-cue",
+          "concept": "qa-ability-cue",
+          "brief": "answer-type cue: action spark beside person silhouette, no text",
+          "family": "question-answer-system",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "manus_task_id": "McKC2RWoXBH8RfihHcDJXq",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-qa-question-bubble-empty",
+          "concept": "qa-question-bubble-empty",
+          "brief": "empty question bubble with visual question mark-like curiosity shape acceptable but no letters",
+          "family": "question-answer-system",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "manus_task_id": "McKC2RWoXBH8RfihHcDJXq",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-qa-answer-bubble-empty",
+          "concept": "qa-answer-bubble-empty",
+          "brief": "empty answer bubble with response surface",
+          "family": "question-answer-system",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "manus_task_id": "McKC2RWoXBH8RfihHcDJXq",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T18:10:20.355Z"
+    },
+    "p0-3-reference-pronoun-ownership": {
+      "phase": "P0.3",
+      "family": "reference-pronoun-ownership",
+      "title": "A1 P0.3 reference, pronoun, ownership",
+      "task_id": "gTq6YANUwxrvSmC9NoNx84",
+      "task_url": "https://manus.im/app/gTq6YANUwxrvSmC9NoNx84",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a1-stockpile\\p0-3-reference-pronoun-ownership\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 2539904,
+          "name": "a1-own-listener-badge.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3473555,
+          "name": "a1-own-my-your-swap-board.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 2943521,
+          "name": "a1-own-object-well.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 798929,
+          "name": "a1-own-owner-ribbon.png"
+        },
+        {
+          "file": "05.png",
+          "bytes": 857463,
+          "name": "a1-own-referent-halo.png"
+        },
+        {
+          "file": "06.png",
+          "bytes": 3551489,
+          "name": "a1-own-speaker-badge.png"
+        },
+        {
+          "file": "07.png",
+          "bytes": 3445411,
+          "name": "a1-own-speaker-listener-board.png"
+        },
+        {
+          "file": "08.png",
+          "bytes": 1765939,
+          "name": "a1-own-whose-object-shell.png"
+        },
+        {
+          "file": "09.png",
+          "bytes": 3737170,
+          "name": "a1-ownership-reference-tokens.png"
+        },
+        {
+          "file": "10.png",
+          "bytes": 3181672,
+          "name": "a1-pron-he-cue.png"
+        },
+        {
+          "file": "11.png",
+          "bytes": 1060789,
+          "name": "a1-pron-it-cue.png"
+        },
+        {
+          "file": "12.png",
+          "bytes": 3603119,
+          "name": "a1-pron-she-cue.png"
+        },
+        {
+          "file": "13.png",
+          "bytes": 3268328,
+          "name": "a1-pron-they-cue.png"
+        },
+        {
+          "file": "14.png",
+          "bytes": 2949051,
+          "name": "a1-ref-many-cue.png"
+        },
+        {
+          "file": "15.png",
+          "bytes": 2886375,
+          "name": "a1-ref-one-cue.png"
+        },
+        {
+          "file": "16.png",
+          "bytes": 1627986,
+          "name": "a1-ref-pointing-hand.png"
+        }
+      ],
+      "large_sheet_count": 16,
+      "concept_count": 15,
+      "banked_raw": 15,
+      "items": [
+        {
+          "key": "a1-own-speaker-listener-board",
+          "concept": "own-speaker-listener-board",
+          "brief": "landscape board: Speaker A, Speaker B, third referent area, object dock, ownership ribbons connect owner to object",
+          "family": "reference-pronoun-ownership",
+          "phase": "P0.3",
+          "format": "landscape-shells",
+          "manus_task_id": "gTq6YANUwxrvSmC9NoNx84",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-own-whose-object-shell",
+          "concept": "own-whose-object-shell",
+          "brief": "landscape board: several owner badges above empty object wells, one target question surface, no text",
+          "family": "reference-pronoun-ownership",
+          "phase": "P0.3",
+          "format": "landscape-shells",
+          "manus_task_id": "gTq6YANUwxrvSmC9NoNx84",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-own-my-your-swap-board",
+          "concept": "own-my-your-swap-board",
+          "brief": "landscape board: two speakers facing, same object switches side with visible owner ribbon",
+          "family": "reference-pronoun-ownership",
+          "phase": "P0.3",
+          "format": "landscape-shells",
+          "manus_task_id": "gTq6YANUwxrvSmC9NoNx84",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-own-speaker-badge",
+          "concept": "own-speaker-badge",
+          "brief": "Speaker A badge token, simple child avatar circle, no A letter",
+          "family": "reference-pronoun-ownership",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "manus_task_id": "gTq6YANUwxrvSmC9NoNx84",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-own-listener-badge",
+          "concept": "own-listener-badge",
+          "brief": "Speaker B/listener badge token, different color avatar circle, no B letter",
+          "family": "reference-pronoun-ownership",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "manus_task_id": "gTq6YANUwxrvSmC9NoNx84",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-own-referent-halo",
+          "concept": "own-referent-halo",
+          "brief": "third-person referent halo/ring token for highlighting someone/something",
+          "family": "reference-pronoun-ownership",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "manus_task_id": "gTq6YANUwxrvSmC9NoNx84",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-own-owner-ribbon",
+          "concept": "own-owner-ribbon",
+          "brief": "ownership ribbon/connector from owner badge to object well",
+          "family": "reference-pronoun-ownership",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "manus_task_id": "gTq6YANUwxrvSmC9NoNx84",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-own-object-well",
+          "concept": "own-object-well",
+          "brief": "empty owned-object well/tray",
+          "family": "reference-pronoun-ownership",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "manus_task_id": "gTq6YANUwxrvSmC9NoNx84",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-pron-he-cue",
+          "concept": "pron-he-cue",
+          "brief": "masculine person cue badge, no word",
+          "family": "reference-pronoun-ownership",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "manus_task_id": "gTq6YANUwxrvSmC9NoNx84",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-pron-she-cue",
+          "concept": "pron-she-cue",
+          "brief": "feminine person cue badge, no word",
+          "family": "reference-pronoun-ownership",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "manus_task_id": "gTq6YANUwxrvSmC9NoNx84",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-pron-it-cue",
+          "concept": "pron-it-cue",
+          "brief": "single object/animal cue badge, no word",
+          "family": "reference-pronoun-ownership",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "manus_task_id": "gTq6YANUwxrvSmC9NoNx84",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-pron-they-cue",
+          "concept": "pron-they-cue",
+          "brief": "small group cue badge, no word",
+          "family": "reference-pronoun-ownership",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "manus_task_id": "gTq6YANUwxrvSmC9NoNx84",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-ref-one-cue",
+          "concept": "ref-one-cue",
+          "brief": "one-item reference cue, no digit",
+          "family": "reference-pronoun-ownership",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "manus_task_id": "gTq6YANUwxrvSmC9NoNx84",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-ref-many-cue",
+          "concept": "ref-many-cue",
+          "brief": "many-items reference cue, no digit",
+          "family": "reference-pronoun-ownership",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "manus_task_id": "gTq6YANUwxrvSmC9NoNx84",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-ref-pointing-hand",
+          "concept": "ref-pointing-hand",
+          "brief": "neutral pointing hand cue for referent selection",
+          "family": "reference-pronoun-ownership",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "manus_task_id": "gTq6YANUwxrvSmC9NoNx84",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T18:14:32.744Z"
+    },
+    "p0-4-micro-text-shells": {
+      "phase": "P0.4",
+      "family": "micro-text-shells",
+      "title": "A1 P0.4 micro-text visual shells",
+      "task_id": "YsJiAY7JiBqLAXJmPPgSjn",
+      "task_url": "https://manus.im/app/YsJiAY7JiBqLAXJmPPgSjn",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a1-stockpile\\p0-4-micro-text-shells\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3527966,
+          "name": "a1-text-caption-shell.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3210593,
+          "name": "a1-text-form-shell.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3416427,
+          "name": "a1-text-invitation-shell.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 3836364,
+          "name": "a1-text-menu-shell.png"
+        },
+        {
+          "file": "05.png",
+          "bytes": 3861208,
+          "name": "a1-text-message-shell.png"
+        },
+        {
+          "file": "06.png",
+          "bytes": 3674913,
+          "name": "a1-text-mini-dialogue-shell.png"
+        },
+        {
+          "file": "07.png",
+          "bytes": 3696522,
+          "name": "a1-text-note-shell.png"
+        },
+        {
+          "file": "08.png",
+          "bytes": 3800681,
+          "name": "a1-text-notice-shell.png"
+        },
+        {
+          "file": "09.png",
+          "bytes": 3474074,
+          "name": "a1-text-postcard-shell.png"
+        },
+        {
+          "file": "10.png",
+          "bytes": 3404246,
+          "name": "a1-text-profile-shell.png"
+        },
+        {
+          "file": "11.png",
+          "bytes": 3564581,
+          "name": "a1-text-ticket-shell.png"
+        },
+        {
+          "file": "12.png",
+          "bytes": 3688682,
+          "name": "a1-text-timetable-shell.png"
+        }
+      ],
+      "large_sheet_count": 12,
+      "concept_count": 12,
+      "banked_raw": 12,
+      "items": [
+        {
+          "key": "a1-text-caption-shell",
+          "concept": "text-caption-shell",
+          "brief": "blank caption strip under a picture window; no text",
+          "family": "micro-text-shells",
+          "phase": "P0.4",
+          "format": "landscape-shells",
+          "manus_task_id": "YsJiAY7JiBqLAXJmPPgSjn",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-text-mini-dialogue-shell",
+          "concept": "text-mini-dialogue-shell",
+          "brief": "two blank speech bubbles with two speaker icons; no text",
+          "family": "micro-text-shells",
+          "phase": "P0.4",
+          "format": "landscape-shells",
+          "manus_task_id": "YsJiAY7JiBqLAXJmPPgSjn",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-text-message-shell",
+          "concept": "text-message-shell",
+          "brief": "blank phone/message card with empty lines represented as soft placeholders, not readable text",
+          "family": "micro-text-shells",
+          "phase": "P0.4",
+          "format": "landscape-shells",
+          "manus_task_id": "YsJiAY7JiBqLAXJmPPgSjn",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-text-note-shell",
+          "concept": "text-note-shell",
+          "brief": "blank sticky note / note card with empty writable area",
+          "family": "micro-text-shells",
+          "phase": "P0.4",
+          "format": "landscape-shells",
+          "manus_task_id": "YsJiAY7JiBqLAXJmPPgSjn",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-text-invitation-shell",
+          "concept": "text-invitation-shell",
+          "brief": "blank invitation card shell with picture spot and empty text area, no fake words",
+          "family": "micro-text-shells",
+          "phase": "P0.4",
+          "format": "landscape-shells",
+          "manus_task_id": "YsJiAY7JiBqLAXJmPPgSjn",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-text-postcard-shell",
+          "concept": "text-postcard-shell",
+          "brief": "blank postcard shell with stamp box and address/text zones empty",
+          "family": "micro-text-shells",
+          "phase": "P0.4",
+          "format": "landscape-shells",
+          "manus_task_id": "YsJiAY7JiBqLAXJmPPgSjn",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-text-notice-shell",
+          "concept": "text-notice-shell",
+          "brief": "blank classroom notice board card with icon slot and empty text area",
+          "family": "micro-text-shells",
+          "phase": "P0.4",
+          "format": "landscape-shells",
+          "manus_task_id": "YsJiAY7JiBqLAXJmPPgSjn",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-text-profile-shell",
+          "concept": "text-profile-shell",
+          "brief": "blank profile card with avatar spot and empty fields, no labels",
+          "family": "micro-text-shells",
+          "phase": "P0.4",
+          "format": "landscape-shells",
+          "manus_task_id": "YsJiAY7JiBqLAXJmPPgSjn",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-text-form-shell",
+          "concept": "text-form-shell",
+          "brief": "blank simple form with a few empty fields and checkbox shapes, no labels",
+          "family": "micro-text-shells",
+          "phase": "P0.4",
+          "format": "landscape-shells",
+          "manus_task_id": "YsJiAY7JiBqLAXJmPPgSjn",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-text-ticket-shell",
+          "concept": "text-ticket-shell",
+          "brief": "blank ticket shell with empty zones, no numbers",
+          "family": "micro-text-shells",
+          "phase": "P0.4",
+          "format": "landscape-shells",
+          "manus_task_id": "YsJiAY7JiBqLAXJmPPgSjn",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-text-menu-shell",
+          "concept": "text-menu-shell",
+          "brief": "blank menu/list shell with picture slots and price/tag spaces empty",
+          "family": "micro-text-shells",
+          "phase": "P0.4",
+          "format": "landscape-shells",
+          "manus_task_id": "YsJiAY7JiBqLAXJmPPgSjn",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-text-timetable-shell",
+          "concept": "text-timetable-shell",
+          "brief": "blank timetable grid with no days/times written",
+          "family": "micro-text-shells",
+          "phase": "P0.4",
+          "format": "landscape-shells",
+          "manus_task_id": "YsJiAY7JiBqLAXJmPPgSjn",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T18:17:57.279Z"
+    },
+    "p0-5-listening-detail-boards": {
+      "phase": "P0.5",
+      "family": "listening-detail-boards",
+      "title": "A1 P0.5 listening-for-detail boards",
+      "task_id": "ctHUTTUFxBjoZo8mdLKqhs",
+      "task_url": "https://manus.im/app/ctHUTTUFxBjoZo8mdLKqhs",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a1-stockpile\\p0-5-listening-detail-boards\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4076240,
+          "name": "a1-listen-choose-4-board.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3346143,
+          "name": "a1-listen-detail-response-tokens.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3774260,
+          "name": "a1-listen-fill-slot-board.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 3789494,
+          "name": "a1-listen-match-board.png"
+        },
+        {
+          "file": "05.png",
+          "bytes": 4007143,
+          "name": "a1-listen-move-object-board.png"
+        }
+      ],
+      "large_sheet_count": 5,
+      "concept_count": 12,
+      "banked_raw": 12,
+      "items": [
+        {
+          "key": "a1-listen-choose-4-board",
+          "concept": "listen-choose-4-board",
+          "brief": "landscape board: audio cue, four empty choice wells, answer target",
+          "family": "listening-detail-boards",
+          "phase": "P0.5",
+          "format": "landscape-shells",
+          "manus_task_id": "ctHUTTUFxBjoZo8mdLKqhs",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-listen-match-board",
+          "concept": "listen-match-board",
+          "brief": "landscape board: audio cue, two columns of empty match slots with connector space",
+          "family": "listening-detail-boards",
+          "phase": "P0.5",
+          "format": "landscape-shells",
+          "manus_task_id": "ctHUTTUFxBjoZo8mdLKqhs",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-listen-fill-slot-board",
+          "concept": "listen-fill-slot-board",
+          "brief": "landscape board: audio cue and sentence/phrase rail with one empty picture/text slot",
+          "family": "listening-detail-boards",
+          "phase": "P0.5",
+          "format": "landscape-shells",
+          "manus_task_id": "ctHUTTUFxBjoZo8mdLKqhs",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-listen-move-object-board",
+          "concept": "listen-move-object-board",
+          "brief": "landscape board: audio cue, empty place scene, movable object dock, target zones",
+          "family": "listening-detail-boards",
+          "phase": "P0.5",
+          "format": "landscape-shells",
+          "manus_task_id": "ctHUTTUFxBjoZo8mdLKqhs",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-listen-price-tag-shell",
+          "concept": "listen-price-tag-shell",
+          "brief": "blank price tag shell, no currency or numbers",
+          "family": "listening-detail-boards",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "manus_task_id": "ctHUTTUFxBjoZo8mdLKqhs",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-listen-clock-shell",
+          "concept": "listen-clock-shell",
+          "brief": "blank clock response shell with movable hands area, no numbers",
+          "family": "listening-detail-boards",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "manus_task_id": "ctHUTTUFxBjoZo8mdLKqhs",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-listen-place-pad",
+          "concept": "listen-place-pad",
+          "brief": "empty place response pad with map-pin cue",
+          "family": "listening-detail-boards",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "manus_task_id": "ctHUTTUFxBjoZo8mdLKqhs",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-listen-select-chip",
+          "concept": "listen-select-chip",
+          "brief": "selection chip/token for choosing an answer",
+          "family": "listening-detail-boards",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "manus_task_id": "ctHUTTUFxBjoZo8mdLKqhs",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-listen-audio-cue",
+          "concept": "listen-audio-cue",
+          "brief": "speaker/ear listening cue token, no text",
+          "family": "listening-detail-boards",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "manus_task_id": "ctHUTTUFxBjoZo8mdLKqhs",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-listen-repeat-cue",
+          "concept": "listen-repeat-cue",
+          "brief": "repeat/listen-again loop cue token, no text",
+          "family": "listening-detail-boards",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "manus_task_id": "ctHUTTUFxBjoZo8mdLKqhs",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-listen-drag-target",
+          "concept": "listen-drag-target",
+          "brief": "empty drag target pad",
+          "family": "listening-detail-boards",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "manus_task_id": "ctHUTTUFxBjoZo8mdLKqhs",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-listen-check-slot",
+          "concept": "listen-check-slot",
+          "brief": "empty check/answer slot",
+          "family": "listening-detail-boards",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "manus_task_id": "ctHUTTUFxBjoZo8mdLKqhs",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T18:10:51.050Z"
+    },
+    "p0-6-conversation-turn-system": {
+      "phase": "P0.6",
+      "family": "conversation-turn-system",
+      "title": "A1 P0.6 conversation and turn system",
+      "task_id": "5nMfTDTM9SdfXC9fL6xNjW",
+      "task_url": "https://manus.im/app/5nMfTDTM9SdfXC9fL6xNjW",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a1-stockpile\\p0-6-conversation-turn-system\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4126711,
+          "name": "a1-conv-qa-turn-board.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3914432,
+          "name": "a1-conv-repair-board.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3939174,
+          "name": "a1-conv-request-give-board.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 3642474,
+          "name": "a1-conv-speaker-a-b-board.png"
+        },
+        {
+          "file": "05.png",
+          "bytes": 3416014,
+          "name": "a1-conv-turn-tokens-contact-sheet.png"
+        }
+      ],
+      "large_sheet_count": 5,
+      "concept_count": 14,
+      "banked_raw": 14,
+      "items": [
+        {
+          "key": "a1-conv-speaker-a-b-board",
+          "concept": "conv-speaker-a-b-board",
+          "brief": "landscape board: two speaker sides, current turn glow, listen/say surfaces, blank speech bubbles",
+          "family": "conversation-turn-system",
+          "phase": "P0.6",
+          "format": "landscape-shells",
+          "manus_task_id": "5nMfTDTM9SdfXC9fL6xNjW",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-conv-request-give-board",
+          "concept": "conv-request-give-board",
+          "brief": "landscape board: requester side, giver side, object dock, request arrow to give arrow, no text",
+          "family": "conversation-turn-system",
+          "phase": "P0.6",
+          "format": "landscape-shells",
+          "manus_task_id": "5nMfTDTM9SdfXC9fL6xNjW",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-conv-qa-turn-board",
+          "concept": "conv-qa-turn-board",
+          "brief": "landscape board: question bubble, answer bubble, turn token moving between speakers",
+          "family": "conversation-turn-system",
+          "phase": "P0.6",
+          "format": "landscape-shells",
+          "manus_task_id": "5nMfTDTM9SdfXC9fL6xNjW",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-conv-repair-board",
+          "concept": "conv-repair-board",
+          "brief": "landscape board: confused listener cue, repeat/slow/again option surfaces, no words",
+          "family": "conversation-turn-system",
+          "phase": "P0.6",
+          "format": "landscape-shells",
+          "manus_task_id": "5nMfTDTM9SdfXC9fL6xNjW",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-conv-current-turn-token",
+          "concept": "conv-current-turn-token",
+          "brief": "current turn glow token / spotlight",
+          "family": "conversation-turn-system",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "manus_task_id": "5nMfTDTM9SdfXC9fL6xNjW",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-conv-listen-token",
+          "concept": "conv-listen-token",
+          "brief": "listen token with ear cue, no text",
+          "family": "conversation-turn-system",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "manus_task_id": "5nMfTDTM9SdfXC9fL6xNjW",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-conv-say-token",
+          "concept": "conv-say-token",
+          "brief": "say token with mouth/speech cue, no text",
+          "family": "conversation-turn-system",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "manus_task_id": "5nMfTDTM9SdfXC9fL6xNjW",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-conv-repeat-token",
+          "concept": "conv-repeat-token",
+          "brief": "repeat loop token, no text",
+          "family": "conversation-turn-system",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "manus_task_id": "5nMfTDTM9SdfXC9fL6xNjW",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-conv-slow-token",
+          "concept": "conv-slow-token",
+          "brief": "slow down token with gentle speed cue, no text",
+          "family": "conversation-turn-system",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "manus_task_id": "5nMfTDTM9SdfXC9fL6xNjW",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-conv-again-token",
+          "concept": "conv-again-token",
+          "brief": "again token with loop cue, no text",
+          "family": "conversation-turn-system",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "manus_task_id": "5nMfTDTM9SdfXC9fL6xNjW",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-conv-dont-understand-cue",
+          "concept": "conv-dont-understand-cue",
+          "brief": "confused but friendly cue icon, no words",
+          "family": "conversation-turn-system",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "manus_task_id": "5nMfTDTM9SdfXC9fL6xNjW",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-conv-request-token",
+          "concept": "conv-request-token",
+          "brief": "request hand/token, no text",
+          "family": "conversation-turn-system",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "manus_task_id": "5nMfTDTM9SdfXC9fL6xNjW",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-conv-give-token",
+          "concept": "conv-give-token",
+          "brief": "give hand/token, no text",
+          "family": "conversation-turn-system",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "manus_task_id": "5nMfTDTM9SdfXC9fL6xNjW",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-conv-thank-you-cue",
+          "concept": "conv-thank-you-cue",
+          "brief": "friendly gratitude gesture cue, no words",
+          "family": "conversation-turn-system",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "manus_task_id": "5nMfTDTM9SdfXC9fL6xNjW",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T18:16:19.357Z"
+    },
+    "p1-1-clock-calendar-schedule": {
+      "phase": "P1.1",
+      "family": "clock-calendar-schedule",
+      "title": "A1 P1.1 clock, calendar, schedule",
+      "task_id": "NGtGNTd7ZFsiXPAZBG42FB",
+      "task_url": "https://manus.im/app/NGtGNTd7ZFsiXPAZBG42FB",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a1-stockpile\\p1-1-clock-calendar-schedule\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4183710,
+          "name": "a1-time-analogue-clock-shell.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3999914,
+          "name": "a1-time-calendar-shell.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4054208,
+          "name": "a1-time-digital-clock-shell.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 4024335,
+          "name": "a1-time-timetable-board.png"
+        }
+      ],
+      "large_sheet_count": 4,
+      "concept_count": 4,
+      "banked_raw": 4,
+      "items": [
+        {
+          "key": "a1-time-analogue-clock-shell",
+          "concept": "time-analogue-clock-shell",
+          "brief": "large blank analogue clock face shell with movable hand area, no numbers",
+          "family": "clock-calendar-schedule",
+          "phase": "P1.1",
+          "format": "landscape-shells",
+          "manus_task_id": "NGtGNTd7ZFsiXPAZBG42FB",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-time-digital-clock-shell",
+          "concept": "time-digital-clock-shell",
+          "brief": "blank digital time display shell, no digits",
+          "family": "clock-calendar-schedule",
+          "phase": "P1.1",
+          "format": "landscape-shells",
+          "manus_task_id": "NGtGNTd7ZFsiXPAZBG42FB",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-time-calendar-shell",
+          "concept": "time-calendar-shell",
+          "brief": "blank calendar grid shell, no month/day names or numbers",
+          "family": "clock-calendar-schedule",
+          "phase": "P1.1",
+          "format": "landscape-shells",
+          "manus_task_id": "NGtGNTd7ZFsiXPAZBG42FB",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-time-timetable-board",
+          "concept": "time-timetable-board",
+          "brief": "blank timetable board with picture slots and time slots, no text",
+          "family": "clock-calendar-schedule",
+          "phase": "P1.1",
+          "format": "landscape-shells",
+          "manus_task_id": "NGtGNTd7ZFsiXPAZBG42FB",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T18:20:49.380Z"
+    },
+    "p1-2-quantity-price-request": {
+      "phase": "P1.2",
+      "family": "quantity-price-request",
+      "title": "A1 P1.2 quantity, price, request",
+      "task_id": "JGrfHRH2QcpDjDYgMiLMzP",
+      "task_url": "https://manus.im/app/JGrfHRH2QcpDjDYgMiLMzP",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a1-stockpile\\p1-2-quantity-price-request\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4066348,
+          "name": "a1-cafe-shop-shell.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4008990,
+          "name": "a1-price-tag-board.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3793588,
+          "name": "a1-qty-counting-board.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 3938176,
+          "name": "a1-request-basket-shell.png"
+        }
+      ],
+      "large_sheet_count": 4,
+      "concept_count": 4,
+      "banked_raw": 4,
+      "items": [
+        {
+          "key": "a1-qty-counting-board",
+          "concept": "qty-counting-board",
+          "brief": "landscape board with object dock and empty counting response chips, no digits",
+          "family": "quantity-price-request",
+          "phase": "P1.2",
+          "format": "landscape-shells",
+          "manus_task_id": "JGrfHRH2QcpDjDYgMiLMzP",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-price-tag-board",
+          "concept": "price-tag-board",
+          "brief": "landscape board with item well and blank price tag response surface, no currency/numbers",
+          "family": "quantity-price-request",
+          "phase": "P1.2",
+          "format": "landscape-shells",
+          "manus_task_id": "JGrfHRH2QcpDjDYgMiLMzP",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-request-basket-shell",
+          "concept": "request-basket-shell",
+          "brief": "empty basket/request board with object slots and giver/listener side",
+          "family": "quantity-price-request",
+          "phase": "P1.2",
+          "format": "landscape-shells",
+          "manus_task_id": "JGrfHRH2QcpDjDYgMiLMzP",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-cafe-shop-shell",
+          "concept": "cafe-shop-shell",
+          "brief": "sparse cafe/shop counter shell with blank menu/item wells, no text",
+          "family": "quantity-price-request",
+          "phase": "P1.2",
+          "format": "landscape-shells",
+          "manus_task_id": "JGrfHRH2QcpDjDYgMiLMzP",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T18:20:50.657Z"
+    },
+    "p1-3-picture-sequence": {
+      "phase": "P1.3",
+      "family": "picture-sequence",
+      "title": "A1 P1.3 picture sequence shells",
+      "task_id": "AxYnwk94LJdjcNSsFXoeuh",
+      "task_url": "https://manus.im/app/AxYnwk94LJdjcNSsFXoeuh",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a1-stockpile\\p1-3-picture-sequence\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3452423,
+          "name": "a1-seq-2-frame-dock.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3390483,
+          "name": "a1-seq-3-frame-dock.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3418146,
+          "name": "a1-seq-4-frame-dock.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 3640873,
+          "name": "a1-seq-before-after-shell.png"
+        }
+      ],
+      "large_sheet_count": 4,
+      "concept_count": 4,
+      "banked_raw": 4,
+      "items": [
+        {
+          "key": "a1-seq-2-frame-dock",
+          "concept": "seq-2-frame-dock",
+          "brief": "two empty picture sequence frames with movable card dock",
+          "family": "picture-sequence",
+          "phase": "P1.3",
+          "format": "landscape-shells",
+          "manus_task_id": "AxYnwk94LJdjcNSsFXoeuh",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-seq-3-frame-dock",
+          "concept": "seq-3-frame-dock",
+          "brief": "three empty picture sequence frames with movable card dock",
+          "family": "picture-sequence",
+          "phase": "P1.3",
+          "format": "landscape-shells",
+          "manus_task_id": "AxYnwk94LJdjcNSsFXoeuh",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-seq-4-frame-dock",
+          "concept": "seq-4-frame-dock",
+          "brief": "four empty picture sequence frames with movable card dock",
+          "family": "picture-sequence",
+          "phase": "P1.3",
+          "format": "landscape-shells",
+          "manus_task_id": "AxYnwk94LJdjcNSsFXoeuh",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-seq-before-after-shell",
+          "concept": "seq-before-after-shell",
+          "brief": "before/after visual shell with two empty frames, no words",
+          "family": "picture-sequence",
+          "phase": "P1.3",
+          "format": "landscape-shells",
+          "manus_task_id": "AxYnwk94LJdjcNSsFXoeuh",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T18:20:53.739Z"
+    },
+    "p1-4-picture-difference": {
+      "phase": "P1.4",
+      "family": "picture-difference",
+      "title": "A1 P1.4 picture difference systems",
+      "task_id": "JxR7NYvm4JwWzVhw3s3WKr",
+      "task_url": "https://manus.im/app/JxR7NYvm4JwWzVhw3s3WKr",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a1-stockpile\\p1-4-picture-difference\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4123225,
+          "name": "a1-diff-twin-scene-action.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 1759594,
+          "name": "a1-diff-twin-scene-colour.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4395419,
+          "name": "a1-diff-twin-scene-location.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 4315035,
+          "name": "a1-diff-twin-scene-number.png"
+        }
+      ],
+      "large_sheet_count": 4,
+      "concept_count": 4,
+      "banked_raw": 4,
+      "items": [
+        {
+          "key": "a1-diff-twin-scene-colour",
+          "concept": "diff-twin-scene-colour",
+          "brief": "two simple twin panels with empty object wells; colour difference cue surfaces",
+          "family": "picture-difference",
+          "phase": "P1.4",
+          "format": "landscape-shells",
+          "manus_task_id": "JxR7NYvm4JwWzVhw3s3WKr",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-diff-twin-scene-number",
+          "concept": "diff-twin-scene-number",
+          "brief": "two simple twin panels with countable object wells; number difference cue, no digits",
+          "family": "picture-difference",
+          "phase": "P1.4",
+          "format": "landscape-shells",
+          "manus_task_id": "JxR7NYvm4JwWzVhw3s3WKr",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-diff-twin-scene-location",
+          "concept": "diff-twin-scene-location",
+          "brief": "two simple twin panels with same anchor and movable object location pads",
+          "family": "picture-difference",
+          "phase": "P1.4",
+          "format": "landscape-shells",
+          "manus_task_id": "JxR7NYvm4JwWzVhw3s3WKr",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-diff-twin-scene-action",
+          "concept": "diff-twin-scene-action",
+          "brief": "two simple twin panels with person/action slot differences, no written action labels",
+          "family": "picture-difference",
+          "phase": "P1.4",
+          "format": "landscape-shells",
+          "manus_task_id": "JxR7NYvm4JwWzVhw3s3WKr",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T18:25:53.403Z"
+    },
+    "p1-5-supported-writing-scaffolds": {
+      "phase": "P1.5",
+      "family": "supported-writing-scaffolds",
+      "title": "A1 P1.5 supported writing scaffolds",
+      "task_id": "6tPFEtRvzXPdSu2vbebtot",
+      "task_url": "https://manus.im/app/6tPFEtRvzXPdSu2vbebtot",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a1-stockpile\\p1-5-supported-writing-scaffolds\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3460348,
+          "name": "a1-write-build-2-sentence-shell.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3860740,
+          "name": "a1-write-choose-shell.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 3722481,
+          "name": "a1-write-copy-shell.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 3883799,
+          "name": "a1-write-gap-shell.png"
+        }
+      ],
+      "large_sheet_count": 4,
+      "concept_count": 4,
+      "banked_raw": 4,
+      "items": [
+        {
+          "key": "a1-write-copy-shell",
+          "concept": "write-copy-shell",
+          "brief": "copy scaffold board with model area and blank copy area, no text",
+          "family": "supported-writing-scaffolds",
+          "phase": "P1.5",
+          "format": "landscape-shells",
+          "manus_task_id": "6tPFEtRvzXPdSu2vbebtot",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-write-choose-shell",
+          "concept": "write-choose-shell",
+          "brief": "choose scaffold board with picture choices and empty sentence rail, no words",
+          "family": "supported-writing-scaffolds",
+          "phase": "P1.5",
+          "format": "landscape-shells",
+          "manus_task_id": "6tPFEtRvzXPdSu2vbebtot",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-write-gap-shell",
+          "concept": "write-gap-shell",
+          "brief": "gap-fill scaffold board with blank slot in a writing rail, no text",
+          "family": "supported-writing-scaffolds",
+          "phase": "P1.5",
+          "format": "landscape-shells",
+          "manus_task_id": "6tPFEtRvzXPdSu2vbebtot",
+          "obvious_fail": false
+        },
+        {
+          "key": "a1-write-build-2-sentence-shell",
+          "concept": "write-build-2-sentence-shell",
+          "brief": "two short sentence build rails with picture slots and blank writing areas, no fake text",
+          "family": "supported-writing-scaffolds",
+          "phase": "P1.5",
+          "format": "landscape-shells",
+          "manus_task_id": "6tPFEtRvzXPdSu2vbebtot",
+          "obvious_fail": false
+        }
+      ],
+      "finished_at": "2026-08-18T18:25:54.158Z"
+    }
+  },
+  "durable_root": "harvested/manus-a1-stockpile"
+}

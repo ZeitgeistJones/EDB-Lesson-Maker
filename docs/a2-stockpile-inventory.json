@@ -1,0 +1,2248 @@
+{
+  "spec": "a2-visual-operating-system",
+  "updated_at": "2026-08-18T22:04:46.496Z",
+  "running_total": {
+    "waves_fired": 17,
+    "waves_downloaded": 17,
+    "sheets_downloaded": 33,
+    "sheets_large": 33,
+    "concepts_planned": 157,
+    "concepts_banked_raw": 157,
+    "code_later_filtered": 26
+  },
+  "waves": {
+    "p0-2-event-timeline-state-change": {
+      "phase": "P0.2",
+      "family": "event-timeline-state-change",
+      "title": "A2 P0.2 event and state-change visuals",
+      "task_id": "XyYgfpsioupXHMz7UrhWva",
+      "task_url": "https://manus.im/app/XyYgfpsioupXHMz7UrhWva",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p0-2-event-timeline-state-change\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3728752,
+          "name": "a2_state_change_paired_tokens.png"
+        }
+      ],
+      "large_sheet_count": 1,
+      "expected_artifacts": 1,
+      "concept_count": 8,
+      "banked_raw": 8,
+      "items": [
+        {
+          "key": "a2-state-before-clean-table",
+          "concept": "state-before-clean-table",
+          "brief": "same classroom table before activity: tidy materials waiting, no text",
+          "family": "event-timeline-state-change",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "XyYgfpsioupXHMz7UrhWva",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-state-event-craft-in-progress",
+          "concept": "state-event-craft-in-progress",
+          "brief": "same table during craft: child hands working, materials moving, no text",
+          "family": "event-timeline-state-change",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "XyYgfpsioupXHMz7UrhWva",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-state-after-finished-craft",
+          "concept": "state-after-finished-craft",
+          "brief": "same table after activity: simple finished craft displayed, no text",
+          "family": "event-timeline-state-change",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "XyYgfpsioupXHMz7UrhWva",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-state-past-memory-bubble",
+          "concept": "state-past-memory-bubble",
+          "brief": "soft memory bubble with faded familiar scene inside, no words",
+          "family": "event-timeline-state-change",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "XyYgfpsioupXHMz7UrhWva",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-state-now-spotlight",
+          "concept": "state-now-spotlight",
+          "brief": "current-moment spotlight token over present scene pad, no word",
+          "family": "event-timeline-state-change",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "XyYgfpsioupXHMz7UrhWva",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-state-change-arrow",
+          "concept": "state-change-arrow",
+          "brief": "object visibly changing from one simple state to another along a curved arrow, no text",
+          "family": "event-timeline-state-change",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "XyYgfpsioupXHMz7UrhWva",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-state-finished-badge",
+          "concept": "state-finished-badge",
+          "brief": "complete/finished badge with calm check-like visual, no word",
+          "family": "event-timeline-state-change",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "XyYgfpsioupXHMz7UrhWva",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-state-not-finished-badge",
+          "concept": "state-not-finished-badge",
+          "brief": "in-progress badge with partial fill/unfinished edge, no word",
+          "family": "event-timeline-state-change",
+          "phase": "P0.2",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "XyYgfpsioupXHMz7UrhWva",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T21:47:22.246Z"
+    },
+    "p0-1-connector-linked-meaning": {
+      "phase": "P0.1",
+      "family": "connector-linked-meaning",
+      "title": "A2 P0.1 connector linked-meaning metaphors",
+      "task_id": "FNyP9gX8xmFfZNfZNvBu96",
+      "task_url": "https://manus.im/app/FNyP9gX8xmFfZNfZNvBu96",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p0-1-connector-linked-meaning\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3318900,
+          "name": "a2-connector-relationship-icons.png"
+        }
+      ],
+      "large_sheet_count": 1,
+      "expected_artifacts": 1,
+      "concept_count": 10,
+      "banked_raw": 10,
+      "items": [
+        {
+          "key": "a2-conn-and-link-chain",
+          "concept": "conn-and-link-chain",
+          "brief": "two friendly idea tiles joined by a soft chain/link motif; means added-together, no word",
+          "family": "connector-linked-meaning",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "FNyP9gX8xmFfZNfZNvBu96",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-conn-but-contrast-split",
+          "concept": "conn-but-contrast-split",
+          "brief": "two idea tiles separated by a gentle contrasting colour split; means contrast, no word",
+          "family": "connector-linked-meaning",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "FNyP9gX8xmFfZNfZNvBu96",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-conn-because-cause-spark",
+          "concept": "conn-because-cause-spark",
+          "brief": "small cause tile visibly triggers simple effect tile with spark/flow, no word",
+          "family": "connector-linked-meaning",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "FNyP9gX8xmFfZNfZNvBu96",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-conn-then-step-stones",
+          "concept": "conn-then-step-stones",
+          "brief": "two stepping stones with a clear forward path from one event to next, no numbers",
+          "family": "connector-linked-meaning",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "FNyP9gX8xmFfZNfZNvBu96",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-conn-first-start-stone",
+          "concept": "conn-first-start-stone",
+          "brief": "start stone with sunrise/flag cue, no word or digit",
+          "family": "connector-linked-meaning",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "FNyP9gX8xmFfZNfZNvBu96",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-conn-next-middle-stone",
+          "concept": "conn-next-middle-stone",
+          "brief": "middle stepping stone with forward motion cue, no word",
+          "family": "connector-linked-meaning",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "FNyP9gX8xmFfZNfZNvBu96",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-conn-finally-finish-flag",
+          "concept": "conn-finally-finish-flag",
+          "brief": "finish flag/check destination token, no word",
+          "family": "connector-linked-meaning",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "FNyP9gX8xmFfZNfZNvBu96",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-conn-sequence-bridge-3",
+          "concept": "conn-sequence-bridge-3",
+          "brief": "three small story pebbles connected by bridge arcs, no numbers",
+          "family": "connector-linked-meaning",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "FNyP9gX8xmFfZNfZNvBu96",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-conn-cause-domino-pair",
+          "concept": "conn-cause-domino-pair",
+          "brief": "one child-safe domino-like block tipping another effect block, no text",
+          "family": "connector-linked-meaning",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "FNyP9gX8xmFfZNfZNvBu96",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-conn-contrast-balance-scale",
+          "concept": "conn-contrast-balance-scale",
+          "brief": "two simple picture trays balanced in opposite colours, no text",
+          "family": "connector-linked-meaning",
+          "phase": "P0.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "FNyP9gX8xmFfZNfZNvBu96",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T21:47:22.459Z"
+    },
+    "p0-4-comparison-simple-reason": {
+      "phase": "P0.4",
+      "family": "comparison-simple-reason",
+      "title": "A2 P0.4 comparison and simple reason icons",
+      "task_id": "AEWHHUt7ZseUXZtSA4MKBC",
+      "task_url": "https://manus.im/app/AEWHHUt7ZseUXZtSA4MKBC",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p0-4-comparison-simple-reason\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3570129,
+          "name": "a2_comp_relationship_icons.png"
+        }
+      ],
+      "large_sheet_count": 1,
+      "expected_artifacts": 1,
+      "concept_count": 8,
+      "banked_raw": 8,
+      "items": [
+        {
+          "key": "a2-comp-more-pile",
+          "concept": "comp-more-pile",
+          "brief": "two child-safe piles with left visibly more than right, no digits",
+          "family": "comparison-simple-reason",
+          "phase": "P0.4",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AEWHHUt7ZseUXZtSA4MKBC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-comp-less-pile",
+          "concept": "comp-less-pile",
+          "brief": "two child-safe piles with left visibly less than right, no digits",
+          "family": "comparison-simple-reason",
+          "phase": "P0.4",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AEWHHUt7ZseUXZtSA4MKBC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-comp-bigger-smaller",
+          "concept": "comp-bigger-smaller",
+          "brief": "same toy shape shown big and small side by side, no text",
+          "family": "comparison-simple-reason",
+          "phase": "P0.4",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AEWHHUt7ZseUXZtSA4MKBC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-comp-faster-slower",
+          "concept": "comp-faster-slower",
+          "brief": "two toy scooters with motion trails, one clearly faster, one slower, no words",
+          "family": "comparison-simple-reason",
+          "phase": "P0.4",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AEWHHUt7ZseUXZtSA4MKBC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-comp-equal-balance",
+          "concept": "comp-equal-balance",
+          "brief": "balanced trays with same amount on both sides, no equals sign",
+          "family": "comparison-simple-reason",
+          "phase": "P0.4",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AEWHHUt7ZseUXZtSA4MKBC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-comp-preference-heart-choice",
+          "concept": "comp-preference-heart-choice",
+          "brief": "heart marker choosing one of two empty picture wells, no text",
+          "family": "comparison-simple-reason",
+          "phase": "P0.4",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AEWHHUt7ZseUXZtSA4MKBC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-comp-one-reason-because-dot",
+          "concept": "comp-one-reason-because-dot",
+          "brief": "small reason token linking choice to a single evidence icon, no word",
+          "family": "comparison-simple-reason",
+          "phase": "P0.4",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AEWHHUt7ZseUXZtSA4MKBC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-comp-attribute-evidence-pin",
+          "concept": "comp-attribute-evidence-pin",
+          "brief": "visual evidence pin attached to object detail, no label",
+          "family": "comparison-simple-reason",
+          "phase": "P0.4",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AEWHHUt7ZseUXZtSA4MKBC",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T21:47:21.790Z"
+    },
+    "p0-3-information-gap-private-info": {
+      "phase": "P0.3",
+      "family": "information-gap-private-info",
+      "title": "A2 P0.3 information-gap private-info kit",
+      "task_id": "ghEUKzDo93gFzM34v7G7xX",
+      "task_url": "https://manus.im/app/ghEUKzDo93gFzM34v7G7xX",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p0-3-information-gap-private-info\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3392717,
+          "name": "a2_private_information_icons.png"
+        }
+      ],
+      "large_sheet_count": 1,
+      "expected_artifacts": 1,
+      "concept_count": 8,
+      "banked_raw": 8,
+      "items": [
+        {
+          "key": "a2-info-known-lit-card",
+          "concept": "info-known-lit-card",
+          "brief": "private card face-up with simple picture glow visible only to holder, no text",
+          "family": "information-gap-private-info",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "ghEUKzDo93gFzM34v7G7xX",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-info-unknown-mystery-card",
+          "concept": "info-unknown-mystery-card",
+          "brief": "card back with friendly mystery shape, no question mark letterform",
+          "family": "information-gap-private-info",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "ghEUKzDo93gFzM34v7G7xX",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-info-hidden-fact-pocket",
+          "concept": "info-hidden-fact-pocket",
+          "brief": "small pocket/envelope holding a hidden picture card, no letters",
+          "family": "information-gap-private-info",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "ghEUKzDo93gFzM34v7G7xX",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-info-ask-partner-token",
+          "concept": "info-ask-partner-token",
+          "brief": "two children facing with one speech bubble reaching across, bubble blank",
+          "family": "information-gap-private-info",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "ghEUKzDo93gFzM34v7G7xX",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-info-partner-a-badge",
+          "concept": "info-partner-a-badge",
+          "brief": "first partner badge using color/shape only, no A letter",
+          "family": "information-gap-private-info",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "ghEUKzDo93gFzM34v7G7xX",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-info-partner-b-badge",
+          "concept": "info-partner-b-badge",
+          "brief": "second partner badge using different color/shape only, no B letter",
+          "family": "information-gap-private-info",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "ghEUKzDo93gFzM34v7G7xX",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-info-dossier-incomplete",
+          "concept": "info-dossier-incomplete",
+          "brief": "folder with one missing picture slot visibly empty, no text",
+          "family": "information-gap-private-info",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "ghEUKzDo93gFzM34v7G7xX",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-info-dossier-complete",
+          "concept": "info-dossier-complete",
+          "brief": "same folder with all picture slots filled by abstract icons, no text",
+          "family": "information-gap-private-info",
+          "phase": "P0.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "ghEUKzDo93gFzM34v7G7xX",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T21:47:47.822Z"
+    },
+    "p0-8-multi-detail-listening-markers": {
+      "phase": "P0.8",
+      "family": "multi-detail-listening-markers",
+      "title": "A2 P0.8 multi-detail listening markers",
+      "task_id": "c3yAtpXc8LTk6S5YwCXQN7",
+      "task_url": "https://manus.im/app/c3yAtpXc8LTk6S5YwCXQN7",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p0-8-multi-detail-listening-markers\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3150508,
+          "name": "a2-listening-workflow-markers.png"
+        }
+      ],
+      "large_sheet_count": 1,
+      "expected_artifacts": 1,
+      "concept_count": 8,
+      "banked_raw": 8,
+      "items": [
+        {
+          "key": "a2-listen-heard-detail-pin",
+          "concept": "listen-heard-detail-pin",
+          "brief": "ear cue with one detail pin lighting up, no text",
+          "family": "multi-detail-listening-markers",
+          "phase": "P0.8",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "c3yAtpXc8LTk6S5YwCXQN7",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-listen-missing-detail-pin",
+          "concept": "listen-missing-detail-pin",
+          "brief": "ear cue with one empty/missing detail slot, no question mark letterform",
+          "family": "multi-detail-listening-markers",
+          "phase": "P0.8",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "c3yAtpXc8LTk6S5YwCXQN7",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-listen-first-pass-token",
+          "concept": "listen-first-pass-token",
+          "brief": "first-listen token shown as one filled ear/step shape, no digit",
+          "family": "multi-detail-listening-markers",
+          "phase": "P0.8",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "c3yAtpXc8LTk6S5YwCXQN7",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-listen-second-pass-token",
+          "concept": "listen-second-pass-token",
+          "brief": "second-listen token shown as two echo rings/steps, no digit",
+          "family": "multi-detail-listening-markers",
+          "phase": "P0.8",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "c3yAtpXc8LTk6S5YwCXQN7",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-listen-verify-token",
+          "concept": "listen-verify-token",
+          "brief": "magnifier checking a heard detail card, no words",
+          "family": "multi-detail-listening-markers",
+          "phase": "P0.8",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "c3yAtpXc8LTk6S5YwCXQN7",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-listen-revise-token",
+          "concept": "listen-revise-token",
+          "brief": "detail card being gently corrected/replaced, no text",
+          "family": "multi-detail-listening-markers",
+          "phase": "P0.8",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "c3yAtpXc8LTk6S5YwCXQN7",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-listen-parking-distractor",
+          "concept": "listen-parking-distractor",
+          "brief": "extra distractor picture card parked off to side, no label",
+          "family": "multi-detail-listening-markers",
+          "phase": "P0.8",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "c3yAtpXc8LTk6S5YwCXQN7",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-listen-detail-bundle",
+          "concept": "listen-detail-bundle",
+          "brief": "small bundle of multiple detail pins/cards, no text",
+          "family": "multi-detail-listening-markers",
+          "phase": "P0.8",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "c3yAtpXc8LTk6S5YwCXQN7",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T21:49:56.729Z"
+    },
+    "p0-6-transaction-state-role": {
+      "phase": "P0.6",
+      "family": "transaction-state-role",
+      "title": "A2 P0.6 transaction role and state kit",
+      "task_id": "nbgDVsQCRGYBu4QH7PJfEC",
+      "task_url": "https://manus.im/app/nbgDVsQCRGYBu4QH7PJfEC",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p0-6-transaction-state-role\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4020450,
+          "name": "a2_trans_borrow_return_desk_skin.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4236241,
+          "name": "a2_trans_cafe_counter_skin.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4084097,
+          "name": "a2_trans_snack_shop_counter_skin.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 4178846,
+          "name": "a2_trans_ticket_booth_skin.png"
+        },
+        {
+          "file": "05.png",
+          "bytes": 3371581,
+          "name": "a2_transaction_role_tokens.png"
+        }
+      ],
+      "large_sheet_count": 5,
+      "expected_artifacts": 5,
+      "concept_count": 12,
+      "banked_raw": 12,
+      "items": [
+        {
+          "key": "a2-trans-customer-child",
+          "concept": "trans-customer-child",
+          "brief": "child customer role badge at counter, no text",
+          "family": "transaction-state-role",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "nbgDVsQCRGYBu4QH7PJfEC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-trans-seller-child",
+          "concept": "trans-seller-child",
+          "brief": "child seller/helper role badge behind counter, no text",
+          "family": "transaction-state-role",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "nbgDVsQCRGYBu4QH7PJfEC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-trans-wants-token",
+          "concept": "trans-wants-token",
+          "brief": "child points to desired item in empty well, no speech text",
+          "family": "transaction-state-role",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "nbgDVsQCRGYBu4QH7PJfEC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-trans-available-token",
+          "concept": "trans-available-token",
+          "brief": "item on open shelf with warm glow, no word",
+          "family": "transaction-state-role",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "nbgDVsQCRGYBu4QH7PJfEC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-trans-unavailable-token",
+          "concept": "trans-unavailable-token",
+          "brief": "empty shelf spot with gentle unavailable cover, no X letter",
+          "family": "transaction-state-role",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "nbgDVsQCRGYBu4QH7PJfEC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-trans-pay-token",
+          "concept": "trans-pay-token",
+          "brief": "hand passing simple coin/token, no currency mark",
+          "family": "transaction-state-role",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "nbgDVsQCRGYBu4QH7PJfEC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-trans-handover-token",
+          "concept": "trans-handover-token",
+          "brief": "two hands passing snack/ticket/object, no text",
+          "family": "transaction-state-role",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "nbgDVsQCRGYBu4QH7PJfEC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-trans-mistake-fix-token",
+          "concept": "trans-mistake-fix-token",
+          "brief": "wrong item gently swapped for right item, no words",
+          "family": "transaction-state-role",
+          "phase": "P0.6",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "nbgDVsQCRGYBu4QH7PJfEC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-trans-snack-shop-counter-skin",
+          "concept": "trans-snack-shop-counter-skin",
+          "brief": "sparse snack shop counter skin with empty item wells and blank menu area, no text/prices",
+          "family": "transaction-state-role",
+          "phase": "P0.6",
+          "format": "landscape-skins",
+          "bucket": "MANUS",
+          "manus_task_id": "nbgDVsQCRGYBu4QH7PJfEC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-trans-cafe-counter-skin",
+          "concept": "trans-cafe-counter-skin",
+          "brief": "sparse child cafe counter skin with empty item wells, no readable menu",
+          "family": "transaction-state-role",
+          "phase": "P0.6",
+          "format": "landscape-skins",
+          "bucket": "MANUS",
+          "manus_task_id": "nbgDVsQCRGYBu4QH7PJfEC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-trans-ticket-booth-skin",
+          "concept": "trans-ticket-booth-skin",
+          "brief": "school fair ticket booth skin with blank ticket area, no numbers",
+          "family": "transaction-state-role",
+          "phase": "P0.6",
+          "format": "landscape-skins",
+          "bucket": "MANUS",
+          "manus_task_id": "nbgDVsQCRGYBu4QH7PJfEC",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-trans-borrow-return-desk-skin",
+          "concept": "trans-borrow-return-desk-skin",
+          "brief": "classroom borrow/return desk skin with empty object wells, no labels",
+          "family": "transaction-state-role",
+          "phase": "P0.6",
+          "format": "landscape-skins",
+          "bucket": "MANUS",
+          "manus_task_id": "nbgDVsQCRGYBu4QH7PJfEC",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T21:50:24.064Z"
+    },
+    "p0-5-route-map-components": {
+      "phase": "P0.5",
+      "family": "route-map-components",
+      "title": "A2 P0.5 route and map components",
+      "task_id": "n3xEBnshHYGbZtPBQHLMvG",
+      "task_url": "https://manus.im/app/n3xEBnshHYGbZtPBQHLMvG",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p0-5-route-map-components\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3235822,
+          "name": "a2_child_landmark_components.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3253241,
+          "name": "a2_route_path_components.png"
+        }
+      ],
+      "large_sheet_count": 2,
+      "expected_artifacts": 2,
+      "concept_count": 16,
+      "banked_raw": 16,
+      "items": [
+        {
+          "key": "a2-map-road-straight",
+          "concept": "map-road-straight",
+          "brief": "clean straight road segment top-down, unlabeled",
+          "family": "route-map-components",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "n3xEBnshHYGbZtPBQHLMvG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-map-road-bend-left",
+          "concept": "map-road-bend-left",
+          "brief": "curved road bend component, unlabeled",
+          "family": "route-map-components",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "n3xEBnshHYGbZtPBQHLMvG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-map-road-t-junction",
+          "concept": "map-road-t-junction",
+          "brief": "T-junction road component, unlabeled",
+          "family": "route-map-components",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "n3xEBnshHYGbZtPBQHLMvG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-map-road-crossing",
+          "concept": "map-road-crossing",
+          "brief": "simple crossing/intersection component, unlabeled",
+          "family": "route-map-components",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "n3xEBnshHYGbZtPBQHLMvG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-map-road-roundabout",
+          "concept": "map-road-roundabout",
+          "brief": "friendly simple roundabout component, unlabeled",
+          "family": "route-map-components",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "n3xEBnshHYGbZtPBQHLMvG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-map-road-bridge",
+          "concept": "map-road-bridge",
+          "brief": "small bridge over blue stream component, unlabeled",
+          "family": "route-map-components",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "n3xEBnshHYGbZtPBQHLMvG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-map-pin-start",
+          "concept": "map-pin-start",
+          "brief": "start map pin with shape cue only, no letter",
+          "family": "route-map-components",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "n3xEBnshHYGbZtPBQHLMvG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-map-pin-destination",
+          "concept": "map-pin-destination",
+          "brief": "destination pin with flag/star cue only, no word",
+          "family": "route-map-components",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "n3xEBnshHYGbZtPBQHLMvG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-map-landmark-school",
+          "concept": "map-landmark-school",
+          "brief": "small school building landmark, no sign text",
+          "family": "route-map-components",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "n3xEBnshHYGbZtPBQHLMvG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-map-landmark-park",
+          "concept": "map-landmark-park",
+          "brief": "park landmark with tree/bench, no sign text",
+          "family": "route-map-components",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "n3xEBnshHYGbZtPBQHLMvG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-map-landmark-cafe",
+          "concept": "map-landmark-cafe",
+          "brief": "kid-friendly cafe/snack shop landmark, no sign text",
+          "family": "route-map-components",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "n3xEBnshHYGbZtPBQHLMvG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-map-landmark-library",
+          "concept": "map-landmark-library",
+          "brief": "library building landmark with book icon only, no letters",
+          "family": "route-map-components",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "n3xEBnshHYGbZtPBQHLMvG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-map-landmark-shop",
+          "concept": "map-landmark-shop",
+          "brief": "small shop landmark, no readable sign",
+          "family": "route-map-components",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "n3xEBnshHYGbZtPBQHLMvG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-map-landmark-zoo",
+          "concept": "map-landmark-zoo",
+          "brief": "zoo gate landmark with animal icon only, no text",
+          "family": "route-map-components",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "n3xEBnshHYGbZtPBQHLMvG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-map-landmark-bus-stop",
+          "concept": "map-landmark-bus-stop",
+          "brief": "bus stop shelter landmark with bus icon only, no words",
+          "family": "route-map-components",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "n3xEBnshHYGbZtPBQHLMvG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-map-landmark-train-stop",
+          "concept": "map-landmark-train-stop",
+          "brief": "small train stop landmark with train icon only, no text",
+          "family": "route-map-components",
+          "phase": "P0.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "n3xEBnshHYGbZtPBQHLMvG",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T21:49:57.261Z"
+    },
+    "p0-7-reading-text-type-skins": {
+      "phase": "P0.7",
+      "family": "reading-text-type-skins",
+      "title": "A2 P0.7 reading text-type skins",
+      "task_id": "GvLsRv6Lx5y4PCjg8ypTEm",
+      "task_url": "https://manus.im/app/GvLsRv6Lx5y4PCjg8ypTEm",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p0-7-reading-text-type-skins\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3985434,
+          "name": "a2-read-article-skin.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 3648285,
+          "name": "a2-read-chat-skin.png"
+        },
+        {
+          "file": "03.png",
+          "bytes": 4015592,
+          "name": "a2-read-comic-skin.png"
+        },
+        {
+          "file": "04.png",
+          "bytes": 3737834,
+          "name": "a2-read-diary-skin.png"
+        },
+        {
+          "file": "05.png",
+          "bytes": 3852441,
+          "name": "a2-read-email-skin.png"
+        },
+        {
+          "file": "06.png",
+          "bytes": 3963212,
+          "name": "a2-read-invitation-skin.png"
+        },
+        {
+          "file": "07.png",
+          "bytes": 3884245,
+          "name": "a2-read-menu-skin.png"
+        },
+        {
+          "file": "08.png",
+          "bytes": 4123520,
+          "name": "a2-read-notice-skin.png"
+        },
+        {
+          "file": "09.png",
+          "bytes": 3845306,
+          "name": "a2-read-postcard-skin.png"
+        },
+        {
+          "file": "10.png",
+          "bytes": 3628407,
+          "name": "a2-read-poster-skin.png"
+        },
+        {
+          "file": "11.png",
+          "bytes": 3917107,
+          "name": "a2-read-route-card-skin.png"
+        },
+        {
+          "file": "12.png",
+          "bytes": 4018616,
+          "name": "a2-read-timetable-skin.png"
+        }
+      ],
+      "large_sheet_count": 12,
+      "expected_artifacts": 12,
+      "concept_count": 12,
+      "banked_raw": 12,
+      "items": [
+        {
+          "key": "a2-read-email-skin",
+          "concept": "read-email-skin",
+          "brief": "blank email/message skin with sender/avatar zone and empty content area, no fake text",
+          "family": "reading-text-type-skins",
+          "phase": "P0.7",
+          "format": "landscape-skins",
+          "bucket": "MANUS",
+          "manus_task_id": "GvLsRv6Lx5y4PCjg8ypTEm",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-read-chat-skin",
+          "concept": "read-chat-skin",
+          "brief": "blank phone chat skin with empty bubble areas, no words",
+          "family": "reading-text-type-skins",
+          "phase": "P0.7",
+          "format": "landscape-skins",
+          "bucket": "MANUS",
+          "manus_task_id": "GvLsRv6Lx5y4PCjg8ypTEm",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-read-invitation-skin",
+          "concept": "read-invitation-skin",
+          "brief": "birthday/playdate invitation card skin with picture spot and blank zones, no text",
+          "family": "reading-text-type-skins",
+          "phase": "P0.7",
+          "format": "landscape-skins",
+          "bucket": "MANUS",
+          "manus_task_id": "GvLsRv6Lx5y4PCjg8ypTEm",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-read-postcard-skin",
+          "concept": "read-postcard-skin",
+          "brief": "postcard skin with stamp box and blank message/address zones, no writing",
+          "family": "reading-text-type-skins",
+          "phase": "P0.7",
+          "format": "landscape-skins",
+          "bucket": "MANUS",
+          "manus_task_id": "GvLsRv6Lx5y4PCjg8ypTEm",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-read-notice-skin",
+          "concept": "read-notice-skin",
+          "brief": "classroom notice skin with icon spot and blank content area, no text",
+          "family": "reading-text-type-skins",
+          "phase": "P0.7",
+          "format": "landscape-skins",
+          "bucket": "MANUS",
+          "manus_task_id": "GvLsRv6Lx5y4PCjg8ypTEm",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-read-poster-skin",
+          "concept": "read-poster-skin",
+          "brief": "event poster skin with picture hero and blank info blocks, no words",
+          "family": "reading-text-type-skins",
+          "phase": "P0.7",
+          "format": "landscape-skins",
+          "bucket": "MANUS",
+          "manus_task_id": "GvLsRv6Lx5y4PCjg8ypTEm",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-read-menu-skin",
+          "concept": "read-menu-skin",
+          "brief": "menu/list skin with picture wells and blank price zones, no readable text",
+          "family": "reading-text-type-skins",
+          "phase": "P0.7",
+          "format": "landscape-skins",
+          "bucket": "MANUS",
+          "manus_task_id": "GvLsRv6Lx5y4PCjg8ypTEm",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-read-timetable-skin",
+          "concept": "read-timetable-skin",
+          "brief": "timetable/schedule skin with visual rows and blank cells, no days/times/numbers",
+          "family": "reading-text-type-skins",
+          "phase": "P0.7",
+          "format": "landscape-skins",
+          "bucket": "MANUS",
+          "manus_task_id": "GvLsRv6Lx5y4PCjg8ypTEm",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-read-diary-skin",
+          "concept": "read-diary-skin",
+          "brief": "child diary page skin with date area blank and picture sticker spot, no writing",
+          "family": "reading-text-type-skins",
+          "phase": "P0.7",
+          "format": "landscape-skins",
+          "bucket": "MANUS",
+          "manus_task_id": "GvLsRv6Lx5y4PCjg8ypTEm",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-read-article-skin",
+          "concept": "read-article-skin",
+          "brief": "kid magazine article skin with picture and blank text columns, no fake text",
+          "family": "reading-text-type-skins",
+          "phase": "P0.7",
+          "format": "landscape-skins",
+          "bucket": "MANUS",
+          "manus_task_id": "GvLsRv6Lx5y4PCjg8ypTEm",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-read-route-card-skin",
+          "concept": "read-route-card-skin",
+          "brief": "route instruction card skin with small map picture area and blank step areas, no labels",
+          "family": "reading-text-type-skins",
+          "phase": "P0.7",
+          "format": "landscape-skins",
+          "bucket": "MANUS",
+          "manus_task_id": "GvLsRv6Lx5y4PCjg8ypTEm",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-read-comic-skin",
+          "concept": "read-comic-skin",
+          "brief": "simple comic strip skin with empty speech bubbles and panels, no words",
+          "family": "reading-text-type-skins",
+          "phase": "P0.7",
+          "format": "landscape-skins",
+          "bucket": "MANUS",
+          "manus_task_id": "GvLsRv6Lx5y4PCjg8ypTEm",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T21:55:07.385Z"
+    },
+    "p0-9-linked-writing-revision": {
+      "phase": "P0.9",
+      "family": "linked-writing-revision",
+      "title": "A2 P0.9 linked writing and revision kit",
+      "task_id": "Dw6EmzZYYGc8Jpvp2Zyzjz",
+      "task_url": "https://manus.im/app/Dw6EmzZYYGc8Jpvp2Zyzjz",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p0-9-linked-writing-revision\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3286393,
+          "name": "a2-writing-revision-tokens.png"
+        }
+      ],
+      "large_sheet_count": 1,
+      "expected_artifacts": 1,
+      "concept_count": 8,
+      "banked_raw": 8,
+      "items": [
+        {
+          "key": "a2-write-idea-card",
+          "concept": "write-idea-card",
+          "brief": "picture idea card with blank front and small lightbulb/scene cue, no text",
+          "family": "linked-writing-revision",
+          "phase": "P0.9",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Dw6EmzZYYGc8Jpvp2Zyzjz",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-write-connector-tray-visual",
+          "concept": "write-connector-tray-visual",
+          "brief": "tray holding visual connector tokens only, no words",
+          "family": "linked-writing-revision",
+          "phase": "P0.9",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Dw6EmzZYYGc8Jpvp2Zyzjz",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-write-move-token",
+          "concept": "write-move-token",
+          "brief": "idea card moving from one slot to another, no arrows with labels",
+          "family": "linked-writing-revision",
+          "phase": "P0.9",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Dw6EmzZYYGc8Jpvp2Zyzjz",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-write-replace-token",
+          "concept": "write-replace-token",
+          "brief": "one idea card swapped for another with gentle curved motion, no words",
+          "family": "linked-writing-revision",
+          "phase": "P0.9",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Dw6EmzZYYGc8Jpvp2Zyzjz",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-write-expand-token",
+          "concept": "write-expand-token",
+          "brief": "small idea card opening into larger detail card, no text",
+          "family": "linked-writing-revision",
+          "phase": "P0.9",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Dw6EmzZYYGc8Jpvp2Zyzjz",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-write-purpose-badge",
+          "concept": "write-purpose-badge",
+          "brief": "purpose/audience badge with child reader icon, no label",
+          "family": "linked-writing-revision",
+          "phase": "P0.9",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Dw6EmzZYYGc8Jpvp2Zyzjz",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-write-audience-child-badge",
+          "concept": "write-audience-child-badge",
+          "brief": "audience badge showing friend/teacher reader icon, no word",
+          "family": "linked-writing-revision",
+          "phase": "P0.9",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Dw6EmzZYYGc8Jpvp2Zyzjz",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-write-check-icon-set",
+          "concept": "write-check-icon-set",
+          "brief": "small checklist-like visual tokens without boxes/text",
+          "family": "linked-writing-revision",
+          "phase": "P0.9",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Dw6EmzZYYGc8Jpvp2Zyzjz",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T21:57:12.976Z"
+    },
+    "p1-2-routine-frequency": {
+      "phase": "P1.2",
+      "family": "routine-frequency",
+      "title": "A2 P1.2 routine and frequency visuals",
+      "task_id": "is8QqsasXKRBRzccbRM3yt",
+      "task_url": "https://manus.im/app/is8QqsasXKRBRzccbRM3yt",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p1-2-routine-frequency\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3409512,
+          "name": "a2-frequency-scale-icons.png"
+        }
+      ],
+      "large_sheet_count": 1,
+      "expected_artifacts": 1,
+      "concept_count": 8,
+      "banked_raw": 8,
+      "items": [
+        {
+          "key": "a2-freq-always-full-row",
+          "concept": "freq-always-full-row",
+          "brief": "row of routine dots all filled, no word",
+          "family": "routine-frequency",
+          "phase": "P1.2",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "is8QqsasXKRBRzccbRM3yt",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-freq-usually-most-row",
+          "concept": "freq-usually-most-row",
+          "brief": "row of routine dots mostly filled, no word",
+          "family": "routine-frequency",
+          "phase": "P1.2",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "is8QqsasXKRBRzccbRM3yt",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-freq-often-many-row",
+          "concept": "freq-often-many-row",
+          "brief": "row of routine dots many filled but not all, no word",
+          "family": "routine-frequency",
+          "phase": "P1.2",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "is8QqsasXKRBRzccbRM3yt",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-freq-sometimes-few-row",
+          "concept": "freq-sometimes-few-row",
+          "brief": "row of routine dots a few filled, no word",
+          "family": "routine-frequency",
+          "phase": "P1.2",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "is8QqsasXKRBRzccbRM3yt",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-freq-never-empty-row",
+          "concept": "freq-never-empty-row",
+          "brief": "row of routine dots empty/quiet, no word",
+          "family": "routine-frequency",
+          "phase": "P1.2",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "is8QqsasXKRBRzccbRM3yt",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-freq-routine-loop",
+          "concept": "freq-routine-loop",
+          "brief": "simple weekly routine loop with repeated child activity icon, no days/text",
+          "family": "routine-frequency",
+          "phase": "P1.2",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "is8QqsasXKRBRzccbRM3yt",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-freq-habit-streak",
+          "concept": "freq-habit-streak",
+          "brief": "several small activity cards repeating in a trail, no numbers",
+          "family": "routine-frequency",
+          "phase": "P1.2",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "is8QqsasXKRBRzccbRM3yt",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-freq-rare-spark",
+          "concept": "freq-rare-spark",
+          "brief": "single activity card isolated among empty slots, no text",
+          "family": "routine-frequency",
+          "phase": "P1.2",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "is8QqsasXKRBRzccbRM3yt",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T22:01:38.298Z"
+    },
+    "p1-1-plans-arrangements": {
+      "phase": "P1.1",
+      "family": "plans-arrangements",
+      "title": "A2 P1.1 plans and arrangements states",
+      "task_id": "AFqZkvExSJra64HVedHqyG",
+      "task_url": "https://manus.im/app/AFqZkvExSJra64HVedHqyG",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p1-1-plans-arrangements\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3748173,
+          "name": "a2-arrangement-status-tokens.png"
+        }
+      ],
+      "large_sheet_count": 1,
+      "expected_artifacts": 1,
+      "concept_count": 10,
+      "banked_raw": 10,
+      "items": [
+        {
+          "key": "a2-plan-available-token",
+          "concept": "plan-available-token",
+          "brief": "child calendar spot open with happy glow, no text",
+          "family": "plans-arrangements",
+          "phase": "P1.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AFqZkvExSJra64HVedHqyG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-plan-busy-token",
+          "concept": "plan-busy-token",
+          "brief": "child calendar spot occupied by activity icon, no text",
+          "family": "plans-arrangements",
+          "phase": "P1.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AFqZkvExSJra64HVedHqyG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-plan-chosen-time-token",
+          "concept": "plan-chosen-time-token",
+          "brief": "blank clock/calendar chosen with star pin, no numbers",
+          "family": "plans-arrangements",
+          "phase": "P1.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AFqZkvExSJra64HVedHqyG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-plan-chosen-place-token",
+          "concept": "plan-chosen-place-token",
+          "brief": "map/place pad chosen with star pin, no word",
+          "family": "plans-arrangements",
+          "phase": "P1.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AFqZkvExSJra64HVedHqyG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-plan-invitation-token",
+          "concept": "plan-invitation-token",
+          "brief": "blank invitation card passed to friend, no writing",
+          "family": "plans-arrangements",
+          "phase": "P1.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AFqZkvExSJra64HVedHqyG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-plan-accept-token",
+          "concept": "plan-accept-token",
+          "brief": "friend happily agreeing with thumbs/heart gesture, no word",
+          "family": "plans-arrangements",
+          "phase": "P1.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AFqZkvExSJra64HVedHqyG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-plan-decline-token",
+          "concept": "plan-decline-token",
+          "brief": "friend politely declining with gentle palm, no word",
+          "family": "plans-arrangements",
+          "phase": "P1.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AFqZkvExSJra64HVedHqyG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-plan-maybe-token",
+          "concept": "plan-maybe-token",
+          "brief": "friend thinking between two small choice clouds, no question mark",
+          "family": "plans-arrangements",
+          "phase": "P1.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AFqZkvExSJra64HVedHqyG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-plan-clash-token",
+          "concept": "plan-clash-token",
+          "brief": "two activity cards overlapping on same time spot, no text",
+          "family": "plans-arrangements",
+          "phase": "P1.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AFqZkvExSJra64HVedHqyG",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-plan-confirmation-token",
+          "concept": "plan-confirmation-token",
+          "brief": "two children point to same chosen plan card, no words",
+          "family": "plans-arrangements",
+          "phase": "P1.1",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "AFqZkvExSJra64HVedHqyG",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T22:01:38.098Z"
+    },
+    "p1-4-multi-attribute-evidence-pins": {
+      "phase": "P1.4",
+      "family": "multi-attribute-evidence-pins",
+      "title": "A2 P1.4 multi-attribute evidence pins",
+      "task_id": "NyVfv9VTDnvAa6ivPCqsfR",
+      "task_url": "https://manus.im/app/NyVfv9VTDnvAa6ivPCqsfR",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p1-4-multi-attribute-evidence-pins\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3839473,
+          "name": "a2-evidence-pins.png"
+        }
+      ],
+      "large_sheet_count": 1,
+      "expected_artifacts": 1,
+      "concept_count": 8,
+      "banked_raw": 8,
+      "items": [
+        {
+          "key": "a2-evidence-colour-pin",
+          "concept": "evidence-colour-pin",
+          "brief": "pin pointing to colour swatch/detail on object, no text",
+          "family": "multi-attribute-evidence-pins",
+          "phase": "P1.4",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "NyVfv9VTDnvAa6ivPCqsfR",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-evidence-size-pin",
+          "concept": "evidence-size-pin",
+          "brief": "pin pointing to size silhouette detail, no word",
+          "family": "multi-attribute-evidence-pins",
+          "phase": "P1.4",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "NyVfv9VTDnvAa6ivPCqsfR",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-evidence-shape-pin",
+          "concept": "evidence-shape-pin",
+          "brief": "pin pointing to shape outline detail, no word",
+          "family": "multi-attribute-evidence-pins",
+          "phase": "P1.4",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "NyVfv9VTDnvAa6ivPCqsfR",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-evidence-number-pin",
+          "concept": "evidence-number-pin",
+          "brief": "pin pointing to group/count detail with dots, no digits",
+          "family": "multi-attribute-evidence-pins",
+          "phase": "P1.4",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "NyVfv9VTDnvAa6ivPCqsfR",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-evidence-location-pin",
+          "concept": "evidence-location-pin",
+          "brief": "pin pointing to where detail on mini scene, no text",
+          "family": "multi-attribute-evidence-pins",
+          "phase": "P1.4",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "NyVfv9VTDnvAa6ivPCqsfR",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-evidence-action-pin",
+          "concept": "evidence-action-pin",
+          "brief": "pin pointing to action/motion detail, no word",
+          "family": "multi-attribute-evidence-pins",
+          "phase": "P1.4",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "NyVfv9VTDnvAa6ivPCqsfR",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-evidence-feeling-pin",
+          "concept": "evidence-feeling-pin",
+          "brief": "pin pointing to simple face/feeling detail, no word",
+          "family": "multi-attribute-evidence-pins",
+          "phase": "P1.4",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "NyVfv9VTDnvAa6ivPCqsfR",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-evidence-owner-pin",
+          "concept": "evidence-owner-pin",
+          "brief": "pin linking person badge to object detail, no text",
+          "family": "multi-attribute-evidence-pins",
+          "phase": "P1.4",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "NyVfv9VTDnvAa6ivPCqsfR",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T22:02:03.745Z"
+    },
+    "p1-3-social-conversation-management": {
+      "phase": "P1.3",
+      "family": "social-conversation-management",
+      "title": "A2 P1.3 social conversation-management cues",
+      "task_id": "Wc7wo8A97b4f3UfYzr8PdQ",
+      "task_url": "https://manus.im/app/Wc7wo8A97b4f3UfYzr8PdQ",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p1-3-social-conversation-management\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3706637,
+          "name": "a2-social-move-tokens.png"
+        }
+      ],
+      "large_sheet_count": 1,
+      "expected_artifacts": 1,
+      "concept_count": 9,
+      "banked_raw": 9,
+      "items": [
+        {
+          "key": "a2-social-start-conversation",
+          "concept": "social-start-conversation",
+          "brief": "two children begin talking, fresh blank speech bubble opens, no text",
+          "family": "social-conversation-management",
+          "phase": "P1.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Wc7wo8A97b4f3UfYzr8PdQ",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-social-continue-conversation",
+          "concept": "social-continue-conversation",
+          "brief": "two blank speech bubbles connected in a turn path, no words",
+          "family": "social-conversation-management",
+          "phase": "P1.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Wc7wo8A97b4f3UfYzr8PdQ",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-social-close-conversation",
+          "concept": "social-close-conversation",
+          "brief": "two children wave goodbye with closing bubble, no text",
+          "family": "social-conversation-management",
+          "phase": "P1.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Wc7wo8A97b4f3UfYzr8PdQ",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-social-suggestion-token",
+          "concept": "social-suggestion-token",
+          "brief": "child offers idea card to friend, no writing",
+          "family": "social-conversation-management",
+          "phase": "P1.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Wc7wo8A97b4f3UfYzr8PdQ",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-social-invitation-token",
+          "concept": "social-invitation-token",
+          "brief": "child offers blank invitation card, no text",
+          "family": "social-conversation-management",
+          "phase": "P1.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Wc7wo8A97b4f3UfYzr8PdQ",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-social-accept-token",
+          "concept": "social-accept-token",
+          "brief": "friend happily accepts card/idea, no word",
+          "family": "social-conversation-management",
+          "phase": "P1.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Wc7wo8A97b4f3UfYzr8PdQ",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-social-decline-token",
+          "concept": "social-decline-token",
+          "brief": "friend politely declines with kind expression, no word",
+          "family": "social-conversation-management",
+          "phase": "P1.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Wc7wo8A97b4f3UfYzr8PdQ",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-social-apology-token",
+          "concept": "social-apology-token",
+          "brief": "child apologetic gesture with small heart patch, no text",
+          "family": "social-conversation-management",
+          "phase": "P1.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Wc7wo8A97b4f3UfYzr8PdQ",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-social-repeat-clarify-token",
+          "concept": "social-repeat-clarify-token",
+          "brief": "listener asks for repeat with ear/magnifier cue, no word",
+          "family": "social-conversation-management",
+          "phase": "P1.3",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "Wc7wo8A97b4f3UfYzr8PdQ",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T22:02:03.993Z"
+    },
+    "p1-7-transit-travel-status": {
+      "phase": "P1.7",
+      "family": "transit-travel-status",
+      "title": "A2 P1.7 transit and travel status",
+      "task_id": "NKhPEhPH4KTMNcRUPUP9yu",
+      "task_url": "https://manus.im/app/NKhPEhPH4KTMNcRUPUP9yu",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p1-7-transit-travel-status\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3285339,
+          "name": "a2-travel-status-tokens.png"
+        }
+      ],
+      "large_sheet_count": 1,
+      "expected_artifacts": 1,
+      "concept_count": 8,
+      "banked_raw": 8,
+      "items": [
+        {
+          "key": "a2-travel-departure-token",
+          "concept": "travel-departure-token",
+          "brief": "bus/train leaving start stop with child-safe cue, no text",
+          "family": "transit-travel-status",
+          "phase": "P1.7",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "NKhPEhPH4KTMNcRUPUP9yu",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-travel-arrival-token",
+          "concept": "travel-arrival-token",
+          "brief": "bus/train arriving at destination stop with flag icon only, no word",
+          "family": "transit-travel-status",
+          "phase": "P1.7",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "NKhPEhPH4KTMNcRUPUP9yu",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-travel-ticket-token",
+          "concept": "travel-ticket-token",
+          "brief": "blank ticket held by child, no numbers or words",
+          "family": "transit-travel-status",
+          "phase": "P1.7",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "NKhPEhPH4KTMNcRUPUP9yu",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-travel-waiting-token",
+          "concept": "travel-waiting-token",
+          "brief": "child waiting calmly at bus/train stop, no sign text",
+          "family": "transit-travel-status",
+          "phase": "P1.7",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "NKhPEhPH4KTMNcRUPUP9yu",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-travel-boarding-token",
+          "concept": "travel-boarding-token",
+          "brief": "child stepping onto bus/train, no labels",
+          "family": "transit-travel-status",
+          "phase": "P1.7",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "NKhPEhPH4KTMNcRUPUP9yu",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-travel-delayed-token",
+          "concept": "travel-delayed-token",
+          "brief": "bus/train paused with clock/slow cue, no text",
+          "family": "transit-travel-status",
+          "phase": "P1.7",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "NKhPEhPH4KTMNcRUPUP9yu",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-travel-wrong-stop-token",
+          "concept": "travel-wrong-stop-token",
+          "brief": "child at unfamiliar stop with gentle mismatch cue, no words",
+          "family": "transit-travel-status",
+          "phase": "P1.7",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "NKhPEhPH4KTMNcRUPUP9yu",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-travel-transfer-token",
+          "concept": "travel-transfer-token",
+          "brief": "child changes from one simple vehicle icon to another, no text",
+          "family": "transit-travel-status",
+          "phase": "P1.7",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "NKhPEhPH4KTMNcRUPUP9yu",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T22:03:55.913Z"
+    },
+    "p1-6-process-procedure": {
+      "phase": "P1.6",
+      "family": "process-procedure",
+      "title": "A2 P1.6 process and procedure visuals",
+      "task_id": "PNF9jocJjvZevmTDUMHrT3",
+      "task_url": "https://manus.im/app/PNF9jocJjvZevmTDUMHrT3",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p1-6-process-procedure\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3307203,
+          "name": "a2-procedure-state-tokens.png"
+        }
+      ],
+      "large_sheet_count": 1,
+      "expected_artifacts": 1,
+      "concept_count": 8,
+      "banked_raw": 8,
+      "items": [
+        {
+          "key": "a2-proc-materials-ready",
+          "concept": "proc-materials-ready",
+          "brief": "craft/game materials laid out ready, no labels",
+          "family": "process-procedure",
+          "phase": "P1.6",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "PNF9jocJjvZevmTDUMHrT3",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-proc-first-step-token",
+          "concept": "proc-first-step-token",
+          "brief": "first step visually begins with start cue, no word or digit",
+          "family": "process-procedure",
+          "phase": "P1.6",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "PNF9jocJjvZevmTDUMHrT3",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-proc-next-step-token",
+          "concept": "proc-next-step-token",
+          "brief": "next step continues from previous picture, no word",
+          "family": "process-procedure",
+          "phase": "P1.6",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "PNF9jocJjvZevmTDUMHrT3",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-proc-final-step-token",
+          "concept": "proc-final-step-token",
+          "brief": "final step reaches finish/result, no word",
+          "family": "process-procedure",
+          "phase": "P1.6",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "PNF9jocJjvZevmTDUMHrT3",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-proc-missing-step-token",
+          "concept": "proc-missing-step-token",
+          "brief": "gap in a process path where one picture card is missing, no text",
+          "family": "process-procedure",
+          "phase": "P1.6",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "PNF9jocJjvZevmTDUMHrT3",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-proc-wrong-step-token",
+          "concept": "proc-wrong-step-token",
+          "brief": "one process card visibly in wrong place, gentle mismatch cue, no X letter",
+          "family": "process-procedure",
+          "phase": "P1.6",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "PNF9jocJjvZevmTDUMHrT3",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-proc-retry-token",
+          "concept": "proc-retry-token",
+          "brief": "child tries process again with loop cue, no word",
+          "family": "process-procedure",
+          "phase": "P1.6",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "PNF9jocJjvZevmTDUMHrT3",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-proc-result-token",
+          "concept": "proc-result-token",
+          "brief": "finished craft/recipe/game result displayed, no text",
+          "family": "process-procedure",
+          "phase": "P1.6",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "PNF9jocJjvZevmTDUMHrT3",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T22:03:55.124Z"
+    },
+    "p1-5-short-experience-narrative-relations": {
+      "phase": "P1.5",
+      "family": "short-experience-narrative-relations",
+      "title": "A2 P1.5 short experience narrative relations",
+      "task_id": "mAqTW6P28GMJfyruBNT2S9",
+      "task_url": "https://manus.im/app/mAqTW6P28GMJfyruBNT2S9",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p1-5-short-experience-narrative-relations\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4063767,
+          "name": "a2-visual-operating-system-relation-tokens.png"
+        }
+      ],
+      "large_sheet_count": 1,
+      "expected_artifacts": 1,
+      "concept_count": 8,
+      "banked_raw": 8,
+      "items": [
+        {
+          "key": "a2-story-begin-token",
+          "concept": "story-begin-token",
+          "brief": "small scene just starting: child steps onto path/activity, no text",
+          "family": "short-experience-narrative-relations",
+          "phase": "P1.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "mAqTW6P28GMJfyruBNT2S9",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-story-continue-token",
+          "concept": "story-continue-token",
+          "brief": "same path/activity continues with middle motion cue, no word",
+          "family": "short-experience-narrative-relations",
+          "phase": "P1.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "mAqTW6P28GMJfyruBNT2S9",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-story-end-token",
+          "concept": "story-end-token",
+          "brief": "simple activity arrives at calm finish spot, no text",
+          "family": "short-experience-narrative-relations",
+          "phase": "P1.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "mAqTW6P28GMJfyruBNT2S9",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-story-goal-token",
+          "concept": "story-goal-token",
+          "brief": "child sees simple goal object/flag ahead, no word",
+          "family": "short-experience-narrative-relations",
+          "phase": "P1.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "mAqTW6P28GMJfyruBNT2S9",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-story-simple-problem-token",
+          "concept": "story-simple-problem-token",
+          "brief": "friendly obstacle/minor problem blocks path, no danger, no text",
+          "family": "short-experience-narrative-relations",
+          "phase": "P1.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "mAqTW6P28GMJfyruBNT2S9",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-story-response-token",
+          "concept": "story-response-token",
+          "brief": "child chooses simple helpful action/tool, no text",
+          "family": "short-experience-narrative-relations",
+          "phase": "P1.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "mAqTW6P28GMJfyruBNT2S9",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-story-outcome-token",
+          "concept": "story-outcome-token",
+          "brief": "problem solved / activity completed with small celebration, no word",
+          "family": "short-experience-narrative-relations",
+          "phase": "P1.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "mAqTW6P28GMJfyruBNT2S9",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-story-feeling-change-token",
+          "concept": "story-feeling-change-token",
+          "brief": "child feeling shifts from worried to happy in paired bubbles, no text",
+          "family": "short-experience-narrative-relations",
+          "phase": "P1.5",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "mAqTW6P28GMJfyruBNT2S9",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T22:04:20.105Z"
+    },
+    "p1-8-pronunciation-prosody-overlays": {
+      "phase": "P1.8",
+      "family": "pronunciation-prosody-overlays",
+      "title": "A2 P1.8 pronunciation and prosody overlays",
+      "task_id": "XT5VPdP4HaS5bChGXb4SZ5",
+      "task_url": "https://manus.im/app/XT5VPdP4HaS5bChGXb4SZ5",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\manus-a2-stockpile\\p1-8-pronunciation-prosody-overlays\\sheets",
+      "safety_skipped_at_fire": [],
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 3124121,
+          "name": "a2-prosody-overlay-tokens.png"
+        }
+      ],
+      "large_sheet_count": 1,
+      "expected_artifacts": 1,
+      "concept_count": 8,
+      "banked_raw": 8,
+      "items": [
+        {
+          "key": "a2-prosody-stress-bubble",
+          "concept": "prosody-stress-bubble",
+          "brief": "one syllable/beat bubble enlarged or glowing among small bubbles, no letters",
+          "family": "pronunciation-prosody-overlays",
+          "phase": "P1.8",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "XT5VPdP4HaS5bChGXb4SZ5",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-prosody-chunk-bracket",
+          "concept": "prosody-chunk-bracket",
+          "brief": "friendly chunk bracket grouping short sound/word blocks, no text",
+          "family": "pronunciation-prosody-overlays",
+          "phase": "P1.8",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "XT5VPdP4HaS5bChGXb4SZ5",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-prosody-pause-bead",
+          "concept": "prosody-pause-bead",
+          "brief": "pause bead/space marker between sound chunks, no word",
+          "family": "pronunciation-prosody-overlays",
+          "phase": "P1.8",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "XT5VPdP4HaS5bChGXb4SZ5",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-prosody-rise-arrow",
+          "concept": "prosody-rise-arrow",
+          "brief": "gentle rising pitch curve over blank speech bubble, no symbol text",
+          "family": "pronunciation-prosody-overlays",
+          "phase": "P1.8",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "XT5VPdP4HaS5bChGXb4SZ5",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-prosody-fall-arrow",
+          "concept": "prosody-fall-arrow",
+          "brief": "gentle falling pitch curve over blank speech bubble, no symbol text",
+          "family": "pronunciation-prosody-overlays",
+          "phase": "P1.8",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "XT5VPdP4HaS5bChGXb4SZ5",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-prosody-s-ending-notice",
+          "concept": "prosody-s-ending-notice",
+          "brief": "small ending sparkle attached to final sound block, no letter s",
+          "family": "pronunciation-prosody-overlays",
+          "phase": "P1.8",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "XT5VPdP4HaS5bChGXb4SZ5",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-prosody-ed-ending-notice",
+          "concept": "prosody-ed-ending-notice",
+          "brief": "small past-ending sparkle attached to final sound block, no letters",
+          "family": "pronunciation-prosody-overlays",
+          "phase": "P1.8",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "XT5VPdP4HaS5bChGXb4SZ5",
+          "obvious_fail": false
+        },
+        {
+          "key": "a2-prosody-contraction-snap",
+          "concept": "prosody-contraction-snap",
+          "brief": "two blank sound blocks gently snapping together, no apostrophe or letters",
+          "family": "pronunciation-prosody-overlays",
+          "phase": "P1.8",
+          "format": "black-contact-4x4",
+          "bucket": "MANUS",
+          "manus_task_id": "XT5VPdP4HaS5bChGXb4SZ5",
+          "obvious_fail": false
+        }
+      ],
+      "holds": [],
+      "finished_at": "2026-08-18T22:04:46.487Z"
+    }
+  },
+  "durable_root": "harvested/manus-a2-stockpile"
+}

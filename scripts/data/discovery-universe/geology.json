@@ -1,0 +1,317 @@
+{
+  "id": "geology",
+  "labels": [
+    "geology",
+    "volcano"
+  ],
+  "usefulness": 0.7,
+  "picturable": 0.88,
+  "hardToSubstitute": 0.55,
+  "topics": [
+    "volcano field trip",
+    "rock collection",
+    "crystal cave",
+    "earth layers",
+    "earthquake safety",
+    "fossil dig site",
+    "mountain trek",
+    "lava flow",
+    "geyser park",
+    "canyon hike",
+    "mineral museum",
+    "sand dune walk",
+    "glacier visit",
+    "hot spring",
+    "meteor crater"
+  ],
+  "concepts": [
+    {
+      "word": "magma",
+      "usefulness": 0.55,
+      "picturable": 0.75,
+      "hardToSubstitute": 0.65,
+      "tags": [
+        "process"
+      ]
+    },
+    {
+      "word": "lava",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "process"
+      ]
+    },
+    {
+      "word": "crater",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.45,
+      "tags": [
+        "landform"
+      ]
+    },
+    {
+      "word": "caldera",
+      "usefulness": 0.4,
+      "picturable": 0.8,
+      "hardToSubstitute": 0.75,
+      "tags": [
+        "landform"
+      ]
+    },
+    {
+      "word": "ash cloud",
+      "usefulness": 0.5,
+      "picturable": 0.8,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "process"
+      ]
+    },
+    {
+      "word": "vent",
+      "usefulness": 0.55,
+      "picturable": 0.8,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "part"
+      ]
+    },
+    {
+      "word": "eruption",
+      "usefulness": 0.65,
+      "picturable": 0.75,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "process"
+      ]
+    },
+    {
+      "word": "basalt",
+      "usefulness": 0.45,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "rock"
+      ]
+    },
+    {
+      "word": "granite",
+      "usefulness": 0.55,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "rock"
+      ]
+    },
+    {
+      "word": "obsidian",
+      "usefulness": 0.5,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.65,
+      "tags": [
+        "rock"
+      ]
+    },
+    {
+      "word": "pumice",
+      "usefulness": 0.5,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.65,
+      "tags": [
+        "rock"
+      ]
+    },
+    {
+      "word": "quartz",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "mineral"
+      ]
+    },
+    {
+      "word": "geode",
+      "usefulness": 0.65,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "mineral"
+      ]
+    },
+    {
+      "word": "crystal",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "mineral"
+      ]
+    },
+    {
+      "word": "fossil",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "find"
+      ]
+    },
+    {
+      "word": "amber",
+      "usefulness": 0.6,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "find"
+      ]
+    },
+    {
+      "word": "sediment",
+      "usefulness": 0.45,
+      "picturable": 0.7,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "process"
+      ]
+    },
+    {
+      "word": "fault",
+      "usefulness": 0.5,
+      "picturable": 0.75,
+      "hardToSubstitute": 0.65,
+      "tags": [
+        "landform"
+      ]
+    },
+    {
+      "word": "rift",
+      "usefulness": 0.4,
+      "picturable": 0.75,
+      "hardToSubstitute": 0.7,
+      "tags": [
+        "landform"
+      ]
+    },
+    {
+      "word": "stalactite",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "cave"
+      ]
+    },
+    {
+      "word": "stalagmite",
+      "usefulness": 0.55,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "cave"
+      ]
+    },
+    {
+      "word": "geyser",
+      "usefulness": 0.65,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "landform"
+      ]
+    },
+    {
+      "word": "glacier",
+      "usefulness": 0.7,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "landform"
+      ]
+    },
+    {
+      "word": "moraine",
+      "usefulness": 0.35,
+      "picturable": 0.75,
+      "hardToSubstitute": 0.8,
+      "tags": [
+        "landform"
+      ]
+    },
+    {
+      "word": "dune",
+      "usefulness": 0.7,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.4,
+      "tags": [
+        "landform"
+      ]
+    },
+    {
+      "word": "canyon",
+      "usefulness": 0.75,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "landform"
+      ]
+    },
+    {
+      "word": "cliff",
+      "usefulness": 0.8,
+      "picturable": 0.95,
+      "hardToSubstitute": 0.3,
+      "tags": [
+        "landform"
+      ]
+    },
+    {
+      "word": "peak",
+      "usefulness": 0.75,
+      "picturable": 0.9,
+      "hardToSubstitute": 0.35,
+      "tags": [
+        "landform"
+      ]
+    },
+    {
+      "word": "ridge",
+      "usefulness": 0.6,
+      "picturable": 0.85,
+      "hardToSubstitute": 0.5,
+      "tags": [
+        "landform"
+      ]
+    },
+    {
+      "word": "core",
+      "usefulness": 0.5,
+      "picturable": 0.7,
+      "hardToSubstitute": 0.6,
+      "tags": [
+        "earth"
+      ]
+    },
+    {
+      "word": "mantle",
+      "usefulness": 0.45,
+      "picturable": 0.7,
+      "hardToSubstitute": 0.65,
+      "tags": [
+        "earth"
+      ]
+    },
+    {
+      "word": "crust",
+      "usefulness": 0.55,
+      "picturable": 0.75,
+      "hardToSubstitute": 0.55,
+      "tags": [
+        "earth"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "spec": "a2-visual-operating-system",
+  "locked_level": "A2 short chain of meaning",
+  "core": [
+    "short chain of meaning",
+    "short reciprocal task",
+    "simple outcome",
+    "concrete familiar child-friendly scaffolded contexts"
+  ],
+  "firewall": [
+    "no B1 argument",
+    "no inference-heavy tasks",
+    "no complex narrative",
+    "no negotiation",
+    "no multi-paragraph output",
+    "no baked English connector words",
+    "no fake readable text",
+    "no prices/times/dates/menu/timetable text in art"
+  ],
+  "routing": {
+    "manus": "illustration, metaphor, role identity, visual state, object appearance, scene skin, iconic communication, spatial/pictorial distinction",
+    "code_later": "rectangles, generic cards, blank boxes, rails, tables, grids, text fields, timelines, dividers, arrows, word cards, prices/times/dates, labels, borders, checkboxes, progress bars",
+    "code_later_inventory": "docs/a2-code-later.json"
+  },
+  "waves": {
+    "p0-1-connector-linked-meaning": {
+      "phase": "P0.1",
+      "family": "connector-linked-meaning",
+      "title": "A2 P0.1 connector linked-meaning metaphors",
+      "sheets": 1,
+      "concepts": 10,
+      "expected_artifacts": 1
+    },
+    "p0-2-event-timeline-state-change": {
+      "phase": "P0.2",
+      "family": "event-timeline-state-change",
+      "title": "A2 P0.2 event and state-change visuals",
+      "sheets": 1,
+      "concepts": 8,
+      "expected_artifacts": 1
+    },
+    "p0-3-information-gap-private-info": {
+      "phase": "P0.3",
+      "family": "information-gap-private-info",
+      "title": "A2 P0.3 information-gap private-info kit",
+      "sheets": 1,
+      "concepts": 8,
+      "expected_artifacts": 1
+    },
+    "p0-4-comparison-simple-reason": {
+      "phase": "P0.4",
+      "family": "comparison-simple-reason",
+      "title": "A2 P0.4 comparison and simple reason icons",
+      "sheets": 1,
+      "concepts": 8,
+      "expected_artifacts": 1
+    },
+    "p0-5-route-map-components": {
+      "phase": "P0.5",
+      "family": "route-map-components",
+      "title": "A2 P0.5 route and map components",
+      "sheets": 2,
+      "concepts": 16,
+      "expected_artifacts": 2
+    },
+    "p0-6-transaction-state-role": {
+      "phase": "P0.6",
+      "family": "transaction-state-role",
+      "title": "A2 P0.6 transaction role and state kit",
+      "sheets": 2,
+      "concepts": 12,
+      "expected_artifacts": 5
+    },
+    "p0-7-reading-text-type-skins": {
+      "phase": "P0.7",
+      "family": "reading-text-type-skins",
+      "title": "A2 P0.7 reading text-type skins",
+      "sheets": 3,
+      "concepts": 12,
+      "expected_artifacts": 12
+    },
+    "p0-8-multi-detail-listening-markers": {
+      "phase": "P0.8",
+      "family": "multi-detail-listening-markers",
+      "title": "A2 P0.8 multi-detail listening markers",
+      "sheets": 1,
+      "concepts": 8,
+      "expected_artifacts": 1
+    },
+    "p0-9-linked-writing-revision": {
+      "phase": "P0.9",
+      "family": "linked-writing-revision",
+      "title": "A2 P0.9 linked writing and revision kit",
+      "sheets": 1,
+      "concepts": 8,
+      "expected_artifacts": 1
+    },
+    "p1-1-plans-arrangements": {
+      "phase": "P1.1",
+      "family": "plans-arrangements",
+      "title": "A2 P1.1 plans and arrangements states",
+      "sheets": 1,
+      "concepts": 10,
+      "expected_artifacts": 1
+    },
+    "p1-2-routine-frequency": {
+      "phase": "P1.2",
+      "family": "routine-frequency",
+      "title": "A2 P1.2 routine and frequency visuals",
+      "sheets": 1,
+      "concepts": 8,
+      "expected_artifacts": 1
+    },
+    "p1-3-social-conversation-management": {
+      "phase": "P1.3",
+      "family": "social-conversation-management",
+      "title": "A2 P1.3 social conversation-management cues",
+      "sheets": 1,
+      "concepts": 9,
+      "expected_artifacts": 1
+    },
+    "p1-4-multi-attribute-evidence-pins": {
+      "phase": "P1.4",
+      "family": "multi-attribute-evidence-pins",
+      "title": "A2 P1.4 multi-attribute evidence pins",
+      "sheets": 1,
+      "concepts": 8,
+      "expected_artifacts": 1
+    },
+    "p1-5-short-experience-narrative-relations": {
+      "phase": "P1.5",
+      "family": "short-experience-narrative-relations",
+      "title": "A2 P1.5 short experience narrative relations",
+      "sheets": 1,
+      "concepts": 8,
+      "expected_artifacts": 1
+    },
+    "p1-6-process-procedure": {
+      "phase": "P1.6",
+      "family": "process-procedure",
+      "title": "A2 P1.6 process and procedure visuals",
+      "sheets": 1,
+      "concepts": 8,
+      "expected_artifacts": 1
+    },
+    "p1-7-transit-travel-status": {
+      "phase": "P1.7",
+      "family": "transit-travel-status",
+      "title": "A2 P1.7 transit and travel status",
+      "sheets": 1,
+      "concepts": 8,
+      "expected_artifacts": 1
+    },
+    "p1-8-pronunciation-prosody-overlays": {
+      "phase": "P1.8",
+      "family": "pronunciation-prosody-overlays",
+      "title": "A2 P1.8 pronunciation and prosody overlays",
+      "sheets": 1,
+      "concepts": 8,
+      "expected_artifacts": 1
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "title": "Sports and Games",
+  "warmUp": {
+    "question": "What sport do you like to play with friends?",
+    "sampleAnswer": "I like soccer."
+  },
+  "vocabulary": [
+    { "word": "ball", "emoji": "⚽", "sentence": "Pass the ball." },
+    { "word": "team", "emoji": "🧑‍🤝‍🧑", "sentence": "Our team is ready." },
+    { "word": "score", "emoji": "🏆", "sentence": "We score a goal." },
+    { "word": "whistle", "emoji": "📣", "sentence": "I hear the whistle." },
+    { "word": "game", "emoji": "🎯", "sentence": "The game is fun." },
+    { "word": "run", "emoji": "🏃", "sentence": "I can run fast." }
+  ],
+  "sentenceFrames": [
+    "I pass the ____.",
+    "Our ____ is ready.",
+    "We ____ a goal.",
+    "I hear the ____.",
+    "I can ____ fast."
+  ],
+  "story": {
+    "title": "Game Day",
+    "pages": [
+      {
+        "heading": "On the field",
+        "text": "The team has the ball. The whistle is ready for the game.",
+        "visualTheme": "sports",
+        "visualCaption": "Kids ready to play"
+      },
+      {
+        "heading": "We score",
+        "text": "We run and pass. We score for our team!",
+        "visualTheme": "sports",
+        "visualCaption": "A goal on the field"
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Who has the ball?", "sampleAnswer": "The team." },
+      { "question": "What do we hear?", "sampleAnswer": "The whistle." }
+    ],
+    "creativeQuestions": []
+  },
+  "speakingQuestions": [
+    { "question": "Do you like sports and games?", "sampleAnswer": "Yes, I do." }
+  ],
+  "activity": {
+    "title": "Match the sports words",
+    "prompt": "Match each word to the right picture.",
+    "templates": ["I see a ____.", "The ____ helps us."]
+  },
+  "reviewSentences": [
+    "The team scores in the game.",
+    "Pass the ball to your team.",
+    "I hear the whistle and I run.",
+    "We score when we pass the ball."
+  ]
+}
