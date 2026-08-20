@@ -9,13 +9,13 @@ Prior waves 1–3: from `request-kid-interest-shift60.mjs` (already harvested).
 
 | Metric | Count |
 |---|---:|
-| Worlds (est.) | 45 / 25–40 |
-| Prior worlds (w1–3) | 12 |
-| Waves planned (aggro) | 11 |
-| Waves done | 11 |
-| Tasks | 11 |
-| Sheets downloaded | 33 |
-| Novelty (discovered %) | 91% |
+| Worlds (est.) | 75 / 25–80 |
+| Prior worlds (w1–3) | 18 |
+| Waves planned (aggro) | 19 |
+| Waves done | 19 |
+| Tasks | 19 |
+| Sheets downloaded | 57 |
+| Novelty (discovered %) | 95% |
 
 ## Prior (done)
 
@@ -39,6 +39,14 @@ Prior waves 1–3: from `request-kid-interest-shift60.mjs` (already harvested).
 - **ow-wave15-fantasy2** `ow-wave15` — generated_raw — novelty=discovered-new — https://manus.im/app/4MHoEVjnuCVPQzaxYvgx8A — 3 sheets / 3 worlds — Second fantasy pass — sci-fi soft + underwater
 - **ow-wave16-event2** `ow-wave16` — generated_raw — novelty=discovered-new — https://manus.im/app/KaNmV8Tpk4XGWqjqmu5ARw — 3 sheets / 3 worlds — More event/leisure magnets — generic rides only
 - **ow-wave17-nature2** `ow-wave17` — generated_raw — novelty=discovered-new — https://manus.im/app/5zmFJgxDTKS5FqoEqJ7TZg — 3 sheets / 3 worlds — Final nature stretch toward 40-world soft target
+- **ow-wave18-storybook** `ow-wave18` — generated_raw — novelty=discovered-new — https://manus.im/app/YMZy45h6LRUxdKJbFAZwJy — 3 sheets / 3 worlds — Storybook fantasy — invent beyond cloud/crystal/moonbase
+- **ow-wave19-civic** `ow-wave19` — generated_raw — novelty=discovered-new — https://manus.im/app/8ytpnaAg5Pfra2rs7eFpcx — 3 sheets / 3 worlds — Civic helper campuses for ESL community themes
+- **ow-wave20-funstrip** `ow-wave20` — generated_raw — novelty=discovered-new — https://manus.im/app/gZPMDaLMs5RQKhs9outENR — 3 sheets / 3 worlds — Indoor-fun leisure strip — invent beyond boardwalk/lodge
+- **ow-wave21-wetlands** `ow-wave21` — generated_raw — novelty=discovered-new — https://manus.im/app/6MhYvYj2kcWPUfCUz8MJyx — 3 sheets / 3 worlds — Nature breadth — wetlands/ice/coastal cliffs
+- **ow-wave22-festivals** `ow-wave22` — generated_raw — novelty=discovered-new — https://manus.im/app/9UbYZLqtqwa9KHMrQrv96f — 3 sheets / 3 worlds — More event campuses — blank banners only
+- **ow-wave23-transit3** `ow-wave23` — generated_raw — novelty=discovered-new — https://manus.im/app/c7wMvt7V8SqoGDBFEgQMcQ — 3 sheets / 3 worlds — Transit depth beyond monorail/ferry/tram
+- **ow-wave24-maker-media** `ow-wave24` — generated_raw — novelty=discovered-new — https://manus.im/app/hRDgQbwykNQZAEDmAk3fd3 — 3 sheets / 3 worlds — Discovered maker/media worlds not in seeds
+- **ow-wave25-candy-toy** `ow-wave25` — generated_raw — novelty=discovered-new — https://manus.im/app/N9twdy42hEBzxC9pjezqVQ — 3 sheets / 3 worlds — Playful fantasy — invent beyond pirate/clockwork
 
 ## Events
 
@@ -91,4 +99,42 @@ _none yet_
 - 2026-08-20T08:42:02.016Z — DOWNLOADED ow-wave16-event2 qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\event\ow-wave16-event2\sheets
 
 - 2026-08-20T08:42:21.692Z — DOWNLOADED ow-wave16-event2 qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\event\ow-wave16-event2\sheets
+
+- 2026-08-20T18:37:59.075Z — FIRED ow-wave18-storybook → https://manus.im/app/YMZy45h6LRUxdKJbFAZwJy
+
+- 2026-08-20T18:37:59.498Z — FIRED ow-wave19-civic → https://manus.im/app/8ytpnaAg5Pfra2rs7eFpcx
+
+- 2026-08-20T18:40:03.458Z — DOWNLOADED ow-wave18-storybook qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\fantasy\ow-wave18-storybook\sheets
+
+- 2026-08-20T18:40:07.040Z — DOWNLOADED ow-wave19-civic qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\town-community\ow-wave19-civic\sheets
+
+- 2026-08-20T18:40:29.041Z — FIRED ow-wave20-funstrip → https://manus.im/app/gZPMDaLMs5RQKhs9outENR
+
+- 2026-08-20T18:40:30.170Z — FIRED ow-wave21-wetlands → https://manus.im/app/6MhYvYj2kcWPUfCUz8MJyx
+
+- 2026-08-20T18:42:14.601Z — DOWNLOADED ow-wave20-funstrip qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\leisure\ow-wave20-funstrip\sheets
+
+- 2026-08-20T18:42:38.795Z — FIRED ow-wave22-festivals → https://manus.im/app/9UbYZLqtqwa9KHMrQrv96f
+
+- 2026-08-20T18:44:55.345Z — DOWNLOADED ow-wave22-festivals qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\event\ow-wave22-festivals\sheets
+
+- 2026-08-20T18:45:12.739Z — FIRED ow-wave23-transit3 → https://manus.im/app/c7wMvt7V8SqoGDBFEgQMcQ
+
+- 2026-08-20T18:45:47.949Z — DOWNLOADED ow-wave21-wetlands qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\nature-adventure\ow-wave21-wetlands\sheets
+
+- 2026-08-20T18:46:05.170Z — FIRED ow-wave24-maker-media → https://manus.im/app/hRDgQbwykNQZAEDmAk3fd3
+
+- 2026-08-20T18:47:13.358Z — DOWNLOADED ow-wave23-transit3 qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\transport\ow-wave23-transit3\sheets
+
+- 2026-08-20T18:47:23.867Z — FIRED ow-wave25-candy-toy → https://manus.im/app/N9twdy42hEBzxC9pjezqVQ
+
+- 2026-08-20T18:47:28.422Z — DOWNLOADED ow-wave23-transit3 qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\transport\ow-wave23-transit3\sheets
+
+- 2026-08-20T18:47:43.147Z — DOWNLOADED ow-wave24-maker-media qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\other-discovered\ow-wave24-maker-media\sheets
+
+- 2026-08-20T18:47:50.461Z — DOWNLOADED ow-wave24-maker-media qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\other-discovered\ow-wave24-maker-media\sheets
+
+- 2026-08-20T18:49:10.745Z — DOWNLOADED ow-wave25-candy-toy qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\fantasy\ow-wave25-candy-toy\sheets
+
+- 2026-08-20T18:49:13.678Z — DOWNLOADED ow-wave25-candy-toy qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\fantasy\ow-wave25-candy-toy\sheets
 

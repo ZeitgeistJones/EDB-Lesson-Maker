@@ -394,6 +394,230 @@ export const WAVES = {
       ]),
     ],
   }),
+
+  'ow-wave18-storybook': wave('ow-wave18-storybook', {
+    bucket: 'fantasy',
+    family_id: `${OW_PREFIX}wave18`,
+    novelty: 'discovered-new',
+    title: 'OW wave18 — pirate cove + clockwork town + soft haunted manor (FULL-PAGE ×3)',
+    why: 'Storybook fantasy — invent beyond cloud/crystal/moonbase',
+    sheets: [
+      sh('S1', 'pirate cove village', [
+        owCell(
+          'pirate-cove-village',
+          `${OVERVIEW} Friendly pirate cove village: wooden pier with blank flag shapes, ship deck pad, cave mouth, palm path, open sand plaza. 5 zones. Soft adventure not scary. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'clockwork tower town', [
+        owCell(
+          'clockwork-tower-town',
+          `${OVERVIEW} Clockwork tower town: giant gear plaza, clock-tower exterior (blank face — no numerals), workshop alley, bridge over canal, open courtyard. 5 zones. Whimsical steampunk-light. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'soft haunted manor grounds', [
+        owCell(
+          'haunted-manor-grounds',
+          `${OVERVIEW} Soft haunted-manor grounds: manor porch, misty garden path, pumpkin patch pad, gate arch, open lawn. 5 zones. Cute Halloween-light not horror. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave19-civic': wave('ow-wave19-civic', {
+    bucket: 'town-community',
+    family_id: `${OW_PREFIX}wave19`,
+    novelty: 'discovered-new',
+    title: 'OW wave19 — fire campus + hospital garden + police plaza (FULL-PAGE ×3)',
+    why: 'Civic helper campuses for ESL community themes',
+    sheets: [
+      sh('S1', 'fire station campus', [
+        owCell(
+          'fire-station-campus',
+          `${OVERVIEW} Fire-station campus: garage bay, training tower, truck apron pad, hose-drill yard, path. 5 zones. Blank doors/signs. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'hospital garden campus', [
+        owCell(
+          'hospital-garden',
+          `${OVERVIEW} Hospital garden campus: soft clinic wing exterior, healing garden, ambulance bay pad, cafe terrace blank, path. 5 zones. Calm caring vibe. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'community police plaza', [
+        owCell(
+          'police-community-plaza',
+          `${OVERVIEW} Friendly community police plaza: station exterior, bike-patrol pad, neighborhood map kiosk (BLANK), playground edge, open plaza. 5 zones. Soft civic. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave20-funstrip': wave('ow-wave20-funstrip', {
+    bucket: 'leisure',
+    family_id: `${OW_PREFIX}wave20`,
+    novelty: 'discovered-new',
+    title: 'OW wave20 — cinema plaza + roller rink + bowling strip (FULL-PAGE ×3)',
+    why: 'Indoor-fun leisure strip — invent beyond boardwalk/lodge',
+    sheets: [
+      sh('S1', 'cinema plaza', [
+        owCell(
+          'cinema-plaza',
+          `${OVERVIEW} Cinema plaza: theater marquee shape (ZERO letters), ticket booth blank, popcorn cart pad, poster wall blank, open plaza. 5 zones. Evening soft lights. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'roller rink park', [
+        owCell(
+          'roller-rink-park',
+          `${OVERVIEW} Outdoor roller-rink park: oval rink, skate-rental shed blank, snack stand, path ring, open lawn. 5 zones. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'bowling alley strip', [
+        owCell(
+          'bowling-alley-strip',
+          `${OVERVIEW} Bowling-alley strip exterior: alley facade blank, shoe-rental porch, arcade edge (blank screens), parking plaza pad, path. 5 zones. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave21-wetlands': wave('ow-wave21-wetlands', {
+    bucket: 'nature-adventure',
+    family_id: `${OW_PREFIX}wave21`,
+    novelty: 'discovered-new',
+    title: 'OW wave21 — mangrove walk + glacier lake + bird cliffs (FULL-PAGE ×3)',
+    why: 'Nature breadth — wetlands/ice/coastal cliffs',
+    sheets: [
+      sh('S1', 'mangrove boardwalk', [
+        owCell(
+          'mangrove-boardwalk',
+          `${OVERVIEW} Mangrove boardwalk: raised wooden path, root thicket, observation deck, kayak launch shelf, open water pad. 5 zones. Lush wet. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'glacier lake valley', [
+        owCell(
+          'glacier-lake',
+          `${OVERVIEW} Glacier lake valley: turquoise lake shore, ice tongue edge, trail, picnic rock, open pebble plaza. 5 zones. Soft cold adventure. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'bird cliff coast', [
+        owCell(
+          'bird-cliff-coast',
+          `${OVERVIEW} Soft bird-cliff coast: cliff lookout, nest shelves (empty/generic), beach path, tide pools, open sand pad. 5 zones. Distant bird shapes OK. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave22-festivals': wave('ow-wave22-festivals', {
+    bucket: 'event',
+    family_id: `${OW_PREFIX}wave22`,
+    novelty: 'discovered-new',
+    title: 'OW wave22 — book fair + food-truck plaza + parade block (FULL-PAGE ×3)',
+    why: 'More event campuses — blank banners only',
+    sheets: [
+      sh('S1', 'book fair tent city', [
+        owCell(
+          'book-fair-tents',
+          `${OVERVIEW} Book-fair tent city: tent lanes, reading lawn, story-stage circle, blank banner poles, connecting path. 5 zones. Soft literary vibe. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'food truck plaza', [
+        owCell(
+          'food-truck-plaza',
+          `${OVERVIEW} Food-truck plaza: truck row (blank menus), picnic tables pad, stage corner, string-light path, open center. 5 zones. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'parade route block', [
+        owCell(
+          'parade-route-block',
+          `${OVERVIEW} Parade route town block: street center pad, sidewalk viewing strip, float-park corner, bandstand edge, cross street path. 5 zones. Blank storefronts. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave23-transit3': wave('ow-wave23-transit3', {
+    bucket: 'transport',
+    family_id: `${OW_PREFIX}wave23`,
+    novelty: 'discovered-new',
+    title: 'OW wave23 — subway plaza + cable-car bay + RV campground (FULL-PAGE ×3)',
+    why: 'Transit depth beyond monorail/ferry/tram',
+    sheets: [
+      sh('S1', 'subway plaza', [
+        owCell(
+          'subway-plaza',
+          `${OVERVIEW} Subway plaza: stair descent, plaza canopy, bike racks, cafe kiosk blank, open pad. 5 zones. Soft urban. No logos/text/people.`,
+        ),
+      ]),
+      sh('S2', 'cable car bay', [
+        owCell(
+          'cable-car-bay',
+          `${OVERVIEW} Cable-car bay: waterfront terminal, hanging cars on cable, boarding plaza, hillside path, open dock pad. 5 zones. Scenic. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'RV campground loop', [
+        owCell(
+          'rv-campground',
+          `${OVERVIEW} RV campground loop: pull-through pads, campfire circle, amenity shed blank, trail fork, open meadow. 5 zones. Soft road-trip. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave24-maker-media': wave('ow-wave24-maker-media', {
+    bucket: 'other-discovered',
+    family_id: `${OW_PREFIX}wave24`,
+    novelty: 'discovered-new',
+    title: 'OW wave24 — robot lab + film backlot + planetarium garden (FULL-PAGE ×3)',
+    why: 'Discovered maker/media worlds not in seeds',
+    sheets: [
+      sh('S1', 'robot lab campus', [
+        owCell(
+          'robot-lab-campus',
+          `${OVERVIEW} Robot-lab campus: glass lab wing, outdoor test track oval, parts shed, demo plaza, path. 5 zones. Cute tech. Blank screens. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'kid film backlot', [
+        owCell(
+          'film-backlot',
+          `${OVERVIEW} Kid-friendly film backlot: fake Western street blank, soundstage exterior, prop shed, craft-services picnic, open plaza. 5 zones. Soft movie-set. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'planetarium night garden', [
+        owCell(
+          'planetarium-garden',
+          `${OVERVIEW} Planetarium night garden: dome exterior, star-path walk, telescope pad, glowing plant beds, open plaza. 5 zones. Soft dusk/night. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave25-candy-toy': wave('ow-wave25-candy-toy', {
+    bucket: 'fantasy',
+    family_id: `${OW_PREFIX}wave25`,
+    novelty: 'discovered-new',
+    title: 'OW wave25 — candy kingdom + toy attic + paper village (FULL-PAGE ×3)',
+    why: 'Playful fantasy — invent beyond pirate/clockwork',
+    sheets: [
+      sh('S1', 'candy kingdom plaza', [
+        owCell(
+          'candy-kingdom',
+          `${OVERVIEW} Soft candy-kingdom plaza: gingerbread gate, lollipop grove, frosting fountain, sweet-shop fronts blank, open plaza. 5 zones. Cute not sticky chaos. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'giant toy attic world', [
+        owCell(
+          'toy-attic-world',
+          `${OVERVIEW} Giant toy-attic world: oversized blocks, train-set track loop, dollhouse exterior, trunk path, open rug plaza. 5 zones. Whimsical scale play. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'paper craft village', [
+        owCell(
+          'paper-craft-village',
+          `${OVERVIEW} Paper-craft village: origami roofs, folded-bridge path, paper-lantern grove (blank), craft table pad, open square. 5 zones. Soft handmade vibe. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
 };
 
 export const WAVE_ORDER = Object.keys(WAVES);
@@ -709,7 +933,7 @@ function recomputeTotals(inv) {
     novelty_discovered_families: newFams,
     novelty_pct: fams.length ? Math.round((newFams / fams.length) * 100) : 0,
     target_min: 25,
-    target_max: 40,
+    target_max: 80,
   };
 }
 
@@ -1085,7 +1309,7 @@ async function runLoop() {
   while (true) {
     const inv = loadInv();
     const worlds = countWorlds(inv);
-    if (worlds >= 40) {
+    if (worlds >= 80) {
       console.log(JSON.stringify({ phase: 'target-hit', worlds }, null, 2));
       return;
     }
