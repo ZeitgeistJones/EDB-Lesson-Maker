@@ -106,6 +106,8 @@ const SAME_DOCK =
   'REGISTERED FAMILY wx-dock. SAME camera, SAME wooden fishing dock, SAME two posts, SAME rope coil, SAME crate stack at edge. Only weather/light change. Open dock center. No people no boats as subjects no text.';
 const SAME_BUS =
   'REGISTERED FAMILY wx-bus-shelter. SAME camera, SAME glass/metal shelter, SAME bench, SAME blank timetable panel (ZERO letters/numbers), SAME curb. Only weather/light change. Open curb/shelter floor. No people no logos.';
+const SAME_ATTIC =
+  'REGISTERED FAMILY wx-attic. SAME camera, SAME attic room, SAME dormer window, SAME trunk, SAME rafters. Only weather/light outside the glass. Open floor center. No people no text.';
 
 export const WAVES = {
   f1: {
@@ -1092,6 +1094,67 @@ export const WAVES = {
       ]),
     ],
   },
+  f15: {
+    id: 'cw-f15-wx-attic',
+    harvest_family: 'weather-seasons',
+    family: 'weather-seasons',
+    title: 'CW FGHI F15 — weather family attic window',
+    kind: 'stage',
+    sheets: [
+      sh('S1', 'wx attic window family 2x2', 'landscape-contact-2x2', [
+        s('wx-attic-sunny', `${SAME_ATTIC} STATE sunny outside: bright dust motes, dry floor. Affordance: sit trunk, look out.`, GATE.wx, { family_id: 'wx-attic' }),
+        s('wx-attic-rain', `${SAME_ATTIC} STATE rain outside: streaked glass, grey light. Affordance: watch rain, stay dry.`, GATE.wx, { family_id: 'wx-attic' }),
+        s('wx-attic-snow', `${SAME_ATTIC} STATE snow outside: frosted sill, soft white light. Affordance: warm attic vs cold glass.`, GATE.wx, { family_id: 'wx-attic' }),
+        s('wx-attic-dusk', `${SAME_ATTIC} STATE dusk: lamp glow inside, deep blue outside. Affordance: evening quiet.`, GATE.wx, { family_id: 'wx-attic' }),
+      ]),
+    ],
+  },
+  g14: {
+    id: 'cw-g14-hardware-tool',
+    harvest_family: 'everyday-life',
+    family: 'everyday-life',
+    title: 'CW FGHI G14 — hardware aisle + tool bench life',
+    kind: 'stage',
+    sheets: [
+      sh('S1', 'hardware life 2x2', 'landscape-contact-2x2', [
+        s('life-hardware-aisle', 'hardware store aisle: bins at edges (blank labels), open floor center. No people no price tags.', GATE.life),
+        s('life-paint-mixing', 'paint mixing counter: cans at edge (blank), open floor. No people no brand logos.', GATE.life),
+        s('life-garage-bench', 'home garage tool bench at edge, open concrete floor, blank tool wall shapes. No people no logos.', GATE.life),
+        s('life-bike-repair-stand', 'bike repair stand at edge (empty bike silhouette OK), open floor. No people no brand logos.', GATE.life),
+      ]),
+    ],
+  },
+  h14: {
+    id: 'cw-h14-lost-found',
+    harvest_family: 'occasions',
+    family: 'occasions',
+    title: 'CW FGHI H14 — lost-and-found / orientation stages',
+    kind: 'stage',
+    sheets: [
+      sh('S1', 'school admin occasions 2x2', 'landscape-contact-2x2', [
+        s('occ-lost-found-shelf', 'lost-and-found shelf at edge with unlabeled items, open hallway floor. No people no name tags with text.', GATE.ok),
+        s('occ-orientation-booth', 'school orientation booth: empty table + blank brochure stand (ZERO text), open floor. No people.', GATE.ok),
+        s('occ-teacher-desk-night', 'classroom after-hours: empty teacher desk at edge, open floor, dusk window. No people no papers with text.', GATE.ok),
+        s('occ-assembly-floor', 'gym assembly: empty chair rows at edges, open floor center. No people no banner letters.', GATE.ok),
+      ]),
+    ],
+  },
+  j14: {
+    id: 'cw-j14-places-n',
+    harvest_family: 'countries',
+    family: 'countries',
+    title: 'CW FGHI J14 — country PLACE worlds N (4)',
+    kind: 'stage',
+    cultural_review_required: true,
+    sheets: [
+      sh('S1', 'place worlds N 2x2', 'landscape-contact-2x2', [
+        s('place-lavender-field-path', 'lavender field path, open dirt path floor. Landscape. NO flags maps seals labels.', GATE.place, { country_hint: 'FR' }),
+        s('place-fishing-village-slip', 'fishing village slipway, boats at FAR edge, open slip floor. Transport/work. NO flags maps seals labels.', GATE.place, { country_hint: 'PT' }),
+        s('place-stepwell-rim', 'quiet stepwell rim courtyard, open stone floor (empty of bathers). Everyday/landscape. NO flags maps seals labels.', GATE.place, { country_hint: 'IN' }),
+        s('place-cedar-forest-trail', 'cedar forest trail, open packed path. Landscape. NO flags maps seals labels.', GATE.place, { country_hint: 'LB' }),
+      ]),
+    ],
+  },
 };
 
 export const WAVE_ORDER = [
@@ -1100,26 +1163,18 @@ export const WAVE_ORDER = [
   'h1', 'h2', 'h3',
   'i1', 'i2', 'i3',
   'j1', 'j2', 'j3',
-  // extension batch 1
   'f5', 'f6',
   'h4', 'h5',
   'j4', 'j5',
-  // extension batch 2
   'f7', 'g6', 'h6', 'i4', 'j6',
-  // extension batch 3
   'f8', 'g7', 'h7', 'j7',
-  // extension batch 4
   'f9', 'g8', 'h8', 'j8',
-  // extension batch 5
   'f10', 'g9', 'h9', 'j9',
-  // extension batch 6
   'f11', 'g10', 'h10', 'j10',
-  // extension batch 7
   'f12', 'g11', 'h11', 'j11',
-  // extension batch 8
   'f13', 'g12', 'h12', 'j12',
-  // extension batch 9
   'f14', 'g13', 'h13', 'j13',
+  'f15', 'g14', 'h14', 'j14',
 ];
 
 function isRateLimitError(err) {
