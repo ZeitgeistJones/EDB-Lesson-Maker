@@ -11,17 +11,17 @@ Songs excluded. No flags/maps/seals. Festival + country + wedding: `cultural_rev
 | Weather families (registered) | 20 |
 | Country PLACE worlds | 68 |
 | Festival stages | 20 |
-| Stage cells planned | 284 |
+| Stage cells planned | 296 |
 | Companion cells planned | 45 |
-| Waves / tasks planned | 63 |
+| Waves / tasks planned | 66 |
 
 ## Running totals
 
 | Metric | Count |
 |---|---:|
-| Tasks | 1 |
-| Sheets downloaded | 1 |
-| Stage cells harvested | 4 |
+| Tasks | 2 |
+| Sheets downloaded | 2 |
+| Stage cells harvested | 8 |
 | Companion cells harvested | 0 |
 
 ## Waves
@@ -89,6 +89,9 @@ Songs excluded. No flags/maps/seals. Festival + country + wedding: `cultural_rev
 - **j14** — CW FGHI J14 — country PLACE worlds N (4) — unfired — cells 4
 - **f16** — CW FGHI F16 — weather family patio umbrella — unfired — cells 4
 - **g15** — https://manus.im/app/iDSpL3KXMwEDcyZvc9VKcb — sheets 1 — cells 4
+- **f17** — https://manus.im/app/PMzCZZq6KuA3X8NfiTjFDs — sheets 1 — cells 4
+- **h15** — CW FGHI H15 — science-fair / book-fair stages — unfired — cells 4
+- **j15** — CW FGHI J15 — country PLACE worlds O (4) — unfired — cells 4
 
 ## research_gate
 
