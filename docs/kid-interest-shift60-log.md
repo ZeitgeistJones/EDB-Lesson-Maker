@@ -8,12 +8,12 @@ Tracked: `scripts/manus/request-kid-interest-shift60.mjs`, audit/portfolio docs,
 
 | Metric | Count |
 |---|---:|
-| Waves planned | 44 |
-| Tasks | 37 |
-| Sheets downloaded | 97 |
-| Waves done | 34 |
-| Asset cells | 810 |
-| Novelty (discovered families %) | 54% |
+| Waves planned | 64 |
+| Tasks | 61 |
+| Sheets downloaded | 166 |
+| Waves done | 58 |
+| Asset cells | 1341 |
+| Novelty (discovered families %) | 67% |
 
 ## Waves
 
@@ -51,16 +51,36 @@ Tracked: `scripts/manus/request-kid-interest-shift60.mjs`, audit/portfolio docs,
 - **ki-photography-club** `ki-photography-club` — generated_raw — novelty=discovered-new — https://manus.im/app/cH74Rx7xtt7bcjXv4Nzwfb — 3 sheets / 27 cells — Discovered hobby — kid photo club beyond one instant camera
 - **ki-magic-show-deep** `ki-magic-show-deep` — generated_raw — novelty=discovered-new — https://manus.im/app/LmFdFUwmh8im4GS7KkDojs — 3 sheets / 27 cells — Discovered — expand beyond hat/wand into stage magic props
 - **ki-robotics-club** `ki-robotics-club` — generated_raw — novelty=discovered-new — https://manus.im/app/L5BrYfY89SAsJ9EwysnVEb — 3 sheets / 27 cells — Discovered STEM club — robot competition kit not in prompt
-- **ki-slime-lab-deep** `ki-slime-lab-deep` — fired — novelty=prompt-direction — https://manus.im/app/F6CPozRdRDuobsgnH4xGKs — 3 sheets / 27 cells — Crafts slime still thin — lab kit + textures + tools
-- **ki-bike-park-gear** `ki-bike-park-gear` — fired — novelty=prompt-direction — https://manus.im/app/JkG7YzqY3pUnR58MYt5oss — 3 sheets / 27 cells — Fun vehicles depth — bike/scooter park modules beyond one BMX
-- **ki-scuba-snorkel** `ki-scuba-snorkel` — fired — novelty=discovered-new — https://manus.im/app/hgXqbu8ztZu3tndHcHj4z6 — 3 sheets / 27 cells — Discovered water hobby — not in original prompt
-- **ki-horse-stable** `ki-horse-stable` — unfired — novelty=discovered-new — unfired — 3 sheets / 27 cells — Discovered high-interest riding/stable life
-- **ki-arcade-pinball** `ki-arcade-pinball` — unfired — novelty=discovered-new — unfired — 3 sheets / 27 cells — Discovered unbranded arcade leisure machines
-- **ow-wave15-harbor-resort** `ow-wave15` — unfired — novelty=discovered-new — unfired — 3 sheets / 3 cells — NEW overviews matching scuba/horse/arcade
-- **ki-fashion-design** `ki-fashion-design` — unfired — novelty=discovered-new — unfired — 3 sheets / 27 cells — Discovered maker hobby — sewing/fashion not in prompt
-- **ow-wave16-campus-clubs** `ow-wave16` — unfired — novelty=discovered-new — unfired — 3 sheets / 3 cells — NEW club campuses
-- **ki-drone-racing** `ki-drone-racing` — unfired — novelty=discovered-new — unfired — 3 sheets / 27 cells — Discovered modern hobby — unbranded drone racing
-- **ki-chess-mind-sports** `ki-chess-mind-sports` — unfired — novelty=discovered-new — unfired — 2 sheets / 18 cells — Discovered mind sports depth
+- **ki-slime-lab-deep** `ki-slime-lab-deep` — generated_raw — novelty=prompt-direction — https://manus.im/app/F6CPozRdRDuobsgnH4xGKs — 3 sheets / 27 cells — Crafts slime still thin — lab kit + textures + tools
+- **ki-bike-park-gear** `ki-bike-park-gear` — generated_raw — novelty=prompt-direction — https://manus.im/app/JkG7YzqY3pUnR58MYt5oss — 3 sheets / 27 cells — Fun vehicles depth — bike/scooter park modules beyond one BMX
+- **ki-scuba-snorkel** `ki-scuba-snorkel` — generated_raw — novelty=discovered-new — https://manus.im/app/hgXqbu8ztZu3tndHcHj4z6 — 3 sheets / 27 cells — Discovered water hobby — not in original prompt
+- **ki-horse-stable** `ki-horse-stable` — generated_raw — novelty=discovered-new — https://manus.im/app/4rPaXTnsUrGTeRXq6DXxdj — 3 sheets / 27 cells — Discovered high-interest riding/stable life
+- **ki-arcade-pinball** `ki-arcade-pinball` — generated_raw — novelty=discovered-new — https://manus.im/app/SpwKcTXDjsgWS4MPNQ7wAQ — 3 sheets / 27 cells — Discovered unbranded arcade leisure machines
+- **ow-wave15-harbor-resort** `ow-wave15` — generated_raw — novelty=discovered-new — https://manus.im/app/MPvn22dQmLkeDrbxh7PTg2 — 3 sheets / 3 cells — NEW overviews matching scuba/horse/arcade
+- **ki-fashion-design** `ki-fashion-design` — generated_raw — novelty=discovered-new — https://manus.im/app/VBKfF6NfGvBFzsFYkN2knn — 3 sheets / 27 cells — Discovered maker hobby — sewing/fashion not in prompt
+- **ow-wave16-campus-clubs** `ow-wave16` — generated_raw — novelty=discovered-new — https://manus.im/app/VVGdwACA5JTZUDQyhh2sLM — 3 sheets / 3 cells — NEW club campuses
+- **ki-drone-racing** `ki-drone-racing` — generated_raw — novelty=discovered-new — https://manus.im/app/CV7EtyDFTShWRoFGtxaPmn — 3 sheets / 27 cells — Discovered modern hobby — unbranded drone racing
+- **ki-chess-mind-sports** `ki-chess-mind-sports` — generated_raw — novelty=discovered-new — https://manus.im/app/3TicyE4jCcM54X6X36CZTv — 2 sheets / 18 cells — Discovered mind sports depth
+- **ki-geology-dig** `ki-geology-dig` — generated_raw — novelty=discovered-new — https://manus.im/app/kschwkqV2hGwbDjePxG3Wu — 3 sheets / 27 cells — Discovered rockhound/dig kit not in original prompt
+- **ki-birding-nature** `ki-birding-nature` — generated_raw — novelty=discovered-new — https://manus.im/app/WeKCmfcEo6RXSfkFxXLg5P — 3 sheets / 27 cells — Discovered hobby — birdwatching not in original prompt
+- **ki-parkour-ninja** `ki-parkour-ninja` — generated_raw — novelty=discovered-new — https://manus.im/app/3or4rUNWaEsi3FiPUvLUQH — 3 sheets / 27 cells — Discovered active sport — ninja/parkour course gear
+- **ki-pets-habitats-deep** `ki-pets-habitats-deep` — generated_raw — novelty=prompt-direction — https://manus.im/app/8PyufpE9cSWrVAQeVs7gkt — 3 sheets / 27 cells — Pets still thin on habitats — tanks/cages/playpens
+- **ki-music-percussion** `ki-music-percussion` — generated_raw — novelty=prompt-direction — https://manus.im/app/K78Xpq3M4ySYbFQB3TNniA — 3 sheets / 27 cells — Music still thin — percussion depth beyond kit/xylophone
+- **ki-comics-maker** `ki-comics-maker` — generated_raw — novelty=discovered-new — https://manus.im/app/DVJ8xXxykK4perPgxL8Goo — 3 sheets / 27 cells — Discovered creator hobby — comics/zine kit not in original prompt
+- **ki-kite-festival** `ki-kite-festival` — generated_raw — novelty=discovered-new — https://manus.im/app/FNiqh66EWLYTLMuYPpXJvP — 3 sheets / 27 cells — Discovered outdoor festival hobby — kite forms + reels
+- **ki-model-trains** `ki-model-trains` — generated_raw — novelty=discovered-new — https://manus.im/app/Y7DwBY4x8ep4h3J5vpDfK7 — 3 sheets / 27 cells — Discovered hobby — model rail not in original prompt
+- **ki-yo-yo-club** `ki-yo-yo-club` — generated_raw — novelty=discovered-new — https://manus.im/app/5QcJbygHm4vbNKrKBg73rX — 3 sheets / 27 cells — Discovered skill-toy club beyond one yo-yo
+- **ki-camping-outdoors** `ki-camping-outdoors` — generated_raw — novelty=discovered-new — https://manus.im/app/G7z7jWoGsxKPjfQQsphoT3 — 3 sheets / 27 cells — Discovered outdoors hobby — camping kit depth not in original prompt
+- **ki-fishing-tackle** `ki-fishing-tackle` — generated_raw — novelty=discovered-new — https://manus.im/app/9mPXFDamHSbZVhkrSgYDnX — 3 sheets / 27 cells — Discovered — fishing kit beyond one rod
+- **ki-baking-cafe** `ki-baking-cafe` — generated_raw — novelty=discovered-new — https://manus.im/app/krByKKVnadExWiV3vhB8BW — 3 sheets / 27 cells — Discovered — bakery cafe props beyond basic cook kit
+- **ki-radio-ham** `ki-radio-ham` — unfired — novelty=discovered-new — unfired — 3 sheets / 27 cells — Discovered tech club — ham/radio kit not in prompt
+- **ki-skate-street-deep** `ki-skate-street-deep` — unfired — novelty=prompt-direction — unfired — 3 sheets / 27 cells — Vehicles/boards still thin — street skate parts + obstacles
+- **ki-ice-hockey-club** `ki-ice-hockey-club` — generated_raw — novelty=discovered-new — https://manus.im/app/hfbH6UQxjgrdfsYgeoWyoL — 2 sheets / 18 cells — Discovered hockey depth
+- **ki-escape-room-props** `ki-escape-room-props` — generated_raw — novelty=discovered-new — https://manus.im/app/KmNTfDNMgw4tMZx2rFUEvP — 2 sheets / 18 cells — Discovered mystery/puzzle props
+- **ki-vinyl-dj-deep** `ki-vinyl-dj-deep` — fired — novelty=discovered-new — https://manus.im/app/CUFVasA9UdkVbKrXZL2io6 — 2 sheets / 18 cells — Discovered DJ/vinyl depth
+- **ow-wave30-clubs** `ow-wave30` — fired — novelty=discovered-new — https://manus.im/app/AWU5E3YppWAsYK6AxMYQT5 — 3 sheets / 3 cells — NEW overviews for hockey/pastry/escape
+- **ki-martial-dojo** `ki-martial-dojo` — fired — novelty=prompt-direction — https://manus.im/app/mCk4h38DGWsn2aU3xg7DPY — 2 sheets / 18 cells — Martial thin — dojo kit
+- **ow-wave31-outdoors** `ow-wave31` — unfired — novelty=discovered-new — unfired — 3 sheets / 3 cells — NEW outdoor overviews
 
 ## Events
 
@@ -249,3 +269,137 @@ _none yet_
 - 2026-08-20T18:38:12.792Z — FIRED ki-slime-lab-deep → https://manus.im/app/F6CPozRdRDuobsgnH4xGKs
 
 - 2026-08-20T18:39:06.529Z — FIRED ki-scuba-snorkel → https://manus.im/app/hgXqbu8ztZu3tndHcHj4z6
+
+- 2026-08-20T18:42:45.319Z — DOWNLOADED ki-scuba-snorkel qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\sports\ki-scuba-snorkel\sheets
+
+- 2026-08-20T18:42:52.505Z — DOWNLOADED ki-scuba-snorkel qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\sports\ki-scuba-snorkel\sheets
+
+- 2026-08-20T18:42:54.827Z — DOWNLOADED ki-scuba-snorkel qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\sports\ki-scuba-snorkel\sheets
+
+- 2026-08-20T18:43:41.791Z — FIRED ki-horse-stable → https://manus.im/app/4rPaXTnsUrGTeRXq6DXxdj
+
+- 2026-08-20T18:43:57.392Z — DOWNLOADED ki-slime-lab-deep qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\crafts-maker\ki-slime-lab-deep\sheets
+
+- 2026-08-20T18:43:57.457Z — DOWNLOADED ki-slime-lab-deep qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\crafts-maker\ki-slime-lab-deep\sheets
+
+- 2026-08-20T18:44:26.615Z — DOWNLOADED ki-bike-park-gear qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\vehicles-leisure\ki-bike-park-gear\sheets
+
+- 2026-08-20T18:44:28.519Z — DOWNLOADED ki-bike-park-gear qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\vehicles-leisure\ki-bike-park-gear\sheets
+
+- 2026-08-20T18:44:40.172Z — FIRED ki-fashion-design → https://manus.im/app/VBKfF6NfGvBFzsFYkN2knn
+
+- 2026-08-20T18:44:40.199Z — FIRED ki-arcade-pinball → https://manus.im/app/SpwKcTXDjsgWS4MPNQ7wAQ
+
+- 2026-08-20T18:45:23.275Z — DOWNLOADED ki-bike-park-gear qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\vehicles-leisure\ki-bike-park-gear\sheets
+
+- 2026-08-20T18:45:53.644Z — DOWNLOADED ki-horse-stable qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-horse-stable\sheets
+
+- 2026-08-20T18:45:58.000Z — DOWNLOADED ki-horse-stable qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-horse-stable\sheets
+
+- 2026-08-20T18:46:22.813Z — FIRED ki-drone-racing → https://manus.im/app/CV7EtyDFTShWRoFGtxaPmn
+
+- 2026-08-20T18:47:25.174Z — DOWNLOADED ki-arcade-pinball qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\hobbies\ki-arcade-pinball\sheets
+
+- 2026-08-20T18:47:25.622Z — DOWNLOADED ki-fashion-design qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\crafts-maker\ki-fashion-design\sheets
+
+- 2026-08-20T18:47:26.431Z — FIRED ki-chess-mind-sports → https://manus.im/app/3TicyE4jCcM54X6X36CZTv
+
+- 2026-08-20T18:48:01.906Z — FIRED ow-wave15-harbor-resort → https://manus.im/app/MPvn22dQmLkeDrbxh7PTg2
+
+- 2026-08-20T18:48:03.252Z — FIRED ow-wave16-campus-clubs → https://manus.im/app/VVGdwACA5JTZUDQyhh2sLM
+
+- 2026-08-20T18:49:56.963Z — DOWNLOADED ki-chess-mind-sports qa=PASS sheets=2 large=2/2 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\gaming-digital\ki-chess-mind-sports\sheets
+
+- 2026-08-20T18:50:03.144Z — DOWNLOADED ki-drone-racing qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-drone-racing\sheets
+
+- 2026-08-20T18:50:12.535Z — DOWNLOADED ki-chess-mind-sports qa=PASS sheets=2 large=2/2 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\gaming-digital\ki-chess-mind-sports\sheets
+
+- 2026-08-20T18:50:19.937Z — DOWNLOADED ow-wave16-campus-clubs qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\town-community\ow-wave16-campus-clubs\sheets
+
+- 2026-08-20T18:50:49.317Z — DOWNLOADED ow-wave15-harbor-resort qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\leisure\ow-wave15-harbor-resort\sheets
+
+- 2026-08-20T18:51:26.383Z — FIRED ki-birding-nature → https://manus.im/app/WeKCmfcEo6RXSfkFxXLg5P
+
+- 2026-08-20T18:51:26.771Z — FIRED ki-parkour-ninja → https://manus.im/app/3or4rUNWaEsi3FiPUvLUQH
+
+- 2026-08-20T18:51:27.162Z — FIRED ki-geology-dig → https://manus.im/app/kschwkqV2hGwbDjePxG3Wu
+
+- 2026-08-20T18:53:36.309Z — DOWNLOADED ki-birding-nature qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-birding-nature\sheets
+
+- 2026-08-20T18:54:07.337Z — DOWNLOADED ki-parkour-ninja qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\sports\ki-parkour-ninja\sheets
+
+- 2026-08-20T18:54:35.629Z — DOWNLOADED ki-geology-dig qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-geology-dig\sheets
+
+- 2026-08-20T18:54:52.869Z — FIRED ki-music-percussion → https://manus.im/app/K78Xpq3M4ySYbFQB3TNniA
+
+- 2026-08-20T18:54:53.578Z — FIRED ki-pets-habitats-deep → https://manus.im/app/8PyufpE9cSWrVAQeVs7gkt
+
+- 2026-08-20T18:56:56.853Z — DOWNLOADED ki-pets-habitats-deep qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\pets\ki-pets-habitats-deep\sheets
+
+- 2026-08-20T18:57:53.371Z — FIRED ki-comics-maker → https://manus.im/app/DVJ8xXxykK4perPgxL8Goo
+
+- 2026-08-20T18:57:53.868Z — FIRED ki-kite-festival → https://manus.im/app/FNiqh66EWLYTLMuYPpXJvP
+
+- 2026-08-20T18:57:58.710Z — DOWNLOADED ki-music-percussion qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\music\ki-music-percussion\sheets
+
+- 2026-08-20T18:59:56.147Z — DOWNLOADED ki-comics-maker qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-comics-maker\sheets
+
+- 2026-08-20T19:00:26.764Z — DOWNLOADED ki-kite-festival qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-kite-festival\sheets
+
+- 2026-08-20T19:00:47.218Z — DOWNLOADED ki-kite-festival qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-kite-festival\sheets
+
+- 2026-08-20T19:01:30.740Z — FIRED ki-model-trains → https://manus.im/app/Y7DwBY4x8ep4h3J5vpDfK7
+
+- 2026-08-20T19:01:31.442Z — FIRED ki-yo-yo-club → https://manus.im/app/5QcJbygHm4vbNKrKBg73rX
+
+- 2026-08-20T19:03:19.976Z — DOWNLOADED ki-yo-yo-club qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-yo-yo-club\sheets
+
+- 2026-08-20T19:03:45.688Z — DOWNLOADED ki-model-trains qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-model-trains\sheets
+
+- 2026-08-20T19:03:49.122Z — DOWNLOADED ki-model-trains qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-model-trains\sheets
+
+- 2026-08-20T19:03:49.269Z — DOWNLOADED ki-yo-yo-club qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-yo-yo-club\sheets
+
+- 2026-08-20T19:04:38.007Z — FIRED ki-camping-outdoors → https://manus.im/app/G7z7jWoGsxKPjfQQsphoT3
+
+- 2026-08-20T19:04:38.672Z — FIRED ki-fishing-tackle → https://manus.im/app/9mPXFDamHSbZVhkrSgYDnX
+
+- 2026-08-20T19:04:39.435Z — FIRED ki-baking-cafe → https://manus.im/app/krByKKVnadExWiV3vhB8BW
+
+- 2026-08-20T19:05:24.652Z — DOWNLOADED ki-yo-yo-club qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-yo-yo-club\sheets
+
+- 2026-08-20T19:05:25.000Z — DOWNLOADED ki-model-trains qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-model-trains\sheets
+
+- 2026-08-20T19:07:35.477Z — DOWNLOADED ki-fishing-tackle qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\sports\ki-fishing-tackle\sheets
+
+- 2026-08-20T19:07:48.929Z — DOWNLOADED ki-fishing-tackle qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\sports\ki-fishing-tackle\sheets
+
+- 2026-08-20T19:07:50.730Z — FIRED ki-ice-hockey-club → https://manus.im/app/hfbH6UQxjgrdfsYgeoWyoL
+
+- 2026-08-20T19:07:52.612Z — FIRED ki-escape-room-props → https://manus.im/app/KmNTfDNMgw4tMZx2rFUEvP
+
+- 2026-08-20T19:08:44.387Z — DOWNLOADED ki-camping-outdoors qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-camping-outdoors\sheets
+
+- 2026-08-20T19:08:50.901Z — DOWNLOADED ki-camping-outdoors qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-camping-outdoors\sheets
+
+- 2026-08-20T19:09:04.900Z — DOWNLOADED ki-camping-outdoors qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-camping-outdoors\sheets
+
+- 2026-08-20T19:10:06.285Z — DOWNLOADED ki-ice-hockey-club qa=PASS sheets=2 large=2/2 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\sports\ki-ice-hockey-club\sheets
+
+- 2026-08-20T19:10:08.411Z — DOWNLOADED ki-escape-room-props qa=PASS sheets=2 large=2/2 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-escape-room-props\sheets
+
+- 2026-08-20T19:10:13.808Z — DOWNLOADED ki-escape-room-props qa=PASS sheets=2 large=2/2 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\other-discovered\ki-escape-room-props\sheets
+
+- 2026-08-20T19:10:14.706Z — DOWNLOADED ki-ice-hockey-club qa=PASS sheets=2 large=2/2 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\sports\ki-ice-hockey-club\sheets
+
+- 2026-08-20T19:10:19.975Z — DOWNLOADED ki-baking-cafe qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\hobbies\ki-baking-cafe\sheets
+
+- 2026-08-20T19:10:35.137Z — DOWNLOADED ki-baking-cafe qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\hobbies\ki-baking-cafe\sheets
+
+- 2026-08-20T19:10:44.894Z — DOWNLOADED ki-baking-cafe qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\kid-interest\hobbies\ki-baking-cafe\sheets
+
+- 2026-08-20T19:10:56.504Z — FIRED ki-vinyl-dj-deep → https://manus.im/app/CUFVasA9UdkVbKrXZL2io6
+
+- 2026-08-20T19:10:58.184Z — FIRED ow-wave30-clubs → https://manus.im/app/AWU5E3YppWAsYK6AxMYQT5
+
+- 2026-08-20T19:10:59.939Z — FIRED ki-martial-dojo → https://manus.im/app/mCk4h38DGWsn2aU3xg7DPY
