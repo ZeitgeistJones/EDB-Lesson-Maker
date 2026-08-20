@@ -87,8 +87,8 @@ Songs excluded. No flags/maps/seals. Festival + country + wedding: `cultural_rev
 - **g14** — CW FGHI G14 — hardware aisle + tool bench life — unfired — cells 4
 - **h14** — CW FGHI H14 — lost-and-found / orientation stages — unfired — cells 4
 - **j14** — CW FGHI J14 — country PLACE worlds N (4) — unfired — cells 4
-- **f16** — https://manus.im/app/gYNk5GEUdL6SpFWgMexHxW — sheets 1 — cells 4
-- **g15** — CW FGHI G15 — bookstore + cafe life — unfired — cells 4
+- **f16** — CW FGHI F16 — weather family patio umbrella — unfired — cells 4
+- **g15** — https://manus.im/app/iDSpL3KXMwEDcyZvc9VKcb — sheets 1 — cells 4
 
 ## research_gate
 
