@@ -1,0 +1,128 @@
+{
+  "kind": "board-enabling-k5",
+  "prefix": "be-k5-",
+  "waves": {
+    "k5-tiles": {
+      "family_id": "be-k5-town-country-tiles",
+      "title": "BE-K5 route path tiles (REG critical)",
+      "kind": "route-tiles",
+      "task_id": "i2NiasvagRX9byLy7RfBYH",
+      "task_url": "https://manus.im/app/i2NiasvagRX9byLy7RfBYH",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\route-world\\k5-tiles\\sheets",
+      "expected_sheets": 2,
+      "cell_count": 16,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4225332,
+          "name": "be-k5-town-country-tiles-S1-path-tiles-A.png"
+        },
+        {
+          "file": "02.png",
+          "bytes": 4325565,
+          "name": "be-k5-town-country-tiles-S2-path-tiles-B.png"
+        }
+      ],
+      "finished_at": "2026-08-20T04:54:33.724Z",
+      "holds": []
+    },
+    "k5-base": {
+      "family_id": "be-k5-town-country",
+      "title": "BE-K5 town→country base map",
+      "kind": "route-base",
+      "task_id": "G263bHWsaTTyqPCJ6MMYGq",
+      "task_url": "https://manus.im/app/G263bHWsaTTyqPCJ6MMYGq",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\route-world\\k5-base\\sheets",
+      "expected_sheets": 1,
+      "cell_count": 1,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 5023528,
+          "name": "be-k5-base-map.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:03:20.536Z",
+      "holds": []
+    }
+  },
+  "families": {
+    "be-k5-town-country-tiles": {
+      "family_id": "be-k5-town-country-tiles",
+      "wave": "k5-tiles",
+      "kind": "route-tiles",
+      "reuse_note": "registration grade targets this wave",
+      "siblings": [
+        "be-k5-tile-straight",
+        "be-k5-tile-straight-ew",
+        "be-k5-tile-corner-ne",
+        "be-k5-tile-corner-nw",
+        "be-k5-tile-corner-se",
+        "be-k5-tile-corner-sw",
+        "be-k5-tile-t-junction",
+        "be-k5-tile-four-way",
+        "be-k5-tile-bridge",
+        "be-k5-tile-tunnel",
+        "be-k5-tile-footpath",
+        "be-k5-tile-stairs",
+        "be-k5-tile-ramp",
+        "be-k5-tile-roundabout",
+        "be-k5-tile-dead-end",
+        "be-k5-tile-crossing"
+      ],
+      "registration_grade": "REG_C",
+      "grade_notes": "path width roughly locked within each sheet; S1 vs S2 projection drift (flat ortho vs 3D block bevel); cell counts drifted from 4x2; footpath lacks curb lock. Usable starter kit, not REG_A.",
+      "manus_task_id": "i2NiasvagRX9byLy7RfBYH",
+      "task_url": "https://manus.im/app/i2NiasvagRX9byLy7RfBYH",
+      "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\route-world\\k5-tiles\\sheets",
+      "status": "generated_raw"
+    },
+    "be-k5-town-country": {
+      "family_id": "be-k5-town-country",
+      "wave": "k5-base",
+      "kind": "route-base",
+      "reuse_note": "new modular system — not cw-c10 clone",
+      "siblings": [
+        "be-k5-base-map"
+      ],
+      "registration_grade": "FIRED",
+      "grade_notes": "",
+      "manus_task_id": "G263bHWsaTTyqPCJ6MMYGq",
+      "task_url": "https://manus.im/app/G263bHWsaTTyqPCJ6MMYGq",
+      "sheet_dir": "C:\\dev\\PPT-be-k4k5-wt\\harvested\\board-enabling\\route-world\\k5-base\\sheets",
+      "status": "generated_raw"
+    }
+  },
+  "running_total": {
+    "tasks": 2,
+    "sheets_downloaded": 3,
+    "waves_planned": 6,
+    "waves_done": 2,
+    "families_graded": 1,
+    "reg_a": 0,
+    "reg_b": 0,
+    "reg_c": 1,
+    "reg_fail": 0,
+    "asset_cells": 17
+  },
+  "route_audit": [
+    {
+      "bank": "cw-c10 network/emergency route worlds",
+      "class": "PARTIAL",
+      "note": "Scene illustrations with routes, not modular joinable tiles."
+    },
+    {
+      "bank": "wx-bike-path / town-street stages",
+      "class": "THIN",
+      "note": "Places, not tile system."
+    },
+    {
+      "bank": "K5 modular town→country route system",
+      "class": "MISSING",
+      "note": "This stockpile — one coherent system."
+    }
+  ],
+  "updated_at": "2026-08-20T05:03:20.837Z"
+}

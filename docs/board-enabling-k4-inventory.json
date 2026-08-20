@@ -1,0 +1,329 @@
+{
+  "kind": "board-enabling-k4",
+  "prefix": "be-k4-",
+  "waves": {},
+  "families": {},
+  "pairs": [
+    {
+      "slug": "plate-crumbs",
+      "clue": "cake crumbs on empty plate rim",
+      "counterpart_slug": "cake",
+      "counterpart": "whole cake slice on plate",
+      "reuse_pack": "cake"
+    },
+    {
+      "slug": "melted-ice-cream-puddle",
+      "clue": "melted ice-cream puddle + stick",
+      "counterpart_slug": "ice-cream",
+      "counterpart": "ice-cream cone upright",
+      "reuse_pack": "ice-cream"
+    },
+    {
+      "slug": "apple-core",
+      "clue": "eaten apple core with seeds",
+      "counterpart_slug": "apple",
+      "counterpart": "whole red apple",
+      "reuse_pack": "apple"
+    },
+    {
+      "slug": "sandwich-crumbs",
+      "clue": "sandwich corner crumbs + napkin smear",
+      "counterpart_slug": "sandwich",
+      "counterpart": "whole sandwich",
+      "reuse_pack": "sandwich"
+    },
+    {
+      "slug": "cup-ring",
+      "clue": "coffee/tea cup ring stain on table top (cutout)",
+      "counterpart_slug": "cup",
+      "counterpart": "simple cup",
+      "reuse_pack": "cup"
+    },
+    {
+      "slug": "banana-peel",
+      "clue": "discarded banana peel",
+      "counterpart_slug": "banana",
+      "counterpart": "whole banana",
+      "reuse_pack": "banana"
+    },
+    {
+      "slug": "juice-spill-trail",
+      "clue": "short juice drip trail",
+      "counterpart_slug": "juice-box",
+      "counterpart": "kids juice box blank",
+      "reuse_pack": null
+    },
+    {
+      "slug": "chocolate-smear",
+      "clue": "chocolate smear on napkin",
+      "counterpart_slug": "chocolate-bar",
+      "counterpart": "plain chocolate bar no brand",
+      "reuse_pack": null
+    },
+    {
+      "slug": "muddy-paw-prints",
+      "clue": "3 muddy dog paw prints in a short trail",
+      "counterpart_slug": "dog",
+      "counterpart": "friendly dog standing still-life",
+      "reuse_pack": "dog"
+    },
+    {
+      "slug": "wet-boot-prints",
+      "clue": "2 wet boot footprints trail",
+      "counterpart_slug": "boot",
+      "counterpart": "rain boot",
+      "reuse_pack": "boot"
+    },
+    {
+      "slug": "wet-umbrella-drip",
+      "clue": "open wet umbrella dripping + small puddle",
+      "counterpart_slug": "umbrella",
+      "counterpart": "open child umbrella",
+      "reuse_pack": "umbrella"
+    },
+    {
+      "slug": "leaf-trail-indoors",
+      "clue": "autumn leaf trail leading inward",
+      "counterpart_slug": "leaf",
+      "counterpart": "single maple-ish leaf",
+      "reuse_pack": "leaf"
+    },
+    {
+      "slug": "sand-spill-from-shoe",
+      "clue": "sand spilling from tipped shoe",
+      "counterpart_slug": "shoe",
+      "counterpart": "kid shoe",
+      "reuse_pack": "shoe"
+    },
+    {
+      "slug": "bike-tire-track",
+      "clue": "narrow bicycle tire track arc",
+      "counterpart_slug": "bicycle",
+      "counterpart": "simple bicycle side view",
+      "reuse_pack": "bicycle"
+    },
+    {
+      "slug": "snow-boot-print",
+      "clue": "deep snow boot print",
+      "counterpart_slug": "winter-boot",
+      "counterpart": "winter boot",
+      "reuse_pack": null
+    },
+    {
+      "slug": "doormat-mud",
+      "clue": "doormat with muddy scuffs",
+      "counterpart_slug": "doormat",
+      "counterpart": "coir doormat blank",
+      "reuse_pack": null
+    },
+    {
+      "slug": "single-glove",
+      "clue": "one lost glove alone",
+      "counterpart_slug": "glove-pair",
+      "counterpart": "matching glove pair together",
+      "reuse_pack": "glove"
+    },
+    {
+      "slug": "scarf-on-rail",
+      "clue": "scarf draped on stair rail stub",
+      "counterpart_slug": "scarf",
+      "counterpart": "folded scarf",
+      "reuse_pack": "scarf"
+    },
+    {
+      "slug": "broken-shoelace",
+      "clue": "snapped shoelace with tip",
+      "counterpart_slug": "shoe",
+      "counterpart": "laced shoe",
+      "reuse_pack": "shoe"
+    },
+    {
+      "slug": "ribbon-fragment",
+      "clue": "torn gift ribbon fragment",
+      "counterpart_slug": "ribbon-gift",
+      "counterpart": "gift box with ribbon blank",
+      "reuse_pack": "ribbon"
+    },
+    {
+      "slug": "sock-mismatch",
+      "clue": "one striped sock alone",
+      "counterpart_slug": "sock",
+      "counterpart": "sock pair",
+      "reuse_pack": "sock"
+    },
+    {
+      "slug": "hat-on-floor",
+      "clue": "hat dropped on floor",
+      "counterpart_slug": "hat",
+      "counterpart": "sun/winter hat",
+      "reuse_pack": "hat"
+    },
+    {
+      "slug": "coat-on-chair-back",
+      "clue": "coat hung on empty chair back",
+      "counterpart_slug": "coat",
+      "counterpart": "kid coat",
+      "reuse_pack": null
+    },
+    {
+      "slug": "balloon-string-stub",
+      "clue": "tied balloon string stub + bit of balloon rubber",
+      "counterpart_slug": "balloon",
+      "counterpart": "inflated balloon",
+      "reuse_pack": "balloon"
+    },
+    {
+      "slug": "flour-handprint",
+      "clue": "LARGE flour handprint (not tiny fingerprint)",
+      "counterpart_slug": "flour-bag",
+      "counterpart": "open flour bag blank",
+      "reuse_pack": null
+    },
+    {
+      "slug": "smashed-pot-soil",
+      "clue": "broken flower pot shards + soil trail",
+      "counterpart_slug": "flower-pot",
+      "counterpart": "intact flower pot with plant",
+      "reuse_pack": "flower-pot"
+    },
+    {
+      "slug": "paint-drip-trail",
+      "clue": "paint drip trail dots",
+      "counterpart_slug": "paint",
+      "counterpart": "paint pot + brush",
+      "reuse_pack": "paint"
+    },
+    {
+      "slug": "crayon-scribble-edge",
+      "clue": "crayon scribble on paper corner",
+      "counterpart_slug": "crayon",
+      "counterpart": "crayon stick",
+      "reuse_pack": "crayon"
+    },
+    {
+      "slug": "water-drip-trail",
+      "clue": "water drip trail from container",
+      "counterpart_slug": "water-bottle",
+      "counterpart": "sports bottle blank",
+      "reuse_pack": null
+    },
+    {
+      "slug": "damp-towel-heap",
+      "clue": "damp towel crumpled heap",
+      "counterpart_slug": "towel",
+      "counterpart": "neat folded towel",
+      "reuse_pack": "towel"
+    },
+    {
+      "slug": "missing-picture-rect",
+      "clue": "clean rectangle on wall where picture was",
+      "counterpart_slug": "picture-frame",
+      "counterpart": "picture frame blank art",
+      "reuse_pack": "picture-frame"
+    },
+    {
+      "slug": "toothbrush-paste-smear",
+      "clue": "toothpaste smear near sink edge",
+      "counterpart_slug": "toothbrush",
+      "counterpart": "toothbrush",
+      "reuse_pack": "toothbrush"
+    },
+    {
+      "slug": "torn-paper-corner",
+      "clue": "torn paper corner matching a page",
+      "counterpart_slug": "torn-page",
+      "counterpart": "sheet with matching tear edge",
+      "reuse_pack": "book"
+    },
+    {
+      "slug": "pencil-shavings",
+      "clue": "pencil shavings pile",
+      "counterpart_slug": "pencil",
+      "counterpart": "pencil",
+      "reuse_pack": "pencil"
+    },
+    {
+      "slug": "backpack-spill",
+      "clue": "open backpack spilling a book corner",
+      "counterpart_slug": "backpack",
+      "counterpart": "closed backpack",
+      "reuse_pack": "backpack"
+    },
+    {
+      "slug": "key-dust-outline",
+      "clue": "dust outline of a missing key",
+      "counterpart_slug": "key",
+      "counterpart": "house key",
+      "reuse_pack": "key"
+    },
+    {
+      "slug": "pulled-chair-trace",
+      "clue": "chair pulled out + floor scuff",
+      "counterpart_slug": "chair",
+      "counterpart": "simple chair",
+      "reuse_pack": null
+    },
+    {
+      "slug": "ball-scuff-arc",
+      "clue": "ball bounce scuff arc on floor",
+      "counterpart_slug": "ball",
+      "counterpart": "playground ball",
+      "reuse_pack": "ball"
+    },
+    {
+      "slug": "bike-rack-gap",
+      "clue": "bike rack with bicycle-shaped empty gap",
+      "counterpart_slug": "bicycle",
+      "counterpart": "bicycle parked silhouette match",
+      "reuse_pack": "bicycle"
+    },
+    {
+      "slug": "pet-hair-clump",
+      "clue": "pet hair clump on cushion",
+      "counterpart_slug": "dog",
+      "counterpart": "dog sitting still-life",
+      "reuse_pack": "dog"
+    }
+  ],
+  "running_total": {
+    "tasks": 0,
+    "sheets_downloaded": 0,
+    "waves_planned": 11,
+    "waves_done": 0,
+    "families_graded": 0,
+    "reg_a": 0,
+    "reg_b": 0,
+    "reg_c": 0,
+    "reg_fail": 0,
+    "asset_cells": 0,
+    "pairs": 40
+  },
+  "residue_audit": [
+    {
+      "bank": "aggressive-s1 micro crumbs/piles/residue",
+      "class": "AVOID_DUP",
+      "note": "Micro forensic crumbs/fingerprints/sticker-residue — do not clone; K4 wants kid-readable correspondence pairs."
+    },
+    {
+      "bank": "aggressive-s2 crumb/fingerprint overlays",
+      "class": "AVOID_DUP",
+      "note": "Overlay atoms only; not paired counterparts."
+    },
+    {
+      "bank": "vg attn-footprint-trail",
+      "class": "PARTIAL",
+      "note": "Generic search trail; K4 needs object-linked pairs."
+    },
+    {
+      "bank": "vocab pack dog/cake/umbrella/bicycle/glove/etc.",
+      "class": "REUSE",
+      "note": "Counterparts exist — still generate style-matched pair cells; reuse_pack noted for later wiring."
+    },
+    {
+      "bank": "K4 correspondence pairs",
+      "class": "MISSING",
+      "note": "This stockpile."
+    }
+  ],
+  "updated_at": "2026-08-20T04:41:39.198Z"
+}
