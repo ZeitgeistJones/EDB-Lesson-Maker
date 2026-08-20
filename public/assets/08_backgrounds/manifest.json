@@ -1471,6 +1471,1176 @@
     "other-discovered",
     "stockpile"
    ]
+  },
+  "ow-zoo-campus": {
+   "file": "ow-zoo-campus.png",
+   "groundY": 208,
+   "category": "other-discovered",
+   "tags": [
+    "overview-world",
+    "other-discovered",
+    "stockpile"
+   ]
+  },
+  "ow-bike-trail-hub": {
+   "file": "ow-bike-trail-hub.png",
+   "groundY": 241,
+   "category": "transport",
+   "tags": [
+    "overview-world",
+    "transport",
+    "stockpile"
+   ]
+  },
+  "ow-seaplane-dock": {
+   "file": "ow-seaplane-dock.png",
+   "groundY": 243,
+   "category": "transport",
+   "tags": [
+    "overview-world",
+    "transport",
+    "stockpile"
+   ]
+  },
+  "ow-tram-village": {
+   "file": "ow-tram-village.png",
+   "groundY": 236,
+   "category": "transport",
+   "tags": [
+    "overview-world",
+    "transport",
+    "stockpile"
+   ]
+  },
+  "ow-coral-plaza": {
+   "file": "ow-coral-plaza.png",
+   "groundY": 373,
+   "category": "fantasy",
+   "tags": [
+    "overview-world",
+    "fantasy",
+    "stockpile"
+   ]
+  },
+  "ow-magic-greenhouse": {
+   "file": "ow-magic-greenhouse.png",
+   "groundY": 335,
+   "category": "fantasy",
+   "tags": [
+    "overview-world",
+    "fantasy",
+    "stockpile"
+   ]
+  },
+  "ow-moonbase-playground": {
+   "file": "ow-moonbase-playground.png",
+   "groundY": 217,
+   "category": "fantasy",
+   "tags": [
+    "overview-world",
+    "fantasy",
+    "stockpile"
+   ]
+  },
+  "ow-carnival-midway": {
+   "file": "ow-carnival-midway.png",
+   "groundY": 249,
+   "category": "event",
+   "tags": [
+    "overview-world",
+    "event",
+    "stockpile"
+   ]
+  },
+  "ow-ice-cream-park": {
+   "file": "ow-ice-cream-park.png",
+   "groundY": 214,
+   "category": "event",
+   "tags": [
+    "overview-world",
+    "event",
+    "stockpile"
+   ]
+  },
+  "ow-kite-hill-meadow": {
+   "file": "ow-kite-hill-meadow.png",
+   "groundY": 212,
+   "category": "event",
+   "tags": [
+    "overview-world",
+    "event",
+    "stockpile"
+   ]
+  },
+  "ow-wave17-nature2-arctic-camp": {
+   "file": "ow-wave17-nature2-arctic-camp.png",
+   "groundY": 210,
+   "category": "nature-adventure",
+   "tags": [
+    "overview-world",
+    "nature-adventure",
+    "stockpile"
+   ]
+  },
+  "ow-wave17-nature2-hot-springs-terrace": {
+   "file": "ow-wave17-nature2-hot-springs-terrace.png",
+   "groundY": 266,
+   "category": "nature-adventure",
+   "tags": [
+    "overview-world",
+    "nature-adventure",
+    "stockpile"
+   ]
+  },
+  "ow-wave17-nature2-rainforest-canopy": {
+   "file": "ow-wave17-nature2-rainforest-canopy.png",
+   "groundY": 210,
+   "category": "nature-adventure",
+   "tags": [
+    "overview-world",
+    "nature-adventure",
+    "stockpile"
+   ]
+  },
+  "ow-clockwork-tower-town": {
+   "file": "ow-clockwork-tower-town.png",
+   "groundY": 235,
+   "category": "fantasy",
+   "tags": [
+    "overview-world",
+    "fantasy",
+    "stockpile"
+   ]
+  },
+  "ow-haunted-manor-grounds": {
+   "file": "ow-haunted-manor-grounds.png",
+   "groundY": 218,
+   "category": "fantasy",
+   "tags": [
+    "overview-world",
+    "fantasy",
+    "stockpile"
+   ]
+  },
+  "ow-pirate-cove-village": {
+   "file": "ow-pirate-cove-village.png",
+   "groundY": 212,
+   "category": "fantasy",
+   "tags": [
+    "overview-world",
+    "fantasy",
+    "stockpile"
+   ]
+  },
+  "ow-fire-station-campus": {
+   "file": "ow-fire-station-campus.png",
+   "groundY": 278,
+   "category": "town-community",
+   "tags": [
+    "overview-world",
+    "town-community",
+    "stockpile"
+   ]
+  },
+  "ow-hospital-garden": {
+   "file": "ow-hospital-garden.png",
+   "groundY": 208,
+   "category": "town-community",
+   "tags": [
+    "overview-world",
+    "town-community",
+    "stockpile"
+   ]
+  },
+  "ow-police-community-plaza": {
+   "file": "ow-police-community-plaza.png",
+   "groundY": 208,
+   "category": "town-community",
+   "tags": [
+    "overview-world",
+    "town-community",
+    "stockpile"
+   ]
+  },
+  "ow-bowling-alley-strip": {
+   "file": "ow-bowling-alley-strip.png",
+   "groundY": 214,
+   "category": "leisure",
+   "tags": [
+    "overview-world",
+    "leisure",
+    "stockpile"
+   ]
+  },
+  "ow-cinema-plaza": {
+   "file": "ow-cinema-plaza.png",
+   "groundY": 258,
+   "category": "leisure",
+   "tags": [
+    "overview-world",
+    "leisure",
+    "stockpile"
+   ]
+  },
+  "ow-roller-rink-park": {
+   "file": "ow-roller-rink-park.png",
+   "groundY": 208,
+   "category": "leisure",
+   "tags": [
+    "overview-world",
+    "leisure",
+    "stockpile"
+   ]
+  },
+  "ow-bird-cliff-coast": {
+   "file": "ow-bird-cliff-coast.png",
+   "groundY": 237,
+   "category": "nature-adventure",
+   "tags": [
+    "overview-world",
+    "nature-adventure",
+    "stockpile"
+   ]
+  },
+  "ow-glacier-lake": {
+   "file": "ow-glacier-lake.png",
+   "groundY": 237,
+   "category": "nature-adventure",
+   "tags": [
+    "overview-world",
+    "nature-adventure",
+    "stockpile"
+   ]
+  },
+  "ow-mangrove-boardwalk": {
+   "file": "ow-mangrove-boardwalk.png",
+   "groundY": 366,
+   "category": "nature-adventure",
+   "tags": [
+    "overview-world",
+    "nature-adventure",
+    "stockpile"
+   ]
+  },
+  "ow-book-fair-tents": {
+   "file": "ow-book-fair-tents.png",
+   "groundY": 247,
+   "category": "event",
+   "tags": [
+    "overview-world",
+    "event",
+    "stockpile"
+   ]
+  },
+  "ow-food-truck-plaza": {
+   "file": "ow-food-truck-plaza.png",
+   "groundY": 208,
+   "category": "event",
+   "tags": [
+    "overview-world",
+    "event",
+    "stockpile"
+   ]
+  },
+  "ow-parade-route-block": {
+   "file": "ow-parade-route-block.png",
+   "groundY": 224,
+   "category": "event",
+   "tags": [
+    "overview-world",
+    "event",
+    "stockpile"
+   ]
+  },
+  "ow-cable-car-bay": {
+   "file": "ow-cable-car-bay.png",
+   "groundY": 222,
+   "category": "transport",
+   "tags": [
+    "overview-world",
+    "transport",
+    "stockpile"
+   ]
+  },
+  "ow-rv-campground": {
+   "file": "ow-rv-campground.png",
+   "groundY": 230,
+   "category": "transport",
+   "tags": [
+    "overview-world",
+    "transport",
+    "stockpile"
+   ]
+  },
+  "ow-subway-plaza": {
+   "file": "ow-subway-plaza.png",
+   "groundY": 232,
+   "category": "transport",
+   "tags": [
+    "overview-world",
+    "transport",
+    "stockpile"
+   ]
+  },
+  "ow-film-backlot": {
+   "file": "ow-film-backlot.png",
+   "groundY": 219,
+   "category": "other-discovered",
+   "tags": [
+    "overview-world",
+    "other-discovered",
+    "stockpile"
+   ]
+  },
+  "ow-planetarium-garden": {
+   "file": "ow-planetarium-garden.png",
+   "groundY": 233,
+   "category": "other-discovered",
+   "tags": [
+    "overview-world",
+    "other-discovered",
+    "stockpile"
+   ]
+  },
+  "ow-robot-lab-campus": {
+   "file": "ow-robot-lab-campus.png",
+   "groundY": 232,
+   "category": "other-discovered",
+   "tags": [
+    "overview-world",
+    "other-discovered",
+    "stockpile"
+   ]
+  },
+  "ow-wave25-candy-kingdom-plaza": {
+   "file": "ow-wave25-candy-kingdom-plaza.png",
+   "groundY": 231,
+   "category": "fantasy",
+   "tags": [
+    "overview-world",
+    "fantasy",
+    "stockpile"
+   ]
+  },
+  "ow-wave25-giant-toy-attic-world": {
+   "file": "ow-wave25-giant-toy-attic-world.png",
+   "groundY": 210,
+   "category": "fantasy",
+   "tags": [
+    "overview-world",
+    "fantasy",
+    "stockpile"
+   ]
+  },
+  "ow-wave25-paper-craft-village": {
+   "file": "ow-wave25-paper-craft-village.png",
+   "groundY": 231,
+   "category": "fantasy",
+   "tags": [
+    "overview-world",
+    "fantasy",
+    "stockpile"
+   ]
+  },
+  "ow-baseball-diamond": {
+   "file": "ow-baseball-diamond.png",
+   "groundY": 225,
+   "category": "leisure",
+   "tags": [
+    "overview-world",
+    "leisure",
+    "stockpile"
+   ]
+  },
+  "ow-climbing-gym-yard": {
+   "file": "ow-climbing-gym-yard.png",
+   "groundY": 265,
+   "category": "leisure",
+   "tags": [
+    "overview-world",
+    "leisure",
+    "stockpile"
+   ]
+  },
+  "ow-golf-driving-range": {
+   "file": "ow-golf-driving-range.png",
+   "groundY": 242,
+   "category": "leisure",
+   "tags": [
+    "overview-world",
+    "leisure",
+    "stockpile"
+   ]
+  },
+  "ow-farmers-market": {
+   "file": "ow-farmers-market.png",
+   "groundY": 211,
+   "category": "town-community",
+   "tags": [
+    "overview-world",
+    "town-community",
+    "stockpile"
+   ]
+  },
+  "ow-flea-market-alley": {
+   "file": "ow-flea-market-alley.png",
+   "groundY": 222,
+   "category": "town-community",
+   "tags": [
+    "overview-world",
+    "town-community",
+    "stockpile"
+   ]
+  },
+  "ow-flower-market": {
+   "file": "ow-flower-market.png",
+   "groundY": 213,
+   "category": "town-community",
+   "tags": [
+    "overview-world",
+    "town-community",
+    "stockpile"
+   ]
+  },
+  "ow-lava-tube-cave": {
+   "file": "ow-lava-tube-cave.png",
+   "groundY": 236,
+   "category": "nature-adventure",
+   "tags": [
+    "overview-world",
+    "nature-adventure",
+    "stockpile"
+   ]
+  },
+  "ow-redwood-trail": {
+   "file": "ow-redwood-trail.png",
+   "groundY": 338,
+   "category": "nature-adventure",
+   "tags": [
+    "overview-world",
+    "nature-adventure",
+    "stockpile"
+   ]
+  },
+  "ow-salt-flat-playa": {
+   "file": "ow-salt-flat-playa.png",
+   "groundY": 211,
+   "category": "nature-adventure",
+   "tags": [
+    "overview-world",
+    "nature-adventure",
+    "stockpile"
+   ]
+  },
+  "ow-beanstalk-tower": {
+   "file": "ow-beanstalk-tower.png",
+   "groundY": 223,
+   "category": "fantasy",
+   "tags": [
+    "overview-world",
+    "fantasy",
+    "stockpile"
+   ]
+  },
+  "ow-ice-palace": {
+   "file": "ow-ice-palace.png",
+   "groundY": 211,
+   "category": "fantasy",
+   "tags": [
+    "overview-world",
+    "fantasy",
+    "stockpile"
+   ]
+  },
+  "ow-mushroom-village": {
+   "file": "ow-mushroom-village.png",
+   "groundY": 353,
+   "category": "fantasy",
+   "tags": [
+    "overview-world",
+    "fantasy",
+    "stockpile"
+   ]
+  },
+  "ow-art-school-yard": {
+   "file": "ow-art-school-yard.png",
+   "groundY": 231,
+   "category": "town-community",
+   "tags": [
+    "overview-world",
+    "town-community",
+    "stockpile"
+   ]
+  },
+  "ow-music-conservatory": {
+   "file": "ow-music-conservatory.png",
+   "groundY": 273,
+   "category": "town-community",
+   "tags": [
+    "overview-world",
+    "town-community",
+    "stockpile"
+   ]
+  },
+  "ow-university-quad": {
+   "file": "ow-university-quad.png",
+   "groundY": 223,
+   "category": "town-community",
+   "tags": [
+    "overview-world",
+    "town-community",
+    "stockpile"
+   ]
+  },
+  "ow-wave31-waterways-ow-dry-dock-yard": {
+   "file": "ow-wave31-waterways-ow-dry-dock-yard.png",
+   "groundY": 259,
+   "category": "transport",
+   "tags": [
+    "overview-world",
+    "transport",
+    "stockpile"
+   ]
+  },
+  "ow-wave31-waterways-ow-lighthouse-cove": {
+   "file": "ow-wave31-waterways-ow-lighthouse-cove.png",
+   "groundY": 224,
+   "category": "transport",
+   "tags": [
+    "overview-world",
+    "transport",
+    "stockpile"
+   ]
+  },
+  "ow-wave31-waterways-ow-river-barge-dock": {
+   "file": "ow-wave31-waterways-ow-river-barge-dock.png",
+   "groundY": 295,
+   "category": "transport",
+   "tags": [
+    "overview-world",
+    "transport",
+    "stockpile"
+   ]
+  },
+  "ow-blossom-fair": {
+   "file": "ow-blossom-fair.png",
+   "groundY": 226,
+   "category": "event",
+   "tags": [
+    "overview-world",
+    "event",
+    "stockpile"
+   ]
+  },
+  "ow-harvest-fair": {
+   "file": "ow-harvest-fair.png",
+   "groundY": 249,
+   "category": "event",
+   "tags": [
+    "overview-world",
+    "event",
+    "stockpile"
+   ]
+  },
+  "ow-splash-festival": {
+   "file": "ow-splash-festival.png",
+   "groundY": 296,
+   "category": "event",
+   "tags": [
+    "overview-world",
+    "event",
+    "stockpile"
+   ]
+  },
+  "ow-escape-room-plaza": {
+   "file": "ow-escape-room-plaza.png",
+   "groundY": 248,
+   "category": "other-discovered",
+   "tags": [
+    "overview-world",
+    "other-discovered",
+    "stockpile"
+   ]
+  },
+  "ow-hedge-maze-garden": {
+   "file": "ow-hedge-maze-garden.png",
+   "groundY": 212,
+   "category": "other-discovered",
+   "tags": [
+    "overview-world",
+    "other-discovered",
+    "stockpile"
+   ]
+  },
+  "ow-treasure-hunt-fort": {
+   "file": "ow-treasure-hunt-fort.png",
+   "groundY": 215,
+   "category": "other-discovered",
+   "tags": [
+    "overview-world",
+    "other-discovered",
+    "stockpile"
+   ]
+  },
+  "ow-glow-garden": {
+   "file": "ow-glow-garden.png",
+   "groundY": 235,
+   "category": "leisure",
+   "tags": [
+    "overview-world",
+    "leisure",
+    "stockpile"
+   ]
+  },
+  "ow-night-market-alley": {
+   "file": "ow-night-market-alley.png",
+   "groundY": 227,
+   "category": "leisure",
+   "tags": [
+    "overview-world",
+    "leisure",
+    "stockpile"
+   ]
+  },
+  "ow-rooftop-cinema": {
+   "file": "ow-rooftop-cinema.png",
+   "groundY": 215,
+   "category": "leisure",
+   "tags": [
+    "overview-world",
+    "leisure",
+    "stockpile"
+   ]
+  },
+  "ow-bakery-square": {
+   "file": "ow-bakery-square.png",
+   "groundY": 292,
+   "category": "town-community",
+   "tags": [
+    "overview-world",
+    "town-community",
+    "stockpile"
+   ]
+  },
+  "ow-fishing-village": {
+   "file": "ow-fishing-village.png",
+   "groundY": 208,
+   "category": "town-community",
+   "tags": [
+    "overview-world",
+    "town-community",
+    "stockpile"
+   ]
+  },
+  "ow-pottery-lane": {
+   "file": "ow-pottery-lane.png",
+   "groundY": 213,
+   "category": "town-community",
+   "tags": [
+    "overview-world",
+    "town-community",
+    "stockpile"
+   ]
+  },
+  "ow-cave-rafting": {
+   "file": "ow-cave-rafting.png",
+   "groundY": 236,
+   "category": "nature-adventure",
+   "tags": [
+    "overview-world",
+    "nature-adventure",
+    "stockpile"
+   ]
+  },
+  "ow-sand-dune-park": {
+   "file": "ow-sand-dune-park.png",
+   "groundY": 230,
+   "category": "nature-adventure",
+   "tags": [
+    "overview-world",
+    "nature-adventure",
+    "stockpile"
+   ]
+  },
+  "ow-zipline-valley": {
+   "file": "ow-zipline-valley.png",
+   "groundY": 216,
+   "category": "nature-adventure",
+   "tags": [
+    "overview-world",
+    "nature-adventure",
+    "stockpile"
+   ]
+  },
+  "ow-wave37-space-myth-mermaid-lagoon": {
+   "file": "ow-wave37-space-myth-mermaid-lagoon.png",
+   "groundY": 210,
+   "category": "fantasy",
+   "tags": [
+    "overview-world",
+    "fantasy",
+    "stockpile"
+   ]
+  },
+  "ow-wave37-space-myth-phoenix-roost": {
+   "file": "ow-wave37-space-myth-phoenix-roost.png",
+   "groundY": 298,
+   "category": "fantasy",
+   "tags": [
+    "overview-world",
+    "fantasy",
+    "stockpile"
+   ]
+  },
+  "ow-wave37-space-myth-starship-hangar": {
+   "file": "ow-wave37-space-myth-starship-hangar.png",
+   "groundY": 226,
+   "category": "fantasy",
+   "tags": [
+    "overview-world",
+    "fantasy",
+    "stockpile"
+   ]
+  },
+  "ow-bus-depot": {
+   "file": "ow-bus-depot.png",
+   "groundY": 276,
+   "category": "transport",
+   "tags": [
+    "overview-world",
+    "transport",
+    "stockpile"
+   ]
+  },
+  "ow-garage-rooftop": {
+   "file": "ow-garage-rooftop.png",
+   "groundY": 366,
+   "category": "transport",
+   "tags": [
+    "overview-world",
+    "transport",
+    "stockpile"
+   ]
+  },
+  "ow-helipad-plaza": {
+   "file": "ow-helipad-plaza.png",
+   "groundY": 211,
+   "category": "transport",
+   "tags": [
+    "overview-world",
+    "transport",
+    "stockpile"
+   ]
+  },
+  "ow-birthday-park": {
+   "file": "ow-birthday-park.png",
+   "groundY": 222,
+   "category": "event",
+   "tags": [
+    "overview-world",
+    "event",
+    "stockpile"
+   ]
+  },
+  "ow-graduation-lawn": {
+   "file": "ow-graduation-lawn.png",
+   "groundY": 215,
+   "category": "event",
+   "tags": [
+    "overview-world",
+    "event",
+    "stockpile"
+   ]
+  },
+  "ow-wedding-garden": {
+   "file": "ow-wedding-garden.png",
+   "groundY": 228,
+   "category": "event",
+   "tags": [
+    "overview-world",
+    "event",
+    "stockpile"
+   ]
+  },
+  "ow-radio-tower-hill": {
+   "file": "ow-radio-tower-hill.png",
+   "groundY": 244,
+   "category": "other-discovered",
+   "tags": [
+    "overview-world",
+    "other-discovered",
+    "stockpile"
+   ]
+  },
+  "ow-recycling-center": {
+   "file": "ow-recycling-center.png",
+   "groundY": 228,
+   "category": "other-discovered",
+   "tags": [
+    "overview-world",
+    "other-discovered",
+    "stockpile"
+   ]
+  },
+  "ow-weather-station": {
+   "file": "ow-weather-station.png",
+   "groundY": 254,
+   "category": "other-discovered",
+   "tags": [
+    "overview-world",
+    "other-discovered",
+    "stockpile"
+   ]
+  },
+  "ow-wave41-waterpark2-s1-wave-pool-plaza": {
+   "file": "ow-wave41-waterpark2-s1-wave-pool-plaza.png",
+   "groundY": 455,
+   "category": "leisure",
+   "tags": [
+    "overview-world",
+    "leisure",
+    "stockpile"
+   ]
+  },
+  "ow-wave41-waterpark2-s2-lazy-river-island": {
+   "file": "ow-wave41-waterpark2-s2-lazy-river-island.png",
+   "groundY": 240,
+   "category": "leisure",
+   "tags": [
+    "overview-world",
+    "leisure",
+    "stockpile"
+   ]
+  },
+  "ow-wave41-waterpark2-s3-slide-canyon": {
+   "file": "ow-wave41-waterpark2-s3-slide-canyon.png",
+   "groundY": 255,
+   "category": "leisure",
+   "tags": [
+    "overview-world",
+    "leisure",
+    "stockpile"
+   ]
+  },
+  "ow-lakeside-marina": {
+   "file": "ow-lakeside-marina.png",
+   "groundY": 261,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-maker-fair": {
+   "file": "ow-maker-fair.png",
+   "groundY": 544,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-skate-plaza": {
+   "file": "ow-skate-plaza.png",
+   "groundY": 290,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-island-cove": {
+   "file": "ow-island-cove.png",
+   "groundY": 216,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-observatory-ridge": {
+   "file": "ow-observatory-ridge.png",
+   "groundY": 342,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-treehouse-forest": {
+   "file": "ow-treehouse-forest.png",
+   "groundY": 244,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-wave3-community-center": {
+   "file": "ow-wave3-community-center.png",
+   "groundY": 209,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-wave3-harbor-night-market": {
+   "file": "ow-wave3-harbor-night-market.png",
+   "groundY": 230,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-wave3-town-event-winter-festival": {
+   "file": "ow-wave3-town-event-winter-festival.png",
+   "groundY": 208,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-wave4-play-districts-shopping-district": {
+   "file": "ow-wave4-play-districts-shopping-district.png",
+   "groundY": 209,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-wave4-play-districts-sports-complex": {
+   "file": "ow-wave4-play-districts-sports-complex.png",
+   "groundY": 208,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-wave4-play-districts-waterpark": {
+   "file": "ow-wave4-play-districts-waterpark.png",
+   "groundY": 226,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-aquarium-campus": {
+   "file": "ow-aquarium-campus.png",
+   "groundY": 263,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-makerspace-campus": {
+   "file": "ow-makerspace-campus.png",
+   "groundY": 212,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-science-museum": {
+   "file": "ow-science-museum.png",
+   "groundY": 216,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-airport-edge": {
+   "file": "ow-airport-edge.png",
+   "groundY": 208,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-mountain-resort": {
+   "file": "ow-mountain-resort.png",
+   "groundY": 229,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-station-district": {
+   "file": "ow-station-district.png",
+   "groundY": 226,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-wave15-harbor-resort-ow-arcade-pier": {
+   "file": "ow-wave15-harbor-resort-ow-arcade-pier.png",
+   "groundY": 216,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-wave15-harbor-resort-ow-dive-cove": {
+   "file": "ow-wave15-harbor-resort-ow-dive-cove.png",
+   "groundY": 255,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-wave15-harbor-resort-ow-stables-ranch": {
+   "file": "ow-wave15-harbor-resort-ow-stables-ranch.png",
+   "groundY": 253,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-bike-park": {
+   "file": "ow-bike-park.png",
+   "groundY": 328,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-fashion-campus": {
+   "file": "ow-fashion-campus.png",
+   "groundY": 212,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-slime-lab-campus": {
+   "file": "ow-slime-lab-campus.png",
+   "groundY": 213,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-bakery-street": {
+   "file": "ow-bakery-street.png",
+   "groundY": 242,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-escape-loft": {
+   "file": "ow-escape-loft.png",
+   "groundY": 216,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-ice-rink-complex": {
+   "file": "ow-ice-rink-complex.png",
+   "groundY": 563,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-wave31-outdoors-ow-bird-marsh": {
+   "file": "ow-wave31-outdoors-ow-bird-marsh.png",
+   "groundY": 366,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-wave31-outdoors-ow-dig-quarry": {
+   "file": "ow-wave31-outdoors-ow-dig-quarry.png",
+   "groundY": 543,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-wave31-outdoors-ow-skate-plaza-night": {
+   "file": "ow-wave31-outdoors-ow-skate-plaza-night.png",
+   "groundY": 219,
+   "category": "overview",
+   "tags": [
+    "overview-world",
+    "overview",
+    "stockpile"
+   ]
+  },
+  "ow-wave11-town-s1-main-street-block": {
+   "file": "ow-wave11-town-s1-main-street-block.png",
+   "groundY": 323,
+   "category": "town-community",
+   "tags": [
+    "overview-world",
+    "town-community",
+    "stockpile"
+   ]
+  },
+  "ow-dino-dig-site": {
+   "file": "ow-dino-dig-site.png",
+   "groundY": 219,
+   "category": "other-discovered",
+   "tags": [
+    "overview-world",
+    "other-discovered",
+    "stockpile"
+   ]
   }
  },
  "flats": {

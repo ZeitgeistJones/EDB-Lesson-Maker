@@ -48,6 +48,42 @@ function arg(name, fallback) {
   return hit ? hit.slice(name.length + 3) : fallback;
 }
 
+
+function sleepSync(ms) {
+  const sab = new SharedArrayBuffer(4);
+  Atomics.wait(new Int32Array(sab), 0, 0, ms);
+}
+
+/** Windows-safe: concurrent importers briefly lock manifest.json (EPERM/UNKNOWN/EBUSY). */
+function writeManifestAtomic(manifestPath, mutator) {
+  const maxAttempts = 12;
+  let lastErr;
+  for (let i = 0; i < maxAttempts; i++) {
+    try {
+      const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+      mutator(manifest);
+      const tmp = manifestPath + '.tmp-' + process.pid + '-' + Date.now();
+      fs.writeFileSync(tmp, `${JSON.stringify(manifest, null, 1)}\n`);
+      try {
+        fs.renameSync(tmp, manifestPath);
+      } catch {
+        fs.copyFileSync(tmp, manifestPath);
+        try { fs.unlinkSync(tmp); } catch { /* ignore */ }
+      }
+      return;
+    } catch (err) {
+      lastErr = err;
+      const code = err && err.code;
+      if (code === 'EBUSY' || code === 'EPERM' || code === 'UNKNOWN' || code === 'EACCES') {
+        sleepSync(40 + i * 60 + Math.floor(Math.random() * 80));
+        continue;
+      }
+      throw err;
+    }
+  }
+  throw lastErr;
+}
+
 async function main() {
   const input = process.argv[2];
   if (!input || input.startsWith('--')) {
@@ -247,8 +283,9 @@ async function main() {
         console.log(`\nManifest already has flats.${name} — pass --force to overwrite, or --no-manifest to print only.`);
         console.log(JSON.stringify({ [name]: flatEntry }, null, 2));
       } else {
-        manifest.flats[name] = flatEntry;
-        fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 1)}\n`);
+        writeManifestAtomic(manifestPath, (m) => {
+          m.flats[name] = flatEntry;
+        });
         console.log(`\nWrote flats.${name} → ${path.relative(ROOT, manifestPath)}`);
       }
     } else {
@@ -265,21 +302,31 @@ async function main() {
     console.log('  NOTE no ground line found — pass --ground= after looking at the image');
   }
   console.log(`Ground line guessed at y=${result.guessedGround}${arg('ground') ? ` (overridden to ${ground})` : ''}`);
-  console.log('\nPaste into public/assets/08_backgrounds/manifest.json under "scenes":\n');
-  console.log(
-    `${JSON.stringify(
-      {
-        [name]: {
-          file,
-          groundY: ground,
-          category: arg('category', 'TODO'),
-          tags: tags.length ? tags : ['TODO'],
-        },
-      },
-      null,
-      2
-    )}`
-  );
+  const sceneEntry = {
+    file,
+    groundY: ground,
+    category: arg('category', 'overview'),
+    tags: tags.length ? tags : ['overview-world'],
+  };
+  const manifestPath = path.join(ROOT, 'public', 'assets', '08_backgrounds', 'manifest.json');
+  if (!process.argv.includes('--no-manifest') && fs.existsSync(manifestPath)) {
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    if (!manifest.scenes || typeof manifest.scenes !== 'object') {
+      throw new Error('manifest.json missing scenes{} — refuse to write at root');
+    }
+    if (manifest.scenes[name] && !process.argv.includes('--force')) {
+      console.log(`\nManifest already has scenes.${name} — pass --force to overwrite, or --no-manifest to print only.`);
+      console.log(JSON.stringify({ [name]: sceneEntry }, null, 2));
+    } else {
+      writeManifestAtomic(manifestPath, (m) => {
+        m.scenes[name] = sceneEntry;
+      });
+      console.log(`\nWrote scenes.${name} → ${path.relative(ROOT, manifestPath)}`);
+    }
+  } else {
+    console.log('\nPaste into public/assets/08_backgrounds/manifest.json under "scenes":\n');
+    console.log(JSON.stringify({ [name]: sceneEntry }, null, 2));
+  }
   console.log(
     '\nThen: npm run test:bg-picks  (picker sanity)  and  npm run quality:full  (board bake)'
   );
