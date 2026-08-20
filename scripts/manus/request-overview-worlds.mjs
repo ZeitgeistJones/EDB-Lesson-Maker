@@ -618,6 +618,454 @@ export const WAVES = {
       ]),
     ],
   }),
+
+  'ow-wave26-sports2': wave('ow-wave26-sports2', {
+    bucket: 'leisure',
+    family_id: `${OW_PREFIX}wave26`,
+    novelty: 'discovered-new',
+    title: 'OW wave26 — baseball diamond + golf driving + climbing gym yard (FULL-PAGE ×3)',
+    why: 'More leisure sports campuses beyond sports-complex/waterpark',
+    sheets: [
+      sh('S1', 'baseball diamond park', [
+        owCell(
+          'baseball-diamond',
+          `${OVERVIEW} Baseball diamond park: dirt infield, outfield grass, dugout benches blank, batting-cage edge, open foul-line pad. 5 zones. No numbers/logos. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'golf driving range', [
+        owCell(
+          'golf-driving-range',
+          `${OVERVIEW} Golf driving range: tee-bay row blank, ball basket pad, green target flags (blank), path, picnic shade. 5 zones. Soft leisure. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'climbing gym courtyard', [
+        owCell(
+          'climbing-gym-yard',
+          `${OVERVIEW} Climbing-gym courtyard: outdoor boulder wall, rope-tower silhouette, gear shed blank, crash-pad plaza, path. 5 zones. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave27-market': wave('ow-wave27-market', {
+    bucket: 'town-community',
+    family_id: `${OW_PREFIX}wave27`,
+    novelty: 'discovered-new',
+    title: 'OW wave27 — farmers market + flea alley + flower market (FULL-PAGE ×3)',
+    why: 'Town market depth beyond harbor/shopping district',
+    sheets: [
+      sh('S1', 'farmers market square', [
+        owCell(
+          'farmers-market',
+          `${OVERVIEW} Farmers market square: canopy stall rows blank, produce crates, fountain plaza, truck unload pad, path. 5 zones. Blank awnings. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'flea market alley', [
+        owCell(
+          'flea-market-alley',
+          `${OVERVIEW} Flea-market alley: treasure tables, vintage trunk stacks, hanging-rug lane (blank patterns), courtyard, connecting path. 5 zones. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'flower market courtyard', [
+        owCell(
+          'flower-market',
+          `${OVERVIEW} Flower market courtyard: bloom buckets, greenhouse shed edge, wrapping table pad, path ring, open plaza. 5 zones. Soft color. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave28-wilderness': wave('ow-wave28-wilderness', {
+    bucket: 'nature-adventure',
+    family_id: `${OW_PREFIX}wave28`,
+    novelty: 'discovered-new',
+    title: 'OW wave28 — lava tube cave + redwood trail + salt flat (FULL-PAGE ×3)',
+    why: 'Wild nature invent — beyond canyon/rainforest/arctic',
+    sheets: [
+      sh('S1', 'lava tube cave mouth', [
+        owCell(
+          'lava-tube-cave',
+          `${OVERVIEW} Lava-tube cave mouth: dark tunnel entrance, rocky approach path, torch-sconce shapes blank, overlook ledge, open ash plaza. 5 zones. Soft adventure not scary. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'redwood trail camp', [
+        owCell(
+          'redwood-trail',
+          `${OVERVIEW} Redwood trail camp: giant trunk bases, boardwalk path, fern clearing, trail fork, open needle plaza. 5 zones. Tall calm forest. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'salt flat playa', [
+        owCell(
+          'salt-flat-playa',
+          `${OVERVIEW} Salt-flat playa: cracked white ground, distant mountains, shade tent pad, path tracks, open play circle. 4–5 zones. Surreal soft. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave29-fairytale2': wave('ow-wave29-fairytale2', {
+    bucket: 'fantasy',
+    family_id: `${OW_PREFIX}wave29`,
+    novelty: 'discovered-new',
+    title: 'OW wave29 — beanstalk tower + mushroom village + ice palace (FULL-PAGE ×3)',
+    why: 'More fairy-tale fantasy beyond candy/pirate/cloud',
+    sheets: [
+      sh('S1', 'beanstalk tower grounds', [
+        owCell(
+          'beanstalk-tower',
+          `${OVERVIEW} Beanstalk tower grounds: giant vine trunk, spiral climb pads, cloud ledge, cottage garden edge, open meadow plaza. 5 zones. Soft fairy-tale. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'mushroom village', [
+        owCell(
+          'mushroom-village',
+          `${OVERVIEW} Mushroom village: toadstool houses, moss path, tiny bridge over stream, glow-cap grove, open ring plaza. 5 zones. Cute woodland fantasy. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'ice palace terrace', [
+        owCell(
+          'ice-palace',
+          `${OVERVIEW} Soft ice-palace terrace: crystal gate, frozen fountain, ice-slide edge, snow garden path, open courtyard. 5 zones. Sparkly not cold-scary. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave30-campus': wave('ow-wave30-campus', {
+    bucket: 'town-community',
+    family_id: `${OW_PREFIX}wave30`,
+    novelty: 'discovered-new',
+    title: 'OW wave30 — university quad + art school yard + music conservatory (FULL-PAGE ×3)',
+    why: 'Learn campuses beyond aquarium/museum/makerspace',
+    sheets: [
+      sh('S1', 'university quad', [
+        owCell(
+          'university-quad',
+          `${OVERVIEW} University quad: lawn center, library facade blank, bike racks, cafe terrace blank, path cross. 5 zones. Soft campus. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'art school courtyard', [
+        owCell(
+          'art-school-yard',
+          `${OVERVIEW} Art-school courtyard: studio wing, outdoor sculpture pads (blank forms), kiln shed, paint-wall blank, open plaza. 5 zones. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'music conservatory grounds', [
+        owCell(
+          'music-conservatory',
+          `${OVERVIEW} Music conservatory grounds: recital hall exterior, practice-wing porch, outdoor amphitheater seats, instrument-garden path, open plaza. 5 zones. Blank posters. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave31-waterways': wave('ow-wave31-waterways', {
+    bucket: 'transport',
+    family_id: `${OW_PREFIX}wave31`,
+    novelty: 'discovered-new',
+    title: 'OW wave31 — river barge dock + lighthouse cove + dry dock yard (FULL-PAGE ×3)',
+    why: 'Water transport invent beyond ferry/canal/seaplane',
+    sheets: [
+      sh('S1', 'river barge dock', [
+        owCell(
+          'river-barge-dock',
+          `${OVERVIEW} River barge dock: long pier, cargo crates blank, crane silhouette, riverside path, open loading plaza. 5 zones. Soft industrial-cute. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'lighthouse cove', [
+        owCell(
+          'lighthouse-cove',
+          `${OVERVIEW} Lighthouse cove: striped lighthouse (no letters), rocky shore path, keeper cottage, tide-pool shelf, open beach pad. 5 zones. Scenic. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'ship dry dock yard', [
+        owCell(
+          'dry-dock-yard',
+          `${OVERVIEW} Ship dry-dock yard: dry-dock basin, hull cradle, tool shed blank, pier walk, open yard plaza. 5 zones. Kid shipyard vibe. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave32-seasons': wave('ow-wave32-seasons', {
+    bucket: 'event',
+    family_id: `${OW_PREFIX}wave32`,
+    novelty: 'discovered-new',
+    title: 'OW wave32 — spring blossom fair + summer splash fest + autumn harvest (FULL-PAGE ×3)',
+    why: 'Seasonal event worlds — invent beyond winter/lantern/carnival',
+    sheets: [
+      sh('S1', 'spring blossom fair', [
+        owCell(
+          'blossom-fair',
+          `${OVERVIEW} Spring blossom fair: petal-tree lanes, picnic blankets pad, photo-arch blank, stall row blank, path. 5 zones. Soft pink/green. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'summer splash festival', [
+        owCell(
+          'splash-festival',
+          `${OVERVIEW} Summer splash festival: foam-pad zone, water-balloon stand blank, sprinkler plaza, shade tents, path. 5 zones. Hot-day fun. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'autumn harvest fair', [
+        owCell(
+          'harvest-fair',
+          `${OVERVIEW} Autumn harvest fair: pumpkin patch, hay-bale maze edge, cider stall blank, corn-stalk lane, open plaza. 5 zones. Warm fall. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave33-discovered2': wave('ow-wave33-discovered2', {
+    bucket: 'other-discovered',
+    family_id: `${OW_PREFIX}wave33`,
+    novelty: 'discovered-new',
+    title: 'OW wave33 — escape-room plaza + escape garden maze + treasure hunt fort (FULL-PAGE ×3)',
+    why: 'Discovered play-hunt worlds not in seeds',
+    sheets: [
+      sh('S1', 'escape room plaza', [
+        owCell(
+          'escape-room-plaza',
+          `${OVERVIEW} Escape-room plaza exterior: themed door bank blank, clue-locker wall blank, waiting bench pad, neon-arch shape (no letters), open plaza. 5 zones. Soft mystery. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'hedge maze garden', [
+        owCell(
+          'hedge-maze-garden',
+          `${OVERVIEW} Hedge-maze garden: maze entrance, fountain center glimpse, topiary path, bench nook, open lawn pad. 5 zones. Clear destinations. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'treasure hunt fort', [
+        owCell(
+          'treasure-hunt-fort',
+          `${OVERVIEW} Treasure-hunt fort grounds: wooden fort, map-table pad (BLANK map — no letters), rope climb, secret-tunnel mouth, open courtyard. 5 zones. Adventure play. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave34-night': wave('ow-wave34-night', {
+    bucket: 'leisure',
+    family_id: `${OW_PREFIX}wave34`,
+    novelty: 'discovered-new',
+    title: 'OW wave34 — night market alley + rooftop cinema + glow garden (FULL-PAGE ×3)',
+    why: 'Night leisure invent beyond harbor-night/cinema',
+    sheets: [
+      sh('S1', 'night market alley', [
+        owCell(
+          'night-market-alley',
+          `${OVERVIEW} Night market alley: glowing stall lane blank, steam-cart shapes, lantern string path, side courtyard, open plaza. 5 zones. Warm night. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'rooftop cinema', [
+        owCell(
+          'rooftop-cinema',
+          `${OVERVIEW} Rooftop cinema: blank screen wall, beanbag seating pad, snack cart blank, city-skyline edge, open roof plaza. 5 zones. Soft evening. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'bioluminescent glow garden', [
+        owCell(
+          'glow-garden',
+          `${OVERVIEW} Soft bioluminescent glow garden: glowing plant beds, winding path, pond shelf, gazebo pad, open plaza. 5 zones. Magical night. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave35-village': wave('ow-wave35-village', {
+    bucket: 'town-community',
+    family_id: `${OW_PREFIX}wave35`,
+    novelty: 'discovered-new',
+    title: 'OW wave35 — fishing village + pottery lane + bakery square (FULL-PAGE ×3)',
+    why: 'Small-town craft villages beyond main-street/market',
+    sheets: [
+      sh('S1', 'fishing village harbor', [
+        owCell(
+          'fishing-village',
+          `${OVERVIEW} Fishing village harbor: net racks, small boats, fish-shed blank, shore path, open dock plaza. 5 zones. Soft coastal town. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'pottery craft lane', [
+        owCell(
+          'pottery-lane',
+          `${OVERVIEW} Pottery craft lane: kiln shed, wheel-yard pad, clay-shelf wall blank, drying racks, open courtyard. 5 zones. Handmade vibe. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'bakery square', [
+        owCell(
+          'bakery-square',
+          `${OVERVIEW} Bakery square: bakery facade blank, outdoor oven pad, cafe tables, flower boxes, open plaza. 5 zones. Warm cozy. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave36-extreme': wave('ow-wave36-extreme', {
+    bucket: 'nature-adventure',
+    family_id: `${OW_PREFIX}wave36`,
+    novelty: 'discovered-new',
+    title: 'OW wave36 — zipline valley + cave rafting + sand dune park (FULL-PAGE ×3)',
+    why: 'Adventure invent beyond wilderness wave28',
+    sheets: [
+      sh('S1', 'zipline valley', [
+        owCell(
+          'zipline-valley',
+          `${OVERVIEW} Zipline valley: launch tower, cable lines, landing pad, forest trail, open meadow plaza. 5 zones. Soft adventure. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'cave rafting launch', [
+        owCell(
+          'cave-rafting',
+          `${OVERVIEW} Cave rafting launch: river mouth into cave, raft dock, gear shed blank, rock path, open shore pad. 5 zones. Soft not scary. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'sand dune park', [
+        owCell(
+          'sand-dune-park',
+          `${OVERVIEW} Sand dune park: big dune slopes, boardwalk path, shade pavilion, sled-rent shed blank, open sand plaza. 5 zones. Playful desert. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave37-space-myth': wave('ow-wave37-space-myth', {
+    bucket: 'fantasy',
+    family_id: `${OW_PREFIX}wave37`,
+    novelty: 'discovered-new',
+    title: 'OW wave37 — starship hangar + mermaid lagoon + phoenix roost (FULL-PAGE ×3)',
+    why: 'Fantasy invent beyond fairytale/candy/moonbase',
+    sheets: [
+      sh('S1', 'starship hangar bay', [
+        owCell(
+          'starship-hangar',
+          `${OVERVIEW} Soft starship hangar bay: hangar mouth, parked cute ship shapes (no logos), fuel-pad, control tower edge, open deck plaza. 5 zones. Kid sci-fi. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'mermaid lagoon', [
+        owCell(
+          'mermaid-lagoon',
+          `${OVERVIEW} Mermaid lagoon: turquoise cove, shell throne pad (empty), coral arch path, cave shelf, open sand plaza. 5 zones. Soft fantasy. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'phoenix roost cliffs', [
+        owCell(
+          'phoenix-roost',
+          `${OVERVIEW} Phoenix roost cliffs: glowing nest ledge (empty), cliff path, warm ember garden, cave mouth, open mesa plaza. 5 zones. Friendly myth. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave38-transit4': wave('ow-wave38-transit4', {
+    bucket: 'transport',
+    family_id: `${OW_PREFIX}wave38`,
+    novelty: 'discovered-new',
+    title: 'OW wave38 — helipad plaza + bus depot + parking garage roof (FULL-PAGE ×3)',
+    why: 'More transit hubs beyond subway/cable/barge',
+    sheets: [
+      sh('S1', 'helipad plaza', [
+        owCell(
+          'helipad-plaza',
+          `${OVERVIEW} Helipad plaza: circular pad (blank H shape OK as geometry), terminal canopy, wind sock blank, path, open plaza. 5 zones. Soft aviation. No logos/text/people.`,
+        ),
+      ]),
+      sh('S2', 'bus depot yard', [
+        owCell(
+          'bus-depot',
+          `${OVERVIEW} Bus depot yard: bus bays blank, wash pad, driver rest porch blank, plaza, path. 5 zones. Soft city transit. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'parking garage rooftop', [
+        owCell(
+          'garage-rooftop',
+          `${OVERVIEW} Parking-garage rooftop: ramp up, open roof plaza, stair tower, planter edge, city view pad. 5 zones. Empty play roof. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave39-party': wave('ow-wave39-party', {
+    bucket: 'event',
+    family_id: `${OW_PREFIX}wave39`,
+    novelty: 'discovered-new',
+    title: 'OW wave39 — birthday park + wedding garden + graduation lawn (FULL-PAGE ×3)',
+    why: 'Occasion event campuses — blank banners',
+    sheets: [
+      sh('S1', 'birthday party park', [
+        owCell(
+          'birthday-park',
+          `${OVERVIEW} Birthday party park: picnic pavilion, balloon-arch shape (no letters), gift-table pad blank, play lawn, path. 5 zones. Soft celebration. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'wedding garden', [
+        owCell(
+          'wedding-garden',
+          `${OVERVIEW} Wedding garden: floral arch blank, seating rows, aisle path, photo lawn, open plaza. 5 zones. Soft elegant. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'graduation lawn', [
+        owCell(
+          'graduation-lawn',
+          `${OVERVIEW} Graduation lawn: stage platform blank, chair rows, photo backdrop blank, path, open green plaza. 5 zones. Soft ceremony. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave40-lab-play': wave('ow-wave40-lab-play', {
+    bucket: 'other-discovered',
+    family_id: `${OW_PREFIX}wave40`,
+    novelty: 'discovered-new',
+    title: 'OW wave40 — weather station + radio tower hill + recycling center (FULL-PAGE ×3)',
+    why: 'Discovered civic-science play worlds',
+    sheets: [
+      sh('S1', 'weather station hill', [
+        owCell(
+          'weather-station',
+          `${OVERVIEW} Weather station hill: instrument garden (blank dials), dome shed, wind vane pad, trail, open overlook plaza. 5 zones. Soft science. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'radio tower hill', [
+        owCell(
+          'radio-tower-hill',
+          `${OVERVIEW} Radio tower hill: tall tower silhouette (no logos), control hut blank, picnic overlook, path switchback, open pad. 5 zones. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'recycling center yard', [
+        owCell(
+          'recycling-center',
+          `${OVERVIEW} Friendly recycling center yard: sort-bin bay blank, conveyor shed, education plaza, truck pad, path. 5 zones. Soft green civic. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
+
+  'ow-wave41-waterpark2': wave('ow-wave41-waterpark2', {
+    bucket: 'leisure',
+    family_id: `${OW_PREFIX}wave41`,
+    novelty: 'discovered-new',
+    title: 'OW wave41 — wave pool plaza + lazy river island + slide canyon (FULL-PAGE ×3)',
+    why: 'Water leisure depth beyond waterpark overview',
+    sheets: [
+      sh('S1', 'wave pool plaza', [
+        owCell(
+          'wave-pool-plaza',
+          `${OVERVIEW} Wave-pool plaza: big pool oval, beach entry pad, shade umbrellas, snack terrace blank, path ring. 5 zones. Soft summer. No people/text.`,
+        ),
+      ]),
+      sh('S2', 'lazy river island', [
+        owCell(
+          'lazy-river-island',
+          `${OVERVIEW} Lazy-river island: looped river channel, center island plaza, bridge, tube rack pad blank, path. 5 zones. Clear water path. NEW. No people/text.`,
+        ),
+      ]),
+      sh('S3', 'slide canyon park', [
+        owCell(
+          'slide-canyon',
+          `${OVERVIEW} Slide canyon park: multi-slide tower silhouette, splash catch pool, climb stairs path, locker-shed blank, open plaza. 5 zones. Soft thrill. NEW. No people/text.`,
+        ),
+      ]),
+    ],
+  }),
 };
 
 export const WAVE_ORDER = Object.keys(WAVES);
@@ -933,7 +1381,7 @@ function recomputeTotals(inv) {
     novelty_discovered_families: newFams,
     novelty_pct: fams.length ? Math.round((newFams / fams.length) * 100) : 0,
     target_min: 25,
-    target_max: 80,
+    target_max: 150,
   };
 }
 
@@ -1309,7 +1757,7 @@ async function runLoop() {
   while (true) {
     const inv = loadInv();
     const worlds = countWorlds(inv);
-    if (worlds >= 80) {
+    if (worlds >= 150) {
       console.log(JSON.stringify({ phase: 'target-hit', worlds }, null, 2));
       return;
     }
