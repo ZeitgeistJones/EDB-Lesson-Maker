@@ -1,0 +1,585 @@
+﻿{
+    "kind":  "board-enabling-k3",
+    "prefix":  "be-k3-",
+    "views":  [
+                  "wide",
+                  "doorway",
+                  "window",
+                  "overhead"
+              ],
+    "waves":  {
+                  "k3-08":  {
+                                "family_id":  "be-k3-workshop",
+                                "title":  "BE-K3 workshop multi-view 2Ã—2",
+                                "task_id":  "4sde78z6UgLQnpWCzxBMdk",
+                                "task_url":  "https://manus.im/app/4sde78z6UgLQnpWCzxBMdk",
+                                "agent_status":  "stopped",
+                                "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-08\\sheets",
+                                "expected_sheets":  1,
+                                "sheets":  [
+                                               {
+                                                   "file":  "01.png",
+                                                   "bytes":  4491337,
+                                                   "name":  "be-k3-workshop.png"
+                                               }
+                                           ],
+                                "finished_at":  "2026-08-20T05:03:13.566Z",
+                                "holds":  [
+
+                                          ]
+                            },
+                  "k3-09":  {
+                                "family_id":  "be-k3-clinic",
+                                "title":  "BE-K3 clinic multi-view 2Ã—2",
+                                "task_id":  "MdJoAS6U2HumdQ8rid9UgP",
+                                "task_url":  "https://manus.im/app/MdJoAS6U2HumdQ8rid9UgP",
+                                "agent_status":  "stopped",
+                                "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-09\\sheets",
+                                "expected_sheets":  1,
+                                "sheets":  [
+                                               {
+                                                   "file":  "01.png",
+                                                   "bytes":  4427523,
+                                                   "name":  "be-k3-clinic.png"
+                                               }
+                                           ],
+                                "finished_at":  "2026-08-20T05:03:28.910Z",
+                                "holds":  [
+
+                                          ]
+                            },
+                  "k3-10":  {
+                                "family_id":  "be-k3-bus",
+                                "title":  "BE-K3 bus-shelter multi-view 2Ã—2",
+                                "task_id":  "avw48bvRCTr9zri7RZvjYE",
+                                "task_url":  "https://manus.im/app/avw48bvRCTr9zri7RZvjYE",
+                                "agent_status":  "stopped",
+                                "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-10\\sheets",
+                                "expected_sheets":  1,
+                                "sheets":  [
+                                               {
+                                                   "file":  "01.png",
+                                                   "bytes":  4996823,
+                                                   "name":  "be-k3-bus-S1.png"
+                                               }
+                                           ],
+                                "finished_at":  "2026-08-20T05:03:44.649Z",
+                                "holds":  [
+
+                                          ]
+                            },
+                  "k3-11":  {
+                                "family_id":  "be-k3-platform",
+                                "title":  "BE-K3 platform multi-view 2Ã—2",
+                                "task_id":  "cmxrJGSBhosa9C5FXv4tEw",
+                                "task_url":  "https://manus.im/app/cmxrJGSBhosa9C5FXv4tEw",
+                                "agent_status":  "stopped",
+                                "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-11\\sheets",
+                                "expected_sheets":  1,
+                                "sheets":  [
+                                               {
+                                                   "file":  "01.png",
+                                                   "bytes":  4581306,
+                                                   "name":  "be-k3-platform-S1-platform.png"
+                                               }
+                                           ],
+                                "finished_at":  "2026-08-20T05:04:00.460Z",
+                                "holds":  [
+
+                                          ]
+                            },
+                  "k3-12":  {
+                                "family_id":  "be-k3-greenhouse",
+                                "title":  "BE-K3 greenhouse multi-view 2Ã—2",
+                                "task_id":  "9sizssKkrbaAWev7o8bxjk",
+                                "task_url":  "https://manus.im/app/9sizssKkrbaAWev7o8bxjk",
+                                "agent_status":  "stopped",
+                                "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-12\\sheets",
+                                "expected_sheets":  1,
+                                "sheets":  [
+                                               {
+                                                   "file":  "01.png",
+                                                   "bytes":  6110985,
+                                                   "name":  "be-k3-greenhouse-S1.png"
+                                               }
+                                           ],
+                                "finished_at":  "2026-08-20T05:06:04.939Z",
+                                "holds":  [
+
+                                          ]
+                            },
+                  "k3-01":  {
+                                "family_id":  "be-k3-kitchen",
+                                "title":  "BE-K3 kitchen multi-view 2Ã—2",
+                                "task_id":  "2KJKmrsNGtGBUK9hLD4NFB",
+                                "task_url":  "https://manus.im/app/2KJKmrsNGtGBUK9hLD4NFB",
+                                "agent_status":  "stopped",
+                                "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-01\\sheets",
+                                "expected_sheets":  1,
+                                "sheets":  [
+                                               {
+                                                   "file":  "01.png",
+                                                   "bytes":  4635768,
+                                                   "name":  "be-k3-kitchen-S1.png"
+                                               }
+                                           ],
+                                "finished_at":  "2026-08-20T05:08:22.591Z",
+                                "holds":  [
+
+                                          ]
+                            },
+                  "k3-02":  {
+                                "family_id":  "be-k3-bedroom",
+                                "title":  "BE-K3 bedroom multi-view 2Ã—2",
+                                "task_id":  "jvKyRRyeGccs6SqfSVHUfD",
+                                "task_url":  "https://manus.im/app/jvKyRRyeGccs6SqfSVHUfD",
+                                "agent_status":  "stopped",
+                                "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-02\\sheets",
+                                "expected_sheets":  1,
+                                "sheets":  [
+                                               {
+                                                   "file":  "01.png",
+                                                   "bytes":  4417479,
+                                                   "name":  "be-k3-bedroom.png"
+                                               }
+                                           ],
+                                "finished_at":  "2026-08-20T05:08:38.290Z",
+                                "holds":  [
+
+                                          ]
+                            },
+                  "k3-03":  {
+                                "family_id":  "be-k3-living",
+                                "title":  "BE-K3 living multi-view 2Ã—2",
+                                "task_id":  "nGgDP5QWdSsLSxV3oee3kW",
+                                "task_url":  "https://manus.im/app/nGgDP5QWdSsLSxV3oee3kW",
+                                "agent_status":  "stopped",
+                                "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-03\\sheets",
+                                "expected_sheets":  1,
+                                "sheets":  [
+                                               {
+                                                   "file":  "01.png",
+                                                   "bytes":  4648193,
+                                                   "name":  "be-k3-living_S1.png"
+                                               }
+                                           ],
+                                "finished_at":  "2026-08-20T05:08:48.989Z",
+                                "holds":  [
+
+                                          ]
+                            },
+                  "k3-04":  {
+                                "family_id":  "be-k3-cafe",
+                                "title":  "BE-K3 cafe multi-view 2Ã—2",
+                                "task_id":  "NZhwdoA8f4Qwz3eHudjtyF",
+                                "task_url":  "https://manus.im/app/NZhwdoA8f4Qwz3eHudjtyF",
+                                "agent_status":  "stopped",
+                                "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-04\\sheets",
+                                "expected_sheets":  1,
+                                "sheets":  [
+                                               {
+                                                   "file":  "01.png",
+                                                   "bytes":  4669362,
+                                                   "name":  "be-k3-cafe-S1.png"
+                                               }
+                                           ],
+                                "finished_at":  "2026-08-20T05:08:53.425Z",
+                                "holds":  [
+
+                                          ]
+                            },
+                  "k3-05":  {
+                                "family_id":  "be-k3-shop",
+                                "title":  "BE-K3 shop multi-view 2Ã—2",
+                                "task_id":  "TXWxUSDLjHhzmCnxYVsfoj",
+                                "task_url":  "https://manus.im/app/TXWxUSDLjHhzmCnxYVsfoj",
+                                "agent_status":  "stopped",
+                                "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-05\\sheets",
+                                "expected_sheets":  1,
+                                "sheets":  [
+                                               {
+                                                   "file":  "01.png",
+                                                   "bytes":  4837208,
+                                                   "name":  "be-k3-shop-S1.png"
+                                               }
+                                           ],
+                                "finished_at":  "2026-08-20T05:09:08.582Z",
+                                "holds":  [
+
+                                          ]
+                            },
+                  "k3-06":  {
+                                "family_id":  "be-k3-library",
+                                "title":  "BE-K3 library multi-view 2Ã—2",
+                                "task_id":  "DEtVdk22xE75mdpRbxBn5u",
+                                "task_url":  "https://manus.im/app/DEtVdk22xE75mdpRbxBn5u",
+                                "agent_status":  "stopped",
+                                "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-06\\sheets",
+                                "expected_sheets":  1,
+                                "sheets":  [
+                                               {
+                                                   "file":  "01.png",
+                                                   "bytes":  5201702,
+                                                   "name":  "be-k3-library-S1.png"
+                                               }
+                                           ],
+                                "finished_at":  "2026-08-20T05:09:23.520Z",
+                                "holds":  [
+
+                                          ]
+                            },
+                  "k3-07":  {
+                                "family_id":  "be-k3-classroom",
+                                "title":  "BE-K3 classroom multi-view 2Ã—2",
+                                "task_id":  "nwxchyjpimLau4vkeBc3Wz",
+                                "task_url":  "https://manus.im/app/nwxchyjpimLau4vkeBc3Wz",
+                                "agent_status":  "stopped",
+                                "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-07\\sheets",
+                                "expected_sheets":  1,
+                                "sheets":  [
+                                               {
+                                                   "file":  "01.png",
+                                                   "bytes":  4972838,
+                                                   "name":  "be-k3-classroom-multiview-2x2.png"
+                                               }
+                                           ],
+                                "finished_at":  "2026-08-20T05:09:41.381Z",
+                                "holds":  [
+
+                                          ]
+                            }
+              },
+    "families":  {
+                     "be-k3-workshop":  {
+                                            "family_id":  "be-k3-workshop",
+                                            "wave":  "k3-08",
+                                            "slug":  "workshop",
+                                            "k1_family_id":  "be-k1-workshop",
+                                            "asymmetry":  "hidden sawhorse: visible wide+overhead; hidden doorway+window",
+                                            "reuse_note":  "overlap K1 be-k1-workshop",
+                                            "siblings":  [
+                                                             "be-k3-workshop-wide",
+                                                             "be-k3-workshop-doorway",
+                                                             "be-k3-workshop-window",
+                                                             "be-k3-workshop-overhead"
+                                                         ],
+                                            "views":  [
+                                                          "wide",
+                                                          "doorway",
+                                                          "window",
+                                                          "overhead"
+                                                      ],
+                                            "registration_grade":  "REG_B",
+                                            "grade_notes":  "same workshop; sawhorse still readable doorway",
+                                            "manus_task_id":  "4sde78z6UgLQnpWCzxBMdk",
+                                            "task_url":  "https://manus.im/app/4sde78z6UgLQnpWCzxBMdk",
+                                            "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-08\\sheets",
+                                            "status":  "generated_raw"
+                                        },
+                     "be-k3-clinic":  {
+                                          "family_id":  "be-k3-clinic",
+                                          "wave":  "k3-09",
+                                          "slug":  "clinic",
+                                          "k1_family_id":  "be-k1-clinic",
+                                          "asymmetry":  "far counter tray: visible wide+overhead; hidden doorway+window",
+                                          "reuse_note":  "overlap K1 be-k1-clinic",
+                                          "siblings":  [
+                                                           "be-k3-clinic-wide",
+                                                           "be-k3-clinic-doorway",
+                                                           "be-k3-clinic-window",
+                                                           "be-k3-clinic-overhead"
+                                                       ],
+                                          "views":  [
+                                                        "wide",
+                                                        "doorway",
+                                                        "window",
+                                                        "overhead"
+                                                    ],
+                                          "registration_grade":  "REG_A",
+                                          "grade_notes":  "far counter tray+mug wide+overhead; hidden doorway+window",
+                                          "manus_task_id":  "MdJoAS6U2HumdQ8rid9UgP",
+                                          "task_url":  "https://manus.im/app/MdJoAS6U2HumdQ8rid9UgP",
+                                          "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-09\\sheets",
+                                          "status":  "generated_raw"
+                                      },
+                     "be-k3-bus":  {
+                                       "family_id":  "be-k3-bus",
+                                       "wave":  "k3-10",
+                                       "slug":  "bus",
+                                       "k1_family_id":  "be-k1-bus",
+                                       "asymmetry":  "mitten under bench: visible wide+overhead; hidden doorway+window",
+                                       "reuse_note":  "overlap K1 be-k1-bus (street/shelter)",
+                                       "siblings":  [
+                                                        "be-k3-bus-wide",
+                                                        "be-k3-bus-doorway",
+                                                        "be-k3-bus-window",
+                                                        "be-k3-bus-overhead"
+                                                    ],
+                                       "views":  [
+                                                     "wide",
+                                                     "doorway",
+                                                     "window",
+                                                     "overhead"
+                                                 ],
+                                       "registration_grade":  "REG_A",
+                                       "grade_notes":  "mitten under bench wide+overhead; hidden frontal+partial",
+                                       "manus_task_id":  "avw48bvRCTr9zri7RZvjYE",
+                                       "task_url":  "https://manus.im/app/avw48bvRCTr9zri7RZvjYE",
+                                       "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-10\\sheets",
+                                       "status":  "generated_raw"
+                                   },
+                     "be-k3-platform":  {
+                                            "family_id":  "be-k3-platform",
+                                            "wave":  "k3-11",
+                                            "slug":  "platform",
+                                            "k1_family_id":  "be-k1-platform",
+                                            "asymmetry":  "far-post suitcase: visible wide+overhead; hidden doorway+window",
+                                            "reuse_note":  "overlap K1 be-k1-platform (station)",
+                                            "siblings":  [
+                                                             "be-k3-platform-wide",
+                                                             "be-k3-platform-doorway",
+                                                             "be-k3-platform-window",
+                                                             "be-k3-platform-overhead"
+                                                         ],
+                                            "views":  [
+                                                          "wide",
+                                                          "doorway",
+                                                          "window",
+                                                          "overhead"
+                                                      ],
+                                            "registration_grade":  "REG_A",
+                                            "grade_notes":  "suitcase far post wide+overhead; hidden/sliver doorway+window",
+                                            "manus_task_id":  "cmxrJGSBhosa9C5FXv4tEw",
+                                            "task_url":  "https://manus.im/app/cmxrJGSBhosa9C5FXv4tEw",
+                                            "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-11\\sheets",
+                                            "status":  "generated_raw"
+                                        },
+                     "be-k3-greenhouse":  {
+                                              "family_id":  "be-k3-greenhouse",
+                                              "wave":  "k3-12",
+                                              "slug":  "greenhouse",
+                                              "k1_family_id":  "be-k1-greenhouse",
+                                              "asymmetry":  "tipped can behind bench: visible wide+overhead; hidden doorway+window",
+                                              "reuse_note":  "overlap K1 be-k1-greenhouse (garden)",
+                                              "siblings":  [
+                                                               "be-k3-greenhouse-wide",
+                                                               "be-k3-greenhouse-doorway",
+                                                               "be-k3-greenhouse-window",
+                                                               "be-k3-greenhouse-overhead"
+                                                           ],
+                                              "views":  [
+                                                            "wide",
+                                                            "doorway",
+                                                            "window",
+                                                            "overhead"
+                                                        ],
+                                              "registration_grade":  "REG_B",
+                                              "grade_notes":  "same greenhouse; can/puddle asymmetry present",
+                                              "manus_task_id":  "9sizssKkrbaAWev7o8bxjk",
+                                              "task_url":  "https://manus.im/app/9sizssKkrbaAWev7o8bxjk",
+                                              "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-12\\sheets",
+                                              "status":  "generated_raw"
+                                          },
+                     "be-k3-kitchen":  {
+                                           "family_id":  "be-k3-kitchen",
+                                           "wave":  "k3-01",
+                                           "slug":  "kitchen",
+                                           "k1_family_id":  "be-k1-kitchen",
+                                           "asymmetry":  "spill under table: visible wide+overhead; hidden doorway+window",
+                                           "reuse_note":  "overlap K1 be-k1-kitchen",
+                                           "siblings":  [
+                                                            "be-k3-kitchen-wide",
+                                                            "be-k3-kitchen-doorway",
+                                                            "be-k3-kitchen-window",
+                                                            "be-k3-kitchen-overhead"
+                                                        ],
+                                           "views":  [
+                                                         "wide",
+                                                         "doorway",
+                                                         "window",
+                                                         "overhead"
+                                                     ],
+                                           "registration_grade":  "REG_A",
+                                           "grade_notes":  "spill under table visible wide+overhead; hidden doorway+window",
+                                           "manus_task_id":  "2KJKmrsNGtGBUK9hLD4NFB",
+                                           "task_url":  "https://manus.im/app/2KJKmrsNGtGBUK9hLD4NFB",
+                                           "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-01\\sheets",
+                                           "status":  "generated_raw"
+                                       },
+                     "be-k3-bedroom":  {
+                                           "family_id":  "be-k3-bedroom",
+                                           "wave":  "k3-02",
+                                           "slug":  "bedroom",
+                                           "k1_family_id":  "be-k1-bedroom",
+                                           "asymmetry":  "under-bed gift: visible wide+overhead; hidden doorway+window",
+                                           "reuse_note":  "overlap K1 be-k1-bedroom",
+                                           "siblings":  [
+                                                            "be-k3-bedroom-wide",
+                                                            "be-k3-bedroom-doorway",
+                                                            "be-k3-bedroom-window",
+                                                            "be-k3-bedroom-overhead"
+                                                        ],
+                                           "views":  [
+                                                         "wide",
+                                                         "doorway",
+                                                         "window",
+                                                         "overhead"
+                                                     ],
+                                           "registration_grade":  "REG_A",
+                                           "grade_notes":  "gift under bed visible wide+overhead; hidden doorway+window",
+                                           "manus_task_id":  "jvKyRRyeGccs6SqfSVHUfD",
+                                           "task_url":  "https://manus.im/app/jvKyRRyeGccs6SqfSVHUfD",
+                                           "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-02\\sheets",
+                                           "status":  "generated_raw"
+                                       },
+                     "be-k3-living":  {
+                                          "family_id":  "be-k3-living",
+                                          "wave":  "k3-03",
+                                          "slug":  "living",
+                                          "k1_family_id":  "be-k1-living",
+                                          "asymmetry":  "side-table remote: visible wide+overhead; hidden doorway+window",
+                                          "reuse_note":  "overlap K1 be-k1-living",
+                                          "siblings":  [
+                                                           "be-k3-living-wide",
+                                                           "be-k3-living-doorway",
+                                                           "be-k3-living-window",
+                                                           "be-k3-living-overhead"
+                                                       ],
+                                          "views":  [
+                                                        "wide",
+                                                        "doorway",
+                                                        "window",
+                                                        "overhead"
+                                                    ],
+                                          "registration_grade":  "REG_B",
+                                          "grade_notes":  "remote+cookies asymmetry ok; overhead drops second sofa",
+                                          "manus_task_id":  "nGgDP5QWdSsLSxV3oee3kW",
+                                          "task_url":  "https://manus.im/app/nGgDP5QWdSsLSxV3oee3kW",
+                                          "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-03\\sheets",
+                                          "status":  "generated_raw"
+                                      },
+                     "be-k3-cafe":  {
+                                        "family_id":  "be-k3-cafe",
+                                        "wave":  "k3-04",
+                                        "slug":  "cafe",
+                                        "k1_family_id":  "be-k1-cafe",
+                                        "asymmetry":  "right-booth cup: visible wide+overhead; hidden doorway+window",
+                                        "reuse_note":  "overlap K1 be-k1-cafe",
+                                        "siblings":  [
+                                                         "be-k3-cafe-wide",
+                                                         "be-k3-cafe-doorway",
+                                                         "be-k3-cafe-window",
+                                                         "be-k3-cafe-overhead"
+                                                     ],
+                                        "views":  [
+                                                      "wide",
+                                                      "doorway",
+                                                      "window",
+                                                      "overhead"
+                                                  ],
+                                        "registration_grade":  "REG_B",
+                                        "grade_notes":  "same cafe; booth cup still partly visible from doorway",
+                                        "manus_task_id":  "NZhwdoA8f4Qwz3eHudjtyF",
+                                        "task_url":  "https://manus.im/app/NZhwdoA8f4Qwz3eHudjtyF",
+                                        "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-04\\sheets",
+                                        "status":  "generated_raw"
+                                    },
+                     "be-k3-shop":  {
+                                        "family_id":  "be-k3-shop",
+                                        "wave":  "k3-05",
+                                        "slug":  "shop",
+                                        "k1_family_id":  "be-k1-shop",
+                                        "asymmetry":  "open cash drawer: visible wide+overhead; hidden doorway+window",
+                                        "reuse_note":  "overlap K1 be-k1-shop",
+                                        "siblings":  [
+                                                         "be-k3-shop-wide",
+                                                         "be-k3-shop-doorway",
+                                                         "be-k3-shop-window",
+                                                         "be-k3-shop-overhead"
+                                                     ],
+                                        "views":  [
+                                                      "wide",
+                                                      "doorway",
+                                                      "window",
+                                                      "overhead"
+                                                  ],
+                                        "registration_grade":  "REG_A",
+                                        "grade_notes":  "open register mainly overhead; window silhouettes",
+                                        "manus_task_id":  "TXWxUSDLjHhzmCnxYVsfoj",
+                                        "task_url":  "https://manus.im/app/TXWxUSDLjHhzmCnxYVsfoj",
+                                        "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-05\\sheets",
+                                        "status":  "generated_raw"
+                                    },
+                     "be-k3-library":  {
+                                           "family_id":  "be-k3-library",
+                                           "wave":  "k3-06",
+                                           "slug":  "library",
+                                           "k1_family_id":  "be-k1-library",
+                                           "asymmetry":  "under-table backpack: visible wide+overhead; hidden doorway+window",
+                                           "reuse_note":  "overlap K1 be-k1-library",
+                                           "siblings":  [
+                                                            "be-k3-library-wide",
+                                                            "be-k3-library-doorway",
+                                                            "be-k3-library-window",
+                                                            "be-k3-library-overhead"
+                                                        ],
+                                           "views":  [
+                                                         "wide",
+                                                         "doorway",
+                                                         "window",
+                                                         "overhead"
+                                                     ],
+                                           "registration_grade":  "REG_A",
+                                           "grade_notes":  "backpack wide+overhead; doorway+window hide",
+                                           "manus_task_id":  "DEtVdk22xE75mdpRbxBn5u",
+                                           "task_url":  "https://manus.im/app/DEtVdk22xE75mdpRbxBn5u",
+                                           "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-06\\sheets",
+                                           "status":  "generated_raw"
+                                       },
+                     "be-k3-classroom":  {
+                                             "family_id":  "be-k3-classroom",
+                                             "wave":  "k3-07",
+                                             "slug":  "classroom",
+                                             "k1_family_id":  "be-k1-classroom",
+                                             "asymmetry":  "under-desk lunchbox: visible wide+overhead; hidden doorway+window",
+                                             "reuse_note":  "overlap K1 be-k1-classroom",
+                                             "siblings":  [
+                                                              "be-k3-classroom-wide",
+                                                              "be-k3-classroom-doorway",
+                                                              "be-k3-classroom-window",
+                                                              "be-k3-classroom-overhead"
+                                                          ],
+                                             "views":  [
+                                                           "wide",
+                                                           "doorway",
+                                                           "window",
+                                                           "overhead"
+                                                       ],
+                                             "registration_grade":  "REG_A",
+                                             "grade_notes":  "backpack under desk wide+overhead; hidden doorway+window",
+                                             "manus_task_id":  "nwxchyjpimLau4vkeBc3Wz",
+                                             "task_url":  "https://manus.im/app/nwxchyjpimLau4vkeBc3Wz",
+                                             "sheet_dir":  "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\multi-view-environments\\k3-07\\sheets",
+                                             "status":  "generated_raw"
+                                         }
+                 },
+    "running_total":  {
+                          "tasks":  12,
+                          "sheets_downloaded":  12,
+                          "worlds_planned":  12,
+                          "worlds_fired":  12,
+                          "worlds_graded":  12,
+                          "reg_a":  8,
+                          "reg_b":  4,
+                          "reg_c":  0,
+                          "reg_fail":  0,
+                          "view_cells":  48
+                      },
+    "secondary":  {
+                      "runway":  "spent_on_k3_critical",
+                      "s2_time_era":  "deferred",
+                      "s1_cutaway":  "deferred",
+                      "note":  "K3 critical healthy (12/12, 8 REG_A / 4 REG_B). Secondary NOT started — avoid balloon; keep Manus slot free; concurrent harvest wiped sheets mid-run."
+                  },
+    "updated_at":  "2026-08-20T05:11:35.334Z"
+}
