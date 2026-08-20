@@ -28,13 +28,15 @@ import {
 
 export const STOCKPILE_REL = 'harvested/builder-worlds';
 export const TRACKED_DOC_REL = 'docs/builder-worlds-b-log.md';
-export const INV_REL = path.join(STOCKPILE_REL, 'b-inventory.json');
+export const INV_REL = 'docs/builder-worlds-b-inventory.json';
+export const INV_LOCAL_REL = path.join(STOCKPILE_REL, 'b-inventory.json');
 export const PREFIX = 'bw-';
 export const STREAM = 'B';
 
 const STOCKPILE = path.join(ROOT, STOCKPILE_REL);
 const LOCK = path.join(STOCKPILE, '.b.lock');
 const INV_PATH = path.join(ROOT, INV_REL);
+const INV_LOCAL_PATH = path.join(ROOT, INV_LOCAL_REL);
 const POLL_MS = 30_000;
 const TIMEOUT_MS = 65 * 60 * 1000;
 const RATE_WAIT_MS = 90_000;
@@ -568,8 +570,11 @@ function readInv() {
 
 function writeInv(inv) {
   fs.mkdirSync(path.dirname(INV_PATH), { recursive: true });
+  fs.mkdirSync(path.dirname(INV_LOCAL_PATH), { recursive: true });
   recomputeTotals(inv);
-  fs.writeFileSync(INV_PATH, JSON.stringify(inv, null, 2));
+  const body = JSON.stringify(inv, null, 2);
+  fs.writeFileSync(INV_PATH, body);
+  fs.writeFileSync(INV_LOCAL_PATH, body);
   return INV_PATH;
 }
 
