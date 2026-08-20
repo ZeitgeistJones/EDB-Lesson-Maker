@@ -55,4 +55,5 @@ tmp/manus-prea1-stockpile/*
 producer-tests/
 # Manus / stockpile warehouse — NEVER commit (blows Vercel Hobby git clone)
 # Live lesson art is public/assets (PropBank). harvested/ is producer-only.
+# Do NOT `git add -f harvested/...` — force-add defeats this ignore and regrows packs.
 harvested/
