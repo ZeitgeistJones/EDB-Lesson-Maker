@@ -70,3 +70,21 @@ Independent single-board optimization log.
 - ACTION: High | Scene anchor: Replace the decorative scene strip with a coherent game-day scene-stage that anchors the frames and provides contextual cues (players, coach, court, ball, whistle).
 - ACTION: Medium | Adaptive layout: Make frame-density responsive to frame count and word length rather than fixed presets; reflow the tile dock and frame blocks accordingly.
 - ACTION: Low | Dock balance: Center/integrate the word tile dock to avoid large unused quadrants and improve visual weight distribution.
+
+## Round 3 — city-transport (B1)
+
+- BOARD_PATH: `tmp/manus-board-loops/frameTiles/round-03-city-transport.jpg`
+- PACKET: `tmp/manus-board-loops/frameTiles/round-03-city-transport`
+- TASK: https://manus.im/app/BjRXJk9F4jsKzWZMdK6s3b
+- MANUS_VERDICT: revise
+- SCORE: 59
+- POLISH (ppt_like_quality): 0
+- WEAKEST_LINK: SYSTEMIC: FrameTiles payoff gate and world integration; sub_criterion: completion payoff must bind to a visible scene/object in initial state and final state. current_state: payoff is text-only and the city-scene is not rendered. required_improvement: implement a visible, topic-mapped payoff scene that activates upon completion of tiles.
+- ESCALATION_HOMEWORK: Not provided in this final document draft.
+- STATUS: structured_ok
+
+### Blocking / next actions
+- ACTION: Blocking: FrameTiles render payoff gate should bind to a visible scene-change after final tile; ensure visible scene in round 3 report.
+- ACTION: High: Introduce a topic-mapped city-route stage (map, landmarks, bus route) integrated with five tile actions for a visible payoff.
+- ACTION: Medium: Collapse chrome budget to a single primary task surface with minimal container chrome; keep five numbered rows as a coherent task surface.
+- ACTION: Low: If assets are updated, ensure consistent visual baseline and alignment across all frames and docks.

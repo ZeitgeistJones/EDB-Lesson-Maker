@@ -379,6 +379,16 @@
   function stemsFromToken(token) {
     const t = norm(token).replace(/-/g, '');
     if (!t || t.length < 3) return [];
+    // norm() already turns "-" into a space, so a multi-word kebab id like
+    // topicId "fruit-market" comes in here as "fruit market" — stemming it
+    // as one blob just hands back the whole title as a fake "stem", which
+    // then gets bumped into coreConcepts as a bogus two-word vocabulary
+    // word ("fruit market") sitting next to its own components ("fruit",
+    // "market"). Peel per-word instead so only genuine single-token stems
+    // come out.
+    if (t.includes(' ')) {
+      return uniq(t.split(/\s+/).filter(Boolean).flatMap(stemsFromToken));
+    }
     const out = [t];
     const m = OCCUPATION_TAIL_RE.exec(t);
     if (m) {
@@ -565,7 +575,6 @@
         const isTitleEcho = keyTokens.length > 1
           && titleTokenSet.size > 0
           && keyTokens.every((t) => titleTokenSet.has(norm(t)));
-        if (key === 'fruit-market') console.log('TMPDEBUG fruit-market', { keyTokens, titleTokenSet: [...titleTokenSet], isTitleEcho });
         if (isTitleEcho) continue;
         bump(keyWords, best, 'pack');
       }

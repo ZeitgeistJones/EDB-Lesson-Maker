@@ -6766,7 +6766,7 @@
       text: w,
       role: 'frameWord',
       meta: { word: w },
-    })), { w: tileW, h: tileH });
+    })), { w: tileW, h: tileH, cols: n });
     page.notes.push('recipe:frameTiles');
     page.notes.push('recipe:frameRequired:' + boardFrames(lesson).map((f) => intendedFrameFill(f, lesson) || '?').join('|'));
     page.notes.push('recipe:frameTileWords:' + tileWords.join('|'));

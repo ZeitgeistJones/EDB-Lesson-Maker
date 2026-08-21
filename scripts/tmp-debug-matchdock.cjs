@@ -39,14 +39,23 @@ async function main() {
     await window.VocabIcons.ready();
     const lesson = JSON.parse(JSON.stringify(lessonIn));
     const TI = window.TopicIdentity;
-    const brief = TI && TI.ensureBrief ? TI.ensureBrief(lesson) : null;
-    const adapt = window.VocabArt.adaptBoardVocabulary(lesson, {});
+    const PQ = window.ProducerQuality;
+    const topicBrief = TI && TI.buildBrief ? TI.buildBrief(lesson) : null;
+    const pre = PQ && PQ.validate ? PQ.validate(lesson, { topicBrief }) : null;
+    let repairResult = null;
+    let afterRepairVocab = null;
+    if (pre && !pre.pass && PQ.repair) {
+      repairResult = PQ.repair(lesson, { topicBrief, maxAttempts: 3 });
+      afterRepairVocab = lesson.vocabulary;
+    }
     return {
-      briefCoreConcepts: brief && brief.coreConcepts,
-      briefTopicId: brief && brief.topicId,
-      adapt,
-      finalVocabulary: lesson.vocabulary,
-      vocabAdapted: lesson._vocabAdapted,
+      topicBriefCoreConcepts: topicBrief && topicBrief.coreConcepts,
+      topicBriefSupporting: topicBrief && topicBrief.supportingConcepts,
+      pre: pre && { pass: pre.pass, failures: pre.failures, checks: (pre.checks || pre.results || []).map((c) => ({ code: c.code, pass: c.pass, detail: c.detail })) },
+      repairRepairs: repairResult && repairResult.repairs,
+      repairReportPass: repairResult && repairResult.report && repairResult.report.pass,
+      repairReportFailures: repairResult && repairResult.report && repairResult.report.failures,
+      afterRepairVocab,
     };
   }, lesson);
 

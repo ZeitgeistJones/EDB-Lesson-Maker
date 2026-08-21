@@ -44,3 +44,58 @@ Independent single-board optimization log.
 - ACTION: Medium: collapse worksheet-like note area and tighten the 3-beat contract so the flow Say → Peel → Compare feels like a cooperative classroom task, not a form-filling exercise.
 - ACTION: Low: introduce a topic-rich campsite vignette that supports target nouns (tent, backpack, campfire, sleeping bag) without leaking the model answer.
 - ACTION: Blocking: implement a one-job layout rule that keeps the interaction cluster compact and visually premium.
+
+### Producer fixes applied (this pass)
+
+R1 blockers/highs → `coverAnswer` grammar in `public/lib/edbActivities.js` +
+`public/lib/renderLessonPages.js` (`makeSpeakingPage`), `speaking.targetBay`
+resized in `public/lib/edbLayout.js`:
+
+1. **Peel-able flap, not a flat button.** New `speakingFlapRect()` insets the
+   flap INSIDE the model-answer card (was the exact same rect as the card).
+   New `peelFlapPng()` draws it with a ~2° tilt, a drop shadow, and a folded
+   top-right dog-ear so it reads as a note stuck onto a bigger card.
+2. **Model-answer card, not a bare box.** The card now has an always-visible
+   "✓ MODEL ANSWER" ribbon header above the flap, taller bay (72px → 132px)
+   so the ribbon + flap + margins all fit without cramming.
+3. **Three-beat contract made visible.** Added a `1·SAY → 2·PEEL → 3·COMPARE`
+   stepper chip row above the question (was buried in a hint-text clause).
+4. **Worksheet Notes shrunk + repurposed.** Replaced the "Notes / more
+   answers" label + large dashed blank with a `Same ✓ / Different — try
+   again` comparison-prompt row and a much smaller write line.
+5. **R2 post-pass fix (semantic binding, found in campsite stress test):**
+   `yesNoCue` regex matched `\bdo you\b` *anywhere*, so a WH-question like
+   "What do you take camping?" also got the "Say: I like ___" frame bolted
+   on — a non-sequitur. Tightened to require a true yes/no opener anchored
+   at the start of the question, with an explicit WH-word veto
+   (`renderLessonPages.js`).
+
+Verified: `node scripts/verify-board-visual.cjs --cases=fruit-market` and
+`--cases=campsite` — all hard checks pass on both topics; full `--tier=core`
+(19 cases) run also has 0 hard failures after the change. Not implemented
+this pass (left as ZPD fuel below, none were `blocking_issues` — R2's
+`blocking_issues` list was empty despite the severity-worded next_actions
+text): a stronger "lift" cue beyond the fold/shadow/tilt, and a topic
+micro-world scene behind the card (background pack selection is a separate
+producer surface from this recipe).
+
+### ZPD next-loop fuel (R2 `zpd_challenges`, overall score 5)
+- Dedicated semantic-binding gate: every `coverAnswer` board should declare
+  `question_intent` / `answer_frame` / `model_answer` / `eligible_vocab` and
+  reject mismatches at render time (generalizes the R2 post-pass regex fix
+  into a real gate instead of a string heuristic).
+- A tangible peel-state machine with a clearly lifted corner / pull-tab cue
+  and a definitive revealed state with an immediate payoff (sparkle/check)
+  — meaningful once this ships to an actual interactive ClassIn board, not
+  just the static preview JPG.
+
+## STATUS
+
+| Round | Topic | Verdict | Score | Commit |
+|---|---|---|---|---|
+| R1 | fruit-market (A1) | revise | 68 | none (pre-existing, logged only) |
+| R2 | campsite (A1) | **pass** | 5/5 (polish 5/5) | this pass — see below |
+
+R3: not run — R2 passed clean (`blocking_issues: []`) and cost policy caps
+this loop at "R3 only if needed." Remaining R2 next_actions are enhancement
+ZPD fuel above, not gating.
