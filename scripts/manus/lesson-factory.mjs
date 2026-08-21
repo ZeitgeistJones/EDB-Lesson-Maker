@@ -820,8 +820,9 @@ async function pollUnit(status, briefs, unitRec) {
     if (st && (st.agent_status === 'running' || st.agent_status === 'pending')) {
       // Incremental download while running (preserve partials)
       const partialSaved = await downloadAll(snap.messages || [], unitDir(unitRec.unit));
-      if (partialSaved.length) {
-        const org = organizeLessonFiles(unitRec.unit, partialSaved);
+      const partialExpanded = expandSavedFromRaw(unitDir(unitRec.unit), partialSaved);
+      if (partialExpanded.length) {
+        const org = organizeLessonFiles(unitRec.unit, partialExpanded);
         unitRec.page_count = Math.max(unitRec.page_count || 0, org.pageCount);
         unitRec.lessons_complete = Math.max(unitRec.lessons_complete || 0, org.lessonsComplete);
         saveStatus(status);
@@ -831,13 +832,28 @@ async function pollUnit(status, briefs, unitRec) {
     }
 
     if (st && (st.agent_status === 'stopped' || st.agent_status === 'error')) {
+      const recheck = await listMessages(taskId, { order: 'desc', limit: 30, allowMissing: true });
+      const stRecheck = latestAgentStatus(recheck.messages || []);
+      if (stRecheck && (stRecheck.agent_status === 'running' || stRecheck.agent_status === 'pending')) {
+        console.log(`[poll] Unit ${unitRec.unit} transient stopped; still active`);
+        const partialSaved = await downloadAll(recheck.messages || [], unitDir(unitRec.unit));
+        const partialExpanded = expandSavedFromRaw(unitDir(unitRec.unit), partialSaved);
+        if (partialExpanded.length) {
+          const org = organizeLessonFiles(unitRec.unit, partialExpanded);
+          unitRec.page_count = Math.max(unitRec.page_count || 0, org.pageCount);
+          unitRec.lessons_complete = Math.max(unitRec.lessons_complete || 0, org.lessonsComplete);
+          saveStatus(status);
+        }
+        return;
+      }
       const result = await pollUntilDone(taskId, {
         intervalMs: POLL_MS,
         timeoutMs: 120_000,
       });
       const messages = result.messages || snap.messages || [];
       const saved = await downloadAll(messages, unitDir(unitRec.unit));
-      const org = organizeLessonFiles(unitRec.unit, saved);
+      const savedExpanded = expandSavedFromRaw(unitDir(unitRec.unit), saved);
+      const org = organizeLessonFiles(unitRec.unit, savedExpanded);
       const unitBrief = briefs.units.find((u) => u.unit === unitRec.unit);
       if (unitBrief) writeLessonMetadata(unitBrief, unitRec, org);
 
@@ -873,9 +889,12 @@ async function pollUnit(status, briefs, unitRec) {
       } else if (org.lessonsComplete >= 1 || org.pageCount >= 10) {
         unitRec.status = 'RETRY_NEEDED';
         unitRec.error = `Incomplete harvest: ${org.lessonsComplete} lessons, ${org.pageCount} pages`;
+      } else if (savedExpanded.some((f) => /\.zip$|lesson-0[1-5]\.pdf/i.test(f.filename || f.path || ''))) {
+        unitRec.status = 'RETRY_NEEDED';
+        unitRec.error = `Deliverables present but pages not harvested (${savedExpanded.length} files)`;
       } else {
         unitRec.status = 'FAILED';
-        unitRec.error = `No usable pages downloaded (${saved.length} files)`;
+        unitRec.error = `No usable pages downloaded (${savedExpanded.length} files)`;
       }
       saveStatus(status);
       console.log(`[done] Unit ${unitRec.unit} → ${unitRec.status} pages=${org.pageCount}`);
