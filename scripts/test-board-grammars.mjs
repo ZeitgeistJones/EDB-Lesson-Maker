@@ -158,7 +158,10 @@ const cases = [
       options: ['book', 'milk', 'apple', 'banana', 'bus'],
       mustInclude: ['book'],
     },
-    roles: ['capacityMission', 'capacityContainer', 'capacitySlot', 'capacityChoice'],
+    roles: [
+      'capacityScene', 'capacityMission', 'capacityLanguageFrame', 'capacityStateLadder',
+      'capacityContainer', 'capacitySlot', 'capacityPayoff', 'capacityChoice',
+    ],
   },
   {
     id: 'routeMission',
@@ -287,6 +290,26 @@ for (const c of cases) {
       ['Plan', 'Bag', 'Bus'].sort().join('|'),
       'routeMission must preserve one landmark on each shuffled step card'
     );
+  }
+  if (c.id === 'capacityPack') {
+    const scene = page.locked.find((piece) => piece.role === 'capacityScene');
+    assert(scene && scene.meta && scene.meta.integrated === true,
+      'capacityPack must host mission + pack in one integrated scene shell (no disconnected panels)');
+    const ladder = page.locked.find((piece) => piece.role === 'capacityStateLadder');
+    assert(ladder && Array.isArray(ladder.meta?.states) &&
+      ladder.meta.states.join('|') === 'empty|filling|committed',
+      'capacityPack must prove the empty→filling→committed lifecycle in the single bake');
+    assert(ladder.meta.payoff, 'capacityPack state ladder must name the topic-relevant payoff');
+    const frame = page.locked.find((piece) => piece.role === 'capacityLanguageFrame');
+    assert(frame && frame.meta?.includeFrame && frame.meta?.excludeFrame && frame.meta?.teacherCheck === true,
+      'capacityPack must render reusable inclusion/exclusion frames with a teacher-confirmation check');
+    const payoffBanner = page.locked.find((piece) => piece.role === 'capacityPayoff');
+    assert(payoffBanner && payoffBanner.meta?.payoff === c.payload.payoff,
+      'capacityPack must show a persistent payoff banner, not just a small footer line');
+    const slots = page.locked.filter((piece) => piece.role === 'capacitySlot');
+    assert(slots.length === c.payload.limit, 'capacityPack must render exactly `limit` pockets');
+    assert(slots.every((piece) => piece.meta?.ordered === false),
+      'capacityPack pockets must not carry ordinal/order-dependent meaning');
   }
   if (c.id === 'evidenceBoard') {
     const cards = page.unlocked.filter((piece) => piece.role === 'evidenceCard');

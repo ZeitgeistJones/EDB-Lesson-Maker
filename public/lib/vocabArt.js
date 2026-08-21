@@ -267,6 +267,59 @@
   });
 
   /**
+   * True when `word` is unsafe to inject as a taught/matchable vocabulary
+   * item next to `seenWords` (existing board words) for `lesson`.
+   *
+   * Covers two Manus-caught leaks (R1 matchDock FAIL, score 3):
+   *  - Hypernym fill next to its own hyponym ("fruit" beside apple/banana/grape).
+   *  - Title-echo compounds: a multi-word pack-art key (e.g. `fruit-market.png`)
+   *    whose tokens are simply the lesson title's own words recombined
+   *    ("Fruit Market" → "fruit market"). That is not a vocabulary word —
+   *    it is the title parroted back, and it duplicates the single-word
+   *    "market" fill with a near-identical stall icon (two "pre-paired"
+   *    looking match pieces on the same board).
+   * Shared by themeBankFillWords() and the TopicIdentity coreConcepts fill
+   * in adaptBoardVocabulary() so both injection paths stay honest.
+   */
+  function isJunkFillWord(word, seenWords, lesson) {
+    const w = String(word || '').trim().toLowerCase().replace(/\s+/g, ' ');
+    if (!w) return true;
+    if (/^(spectacular|amusing|gigantic|clumsy|beautiful|amazing|wonderful|interesting|important|difficult|easy|happy|sad|angry|worried|confused|shy|proud|surprised)$/.test(w)) {
+      return true;
+    }
+    const seen = seenWords instanceof Set
+      ? seenWords
+      : new Set((seenWords || []).map((x) => String(x || '').toLowerCase()));
+    // Hypernym fills next to a hyponym already on the board (fruit + apple).
+    if (w === 'fruit' && [...seen].some((x) => /^(apple|banana|lemon|orange|grape|mango|pear)$/.test(x))) {
+      return true;
+    }
+    if (w === 'animal' && [...seen].some((x) => /^(dog|cat|bird|fish|horse)$/.test(x))) {
+      return true;
+    }
+    // Title token "pets" / "pet" next to dog+cat is the same hypernym trap.
+    if (/^(pet|pets)$/.test(w) && [...seen].some((x) => /^(dog|cat|bird|fish|horse|pet|pets)$/.test(x))) {
+      return true;
+    }
+    // Title-echo compound: every token of a multi-word candidate is itself
+    // a token of the lesson title ("fruit market" ⊂ title "Fruit Market").
+    if (w.includes(' ')) {
+      const titleTokens = new Set(
+        String((lesson && lesson.title) || '')
+          .toLowerCase()
+          .replace(/[^a-z0-9\s]/g, '')
+          .split(/\s+/)
+          .filter(Boolean)
+      );
+      const wordTokens = w.split(' ').filter(Boolean);
+      if (wordTokens.length > 1 && titleTokens.size > 0 && wordTokens.every((t) => titleTokens.has(t))) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
    * Concrete bank words for this lesson's place theme + title tokens.
    * Same topic only — never injects off-theme packs.
    */
@@ -279,20 +332,7 @@
       if (out.length >= limit) return;
       const w = String(raw || '').trim().toLowerCase().replace(/\s+/g, ' ');
       if (!w || w.length < 2 || seen.has(w)) return;
-      if (/^(spectacular|amusing|gigantic|clumsy|beautiful|amazing|wonderful|interesting|important|difficult|easy|happy|sad|angry|worried|confused|shy|proud|surprised)$/.test(w)) {
-        return;
-      }
-      // Hypernym fills next to a hyponym already on the board (fruit + apple).
-      if (w === 'fruit' && [...seen].some((x) => /^(apple|banana|lemon|orange|grape|mango|pear)$/.test(x))) {
-        return;
-      }
-      if (w === 'animal' && [...seen].some((x) => /^(dog|cat|bird|fish|horse)$/.test(x))) {
-        return;
-      }
-      // Title token "pets" / "pet" next to dog+cat is the same hypernym trap.
-      if (/^(pet|pets)$/.test(w) && [...seen].some((x) => /^(dog|cat|bird|fish|horse|pet|pets)$/.test(x))) {
-        return;
-      }
+      if (isJunkFillWord(w, seen, lesson)) return;
       seen.add(w);
       out.push(w);
     };
@@ -504,6 +544,13 @@
           const k = String(w).toLowerCase();
           if (have.has(k)) return false;
           if (TI && TI.isForbiddenWord && TI.isForbiddenWord(brief, w)) return false;
+          // TopicIdentity's generic-title fallback can promote a multi-word
+          // pack-art key straight from the title's own tokens (e.g. title
+          // "Fruit Market" + pack key `fruit-market.png` → coreConcept
+          // "fruit market"). Same hypernym/title-echo guard as the theme
+          // bank fill below (Manus R1 matchDock FAIL — duplicate stall icon
+          // + nonsense two-word "vocabulary" word).
+          if (isJunkFillWord(k, have, lesson)) return false;
           return true;
         });
         const withArt = fromBrief.filter(
@@ -518,6 +565,13 @@
         for (const w of fills) {
           if (wordAlreadyListed(entries, w)) continue;
           if (brief && TI && TI.isForbiddenWord && TI.isForbiddenWord(brief, w)) continue;
+          // Re-check against the live, growing entry list: themeBankFillWords
+          // and the brief.coreConcepts fill are scored independently, so a
+          // title-echo compound from one path (e.g. "fruit market") can slip
+          // past its own guard when the single-word twin ("market") only
+          // landed in entries via the OTHER path a moment earlier.
+          const liveSeen = entries.map((e) => String(entryWord(e) || '').toLowerCase());
+          if (isJunkFillWord(w, liveSeen, lesson)) continue;
           const entry = { word: w, _themeBankFill: true };
           entries.push(entry);
           injected.push(w);

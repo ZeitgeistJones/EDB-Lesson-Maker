@@ -1,0 +1,20 @@
+STOCKPILE board-enabling. No wiring.
+
+Repo: C:/dev/PPT-Lesson-Maker-for-Classin
+GIT: No PNG commits. Paths:
+harvested/board-enabling/evidence-correspondence/
+harvested/board-enabling/route-world/
+Commit scripts/docs/json only. No force-push.
+
+YOU = STREAM C+D — K4 residue↔object pairs + K5 ONE route world system
+
+K4: ~40 correspondence pairs (clue ↔ counterpart). Reuse existing props where possible. Ambiguous before / logical after. Isolated + scene-scale when useful. Not microscopic detective clipart. Not duplicate existing residue bank.
+
+K5: ONE excellent modular route world (town→countryside hybrid). Base map + path tiles + blockers + checkpoints + destination states + traveler tokens. Fixed pitch/path width/projection. Illustrated play world not GIS.
+
+1 Manus slot (share: you own 1 of global 4). Prefer family briefs. REG grades for route tiles joining.
+
+scripts/manus/request-be-k4k5.mjs
+docs/board-enabling-k4k5.md
+
+Stay until both kits healthy. Return pairs, route asset count, REG, commits of scripts only.

@@ -204,9 +204,9 @@ const FRAME_VARIANTS = {
         { word: 'whistle', sentence: 'When our team is ready to begin, the coach blows the whistle.' },
       ],
       sentenceFrames: [
-        'When our team is ready to begin, the coach blows the ____.',
+        'When practice begins, the coach calls our ____ together.',
         'Before I shoot, I pass the ____ to my teammate.',
-        'After we make a basket, our team adds one point to the ____.',
+        'Before the game begins, everyone walks onto the ____.',
         'During practice, the ____ helps everyone improve.',
       ],
     },

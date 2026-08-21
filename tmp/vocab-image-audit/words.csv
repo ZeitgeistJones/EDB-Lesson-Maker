@@ -1,0 +1,731 @@
+lesson_id,source,topic,title,level,duration,word,normalized_key,index_key,match_kind,on_board,tier,success,failure_reason,art_src
+amusement-debug,synthetic:amusement-park,Amusement Park,Amusement Park Fun,A1,30,ticket,ticket,ticket,exact,true,prop,true,,assets/09_props/img/gash-prize-ticket.png
+amusement-debug,synthetic:amusement-park,Amusement Park,Amusement Park Fun,A1,30,popcorn,popcorn,popcorn,exact,true,pack,true,,assets/07_vocab-pack/img/popcorn.png
+amusement-debug,synthetic:amusement-park,Amusement Park,Amusement Park Fun,A1,30,ferris wheel,ferris-wheel,ferris-wheel,exact,true,pack,true,,assets/07_vocab-pack/img/ferris-wheel.png
+amusement-debug,synthetic:amusement-park,Amusement Park,Amusement Park Fun,A1,30,entrance,entrance,entrance,exact,true,pack,true,,assets/07_vocab-pack/img/entrance.png
+amusement-debug,synthetic:amusement-park,Amusement Park,Amusement Park Fun,A1,30,rollercoaster,rollercoaster,roller-coaster,exact,true,pack,true,,assets/07_vocab-pack/img/roller-coaster.png
+amusement-debug,synthetic:amusement-park,Amusement Park,Amusement Park Fun,A1,30,prize,prize,prize,exact,true,pack,true,,assets/07_vocab-pack/img/prize.png
+gen-001,generate-lesson,Amusement Park,A Day at the Amusement Park,A1,30,rollercoaster,rollercoaster,roller-coaster,exact,true,pack,true,,assets/07_vocab-pack/img/roller-coaster.png
+gen-001,generate-lesson,Amusement Park,A Day at the Amusement Park,A1,30,ticket,ticket,ticket,exact,true,prop,true,,assets/09_props/img/gash-prize-ticket.png
+gen-001,generate-lesson,Amusement Park,A Day at the Amusement Park,A1,30,popcorn,popcorn,popcorn,exact,true,pack,true,,assets/07_vocab-pack/img/popcorn.png
+gen-001,generate-lesson,Amusement Park,A Day at the Amusement Park,A1,30,balloon,balloon,balloon,exact,true,prop,true,,assets/09_props/img/party-balloon.png
+gen-001,generate-lesson,Amusement Park,A Day at the Amusement Park,A1,30,carousel,carousel,carousel,exact,true,prop,true,,assets/09_props/img/park-carousel.png
+gen-001,generate-lesson,Amusement Park,A Day at the Amusement Park,A1,30,prize,prize,prize,exact,true,pack,true,,assets/07_vocab-pack/img/prize.png
+gen-002,generate-lesson,At the Dentist,At the Dentist,A2,60,toothbrush,toothbrush,toothbrush,exact,true,pack,true,,assets/07_vocab-pack/img/toothbrush.png
+gen-002,generate-lesson,At the Dentist,At the Dentist,A2,60,dentist,dentist,dentist,exact,true,pack,true,,assets/07_vocab-pack/img/dentist.png
+gen-002,generate-lesson,At the Dentist,At the Dentist,A2,60,cavity,cavity,cavity,exact,true,pack,true,,assets/07_vocab-pack/img/cavity.png
+gen-002,generate-lesson,At the Dentist,At the Dentist,A2,60,floss,floss,floss,exact,true,pack,true,,assets/07_vocab-pack/img/floss.png
+gen-002,generate-lesson,At the Dentist,At the Dentist,A2,60,chair,chair,chair,exact,false,none,false,silent blank slot,
+gen-002,generate-lesson,At the Dentist,At the Dentist,A2,60,smile,smile,smile,exact,false,prop,true,,assets/09_props/img/face-mouth-smile.png
+gen-002,generate-lesson,At the Dentist,At the Dentist,A2,60,appointment,appointment,appointment,exact,true,pack,true,,assets/07_vocab-pack/img/appointment.png
+gen-002,generate-lesson,At the Dentist,At the Dentist,A2,60,toothpaste,toothpaste,toothpaste,exact,false,pack,true,,assets/07_vocab-pack/img/toothpaste.png
+gen-002,generate-lesson,At the Dentist,At the Dentist,A2,60,rinse,rinse,rinse,exact,false,pack,true,,assets/07_vocab-pack/img/rinse.png
+gen-002,generate-lesson,At the Dentist,At the Dentist,A2,60,healthy,healthy,healthy,exact,false,pack,true,,assets/07_vocab-pack/img/healthy.png
+gen-002,generate-lesson,At the Dentist,At the Dentist,A2,60,mirror,mirror,mirror,exact,false,none,false,silent blank slot,
+gen-002,generate-lesson,At the Dentist,At the Dentist,A2,60,check-up,check-up,,,false,none,false,no exact key,
+gen-002,generate-lesson,At the Dentist,At the Dentist,A2,60,dentist chair,dentist-chair,chair,token,true,pack,true,,assets/07_vocab-pack/img/chair.png
+gen-002,generate-lesson,At the Dentist,At the Dentist,A2,60,dental mirror,dental-mirror,dental-mirror,exact,false,prop,true,,assets/09_props/img/dental-mirror.png
+gen-003,generate-lesson,Airport Adventure,Airport Adventure,B1,30,boarding pass,boarding-pass,boarding-pass,exact,true,pack,true,,assets/07_vocab-pack/img/boarding-pass.png
+gen-003,generate-lesson,Airport Adventure,Airport Adventure,B1,30,security check,security-check,check,token,true,pack,true,,assets/07_vocab-pack/img/check.png
+gen-003,generate-lesson,Airport Adventure,Airport Adventure,B1,30,departure board,departure-board,board,token,true,pack,true,,assets/07_vocab-pack/img/board.png
+gen-003,generate-lesson,Airport Adventure,Airport Adventure,B1,30,luggage,luggage,luggage,exact,true,pack,true,,assets/07_vocab-pack/img/luggage.png
+gen-003,generate-lesson,Airport Adventure,Airport Adventure,B1,30,gate,gate,gate,exact,true,pack,true,,assets/07_vocab-pack/img/gate.png
+gen-003,generate-lesson,Airport Adventure,Airport Adventure,B1,30,take off,take-off,,,true,none,false,no exact key,
+gen-003,generate-lesson,Airport Adventure,Airport Adventure,B1,30,check in,check-in,check-in,exact,false,pack,true,,assets/07_vocab-pack/img/check-in.png
+gen-004,generate-lesson,Day at the Zoo,A Day at the Zoo,A1,60,lion,lion,lion,exact,true,prop,true,,assets/09_props/img/animal-lion.png
+gen-004,generate-lesson,Day at the Zoo,A Day at the Zoo,A1,60,monkey,monkey,monkey,exact,true,prop,true,,assets/09_props/img/animal-monkey.png
+gen-004,generate-lesson,Day at the Zoo,A Day at the Zoo,A1,60,giraffe,giraffe,giraffe,exact,true,prop,true,,assets/09_props/img/animal-giraffe.png
+gen-004,generate-lesson,Day at the Zoo,A Day at the Zoo,A1,60,penguin,penguin,penguin,exact,true,pack,true,,assets/07_vocab-pack/img/penguin.png
+gen-004,generate-lesson,Day at the Zoo,A Day at the Zoo,A1,60,zebra,zebra,zebra,exact,true,prop,true,,assets/09_props/img/animal-zebra.png
+gen-004,generate-lesson,Day at the Zoo,A Day at the Zoo,A1,60,elephant,elephant,elephant,exact,true,prop,true,,assets/09_props/img/animal-elephant.png
+gen-005,generate-lesson,Beach Day Fun,Beach Day Fun,A2,30,sandcastle,sandcastle,sandcastle,exact,true,prop,true,,assets/09_props/img/beach-sandcastle.png
+gen-005,generate-lesson,Beach Day Fun,Beach Day Fun,A2,30,seashell,seashell,seashell,exact,true,prop,true,,assets/09_props/img/beach-seashell.png
+gen-005,generate-lesson,Beach Day Fun,Beach Day Fun,A2,30,sunscreen,sunscreen,sunscreen,exact,true,prop,true,,assets/09_props/img/beach-sunscreen.png
+gen-005,generate-lesson,Beach Day Fun,Beach Day Fun,A2,30,swimsuit,swimsuit,swimsuit,exact,true,prop,true,,assets/09_props/img/clothes-swimsuit.png
+gen-005,generate-lesson,Beach Day Fun,Beach Day Fun,A2,30,towel,towel,towel,exact,true,prop,true,,assets/09_props/img/beach-towel.png
+gen-005,generate-lesson,Beach Day Fun,Beach Day Fun,A2,30,waves,waves,wave,plural,true,prop,true,,assets/09_props/img/hair-long-blonde-wave.png
+gen-005,generate-lesson,Beach Day Fun,Beach Day Fun,A2,30,bucket,bucket,bucket,exact,false,prop,true,,assets/09_props/img/beach-bucket.png
+gen-006,generate-lesson,Morning at the Bakery,Morning at the Bakery,B1,60,pastry,pastry,pastry,exact,true,pack,true,,assets/07_vocab-pack/img/pastry.png
+gen-006,generate-lesson,Morning at the Bakery,Morning at the Bakery,B1,60,oven,oven,oven,exact,true,pack,true,,assets/07_vocab-pack/img/oven.png
+gen-006,generate-lesson,Morning at the Bakery,Morning at the Bakery,B1,60,dough,dough,dough,exact,true,pack,true,,assets/07_vocab-pack/img/dough.png
+gen-006,generate-lesson,Morning at the Bakery,Morning at the Bakery,B1,60,flour,flour,flour,exact,true,pack,true,,assets/07_vocab-pack/img/flour.png
+gen-006,generate-lesson,Morning at the Bakery,Morning at the Bakery,B1,60,customer,customer,customer,exact,true,pack,true,,assets/07_vocab-pack/img/customer.png
+gen-006,generate-lesson,Morning at the Bakery,Morning at the Bakery,B1,60,apron,apron,apron,exact,true,prop,true,,assets/09_props/img/bake-apron.png
+gen-006,generate-lesson,Morning at the Bakery,Morning at the Bakery,B1,60,whisk,whisk,whisk,exact,false,prop,true,,assets/09_props/img/bake-whisk.png
+gen-006,generate-lesson,Morning at the Bakery,Morning at the Bakery,B1,60,recipe,recipe,recipe,exact,false,pack,true,,assets/07_vocab-pack/img/recipe.png
+gen-006,generate-lesson,Morning at the Bakery,Morning at the Bakery,B1,60,yeast,yeast,yeast,exact,false,pack,true,,assets/07_vocab-pack/img/yeast.png
+gen-006,generate-lesson,Morning at the Bakery,Morning at the Bakery,B1,60,tray,tray,tray,exact,false,prop,true,,assets/09_props/img/activity-tray.png
+gen-006,generate-lesson,Morning at the Bakery,Morning at the Bakery,B1,60,knead,knead,knead,exact,false,pack,true,,assets/07_vocab-pack/img/knead.png
+gen-006,generate-lesson,Morning at the Bakery,Morning at the Bakery,B1,60,bake,bake,bake,exact,false,pack,true,,assets/07_vocab-pack/img/bake.png
+gen-007,generate-lesson,School Classroom,School Classroom,A1,30,desk,desk,desk,exact,true,prop,true,,assets/09_props/img/sch-desk.png
+gen-007,generate-lesson,School Classroom,School Classroom,A1,30,pencil,pencil,pencil,exact,true,prop,true,,assets/09_props/img/school-pencil.png
+gen-007,generate-lesson,School Classroom,School Classroom,A1,30,eraser,eraser,eraser,exact,true,prop,true,,assets/09_props/img/school-eraser.png
+gen-007,generate-lesson,School Classroom,School Classroom,A1,30,book,book,book,exact,true,prop,true,,assets/09_props/img/sch-standing-book.png
+gen-007,generate-lesson,School Classroom,School Classroom,A1,30,bag,bag,bag,exact,true,pack,true,,assets/07_vocab-pack/img/bag.png
+gen-007,generate-lesson,School Classroom,School Classroom,A1,30,teacher,teacher,teacher,exact,true,prop,true,,assets/09_props/img/job-teacher.png
+gen-008,generate-lesson,Parts of the Face,Parts of the Face,A2,60,eye,eye,eye,exact,true,pack,true,,assets/07_vocab-pack/img/eye.png
+gen-008,generate-lesson,Parts of the Face,Parts of the Face,A2,60,nose,nose,nose,exact,true,pack,true,,assets/07_vocab-pack/img/nose.png
+gen-008,generate-lesson,Parts of the Face,Parts of the Face,A2,60,mouth,mouth,mouth,exact,true,pack,true,,assets/07_vocab-pack/img/mouth.png
+gen-008,generate-lesson,Parts of the Face,Parts of the Face,A2,60,ear,ear,ear,exact,true,pack,true,,assets/07_vocab-pack/img/ear.png
+gen-008,generate-lesson,Parts of the Face,Parts of the Face,A2,60,cheek,cheek,cheek,exact,true,pack,true,,assets/07_vocab-pack/img/cheek.png
+gen-008,generate-lesson,Parts of the Face,Parts of the Face,A2,60,chin,chin,chin,exact,true,pack,true,,assets/07_vocab-pack/img/chin.png
+gen-008,generate-lesson,Parts of the Face,Parts of the Face,A2,60,forehead,forehead,forehead,exact,false,pack,true,,assets/07_vocab-pack/img/forehead.png
+gen-008,generate-lesson,Parts of the Face,Parts of the Face,A2,60,eyebrow,eyebrow,eyebrow,exact,false,pack,true,,assets/07_vocab-pack/img/eyebrow.png
+gen-008,generate-lesson,Parts of the Face,Parts of the Face,A2,60,eyelash,eyelash,eyelash,exact,false,pack,true,,assets/07_vocab-pack/img/eyelash.png
+gen-008,generate-lesson,Parts of the Face,Parts of the Face,A2,60,lip,lip,lip,exact,false,pack,true,,assets/07_vocab-pack/img/lip.png
+gen-008,generate-lesson,Parts of the Face,Parts of the Face,A2,60,tooth,tooth,tooth,exact,false,prop,true,,assets/09_props/img/cavity-tooth.png
+gen-008,generate-lesson,Parts of the Face,Parts of the Face,A2,60,tongue,tongue,tongue,exact,false,pack,true,,assets/07_vocab-pack/img/tongue.png
+gen-009,generate-lesson,Sports Day,Sports Day,B1,30,relay,relay,relay,exact,true,pack,true,,assets/07_vocab-pack/img/relay.png
+gen-009,generate-lesson,Sports Day,Sports Day,B1,30,hurdle,hurdle,hurdle,exact,true,pack,true,,assets/07_vocab-pack/img/hurdle.png
+gen-009,generate-lesson,Sports Day,Sports Day,B1,30,trophy,trophy,trophy,exact,true,prop,true,,assets/09_props/img/sports-trophy.png
+gen-009,generate-lesson,Sports Day,Sports Day,B1,30,medal,medal,medal,exact,true,prop,true,,assets/09_props/img/sports-medal.png
+gen-009,generate-lesson,Sports Day,Sports Day,B1,30,whistle,whistle,whistle,exact,true,prop,true,,assets/09_props/img/sports-whistle.png
+gen-009,generate-lesson,Sports Day,Sports Day,B1,30,stadium,stadium,stadium,exact,true,prop,true,,assets/09_props/img/city-stadium.png
+gen-009,generate-lesson,Sports Day,Sports Day,B1,30,cheer,cheer,cheer,exact,false,pack,true,,assets/07_vocab-pack/img/cheer.png
+gen-010,generate-lesson,Train Station Trip,Train Station Trip,A1,60,train,train,train,exact,true,prop,true,,assets/09_props/img/transport-train.png
+gen-010,generate-lesson,Train Station Trip,Train Station Trip,A1,60,ticket,ticket,ticket,exact,true,pack,true,,assets/07_vocab-pack/img/ticket.png
+gen-010,generate-lesson,Train Station Trip,Train Station Trip,A1,60,platform,platform,platform,exact,true,pack,true,,assets/07_vocab-pack/img/platform.png
+gen-010,generate-lesson,Train Station Trip,Train Station Trip,A1,60,suitcase,suitcase,suitcase,exact,true,prop,true,,assets/09_props/img/suitcase.png
+gen-010,generate-lesson,Train Station Trip,Train Station Trip,A1,60,tracks,tracks,track,plural,true,prop,true,,assets/09_props/img/station-railway-track.png
+gen-010,generate-lesson,Train Station Trip,Train Station Trip,A1,60,conductor,conductor,conductor,exact,true,prop,true,,assets/09_props/img/musician-conductor.png
+gen-010,generate-lesson,Train Station Trip,Train Station Trip,A1,60,passenger,passenger,passenger,exact,false,pack,true,,assets/07_vocab-pack/img/passenger.png
+gen-010,generate-lesson,Train Station Trip,Train Station Trip,A1,60,schedule,schedule,schedule,exact,false,pack,true,,assets/07_vocab-pack/img/schedule.png
+gen-010,generate-lesson,Train Station Trip,Train Station Trip,A1,60,station,station,station,exact,false,prop,true,,assets/09_props/img/fire-station.png
+gen-010,generate-lesson,Train Station Trip,Train Station Trip,A1,60,travel,travel,travel,exact,false,pack,true,,assets/07_vocab-pack/img/travel.png
+gen-010,generate-lesson,Train Station Trip,Train Station Trip,A1,60,arrive,arrive,arrive,exact,false,pack,true,,assets/07_vocab-pack/img/arrive.png
+gen-010,generate-lesson,Train Station Trip,Train Station Trip,A1,60,depart,depart,depart,exact,false,pack,true,,assets/07_vocab-pack/img/depart.png
+gen-011,generate-lesson,Kitchen Helpers,Kitchen Helpers,A2,30,whisk,whisk,whisk,exact,true,prop,true,,assets/09_props/img/bake-whisk.png
+gen-011,generate-lesson,Kitchen Helpers,Kitchen Helpers,A2,30,spatula,spatula,spatula,exact,true,prop,true,,assets/09_props/img/kitchen-spatula.png
+gen-011,generate-lesson,Kitchen Helpers,Kitchen Helpers,A2,30,grater,grater,grater,exact,true,prop,true,,assets/09_props/img/kitchen-grater.png
+gen-011,generate-lesson,Kitchen Helpers,Kitchen Helpers,A2,30,peeler,peeler,peeler,exact,true,pack,true,,assets/07_vocab-pack/img/peeler.png
+gen-011,generate-lesson,Kitchen Helpers,Kitchen Helpers,A2,30,tongs,tongs,tongs,exact,true,prop,true,,assets/09_props/img/sci-tongs.png
+gen-011,generate-lesson,Kitchen Helpers,Kitchen Helpers,A2,30,bowl,bowl,bowl,exact,true,prop,true,,assets/09_props/img/mixing-bowl.png
+gen-012,generate-lesson,Farm Animals,A Day at the Farm,B1,60,chicken,chicken,chicken,exact,true,prop,true,,assets/09_props/img/animal-chicken.png
+gen-012,generate-lesson,Farm Animals,A Day at the Farm,B1,60,cow,cow,cow,exact,true,prop,true,,assets/09_props/img/animal-cow.png
+gen-012,generate-lesson,Farm Animals,A Day at the Farm,B1,60,sheep,sheep,sheep,exact,true,prop,true,,assets/09_props/img/animal-sheep.png
+gen-012,generate-lesson,Farm Animals,A Day at the Farm,B1,60,horse,horse,horse,exact,true,prop,true,,assets/09_props/img/animal-horse.png
+gen-012,generate-lesson,Farm Animals,A Day at the Farm,B1,60,pig,pig,pig,exact,true,prop,true,,assets/09_props/img/animal-pig.png
+gen-012,generate-lesson,Farm Animals,A Day at the Farm,B1,60,duck,duck,duck,exact,true,prop,true,,assets/09_props/img/animal-duck.png
+gen-013,generate-lesson,Weather Walk,Weather Walk,A1,30,sunny,sunny,sunny,exact,true,pack,true,,assets/07_vocab-pack/img/sunny.png
+gen-013,generate-lesson,Weather Walk,Weather Walk,A1,30,rainy,rainy,rainy,exact,true,pack,true,,assets/07_vocab-pack/img/rainy.png
+gen-013,generate-lesson,Weather Walk,Weather Walk,A1,30,windy,windy,windy,exact,true,pack,true,,assets/07_vocab-pack/img/windy.png
+gen-013,generate-lesson,Weather Walk,Weather Walk,A1,30,cloudy,cloudy,cloudy,exact,true,prop,true,,assets/09_props/img/weather-partly-cloudy.png
+gen-013,generate-lesson,Weather Walk,Weather Walk,A1,30,umbrella,umbrella,umbrella,exact,true,prop,true,,assets/09_props/img/weather-umbrella.png
+gen-013,generate-lesson,Weather Walk,Weather Walk,A1,30,boots,boots,boots,exact,true,prop,true,,assets/09_props/img/winter-boots.png
+gen-013,generate-lesson,Weather Walk,Weather Walk,A1,30,coat,coat,coat,exact,false,prop,true,,assets/09_props/img/clothes-coat.png
+gen-014,generate-lesson,Supermarket Shopping,Supermarket Shopping,A2,60,cart,cart,shopping-cart,alias,true,prop,true,,assets/09_props/img/shop-shopping-cart.png
+gen-014,generate-lesson,Supermarket Shopping,Supermarket Shopping,A2,60,aisle,aisle,aisle,exact,true,pack,true,,assets/07_vocab-pack/img/aisle.png
+gen-014,generate-lesson,Supermarket Shopping,Supermarket Shopping,A2,60,cashier,cashier,cashier,exact,true,prop,true,,assets/09_props/img/job-cashier.png
+gen-014,generate-lesson,Supermarket Shopping,Supermarket Shopping,A2,60,shelf,shelf,shelf,exact,true,prop,true,,assets/09_props/img/shop-shelf.png
+gen-014,generate-lesson,Supermarket Shopping,Supermarket Shopping,A2,60,receipt,receipt,receipt,exact,true,prop,true,,assets/09_props/img/shop-receipt.png
+gen-014,generate-lesson,Supermarket Shopping,Supermarket Shopping,A2,60,produce,produce,produce,exact,false,pack,true,,assets/07_vocab-pack/img/produce.png
+gen-014,generate-lesson,Supermarket Shopping,Supermarket Shopping,A2,60,dairy,dairy,,,false,none,false,no exact key,
+gen-014,generate-lesson,Supermarket Shopping,Supermarket Shopping,A2,60,frozen,frozen,frozen,exact,false,pack,true,,assets/07_vocab-pack/img/frozen.png
+gen-014,generate-lesson,Supermarket Shopping,Supermarket Shopping,A2,60,bag,bag,bag,exact,false,pack,true,,assets/07_vocab-pack/img/bag.png
+gen-014,generate-lesson,Supermarket Shopping,Supermarket Shopping,A2,60,price,price,price,exact,false,pack,true,,assets/07_vocab-pack/img/price.png
+gen-014,generate-lesson,Supermarket Shopping,Supermarket Shopping,A2,60,checkout,checkout,checkout,exact,true,pack,true,,assets/07_vocab-pack/img/checkout.png
+gen-014,generate-lesson,Supermarket Shopping,Supermarket Shopping,A2,60,snack,snack,snack,exact,false,pack,true,,assets/07_vocab-pack/img/snack.png
+gen-015,generate-lesson,Hotel Stay,Hotel Stay,B1,30,reception,reception,reception,exact,true,pack,true,,assets/07_vocab-pack/img/reception.png
+gen-015,generate-lesson,Hotel Stay,Hotel Stay,B1,30,reservation,reservation,reservation,exact,true,pack,true,,assets/07_vocab-pack/img/reservation.png
+gen-015,generate-lesson,Hotel Stay,Hotel Stay,B1,30,keycard,keycard,keycard,exact,true,pack,true,,assets/07_vocab-pack/img/keycard.png
+gen-015,generate-lesson,Hotel Stay,Hotel Stay,B1,30,checkout,checkout,checkout,exact,true,pack,true,,assets/07_vocab-pack/img/checkout.png
+gen-015,generate-lesson,Hotel Stay,Hotel Stay,B1,30,luggage,luggage,luggage,exact,true,pack,true,,assets/07_vocab-pack/img/luggage.png
+gen-015,generate-lesson,Hotel Stay,Hotel Stay,B1,30,amenities,amenities,amenities,exact,true,pack,true,,assets/07_vocab-pack/img/amenities.png
+gen-015,generate-lesson,Hotel Stay,Hotel Stay,B1,30,vacate,vacate,,,false,none,false,no exact key,
+gen-016,generate-lesson,Doctor Visit,A Visit to the Doctor,A1,60,doctor,doctor,doctor,exact,true,pack,true,,assets/07_vocab-pack/img/doctor.png
+gen-016,generate-lesson,Doctor Visit,A Visit to the Doctor,A1,60,thermometer,thermometer,thermometer,exact,true,prop,true,,assets/09_props/img/thermometer.png
+gen-016,generate-lesson,Doctor Visit,A Visit to the Doctor,A1,60,medicine,medicine,medicine,exact,true,pack,true,,assets/07_vocab-pack/img/medicine.png
+gen-016,generate-lesson,Doctor Visit,A Visit to the Doctor,A1,60,bandage,bandage,bandage,exact,true,prop,true,,assets/09_props/img/aid-bandage.png
+gen-016,generate-lesson,Doctor Visit,A Visit to the Doctor,A1,60,stomach,stomach,stomach,exact,false,pack,true,,assets/07_vocab-pack/img/stomach.png
+gen-016,generate-lesson,Doctor Visit,A Visit to the Doctor,A1,60,healthy,healthy,healthy,exact,false,pack,true,,assets/07_vocab-pack/img/healthy.png
+gen-016,generate-lesson,Doctor Visit,A Visit to the Doctor,A1,60,fever,fever,fever,exact,true,pack,true,,assets/07_vocab-pack/img/fever.png
+gen-016,generate-lesson,Doctor Visit,A Visit to the Doctor,A1,60,cough,cough,cough,exact,false,pack,true,,assets/07_vocab-pack/img/cough.png
+gen-016,generate-lesson,Doctor Visit,A Visit to the Doctor,A1,60,check-up,check-up,,,false,none,false,no exact key,
+gen-016,generate-lesson,Doctor Visit,A Visit to the Doctor,A1,60,nurse,nurse,nurse,exact,false,pack,true,,assets/07_vocab-pack/img/nurse.png
+gen-016,generate-lesson,Doctor Visit,A Visit to the Doctor,A1,60,wait,wait,wait,exact,false,pack,true,,assets/07_vocab-pack/img/wait.png
+gen-016,generate-lesson,Doctor Visit,A Visit to the Doctor,A1,60,clinic,clinic,clinic,exact,true,pack,true,,assets/07_vocab-pack/img/clinic.png
+gen-017,generate-lesson,Birthday Party,A Birthday Celebration,A2,30,balloon,balloon,balloon,exact,true,prop,true,,assets/09_props/img/party-balloon.png
+gen-017,generate-lesson,Birthday Party,A Birthday Celebration,A2,30,cake,cake,cake,exact,true,pack,true,,assets/07_vocab-pack/img/cake.png
+gen-017,generate-lesson,Birthday Party,A Birthday Celebration,A2,30,present,present,present,exact,true,pack,true,,assets/07_vocab-pack/img/present.png
+gen-017,generate-lesson,Birthday Party,A Birthday Celebration,A2,30,candle,candle,candle,exact,true,pack,true,,assets/07_vocab-pack/img/candle.png
+gen-017,generate-lesson,Birthday Party,A Birthday Celebration,A2,30,invitation,invitation,invitation,exact,true,prop,true,,assets/09_props/img/party-invitation.png
+gen-017,generate-lesson,Birthday Party,A Birthday Celebration,A2,30,guest,guest,guest,exact,true,pack,true,,assets/07_vocab-pack/img/guest.png
+gen-017,generate-lesson,Birthday Party,A Birthday Celebration,A2,30,celebrate,celebrate,celebrate,exact,false,pack,true,,assets/07_vocab-pack/img/celebrate.png
+gen-018,generate-lesson,City Bus Ride,A Day on the City Bus,B1,60,bus,bus,bus,exact,true,prop,true,,assets/09_props/img/vehicle-city-bus.png
+gen-018,generate-lesson,City Bus Ride,A Day on the City Bus,B1,60,passenger,passenger,passenger,exact,true,pack,true,,assets/07_vocab-pack/img/passenger.png
+gen-018,generate-lesson,City Bus Ride,A Day on the City Bus,B1,60,stop,stop,stop,exact,true,prop,true,,assets/09_props/img/city-bus-stop.png
+gen-018,generate-lesson,City Bus Ride,A Day on the City Bus,B1,60,route,route,route,exact,true,pack,true,,assets/07_vocab-pack/img/route.png
+gen-018,generate-lesson,City Bus Ride,A Day on the City Bus,B1,60,driver,driver,driver,exact,true,prop,true,,assets/09_props/img/job-bus-driver.png
+gen-018,generate-lesson,City Bus Ride,A Day on the City Bus,B1,60,fare,fare,fare,exact,true,pack,true,,assets/07_vocab-pack/img/fare.png
+gen-018,generate-lesson,City Bus Ride,A Day on the City Bus,B1,60,commute,commute,commute,exact,false,pack,true,,assets/07_vocab-pack/img/commute.png
+gen-018,generate-lesson,City Bus Ride,A Day on the City Bus,B1,60,seat,seat,seat,exact,false,none,false,silent blank slot,
+gen-018,generate-lesson,City Bus Ride,A Day on the City Bus,B1,60,traffic,traffic,traffic,exact,false,pack,true,,assets/07_vocab-pack/img/traffic.png
+gen-018,generate-lesson,City Bus Ride,A Day on the City Bus,B1,60,transit,transit,,,false,none,false,no exact key,
+gen-018,generate-lesson,City Bus Ride,A Day on the City Bus,B1,60,schedule,schedule,schedule,exact,false,pack,true,,assets/07_vocab-pack/img/schedule.png
+gen-018,generate-lesson,City Bus Ride,A Day on the City Bus,B1,60,ticket,ticket,ticket,exact,false,pack,true,,assets/07_vocab-pack/img/ticket.png
+gen-018,generate-lesson,City Bus Ride,A Day on the City Bus,B1,60,driver-seat,driver-seat,,,false,none,false,no exact key,
+gen-019,generate-lesson,Garden Growing,Garden Growing,A1,30,seeds,seeds,seed,plural,true,pack,true,,assets/07_vocab-pack/img/seed.png
+gen-019,generate-lesson,Garden Growing,Garden Growing,A1,30,soil,soil,soil,exact,true,pack,true,,assets/07_vocab-pack/img/soil.png
+gen-019,generate-lesson,Garden Growing,Garden Growing,A1,30,water,water,water,exact,true,pack,true,,assets/07_vocab-pack/img/water.png
+gen-019,generate-lesson,Garden Growing,Garden Growing,A1,30,sunlight,sunlight,sunlight,exact,true,pack,true,,assets/07_vocab-pack/img/sunlight.png
+gen-019,generate-lesson,Garden Growing,Garden Growing,A1,30,leaves,leaves,leave,plural,true,pack,true,,assets/07_vocab-pack/img/leave.png
+gen-019,generate-lesson,Garden Growing,Garden Growing,A1,30,roots,roots,root,plural,true,pack,true,,assets/07_vocab-pack/img/root.png
+gen-020,generate-lesson,Library Quiet Time,Library Quiet Time,A2,60,bookshelf,bookshelf,bookshelf,exact,true,prop,true,,assets/09_props/img/bookshelf.png
+gen-020,generate-lesson,Library Quiet Time,Library Quiet Time,A2,60,librarian,librarian,librarian,exact,true,pack,true,,assets/07_vocab-pack/img/librarian.png
+gen-020,generate-lesson,Library Quiet Time,Library Quiet Time,A2,60,whisper,whisper,whisper,exact,true,pack,true,,assets/07_vocab-pack/img/whisper.png
+gen-020,generate-lesson,Library Quiet Time,Library Quiet Time,A2,60,aisle,aisle,aisle,exact,true,pack,true,,assets/07_vocab-pack/img/aisle.png
+gen-020,generate-lesson,Library Quiet Time,Library Quiet Time,A2,60,bookmark,bookmark,bookmark,exact,true,pack,true,,assets/07_vocab-pack/img/bookmark.png
+gen-020,generate-lesson,Library Quiet Time,Library Quiet Time,A2,60,silence,silence,silence,exact,false,pack,true,,assets/07_vocab-pack/img/silence.png
+gen-020,generate-lesson,Library Quiet Time,Library Quiet Time,A2,60,fiction,fiction,fiction,exact,false,pack,true,,assets/07_vocab-pack/img/fiction.png
+gen-020,generate-lesson,Library Quiet Time,Library Quiet Time,A2,60,nonfiction,nonfiction,,,false,none,false,no exact key,
+gen-020,generate-lesson,Library Quiet Time,Library Quiet Time,A2,60,card,card,card,exact,false,none,false,silent blank slot,
+gen-020,generate-lesson,Library Quiet Time,Library Quiet Time,A2,60,return,return,return,exact,false,pack,true,,assets/07_vocab-pack/img/return.png
+gen-020,generate-lesson,Library Quiet Time,Library Quiet Time,A2,60,table,table,table,exact,false,prop,true,,assets/09_props/img/table.png
+gen-020,generate-lesson,Library Quiet Time,Library Quiet Time,A2,60,magazine,magazine,magazine,exact,false,pack,true,,assets/07_vocab-pack/img/magazine.png
+gen-020,generate-lesson,Library Quiet Time,Library Quiet Time,A2,60,library card,library-card,library-card,exact,true,pack,true,,assets/07_vocab-pack/img/library-card.png
+gen-021,generate-lesson,Clothes Closet,Organizing My Clothes Closet,B1,30,hanger,hanger,hanger,exact,true,prop,true,,assets/09_props/img/shop-hanger.png
+gen-021,generate-lesson,Clothes Closet,Organizing My Clothes Closet,B1,30,shelf,shelf,shelf,exact,true,prop,true,,assets/09_props/img/shop-shelf.png
+gen-021,generate-lesson,Clothes Closet,Organizing My Clothes Closet,B1,30,drawer,drawer,drawer,exact,true,pack,true,,assets/07_vocab-pack/img/drawer.png
+gen-021,generate-lesson,Clothes Closet,Organizing My Clothes Closet,B1,30,box,box,box,exact,true,prop,true,,assets/09_props/img/gift-box.png
+gen-021,generate-lesson,Clothes Closet,Organizing My Clothes Closet,B1,30,messy,messy,messy,exact,true,pack,true,,assets/07_vocab-pack/img/messy.png
+gen-021,generate-lesson,Clothes Closet,Organizing My Clothes Closet,B1,30,tidy,tidy,tidy,exact,true,pack,true,,assets/07_vocab-pack/img/tidy.png
+gen-021,generate-lesson,Clothes Closet,Organizing My Clothes Closet,B1,30,sort,sort,sort,exact,false,pack,true,,assets/07_vocab-pack/img/sort.png
+gen-022,generate-lesson,Pet Care,Caring for My Pet,A1,60,puppy,puppy,puppy,exact,true,pack,true,,assets/07_vocab-pack/img/puppy.png
+gen-022,generate-lesson,Pet Care,Caring for My Pet,A1,60,kitten,kitten,kitten,exact,true,pack,true,,assets/07_vocab-pack/img/kitten.png
+gen-022,generate-lesson,Pet Care,Caring for My Pet,A1,60,food,food,food,exact,true,pack,true,,assets/07_vocab-pack/img/food.png
+gen-022,generate-lesson,Pet Care,Caring for My Pet,A1,60,water,water,water,exact,true,pack,true,,assets/07_vocab-pack/img/water.png
+gen-022,generate-lesson,Pet Care,Caring for My Pet,A1,60,brush,brush,brush,exact,true,pack,true,,assets/07_vocab-pack/img/brush.png
+gen-022,generate-lesson,Pet Care,Caring for My Pet,A1,60,bed,bed,bed,exact,true,prop,true,,assets/09_props/img/dh-loft-bed.png
+gen-022,generate-lesson,Pet Care,Caring for My Pet,A1,60,toy,toy,toy,exact,false,pack,true,,assets/07_vocab-pack/img/toy.png
+gen-022,generate-lesson,Pet Care,Caring for My Pet,A1,60,vet,vet,vet,exact,false,prop,true,,assets/09_props/img/job-vet.png
+gen-022,generate-lesson,Pet Care,Caring for My Pet,A1,60,walk,walk,walk,exact,false,pack,true,,assets/07_vocab-pack/img/walk.png
+gen-022,generate-lesson,Pet Care,Caring for My Pet,A1,60,collar,collar,collar,exact,false,prop,true,,assets/09_props/img/circus-ruffled-collar.png
+gen-022,generate-lesson,Pet Care,Caring for My Pet,A1,60,fur,fur,fur,exact,false,pack,true,,assets/07_vocab-pack/img/fur.png
+gen-022,generate-lesson,Pet Care,Caring for My Pet,A1,60,bowl,bowl,bowl,exact,false,none,false,silent blank slot,
+gen-022,generate-lesson,Pet Care,Caring for My Pet,A1,60,food bowl,food-bowl,bowl,token,false,pack,true,,assets/07_vocab-pack/img/bowl.png
+gen-023,generate-lesson,Music Class,Music Class,A2,30,piano,piano,piano,exact,true,prop,true,,assets/09_props/img/grand-piano.png
+gen-023,generate-lesson,Music Class,Music Class,A2,30,guitar,guitar,guitar,exact,true,prop,true,,assets/09_props/img/musician-guitar.png
+gen-023,generate-lesson,Music Class,Music Class,A2,30,drum,drum,drum,exact,true,prop,true,,assets/09_props/img/snare-drum.png
+gen-023,generate-lesson,Music Class,Music Class,A2,30,flute,flute,flute,exact,true,prop,true,,assets/09_props/img/flute.png
+gen-023,generate-lesson,Music Class,Music Class,A2,30,song,song,song,exact,true,pack,true,,assets/07_vocab-pack/img/song.png
+gen-023,generate-lesson,Music Class,Music Class,A2,30,teacher,teacher,teacher,exact,true,prop,true,,assets/09_props/img/job-teacher.png
+gen-024,generate-lesson,Volcano Science,Volcano Science,B1,60,magma,magma,magma,exact,true,pack,true,,assets/07_vocab-pack/img/magma.png
+gen-024,generate-lesson,Volcano Science,Volcano Science,B1,60,crater,crater,crater,exact,true,pack,true,,assets/07_vocab-pack/img/crater.png
+gen-024,generate-lesson,Volcano Science,Volcano Science,B1,60,eruption,eruption,eruption,exact,true,pack,true,,assets/07_vocab-pack/img/eruption.png
+gen-024,generate-lesson,Volcano Science,Volcano Science,B1,60,lava,lava,lava,exact,true,pack,true,,assets/07_vocab-pack/img/lava.png
+gen-024,generate-lesson,Volcano Science,Volcano Science,B1,60,ash,ash,ash,exact,true,pack,true,,assets/07_vocab-pack/img/ash.png
+gen-024,generate-lesson,Volcano Science,Volcano Science,B1,60,geologist,geologist,geologist,exact,true,pack,true,,assets/07_vocab-pack/img/geologist.png
+gen-024,generate-lesson,Volcano Science,Volcano Science,B1,60,crust,crust,,,false,none,false,no exact key,
+gen-024,generate-lesson,Volcano Science,Volcano Science,B1,60,vent,vent,vent,exact,false,pack,true,,assets/07_vocab-pack/img/vent.png
+gen-024,generate-lesson,Volcano Science,Volcano Science,B1,60,dormant,dormant,dormant,exact,false,pack,true,,assets/07_vocab-pack/img/dormant.png
+gen-024,generate-lesson,Volcano Science,Volcano Science,B1,60,tectonic,tectonic,,,false,none,false,no exact key,
+gen-024,generate-lesson,Volcano Science,Volcano Science,B1,60,slope,slope,slope,exact,false,pack,true,,assets/07_vocab-pack/img/slope.png
+gen-024,generate-lesson,Volcano Science,Volcano Science,B1,60,cinder,cinder,,,false,none,false,no exact key,
+gen-025,generate-lesson,Swimming Pool,Fun at the Swimming Pool,A1,30,pool,pool,pool,exact,true,pack,true,,assets/07_vocab-pack/img/pool.png
+gen-025,generate-lesson,Swimming Pool,Fun at the Swimming Pool,A1,30,goggles,goggles,goggles,exact,true,prop,true,,assets/09_props/img/sci-goggles.png
+gen-025,generate-lesson,Swimming Pool,Fun at the Swimming Pool,A1,30,towel,towel,towel,exact,true,pack,true,,assets/07_vocab-pack/img/towel.png
+gen-025,generate-lesson,Swimming Pool,Fun at the Swimming Pool,A1,30,swimsuit,swimsuit,swimsuit,exact,true,prop,true,,assets/09_props/img/clothes-swimsuit.png
+gen-025,generate-lesson,Swimming Pool,Fun at the Swimming Pool,A1,30,lifeguard,lifeguard,lifeguard,exact,true,pack,true,,assets/07_vocab-pack/img/lifeguard.png
+gen-025,generate-lesson,Swimming Pool,Fun at the Swimming Pool,A1,30,ladder,ladder,ladder,exact,true,prop,true,,assets/09_props/img/farm-ladder.png
+gen-025,generate-lesson,Swimming Pool,Fun at the Swimming Pool,A1,30,slide,slide,slide,exact,false,prop,true,,assets/09_props/img/slide.png
+gen-026,generate-lesson,Fruit Market,A Trip to the Fruit Market,A2,60,apple,apple,apple,exact,true,prop,true,,assets/09_props/img/apple.png
+gen-026,generate-lesson,Fruit Market,A Trip to the Fruit Market,A2,60,banana,banana,banana,exact,true,prop,true,,assets/09_props/img/food-banana.png
+gen-026,generate-lesson,Fruit Market,A Trip to the Fruit Market,A2,60,orange,orange,orange,exact,true,prop,true,,assets/09_props/img/food-orange.png
+gen-026,generate-lesson,Fruit Market,A Trip to the Fruit Market,A2,60,grapes,grapes,grape,plural,true,prop,true,,assets/09_props/img/food-grapes.png
+gen-026,generate-lesson,Fruit Market,A Trip to the Fruit Market,A2,60,strawberry,strawberry,strawberry,exact,true,prop,true,,assets/09_props/img/food-strawberry.png
+gen-026,generate-lesson,Fruit Market,A Trip to the Fruit Market,A2,60,watermelon,watermelon,watermelon,exact,true,prop,true,,assets/09_props/img/food-watermelon.png
+gen-026,generate-lesson,Fruit Market,A Trip to the Fruit Market,A2,60,basket,basket,basket,exact,false,prop,true,,assets/09_props/img/nat-basket.png
+gen-026,generate-lesson,Fruit Market,A Trip to the Fruit Market,A2,60,scale,scale,scale,exact,false,pack,true,,assets/07_vocab-pack/img/scale.png
+gen-026,generate-lesson,Fruit Market,A Trip to the Fruit Market,A2,60,vendor,vendor,,,false,none,false,no exact key,
+gen-026,generate-lesson,Fruit Market,A Trip to the Fruit Market,A2,60,price,price,price,exact,false,pack,true,,assets/07_vocab-pack/img/price.png
+gen-026,generate-lesson,Fruit Market,A Trip to the Fruit Market,A2,60,fresh,fresh,fresh,exact,false,pack,true,,assets/07_vocab-pack/img/fresh.png
+gen-026,generate-lesson,Fruit Market,A Trip to the Fruit Market,A2,60,ripe,ripe,ripe,exact,false,pack,true,,assets/07_vocab-pack/img/ripe.png
+gen-027,generate-lesson,Camping Night,A Night Under the Stars,B1,30,tent,tent,tent,exact,true,prop,true,,assets/09_props/img/tent.png
+gen-027,generate-lesson,Camping Night,A Night Under the Stars,B1,30,sleeping bag,sleeping-bag,sleeping-bag,exact,true,pack,true,,assets/07_vocab-pack/img/sleeping-bag.png
+gen-027,generate-lesson,Camping Night,A Night Under the Stars,B1,30,campfire,campfire,campfire,exact,true,prop,true,,assets/09_props/img/camp-campfire.png
+gen-027,generate-lesson,Camping Night,A Night Under the Stars,B1,30,flashlight,flashlight,flashlight,exact,true,prop,true,,assets/09_props/img/camp-flashlight.png
+gen-027,generate-lesson,Camping Night,A Night Under the Stars,B1,30,stars,stars,star,plural,true,none,false,silent blank slot,
+gen-027,generate-lesson,Camping Night,A Night Under the Stars,B1,30,backpack,backpack,backpack,exact,true,prop,true,,assets/09_props/img/backpack.png
+gen-027,generate-lesson,Camping Night,A Night Under the Stars,B1,30,nature,nature,,,false,prop,true,,assets/09_props/img/nature-bee.png
+gen-028,generate-lesson,Fire Station,A Day at the Fire Station,A1,60,firefighter,firefighter,firefighter,exact,true,prop,true,,assets/09_props/img/job-firefighter.png
+gen-028,generate-lesson,Fire Station,A Day at the Fire Station,A1,60,fire truck,fire-truck,fire-truck,exact,true,prop,true,,assets/09_props/img/fire-truck.png
+gen-028,generate-lesson,Fire Station,A Day at the Fire Station,A1,60,hose,hose,hose,exact,true,prop,true,,assets/09_props/img/fire-hose.png
+gen-028,generate-lesson,Fire Station,A Day at the Fire Station,A1,60,ladder,ladder,ladder,exact,true,prop,true,,assets/09_props/img/fire-ladder.png
+gen-028,generate-lesson,Fire Station,A Day at the Fire Station,A1,60,helmet,helmet,helmet,exact,true,prop,true,,assets/09_props/img/job-fire-helmet.png
+gen-028,generate-lesson,Fire Station,A Day at the Fire Station,A1,60,alarm,alarm,alarm,exact,true,pack,true,,assets/07_vocab-pack/img/alarm.png
+gen-028,generate-lesson,Fire Station,A Day at the Fire Station,A1,60,water,water,water,exact,false,pack,true,,assets/07_vocab-pack/img/water.png
+gen-028,generate-lesson,Fire Station,A Day at the Fire Station,A1,60,station,station,station,exact,false,prop,true,,assets/09_props/img/fire-station.png
+gen-028,generate-lesson,Fire Station,A Day at the Fire Station,A1,60,boots,boots,boots,exact,false,prop,true,,assets/09_props/img/winter-boots.png
+gen-028,generate-lesson,Fire Station,A Day at the Fire Station,A1,60,coat,coat,coat,exact,false,prop,true,,assets/09_props/img/clothes-coat.png
+gen-028,generate-lesson,Fire Station,A Day at the Fire Station,A1,60,siren,siren,siren,exact,false,prop,true,,assets/09_props/img/fire-engine-siren.png
+gen-028,generate-lesson,Fire Station,A Day at the Fire Station,A1,60,fire,fire,fire,exact,false,none,false,silent blank slot,
+gen-029,generate-lesson,Construction Site,A Day at the Construction Site,A2,30,crane,crane,crane,exact,true,prop,true,,assets/09_props/img/construction-tower-crane.png
+gen-029,generate-lesson,Construction Site,A Day at the Construction Site,A2,30,helmet,helmet,helmet,exact,true,prop,true,,assets/09_props/img/cas-helmet.png
+gen-029,generate-lesson,Construction Site,A Day at the Construction Site,A2,30,hammer,hammer,hammer,exact,true,prop,true,,assets/09_props/img/tool-hammer.png
+gen-029,generate-lesson,Construction Site,A Day at the Construction Site,A2,30,bricks,bricks,brick,plural,true,prop,true,,assets/09_props/img/cas-stone-brick.png
+gen-029,generate-lesson,Construction Site,A Day at the Construction Site,A2,30,cement,cement,cement,exact,true,pack,true,,assets/07_vocab-pack/img/cement.png
+gen-029,generate-lesson,Construction Site,A Day at the Construction Site,A2,30,blueprint,blueprint,blueprint,exact,true,prop,true,,assets/09_props/img/construction-blueprint.png
+gen-029,generate-lesson,Construction Site,A Day at the Construction Site,A2,30,builder,builder,builder,exact,false,pack,true,,assets/07_vocab-pack/img/builder.png
+gen-030,generate-lesson,Aquarium Visit,A Day at the Aquarium,B1,60,aquarium,aquarium,aquarium,exact,true,pack,true,,assets/07_vocab-pack/img/aquarium.png
+gen-030,generate-lesson,Aquarium Visit,A Day at the Aquarium,B1,60,tank,tank,tank,exact,true,prop,true,,assets/09_props/img/aquarium-tank.png
+gen-030,generate-lesson,Aquarium Visit,A Day at the Aquarium,B1,60,jellyfish,jellyfish,jellyfish,exact,true,prop,true,,assets/09_props/img/aquarium-jellyfish.png
+gen-030,generate-lesson,Aquarium Visit,A Day at the Aquarium,B1,60,coral,coral,coral,exact,true,prop,true,,assets/09_props/img/aquarium-coral.png
+gen-030,generate-lesson,Aquarium Visit,A Day at the Aquarium,B1,60,seal,seal,seal,exact,true,none,false,silent blank slot,
+gen-030,generate-lesson,Aquarium Visit,A Day at the Aquarium,B1,60,exhibit,exhibit,exhibit,exact,false,pack,true,,assets/07_vocab-pack/img/exhibit.png
+gen-030,generate-lesson,Aquarium Visit,A Day at the Aquarium,B1,60,tide,tide,tide,exact,false,pack,true,,assets/07_vocab-pack/img/tide.png
+gen-030,generate-lesson,Aquarium Visit,A Day at the Aquarium,B1,60,gills,gills,gill,plural,true,pack,true,,assets/07_vocab-pack/img/gill.png
+gen-030,generate-lesson,Aquarium Visit,A Day at the Aquarium,B1,60,tentacle,tentacle,,,false,none,false,no exact key,
+gen-030,generate-lesson,Aquarium Visit,A Day at the Aquarium,B1,60,habitat,habitat,habitat,exact,false,pack,true,,assets/07_vocab-pack/img/habitat.png
+gen-030,generate-lesson,Aquarium Visit,A Day at the Aquarium,B1,60,species,species,,,false,none,false,no exact key,
+gen-030,generate-lesson,Aquarium Visit,A Day at the Aquarium,B1,60,current,current,current,exact,false,pack,true,,assets/07_vocab-pack/img/current.png
+gen-030,generate-lesson,Aquarium Visit,A Day at the Aquarium,B1,60,fish species,fish-species,,,false,none,false,no exact key,
+gen-031,generate-lesson,Castle Adventure,Castle Adventure,A1,30,castle,castle,castle,exact,true,pack,true,,assets/07_vocab-pack/img/castle.png
+gen-031,generate-lesson,Castle Adventure,Castle Adventure,A1,30,king,king,king,exact,true,pack,true,,assets/07_vocab-pack/img/king.png
+gen-031,generate-lesson,Castle Adventure,Castle Adventure,A1,30,knight,knight,knight,exact,true,pack,true,,assets/07_vocab-pack/img/knight.png
+gen-031,generate-lesson,Castle Adventure,Castle Adventure,A1,30,tower,tower,tower,exact,true,pack,true,,assets/07_vocab-pack/img/tower.png
+gen-031,generate-lesson,Castle Adventure,Castle Adventure,A1,30,gate,gate,gate,exact,true,pack,true,,assets/07_vocab-pack/img/gate.png
+gen-031,generate-lesson,Castle Adventure,Castle Adventure,A1,30,sword,sword,sword,exact,true,prop,true,,assets/09_props/img/castle-sword.png
+gen-031,generate-lesson,Castle Adventure,Castle Adventure,A1,30,shield,shield,shield,exact,false,prop,true,,assets/09_props/img/castle-shield.png
+gen-032,generate-lesson,Circus Day,A Day at the Circus,A2,60,clown,clown,clown,exact,true,pack,true,,assets/07_vocab-pack/img/clown.png
+gen-032,generate-lesson,Circus Day,A Day at the Circus,A2,60,acrobat,acrobat,acrobat,exact,true,pack,true,,assets/07_vocab-pack/img/acrobat.png
+gen-032,generate-lesson,Circus Day,A Day at the Circus,A2,60,tent,tent,tent,exact,true,prop,true,,assets/09_props/img/circus-tent.png
+gen-032,generate-lesson,Circus Day,A Day at the Circus,A2,60,popcorn,popcorn,popcorn,exact,false,pack,true,,assets/07_vocab-pack/img/popcorn.png
+gen-032,generate-lesson,Circus Day,A Day at the Circus,A2,60,lion,lion,lion,exact,false,prop,true,,assets/09_props/img/animal-lion.png
+gen-032,generate-lesson,Circus Day,A Day at the Circus,A2,60,ticket,ticket,ticket,exact,false,pack,true,,assets/07_vocab-pack/img/ticket.png
+gen-032,generate-lesson,Circus Day,A Day at the Circus,A2,60,ringmaster,ringmaster,ringmaster,exact,true,pack,true,,assets/07_vocab-pack/img/ringmaster.png
+gen-032,generate-lesson,Circus Day,A Day at the Circus,A2,60,spotlight,spotlight,spotlight,exact,false,pack,true,,assets/07_vocab-pack/img/spotlight.png
+gen-032,generate-lesson,Circus Day,A Day at the Circus,A2,60,costume,costume,costume,exact,false,pack,true,,assets/07_vocab-pack/img/costume.png
+gen-032,generate-lesson,Circus Day,A Day at the Circus,A2,60,juggler,juggler,juggler,exact,true,pack,true,,assets/07_vocab-pack/img/juggler.png
+gen-032,generate-lesson,Circus Day,A Day at the Circus,A2,60,stage,stage,stage,exact,true,prop,true,,assets/09_props/img/gym-floor-stage.png
+gen-032,generate-lesson,Circus Day,A Day at the Circus,A2,60,audience,audience,audience,exact,false,pack,true,,assets/07_vocab-pack/img/audience.png
+gen-033,generate-lesson,Cafe Order,Cafe Ordering and Opinions,B1,30,menu,menu,menu,exact,true,prop,true,,assets/09_props/img/cafe-menu.png
+gen-033,generate-lesson,Cafe Order,Cafe Ordering and Opinions,B1,30,order,order,order,exact,true,pack,true,,assets/07_vocab-pack/img/order.png
+gen-033,generate-lesson,Cafe Order,Cafe Ordering and Opinions,B1,30,beverage,beverage,beverage,exact,true,pack,true,,assets/07_vocab-pack/img/beverage.png
+gen-033,generate-lesson,Cafe Order,Cafe Ordering and Opinions,B1,30,bill,bill,bill,exact,true,prop,true,,assets/09_props/img/shop-dollar-bill.png
+gen-033,generate-lesson,Cafe Order,Cafe Ordering and Opinions,B1,30,recommendation,recommendation,,,true,none,false,no exact key,
+gen-033,generate-lesson,Cafe Order,Cafe Ordering and Opinions,B1,30,service,service,service,exact,true,pack,true,,assets/07_vocab-pack/img/service.png
+gen-034,generate-lesson,Space Exploration,Exploring Space,A1,60,rocket,rocket,rocket,exact,true,prop,true,,assets/09_props/img/space-rocket.png
+gen-034,generate-lesson,Space Exploration,Exploring Space,A1,60,planet,planet,planet,exact,true,pack,true,,assets/07_vocab-pack/img/planet.png
+gen-034,generate-lesson,Space Exploration,Exploring Space,A1,60,star,star,star,exact,true,prop,true,,assets/09_props/img/reward-star.png
+gen-034,generate-lesson,Space Exploration,Exploring Space,A1,60,astronaut,astronaut,astronaut,exact,true,prop,true,,assets/09_props/img/job-astronaut.png
+gen-034,generate-lesson,Space Exploration,Exploring Space,A1,60,moon,moon,moon,exact,true,prop,true,,assets/09_props/img/space-moon.png
+gen-034,generate-lesson,Space Exploration,Exploring Space,A1,60,telescope,telescope,telescope,exact,true,prop,true,,assets/09_props/img/space-telescope.png
+gen-034,generate-lesson,Space Exploration,Exploring Space,A1,60,orbit,orbit,orbit,exact,false,pack,true,,assets/07_vocab-pack/img/orbit.png
+gen-034,generate-lesson,Space Exploration,Exploring Space,A1,60,suit,suit,suit,exact,false,prop,true,,assets/09_props/img/emergency-hazmat-suit.png
+gen-034,generate-lesson,Space Exploration,Exploring Space,A1,60,galaxy,galaxy,galaxy,exact,false,prop,true,,assets/09_props/img/space-galaxy.png
+gen-034,generate-lesson,Space Exploration,Exploring Space,A1,60,gravity,gravity,gravity,exact,false,pack,true,,assets/07_vocab-pack/img/gravity.png
+gen-034,generate-lesson,Space Exploration,Exploring Space,A1,60,mission,mission,mission,exact,false,pack,true,,assets/07_vocab-pack/img/mission.png
+gen-034,generate-lesson,Space Exploration,Exploring Space,A1,60,shuttle,shuttle,,,false,prop,true,,assets/09_props/img/space-shuttle.png
+gen-035,generate-lesson,Playground Fun,Playground Fun,A2,30,slide,slide,slide,exact,true,prop,true,,assets/09_props/img/playground-slide.png
+gen-035,generate-lesson,Playground Fun,Playground Fun,A2,30,swing,swing,swing,exact,true,prop,true,,assets/09_props/img/swing.png
+gen-035,generate-lesson,Playground Fun,Playground Fun,A2,30,sandbox,sandbox,sandbox,exact,true,prop,true,,assets/09_props/img/park-sandbox.png
+gen-035,generate-lesson,Playground Fun,Playground Fun,A2,30,seesaw,seesaw,seesaw,exact,true,prop,true,,assets/09_props/img/park-seesaw.png
+gen-035,generate-lesson,Playground Fun,Playground Fun,A2,30,monkey bars,monkey-bars,monkey-bars,exact,true,pack,true,,assets/07_vocab-pack/img/monkey-bars.png
+gen-035,generate-lesson,Playground Fun,Playground Fun,A2,30,bench,bench,bench,exact,true,prop,true,,assets/09_props/img/park-bench.png
+gen-036,generate-lesson,Bathroom Routines,My Daily Bathroom Routine,B1,60,toothbrush,toothbrush,toothbrush,exact,true,pack,true,,assets/07_vocab-pack/img/toothbrush.png
+gen-036,generate-lesson,Bathroom Routines,My Daily Bathroom Routine,B1,60,toothpaste,toothpaste,toothpaste,exact,true,pack,true,,assets/07_vocab-pack/img/toothpaste.png
+gen-036,generate-lesson,Bathroom Routines,My Daily Bathroom Routine,B1,60,towel,towel,towel,exact,true,prop,true,,assets/09_props/img/bathroom-towel.png
+gen-036,generate-lesson,Bathroom Routines,My Daily Bathroom Routine,B1,60,shampoo,shampoo,shampoo,exact,true,pack,true,,assets/07_vocab-pack/img/shampoo.png
+gen-036,generate-lesson,Bathroom Routines,My Daily Bathroom Routine,B1,60,faucet,faucet,faucet,exact,true,prop,true,,assets/09_props/img/bathroom-faucet.png
+gen-036,generate-lesson,Bathroom Routines,My Daily Bathroom Routine,B1,60,mirror,mirror,mirror,exact,true,prop,true,,assets/09_props/img/bathroom-mirror.png
+gen-036,generate-lesson,Bathroom Routines,My Daily Bathroom Routine,B1,60,rinse,rinse,rinse,exact,false,pack,true,,assets/07_vocab-pack/img/rinse.png
+gen-036,generate-lesson,Bathroom Routines,My Daily Bathroom Routine,B1,60,scrub,scrub,scrub,exact,false,pack,true,,assets/07_vocab-pack/img/scrub.png
+gen-036,generate-lesson,Bathroom Routines,My Daily Bathroom Routine,B1,60,refreshing,refreshing,,,false,none,false,no exact key,
+gen-036,generate-lesson,Bathroom Routines,My Daily Bathroom Routine,B1,60,routine,routine,routine,exact,false,pack,true,,assets/07_vocab-pack/img/routine.png
+gen-036,generate-lesson,Bathroom Routines,My Daily Bathroom Routine,B1,60,dry off,dry-off,dry-off,exact,false,pack,true,,assets/07_vocab-pack/img/dry-off.png
+gen-036,generate-lesson,Bathroom Routines,My Daily Bathroom Routine,B1,60,wash up,wash-up,wash-up,exact,false,pack,true,,assets/07_vocab-pack/img/wash-up.png
+gen-037,generate-lesson,Feelings and Emotions,Exploring Our Feelings,A1,30,happy,happy,happy,exact,true,prop,true,,assets/09_props/img/feeling-happy.png
+gen-037,generate-lesson,Feelings and Emotions,Exploring Our Feelings,A1,30,sad,sad,sad,exact,true,prop,true,,assets/09_props/img/feeling-sad.png
+gen-037,generate-lesson,Feelings and Emotions,Exploring Our Feelings,A1,30,scared,scared,scared,exact,true,prop,true,,assets/09_props/img/feeling-scared.png
+gen-037,generate-lesson,Feelings and Emotions,Exploring Our Feelings,A1,30,surprised,surprised,surprised,exact,true,prop,true,,assets/09_props/img/feeling-surprised.png
+gen-037,generate-lesson,Feelings and Emotions,Exploring Our Feelings,A1,30,proud,proud,proud,exact,true,prop,true,,assets/09_props/img/feeling-proud.png
+gen-037,generate-lesson,Feelings and Emotions,Exploring Our Feelings,A1,30,confused,confused,confused,exact,true,prop,true,,assets/09_props/img/feeling-confused.png
+gen-038,generate-lesson,Jobs in Town,Jobs in Town,A2,60,chef,chef,chef,exact,true,pack,true,,assets/07_vocab-pack/img/chef.png
+gen-038,generate-lesson,Jobs in Town,Jobs in Town,A2,60,police officer,police-officer,police-officer,exact,false,none,false,silent blank slot,
+gen-038,generate-lesson,Jobs in Town,Jobs in Town,A2,60,doctor,doctor,doctor,exact,false,none,false,silent blank slot,
+gen-038,generate-lesson,Jobs in Town,Jobs in Town,A2,60,teacher,teacher,teacher,exact,true,pack,true,,assets/07_vocab-pack/img/teacher.png
+gen-038,generate-lesson,Jobs in Town,Jobs in Town,A2,60,mechanic,mechanic,mechanic,exact,true,pack,true,,assets/07_vocab-pack/img/mechanic.png
+gen-038,generate-lesson,Jobs in Town,Jobs in Town,A2,60,mail carrier,mail-carrier,,,true,none,false,no exact key,
+gen-038,generate-lesson,Jobs in Town,Jobs in Town,A2,60,restaurant,restaurant,restaurant,exact,true,pack,true,,assets/07_vocab-pack/img/restaurant.png
+gen-038,generate-lesson,Jobs in Town,Jobs in Town,A2,60,hospital,hospital,hospital,exact,false,pack,true,,assets/07_vocab-pack/img/hospital.png
+gen-038,generate-lesson,Jobs in Town,Jobs in Town,A2,60,school,school,school,exact,false,prop,true,,assets/09_props/img/city-school.png
+gen-038,generate-lesson,Jobs in Town,Jobs in Town,A2,60,garage,garage,garage,exact,false,pack,true,,assets/07_vocab-pack/img/garage.png
+gen-038,generate-lesson,Jobs in Town,Jobs in Town,A2,60,uniform,uniform,uniform,exact,true,pack,true,,assets/07_vocab-pack/img/uniform.png
+gen-038,generate-lesson,Jobs in Town,Jobs in Town,A2,60,deliver,deliver,deliver,exact,false,pack,true,,assets/07_vocab-pack/img/deliver.png
+gen-039,generate-lesson,Recycling Center,Saving the Planet at the Recycling Center,B1,30,Recycling,recycling,recycling,exact,true,pack,true,,assets/07_vocab-pack/img/recycling.png
+gen-039,generate-lesson,Recycling Center,Saving the Planet at the Recycling Center,B1,30,Plastic,plastic,plastic,exact,true,pack,true,,assets/07_vocab-pack/img/plastic.png
+gen-039,generate-lesson,Recycling Center,Saving the Planet at the Recycling Center,B1,30,Cardboard,cardboard,cardboard,exact,true,pack,true,,assets/07_vocab-pack/img/cardboard.png
+gen-039,generate-lesson,Recycling Center,Saving the Planet at the Recycling Center,B1,30,Glass,glass,glass,exact,true,prop,true,,assets/09_props/img/drink-water-glass.png
+gen-039,generate-lesson,Recycling Center,Saving the Planet at the Recycling Center,B1,30,Sort,sort,sort,exact,true,pack,true,,assets/07_vocab-pack/img/sort.png
+gen-039,generate-lesson,Recycling Center,Saving the Planet at the Recycling Center,B1,30,Environment,environment,,,false,none,false,no exact key,
+gen-039,generate-lesson,Recycling Center,Saving the Planet at the Recycling Center,B1,30,Waste,waste,waste,exact,true,prop,true,,assets/09_props/img/recycle-e-waste.png
+gen-040,generate-lesson,Photography Class,Photography Class,A1,60,camera,camera,camera,exact,true,prop,true,,assets/09_props/img/photo-film-camera.png
+gen-040,generate-lesson,Photography Class,Photography Class,A1,60,lens,lens,lens,exact,true,prop,true,,assets/09_props/img/optic-trial-lens.png
+gen-040,generate-lesson,Photography Class,Photography Class,A1,60,flash,flash,flash,exact,true,prop,true,,assets/09_props/img/photo-flash.png
+gen-040,generate-lesson,Photography Class,Photography Class,A1,60,picture,picture,picture,exact,true,none,false,silent blank slot,
+gen-040,generate-lesson,Photography Class,Photography Class,A1,60,tripod,tripod,tripod,exact,true,prop,true,,assets/09_props/img/pirate-telescope-tripod.png
+gen-040,generate-lesson,Photography Class,Photography Class,A1,60,button,button,button,exact,true,prop,true,,assets/09_props/img/sew-button.png
+gen-040,generate-lesson,Photography Class,Photography Class,A1,60,light,light,light,exact,false,none,false,silent blank slot,
+gen-040,generate-lesson,Photography Class,Photography Class,A1,60,focus,focus,,,false,none,false,no exact key,
+gen-040,generate-lesson,Photography Class,Photography Class,A1,60,color,color,color,exact,false,pack,true,,assets/07_vocab-pack/img/color.png
+gen-040,generate-lesson,Photography Class,Photography Class,A1,60,frame,frame,frame,exact,false,pack,true,,assets/07_vocab-pack/img/frame.png
+gen-040,generate-lesson,Photography Class,Photography Class,A1,60,shot,shot,shot,exact,false,pack,true,,assets/07_vocab-pack/img/shot.png
+gen-040,generate-lesson,Photography Class,Photography Class,A1,60,photo,photo,photo,exact,false,prop,true,,assets/09_props/img/photo-polaroid-photo.png
+gen-041,generate-lesson,Train Museum,A Day at the Train Museum,A2,30,steam engine,steam-engine,engine,token,true,pack,true,,assets/07_vocab-pack/img/engine.png
+gen-041,generate-lesson,Train Museum,A Day at the Train Museum,A2,30,conductor,conductor,conductor,exact,true,prop,true,,assets/09_props/img/musician-conductor.png
+gen-041,generate-lesson,Train Museum,A Day at the Train Museum,A2,30,track,track,track,exact,true,prop,true,,assets/09_props/img/station-railway-track.png
+gen-041,generate-lesson,Train Museum,A Day at the Train Museum,A2,30,platform,platform,platform,exact,true,pack,true,,assets/07_vocab-pack/img/platform.png
+gen-041,generate-lesson,Train Museum,A Day at the Train Museum,A2,30,carriage,carriage,carriage,exact,false,none,false,silent blank slot,
+gen-041,generate-lesson,Train Museum,A Day at the Train Museum,A2,30,whistle,whistle,whistle,exact,true,prop,true,,assets/09_props/img/sports-whistle.png
+gen-041,generate-lesson,Train Museum,A Day at the Train Museum,A2,30,ticket,ticket,ticket,exact,true,pack,true,,assets/07_vocab-pack/img/ticket.png
+gen-042,generate-lesson,Soccer Practice,Soccer Practice Skills,B1,60,goalpost,goalpost,goalpost,exact,true,pack,true,,assets/07_vocab-pack/img/goalpost.png
+gen-042,generate-lesson,Soccer Practice,Soccer Practice Skills,B1,60,teammate,teammate,teammate,exact,true,pack,true,,assets/07_vocab-pack/img/teammate.png
+gen-042,generate-lesson,Soccer Practice,Soccer Practice Skills,B1,60,coach,coach,coach,exact,true,prop,true,,assets/09_props/img/job-coach.png
+gen-042,generate-lesson,Soccer Practice,Soccer Practice Skills,B1,60,cleats,cleats,cleat,plural,true,prop,true,,assets/09_props/img/soccer-cleat.png
+gen-042,generate-lesson,Soccer Practice,Soccer Practice Skills,B1,60,strategy,strategy,strategy,exact,true,pack,true,,assets/07_vocab-pack/img/strategy.png
+gen-042,generate-lesson,Soccer Practice,Soccer Practice Skills,B1,60,practice,practice,practice,exact,true,pack,true,,assets/07_vocab-pack/img/practice.png
+gen-042,generate-lesson,Soccer Practice,Soccer Practice Skills,B1,60,dribble,dribble,dribble,exact,false,pack,true,,assets/07_vocab-pack/img/dribble.png
+gen-042,generate-lesson,Soccer Practice,Soccer Practice Skills,B1,60,referee,referee,referee,exact,false,pack,true,,assets/07_vocab-pack/img/referee.png
+gen-042,generate-lesson,Soccer Practice,Soccer Practice Skills,B1,60,stadium,stadium,stadium,exact,false,prop,true,,assets/09_props/img/city-stadium.png
+gen-042,generate-lesson,Soccer Practice,Soccer Practice Skills,B1,60,penalty,penalty,penalty,exact,false,pack,true,,assets/07_vocab-pack/img/penalty.png
+gen-042,generate-lesson,Soccer Practice,Soccer Practice Skills,B1,60,warm-up,warm-up,,,false,none,false,no exact key,
+gen-042,generate-lesson,Soccer Practice,Soccer Practice Skills,B1,60,midfielder,midfielder,,,false,none,false,no exact key,
+gen-043,generate-lesson,Basketball Game,Basketball Game,A1,30,basketball,basketball,basketball,exact,true,prop,true,,assets/09_props/img/sport-basketball.png
+gen-043,generate-lesson,Basketball Game,Basketball Game,A1,30,court,court,court,exact,true,pack,true,,assets/07_vocab-pack/img/court.png
+gen-043,generate-lesson,Basketball Game,Basketball Game,A1,30,net,net,net,exact,true,prop,true,,assets/09_props/img/sport-tennis-net.png
+gen-043,generate-lesson,Basketball Game,Basketball Game,A1,30,team,team,team,exact,true,pack,true,,assets/07_vocab-pack/img/team.png
+gen-043,generate-lesson,Basketball Game,Basketball Game,A1,30,coach,coach,coach,exact,true,prop,true,,assets/09_props/img/job-coach.png
+gen-043,generate-lesson,Basketball Game,Basketball Game,A1,30,score,score,score,exact,false,pack,true,,assets/07_vocab-pack/img/score.png
+gen-043,generate-lesson,Basketball Game,Basketball Game,A1,30,dribble,dribble,dribble,exact,true,pack,true,,assets/07_vocab-pack/img/dribble.png
+gen-044,generate-lesson,Pizza Kitchen,Pizza Kitchen,A2,60,dough,dough,dough,exact,true,pack,true,,assets/07_vocab-pack/img/dough.png
+gen-044,generate-lesson,Pizza Kitchen,Pizza Kitchen,A2,60,sauce,sauce,sauce,exact,true,pack,true,,assets/07_vocab-pack/img/sauce.png
+gen-044,generate-lesson,Pizza Kitchen,Pizza Kitchen,A2,60,cheese,cheese,cheese,exact,true,pack,true,,assets/07_vocab-pack/img/cheese.png
+gen-044,generate-lesson,Pizza Kitchen,Pizza Kitchen,A2,60,oven,oven,oven,exact,true,pack,true,,assets/07_vocab-pack/img/oven.png
+gen-044,generate-lesson,Pizza Kitchen,Pizza Kitchen,A2,60,topping,topping,,,false,none,false,no exact key,
+gen-044,generate-lesson,Pizza Kitchen,Pizza Kitchen,A2,60,slice,slice,slice,exact,true,prop,true,,assets/09_props/img/drink-lemon-slice.png
+gen-044,generate-lesson,Pizza Kitchen,Pizza Kitchen,A2,60,apron,apron,apron,exact,false,prop,true,,assets/09_props/img/bake-apron.png
+gen-044,generate-lesson,Pizza Kitchen,Pizza Kitchen,A2,60,roller,roller,roller,exact,false,prop,true,,assets/09_props/img/gym-foam-roller.png
+gen-044,generate-lesson,Pizza Kitchen,Pizza Kitchen,A2,60,kitchen,kitchen,kitchen,exact,true,pack,true,,assets/07_vocab-pack/img/kitchen.png
+gen-044,generate-lesson,Pizza Kitchen,Pizza Kitchen,A2,60,plate,plate,plate,exact,false,prop,true,,assets/09_props/img/cafe-plate.png
+gen-044,generate-lesson,Pizza Kitchen,Pizza Kitchen,A2,60,recipe,recipe,recipe,exact,false,pack,true,,assets/07_vocab-pack/img/recipe.png
+gen-044,generate-lesson,Pizza Kitchen,Pizza Kitchen,A2,60,heat,heat,heat,exact,false,pack,true,,assets/07_vocab-pack/img/heat.png
+gen-045,generate-lesson,Rainforest Trek,Rainforest Trek,B1,30,machete,machete,,,true,none,false,no exact key,
+gen-045,generate-lesson,Rainforest Trek,Rainforest Trek,B1,30,canopy,canopy,canopy,exact,true,pack,true,,assets/07_vocab-pack/img/canopy.png
+gen-045,generate-lesson,Rainforest Trek,Rainforest Trek,B1,30,compass,compass,compass,exact,true,prop,true,,assets/09_props/img/sch-compass.png
+gen-045,generate-lesson,Rainforest Trek,Rainforest Trek,B1,30,humid,humid,humid,exact,true,pack,true,,assets/07_vocab-pack/img/humid.png
+gen-045,generate-lesson,Rainforest Trek,Rainforest Trek,B1,30,habitat,habitat,habitat,exact,true,pack,true,,assets/07_vocab-pack/img/habitat.png
+gen-045,generate-lesson,Rainforest Trek,Rainforest Trek,B1,30,expedition,expedition,,,true,none,false,no exact key,
+gen-045,generate-lesson,Rainforest Trek,Rainforest Trek,B1,30,terrain,terrain,,,false,none,false,no exact key,
+gen-046,generate-lesson,Snow Day,A Snowy Day Adventure,A1,60,snow,snow,snow,exact,true,prop,true,,assets/09_props/img/weather-snow.png
+gen-046,generate-lesson,Snow Day,A Snowy Day Adventure,A1,60,coat,coat,coat,exact,true,prop,true,,assets/09_props/img/clothes-coat.png
+gen-046,generate-lesson,Snow Day,A Snowy Day Adventure,A1,60,boots,boots,boots,exact,false,prop,true,,assets/09_props/img/winter-boots.png
+gen-046,generate-lesson,Snow Day,A Snowy Day Adventure,A1,60,sled,sled,sled,exact,true,prop,true,,assets/09_props/img/winter-sled.png
+gen-046,generate-lesson,Snow Day,A Snowy Day Adventure,A1,60,snowman,snowman,snowman,exact,true,prop,true,,assets/09_props/img/weather-snowman.png
+gen-046,generate-lesson,Snow Day,A Snowy Day Adventure,A1,60,hat,hat,hat,exact,false,prop,true,,assets/09_props/img/wizard-hat.png
+gen-046,generate-lesson,Snow Day,A Snowy Day Adventure,A1,60,mittens,mittens,mittens,exact,false,prop,true,,assets/09_props/img/winter-mittens.png
+gen-046,generate-lesson,Snow Day,A Snowy Day Adventure,A1,60,scarf,scarf,scarf,exact,false,prop,true,,assets/09_props/img/scarf.png
+gen-046,generate-lesson,Snow Day,A Snowy Day Adventure,A1,60,ice,ice,ice,exact,false,pack,true,,assets/07_vocab-pack/img/ice.png
+gen-046,generate-lesson,Snow Day,A Snowy Day Adventure,A1,60,winter,winter,winter,exact,true,pack,true,,assets/07_vocab-pack/img/winter.png
+gen-046,generate-lesson,Snow Day,A Snowy Day Adventure,A1,60,play,play,play,exact,false,pack,true,,assets/07_vocab-pack/img/play.png
+gen-046,generate-lesson,Snow Day,A Snowy Day Adventure,A1,60,cold,cold,cold,exact,true,pack,true,,assets/07_vocab-pack/img/cold.png
+gen-047,generate-lesson,Birthday Cake Bakery,Birthday Cake Bakery,A2,30,oven,oven,oven,exact,true,pack,true,,assets/07_vocab-pack/img/oven.png
+gen-047,generate-lesson,Birthday Cake Bakery,Birthday Cake Bakery,A2,30,flour,flour,flour,exact,true,pack,true,,assets/07_vocab-pack/img/flour.png
+gen-047,generate-lesson,Birthday Cake Bakery,Birthday Cake Bakery,A2,30,icing,icing,icing,exact,true,pack,true,,assets/07_vocab-pack/img/icing.png
+gen-047,generate-lesson,Birthday Cake Bakery,Birthday Cake Bakery,A2,30,recipe,recipe,recipe,exact,true,pack,true,,assets/07_vocab-pack/img/recipe.png
+gen-047,generate-lesson,Birthday Cake Bakery,Birthday Cake Bakery,A2,30,apron,apron,apron,exact,true,prop,true,,assets/09_props/img/bake-apron.png
+gen-047,generate-lesson,Birthday Cake Bakery,Birthday Cake Bakery,A2,30,batter,batter,,,true,none,false,no exact key,
+gen-047,generate-lesson,Birthday Cake Bakery,Birthday Cake Bakery,A2,30,whisk,whisk,whisk,exact,false,prop,true,,assets/09_props/img/bake-whisk.png
+gen-048,generate-lesson,Police Station,A Day at the Police Station,B1,60,officer,officer,officer,exact,true,pack,true,,assets/07_vocab-pack/img/officer.png
+gen-048,generate-lesson,Police Station,A Day at the Police Station,B1,60,uniform,uniform,uniform,exact,true,pack,true,,assets/07_vocab-pack/img/uniform.png
+gen-048,generate-lesson,Police Station,A Day at the Police Station,B1,60,patrol,patrol,patrol,exact,false,none,false,silent blank slot,
+gen-048,generate-lesson,Police Station,A Day at the Police Station,B1,60,station,station,station,exact,true,prop,true,,assets/09_props/img/city-police-station.png
+gen-048,generate-lesson,Police Station,A Day at the Police Station,B1,60,badge,badge,badge,exact,true,prop,true,,assets/09_props/img/job-police-badge.png
+gen-048,generate-lesson,Police Station,A Day at the Police Station,B1,60,evidence,evidence,,,false,none,false,no exact key,
+gen-048,generate-lesson,Police Station,A Day at the Police Station,B1,60,arrest,arrest,arrest,exact,true,pack,true,,assets/07_vocab-pack/img/arrest.png
+gen-048,generate-lesson,Police Station,A Day at the Police Station,B1,60,investigate,investigate,investigate,exact,false,pack,true,,assets/07_vocab-pack/img/investigate.png
+gen-048,generate-lesson,Police Station,A Day at the Police Station,B1,60,witness,witness,witness,exact,false,pack,true,,assets/07_vocab-pack/img/witness.png
+gen-048,generate-lesson,Police Station,A Day at the Police Station,B1,60,report,report,report,exact,false,pack,true,,assets/07_vocab-pack/img/report.png
+gen-048,generate-lesson,Police Station,A Day at the Police Station,B1,60,siren,siren,siren,exact,false,prop,true,,assets/09_props/img/fire-engine-siren.png
+gen-048,generate-lesson,Police Station,A Day at the Police Station,B1,60,law,law,,,false,none,false,no exact key,
+gen-048,generate-lesson,Police Station,A Day at the Police Station,B1,60,patrol car,patrol-car,patrol-car,exact,true,pack,true,,assets/07_vocab-pack/img/patrol-car.png
+gen-049,generate-lesson,Post Office,A Day at the Post Office,A1,30,letter,letter,letter,exact,true,pack,true,,assets/07_vocab-pack/img/letter.png
+gen-049,generate-lesson,Post Office,A Day at the Post Office,A1,30,stamp,stamp,stamp,exact,true,prop,true,,assets/09_props/img/office-rubber-stamp.png
+gen-049,generate-lesson,Post Office,A Day at the Post Office,A1,30,package,package,package,exact,true,pack,true,,assets/07_vocab-pack/img/package.png
+gen-049,generate-lesson,Post Office,A Day at the Post Office,A1,30,mail,mail,mail,exact,true,pack,true,,assets/07_vocab-pack/img/mail.png
+gen-049,generate-lesson,Post Office,A Day at the Post Office,A1,30,postman,postman,postman,exact,true,pack,true,,assets/07_vocab-pack/img/postman.png
+gen-049,generate-lesson,Post Office,A Day at the Post Office,A1,30,address,address,address,exact,true,pack,true,,assets/07_vocab-pack/img/address.png
+gen-049,generate-lesson,Post Office,A Day at the Post Office,A1,30,scale,scale,scale,exact,false,pack,true,,assets/07_vocab-pack/img/scale.png
+gen-050,generate-lesson,Market Vegetables,Market Vegetables,A2,60,carrot,carrot,carrot,exact,true,prop,true,,assets/09_props/img/food-carrot.png
+gen-050,generate-lesson,Market Vegetables,Market Vegetables,A2,60,potato,potato,potato,exact,true,prop,true,,assets/09_props/img/food-potato.png
+gen-050,generate-lesson,Market Vegetables,Market Vegetables,A2,60,tomato,tomato,tomato,exact,true,prop,true,,assets/09_props/img/food-tomato.png
+gen-050,generate-lesson,Market Vegetables,Market Vegetables,A2,60,onion,onion,onion,exact,true,prop,true,,assets/09_props/img/food-onion.png
+gen-050,generate-lesson,Market Vegetables,Market Vegetables,A2,60,lettuce,lettuce,lettuce,exact,true,prop,true,,assets/09_props/img/food-lettuce.png
+gen-050,generate-lesson,Market Vegetables,Market Vegetables,A2,60,pepper,pepper,pepper,exact,true,prop,true,,assets/09_props/img/food-bell-pepper.png
+fix-001,fixture:abstract-words-lesson.json,Our Spacious New Apartment,Our Spacious New Apartment,,,spacious,spacious,spacious,exact,true,pack,true,,assets/07_vocab-pack/img/spacious.png
+fix-001,fixture:abstract-words-lesson.json,Our Spacious New Apartment,Our Spacious New Apartment,,,cramped,cramped,cramped,exact,true,pack,true,,assets/07_vocab-pack/img/cramped.png
+fix-001,fixture:abstract-words-lesson.json,Our Spacious New Apartment,Our Spacious New Apartment,,,tidy,tidy,tidy,exact,true,pack,true,,assets/07_vocab-pack/img/tidy.png
+fix-001,fixture:abstract-words-lesson.json,Our Spacious New Apartment,Our Spacious New Apartment,,,cosy,cosy,cosy,exact,true,pack,true,,assets/07_vocab-pack/img/cosy.png
+fix-001,fixture:abstract-words-lesson.json,Our Spacious New Apartment,Our Spacious New Apartment,,,cluttered,cluttered,cluttered,exact,true,pack,true,,assets/07_vocab-pack/img/cluttered.png
+fix-002,fixture:aquarium-lesson.json,Aquarium Visit,Aquarium Visit,,,fish,fish,fish,exact,true,pack,true,,assets/07_vocab-pack/img/fish.png
+fix-002,fixture:aquarium-lesson.json,Aquarium Visit,Aquarium Visit,,,tank,tank,tank,exact,true,prop,true,,assets/09_props/img/aquarium-tank.png
+fix-002,fixture:aquarium-lesson.json,Aquarium Visit,Aquarium Visit,,,bubble,bubble,bubble,exact,true,pack,true,,assets/07_vocab-pack/img/bubble.png
+fix-002,fixture:aquarium-lesson.json,Aquarium Visit,Aquarium Visit,,,coral,coral,coral,exact,true,prop,true,,assets/09_props/img/aquarium-coral.png
+fix-002,fixture:aquarium-lesson.json,Aquarium Visit,Aquarium Visit,,,seaweed,seaweed,seaweed,exact,true,prop,true,,assets/09_props/img/sub-green-seaweed.png
+fix-002,fixture:aquarium-lesson.json,Aquarium Visit,Aquarium Visit,,,water,water,water,exact,true,pack,true,,assets/07_vocab-pack/img/water.png
+fix-003,fixture:bad-theme-lesson.json,Lunch in the School Cafeteria,Lunch in the School Cafeteria,,,tray,tray,tray,exact,true,prop,true,,assets/09_props/img/activity-tray.png
+fix-003,fixture:bad-theme-lesson.json,Lunch in the School Cafeteria,Lunch in the School Cafeteria,,,queue,queue,queue,exact,true,pack,true,,assets/07_vocab-pack/img/queue.png
+fix-003,fixture:bad-theme-lesson.json,Lunch in the School Cafeteria,Lunch in the School Cafeteria,,,napkin,napkin,napkin,exact,true,prop,true,,assets/09_props/img/cafe-napkin.png
+fix-003,fixture:bad-theme-lesson.json,Lunch in the School Cafeteria,Lunch in the School Cafeteria,,,delicious,delicious,delicious,exact,true,pack,true,,assets/07_vocab-pack/img/delicious.png
+fix-004,fixture:basketball-bare-lesson.json,Playing Basketball with Friends,Playing Basketball with Friends,,,ball,ball,ball,exact,false,none,false,silent blank slot,
+fix-004,fixture:basketball-bare-lesson.json,Playing Basketball with Friends,Playing Basketball with Friends,,,team,team,team,exact,true,pack,true,,assets/07_vocab-pack/img/team.png
+fix-004,fixture:basketball-bare-lesson.json,Playing Basketball with Friends,Playing Basketball with Friends,,,score,score,score,exact,true,pack,true,,assets/07_vocab-pack/img/score.png
+fix-004,fixture:basketball-bare-lesson.json,Playing Basketball with Friends,Playing Basketball with Friends,,,court,court,court,exact,true,pack,true,,assets/07_vocab-pack/img/court.png
+fix-005,fixture:bathroom-routines-lesson.json,Bathroom Routines,Bathroom Routines,,,shower,shower,shower,exact,true,pack,true,,assets/07_vocab-pack/img/shower.png
+fix-005,fixture:bathroom-routines-lesson.json,Bathroom Routines,Bathroom Routines,,,soap,soap,soap,exact,true,prop,true,,assets/09_props/img/bathroom-soap.png
+fix-005,fixture:bathroom-routines-lesson.json,Bathroom Routines,Bathroom Routines,,,toothbrush,toothbrush,toothbrush,exact,true,pack,true,,assets/07_vocab-pack/img/toothbrush.png
+fix-005,fixture:bathroom-routines-lesson.json,Bathroom Routines,Bathroom Routines,,,towel,towel,towel,exact,false,none,false,silent blank slot,
+fix-005,fixture:bathroom-routines-lesson.json,Bathroom Routines,Bathroom Routines,,,mirror,mirror,mirror,exact,true,prop,true,,assets/09_props/img/bathroom-mirror.png
+fix-005,fixture:bathroom-routines-lesson.json,Bathroom Routines,Bathroom Routines,,,toilet,toilet,toilet,exact,true,prop,true,,assets/09_props/img/bathroom-toilet.png
+fix-005,fixture:bathroom-routines-lesson.json,Bathroom Routines,Bathroom Routines,,,bath towel roll,bath-towel-roll,bath-towel-roll,exact,true,pack,true,,assets/07_vocab-pack/img/bath-towel-roll.png
+fix-006,fixture:cafe-lesson.json,Cafe Order,Cafe Order,,,coffee,coffee,coffee,exact,true,pack,true,,assets/07_vocab-pack/img/coffee.png
+fix-006,fixture:cafe-lesson.json,Cafe Order,Cafe Order,,,croissant,croissant,croissant,exact,true,prop,true,,assets/09_props/img/cafe-croissant.png
+fix-006,fixture:cafe-lesson.json,Cafe Order,Cafe Order,,,muffin,muffin,muffin,exact,false,none,false,silent blank slot,
+fix-006,fixture:cafe-lesson.json,Cafe Order,Cafe Order,,,menu,menu,menu,exact,true,prop,true,,assets/09_props/img/cafe-menu.png
+fix-006,fixture:cafe-lesson.json,Cafe Order,Cafe Order,,,latte,latte,latte,exact,true,prop,true,,assets/09_props/img/cafe-latte.png
+fix-006,fixture:cafe-lesson.json,Cafe Order,Cafe Order,,,cafe,cafe,cafe,exact,true,pack,true,,assets/07_vocab-pack/img/cafe.png
+fix-006,fixture:cafe-lesson.json,Cafe Order,Cafe Order,,,muffin cafe,muffin-cafe,muffin-cafe,exact,true,pack,true,,assets/07_vocab-pack/img/muffin-cafe.png
+fix-007,fixture:campsite-lesson.json,Campsite Fun,Campsite Fun,,,tent,tent,tent,exact,false,none,false,silent blank slot,
+fix-007,fixture:campsite-lesson.json,Campsite Fun,Campsite Fun,,,campfire,campfire,campfire,exact,true,prop,true,,assets/09_props/img/mix-campfire.png
+fix-007,fixture:campsite-lesson.json,Campsite Fun,Campsite Fun,,,backpack,backpack,backpack,exact,false,none,false,silent blank slot,
+fix-007,fixture:campsite-lesson.json,Campsite Fun,Campsite Fun,,,map,map,map,exact,true,prop,true,,assets/09_props/img/cas-map.png
+fix-007,fixture:campsite-lesson.json,Campsite Fun,Campsite Fun,,,flashlight,flashlight,flashlight,exact,true,prop,true,,assets/09_props/img/camp-flashlight.png
+fix-007,fixture:campsite-lesson.json,Campsite Fun,Campsite Fun,,,camp,camp,camp,exact,false,none,false,silent blank slot,
+fix-008,fixture:castle-lesson.json,Building Our Royal Castle,Building Our Royal Castle,,,castle,castle,castle,exact,false,none,false,silent blank slot,
+fix-008,fixture:castle-lesson.json,Building Our Royal Castle,Building Our Royal Castle,,,knight,knight,knight,exact,true,pack,true,,assets/07_vocab-pack/img/knight.png
+fix-008,fixture:castle-lesson.json,Building Our Royal Castle,Building Our Royal Castle,,,dragon,dragon,dragon,exact,true,pack,true,,assets/07_vocab-pack/img/dragon.png
+fix-008,fixture:castle-lesson.json,Building Our Royal Castle,Building Our Royal Castle,,,door,door,door,exact,true,prop,true,,assets/09_props/img/castle-door.png
+fix-008,fixture:castle-lesson.json,Building Our Royal Castle,Building Our Royal Castle,,,flag,flag,flag,exact,true,pack,true,,assets/07_vocab-pack/img/flag.png
+fix-008,fixture:castle-lesson.json,Building Our Royal Castle,Building Our Royal Castle,,,bridge,bridge,bridge,exact,true,pack,true,,assets/07_vocab-pack/img/bridge.png
+fix-008,fixture:castle-lesson.json,Building Our Royal Castle,Building Our Royal Castle,,,building royal castle,building-royal-castle,castle,token,true,pack,true,,assets/07_vocab-pack/img/castle.png
+fix-009,fixture:circus-lesson.json,Circus Comes to Town,Circus Comes to Town,,,circus,circus,circus,exact,false,none,false,silent blank slot,
+fix-009,fixture:circus-lesson.json,Circus Comes to Town,Circus Comes to Town,,,clown,clown,clown,exact,true,pack,true,,assets/07_vocab-pack/img/clown.png
+fix-009,fixture:circus-lesson.json,Circus Comes to Town,Circus Comes to Town,,,tent,tent,tent,exact,false,none,false,silent blank slot,
+fix-009,fixture:circus-lesson.json,Circus Comes to Town,Circus Comes to Town,,,acrobat,acrobat,acrobat,exact,true,pack,true,,assets/07_vocab-pack/img/acrobat.png
+fix-009,fixture:circus-lesson.json,Circus Comes to Town,Circus Comes to Town,,,ticket,ticket,ticket,exact,true,pack,true,,assets/07_vocab-pack/img/ticket.png
+fix-009,fixture:circus-lesson.json,Circus Comes to Town,Circus Comes to Town,,,happy,happy,happy,exact,true,pack,true,,assets/07_vocab-pack/img/happy.png
+fix-009,fixture:circus-lesson.json,Circus Comes to Town,Circus Comes to Town,,,circus comes town,circus-comes-town,town,token,true,pack,true,,assets/07_vocab-pack/img/town.png
+fix-009,fixture:circus-lesson.json,Circus Comes to Town,Circus Comes to Town,,,circus tent,circus-tent,circus-tent,exact,true,prop,true,,assets/09_props/img/circus-tent.png
+fix-010,fixture:classical-compose-lesson.json,Composing a Classical Masterpiece,Composing a Classical Masterpiece,,,compose,compose,compose,exact,true,pack,true,,assets/07_vocab-pack/img/compose.png
+fix-010,fixture:classical-compose-lesson.json,Composing a Classical Masterpiece,Composing a Classical Masterpiece,,,melody,melody,melody,exact,true,pack,true,,assets/07_vocab-pack/img/melody.png
+fix-010,fixture:classical-compose-lesson.json,Composing a Classical Masterpiece,Composing a Classical Masterpiece,,,orchestra,orchestra,orchestra,exact,true,pack,true,,assets/07_vocab-pack/img/orchestra.png
+fix-010,fixture:classical-compose-lesson.json,Composing a Classical Masterpiece,Composing a Classical Masterpiece,,,harmony,harmony,harmony,exact,true,pack,true,,assets/07_vocab-pack/img/harmony.png
+fix-010,fixture:classical-compose-lesson.json,Composing a Classical Masterpiece,Composing a Classical Masterpiece,,,inspire,inspire,inspire,exact,true,pack,true,,assets/07_vocab-pack/img/inspire.png
+fix-010,fixture:classical-compose-lesson.json,Composing a Classical Masterpiece,Composing a Classical Masterpiece,,,tempo,tempo,tempo,exact,true,pack,true,,assets/07_vocab-pack/img/tempo.png
+fix-010,fixture:classical-compose-lesson.json,Composing a Classical Masterpiece,Composing a Classical Masterpiece,,,rhythm,rhythm,rhythm,exact,false,pack,true,,assets/07_vocab-pack/img/rhythm.png
+fix-010,fixture:classical-compose-lesson.json,Composing a Classical Masterpiece,Composing a Classical Masterpiece,,,performance,performance,performance,exact,false,pack,true,,assets/07_vocab-pack/img/performance.png
+fix-010,fixture:classical-compose-lesson.json,Composing a Classical Masterpiece,Composing a Classical Masterpiece,,,expressive,expressive,expressive,exact,false,pack,true,,assets/07_vocab-pack/img/expressive.png
+fix-010,fixture:classical-compose-lesson.json,Composing a Classical Masterpiece,Composing a Classical Masterpiece,,,draft,draft,draft,exact,false,pack,true,,assets/07_vocab-pack/img/draft.png
+fix-010,fixture:classical-compose-lesson.json,Composing a Classical Masterpiece,Composing a Classical Masterpiece,,,strum,strum,strum,exact,false,pack,true,,assets/07_vocab-pack/img/strum.png
+fix-010,fixture:classical-compose-lesson.json,Composing a Classical Masterpiece,Composing a Classical Masterpiece,,,masterpiece,masterpiece,masterpiece,exact,false,pack,true,,assets/07_vocab-pack/img/masterpiece.png
+fix-011,fixture:clown-clinic-lesson.json,The Clown at the Clinic,The Clown at the Clinic,,,diagnosis,diagnosis,diagnosis,exact,true,pack,true,,assets/07_vocab-pack/img/diagnosis.png
+fix-011,fixture:clown-clinic-lesson.json,The Clown at the Clinic,The Clown at the Clinic,,,symptoms,symptoms,sick,alias,true,pack,true,,assets/07_vocab-pack/img/sick.png
+fix-011,fixture:clown-clinic-lesson.json,The Clown at the Clinic,The Clown at the Clinic,,,prescription,prescription,medicine,alias,true,pack,true,,assets/07_vocab-pack/img/medicine.png
+fix-011,fixture:clown-clinic-lesson.json,The Clown at the Clinic,The Clown at the Clinic,,,checkup,checkup,stethoscope,alias,true,pack,true,,assets/07_vocab-pack/img/stethoscope.png
+fix-012,fixture:construction-lesson.json,Construction Site Day,Construction Site Day,,,crane,crane,crane,exact,true,prop,true,,assets/09_props/img/construction-tower-crane.png
+fix-012,fixture:construction-lesson.json,Construction Site Day,Construction Site Day,,,helmet,helmet,helmet,exact,true,prop,true,,assets/09_props/img/cas-helmet.png
+fix-012,fixture:construction-lesson.json,Construction Site Day,Construction Site Day,,,hammer,hammer,hammer,exact,true,prop,true,,assets/09_props/img/tool-hammer.png
+fix-012,fixture:construction-lesson.json,Construction Site Day,Construction Site Day,,,ladder,ladder,ladder,exact,true,prop,true,,assets/09_props/img/construction-step-ladder.png
+fix-012,fixture:construction-lesson.json,Construction Site Day,Construction Site Day,,,cone,cone,cone,exact,true,prop,true,,assets/09_props/img/construction-traffic-cone.png
+fix-012,fixture:construction-lesson.json,Construction Site Day,Construction Site Day,,,truck,truck,truck,exact,true,prop,true,,assets/09_props/img/construction-dump-truck.png
+fix-013,fixture:dentist-lesson.json,Dentists are nice!,Dentists are nice!,,,dentist,dentist,dentist,exact,true,pack,true,,assets/07_vocab-pack/img/dentist.png
+fix-013,fixture:dentist-lesson.json,Dentists are nice!,Dentists are nice!,,,tooth,tooth,tooth,exact,true,prop,true,,assets/09_props/img/cavity-tooth.png
+fix-013,fixture:dentist-lesson.json,Dentists are nice!,Dentists are nice!,,,smile,smile,smile,exact,true,prop,true,,assets/09_props/img/face-mouth-smile.png
+fix-013,fixture:dentist-lesson.json,Dentists are nice!,Dentists are nice!,,,clean,clean,clean-tooth,override,true,pack,true,,assets/07_vocab-pack/img/clean-tooth.png
+fix-013,fixture:dentist-lesson.json,Dentists are nice!,Dentists are nice!,,,brush,brush,brush,exact,false,none,false,silent blank slot,
+fix-013,fixture:dentist-lesson.json,Dentists are nice!,Dentists are nice!,,,floss,floss,floss,exact,true,pack,true,,assets/07_vocab-pack/img/floss.png
+fix-013,fixture:dentist-lesson.json,Dentists are nice!,Dentists are nice!,,,toothbrush,toothbrush,toothbrush,exact,true,pack,true,,assets/07_vocab-pack/img/toothbrush.png
+fix-014,fixture:doctor-lesson.json,At the Doctor's Office,At the Doctor's Office,,,doctor,doctor,doctor,exact,true,pack,true,,assets/07_vocab-pack/img/doctor.png
+fix-014,fixture:doctor-lesson.json,At the Doctor's Office,At the Doctor's Office,,,nurse,nurse,nurse,exact,true,pack,true,,assets/07_vocab-pack/img/nurse.png
+fix-014,fixture:doctor-lesson.json,At the Doctor's Office,At the Doctor's Office,,,sick,sick,sick,exact,true,pack,true,,assets/07_vocab-pack/img/sick.png
+fix-014,fixture:doctor-lesson.json,At the Doctor's Office,At the Doctor's Office,,,appointment,appointment,appointment,exact,true,pack,true,,assets/07_vocab-pack/img/appointment.png
+fix-015,fixture:dollhouse-lesson.json,Dollhouse Home Tour,Dollhouse Home Tour,,,sofa,sofa,sofa,exact,true,prop,true,,assets/09_props/img/sofa.png
+fix-015,fixture:dollhouse-lesson.json,Dollhouse Home Tour,Dollhouse Home Tour,,,bed,bed,bed,exact,true,prop,true,,assets/09_props/img/dh-loft-bed.png
+fix-015,fixture:dollhouse-lesson.json,Dollhouse Home Tour,Dollhouse Home Tour,,,table,table,table,exact,true,prop,true,,assets/09_props/img/coffee-table.png
+fix-015,fixture:dollhouse-lesson.json,Dollhouse Home Tour,Dollhouse Home Tour,,,lamp,lamp,lamp,exact,true,prop,true,,assets/09_props/img/floor-lamp.png
+fix-015,fixture:dollhouse-lesson.json,Dollhouse Home Tour,Dollhouse Home Tour,,,kitchen,kitchen,kitchen,exact,false,none,false,silent blank slot,
+fix-015,fixture:dollhouse-lesson.json,Dollhouse Home Tour,Dollhouse Home Tour,,,furniture,furniture,furniture,exact,true,pack,true,,assets/07_vocab-pack/img/furniture.png
+fix-016,fixture:face-lesson.json,Make a Face,Make a Face,,,face,face,face,exact,false,none,false,silent blank slot,
+fix-016,fixture:face-lesson.json,Make a Face,Make a Face,,,eyes,eyes,eyes,exact,true,pack,true,,assets/07_vocab-pack/img/eyes.png
+fix-016,fixture:face-lesson.json,Make a Face,Make a Face,,,nose,nose,nose,exact,true,pack,true,,assets/07_vocab-pack/img/nose.png
+fix-016,fixture:face-lesson.json,Make a Face,Make a Face,,,mouth,mouth,mouth,exact,true,pack,true,,assets/07_vocab-pack/img/mouth.png
+fix-016,fixture:face-lesson.json,Make a Face,Make a Face,,,hair,hair,hair,exact,true,pack,true,,assets/07_vocab-pack/img/hair.png
+fix-016,fixture:face-lesson.json,Make a Face,Make a Face,,,smile,smile,smile,exact,true,prop,true,,assets/09_props/img/face-mouth-smile.png
+fix-016,fixture:face-lesson.json,Make a Face,Make a Face,,,face to face,face-to-face,face-to-face,exact,true,pack,true,,assets/07_vocab-pack/img/face-to-face.png
+fix-017,fixture:feelings-compass-lesson.json,Finding Our Feelings Compass,Finding Our Feelings Compass,,,worried,worried,worried,exact,true,prop,true,,assets/09_props/img/feeling-worried.png
+fix-017,fixture:feelings-compass-lesson.json,Finding Our Feelings Compass,Finding Our Feelings Compass,,,scared,scared,scared,exact,true,prop,true,,assets/09_props/img/feeling-scared.png
+fix-017,fixture:feelings-compass-lesson.json,Finding Our Feelings Compass,Finding Our Feelings Compass,,,confused,confused,confused,exact,true,prop,true,,assets/09_props/img/feeling-confused.png
+fix-017,fixture:feelings-compass-lesson.json,Finding Our Feelings Compass,Finding Our Feelings Compass,,,shy,shy,shy,exact,true,prop,true,,assets/09_props/img/feeling-shy.png
+fix-017,fixture:feelings-compass-lesson.json,Finding Our Feelings Compass,Finding Our Feelings Compass,,,surprised,surprised,surprised,exact,true,prop,true,,assets/09_props/img/feeling-surprised.png
+fix-017,fixture:feelings-compass-lesson.json,Finding Our Feelings Compass,Finding Our Feelings Compass,,,happy,happy,happy,exact,true,prop,true,,assets/09_props/img/feeling-happy.png
+fix-017,fixture:feelings-compass-lesson.json,Finding Our Feelings Compass,Finding Our Feelings Compass,,,sad,sad,sad,exact,false,prop,true,,assets/09_props/img/feeling-sad.png
+fix-017,fixture:feelings-compass-lesson.json,Finding Our Feelings Compass,Finding Our Feelings Compass,,,angry,angry,angry,exact,false,prop,true,,assets/09_props/img/feeling-angry.png
+fix-017,fixture:feelings-compass-lesson.json,Finding Our Feelings Compass,Finding Our Feelings Compass,,,bored,bored,bored,exact,false,prop,true,,assets/09_props/img/feeling-bored.png
+fix-017,fixture:feelings-compass-lesson.json,Finding Our Feelings Compass,Finding Our Feelings Compass,,,sleepy,sleepy,sleepy,exact,false,prop,true,,assets/09_props/img/feeling-sleepy.png
+fix-017,fixture:feelings-compass-lesson.json,Finding Our Feelings Compass,Finding Our Feelings Compass,,,excited,excited,excited,exact,false,pack,true,,assets/07_vocab-pack/img/excited.png
+fix-017,fixture:feelings-compass-lesson.json,Finding Our Feelings Compass,Finding Our Feelings Compass,,,tired,tired,tired,exact,false,pack,true,,assets/07_vocab-pack/img/tired.png
+fix-018,fixture:fire-station-lesson.json,Fire Station Visit,Fire Station Visit,,,hydrant,hydrant,hydrant,exact,false,none,false,silent blank slot,
+fix-018,fixture:fire-station-lesson.json,Fire Station Visit,Fire Station Visit,,,hose,hose,hose,exact,false,none,false,silent blank slot,
+fix-018,fixture:fire-station-lesson.json,Fire Station Visit,Fire Station Visit,,,helmet,helmet,helmet,exact,true,prop,true,,assets/09_props/img/job-fire-helmet.png
+fix-018,fixture:fire-station-lesson.json,Fire Station Visit,Fire Station Visit,,,ladder,ladder,ladder,exact,true,prop,true,,assets/09_props/img/fire-ladder.png
+fix-018,fixture:fire-station-lesson.json,Fire Station Visit,Fire Station Visit,,,axe,axe,axe,exact,true,prop,true,,assets/09_props/img/fire-axe.png
+fix-018,fixture:fire-station-lesson.json,Fire Station Visit,Fire Station Visit,,,alarm,alarm,alarm,exact,true,pack,true,,assets/07_vocab-pack/img/alarm.png
+fix-018,fixture:fire-station-lesson.json,Fire Station Visit,Fire Station Visit,,,fire hydrant,fire-hydrant,fire-hydrant,exact,true,prop,true,,assets/09_props/img/fire-hydrant.png
+fix-018,fixture:fire-station-lesson.json,Fire Station Visit,Fire Station Visit,,,fire hose,fire-hose,fire-hose,exact,true,prop,true,,assets/09_props/img/fire-hose.png
+fix-019,fixture:fruit-market-lesson.json,Fruit Market,Fruit Market,,,apple,apple,apple,exact,true,prop,true,,assets/09_props/img/apple.png
+fix-019,fixture:fruit-market-lesson.json,Fruit Market,Fruit Market,,,banana,banana,banana,exact,true,prop,true,,assets/09_props/img/food-banana.png
+fix-019,fixture:fruit-market-lesson.json,Fruit Market,Fruit Market,,,carrot,carrot,carrot,exact,true,prop,true,,assets/09_props/img/food-carrot.png
+fix-019,fixture:fruit-market-lesson.json,Fruit Market,Fruit Market,,,tomato,tomato,tomato,exact,true,prop,true,,assets/09_props/img/food-tomato.png
+fix-019,fixture:fruit-market-lesson.json,Fruit Market,Fruit Market,,,lemon,lemon,lemon,exact,true,prop,true,,assets/09_props/img/food-lemon.png
+fix-019,fixture:fruit-market-lesson.json,Fruit Market,Fruit Market,,,grape,grape,grape,exact,false,none,false,silent blank slot,
+fix-019,fixture:fruit-market-lesson.json,Fruit Market,Fruit Market,,,grapefruit,grapefruit,grapefruit,exact,true,pack,true,,assets/07_vocab-pack/img/grapefruit.png
+fix-020,fixture:gym-lesson.json,The Clown at the Gym,The Clown at the Gym,,,clumsy,clumsy,clumsy,exact,true,pack,true,,assets/07_vocab-pack/img/clumsy.png
+fix-020,fixture:gym-lesson.json,The Clown at the Gym,The Clown at the Gym,,,energetic,energetic,energetic,exact,true,pack,true,,assets/07_vocab-pack/img/energetic.png
+fix-020,fixture:gym-lesson.json,The Clown at the Gym,The Clown at the Gym,,,spacious,spacious,spacious,exact,true,pack,true,,assets/07_vocab-pack/img/spacious.png
+fix-020,fixture:gym-lesson.json,The Clown at the Gym,The Clown at the Gym,,,athletic,athletic,athletic,exact,true,pack,true,,assets/07_vocab-pack/img/athletic.png
+fix-021,fixture:hotel-lesson.json,Hotel Stay,Hotel Stay,,,hotel,hotel,hotel,exact,true,prop,true,,assets/09_props/img/city-hotel.png
+fix-021,fixture:hotel-lesson.json,Hotel Stay,Hotel Stay,,,room,room,room,exact,true,pack,true,,assets/07_vocab-pack/img/room.png
+fix-021,fixture:hotel-lesson.json,Hotel Stay,Hotel Stay,,,key,key,key,exact,false,none,false,silent blank slot,
+fix-021,fixture:hotel-lesson.json,Hotel Stay,Hotel Stay,,,bed,bed,bed,exact,false,none,false,silent blank slot,
+fix-021,fixture:hotel-lesson.json,Hotel Stay,Hotel Stay,,,towel,towel,towel,exact,true,prop,true,,assets/09_props/img/bath-towel.png
+fix-021,fixture:hotel-lesson.json,Hotel Stay,Hotel Stay,,,luggage,luggage,luggage,exact,true,pack,true,,assets/07_vocab-pack/img/luggage.png
+fix-021,fixture:hotel-lesson.json,Hotel Stay,Hotel Stay,,,hotel key,hotel-key,hotel-key,exact,true,pack,true,,assets/07_vocab-pack/img/hotel-key.png
+fix-021,fixture:hotel-lesson.json,Hotel Stay,Hotel Stay,,,bed hotel,bed-hotel,bed-hotel,exact,true,pack,true,,assets/07_vocab-pack/img/bed-hotel.png
+fix-022,fixture:jobs-lesson.json,Jobs in Our Town,Jobs in Our Town,,,teacher,teacher,teacher,exact,true,prop,true,,assets/09_props/img/job-teacher.png
+fix-022,fixture:jobs-lesson.json,Jobs in Our Town,Jobs in Our Town,,,builder,builder,builder,exact,true,pack,true,,assets/07_vocab-pack/img/builder.png
+fix-022,fixture:jobs-lesson.json,Jobs in Our Town,Jobs in Our Town,,,chef,chef,chef,exact,true,prop,true,,assets/09_props/img/job-chef.png
+fix-022,fixture:jobs-lesson.json,Jobs in Our Town,Jobs in Our Town,,,pilot,pilot,pilot,exact,true,pack,true,,assets/07_vocab-pack/img/pilot.png
+fix-022,fixture:jobs-lesson.json,Jobs in Our Town,Jobs in Our Town,,,farmer,farmer,farmer,exact,true,prop,true,,assets/09_props/img/job-farmer.png
+fix-022,fixture:jobs-lesson.json,Jobs in Our Town,Jobs in Our Town,,,job,job,job,exact,false,none,false,silent blank slot,
+fix-022,fixture:jobs-lesson.json,Jobs in Our Town,Jobs in Our Town,,,jobs town,jobs-town,town,token,true,pack,true,,assets/07_vocab-pack/img/town.png
+fix-023,fixture:kitchen-helpers-lesson.json,Kitchen Helpers,Kitchen Helpers,A2,,whisk,whisk,whisk,exact,true,prop,true,,assets/09_props/img/bake-whisk.png
+fix-023,fixture:kitchen-helpers-lesson.json,Kitchen Helpers,Kitchen Helpers,A2,,spatula,spatula,spatula,exact,true,prop,true,,assets/09_props/img/kitchen-spatula.png
+fix-023,fixture:kitchen-helpers-lesson.json,Kitchen Helpers,Kitchen Helpers,A2,,grater,grater,grater,exact,true,prop,true,,assets/09_props/img/kitchen-grater.png
+fix-023,fixture:kitchen-helpers-lesson.json,Kitchen Helpers,Kitchen Helpers,A2,,blender,blender,blender,exact,true,pack,true,,assets/07_vocab-pack/img/blender.png
+fix-023,fixture:kitchen-helpers-lesson.json,Kitchen Helpers,Kitchen Helpers,A2,,timer,timer,timer,exact,true,prop,true,,assets/09_props/img/kitchen-timer.png
+fix-023,fixture:kitchen-helpers-lesson.json,Kitchen Helpers,Kitchen Helpers,A2,,apron,apron,apron,exact,true,prop,true,,assets/09_props/img/bake-apron.png
+fix-024,fixture:library-lesson.json,Library Quiet Time,Library Quiet Time,,,book,book,book,exact,true,prop,true,,assets/09_props/img/comic-book.png
+fix-024,fixture:library-lesson.json,Library Quiet Time,Library Quiet Time,,,read,read,read,exact,true,pack,true,,assets/07_vocab-pack/img/read.png
+fix-024,fixture:library-lesson.json,Library Quiet Time,Library Quiet Time,,,library,library,library,exact,true,prop,true,,assets/09_props/img/city-library.png
+fix-024,fixture:library-lesson.json,Library Quiet Time,Library Quiet Time,,,shelf,shelf,shelf,exact,true,prop,true,,assets/09_props/img/shop-shelf.png
+fix-024,fixture:library-lesson.json,Library Quiet Time,Library Quiet Time,,,story,story,story,exact,true,pack,true,,assets/07_vocab-pack/img/story.png
+fix-024,fixture:library-lesson.json,Library Quiet Time,Library Quiet Time,,,quiet,quiet,quiet,exact,true,pack,true,,assets/07_vocab-pack/img/quiet.png
+fix-025,fixture:minimal-lesson.json,A Day at the Park,A Day at the Park,,,swing,swing,swing,exact,true,prop,true,,assets/09_props/img/swing.png
+fix-025,fixture:minimal-lesson.json,A Day at the Park,A Day at the Park,,,slide,slide,slide,exact,true,prop,true,,assets/09_props/img/park-slide.png
+fix-026,fixture:music-lesson.json,Music Class,Music Class,,,music,music,music,exact,false,none,false,silent blank slot,
+fix-026,fixture:music-lesson.json,Music Class,Music Class,,,sing,sing,sing,exact,true,pack,true,,assets/07_vocab-pack/img/sing.png
+fix-026,fixture:music-lesson.json,Music Class,Music Class,,,drum,drum,drum,exact,true,prop,true,,assets/09_props/img/snare-drum.png
+fix-026,fixture:music-lesson.json,Music Class,Music Class,,,piano,piano,piano,exact,true,prop,true,,assets/09_props/img/grand-piano.png
+fix-026,fixture:music-lesson.json,Music Class,Music Class,,,dance,dance,dance,exact,true,pack,true,,assets/07_vocab-pack/img/dance.png
+fix-026,fixture:music-lesson.json,Music Class,Music Class,,,song,song,song,exact,true,pack,true,,assets/07_vocab-pack/img/song.png
+fix-026,fixture:music-lesson.json,Music Class,Music Class,,,classical music,classical-music,classical-music,exact,true,pack,true,,assets/07_vocab-pack/img/classical-music.png
+fix-027,fixture:mystery-apple-lesson.json,One Fruit Card,One Fruit Card,,,apple,apple,apple,exact,true,prop,true,,assets/09_props/img/apple.png
+fix-027,fixture:mystery-apple-lesson.json,One Fruit Card,One Fruit Card,,,perseverance,perseverance,,,false,none,false,no exact key,
+fix-027,fixture:mystery-apple-lesson.json,One Fruit Card,One Fruit Card,,,gratitude,gratitude,gratitude,exact,true,pack,true,,assets/07_vocab-pack/img/gratitude.png
+fix-028,fixture:overflow-lesson.json,Flying Across the World,Flying Across the World,,,passport,passport,passport,exact,true,pack,true,,assets/07_vocab-pack/img/passport.png
+fix-028,fixture:overflow-lesson.json,Flying Across the World,Flying Across the World,,,boarding pass,boarding-pass,boarding-pass,exact,true,pack,true,,assets/07_vocab-pack/img/boarding-pass.png
+fix-028,fixture:overflow-lesson.json,Flying Across the World,Flying Across the World,,,suitcase,suitcase,suitcase,exact,true,prop,true,,assets/09_props/img/suitcase.png
+fix-028,fixture:overflow-lesson.json,Flying Across the World,Flying Across the World,,,security,security,security,exact,true,pack,true,,assets/07_vocab-pack/img/security.png
+fix-028,fixture:overflow-lesson.json,Flying Across the World,Flying Across the World,,,departure,departure,departure,exact,true,pack,true,,assets/07_vocab-pack/img/departure.png
+fix-028,fixture:overflow-lesson.json,Flying Across the World,Flying Across the World,,,arrival,arrival,arrival,exact,true,pack,true,,assets/07_vocab-pack/img/arrival.png
+fix-028,fixture:overflow-lesson.json,Flying Across the World,Flying Across the World,,,seatbelt,seatbelt,seatbelt,exact,false,pack,true,,assets/07_vocab-pack/img/seatbelt.png
+fix-028,fixture:overflow-lesson.json,Flying Across the World,Flying Across the World,,,turbulence,turbulence,turbulence,exact,false,pack,true,,assets/07_vocab-pack/img/turbulence.png
+fix-028,fixture:overflow-lesson.json,Flying Across the World,Flying Across the World,,,customs,customs,customs,exact,false,pack,true,,assets/07_vocab-pack/img/customs.png
+fix-028,fixture:overflow-lesson.json,Flying Across the World,Flying Across the World,,,delayed,delayed,delayed,exact,false,pack,true,,assets/07_vocab-pack/img/delayed.png
+fix-028,fixture:overflow-lesson.json,Flying Across the World,Flying Across the World,,,connection,connection,connection,exact,false,pack,true,,assets/07_vocab-pack/img/connection.png
+fix-028,fixture:overflow-lesson.json,Flying Across the World,Flying Across the World,,,jet lag,jet-lag,tired,alias,false,pack,true,,assets/07_vocab-pack/img/tired.png
+fix-029,fixture:playground-lesson.json,Playground Fun,Playground Fun,,,slide,slide,slide,exact,true,prop,true,,assets/09_props/img/playground-slide.png
+fix-029,fixture:playground-lesson.json,Playground Fun,Playground Fun,,,swing,swing,swing,exact,true,prop,true,,assets/09_props/img/swing.png
+fix-029,fixture:playground-lesson.json,Playground Fun,Playground Fun,,,seesaw,seesaw,seesaw,exact,true,prop,true,,assets/09_props/img/park-seesaw.png
+fix-029,fixture:playground-lesson.json,Playground Fun,Playground Fun,,,ball,ball,ball,exact,false,none,false,silent blank slot,
+fix-029,fixture:playground-lesson.json,Playground Fun,Playground Fun,,,sandbox,sandbox,sandbox,exact,true,prop,true,,assets/09_props/img/park-sandbox.png
+fix-029,fixture:playground-lesson.json,Playground Fun,Playground Fun,,,playground,playground,playground,exact,true,pack,true,,assets/07_vocab-pack/img/playground.png
+fix-029,fixture:playground-lesson.json,Playground Fun,Playground Fun,,,playground ball,playground-ball,playground-ball,exact,true,prop,true,,assets/09_props/img/playground-ball.png
+fix-030,fixture:school-lesson.json,First Day at School,First Day at School,,,teacher,teacher,teacher,exact,true,prop,true,,assets/09_props/img/job-teacher.png
+fix-030,fixture:school-lesson.json,First Day at School,First Day at School,,,classroom,classroom,classroom,exact,true,pack,true,,assets/07_vocab-pack/img/classroom.png
+fix-030,fixture:school-lesson.json,First Day at School,First Day at School,,,pencil,pencil,pencil,exact,true,prop,true,,assets/09_props/img/school-pencil.png
+fix-030,fixture:school-lesson.json,First Day at School,First Day at School,,,friend,friend,friend,exact,true,pack,true,,assets/07_vocab-pack/img/friend.png
+fix-031,fixture:sharks-lesson.json,Sea Animals,Sea Animals,,,shark,shark,shark,exact,true,prop,true,,assets/09_props/img/animal-shark.png
+fix-031,fixture:sharks-lesson.json,Sea Animals,Sea Animals,,,dolphin,dolphin,dolphin,exact,true,prop,true,,assets/09_props/img/animal-dolphin.png
+fix-031,fixture:sharks-lesson.json,Sea Animals,Sea Animals,,,whale,whale,whale,exact,true,prop,true,,assets/09_props/img/animal-whale.png
+fix-031,fixture:sharks-lesson.json,Sea Animals,Sea Animals,,,fish,fish,fish,exact,true,pack,true,,assets/07_vocab-pack/img/fish.png
+fix-031,fixture:sharks-lesson.json,Sea Animals,Sea Animals,,,ocean,ocean,ocean,exact,true,pack,true,,assets/07_vocab-pack/img/ocean.png
+fix-031,fixture:sharks-lesson.json,Sea Animals,Sea Animals,,,swim,swim,swim,exact,true,pack,true,,assets/07_vocab-pack/img/swim.png
+fix-032,fixture:snack-coat-day-lesson.json,Snack and Coat Day,Snack and Coat Day,,,apple,apple,apple,exact,true,prop,true,,assets/09_props/img/apple.png
+fix-032,fixture:snack-coat-day-lesson.json,Snack and Coat Day,Snack and Coat Day,,,banana,banana,banana,exact,true,prop,true,,assets/09_props/img/food-banana.png
+fix-032,fixture:snack-coat-day-lesson.json,Snack and Coat Day,Snack and Coat Day,,,hat,hat,hat,exact,true,prop,true,,assets/09_props/img/baby-hat.png
+fix-032,fixture:snack-coat-day-lesson.json,Snack and Coat Day,Snack and Coat Day,,,coat,coat,coat,exact,true,prop,true,,assets/09_props/img/mix-trench-coat.png
+fix-033,fixture:soccer-coach-lesson.json,Soccer Practice with Coach,Soccer Practice with Coach,,,coach,coach,coach,exact,true,prop,true,,assets/09_props/img/job-coach.png
+fix-033,fixture:soccer-coach-lesson.json,Soccer Practice with Coach,Soccer Practice with Coach,,,whistle,whistle,whistle,exact,true,prop,true,,assets/09_props/img/sports-whistle.png
+fix-033,fixture:soccer-coach-lesson.json,Soccer Practice with Coach,Soccer Practice with Coach,,,practice,practice,practice,exact,true,pack,true,,assets/07_vocab-pack/img/practice.png
+fix-033,fixture:soccer-coach-lesson.json,Soccer Practice with Coach,Soccer Practice with Coach,,,effort,effort,effort,exact,true,pack,true,,assets/07_vocab-pack/img/effort.png
+fix-033,fixture:soccer-coach-lesson.json,Soccer Practice with Coach,Soccer Practice with Coach,,,ball,ball,ball,exact,true,prop,true,,assets/09_props/img/sport-soccer.png
+fix-033,fixture:soccer-coach-lesson.json,Soccer Practice with Coach,Soccer Practice with Coach,,,teamwork,teamwork,teamwork,exact,true,pack,true,,assets/07_vocab-pack/img/teamwork.png
+fix-034,fixture:space-lesson.json,Space Station Trip,Space Station Trip,,,rocket,rocket,rocket,exact,true,prop,true,,assets/09_props/img/space-rocket.png
+fix-034,fixture:space-lesson.json,Space Station Trip,Space Station Trip,,,astronaut,astronaut,astronaut,exact,true,prop,true,,assets/09_props/img/job-astronaut.png
+fix-034,fixture:space-lesson.json,Space Station Trip,Space Station Trip,,,planet,planet,planet,exact,true,pack,true,,assets/07_vocab-pack/img/planet.png
+fix-034,fixture:space-lesson.json,Space Station Trip,Space Station Trip,,,moon,moon,moon,exact,true,prop,true,,assets/09_props/img/space-moon.png
+fix-034,fixture:space-lesson.json,Space Station Trip,Space Station Trip,,,star,star,star,exact,true,prop,true,,assets/09_props/img/reward-star.png
+fix-034,fixture:space-lesson.json,Space Station Trip,Space Station Trip,,,space,space,space,exact,true,pack,true,,assets/07_vocab-pack/img/space.png
+fix-035,fixture:sports-and-games-lesson.json,Sports and Games,Sports and Games,,,ball,ball,ball,exact,true,prop,true,,assets/09_props/img/sport-soccer.png
+fix-035,fixture:sports-and-games-lesson.json,Sports and Games,Sports and Games,,,team,team,team,exact,true,pack,true,,assets/07_vocab-pack/img/team.png
+fix-035,fixture:sports-and-games-lesson.json,Sports and Games,Sports and Games,,,score,score,score,exact,true,pack,true,,assets/07_vocab-pack/img/score.png
+fix-035,fixture:sports-and-games-lesson.json,Sports and Games,Sports and Games,,,whistle,whistle,whistle,exact,true,prop,true,,assets/09_props/img/sports-whistle.png
+fix-035,fixture:sports-and-games-lesson.json,Sports and Games,Sports and Games,,,game,game,game,exact,true,glyph,true,,
+fix-035,fixture:sports-and-games-lesson.json,Sports and Games,Sports and Games,,,run,run,run,exact,true,pack,true,,assets/07_vocab-pack/img/run.png
+fix-036,fixture:supermarket-lesson.json,Supermarket Shopping,Supermarket Shopping,,,apple,apple,apple,exact,true,prop,true,,assets/09_props/img/apple.png
+fix-036,fixture:supermarket-lesson.json,Supermarket Shopping,Supermarket Shopping,,,bread,bread,bread,exact,true,prop,true,,assets/09_props/img/food-loaf-bread.png
+fix-036,fixture:supermarket-lesson.json,Supermarket Shopping,Supermarket Shopping,,,milk,milk,milk,exact,true,prop,true,,assets/09_props/img/food-milk.png
+fix-036,fixture:supermarket-lesson.json,Supermarket Shopping,Supermarket Shopping,,,cart,cart,shopping-cart,alias,false,none,false,silent blank slot,
+fix-036,fixture:supermarket-lesson.json,Supermarket Shopping,Supermarket Shopping,,,shop,shop,shop,exact,true,prop,true,,assets/09_props/img/city-shop.png
+fix-036,fixture:supermarket-lesson.json,Supermarket Shopping,Supermarket Shopping,,,bag,bag,bag,exact,false,none,false,silent blank slot,
+fix-036,fixture:supermarket-lesson.json,Supermarket Shopping,Supermarket Shopping,,,shopping cart,shopping-cart,shopping-cart,exact,true,pack,true,,assets/07_vocab-pack/img/shopping-cart.png
+fix-036,fixture:supermarket-lesson.json,Supermarket Shopping,Supermarket Shopping,,,shopping bag,shopping-bag,shopping-bag,exact,true,pack,true,,assets/07_vocab-pack/img/shopping-bag.png
+fix-037,fixture:trampoline-lesson.json,Learning how to do a backflip on my trampoline,Learning how to do a backflip on my trampoline,,,trampoline,trampoline,trampoline,exact,false,none,false,silent blank slot,
+fix-037,fixture:trampoline-lesson.json,Learning how to do a backflip on my trampoline,Learning how to do a backflip on my trampoline,,,backflip,backflip,backflip,exact,true,pack,true,,assets/07_vocab-pack/img/backflip.png
+fix-037,fixture:trampoline-lesson.json,Learning how to do a backflip on my trampoline,Learning how to do a backflip on my trampoline,,,bounce,bounce,bounce,exact,true,pack,true,,assets/07_vocab-pack/img/bounce.png
+fix-037,fixture:trampoline-lesson.json,Learning how to do a backflip on my trampoline,Learning how to do a backflip on my trampoline,,,balance,balance,balance,exact,true,pack,true,,assets/07_vocab-pack/img/balance.png
+fix-037,fixture:trampoline-lesson.json,Learning how to do a backflip on my trampoline,Learning how to do a backflip on my trampoline,,,spotter,spotter,spotter,exact,true,pack,true,,assets/07_vocab-pack/img/spotter.png
+fix-037,fixture:trampoline-lesson.json,Learning how to do a backflip on my trampoline,Learning how to do a backflip on my trampoline,,,mat,mat,mat,exact,false,none,false,silent blank slot,
+fix-037,fixture:trampoline-lesson.json,Learning how to do a backflip on my trampoline,Learning how to do a backflip on my trampoline,,,learning how backflip trampoline,learning-how-backflip-trampoline,trampoline,token,true,pack,true,,assets/07_vocab-pack/img/trampoline.png
+fix-037,fixture:trampoline-lesson.json,Learning how to do a backflip on my trampoline,Learning how to do a backflip on my trampoline,,,medium format back,medium-format-back,medium-format-back,exact,true,pack,true,,assets/07_vocab-pack/img/medium-format-back.png
+fix-038,fixture:travel-lesson.json,Airport Travel Day,Airport Travel Day,,,passport,passport,passport,exact,true,pack,true,,assets/07_vocab-pack/img/passport.png
+fix-038,fixture:travel-lesson.json,Airport Travel Day,Airport Travel Day,,,ticket,ticket,ticket,exact,true,pack,true,,assets/07_vocab-pack/img/ticket.png
+fix-038,fixture:travel-lesson.json,Airport Travel Day,Airport Travel Day,,,suitcase,suitcase,suitcase,exact,true,prop,true,,assets/09_props/img/suitcase.png
+fix-038,fixture:travel-lesson.json,Airport Travel Day,Airport Travel Day,,,boarding gate,boarding-gate,boarding-gate,exact,true,pack,true,,assets/07_vocab-pack/img/boarding-gate.png
+fix-039,fixture:two-pets-choice-lesson.json,Two Pets Choice,Two Pets Choice,,,dog,dog,dog,exact,true,pack,true,,assets/07_vocab-pack/img/dog.png
+fix-039,fixture:two-pets-choice-lesson.json,Two Pets Choice,Two Pets Choice,,,cat,cat,cat,exact,true,pack,true,,assets/07_vocab-pack/img/cat.png
+fix-040,fixture:volcano-lesson.json,Living in the Shadow of the Crater,Living in the Shadow of the Crater,,,abundant,abundant,abundant,exact,true,pack,true,,assets/07_vocab-pack/img/abundant.png
+fix-040,fixture:volcano-lesson.json,Living in the Shadow of the Crater,Living in the Shadow of the Crater,,,remnant,remnant,,,false,glyph,true,,
+fix-040,fixture:volcano-lesson.json,Living in the Shadow of the Crater,Living in the Shadow of the Crater,,,vulnerable,vulnerable,,,false,glyph,true,,
+fix-040,fixture:volcano-lesson.json,Living in the Shadow of the Crater,Living in the Shadow of the Crater,,,geothermal,geothermal,geothermal,exact,true,pack,true,,assets/07_vocab-pack/img/geothermal.png
+fix-040,fixture:volcano-lesson.json,Living in the Shadow of the Crater,Living in the Shadow of the Crater,,,subterranean,subterranean,subterranean,exact,true,pack,true,,assets/07_vocab-pack/img/subterranean.png
+fix-040,fixture:volcano-lesson.json,Living in the Shadow of the Crater,Living in the Shadow of the Crater,,,trauma,trauma,,,false,glyph,true,,
+fix-040,fixture:volcano-lesson.json,Living in the Shadow of the Crater,Living in the Shadow of the Crater,,,dormant,dormant,dormant,exact,true,pack,true,,assets/07_vocab-pack/img/dormant.png
+fix-040,fixture:volcano-lesson.json,Living in the Shadow of the Crater,Living in the Shadow of the Crater,,,evacuation,evacuation,evacuation,exact,true,pack,true,,assets/07_vocab-pack/img/evacuation.png
+fix-040,fixture:volcano-lesson.json,Living in the Shadow of the Crater,Living in the Shadow of the Crater,,,seismic,seismic,seismic,exact,true,pack,true,,assets/07_vocab-pack/img/seismic.png
+fix-040,fixture:volcano-lesson.json,Living in the Shadow of the Crater,Living in the Shadow of the Crater,,,tremors,tremors,tremors,exact,false,pack,true,,assets/07_vocab-pack/img/tremors.png
+fix-040,fixture:volcano-lesson.json,Living in the Shadow of the Crater,Living in the Shadow of the Crater,,,eruption,eruption,eruption,exact,false,pack,true,,assets/07_vocab-pack/img/eruption.png
+fix-040,fixture:volcano-lesson.json,Living in the Shadow of the Crater,Living in the Shadow of the Crater,,,ash,ash,ash,exact,false,pack,true,,assets/07_vocab-pack/img/ash.png
+fix-041,fixture:weather-lesson.json,Weather Today,Weather Today,,,sunny,sunny,sunny,exact,true,pack,true,,assets/07_vocab-pack/img/sunny.png
+fix-041,fixture:weather-lesson.json,Weather Today,Weather Today,,,rainy,rainy,rainy,exact,true,pack,true,,assets/07_vocab-pack/img/rainy.png
+fix-041,fixture:weather-lesson.json,Weather Today,Weather Today,,,cloudy,cloudy,cloudy,exact,true,prop,true,,assets/09_props/img/weather-partly-cloudy.png
+fix-041,fixture:weather-lesson.json,Weather Today,Weather Today,,,windy,windy,windy,exact,true,pack,true,,assets/07_vocab-pack/img/windy.png
+fix-041,fixture:weather-lesson.json,Weather Today,Weather Today,,,snowy,snowy,snowy,exact,true,pack,true,,assets/07_vocab-pack/img/snowy.png
+fix-041,fixture:weather-lesson.json,Weather Today,Weather Today,,,hot,hot,hot,exact,true,prop,true,,assets/09_props/img/weather-hot.png
+fix-042,fixture:zoo-phonics-lesson.json,A Day at the Zoo,A Day at the Zoo,,,zoo,zoo,zoo,exact,true,pack,true,,assets/07_vocab-pack/img/zoo.png
+fix-042,fixture:zoo-phonics-lesson.json,A Day at the Zoo,A Day at the Zoo,,,lion,lion,lion,exact,true,pack,true,,assets/07_vocab-pack/img/lion.png
+fix-042,fixture:zoo-phonics-lesson.json,A Day at the Zoo,A Day at the Zoo,,,bear,bear,bear,exact,true,pack,true,,assets/07_vocab-pack/img/bear.png
+fix-042,fixture:zoo-phonics-lesson.json,A Day at the Zoo,A Day at the Zoo,,,cage,cage,cage,exact,true,pack,true,,assets/07_vocab-pack/img/cage.png
+fix-042,fixture:zoo-phonics-lesson.json,A Day at the Zoo,A Day at the Zoo,,,feed,feed,feed,exact,true,pack,true,,assets/07_vocab-pack/img/feed.png
+fix-042,fixture:zoo-phonics-lesson.json,A Day at the Zoo,A Day at the Zoo,,,map,map,map,exact,false,none,false,silent blank slot,
+fix-042,fixture:zoo-phonics-lesson.json,A Day at the Zoo,A Day at the Zoo,,,zoo map,zoo-map,zoo-map,exact,true,pack,true,,assets/07_vocab-pack/img/zoo-map.png

@@ -1,0 +1,1570 @@
+<timestamp>Thursday, Aug 20, 2026, 12:00 AM (UTC-4)</timestamp>
+<user_query>
+CURSOR PROMPT — BOARD-ENABLING COORDINATED ASSET HARVEST
+
+We are still in STOCKPILE MODE.
+
+This is NOT lesson wiring.
+
+This is NOT a board-type implementation sprint.
+
+This is NOT another general asset harvest.
+
+This is a specialized manufacturing pass for:
+
+COORDINATED ASSET FAMILIES
+
+whose value exists because multiple images must agree with one another in ways that are difficult or impossible to retrofit later.
+
+==================================================
+CORE TEST
+==================================================
+
+For every proposed asset, ask:
+
+DOES THIS ASSET ONLY BECOME VALUABLE BECAUSE IT AGREES WITH ANOTHER ASSET IN:
+
+- camera
+- canvas
+- footprint
+- geometry
+- horizon
+- lighting
+- world layout
+- character identity
+- eyeline
+- style
+- scale
+- object placement
+- evidence relationship
+- route alignment
+
+?
+
+If YES:
+strong MANUS_WORTHY_NOW candidate.
+
+If NO:
+prefer:
+
+- existing inventory
+- local scripting
+- stock/open assets later
+- ordinary generation later
+- skip
+
+Do NOT use Manus merely because an image would be nice to own.
+
+==================================================
+WHY WE ARE DOING THIS
+==================================================
+
+We already have a very large estate of:
+
+- generic props
+- vocabulary
+- verbs/actions
+- settings
+- stages
+- Mia/Leo poses
+- emotions
+- peeks
+- reveals
+- visual grammar
+- atmosphere
+- containers
+- silhouettes
+- line art
+- overlays
+- foregrounds
+- story environments
+- content worlds
+
+Those are NOT the gap.
+
+The remaining high-value gap is:
+
+MATCHED / REGISTERED / RELATIONAL ART
+
+that could unlock future ClassIn board mechanics such as:
+
+- Scene Repair
+- Half-Truth
+- Perspective Window
+- Secret Instruction
+- Evidence Wall
+- Living Map
+- Time Machine
+- Consequence Board
+- Disappearing Market
+- Empty Chair
+- Barrier Match
+- Storyboard Director
+- Layer Stack
+- Alibi Board
+- Rewind / Reconstruction
+- Blueprint vs Build
+- Spot-the-Impossible
+
+We are manufacturing the ART PREREQUISITES for those mechanics now.
+
+We are NOT implementing those mechanics now.
+
+==================================================
+CLASSIN CONSTRAINT
+==================================================
+
+ClassIn gives us primarily:
+
+- drag
+- move
+- overlay
+- cover/uncover
+- reveal
+- arrange
+- sort
+- sequence
+- compare
+- teacher-controlled timing/scroll
+
+Do NOT design around:
+
+- collision
+- snapping
+- state detection
+- automatic combination
+- physics
+- inventory logic
+- conditional branching engine
+- automatic scoring
+
+Any future mechanic must remain understandable through HUMAN visual judgment.
+
+==================================================
+FIRST: READ CURRENT MANUS INSTRUCTIONS
+==================================================
+
+Before using or modifying Manus automation:
+
+Read the CURRENT Manus skill/instruction file available in the repo/environment.
+
+Treat that as source of truth for:
+
+- supported generation modes
+- reference-image workflows
+- edit/variation workflows
+- concurrency
+- polling
+- downloading
+- retries
+- batching
+- rate limits
+- task lifecycle
+
+If current Manus behavior is strange:
+
+DO NOT guess.
+
+Re-read the current instructions and align implementation to them.
+
+Do not broadly refactor working Manus automation.
+
+==================================================
+SECOND: AUDIT REPO TRUTH
+==================================================
+
+Before firing new tasks, inspect the actual harvested estate.
+
+Specifically check whether we already have meaningful depth in:
+
+- registered correct/wrong scenes
+- registered before/after scenes
+- populated/empty pairs
+- damage/repair pairs
+- same-world multi-view sets
+- Mia/Leo information-state poses
+- clue/residue correspondence
+- route tiles/checkpoint variants
+- time-era same-location sets
+- cutaway/layer sets
+- plan/elevation pairs
+- deforming container states
+- costume overlays on fixed character poses
+
+Classify each proposed family:
+
+ALREADY_DEEP
+PARTIAL
+THIN
+MISSING
+LOCAL_SCRIPTABLE
+REFERENCE_CONTROLLED
+LOW_VALUE
+
+Do not treat ONE example as family coverage.
+
+But do not regenerate an already-deep family merely because this prompt names it.
+
+==================================================
+THE FIVE CRITICAL KITS
+==================================================
+
+These are the priority.
+
+Unless repo audit proves otherwise, manufacture these before secondary work.
+
+==================================================
+K1 — REGISTERED SCENE STATE FAMILIES
+==================================================
+
+THIS IS PRIORITY #1.
+
+Create approximately 20 strong base environments.
+
+Candidate environments:
+
+- kitchen
+- bedroom
+- classroom
+- shop interior
+- café
+- park
+- street corner
+- bus stop
+- station platform
+- library
+- clinic/doctor waiting room
+- restaurant kitchen
+- garden
+- beach
+- sports hall
+- hotel room
+- market stall
+- office
+- garage/workshop
+- riverbank
+
+Reuse existing high-quality worlds where possible.
+
+Do NOT unnecessarily invent new base environments.
+
+For each environment, create a coordinated six-state ladder:
+
+STATE 1 — BASELINE / CORRECT
+Normal coherent scene.
+
+STATE 2 — SUBTLY WRONG
+2–4 plausible visual errors.
+
+Examples:
+- inappropriate object
+- wrong-season object
+- object in impossible but visually plausible location
+- mismatch with scene function
+- missing expected object
+- swapped object
+
+The scene should remain believable enough that the learner must inspect it.
+
+STATE 3 — DAMAGED / DISORDERED
+Visible problem:
+- spill
+- break
+- disorder
+- fallen item
+- displaced item
+- weather consequence
+- damage
+
+STATE 4 — REPAIRED / RESTORED
+IMPORTANT:
+Do not simply revert to pristine baseline.
+
+Show evidence of repair where meaningful:
+- patch
+- tape
+- replacement
+- cleaned area
+- fixed object
+- repaint
+- restored order
+
+STATE 5 — EMPTIED / ABSENCE
+Objects/people removed while the environment remains identical.
+
+Leave meaningful traces where possible:
+- empty hook
+- dust outline
+- chair indentation
+- puddle
+- crumbs
+- gap
+- displaced mat
+- missing-object space
+
+STATE 6 — ACCUMULATED CONSEQUENCE
+Same world with a visible result of repeated action/time.
+
+Examples:
+- mess accumulated
+- garden grown
+- shelves depleted
+- room improved
+- rain damage
+- wear
+- crowd buildup
+- trash buildup
+- completed preparation
+
+==================================================
+REGISTRATION REQUIREMENTS — K1
+==================================================
+
+These are not six loosely related illustrations.
+
+They are ONE FAMILY.
+
+Require as much consistency as Manus supports:
+
+- same canvas
+- same camera
+- same horizon
+- same vanishing point
+- same environmental geometry
+- same lighting direction
+- same object slots
+- same scale
+- same open interaction area
+
+If the current Manus workflow supports:
+
+- reference-image editing
+- image variations
+- image-to-image modification
+- family generation with a fixed reference
+
+prefer the method most likely to preserve geometry.
+
+Do NOT assume pixel-perfect registration if the tool cannot provide it.
+
+Track actual registration quality separately:
+
+REGISTRATION_A
+near-identical / overlay-ready
+
+REGISTRATION_B
+strong visual consistency; minor local alignment possible
+
+REGISTRATION_C
+same concept but too much geometry drift
+
+Only A/B should count as successful coordinated family stock.
+
+If local crop/scale alignment can safely upgrade B → A, do so.
+
+Do not pretend C is registered.
+
+TARGET:
+
+~20 environments × ~6 states
+≈ 120 images
+
+Adjust after repo dedupe.
+
+==================================================
+K2 — MIA / LEO KNOWLEDGE / EPISTEMIC POSE BANK
+==================================================
+
+We already have ordinary actions and emotions.
+
+DO NOT repeat those.
+
+The missing family is:
+
+POSES THAT COMMUNICATE WHO KNOWS WHAT.
+
+This is a recurring-character consistency problem.
+
+Generate Mia and Leo in a tightly locked character style.
+
+Candidate pose concepts PER CHARACTER:
+
+- just learned / realization
+- unaware
+- looking away
+- missed what happened
+- whispering off-panel
+- being whispered to
+- passing note
+- receiving note
+- hiding object behind back
+- hiding something under cover
+- discovering hidden object
+- pointing at something off-panel
+- reading something viewer cannot see
+- reacting before event
+- reacting after event
+- pretending
+- checking over shoulder
+- covering own eyes
+- covering another person's eyes
+- holding closed container
+- holding same type of container open
+- explaining
+- listening skeptically
+- listening and becoming convinced
+- wait gesture
+- come-here gesture
+- deciding between two options
+- refusing
+- reluctant agreement
+- searching
+- finding
+- giving up
+
+Do not blindly duplicate pose concepts already present in the recent Mia/Leo bank.
+
+AUDIT FIRST.
+
+Then fill actual gaps.
+
+==================================================
+MIA / LEO TWO-SHOTS
+==================================================
+
+Generate approximately 12–15 coordinated two-character scenes where RELATIVE EYELINE matters.
+
+Examples:
+
+- Mia knows, Leo does not
+- Leo knows, Mia does not
+- whispering
+- secret handoff
+- one hiding item from other
+- one looking while other looks away
+- one explains, one doubts
+- one points off-panel, other follows
+- one discovers while other is unaware
+- one sees clue, other misses it
+- barrier-style communication
+- one holds hidden card/instruction
+
+These should NOT simply be two separately composited figures where:
+
+- eye contact is wrong
+- scale differs
+- body orientation does not match
+
+The value is their relationship.
+
+TARGET:
+
+roughly 60 single-character gap-filling poses
++
+~15 two-shots
+
+≈ 75 images maximum before dedupe.
+
+==================================================
+K3 — MULTI-VIEW ENVIRONMENT SETS
+==================================================
+
+Create approximately 10–12 HIGH-REUSE environments with coordinated viewpoints.
+
+Prefer overlap with K1 worlds.
+
+For each environment:
+
+VIEW 1
+wide establishing view
+
+VIEW 2
+doorway / entrance view
+
+VIEW 3
+through window / partial occluded view
+
+VIEW 4
+overhead / plan-ish view
+
+Optional VIEW 5 only where genuinely useful:
+- behind counter
+- over shoulder
+- other functional POV
+
+CRITICAL:
+
+The pedagogical value comes from INFORMATION ASYMMETRY.
+
+Design the views so:
+
+- one reveals something another hides
+- one shows spatial relationship another obscures
+- one answers a question the other creates
+
+Do NOT generate four arbitrary cinematic angles.
+
+Potential worlds:
+
+- café
+- classroom
+- bedroom
+- shop
+- market
+- kitchen
+- library
+- street
+- station
+- hotel room
+- garden
+- workshop
+
+TARGET:
+
+~12 environments × 4
+≈ 48 images
+
+Again, dedupe against actual repo.
+
+==================================================
+K4 — RESIDUE ↔ OBJECT CORRESPONDENCE LIBRARY
+==================================================
+
+The relationship is the asset.
+
+Do NOT generate generic detective clipart.
+
+Every residue/trail/clue must correspond to:
+
+- an existing prop
+- an existing environment
+- an existing character action
+- or a specifically generated counterpart
+
+Goal:
+
+~40 meaningful correspondence pairs.
+
+Examples:
+
+- muddy paw prints ↔ dog
+- crumbs + plate ↔ cake/food
+- wet umbrella + puddle ↔ rain
+- single glove ↔ glove pair/person
+- cup ring ↔ cup
+- sand in shoe ↔ beach
+- bicycle-shaped empty rack gap ↔ bicycle
+- flour handprint ↔ baking
+- melted ice cream ↔ ice cream
+- broken shoelace ↔ shoe
+- scarf on stairs ↔ departing person
+- smashed pot + soil trail ↔ pot / possible cause
+- pulled-out chair + coat ↔ recent presence
+- wet footprints ↔ pool/rain
+- leaf trail ↔ outdoor entry
+- missing-picture clean rectangle ↔ wall picture
+- tire track ↔ bicycle/cart/vehicle
+- pet hair ↔ animal
+- torn paper corner ↔ matching paper
+- ribbon fragment ↔ gift/package
+- water drip trail ↔ leaking container
+- open drawer + empty shape ↔ removed object
+- crumbs inside bag ↔ snack
+- displaced cushion ↔ hidden/search situation
+
+Do not overdo microscopic forensic details unsuitable for ESL.
+
+The clue should be:
+
+AMBIGUOUS BEFORE EXPLANATION
+but
+LOGICAL AFTER EXPLANATION.
+
+Where useful, produce:
+
+A. isolated evidence cutout
+B. scene-scale version
+
+TARGET:
+
+~40 concepts × up to 2
+≈ 60–80 images
+
+Reuse existing residue bank where strong.
+
+Do not redraw duplicates.
+
+==================================================
+K5 — REGISTERED ROUTE WORLD SYSTEM
+==================================================
+
+Build ONE excellent reusable illustrated route world first.
+
+Do not generate dozens of random maps.
+
+The goal is a modular world with coherent geometry.
+
+Prefer:
+
+town → edge of countryside
+
+or similar hybrid world supporting many lesson topics.
+
+Potential components:
+
+BASE
+- one illustrated plan-ish map/world
+
+ROUTE SEGMENTS
+- straight
+- corner
+- T-junction
+- four-way junction
+- bridge
+- tunnel
+- footpath
+- stairs
+- ramp
+- roundabout
+- dead end
+- crossing
+
+BLOCKERS
+- roadworks
+- flood
+- closed gate
+- fallen tree
+- crowd
+- ice/snow
+- damaged bridge
+- construction
+- delivery obstruction
+- event/market crowd
+- long queue
+
+Avoid politically sensitive blocker imagery unless needed.
+
+CHECKPOINTS
+- bus stop
+- station
+- shop
+- school
+- clinic/hospital
+- park
+- harbor
+- crossroads
+- café
+- library
+
+DESTINATION STATES
+- open
+- closed
+- busy
+- empty
+- being repaired
+- celebration/event
+
+TRAVELERS
+- pedestrian
+- bicycle
+- bus
+- car
+- delivery vehicle
+- scooter or other useful scale-compatible token
+
+==================================================
+ROUTE REGISTRATION
+==================================================
+
+Require:
+
+- fixed tile/grid pitch
+- compatible road/path width
+- consistent projection
+- consistent edge geometry
+- consistent scale
+- matching environmental styling
+
+Route tiles should visually connect.
+
+This is NOT a precise GIS map.
+
+This is an illustrated PLAY WORLD.
+
+TARGET:
+
+~40–50 assets.
+
+==================================================
+CRITICAL SUBTOTAL
+==================================================
+
+Rough planning target before dedupe:
+
+K1 Registered states ........ ~120
+K2 Epistemic characters ..... ~75
+K3 Multi-view worlds ........ ~48
+K4 Residue relationships .... ~60–80
+K5 Route system ............. ~40–50
+
+TOTAL:
+approximately 350–375+ critical assets
+
+This is NOT a quota.
+
+Repo truth wins.
+
+==================================================
+SECONDARY BOARD-ENABLING KITS
+==================================================
+
+Only after critical kits are healthy.
+
+==================================================
+S1 — CUTAWAY / REGISTERED LAYER SERIES
+==================================================
+
+Potential subjects:
+
+- house
+- school/building
+- ship
+- train
+- volcano
+- ocean
+- Earth
+- cave
+- tree/root
+- beehive
+- anthill
+- body at broad educational level
+- ancient structure
+
+Need aligned progression:
+
+EXTERIOR
+→ structural layer
+→ interior/cutaway
+→ deeper layer
+
+Avoid baked labels.
+
+Aim:
+~25–35 assets.
+
+Do not duplicate the separate content-world cutaway harvest.
+
+This stream is for REGISTERED LAYERS specifically.
+
+==================================================
+S2 — TIME-ERA SAME-PLACE SERIES
+==================================================
+
+Same exact location, same camera.
+
+Potential:
+
+- street corner
+- classroom
+- kitchen/home room
+- station
+- shop
+- town square
+
+Use approximately 3–4 eras each.
+
+Examples:
+
+early historical
+mid-20th-century
+late-20th-century
+present
+
+Exact years/facts added later.
+
+Goal:
+~6 locations × 4 = ~24 images.
+
+Avoid political/historically sensitive specifics during raw visual harvest.
+
+==================================================
+S3 — CONTAINER DEFORMATION STATES
+==================================================
+
+IMPORTANT CORRECTION:
+
+Do NOT Manus-generate normal:
+
+empty
+quarter
+half
+full
+
+when local compositing can achieve it.
+
+Only generate states where CONTAINER GEOMETRY CHANGES.
+
+Examples:
+
+- bulging suitcase
+- overstuffed backpack
+- overflowing shopping bag
+- overflowing laundry basket
+- very crowded bus/train compartment
+- stretched sack
+- overflowing bin
+- compressed storage box
+
+Aim:
+~15–25 states.
+
+==================================================
+S4 — DISPLAY / CURATOR SURFACES
+==================================================
+
+Large ClassIn-readable surfaces:
+
+- museum case
+- pedestal
+- shelf
+- display wall
+- specimen tray
+- exhibit niches
+- gallery wall
+- market display
+- collection table
+
+Blank.
+
+No baked text.
+
+Need slots/areas large enough for actual assets.
+
+Aim:
+~15–20.
+
+==================================================
+S5 — RULE / SIGN PICTOGRAM SYSTEM
+==================================================
+
+Only if repo audit shows this is not already deep.
+
+Large visual rule indicators:
+
+- allowed
+- prohibited
+- required
+- wait
+- stop
+- quiet
+- line up
+- keep out
+- take one
+- return item
+- clean up
+- recycle
+- careful
+- walk
+- sit
+- stand
+
+NO WORDS.
+
+Ensure clear icon-scale communication.
+
+Aim:
+~20–25.
+
+But classify RESEARCH_FIRST if legibility is poor for young learners.
+
+==================================================
+S6 — PARTIAL / DAMAGED TEXT CARRIERS
+==================================================
+
+This is ART FURNITURE, not actual lesson text.
+
+Examples:
+
+- torn note
+- folded paper
+- half-covered message
+- ripped poster
+- damaged label
+- partially hidden card
+- smudged paper
+- opened envelope
+- sealed envelope
+- phone/card-like blank message surface
+
+NO GENERATED WORDS.
+
+Cursor will add controlled text later.
+
+Aim:
+~12–18.
+
+==================================================
+S7 — PLAN ↔ ELEVATION PAIRS
+==================================================
+
+Very specialized.
+
+Potential environments:
+
+- bedroom
+- classroom
+- café
+- shop
+- simple house
+- workshop
+- library
+- hotel room
+
+For each:
+
+A. simple overhead/plan view
+B. matching perspective room view
+
+Furniture/object placement should correspond.
+
+Aim:
+~8 environments × 2
+≈ 16 images.
+
+This enables:
+
+Blueprint vs Build
+Perspective reasoning
+Barrier tasks
+Spatial descriptions
+
+==================================================
+S8 — REAL RELIGHTING / TIME-OF-DAY SERIES
+==================================================
+
+Do NOT waste Manus on basic tint.
+
+Only generate where shadows/light direction truly changes.
+
+Pilot first.
+
+Potential:
+
+- playground
+- street
+- garden
+- house exterior
+
+States:
+
+morning
+midday
+late afternoon
+evening
+
+If a local relighting method gets ~80% of the pedagogical value:
+
+STOP MANUS WORK AND CLASSIFY LOCAL.
+
+If genuine shadow movement creates clear value:
+
+keep.
+
+Maximum initial:
+~4 scenes × 4
+≈ 16.
+
+==================================================
+S9 — FIXED-POSE COSTUME OVERLAYS
+==================================================
+
+Paper-doll board enabling.
+
+Do NOT generate another full free-pose role bank.
+
+Choose ONE standardized character base first.
+
+Possible:
+Mia
+Leo
+or a neutral child figure
+
+Then generate registered clothing overlays aligned to exact body shape.
+
+Potential:
+
+- everyday clothing
+- rain gear
+- winter clothing
+- sports
+- job-role outfits
+- formal
+- pajamas
+- travel
+- safety clothing
+
+Avoid culturally specific costume stereotyping.
+
+Aim:
+~20–25 overlays.
+
+==================================================
+S10 — SEASON-MIGRATION REGISTERED WORLD
+==================================================
+
+Pilot a same-world four-season set where:
+
+- environment geometry remains constant
+- vegetation changes
+- weather changes
+- some animals/objects migrate/disappear/return
+
+This differs from generic seasonal backgrounds because objects can be compared/moved between registered versions.
+
+Aim:
+~4 worlds × 4
+≈ 16 images maximum.
+
+==================================================
+LOCAL — DO NOT SPEND MANUS
+==================================================
+
+Do locally whenever possible:
+
+- silhouettes
+- ordinary line art
+- opacity
+- ghosting
+- mirror flip
+- crop
+- zoom crop
+- recolor
+- palette swaps
+- contact shadows
+- masks
+- halos
+- highlights
+- blur reveal
+- grayscale
+- desaturation
+- sticker outlines
+- generic numbered versions
+- generic framed versions
+- day/night tint
+- simple occupancy composites
+- ordinary disappearance by hiding a layer
+
+==================================================
+DO NOT GENERATE MORE OF THESE
+==================================================
+
+Unless repo audit proves an actual gap:
+
+- generic nouns
+- ordinary props
+- generic containers
+- basic stages
+- ordinary floors
+- reveal curtains
+- arrows
+- speech bubbles
+- sparkles
+- attention effects
+- ordinary emotion faces
+- generic Mia/Leo action poses
+- ordinary weather overlays
+- generic peeks
+- basic sort surfaces
+- journey ribbons
+- more random scene dressing
+
+These are already deep or easy later.
+
+==================================================
+COORDINATED FAMILY PRODUCTION RULE
+==================================================
+
+CRITICAL:
+
+DO NOT treat each image in a matched family as an independent job.
+
+The family is the job.
+
+Examples:
+
+BAD:
+generate kitchen normal
+later generate kitchen wrong
+later generate kitchen broken
+
+GOOD:
+one production brief whose explicit purpose is:
+
+SAME KITCHEN
+SAME CAMERA
+SAME GEOMETRY
+six controlled states
+
+Likewise:
+
+SAME STREET
+four eras
+
+SAME CAFÉ
+four viewpoints
+
+SAME CHARACTER
+epistemic pose family
+
+SAME ROUTE SYSTEM
+all compatible tiles
+
+==================================================
+GENERATION METHOD SELECTION
+==================================================
+
+For each family, choose the most registration-preserving method actually supported by current Manus tooling.
+
+Potential order of preference:
+
+1. edit/variation from an accepted base image
+2. reference-locked family generation
+3. all states/views produced together in one contact sheet/task
+4. independent prompts ONLY as a last resort
+
+Do not invent unsupported Manus features.
+
+Use the current skill documentation.
+
+==================================================
+CONTACT SHEET STRATEGY
+==================================================
+
+Contact sheets are especially useful here because the sibling states can coexist in one task.
+
+Examples:
+
+2×3:
+six registered room states
+
+2×2:
+four viewpoints
+
+3×3:
+pose family
+
+2×2:
+four eras
+
+But only use contact sheets when per-panel resolution remains sufficient.
+
+The purpose is FAMILY CONSISTENCY, not maximum cell count.
+
+Favor fewer, larger cells for environments.
+
+==================================================
+QA — REGISTRATION SCORE
+==================================================
+
+Add a lightweight registration-specific QA status.
+
+For matched families:
+
+REG_A
+Excellent correspondence.
+Can be directly used as sibling states.
+
+REG_B
+Minor drift.
+Usable after light local alignment/crop/scale repair.
+
+REG_C
+Major geometry or design drift.
+Not suitable as a registered family.
+
+REG_FAIL
+Different world/character/object entirely.
+
+Keep normal:
+
+PASS
+RAW
+HOLD
+JUNK
+
+separate from registration grade.
+
+Example:
+
+PASS + REG_B
+
+means:
+good image family but needs small alignment cleanup.
+
+==================================================
+QA QUESTIONS
+==================================================
+
+For each registered family ask:
+
+- same camera?
+- same horizon?
+- same geometry?
+- same floor/wall boundaries?
+- same object scale?
+- same character design?
+- same lighting direction where required?
+- intended differences only?
+- accidental differences introduced?
+- does one state remain clearly identifiable as the same world?
+
+For multi-view:
+
+- clearly same world?
+- consistent object placement?
+- useful information asymmetry?
+- genuinely distinct vantage?
+
+For epistemic poses:
+
+- same Mia/Leo design?
+- correct eyeline?
+- knowledge state readable without text?
+- not merely an emotion pose?
+
+For evidence pairs:
+
+- clue relates logically to counterpart?
+- clue ambiguous before explanation but satisfying after?
+- visible at ClassIn scale?
+
+For route tiles:
+
+- edges join?
+- scale coherent?
+- paths same width?
+- projection stable?
+
+==================================================
+DO NOT OVER-CHASE PIXEL PERFECTION
+==================================================
+
+We care about mechanics.
+
+Not mathematical image registration for its own sake.
+
+A Scene Repair pair may only require:
+
+VISUALLY SAME ROOM
++
+DROP-IN REPLACEMENT MAKES SENSE.
+
+Do not spend hours fixing 2-pixel drift.
+
+Prioritize functional correspondence.
+
+==================================================
+PARALLEL PRODUCTION
+==================================================
+
+Recommended streams:
+
+STREAM A — REGISTERED ENVIRONMENT STATES
+K1
+
+STREAM B — CHARACTER KNOWLEDGE
+K2
+
+STREAM C — RELATIONAL EVIDENCE
+K4
+
+STREAM D — ROUTE SYSTEM
+K5
+
+These can start in parallel after audit.
+
+STREAM E — MULTI-VIEW ENVIRONMENTS
+K3
+
+Prefer starting after several K1 base worlds are accepted so it can reuse locked environment identities.
+
+SECONDARY STREAMS after critical:
+
+F — cutaway/layers
+G — time-era
+H — plan/elevation
+I — display/rules/text-carriers
+J — costume/relighting/deformation/season pilots
+
+==================================================
+SCALE
+==================================================
+
+Expected critical estate after dedupe:
+
+~350–400 coordinated assets.
+
+Expected secondary estate:
+
+~150–225.
+
+Total likely useful output:
+
+~500–600 specialized mechanic-enabling assets.
+
+Do NOT inflate this into another 6,000-image general harvest.
+
+The value here is COORDINATION, not count.
+
+If 400 highly coordinated images unlock 15 future board types, that is better than 4,000 random nouns.
+
+==================================================
+NO BOARD IMPLEMENTATION
+==================================================
+
+DO NOT:
+
+- implement Scene Repair
+- implement Half-Truth
+- implement Perspective Window
+- implement Evidence Wall
+- implement Time Machine
+- implement Capacity
+- implement Living Map
+- implement Barrier Match
+- implement any other board
+
+No recipes.
+
+No producer changes.
+
+No renderer changes.
+
+No lesson generation changes.
+
+No UI.
+
+No modules.
+
+No archetype activation.
+
+We are ONLY ensuring the specialized art will exist when those mechanics are built later.
+
+==================================================
+NO CONTENT-WORLD DUPLICATION
+==================================================
+
+There is a separate larger content-world/preset-world stockpile effort.
+
+Do not duplicate:
+
+- generic science worlds
+- generic holiday worlds
+- ordinary country settings
+- generic history backgrounds
+- ordinary habitats
+- general scenes
+
+unless a version is required specifically because it must participate in a coordinated mechanic-enabling family.
+
+Example:
+
+generic classroom:
+probably already owned.
+
+six-state registered classroom:
+this harvest.
+
+generic café:
+already owned.
+
+same café from four purposeful viewpoints:
+this harvest.
+
+==================================================
+DURABLE ORGANIZATION
+==================================================
+
+Prefer:
+
+harvested/board-enabling/
+
+  registered-scene-states/
+  epistemic-character-poses/
+  multi-view-environments/
+  evidence-correspondence/
+  route-world/
+  cutaway-layers/
+  time-era/
+  container-deformation/
+  displays/
+  rule-signs/
+  text-carriers/
+  plan-elevation/
+  relighting/
+  costume-overlays/
+  seasonal-registered/
+
+Each family should preserve:
+
+- family_id
+- sibling IDs
+- base/reference asset
+- state/view role
+- registration grade
+- source task
+- prompt/ref
+- QA state
+
+Do not overengineer metadata.
+
+==================================================
+PERIODIC COMMITS
+==================================================
+
+Make durable commits by completed coordinated-family milestone.
+
+Do not wait until the entire harvest completes.
+
+Suggested:
+
+commit 1:
+audit + manifest structure
+
+commit 2:
+registered scene states wave
+
+commit 3:
+Mia/Leo knowledge bank
+
+commit 4:
+evidence + route system
+
+commit 5:
+multi-view
+
+commit 6+:
+secondary families
+
+Adapt to actual throughput.
+
+==================================================
+STOP CONDITIONS
+==================================================
+
+DO NOT stop merely because:
+
+- one family is done
+- 100 assets landed
+- one Manus stream slowed
+
+Continue until:
+
+A. five critical kits are meaningfully covered,
+
+AND
+
+B. secondary high-regret families have been attempted where Manus quality supports them,
+
+OR
+
+C. Manus quality/concurrency/economics clearly make further harvesting poor value.
+
+==================================================
+FINAL REPORT
+==================================================
+
+Report:
+
+TOTALS
+- Manus tasks
+- coordinated family briefs
+- contact sheets
+- final extracted assets
+- PASS
+- RAW
+- HOLD
+- JUNK
+
+REGISTRATION
+- REG_A
+- REG_B
+- REG_C
+- REG_FAIL
+
+CRITICAL KITS
+- registered scene states
+- epistemic poses
+- multi-view worlds
+- residue/object pairs
+- route world
+
+SECONDARY
+- cutaway/layers
+- time-era
+- deformation
+- displays
+- rule signs
+- partial carriers
+- plan/elevation
+- relighting
+- costume overlays
+- seasonal registered
+
+FOR EACH:
+- planned families
+- completed families
+- asset count
+- usable registration rate
+- strongest examples
+- biggest failure mode
+- remaining runway
+
+Then answer:
+
+1. Which coordinated family produced the best Manus consistency?
+
+2. Which family was hardest to keep registered?
+
+3. Where did image-edit/reference workflows outperform fresh generations?
+
+4. Which future board mechanics are now genuinely ART-READY because of this harvest?
+
+5. Which future mechanics still lack a specialized art dependency?
+
+6. Which proposed kit turned out not to be worth generating?
+
+7. What did we discover that Claude/Perplexity got wrong about actual manufacturing?
+
+8. If Manus became paid immediately after this run, which single coordinated asset family would we still regret not having made deeper?
+
+Then STOP.
+
+DO NOT WIRE ANYTHING.
+
+==================================================
+FINAL PRINCIPLE
+==================================================
+
+This harvest is successful when we own art that would be annoying, expensive, or impossible to recreate independently later.
+
+The objective is NOT:
+
+MORE ASSETS.
+
+The objective is:
+
+MATCHED ASSET FAMILIES THAT UNLOCK FUTURE BOARD MECHANICS.
+
+A generic image library can always give us another chair.
+
+It cannot reliably give us:
+
+the same classroom in six meaningful states,
+the same café from four pedagogically useful viewpoints,
+the same Mia knowing and not knowing,
+a clue that actually corresponds to a prop we own,
+or a route world whose pieces all fit together.
+
+Bank those now.
+</user_query>

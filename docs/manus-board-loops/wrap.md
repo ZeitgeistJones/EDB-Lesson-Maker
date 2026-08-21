@@ -42,3 +42,25 @@ Independent single-board optimization log.
 - ACTION: Priority 3 (Medium) | Scene: Recap assets | Action: Replace dental mirror with toothbrush or floss, or declare mirror as taught word
 - ACTION: Priority 4 (Medium) | Scene: Vocabulary alignment | Action: Align 'tooth/teeth' in word-boost with a single clear model sentence
 - ACTION: Priority 5 (Low) | Scene: Visual polish | Action: Tighten typography and color to reduce worksheet aesthetic; emphasize celebration moment
+
+## Round 3 — camping (A1)
+
+- BOARD_PATH: `tmp/manus-board-loops/wrap/round-03-camping.jpg`
+- PACKET: `tmp/manus-board-loops/wrap/round-03-camping`
+- TASK: https://manus.im/app/77yw3uvhzGqsQ3JzGWKSvq
+- MANUS_VERDICT: revise
+- SCORE: 52
+- POLISH (ppt_like_quality): 4
+- WEAKEST_LINK: Visual / Product Polish | PAYOFF_CONTRACT | The wrap finishes with a static “High Five” label that does not visibly change after the student speaks; the exit-ticket payoff contract is not observable in the closing state.
+- ESCALATION_HOMEWORK: escalating_homework:
+  challenge: Create a topic-agnostic wrap-completion payoff that always results in a visible post-action state (e.g., lit campfire, stamped badge, or character reaction) after the exit-ticket sentence, implemented as scene-driven closure rather than a static label.
+  rationale: Generalizes the closure payoff rule across topics and reinforces the required action→payoff loop for premium quality.
+  producer_response: DECLINE
+- STATUS: structured_ok
+
+### Blocking / next actions
+- ACTION: Blocking|Define a distinct post-action state for exit-tickets on wrap boards (systemic)
+- ACTION: High|Redesign the finish-line composition to be scene-led rather than a stacked-card worksheet
+- ACTION: Medium|Bind each recap word to a specific, grammatically valid frame route
+- ACTION: Medium|Replace the unused/camouflaged word fund with a camping-appropriate target word or remove it from the set
+- ACTION: Low|Increase the payoff emphasis by enlarging a single final campsite moment and reducing chrome around the wrap

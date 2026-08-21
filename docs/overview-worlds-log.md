@@ -9,13 +9,13 @@ Prior waves 1–3: from `request-kid-interest-shift60.mjs` (already harvested).
 
 | Metric | Count |
 |---|---:|
-| Worlds (est.) | 75 / 25–80 |
+| Worlds (est.) | 123 / 25–150 |
 | Prior worlds (w1–3) | 18 |
-| Waves planned (aggro) | 19 |
-| Waves done | 19 |
-| Tasks | 19 |
-| Sheets downloaded | 57 |
-| Novelty (discovered %) | 95% |
+| Waves planned (aggro) | 35 |
+| Waves done | 35 |
+| Tasks | 35 |
+| Sheets downloaded | 105 |
+| Novelty (discovered %) | 97% |
 
 ## Prior (done)
 
@@ -47,6 +47,22 @@ Prior waves 1–3: from `request-kid-interest-shift60.mjs` (already harvested).
 - **ow-wave23-transit3** `ow-wave23` — generated_raw — novelty=discovered-new — https://manus.im/app/c7wMvt7V8SqoGDBFEgQMcQ — 3 sheets / 3 worlds — Transit depth beyond monorail/ferry/tram
 - **ow-wave24-maker-media** `ow-wave24` — generated_raw — novelty=discovered-new — https://manus.im/app/hRDgQbwykNQZAEDmAk3fd3 — 3 sheets / 3 worlds — Discovered maker/media worlds not in seeds
 - **ow-wave25-candy-toy** `ow-wave25` — generated_raw — novelty=discovered-new — https://manus.im/app/N9twdy42hEBzxC9pjezqVQ — 3 sheets / 3 worlds — Playful fantasy — invent beyond pirate/clockwork
+- **ow-wave26-sports2** `ow-wave26` — generated_raw — novelty=discovered-new — https://manus.im/app/NsTGVB2JrPpYJWeHSPnqRa — 3 sheets / 3 worlds — More leisure sports campuses beyond sports-complex/waterpark
+- **ow-wave27-market** `ow-wave27` — generated_raw — novelty=discovered-new — https://manus.im/app/C9xqS7AgwF2BtG7YDk5Xbd — 3 sheets / 3 worlds — Town market depth beyond harbor/shopping district
+- **ow-wave28-wilderness** `ow-wave28` — generated_raw — novelty=discovered-new — https://manus.im/app/c8wYfcjC3UTHhFn5bwgcYL — 3 sheets / 3 worlds — Wild nature invent — beyond canyon/rainforest/arctic
+- **ow-wave29-fairytale2** `ow-wave29` — generated_raw — novelty=discovered-new — https://manus.im/app/X3fusUyL2vu3zmWshm9ZjD — 3 sheets / 3 worlds — More fairy-tale fantasy beyond candy/pirate/cloud
+- **ow-wave30-campus** `ow-wave30` — generated_raw — novelty=discovered-new — https://manus.im/app/UhLuJNTGnTRc46jH7UoTN6 — 3 sheets / 3 worlds — Learn campuses beyond aquarium/museum/makerspace
+- **ow-wave31-waterways** `ow-wave31` — generated_raw — novelty=discovered-new — https://manus.im/app/mFWLDNhqwMy4zUucuJKcGC — 3 sheets / 3 worlds — Water transport invent beyond ferry/canal/seaplane
+- **ow-wave32-seasons** `ow-wave32` — generated_raw — novelty=discovered-new — https://manus.im/app/99LHMCtHnCSuouWcBVvbUV — 3 sheets / 3 worlds — Seasonal event worlds — invent beyond winter/lantern/carnival
+- **ow-wave33-discovered2** `ow-wave33` — generated_raw — novelty=discovered-new — https://manus.im/app/dFKuB9iGbcfE7boA75K8LC — 3 sheets / 3 worlds — Discovered play-hunt worlds not in seeds
+- **ow-wave34-night** `ow-wave34` — generated_raw — novelty=discovered-new — https://manus.im/app/eTjqebzMZXESVUmigRK2Bx — 3 sheets / 3 worlds — Night leisure invent beyond harbor-night/cinema
+- **ow-wave35-village** `ow-wave35` — generated_raw — novelty=discovered-new — https://manus.im/app/P5T5NfpiexbFe9XJ6iRVPh — 3 sheets / 3 worlds — Small-town craft villages beyond main-street/market
+- **ow-wave36-extreme** `ow-wave36` — generated_raw — novelty=discovered-new — https://manus.im/app/angnkb629sj2hTQHpX7PnC — 3 sheets / 3 worlds — Adventure invent beyond wilderness wave28
+- **ow-wave37-space-myth** `ow-wave37` — generated_raw — novelty=discovered-new — https://manus.im/app/MZBUUqG4PxVdiffgGr2apd — 3 sheets / 3 worlds — Fantasy invent beyond fairytale/candy/moonbase
+- **ow-wave38-transit4** `ow-wave38` — generated_raw — novelty=discovered-new — https://manus.im/app/c4QYkNQEM2Z5KfaeVybHYc — 3 sheets / 3 worlds — More transit hubs beyond subway/cable/barge
+- **ow-wave39-party** `ow-wave39` — generated_raw — novelty=discovered-new — https://manus.im/app/5Fas8q54rN9QsynueVBuqQ — 3 sheets / 3 worlds — Occasion event campuses — blank banners
+- **ow-wave40-lab-play** `ow-wave40` — generated_raw — novelty=discovered-new — https://manus.im/app/QwduFxt4KHXcBnGiNkD65e — 3 sheets / 3 worlds — Discovered civic-science play worlds
+- **ow-wave41-waterpark2** `ow-wave41` — generated_raw — novelty=discovered-new — https://manus.im/app/FFDXxSm6Gd32WPXNbd7aRA — 3 sheets / 3 worlds — Water leisure depth beyond waterpark overview
 
 ## Events
 
@@ -138,3 +154,78 @@ _none yet_
 
 - 2026-08-20T18:49:13.678Z — DOWNLOADED ow-wave25-candy-toy qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\fantasy\ow-wave25-candy-toy\sheets
 
+- 2026-08-20T19:04:08.179Z — FIRED ow-wave26-sports2 → https://manus.im/app/NsTGVB2JrPpYJWeHSPnqRa
+
+- 2026-08-20T19:04:09.643Z — FIRED ow-wave27-market → https://manus.im/app/C9xqS7AgwF2BtG7YDk5Xbd
+
+- 2026-08-20T19:05:49.859Z — DOWNLOADED ow-wave26-sports2 qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\leisure\ow-wave26-sports2\sheets
+
+- 2026-08-20T19:05:56.976Z — FIRED ow-wave28-wilderness → https://manus.im/app/c8wYfcjC3UTHhFn5bwgcYL
+
+- 2026-08-20T19:07:42.627Z — DOWNLOADED ow-wave28-wilderness qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\nature-adventure\ow-wave28-wilderness\sheets
+
+- 2026-08-20T19:08:58.003Z — FIRED ow-wave29-fairytale2 → https://manus.im/app/X3fusUyL2vu3zmWshm9ZjD
+
+- 2026-08-20T19:14:28.594Z — DOWNLOADED ow-wave27-market qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\town-community\ow-wave27-market\sheets
+
+- 2026-08-20T19:16:15.614Z — FIRED ow-wave30-campus → https://manus.im/app/UhLuJNTGnTRc46jH7UoTN6
+
+- 2026-08-20T19:16:46.266Z — DOWNLOADED ow-wave29-fairytale2 qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\fantasy\ow-wave29-fairytale2\sheets
+
+- 2026-08-20T19:17:08.582Z — FIRED ow-wave31-waterways → https://manus.im/app/mFWLDNhqwMy4zUucuJKcGC
+
+- 2026-08-20T19:18:31.896Z — DOWNLOADED ow-wave30-campus qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\town-community\ow-wave30-campus\sheets
+
+- 2026-08-20T19:18:53.349Z — FIRED ow-wave32-seasons → https://manus.im/app/99LHMCtHnCSuouWcBVvbUV
+
+- 2026-08-20T19:19:27.819Z — DOWNLOADED ow-wave31-waterways qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\transport\ow-wave31-waterways\sheets
+
+- 2026-08-20T19:20:12.287Z — FIRED ow-wave33-discovered2 → https://manus.im/app/dFKuB9iGbcfE7boA75K8LC
+
+- 2026-08-20T19:21:09.347Z — DOWNLOADED ow-wave32-seasons qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\event\ow-wave32-seasons\sheets
+
+- 2026-08-20T19:21:18.876Z — DOWNLOADED ow-wave32-seasons qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\event\ow-wave32-seasons\sheets
+
+- 2026-08-20T19:22:19.991Z — DOWNLOADED ow-wave33-discovered2 qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\other-discovered\ow-wave33-discovered2\sheets
+
+- 2026-08-20T19:22:28.267Z — DOWNLOADED ow-wave33-discovered2 qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\other-discovered\ow-wave33-discovered2\sheets
+
+- 2026-08-20T19:23:12.740Z — FIRED ow-wave34-night → https://manus.im/app/eTjqebzMZXESVUmigRK2Bx
+
+- 2026-08-20T19:23:13.705Z — FIRED ow-wave35-village → https://manus.im/app/P5T5NfpiexbFe9XJ6iRVPh
+
+- 2026-08-20T19:25:18.593Z — DOWNLOADED ow-wave34-night qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\leisure\ow-wave34-night\sheets
+
+- 2026-08-20T19:25:22.611Z — FIRED ow-wave36-extreme → https://manus.im/app/angnkb629sj2hTQHpX7PnC
+
+- 2026-08-20T19:25:23.947Z — DOWNLOADED ow-wave35-village qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\town-community\ow-wave35-village\sheets
+
+- 2026-08-20T19:25:50.284Z — FIRED ow-wave37-space-myth → https://manus.im/app/MZBUUqG4PxVdiffgGr2apd
+
+- 2026-08-20T19:27:36.047Z — DOWNLOADED ow-wave37-space-myth qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\fantasy\ow-wave37-space-myth\sheets
+
+- 2026-08-20T19:27:38.161Z — DOWNLOADED ow-wave36-extreme qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\nature-adventure\ow-wave36-extreme\sheets
+
+- 2026-08-20T19:28:00.097Z — FIRED ow-wave38-transit4 → https://manus.im/app/c4QYkNQEM2Z5KfaeVybHYc
+
+- 2026-08-20T19:28:01.486Z — FIRED ow-wave39-party → https://manus.im/app/5Fas8q54rN9QsynueVBuqQ
+
+- 2026-08-20T19:29:46.809Z — DOWNLOADED ow-wave39-party qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\event\ow-wave39-party\sheets
+
+- 2026-08-20T19:30:11.991Z — FIRED ow-wave40-lab-play → https://manus.im/app/QwduFxt4KHXcBnGiNkD65e
+
+- 2026-08-20T19:31:47.685Z — DOWNLOADED ow-wave38-transit4 qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\transport\ow-wave38-transit4\sheets
+
+- 2026-08-20T19:31:56.298Z — FIRED ow-wave41-waterpark2 → https://manus.im/app/FFDXxSm6Gd32WPXNbd7aRA
+
+- 2026-08-20T19:31:57.615Z — DOWNLOADED ow-wave40-lab-play qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\other-discovered\ow-wave40-lab-play\sheets
+
+- 2026-08-20T19:32:06.085Z — DOWNLOADED ow-wave38-transit4 qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\transport\ow-wave38-transit4\sheets
+
+- 2026-08-20T19:32:20.843Z — DOWNLOADED ow-wave40-lab-play qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\other-discovered\ow-wave40-lab-play\sheets
+
+- 2026-08-20T19:33:37.717Z — DOWNLOADED ow-wave41-waterpark2 qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\leisure\ow-wave41-waterpark2\sheets
+
+- 2026-08-20T19:33:43.392Z — DOWNLOADED ow-wave41-waterpark2 qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\leisure\ow-wave41-waterpark2\sheets
+
+- 2026-08-20T19:33:50.038Z — DOWNLOADED ow-wave41-waterpark2 qa=PASS sheets=3 large=3/3 → C:\dev\PPT-Lesson-Maker-for-Classin\harvested\overview-worlds\leisure\ow-wave41-waterpark2\sheets

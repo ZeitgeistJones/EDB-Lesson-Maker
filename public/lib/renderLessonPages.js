@@ -1089,16 +1089,55 @@
       zIndex: '1',
     }, 'Look · notice · wonder'));
     if (charmSrc) {
-      world.appendChild(img(charmSrc, {
+      const tableau = el('div', {
+        flex: '1',
+        minHeight: '0',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '10px',
+        zIndex: '1',
+      });
+      tableau.appendChild(img(charmSrc, {
         position: 'relative',
-        width: '92%',
-        height: '76%',
+        width: cues.length ? '238px' : '92%',
+        height: cues.length ? '252px' : '76%',
         maxWidth: '420px',
         maxHeight: '378px',
         zIndex: '1',
         objectFit: 'contain',
         background: 'transparent',
       }));
+      if (cues.length) {
+        const anchors = el('div', {
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '7px',
+        });
+        cues.forEach((cue) => {
+          const bubble = el('div', {
+            width: '76px',
+            height: '76px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: '20px',
+            background: '#fff',
+            border: '2px solid rgba(15,118,110,0.16)',
+            boxShadow: '0 8px 18px rgba(15,23,42,0.12)',
+          });
+          bubble.appendChild(img(cue.src, {
+            position: 'relative',
+            width: '60px',
+            height: '60px',
+            objectFit: 'contain',
+          }));
+          anchors.appendChild(bubble);
+        });
+        tableau.appendChild(anchors);
+      }
+      world.appendChild(tableau);
     } else if (cues.length) {
       const cueArt = el('div', {
         flex: '1',

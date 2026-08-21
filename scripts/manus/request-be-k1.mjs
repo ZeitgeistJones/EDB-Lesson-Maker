@@ -1,0 +1,1041 @@
+/**
+ * Board-enabling K1 ΓÇö registered SCENE STATE families (stockpile only).
+ *
+ * Six coordinated states per environment (SAME camera / geometry / lighting):
+ *   baseline ΓåÆ subtly wrong ΓåÆ damaged ΓåÆ repaired (evidence) ΓåÆ emptied ΓåÆ consequence
+ *
+ *   node scripts/manus/request-be-k1.mjs --wave=k1-01 --fire
+ *   node scripts/manus/request-be-k1.mjs --wave=k1-01 --poll-only
+ *   node scripts/manus/request-be-k1.mjs --next --fire
+ *   node scripts/manus/request-be-k1.mjs --grade=k1-01:REG_A --notes="tight lock"
+ *   node scripts/manus/request-be-k1.mjs --doc-only
+ *   node scripts/manus/request-be-k1.mjs --audit-only
+ *
+ * Slot: 1 of 4 global Manus (this stream max 1 in-flight under harvested/board-enabling/).
+ * Art: harvested/board-enabling/registered-scene-states/ (PNG/JPG ΓÇö do NOT git-add).
+ * Tracked: scripts/manus/request-be-k1.mjs, docs/board-enabling-k1.md, inventory-k1.json.
+ *
+ * Prefer edit/variation from accepted CW/settings bases. No ordinary classroom
+ * duplication unless the plate is a full six-state registered family.
+ */
+import fs from 'fs';
+import path from 'path';
+import { spawnSync } from 'child_process';
+import {
+  ROOT,
+  createTask,
+  pollUntilDone,
+  listMessages,
+  sendMessage,
+  MANUS_SKILLS,
+  resolveAgentProfile,
+  withEslAssetGeneratorBrief,
+  fileContentPart,
+  apiKey,
+} from './client.mjs';
+
+export const STOCKPILE_REL = 'harvested/board-enabling/registered-scene-states';
+export const TRACKED_DOC_REL = 'docs/board-enabling-k1.md';
+/** Local warehouse copy (gitignored under harvested/). */
+export const INV_REL = path.join(STOCKPILE_REL, 'inventory-k1.json');
+/** Tracked mirror ΓÇö harvested/ is gitignored (Vercel ENOSPC). */
+export const TRACKED_INV_REL = 'docs/board-enabling-k1-inventory.json';
+export const PREFIX = 'be-k1-';
+export const BOARD = { width: 1280, height: 590 };
+
+const STOCKPILE = path.join(ROOT, STOCKPILE_REL);
+const LOCK = path.join(STOCKPILE, '.inv-k1.lock');
+const POLL_MS = 30_000;
+const TIMEOUT_MS = 70 * 60 * 1000;
+const RATE_WAIT_MS = 90_000;
+
+const STAGE_LOCK = `EDB BOARD-ENABLING SCENE ΓÇö full-bleed lesson place kids can stand in.
+
+BOARD: panoramic ${BOARD.width}├ù${BOARD.height} landscape feel per CELL (LARGE cells on a 2├ù3 contact sheet).
+Open floor band (lower third, ~20ΓÇô80% width). Soft children's-book / ClassIn ESL house illustration.
+Recognizable place at a glance. Empty of people and faces.
+NO readable text, letters, numbers, logos, watermarks, flags, maps, seals.
+quality: default ONLY. STOCKPILE ONLY ΓÇö do not wire producer.`;
+
+const FAMILY_RULE = `REGISTERED FAMILY RULE (hard):
+- All SIX cells are the SAME place: identical camera angle, wall/floor geometry, furniture silhouettes, and key light direction.
+- Only the STATE changes (props, damage, repair marks, absence traces, accumulated mess).
+- Do NOT invent a new room, new camera, or new lighting per cell.
+- Do NOT recolor-only (sky wash) ΓÇö state must change affordance / evidence.
+- Reading order leftΓåÆright, topΓåÆbottom on ONE 2├ù3 sheet with LARGE cells (not thumbnail icons).
+- Prefer edit/variation of any attached base reference geometry when present.`;
+
+const STATES = [
+  {
+    id: 'baseline',
+    label: 'baseline',
+    hint: 'Correct tidy usable place. Everything where it belongs. Clear play floor.',
+  },
+  {
+    id: 'subtle-wrong',
+    label: 'subtly wrong',
+    hint: 'Almost right but ONE clear wrong cue (chair tipped slightly, drawer ajar, hose kinked, book spine-down, mat askew). Kid-readable, not chaos.',
+  },
+  {
+    id: 'damaged',
+    label: 'damaged',
+    hint: 'Same place with honest damage (crack, tear, dent, broken rail, spilled stain, snapped rung). Still same camera.',
+  },
+  {
+    id: 'repaired',
+    label: 'repaired',
+    hint: 'Damage fixed WITH visible repair evidence (tape patch, fresh paint patch, bandage wrap, new plank, glued seam). Evidence must read at a glance.',
+  },
+  {
+    id: 'emptied',
+    label: 'emptied / absence traces',
+    hint: 'Key movable items gone but TRACE remains (dust outline, empty hooks, bare nail, lighter floor rectangle, idle stand). Not a blank room redesign.',
+  },
+  {
+    id: 'consequence',
+    label: 'accumulated consequence',
+    hint: 'Same place after neglect/use piled up (clutter stacks, wear paths, stain rings, leaning piles, overflow). Consequence of time, not a new disaster set.',
+  },
+];
+
+/** Audit of existing CW/settings bases vs K1 six-state need. */
+export const BASE_AUDIT = [
+  { env: 'wx weather families (20 registered 4-state)', class: 'PARTIAL', note: 'Camera lock proven; states are weather/season, not narrative six-state.' },
+  { env: 'history before-after (home/school)', class: 'THIN', note: '2-state compare only; not damaged/repaired/emptied/consequence.' },
+  { env: 'habitats empty stages', class: 'THIN', note: 'Emptied flavor only; no sibling registration.' },
+  { env: 'aggressive s1/s2/s3 story settings', class: 'PARTIAL', note: 'Strong single baselines; almost no registered state siblings.' },
+  { env: 'everyday-life laundry/atelier/etc.', class: 'PARTIAL', note: 'Good place art; single plates, not six-state.' },
+  { env: 'ordinary classroom one-offs', class: 'THIN', note: 'Do not duplicate unless full six-state family (k1-18).' },
+  { env: 'K1 six-state registered families', class: 'MISSING', note: 'This stockpile ΓÇö none before Stream A.' },
+];
+
+function s(familySlug, stateId, briefExtra) {
+  const st = STATES.find((x) => x.id === stateId);
+  return {
+    key: `${PREFIX}${familySlug}-${stateId}`,
+    concept: `${familySlug}-${stateId}`,
+    state: stateId,
+    family_id: `${PREFIX}${familySlug}`,
+    brief: briefExtra,
+    state_label: st.label,
+  };
+}
+
+function familySheet(familySlug, title, sameLock, stateBriefs, refs = []) {
+  const cells = STATES.map((st) =>
+    s(familySlug, st.id, `${sameLock} STATE ${st.label}: ${stateBriefs[st.id]} (${st.hint})`),
+  );
+  return {
+    id: `S1-${familySlug}`,
+    title,
+    format: 'landscape-contact-2x3',
+    cells,
+    refs,
+  };
+}
+
+function wave(id, familySlug, title, sameLock, stateBriefs, opts = {}) {
+  return {
+    id,
+    family_id: `${PREFIX}${familySlug}`,
+    family_slug: familySlug,
+    title,
+    kind: 'stage',
+    base_class: opts.base_class || 'MISSING',
+    reuse_note: opts.reuse_note || '',
+    sheets: [familySheet(familySlug, title, sameLock, stateBriefs, opts.refs || [])],
+  };
+}
+
+const SAME = {
+  kitchen:
+    'REGISTERED FAMILY be-k1-kitchen. SAME camera, SAME home kitchen: counters + fridge along back/side, stove silhouette at edge, open tile floor center. Only state props/damage/absence change. No people no brand labels no text.',
+  bedroom:
+    'REGISTERED FAMILY be-k1-bedroom. SAME camera, SAME kid bedroom: bed + nightstand along side wall, window/curtain at edge, open play floor center. Only state change. No people no poster text.',
+  living:
+    'REGISTERED FAMILY be-k1-living. SAME camera, SAME living room: sofa + TV stand along walls, lamp at edge, open rug floor center. Only state change. No people no screen content no text.',
+  bath:
+    'REGISTERED FAMILY be-k1-bathroom. SAME camera, SAME home bathroom: tub + vanity along walls, open tile floor center. Only state change. No people no labels.',
+  workshop:
+    'REGISTERED FAMILY be-k1-workshop. SAME camera, SAME home/school workshop: workbench along wall, lumber rack at edge, open floor center. Only state change. No people no brand labels.',
+  clinic:
+    'REGISTERED FAMILY be-k1-clinic. SAME camera, SAME clinic exam room: cabinet + exam bed along walls, open floor center. Only state change. No people no logos.',
+  cafe:
+    'REGISTERED FAMILY be-k1-cafe. SAME camera, SAME casual cafe: service counter at back, chairs/tables at EDGES, blank menu board silhouette, open floor center. Not a bakery civic stage. Only state change. No people no logos.',
+  shop:
+    'REGISTERED FAMILY be-k1-shop. SAME camera, SAME small neighborhood shop: counter at back, shelves at sides, open floor center. Not supermarket wash. Only state change. No people no logos.',
+  library:
+    'REGISTERED FAMILY be-k1-library. SAME camera, SAME public library: shelves along walls, reading table at edge, open carpet floor center. Only state change. No people no readable spines.',
+  gym:
+    'REGISTERED FAMILY be-k1-gym. SAME camera, SAME school gym: wall pads + stacked mats at edges, open wood floor center, hoop far silhouette optional. Not climbing-gym civic. Only state change. No people no scoreboard numbers.',
+  playground:
+    'REGISTERED FAMILY be-k1-playground. SAME camera, SAME outdoor playground: slide + swing frame + sandbox + bench locked. Open play surface center. Reuse wx-playground geometry intent ΓÇö NOT weather recolor; narrative six-state. No people no text.',
+  porch:
+    'REGISTERED FAMILY be-k1-porch. SAME camera, SAME front porch: door + sidelights (blank), three steps, rail, mailbox. Open walk/step floor. Reuse wx-front-porch geometry intent ΓÇö narrative six-state not weather. No people no text.',
+  greenhouse:
+    'REGISTERED FAMILY be-k1-greenhouse. SAME camera, SAME glasshouse aisle, potting bench at edge, hose reel, roof vents. Open aisle center. Reuse wx-greenhouse geometry intent ΓÇö narrative six-state. No people no text.',
+  dock:
+    'REGISTERED FAMILY be-k1-dock. SAME camera, SAME wooden fishing dock, two posts, rope coil, crate stack at edge. Open dock center. Reuse wx-dock geometry intent ΓÇö narrative six-state. No people no boats-as-subjects no text.',
+  bus:
+    'REGISTERED FAMILY be-k1-bus. SAME camera, SAME glass/metal bus shelter, bench, blank timetable panel (ZERO letters), curb. Open curb/shelter floor. Reuse wx-bus-shelter geometry intent ΓÇö narrative six-state. No people no logos.',
+  platform:
+    'REGISTERED FAMILY be-k1-platform. SAME camera, SAME train platform edge, canopy posts, bench, blank departure-board shape (ZERO letters/numbers). Open platform floor. Reuse wx-train-plat geometry intent ΓÇö narrative six-state. No people no logos.',
+  laundry:
+    'REGISTERED FAMILY be-k1-laundry. SAME camera, SAME home laundry/mudroom: washer/dryer along wall, utility sink at edge, open floor center, shoe shelf silhouette. Only state change. No people no brand labels.',
+  classroom:
+    'REGISTERED FAMILY be-k1-classroom. SAME camera, SAME elementary classroom: chalkboard silhouette (BLANK) + teacher desk along BACK wall, student desks pushed to SIDE walls, wide open floor center. Full six-state registration (not a one-off classroom clone). No people no wall letters.',
+  atelier:
+    'REGISTERED FAMILY be-k1-atelier. SAME camera, SAME art atelier/studio: easels at edges, paint-sink silhouette, drying rack, open floor center. NOT a generic classroom. Only state change. No people no readable posters.',
+  farm:
+    'REGISTERED FAMILY be-k1-farm. SAME camera, SAME farm lane: barn end, fence, dirt lane, tree. Open lane center. Reuse wx-farm-lane geometry intent ΓÇö narrative six-state not weather. No people no text.',
+};
+
+export const WAVES = {
+  'k1-01': wave('k1-01', 'kitchen', 'BE-K1 kitchen six-state 2├ù3', SAME.kitchen, {
+    baseline: 'tidy counters, closed drawers, clean floor, tools put away at edges',
+    'subtle-wrong': 'ONE cupboard door ajar + spatula on floor (still tidy otherwise)',
+    damaged: 'cracked cabinet door + spill stain on floor near stove edge',
+    repaired: 'cabinet door taped/patched + stain scrubbed with visible mop mark / fresh cleaner cloth at edge',
+    emptied: 'knife block / utensil crock GONE ΓÇö dust outline + empty hook strip on wall',
+    consequence: 'dishes stacked high, crumb trail, leaning pans, overflow recycling at edge',
+  }, { base_class: 'PARTIAL', reuse_note: 's1 kitchen-home / everyday kitchen baselines' }),
+
+  'k1-02': wave('k1-02', 'bedroom', 'BE-K1 bedroom six-state 2├ù3', SAME.bedroom, {
+    baseline: 'made bed, toys in chest, clear play floor',
+    'subtle-wrong': 'pillow on floor + one drawer slightly open',
+    damaged: 'torn bedsheet corner + cracked lamp shade at nightstand',
+    repaired: 'sheet patched with visible fabric patch + lamp shade taped',
+    emptied: 'toy chest empty with lid open ΓÇö toy dust outlines on floor',
+    consequence: 'clothes piles, books stacked, stuffed toys overflowing chest',
+  }, { base_class: 'PARTIAL', reuse_note: 's1 bedroom baselines' }),
+
+  'k1-03': wave('k1-03', 'living', 'BE-K1 living-room six-state 2├ù3', SAME.living, {
+    baseline: 'neat sofa cushions, remote on table, clear rug',
+    'subtle-wrong': 'one cushion on floor + remote under table edge',
+    damaged: 'ripped sofa cushion seam + cracked picture-frame glass (blank art)',
+    repaired: 'cushion sewn with visible stitches + frame taped corner',
+    emptied: 'TV remote + throw blanket gone ΓÇö lighter rectangle on cushion, empty remote tray',
+    consequence: 'magazines stacked, snack crumbs, laundry basket overflow at edge',
+  }, { base_class: 'PARTIAL', reuse_note: 's1 living-room baselines' }),
+
+  'k1-04': wave('k1-04', 'bathroom', 'BE-K1 bathroom six-state 2├ù3', SAME.bath, {
+    baseline: 'dry tidy vanity, towels folded, clear tile',
+    'subtle-wrong': 'towel on floor + toothpaste tube uncapped on vanity',
+    damaged: 'cracked mirror corner + chipped tile near tub',
+    repaired: 'mirror corner taped + tile with visible grout patch',
+    emptied: 'toothbrush cup + soap gone ΓÇö ring stains / empty cup ring on vanity',
+    consequence: 'bottles crowded, damp towels piled, bath toys overflow at tub edge',
+  }, { base_class: 'PARTIAL', reuse_note: 's1 bathroom baselines' }),
+
+  'k1-05': wave('k1-05', 'workshop', 'BE-K1 workshop six-state 2├ù3', SAME.workshop, {
+    baseline: 'tools hung, bench clear center, wood stacked neat',
+    'subtle-wrong': 'one hammer on floor + clamp left open on bench',
+    damaged: 'broken sawhorse leg + dented toolbox lid',
+    repaired: 'sawhorse leg splinted with wood+rope + toolbox latch taped',
+    emptied: 'tool wall mostly empty ΓÇö empty hooks + outline shadows',
+    consequence: 'sawdust drifts, scrap wood piles, leaning planks, crowded bench',
+  }, { base_class: 'PARTIAL', reuse_note: 's1 workshop baselines' }),
+
+  'k1-06': wave('k1-06', 'clinic', 'BE-K1 clinic six-state 2├ù3', SAME.clinic, {
+    baseline: 'neat exam bed paper, closed cabinets, clear floor',
+    'subtle-wrong': 'stool tipped slightly + drawer ajar',
+    damaged: 'torn exam-bed paper + cracked cabinet glass pane',
+    repaired: 'fresh paper roll installed + cabinet pane taped',
+    emptied: 'instrument tray empty ΓÇö tray outline on counter, empty wall hooks',
+    consequence: 'supply boxes stacked, crumpled paper pile, bin overflowing',
+  }, { base_class: 'PARTIAL', reuse_note: 's1 clinic baselines' }),
+
+  'k1-07': wave('k1-07', 'cafe', 'BE-K1 cafe six-state 2├ù3', SAME.cafe, {
+    baseline: 'chairs tucked, counter clear, clean floor path',
+    'subtle-wrong': 'one chair pulled out wrong + napkin on floor',
+    damaged: 'cracked counter corner + wobbly table with napkin under leg',
+    repaired: 'counter corner patched + table leg shimmed with visible wedge',
+    emptied: 'chair seats bare of cushions ΓÇö empty cushion hooks / lighter seat marks',
+    consequence: 'cup stacks, pastry tray crumbs, chairs uneven, bin full',
+  }, { base_class: 'PARTIAL', reuse_note: 's1 cafe baselines' }),
+
+  'k1-08': wave('k1-08', 'shop', 'BE-K1 shop six-state 2├ù3', SAME.shop, {
+    baseline: 'neat shelves, clear aisle floor, counter tidy',
+    'subtle-wrong': 'one box on aisle floor + shelf item face-down',
+    damaged: 'broken shelf bracket + spilled dry goods pile',
+    repaired: 'bracket replaced with visible new bracket + spill swept with dustpan at edge',
+    emptied: 'front shelf bay empty ΓÇö price-tag silhouettes blank, dust rectangles',
+    consequence: 'overstock cart, leaning boxes, cluttered counter',
+  }, { base_class: 'PARTIAL', reuse_note: 's1 shop baselines' }),
+
+  'k1-09': wave('k1-09', 'library', 'BE-K1 library six-state 2├ù3', SAME.library, {
+    baseline: 'books upright, chairs in, clear carpet path',
+    'subtle-wrong': 'one book face-down on floor + chair angled out',
+    damaged: 'broken chair slat + torn book with pages fanned (no letters)',
+    repaired: 'chair slat clamped/glued with visible clamp + book taped spine',
+    emptied: 'display table empty ΓÇö dust outline of book stack, empty stand',
+    consequence: 'returns cart overflowing, book piles on floor edge, askew shelves',
+  }, { base_class: 'PARTIAL', reuse_note: 's1 library + wx library-window geometry cousins' }),
+
+  'k1-10': wave('k1-10', 'gym', 'BE-K1 gym six-state 2├ù3', SAME.gym, {
+    baseline: 'mats stacked neat, clear court floor, cones at edge',
+    'subtle-wrong': 'one cone knocked over + mat corner folded up',
+    damaged: 'torn wall pad + cracked floor board strip',
+    repaired: 'wall pad taped + floor board patched with visible new plank',
+    emptied: 'ball rack empty ΓÇö empty rack rings, dust circles on floor',
+    consequence: 'mats scattered, cones in a mess pile, equipment leaning',
+  }, { base_class: 'PARTIAL', reuse_note: 's1 school gym baselines' }),
+
+  'k1-11': wave('k1-11', 'playground', 'BE-K1 playground six-state 2├ù3', SAME.playground, {
+    baseline: 'dry usable slide/swings/sandbox, clear ground',
+    'subtle-wrong': 'bucket tipped in sandbox + swing twisted once',
+    damaged: 'cracked slide rail + broken swing seat hanging',
+    repaired: 'slide rail taped/banded + swing seat replaced with visible new seat color contrast',
+    emptied: 'sandbox toys gone ΓÇö rake left, toy imprint hollows in sand',
+    consequence: 'leaf/clutter in sandbox, litter near bench, equipment wear',
+  }, {
+    base_class: 'PARTIAL',
+    reuse_note: 'wx-playground weather family ΓÇö reuse geometry, new state model',
+    refs: ['harvested/content-worlds/weather-seasons/cw-f2-wx-yard-play/sheets/02.png'],
+  }),
+
+  'k1-12': wave('k1-12', 'porch', 'BE-K1 porch six-state 2├ù3', SAME.porch, {
+    baseline: 'dry steps, mat flat, door shut tidy',
+    'subtle-wrong': 'doormat askew + one plant pot tipped slightly',
+    damaged: 'cracked step edge + broken mail-slot flap',
+    repaired: 'step edge patched with new concrete patch tone + mail flap taped',
+    emptied: 'plant pots gone ΓÇö ring stains on porch boards, empty plant stand',
+    consequence: 'leaf drift piles, shoes stacked, packages leaning by door',
+  }, {
+    base_class: 'PARTIAL',
+    reuse_note: 'wx-front-porch weather family',
+    refs: ['harvested/content-worlds/weather-seasons/cw-f5-wx-beach-porch/sheets/02.png'],
+  }),
+
+  'k1-13': wave('k1-13', 'greenhouse', 'BE-K1 greenhouse six-state 2├ù3', SAME.greenhouse, {
+    baseline: 'neat pots, hose coiled, clear aisle',
+    'subtle-wrong': 'hose kinked across aisle + one pot on its side',
+    damaged: 'cracked glass pane + broken pot with soil spill',
+    repaired: 'pane taped in X + pot replaced beside patched soil sweep',
+    emptied: 'potting bench bare ΓÇö empty pot rings, idle hose reel',
+    consequence: 'overgrown pots crowding aisle, soil bags leaning, tools piled',
+  }, {
+    base_class: 'PARTIAL',
+    reuse_note: 'wx-greenhouse weather family',
+    refs: ['harvested/content-worlds/weather-seasons/cw-f10-wx-greenhouse/sheets/01.png'],
+  }),
+
+  'k1-14': wave('k1-14', 'dock', 'BE-K1 dock six-state 2├ù3', SAME.dock, {
+    baseline: 'dry boards, rope coiled neat, crates stacked',
+    'subtle-wrong': 'rope uncoiled across boards + one crate skewed',
+    damaged: 'broken board with gap + frayed rope end',
+    repaired: 'new plank patched in (tone contrast) + rope end whipped/taped',
+    emptied: 'crates gone ΓÇö pale rectangles on boards, empty post hook',
+    consequence: 'netting piles, buckets nested messy, gear clutter at posts',
+  }, {
+    base_class: 'PARTIAL',
+    reuse_note: 'wx-dock weather family',
+    refs: ['harvested/content-worlds/weather-seasons/cw-f13-wx-dock/sheets/01.png'],
+  }),
+
+  'k1-15': wave('k1-15', 'bus', 'BE-K1 bus-shelter six-state 2├ù3', SAME.bus, {
+    baseline: 'bench clear, dry curb, tidy shelter',
+    'subtle-wrong': 'bag left on bench + map panel slightly crooked (still blank)',
+    damaged: 'cracked shelter glass + bent bench slat',
+    repaired: 'glass taped + bench slat replaced with visible new wood',
+    emptied: 'bench ads/holders empty ΓÇö empty frame slots, dust lines',
+    consequence: 'flyers crumpled (blank shapes), bottles by curb, stickers residue on glass (no text)',
+  }, {
+    base_class: 'PARTIAL',
+    reuse_note: 'wx-bus-shelter weather family',
+    refs: ['harvested/content-worlds/weather-seasons/cw-f14-wx-bus-stop/sheets/01.png'],
+  }),
+
+  'k1-16': wave('k1-16', 'platform', 'BE-K1 train-platform six-state 2├ù3', SAME.platform, {
+    baseline: 'clear platform, bench tidy, canopy dry',
+    'subtle-wrong': 'suitcase left near bench + one cone tipped',
+    damaged: 'cracked canopy panel + broken bench arm',
+    repaired: 'canopy panel patched + bench arm clamped/taped',
+    emptied: 'bench and board area bare ΓÇö empty poster frames (blank), dust bench outline if bench removed OR empty luggage cart bay',
+    consequence: 'luggage carts nested messy, cones clustered, litter along edge',
+  }, {
+    base_class: 'PARTIAL',
+    reuse_note: 'wx-train-plat weather family',
+    refs: ['harvested/content-worlds/weather-seasons/cw-f11-wx-train-plat/sheets/01.png'],
+  }),
+
+  'k1-17': wave('k1-17', 'laundry', 'BE-K1 laundry-mudroom six-state 2├ù3', SAME.laundry, {
+    baseline: 'machines shut, detergent neat, clear floor',
+    'subtle-wrong': 'laundry basket tipped + one sock on floor',
+    damaged: 'dented machine panel + cracked utility-sink edge',
+    repaired: 'panel dent filled/painted patch + sink edge taped/epoxied visible',
+    emptied: 'shoe shelf empty ΓÇö shoe outlines / empty cubbies',
+    consequence: 'clothes piles, detergent bottles crowded, drying rack overflow',
+  }, {
+    base_class: 'PARTIAL',
+    reuse_note: 'everyday-life laundry/park plate cousin',
+    refs: ['harvested/content-worlds/everyday-life/cw-g6-laundry-park/sheets/01.png'],
+  }),
+
+  'k1-18': wave('k1-18', 'classroom', 'BE-K1 classroom six-state 2├ù3', SAME.classroom, {
+    baseline: 'desks neat at sides, clear center floor, blank board',
+    'subtle-wrong': 'one chair tipped + book bag on center floor',
+    damaged: 'cracked desk top + broken chair leg',
+    repaired: 'desk top taped/patched + chair leg splinted',
+    emptied: 'cubbies empty ΓÇö empty hooks, dust outlines of bags',
+    consequence: 'paper stacks, backpacks piled, art drying clutter at edge (no letters)',
+  }, { base_class: 'THIN', reuse_note: 'allowed only as full six-state registered family' }),
+
+  'k1-19': wave('k1-19', 'atelier', 'BE-K1 atelier six-state 2├ù3', SAME.atelier, {
+    baseline: 'easels neat, sink clear, open floor',
+    'subtle-wrong': 'brush on floor + canvas leaning wrong way on easel',
+    damaged: 'broken easel strut + spilled paint puddle on floor',
+    repaired: 'easel strut clamped + paint puddle cleaned with rag evidence',
+    emptied: 'easels bare ΓÇö empty clip marks, blank canvas rack slots',
+    consequence: 'paint jars crowded, drying racks full, drop cloths heaped',
+  }, { base_class: 'PARTIAL', reuse_note: 'everyday-life atelier/lab cousin' }),
+
+  'k1-20': wave('k1-20', 'farm', 'BE-K1 farm-lane six-state 2├ù3', SAME.farm, {
+    baseline: 'clear dirt lane, crates neat at barn edge',
+    'subtle-wrong': 'one crate tipped + rake across lane',
+    damaged: 'broken fence rail + deep mud rut with stuck wheelbarrow tilt',
+    repaired: 'fence rail replaced (new wood tone) + rut filled/boarded path',
+    emptied: 'crate stacks gone ΓÇö pale ground rectangles, empty barn hook',
+    consequence: 'hay/tools piled, crates leaning tower, muddy clutter at barn',
+  }, {
+    base_class: 'PARTIAL',
+    reuse_note: 'wx-farm-lane weather family',
+  }),
+};
+
+export const WAVE_ORDER = Object.keys(WAVES);
+
+function stripBom(text) {
+  const t = String(text || '');
+  return t.charCodeAt(0) === 0xFEFF ? t.slice(1) : t;
+}
+
+function readJsonFile(p) {
+  return JSON.parse(stripBom(fs.readFileSync(p, 'utf8')));
+}
+
+function arg(name, fallback = '') {
+  const hit = process.argv.find((a) => a.startsWith(`--${name}=`));
+  return hit ? hit.slice(name.length + 3) : fallback;
+}
+
+function isRateLimitError(err) {
+  return /429/.test(String(err && err.message));
+}
+
+async function withRateBackoff(fn) {
+  try {
+    return await fn();
+  } catch (err) {
+    if (!isRateLimitError(err)) throw err;
+    console.error(`429 ΓÇö waiting ${RATE_WAIT_MS / 1000}s then one retry`);
+    await new Promise((r) => setTimeout(r, RATE_WAIT_MS));
+    try {
+      return await fn();
+    } catch (err2) {
+      if (!isRateLimitError(err2)) throw err2;
+      const wait2 = RATE_WAIT_MS * 2;
+      console.error(`429 again ΓÇö backing off ${wait2 / 1000}s`);
+      await new Promise((r) => setTimeout(r, wait2));
+      throw err2;
+    }
+  }
+}
+
+function walkRunJsons(dir, acc = []) {
+  if (!fs.existsSync(dir)) return acc;
+  for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, ent.name);
+    if (ent.isDirectory()) walkRunJsons(p, acc);
+    else if (ent.name === 'run.json') acc.push(p);
+  }
+  return acc;
+}
+
+function otherInFlight(thisWaveId) {
+  for (const runPath of walkRunJsons(STOCKPILE)) {
+    let prev;
+    try {
+      prev = readJsonFile(runPath);
+    } catch {
+      continue;
+    }
+    if (prev.task_id && !prev.finished_at && prev.wave !== thisWaveId) {
+      return { wave: prev.wave, task_id: prev.task_id };
+    }
+  }
+  return null;
+}
+
+function waveOutDir(wave) {
+  return path.join(STOCKPILE, wave.id);
+}
+
+function expectedSheets(wave) {
+  return wave.sheets.length;
+}
+
+function sheetBlock(sheet) {
+  const lines = sheet.cells.map((c, i) => `${i + 1}. ${c.key} ΓÇö ${c.brief}`);
+  return `SHEET ${sheet.id} ΓÇö ${sheet.title}
+Format: ONE landscape PNG contact sheet, 2├ù3 grid, LARGE cells (each cell ~board stage, not icon).
+Reading order LΓåÆR, TΓåÆB:
+${lines.join('\n')}`;
+}
+
+function buildBrief(wave) {
+  const sheets = wave.sheets;
+  const refNote = sheets.some((sh) => (sh.refs || []).length)
+    ? 'BASE REFERENCE attached: treat sunny/baseline cell geometry as the camera lock. Rebuild SIX narrative states ΓÇö do NOT copy weather variants.'
+    : 'No base PNG attached ΓÇö lock geometry from the SAME-camera brief alone.';
+  return withEslAssetGeneratorBrief(`TASK: Produce **${sheets.length}** landscape PNG contact sheet(s) for board-enabling K1 registered scene-state stockpile.
+
+${STAGE_LOCK}
+
+${FAMILY_RULE}
+
+Family: ${wave.family_id}
+Reuse note: ${wave.reuse_note || 'n/a'}
+${refNote}
+
+HARD RULES:
+- Generate ONLY the listed cells. No extra concepts.
+- NO people, faces, animals as subjects.
+- NO baked readable text.
+- quality: default ONLY.
+- Keep generating inside THIS task until every listed PNG exists.
+
+${sheets.map((sh) => sheetBlock(sh)).join('\n\n')}
+
+Return exactly ${sheets.length} PNG sheet(s).`);
+}
+
+function collectImageAtts(messages) {
+  const hits = [];
+  for (const m of messages || []) {
+    const b = m.assistant_message || (m.type === 'assistant_message' ? m : null);
+    if (!b) continue;
+    for (const a of b.attachments || []) {
+      const url = a.url || a.download_url || a.file_url;
+      const name = a.file_name || a.filename || a.name || 'sheet.png';
+      const mime = String(a.mime_type || a.content_type || '');
+      if (url && (/png|jpeg|jpg|webp|zip/i.test(mime) || /\.(png|jpe?g|webp|zip)$/i.test(name) || !mime)) {
+        hits.push({ name, url, mime });
+      }
+    }
+  }
+  return hits;
+}
+
+function sniffKind(buf, name) {
+  if (buf[0] === 0x50 && buf[1] === 0x4b) return 'zip';
+  if (buf[0] === 0xff && buf[1] === 0xd8) return 'jpg';
+  if (/\.zip$/i.test(name)) return 'zip';
+  if (/\.jpe?g$/i.test(name)) return 'jpg';
+  return 'png';
+}
+
+function safeName(name, fallback) {
+  const base = path.basename(String(name || fallback)).replace(/[^\w.\-]+/g, '_');
+  return base || fallback;
+}
+
+function extractZip(zipPath, destDir) {
+  fs.mkdirSync(destDir, { recursive: true });
+  const r = spawnSync('tar', ['-xf', zipPath, '-C', destDir], { encoding: 'utf8' });
+  if (r.status !== 0) {
+    const r2 = spawnSync('powershell', ['-NoProfile', '-Command', `Expand-Archive -LiteralPath '${zipPath}' -DestinationPath '${destDir}' -Force`], { encoding: 'utf8' });
+    if (r2.status !== 0) throw new Error(`unzip failed ${zipPath}: ${r.stderr || r2.stderr}`);
+  }
+}
+
+function walkPngs(dir, acc = []) {
+  if (!fs.existsSync(dir)) return acc;
+  for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, ent.name);
+    if (ent.isDirectory()) walkPngs(p, acc);
+    else if (/\.(png|jpe?g|webp)$/i.test(ent.name)) acc.push(p);
+  }
+  return acc;
+}
+
+function clearNumberedSheets(sheetDir) {
+  if (!fs.existsSync(sheetDir)) return;
+  for (const f of fs.readdirSync(sheetDir)) {
+    if (/^\d{2}\.(png|jpg|jpeg|webp)$/i.test(f)) fs.unlinkSync(path.join(sheetDir, f));
+  }
+}
+
+function materializePngs(sheetDir) {
+  const rawDir = path.join(sheetDir, 'raw');
+  const unzipRoot = path.join(sheetDir, 'zip-extract');
+  const byName = new Map();
+  for (const p of [...walkPngs(unzipRoot), ...walkPngs(rawDir)]) {
+    const key = path.basename(p).toLowerCase();
+    if (!byName.has(key)) byName.set(key, p);
+  }
+  const sorted = [...byName.values()].sort((a, b) => path.basename(a).localeCompare(path.basename(b), 'en'));
+  clearNumberedSheets(sheetDir);
+  const saved = [];
+  sorted.forEach((src, i) => {
+    const file = `${String(i + 1).padStart(2, '0')}.png`;
+    const dest = path.join(sheetDir, file);
+    fs.copyFileSync(src, dest);
+    saved.push({ dest, bytes: fs.statSync(dest).size, name: path.basename(src), file });
+  });
+  return saved;
+}
+
+async function downloadSheets(messages, sheetDir) {
+  fs.mkdirSync(sheetDir, { recursive: true });
+  const rawDir = path.join(sheetDir, 'raw');
+  const unzipRoot = path.join(sheetDir, 'zip-extract');
+  fs.mkdirSync(rawDir, { recursive: true });
+  if (fs.existsSync(unzipRoot)) fs.rmSync(unzipRoot, { recursive: true, force: true });
+  fs.mkdirSync(unzipRoot, { recursive: true });
+
+  const seen = new Set();
+  let i = 0;
+  let zipN = 0;
+  for (const img of collectImageAtts(messages)) {
+    if (!img.url || seen.has(img.url)) continue;
+    seen.add(img.url);
+    i += 1;
+    const res = await fetch(img.url);
+    if (!res.ok) throw new Error(`download ${res.status} ${img.url}`);
+    const buf = Buffer.from(await res.arrayBuffer());
+    const kind = sniffKind(buf, img.name);
+    const fallback = `${String(i).padStart(2, '0')}.${kind === 'zip' ? 'zip' : kind === 'jpg' ? 'jpg' : 'png'}`;
+    const dest = path.join(rawDir, safeName(img.name, fallback));
+    fs.writeFileSync(dest, buf);
+    if (kind === 'zip') {
+      zipN += 1;
+      extractZip(dest, path.join(unzipRoot, `z${zipN}`));
+    }
+  }
+  return materializePngs(sheetDir);
+}
+
+async function withInvLock(fn) {
+  fs.mkdirSync(STOCKPILE, { recursive: true });
+  for (let i = 0; i < 80; i += 1) {
+    try {
+      fs.writeFileSync(LOCK, String(process.pid), { flag: 'wx' });
+      break;
+    } catch {
+      await new Promise((r) => setTimeout(r, 80));
+    }
+    if (i === 79) fs.rmSync(LOCK, { force: true });
+  }
+  try {
+    return fn();
+  } finally {
+    fs.rmSync(LOCK, { force: true });
+  }
+}
+
+function loadInv() {
+  const local = path.join(ROOT, INV_REL);
+  const tracked = path.join(ROOT, TRACKED_INV_REL);
+  const invPath = fs.existsSync(local) ? local : tracked;
+  if (!fs.existsSync(invPath)) {
+    return {
+      kind: 'board-enabling-k1',
+      prefix: PREFIX,
+      states: STATES.map((s) => s.id),
+      waves: {},
+      families: {},
+      running_total: {},
+      base_audit: BASE_AUDIT,
+    };
+  }
+  return readJsonFile(invPath);
+}
+
+function recomputeTotals(inv) {
+  const waves = Object.values(inv.waves || {});
+  const fams = Object.values(inv.families || {});
+  inv.running_total = {
+    tasks: waves.filter((w) => w.task_id).length,
+    sheets_downloaded: waves.reduce((n, w) => n + (w.sheets || []).length, 0),
+    families_planned: WAVE_ORDER.length,
+    families_fired: fams.filter((f) => f.manus_task_id).length,
+    families_graded: fams.filter((f) => f.registration_grade && f.registration_grade !== 'PENDING').length,
+    reg_a: fams.filter((f) => f.registration_grade === 'REG_A').length,
+    reg_b: fams.filter((f) => f.registration_grade === 'REG_B').length,
+    reg_c: fams.filter((f) => f.registration_grade === 'REG_C').length,
+    reg_fail: fams.filter((f) => f.registration_grade === 'REG_FAIL').length,
+    state_cells: fams.reduce((n, f) => n + (f.siblings || []).length, 0),
+  };
+}
+
+function writeInv(inv) {
+  inv.updated_at = new Date().toISOString();
+  if (!inv.waves) inv.waves = {};
+  if (!inv.families) inv.families = {};
+  inv.base_audit = BASE_AUDIT;
+  recomputeTotals(inv);
+  const body = JSON.stringify(inv, null, 2);
+  fs.mkdirSync(STOCKPILE, { recursive: true });
+  fs.writeFileSync(path.join(ROOT, INV_REL), body);
+  fs.mkdirSync(path.dirname(path.join(ROOT, TRACKED_INV_REL)), { recursive: true });
+  fs.writeFileSync(path.join(ROOT, TRACKED_INV_REL), body);
+  return path.join(ROOT, TRACKED_INV_REL);
+}
+
+function upsertInventory(wave, dump) {
+  const inv = loadInv();
+  const siblings = wave.sheets.flatMap((sh) => sh.cells.map((c) => c.key));
+  const haveLarge = (dump.saved || []).filter((x) => x.bytes > 80_000).length >= expectedSheets(wave);
+  inv.waves[wave.id] = {
+    family_id: wave.family_id,
+    title: wave.title,
+    task_id: dump.task_id || null,
+    task_url: dump.task_url || null,
+    agent_status: dump.agent_status || null,
+    sheet_dir: dump.sheet_dir || null,
+    expected_sheets: expectedSheets(wave),
+    sheets: (dump.saved || []).map((x) => ({ file: x.file || path.basename(x.dest || ''), bytes: x.bytes, name: x.name || null })),
+    finished_at: dump.finished_at || null,
+    holds: dump.holds || [],
+  };
+  const prev = inv.families[wave.family_id] || {};
+  inv.families[wave.family_id] = {
+    family_id: wave.family_id,
+    wave: wave.id,
+    slug: wave.family_slug,
+    base_class: wave.base_class,
+    reuse_note: wave.reuse_note,
+    siblings,
+    states: STATES.map((s) => s.id),
+    registration_grade: prev.registration_grade || (haveLarge ? 'PENDING' : dump.task_id ? 'FIRED' : 'PENDING'),
+    grade_notes: prev.grade_notes || '',
+    manus_task_id: dump.task_id || prev.manus_task_id || null,
+    task_url: dump.task_url || prev.task_url || null,
+    sheet_dir: dump.sheet_dir || prev.sheet_dir || null,
+    status: haveLarge ? 'generated_raw' : dump.task_id ? 'fired' : 'pending',
+  };
+  return writeInv(inv);
+}
+
+function writeDocStub(inv) {
+  const tot = inv.running_total || {};
+  const lines = [
+    '# Board-enabling K1 ΓÇö registered scene-state families',
+    '',
+    'Stockpile only. No producer wiring. Prefix `be-k1-`.',
+    'Art partition: `harvested/board-enabling/registered-scene-states/` (PNG/JPG ΓÇö **do not git-add**).',
+    'Tracked: `scripts/manus/request-be-k1.mjs`, this doc, `docs/board-enabling-k1-inventory.json`.',
+    '',
+    '## Six states (per family)',
+    '',
+    '1. baseline',
+    '2. subtly wrong',
+    '3. damaged',
+    '4. repaired (with repair evidence)',
+    '5. emptied / absence traces',
+    '6. accumulated consequence',
+    '',
+    'Registration grades: `REG_A` / `REG_B` / `REG_C` / `REG_FAIL` (camera/geometry/lighting lock).',
+    '',
+    '## Base audit (reuse, do not invent needless new places)',
+    '',
+    '| Environment / bank | Class | Note |',
+    '|---|---|---|',
+  ];
+  for (const row of BASE_AUDIT) {
+    lines.push(`| ${row.env} | ${row.class} | ${row.note} |`);
+  }
+  lines.push(
+    '',
+    '## Running totals',
+    '',
+    '| Metric | Count |',
+    '|---|---:|',
+    `| Families planned | ${tot.families_planned || WAVE_ORDER.length} |`,
+    `| Tasks | ${tot.tasks || 0} |`,
+    `| Sheets downloaded | ${tot.sheets_downloaded || 0} |`,
+    `| Families graded | ${tot.families_graded || 0} |`,
+    `| REG_A | ${tot.reg_a || 0} |`,
+    `| REG_B | ${tot.reg_b || 0} |`,
+    `| REG_C | ${tot.reg_c || 0} |`,
+    `| REG_FAIL | ${tot.reg_fail || 0} |`,
+    `| State cells | ${tot.state_cells || 0} |`,
+    '',
+    '## Waves / families',
+    '',
+  );
+  for (const id of WAVE_ORDER) {
+    const meta = WAVES[id];
+    const fam = (inv.families || {})[meta.family_id];
+    const w = (inv.waves || {})[id];
+    const grade = (fam && fam.registration_grade) || 'unfired';
+    const url = (w && w.task_url) || (fam && fam.task_url) || 'unfired';
+    lines.push(`- **${id}** \`${meta.family_id}\` ΓÇö ${grade} ΓÇö ${url} ΓÇö base ${meta.base_class} ΓÇö ${meta.reuse_note || 'n/a'}`);
+  }
+  lines.push(
+    '',
+    '## QA notes',
+    '',
+    '- Family is the job: same camera/geometry/lighting across all six cells.',
+    '- Prefer 2├ù3 contact sheet with LARGE cells, or edit from accepted base.',
+    '- No generic noun dumps. No ordinary classroom one-offs unless six-state registered.',
+    '- Stream A: max 1 Manus in-flight under this partition.',
+    '',
+  );
+  fs.writeFileSync(path.join(ROOT, TRACKED_DOC_REL), `${lines.join('\n')}\n`);
+}
+
+function waveIsDone(wave) {
+  const runPath = path.join(waveOutDir(wave), 'run.json');
+  if (!fs.existsSync(runPath)) return false;
+  try {
+    const prev = readJsonFile(runPath);
+    const large = (prev.saved || []).filter((x) => x.bytes > 80_000).length;
+    return Boolean(prev.finished_at && large >= expectedSheets(wave));
+  } catch {
+    return false;
+  }
+}
+
+function nextWaveName() {
+  return WAVE_ORDER.find((id) => !waveIsDone(WAVES[id])) || null;
+}
+
+async function buildMessageContent(wave) {
+  const brief = buildBrief(wave);
+  const content = [{ type: 'text', text: brief }];
+  const refs = wave.sheets.flatMap((sh) => sh.refs || []);
+  for (const rel of refs) {
+    const abs = path.isAbsolute(rel) ? rel : path.join(ROOT, rel);
+    if (!fs.existsSync(abs)) {
+      console.error(`WARN missing ref ${rel} ΓÇö continuing without it`);
+      continue;
+    }
+    const part = await fileContentPart(abs);
+    content.push({
+      type: 'file',
+      filename: part.filename,
+      ...(part.file_data ? { file_data: part.file_data } : { file_id: part.file_id }),
+    });
+  }
+  return content;
+}
+
+function applyGrade(spec) {
+  // --grade=k1-01:REG_A or --grade=be-k1-kitchen:REG_B
+  const [target, grade, ...rest] = String(spec).split(':');
+  const notes = rest.join(':') || arg('notes', '');
+  if (!target || !grade) throw new Error('Need --grade=waveOrFamily:REG_A|REG_B|REG_C|REG_FAIL');
+  const ok = ['REG_A', 'REG_B', 'REG_C', 'REG_FAIL'];
+  if (!ok.includes(grade)) throw new Error(`grade must be one of ${ok.join('|')}`);
+  const inv = loadInv();
+  let familyId = null;
+  if (WAVES[target]) familyId = WAVES[target].family_id;
+  else if ((inv.families || {})[target]) familyId = target;
+  else if ((inv.families || {})[`${PREFIX}${target}`]) familyId = `${PREFIX}${target}`;
+  else throw new Error(`Unknown grade target ${target}`);
+  if (!inv.families[familyId]) {
+    inv.families[familyId] = {
+      family_id: familyId,
+      siblings: [],
+      registration_grade: grade,
+      grade_notes: notes,
+    };
+  } else {
+    inv.families[familyId].registration_grade = grade;
+    inv.families[familyId].grade_notes = notes;
+  }
+  writeInv(inv);
+  writeDocStub(inv);
+  return { family_id: familyId, registration_grade: grade, notes };
+}
+
+export async function runWave(waveName) {
+  const wave = WAVES[waveName];
+  if (!wave) throw new Error(`Need --wave=${WAVE_ORDER.join('|')}`);
+
+  const OUT_DIR = waveOutDir(wave);
+  const SHEET_DIR = path.join(OUT_DIR, 'sheets');
+  const RUN_JSON = path.join(OUT_DIR, 'run.json');
+  const fireOnly = process.argv.includes('--fire') || process.argv.includes('--create-only');
+  const pollOnly = process.argv.includes('--poll-only');
+  const NEED_SHEETS = expectedSheets(wave);
+
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  fs.mkdirSync(SHEET_DIR, { recursive: true });
+  fs.writeFileSync(
+    path.join(OUT_DIR, 'keys.json'),
+    JSON.stringify(
+      {
+        wave: wave.id,
+        family_id: wave.family_id,
+        prefix: PREFIX,
+        base_class: wave.base_class,
+        reuse_note: wave.reuse_note,
+        states: STATES.map((s) => s.id),
+        siblings: wave.sheets.flatMap((sh) => sh.cells.map((c) => c.key)),
+        expected_sheets: NEED_SHEETS,
+        sheets: wave.sheets.map((sh) => ({
+          id: sh.id,
+          title: sh.title,
+          format: sh.format,
+          keys: sh.cells.map((c) => c.key),
+          refs: sh.refs || [],
+        })),
+      },
+      null,
+      2,
+    ),
+  );
+
+  const dump = {
+    started_at: new Date().toISOString(),
+    kind: 'board-enabling-k1',
+    wave: wave.id,
+    family_id: wave.family_id,
+    sheet_dir: SHEET_DIR,
+    expected_sheets: NEED_SHEETS,
+  };
+
+  let taskId = arg('task');
+
+  if (!pollOnly) {
+    if (fs.existsSync(RUN_JSON) && !process.env.MANUS_FORCE_RERUN) {
+      const prev = readJsonFile(RUN_JSON);
+      if (prev.task_id) {
+        console.error('REFUSING duplicate', prev.task_id);
+        process.exit(2);
+      }
+    }
+    const busy = otherInFlight(wave.id);
+    if (busy) {
+      console.error(`REFUSING fire ΓÇö max 1 in-flight. ${busy.wave} ${busy.task_id} still open`);
+      process.exit(3);
+    }
+    const content = await buildMessageContent(wave);
+    const created = await withRateBackoff(() => createTask({
+      title: wave.title,
+      agent_profile: resolveAgentProfile(),
+      force_skills: [MANUS_SKILLS.ESL_ASSET_GENERATOR],
+      interactive_mode: false,
+      message: { content },
+    }));
+    taskId = created.task_id || created.id;
+    dump.task_id = taskId;
+    dump.task_url = created.task_url || `https://manus.im/app/${taskId}`;
+    dump.created_at = new Date().toISOString();
+    dump.brief = typeof content[0].text === 'string' ? content[0].text.slice(0, 2000) : '';
+    fs.writeFileSync(RUN_JSON, JSON.stringify(dump, null, 2));
+    await withInvLock(() => {
+      upsertInventory(wave, dump);
+      writeDocStub(loadInv());
+    });
+    console.log(JSON.stringify({ phase: 'created', ...dump }, null, 2));
+    if (fireOnly) return dump;
+  } else {
+    if (!taskId && fs.existsSync(RUN_JSON)) {
+      const prev = readJsonFile(RUN_JSON);
+      taskId = prev.task_id;
+      dump.started_at = prev.started_at || dump.started_at;
+      dump.task_url = prev.task_url;
+    }
+    if (!taskId) throw new Error('--poll-only needs --task= or an existing run.json');
+    dump.task_id = taskId;
+    dump.task_url = dump.task_url || `https://manus.im/app/${taskId}`;
+  }
+
+  const result = await pollUntilDone(taskId, {
+    intervalMs: POLL_MS,
+    timeoutMs: TIMEOUT_MS,
+    onTick: ({ agent_status }) => {
+      console.log(JSON.stringify({ phase: 'tick', task_id: taskId, agent_status: agent_status || 'unknown' }));
+    },
+  });
+  let msgs = await listMessages(taskId, { order: 'asc', limit: 120 });
+  let saved = await downloadSheets(msgs.messages || result.messages || [], SHEET_DIR);
+  let large = saved.filter((x) => x.bytes > 80_000);
+
+  if (large.length < NEED_SHEETS) {
+    console.log(JSON.stringify({ phase: 'need-more-sheets', have: large.length, need: NEED_SHEETS }, null, 2));
+    await withRateBackoff(() => sendMessage(taskId, {
+      force_skills: [MANUS_SKILLS.ESL_ASSET_GENERATOR],
+      message: withEslAssetGeneratorBrief(
+        `Continue THIS task. You returned ${large.length} usable PNG sheet(s); we need exactly ${NEED_SHEETS} sheet(s) listed in the original brief (one 2├ù3 family sheet). Do not restart. Do not add text. Keep firing generate_image until the listed sheet exists.`,
+      ),
+    }));
+    const result2 = await pollUntilDone(taskId, { intervalMs: POLL_MS, timeoutMs: TIMEOUT_MS });
+    msgs = await listMessages(taskId, { order: 'asc', limit: 120 });
+    saved = await downloadSheets(msgs.messages || result2.messages || [], SHEET_DIR);
+    large = saved.filter((x) => x.bytes > 80_000);
+  }
+
+  dump.saved = saved;
+  dump.agent_status = result && result.agent_status;
+  dump.finished_at = new Date().toISOString();
+  if (large.length < NEED_SHEETS) {
+    dump.holds = [`Downloaded ${large.length}/${NEED_SHEETS} large PNG sheets; raw kept for mop.`];
+  }
+  if (fs.existsSync(RUN_JSON)) {
+    const prev = readJsonFile(RUN_JSON);
+    dump.started_at = prev.started_at || dump.started_at;
+    dump.created_at = prev.created_at;
+    dump.task_url = dump.task_url || prev.task_url;
+    dump.brief = prev.brief;
+  }
+  fs.writeFileSync(RUN_JSON, JSON.stringify(dump, null, 2));
+  const invPath = await withInvLock(() => {
+    const p = upsertInventory(wave, dump);
+    writeDocStub(loadInv());
+    return p;
+  });
+  console.log(JSON.stringify({
+    phase: 'downloaded',
+    wave: wave.id,
+    family_id: wave.family_id,
+    task_id: taskId,
+    task_url: dump.task_url,
+    count: saved.length,
+    large: large.length,
+    expected_sheets: NEED_SHEETS,
+    sheet_dir: SHEET_DIR,
+    inventory: invPath,
+  }, null, 2));
+  if (large.length < NEED_SHEETS) process.exitCode = 2;
+  return dump;
+}
+
+const isMain = process.argv[1] && path.normalize(process.argv[1]).endsWith('request-be-k1.mjs');
+if (isMain) {
+  if (process.argv.includes('--audit-only')) {
+    console.log(JSON.stringify({ phase: 'audit', base_audit: BASE_AUDIT, families_planned: WAVE_ORDER.length }, null, 2));
+    process.exit(0);
+  }
+  if (process.argv.includes('--doc-only')) {
+    const inv = loadInv();
+    writeInv(inv);
+    writeDocStub(inv);
+    console.log(JSON.stringify({ phase: 'doc', path: TRACKED_DOC_REL, inventory: INV_REL }, null, 2));
+    process.exit(0);
+  }
+  const gradeSpec = arg('grade', '');
+  if (gradeSpec) {
+    const g = applyGrade(gradeSpec);
+    console.log(JSON.stringify({ phase: 'graded', ...g }, null, 2));
+    process.exit(0);
+  }
+  apiKey();
+  let names = (arg('wave', '') || '').split(',').map((s) => s.trim()).filter(Boolean);
+  if (process.argv.includes('--next')) {
+    const n = nextWaveName();
+    if (!n) {
+      console.log(JSON.stringify({ phase: 'all-done', waves: WAVE_ORDER.length }, null, 2));
+      process.exit(0);
+    }
+    names = [n];
+  }
+  if (!names.length) throw new Error(`Need --wave=${WAVE_ORDER.join('|')} or --next`);
+  for (const n of names) {
+    await runWave(n);
+  }
+}

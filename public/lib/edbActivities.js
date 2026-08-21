@@ -1207,12 +1207,12 @@
       [/\b(bridge|cross)\b/, '🌉'],
       [/\b(boat|sail)\b/, '⛵'],
       [/\b(bus|coach)\b/, '🚌'],
+      [/\b(ticket|pass)\b/, '🎟'],
       [/\b(roller coaster|coaster|ride)\b/, '🎢'],
       [/\b(gate|entrance)\b/, '🚪'],
       [/\b(line|queue)\b/, '👥'],
       [/\b(bag|pack)\b/, '🎒'],
       [/\b(walk|follow|go|reach|enter|join)\b/, '👣'],
-      [/\b(ticket|pass)\b/, '🎟'],
       [/\b(bucket|water|put out)\b/, '🪣'],
       [/\b(wood|stack|build)\b/, '🪵'],
       [/\b(fire|light|ember)\b/, '🔥'],
@@ -6655,6 +6655,7 @@
       meta: { word: w },
     })), { w: tileW, h: tileH });
     page.notes.push('recipe:frameTiles');
+    page.notes.push('recipe:frameRequired:' + boardFrames(lesson).map((f) => intendedFrameFill(f, lesson) || '?').join('|'));
     page.notes.push('recipe:frameTileWords:' + tileWords.join('|'));
     page.notes.push('frameBlanks:' + blanks);
     page.notes.push('frameTiles:' + n);

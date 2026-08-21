@@ -1,0 +1,58 @@
+{
+  "title": "Friends at School",
+  "warmUp": {
+    "question": "Who is at school with you?",
+    "sampleAnswer": "My friend is at school with me."
+  },
+  "vocabulary": [
+    { "word": "teacher", "emoji": "🧑‍🏫", "sentence": "The teacher stands with us." },
+    { "word": "classroom", "emoji": "🏫", "sentence": "We are in the classroom." },
+    { "word": "book", "emoji": "📖", "sentence": "Mia holds a book." },
+    { "word": "desk", "emoji": "🪑", "sentence": "Leo sits at the desk." },
+    { "word": "happy", "emoji": "😊", "sentence": "We are happy." },
+    { "word": "friend", "emoji": "🤝", "sentence": "Leo is my friend." }
+  ],
+  "sentenceFrames": [
+    "I am at the ____.",
+    "I have a ____.",
+    "I am ____."
+  ],
+  "story": {
+    "title": "Friends at School",
+    "pages": [
+      {
+        "heading": "In class",
+        "text": "Mia and Leo stand with the teacher. They are happy in the classroom.",
+        "visualTheme": "classroom",
+        "visualCaption": "Mia, Leo, and the teacher in the classroom",
+        "storyScene": {
+          "templateId": "group3",
+          "actionVerb": "stand",
+          "slots": {
+            "left": { "who": "mia", "pose": "idle", "emotion": "happy" },
+            "center": { "propKey": "job-teacher", "scaleClass": "actor", "facing": "front" },
+            "right": { "who": "leo", "pose": "idle", "emotion": "happy" }
+          }
+        }
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "Who stands with Mia and Leo?", "sampleAnswer": "The teacher." },
+      { "question": "Where are they?", "sampleAnswer": "In the classroom." }
+    ],
+    "creativeQuestions": [
+      { "question": "Who is at school with you?", "sampleAnswer": "My friend is at school with me." }
+    ]
+  },
+  "speakingQuestions": [
+    { "question": "Do you like school?", "sampleAnswer": "Yes, I do." }
+  ],
+  "activity": {
+    "title": "Match the school words",
+    "prompt": "Match each word to the picture.",
+    "templates": ["I am at the ____."]
+  },
+  "reviewSentences": [
+    "Mia and Leo stand with the teacher. They are happy in the classroom."
+  ]
+}

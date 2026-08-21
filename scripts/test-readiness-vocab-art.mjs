@@ -128,8 +128,9 @@ const fullArt = {
 assert(W.EdbActivities.matchDockIsPartial(fullArt) === false, 'full set not partial');
 const fullHint = W.EdbActivities.matchDockStudentHint(fullArt);
 assert(partialHint === fullHint, 'student hint identical whether partial or full');
-assert(/picture beside/i.test(fullHint), 'student hint names picture beside word');
-assert(!/Drag each picture/i.test(fullHint), 'student hint must not ask drag-to-pad (inline layout)');
+assert(/drag each picture/i.test(fullHint), 'student hint names the draggable picture source');
+assert(/to its word/i.test(fullHint), 'student hint names the destination word pad');
+assert(/say the word/i.test(fullHint), 'student hint includes retrieval aloud');
 assert(!/not every word/i.test(partialHint), 'student hint must not announce missing pictures');
 
 // Art floor: Ready needs ≥5/6 teachable art (was 50%).

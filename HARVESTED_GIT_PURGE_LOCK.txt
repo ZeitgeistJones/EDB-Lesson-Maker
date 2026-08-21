@@ -1,0 +1,1 @@
+﻿STOP: do not force-add harvested. Local warehouse only.

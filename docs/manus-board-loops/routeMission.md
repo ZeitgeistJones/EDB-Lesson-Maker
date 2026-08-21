@@ -71,3 +71,21 @@ Independent single-board optimization log.
 - ACTION: High|Introduce explicit landmarks for each action card (radio/hut, flag trail, footbridge) and bind each card to a concrete post-action state in the world.
 - ACTION: Medium|Replace ambiguous language with a single visible reveal control (e.g., a folded corner labeled Lift to Reveal or a Reveal Route button) and align it with the instruction text.
 - ACTION: Low|Simplify header/hero area to maximize world canvas space and integrate a scenic backdrop that supports the mission narrative.
+
+## Round 3 — campfire-safety (B1)
+
+- BOARD_PATH: `tmp/manus-board-loops/routeMission/round-03-campfire-safety.jpg`
+- PACKET: `tmp/manus-board-loops/routeMission/round-03-campfire-safety`
+- TASK: https://manus.im/app/23RZCmAMsXWJ3nwoXrkzNx
+- MANUS_VERDICT: fail
+- SCORE: 4
+- POLISH (ppt_like_quality): 0
+- WEAKEST_LINK: SITE-WINDER (SYSTEMIC) Topic-binding release gate: topic-to-render coherence between declared campfire-safety and rendered beach-rescue content; missing five-step machine-action tokens and incomplete route-state persistence.
+- ESCALATION_HOMEWORK: Provide exactly one buildable generalisation challenge that escalates the topic, format, or scaffold, and present it as a concrete generator/prompt/gate change for the producer to ACCEPT or DECLINE.
+- STATUS: structured_ok
+
+### Blocking / next actions
+- ACTION: Blocking: Topic-binding gate: enforce domain-consistent mission copy, goal, and landmarks before render;
+- ACTION: High: Ensure five-material-step contract is met; no duplicate FINISH card; ensure route persistence is visible across drops;
+- ACTION: Medium: Replace beach-rescue theme with campfire-safety specifics;
+- ACTION: Low: Enforce icon-landmark fidelity (one icon = one landmark/action) across all cards

@@ -1,0 +1,302 @@
+﻿{
+  "kind": "content-worlds-fghi",
+  "prefix": "cw-",
+  "waves": {
+<<<<<<< HEAD
+    "f16": {
+      "family": "weather-seasons",
+      "harvest_family": "weather-seasons",
+      "title": "CW FGHI F16 ΓÇö weather family patio umbrella",
+      "kind": "stage",
+      "task_id": "gYNk5GEUdL6SpFWgMexHxW",
+      "task_url": "https://manus.im/app/gYNk5GEUdL6SpFWgMexHxW",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\content-worlds\\weather-seasons\\cw-f16-wx-greenhouse-path\\sheets",
+=======
+    "g15": {
+      "family": "everyday-life",
+      "harvest_family": "everyday-life",
+      "title": "CW FGHI G15 ΓÇö bookstore + cafe life",
+      "kind": "stage",
+      "task_id": "iDSpL3KXMwEDcyZvc9VKcb",
+      "task_url": "https://manus.im/app/iDSpL3KXMwEDcyZvc9VKcb",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\content-worlds\\everyday-life\\cw-g15-bookstore-cafe\\sheets",
+>>>>>>> d4b0930b (Stockpile CW FGHI G15 bookstore+cafe life (1 sheet).)
+      "expected_sheets": 1,
+      "concept_count": 4,
+      "sheets": [
+        {
+          "file": "01.png",
+<<<<<<< HEAD
+          "bytes": 6172611,
+          "name": "fgHI_wx_patio_umb_2x2.png"
+=======
+          "bytes": 4568018,
+          "name": "cw-life-fghi-bookstore-cafe-2x2.png"
+>>>>>>> d4b0930b (Stockpile CW FGHI G15 bookstore+cafe life (1 sheet).)
+        }
+      ],
+      "items": [
+        {
+<<<<<<< HEAD
+          "key": "cw-wx-patio-umb-sunny",
+          "concept": "wx-patio-umb-sunny",
+          "brief": "REGISTERED FAMILY wx-patio-umb. SAME camera, SAME patio tiles, SAME round table, SAME umbrella pole, SAME planter. Only weather/umbrella state change. Open patio floor. No people no text. STATE sunny: open umbrella shade, dry tiles. Affordance: sit under shade.",
+          "research_gate": [
+            "ok_everyday",
+            "affordance_family"
+          ],
+          "family_id": "wx-patio-umb",
+          "kind": "stage",
+          "status": "generated_raw",
+          "qa_status": null,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\content-worlds\\weather-seasons\\cw-f16-wx-greenhouse-path\\sheets",
+          "sheet_id": "S1",
+          "manus_task_id": "gYNk5GEUdL6SpFWgMexHxW",
+          "provenance": {
+            "content_family": "weather-seasons",
+            "title": "wx-patio-umb-sunny",
+=======
+          "key": "cw-life-bookstore-aisle",
+          "concept": "life-bookstore-aisle",
+          "brief": "bookstore aisle: shelves at edges with blank spine shapes, open floor. No people no titles readable.",
+          "research_gate": [
+            "ok_everyday",
+            "anti_stereotype"
+          ],
+          "kind": "stage",
+          "status": "generated_raw",
+          "qa_status": null,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\content-worlds\\everyday-life\\cw-g15-bookstore-cafe\\sheets",
+          "sheet_id": "S1",
+          "manus_task_id": "iDSpL3KXMwEDcyZvc9VKcb",
+          "provenance": {
+            "content_family": "everyday-life",
+            "title": "life-bookstore-aisle",
+>>>>>>> d4b0930b (Stockpile CW FGHI G15 bookstore+cafe life (1 sheet).)
+            "source": "manus-generated-stockpile",
+            "rights_status": "generated-stockpile",
+            "verification_date": "2026-08-20",
+            "cultural_review_needed": false,
+            "map_review_needed": false,
+            "research_gate": [
+              "ok_everyday",
+<<<<<<< HEAD
+              "affordance_family"
+            ],
+            "country_hint": null,
+            "family_id": "wx-patio-umb",
+            "notes": "Registered similar-scene family wx-patio-umb."
+          }
+        },
+        {
+          "key": "cw-wx-patio-umb-rain",
+          "concept": "wx-patio-umb-rain",
+          "brief": "REGISTERED FAMILY wx-patio-umb. SAME camera, SAME patio tiles, SAME round table, SAME umbrella pole, SAME planter. Only weather/umbrella state change. Open patio floor. No people no text. STATE rain: umbrella open, wet tiles, drip edge. Affordance: stay under umbrella.",
+          "research_gate": [
+            "ok_everyday",
+            "affordance_family"
+          ],
+          "family_id": "wx-patio-umb",
+          "kind": "stage",
+          "status": "generated_raw",
+          "qa_status": null,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\content-worlds\\weather-seasons\\cw-f16-wx-greenhouse-path\\sheets",
+          "sheet_id": "S1",
+          "manus_task_id": "gYNk5GEUdL6SpFWgMexHxW",
+          "provenance": {
+            "content_family": "weather-seasons",
+            "title": "wx-patio-umb-rain",
+=======
+              "anti_stereotype"
+            ],
+            "country_hint": null,
+            "family_id": null,
+            "notes": ""
+          }
+        },
+        {
+          "key": "cw-life-bookstore-reading",
+          "concept": "life-bookstore-reading",
+          "brief": "bookstore reading nook: empty armchair + lamp at edge, open floor. No people no magazines with text.",
+          "research_gate": [
+            "ok_everyday",
+            "anti_stereotype"
+          ],
+          "kind": "stage",
+          "status": "generated_raw",
+          "qa_status": null,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\content-worlds\\everyday-life\\cw-g15-bookstore-cafe\\sheets",
+          "sheet_id": "S1",
+          "manus_task_id": "iDSpL3KXMwEDcyZvc9VKcb",
+          "provenance": {
+            "content_family": "everyday-life",
+            "title": "life-bookstore-reading",
+>>>>>>> d4b0930b (Stockpile CW FGHI G15 bookstore+cafe life (1 sheet).)
+            "source": "manus-generated-stockpile",
+            "rights_status": "generated-stockpile",
+            "verification_date": "2026-08-20",
+            "cultural_review_needed": false,
+            "map_review_needed": false,
+            "research_gate": [
+              "ok_everyday",
+<<<<<<< HEAD
+              "affordance_family"
+            ],
+            "country_hint": null,
+            "family_id": "wx-patio-umb",
+            "notes": "Registered similar-scene family wx-patio-umb."
+          }
+        },
+        {
+          "key": "cw-wx-patio-umb-snow",
+          "concept": "wx-patio-umb-snow",
+          "brief": "REGISTERED FAMILY wx-patio-umb. SAME camera, SAME patio tiles, SAME round table, SAME umbrella pole, SAME planter. Only weather/umbrella state change. Open patio floor. No people no text. STATE snow: umbrella closed/folded, berms on tiles. Affordance: packed path only.",
+          "research_gate": [
+            "ok_everyday",
+            "affordance_family"
+          ],
+          "family_id": "wx-patio-umb",
+          "kind": "stage",
+          "status": "generated_raw",
+          "qa_status": null,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\content-worlds\\weather-seasons\\cw-f16-wx-greenhouse-path\\sheets",
+          "sheet_id": "S1",
+          "manus_task_id": "gYNk5GEUdL6SpFWgMexHxW",
+          "provenance": {
+            "content_family": "weather-seasons",
+            "title": "wx-patio-umb-snow",
+=======
+              "anti_stereotype"
+            ],
+            "country_hint": null,
+            "family_id": null,
+            "notes": ""
+          }
+        },
+        {
+          "key": "cw-life-cafe-counter",
+          "concept": "life-cafe-counter",
+          "brief": "cafe counter: empty stools at edge, open floor, blank menu board shape (ZERO letters). No people.",
+          "research_gate": [
+            "ok_everyday",
+            "anti_stereotype"
+          ],
+          "kind": "stage",
+          "status": "generated_raw",
+          "qa_status": null,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\content-worlds\\everyday-life\\cw-g15-bookstore-cafe\\sheets",
+          "sheet_id": "S1",
+          "manus_task_id": "iDSpL3KXMwEDcyZvc9VKcb",
+          "provenance": {
+            "content_family": "everyday-life",
+            "title": "life-cafe-counter",
+>>>>>>> d4b0930b (Stockpile CW FGHI G15 bookstore+cafe life (1 sheet).)
+            "source": "manus-generated-stockpile",
+            "rights_status": "generated-stockpile",
+            "verification_date": "2026-08-20",
+            "cultural_review_needed": false,
+            "map_review_needed": false,
+            "research_gate": [
+              "ok_everyday",
+<<<<<<< HEAD
+              "affordance_family"
+            ],
+            "country_hint": null,
+            "family_id": "wx-patio-umb",
+            "notes": "Registered similar-scene family wx-patio-umb."
+          }
+        },
+        {
+          "key": "cw-wx-patio-umb-dusk",
+          "concept": "wx-patio-umb-dusk",
+          "brief": "REGISTERED FAMILY wx-patio-umb. SAME camera, SAME patio tiles, SAME round table, SAME umbrella pole, SAME planter. Only weather/umbrella state change. Open patio floor. No people no text. STATE dusk: string lights on, umbrella open, dry. Affordance: evening sit.",
+          "research_gate": [
+            "ok_everyday",
+            "affordance_family"
+          ],
+          "family_id": "wx-patio-umb",
+          "kind": "stage",
+          "status": "generated_raw",
+          "qa_status": null,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\content-worlds\\weather-seasons\\cw-f16-wx-greenhouse-path\\sheets",
+          "sheet_id": "S1",
+          "manus_task_id": "gYNk5GEUdL6SpFWgMexHxW",
+          "provenance": {
+            "content_family": "weather-seasons",
+            "title": "wx-patio-umb-dusk",
+=======
+              "anti_stereotype"
+            ],
+            "country_hint": null,
+            "family_id": null,
+            "notes": ""
+          }
+        },
+        {
+          "key": "cw-life-cafe-window-seat",
+          "concept": "life-cafe-window-seat",
+          "brief": "cafe window booth: empty table at edge, open floor. No people no logos.",
+          "research_gate": [
+            "ok_everyday",
+            "anti_stereotype"
+          ],
+          "kind": "stage",
+          "status": "generated_raw",
+          "qa_status": null,
+          "path": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\content-worlds\\everyday-life\\cw-g15-bookstore-cafe\\sheets",
+          "sheet_id": "S1",
+          "manus_task_id": "iDSpL3KXMwEDcyZvc9VKcb",
+          "provenance": {
+            "content_family": "everyday-life",
+            "title": "life-cafe-window-seat",
+>>>>>>> d4b0930b (Stockpile CW FGHI G15 bookstore+cafe life (1 sheet).)
+            "source": "manus-generated-stockpile",
+            "rights_status": "generated-stockpile",
+            "verification_date": "2026-08-20",
+            "cultural_review_needed": false,
+            "map_review_needed": false,
+            "research_gate": [
+              "ok_everyday",
+<<<<<<< HEAD
+              "affordance_family"
+            ],
+            "country_hint": null,
+            "family_id": "wx-patio-umb",
+            "notes": "Registered similar-scene family wx-patio-umb."
+=======
+              "anti_stereotype"
+            ],
+            "country_hint": null,
+            "family_id": null,
+            "notes": ""
+>>>>>>> d4b0930b (Stockpile CW FGHI G15 bookstore+cafe life (1 sheet).)
+          }
+        }
+      ],
+      "holds": [],
+<<<<<<< HEAD
+      "finished_at": "2026-08-20T05:09:15.801Z"
+=======
+      "finished_at": "2026-08-20T05:15:44.926Z"
+>>>>>>> d4b0930b (Stockpile CW FGHI G15 bookstore+cafe life (1 sheet).)
+    }
+  },
+  "running_total": {
+    "tasks": 1,
+    "sheets_downloaded": 1,
+    "stage_cells": 4,
+    "companion_cells": 0,
+    "weather_families": 20,
+    "country_places": 68,
+    "festival_stages": 20,
+    "pass": 0,
+    "hold": 0
+  },
+<<<<<<< HEAD
+  "updated_at": "2026-08-20T05:09:15.818Z"
+=======
+  "updated_at": "2026-08-20T05:15:44.934Z"
+>>>>>>> d4b0930b (Stockpile CW FGHI G15 bookstore+cafe life (1 sheet).)
+}

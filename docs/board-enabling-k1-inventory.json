@@ -1,0 +1,583 @@
+{
+  "kind": "board-enabling-k1",
+  "prefix": "be-k1-",
+  "states": [
+    "baseline",
+    "subtle-wrong",
+    "damaged",
+    "repaired",
+    "emptied",
+    "consequence"
+  ],
+  "waves": {
+    "k1-04": {
+      "family_id": "be-k1-bathroom",
+      "title": "BE-K1 bathroom six-state 2├ù3",
+      "task_id": "3uV6U3juirJXbUGSoYtHhm",
+      "task_url": "https://manus.im/app/3uV6U3juirJXbUGSoYtHhm",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-04\\sheets",
+      "expected_sheets": 1,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 5040917,
+          "name": "be-k1-bathroom-S1.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:08:23.079Z",
+      "holds": []
+    },
+    "k1-01": {
+      "family_id": "be-k1-kitchen",
+      "title": "BE-K1 kitchen six-state 2├ù3",
+      "task_id": "KfLi6DG7nvPo54YiQ8RDrd",
+      "task_url": "https://manus.im/app/KfLi6DG7nvPo54YiQ8RDrd",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-01\\sheets",
+      "expected_sheets": 1,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 5151141,
+          "name": "be-k1-kitchen-s1.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:07:37.503Z",
+      "holds": []
+    },
+    "k1-05": {
+      "family_id": "be-k1-workshop",
+      "title": "BE-K1 workshop six-state 2├ù3",
+      "task_id": "CqNhhMj8EY8z4V68gWuW6s",
+      "task_url": "https://manus.im/app/CqNhhMj8EY8z4V68gWuW6s",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-05\\sheets",
+      "expected_sheets": 1,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4942950,
+          "name": "be-k1-workshop-s1.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:07:06.136Z",
+      "holds": []
+    },
+    "k1-02": {
+      "family_id": "be-k1-bedroom",
+      "title": "BE-K1 bedroom six-state 2├ù3",
+      "task_id": "CDvg3CKLvVB8xciZTXF7Kg",
+      "task_url": "https://manus.im/app/CDvg3CKLvVB8xciZTXF7Kg",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-02\\sheets",
+      "expected_sheets": 1,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4791165,
+          "name": "be-k1-bedroom-S1.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:07:53.268Z",
+      "holds": []
+    },
+    "k1-03": {
+      "family_id": "be-k1-living",
+      "title": "BE-K1 living-room six-state 2├ù3",
+      "task_id": "7RoAnHc2xbaVtSw8fwccNT",
+      "task_url": "https://manus.im/app/7RoAnHc2xbaVtSw8fwccNT",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-03\\sheets",
+      "expected_sheets": 1,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 5137686,
+          "name": "be-k1-living-S1.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:08:08.016Z",
+      "holds": []
+    },
+    "k1-06": {
+      "family_id": "be-k1-clinic",
+      "title": "BE-K1 clinic six-state 2├ù3",
+      "task_id": "BjdYCf3pvfzDDvsCxKUdEJ",
+      "task_url": "https://manus.im/app/BjdYCf3pvfzDDvsCxKUdEJ",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-06\\sheets",
+      "expected_sheets": 1,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4436764,
+          "name": "be-k1-clinic-S1.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:24:37.858Z",
+      "holds": []
+    },
+    "k1-07": {
+      "family_id": "be-k1-cafe",
+      "title": "BE-K1 cafe six-state 2├ù3",
+      "task_id": "ENehkNNfjSsfaMSyDSPKNu",
+      "task_url": "https://manus.im/app/ENehkNNfjSsfaMSyDSPKNu",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-07\\sheets",
+      "expected_sheets": 1,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4606180,
+          "name": "be-k1-cafe-S1.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:28:11.370Z",
+      "holds": []
+    },
+    "k1-08": {
+      "family_id": "be-k1-shop",
+      "title": "BE-K1 shop six-state 2├ù3",
+      "task_id": "eF7FALyw6zRXQtthePmBTD",
+      "task_url": "https://manus.im/app/eF7FALyw6zRXQtthePmBTD",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-08\\sheets",
+      "expected_sheets": 1,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4829135,
+          "name": "be-k1-shop-S1-shop.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:33:42.451Z",
+      "holds": []
+    },
+    "k1-11": {
+      "family_id": "be-k1-playground",
+      "title": "BE-K1 playground six-state 2├ù3",
+      "task_id": "jFRWsc5252KaJ6ouZMxrXx",
+      "task_url": "https://manus.im/app/jFRWsc5252KaJ6ouZMxrXx",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-11\\sheets",
+      "expected_sheets": 1,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 5005454,
+          "name": "be-k1-playground-S1.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:36:55.650Z",
+      "holds": []
+    },
+    "k1-09": {
+      "family_id": "be-k1-library",
+      "title": "BE-K1 library six-state 2├ù3",
+      "task_id": "Tfsg3s3aboRNWDxTjfuevx",
+      "task_url": "https://manus.im/app/Tfsg3s3aboRNWDxTjfuevx",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-09\\sheets",
+      "expected_sheets": 1,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 4847655,
+          "name": "be-k1-library-s1-contact-sheet.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:40:01.621Z",
+      "holds": []
+    },
+    "k1-12": {
+      "family_id": "be-k1-porch",
+      "title": "BE-K1 porch six-state 2├ù3",
+      "task_id": "9ZbCsMBD95ZqJFqomgqDMA",
+      "task_url": "https://manus.im/app/9ZbCsMBD95ZqJFqomgqDMA",
+      "agent_status": "stopped",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-12\\sheets",
+      "expected_sheets": 1,
+      "sheets": [
+        {
+          "file": "01.png",
+          "bytes": 5081688,
+          "name": "be-k1-porch-S1.png"
+        }
+      ],
+      "finished_at": "2026-08-20T05:44:07.741Z",
+      "holds": []
+    }
+  },
+  "families": {
+    "be-k1-bathroom": {
+      "family_id": "be-k1-bathroom",
+      "wave": "k1-04",
+      "slug": "bathroom",
+      "base_class": "PARTIAL",
+      "reuse_note": "s1 bathroom baselines",
+      "siblings": [
+        "be-k1-bathroom-baseline",
+        "be-k1-bathroom-subtle-wrong",
+        "be-k1-bathroom-damaged",
+        "be-k1-bathroom-repaired",
+        "be-k1-bathroom-emptied",
+        "be-k1-bathroom-consequence"
+      ],
+      "states": [
+        "baseline",
+        "subtle-wrong",
+        "damaged",
+        "repaired",
+        "emptied",
+        "consequence"
+      ],
+      "registration_grade": "REG_A",
+      "grade_notes": "",
+      "manus_task_id": "3uV6U3juirJXbUGSoYtHhm",
+      "task_url": "https://manus.im/app/3uV6U3juirJXbUGSoYtHhm",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-04\\sheets",
+      "status": "generated_raw"
+    },
+    "be-k1-kitchen": {
+      "family_id": "be-k1-kitchen",
+      "wave": "k1-01",
+      "slug": "kitchen",
+      "base_class": "PARTIAL",
+      "reuse_note": "s1 kitchen-home / everyday kitchen baselines",
+      "siblings": [
+        "be-k1-kitchen-baseline",
+        "be-k1-kitchen-subtle-wrong",
+        "be-k1-kitchen-damaged",
+        "be-k1-kitchen-repaired",
+        "be-k1-kitchen-emptied",
+        "be-k1-kitchen-consequence"
+      ],
+      "states": [
+        "baseline",
+        "subtle-wrong",
+        "damaged",
+        "repaired",
+        "emptied",
+        "consequence"
+      ],
+      "registration_grade": "REG_A",
+      "grade_notes": "",
+      "manus_task_id": "KfLi6DG7nvPo54YiQ8RDrd",
+      "task_url": "https://manus.im/app/KfLi6DG7nvPo54YiQ8RDrd",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-01\\sheets",
+      "status": "generated_raw"
+    },
+    "be-k1-bedroom": {
+      "family_id": "be-k1-bedroom",
+      "wave": "k1-02",
+      "slug": "bedroom",
+      "base_class": "PARTIAL",
+      "reuse_note": "s1 bedroom baselines",
+      "siblings": [
+        "be-k1-bedroom-baseline",
+        "be-k1-bedroom-subtle-wrong",
+        "be-k1-bedroom-damaged",
+        "be-k1-bedroom-repaired",
+        "be-k1-bedroom-emptied",
+        "be-k1-bedroom-consequence"
+      ],
+      "states": [
+        "baseline",
+        "subtle-wrong",
+        "damaged",
+        "repaired",
+        "emptied",
+        "consequence"
+      ],
+      "registration_grade": "REG_A",
+      "grade_notes": "",
+      "manus_task_id": "CDvg3CKLvVB8xciZTXF7Kg",
+      "task_url": "https://manus.im/app/CDvg3CKLvVB8xciZTXF7Kg",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-02\\sheets",
+      "status": "generated_raw"
+    },
+    "be-k1-living": {
+      "family_id": "be-k1-living",
+      "wave": "k1-03",
+      "slug": "living",
+      "base_class": "PARTIAL",
+      "reuse_note": "s1 living-room baselines",
+      "siblings": [
+        "be-k1-living-baseline",
+        "be-k1-living-subtle-wrong",
+        "be-k1-living-damaged",
+        "be-k1-living-repaired",
+        "be-k1-living-emptied",
+        "be-k1-living-consequence"
+      ],
+      "states": [
+        "baseline",
+        "subtle-wrong",
+        "damaged",
+        "repaired",
+        "emptied",
+        "consequence"
+      ],
+      "registration_grade": "REG_B",
+      "grade_notes": "emptied weak",
+      "manus_task_id": "7RoAnHc2xbaVtSw8fwccNT",
+      "task_url": "https://manus.im/app/7RoAnHc2xbaVtSw8fwccNT",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-03\\sheets",
+      "status": "generated_raw"
+    },
+    "be-k1-workshop": {
+      "family_id": "be-k1-workshop",
+      "wave": "k1-05",
+      "slug": "workshop",
+      "base_class": "PARTIAL",
+      "reuse_note": "s1 workshop baselines",
+      "siblings": [
+        "be-k1-workshop-baseline",
+        "be-k1-workshop-subtle-wrong",
+        "be-k1-workshop-damaged",
+        "be-k1-workshop-repaired",
+        "be-k1-workshop-emptied",
+        "be-k1-workshop-consequence"
+      ],
+      "states": [
+        "baseline",
+        "subtle-wrong",
+        "damaged",
+        "repaired",
+        "emptied",
+        "consequence"
+      ],
+      "registration_grade": "REG_A",
+      "grade_notes": "Excellent emptied ghost pegboard; rope repair + tape patch.",
+      "manus_task_id": "CqNhhMj8EY8z4V68gWuW6s",
+      "task_url": "https://manus.im/app/CqNhhMj8EY8z4V68gWuW6s",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-05\\sheets",
+      "status": "generated_raw"
+    },
+    "be-k1-clinic": {
+      "family_id": "be-k1-clinic",
+      "wave": "k1-06",
+      "slug": "clinic",
+      "base_class": "PARTIAL",
+      "reuse_note": "s1 clinic baselines",
+      "siblings": [
+        "be-k1-clinic-baseline",
+        "be-k1-clinic-subtle-wrong",
+        "be-k1-clinic-damaged",
+        "be-k1-clinic-repaired",
+        "be-k1-clinic-emptied",
+        "be-k1-clinic-consequence"
+      ],
+      "states": [
+        "baseline",
+        "subtle-wrong",
+        "damaged",
+        "repaired",
+        "emptied",
+        "consequence"
+      ],
+      "registration_grade": "FIRED",
+      "grade_notes": "",
+      "manus_task_id": "BjdYCf3pvfzDDvsCxKUdEJ",
+      "task_url": "https://manus.im/app/BjdYCf3pvfzDDvsCxKUdEJ",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-06\\sheets",
+      "status": "generated_raw"
+    },
+    "be-k1-cafe": {
+      "family_id": "be-k1-cafe",
+      "wave": "k1-07",
+      "slug": "cafe",
+      "base_class": "PARTIAL",
+      "reuse_note": "s1 cafe baselines",
+      "siblings": [
+        "be-k1-cafe-baseline",
+        "be-k1-cafe-subtle-wrong",
+        "be-k1-cafe-damaged",
+        "be-k1-cafe-repaired",
+        "be-k1-cafe-emptied",
+        "be-k1-cafe-consequence"
+      ],
+      "states": [
+        "baseline",
+        "subtle-wrong",
+        "damaged",
+        "repaired",
+        "emptied",
+        "consequence"
+      ],
+      "registration_grade": "REG_B",
+      "grade_notes": "Camera lock ok; emptied recolored chairs (drift); repair patch clear.",
+      "manus_task_id": "ENehkNNfjSsfaMSyDSPKNu",
+      "task_url": "https://manus.im/app/ENehkNNfjSsfaMSyDSPKNu",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-07\\sheets",
+      "status": "generated_raw"
+    },
+    "be-k1-shop": {
+      "family_id": "be-k1-shop",
+      "wave": "k1-08",
+      "slug": "shop",
+      "base_class": "PARTIAL",
+      "reuse_note": "s1 shop baselines",
+      "siblings": [
+        "be-k1-shop-baseline",
+        "be-k1-shop-subtle-wrong",
+        "be-k1-shop-damaged",
+        "be-k1-shop-repaired",
+        "be-k1-shop-emptied",
+        "be-k1-shop-consequence"
+      ],
+      "states": [
+        "baseline",
+        "subtle-wrong",
+        "damaged",
+        "repaired",
+        "emptied",
+        "consequence"
+      ],
+      "registration_grade": "REG_A",
+      "grade_notes": "Excellent emptied dust rectangles; shelf brackets + dustpan repair evidence.",
+      "manus_task_id": "eF7FALyw6zRXQtthePmBTD",
+      "task_url": "https://manus.im/app/eF7FALyw6zRXQtthePmBTD",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-08\\sheets",
+      "status": "generated_raw"
+    },
+    "be-k1-playground": {
+      "family_id": "be-k1-playground",
+      "wave": "k1-11",
+      "slug": "playground",
+      "base_class": "PARTIAL",
+      "reuse_note": "wx-playground weather family ΓÇö reuse geometry, new state model",
+      "siblings": [
+        "be-k1-playground-baseline",
+        "be-k1-playground-subtle-wrong",
+        "be-k1-playground-damaged",
+        "be-k1-playground-repaired",
+        "be-k1-playground-emptied",
+        "be-k1-playground-consequence"
+      ],
+      "states": [
+        "baseline",
+        "subtle-wrong",
+        "damaged",
+        "repaired",
+        "emptied",
+        "consequence"
+      ],
+      "registration_grade": "REG_A",
+      "grade_notes": "Strong outdoor lock; sand ghost toys; tape+green seat repair.",
+      "manus_task_id": "jFRWsc5252KaJ6ouZMxrXx",
+      "task_url": "https://manus.im/app/jFRWsc5252KaJ6ouZMxrXx",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-11\\sheets",
+      "status": "generated_raw"
+    },
+    "be-k1-library": {
+      "family_id": "be-k1-library",
+      "wave": "k1-09",
+      "slug": "library",
+      "base_class": "PARTIAL",
+      "reuse_note": "s1 library + wx library-window geometry cousins",
+      "siblings": [
+        "be-k1-library-baseline",
+        "be-k1-library-subtle-wrong",
+        "be-k1-library-damaged",
+        "be-k1-library-repaired",
+        "be-k1-library-emptied",
+        "be-k1-library-consequence"
+      ],
+      "states": [
+        "baseline",
+        "subtle-wrong",
+        "damaged",
+        "repaired",
+        "emptied",
+        "consequence"
+      ],
+      "registration_grade": "REG_B",
+      "grade_notes": "Camera lock strong; emptied shelves bare but weak dust traces.",
+      "manus_task_id": "Tfsg3s3aboRNWDxTjfuevx",
+      "task_url": "https://manus.im/app/Tfsg3s3aboRNWDxTjfuevx",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-09\\sheets",
+      "status": "generated_raw"
+    },
+    "be-k1-porch": {
+      "family_id": "be-k1-porch",
+      "wave": "k1-12",
+      "slug": "porch",
+      "base_class": "PARTIAL",
+      "reuse_note": "wx-front-porch weather family",
+      "siblings": [
+        "be-k1-porch-baseline",
+        "be-k1-porch-subtle-wrong",
+        "be-k1-porch-damaged",
+        "be-k1-porch-repaired",
+        "be-k1-porch-emptied",
+        "be-k1-porch-consequence"
+      ],
+      "states": [
+        "baseline",
+        "subtle-wrong",
+        "damaged",
+        "repaired",
+        "emptied",
+        "consequence"
+      ],
+      "registration_grade": "FIRED",
+      "grade_notes": "",
+      "manus_task_id": "9ZbCsMBD95ZqJFqomgqDMA",
+      "task_url": "https://manus.im/app/9ZbCsMBD95ZqJFqomgqDMA",
+      "sheet_dir": "C:\\dev\\PPT-Lesson-Maker-for-Classin\\harvested\\board-enabling\\registered-scene-states\\k1-12\\sheets",
+      "status": "generated_raw"
+    }
+  },
+  "running_total": {
+    "tasks": 11,
+    "sheets_downloaded": 11,
+    "families_planned": 20,
+    "families_fired": 11,
+    "families_graded": 11,
+    "reg_a": 6,
+    "reg_b": 3,
+    "reg_c": 0,
+    "reg_fail": 0,
+    "state_cells": 66
+  },
+  "base_audit": [
+    {
+      "env": "wx weather families (20 registered 4-state)",
+      "class": "PARTIAL",
+      "note": "Camera lock proven; states are weather/season, not narrative six-state."
+    },
+    {
+      "env": "history before-after (home/school)",
+      "class": "THIN",
+      "note": "2-state compare only; not damaged/repaired/emptied/consequence."
+    },
+    {
+      "env": "habitats empty stages",
+      "class": "THIN",
+      "note": "Emptied flavor only; no sibling registration."
+    },
+    {
+      "env": "aggressive s1/s2/s3 story settings",
+      "class": "PARTIAL",
+      "note": "Strong single baselines; almost no registered state siblings."
+    },
+    {
+      "env": "everyday-life laundry/atelier/etc.",
+      "class": "PARTIAL",
+      "note": "Good place art; single plates, not six-state."
+    },
+    {
+      "env": "ordinary classroom one-offs",
+      "class": "THIN",
+      "note": "Do not duplicate unless full six-state family (k1-18)."
+    },
+    {
+      "env": "K1 six-state registered families",
+      "class": "MISSING",
+      "note": "This stockpile ΓÇö none before Stream A."
+    }
+  ],
+  "updated_at": "2026-08-20T05:44:08.017Z"
+}
