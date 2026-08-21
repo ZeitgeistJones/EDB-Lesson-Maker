@@ -1341,6 +1341,14 @@
       const n = padWords.length;
       const cols = n <= 3 ? 1 : 2;
       const rowsN = Math.max(1, Math.ceil(n / cols));
+      const world = (EA && EA.matchDockWorldTheme && EA.matchDockWorldTheme(lesson)) || {
+        id: 'discovery',
+        title: 'Word trail',
+        icon: '⭐',
+        payoff: 'WORD MASTER!',
+        scene: '✨  ⭐  ✨',
+        stageBackground: 'linear-gradient(145deg, rgba(255,255,255,.82), rgba(237,233,254,.88))',
+      };
 
       // A scene-like source tray sits behind the real draggable EDB pieces. It
       // makes the source/destination contract obvious without printing answers
@@ -1394,8 +1402,9 @@
         fontSize: '18px',
         fontWeight: '900',
         zIndex: '2',
-      }, `Match all ${n} → ⭐ Word Master`);
+      }, `${world.icon} ${world.payoff}`);
       finishBadge.dataset.matchReward = '1';
+      finishBadge.dataset.matchWorld = world.id;
       p.appendChild(finishBadge);
 
       const targetStage = el('div', {
@@ -1406,7 +1415,7 @@
         padding: '14px',
         boxSizing: 'border-box',
         borderRadius: '28px',
-        background: 'linear-gradient(145deg, rgba(255,255,255,0.58), rgba(237,233,254,0.54))',
+        background: world.stageBackground,
         border: '2px solid rgba(124,58,237,0.20)',
         display: 'grid',
         gridTemplateColumns: cols === 1 ? '1fr' : '1fr 1fr',
@@ -1414,8 +1423,31 @@
         gap: '12px 14px',
         position: 'relative',
         zIndex: '1',
+        overflow: 'hidden',
       });
       targetStage.dataset.matchTargetStage = '1';
+      targetStage.dataset.matchWorld = world.id;
+      targetStage.appendChild(el('div', {
+        position: 'absolute',
+        right: '18px',
+        top: '12px',
+        zIndex: '0',
+        fontSize: '16px',
+        fontWeight: '900',
+        color: 'rgba(30,41,59,.62)',
+        textTransform: 'uppercase',
+        letterSpacing: '1.2px',
+      }, esc(world.title)));
+      targetStage.appendChild(el('div', {
+        position: 'absolute',
+        right: '20px',
+        bottom: '12px',
+        zIndex: '0',
+        fontSize: n <= 3 ? '46px' : '36px',
+        opacity: '0.48',
+        whiteSpace: 'nowrap',
+        filter: 'saturate(.82)',
+      }, esc(world.scene)));
 
       padWords.forEach((v, i) => {
         const word = String((v && v.word) || '');
@@ -1430,6 +1462,10 @@
           display: 'flex',
           alignItems: 'center',
           gap: '12px',
+          width: cols === 1 ? '78%' : '100%',
+          justifySelf: cols === 1 ? (i % 2 ? 'end' : 'start') : 'stretch',
+          position: 'relative',
+          zIndex: '1',
           transform: `rotate(${i % 3 === 0 ? '-0.45' : i % 3 === 1 ? '0.4' : '0'}deg)`,
         });
         pad.dataset.matchPad = '1';

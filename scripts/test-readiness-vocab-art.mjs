@@ -165,6 +165,20 @@ assert(
   'mapping audit reports duplicate source art'
 );
 
+const campWorld = W.EdbActivities.matchDockWorldTheme({
+  title: 'Campsite Fun',
+  vocabulary: [{ word: 'tent' }, { word: 'campfire' }, { word: 'backpack' }],
+});
+assert(campWorld.id === 'camp', 'matchDock chooses the campsite world');
+assert(/CAMP READY/.test(campWorld.payoff), 'campsite world has a topic payoff');
+
+const musicWorld = W.EdbActivities.matchDockWorldTheme({
+  title: 'Music Class',
+  vocabulary: [{ word: 'piano' }, { word: 'drum' }],
+});
+assert(musicWorld.id === 'music', 'matchDock chooses the music-stage world');
+assert(/BAND READY/.test(musicWorld.payoff), 'music world has a topic payoff');
+
 // Art floor: Ready needs ≥5/6 teachable art (was 50%).
 assert(Math.abs(W.BoardReadiness.VOCAB_ART_FLOOR - 5 / 6) < 1e-9, 'VOCAB_ART_FLOOR is 5/6');
 const floorPct = Math.ceil(W.BoardReadiness.VOCAB_ART_FLOOR * 100);

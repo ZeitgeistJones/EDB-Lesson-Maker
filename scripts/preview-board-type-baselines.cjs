@@ -79,6 +79,7 @@ function compactLesson(title, vocabulary) {
 }
 
 const fruit = fixture('fruit-market-lesson.json');
+const kitchenHelpers = fixture('kitchen-helpers-lesson.json');
 const dentist = fixture('dentist-lesson.json');
 const faceHeroLesson = compactLesson('Make a Face', ['face', 'eyes', 'nose', 'mouth', 'hair', 'smile']);
 faceHeroLesson.activity = {
@@ -298,6 +299,7 @@ if (cliArg('only', '') === 'frameTiles') {
 const MATCH_DOCK_VARIANTS = {
   'fruit-market': { lesson: fruit, level: 'A1' },
   zoo: { lesson: zooPhonics, level: 'A1' },
+  kitchen: { lesson: kitchenHelpers, level: 'A2' },
 };
 const matchDockVariantId = cliArg('variant', 'fruit-market');
 const matchDockVariant = MATCH_DOCK_VARIANTS[matchDockVariantId] || MATCH_DOCK_VARIANTS['fruit-market'];
