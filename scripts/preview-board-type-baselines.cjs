@@ -143,10 +143,130 @@ const CAPACITY_VARIANTS = {
       mustInclude: ['camera', 'microphone'],
     },
   },
+  'emergency-hike': {
+    title: 'Rainy Mountain Safety Hike',
+    vocabulary: ['raincoat', 'map', 'whistle', 'water', 'flashlight'],
+    payload: {
+      mission: 'Choose three emergency items for a rainy mountain hike.',
+      constraint: 'Weather can change fast and the trail is steep after dark.',
+      containerLabel: 'Safety pack',
+      payoff: 'Ready for a safe hike',
+      limit: 3,
+      options: ['raincoat', 'map', 'whistle', 'water', 'flashlight'],
+      mustInclude: ['raincoat', 'whistle'],
+    },
+  },
 };
 const capacityVariantId = cliArg('variant', 'school-trip');
 const capacityVariant = CAPACITY_VARIANTS[capacityVariantId] || CAPACITY_VARIANTS['school-trip'];
 const capacityLesson = compactLesson(capacityVariant.title, capacityVariant.vocabulary);
+
+const EVIDENCE_VARIANTS = {
+  'festival-sound': {
+    title: 'Festival Sound Mystery',
+    level: 'B2',
+    vocabulary: ['festival', 'stage', 'rain', 'camera', 'power', 'speaker'],
+    payload: {
+      claim: 'Rain caused the main-stage sound failure.',
+      incidentTime: '19:42',
+      evidence: [
+        {
+          text: 'Water was found in the tripped power box.',
+          source: 'Electrician report',
+          artifactExcerpt: '19:42 — breaker tripped; water inside box',
+          relation: 'supports',
+          rationale: 'Direct expert inspection.',
+          claimImpact: 'Water in the failed circuit supports rain.',
+          strength: 4,
+        },
+        {
+          text: 'Heavy rain began 10 minutes before failure.',
+          source: 'Weather station',
+          artifactExcerpt: '19:32 — heavy rain began',
+          relation: 'supports',
+          rationale: 'Automatic timing.',
+          claimImpact: 'Rain timing supports, but cannot prove cause.',
+          strength: 2,
+        },
+        {
+          text: 'A heat alarm appeared before the rain began.',
+          source: 'Sound-desk log',
+          artifactExcerpt: '19:29 — AMPLIFIER HEAT ALARM',
+          relation: 'alternative',
+          rationale: 'Automatic timestamp.',
+          claimImpact: 'Another plausible cause is overheating.',
+          strength: 3,
+        },
+        {
+          text: 'A witness remembers the power-box cover closed.',
+          source: 'Witness interview',
+          artifactExcerpt: '"The power-box cover looked closed."',
+          relation: 'qualifies',
+          rationale: 'Memory may be wrong.',
+          claimImpact: 'Closed cover makes rain less likely.',
+          strength: 1,
+        },
+      ],
+      conclusion: 'Rain is the leading cause, but the heat alarm means overheating remains plausible.',
+      reasoningFrame: 'I rank ___ above ___ because its source is more direct, reliable, and relevant.',
+      teacherCheck: 'Ask which clue proves cause most directly and which offers a real alternative.',
+    },
+    activityTitle: 'Festival case file',
+  },
+  'community-rumor': {
+    title: 'Community Center Rumor',
+    level: 'B2',
+    vocabulary: ['rumor', 'poster', 'meeting', 'neighbor', 'notice', 'trust'],
+    payload: {
+      claim: 'The community center will close next month.',
+      evidence: [
+        {
+          text: 'A printed notice says the center needs repairs.',
+          source: 'Front-desk notice',
+          artifactExcerpt: '"Repairs begin April 3."',
+          relation: 'supports',
+          rationale: 'Official posted notice.',
+          claimImpact: 'Repairs can lead to a temporary closure.',
+          strength: 3,
+        },
+        {
+          text: 'The director says no closure is planned.',
+          source: 'Director email',
+          artifactExcerpt: '"No closure is planned this month."',
+          relation: 'contradicts',
+          rationale: 'Direct statement from leadership.',
+          claimImpact: 'Leadership denies the closure claim.',
+          strength: 4,
+        },
+        {
+          text: 'A neighbor heard the rumor at the market.',
+          source: 'Neighbor chat',
+          artifactExcerpt: '"Someone said it might close."',
+          relation: 'qualifies',
+          rationale: 'Second-hand gossip only.',
+          claimImpact: 'Rumor is uncertain, not proof of closure.',
+          strength: 1,
+        },
+        {
+          text: 'A fundraiser poster mentions a spring reopening.',
+          source: 'Event poster',
+          artifactExcerpt: '"Spring reopening celebration"',
+          relation: 'alternative',
+          rationale: 'Poster suggests another explanation.',
+          claimImpact: 'Another plausible cause is a reopening, not closure.',
+          strength: 2,
+        },
+      ],
+      conclusion: 'The director email is strongest, so the closure rumor is not confirmed.',
+      reasoningFrame: 'I rank ___ above ___ because its source is more reliable and directly answers the claim.',
+      teacherCheck: 'Ask which source is most reliable and which clue challenges the rumor.',
+    },
+    activityTitle: 'Rumor case file',
+  },
+};
+const evidenceVariantId = cliArg('variant', 'festival-sound');
+const evidenceVariant = EVIDENCE_VARIANTS[evidenceVariantId] || EVIDENCE_VARIANTS['festival-sound'];
+const evidenceLesson = compactLesson(evidenceVariant.title, evidenceVariant.vocabulary);
 
 const SCENE_REPAIR_VARIANTS = {
   'fruit-market': {
@@ -158,6 +278,8 @@ const SCENE_REPAIR_VARIANTS = {
       sceneCue: 'fruit market stall',
       wrongWord: 'carrot',
       correctWord: 'apple',
+      snapTarget: 'market basket',
+      successVisual: 'basket is full',
     },
     activityTitle: 'Fix the fruit stall',
   },
@@ -170,6 +292,8 @@ const SCENE_REPAIR_VARIANTS = {
       sceneCue: 'night camping forest',
       wrongWord: 'ice cream',
       correctWord: 'wood',
+      snapTarget: 'campfire ring',
+      successVisual: 'campfire glows',
     },
     activityTitle: 'Fix the campsite',
   },
@@ -182,6 +306,9 @@ const SCENE_REPAIR_VARIANTS = {
       sceneCue: 'indoor cafe dinner table',
       wrongWord: 'surfboard',
       correctWord: 'fork',
+      snapTarget: 'place setting',
+      spokenFrame: 'The surfboard does not fit. The fork fits.',
+      successVisual: 'table is ready',
     },
     activityTitle: 'Fix the table',
   },
@@ -194,6 +321,8 @@ const SCENE_REPAIR_VARIANTS = {
       sceneCue: 'sunny beach ocean waves',
       wrongWord: 'fork',
       correctWord: 'surfboard',
+      snapTarget: 'shore line',
+      successVisual: 'ready to surf',
     },
     activityTitle: 'Fix the beach',
   },
@@ -300,11 +429,34 @@ const MATCH_DOCK_VARIANTS = {
   'fruit-market': { lesson: fruit, level: 'A1' },
   zoo: { lesson: zooPhonics, level: 'A1' },
   kitchen: { lesson: kitchenHelpers, level: 'A2' },
+  beach: {
+    level: 'A1',
+    lesson: compactLesson('Beach Day Find', ['shell', 'sandcastle', 'umbrella', 'crab', 'towel', 'starfish']),
+  },
 };
 const matchDockVariantId = cliArg('variant', 'fruit-market');
 const matchDockVariant = MATCH_DOCK_VARIANTS[matchDockVariantId] || MATCH_DOCK_VARIANTS['fruit-market'];
 if (cliArg('only', '') === 'matchDock') {
   console.log('MATCH_DOCK_VARIANT', matchDockVariantId, matchDockVariant.lesson.title, matchDockVariant.level);
+}
+
+const weatherLesson = fixture('weather-lesson.json');
+const COVER_ANSWER_VARIANTS = {
+  'fruit-market': { lesson: fruit, level: 'A1' },
+  campsite: { lesson: fixture('campsite-lesson.json'), level: 'A1' },
+  weather: {
+    level: 'A1',
+    lesson: Object.assign({}, weatherLesson, {
+      speakingQuestions: [
+        { question: 'What weather do you like?', sampleAnswer: 'I like sunny days.' },
+      ],
+    }),
+  },
+};
+const coverAnswerVariantId = cliArg('cover', cliArg('variant', 'fruit-market'));
+const coverAnswerVariant = COVER_ANSWER_VARIANTS[coverAnswerVariantId] || COVER_ANSWER_VARIANTS['fruit-market'];
+if (cliArg('only', '') === 'coverAnswer') {
+  console.log('COVER_ANSWER_VARIANT', coverAnswerVariantId, coverAnswerVariant.lesson.title, coverAnswerVariant.level);
 }
 
 const ROUTE_MISSION_VARIANTS = {
@@ -417,7 +569,7 @@ const ALL_CASES = [
   { id: 'matchDock', pageKey: 'newWords', expected: 'matchDock', lesson: matchDockVariant.lesson, meta: { level: matchDockVariant.level, duration: 30 } },
   { id: 'frameTiles', pageKey: 'frames', expected: 'frameTiles', lesson: frameVariant.lesson, meta: { level: frameVariant.level, duration: 30 } },
   { id: 'phonicsSoundBoxes', pageKey: 'phonics', expected: 'phonicsSoundBoxes', lesson: zooPhonics, meta: { level: 'A1', duration: 30, phonics: 'on' }, force: true },
-  { id: 'coverAnswer', pageKey: 'speaking:0', expected: 'coverAnswer', lesson: fruit, meta: { level: 'A1', duration: 30 } },
+  { id: 'coverAnswer', pageKey: 'speaking:0', expected: 'coverAnswer', lesson: coverAnswerVariant.lesson, meta: { level: coverAnswerVariant.level, duration: 30 } },
   { id: 'preA1TprChoice', pageKey: 'activity', expected: 'preA1TprChoice', lesson: preA1, meta: { level: 'Pre-A1', duration: 30, phonics: 'off' } },
   { id: 'heroProp', pageKey: 'activity', expected: 'heroProp', lesson: heroPropVariant.lesson, meta: { level: heroPropVariant.level, duration: 30 } },
   {
@@ -513,54 +665,13 @@ const ALL_CASES = [
     pageKey: 'activity',
     expected: 'evidenceBoard',
     lesson: withActivity(
-      compactLesson('Festival Sound Mystery', ['festival', 'stage', 'rain', 'camera', 'power', 'speaker']),
+      evidenceLesson,
       'evidenceBoard',
       'evidenceBoard',
-      {
-      claim: 'Rain caused the main-stage sound failure.',
-      evidence: [
-        {
-          text: 'Water was found in the tripped power box.',
-          source: 'Electrician report',
-          artifactExcerpt: '19:42 — breaker tripped; water inside box',
-          relation: 'supports',
-          rationale: 'Direct expert inspection.',
-          claimImpact: 'Water in the failed circuit supports rain.',
-          strength: 4,
-        },
-        {
-          text: 'Heavy rain began 10 minutes before failure.',
-          source: 'Weather station',
-          artifactExcerpt: '19:32 — heavy rain began',
-          relation: 'supports',
-          rationale: 'Automatic timing.',
-          claimImpact: 'Rain timing supports, but cannot prove cause.',
-          strength: 2,
-        },
-        {
-          text: 'A heat alarm appeared before the rain began.',
-          source: 'Sound-desk log',
-          artifactExcerpt: '19:29 — AMPLIFIER HEAT ALARM',
-          relation: 'alternative',
-          rationale: 'Automatic timestamp.',
-          claimImpact: 'Another plausible cause is overheating.',
-          strength: 3,
-        },
-        {
-          text: 'A witness remembers the power-box cover closed.',
-          source: 'Witness interview',
-          artifactExcerpt: '"The power-box cover looked closed."',
-          relation: 'qualifies',
-          rationale: 'Memory may be wrong.',
-          claimImpact: 'Closed cover makes rain less likely.',
-          strength: 1,
-        },
-      ],
-      conclusion: 'Rain is the leading cause, but the heat alarm means overheating remains plausible.',
-      reasoningFrame: 'I rank ___ above ___ because its source is more direct, reliable, and relevant.',
-      teacherCheck: 'Ask which clue proves cause most directly and which offers a real alternative.',
-    }, 'Festival case file'),
-    meta: { level: 'B2', duration: 30 },
+      evidenceVariant.payload,
+      evidenceVariant.activityTitle
+    ),
+    meta: { level: evidenceVariant.level, duration: 30 },
   },
 ];
 const onlyId = cliArg('only', '');
@@ -615,10 +726,12 @@ async function main() {
   const results = [];
   const contactRows = [];
   for (const c of selectedCases) {
-    const row = await page.evaluate(async ({ lesson, meta, pageKey, expected, force, id, pageFormat }) => {
+    const row = await page.evaluate(async ({ lesson, meta, pageKey, expected, force, id, pageFormat, matchDockState }) => {
       await window.PropBank.ready();
       await window.VocabIcons.ready();
+      if (matchDockState === 'solved') lesson._matchDockSolved = true;
       const boardPlan = window.EdbActivities.buildBoardPlan(lesson, meta);
+      if (matchDockState) boardPlan.matchDockState = matchDockState;
 
       // Title / wrap are existing page formats, not interaction recipes.
       if (pageFormat) {
@@ -732,7 +845,7 @@ async function main() {
         pieces: [...(layoutPage.locked || []), ...(layoutPage.unlocked || [])]
           .map((p) => ({ role: p.role, word: p.meta && p.meta.word, kind: p.kind })),
       };
-    }, Object.assign({}, c, { pageFormat: !!c.pageFormat }));
+    }, Object.assign({}, c, { pageFormat: !!c.pageFormat, matchDockState: arg('state', '') }));
 
     if (!row.ok) {
       results.push(row);

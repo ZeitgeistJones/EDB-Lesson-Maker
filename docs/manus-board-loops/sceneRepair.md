@@ -44,3 +44,56 @@ Independent single-board optimization log.
 - STATUS: `R2_PENDING` — R1 producer fixes landed locally; ready for Manus R2 on rotated topic (camping or restaurant).
 - LOCAL_GATE: `scripts/test-board-grammars.mjs` asserts scene-first stage, single replacement, unique-fit note.
 - REMAINING P1: visible before/after payoff at projection scale (asset-dependent); not blocking R2 Manus if scene-first contract holds.
+
+## Round 2 — camping (A1)
+
+- BOARD_PATH: `tmp/manus-board-loops/sceneRepair/round-02-camping.jpg`
+- PACKET: `tmp/manus-board-loops/sceneRepair/round-02-camping`
+- TASK: https://manus.im/app/hbJUTrnBVRuRrt9TAj9FY5
+- MANUS_VERDICT: fail
+- SCORE: 2
+- POLISH (ppt_like_quality): 0
+- WEAKEST_LINK: Scene-native repair contract and destination visibility (Systemic → S77/S79)
+- ESCALATION_HOMEWORK: escalating_homework:
+  challenge: Add a second, topic-native repair asset and a visible, connected destination in the starter state (e.g., a snapped-on log supported by a visible campfire). The repair must have a clearly visible target anchor and a consequential, scene-level payoff on success (before/after transformation).
+  rationale: This generalizes the repair-contract semantics beyond a single, door-like object and requires learners to identify a concrete missing affordance and attach a semantically coherent repair, improving generalization across outdoor-scene topics.
+  producer_response: DECLINE
+- STATUS: structured_ok
+
+### Blocking / next actions
+- ACTION: Priority: Blocking | Scene | Recompose campfire as a dominant, repairable scene feature with a clearly visible missing element and a dock that integrates into terrain.
+High: Scene-native removal holder and repair dock with explicit destinations.
+Medium: Remove opaque white panels around movable assets; ensure snap areas do not obstruct key target visuals.
+Low: Simplify header chrome; move timing chip out of the central scene,”],
+- ACTION: zpd_challenges [
+
+## Round 2 — camping (A1)
+
+- BOARD_PATH: `tmp/manus-board-loops/sceneRepair/round-02-camping.jpg`
+- PACKET: `tmp/manus-board-loops/sceneRepair/round-02-camping`
+- TASK: https://manus.im/app/dDVhQduJnXkqm6w7XD9KvG
+- MANUS_VERDICT: revise
+- SCORE: 63
+- POLISH (ppt_like_quality): 3
+- WEAKEST_LINK: SYSTEMIC|sceneRepairSemanticTuple gap|The current board lacks a single, coherent semantic tuple tying named location, wrong_prop, correct_prop, and snap_target to a visible repaired outcome.
+- ESCALATION_HOMEWORK: One buildable generalisation challenge: Add a scene-wide semantic tuple schema and rendered-state QA gate for sceneRepair, such that every render must name a location, wrong prop, correct prop, and a visible repaired state that coherently ties to that location. The replacement must be demonstrably functional within the scene (not a detached card). Rationale: generalizes the repair contract to any topic; producer can ACCEPT/DECLINE.
+- STATUS: structured_ok
+
+### Blocking / next actions
+- ACTION: Blocking|Scene|Action: Introduce a sceneRepairSemanticTuple schema with fields: named_location, wrong_prop, correct_prop, snap_target, spoken_frame, success_visual; enforce that all four map to the same repair event.
+- ACTION: High|Scene|Visual: Move the repair dock in-scene to the edge instead of a detached card, and ensure the destination remains visible after the wrong object moves away.
+- ACTION: Medium|Scene|Action: Ensure a clearly visible success state (e.g., campfire glows) after repair to provide a strong payoff.
+
+## Loop status — 7/10 contract
+
+- GRADUATION: two consecutive Manus rounds on DIFFERENT topics with Visual/Product Polish ≥ 7/10 (score≥70 or overall≥3.5) AND no P0 failures. Remediation packets optional — do not wait.
+- LAST SCORES: R1 fruit-market polish 2 / score 3; R2 camping polish 0 then 3 / score 2 then 63. Not graduated.
+- R3 TOPIC: restaurant (A2) — rotated from camping.
+- LOCAL_GATE: `scripts/test-board-grammars.mjs` green. Bake: `tmp/board-type-baselines/sceneRepair-r3-restaurant.jpg`.
+- LOCAL JUDGMENT: MOVE ME now sits on the surfboard (was a P0: cue sat on the plate). AFTER is hidden under a full peel. Semantic tuple + in-scene dock + broken starter hold.
+- NEXT: send Manus R3 restaurant; fold critique into producer if polish < 7 or any P0.
+
+### CHANGES_MADE before R3 (producer, not one-off art)
+- `public/lib/edbActivities.js` — semantic tuple gate; starter world paints BROKEN (empty place-setting hole / cold fire / empty basket); large AFTER of the same place hidden until peel; terrain-tinted in-scene repair pocket; MOVE ME locked to the wrong piece, not the destination.
+- `public/lib/renderLessonPages.js` — sceneRepair-only compact header; worksheet hint strip removed so the painted world is the hero.
+- `scripts/test-board-grammars.mjs` — asserts broken-world starter, AFTER peel size, MOVE ME on the wrong piece, unique fit, in-scene dock.

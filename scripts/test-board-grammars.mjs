@@ -48,13 +48,18 @@ function fakeCanvas() {
     stroke() {},
     save() {},
     restore() {},
+    clip() {},
     translate() {},
     rotate() {},
     setLineDash() {},
     fillRect() {},
+    clearRect() {},
     strokeRect() {},
     fillText() {},
     ellipse() {},
+    roundRect() {},
+    createRadialGradient: () => ({ addColorStop() {} }),
+    createLinearGradient: () => ({ addColorStop() {} }),
     measureText: (text) => ({ width: String(text || '').length * 12 }),
   };
   return {
@@ -146,6 +151,8 @@ const cases = [
       'sceneRepairWrong',
       'sceneRepairDockLabel',
       'sceneRepairPart',
+      'sceneRepairSuccess',
+      'sceneRepairSuccessCover',
     ],
     singleRepair: true,
   },
@@ -162,8 +169,8 @@ const cases = [
       mustInclude: ['book'],
     },
     roles: [
-      'capacityScene', 'capacityMission', 'capacityLanguageFrame', 'capacityStateLadder',
-      'capacityContainer', 'capacitySlot', 'capacityPayoff', 'capacityChoice',
+      'capacityScene', 'capacityLanguageFrame',
+      'capacitySlot', 'capacityChoice',
     ],
   },
   {
@@ -181,7 +188,10 @@ const cases = [
       ],
       answerOrder: ['Check the plan', 'Pack the bag', 'Get on the bus'],
     },
-    roles: ['routeMissionBrief', 'routePath', 'routeStep', 'routeTile', 'routeAnswerCover'],
+    roles: [
+      'routeScene', 'routeMissionBrief', 'routePath', 'routeStep', 'routeStarterBand',
+      'routeNarration', 'routeAnswer', 'routeFinishTableau', 'routeAnswerCover', 'routeTile',
+    ],
   },
   {
     id: 'transformationLab',
@@ -230,12 +240,16 @@ const cases = [
         },
       ],
       conclusion: 'The official delay alert is strongest, so the bus may not be best today.',
+      incidentTime: '08:12',
     },
     roles: [
       'evidenceCaseFile',
       'evidenceClaim',
       'evidenceReasoningFrame',
+      'evidenceRankContract',
+      'evidenceTimelineAnchor',
       'evidenceRankSlot',
+      'evidenceFilingStateLadder',
       'evidenceCard',
       'evidenceConclusionCover',
     ],
@@ -268,12 +282,68 @@ for (const c of cases) {
       'sceneRepair must render a scene-first stage across the activity bay');
     assert(page.notes.includes('sceneRepairUniqueFit:1'),
       'sceneRepair must mark the one-hole/one-fit contract');
+    assert(page.notes.includes('sceneRepairSemanticTuple:1'),
+      'sceneRepair must emit the semantic-tuple contract');
+    assert(page.notes.includes('sceneRepairInSceneDock:1'),
+      'sceneRepair must park the replacement in-scene, not on a detached dock');
+    const tuple = stage.meta && stage.meta.semanticTuple;
+    assert(tuple && tuple.named_location && tuple.wrong_prop && tuple.correct_prop
+      && tuple.snap_target && tuple.spoken_frame && tuple.success_visual,
+      'sceneRepair semantic tuple must name location, wrong, correct, snap, frame, and success');
+    assert.equal(tuple.wrong_prop, c.payload.wrongWord);
+    assert.equal(tuple.correct_prop, c.payload.correctWord);
+    const dockLabel = page.locked.find((piece) => piece.role === 'sceneRepairDockLabel');
+    assert(dockLabel && dockLabel.meta && dockLabel.meta.inScene,
+      'sceneRepair repair pocket must sit in the scene');
+    const dest = page.locked.find((piece) => piece.role === 'sceneRepairDestination');
+    assert(dest && dest.meta && dest.meta.staysVisible,
+      'sceneRepair destination must remain visible after the wrong piece moves');
+    assert.equal(stage.meta && stage.meta.worldState, 'broken',
+      'sceneRepair starter world must be the broken state, not the already-fixed payoff');
+    assert(page.notes.includes('sceneRepairBrokenWorld:1'),
+      'sceneRepair must mark the broken-world starter contract');
+    assert(page.notes.includes('sceneRepairAfterPeel:1'),
+      'sceneRepair must expose a peelable AFTER payoff of the same place');
+    const success = page.locked.find((piece) => piece.role === 'sceneRepairSuccess');
+    assert(success && success.w >= 240 && success.h >= 180,
+      'sceneRepair AFTER peel must be large enough to read at projection scale');
+    const moveCue = page.locked.find((piece) => piece.role === 'sceneRepairMoveCue');
+    const wrong = [...page.locked, ...page.unlocked].find((piece) => piece.role === 'sceneRepairWrong');
+    assert(moveCue && moveCue.meta && moveCue.meta.onWrong,
+      'sceneRepair MOVE ME must be tagged to the wrong piece');
+    assert(wrong, 'sceneRepair must place the authored wrong piece');
+    const cueMid = moveCue.x + moveCue.w / 2;
+    const wrongMid = wrong.x + wrong.w / 2;
+    assert(Math.abs(cueMid - wrongMid) < 90,
+      'sceneRepair MOVE ME must sit on the wrong piece, not the destination');
+    const cover = [...page.locked, ...page.unlocked].find((piece) => piece.role === 'sceneRepairSuccessCover');
+    assert(cover && cover.w >= success.w && cover.h >= success.h,
+      'sceneRepair AFTER cover must hide the repaired world until peel');
   } else {
     assert(choices.length >= 2, `${c.id} must expose multiple meaningful choices`);
   }
   assert(choices.every((piece) => piece.w >= 64 && piece.h >= 64),
     `${c.id} choice pieces must meet the 64px grab floor`);
   if (c.id === 'routeMission') {
+    const scene = page.locked.find((piece) => piece.role === 'routeScene');
+    assert(scene && scene.meta && scene.meta.integrated === true,
+      'routeMission must host the route inside an illustrated scene shell');
+    assert(scene.meta.mover === 'Mia' && scene.meta.goal === 'Bus',
+      'routeMission scene must bind mover and goal from the verified payload');
+    const starterBand = page.locked.find((piece) => piece.role === 'routeStarterBand');
+    assert(starterBand && starterBand.meta?.starterState === 'empty',
+      'routeMission starter bake must show one canonical empty state, not a multi-state ladder');
+    assert(!page.locked.some((piece) => piece.role === 'routeStateLadder'),
+      'routeMission must not render a multi-mover state ladder on the starter board');
+    assert(page.notes.includes('routeStarterState:empty'),
+      'routeMission must mark the starter-state contract in page notes');
+    const narration = page.locked.find((piece) => piece.role === 'routeNarration');
+    assert(narration && narration.meta?.frames?.length >= 3,
+      'routeMission must render a First/Next/Then narration rail');
+    const tableau = page.locked.find((piece) => piece.role === 'routeFinishTableau');
+    assert(tableau && tableau.meta?.completionPayoff === true
+      && tableau.meta?.hiddenUntilReveal === true,
+      'routeMission finish tableau must exist under the reveal cover, not on the starter surface');
     const pathPiece = page.locked.find((piece) => piece.role === 'routePath');
     assert.equal(pathPiece?.meta?.persistent, true,
       'routeMission must retain a connected route after cards are placed');
@@ -309,7 +379,12 @@ for (const c of cases) {
     const scene = page.locked.find((piece) => piece.role === 'capacityScene');
     assert(scene && scene.meta && scene.meta.integrated === true,
       'capacityPack must host mission + pack in one integrated scene shell (no disconnected panels)');
-    const ladder = page.locked.find((piece) => piece.role === 'capacityStateLadder');
+    assert(scene.meta.sceneFirst === true,
+      'capacityPack must use a scene-first stage with a dominant backpack job');
+    assert.equal(scene.meta.fillCounter, `0/${c.payload.limit}`,
+      'capacityPack must show a visible 0/N fill counter on the starter state');
+    const ladder = page.locked.find((piece) => piece.role === 'capacityStateLadder')
+      || page.locked.find((piece) => piece.role === 'capacityScene');
     assert(ladder && Array.isArray(ladder.meta?.states) &&
       ladder.meta.states.join('|') === 'empty|filling|committed',
       'capacityPack must prove the empty→filling→committed lifecycle in the single bake');
@@ -317,8 +392,7 @@ for (const c of cases) {
     const frame = page.locked.find((piece) => piece.role === 'capacityLanguageFrame');
     assert(frame && frame.meta?.includeFrame && frame.meta?.excludeFrame && frame.meta?.teacherCheck === true,
       'capacityPack must render reusable inclusion/exclusion frames with a teacher-confirmation check');
-    const payoffBanner = page.locked.find((piece) => piece.role === 'capacityPayoff');
-    assert(payoffBanner && payoffBanner.meta?.payoff === c.payload.payoff,
+    assert(page.notes.includes('capacityPayoffVisible:true'),
       'capacityPack must show a persistent payoff banner, not just a small footer line');
     const slots = page.locked.filter((piece) => piece.role === 'capacitySlot');
     assert(slots.length === c.payload.limit, 'capacityPack must render exactly `limit` pockets');
@@ -347,6 +421,42 @@ for (const c of cases) {
       'evidenceBoard must expose a sealed conclusion artifact');
     assert(page.notes.includes('evidenceCounterSemantics:true'),
       'evidenceBoard must mark the strict counter-relation contract');
+    const rankContract = page.locked.find((piece) => piece.role === 'evidenceRankContract');
+    assert(rankContract && rankContract.meta?.rankContract === true,
+      'evidenceBoard must render a visible rank contract strip');
+    const filingLadder = page.locked.find((piece) => piece.role === 'evidenceFilingStateLadder');
+    assert(filingLadder && filingLadder.meta?.materialPayoff === true,
+      'evidenceBoard must prove inspect→file→peel filing progression');
+    if (c.payload.incidentTime) {
+      const timeline = page.locked.find((piece) => piece.role === 'evidenceTimelineAnchor');
+      assert(timeline && timeline.meta?.incidentTime === c.payload.incidentTime,
+        'evidenceBoard must anchor timestamped cases to an incident time');
+    }
+  }
+  if (c.id === 'transformationLab') {
+    const states = page.locked.filter((piece) => piece.role === 'transformationState');
+    assert.equal(states.length, 2, 'transformationLab must render paired BEFORE and RESULT scenes');
+    assert(states.every((piece) => piece.w >= 300 && piece.h >= 160),
+      'transformationLab scenes must be large enough to read as a place, not an icon');
+    assert(states.every((piece) => piece.meta && piece.meta.sceneGrounded && piece.meta.cameraPaired),
+      'transformationLab scenes must be camera-paired and scene-grounded');
+    assert(states.every((piece) => piece.meta.family && piece.meta.family !== 'mood'),
+      'transformationLab must never fall back to a mood-face family');
+    const cover = page.unlocked.find((piece) => piece.role === 'transformationResultCover');
+    assert(cover && cover.meta && cover.meta.insetPeek === true,
+      'transformationLab peel must inset so the RESULT frame stays auditable');
+    const result = states.find((piece) => piece.meta.phase === 'result');
+    assert(result && cover.w < result.w && cover.h < result.h,
+      'transformationLab peel must be smaller than the RESULT scene');
+    const tiles = page.unlocked.filter((piece) => piece.role === 'transformationChange');
+    assert(tiles.every((piece) => piece.meta && piece.meta.visualCue),
+      'transformationLab cause tiles must carry a scene-linked visual cue');
+    assert(page.notes.includes('transformationSceneFirst:true'),
+      'transformationLab must mark the scene-first contract');
+    assert(page.notes.includes('transformationResultPeek:true'),
+      'transformationLab must mark the inset RESULT peek');
+    assert(!page.locked.some((piece) => piece.role === 'transformationLabel'),
+      'transformationLab must not spend the bay on separate phase-label bars');
   }
 }
 
@@ -472,6 +582,45 @@ assert.notEqual(
   'evidenceBoard must reject the vague challenges label in favor of an explicit logical relation'
 );
 
+const timestampEvidenceNoAnchor = lesson('Missing incident anchor', 'evidenceBoard', 'evidenceBoard', {
+  claim: 'The bus is best.',
+  evidence: [
+    {
+      text: 'The bus arrives soon.',
+      source: 'Tracker',
+      artifactExcerpt: '08:12 — Route 5 arrives in 3 min',
+      relation: 'supports',
+      rationale: 'It is current.',
+      claimImpact: 'A short wait supports the claim.',
+      strength: 3,
+    },
+    {
+      text: 'The stop is nearby.',
+      source: 'Route map',
+      artifactExcerpt: 'Stop S4 — School Gate',
+      relation: 'supports',
+      rationale: 'It is official.',
+      claimImpact: 'A nearby stop supports convenience.',
+      strength: 2,
+    },
+    {
+      text: 'Roadworks may delay buses.',
+      source: 'Traffic alert',
+      artifactExcerpt: '08:05 — delays up to 15 minutes',
+      relation: 'qualifies',
+      rationale: 'It is an official alert.',
+      claimImpact: 'A long delay limits the claim that the bus is best today.',
+      strength: 4,
+    },
+  ],
+  conclusion: 'The evidence is mixed.',
+});
+assert.notEqual(
+  activityFor(timestampEvidenceNoAnchor).assignment.recipeId,
+  'evidenceBoard',
+  'evidenceBoard must fail closed when timestamped artifacts lack incidentTime'
+);
+
 const ordinaryKing = JSON.parse(
   fs.readFileSync(path.join(ROOT, 'scripts/fixtures/dentist-lesson.json'), 'utf8')
 );
@@ -480,5 +629,33 @@ assert.equal(
   'heroProp',
   'ordinary proven king lessons must keep heroProp'
 );
+
+const frameLesson = {
+  title: 'Camping Weather Challenge',
+  vocabulary: [
+    { word: 'tent', sentence: 'We sleep safely inside the tent.' },
+    { word: 'flashlight', sentence: 'At the dark campsite, I use the flashlight to see the path.' },
+    { word: 'boots', sentence: 'If my feet get wet, I change into dry boots.' },
+    { word: 'map', sentence: 'To find our camping place safely, I check the map.' },
+  ],
+  sentenceFrames: [
+    'At the dark campsite, I use the ____ to see the path.',
+    'If my feet get wet, I change into dry ____.',
+    'To find our camping place safely, I check the ____.',
+  ],
+};
+const framePlan = W.EdbActivities.buildBoardPlan(frameLesson, { level: 'A2', duration: 30 });
+const frameAssign = framePlan.assignments.find((a) => a.pageKey === 'frames');
+assert.equal(frameAssign && frameAssign.recipeId, 'frameTiles', 'frames page must plan frameTiles when frames exist');
+const framePage = framePlan.pages.find((p) => p.pageKey === 'frames');
+W.EdbActivities.RECIPES.frameTiles(frameLesson, framePage, W.EdbLayout);
+const sceneStage = (framePage.locked || []).find((p) => p.role === 'frameSceneStage');
+assert(sceneStage && sceneStage.meta && sceneStage.meta.payoff, 'frameTiles must emit a visible scene-stage payoff');
+assert(
+  Array.isArray(sceneStage.meta.stateContract)
+  && sceneStage.meta.stateContract.includes('completed'),
+  'frameTiles scene stage must declare initial/per-placement/completed contract'
+);
+assert.equal(sceneStage.meta.theme, 'camping', 'frameTiles scene theme must map from topic cues');
 
 console.log('OK board grammar selection, validation, visual contracts, and grab floors');

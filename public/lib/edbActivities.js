@@ -89,9 +89,10 @@
 
   /** Must match speaking.targetBay in edbLayout ZONE_TEMPLATES. */
   function speakingCoverRect() {
-    // Below the Q1 chrome card (header + hint + one question line). Keep in sync
-    // with edbLayout speaking.targetBay when bumping type sizes.
-    return { x: 88, y: 240, w: 720, h: 132 };
+    // Compact one-job cluster (Manus coverAnswer R2): card sits closer to the
+    // question so the page is SAY → PEEL → COMPARE, not a mid-board worksheet.
+    // Keep in sync with edbLayout speaking.targetBay.
+    return { x: 72, y: 206, w: 780, h: 156 };
   }
 
   /**
@@ -104,14 +105,83 @@
   function speakingFlapRect(bay) {
     const b = bay || speakingCoverRect();
     const ribbon = 34;
-    const insetX = 36;
-    const insetBottom = 14;
+    const insetX = 28;
+    const insetBottom = 12;
     return {
       x: b.x + insetX,
       y: b.y + ribbon,
-      w: Math.max(120, b.w - insetX * 2),
+      w: Math.max(120, b.w - insetX * 2 - 36),
       h: Math.max(40, b.h - ribbon - insetBottom),
     };
+  }
+
+  /**
+   * Bind a coverAnswer question to one say-frame and a model answer.
+   * Rejects the old "I like ___" bolt-on on WH questions that are not about liking
+   * (Manus R2 campsite: "What do you take camping?" + I like).
+   */
+  function coverAnswerBind(item, lesson) {
+    const question = String((item && item.question) || '').trim();
+    const sample = String((item && item.sampleAnswer) || '').trim();
+    const vocab = vocabList(lesson)
+      .map((v) => String((typeof v === 'string' ? v : v && v.word) || '').trim())
+      .filter(Boolean);
+    const q = question.toLowerCase();
+    const reasons = [];
+    let intent = 'open';
+    let frame = '';
+
+    if (/^(what|where|when|why|who|which|how)\b/i.test(question)) {
+      if (/^what do you (take|bring|pack)\b/i.test(question)) {
+        intent = 'wh-take';
+        frame = 'I take a ___.';
+      } else if (/^what do you wear\b/i.test(question)) {
+        intent = 'wh-wear';
+        frame = 'I wear a ___.';
+      } else if (/^what do you (see|find)\b/i.test(question)) {
+        intent = 'wh-see';
+        frame = 'I see a ___.';
+      } else if (/like\b/.test(q)) {
+        intent = 'wh-like';
+        frame = /weather/.test(q) ? 'I like ___ days.' : 'I like ___.';
+      } else if (/^where\b/i.test(question)) {
+        intent = 'wh-where';
+        frame = 'I go to the ___.';
+      } else {
+        intent = 'wh-open';
+        frame = '';
+      }
+    } else if (/^(do you|does (?:he|she|it)|did you|is (?:it|he|she|this|that)|are you|can you)\b/i.test(question)) {
+      intent = 'yes-no';
+      frame = 'Yes, I do. / No, I don\'t.';
+    }
+
+    if (intent !== 'wh-like' && /i like ___/i.test(frame)) {
+      reasons.push('like-frame-on-non-like');
+    }
+    if (intent === 'wh-take' && /\bi like\b/i.test(sample) && !/\btake|bring|pack\b/i.test(sample)) {
+      reasons.push('sample-mismatches-take');
+    }
+    if (intent === 'wh-wear' && /\bi like\b/i.test(sample) && !/\bwear\b/i.test(sample)) {
+      reasons.push('sample-mismatches-wear');
+    }
+    if (!sample) reasons.push('missing-sample');
+
+    return {
+      ok: reasons.length === 0,
+      intent,
+      frame,
+      sample,
+      question,
+      vocab,
+      reasons,
+    };
+  }
+
+  /** Indoor/outdoor micro-world strip for coverAnswer (window / stall / tent). */
+  function coverAnswerWorldPng(w, h, lesson) {
+    const world = matchDockWorldTheme(lesson);
+    return matchDockWorldScenePng(w, h, world);
   }
 
   /** Drop lowest-priority extras until unique pageKeys ≤ maxKeys. */
@@ -438,73 +508,425 @@
         typeof v === 'string' ? v : v && v.word
       )),
     ].filter(Boolean).join(' ').toLowerCase();
+    const shared = {
+      metaphor: 'Park each picture on its word',
+      home: 'spot',
+    };
     if (/\b(camp|camping|campsite|tent|campfire|backpack|flashlight)\b/.test(blob)) {
-      return {
+      return Object.assign({}, shared, {
         id: 'camp',
         title: 'Camp trail',
         icon: '🔥',
         payoff: 'CAMP READY!',
         scene: '🌲  ⛺  🔥',
+        home: 'site',
+        sky: '#7dd3fc',
+        ground: '#86efac',
+        ink: '#14532d',
         stageBackground: 'linear-gradient(180deg, rgba(186,230,253,.92) 0 48%, rgba(187,247,208,.94) 49% 100%)',
-      };
+      });
     }
     if (/\b(music|song|sing|piano|drum|dance|band|concert)\b/.test(blob)) {
-      return {
+      return Object.assign({}, shared, {
         id: 'music',
         title: 'Music stage',
         icon: '🎵',
         payoff: 'BAND READY!',
         scene: '🎤  🎹  🎶',
+        home: 'mark',
+        sky: '#fecaca',
+        ground: '#ddd6fe',
+        ink: '#5b21b6',
         stageBackground: 'linear-gradient(145deg, rgba(254,226,226,.94), rgba(237,233,254,.94))',
-      };
-    }
-    if (/\b(zoo|animal|pet|dog|cat|lion|tiger|elephant|monkey)\b/.test(blob)) {
-      return {
-        id: 'animals',
-        title: 'Animal trail',
-        icon: '🐾',
-        payoff: 'ZOO EXPERT!',
-        scene: '🌿  🐾  🌳',
-        stageBackground: 'linear-gradient(180deg, rgba(220,252,231,.94), rgba(254,249,195,.92))',
-      };
-    }
-    if (/\b(beach|ocean|sea|shell|sand|wave|island)\b/.test(blob)) {
-      return {
-        id: 'beach',
-        title: 'Beach trail',
-        icon: '🐚',
-        payoff: 'BEACH READY!',
-        scene: '☀️  🏖️  🐚',
-        stageBackground: 'linear-gradient(180deg, rgba(186,230,253,.94) 0 52%, rgba(254,240,138,.92) 53% 100%)',
-      };
+      });
     }
     if (/\b(farm|barn|tractor|cow|pig|chicken|horse|sheep)\b/.test(blob)) {
-      return {
+      return Object.assign({}, shared, {
         id: 'farm',
         title: 'Farm trail',
         icon: '🌾',
         payoff: 'FARM READY!',
         scene: '☀️  🚜  🌾',
+        home: 'pen',
+        sky: '#bfdbfe',
+        ground: '#bef264',
+        ink: '#3f6212',
         stageBackground: 'linear-gradient(180deg, rgba(219,234,254,.94) 0 46%, rgba(217,249,157,.94) 47% 100%)',
-      };
+      });
+    }
+    if (/\b(zoo|animal|pet|dog|cat|lion|tiger|elephant|monkey)\b/.test(blob)) {
+      return Object.assign({}, shared, {
+        id: 'animals',
+        title: 'Animal trail',
+        icon: '🐾',
+        payoff: 'ZOO EXPERT!',
+        scene: '🌿  🐾  🌳',
+        home: 'pen',
+        sky: '#bbf7d0',
+        ground: '#fef08a',
+        ink: '#3f6212',
+        stageBackground: 'linear-gradient(180deg, rgba(220,252,231,.94), rgba(254,249,195,.92))',
+      });
+    }
+    if (/\b(beach|ocean|sea|shell|sandcastle|crab|umbrella|towel)\b/.test(blob)) {
+      return Object.assign({}, shared, {
+        id: 'beach',
+        title: 'Shore trail',
+        icon: '🐚',
+        payoff: 'BEACH READY!',
+        scene: '☀️  🏖️  🐚',
+        home: 'spot',
+        sky: '#7dd3fc',
+        ground: '#fde68a',
+        ink: '#9a3412',
+        stageBackground: 'linear-gradient(180deg, rgba(186,230,253,.94) 0 52%, rgba(254,240,138,.92) 53% 100%)',
+      });
+    }
+    if (/\b(farm|barn|tractor|cow|pig|chicken|horse|sheep)\b/.test(blob)) {
+      return Object.assign({}, shared, {
+        id: 'farm',
+        title: 'Farm trail',
+        icon: '🌾',
+        payoff: 'FARM READY!',
+        scene: '☀️  🚜  🌾',
+        home: 'pen',
+        sky: '#bfdbfe',
+        ground: '#bef264',
+        ink: '#3f6212',
+        stageBackground: 'linear-gradient(180deg, rgba(219,234,254,.94) 0 46%, rgba(217,249,157,.94) 47% 100%)',
+      });
+    }
+    if (/\b(hat|coat|shirt|sock|scarf|boot|clothes|wear)\b/.test(blob)) {
+      return Object.assign({}, shared, {
+        id: 'clothes',
+        title: 'Wardrobe rail',
+        icon: '👕',
+        payoff: 'DRESSED!',
+        scene: '🧥  👟  🧣',
+        home: 'hook',
+        sky: '#e0e7ff',
+        ground: '#fde68a',
+        ink: '#3730a3',
+        stageBackground: 'linear-gradient(180deg, rgba(224,231,255,.94), rgba(254,243,199,.92))',
+      });
+    }
+    if (/\b(sunny|rainy|cloudy|windy|snowy|weather)\b/.test(blob)) {
+      return Object.assign({}, shared, {
+        id: 'weather',
+        title: 'Sky window',
+        icon: '🌤️',
+        payoff: 'WEATHER WISE!',
+        scene: '☀️  🌧️  ☁️',
+        home: 'pane',
+        sky: '#93c5fd',
+        ground: '#e2e8f0',
+        ink: '#1e3a8a',
+        stageBackground: 'linear-gradient(180deg, rgba(186,230,253,.94), rgba(226,232,240,.94))',
+      });
     }
     if (/\b(fruit|market|food|shop|bakery|vegetable|snack)\b/.test(blob)) {
-      return {
+      return Object.assign({}, shared, {
         id: 'market',
         title: 'Market trail',
         icon: '🧺',
         payoff: 'MARKET OPEN!',
         scene: '☀️  🧺  🏪',
+        home: 'stall',
+        sky: '#fde68a',
+        ground: '#bbf7d0',
+        ink: '#854d0e',
         stageBackground: 'linear-gradient(180deg, rgba(254,243,199,.94), rgba(220,252,231,.94))',
-      };
+      });
     }
-    return {
+    if (/\b(kitchen|whisk|spatula|grater|apron|oven)\b/.test(blob)) {
+      return Object.assign({}, shared, {
+        id: 'kitchen',
+        title: 'Kitchen counter',
+        icon: '🍳',
+        payoff: 'KITCHEN READY!',
+        scene: '🥄  🥣  🍳',
+        home: 'spot',
+        sky: '#fed7aa',
+        ground: '#f5d0a6',
+        ink: '#9a3412',
+        stageBackground: 'linear-gradient(180deg, rgba(254,215,170,.94), rgba(254,243,199,.92))',
+      });
+    }
+    return Object.assign({}, shared, {
       id: 'discovery',
       title: 'Word trail',
       icon: '⭐',
       payoff: 'WORD MASTER!',
       scene: '✨  ⭐  ✨',
+      sky: '#e9d5ff',
+      ground: '#fce7f3',
+      ink: '#6b21a8',
       stageBackground: 'linear-gradient(145deg, rgba(255,255,255,.82), rgba(237,233,254,.88))',
+    });
+  }
+
+  /** Painted topic-world surface the word pads sit on — not a CSS wash + emoji. */
+  function matchDockWorldScenePng(w, h, world) {
+    const c = document.createElement('canvas');
+    c.width = w;
+    c.height = h;
+    const ctx = c.getContext('2d');
+    const id = (world && world.id) || 'discovery';
+    const sky = (world && world.sky) || '#e9d5ff';
+    const ground = (world && world.ground) || '#fce7f3';
+    const horizon = Math.round(h * (id === 'beach' || id === 'farm' || id === 'animals' ? 0.42 : 0.48));
+
+    const skyGrad = ctx.createLinearGradient(0, 0, 0, horizon);
+    skyGrad.addColorStop(0, sky);
+    skyGrad.addColorStop(1, '#fff7ed');
+    ctx.fillStyle = skyGrad;
+    ctx.fillRect(0, 0, w, horizon);
+    const groundGrad = ctx.createLinearGradient(0, horizon, 0, h);
+    groundGrad.addColorStop(0, ground);
+    groundGrad.addColorStop(1, '#fff7ed');
+    ctx.fillStyle = groundGrad;
+    ctx.fillRect(0, horizon, w, h - horizon);
+
+    ctx.save();
+    if (id === 'beach') {
+      ctx.fillStyle = '#38bdf8';
+      ctx.fillRect(0, horizon - 18, w, 28);
+      ctx.fillStyle = 'rgba(255,255,255,0.35)';
+      for (let i = 0; i < 5; i++) {
+        ctx.beginPath();
+        ctx.ellipse(40 + i * 130, horizon - 6, 36, 6, 0, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.fillStyle = '#f59e0b';
+      ctx.beginPath();
+      ctx.arc(w - 70, 48, 22, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#15803d';
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.moveTo(56, horizon + 8);
+      ctx.lineTo(72, h - 18);
+      ctx.stroke();
+      ctx.fillStyle = '#16a34a';
+      ctx.beginPath();
+      ctx.ellipse(40, horizon + 4, 28, 14, -0.4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.ellipse(78, horizon + 10, 24, 12, 0.3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#f97316';
+      ctx.beginPath();
+      ctx.moveTo(w - 150, horizon + 8);
+      ctx.lineTo(w - 70, horizon + 8);
+      ctx.lineTo(w - 110, horizon - 36);
+      ctx.closePath();
+      ctx.fill();
+    } else if (id === 'farm' || id === 'animals') {
+      ctx.fillStyle = '#fb7185';
+      ctx.fillRect(w - 168, horizon - 70, 110, 70);
+      ctx.fillStyle = '#b91c1c';
+      ctx.beginPath();
+      ctx.moveTo(w - 180, horizon - 70);
+      ctx.lineTo(w - 58, horizon - 70);
+      ctx.lineTo(w - 119, horizon - 112);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = '#78716c';
+      ctx.fillRect(w - 128, horizon - 36, 22, 36);
+      ctx.strokeStyle = '#854d0e';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(16, horizon + 18);
+      ctx.lineTo(w - 190, horizon + 18);
+      ctx.stroke();
+      for (let i = 0; i < 7; i++) {
+        ctx.beginPath();
+        ctx.moveTo(28 + i * 42, horizon + 6);
+        ctx.lineTo(28 + i * 42, horizon + 30);
+        ctx.stroke();
+      }
+    } else if (id === 'camp') {
+      ctx.fillStyle = '#166534';
+      ctx.beginPath();
+      ctx.moveTo(24, horizon + 8);
+      ctx.lineTo(64, horizon - 70);
+      ctx.lineTo(104, horizon + 8);
+      ctx.fill();
+      ctx.fillStyle = '#f8fafc';
+      ctx.beginPath();
+      ctx.moveTo(w - 170, horizon + 10);
+      ctx.lineTo(w - 110, horizon - 62);
+      ctx.lineTo(w - 50, horizon + 10);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = '#f97316';
+      ctx.beginPath();
+      ctx.arc(w / 2, horizon + 28, 16, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (id === 'kitchen') {
+      ctx.fillStyle = '#fdba74';
+      ctx.fillRect(0, horizon + 40, w, h - horizon - 40);
+      ctx.fillStyle = '#fb923c';
+      ctx.fillRect(0, horizon + 32, w, 12);
+      ctx.fillStyle = '#64748b';
+      for (let i = 0; i < 4; i++) {
+        ctx.fillRect(40 + i * 48, horizon - 36, 8, 36);
+      }
+    } else if (id === 'market') {
+      ctx.fillStyle = '#f97316';
+      ctx.fillRect(30, horizon - 54, w - 60, 18);
+      ctx.fillStyle = '#9a3412';
+      ctx.fillRect(46, horizon - 36, 10, 36);
+      ctx.fillRect(w - 56, horizon - 36, 10, 36);
+      ctx.fillStyle = '#fde68a';
+      ctx.fillRect(70, horizon + 8, 70, 28);
+      ctx.fillRect(160, horizon + 14, 54, 22);
+    } else if (id === 'music') {
+      ctx.fillStyle = '#7c3aed';
+      ctx.fillRect(0, 0, 28, h);
+      ctx.fillRect(w - 28, 0, 28, h);
+      ctx.fillStyle = 'rgba(253,224,71,0.55)';
+      ctx.beginPath();
+      ctx.arc(w / 2, 36, 50, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (id === 'weather' || id === 'clothes') {
+      ctx.fillStyle = '#7dd3fc';
+      ctx.fillRect(18, 18, w - 36, h - 36);
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 12;
+      ctx.strokeRect(18, 18, w - 36, h - 36);
+      ctx.fillStyle = '#94a3b8';
+      ctx.fillRect(w / 2 - 6, 18, 12, h - 36);
+      ctx.fillRect(18, h / 2 - 6, w - 36, 12);
+      if (id === 'weather') {
+        ctx.fillStyle = '#f59e0b';
+        ctx.beginPath();
+        ctx.arc(w * 0.28, h * 0.32, Math.min(w, h) * 0.14, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#e2e8f0';
+        ctx.beginPath();
+        ctx.ellipse(w * 0.72, h * 0.3, 28, 16, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 3;
+        for (let i = 0; i < 4; i++) {
+          ctx.beginPath();
+          ctx.moveTo(w * 0.28 + i * 10, h * 0.68);
+          ctx.lineTo(w * 0.22 + i * 10, h * 0.82);
+          ctx.stroke();
+        }
+      } else {
+        ctx.fillStyle = '#c4b5fd';
+        ctx.fillRect(w * 0.22, h * 0.28, 28, 40);
+        ctx.fillRect(w * 0.62, h * 0.58, 36, 18);
+      }
+    }
+    ctx.restore();
+    ctx.strokeStyle = 'rgba(15,23,42,0.18)';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(1.5, 1.5, w - 3, h - 3);
+    return c.toDataURL('image/png');
+  }
+
+  /** Cream plaque with a wobbly ink edge so pads read as hand-drawn homes. */
+  function matchDockPadPlatePng(w, h, ink) {
+    const c = document.createElement('canvas');
+    c.width = w;
+    c.height = h;
+    const ctx = c.getContext('2d');
+    const color = ink || '#3f6212';
+    ctx.fillStyle = 'rgba(255,251,235,0.92)';
+    ctx.beginPath();
+    const wobble = (fromX, fromY, toX, toY) => {
+      const mx = (fromX + toX) / 2 + (Math.abs(toX - fromX) > 8 ? 0 : 3);
+      const my = (fromY + toY) / 2 + (Math.abs(toY - fromY) > 8 ? 0 : -3);
+      ctx.quadraticCurveTo(mx, my, toX, toY);
+    };
+    ctx.moveTo(10, 8);
+    wobble(10, 8, w - 10, 7);
+    wobble(w - 10, 7, w - 8, h - 9);
+    wobble(w - 8, h - 9, 9, h - 8);
+    wobble(9, h - 8, 10, 8);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 3.5;
+    ctx.lineJoin = 'round';
+    ctx.stroke();
+    return c.toDataURL('image/png');
+  }
+
+  function matchDockRewardPng(w, h, world) {
+    const c = document.createElement('canvas');
+    c.width = w;
+    c.height = h;
+    const ctx = c.getContext('2d');
+    ctx.save();
+    ctx.shadowColor = 'rgba(22,163,74,0.35)';
+    ctx.shadowBlur = 12;
+    const r = h / 2;
+    ctx.beginPath();
+    ctx.moveTo(r, 0);
+    ctx.arcTo(w, 0, w, h, r);
+    ctx.arcTo(w, h, 0, h, r);
+    ctx.arcTo(0, h, 0, 0, r);
+    ctx.arcTo(0, 0, w, 0, r);
+    ctx.closePath();
+    ctx.fillStyle = '#bbf7d0';
+    ctx.fill();
+    ctx.restore();
+    ctx.strokeStyle = '#16a34a';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    ctx.fillStyle = '#14532d';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = `800 ${Math.max(16, Math.floor(h * 0.38))}px Poppins, sans-serif`;
+    ctx.fillText(`${(world && world.icon) || '⭐'} ${(world && world.payoff) || 'WORD MASTER!'}`, w / 2, h / 2, w - 24);
+    return c.toDataURL('image/png');
+  }
+
+  /** Wax stamp that covers the reward CENTER so the badge still peeks. */
+  function matchDockWaxSealPng(w, h, count) {
+    const c = document.createElement('canvas');
+    c.width = w;
+    c.height = h;
+    const ctx = c.getContext('2d');
+    const cx = w / 2;
+    const cy = h / 2;
+    const radius = Math.min(w, h) / 2 - 3;
+    ctx.save();
+    ctx.shadowColor = 'rgba(127,29,29,0.45)';
+    ctx.shadowBlur = 8;
+    ctx.shadowOffsetY = 3;
+    ctx.beginPath();
+    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+    ctx.fillStyle = '#dc2626';
+    ctx.fill();
+    ctx.restore();
+    ctx.beginPath();
+    ctx.arc(cx, cy, radius - 6, 0, Math.PI * 2);
+    ctx.strokeStyle = '#fbbf24';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    ctx.fillStyle = '#fef3c7';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = `800 ${Math.max(11, Math.floor(h * 0.16))}px Poppins, sans-serif`;
+    ctx.fillText('LOCKED', cx, cy - h * 0.16);
+    ctx.font = `800 ${Math.max(13, Math.floor(h * 0.2))}px Poppins, sans-serif`;
+    ctx.fillText(`MATCH ${count}`, cx, cy + h * 0.12);
+    return c.toDataURL('image/png');
+  }
+
+  function matchDockThreeStateRects(solved) {
+    const reward = { x: 40, y: 16, w: 360, h: 62 };
+    const sealStarter = { x: 174, y: 4, w: 92, h: 92 };
+    const sealSolved = { x: 1168, y: 18, w: 92, h: 92 };
+    return {
+      reward,
+      seal: solved ? sealSolved : sealStarter,
+      solved: !!solved,
     };
   }
 
@@ -515,7 +937,7 @@
    * Partial coverage stays on BoardReadiness / admin Draft reasons only.
    */
   function matchDockStudentHint(_vocabArt) {
-    return 'Drag each picture to its word. Say the word, then check.';
+    return 'Park each picture on its word. Say the word, then check.';
   }
 
   /** Plan VocabArt once (throws if VocabIcons cold/errored).
@@ -691,169 +1113,435 @@
   }
 
   /** Scene-first plate for sceneRepair: context must dominate, not a worksheet slot. */
-  function sceneRepairStagePng(w, h, label, cue) {
+  function inferRepairSuccessVisual(location, correct, cue) {
+    const hay = `${location || ''} ${correct || ''} ${cue || ''}`.toLowerCase();
+    if (/\b(camp|campfire|fire|wood|log|tent)\b/.test(hay)) return 'campfire glows';
+    if (/\b(market|basket|stall|fruit|apple|grape)\b/.test(hay)) return 'basket is full';
+    if (/\b(table|restaurant|cafe|fork|plate|menu|dinner)\b/.test(hay)) return 'table is ready';
+    if (/\b(beach|surf|wave|board|ocean)\b/.test(hay)) return 'ready to surf';
+    if (/\b(sport|kit|gym|ball|goal)\b/.test(hay)) return 'kit is complete';
+    return `${String(location || 'this place').slice(0, 24)} works`;
+  }
+
+  function inferRepairSnapTarget(location, cue) {
+    const hay = `${location || ''} ${cue || ''}`.toLowerCase();
+    if (/\b(camp|campfire)\b/.test(hay)) return 'campfire ring';
+    if (/\b(market|basket|stall)\b/.test(hay)) return 'market basket';
+    if (/\b(table|restaurant|cafe)\b/.test(hay)) return 'place setting';
+    if (/\b(beach|surf)\b/.test(hay)) return 'shore line';
+    return String(location || 'the slot').slice(0, 32);
+  }
+
+
+  function sceneRepairTheme(hay) {
+    const h = String(hay || '').toLowerCase();
+    if (/\b(camp|campfire|tent|forest|hike|wood|log)\b/.test(h)) return 'camp';
+    if (/\b(fruit|market|basket|stall|shop|apple|grape)\b/.test(h)) return 'market';
+    if (/\b(beach|surf|ocean|sea|wave)\b/.test(h)) return 'beach';
+    if (/\b(cafe|restaurant|table|kitchen|dinner|lunch|fork|plate|menu)\b/.test(h)) return 'cafe';
+    if (/\b(sport|kit|gym|football|soccer|basketball)\b/.test(h)) return 'sport';
+    return 'place';
+  }
+
+  function sceneRepairChipPng(w, h, text, fill, ink) {
     const c = document.createElement('canvas');
     c.width = w; c.height = h;
     const ctx = c.getContext('2d');
-    const hay = `${label || ''} ${cue || ''}`.toLowerCase();
-    const market = /\b(fruit|market|basket|stall|shop)\b/.test(hay);
-    const camp = /\b(camp|campfire|tent|forest|hike)\b/.test(hay);
-    const beach = /\b(beach|surf|ocean|sea|wave)\b/.test(hay);
-    const cafe = /\b(cafe|restaurant|table|kitchen|dinner|lunch)\b/.test(hay);
-    const sport = /\b(sport|kit|gym|football|soccer|basketball)\b/.test(hay);
-    const targetX = Math.round(w * 0.76);
-    const groundY = Math.round(h * 0.61);
+    ctx.fillStyle = fill || 'rgba(15,23,42,0.72)';
+    ctx.beginPath();
+    ctx.roundRect(1, 1, w - 2, h - 2, Math.min(14, Math.round(h / 2)));
+    ctx.fill();
+    ctx.fillStyle = ink || '#ffffff';
+    ctx.font = '800 22px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(String(text || '').slice(0, 22), w / 2, h / 2, w - 12);
+    return c.toDataURL('image/png');
+  }
 
-    const rounded = (x, y, rw, rh, r, fill, stroke) => {
-      ctx.beginPath();
-      ctx.moveTo(x + r, y);
-      ctx.arcTo(x + rw, y, x + rw, y + rh, r);
-      ctx.arcTo(x + rw, y + rh, x, y + rh, r);
-      ctx.arcTo(x, y + rh, x, y, r);
-      ctx.arcTo(x, y, x + rw, y, r);
-      ctx.closePath();
-      ctx.fillStyle = fill;
-      ctx.fill();
-      if (stroke) {
-        ctx.strokeStyle = stroke;
-        ctx.lineWidth = 3;
-        ctx.stroke();
-      }
+  function sceneRepairPeelCoverPng(w, h) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = 'rgba(15,118,110,0.94)';
+    ctx.beginPath();
+    ctx.roundRect(1, 1, w - 2, h - 2, 14);
+    ctx.fill();
+    ctx.fillStyle = '#fef3c7';
+    ctx.beginPath();
+    ctx.moveTo(w - 2, 1);
+    ctx.lineTo(w - 56, 1);
+    ctx.lineTo(w - 2, 56);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = '#fbbf24';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.roundRect(1, 1, w - 2, h - 2, 14);
+    ctx.stroke();
+    ctx.fillStyle = '#ecfdf5';
+    ctx.font = '800 22px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('PEEL TO SEE AFTER', w / 2, Math.round(h / 2) - 12, w - 24);
+    ctx.font = '700 22px Poppins, sans-serif';
+    ctx.fillText('same place, repaired', w / 2, Math.round(h / 2) + 16, w - 24);
+    return c.toDataURL('image/png');
+  }
+
+  function buildSceneRepairTuple(raw, lesson) {
+    const named_location = String(
+      (raw && (raw.named_location || raw.slotLabel || raw.label))
+      || (lesson && lesson.title)
+      || 'This place'
+    ).trim().slice(0, 40);
+    const wrong_prop = String((raw && (raw.wrong_prop || raw.wrongWord || raw.wrong)) || '').trim();
+    const correct_prop = String((raw && (raw.correct_prop || raw.correctWord || raw.correct)) || '').trim();
+    const sceneCue = String(
+      (raw && (raw.sceneCue || raw.scene)) || (lesson && lesson.title) || named_location
+    ).trim();
+    const snap_target = String(
+      (raw && (raw.snap_target || raw.snapTarget)) || inferRepairSnapTarget(named_location, sceneCue)
+    ).trim().slice(0, 40);
+    const spoken_frame = String(
+      (raw && (raw.spoken_frame || raw.spokenFrame)) || 'The ___ does not fit. The ___ fits.'
+    ).trim().slice(0, 80);
+    const success_visual = String(
+      (raw && (raw.success_visual || raw.successVisual))
+      || inferRepairSuccessVisual(named_location, correct_prop, sceneCue)
+    ).trim().slice(0, 48);
+    if (!named_location || !wrong_prop || !correct_prop || !snap_target) return null;
+    if (wrong_prop.toLowerCase() === correct_prop.toLowerCase()) return null;
+    if (!spoken_frame || !success_visual) return null;
+    return {
+      named_location,
+      wrong_prop,
+      correct_prop,
+      snap_target,
+      spoken_frame,
+      success_visual,
+      sceneCue,
     };
+  }
 
-    rounded(1, 1, w - 2, h - 2, 18, camp ? '#dbeafe' : '#ecfeff', '#0f766e');
-    ctx.fillStyle = camp ? '#172554' : beach ? '#7dd3fc' : '#cffafe';
-    ctx.fillRect(4, 4, w - 8, groundY - 4);
-    ctx.fillStyle = camp ? '#14532d' : beach ? '#fde68a' : market ? '#fef3c7' : cafe ? '#fed7aa' : sport ? '#bbf7d0' : '#e2e8f0';
-    ctx.fillRect(4, groundY, w - 8, h - groundY - 4);
 
-    if (market) {
+  function sceneRepairPaintWorld(ctx, w, h, theme, state) {
+    const fixed = state === 'fixed';
+    const targetX = Math.round(w * 0.52);
+    const groundY = Math.round(h * 0.62);
+    const sky = ctx.createLinearGradient(0, 0, 0, groundY);
+    if (theme === 'camp') {
+      sky.addColorStop(0, '#0f172a');
+      sky.addColorStop(1, '#1e3a8a');
+    } else if (theme === 'beach') {
+      sky.addColorStop(0, '#7dd3fc');
+      sky.addColorStop(1, '#38bdf8');
+    } else if (theme === 'cafe') {
+      sky.addColorStop(0, '#fed7aa');
+      sky.addColorStop(1, '#fdba74');
+    } else if (theme === 'market') {
+      sky.addColorStop(0, '#fde68a');
+      sky.addColorStop(1, '#fbbf24');
+    } else {
+      sky.addColorStop(0, '#dbeafe');
+      sky.addColorStop(1, '#93c5fd');
+    }
+    ctx.fillStyle = sky;
+    ctx.fillRect(0, 0, w, groundY);
+    ctx.fillStyle = theme === 'camp' ? '#14532d'
+      : theme === 'beach' ? '#fde68a'
+      : theme === 'cafe' ? '#78350f'
+      : theme === 'market' ? '#fef3c7'
+      : '#86efac';
+    ctx.fillRect(0, groundY, w, h - groundY);
+
+    if (theme === 'camp') {
+      ctx.fillStyle = '#fef9c3';
+      [[64, 28], [140, 48], [230, 22], [340, 56], [480, 34]].forEach((star) => {
+        ctx.beginPath();
+        ctx.ellipse(star[0], star[1], 3, 3, 0, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.fillStyle = '#fde68a';
+      ctx.beginPath();
+      ctx.ellipse(w - 90, 48, 22, 22, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#052e16';
+      [40, 130, 250, 380, 520].forEach((x, i) => {
+        ctx.beginPath();
+        ctx.moveTo(x, groundY);
+        ctx.lineTo(x + 36 + i * 2, 36 + (i % 3) * 10);
+        ctx.lineTo(x + 86, groundY);
+        ctx.closePath();
+        ctx.fill();
+      });
+      ctx.fillStyle = '#f8fafc';
+      ctx.beginPath();
+      ctx.moveTo(70, groundY);
+      ctx.lineTo(130, groundY - 88);
+      ctx.lineTo(190, groundY);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = '#334155';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(130, groundY - 88);
+      ctx.lineTo(130, groundY);
+      ctx.stroke();
+      if (fixed) {
+        const glow = ctx.createRadialGradient(targetX, groundY + 36, 6, targetX, groundY + 48, 110);
+        glow.addColorStop(0, 'rgba(253,224,71,0.9)');
+        glow.addColorStop(0.45, 'rgba(249,115,22,0.45)');
+        glow.addColorStop(1, 'rgba(249,115,22,0)');
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.ellipse(targetX, groundY + 48, 110, 72, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#f97316';
+        ctx.beginPath();
+        ctx.moveTo(targetX, groundY);
+        ctx.lineTo(targetX - 42, groundY + 78);
+        ctx.lineTo(targetX + 42, groundY + 78);
+        ctx.closePath();
+        ctx.fill();
+        ctx.fillStyle = '#fde68a';
+        ctx.beginPath();
+        ctx.moveTo(targetX, groundY + 16);
+        ctx.lineTo(targetX - 16, groundY + 68);
+        ctx.lineTo(targetX + 16, groundY + 68);
+        ctx.closePath();
+        ctx.fill();
+      } else {
+        ctx.fillStyle = '#334155';
+        ctx.beginPath();
+        ctx.ellipse(targetX, groundY + 52, 54, 22, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#64748b';
+        ctx.beginPath();
+        ctx.ellipse(targetX, groundY + 48, 28, 10, 0, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.strokeStyle = '#78350f';
+      ctx.lineWidth = 10;
+      ctx.beginPath();
+      ctx.moveTo(targetX - 62, groundY + 78);
+      ctx.lineTo(targetX + 62, groundY + 52);
+      ctx.moveTo(targetX - 62, groundY + 52);
+      ctx.lineTo(targetX + 62, groundY + 78);
+      ctx.stroke();
+      if (!fixed) {
+        ctx.strokeStyle = '#fbbf24';
+        ctx.lineWidth = 4;
+        ctx.setLineDash([8, 7]);
+        ctx.beginPath();
+        ctx.ellipse(targetX, groundY + 36, 38, 28, 0, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    } else if (theme === 'market') {
       ctx.fillStyle = '#9f1239';
-      ctx.fillRect(34, 34, Math.round(w * 0.47), 24);
-      const stripeW = Math.round(w * 0.47 / 6);
-      for (let i = 0; i < 6; i += 2) {
+      ctx.fillRect(28, 28, Math.round(w * 0.5), 28);
+      const stripeW = Math.round(w * 0.5 / 8);
+      for (let i = 0; i < 8; i += 2) {
         ctx.fillStyle = '#fff7ed';
-        ctx.fillRect(34 + i * stripeW, 34, stripeW, 46);
+        ctx.fillRect(28 + i * stripeW, 28, stripeW, 52);
       }
       ctx.fillStyle = '#7c2d12';
-      ctx.fillRect(46, 78, 16, groundY - 78);
-      ctx.fillRect(Math.round(w * 0.47), 78, 16, groundY - 78);
+      ctx.fillRect(44, 80, 18, groundY - 80);
+      ctx.fillRect(Math.round(w * 0.48), 80, 18, groundY - 80);
       ctx.fillStyle = '#b45309';
-      ctx.fillRect(58, groundY - 36, Math.round(w * 0.38), 52);
-      ctx.fillStyle = '#fb923c';
-      ctx.fillRect(82, groundY - 22, 82, 24);
-      ctx.fillStyle = '#84cc16';
-      ctx.fillRect(180, groundY - 22, 82, 24);
-      ctx.fillStyle = '#ef4444';
-      ctx.fillRect(278, groundY - 22, 82, 24);
+      ctx.fillRect(62, groundY - 44, Math.round(w * 0.4), 58);
+      ['#fb923c', '#84cc16', '#ef4444', '#facc15'].forEach((color, i) => {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.ellipse(90 + i * 70, groundY - 18, 22, 16, 0, 0, Math.PI * 2);
+        ctx.fill();
+      });
       ctx.strokeStyle = '#92400e';
       ctx.lineWidth = 8;
       ctx.beginPath();
-      ctx.ellipse(targetX, groundY + 30, 88, 48, 0, 0, Math.PI * 2);
+      ctx.ellipse(targetX, groundY + 28, 90, 42, 0, 0, Math.PI * 2);
       ctx.stroke();
-    } else if (camp) {
-      ctx.fillStyle = '#fef3c7';
-      for (const star of [[70, 34], [150, 64], [250, 30], [350, 72]]) {
+      if (fixed) {
+        ['#ef4444', '#84cc16', '#f59e0b', '#22c55e'].forEach((color, i) => {
+          ctx.fillStyle = color;
+          ctx.beginPath();
+          ctx.ellipse(targetX - 36 + i * 24, groundY + 10, 16, 14, 0, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      } else {
+        ctx.setLineDash([8, 6]);
+        ctx.strokeStyle = '#fbbf24';
+        ctx.lineWidth = 4;
         ctx.beginPath();
-        ctx.ellipse(star[0], star[1], 4, 4, 0, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.ellipse(targetX, groundY + 16, 34, 22, 0, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
       }
-      ctx.fillStyle = '#166534';
-      for (const x of [70, 160, 290, 410]) {
-        ctx.beginPath();
-        ctx.moveTo(x, groundY);
-        ctx.lineTo(x + 42, 48);
-        ctx.lineTo(x + 84, groundY);
-        ctx.closePath();
-        ctx.fill();
-      }
-      ctx.fillStyle = '#f97316';
-      ctx.beginPath();
-      ctx.moveTo(targetX, groundY + 50);
-      ctx.lineTo(targetX - 30, groundY + 96);
-      ctx.lineTo(targetX + 30, groundY + 96);
-      ctx.closePath();
-      ctx.fill();
-      ctx.strokeStyle = '#78350f';
-      ctx.lineWidth = 9;
-      ctx.beginPath();
-      ctx.moveTo(targetX - 56, groundY + 100);
-      ctx.lineTo(targetX + 56, groundY + 76);
-      ctx.moveTo(targetX - 56, groundY + 76);
-      ctx.lineTo(targetX + 56, groundY + 100);
-      ctx.stroke();
-    } else if (beach) {
+    } else if (theme === 'beach') {
       ctx.fillStyle = '#0284c7';
-      ctx.fillRect(4, Math.round(h * 0.42), w - 8, Math.round(h * 0.2));
+      ctx.fillRect(0, Math.round(h * 0.38), w, Math.round(h * 0.24));
       ctx.strokeStyle = '#f8fafc';
-      ctx.lineWidth = 6;
-      for (let x = 20; x < w; x += 90) {
+      ctx.lineWidth = 5;
+      for (let x = 16; x < w; x += 80) {
         ctx.beginPath();
-        ctx.moveTo(x, Math.round(h * 0.49));
-        ctx.lineTo(x + 36, Math.round(h * 0.45));
-        ctx.lineTo(x + 72, Math.round(h * 0.49));
+        ctx.moveTo(x, Math.round(h * 0.46));
+        ctx.lineTo(x + 30, Math.round(h * 0.42));
+        ctx.lineTo(x + 60, Math.round(h * 0.46));
         ctx.stroke();
       }
       ctx.fillStyle = '#facc15';
       ctx.beginPath();
-      ctx.ellipse(100, 66, 36, 36, 0, 0, Math.PI * 2);
+      ctx.ellipse(88, 54, 34, 34, 0, 0, Math.PI * 2);
       ctx.fill();
-      ctx.strokeStyle = '#0f766e';
-      ctx.lineWidth = 7;
+      ctx.fillStyle = '#fb7185';
       ctx.beginPath();
-      ctx.ellipse(targetX, groundY + 43, 78, 25, 0, 0, Math.PI * 2);
-      ctx.stroke();
-    } else if (cafe) {
-      ctx.fillStyle = '#fff7ed';
-      ctx.fillRect(44, 34, Math.round(w * 0.42), groundY - 48);
-      ctx.strokeStyle = '#78350f';
-      ctx.lineWidth = 10;
-      ctx.strokeRect(44, 34, Math.round(w * 0.42), groundY - 48);
-      ctx.fillStyle = '#7dd3fc';
-      ctx.fillRect(58, 48, Math.round(w * 0.18), groundY - 76);
-      ctx.fillRect(Math.round(w * 0.25), 48, Math.round(w * 0.18), groundY - 76);
-      ctx.fillStyle = '#92400e';
-      ctx.fillRect(Math.round(w * 0.14), groundY - 10, Math.round(w * 0.72), 46);
-      ctx.fillRect(Math.round(w * 0.22), groundY + 30, 18, h - groundY - 34);
-      ctx.fillRect(Math.round(w * 0.76), groundY + 30, 18, h - groundY - 34);
-      ctx.fillStyle = '#f8fafc';
-      ctx.beginPath();
-      ctx.ellipse(targetX, groundY + 15, 82, 32, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.strokeStyle = '#64748b';
+      ctx.moveTo(40, groundY);
+      ctx.lineTo(40, groundY - 70);
+      ctx.strokeStyle = '#334155';
       ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(48, groundY);
+      ctx.lineTo(48, groundY - 78);
       ctx.stroke();
-    } else if (sport) {
+      ctx.fillStyle = '#fb7185';
+      ctx.beginPath();
+      ctx.moveTo(48, groundY - 78);
+      ctx.lineTo(110, groundY - 58);
+      ctx.lineTo(48, groundY - 40);
+      ctx.closePath();
+      ctx.fill();
+      if (fixed) {
+        ctx.fillStyle = '#0f766e';
+        ctx.beginPath();
+        ctx.moveTo(targetX - 70, groundY + 28);
+        ctx.lineTo(targetX + 78, groundY - 8);
+        ctx.lineTo(targetX + 64, groundY + 10);
+        ctx.lineTo(targetX - 84, groundY + 46);
+        ctx.closePath();
+        ctx.fill();
+        ctx.fillStyle = '#f8fafc';
+        ctx.fillRect(targetX - 8, groundY + 6, 18, 8);
+      } else {
+        ctx.setLineDash([10, 8]);
+        ctx.strokeStyle = '#0f766e';
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.ellipse(targetX, groundY + 22, 80, 24, -0.2, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    } else if (theme === 'cafe') {
+      ctx.fillStyle = '#fff7ed';
+      ctx.fillRect(36, 24, Math.round(w * 0.44), groundY - 40);
+      ctx.strokeStyle = '#78350f';
+      ctx.lineWidth = 8;
+      ctx.strokeRect(36, 24, Math.round(w * 0.44), groundY - 40);
+      ctx.fillStyle = '#7dd3fc';
+      ctx.fillRect(52, 40, Math.round(w * 0.16), groundY - 72);
+      ctx.fillRect(Math.round(w * 0.26), 40, Math.round(w * 0.16), groundY - 72);
+      ctx.fillStyle = '#fed7aa';
+      ctx.fillRect(52, 40, Math.round(w * 0.16), 16);
+      ctx.fillRect(Math.round(w * 0.26), 40, Math.round(w * 0.16), 16);
+      ctx.fillStyle = '#92400e';
+      ctx.fillRect(Math.round(w * 0.16), groundY - 8, Math.round(w * 0.68), 52);
+      ctx.fillRect(Math.round(w * 0.22), groundY + 40, 20, h - groundY - 44);
+      ctx.fillRect(Math.round(w * 0.74), groundY + 40, 20, h - groundY - 44);
+      if (fixed) {
+        ctx.fillStyle = '#f8fafc';
+        ctx.beginPath();
+        ctx.ellipse(targetX, groundY + 8, 78, 28, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#64748b';
+        ctx.lineWidth = 4;
+        ctx.stroke();
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.moveTo(targetX + 70, groundY - 18);
+        ctx.lineTo(targetX + 70, groundY + 22);
+        ctx.stroke();
+        ctx.fillStyle = '#16a34a';
+        ctx.beginPath();
+        ctx.ellipse(targetX - 8, groundY + 4, 18, 10, 0, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.setLineDash([8, 6]);
+        ctx.strokeStyle = '#fbbf24';
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.ellipse(targetX, groundY + 8, 70, 24, 0, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(targetX + 68, groundY - 16);
+        ctx.lineTo(targetX + 68, groundY + 20);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    } else if (theme === 'sport') {
       ctx.strokeStyle = '#f8fafc';
       ctx.lineWidth = 5;
-      ctx.strokeRect(34, 32, Math.round(w * 0.5), groundY - 50);
+      ctx.strokeRect(28, 28, Math.round(w * 0.52), groundY - 48);
       ctx.beginPath();
-      ctx.moveTo(Math.round(w * 0.28), 32);
-      ctx.lineTo(Math.round(w * 0.28), groundY - 18);
+      ctx.moveTo(Math.round(w * 0.28), 28);
+      ctx.lineTo(Math.round(w * 0.28), groundY - 20);
       ctx.stroke();
       ctx.fillStyle = '#475569';
-      ctx.fillRect(Math.round(w * 0.62), groundY - 18, Math.round(w * 0.28), 48);
+      ctx.fillRect(Math.round(w * 0.6), groundY - 16, Math.round(w * 0.26), 44);
     } else {
       ctx.fillStyle = '#f8fafc';
-      ctx.fillRect(52, 36, Math.round(w * 0.42), groundY - 52);
-      ctx.fillStyle = '#0f766e';
-      ctx.fillRect(72, 58, Math.round(w * 0.36), 18);
-      ctx.fillRect(72, 104, Math.round(w * 0.36), 18);
-      ctx.fillStyle = '#a16207';
-      ctx.fillRect(Math.round(w * 0.64), groundY - 10, Math.round(w * 0.24), 48);
+      ctx.fillRect(48, 32, Math.round(w * 0.4), groundY - 48);
     }
+    return { targetX, groundY };
+  }
 
-    rounded(24, 14, Math.min(330, Math.round(w * 0.35)), 40, 12, 'rgba(15,23,42,0.88)');
+  function sceneRepairStagePng(w, h, label, cue, tuple) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const hay = `${label || ''} ${cue || ''} ${tuple && tuple.success_visual || ''}`;
+    const theme = sceneRepairTheme(hay);
+    ctx.save();
+    ctx.beginPath();
+    ctx.roundRect(1, 1, w - 2, h - 2, 18);
+    ctx.clip();
+    sceneRepairPaintWorld(ctx, w, h, theme, 'broken');
+    ctx.restore();
+    ctx.strokeStyle = '#0f766e';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.roundRect(1, 1, w - 2, h - 2, 18);
+    ctx.stroke();
+
+    ctx.fillStyle = 'rgba(15,23,42,0.88)';
+    ctx.beginPath();
+    ctx.roundRect(18, 12, Math.min(360, Math.round(w * 0.34)), 40, 12);
+    ctx.fill();
     ctx.fillStyle = '#ffffff';
-    ctx.font = '800 20px Poppins, sans-serif';
+    ctx.font = '800 22px Poppins, sans-serif';
     ctx.textAlign = 'left';
     ctx.textBaseline = 'middle';
-    ctx.fillText(String(label || 'Repair this scene').slice(0, 30), 42, 34, Math.min(290, w * 0.3));
+    ctx.fillText(String(label || 'Repair this scene').slice(0, 28), 34, 32, Math.min(328, w * 0.3));
 
-    rounded(24, h - 54, Math.min(430, Math.round(w * 0.42)), 38, 12, 'rgba(255,255,255,0.94)', '#0f766e');
+    ctx.fillStyle = 'rgba(127,29,29,0.9)';
+    ctx.beginPath();
+    ctx.roundRect(18, 58, 118, 32, 10);
+    ctx.fill();
+    ctx.fillStyle = '#fef2f2';
+    ctx.font = '800 22px Poppins, sans-serif';
+    ctx.fillText('BEFORE', 34, 74);
+
+    const frame = (tuple && tuple.spoken_frame) || 'The ___ does not fit. The ___ fits.';
+    ctx.fillStyle = 'rgba(255,255,255,0.94)';
+    ctx.strokeStyle = '#0f766e';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.roundRect(18, h - 56, Math.min(560, Math.round(w * 0.48)), 42, 12);
+    ctx.fill();
+    ctx.stroke();
     ctx.fillStyle = '#134e4a';
-    ctx.font = '700 17px Poppins, sans-serif';
-    ctx.fillText('Say: The ___ does not fit. The ___ fits.', 42, h - 35, Math.min(390, w * 0.37));
+    ctx.font = '700 22px Poppins, sans-serif';
+    ctx.fillText(`Say: ${frame}`, 34, h - 35, Math.min(528, w * 0.44));
     return c.toDataURL('image/png');
   }
 
@@ -861,7 +1549,7 @@
     const c = document.createElement('canvas');
     c.width = w; c.height = h;
     const ctx = c.getContext('2d');
-    ctx.fillStyle = 'rgba(255,255,255,0.58)';
+    ctx.fillStyle = 'rgba(254,242,242,0.2)';
     ctx.beginPath();
     ctx.ellipse(w / 2, h / 2, w / 2 - 7, h / 2 - 7, 0, 0, Math.PI * 2);
     ctx.fill();
@@ -870,6 +1558,66 @@
     ctx.setLineDash([11, 8]);
     ctx.stroke();
     ctx.setLineDash([]);
+    return c.toDataURL('image/png');
+  }
+
+  function sceneRepairPocketPng(w, h, label, theme) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const fill = theme === 'camp' ? 'rgba(67,20,7,0.78)'
+      : theme === 'cafe' ? 'rgba(120,53,15,0.72)'
+      : theme === 'beach' ? 'rgba(14,116,144,0.62)'
+      : theme === 'market' ? 'rgba(124,45,18,0.7)'
+      : 'rgba(15,23,42,0.55)';
+    ctx.fillStyle = fill;
+    ctx.beginPath();
+    ctx.roundRect(1, 1, w - 2, h - 2, 16);
+    ctx.fill();
+    ctx.strokeStyle = '#5eead4';
+    ctx.lineWidth = 3;
+    ctx.setLineDash([8, 6]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#ccfbf1';
+    ctx.font = '800 22px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillText(String(label || 'REPAIR HERE').slice(0, 14), w / 2, 8, w - 16);
+    ctx.strokeStyle = 'rgba(94,234,212,0.7)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(16, 38, w - 32, h - 52, 12);
+    ctx.stroke();
+    return c.toDataURL('image/png');
+  }
+
+  function sceneRepairSuccessPng(w, h, visual, location) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const hay = `${visual || ''} ${location || ''}`;
+    const theme = sceneRepairTheme(hay);
+    ctx.save();
+    ctx.beginPath();
+    ctx.roundRect(1, 1, w - 2, h - 2, 14);
+    ctx.clip();
+    sceneRepairPaintWorld(ctx, w, h, theme, 'fixed');
+    ctx.restore();
+    ctx.strokeStyle = '#fbbf24';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.roundRect(1, 1, w - 2, h - 2, 14);
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(6,78,59,0.92)';
+    ctx.beginPath();
+    ctx.roundRect(10, 8, w - 20, 36, 10);
+    ctx.fill();
+    ctx.fillStyle = '#fef3c7';
+    ctx.font = '800 22px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(`AFTER · ${String(visual || 'repaired').slice(0, 18)}`, w / 2, 26, w - 28);
     return c.toDataURL('image/png');
   }
 
@@ -933,15 +1681,205 @@
     return c.toDataURL('image/png');
   }
 
+  /** Landing halo on a king stage — kids see WHERE the tool goes. */
+  function dropPadPng(w, h) {
+    const c = document.createElement('canvas');
+    c.width = Math.max(80, w);
+    c.height = Math.max(60, h);
+    const ctx = c.getContext('2d');
+    const padW = c.width;
+    const padH = c.height;
+    ctx.save();
+    ctx.strokeStyle = 'rgba(13,148,136,0.95)';
+    ctx.fillStyle = 'rgba(204,251,241,0.18)';
+    ctx.lineWidth = 4;
+    ctx.setLineDash([10, 7]);
+    ctx.beginPath();
+    ctx.ellipse(padW / 2, padH / 2, padW / 2 - 5, padH / 2 - 5, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#0f766e';
+    ctx.font = `800 ${Math.max(14, Math.round(padH * 0.22))}px Poppins, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('DROP HERE', padW / 2, padH / 2);
+    ctx.restore();
+    return c.toDataURL('image/png');
+  }
+
+  /**
+   * Spoken noun for a dock key. Pack/color/shape tails drop so
+   * face-eyes-brown → "eyes" and fire-hose → "hose".
+   */
+  function sayNounFromKey(key) {
+    const parts = String(key || '').toLowerCase().split('-').filter(Boolean);
+    const skip = new Set([
+      'face', 'food', 'fire', 'camp', 'bath', 'cafe', 'farm', 'dental',
+      'hospital', 'park', 'playground', 'castle', 'aq', 'aquarium',
+      'construction', 'dh', 'feeling', 'gym', 'sports', 'reward', 'prop',
+      'tube', 'pick', 'character', 'stage', 'v2', 'brown', 'blue', 'green',
+      'dark', 'red', 'blonde', 'black', 'pink', 'white', 'round', 'button',
+      'point', 'long', 'oval', 'large', 'messy', 'pony', 'afro', 'bob',
+      'spiky', 'open', 'closed', 'wrapped', 'candy', 'healthy', 'cavity',
+      'blank', 'kid', 'open', 'mouth',
+    ]);
+    const keep = parts.filter((p) => !skip.has(p));
+    if (keep.length) {
+      const tails = new Set(['bell', 'kit', 'tube', 'pick', 'roll', 'talkie']);
+      if (keep.length > 1 && tails.has(keep[keep.length - 1])) {
+        return keep.slice(0, -1).join(' ');
+      }
+      return keep.join(' ');
+    }
+    if (parts[0] === 'hair') return 'hair';
+    if (parts[0] === 'face' && parts[1]) return parts[1];
+    return parts[1] || parts[0] || String(key || '');
+  }
+
+  /** Numbered snap ring — a landing target, not a hole in the king. */
+  function heroSnapPadPng(w, h, n) {
+    const c = document.createElement('canvas');
+    c.width = Math.max(56, w);
+    c.height = Math.max(48, h);
+    const ctx = c.getContext('2d');
+    ctx.save();
+    ctx.strokeStyle = 'rgba(13,148,136,0.95)';
+    ctx.fillStyle = 'rgba(204,251,241,0.22)';
+    ctx.lineWidth = 3;
+    ctx.setLineDash([7, 5]);
+    ctx.beginPath();
+    ctx.ellipse(c.width / 2, c.height / 2, c.width / 2 - 4, c.height / 2 - 4, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#0f766e';
+    ctx.font = '800 18px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(String(n), c.width / 2, c.height / 2);
+    ctx.restore();
+    return c.toDataURL('image/png');
+  }
+
+  /** EMPTY → SNAP → READY proof on the static Manus JPG. */
+  function heroStateLadderPng(w, h, payoff) {
+    const c = document.createElement('canvas');
+    c.width = Math.max(260, w);
+    c.height = Math.max(78, h);
+    const ctx = c.getContext('2d');
+    const r = 12;
+    ctx.fillStyle = 'rgba(255,255,255,0.92)';
+    ctx.strokeStyle = '#0f766e';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(c.width, 0, c.width, c.height, r);
+    ctx.arcTo(c.width, c.height, 0, c.height, r); ctx.arcTo(0, c.height, 0, 0, r);
+    ctx.arcTo(0, 0, c.width, 0, r); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#115e59';
+    ctx.font = '800 11px Poppins, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText('DRAG → SNAP → PAYOFF', 10, 6);
+    const stages = [
+      { label: 'EMPTY', dashed: true, check: false },
+      { label: 'SNAP', dashed: false, check: false },
+      { label: 'READY', dashed: false, check: true },
+    ];
+    const box = 22;
+    const gap = Math.max(16, Math.floor((c.width - 24 - box * 3) / 2));
+    let x = 12;
+    stages.forEach((stage, i) => {
+      if (stage.dashed) {
+        ctx.setLineDash([4, 3]);
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(x, 24, box, box);
+        ctx.setLineDash([]);
+      } else {
+        ctx.fillStyle = stage.check ? '#16a34a' : '#5eead4';
+        ctx.fillRect(x, 24, box, box);
+      }
+      if (stage.check) {
+        ctx.fillStyle = '#fff';
+        ctx.font = '800 14px Poppins, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('✓', x + box / 2, 24 + box / 2 + 1);
+      }
+      ctx.fillStyle = '#334155';
+      ctx.font = '700 9px Poppins, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillText(stage.label, x + box / 2, 48);
+      if (i < stages.length - 1) {
+        ctx.fillStyle = '#0f766e';
+        ctx.font = '800 14px Poppins, sans-serif';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('→', x + box + Math.round(gap / 2), 35);
+      }
+      x += box + gap;
+    });
+    ctx.fillStyle = '#166534';
+    ctx.font = '800 11px Poppins, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText('✓ ' + String(payoff || 'READY').slice(0, 28), 10, c.height - 6);
+    return c.toDataURL('image/png');
+  }
+
+  function heroPayoffBadgePng(w, h, payoff) {
+    const c = document.createElement('canvas');
+    c.width = Math.max(160, w);
+    c.height = Math.max(44, h);
+    const ctx = c.getContext('2d');
+    const r = 16;
+    ctx.fillStyle = '#ecfdf5';
+    ctx.strokeStyle = '#059669';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(c.width, 0, c.width, c.height, r);
+    ctx.arcTo(c.width, c.height, 0, c.height, r); ctx.arcTo(0, c.height, 0, 0, r);
+    ctx.arcTo(0, 0, c.width, 0, r); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#047857';
+    ctx.font = '800 16px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('✓ ' + String(payoff || 'READY').slice(0, 22), c.width / 2, c.height / 2);
+    return c.toDataURL('image/png');
+  }
+
+  function heroPayoffSealPng(w, h) {
+    const c = document.createElement('canvas');
+    c.width = Math.max(160, w);
+    c.height = Math.max(44, h);
+    const ctx = c.getContext('2d');
+    const r = 16;
+    ctx.fillStyle = '#0f766e';
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(c.width, 0, c.width, c.height, r);
+    ctx.arcTo(c.width, c.height, 0, c.height, r); ctx.arcTo(0, c.height, 0, 0, r);
+    ctx.arcTo(0, 0, c.width, 0, r); ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = '#ecfdf5';
+    ctx.font = '800 13px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('LIFT TO REVEAL', c.width / 2, c.height / 2);
+    return c.toDataURL('image/png');
+  }
+
   function capacityPocketPng(w, h) {
     const c = document.createElement('canvas');
     c.width = w; c.height = h;
     const ctx = c.getContext('2d');
     const r = 14;
+    ctx.fillStyle = 'rgba(255,255,255,0.72)';
     ctx.strokeStyle = '#5eead4';
     ctx.lineWidth = 3;
     ctx.setLineDash([8, 6]);
-    ctx.fillStyle = 'rgba(255,255,255,0.35)';
     ctx.beginPath();
     ctx.moveTo(r, 4); ctx.arcTo(w - 4, 4, w - 4, h - 4, r);
     ctx.arcTo(w - 4, h - 4, 4, h - 4, r); ctx.arcTo(4, h - 4, 4, 4, r);
@@ -949,10 +1887,248 @@
     ctx.fill(); ctx.stroke();
     ctx.setLineDash([]);
     ctx.fillStyle = '#0f766e';
-    ctx.font = '800 15px Poppins, sans-serif';
+    ctx.font = '800 14px Poppins, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('PACK HERE', w / 2, h / 2);
+    ctx.fillText('PACK HERE', w / 2, h / 2 - 8);
+    ctx.fillStyle = '#64748b';
+    ctx.font = '700 11px Poppins, sans-serif';
+    ctx.fillText('drop item', w / 2, h / 2 + 12);
+    return c.toDataURL('image/png');
+  }
+
+  function capacityTopicKey(hay) {
+    const value = String(hay || '').toLowerCase();
+    if (/\b(hike|mountain|trail|raincoat|whistle|emergency|safety)\b/.test(value)) return 'trail';
+    if (/\b(camp|tent|flashlight|rainy.?night|campsite)\b/.test(value)) return 'camp';
+    if (/\b(school|trip|bus|pencil|class)\b/.test(value)) return 'school';
+    if (/\b(video|camera|space|creator|microphone|studio|film)\b/.test(value)) return 'studio';
+    if (/\b(beach|picnic|lunch|snack)\b/.test(value)) return 'beach';
+    return 'generic';
+  }
+
+  function capacityPaintWorld(ctx, w, h, theme) {
+    const groundY = Math.round(h * 0.66);
+    const sky = ctx.createLinearGradient(0, 0, 0, groundY);
+    if (theme === 'trail') {
+      sky.addColorStop(0, '#475569');
+      sky.addColorStop(1, '#94a3b8');
+    } else if (theme === 'camp') {
+      sky.addColorStop(0, '#0f172a');
+      sky.addColorStop(1, '#1e3a8a');
+    } else if (theme === 'studio') {
+      sky.addColorStop(0, '#1e1b4b');
+      sky.addColorStop(1, '#312e81');
+    } else if (theme === 'beach') {
+      sky.addColorStop(0, '#7dd3fc');
+      sky.addColorStop(1, '#38bdf8');
+    } else {
+      sky.addColorStop(0, '#dbeafe');
+      sky.addColorStop(1, '#93c5fd');
+    }
+    ctx.fillStyle = sky;
+    ctx.fillRect(0, 0, w, groundY);
+    ctx.fillStyle = theme === 'trail' ? '#365314'
+      : theme === 'camp' ? '#14532d'
+      : theme === 'studio' ? '#1e293b'
+      : theme === 'beach' ? '#fde68a'
+      : '#86efac';
+    ctx.fillRect(0, groundY, w, h - groundY);
+
+    if (theme === 'trail') {
+      ctx.strokeStyle = 'rgba(255,255,255,0.35)';
+      ctx.lineWidth = 2;
+      for (let i = 0; i < 7; i++) {
+        const x = 40 + i * 90;
+        ctx.beginPath();
+        ctx.moveTo(x, 20 + (i % 3) * 8);
+        ctx.lineTo(x + 18, 34 + (i % 3) * 8);
+        ctx.stroke();
+      }
+      ctx.fillStyle = '#166534';
+      [30, 120, 220, 340, 470, 590].forEach((x, i) => {
+        ctx.beginPath();
+        ctx.moveTo(x, groundY);
+        ctx.lineTo(x + 28 + i, 42 + (i % 2) * 12);
+        ctx.lineTo(x + 72, groundY);
+        ctx.closePath();
+        ctx.fill();
+      });
+      ctx.fillStyle = '#78716c';
+      ctx.beginPath();
+      ctx.moveTo(Math.round(w * 0.08), groundY);
+      ctx.lineTo(Math.round(w * 0.92), groundY - 18);
+      ctx.lineTo(Math.round(w * 0.96), groundY + 28);
+      ctx.lineTo(Math.round(w * 0.04), groundY + 28);
+      ctx.closePath();
+      ctx.fill();
+    } else if (theme === 'camp') {
+      ctx.fillStyle = '#fef9c3';
+      [[64, 28], [140, 48], [230, 22], [340, 56]].forEach((star) => {
+        ctx.beginPath();
+        ctx.ellipse(star[0], star[1], 3, 3, 0, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.fillStyle = '#052e16';
+      [40, 130, 250, 380, 520].forEach((x, i) => {
+        ctx.beginPath();
+        ctx.moveTo(x, groundY);
+        ctx.lineTo(x + 36 + i * 2, 36 + (i % 3) * 10);
+        ctx.lineTo(x + 86, groundY);
+        ctx.closePath();
+        ctx.fill();
+      });
+    } else if (theme === 'school') {
+      ctx.fillStyle = '#fef3c7';
+      ctx.fillRect(Math.round(w * 0.12), groundY - 72, Math.round(w * 0.34), 72);
+      ctx.fillStyle = '#dc2626';
+      ctx.fillRect(Math.round(w * 0.12), groundY - 72, Math.round(w * 0.34), 16);
+    } else if (theme === 'studio') {
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(Math.round(w * 0.1), groundY - 64, Math.round(w * 0.36), 64);
+      ctx.fillStyle = '#fbbf24';
+      ctx.beginPath();
+      ctx.arc(Math.round(w * 0.28), groundY - 32, 18, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    return { groundY };
+  }
+
+  /** Scene-first stage: painted world + dominant backpack + 0/N counter + committed preview. */
+  function capacitySceneStagePng(w, h, ctxPayload) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const hay = [
+      ctxPayload.mission, ctxPayload.constraint, ctxPayload.containerLabel,
+      ctxPayload.payoff, ctxPayload.title,
+    ].filter(Boolean).join(' ');
+    const theme = capacityTopicKey(hay);
+    ctx.save();
+    ctx.beginPath();
+    ctx.roundRect(1, 1, w - 2, h - 2, 22);
+    ctx.clip();
+    capacityPaintWorld(ctx, w, h, theme);
+    ctx.restore();
+    ctx.strokeStyle = '#0f766e';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.roundRect(1, 1, w - 2, h - 2, 22);
+    ctx.stroke();
+
+    const chipW = Math.min(360, Math.round(w * 0.42));
+    ctx.fillStyle = 'rgba(15,23,42,0.84)';
+    ctx.beginPath();
+    ctx.roundRect(18, 14, chipW, 78, 14);
+    ctx.fill();
+    ctx.fillStyle = '#fbbf24';
+    ctx.font = '800 12px Poppins, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText('PACK EXACTLY ' + ctxPayload.limit, 32, 22);
+    ctx.fillStyle = '#fff';
+    ctx.font = '700 14px Poppins, sans-serif';
+    ctx.fillText(String(ctxPayload.mission || '').slice(0, 44), 32, 40, chipW - 28);
+    if (ctxPayload.mustInclude && ctxPayload.mustInclude.length) {
+      ctx.fillStyle = '#fca5a5';
+      ctx.font = '800 11px Poppins, sans-serif';
+      ctx.fillText('MUST PACK: ' + ctxPayload.mustInclude.join(', '), 32, 62, chipW - 28);
+    } else if (ctxPayload.constraint) {
+      ctx.fillStyle = '#99f6e4';
+      ctx.font = '700 11px Poppins, sans-serif';
+      ctx.fillText(String(ctxPayload.constraint).slice(0, 52), 32, 62, chipW - 28);
+    }
+
+    const packX = Math.round(w * 0.54);
+    const packY = Math.round(h * 0.16);
+    const packW = Math.round(w * 0.38);
+    const packH = Math.round(h * 0.72);
+    ctx.fillStyle = 'rgba(15,118,110,0.18)';
+    ctx.beginPath();
+    ctx.roundRect(packX - 8, packY - 8, packW + 16, packH + 16, 18);
+    ctx.fill();
+    ctx.strokeStyle = '#0f766e';
+    ctx.lineWidth = 8;
+    ctx.beginPath();
+    ctx.moveTo(packX + packW * 0.28, packY + 34);
+    ctx.lineTo(packX + packW * 0.28, packY + 12);
+    ctx.lineTo(packX + packW * 0.72, packY + 12);
+    ctx.lineTo(packX + packW * 0.72, packY + 34);
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(204,251,241,0.88)';
+    ctx.strokeStyle = '#0f766e';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.roundRect(packX, packY + 28, packW, packH - 28, 16);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = '#115e59';
+    ctx.font = '800 16px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(
+      `${String(ctxPayload.containerLabel || 'PACK').toUpperCase()} · 0/${ctxPayload.limit} PACKED`,
+      packX + packW / 2,
+      packY + 52,
+      packW - 24
+    );
+
+    const stages = ['0/' + ctxPayload.limit, 'FILLING', 'COMMITTED'];
+    const stageW = Math.floor((packW - 40) / 3);
+    stages.forEach((label, i) => {
+      const sx = packX + 20 + i * (stageW + 8);
+      const sy = packY + packH - 34;
+      ctx.fillStyle = i === 0 ? '#0f766e' : i === 1 ? '#5eead4' : '#16a34a';
+      ctx.beginPath();
+      ctx.roundRect(sx, sy, stageW, 22, 8);
+      ctx.fill();
+      ctx.fillStyle = i === 2 ? '#fff' : '#0f172a';
+      ctx.font = '800 10px Poppins, sans-serif';
+      ctx.fillText(label, sx + stageW / 2, sy + 11);
+    });
+
+    ctx.fillStyle = 'rgba(6,78,59,0.92)';
+    ctx.beginPath();
+    ctx.roundRect(18, h - 52, w - 36, 38, 12);
+    ctx.fill();
+    ctx.fillStyle = '#ecfdf5';
+    ctx.font = '800 13px Poppins, sans-serif';
+    ctx.fillText(
+      `0/${ctxPayload.limit} packed + 2 reasons → ${String(ctxPayload.payoff || 'READY').toUpperCase()}`,
+      w / 2,
+      h - 33,
+      w - 56
+    );
+    return c.toDataURL('image/png');
+  }
+
+  /** Compact horizontal language strip — replaces the old left-rail SAY IT box. */
+  function capacityLanguageStripPng(w, h) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = 'rgba(255,255,255,0.92)';
+    ctx.strokeStyle = '#7c3aed';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.roundRect(1, 1, w - 2, h - 2, 12);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = '#5b21b6';
+    ctx.font = '800 12px Poppins, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('SAY IT', 16, h / 2);
+    ctx.fillStyle = '#1e1b4b';
+    ctx.font = '700 13px Poppins, sans-serif';
+    ctx.fillText('“I pack ___ because ___.”   “I leave out ___ because ___.”', 78, h / 2, w - 190);
+    ctx.strokeStyle = '#16a34a';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(w - 108, 8, 96, h - 16);
+    ctx.fillStyle = '#16a34a';
+    ctx.font = '800 10px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('TEACHER CHECK ✓', w - 60, h / 2);
     return c.toDataURL('image/png');
   }
 
@@ -1035,28 +2211,16 @@
     const c = document.createElement('canvas');
     c.width = w; c.height = h;
     const ctx = c.getContext('2d');
-    const handleW = Math.min(180, Math.floor(w * 0.28));
-    ctx.strokeStyle = '#0f766e';
-    ctx.lineWidth = 8;
-    ctx.beginPath();
-    ctx.moveTo(w / 2 - handleW / 2, 30);
-    ctx.lineTo(w / 2 - handleW / 2, 14);
-    ctx.lineTo(w / 2 + handleW / 2, 14);
-    ctx.lineTo(w / 2 + handleW / 2, 30);
-    ctx.stroke();
-    ctx.fillStyle = 'rgba(204,251,241,0.5)';
-    ctx.beginPath();
-    ctx.moveTo(0, 26); ctx.lineTo(w, 26); ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath();
-    ctx.fill();
+    ctx.clearRect(0, 0, w, h);
     ctx.fillStyle = '#115e59';
-    ctx.font = '800 15px Poppins, sans-serif';
+    ctx.font = '800 14px Poppins, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(
-      `${String(label || 'MISSION PACK').toUpperCase()}  •  FILL ${limit} POCKETS`,
+      `${String(label || 'MISSION PACK').toUpperCase()} · 0/${limit} PACKED`,
       w / 2,
-      47,
-      w - 36
+      h / 2,
+      w - 20
     );
     return c.toDataURL('image/png');
   }
@@ -1236,25 +2400,253 @@
     return c.toDataURL('image/png');
   }
 
-  /** Persistent connected route behind movable cards (survives the completed state). */
-  function routePathPng(w, h, count, mover, goal) {
+  /** Topic key from one verified route payload — all scene art derives from this haystack. */
+  function routeTopicKey(hay) {
+    const value = String(hay || '').toLowerCase();
+    if (/\b(beach|rescue|lifeguard|shore|hut|footbridge|flag trail|kai)\b/.test(value)) return 'beach';
+    if (/\b(campfire|camp|campsite|fire ring|ember|tent|pine|bucket|wood stack)\b/.test(value)) return 'campfire';
+    if (/\b(roller|coaster|amusement|park map|ride ticket|blue gate|zoe)\b/.test(value)) return 'amusement';
+    if (/\b(school|bus stop|bus|mia|plan|bag|trip)\b/.test(value)) return 'school';
+    return 'generic';
+  }
+
+  function routeTopicHay(ctx) {
+    const bits = [
+      ctx && ctx.mission, ctx && ctx.goal, ctx && ctx.mover,
+      ...(ctx && ctx.landmarks ? ctx.landmarks : []),
+      ...(ctx && ctx.steps ? ctx.steps : []),
+    ];
+    return bits.filter(Boolean).join(' ');
+  }
+
+  function routeRepairTheme(topicKey) {
+    if (topicKey === 'beach') return 'beach';
+    if (topicKey === 'campfire') return 'camp';
+    if (topicKey === 'amusement') return 'sport';
+    return 'place';
+  }
+
+  /** Starter-only band — one canonical empty state (Manus R4: no multi-mover ladder on starter). */
+  function routeStarterBandPng(w, h, mover, stepCount) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const r = 10;
+    ctx.fillStyle = 'rgba(240,253,250,0.94)';
+    ctx.strokeStyle = '#0f766e';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(w, 0, w, h, r); ctx.arcTo(w, h, 0, h, r);
+    ctx.arcTo(0, h, 0, 0, r); ctx.arcTo(0, 0, w, 0, r); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    const name = String(mover || 'Team').trim().slice(0, 12);
+    const n = Math.max(3, Number(stepCount) || 4);
+    ctx.fillStyle = '#115e59';
+    ctx.font = '800 12px Poppins, sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(
+      `${name} starts at START · Drop ${n} step cards on checkpoints · Lift corner to reveal route`,
+      w / 2, h / 2, w - 24
+    );
+    return c.toDataURL('image/png');
+  }
+
+  /** Illustrated mission world — reuses sceneRepair world painter for topic fidelity. */
+  function routeSceneShellPng(w, h, topicKey, mover, goal) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const r = 22;
+    const theme = routeRepairTheme(topicKey);
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(w, 0, w, h, r); ctx.arcTo(w, h, 0, h, r);
+    ctx.arcTo(0, h, 0, 0, r); ctx.arcTo(0, 0, w, 0, r); ctx.closePath();
+    ctx.clip();
+    sceneRepairPaintWorld(ctx, w, h, theme, 'broken');
+    const groundY = Math.round(h * 0.62);
+    if (topicKey === 'school') {
+      ctx.fillStyle = '#facc15';
+      ctx.fillRect(w - 108, groundY - 30, 80, 28);
+      ctx.fillStyle = '#1e293b';
+      ctx.fillRect(w - 104, groundY - 26, 72, 16);
+    }
+    if (topicKey === 'amusement') {
+      ctx.strokeStyle = '#dc2626';
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.moveTo(w - 140, groundY);
+      ctx.quadraticCurveTo(w - 90, groundY - 88, w - 36, groundY);
+      ctx.stroke();
+    }
+    ctx.restore();
+    ctx.strokeStyle = '#0f766e';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(w, 0, w, h, r); ctx.arcTo(w, h, 0, h, r);
+    ctx.arcTo(0, h, 0, 0, r); ctx.arcTo(0, 0, w, 0, r); ctx.closePath();
+    ctx.stroke();
+
+    const safeMover = String(mover || 'Team').trim().slice(0, 14);
+    const safeGoal = String(goal || 'Goal').trim().slice(0, 22);
+    ctx.fillStyle = 'rgba(255,255,255,0.92)';
+    ctx.beginPath();
+    ctx.roundRect(12, 10, Math.min(210, w * 0.3), 36, 10);
+    ctx.fill();
+    ctx.fillStyle = '#0f172a';
+    ctx.font = '800 13px Poppins, sans-serif';
+    ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+    ctx.fillText(`START · ${safeMover}`, 22, 28, Math.min(188, w * 0.26));
+    const finishW = Math.min(230, w * 0.34);
+    ctx.fillStyle = 'rgba(255,255,255,0.92)';
+    ctx.beginPath();
+    ctx.roundRect(w - finishW - 12, 10, finishW, 36, 10);
+    ctx.fill();
+    ctx.font = '22px "Segoe UI Emoji", sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(routeStepGlyph(safeGoal), w - finishW + 4, 30);
+    ctx.fillStyle = '#166534';
+    ctx.font = '800 13px Poppins, sans-serif';
+    ctx.fillText(`FINISH · ${safeGoal}`, w - 22, 28, finishW - 28);
+    return c.toDataURL('image/png');
+  }
+
+  /** Compact First/Next/Then/Finally narration rail for A2 tell-the-route proof. */
+  function routeNarrationRailPng(w, h, mover, count) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const r = 12;
+    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+    ctx.strokeStyle = '#7c3aed';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(w, 0, w, h, r); ctx.arcTo(w, h, 0, h, r);
+    ctx.arcTo(0, h, 0, 0, r); ctx.arcTo(0, 0, w, 0, r); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    const name = String(mover || 'They').trim().slice(0, 12);
+    const frames = ['First', 'Next', 'Then', 'Finally'].slice(0, Math.max(3, Math.min(5, Number(count) || 4)));
+    const labels = frames.map((word, i) => {
+      if (i === 0) return `${word}, ${name} ___`;
+      if (i === frames.length - 1) return `${word}, ${name} ___`;
+      return `${word}, ${name} ___`;
+    });
+    ctx.fillStyle = '#5b21b6';
+    ctx.font = '800 11px Poppins, sans-serif';
+    ctx.textBaseline = 'middle';
+    const slotW = (w - 24) / labels.length;
+    labels.forEach((label, i) => {
+      ctx.textAlign = 'center';
+      ctx.fillText(label, 12 + slotW * i + slotW / 2, h / 2, slotW - 8);
+    });
+    return c.toDataURL('image/png');
+  }
+
+  /** Three-state proof: empty → placed → revealed with mover travel (single static bake). */
+  function routeStateLadderPng(w, h, mover, goal, topicKey) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const r = 12;
+    ctx.fillStyle = 'rgba(255,255,255,0.88)';
+    ctx.strokeStyle = '#0f766e';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(w, 0, w, h, r); ctx.arcTo(w, h, 0, h, r);
+    ctx.arcTo(0, h, 0, 0, r); ctx.arcTo(0, 0, w, 0, r); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    const stages = [
+      { label: 'EMPTY', moverX: 0.12, dashed: true },
+      { label: 'PLACED', moverX: 0.5, dashed: false },
+      { label: 'REVEALED', moverX: 0.88, dashed: false },
+    ];
+    const rowY = Math.round(h * 0.38);
+    const pathY = rowY + 18;
+    ctx.strokeStyle = '#0f766e';
+    ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.moveTo(24, pathY); ctx.lineTo(w - 24, pathY); ctx.stroke();
+    stages.forEach((stage, i) => {
+      const cx = Math.round(24 + (w - 48) * stage.moverX);
+      ctx.fillStyle = '#64748b';
+      ctx.font = '800 9px Poppins, sans-serif';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+      ctx.fillText(stage.label, cx, 8);
+      ctx.fillStyle = stage.dashed ? '#e2e8f0' : '#ccfbf1';
+      ctx.strokeStyle = stage.dashed ? '#94a3b8' : '#0f766e';
+      ctx.lineWidth = 2;
+      ctx.setLineDash(stage.dashed ? [5, 4] : []);
+      ctx.beginPath(); ctx.arc(cx, pathY, 14, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#0f172a';
+      ctx.font = '800 14px Poppins, sans-serif';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(String(mover || '?').slice(0, 1).toUpperCase(), cx, pathY);
+      if (i < stages.length - 1) {
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = '800 12px Poppins, sans-serif';
+        ctx.fillText('→', Math.round((cx + 24 + (w - 48) * stages[i + 1].moverX) / 2), pathY);
+      }
+    });
+    ctx.fillStyle = '#166534';
+    ctx.font = '800 10px Poppins, sans-serif';
+    ctx.textAlign = 'left'; ctx.textBaseline = 'bottom';
+    ctx.fillText(
+      `✓ ${String(mover || 'Team').slice(0, 10)} arrives at ${String(goal || 'goal').slice(0, 24)}`,
+      12, h - 6, w - 24
+    );
+    return c.toDataURL('image/png');
+  }
+
+  /** Finish tableau — visible completion payoff tied to topic + goal. */
+  function routeFinishTableauPng(w, h, topicKey, mover, goal) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const r = 14;
+    ctx.fillStyle = '#ecfdf5';
+    ctx.strokeStyle = '#16a34a';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(w, 0, w, h, r); ctx.arcTo(w, h, 0, h, r);
+    ctx.arcTo(0, h, 0, 0, r); ctx.arcTo(0, 0, w, 0, r); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    const cx = Math.round(w * 0.22);
+    ctx.fillStyle = '#0ea5e9';
+    ctx.beginPath(); ctx.arc(cx, h / 2, 18, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#fff';
+    ctx.font = '800 16px Poppins, sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(String(mover || '?').slice(0, 1).toUpperCase(), cx, h / 2);
+    ctx.font = '28px "Segoe UI Emoji", sans-serif';
+    ctx.fillText(routeStepGlyph(goal), w - 36, h / 2);
+    ctx.fillStyle = '#166534';
+    ctx.font = '800 13px Poppins, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText(
+      `${String(mover || 'Team').slice(0, 14)} reached ${String(goal || 'the goal').slice(0, 28)}!`,
+      52, h / 2, w - 100
+    );
+    return c.toDataURL('image/png');
+  }
+
+  /** Persistent connected route spine + named mover token + finish glyph (transparent overlay). */
+  function routePathPng(w, h, count, mover, goal, topicKey) {
     const c = document.createElement('canvas');
     c.width = w; c.height = h;
     const ctx = c.getContext('2d');
     const n = Math.max(3, Math.min(5, Number(count) || 3));
     const gap = 14;
     const slotW = Math.floor((w - gap * (n - 1)) / n);
-    const y = Math.round(h * 0.78);
+    const y = Math.round(h * 0.72);
     const centers = Array.from({ length: n }, (_, i) => (
       Math.round(slotW / 2 + i * (slotW + gap))
     ));
 
-    // A bold path remains visible between cards after learners fill every stop.
     ctx.beginPath();
     ctx.moveTo(centers[0], y);
     centers.slice(1).forEach((x) => ctx.lineTo(x, y));
-    ctx.strokeStyle = 'rgba(15, 118, 110, 0.22)';
-    ctx.lineWidth = 18;
+    ctx.strokeStyle = 'rgba(15, 118, 110, 0.28)';
+    ctx.lineWidth = 20;
     ctx.stroke();
     ctx.beginPath();
     ctx.moveTo(centers[0], y);
@@ -1263,7 +2655,6 @@
     ctx.lineWidth = 8;
     ctx.stroke();
 
-    // Direction arrows make order visible without leaking which card comes next.
     for (let i = 0; i < centers.length - 1; i++) {
       const x = Math.round((centers[i] + centers[i + 1]) / 2);
       ctx.fillStyle = '#f59e0b';
@@ -1275,21 +2666,18 @@
       ctx.fill();
     }
 
-    const safeMover = String(mover || 'TEAM').trim().slice(0, 18).toUpperCase() || 'TEAM';
-    const safeGoal = String(goal || 'GOAL').trim().slice(0, 24).toUpperCase() || 'GOAL';
-    // The mover and finish object are visible scene actors, not only text labels.
-    ctx.font = '18px "Segoe UI Emoji", sans-serif';
-    ctx.textBaseline = 'middle';
-    ctx.fillStyle = '#0f172a';
-    ctx.textAlign = 'left';
-    ctx.fillText('🚶', 2, 12);
-    ctx.font = '800 15px Poppins, sans-serif';
-    ctx.fillText(`START · ${safeMover}`, 26, 12, Math.max(80, slotW - 30));
-    ctx.font = '18px "Segoe UI Emoji", sans-serif';
-    ctx.textAlign = 'right';
-    ctx.fillText(routeStepGlyph(safeGoal), w - 2, 12);
-    ctx.font = '800 15px Poppins, sans-serif';
-    ctx.fillText(`FINISH · ${safeGoal}`, w - 26, 12, Math.max(80, slotW - 30));
+    const startX = centers[0];
+    ctx.fillStyle = '#0ea5e9';
+    ctx.beginPath(); ctx.arc(startX, y - 28, 20, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#0369a1'; ctx.lineWidth = 3; ctx.stroke();
+    ctx.fillStyle = '#fff';
+    ctx.font = '800 18px Poppins, sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(String(mover || '?').slice(0, 1).toUpperCase(), startX, y - 28);
+
+    const finishX = centers[centers.length - 1] + Math.round(slotW * 0.35);
+    ctx.font = '32px "Segoe UI Emoji", sans-serif';
+    ctx.fillText(routeStepGlyph(goal), finishX, y - 24);
     return c.toDataURL('image/png');
   }
 
@@ -1298,7 +2686,7 @@
     c.width = w; c.height = h;
     const ctx = c.getContext('2d');
     const r = 16;
-    ctx.fillStyle = 'rgba(255,255,255,0.78)';
+    ctx.fillStyle = 'rgba(255,255,255,0.52)';
     ctx.beginPath();
     ctx.moveTo(r, 2); ctx.arcTo(w - 2, 2, w - 2, h - 2, r);
     ctx.arcTo(w - 2, h - 2, 2, h - 2, r);
@@ -1310,9 +2698,7 @@
     ctx.setLineDash([10, 7]);
     ctx.stroke();
     ctx.setLineDash([]);
-    // Neutral checkpoint chrome stays visible after a card lands without
-    // printing the answer-bearing landmark order onto the empty route.
-    ctx.fillStyle = '#ccfbf1';
+    ctx.fillStyle = 'rgba(204,251,241,0.72)';
     ctx.fillRect(3, 3, w - 6, 34);
     ctx.fillStyle = '#0f766e';
     ctx.beginPath();
@@ -1397,9 +2783,24 @@
     return c.toDataURL('image/png');
   }
 
-  function routeAnswerPng(w, h, mover, goal, answer) {
-    const arrived = `${String(mover || 'Team').toUpperCase()} ARRIVED AT ${String(goal || 'GOAL').toUpperCase()}`;
-    return solidPng(w, h, '#dcfce7', `✓ ${arrived} · ${String(answer || '')}`.slice(0, 130), '#166534');
+  function routeAnswerPng(w, h, mover, goal, answer, topicKey) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const r = 12;
+    ctx.fillStyle = '#ecfdf5';
+    ctx.strokeStyle = '#16a34a';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(w, 0, w, h, r); ctx.arcTo(w, h, 0, h, r);
+    ctx.arcTo(0, h, 0, 0, r); ctx.arcTo(0, 0, w, 0, r); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    const arrived = `${String(mover || 'Team').slice(0, 12)} → ${String(goal || 'goal').slice(0, 20)}`;
+    ctx.fillStyle = '#166534';
+    ctx.font = '800 12px Poppins, sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(`✓ ${arrived} · ${String(answer || '').slice(0, 80)}`, w / 2, h / 2, w - 20);
+    return c.toDataURL('image/png');
   }
 
   function stickyPng(w, h) {
@@ -1460,12 +2861,34 @@
     ctx.fillStyle = '#78350f';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    const big = Math.max(15, Math.floor(fh * 0.28));
-    const small = Math.max(11, Math.floor(fh * 0.18));
+    const big = Math.max(15, Math.floor(fh * 0.26));
+    const small = Math.max(11, Math.floor(fh * 0.16));
     ctx.font = `800 ${big}px Poppins, sans-serif`;
-    ctx.fillText('☝ PEEL HERE', fw / 2, fh * 0.4);
+    ctx.fillText('☝ PEEL HERE', fw / 2, fh * 0.38);
     ctx.font = `700 ${small}px Poppins, sans-serif`;
-    ctx.fillText('to compare your answer', fw / 2, fh * 0.72, fw - 20);
+    ctx.fillText('to compare your answer', fw / 2, fh * 0.66, fw - 28);
+    ctx.restore();
+
+    // Pull-tab on the right — a lifted handle kids can grab (Manus R2 lift cue).
+    const tabW = Math.max(28, Math.round(w * 0.09));
+    const tabH = Math.max(36, Math.round(h * 0.42));
+    const tabX = w - tabW - 4;
+    const tabY = Math.round((h - tabH) / 2);
+    ctx.save();
+    ctx.shadowColor = 'rgba(15, 23, 42, 0.28)';
+    ctx.shadowBlur = 6;
+    ctx.shadowOffsetX = 2;
+    ctx.fillStyle = '#f59e0b';
+    ctx.beginPath();
+    ctx.roundRect
+      ? ctx.roundRect(tabX, tabY, tabW, tabH, 10)
+      : ctx.rect(tabX, tabY, tabW, tabH);
+    ctx.fill();
+    ctx.fillStyle = '#78350f';
+    ctx.font = `800 ${Math.max(11, Math.floor(tabW * 0.42))}px Poppins, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('TAB', tabX + tabW / 2, tabY + tabH / 2);
     ctx.restore();
     return c.toDataURL('image/png');
   }
@@ -1516,36 +2939,44 @@
       noShrink: true,
     });
 
-    // Manual two-state payoff: the teacher/learner moves the yellow seal only
-    // after every picture is on a pad, revealing a topic-linked completion state.
-    // This works in ordinary EDB movement semantics—no runtime scripting needed.
+    // Three-state payoff (Manus farm R4 / kitchen R4): a topic reward is
+    // VISIBLE in the starter, a smaller wax seal locks its center, and the
+    // solved bake moves that seal aside. Ordinary EDB movement — no scripting.
     const world = matchDockWorldTheme(lesson);
-    const rewardRect = { x: 930, y: 18, w: 300, h: 56 };
+    const solved = !!(ctx && ctx.matchDockState === 'solved')
+      || !!(lesson && lesson._matchDockSolved);
+    const states = matchDockThreeStateRects(solved);
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: solidPng(rewardRect.w, rewardRect.h, '#dcfce7', `${world.icon} ${world.payoff}`, '#166534'),
-      w: rewardRect.w,
-      h: rewardRect.h,
+      asset: matchDockRewardPng(states.reward.w, states.reward.h, world),
+      w: states.reward.w,
+      h: states.reward.h,
       intentional: true,
-      anchor: rewardRect,
+      anchor: states.reward,
       role: 'matchReward',
-      meta: { world: world.id, payoff: world.payoff, revealedAfter: rows.length },
+      meta: {
+        world: world.id,
+        payoff: world.payoff,
+        revealedAfter: rows.length,
+        state: solved ? 'revealed' : 'locked-peek',
+      },
     });
     L.place(page, {
       locked: false,
       kind: 'image',
-      asset: solidPng(rewardRect.w, rewardRect.h, '#facc15', `MATCH ALL ${rows.length} · PEEL TO REVEAL`, '#78350f'),
-      w: rewardRect.w,
-      h: rewardRect.h,
+      asset: matchDockWaxSealPng(states.seal.w, states.seal.h, rows.length),
+      w: states.seal.w,
+      h: states.seal.h,
       intentional: true,
-      anchor: rewardRect,
+      anchor: states.seal,
       role: 'matchRewardCover',
       meta: {
         world: world.id,
         unlockAfter: rows.length,
         preservesPlacedCards: true,
         covers: 'matchReward',
+        state: solved ? 'peeled' : 'locked',
       },
     });
 
@@ -1554,6 +2985,7 @@
     page.notes.push('recipe:matchDockNoCaptions');
     page.notes.push('recipe:matchDockCompletionReward');
     page.notes.push('recipe:matchDockTopicWorld:' + world.id);
+    page.notes.push('recipe:matchDockThreeState:' + (solved ? 'solved' : 'starter'));
     page.notes.push('recipe:matchDockTwoStatePayoff');
     page.notes.push('matchDockFit:' + rows.length + 'x' + size.w + 'x' + size.h);
     if (art && art.dropped && art.dropped.length) {
@@ -1789,7 +3221,10 @@
         sample: q.sampleAnswer,
       },
     });
+    const bind = coverAnswerBind(q, lesson);
     page.notes.push('recipe:coverAnswer');
+    page.notes.push('recipe:coverAnswerBind:' + bind.intent);
+    if (!bind.ok) page.notes.push('coverAnswerBindFail:' + bind.reasons.join(','));
   }
 
   /** True when hint text names the mystery answer (word-boundary). */
@@ -2518,36 +3953,31 @@
     if (!wantsSceneRepair(lesson)) return null;
     const raw = lesson && lesson.activity && lesson.activity.sceneRepair;
     if (raw && typeof raw === 'object') {
-      const wrongWord = String(raw.wrongWord || raw.wrong || '').trim();
-      const correctWord = String(raw.correctWord || raw.correct || '').trim();
-      const slotLabel = String(raw.slotLabel || raw.label || 'This place').trim();
-      if (wrongWord && correctWord && wrongWord.toLowerCase() !== correctWord.toLowerCase()) {
-        // A one-hole repair must have one defensible replacement. Topic-near
-        // distractors (banana/grape for a fruit basket) made several answers
-        // equally valid and collapsed diagnosis into a guessing worksheet.
-        const dockWords = [correctWord, wrongWord];
-        const uniq = [];
-        const seen = new Set();
-        dockWords.forEach((w) => {
-          const low = w.toLowerCase();
-          if (seen.has(low)) return;
-          seen.add(low);
-          uniq.push(w);
-        });
-        if (uniq.length < 2) return null;
-        const rows = uniq.map((w) => findMatchableRow(w, picturedMatchableRows(vocabArt)) || { word: w });
-        return {
-          slotLabel,
-          wrongWord,
-          correctWord,
-          options: uniq.slice(0, 4),
-          rows,
-          source: 'lesson',
-          authoredWrongness: true,
-          sceneCue: String(raw.sceneCue || raw.scene || lesson.title || slotLabel).trim(),
-          ignoredDistractors: Array.isArray(raw.distractors) ? raw.distractors.length : 0,
-        };
-      }
+      const tuple = buildSceneRepairTuple(raw, lesson);
+      if (!tuple) return null;
+      const dockWords = [tuple.correct_prop, tuple.wrong_prop];
+      const uniq = [];
+      const seen = new Set();
+      dockWords.forEach((w) => {
+        const low = w.toLowerCase();
+        if (seen.has(low)) return;
+        seen.add(low);
+        uniq.push(w);
+      });
+      if (uniq.length < 2) return null;
+      const rows = uniq.map((w) => findMatchableRow(w, picturedMatchableRows(vocabArt)) || { word: w });
+      return {
+        slotLabel: tuple.named_location,
+        wrongWord: tuple.wrong_prop,
+        correctWord: tuple.correct_prop,
+        options: uniq.slice(0, 4),
+        rows,
+        source: 'lesson',
+        authoredWrongness: true,
+        sceneCue: tuple.sceneCue,
+        semanticTuple: tuple,
+        ignoredDistractors: Array.isArray(raw.distractors) ? raw.distractors.length : 0,
+      };
     }
 
     // Derived only from an honest odd-one-out set — still AUTHORED as "find the mistake",
@@ -2556,16 +3986,25 @@
     if (!oddSet || !oddSet.odd || !oddSet.options || oddSet.options.length < 4) return null;
     const majority = oddSet.options.find((w) => String(w).toLowerCase() !== String(oddSet.odd).toLowerCase());
     if (!majority) return null;
-    return {
+    const derivedRaw = {
       slotLabel: themeSlotLabel(oddSet.themeCue),
       wrongWord: oddSet.odd,
       correctWord: majority,
+      sceneCue: oddSet.themeCue || (lesson && lesson.title) || '',
+    };
+    const tuple = buildSceneRepairTuple(derivedRaw, lesson);
+    if (!tuple) return null;
+    return {
+      slotLabel: tuple.named_location,
+      wrongWord: tuple.wrong_prop,
+      correctWord: tuple.correct_prop,
       options: oddSet.options.slice(0, 4),
       rows: oddSet.rows || [],
       source: 'derived-authored-set',
       authoredWrongness: true,
       themeCue: oddSet.themeCue || null,
-      sceneCue: oddSet.themeCue || lesson.title || '',
+      sceneCue: tuple.sceneCue,
+      semanticTuple: tuple,
     };
   }
 
@@ -2575,38 +4014,54 @@
    */
   function sceneRepair(lesson, page, layout, ctx) {
     const L = layout || window.EdbLayout;
-    const wrongWord = ctx && ctx.wrongWord ? String(ctx.wrongWord).trim() : '';
-    const correctWord = ctx && ctx.correctWord ? String(ctx.correctWord).trim() : '';
-    const slotLabel = (ctx && ctx.slotLabel) || 'This place';
-    // One-hole repair needs exactly one defensible replacement. ctx.options can
-    // carry up to 4 resolver candidates (derived odd-one-out majority pool) —
-    // slicing that blindly picks whichever two came first, not the actual
-    // wrongWord/correctWord pair, and doubles up the dock. Build the pair from
-    // the already-resolved words instead so the dock never has more than one
-    // repair piece (Manus: "no unique defensible replacement").
-    const options = [correctWord, wrongWord]
-      .map((w) => String(w || '').trim())
-      .filter(Boolean);
+    const tuple = (ctx && ctx.semanticTuple) || buildSceneRepairTuple({
+      slotLabel: ctx && ctx.slotLabel,
+      wrongWord: ctx && ctx.wrongWord,
+      correctWord: ctx && ctx.correctWord,
+      sceneCue: ctx && (ctx.sceneCue || ctx.themeCue),
+      snapTarget: ctx && ctx.snapTarget,
+      spokenFrame: ctx && ctx.spokenFrame,
+      successVisual: ctx && ctx.successVisual,
+    }, lesson);
+    if (!tuple) return;
+    const wrongWord = tuple.wrong_prop;
+    const correctWord = tuple.correct_prop;
+    const slotLabel = tuple.named_location;
     const rows = (ctx && Array.isArray(ctx.rows) ? ctx.rows : []).slice(0, 4);
-    if (!wrongWord || !correctWord || options.length < 2) return;
 
     const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
-    const sceneCue = (ctx && (ctx.sceneCue || ctx.themeCue)) || (lesson && lesson.title) || slotLabel;
+    const dockZ = L.zoneRect(page, 'dock');
+    const headerZ = L.zoneRect(page, 'header');
+    const theme = sceneRepairTheme(`${slotLabel} ${tuple.sceneCue} ${tuple.success_visual}`);
+    const stage = {
+      x: 24,
+      y: headerZ ? headerZ.y + headerZ.h + 4 : Math.max(64, bay.y - 96),
+      w: 1232,
+      h: dockZ ? (dockZ.y + dockZ.h) - (headerZ ? headerZ.y + headerZ.h + 4 : 64) : Math.max(bay.h, 360),
+    };
+    const sceneCue = tuple.sceneCue;
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: sceneRepairStagePng(bay.w, bay.h, slotLabel, sceneCue),
-      w: bay.w,
-      h: bay.h,
+      asset: sceneRepairStagePng(stage.w, stage.h, slotLabel, sceneCue, tuple),
+      w: stage.w,
+      h: stage.h,
       intentional: true,
-      anchor: { x: bay.x, y: bay.y, w: bay.w, h: bay.h },
+      anchor: { x: stage.x, y: stage.y, w: stage.w, h: stage.h },
       role: 'sceneRepairStage',
-      meta: { authoredWrongness: true, label: slotLabel, sceneCue },
+      meta: {
+        authoredWrongness: true,
+        label: slotLabel,
+        sceneCue,
+        semanticTuple: tuple,
+        worldState: 'broken',
+        theme,
+      },
     });
 
-    const targetSize = Math.min(154, bay.h - 44);
-    const targetX = bay.x + Math.round(bay.w * 0.76) - Math.round(targetSize / 2);
-    const targetY = bay.y + Math.round(bay.h * 0.49) - Math.round(targetSize / 2);
+    const targetSize = Math.min(168, Math.round(stage.h * 0.38));
+    const targetX = stage.x + Math.round(stage.w * 0.52) - Math.round(targetSize / 2);
+    const targetY = stage.y + Math.round(stage.h * 0.58) - Math.round(targetSize / 2);
     L.place(page, {
       locked: true,
       kind: 'image',
@@ -2615,97 +4070,151 @@
       intentional: true,
       anchor: { x: targetX, y: targetY, w: targetSize, h: targetSize },
       role: 'sceneRepairDestination',
-      meta: { label: slotLabel, correctWord, wrongWord },
+      meta: {
+        label: slotLabel,
+        correctWord,
+        wrongWord,
+        snap_target: tuple.snap_target,
+        staysVisible: true,
+      },
+    });
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: sceneRepairChipPng(188, 32, String(tuple.snap_target).toUpperCase(), 'rgba(15,118,110,0.88)', '#ffffff'),
+      w: 188,
+      h: 32,
+      intentional: true,
+      anchor: { x: targetX + Math.round((targetSize - 188) / 2), y: targetY + targetSize - 8, w: 188, h: 32 },
+      role: 'sceneRepairSnapLabel',
+      meta: { snap_target: tuple.snap_target },
     });
 
     const wrongRow = findMatchableRow(wrongWord, rows) || { word: wrongWord };
-    const pieceSize = Math.min(118, targetSize - 30);
+    const pieceSize = Math.min(88, targetSize - 48);
     const px = targetX + Math.round((targetSize - pieceSize) / 2);
-    const py = targetY + Math.round((targetSize - pieceSize) / 2);
+    const py = targetY + Math.round((targetSize - pieceSize) / 2) - 6;
     const wrongMeta = {
       word: wrongWord,
       authoredWrong: true,
       artSrc: wrongRow.artSrc || null,
     };
     if (wrongRow.propKey) wrongMeta.propKey = wrongRow.propKey;
-    // Start the wrong piece ON the slot (unlocked) so kids can drag it out.
-    if (wrongRow.artSrc) {
-      L.place(page, {
-        locked: false,
-        kind: 'image',
-        asset: wrongRow.artSrc,
-        w: pieceSize, h: pieceSize,
-        intentional: true,
-        anchor: { x: px, y: py, w: pieceSize, h: pieceSize },
-        role: 'sceneRepairWrong',
-        meta: wrongMeta,
-      });
-    } else {
-      L.place(page, {
-        locked: false,
-        kind: 'emoji',
-        emoji: wrongRow.glyph || '★',
-        w: pieceSize, h: pieceSize,
-        intentional: true,
-        anchor: { x: px, y: py, w: pieceSize, h: pieceSize },
-        role: 'sceneRepairWrong',
-        meta: wrongMeta,
-      });
-    }
+    L.place(page, wrongRow.artSrc ? {
+      locked: false,
+      kind: 'image',
+      asset: wrongRow.artSrc,
+      w: pieceSize, h: pieceSize,
+      intentional: true,
+      anchor: { x: px, y: py, w: pieceSize, h: pieceSize },
+      role: 'sceneRepairWrong',
+      meta: wrongMeta,
+    } : {
+      locked: false,
+      kind: 'emoji',
+      emoji: wrongRow.glyph || '★',
+      w: pieceSize, h: pieceSize,
+      intentional: true,
+      anchor: { x: px, y: py, w: pieceSize, h: pieceSize },
+      role: 'sceneRepairWrong',
+      meta: wrongMeta,
+    });
 
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: solidPng(104, 30, '#dc2626', 'MOVE ME', '#ffffff'),
-      w: 104,
-      h: 30,
+      asset: sceneRepairChipPng(118, 32, 'MOVE ME', 'rgba(220,38,38,0.9)', '#ffffff'),
+      w: 118,
+      h: 32,
       intentional: true,
-      anchor: { x: targetX + targetSize - 90, y: targetY - 8, w: 104, h: 30 },
+      anchor: { x: px + Math.round((pieceSize - 118) / 2), y: py - 30, w: 118, h: 32 },
       role: 'sceneRepairMoveCue',
-      meta: { marks: wrongWord },
+      meta: { marks: wrongWord, onWrong: true },
     });
 
-    const dock = L.zoneRect(page, 'dock');
+    const pocketW = 168;
+    const pocketH = 176;
+    const pocketX = stage.x + 16;
+    const pocketY = stage.y + stage.h - pocketH - 12;
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: solidPng(240, 34, '#0f766e', 'YOUR REPAIR PIECE', '#ffffff'),
-      w: 240,
-      h: 34,
+      asset: sceneRepairPocketPng(pocketW, pocketH, 'REPAIR HERE', theme),
+      w: pocketW,
+      h: pocketH,
       intentional: true,
-      anchor: { x: dock.x + 16, y: dock.y + 4, w: 240, h: 34 },
+      anchor: { x: pocketX, y: pocketY, w: pocketW, h: pocketH },
       role: 'sceneRepairDockLabel',
-      meta: { correctWord, wrongWord },
+      meta: { correctWord, wrongWord, inScene: true },
     });
-    // Reserve a labeled top band inside the activity dock.
-    page.zones.dock.y += 36;
-    page.zones.dock.h -= 36;
+    const repairRow = findMatchableRow(correctWord, rows) || { word: correctWord };
+    const repairSize = 108;
+    const rx = pocketX + Math.round((pocketW - repairSize) / 2);
+    const ry = pocketY + 42;
+    const repairMeta = {
+      word: correctWord,
+      repairFit: true,
+      artSrc: repairRow.artSrc || null,
+    };
+    if (repairRow.propKey) repairMeta.propKey = repairRow.propKey;
+    L.place(page, repairRow.artSrc ? {
+      locked: false,
+      kind: 'image',
+      asset: repairRow.artSrc,
+      w: repairSize, h: repairSize,
+      intentional: true,
+      anchor: { x: rx, y: ry, w: repairSize, h: repairSize },
+      role: 'sceneRepairPart',
+      meta: repairMeta,
+    } : {
+      locked: false,
+      kind: 'emoji',
+      emoji: repairRow.glyph || '★',
+      w: repairSize, h: repairSize,
+      intentional: true,
+      anchor: { x: rx, y: ry, w: repairSize, h: repairSize },
+      role: 'sceneRepairPart',
+      meta: repairMeta,
+    });
 
-    const dockPieces = options.map((word) => {
-      const row = findMatchableRow(word, rows) || { word };
-      // Wrong piece already starts on the slot — do not duplicate in dock.
-      if (word.toLowerCase() === wrongWord.toLowerCase()) return null;
-      const meta = {
-        word,
-        repairFit: word.toLowerCase() === correctWord.toLowerCase(),
-        artSrc: row.artSrc || null,
-      };
-      if (row.propKey) meta.propKey = row.propKey;
-      if (row.artSrc) {
-        return { kind: 'image', asset: row.artSrc, role: 'sceneRepairPart', meta };
-      }
-      return { kind: 'emoji', emoji: row.glyph || '★', role: 'sceneRepairPart', meta };
-    }).filter(Boolean);
-
-    if (dockPieces.length) {
-      L.placeDockRow(page, dockPieces, { w: 126, h: 100, noShrink: true });
-    }
+    const sucW = 280;
+    const sucH = 210;
+    const sucX = stage.x + stage.w - sucW - 16;
+    const sucY = stage.y + 52;
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: sceneRepairSuccessPng(sucW, sucH, tuple.success_visual, slotLabel),
+      w: sucW,
+      h: sucH,
+      intentional: true,
+      anchor: { x: sucX, y: sucY, w: sucW, h: sucH },
+      role: 'sceneRepairSuccess',
+      meta: { success_visual: tuple.success_visual, named_location: slotLabel },
+    });
+    L.place(page, {
+      locked: false,
+      kind: 'image',
+      asset: sceneRepairPeelCoverPng(sucW, sucH),
+      w: sucW,
+      h: sucH,
+      intentional: true,
+      anchor: { x: sucX, y: sucY, w: sucW, h: sucH },
+      role: 'sceneRepairSuccessCover',
+      meta: { covers: tuple.success_visual, tabOnly: false, hidesAfter: true },
+    });
 
     page.notes.push('recipe:sceneRepair');
     page.notes.push('recipe:sceneRepairSceneFirst');
     page.notes.push('sceneRepairUniqueFit:1');
+    page.notes.push('sceneRepairSemanticTuple:1');
+    page.notes.push('sceneRepairInSceneDock:1');
     page.notes.push('authoredWrongness:' + wrongWord);
     page.notes.push('sceneRepairCorrect:' + correctWord);
+    page.notes.push('sceneRepairSuccessVisual:' + tuple.success_visual);
+    page.notes.push('sceneRepairBrokenWorld:1');
+    page.notes.push('sceneRepairAfterPeel:1');
+    page.notes.push('sceneRepairMoveCueOnWrong:1');
   }
 
   function uniqueTextItems(items, max) {
@@ -2791,91 +4300,45 @@
     const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
     const mustInclude = uniqueTextItems(ctx && ctx.mustInclude, limit);
     const payoff = String(ctx.payoff || 'Ready for the mission');
-    const panelGap = 18;
-    const constraintW = Math.max(260, Math.min(330, Math.floor(bay.w * 0.28)));
-    const packX = bay.x + constraintW + panelGap;
-    const packW = bay.w - constraintW - panelGap;
-    const packY = bay.y;
-    const packH = bay.h;
+    const languageH = 46;
+    const sceneH = bay.h - languageH - 10;
+    const sceneY = bay.y;
+    const languageY = bay.y + sceneH + 10;
 
-    // One shared environment behind mission + pack (Manus R2/R3: scene-integrated
-    // container, not two disconnected floating panels).
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: capacitySceneShellPng(bay.w, bay.h, constraintW + Math.round(panelGap / 2)),
-      w: bay.w, h: bay.h,
-      intentional: true,
-      anchor: { x: bay.x, y: bay.y, w: bay.w, h: bay.h },
-      role: 'capacityScene',
-      meta: { integrated: true },
-    });
-
-    // Left column: mission/condition card, then the reusable language frame,
-    // then the three-state proof strip — stacked so the whole reference
-    // column (rule + language + lifecycle) lives in one place.
-    const stackGap = 8;
-    const frameH = 62;
-    const ladderH = 78;
-    const missionH = Math.max(100, bay.h - frameH - ladderH - stackGap * 2);
-    let colY = bay.y;
-    L.place(page, {
-      locked: true,
-      kind: 'image',
-      asset: capacityConstraintPng(
-        constraintW,
-        missionH,
-        String(ctx.mission || '').slice(0, 110),
-        String(ctx.constraint || '').slice(0, 100),
-        mustInclude
-      ),
-      w: constraintW, h: missionH,
-      intentional: true,
-      anchor: { x: bay.x, y: colY, w: constraintW, h: missionH },
-      role: 'capacityMission',
-      meta: {
-        mission: ctx.mission || '',
-        constraint: ctx.constraint || '',
-        mustInclude,
+      asset: capacitySceneStagePng(bay.w, sceneH, {
+        mission: String(ctx.mission || '').slice(0, 110),
+        constraint: String(ctx.constraint || '').slice(0, 100),
+        containerLabel: String(ctx.containerLabel || 'Mission pack'),
+        payoff,
         limit,
-      },
-    });
-    colY += missionH + stackGap;
-    L.place(page, {
-      locked: true,
-      kind: 'image',
-      asset: capacityLanguageFramePng(constraintW, frameH),
-      w: constraintW, h: frameH,
+        mustInclude,
+        title: (lesson && lesson.title) || '',
+      }),
+      w: bay.w, h: sceneH,
       intentional: true,
-      anchor: { x: bay.x, y: colY, w: constraintW, h: frameH },
-      role: 'capacityLanguageFrame',
+      anchor: { x: bay.x, y: sceneY, w: bay.w, h: sceneH },
+      role: 'capacityScene',
       meta: {
-        includeFrame: 'I pack ___ because ___.',
-        excludeFrame: 'I leave out ___ because ___.',
-        teacherCheck: true,
+        integrated: true,
+        sceneFirst: true,
+        fillCounter: `0/${limit}`,
+        states: ['empty', 'filling', 'committed'],
+        payoff,
       },
-    });
-    colY += frameH + stackGap;
-    L.place(page, {
-      locked: true,
-      kind: 'image',
-      asset: capacityStateLadderPng(constraintW, ladderH, payoff),
-      w: constraintW, h: ladderH,
-      intentional: true,
-      anchor: { x: bay.x, y: colY, w: constraintW, h: ladderH },
-      role: 'capacityStateLadder',
-      meta: { states: ['empty', 'filling', 'committed'], payoff },
     });
 
-    // Right column: pack header, pockets (no ordinal meaning — position never
-    // changes the outcome), then a persistent payoff banner.
-    const headerH = 56;
-    const payoffH = 44;
-    const packGap = 12;
-    const pocketsY = packY + headerH + packGap;
-    const pocketsH = packH - headerH - payoffH - packGap * 2;
-    const packPad = 20;
-    const slotGap = 18;
+    const packX = bay.x + Math.round(bay.w * 0.54);
+    const packW = Math.round(bay.w * 0.38);
+    const packY = sceneY + Math.round(sceneH * 0.16);
+    const headerH = 34;
+    const payoffH = 0;
+    const pocketsY = packY + Math.round(sceneH * 0.22);
+    const pocketsH = Math.round(sceneH * 0.46);
+    const packPad = 16;
+    const slotGap = 14;
     const slotW = Math.floor((packW - packPad * 2 - slotGap * (limit - 1)) / limit);
     const totalW = slotW * limit + slotGap * (limit - 1);
     const startX = packX + Math.round((packW - totalW) / 2);
@@ -2886,12 +4349,13 @@
       asset: capacityContainerPng(packW, headerH, String(ctx.containerLabel || 'Mission pack'), limit),
       w: packW, h: headerH,
       intentional: true,
-      anchor: { x: packX, y: packY, w: packW, h: headerH },
+      anchor: { x: packX, y: packY + Math.round(sceneH * 0.12), w: packW, h: headerH },
       role: 'capacityContainer',
       meta: {
         label: ctx.containerLabel || 'Mission pack',
         payoff,
         limit,
+        fillCounter: `0/${limit}`,
       },
     });
     for (let i = 0; i < limit; i++) {
@@ -2908,20 +4372,22 @@
           h: pocketsH,
         },
         role: 'capacitySlot',
-        // `slot` is a stable placement key only — position carries no scoring
-        // meaning (Manus R3 B2). Never render it as a visible ordinal.
-        meta: { slot: i + 1, limit, ordered: false },
+        meta: { slot: i + 1, limit, ordered: false, fillCounter: `0/${limit}` },
       });
     }
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: capacityPayoffBannerPng(packW, payoffH, payoff),
-      w: packW, h: payoffH,
+      asset: capacityLanguageStripPng(bay.w, languageH),
+      w: bay.w, h: languageH,
       intentional: true,
-      anchor: { x: packX, y: packY + packH - payoffH, w: packW, h: payoffH },
-      role: 'capacityPayoff',
-      meta: { payoff },
+      anchor: { x: bay.x, y: languageY, w: bay.w, h: languageH },
+      role: 'capacityLanguageFrame',
+      meta: {
+        includeFrame: 'I pack ___ because ___.',
+        excludeFrame: 'I leave out ___ because ___.',
+        teacherCheck: true,
+      },
     });
 
     const pieces = options.map((word) => {
@@ -2942,13 +4408,13 @@
         meta,
       };
     });
-    // Every choice card shares one size (art or emoji fallback alike) so the
-    // dock reads as one consistent asset treatment, not a mixed worksheet row.
-    L.placeDockRow(page, pieces, { w: 132, h: 104, noShrink: true });
+    L.placeDockRow(page, pieces, { w: 128, h: 100, noShrink: true });
     page.notes.push('recipe:capacityPack');
     page.notes.push('capacityLimit:' + limit);
     page.notes.push('capacityConstraintVisible:' + !!(ctx.constraint || mustInclude.length));
     page.notes.push('capacitySceneIntegrated:true');
+    page.notes.push('capacitySceneFirst:true');
+    page.notes.push('capacityFillCounter:0/' + limit);
     page.notes.push('capacityStatesModeled:true');
     page.notes.push('capacityLanguageFrameVisible:true');
     page.notes.push('capacityPayoffVisible:true');
@@ -3006,20 +4472,41 @@
     };
   }
 
-  /** Arrange mission steps on a visible start-to-finish path. */
+  /** Arrange mission steps on a visible start-to-finish path inside an illustrated scene. */
   function routeMission(lesson, page, layout, ctx) {
     const L = layout || window.EdbLayout;
     const steps = uniqueTextItems(ctx && ctx.steps, 5);
     if (steps.length < 3) return;
     const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
-    const missionH = 42;
-    const keyH = 34;
+    const topicHay = routeTopicHay(ctx);
+    const topicKey = routeTopicKey(topicHay);
+    const missionH = 32;
+    const narrH = 32;
+    const bandH = 28;
+    const keyH = 36;
     const padGap = 14;
     const padW = Math.floor((bay.w - 72 - padGap * (steps.length - 1)) / steps.length);
-    const padH = Math.max(82, bay.h - missionH - keyH - 40);
     const startX = bay.x + 36;
-    const padY = bay.y + missionH + 28;
+    const sceneTop = bay.y + missionH + 4;
+    const sceneH = bay.h - missionH - narrH - bandH - keyH - 22;
+    const padY = sceneTop + Math.round(sceneH * 0.08);
+    const padH = Math.max(72, sceneH - Math.round(sceneH * 0.22));
 
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: routeSceneShellPng(bay.w, sceneH, topicKey, ctx.mover, ctx.goal),
+      w: bay.w, h: sceneH,
+      intentional: true,
+      anchor: { x: bay.x, y: sceneTop, w: bay.w, h: sceneH },
+      role: 'routeScene',
+      meta: {
+        integrated: true,
+        topicKey,
+        mover: ctx.mover || 'Team',
+        goal: ctx.goal || 'Goal',
+      },
+    });
     L.place(page, {
       locked: true,
       kind: 'image',
@@ -3028,12 +4515,12 @@
       intentional: true,
       anchor: { x: bay.x + 24, y: bay.y + 4, w: bay.w - 48, h: missionH },
       role: 'routeMissionBrief',
-      meta: { mission: ctx.mission || '' },
+      meta: { mission: ctx.mission || '', topicKey },
     });
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: routePathPng(bay.w - 72, padH + 24, steps.length, ctx.mover, ctx.goal),
+      asset: routePathPng(bay.w - 72, padH + 24, steps.length, ctx.mover, ctx.goal, topicKey),
       w: bay.w - 72, h: padH + 24,
       intentional: true,
       anchor: { x: startX, y: padY - 24, w: bay.w - 72, h: padH + 24 },
@@ -3043,6 +4530,7 @@
         goal: ctx.goal || 'Goal',
         checkpoints: steps.length,
         persistent: true,
+        topicKey,
         stateContract: ['empty', 'placed', 'revealed'],
       },
     });
@@ -3063,12 +4551,57 @@
         },
       });
     });
-    const answer = (ctx.answerOrder || steps).join(' → ');
-    const keyY = bay.y + bay.h - keyH;
+    const ladderY = sceneTop + sceneH + 4;
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: routeAnswerPng(bay.w - 64, keyH, ctx.mover, ctx.goal, answer),
+      asset: routeStarterBandPng(bay.w - 48, bandH, ctx.mover, steps.length),
+      w: bay.w - 48, h: bandH,
+      intentional: true,
+      anchor: { x: bay.x + 24, y: ladderY, w: bay.w - 48, h: bandH },
+      role: 'routeStarterBand',
+      meta: {
+        starterState: 'empty',
+        mover: ctx.mover || 'Team',
+        stepCount: steps.length,
+      },
+    });
+    const narrY = ladderY + bandH + 4;
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: routeNarrationRailPng(bay.w - 48, narrH, ctx.mover, steps.length),
+      w: bay.w - 48, h: narrH,
+      intentional: true,
+      anchor: { x: bay.x + 24, y: narrY, w: bay.w - 48, h: narrH },
+      role: 'routeNarration',
+      meta: {
+        frames: ['First', 'Next', 'Then', 'Finally'].slice(0, steps.length),
+        mover: ctx.mover || 'Team',
+      },
+    });
+    const answer = (ctx.answerOrder || steps).join(' → ');
+    const keyY = narrY + narrH + 6;
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: routeFinishTableauPng(bay.w - 64, keyH, topicKey, ctx.mover, ctx.goal),
+      w: bay.w - 64, h: keyH,
+      intentional: true,
+      anchor: { x: bay.x + 32, y: keyY, w: bay.w - 64, h: keyH },
+      role: 'routeFinishTableau',
+      meta: {
+        mover: ctx.mover || 'Team',
+        goal: ctx.goal || 'Goal',
+        topicKey,
+        completionPayoff: true,
+        hiddenUntilReveal: true,
+      },
+    });
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: routeAnswerPng(bay.w - 64, keyH, ctx.mover, ctx.goal, answer, topicKey),
       w: bay.w - 64, h: keyH,
       intentional: true,
       anchor: { x: bay.x + 32, y: keyY, w: bay.w - 64, h: keyH },
@@ -3080,6 +4613,7 @@
         orderEvidence: ctx.orderEvidence || [],
         completionState: true,
         preservesPlacedCards: true,
+        topicKey,
       },
     });
     L.place(page, {
@@ -3119,24 +4653,154 @@
     page.notes.push('routeLandmarks:' + steps.length);
     page.notes.push('routeOrderEvidence:' + ((ctx.orderEvidence && ctx.orderEvidence.length) || 0));
     page.notes.push('routeStates:empty|placed|revealed');
+    page.notes.push('routeSceneIntegrated:true');
+    page.notes.push('routeStarterState:empty');
+    page.notes.push('routeTopicKey:' + topicKey);
   }
 
   /**
-   * Scene-anchored BEFORE/RESULT card. Manus R2 (garden-watering, 80/revise):
-   * plain hintStickyPng text cards gave no visible focal object, so the
-   * transformation had nothing to ground BEFORE against or pay off at RESULT.
-   * Draw a small topic-detected hero whose posture/color visibly differs by
-   * phase, so the peel reveals an auditable state change, not just new text.
+   * Exclusive topic family for paired BEFORE/RESULT scenes.
+   * Manus R1–R3: mood faces and 60px doodles read as instruction icons.
+   * Order is exclusive so "sun" on a plant board does not flip to heat.
    */
-  function transformationScenePng(w, h, phase, text, hay) {
+  function transformationFamily(hay) {
+    const h = String(hay || '').toLowerCase();
+    if (/\b(plant|leaf|leaves|garden|soil|root|sprout|wilt|droop|flower|tomato|tree|grow)\b/.test(h)) return 'plant';
+    if (/\b(toy|toys|room|mess|messy|tidy|shelf|shelves|closet|bedroom)\b/.test(h)) return 'room';
+    if (/\b(lunch|sandwich|picnic|cool pack|ice pack)\b/.test(h)) return 'lunch';
+    if (/\b(ice cream|icecream|scoop|cone|popsicle|snowman)\b/.test(h)) return 'melt';
+    if (/\b(shirt|laundry|clothesline|socks)\b/.test(h)
+      || (/\b(wet|dry)\b/.test(h) && /\b(clothes|shirt|laundry)\b/.test(h))) return 'laundry';
+    if (/\b(beach|sand|tide|shell|shore)\b/.test(h)) return 'beach';
+    if (/\b(window|dirty|mud|stain|smear)\b/.test(h)) return 'dirty';
+    if (/\b(ice|cold|cool|freeze|frozen|snow|fresh|food|apple)\b/.test(h)) return 'cold';
+    if (/\b(rain|storm|cloud|umbrella)\b/.test(h)) return 'rain';
+    if (/\b(fire|flame|burn|candle|toast)\b/.test(h)) return 'heat';
+    return 'object';
+  }
+
+  /** Scene-linked cue on each cause tile (Manus R2: tiles read as text buttons). */
+  function transformationCauseCue(text) {
+    const t = String(text || '').toLowerCase();
+    if (/\b(cool pack|ice pack|fridge|cool box|ice)\b/.test(t)) return 'ice';
+    if (/\b(fertilizer|feed)\b/.test(t)) return 'feed';
+    if (/\bwater\b/.test(t) && /\b(sun|midday|hot)\b/.test(t)) return 'sun';
+    if (/\b(water|hose|evening shade)\b/.test(t)) return 'water';
+    if (/\b(box|shelf|tidy|put each)\b/.test(t)) return 'box';
+    if (/\b(under the bed|hide|push everything)\b/.test(t)) return 'hide';
+    if (/\b(door|leave it|close the door)\b/.test(t)) return 'door';
+    if (/\b(shade|umbrella)\b/.test(t)) return 'shade';
+    if (/\b(sun|hot water)\b/.test(t)) return 'sun';
+    return 'change';
+  }
+
+  function transformationWrapText(ctx, text, maxW, maxLines) {
+    const words = String(text || '').split(/\s+/).filter(Boolean);
+    const lines = [];
+    let line = '';
+    words.forEach((word) => {
+      const trial = line ? `${line} ${word}` : word;
+      if (ctx.measureText(trial).width <= maxW) line = trial;
+      else { if (line) lines.push(line); line = word; }
+    });
+    if (line) lines.push(line);
+    return lines.slice(0, maxLines);
+  }
+
+  function drawTransformationCue(ctx, cue, x, y, s) {
+    ctx.save();
+    ctx.translate(x, y);
+    if (cue === 'water') {
+      ctx.fillStyle = '#38bdf8';
+      ctx.beginPath();
+      ctx.moveTo(0, -s * 0.45);
+      ctx.quadraticCurveTo(-s * 0.4, -s * 0.05, -s * 0.15, s * 0.2);
+      ctx.lineTo(s * 0.35, s * 0.05);
+      ctx.quadraticCurveTo(s * 0.15, -s * 0.15, 0, -s * 0.45);
+      ctx.fill();
+      ctx.fillStyle = '#0ea5e9';
+      ctx.fillRect(-s * 0.08, s * 0.18, s * 0.16, s * 0.22);
+    } else if (cue === 'sun') {
+      ctx.fillStyle = '#f59e0b';
+      ctx.beginPath();
+      ctx.ellipse(0, 0, s * 0.28, s * 0.28, 0, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (cue === 'ice') {
+      ctx.fillStyle = '#7dd3fc';
+      ctx.fillRect(-s * 0.28, -s * 0.22, s * 0.56, s * 0.44);
+      ctx.strokeStyle = '#0369a1';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(-s * 0.28, -s * 0.22, s * 0.56, s * 0.44);
+    } else if (cue === 'box') {
+      ctx.fillStyle = '#d97706';
+      ctx.fillRect(-s * 0.28, -s * 0.18, s * 0.56, s * 0.4);
+      ctx.strokeStyle = '#78350f';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(-s * 0.28, 0);
+      ctx.lineTo(s * 0.28, 0);
+      ctx.stroke();
+    } else if (cue === 'hide') {
+      ctx.fillStyle = '#92400e';
+      ctx.fillRect(-s * 0.38, -s * 0.08, s * 0.76, s * 0.28);
+      ctx.fillRect(-s * 0.3, -s * 0.32, s * 0.16, s * 0.28);
+    } else if (cue === 'door') {
+      ctx.fillStyle = '#b45309';
+      ctx.fillRect(-s * 0.2, -s * 0.38, s * 0.4, s * 0.76);
+      ctx.fillStyle = '#fde68a';
+      ctx.beginPath();
+      ctx.ellipse(s * 0.08, 0, 3, 3, 0, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (cue === 'shade') {
+      ctx.strokeStyle = '#78350f';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(0, s * 0.38);
+      ctx.lineTo(0, -s * 0.05);
+      ctx.stroke();
+      ctx.fillStyle = '#38bdf8';
+      ctx.beginPath();
+      ctx.ellipse(0, -s * 0.18, s * 0.38, s * 0.16, 0, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (cue === 'feed') {
+      ctx.fillStyle = '#65a30d';
+      ctx.beginPath();
+      ctx.moveTo(-s * 0.22, s * 0.28);
+      ctx.lineTo(0, -s * 0.32);
+      ctx.lineTo(s * 0.22, s * 0.28);
+      ctx.closePath();
+      ctx.fill();
+    } else {
+      ctx.fillStyle = '#7c3aed';
+      ctx.beginPath();
+      ctx.moveTo(-s * 0.28, -s * 0.08);
+      ctx.lineTo(s * 0.08, -s * 0.08);
+      ctx.lineTo(s * 0.08, -s * 0.22);
+      ctx.lineTo(s * 0.32, 0);
+      ctx.lineTo(s * 0.08, s * 0.22);
+      ctx.lineTo(s * 0.08, s * 0.08);
+      ctx.lineTo(-s * 0.28, s * 0.08);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  /**
+   * Camera-consistent BEFORE/RESULT scene. Manus R2/R3: the board must show a
+   * real place whose focal object changes, not a mood icon over a caption.
+   * Same camera (window/pot/bed/table) in both phases; only the subject state
+   * and one cause cue flip after peel.
+   */
+  function transformationScenePng(w, h, phase, text, hay, family, causeCue) {
     const c = document.createElement('canvas');
     c.width = w; c.height = h;
     const ctx = c.getContext('2d');
     const after = phase === 'after';
-    const plant = /\b(plant|leaf|leaves|garden|soil|root|sprout|wilt|droop|flower|tree|grow)\b/.test(hay);
-    const cold = /\b(ice|cold|cool|freeze|frozen|fridge|snow|lunch|fresh|food|melt)\b/.test(hay);
-    const heat = /\b(fire|flame|burn|metal|rust|hot|sun|warm)\b/.test(hay) && !cold;
-    const rain = /\b(rain|storm|cloud|weather|umbrella|wet|dry)\b/.test(hay);
+    const kind = family || transformationFamily(hay);
+    const edge = after ? '#047857' : '#b45309';
+    const groundY = Math.round(h * 0.7);
+    const cx = Math.round(w / 2);
 
     const rounded = (x, y, rw, rh, r, fill, stroke) => {
       ctx.beginPath();
@@ -3151,138 +4815,421 @@
       if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = 3; ctx.stroke(); }
     };
 
-    const bg = after ? '#ecfdf5' : '#fff7ed';
-    const edge = after ? '#047857' : '#b45309';
-    rounded(1, 1, w - 2, h - 2, 16, bg, edge);
+    rounded(1, 1, w - 2, h - 2, 16, after ? '#ecfdf5' : '#fff7ed', edge);
 
-    const cx = Math.round(w / 2);
-    const heroTop = 14;
-    const heroBottom = Math.round(h * 0.62);
-    const heroCy = Math.round((heroTop + heroBottom) / 2);
+    const windowX = w - 78;
+    const windowY = 18;
+    const drawSharedWindow = (glass) => {
+      ctx.fillStyle = '#78350f';
+      ctx.fillRect(windowX, windowY, 56, 48);
+      ctx.fillStyle = glass;
+      ctx.fillRect(windowX + 6, windowY + 6, 20, 16);
+      ctx.fillRect(windowX + 30, windowY + 6, 20, 16);
+      ctx.fillRect(windowX + 6, windowY + 26, 20, 16);
+      ctx.fillRect(windowX + 30, windowY + 26, 20, 16);
+    };
 
-    if (plant) {
-      ctx.strokeStyle = after ? '#15803d' : '#a16207';
-      ctx.lineWidth = 6;
-      ctx.beginPath();
-      ctx.moveTo(cx, heroBottom);
-      ctx.lineTo(cx, heroTop + 20);
-      ctx.stroke();
-      const leafPairs = 2;
-      for (let i = 0; i < leafPairs; i++) {
-        const ly = heroTop + 20 + i * 22;
-        const droop = after ? -8 : 18;
-        [-1, 1].forEach((side) => {
-          ctx.strokeStyle = after ? '#22c55e' : '#84a06b';
-          ctx.lineWidth = 5;
-          ctx.beginPath();
-          ctx.moveTo(cx, ly);
-          ctx.quadraticCurveTo(cx + side * 26, ly + droop - 4, cx + side * 40, ly + droop);
-          ctx.stroke();
-        });
-      }
-      if (after) {
-        ctx.fillStyle = '#f472b6';
+    if (kind === 'plant') {
+      ctx.fillStyle = after ? '#7dd3fc' : '#fdba74';
+      ctx.fillRect(8, 8, w - 16, groundY - 8);
+      if (!after) {
+        ctx.fillStyle = '#f59e0b';
         ctx.beginPath();
-        ctx.ellipse(cx, heroTop + 10, 9, 9, 0, 0, Math.PI * 2);
+        ctx.ellipse(w - 52, 36, 22, 22, 0, 0, Math.PI * 2);
         ctx.fill();
       }
-    } else if (cold) {
-      rounded(cx - 34, heroCy - 22, 68, 44, 10, '#f8fafc', '#64748b');
+      ctx.fillStyle = after ? '#3f6212' : '#ca8a04';
+      ctx.fillRect(8, groundY, w - 16, h - groundY - 8);
+      if (!after) {
+        ctx.strokeStyle = '#92400e';
+        ctx.lineWidth = 2;
+        for (let i = 0; i < 4; i++) {
+          ctx.beginPath();
+          ctx.moveTo(24 + i * 36, groundY + 10);
+          ctx.lineTo(40 + i * 36, groundY + 22);
+          ctx.stroke();
+        }
+      }
+      ctx.fillStyle = '#c2410c';
+      ctx.fillRect(cx - 30, groundY - 14, 60, 28);
+      ctx.fillRect(cx - 36, groundY - 20, 72, 10);
+      ctx.strokeStyle = after ? '#15803d' : '#a16207';
+      ctx.lineWidth = 7;
+      ctx.beginPath();
+      ctx.moveTo(cx, groundY - 20);
+      if (after) ctx.lineTo(cx, 44);
+      else ctx.quadraticCurveTo(cx + 28, 90, cx + 8, 52);
+      ctx.stroke();
+      const leafY = after ? [70, 96] : [78, 104];
+      leafY.forEach((ly) => {
+        [-1, 1].forEach((side) => {
+          ctx.strokeStyle = after ? '#22c55e' : '#84a06b';
+          ctx.lineWidth = 6;
+          ctx.beginPath();
+          ctx.moveTo(cx + (after ? 0 : 6), ly);
+          ctx.quadraticCurveTo(
+            cx + side * 28,
+            ly + (after ? -10 : 16),
+            cx + side * 46,
+            ly + (after ? -6 : 22)
+          );
+          ctx.stroke();
+        });
+      });
+      ctx.fillStyle = after ? '#ef4444' : '#9f1239';
+      ctx.beginPath();
+      ctx.ellipse(cx + (after ? -12 : 10), after ? 50 : 58, after ? 10 : 6, after ? 10 : 6, 0, 0, Math.PI * 2);
+      ctx.fill();
       if (after) {
+        ctx.fillStyle = '#ef4444';
+        ctx.beginPath();
+        ctx.ellipse(cx + 14, 62, 8, 8, 0, 0, Math.PI * 2);
+        ctx.fill();
+        drawTransformationCue(ctx, causeCue || 'water', cx - 78, groundY - 8, 28);
+      }
+    } else if (kind === 'room') {
+      ctx.fillStyle = after ? '#fef3c7' : '#fed7aa';
+      ctx.fillRect(8, 8, w - 16, groundY - 8);
+      drawSharedWindow(after ? '#7dd3fc' : '#fdba74');
+      ctx.fillStyle = '#92400e';
+      ctx.fillRect(22, groundY - 52, 70, 10);
+      ctx.fillStyle = after ? '#fdba74' : '#fb7185';
+      ctx.fillRect(26, groundY - 42, 62, 28);
+      ctx.fillStyle = after ? '#e7e5e4' : '#d6d3d1';
+      ctx.fillRect(8, groundY, w - 16, h - groundY - 8);
+      const bits = ['#f97316', '#38bdf8', '#a78bfa', '#f472b6'];
+      if (after) {
+        ctx.fillStyle = '#78350f';
+        ctx.fillRect(w * 0.42, groundY - 70, 118, 8);
+        ctx.fillRect(w * 0.42, groundY - 38, 118, 8);
+        bits.slice(0, 3).forEach((color, i) => {
+          rounded(w * 0.44 + i * 36, groundY - 62, 28, 22, 4, color, '#1f2937');
+        });
+        drawTransformationCue(ctx, causeCue || 'box', w * 0.38, groundY - 18, 26);
+      } else {
+        const specs = [
+          { x: 118, y: groundY + 16, r: 0.4, c: bits[0] },
+          { x: 168, y: groundY + 8, r: -0.3, c: bits[1] },
+          { x: 220, y: groundY + 20, r: 0.5, c: bits[2] },
+          { x: 150, y: groundY + 28, r: -0.2, c: bits[3] },
+        ];
+        specs.forEach((s) => {
+          ctx.save();
+          ctx.translate(s.x, s.y);
+          ctx.rotate(s.r);
+          ctx.fillStyle = s.c;
+          ctx.fillRect(-12, -8, 24, 16);
+          ctx.restore();
+        });
+      }
+    } else if (kind === 'lunch') {
+      ctx.fillStyle = after ? '#bae6fd' : '#fed7aa';
+      ctx.fillRect(8, 8, w - 16, groundY - 8);
+      if (!after) {
+        ctx.fillStyle = '#f59e0b';
+        ctx.beginPath();
+        ctx.ellipse(w - 50, 34, 18, 18, 0, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.fillStyle = '#f8fafc';
+      for (let row = 0; row < 3; row++) {
+        for (let col = 0; col < 8; col++) {
+          ctx.fillStyle = (row + col) % 2 ? '#fecaca' : '#f8fafc';
+          ctx.fillRect(16 + col * 28, groundY - 8 + row * 14, 28, 14);
+        }
+      }
+      if (after) {
+        rounded(cx - 48, groundY - 78, 96, 70, 10, '#1d4ed8', '#1e3a8a');
+        drawTransformationCue(ctx, causeCue || 'ice', cx + 58, groundY - 40, 26);
+      } else {
+        rounded(cx - 50, groundY - 70, 100, 62, 10, '#fef3c7', '#92400e');
+        ctx.fillStyle = '#fb923c';
+        ctx.fillRect(cx - 28, groundY - 52, 56, 18);
+        ctx.strokeStyle = '#f97316';
+        ctx.lineWidth = 2;
+        [-18, 0, 18].forEach((dx) => {
+          ctx.beginPath();
+          ctx.moveTo(cx + dx, groundY - 78);
+          ctx.quadraticCurveTo(cx + dx - 4, groundY - 68, cx + dx, groundY - 58);
+          ctx.stroke();
+        });
+      }
+    } else if (kind === 'melt') {
+      ctx.fillStyle = after ? '#bae6fd' : '#fdba74';
+      ctx.fillRect(8, 8, w - 16, groundY - 8);
+      if (!after) {
+        ctx.fillStyle = '#f59e0b';
+        ctx.beginPath();
+        ctx.ellipse(w - 48, 32, 20, 20, 0, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        drawTransformationCue(ctx, causeCue || 'shade', 56, 48, 30);
+      }
+      ctx.fillStyle = after ? '#fde68a' : '#fef3c7';
+      ctx.fillRect(8, groundY, w - 16, h - groundY - 8);
+      ctx.fillStyle = '#b45309';
+      ctx.beginPath();
+      ctx.moveTo(cx - 18, groundY + 8);
+      ctx.lineTo(cx + 18, groundY + 8);
+      ctx.lineTo(cx + 8, groundY + 42);
+      ctx.lineTo(cx - 8, groundY + 42);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = after ? '#f9a8d4' : '#f472b6';
+      ctx.beginPath();
+      if (after) ctx.ellipse(cx, groundY - 18, 28, 26, 0, 0, Math.PI * 2);
+      else ctx.ellipse(cx + 16, groundY - 4, 34, 16, 0.4, 0, Math.PI * 2);
+      ctx.fill();
+      if (!after) {
+        ctx.fillStyle = 'rgba(244,114,182,0.45)';
+        ctx.beginPath();
+        ctx.ellipse(cx + 36, groundY + 18, 22, 7, 0, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    } else if (kind === 'laundry') {
+      ctx.fillStyle = after ? '#bae6fd' : '#94a3b8';
+      ctx.fillRect(8, 8, w - 16, groundY - 8);
+      ctx.strokeStyle = '#57534e';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(28, 48);
+      ctx.lineTo(w - 28, 48);
+      ctx.stroke();
+      ctx.fillStyle = '#78716c';
+      ctx.fillRect(24, 40, 8, groundY - 36);
+      ctx.fillRect(w - 32, 40, 8, groundY - 36);
+      [0.28, 0.5, 0.72].forEach((p) => {
+        const x = w * p;
+        ctx.fillStyle = after ? '#e0e7ff' : '#1e3a8a';
+        ctx.fillRect(x - 16, after ? 52 : 70, 32, after ? 54 : 38);
+        if (!after) {
+          ctx.strokeStyle = '#38bdf8';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(x - 6, 112);
+          ctx.lineTo(x - 4, 124);
+          ctx.stroke();
+        }
+      });
+      ctx.fillStyle = after ? '#fde68a' : '#cbd5e1';
+      ctx.fillRect(8, groundY, w - 16, h - groundY - 8);
+    } else if (kind === 'beach') {
+      ctx.fillStyle = after ? '#7dd3fc' : '#64748b';
+      ctx.fillRect(8, 8, w - 16, groundY - 28);
+      ctx.fillStyle = '#38bdf8';
+      ctx.fillRect(8, groundY - 28, w - 16, 22);
+      ctx.fillStyle = after ? '#fde68a' : '#fef3c7';
+      ctx.fillRect(8, groundY - 6, w - 16, h - groundY - 2);
+      if (!after) {
+        ['#f97316', '#64748b', '#a8a29e'].forEach((color, i) => {
+          ctx.fillStyle = color;
+          ctx.fillRect(70 + i * 50, groundY + 8, 22, 14);
+        });
+      } else {
+        rounded(w - 100, groundY - 8, 36, 28, 4, '#22c55e', '#14532d');
+        drawTransformationCue(ctx, causeCue || 'box', w - 120, groundY + 8, 22);
+      }
+    } else if (kind === 'dirty') {
+      ctx.fillStyle = after ? '#e0f2fe' : '#d6d3d1';
+      ctx.fillRect(8, 8, w - 16, h - 16);
+      ctx.strokeStyle = '#78350f';
+      ctx.lineWidth = 10;
+      ctx.strokeRect(28, 22, w - 56, h - 70);
+      ctx.fillStyle = after ? '#7dd3fc' : '#a8a29e';
+      ctx.fillRect(38, 32, w - 76, h - 90);
+      if (!after) {
+        ctx.fillStyle = 'rgba(120,53,15,0.35)';
+        ctx.fillRect(70, 50, 48, 28);
+        ctx.fillRect(w * 0.5, 72, 60, 22);
+      } else {
+        drawTransformationCue(ctx, causeCue || 'change', w - 70, h - 58, 24);
+      }
+    } else if (kind === 'cold') {
+      ctx.fillStyle = after ? '#e0f2fe' : '#fed7aa';
+      ctx.fillRect(8, 8, w - 16, groundY - 8);
+      ctx.fillStyle = '#b45309';
+      ctx.fillRect(8, groundY, w - 16, 10);
+      ctx.fillStyle = '#fdba74';
+      ctx.fillRect(8, groundY + 10, w - 16, h - groundY - 18);
+      if (after) {
+        rounded(cx - 46, groundY - 78, 92, 68, 10, '#1d4ed8', '#1e3a8a');
+        drawTransformationCue(ctx, causeCue || 'ice', cx + 60, groundY - 42, 24);
+      } else {
+        ctx.fillStyle = '#f8fafc';
+        ctx.beginPath();
+        ctx.ellipse(cx, groundY - 28, 36, 28, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#ef4444';
+        ctx.beginPath();
+        ctx.ellipse(cx + 8, groundY - 30, 16, 14, 0.4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#f97316';
+        ctx.lineWidth = 2;
+        [-16, 0, 16].forEach((dx) => {
+          ctx.beginPath();
+          ctx.moveTo(cx + dx, groundY - 68);
+          ctx.quadraticCurveTo(cx + dx - 4, groundY - 56, cx + dx, groundY - 46);
+          ctx.stroke();
+        });
+      }
+    } else if (kind === 'rain') {
+      ctx.fillStyle = after ? '#fde68a' : '#64748b';
+      ctx.fillRect(8, 8, w - 16, groundY - 8);
+      ctx.fillStyle = after ? '#86efac' : '#57534e';
+      ctx.fillRect(8, groundY, w - 16, h - groundY - 8);
+      ctx.fillStyle = after ? '#facc15' : '#94a3b8';
+      ctx.beginPath();
+      ctx.ellipse(cx, 58, 40, 22, 0, 0, Math.PI * 2);
+      ctx.fill();
+      if (!after) {
         ctx.strokeStyle = '#38bdf8';
         ctx.lineWidth = 3;
-        [-18, 0, 18].forEach((dx) => {
+        for (const dx of [-20, 0, 20]) {
           ctx.beginPath();
-          ctx.moveTo(cx + dx, heroCy - 26);
-          ctx.lineTo(cx + dx, heroCy - 14);
-          ctx.moveTo(cx + dx - 6, heroCy - 24);
-          ctx.lineTo(cx + dx + 6, heroCy -16);
-          ctx.moveTo(cx + dx - 6, heroCy - 16);
-          ctx.lineTo(cx + dx + 6, heroCy - 24);
+          ctx.moveTo(cx + dx, 84);
+          ctx.lineTo(cx + dx - 6, 108);
           ctx.stroke();
-        });
-      } else {
-        ctx.strokeStyle = '#f97316';
-        ctx.lineWidth = 3;
-        [-18, 0, 18].forEach((dx) => {
-          ctx.beginPath();
-          ctx.moveTo(cx + dx, heroCy - 30);
-          ctx.quadraticCurveTo(cx + dx - 6, heroCy - 20, cx + dx, heroCy - 12);
-          ctx.stroke();
-        });
+        }
       }
-    } else if (heat) {
+    } else if (kind === 'heat') {
+      ctx.fillStyle = after ? '#e0f2fe' : '#fecaca';
+      ctx.fillRect(8, 8, w - 16, groundY - 8);
+      ctx.fillStyle = '#57534e';
+      ctx.fillRect(cx - 18, groundY - 8, 36, 16);
       ctx.fillStyle = after ? '#38bdf8' : '#ef4444';
-      const flameH = after ? 24 : 40;
       ctx.beginPath();
-      ctx.moveTo(cx, heroBottom - 6);
-      ctx.quadraticCurveTo(cx - 20, heroBottom - flameH, cx, heroCy - flameH);
-      ctx.quadraticCurveTo(cx + 20, heroBottom - flameH, cx, heroBottom - 6);
+      ctx.moveTo(cx, groundY - (after ? 28 : 64));
+      ctx.quadraticCurveTo(cx - 22, groundY - 20, cx, groundY - 8);
+      ctx.quadraticCurveTo(cx + 22, groundY - 20, cx, groundY - (after ? 28 : 64));
       ctx.fill();
-    } else if (rain) {
-      ctx.fillStyle = after ? '#fde68a' : '#94a3b8';
-      ctx.beginPath();
-      ctx.ellipse(cx, heroCy, 34, 20, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.strokeStyle = after ? '#f59e0b' : '#475569';
-      ctx.lineWidth = 3;
-      if (after) {
-        for (let a = 0; a < 8; a++) {
-          const ang = (a / 8) * Math.PI * 2;
-          ctx.beginPath();
-          ctx.moveTo(cx + Math.cos(ang) * 40, heroCy + Math.sin(ang) * 40);
-          ctx.lineTo(cx + Math.cos(ang) * 50, heroCy + Math.sin(ang) * 50);
-          ctx.stroke();
-        }
-      } else {
-        for (const dx of [-14, 4, 20]) {
-          ctx.beginPath();
-          ctx.moveTo(cx + dx, heroCy + 22);
-          ctx.lineTo(cx + dx - 4, heroCy + 34);
-          ctx.stroke();
-        }
-      }
     } else {
-      // Generic mood fallback: a face whose expression flips before/after.
-      ctx.fillStyle = after ? '#fde68a' : '#e2e8f0';
-      ctx.beginPath();
-      ctx.ellipse(cx, heroCy, 30, 30, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = '#1f2937';
-      ctx.beginPath();
-      ctx.ellipse(cx - 11, heroCy - 7, 4, 4, 0, 0, Math.PI * 2);
-      ctx.ellipse(cx + 11, heroCy - 7, 4, 4, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.strokeStyle = '#1f2937';
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      if (after) ctx.arc(cx, heroCy + 6, 12, 0.15 * Math.PI, 0.85 * Math.PI);
-      else ctx.arc(cx, heroCy + 18, 12, 1.15 * Math.PI, 1.85 * Math.PI);
-      ctx.stroke();
+      ctx.fillStyle = after ? '#d1fae5' : '#ffedd5';
+      ctx.fillRect(8, 8, w - 16, groundY - 8);
+      drawSharedWindow(after ? '#6ee7b7' : '#fdba74');
+      ctx.fillStyle = '#92400e';
+      ctx.fillRect(24, groundY, w - 48, 14);
+      ctx.fillStyle = '#fdba74';
+      ctx.fillRect(8, groundY + 14, w - 16, h - groundY - 22);
+      rounded(cx - 40, groundY - (after ? 70 : 48), 80, after ? 62 : 40, 10, after ? '#34d399' : '#fb923c', '#78350f');
     }
 
-    rounded(6, h - 6 - Math.max(0, h * 0.36), w - 12, Math.max(0, h * 0.36), 10, 'rgba(255,255,255,0.92)', edge);
+    const chipH = 36;
+    // BEFORE caption stays visible. RESULT caption sits in the card center so
+    // the inset peel covers it on the starter JPG (no after-state leak).
+    const chipY = after ? Math.round(h / 2 - chipH / 2) : h - chipH - 8;
+    rounded(10, chipY, w - 20, chipH, 10, 'rgba(255,255,255,0.92)', edge);
     ctx.fillStyle = '#0f172a';
-    ctx.font = '700 15px Poppins, sans-serif';
+    ctx.font = '700 13px Poppins, sans-serif';
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';
-    const words = String(text || '').split(/\s+/).filter(Boolean);
-    let line = '';
-    const lines = [];
-    words.forEach((word) => {
-      const trial = line ? `${line} ${word}` : word;
-      if (ctx.measureText(trial).width <= w - 32) line = trial;
-      else { if (line) lines.push(line); line = word; }
+    transformationWrapText(ctx, text, w - 40, 2).forEach((ln, i) => {
+      ctx.fillText(ln, 20, chipY + 6 + i * 15, w - 40);
     });
-    if (line) lines.push(line);
-    lines.slice(0, 3).forEach((ln, i) => {
-      ctx.fillText(ln, 16, h - Math.max(0, h * 0.36) + 6 + i * 20, w - 32);
-    });
+    rounded(10, 10, 86, 22, 8, after ? '#047857' : '#1d4ed8');
+    ctx.fillStyle = '#fff';
+    ctx.font = '800 12px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(after ? '3 · RESULT' : '1 · BEFORE', 53, 21);
     return c.toDataURL('image/png');
   }
 
-  /** Cause tile with a grab-handle affordance (Manus R2: tiles read as plain text buttons). */
-  function transformationCauseTilePng(w, h, text) {
+  function transformationCauseSlotPng(w, h) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    ctx.beginPath();
+    ctx.moveTo(16, 1);
+    ctx.arcTo(w - 1, 1, w - 1, h - 1, 16);
+    ctx.arcTo(w - 1, h - 1, 1, h - 1, 16);
+    ctx.arcTo(1, h - 1, 1, 1, 16);
+    ctx.arcTo(1, 1, w - 1, 1, 16);
+    ctx.closePath();
+    ctx.fillStyle = '#f5f3ff';
+    ctx.fill();
+    ctx.setLineDash([10, 8]);
+    ctx.strokeStyle = '#7c3aed';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#7c3aed';
+    ctx.beginPath();
+    ctx.moveTo(16, 12);
+    ctx.lineTo(28, 12);
+    ctx.lineTo(28, 6);
+    ctx.lineTo(40, 18);
+    ctx.lineTo(28, 30);
+    ctx.lineTo(28, 24);
+    ctx.lineTo(16, 24);
+    ctx.closePath();
+    ctx.fill();
+    const bx = w / 2 - 58;
+    const by = 12;
+    ctx.beginPath();
+    ctx.moveTo(bx + 8, by);
+    ctx.arcTo(bx + 116, by, bx + 116, by + 24, 8);
+    ctx.arcTo(bx + 116, by + 24, bx, by + 24, 8);
+    ctx.arcTo(bx, by + 24, bx, by, 8);
+    ctx.arcTo(bx, by, bx + 116, by, 8);
+    ctx.closePath();
+    ctx.fillStyle = '#7c3aed';
+    ctx.fill();
+    ctx.fillStyle = '#fff';
+    ctx.font = '800 12px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('2 · DROP CAUSE', w / 2, 24);
+    return c.toDataURL('image/png');
+  }
+
+  /** Inset peel so the RESULT scene frame stays auditable on the starter JPG. */
+  function transformationPeelCoverPng(w, h) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const pad = 6;
+    const fw = w - pad * 2;
+    const fh = h - pad * 2;
+    const r = 14;
+    ctx.save();
+    ctx.translate(w / 2, h / 2);
+    ctx.rotate(-0.03);
+    ctx.translate(-fw / 2, -fh / 2);
+    ctx.shadowColor = 'rgba(15,23,42,0.35)';
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetX = 3;
+    ctx.shadowOffsetY = 6;
+    ctx.fillStyle = '#fbbf24';
+    ctx.beginPath();
+    ctx.moveTo(r, 0);
+    ctx.arcTo(fw, 0, fw, fh, r);
+    ctx.arcTo(fw, fh, 0, fh, r);
+    ctx.arcTo(0, fh, 0, 0, r);
+    ctx.arcTo(0, 0, fw, 0, r);
+    ctx.closePath();
+    ctx.fill();
+    ctx.shadowColor = 'transparent';
+    const fold = Math.min(fw, fh) * 0.22;
+    ctx.beginPath();
+    ctx.moveTo(fw - fold, 0);
+    ctx.lineTo(fw, 0);
+    ctx.lineTo(fw, fold);
+    ctx.closePath();
+    ctx.fillStyle = '#fde68a';
+    ctx.fill();
+    ctx.fillStyle = '#78350f';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = '800 ' + Math.max(16, Math.floor(fh * 0.16)) + 'px Poppins, sans-serif';
+    ctx.fillText('PEEL', fw / 2, fh * 0.42);
+    ctx.font = '700 ' + Math.max(12, Math.floor(fh * 0.1)) + 'px Poppins, sans-serif';
+    ctx.fillText('to see RESULT', fw / 2, fh * 0.62);
+    ctx.restore();
+    return c.toDataURL('image/png');
+  }
+
+  /** Cause tile: grab dots + scene cue + short label (Manus R2 text-button miss). */
+  function transformationCauseTilePng(w, h, text, cue) {
     const c = document.createElement('canvas');
     c.width = w; c.height = h;
     const ctx = c.getContext('2d');
@@ -3295,31 +5242,23 @@
     ctx.strokeStyle = '#92400e';
     ctx.lineWidth = 3;
     ctx.stroke();
-    // Grab-handle dots signal "this is draggable" beyond plain text.
     ctx.fillStyle = 'rgba(120,53,15,0.55)';
     for (let row = 0; row < 2; row++) {
       for (let col = 0; col < 3; col++) {
         ctx.beginPath();
-        ctx.ellipse(10 + col * 7, 11 + row * 7, 2, 2, 0, 0, Math.PI * 2);
+        ctx.ellipse(10 + col * 6, 10 + row * 6, 2, 2, 0, 0, Math.PI * 2);
         ctx.fill();
       }
     }
+    drawTransformationCue(ctx, cue || transformationCauseCue(text), 36, h / 2, 22);
     ctx.fillStyle = '#422006';
-    ctx.font = '700 16px Poppins, sans-serif';
-    ctx.textAlign = 'center';
+    ctx.font = '700 14px Poppins, sans-serif';
+    ctx.textAlign = 'left';
     ctx.textBaseline = 'middle';
-    const words = String(text || '').split(/\s+/).filter(Boolean);
-    let line = '';
-    const lines = [];
-    words.forEach((word) => {
-      const trial = line ? `${line} ${word}` : word;
-      if (ctx.measureText(trial).width <= w - 24) line = trial;
-      else { if (line) lines.push(line); line = word; }
-    });
-    if (line) lines.push(line);
-    const lineH = 19;
+    const lines = transformationWrapText(ctx, text, w - 78, 3);
+    const lineH = 16;
     const startY = h / 2 - ((lines.length - 1) * lineH) / 2;
-    lines.slice(0, 3).forEach((ln, i) => ctx.fillText(ln, w / 2, startY + i * lineH, w - 24));
+    lines.forEach((ln, i) => ctx.fillText(ln, 56, startY + i * lineH, w - 70));
     return c.toDataURL('image/png');
   }
 
@@ -3345,26 +5284,21 @@
     };
   }
 
-  /** Choose a change, place it between BEFORE and AFTER, then peel the result. */
+  /** Choose a cause, place it between BEFORE and AFTER, then peel the result. */
   function transformationLab(lesson, page, layout, ctx) {
     const L = layout || window.EdbLayout;
     const changes = uniqueTextItems(ctx && ctx.changes, 4);
     if (!ctx || !ctx.before || !ctx.after || changes.length < 2) return;
-    const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
+    const stock = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
+    // Scene-first: drop the fat question+label chrome that ate the 220px bay
+    // (Manus R3). Grow the play surface up to the hint and down to the dock.
+    const play = { x: stock.x + 8, y: 176, w: stock.w - 16, h: 238 };
     const predictionFrame = 'I predict ___ because ___.';
     const question = String(ctx.question || 'Which cause makes the result happen?').trim();
-    const questionH = 54;
-    const labelH = 34;
-    const cardGap = 18;
-    const cardW = Math.floor((bay.w - 72 - cardGap * 2) / 3);
-    const cardH = Math.max(94, bay.h - questionH - labelH - 22);
-    const y = bay.y + questionH + labelH + 10;
-    const labels = [
-      { text: '1 · BEFORE →', phase: 'before', color: '#1d4ed8' },
-      { text: '2 · CAUSE →', phase: 'cause', color: '#7c3aed' },
-      { text: '3 · RESULT', phase: 'result', color: '#047857' },
-    ];
-    const cards = [String(ctx.before), '', String(ctx.after)];
+    const gap = 12;
+    const sceneW = Math.floor((play.w - gap * 2) * 0.38);
+    const slotW = play.w - sceneW * 2 - gap * 2;
+    const sceneH = play.h;
     const answerKey = String(ctx.correctChange).toLowerCase();
     const sourceStartsWithAnswer = changes[0].toLowerCase() === answerKey;
     const dockChanges = pick(
@@ -3375,71 +5309,100 @@
     if (sourceStartsWithAnswer && dockChanges[0].toLowerCase() === answerKey) {
       dockChanges.push(dockChanges.shift());
     }
-    const sceneHay = `${(lesson && lesson.title) || ''} ${ctx.before} ${ctx.after}`.toLowerCase();
+    const sceneHay = `${(lesson && lesson.title) || ''} ${ctx.before} ${ctx.after} ${ctx.correctChange || ''}`.toLowerCase();
+    const family = transformationFamily(sceneHay);
+    const correctCue = transformationCauseCue(ctx.correctChange);
+
+    const beforeX = play.x;
+    const slotX = play.x + sceneW + gap;
+    const resultX = play.x + sceneW + slotW + gap * 2;
 
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: hintStickyPng(
-        bay.w - 48,
-        questionH,
-        `${question} · PREDICT: ${predictionFrame}`.slice(0, 150)
-      ),
-      w: bay.w - 48, h: questionH,
+      asset: transformationScenePng(sceneW, sceneH, 'before', ctx.before, sceneHay, family, correctCue),
+      w: sceneW, h: sceneH,
       intentional: true,
-      anchor: { x: bay.x + 24, y: bay.y + 4, w: bay.w - 48, h: questionH },
-      role: 'transformationQuestion',
-      meta: { question, predictionFrame },
+      anchor: { x: beforeX, y: play.y, w: sceneW, h: sceneH },
+      role: 'transformationState',
+      meta: {
+        phase: 'before',
+        text: ctx.before,
+        sceneGrounded: true,
+        family,
+        cameraPaired: true,
+      },
     });
-    labels.forEach((label, i) => {
-      const x = bay.x + 24 + i * (cardW + cardGap);
-      L.place(page, {
-        locked: true,
-        kind: 'image',
-        asset: solidPng(cardW, labelH, label.color, label.text, '#fff'),
-        w: cardW, h: labelH,
-        intentional: true,
-        anchor: { x, y: bay.y + questionH + 8, w: cardW, h: labelH },
-        role: 'transformationLabel',
-        meta: { phase: label.phase },
-      });
-      L.place(page, {
-        locked: true,
-        kind: 'image',
-        asset: cards[i]
-          ? transformationScenePng(cardW, cardH, i === 0 ? 'before' : 'after', cards[i], sceneHay)
-          : slotGhostPng(cardW, cardH, 'DROP CAUSE'),
-        w: cardW, h: cardH,
-        intentional: true,
-        anchor: { x, y, w: cardW, h: cardH },
-        role: i === 1 ? 'transformationChangeSlot' : 'transformationState',
-        meta: { phase: labels[i].phase, text: cards[i], sceneGrounded: !!cards[i] },
-      });
-      if (i === 2) {
-        L.place(page, {
-          locked: false,
-          kind: 'image',
-          asset: solidPng(cardW, cardH, '#0f766e', 'PREDICT • THEN PEEL', '#fff'),
-          w: cardW, h: cardH,
-          intentional: true,
-          anchor: { x, y, w: cardW, h: cardH },
-          role: 'transformationResultCover',
-          meta: { covers: ctx.after, requiresPrediction: true },
-        });
-      }
-    });
-    L.placeDockRow(page, dockChanges.map((text) => ({
+    L.place(page, {
+      locked: true,
       kind: 'image',
-      asset: transformationCauseTilePng(190, 68, text),
-      text,
-      role: 'transformationChange',
-      meta: { text, correct: text.toLowerCase() === String(ctx.correctChange).toLowerCase() },
-    })), { w: 190, h: 68, noShrink: true });
+      asset: transformationCauseSlotPng(slotW, sceneH),
+      w: slotW, h: sceneH,
+      intentional: true,
+      anchor: { x: slotX, y: play.y, w: slotW, h: sceneH },
+      role: 'transformationChangeSlot',
+      meta: { phase: 'cause' },
+    });
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: transformationScenePng(sceneW, sceneH, 'after', ctx.after, sceneHay, family, correctCue),
+      w: sceneW, h: sceneH,
+      intentional: true,
+      anchor: { x: resultX, y: play.y, w: sceneW, h: sceneH },
+      role: 'transformationState',
+      meta: {
+        phase: 'result',
+        text: ctx.after,
+        sceneGrounded: true,
+        family,
+        cameraPaired: true,
+        causeCue: correctCue,
+      },
+    });
+    const insetX = Math.round(sceneW * 0.12);
+    const insetY = Math.round(sceneH * 0.14);
+    const coverW = sceneW - insetX * 2;
+    const coverH = sceneH - insetY * 2;
+    L.place(page, {
+      locked: false,
+      kind: 'image',
+      asset: transformationPeelCoverPng(coverW, coverH),
+      w: coverW, h: coverH,
+      intentional: true,
+      anchor: { x: resultX + insetX, y: play.y + insetY, w: coverW, h: coverH },
+      role: 'transformationResultCover',
+      meta: {
+        covers: ctx.after,
+        requiresPrediction: true,
+        insetPeek: true,
+        family,
+      },
+    });
+    L.placeDockRow(page, dockChanges.map((text) => {
+      const visualCue = transformationCauseCue(text);
+      return {
+        kind: 'image',
+        asset: transformationCauseTilePng(236, 78, text, visualCue),
+        text,
+        role: 'transformationChange',
+        meta: {
+          text,
+          visualCue,
+          correct: text.toLowerCase() === String(ctx.correctChange).toLowerCase(),
+        },
+      };
+    }), { w: 236, h: 78, noShrink: true });
     page.notes.push('recipe:transformationLab');
     page.notes.push('transformationAnswer:' + ctx.correctChange);
     page.notes.push('transformationPredictBeforePeel');
     page.notes.push('transformationSceneGrounded:true');
     page.notes.push('transformationCauseTilesVisual:true');
+    page.notes.push('transformationSceneFirst:true');
+    page.notes.push('transformationResultPeek:true');
+    page.notes.push('transformationFamily:' + family);
+    page.notes.push('transformationQuestion:' + question);
+    page.notes.push('transformationFrame:' + predictionFrame);
   }
 
   function evidenceXml(value) {
@@ -3503,6 +5466,55 @@
       ${evidenceTextSvg(frame, 12, 31, Math.max(24, Math.floor(w / 9)), 2, 13, 'fill="#134e4a" font-size="12" font-weight="700"')}`);
   }
 
+  /** S78 rank-contract strip — every card must expose artifact, relation, quality, impact. */
+  function evidenceRankContractPng(w, h) {
+    return evidenceSvg(w, h, `
+      <rect x="1" y="1" width="${w - 2}" height="${h - 2}" rx="10" fill="#ecfdf5" stroke="#0f766e" stroke-width="2"/>
+      <text x="12" y="15" fill="#0f766e" font-size="10" font-weight="800">RANK CONTRACT · each card must show:</text>
+      <text x="12" y="28" fill="#134e4a" font-size="9" font-weight="700">SOURCE ARTIFACT · RELATION · SOURCE QUALITY · CLAIM IMPACT · TEACHER CHECK ✓</text>`);
+  }
+
+  /** S78 causal-timeline anchor when timestamped artifacts need an incident time. */
+  function evidenceTimelineAnchorPng(w, h, incidentTime, evidence) {
+    const times = [];
+    const seen = new Set();
+    for (const item of evidence) {
+      const match = String(item.artifactExcerpt || '').match(/\b(\d{1,2}:\d{2})\b/);
+      if (match && !seen.has(match[1])) {
+        seen.add(match[1]);
+        times.push(match[1]);
+      }
+    }
+    const span = Math.max(1, times.length - 1);
+    const step = Math.min(72, Math.floor((w - 200) / span));
+    const dots = times.map((t, i) => {
+      const x = 132 + i * step;
+      const incident = t === incidentTime;
+      return `<circle cx="${x}" cy="22" r="${incident ? 7 : 5}" fill="${incident ? '#dc2626' : '#2563eb'}" stroke="#fff" stroke-width="2"/>
+        <text x="${x}" y="36" text-anchor="middle" fill="#475569" font-size="9" font-weight="800">${t}</text>`;
+    }).join('');
+    return evidenceSvg(w, h, `
+      <rect x="1" y="1" width="${w - 2}" height="${h - 2}" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+      <text x="12" y="16" fill="#1d4ed8" font-size="10" font-weight="800">INCIDENT TIME · ${evidenceXml(incidentTime)}</text>
+      <line x1="118" y1="22" x2="${w - 16}" y2="22" stroke="#93c5fd" stroke-width="2"/>${dots}`);
+  }
+
+  /** Material filing→peel progression (Manus R3 B3: observable payoff ladder). */
+  function evidenceFilingStateLadderPng(w, h, count) {
+    const stages = ['INSPECT', 'FILE 1', count > 2 ? 'FILE ALL' : 'FILE 3', 'PEEL SEAL'];
+    const stepW = Math.floor((w - 24) / stages.length);
+    const body = stages.map((label, i) => {
+      const x = 12 + i * stepW + Math.round(stepW / 2);
+      const active = i === 0;
+      return `<circle cx="${x}" cy="20" r="9" fill="${active ? '#0f766e' : '#e2e8f0'}" stroke="#0f766e" stroke-width="2"/>
+        <text x="${x}" y="24" text-anchor="middle" fill="${active ? '#fff' : '#64748b'}" font-size="8" font-weight="800">${i + 1}</text>
+        <text x="${x}" y="38" text-anchor="middle" fill="#334155" font-size="8" font-weight="700">${label}</text>`;
+    }).join('');
+    return evidenceSvg(w, h, `
+      <rect x="1" y="1" width="${w - 2}" height="${h - 2}" rx="10" fill="#fffdf5" stroke="#d97706" stroke-width="2"/>
+      <text x="12" y="11" fill="#92400e" font-size="9" font-weight="800">FILING PROGRESS · 0/${count} clues placed</text>${body}`);
+  }
+
   function evidencePocketPng(w, h, rank, count) {
     const labels = count === 3
       ? ['1 · STRONGEST', '2 · SOLID', '3 · WEAKEST']
@@ -3529,16 +5541,31 @@
   }
 
   function evidenceConclusionCoverPng(w, h, count) {
+    const midY = Math.round(h / 2);
     const dots = Array.from({ length: count }, (_, i) =>
-      `<circle cx="${w - 24 - (count - 1 - i) * 18}" cy="${Math.round(h / 2)}" r="6" fill="#fff7ed" stroke="#fbbf24" stroke-width="2"/>`
+      `<circle cx="${w - 28 - (count - 1 - i) * 18}" cy="${midY + 6}" r="5" fill="#fde68a" stroke="#d97706" stroke-width="2"/>`
     ).join('');
     return evidenceSvg(w, h, `
-      <rect x="1.5" y="1.5" width="${w - 3}" height="${h - 3}" rx="10" fill="#172554" stroke="#f59e0b" stroke-width="3"/>
-      <path d="M17 19v-4a7 7 0 0 1 14 0v4" fill="none" stroke="#fbbf24" stroke-width="3"/>
-      <rect x="13" y="18" width="22" height="17" rx="4" fill="#f59e0b"/>
-      <text x="46" y="17" fill="#fbbf24" font-size="12" font-weight="800">SEALED VERDICT · 0/${count} FILED</text>
-      <text x="46" y="33" fill="#fff" font-size="10" font-weight="700">Fill the ranked pockets → peel this seal</text>
-      ${dots}`);
+      <rect x="2" y="5" width="${w - 4}" height="${h - 8}" rx="6" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+      <path d="M2 18 L${w / 2} 30 L${w - 2} 18" fill="#fcd34d" stroke="#b45309" stroke-width="2"/>
+      <circle cx="34" cy="${midY + 4}" r="11" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
+      <text x="34" y="${midY + 8}" text-anchor="middle" fill="#fff" font-size="8" font-weight="800">SEAL</text>
+      <text x="56" y="${midY - 2}" fill="#78350f" font-size="11" font-weight="800">SEALED VERDICT · 0/${count} FILED</text>
+      <text x="56" y="${midY + 14}" fill="#92400e" font-size="9" font-weight="700">File all clues → peel this envelope</text>${dots}`);
+  }
+
+  function evidenceArtifactForm(item) {
+    const excerpt = String(item.artifactExcerpt || '').trim();
+    if (/^\d{1,2}:\d{2}/.test(excerpt) || /\b\d{1,2}:\d{2}\b/.test(excerpt)) {
+      return { badge: 'LOG', bg: '#e2e8f0', stroke: '#475569', mono: true };
+    }
+    if (/^["'""]/.test(excerpt) || excerpt.includes('"')) {
+      return { badge: 'QUOTE', bg: '#fef3c7', stroke: '#b45309', mono: false };
+    }
+    if (/\b\d+(\.\d+)?\s*(°|cm|mm|kg|db|v|w|mph|km|%)/i.test(excerpt)) {
+      return { badge: 'DATA', bg: '#dbeafe', stroke: '#2563eb', mono: true };
+    }
+    return { badge: 'NOTE', bg: '#f1f5f9', stroke: '#64748b', mono: false };
   }
 
   function evidenceCardPng(w, h, item) {
@@ -3548,14 +5575,19 @@
     const relationLabel = item.relation === 'alternative'
       ? 'ALTERNATIVE'
       : String(item.relation || '').toUpperCase();
+    const form = evidenceArtifactForm(item);
+    const excerptText = form.mono
+      ? String(item.artifactExcerpt || '')
+      : `“${item.artifactExcerpt}”`;
+    const fontFamily = form.mono ? 'Consolas,monospace' : 'Poppins,Arial,sans-serif';
     return evidenceSvg(w, h, `
       <rect x="2" y="2" width="${w - 4}" height="${h - 4}" rx="14" fill="#fffef7" stroke="${edge}" stroke-width="3"/>
       <path d="M4 16 Q4 4 16 4 H${w - 16} Q${w - 4} 4 ${w - 4} 16 V30 H4Z" fill="${edge}"/>
-      <text x="12" y="21" fill="#fff" font-size="10" font-weight="800">${evidenceXml(source.slice(0, 26))}</text>
+      <text x="12" y="21" fill="#fff" font-size="10" font-weight="800">${evidenceXml(source.slice(0, 22))}</text>
       <text x="${w - 12}" y="21" text-anchor="end" fill="#fff" font-size="10" font-weight="800">${relationLabel}</text>
-      <rect x="8" y="35" width="${w - 16}" height="39" rx="7" fill="#f1f5f9" stroke="#64748b" stroke-dasharray="4 3"/>
-      <text x="14" y="46" fill="#475569" font-size="8" font-weight="800">SOURCE ARTIFACT</text>
-      ${evidenceTextSvg(`“${item.artifactExcerpt}”`, 14, 61, Math.max(24, Math.floor((w - 28) / 8)), 2, 13, 'fill="#0f172a" font-size="11" font-weight="800" font-family="Consolas,monospace"')}
+      <rect x="8" y="35" width="${w - 16}" height="39" rx="7" fill="${form.bg}" stroke="${form.stroke}" stroke-width="2"/>
+      <text x="14" y="46" fill="${form.stroke}" font-size="8" font-weight="800">${form.badge} · SOURCE ARTIFACT</text>
+      ${evidenceTextSvg(excerptText, 14, 61, Math.max(24, Math.floor((w - 28) / 8)), 2, 13, `fill="#0f172a" font-size="11" font-weight="800" font-family="${fontFamily}"`)}
       ${evidenceTextSvg(`SOURCE QUALITY: ${item.rationale}`, 12, h - 39, Math.max(32, Math.floor((w - 24) / 7)), 1, 13, 'fill="#475569" font-size="10" font-weight="700"')}
       ${evidenceTextSvg(`CLAIM IMPACT: ${item.claimImpact}`, 12, h - 21, Math.max(32, Math.floor((w - 24) / 7)), 2, 12, `fill="${edge}" font-size="10" font-weight="800"`)}`);
   }
@@ -3588,7 +5620,7 @@
   // "Weaker source" or "happened earlier/later" describes strength or timing,
   // not a challenge — Manus flagged that as a false counter-evidence label.
   const EVIDENCE_OPPOSITION_RE =
-    /\b(not|isn'?t|can'?t|cannot|doesn'?t|didn'?t|wasn'?t|weren'?t|unlikely|false|contrary|conflicts?|disputes?|undermin\w*|contradicts?|rules? out|instead of|rather than|however|no evidence|does not hold|breaks down|fails? to)\b/i;
+    /\b(not|isn'?t|can'?t|cannot|doesn'?t|didn'?t|wasn'?t|weren'?t|denies?|denied|unlikely|false|contrary|conflicts?|disputes?|undermin\w*|contradicts?|rules? out|instead of|rather than|however|no evidence|does not hold|breaks down|fails? to)\b/i;
   const EVIDENCE_QUALIFY_RE =
     /\b(but|only|limit\w*|less likely|less certain|uncertain|depends?|unless|may|might|not always|despite|partly|sometimes)\b/i;
   const EVIDENCE_ALTERNATIVE_RE =
@@ -3604,6 +5636,16 @@
       if (e.relation === 'alternative') return EVIDENCE_ALTERNATIVE_RE.test(blob);
       return false;
     });
+  }
+
+  // S78 — causal-timeline solvability (Manus 4Z9MSS evidenceBoard R3, 63/100).
+  const EVIDENCE_TIMESTAMP_RE = /\b\d{1,2}:\d{2}\b/;
+  function evidenceHasTimestamps(evidence) {
+    return evidence.some((e) => EVIDENCE_TIMESTAMP_RE.test(String(e.artifactExcerpt || '')));
+  }
+  function evidenceTimelineSolvable(incidentTime, evidence) {
+    if (!evidenceHasTimestamps(evidence)) return true;
+    return !!(incidentTime && EVIDENCE_TIMESTAMP_RE.test(incidentTime));
   }
 
   function resolveEvidenceBoard(lesson) {
@@ -3632,11 +5674,14 @@
     const hasCounter = evidence.some((e) => e.relation !== 'supports');
     if (!completeCards || !distinctStrengths || !hasSupport || !hasCounter) return null;
     if (!evidenceRelationIntegrity(evidence)) return null;
+    const incidentTime = String(raw.incidentTime || '').trim();
+    if (!evidenceTimelineSolvable(incidentTime, evidence)) return null;
     const ordered = evidence.slice().sort((a, b) => b.strength - a.strength);
     return {
       claim,
       conclusion,
       evidence,
+      incidentTime: incidentTime || null,
       answerOrder: ordered.map((e) => e.text),
       reasoningFrame: String(
         raw.reasoningFrame || 'I rank ___ first because its source is more reliable and relevant than ___.'
@@ -3656,14 +5701,20 @@
     const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
     const sidePad = 18;
     const gap = 12;
-    const topH = 54;
-    const slotY = bay.y + 64;
-    const slotH = 100;
-    const keyH = 42;
+    const topH = 50;
+    const contractH = 32;
+    const timelineH = ctx.incidentTime ? 34 : 0;
+    const ladderH = 42;
+    const keyH = 48;
     const keyY = bay.y + bay.h - keyH - 8;
+    const ladderY = keyY - ladderH - 8;
+    const slotH = Math.max(78, Math.min(94, ladderY - (bay.y + 4 + topH + 6 + contractH + timelineH + 10)));
+    const slotY = ladderY - slotH - 8;
     const slotW = Math.floor((bay.w - sidePad * 2 - gap * (evidence.length - 1)) / evidence.length);
     const claimW = Math.floor((bay.w - sidePad * 2 - gap) * 0.62);
     const frameW = bay.w - sidePad * 2 - gap - claimW;
+    const innerW = bay.w - sidePad * 2;
+    let stackY = bay.y + 4;
 
     L.place(page, {
       locked: true,
@@ -3673,7 +5724,7 @@
       intentional: true,
       anchor: { x: bay.x, y: bay.y, w: bay.w, h: bay.h },
       role: 'evidenceCaseFile',
-      meta: { teacherCheck: ctx.teacherCheck || '' },
+      meta: { teacherCheck: ctx.teacherCheck || '', sceneIntegrated: true },
     });
     L.place(page, {
       locked: true,
@@ -3681,7 +5732,7 @@
       asset: evidenceClaimPng(claimW, topH, ctx.claim),
       w: claimW, h: topH,
       intentional: true,
-      anchor: { x: bay.x + sidePad, y: bay.y + 4, w: claimW, h: topH },
+      anchor: { x: bay.x + sidePad, y: stackY, w: claimW, h: topH },
       role: 'evidenceClaim',
       meta: { claim: ctx.claim },
     });
@@ -3691,10 +5742,42 @@
       asset: evidenceReasoningFramePng(frameW, topH, ctx.reasoningFrame),
       w: frameW, h: topH,
       intentional: true,
-      anchor: { x: bay.x + sidePad + claimW + gap, y: bay.y + 4, w: frameW, h: topH },
+      anchor: { x: bay.x + sidePad + claimW + gap, y: stackY, w: frameW, h: topH },
       role: 'evidenceReasoningFrame',
       meta: { frame: ctx.reasoningFrame, teacherCheck: ctx.teacherCheck },
     });
+    stackY += topH + 6;
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: evidenceRankContractPng(innerW, contractH),
+      w: innerW, h: contractH,
+      intentional: true,
+      anchor: { x: bay.x + sidePad, y: stackY, w: innerW, h: contractH },
+      role: 'evidenceRankContract',
+      meta: {
+        rankContract: true,
+        requiresArtifact: true,
+        requiresRelation: true,
+        requiresRationale: true,
+        requiresClaimImpact: true,
+        teacherCheck: true,
+      },
+    });
+    stackY += contractH + 4;
+    if (ctx.incidentTime) {
+      L.place(page, {
+        locked: true,
+        kind: 'image',
+        asset: evidenceTimelineAnchorPng(innerW, timelineH, ctx.incidentTime, evidence),
+        w: innerW, h: timelineH,
+        intentional: true,
+        anchor: { x: bay.x + sidePad, y: stackY, w: innerW, h: timelineH },
+        role: 'evidenceTimelineAnchor',
+        meta: { incidentTime: ctx.incidentTime, causalTimeline: true },
+      });
+      stackY += timelineH + 6;
+    }
     evidence.forEach((_, i) => {
       L.place(page, {
         locked: true,
@@ -3710,6 +5793,20 @@
           answerText: (ctx.answerOrder || [])[i] || '',
         },
       });
+    });
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: evidenceFilingStateLadderPng(innerW, ladderH, evidence.length),
+      w: innerW, h: ladderH,
+      intentional: true,
+      anchor: { x: bay.x + sidePad, y: ladderY, w: innerW, h: ladderH },
+      role: 'evidenceFilingStateLadder',
+      meta: {
+        states: ['inspect', 'file', 'fileAll', 'peel'],
+        progressSteps: evidence.length,
+        materialPayoff: true,
+      },
     });
     L.place(page, {
       locked: true,
@@ -3769,6 +5866,10 @@
     page.notes.push('evidenceArtifactsInspectable:true');
     page.notes.push('evidenceLockedConclusion:true');
     page.notes.push('evidenceProgressByFilledSlots:true');
+    page.notes.push('evidenceRankContractVisible:true');
+    page.notes.push('evidenceMaterialPayoff:true');
+    page.notes.push('evidenceFilingStateLadder:true');
+    if (ctx.incidentTime) page.notes.push('evidenceTimelineAnchor:' + ctx.incidentTime);
     page.notes.push('evidenceTeacherCheck:' + ctx.teacherCheck);
   }
 
@@ -5844,21 +7945,18 @@
     'dentist-character',
   ];
 
-  /** Curated make-a-face dock — interleave eyes/mouth/nose/hair so hair is not
-   *  starved when the dock packs ≤10 (Manus Ehp2 B3: hair taught, dock missing). */
+  /** Curated make-a-face dock — only keys that actually exist + are dock-safe.
+   *  face-eyes-* are ghost manifest rows (no PNG, dockSafe:false). Drop them
+   *  so the hint never promises eyes the tray cannot ship (Manus heroProp R2). */
   const ROLEPLAY_DOCK_FACE = [
-    'face-eyes-brown',
     'face-mouth-smile',
     'face-nose-button',
     'hair-messy-brown',
-    'face-eyes-blue',
     'face-mouth-open',
     'face-nose-round',
     'hair-pony-blonde',
-    'face-eyes-green',
     'face-nose-point',
     'hair-afro-dark',
-    'face-eyes-dark',
     'face-nose-long',
     'hair-bob-red',
     'face-ears-round',
@@ -5875,24 +7973,24 @@
     'face-glasses-round',
   ];
 
-  /** Firehouse roleplay dock — sharp handheld tools (not space station junk). */
+  /** Firehouse roleplay dock — largest readable tools first. Skip fire-helmet
+   *  (dockSafe:false / missing PNG). Cap later at 6 so each stays grab-big. */
   const ROLEPLAY_DOCK_FIRE = [
     'fire-hose',
     'fire-hydrant',
-    'fire-ladder',
-    'fire-axe',
-    'fire-helmet',
-    'fire-extinguisher',
     'fire-alarm-bell',
-    'fire-flashlight',
+    'fire-extinguisher',
     'fire-gloves',
-    'fire-walkie-talkie',
-    'fire-safety-cone',
-    'fire-blanket',
-    'fire-mask',
     'fire-megaphone',
     'fire-water-bucket',
     'fire-first-aid-kit',
+    'fire-mask',
+    'fire-walkie-talkie',
+    'fire-safety-cone',
+    'fire-ladder',
+    'fire-axe',
+    'fire-flashlight',
+    'fire-blanket',
   ];
 
   /** Camp pack-the-tent dock — handheld camp/hike tools (not the tent hero). */
@@ -6449,9 +8547,9 @@
     else if (kit && kit.pack === 'space') prefer = ROLEPLAY_DOCK_SPACE;
     else if (kit && kit.pack === 'music') prefer = ROLEPLAY_DOCK_MUSIC;
 
-    // A king tray is a roleplay kit, not a prop-bank dump. Keep themed docks to
-    // one readable dozen; excess kit top-up caused silent drops and tiny tools.
-    if (prefer && !face && !feelings) targetCount = Math.min(targetCount, prefer.length, 12);
+    // A king tray is a roleplay kit, not a prop-bank dump. Manus R1 wanted
+    // 5–6 large labelled tools — a dozen silent-drops into postage stamps.
+    if (prefer && !face && !feelings) targetCount = Math.min(targetCount, prefer.length, 6);
 
     if (prefer) {
       for (const key of prefer) {
@@ -6485,26 +8583,35 @@
       }
     }
 
-    // Face: if board teaches "hair", guarantee ≥1 hair-* / face-hair-* in the dock
-    // even when packing truncates the interleaved list (Manus Ehp2 B3).
+    // Face: if the board teaches a core face part (eyes/nose/mouth/hair/ears),
+    // guarantee ≥1 matching prop in the dock even when packing truncates the
+    // interleaved list (Manus Ehp2 B3: hair taught, dock missing). Generalized
+    // beyond hair so a topic that leans on eyes/nose/mouth vocab does not lose
+    // its own taught-word tool the same way — but this can only guarantee a
+    // piece when a sharp (dockSafe) asset actually exists; missing art stays a
+    // wishlist gap (see docs/asset-wishlist.md face-eyes-* rows), never a fake fill.
     if (face) {
       const taught = ((lesson && lesson.vocabulary) || [])
         .map((v) => (typeof v === 'string' ? v : v && v.word))
         .filter(Boolean)
         .map((w) => String(w).toLowerCase());
-      const hasHairWord = taught.includes('hair');
-      const hasHairProp = out.some((p) => /hair/.test(String((p && p.key) || '')));
-      if (hasHairWord && !hasHairProp) {
+      const FACE_CORE_PARTS = ['eyes', 'nose', 'mouth', 'hair', 'ears'];
+      for (const part of FACE_CORE_PARTS) {
+        if (!taught.includes(part)) continue;
+        const partRe = new RegExp(part === 'eyes' ? 'eyes' : part);
+        const hasPartProp = out.some((p) => partRe.test(String((p && p.key) || '')));
+        if (hasPartProp) continue;
         for (const key of ROLEPLAY_DOCK_FACE) {
-          if (!/hair/.test(key)) continue;
+          if (!partRe.test(key)) continue;
           if (exclude.includes(key)) continue;
           const p = PB.resolve({ word: key, seed, family, exclude });
           if (!p || !sharp(p)) continue;
           if (p.aspect && (p.aspect < 0.45 || p.aspect > 3.0)) continue;
-          // Swap last non-hair piece if at capacity so hair always lands.
+          // Swap last piece from an already-covered family if at capacity so
+          // this taught part always lands.
           if (out.length >= targetCount) {
             for (let i = out.length - 1; i >= 0; i--) {
-              if (!/hair/.test(String(out[i].key || ''))) {
+              if (!partRe.test(String(out[i].key || ''))) {
                 out.splice(i, 1);
                 break;
               }
@@ -6592,11 +8699,12 @@
         const m = /^feeling-(.+)$/.exec(String(p.key || ''));
         const word = m ? m[1] : null;
         const packPath = word && packSync ? packSync(word) : null;
-        if (!word || !packPath) return p;
-        return Object.assign({}, p, { path: packPath, aspect: 1, feelWord: word });
+        const sayNoun = word || sayNounFromKey(p.key);
+        if (!word || !packPath) return Object.assign({}, p, { sayNoun });
+        return Object.assign({}, p, { path: packPath, aspect: 1, feelWord: word, sayNoun });
       });
     }
-    return out;
+    return out.map((p) => Object.assign({}, p, { sayNoun: sayNounFromKey(p.key) }));
   }
 
   /**
@@ -6647,6 +8755,7 @@
       || dentalFlush
       || !!(prop && prop.key === 'trampoline')
       || (Number(prop && prop.aspect) >= 1.55);
+    let kingBox = null;
 
     if (!skipKing) {
       const king = Object.assign({}, prop, { relativeScale: 1 });
@@ -6677,7 +8786,7 @@
         : Math.max(wideStage ? 96 : 8, Math.round((stageH - sized.h) / 2));
 
       L.place(page, {
-        locked: false,
+        locked: true,
         kind: 'image',
         asset: prop.path,
         w: sized.w,
@@ -6693,31 +8802,105 @@
           stageFit: stageFitFor(prop),
         },
       });
+      kingBox = { x, y, w: sized.w, h: sized.h };
+    }
+
+    const kingCue = heroThemeTags(lesson).join(' ');
+    const payoffLine = window.LessonTraits && typeof window.LessonTraits.kingPayoffFor === 'function'
+      ? window.LessonTraits.kingPayoffFor(kingCue, { heroKey: prop.key, feelingsKing: feelingsStage })
+      : 'WORLD READY';
+
+    if (kingBox && !feelingsStage) {
+      const padW = 72;
+      const padH = 56;
+      const count = 3;
+      const span = Math.max(padW, kingBox.w - 48);
+      const step = count > 1 ? Math.round((span - padW) / (count - 1)) : 0;
+      const baseX = kingBox.x + Math.round((kingBox.w - span) / 2);
+      const baseY = kingBox.y + kingBox.h - padH - 8;
+      for (let i = 0; i < count; i++) {
+        const px = baseX + i * step;
+        const py = Math.max(kingBox.y + 8, baseY);
+        L.place(page, {
+          locked: true,
+          kind: 'image',
+          asset: heroSnapPadPng(padW, padH, i + 1),
+          w: padW,
+          h: padH,
+          intentional: true,
+          bleed: 'edge',
+          _force: { x: px, y: py, w: padW, h: padH },
+          role: 'dropPad',
+          meta: { stageTarget: true, snapIndex: i + 1 },
+        });
+      }
+      L.place(page, {
+        locked: true,
+        kind: 'image',
+        asset: heroStateLadderPng(300, 82, payoffLine),
+        w: 300,
+        h: 82,
+        intentional: true,
+        bleed: 'edge',
+        _force: { x: 24, y: 168, w: 300, h: 82 },
+        role: 'heroStateLadder',
+        meta: { states: ['empty', 'snap', 'ready'], payoff: payoffLine },
+      });
+      L.place(page, {
+        locked: true,
+        kind: 'image',
+        asset: heroPayoffBadgePng(188, 46, payoffLine),
+        w: 188,
+        h: 46,
+        intentional: true,
+        bleed: 'edge',
+        _force: { x: 1068, y: 70, w: 188, h: 46 },
+        role: 'heroPayoff',
+        meta: { payoff: payoffLine, state: 'ready' },
+      });
+      L.place(page, {
+        locked: false,
+        kind: 'image',
+        asset: heroPayoffSealPng(188, 46),
+        w: 188,
+        h: 46,
+        intentional: true,
+        bleed: 'edge',
+        _force: { x: 1068, y: 70, w: 188, h: 46 },
+        role: 'heroPayoffCover',
+        meta: { covers: 'heroPayoff', state: 'locked' },
+      });
+      page.notes.push('recipe:heroPropSnap');
+      page.notes.push('recipe:heroPropPayoff');
     }
 
 
     // Face kits ship plenty of parts — use two dock rows when the zone is tall enough.
     // Tall-thin roleplay cutouts (musicians ~0.4–0.65) need height ≥ DOCK_MIN/aspect for
     // grabbable width; a 72px cap + 2 rows filters them all out except squat pieces.
-    const tools = roleplayDockProps(lesson, prop, 18);
+    const tools = roleplayDockProps(lesson, prop, 18)
+      .slice()
+      .sort((a, b) => String(a.sayNoun || a.key).localeCompare(String(b.sayNoun || b.key)));
     let dockPlaced = 0;
     if (tools.length && dock) {
-      const gap = 6;
+      const gap = 10;
       const rowGap = 6;
+      const LABEL_H = 22;
       // Grab floor = M10 warn (64) — never ship postage-stamp dock toys.
       const DOCK_MIN = 64;
+      const tray = { x: dock.x, y: dock.y, w: dock.w, h: Math.max(DOCK_MIN + 8, dock.h - LABEL_H) };
       const needHFor = (t) => Math.ceil(DOCK_MIN / Math.max(0.05, Number(t.aspect) || 1));
       const thinCount = tools.filter((t) => (Number(t.aspect) || 1) < 0.7).length;
       const maxNeedH = tools.reduce((m, t) => Math.max(m, needHFor(t)), DOCK_MIN);
       let rows = 1;
-      if (dock.h >= 120 && tools.length > 10 && thinCount < tools.length * 0.5) {
-        const rowH2 = Math.floor((dock.h - rowGap - 4) / 2);
+      if (tray.h >= 120 && tools.length > 10 && thinCount < tools.length * 0.5) {
+        const rowH2 = Math.floor((tray.h - rowGap - 4) / 2);
         // Only use 2 rows when every tool can still hit DOCK_MIN width at that rowH.
         if (rowH2 >= maxNeedH) rows = 2;
-      } else if (dock.h >= 120 && tools.length > 10) {
+      } else if (tray.h >= 120 && tools.length > 10) {
         // Mostly tall-thin: pick the largest row count that still satisfies needH.
         for (let tryRows = 2; tryRows >= 1; tryRows--) {
-          const tryH = Math.floor((dock.h - rowGap * (tryRows - 1) - 4) / tryRows);
+          const tryH = Math.floor((tray.h - rowGap * (tryRows - 1) - 4) / tryRows);
           if (tryH >= maxNeedH || tryRows === 1) {
             rows = tryRows;
             break;
@@ -6725,7 +8908,7 @@
         }
       }
       const cols = Math.ceil(tools.length / rows);
-      const rowH = Math.floor((dock.h - rowGap * (rows - 1) - 4) / rows);
+      const rowH = Math.floor((tray.h - rowGap * (rows - 1) - 4) / rows);
       // No hard 72 cap. Prefer grab-floor sizing (min side = DOCK_MIN) so many
       // tall-thin musicians fit; bloating to full rowH makes each too wide and
       // the packer drops them. Cap height at rowH unless needH requires more.
@@ -6788,15 +8971,13 @@
             }
           }
         }
-        // Feelings faces are square stickers; a single uncrowded row defaulted to
-        // the 64px grab-floor and looked lost in the 1248px dock. Grow them to
-        // fill the dock height (capped so the whole row still fits width) so the
-        // drag targets read as the point of the page (Manus S54).
-        if (feelingsStage && sized.length) {
+        // Grow a short tray (≤8 tools or feelings faces) so pieces read as
+        // the point of the page, not postage stamps in a 1248px bay (Manus S54 / R1).
+        if (sized.length && (feelingsStage || sized.length <= 8)) {
           const gapsW = gap * Math.max(0, sized.length - 1);
           const rawW = sized.reduce((s, x) => s + x.w, 0);
           const maxPieceH0 = sized.reduce((m, x) => Math.max(m, x.h), 0);
-          const widthScale = rawW > 0 ? (dock.w - gapsW) / rawW : 1;
+          const widthScale = rawW > 0 ? (tray.w - gapsW) / rawW : 1;
           const heightScale = maxPieceH0 > 0 ? rowH / maxPieceH0 : 1;
           const grow = Math.min(widthScale, heightScale);
           if (grow > 1.02) {
@@ -6804,22 +8985,23 @@
               t: x.t,
               w: Math.round(x.w * grow),
               h: Math.round(x.h * grow),
-            })).filter((x) => x.w <= dock.w);
+            })).filter((x) => x.w <= tray.w && x.h <= rowH);
           }
         }
         sizedPerRow.push(sized.length);
         const usedW = sized.reduce((s, x) => s + x.w, 0) + gap * Math.max(0, sized.length - 1);
-        let originX = dock.x + Math.max(0, Math.floor((dock.w - usedW) / 2));
+        let originX = tray.x + Math.max(0, Math.floor((tray.w - usedW) / 2));
         const maxPieceH = sized.reduce((m, x) => Math.max(m, x.h), 0);
-        const rowTop = dock.y + r * (rowH + rowGap);
+        const rowTop = tray.y + r * (rowH + rowGap);
         const originY = rowTop + Math.max(0, Math.floor((rowH - maxPieceH) / 2));
-        const dockRight = dock.x + dock.w;
+        const dockRight = tray.x + tray.w;
         sized.forEach(({ t, w, h }) => {
           // Never clamp sideways into a neighbor — that is how H3 IoU fires when
           // grab-floor pieces no longer fit the row. Drop the overflow instead.
           if (originX + w > dockRight + 0.5) return;
           const x = originX;
-          const y = Math.max(dock.y, Math.min(dock.y + dock.h - h, originY));
+          const y = Math.max(tray.y, Math.min(tray.y + tray.h - h, originY));
+          const sayNoun = t.sayNoun || sayNounFromKey(t.key);
           L.place(page, {
             locked: false,
             kind: 'image',
@@ -6830,9 +9012,24 @@
             _force: { x, y, w, h },
             role: 'dockPiece',
             meta: t.feelWord
-              ? { propKey: t.key, propAspect: t.aspect, word: t.feelWord }
-              : { propKey: t.key, propAspect: t.aspect },
+              ? { propKey: t.key, propAspect: t.aspect, word: t.feelWord, sayNoun }
+              : { propKey: t.key, propAspect: t.aspect, sayNoun },
           });
+          if (sayNoun && !feelingsStage) {
+            L.place(page, {
+              locked: true,
+              kind: 'text',
+              text: sayNoun,
+              color: [15, 23, 42, 255],
+              size: 16,
+              w,
+              h: LABEL_H,
+              intentional: true,
+              _force: { x, y: Math.min(dock.y + dock.h - LABEL_H, y + h + 1), w, h: LABEL_H },
+              role: 'dockLabel',
+              meta: { sayNoun, propKey: t.key },
+            });
+          }
           dockPlaced += 1;
           originX = x + w + gap;
         });
@@ -7051,6 +9248,276 @@
     page.notes.push('preA1Actions:' + actions.map((a) => a.key).join('|'));
   }
 
+  /** Topic + milestone metadata for the frameTiles scene-stage payoff. */
+  function resolveFrameScene(lesson, blanks) {
+    const hay = [
+      lesson && lesson.title,
+      ...((lesson && lesson.vocabulary) || []).map((v) => (typeof v === 'string' ? v : v && v.word)),
+      ...((lesson && lesson.sentenceFrames) || []),
+    ].filter(Boolean).join(' ').toLowerCase();
+    const n = Math.max(1, Math.min(5, Number(blanks) || 3));
+    let theme = 'generic';
+    let payoff = 'SCENE READY!';
+    const milestoneSets = {
+      market: ['🧺', '🍎', '💬', '✅'],
+      sport: ['🏃', '🏀', '📣', '🏆'],
+      transport: ['🚏', '🚌', '🗺', '🎯'],
+      camping: ['⛺', '🔦', '🥾', '🔥'],
+      school: ['♻️', '🌱', '💡', '🌍'],
+      generic: ['①', '②', '③', '④', '⑤'],
+    };
+    if (/\b(market|fruit|apple|banana|vendor|basket|stall|fresh|grape|carrot)\b/.test(hay)) {
+      theme = 'market';
+      payoff = 'MARKET OPEN!';
+    } else if (/\b(game|sport|coach|court|ball|team|whistle|score|warm-up|training)\b/.test(hay)) {
+      theme = 'sport';
+      payoff = 'TEAM READY!';
+    } else if (/\b(camp|camping|tent|flashlight|boots|hike|campsite|rain|backpack|coat)\b/.test(hay)) {
+      theme = 'camping';
+      payoff = 'CAMP READY!';
+    } else if (/\b(bus|train|bike|transport|ticket|route|journey|helmet|across|town)\b/.test(hay)
+      || (/\bmap\b/.test(hay) && /\b(bus|train|bike|ticket|route|journey|transport)\b/.test(hay))) {
+      theme = 'transport';
+      payoff = 'ON ROUTE!';
+    } else if (/\b(school|eco|green|reuse|compost|garden|plastic|electricity|teamwork|bottle|paper)\b/.test(hay)) {
+      theme = 'school';
+      payoff = 'GREEN SCHOOL!';
+    }
+    const pool = milestoneSets[theme] || milestoneSets.generic;
+    const milestones = pool.slice(0, n);
+    while (milestones.length < n) milestones.push(String(milestones.length + 1));
+    const frames = boardFrames(lesson);
+    const stepLabels = [];
+    let pad = 0;
+    frames.forEach((frame) => {
+      const segs = frameSegments(frame);
+      segs.forEach((seg) => {
+        if (!seg.blank) return;
+        pad += 1;
+        const fill = intendedFrameFill(frame, lesson);
+        stepLabels.push(String(fill || `step ${pad}`).slice(0, 14));
+      });
+    });
+    while (stepLabels.length < n) stepLabels.push(`step ${stepLabels.length + 1}`);
+    return {
+      theme,
+      payoff,
+      milestones,
+      stepLabels: stepLabels.slice(0, n),
+      title: String((lesson && lesson.title) || 'Build the scene').slice(0, 36),
+      hay,
+    };
+  }
+
+  /**
+   * Scene-first stage for frameTiles: left = initial/building world with empty
+   * milestone slots; right = earned completion payoff (Manus R1–R3 blocker).
+   * One static JPG must prove initial → per-placement → completed states.
+   */
+  function frameSceneStagePng(w, h, scene, blanks) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const theme = (scene && scene.theme) || 'generic';
+    const payoff = String((scene && scene.payoff) || 'SCENE READY!');
+    const milestones = ((scene && scene.milestones) || []).slice(0, blanks);
+    const stepLabels = ((scene && scene.stepLabels) || []).slice(0, blanks);
+    const title = String((scene && scene.title) || 'Build the scene').slice(0, 34);
+    const splitX = Math.round(w * 0.62);
+    const r = 16;
+
+    const rounded = (x, y, rw, rh, rad, fill, stroke) => {
+      ctx.beginPath();
+      ctx.moveTo(x + rad, y);
+      ctx.arcTo(x + rw, y, x + rw, y + rh, rad);
+      ctx.arcTo(x + rw, y + rh, x, y + rh, rad);
+      ctx.arcTo(x, y + rh, x, y, rad);
+      ctx.arcTo(x, y, x + rw, y, rad);
+      ctx.closePath();
+      ctx.fillStyle = fill;
+      ctx.fill();
+      if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = 3; ctx.stroke(); }
+    };
+
+    rounded(1, 1, w - 2, h - 2, r, '#f0fdfa', '#0f766e');
+
+    const drawBackdrop = (ox, ow, complete) => {
+      const groundY = Math.round(h * 0.72);
+      const alpha = complete ? 1 : 0.42;
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      if (theme === 'market') {
+        ctx.fillStyle = complete ? '#fef3c7' : '#e2e8f0';
+        ctx.fillRect(ox + 8, 36, ow - 16, groundY - 36);
+        ctx.fillStyle = complete ? '#92400e' : '#94a3b8';
+        ctx.fillRect(ox + 24, groundY - 28, ow - 48, 32);
+        ctx.fillStyle = complete ? '#fb923c' : '#cbd5e1';
+        ctx.fillRect(ox + 36, groundY - 18, Math.round(ow * 0.28), 18);
+        ctx.fillStyle = complete ? '#84cc16' : '#94a3b8';
+        ctx.fillRect(ox + Math.round(ow * 0.42), groundY - 18, Math.round(ow * 0.28), 18);
+        if (complete) {
+          ctx.font = '22px "Segoe UI Emoji", sans-serif';
+          ctx.fillText('🧺', ox + ow - 52, groundY - 34);
+        }
+      } else if (theme === 'sport') {
+        ctx.fillStyle = complete ? '#bbf7d0' : '#e2e8f0';
+        ctx.fillRect(ox + 8, 36, ow - 16, groundY - 36);
+        ctx.strokeStyle = complete ? '#15803d' : '#94a3b8';
+        ctx.lineWidth = 4;
+        ctx.strokeRect(ox + 20, groundY - 42, ow - 40, 36);
+        if (complete) {
+          ctx.fillStyle = '#f97316';
+          ctx.beginPath();
+          ctx.arc(ox + Math.round(ow * 0.72), groundY - 22, 14, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      } else if (theme === 'transport') {
+        ctx.fillStyle = complete ? '#bae6fd' : '#e2e8f0';
+        ctx.fillRect(ox + 8, 36, ow - 16, groundY - 36);
+        ctx.strokeStyle = complete ? '#0284c7' : '#94a3b8';
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(ox + 24, groundY - 8);
+        ctx.lineTo(ox + ow - 24, groundY - 8);
+        ctx.stroke();
+        if (complete) {
+          ctx.fillStyle = '#facc15';
+          ctx.fillRect(ox + Math.round(ow * 0.35), groundY - 28, Math.round(ow * 0.3), 20);
+        }
+      } else if (theme === 'camping') {
+        ctx.fillStyle = complete ? '#172554' : '#cbd5e1';
+        ctx.fillRect(ox + 8, 36, ow - 16, groundY - 36);
+        ctx.fillStyle = complete ? '#14532d' : '#94a3b8';
+        ctx.fillRect(ox + 8, groundY - 4, ow - 16, h - groundY);
+        if (complete) {
+          const glow = ctx.createRadialGradient(ox + Math.round(ow * 0.55), groundY + 18, 4, ox + Math.round(ow * 0.55), groundY + 18, 36);
+          glow.addColorStop(0, '#fde68a');
+          glow.addColorStop(1, 'rgba(249,115,22,0)');
+          ctx.fillStyle = glow;
+          ctx.beginPath();
+          ctx.arc(ox + Math.round(ow * 0.55), groundY + 18, 36, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      } else if (theme === 'school') {
+        ctx.fillStyle = complete ? '#ecfdf5' : '#e2e8f0';
+        ctx.fillRect(ox + 8, 36, ow - 16, groundY - 36);
+        ctx.fillStyle = complete ? '#16a34a' : '#94a3b8';
+        ctx.fillRect(ox + 28, groundY - 30, ow - 56, 24);
+        if (complete) {
+          ctx.fillStyle = '#22c55e';
+          ctx.beginPath();
+          ctx.arc(ox + Math.round(ow * 0.78), groundY - 18, 12, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      } else {
+        ctx.fillStyle = complete ? '#ede9fe' : '#e2e8f0';
+        ctx.fillRect(ox + 8, 36, ow - 16, groundY - 36);
+        ctx.fillStyle = complete ? '#7c3aed' : '#94a3b8';
+        ctx.fillRect(ox + 28, groundY - 26, ow - 56, 20);
+      }
+      ctx.restore();
+    };
+
+    drawBackdrop(4, splitX - 8, false);
+    drawBackdrop(splitX + 4, w - splitX - 8, true);
+
+    ctx.strokeStyle = 'rgba(15,118,110,0.35)';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([6, 6]);
+    ctx.beginPath();
+    ctx.moveTo(splitX, 12);
+    ctx.lineTo(splitX, h - 12);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = '#0f766e';
+    ctx.font = '800 12px Poppins, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText('NOW · BUILD', 16, 10);
+    ctx.textAlign = 'right';
+    ctx.fillText('DONE · PAYOFF', w - 16, 10);
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#64748b';
+    ctx.font = '700 10px Poppins, sans-serif';
+    ctx.fillText('EMPTY → PLACED → SCENE CHANGES', 16, 24, splitX - 32);
+    ctx.fillStyle = '#134e4a';
+    ctx.font = '800 14px Poppins, sans-serif';
+    ctx.fillText(title, 16, 38, splitX - 32);
+
+    const n = Math.max(1, Math.min(5, Number(blanks) || milestones.length || 3));
+    const slotY = h - 36;
+    const slotR = 15;
+    const leftW = splitX - 24;
+    const gap = Math.max(8, Math.floor((leftW - slotR * 2 * n) / Math.max(1, n - 1)));
+    let sx = 16 + slotR;
+    for (let i = 0; i < n; i++) {
+      ctx.strokeStyle = '#7c3aed';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.arc(sx, slotY, slotR, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(sx, slotY, slotR - 2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#6d28d9';
+      ctx.font = '800 11px Poppins, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(String(i + 1), sx, slotY);
+      const glyph = milestones[i] || String(i + 1);
+      ctx.font = '16px "Segoe UI Emoji", sans-serif';
+      ctx.fillText(glyph, sx, slotY - slotR - 12);
+      ctx.fillStyle = '#475569';
+      ctx.font = '700 9px Poppins, sans-serif';
+      ctx.fillText(String(stepLabels[i] || `step ${i + 1}`).slice(0, 12), sx, slotY + slotR + 10, slotR * 2 + 8);
+      if (i < n - 1) {
+        ctx.fillStyle = '#a78bfa';
+        ctx.fillRect(sx + slotR + 2, slotY - 2, gap, 3);
+      }
+      sx += slotR * 2 + gap;
+    }
+
+    // DONE side: show every milestone lit + check — the earned world state.
+    const doneStart = splitX + 18;
+    const doneW = w - splitX - 36;
+    const doneSlotY = Math.round(h * 0.58);
+    const doneGap = Math.max(6, Math.floor((doneW - 22 * n) / Math.max(1, n - 1)));
+    let dx = doneStart + 11;
+    for (let i = 0; i < n; i++) {
+      ctx.fillStyle = '#16a34a';
+      ctx.beginPath();
+      ctx.arc(dx, doneSlotY, 11, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '800 10px Poppins, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('✓', dx, doneSlotY + 1);
+      if (i < n - 1) {
+        ctx.strokeStyle = '#22c55e';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(dx + 12, doneSlotY);
+        ctx.lineTo(dx + 12 + doneGap - 6, doneSlotY);
+        ctx.stroke();
+      }
+      dx += 22 + doneGap;
+    }
+
+    rounded(splitX + 12, h - 46, w - splitX - 24, 36, 10, '#047857', '#065f46');
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '800 14px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(`✓ ${payoff}`, splitX + (w - splitX) / 2, h - 28, w - splitX - 40);
+
+    return c.toDataURL('image/png');
+  }
+
   /**
    * Sentence Frames — draggable word tiles for blanks. Drop pads live in
    * makeFrames DOM (data-frame-blank). When two blanks share one best fill
@@ -7062,6 +9529,28 @@
     const words = vocabList(lesson).map((v) => (v && v.word) || '').filter(Boolean);
     const blanks = frameBlankCount(lesson);
     if (!words.length || !blanks) return;
+    const scene = resolveFrameScene(lesson, blanks);
+    const stage = L.zoneRect(page, 'sceneStage') || L.zoneRect(page, 'artSafe');
+    if (stage) {
+      L.place(page, {
+        locked: true,
+        kind: 'image',
+        asset: frameSceneStagePng(stage.w, stage.h, scene, blanks),
+        w: stage.w,
+        h: stage.h,
+        intentional: true,
+        anchor: { x: stage.x, y: stage.y, w: stage.w, h: stage.h },
+        role: 'frameSceneStage',
+        meta: {
+          theme: scene.theme,
+          milestones: scene.milestones,
+          stepLabels: scene.stepLabels,
+          payoff: scene.payoff,
+          stateContract: ['initial', 'per-placement', 'completed'],
+          blanks,
+        },
+      });
+    }
     const tileWords = expandFrameTileWords(lesson, words);
     const dock = L.zoneRect(page, 'dock');
     const gap = 14;
@@ -7101,6 +9590,9 @@
     // confirms/retries by eye (numbered badge lets the teacher call a frame by
     // number without re-reading the whole sentence).
     page.notes.push('frameStates:empty-dashed-target|draggable-raised-tile|placed-covers-pad|teacher-confirms-by-eye');
+    page.notes.push('frameSceneIntegrated:true');
+    page.notes.push('framePayoffVisible:true');
+    page.notes.push('frameSceneTheme:' + scene.theme);
   }
 
   /**
@@ -7783,8 +10275,11 @@
     pageTypeForKey,
     speakingCoverRect,
     speakingFlapRect,
+    coverAnswerBind,
+    coverAnswerWorldPng,
     speakingChunks,
     findHeroProp,
+    sayNounFromKey,
     MAX_STORY_PAGES,
     MAX_BOARD_FRAMES,
     storyPageCount,
@@ -7808,6 +10303,11 @@
     matchDockIsPartial,
     matchDockMappingAudit,
     matchDockWorldTheme,
+    matchDockWorldScenePng,
+    matchDockPadPlatePng,
+    matchDockRewardPng,
+    matchDockWaxSealPng,
+    matchDockThreeStateRects,
     matchDockStudentHint,
     solidPng,
     slotGhostPng,
