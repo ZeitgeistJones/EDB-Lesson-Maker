@@ -37,6 +37,7 @@ try {
       const stage = art && art.querySelector('[data-story-scene-stage]');
       const body = pageEl && pageEl.querySelector('[data-story-body]');
       const moment = pageEl && pageEl.querySelector('[data-story-moment]');
+      const overlay = pageEl && pageEl.querySelector('[data-story-overlay]');
       const storyKeys = Object.keys(rendered.slots.byKey).filter((key) => /^story\d+$/.test(key));
       const layers = stage
         ? Array.from(stage.querySelectorAll('[data-story-layer]')).map((node) => ({
@@ -49,6 +50,7 @@ try {
         storyKeys,
         body: body ? String(body.textContent || '').trim() : '',
         hasMoment: !!moment,
+        hasOverlay: !!overlay,
         momentHeight: moment ? Math.round(moment.getBoundingClientRect().height) : 0,
         artWidth: art ? Math.round(art.getBoundingClientRect().width) : 0,
         hasStage: !!stage,
@@ -76,6 +78,21 @@ try {
         environmentKey: 'story-env-classroom',
         propGet: (key) => window.PropBank.get(key),
       }),
+      soccer: window.StoryScene.compose({
+        templateId: 'exchange',
+        actionVerb: 'gives',
+        environmentKey: 'story-env-soccer-field',
+        slots: {
+          giver: { who: 'leo', pose: 'hold', emotion: 'happy' },
+          receiver: { who: 'mia', pose: 'reach', emotion: 'happy' },
+          item: { propKey: 'soccer-ball', scaleClass: 'ball' },
+        },
+      }, {
+        stageW: 480,
+        stageH: 380,
+        environmentKey: 'story-env-soccer-field',
+        propGet: (key) => window.PropBank.get(key),
+      }),
       inferredHome: window.StoryScene.environmentKeyForCue(
         'Mom, Mia, and Leo are together at home.',
         (key) => window.PropBank.get(key)
@@ -90,6 +107,7 @@ try {
     'single story page must not concatenate unseen later beats'
   );
   assert(result.solo.hasMoment, 'solo story must use scene-first moment chrome');
+  assert(result.solo.hasOverlay, 'narration must overlay the illustration, not steal stage height');
   assert(result.solo.momentHeight >= 300, `solo scene is too short: ${result.solo.momentHeight}px`);
   assert(result.solo.hasStage, 'solo story must render StoryScene');
   assert.equal(result.solo.warnings, '', `solo StoryScene warnings: ${result.solo.warnings}`);
@@ -118,13 +136,32 @@ try {
     result.exchange.layers.some(
       (layer) => layer.slot === 'giver' && layer.key === 'cast-mia-reach-happy'
     ),
-    'transfer must stage the giver with a reach pose'
+    'transfer must stage the giver offering toward the recipient'
   );
   assert(
     result.exchange.layers.some(
       (layer) => layer.slot === 'receiver' && layer.key === 'cast-leo-reach-happy'
     ),
     'transfer must stage the recipient ready to receive'
+  );
+  const exGiver = result.exchange.layers.find((layer) => layer.slot === 'giver');
+  const exItem = result.exchange.layers.find((layer) => layer.slot === 'item');
+  assert(exGiver && exItem, 'exchange must place giver and item');
+  assert(
+    exItem.x < exGiver.x + exGiver.w && exItem.x + exItem.w > exGiver.x,
+    'held item must overlap the giver hand-band, not float in the gap'
+  );
+  assert.equal(result.soccer.warnings.length, 0, result.soccer.warnings.join(' | '));
+  assert.equal(result.soccer.storyActionContract?.ok, true, 'soccer transfer must satisfy contract');
+  assert(
+    result.soccer.layers.some((layer) => layer.key === 'story-env-soccer-field'),
+    'soccer beat must bind the field environment'
+  );
+  assert(
+    result.soccer.layers.some(
+      (layer) => layer.slot === 'giver' && layer.key === 'cast-leo-reach-happy'
+    ),
+    'soccer transfer must keep Leo as the giver'
   );
   assert.equal(result.inferredHome, 'story-env-home');
 

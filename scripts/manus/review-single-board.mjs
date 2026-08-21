@@ -109,9 +109,17 @@ async function main() {
   // The shared packet picker intentionally accepts board-order filenames only.
   // Keep the single board in that grammar so it cannot be mistaken for an
   // unrelated image artifact in the packet directory.
-  const stagedName = `page-00-${slug(boardType)}.jpg`;
+  // Story packets must use storyN so pickImages never drops the only board
+  // (R4/R5 attached a JPG, but a family tableau was sent under a transfer brief).
+  const stagedName = boardType === 'story'
+    ? 'page-00-story0.jpg'
+    : `page-00-${slug(boardType)}.jpg`;
   const stagedPath = path.join(packetDir, stagedName);
   fs.copyFileSync(boardAbs, stagedPath);
+  const stagedBytes = fs.statSync(stagedPath).size;
+  if (stagedBytes < 20000) {
+    throw new Error(`Packet image too small (${stagedBytes} bytes): ${stagedPath}`);
+  }
   // Keep a durable compare copy outside the Manus packet naming.
   const archivePath = path.join(
     ROOT,
@@ -198,6 +206,11 @@ async function main() {
   const logMd = path.join(ROOT, 'docs', 'manus-board-loops', `${boardType}.md`);
   fs.mkdirSync(path.dirname(logMd), { recursive: true });
   const review = out.review || {};
+  const emptyZero = !review
+    || (Number(review.score) === 0
+      && !review.weakest_link
+      && !(review.next_actions || []).length
+      && !(review.blocking_issues || []).length);
   const block = [
     '',
     `## Round ${round} — ${topic} (${level})`,
@@ -211,6 +224,9 @@ async function main() {
     `- WEAKEST_LINK: ${review.weakest_link || 'n/a'}`,
     `- ESCALATION_HOMEWORK: ${review.escalation_homework || 'n/a'}`,
     `- STATUS: ${out.ok ? 'structured_ok' : 'needs_attention'}`,
+    emptyZero
+      ? '- REVIEW_VALIDITY: **INVALID** — empty zero-score payload; not treated as a board verdict.'
+      : '- REVIEW_VALIDITY: ok',
     '',
     '### Blocking / next actions',
     ...(review.blocking_issues || []).map((s) => `- BLOCK: ${s}`),

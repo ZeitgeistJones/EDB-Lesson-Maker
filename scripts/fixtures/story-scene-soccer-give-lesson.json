@@ -1,0 +1,59 @@
+{
+  "title": "A Gift on the Field",
+  "warmUp": {
+    "question": "What do you play outside?",
+    "sampleAnswer": "I play soccer."
+  },
+  "vocabulary": [
+    { "word": "ball", "emoji": "⚽", "sentence": "Leo has a ball." },
+    { "word": "field", "emoji": "🌿", "sentence": "We are on the field." },
+    { "word": "friend", "emoji": "🤝", "sentence": "Mia is my friend." },
+    { "word": "give", "emoji": "🎁", "sentence": "Leo gives Mia a ball." },
+    { "word": "happy", "emoji": "😊", "sentence": "Mia is happy." },
+    { "word": "soccer", "emoji": "⚽", "sentence": "We play soccer." }
+  ],
+  "sentenceFrames": [
+    "I have a ____.",
+    "I give my friend a ____.",
+    "I am ____."
+  ],
+  "story": {
+    "title": "A Gift on the Field",
+    "pages": [
+      {
+        "heading": "The ball",
+        "text": "Leo gives Mia a ball. Mia smiles.",
+        "visualTheme": "soccer",
+        "visualCaption": "Leo gives Mia a ball",
+        "storyScene": {
+          "templateId": "exchange",
+          "actionVerb": "gives",
+          "environmentKey": "story-env-soccer-field",
+          "slots": {
+            "giver": { "who": "leo", "pose": "reach", "emotion": "happy" },
+            "receiver": { "who": "mia", "pose": "reach", "emotion": "happy" },
+            "item": { "propKey": "soccer-ball", "scaleClass": "ball" }
+          }
+        }
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What does Leo give Mia?", "sampleAnswer": "A ball." },
+      { "question": "Where are they?", "sampleAnswer": "On the field." }
+    ],
+    "creativeQuestions": [
+      { "question": "What do you give a friend?", "sampleAnswer": "I give a friend a ball." }
+    ]
+  },
+  "speakingQuestions": [
+    { "question": "Do you like soccer?", "sampleAnswer": "Yes, I do." }
+  ],
+  "activity": {
+    "title": "Match the field words",
+    "prompt": "Match each word to the picture.",
+    "templates": ["I give my friend a ____."]
+  },
+  "reviewSentences": [
+    "Leo gives Mia a ball. Mia smiles."
+  ]
+}

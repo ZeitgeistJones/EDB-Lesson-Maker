@@ -31,9 +31,10 @@
     { re: /\bclassroom|teacher|student|school\b/i, key: 'story-env-classroom' },
     { re: /\bhome|bedroom|family\b/i, key: 'story-env-home' },
     { re: /\bwoods|forest|camp|camping\b/i, key: 'story-env-woods' },
-    { re: /\bsoccer|football|field\b/i, key: 'story-env-soccer-field' },
+    { re: /\bsoccer|football|pitch\b/i, key: 'story-env-soccer-field' },
     { re: /\bbasketball|court\b/i, key: 'story-env-basketball-court' },
     { re: /\bocean|sea|beach\b/i, key: 'story-env-ocean' },
+    { re: /\bpicnic|park|grass|outdoor\b/i, key: 'story-env-grass-field' },
   ];
 
   function words(lesson) {
@@ -186,6 +187,32 @@
     if (!page || page.storyScene) return null;
     const object = chooseStoryObject(lesson, page);
     const env = chooseEnv(lesson, page);
+    const text = blob(lesson, page);
+    const transfer = /\b(give|gives|gave|hand|hands|share|shares|show|shows)\b/i.test(text);
+    if (transfer && object) {
+      const giver = firstCast('mia', 'reach');
+      const receiver = firstCast('leo', 'reach');
+      if (giver && receiver) {
+        const whoName = 'Mia';
+        const envKey = env && env.key;
+        return {
+          scene: {
+            templateId: 'exchange',
+            actionVerb: 'gives',
+            environmentKey: envKey || undefined,
+            slots: {
+              giver,
+              receiver,
+              item: { propKey: object.prop.key, scaleClass: 'held' },
+            },
+          },
+          caption: `${whoName} gives Leo a ${object.word}.`,
+          text: isPreA1(meta)
+            ? `${whoName} gives Leo a ${object.word}. Point.`
+            : `${whoName} gives Leo a ${object.word}. Leo smiles.`,
+        };
+      }
+    }
     const actor = firstCast(index % 2 ? 'leo' : 'mia', 'idle');
     if (!actor || (!object && !env)) return null;
 

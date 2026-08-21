@@ -112,17 +112,19 @@
 
   /** Per-key apron overrides (fence/habitat need more FG; water decks need less). */
   const ENV_FG_BY_KEY = {
-    'story-env-zoo': 0.34,
-    'story-env-construction': 0.28,
-    'story-env-woods': 0.16,
+    // Keep aprons short. A tall re-cover strip used to reprint sofa/desk
+    // bands under the actors (R3 classroom + R4 home Manus packets).
+    'story-env-zoo': 0.14,
+    'story-env-construction': 0.16,
+    'story-env-woods': 0.12,
     'story-env-pool-edge': 0.06,
     'story-env-soccer-field': 0.1,
     'story-env-ocean': 0.08,
-    'story-env-classroom': 0.12,
-    'story-env-home': 0.12,
-    'story-env-bedroom': 0.12,
-    'story-env-hotel-lobby': 0.14,
-    'story-env-airport-counter': 0.14,
+    'story-env-classroom': 0.06,
+    'story-env-home': 0.06,
+    'story-env-bedroom': 0.06,
+    'story-env-hotel-lobby': 0.08,
+    'story-env-airport-counter': 0.08,
   };
 
   /**
@@ -173,9 +175,9 @@
       paintOrder: ['ground', 'giver', 'receiver', 'item'],
       slots: {
         ground: { x: 0.04, y: 0.88, w: 0.92, h: 0.1, scaleClass: 'ground', anchor: 'bottom' },
-        giver: { x: 0.0, y: 0.08, w: 0.48, h: 0.86, facing: 'right', scaleClass: 'actor' },
-        receiver: { x: 0.52, y: 0.08, w: 0.48, h: 0.86, facing: 'left', scaleClass: 'actor' },
-        item: { x: 0.34, y: 0.32, w: 0.32, h: 0.3, scaleClass: 'held', anchor: 'center' },
+        giver: { x: 0.04, y: 0.04, w: 0.5, h: 0.9, facing: 'right', scaleClass: 'actor' },
+        receiver: { x: 0.46, y: 0.04, w: 0.5, h: 0.9, facing: 'left', scaleClass: 'actor' },
+        item: { x: 0.36, y: 0.36, w: 0.22, h: 0.22, scaleClass: 'held', anchor: 'center' },
       },
     },
     locationActivity: {
@@ -482,9 +484,52 @@
     return { ok: !chosenPose || chosenPose === mapped || mapped === 'idle', pose: mapped };
   }
 
+  function rectsOverlap(a, b, pad) {
+    if (!a || !b) return false;
+    const p = Number(pad) || 0;
+    return (
+      a.x < b.x + b.w + p &&
+      a.x + a.w + p > b.x &&
+      a.y < b.y + b.h + p &&
+      a.y + a.h + p > b.y
+    );
+  }
+
+  /**
+   * Pin a held item to the giver's outstretched facing-side hand.
+   * Authored cast plates face viewer-right; reach extends that same way.
+   * Hold plates present away from the facing side — do not use them for give.
+   */
+  function snapHeldItem(item, giver, receiver, stageW, stageH) {
+    if (!item || !giver) return item;
+    const aspect = item.w / Math.max(item.h, 1);
+    const h = clamp(Math.min(giver.h * 0.2, stageH * 0.16), 24, stageH * 0.2);
+    const w = clamp(h * aspect, 20, stageW * 0.14);
+    item.w = w;
+    item.h = h;
+    const towardReceiver = !giver.flip;
+    const handX = towardReceiver
+      ? giver.x + giver.w * 0.84
+      : giver.x + giver.w * 0.02;
+    const handY = giver.y + giver.h * 0.34;
+    item.x = handX - w * 0.35;
+    item.y = handY - h * 0.45;
+    if (receiver) {
+      const gapMid = towardReceiver
+        ? (giver.x + giver.w + receiver.x) / 2
+        : (receiver.x + receiver.w + giver.x) / 2;
+      item.x = towardReceiver
+        ? clamp(item.x, giver.x + giver.w * 0.62, gapMid - w * 0.1)
+        : clamp(item.x, gapMid - w * 0.2, giver.x + giver.w * 0.12);
+    }
+    item.z = Math.max(Number(giver.z) || 1, Number(receiver && receiver.z) || 1) + 1;
+    return item;
+  }
+
   /**
    * Static contract for transfer predicates. This is semantic and geometric:
-   * a transfer requires two engaged actors and an item visibly between them.
+   * a transfer requires two engaged actors and an item visibly in the giver's
+   * hand on the path toward the recipient.
    */
   function storyActionContract(scene, fills, layers) {
     const verb = String(scene && (scene.actionVerb || scene.verb) || '').toLowerCase().trim();
@@ -505,7 +550,11 @@
     const contract = {
       kind: 'transfer',
       verb,
-      agent_contact: !!giver && !!item && /^(reach|hold|give|show)$/.test(giverPose),
+      agent_contact:
+        !!giver &&
+        !!item &&
+        rectsOverlap(item, giver, 2) &&
+        /^(reach|hold|give|show)$/.test(giverPose),
       object_path:
         !!giver &&
         !!receiver &&
@@ -670,8 +719,8 @@
     let fills = (scene && scene.slots) || {};
     const transferVerb = TRANSFER_VERBS.has(String(verb || '').toLowerCase().trim());
     if (templateId === 'exchange' && transferVerb) {
-      // Generic hold plates do not show a transfer. Reuse existing reach plates
-      // on both sides so hands, eyeline, and object path form one readable beat.
+      // Reach plates extend toward the facing side. Hold plates present the
+      // empty palm on the far side, so a ball lands on the chest (R6 soccer).
       fills = Object.assign({}, fills, {
         giver: Object.assign({}, fills.giver || {}, { pose: 'reach', facing: 'right' }),
         receiver: Object.assign({}, fills.receiver || {}, { pose: 'reach', facing: 'left' }),
@@ -722,24 +771,24 @@
     }
     if (templateId === 'exchange' && transferVerb) {
       Object.assign(slots.giver, {
-        x: 0.03,
-        y: 0.08,
+        x: 0.06,
+        y: 0.04,
         w: 0.5,
-        h: 0.86,
+        h: 0.9,
         facing: 'right',
       });
       Object.assign(slots.receiver, {
-        x: 0.47,
-        y: 0.08,
+        x: 0.44,
+        y: 0.04,
         w: 0.5,
-        h: 0.86,
+        h: 0.9,
         facing: 'left',
       });
       Object.assign(slots.item, {
         x: 0.38,
-        y: 0.35,
-        w: 0.24,
-        h: 0.24,
+        y: 0.36,
+        w: 0.2,
+        h: 0.2,
         scaleClass: 'held',
         anchor: 'center',
       });
@@ -829,7 +878,7 @@
       }
     }
 
-    if (envLayer && activeEnvMode) {
+    if (envLayer && activeEnvMode && templateId !== 'exchange') {
       const frac =
         (ENV_FG_BY_KEY[envLayer.key] != null
           ? ENV_FG_BY_KEY[envLayer.key]
@@ -849,11 +898,26 @@
           slot: 'envFg',
           scaleClass: 'envFg',
           envMode: envLayer.envMode,
-          objectFit: 'cover',
-          objectPosition: 'center bottom',
+          objectFit: envLayer.objectFit || 'cover',
+          objectPosition: envLayer.objectPosition || 'center bottom',
           isEnvFg: true,
+          envSrc: {
+            x: envLayer.x,
+            y: envLayer.y,
+            w: envLayer.w,
+            h: envLayer.h,
+            objectFit: envLayer.objectFit || 'cover',
+            objectPosition: envLayer.objectPosition || 'center bottom',
+          },
         });
       }
+    }
+
+    const giverLayer = layers.find((layer) => layer.slot === 'giver');
+    const receiverLayer = layers.find((layer) => layer.slot === 'receiver');
+    const itemLayer = layers.find((layer) => layer.slot === 'item');
+    if (templateId === 'exchange' && transferVerb && itemLayer && giverLayer) {
+      snapHeldItem(itemLayer, giverLayer, receiverLayer, stageW, stageH);
     }
 
     const actionContract = storyActionContract(scene, fills, layers);
@@ -900,6 +964,8 @@
     inferEnvMode,
     environmentKeyForCue,
     storyActionContract,
+    snapHeldItem,
+    rectsOverlap,
     supportedTemplates,
   };
 })();

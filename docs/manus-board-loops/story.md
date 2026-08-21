@@ -82,12 +82,104 @@ Independent single-board optimization log.
 
 ### Blocking / next actions
 
+## Round 6 — soccer-ball-give-retry (A1)
+
+- BOARD_PATH: `tmp/manus-board-loops/story/round-06-soccer-ball-give-retry.jpg`
+- PACKET: `tmp/manus-board-loops/story/round-06-soccer-ball-give-retry`
+- TASK: https://manus.im/app/bYaQHKRHGTX9Ud5kqUxiDW
+- MANUS_VERDICT: revise
+- SCORE: 49
+- POLISH (ppt_like_quality): 3
+- WEAKEST_LINK: dimension: Visual / Product Polish; sub_criterion: Asset Integration Quality; current_state: The rendered scene still reads as a composite of elements (header, pale-grey tray, and caption) rather than a single cohesive world where the handoff is clearly visible. required_improvement: Deliver a unified, full-bleed scene render with header and caption integrated as non-intrusive overlays, remove trailing tray/line artifacts, and ensure the handoff line-of-action is visually indisputable in the render.
+- ESCALATION_HOMEWORK: Indoor non-sport handoff with distractors (ACCEPT later; picnic park share is the next rotated world).
+- STATUS: structured_ok
+- REVIEW_VALIDITY: ok
+
+### Blocking / next actions
+- ACTION: Blocking: finalize the transfer-action verification gate to require physical release + receiving plane evidence on all handoff verbs.
+- ACTION: High: replace the pale-grey scene tray and black horizontal line with a cohesive, single-scene render.
+- ACTION: Medium: tighten asset fidelity so ball, goal, field, and characters share one lighting register.
+- ACTION: Low: dedicated visual payoff cue on non-movable boards.
+
+### Producer fold (R6)
+- FIX: Full-bleed story moment; header and narration are overlays (no pale tray).
+- FIX: Crop story-cast top-edge contact-sheet bars (black hairline on soccer/picnic).
+- FIX: Skip envFg on `exchange` so a second env strip cannot reprint a line.
+- FIX: Giver uses `reach` (facing-side hand) with the item snapped into that hand, not a mid-torso hold sticker.
+- GATE: `test-story-board-grammar.mjs` still requires overlay, contract, and item/giver overlap.
+
 ## Producer fold and graduation status
 
 - R1 (`friends-day`, valid `revise`, 70): replaced the thin illustration banner and concatenated four-beat transcript with one honest, scene-dominant beat.
 - R2 (`zoo-lion`, valid `revise`, 58): unified every story page into a roughly 70% illustration frame with narration inside the same frame; added explicit beat numbering.
 - R3 (`classroom-book-exchange`, valid `revise`, 48): accepted the transfer-action escalation. `exchange` now stages both actors with existing reach poses, places the item on the handoff path, and emits a five-field `storyActionContract`.
 - R4/R5: identical empty zero-score payloads. These are transport/output failures, not evidence-based `fail` verdicts.
-- LOCAL_GATE: `node scripts/test-story-board-grammar.mjs` passes home/family, zoo/hero, and classroom/exchange generalization with no StoryScene warnings.
-- FINAL_STATUS: **producer fixed; local generalization passed; external Manus graduation unconfirmed because both verification responses were invalid.**
-- DECISION: **HOLD** — no further systemic edits until Manus transport is healthy. One verification Manus call allowed when sole owner confirms packet pipeline; otherwise treat as `NEAR_DONE` with invalid R4/R5.
+- LOCAL_GATE: `node scripts/test-story-board-grammar.mjs` passes home/family, zoo/hero, classroom/exchange, and soccer generalization with no StoryScene warnings.
+- FINAL_STATUS: **in progress** — R6 soccer valid `revise` 49 / polish 3 (below 7/10). R4/R5/R6-first/R7-first were transport `user_stop` or empty structured output.
+- DECISION: continue rotating worlds after folding R6 visual-integration notes. Graduation needs two consecutive ≥7/10 Visual/Product with no P0.
+
+## Round 6 — soccer-ball-give (A1)
+
+- BOARD_PATH: `tmp/manus-board-loops/story/round-06-soccer-ball-give.jpg`
+- PACKET: `tmp/manus-board-loops/story/round-06-soccer-ball-give`
+- TASK: https://manus.im/app/4iqA94ms5kxWG7AYTLmcpu
+- MANUS_VERDICT: n/a
+- SCORE: n/a
+- POLISH (ppt_like_quality): n/a
+- WEAKEST_LINK: n/a
+- ESCALATION_HOMEWORK: n/a
+- STATUS: needs_attention
+- REVIEW_VALIDITY: **INVALID** — agent stopped with no structured_output_result (schema miss / early stop). Packet was healthy (`page-00-story0.jpg`, 131561 bytes, soccer exchange). Not a board verdict.
+
+### Blocking / next actions
+
+## Round 6 — soccer-ball-give-retry (A1)
+
+- BOARD_PATH: `tmp/manus-board-loops/story/round-06-soccer-ball-give-retry.jpg`
+- PACKET: `tmp/manus-board-loops/story/round-06-soccer-ball-give-retry`
+- TASK: https://manus.im/app/bYaQHKRHGTX9Ud5kqUxiDW
+- MANUS_VERDICT: revise
+- SCORE: 49
+- POLISH (ppt_like_quality): 3
+- WEAKEST_LINK: dimension: Visual / Product Polish; sub_criterion: Asset Integration Quality; current_state: The rendered scene still reads as a composite of elements (header, pale-grey tray, and caption) rather than a single cohesive world where the handoff is clearly visible. required_improvement: Deliver a unified, full-bleed scene render with header and caption integrated as non-intrusive overlays, remove trailing tray/line artifacts, and ensure the handoff line-of-action is visually indisputable in the render.
+- ESCALATION_HOMEWORK: Exactly ONE escalating generalization challenge as a buildable spec that stresses the PRODUCER (a new topic, a new page type, a harder CEFR level, or a multi-round activity), escalating relative to what has already passed. Proposal: Add an indoor, non-sport handoff scenario (e.g., “A hands Mia a book at a busy classroom table”) that requires a visible, verifiable handoff in a crowded table setting with multiple distractors. The handoff must be evidenced by giver release, unbroken object path, recipient readiness/contact, mutual attention, and a clearly discernible end-state. This tests generalization of the transfer-gesture grammar beyond sport. Producer response: ACCEPT or DECLINE.
+- STATUS: structured_ok
+- REVIEW_VALIDITY: ok
+
+### Blocking / next actions
+- ACTION: Blocking: finalize the transfer-action verification gate in the isolated-board grammar (R7/board-grammar) to require physical release + receiving plane evidence on all handoff verbs.
+- ACTION: High: replace the pale-grey scene tray and black horizontal line with a cohesive, single-scene render that preserves header/caption zones as non-intrusive overlays.
+- ACTION: Medium: tighten asset fidelity so the ball, goal, field, and characters render with consistent painterly style and lighting across the scene.
+- ACTION: Low: incorporate a dedicated “visual payoff” cue in non-movable boards to provide a distinctive moment of meaning beyond the caption.
+- ACTION: ZPD: implement a scene-level QA that evaluates the observed event against the target verb (give/hand/receive) rather than relying on caption cues alone.
+- ACTION: Escalating Homework: see escalation_homework block for details.
+
+## Round 7 — picnic-apple-share (A1)
+
+- BOARD_PATH: `tmp/manus-board-loops/story/round-07-picnic-apple-share.jpg`
+- PACKET: `tmp/manus-board-loops/story/round-07-picnic-apple-share`
+- TASK: https://manus.im/app/SnPAPSMjm3FP7bfFs8KWfq
+- MANUS_VERDICT: n/a
+- SCORE: n/a
+- POLISH (ppt_like_quality): n/a
+- WEAKEST_LINK: n/a
+- ESCALATION_HOMEWORK: n/a
+- STATUS: needs_attention
+- REVIEW_VALIDITY: **INVALID** — `user_stop` at ~45s; no structured output. Packet healthy.
+
+### Blocking / next actions
+
+## Round 7 — picnic-apple-share-retry (A1)
+
+- BOARD_PATH: `tmp/manus-board-loops/story/round-07-picnic-apple-share-retry.jpg`
+- PACKET: `tmp/manus-board-loops/story/round-07-picnic-apple-share-retry`
+- TASK: https://manus.im/app/5wUaXSR5TsamkDWXKvhz5R
+- MANUS_VERDICT: n/a
+- SCORE: n/a
+- POLISH (ppt_like_quality): n/a
+- WEAKEST_LINK: n/a
+- ESCALATION_HOMEWORK: n/a
+- STATUS: needs_attention
+- REVIEW_VALIDITY: **INVALID** — second `user_stop`; no structured output. Same picnic packet. Stopped retrying this world.
+
+### Blocking / next actions

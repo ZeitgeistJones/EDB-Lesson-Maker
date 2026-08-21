@@ -1,0 +1,59 @@
+{
+  "title": "A Picnic Share",
+  "warmUp": {
+    "question": "What do you eat at a picnic?",
+    "sampleAnswer": "I eat an apple."
+  },
+  "vocabulary": [
+    { "word": "apple", "emoji": "🍎", "sentence": "Mia has an apple." },
+    { "word": "picnic", "emoji": "🧺", "sentence": "We have a picnic." },
+    { "word": "friend", "emoji": "🤝", "sentence": "Leo is my friend." },
+    { "word": "share", "emoji": "🎁", "sentence": "Friends share." },
+    { "word": "happy", "emoji": "😊", "sentence": "Leo is happy." },
+    { "word": "park", "emoji": "🌳", "sentence": "We are in the park." }
+  ],
+  "sentenceFrames": [
+    "I have a ____.",
+    "I share my ____.",
+    "I am ____."
+  ],
+  "story": {
+    "title": "A Picnic Share",
+    "pages": [
+      {
+        "heading": "The apple",
+        "text": "Mia gives Leo an apple. Leo smiles.",
+        "visualTheme": "picnic park",
+        "visualCaption": "Mia gives Leo an apple",
+        "storyScene": {
+          "templateId": "exchange",
+          "actionVerb": "gives",
+          "environmentKey": "story-env-grass-field",
+          "slots": {
+            "giver": { "who": "mia", "pose": "reach", "emotion": "happy" },
+            "receiver": { "who": "leo", "pose": "reach", "emotion": "happy" },
+            "item": { "propKey": "apple", "scaleClass": "fruit" }
+          }
+        }
+      }
+    ],
+    "comprehensionQuestions": [
+      { "question": "What does Mia give Leo?", "sampleAnswer": "An apple." },
+      { "question": "Where are they?", "sampleAnswer": "In the park." }
+    ],
+    "creativeQuestions": [
+      { "question": "What do you share at a picnic?", "sampleAnswer": "I share an apple." }
+    ]
+  },
+  "speakingQuestions": [
+    { "question": "Do you like apples?", "sampleAnswer": "Yes, I do." }
+  ],
+  "activity": {
+    "title": "Match the picnic words",
+    "prompt": "Match each word to the picture.",
+    "templates": ["I share my ____."]
+  },
+  "reviewSentences": [
+    "Mia gives Leo an apple. Leo smiles."
+  ]
+}

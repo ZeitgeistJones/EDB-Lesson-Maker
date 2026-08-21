@@ -2390,6 +2390,44 @@
         stage.appendChild(wrap);
         continue;
       }
+      const isCast = /^cast-/.test(String(layer.key || ''));
+      // Some story-cast plates still carry a contact-sheet bar on the top edge
+      // (R6 soccer / picnic black hairline). Crop it; keep the feet.
+      if (isCast) {
+        const wrap = document.createElement('div');
+        wrap.dataset.storyLayer = layer.slot || '';
+        wrap.dataset.propKey = layer.key || '';
+        if (layer.scaleClass) wrap.dataset.scaleClass = layer.scaleClass;
+        const cropTop = 0.08;
+        Object.assign(wrap.style, {
+          position: 'absolute',
+          left: `${(100 * layer.x) / stageW}%`,
+          top: `${(100 * (layer.y + layer.h * cropTop)) / stageH}%`,
+          width: `${(100 * layer.w) / stageW}%`,
+          height: `${(100 * layer.h * (1 - cropTop)) / stageH}%`,
+          overflow: 'hidden',
+          pointerEvents: 'none',
+          zIndex: String(layer.z || 1),
+        });
+        const img = document.createElement('img');
+        img.src = layer.src;
+        img.alt = '';
+        Object.assign(img.style, {
+          position: 'absolute',
+          left: '0',
+          top: `${-100 * cropTop / (1 - cropTop)}%`,
+          width: '100%',
+          height: `${100 / (1 - cropTop)}%`,
+          objectFit: 'contain',
+          objectPosition: 'bottom center',
+          pointerEvents: 'none',
+          transform: layer.flip ? 'scaleX(-1)' : 'none',
+          transformOrigin: 'center bottom',
+        });
+        wrap.appendChild(img);
+        stage.appendChild(wrap);
+        continue;
+      }
       const img = document.createElement('img');
       img.src = layer.src;
       img.alt = '';
@@ -2464,9 +2502,16 @@
       : `Story · ${index + 1}/${totalBeats}`;
     const titleEl = header(title, '#c2410c', { timing: timingChip(4) });
     titleEl.style.textShadow = '0 1px 0 #fff, 0 2px 10px rgba(255,255,255,0.85)';
-    titleEl.style.position = 'relative';
-    titleEl.style.zIndex = '2';
-    content.appendChild(titleEl);
+    titleEl.style.position = 'absolute';
+    titleEl.style.left = '10px';
+    titleEl.style.right = '10px';
+    titleEl.style.top = '8px';
+    titleEl.style.zIndex = '6';
+    titleEl.style.margin = '0';
+    titleEl.style.background = 'rgba(255,255,255,0.82)';
+    titleEl.style.borderRadius = '12px';
+    titleEl.style.padding = '6px 12px';
+    titleEl.style.boxSizing = 'border-box';
 
     const storyText = String(page?.text || '');
     const solo = !!(opts && opts.solo);
@@ -2493,14 +2538,14 @@
     }
     const textSize = storyBodyFontPx(storyText, solo);
 
-    // Picture owns the board (R2: 65–75% illustration). Narration is an
-    // overlay on the same frame — a sibling chip used to steal stage height.
+    // Full-bleed illustrated beat (R6 Manus: no pale tray). Header + narration
+    // sit on the scene as overlays.
     const moment = el('div', {
       flex: '1 1 0%',
       minHeight: '400px',
-      borderRadius: '20px',
+      borderRadius: '0',
       overflow: 'hidden',
-      background: '#dbeafe',
+      background: '#86b6d6',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'stretch',
@@ -2508,8 +2553,11 @@
       gap: '0',
       padding: '0',
       boxSizing: 'border-box',
-      position: 'relative',
-      boxShadow: '0 8px 24px rgba(124,45,18,0.14)',
+      position: 'absolute',
+      left: '0',
+      top: '0',
+      right: '0',
+      bottom: '0',
     });
     moment.dataset.storyArt = String(sourceIndex);
     moment.dataset.storyArtMode = 'side';
@@ -2536,6 +2584,7 @@
     narration.dataset.storyOverlay = '1';
     moment.appendChild(narration);
     content.appendChild(moment);
+    content.appendChild(titleEl);
     p.appendChild(content);
     drawDebugZones(p, 'story');
     return p;
