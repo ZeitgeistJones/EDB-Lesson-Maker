@@ -2842,6 +2842,56 @@
       const kingMission = window.LessonTraits && window.LessonTraits.kingMissionFor
         ? window.LessonTraits.kingMissionFor(faceCueStr, { heroKey: actHeroKey })
         : (lesson.activity?.title || 'Build the World!');
+      const worldBuilder = window.LessonTraits
+        && typeof window.LessonTraits.isWorldBuilderHero === 'function'
+        && window.LessonTraits.isWorldBuilderHero(actHeroKey);
+      if (worldBuilder) {
+        // A visible ground plane turns loose dock inventory into one created
+        // world. The hero renders above it; learners place scene-role props on it.
+        const kingWorldGround = el('div', {
+          position: 'absolute',
+          left: '300px',
+          right: '150px',
+          top: '232px',
+          height: '158px',
+          zIndex: '0',
+          borderRadius: '50%',
+          border: '2px dashed rgba(13,148,136,0.42)',
+          background: 'linear-gradient(180deg, rgba(240,253,250,0.22), rgba(204,251,241,0.62))',
+          boxShadow: 'inset 0 -14px 24px rgba(13,148,136,0.08)',
+        });
+        kingWorldGround.dataset.kingWorldGround = '1';
+        const groundLabel = el('div', {
+          position: 'absolute',
+          left: '24px',
+          bottom: '10px',
+          color: '#0f766e',
+          fontSize: '14px',
+          fontWeight: '900',
+          letterSpacing: '0.8px',
+          whiteSpace: 'nowrap',
+          opacity: '0.78',
+        }, 'BUILD ZONE · 3 PIECES');
+        kingWorldGround.appendChild(groundLabel);
+        p.appendChild(kingWorldGround);
+
+        const kingCompletion = el('div', {
+          position: 'absolute',
+          right: '22px',
+          top: '64px',
+          zIndex: '4',
+          color: '#7c2d12',
+          background: 'rgba(255,247,237,0.94)',
+          border: '2px solid rgba(234,88,12,0.48)',
+          borderRadius: '999px',
+          padding: '7px 13px',
+          fontSize: '15px',
+          fontWeight: '900',
+          letterSpacing: '0.4px',
+        }, 'FINISH · 3 PIECES + 1 SENTENCE');
+        kingCompletion.dataset.kingCompletion = '1';
+        p.appendChild(kingCompletion);
+      }
       // One integrated tray makes the source area obvious without turning the
       // king page into a worksheet. Board pieces render above this quiet plate.
       const kingDockTray = el('div', {

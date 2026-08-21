@@ -80,6 +80,9 @@ function compactLesson(title, vocabulary) {
 
 const fruit = fixture('fruit-market-lesson.json');
 const dentist = fixture('dentist-lesson.json');
+const campsite = fixture('campsite-lesson.json');
+const aquarium = fixture('aquarium-lesson.json');
+const music = fixture('music-lesson.json');
 const zooPhonics = fixture('zoo-phonics-lesson.json');
 const sportsBare = fixture('basketball-bare-lesson.json');
 const snackCoat = fixture('snack-coat-day-lesson.json');
@@ -90,6 +93,19 @@ const storyPageKey = arg('story-page', 'story0');
 const storyLevel = arg('story-level', 'A1');
 const storyDuration = Number(arg('story-duration', '30')) || 30;
 const base = compactLesson('School Trip Mission', ['book', 'apple', 'banana', 'milk', 'bus', 'pencil']);
+const HERO_PROP_VARIANTS = {
+  dentist: { lesson: dentist, level: 'A1' },
+  camping: { lesson: campsite, level: 'A1' },
+  aquarium: { lesson: aquarium, level: 'A1' },
+  music: { lesson: music, level: 'A2' },
+};
+const heroVariantId = cliArg('only', '') === 'heroProp'
+  ? cliArg('variant', 'dentist')
+  : 'dentist';
+const heroVariant = HERO_PROP_VARIANTS[heroVariantId] || HERO_PROP_VARIANTS.dentist;
+if (cliArg('only', '') === 'heroProp') {
+  console.log('HERO_PROP_VARIANT', heroVariantId, heroVariant.lesson.title, heroVariant.level);
+}
 const CAPACITY_VARIANTS = {
   'school-trip': {
     title: 'School Trip Mission',
@@ -405,7 +421,7 @@ const ALL_CASES = [
   { id: 'phonicsSoundBoxes', pageKey: 'phonics', expected: 'phonicsSoundBoxes', lesson: zooPhonics, meta: { level: 'A1', duration: 30, phonics: 'on' }, force: true },
   { id: 'coverAnswer', pageKey: 'speaking:0', expected: 'coverAnswer', lesson: fruit, meta: { level: 'A1', duration: 30 } },
   { id: 'preA1TprChoice', pageKey: 'activity', expected: 'preA1TprChoice', lesson: preA1, meta: { level: 'Pre-A1', duration: 30, phonics: 'off' } },
-  { id: 'heroProp', pageKey: 'activity', expected: 'heroProp', lesson: dentist, meta: { level: 'A1', duration: 30 } },
+  { id: 'heroProp', pageKey: 'activity', expected: 'heroProp', lesson: heroVariant.lesson, meta: { level: heroVariant.level, duration: 30 } },
   {
     id: 'silhouetteGate',
     pageKey: 'activity',

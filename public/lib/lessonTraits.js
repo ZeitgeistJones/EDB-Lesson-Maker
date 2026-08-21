@@ -259,6 +259,25 @@
     'hero-festival-booth-counter': 'putIn',
   };
 
+  // Open-world kings: learners build a scene AROUND the hero. Container kings
+  // (backpack/fridge/chest) instead use the hero itself as the drop surface.
+  const WORLD_BUILDER_HERO_KEYS = new Set([
+    'dental-kid-open-mouth',
+    'hospital-bed',
+    'castle-wall-gate',
+    'trampoline',
+    'fire-truck',
+    'tent',
+    'bath-bathtub',
+    'bath-sink',
+    'playground-slide',
+    'cafe-counter-stage',
+    'farm-barn',
+    'aquarium-tank',
+    'construction-tower-crane',
+    'dollhouse-cutaway',
+  ]);
+
   // Ordered regex-tested king types (checked only after the caller-supplied
   // feelings/face booleans). Order MUST match the original else-if cascade:
   // dental → hospital → castle → trampoline → music → beach.
@@ -622,6 +641,10 @@
     return KING_MISSIONS[type] || KING_MISSIONS.default;
   }
 
+  function isWorldBuilderHero(heroKey) {
+    return WORLD_BUILDER_HERO_KEYS.has(String(heroKey || ''));
+  }
+
   // Lesson-level resolver. Returns the trait bundle the render spine reads, with
   // a sane default (musicTitle:false) so unknown lessons behave as the fallback.
   function traitsFor(lesson) {
@@ -638,6 +661,7 @@
     KING_HINTS,
     KING_MISSIONS,
     KING_TYPE_RULES,
+    WORLD_BUILDER_HERO_KEYS,
     THEME_NONE,
     CHARM_BAN_SPORTS,
     traitsFor,
@@ -650,5 +674,6 @@
     kingTypeFor,
     kingHintFor,
     kingMissionFor,
+    isWorldBuilderHero,
   };
 })();

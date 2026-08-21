@@ -478,4 +478,24 @@ assert.equal(
   'ordinary proven king lessons must keep heroProp'
 );
 
+const campingKing = JSON.parse(
+  fs.readFileSync(path.join(ROOT, 'scripts/fixtures/campsite-lesson.json'), 'utf8')
+);
+const campingResult = activityFor(campingKing, { level: 'A1', duration: 30 });
+assert.equal(campingResult.assignment.recipeId, 'heroProp',
+  'camping must resolve to a real scene-building king');
+assert.equal(campingResult.assignment.ctx.hero.key, 'tent',
+  'camping must keep the tent as its canonical world anchor');
+assert.equal(
+  campingResult.page.unlocked.filter((piece) => piece.role === 'dockPiece').length,
+  12,
+  'scene-building kings must expose one readable dozen roleplay tools'
+);
+assert(!campingResult.page.notes.some((note) => /^dockDropped:/.test(note)),
+  'scene-building king docks must not silently drop overflow tools');
+assert.equal(W.LessonTraits.isWorldBuilderHero('tent'), true,
+  'tent must receive the created-world ground and completion grammar');
+assert.equal(W.LessonTraits.isWorldBuilderHero('hero-backpack-open'), false,
+  'container kings must keep the hero itself as their drop surface');
+
 console.log('OK board grammar selection, validation, visual contracts, and grab floors');
