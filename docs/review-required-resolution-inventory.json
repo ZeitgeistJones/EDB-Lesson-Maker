@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-21T02:38:18.231Z",
+  "generated_at": "2026-08-21T02:44:02.418Z",
   "scope": "Exact verified-unwired REVIEW_REQUIRED queue after Phase C semantic resolution",
   "source_inventory": "docs/asset-wiring-migration-inventory.json",
   "accounting": {
@@ -132,7 +132,7 @@
         "pass": true,
         "actual": 840,
         "expected": 840,
-        "evidence": "current migration inventory"
+        "evidence": "pending replacements + stable unverified/addressable exclusions"
       },
       {
         "id": "excluded-inventory-only",

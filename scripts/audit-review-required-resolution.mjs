@@ -16,6 +16,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const INPUT = path.join(ROOT, 'docs/asset-wiring-migration-inventory.json');
 const ART_INPUT = path.join(ROOT, 'docs/art-replacements-stockpile-inventory.json');
+const ART_DECISIONS = path.join(ROOT, 'docs/art-replacement-review-decisions.json');
 const OUTPUT = path.join(ROOT, 'docs/review-required-resolution-inventory.json');
 // Phase A baseline was 1862. Phase B (Sonnet 5) legitimately moves keys out of
 // this queue wave by wave via real merges/dispositions; EXPECTED_QUEUE and the
@@ -26,11 +27,16 @@ const OUTPUT = path.join(ROOT, 'docs/review-required-resolution-inventory.json')
 // into explicit fail-closed HOLD decisions with preserved semantic intent.
 // Only the 480 candidates that still require literal old/new comparison remain
 // genuinely REVIEW_REQUIRED.
-const EXPECTED_QUEUE = 480;
 const flag = (name) => process.argv.includes(`--${name}`);
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8').replace(/^\uFEFF/, ''));
+}
+
+const artDecisionAccounting = readJson(ART_DECISIONS).accounting || {};
+const EXPECTED_QUEUE = Number(artDecisionAccounting.PENDING);
+if (!Number.isInteger(EXPECTED_QUEUE) || EXPECTED_QUEUE < 0) {
+  throw new Error('art-replacement-review-decisions.json has no valid PENDING accounting');
 }
 
 function countBy(rows, getKey) {
@@ -294,7 +300,12 @@ for (const record of records.filter((row) => row.rule === 'art-replacements')) {
 
 const globalChecks = [
   proofRow('exact-review-required-queue', queue.length, EXPECTED_QUEUE, 'verified source + no live row'),
-  proofRow('review-state-total', reviewStateRows.length, 840, 'current migration inventory'),
+  proofRow(
+    'review-state-total',
+    reviewStateRows.length,
+    EXPECTED_QUEUE + 309 + 51,
+    'pending replacements + stable unverified/addressable exclusions'
+  ),
   proofRow('excluded-inventory-only', excludedUnverified.length, 309, 'not in verified baseline'),
   proofRow('excluded-already-addressable', excludedAddressable.length, 51, 'not unwired'),
   proofRow('family-proof-count', representativeProof.length, 1, 'only replacement comparisons remain'),
