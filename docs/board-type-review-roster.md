@@ -1,6 +1,6 @@
 # Board-Type Review Roster
 
-**Manus review/remediation contract:** [`manus-board-remediation-contract.md`](./manus-board-remediation-contract.md) — single-board grammar loops, SYSTEMIC vs INSTANCE-SPECIFIC findings, 9/10 remediation packages, and two-topic graduation bar.
+**Manus review/remediation contract:** [`manus-board-remediation-contract.md`](./manus-board-remediation-contract.md) — single-board grammar loops, SYSTEMIC vs INSTANCE-SPECIFIC findings, optional remediation packages, and two-topic graduation bar (Visual/Product ≥ 7/10, no P0).
 
 Regenerate all representatives with:
 

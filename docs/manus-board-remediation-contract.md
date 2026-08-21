@@ -19,17 +19,19 @@ Every finding must be labeled:
 
 Prefer `next_actions` aimed at the reusable producer, not hand-edited artifacts.
 
-## When Manus must return a remediation package
+## When remediation is needed
 
 Trigger if **any** of:
 
-1. **Visual / Product Polish &lt; 9/10** (worksheet smell, weak hierarchy, dead space, no child curiosity before teacher explains, action→payoff not visible at projection scale), **or**
+1. **Visual / Product Polish &lt; 7/10** (score &lt; 70 or overall &lt; 3.5 — worksheet smell, weak hierarchy, dead space, no child curiosity before teacher explains, action→payoff not visible at projection scale), **or**
 2. **Any P0** in:
    - **asset-integrity** — wrong/missing/ghost props, label≠image, dock-unsafe art, answer leak through art
    - **interaction-contract** — learner job, movable set, snap targets, state transitions, or reveal/payoff not executable as rendered
    - **language-scaffold** — frame, countability, CEFR wording, or production prompt misaligned with visible tokens
 
-When triggered, Manus delivers a **9/10 remediation package** (target quality bar, not “good enough to ship as-is”):
+## Remediation packages (optional)
+
+When critique indicates remediation is needed, Manus **may** deliver a remediation package. Packages are **optional** — Manus may not supply them.
 
 | Deliverable | Purpose |
 |---|---|
@@ -38,19 +40,23 @@ When triggered, Manus delivers a **9/10 remediation package** (target quality ba
 | **Importable PNGs** | Cutouts/plates Manus authored for this redesign (black-field props where applicable) |
 | **`implementation_notes.md`** | Drag/drop/snap zones, state machine (starter → placed → revealed → complete), celebration beat, copy budget, what must **not** change |
 
+**If absent:** Cursor implements **systemic fixes** from critique / `next_actions` only — fix the producer, rebake, run local bake loops. Do not block on waiting for a package.
+
+**If present:** import assets and use the redesign as the visual target; fold interaction into the producer per the rules below.
+
 Manus does **not** implement code. Cursor owns producer work.
 
-## Cursor fold rules (after remediation package)
+## Cursor fold rules (after Manus critique)
 
-1. **Treat the redesign as the target** — match layout intent, scene-first weight, and polish level; do not “approximate” with a generic template reskin.
-2. **Import assets** from the package into the normal estate paths (`public/assets/…`, prop bank, vocab art) following existing import/keying rules.
+1. **Treat critique as the source of truth** — whether or not a package arrived, land **SYSTEMIC** fixes in the producer first ([fix-the-producer](../.cursor/rules/fix-the-producer.mdc)).
+2. **If a package is present:** treat the redesign as the target — match layout intent, scene-first weight, and polish level; import assets into normal estate paths (`public/assets/…`, prop bank, vocab art) following existing import/keying rules.
 3. **Implement interaction in the producer** — drag/drop, snap, state persistence, reveal, celebration — in the reusable grammar (`edbActivities`, recipe renderer, gates), not as a one-lesson override.
 4. **Preserve invariants:**
    - declared **learner job** and **CEFR** level
    - already-valid assets (do not discard good art to chase a new palette)
    - topic binding (no silent theme drift)
 5. **No generic reskin** — if the fix is “prettier worksheet,” reject it; the grammar must earn action→payoff.
-6. **Fix the producer first** ([fix-the-producer](../.cursor/rules/fix-the-producer.mdc)), rebake, update local gates in `scripts/test-board-grammars.mjs` (or type-specific tests), then optionally re-send Manus.
+6. **Local bake loops OK** — rebake, update local gates in `scripts/test-board-grammars.mjs` (or type-specific tests), then optionally re-send Manus.
 
 Log each round in `docs/manus-board-loops/<type>.md` with `SYSTEMIC` / `INSTANCE-SPECIFIC` on `WEAKEST_LINK` and landed producer fixes.
 
@@ -58,7 +64,7 @@ Log each round in `docs/manus-board-loops/<type>.md` with `SYSTEMIC` / `INSTANCE
 
 A board grammar **graduates** when **two consecutive Manus rounds** on **materially different topics** both satisfy:
 
-- **Visual / Product Polish ≥ 9/10**, and
+- **Visual / Product Polish ≥ 7/10** (score ≥ 70 or overall ≥ 3.5), and
 - **No P0** (asset-integrity, interaction-contract, language-scaffold)
 
 Then **stop** that grammar’s dedicated Manus loop. Further work is opportunistic (ZPD / escalation homework), not blocking loop budget.
