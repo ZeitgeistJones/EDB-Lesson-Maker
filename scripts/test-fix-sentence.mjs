@@ -63,6 +63,16 @@ function actRecipe(lesson, meta) {
   return (plan.assignments || []).find((a) => a.pageKey === 'activity') || null;
 }
 
+function actRecipeWithoutCoverageAdapt(lesson, meta) {
+  const adapt = W.VocabArt.adaptBoardVocabulary;
+  W.VocabArt.adaptBoardVocabulary = null;
+  try {
+    return actRecipe(lesson, meta);
+  } finally {
+    W.VocabArt.adaptBoardVocabulary = adapt;
+  }
+}
+
 // Lesson-provided fixSentence preferred when valid
 const withFix = {
   title: 'School Morning',
@@ -128,16 +138,11 @@ assert(W.EdbActivities.canBuildOddOneOut(soccer, W.VocabArt.planFor(soccer)),
 
 // Sentences WITHOUT frames → fixSentence still preferred
 const noFramesFix = {
-  title: 'Kitchen Mix No Frames',
-  vocabulary: [
-    { word: 'whisk', sentence: 'I use a whisk.' },
-    { word: 'spatula', sentence: 'I use a spatula.' },
-    { word: 'grater', sentence: 'I use a grater.' },
-    { word: 'blender', sentence: 'I use a blender.' },
-  ],
+  title: 'School Morning Grammar',
+  vocabulary: withFix.vocabulary,
   sentenceFrames: [],
 };
-const noFramesAct = actRecipe(noFramesFix);
+const noFramesAct = actRecipeWithoutCoverageAdapt(noFramesFix);
 assert(W.EdbActivities.canBuildFixSentence(noFramesFix),
   'control: no frames → canBuildFixSentence');
 assert(noFramesAct && noFramesAct.recipeId === 'fixSentence',
@@ -173,10 +178,10 @@ const thinBare = {
   vocabulary: [
     { word: 'apple', emoji: '🍎' },
     { word: 'perseverance' },
-    { word: 'gratitude' },
+    { word: 'integrity' },
   ],
 };
-const thinBareAct = actRecipe(thinBare);
+const thinBareAct = actRecipeWithoutCoverageAdapt(thinBare);
 assert(!W.EdbActivities.canBuildFixSentence(thinBare),
   'control: bare thin list cannot build fixSentence');
 assert(thinBareAct && thinBareAct.recipeId === 'mysteryHints',
@@ -199,10 +204,10 @@ assert(dentalAct && dentalAct.recipeId === 'heroProp',
 // No pictured + no usable sentences → sortBins
 const noArt = {
   title: 'Ideas About Ideas',
-  vocabulary: ['perseverance', 'gratitude', 'integrity', 'curiosity', 'resilience']
+  vocabulary: ['perseverance', 'integrity', 'curiosity', 'resilience']
     .map((word) => ({ word })),
 };
-const noArtAct = actRecipe(noArt);
+const noArtAct = actRecipeWithoutCoverageAdapt(noArt);
 assert(!W.EdbActivities.canBuildFixSentence(noArt),
   'control: abstract bare list cannot build fixSentence');
 assert(noArtAct && noArtAct.recipeId === 'sortBins',

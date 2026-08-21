@@ -62,6 +62,16 @@ function actRecipe(lesson, meta) {
   return (plan.assignments || []).find((a) => a && a.pageKey === 'activity') || null;
 }
 
+function actRecipeWithoutCoverageAdapt(lesson, meta) {
+  const adapt = W.VocabArt.adaptBoardVocabulary;
+  W.VocabArt.adaptBoardVocabulary = null;
+  try {
+    return actRecipe(lesson, meta);
+  } finally {
+    W.VocabArt.adaptBoardVocabulary = adapt;
+  }
+}
+
 assert(W.EdbActivities.thisOrThatFrame('A1') === 'I like ______.', 'A1 object frame');
 assert(W.EdbActivities.thisOrThatFrame('A2') === 'I want the ______.', 'A2 object frame');
 assert(/rather have/.test(W.EdbActivities.thisOrThatFrame('B1')), 'B1 object frame has rather have');
@@ -80,7 +90,7 @@ const twoPets = {
 assert(!W.EdbActivities.canBuildFixSentence(twoPets), 'control: two pets no fixSentence');
 assert(!W.EdbActivities.canBuildOddOneOut(twoPets), 'control: two pets no oddOneOut');
 {
-  const a = actRecipe(twoPets, { level: 'A1', duration: 25 });
+  const a = actRecipeWithoutCoverageAdapt(twoPets, { level: 'A1', duration: 25 });
   assert(a && a.recipeId === 'thisOrThat', 'two pictured → thisOrThat, got ' + (a && a.recipeId));
   assert(a.ctx && a.ctx.options && a.ctx.options.length === 2, 'two options');
   assert(a.ctx.frame === 'I like ______.', 'A1 plan uses A1 frame, got ' + (a.ctx && a.ctx.frame));
@@ -88,7 +98,7 @@ assert(!W.EdbActivities.canBuildOddOneOut(twoPets), 'control: two pets no oddOne
   assert(opts.join('|') === 'cat|dog', 'prefer dog+cat over theme-bank pets, got ' + opts.join('|'));
 }
 {
-  const a = actRecipe(twoPets, { level: 'B1', duration: 40 });
+  const a = actRecipeWithoutCoverageAdapt(twoPets, { level: 'B1', duration: 40 });
   assert(a && a.recipeId === 'thisOrThat', 'B1 still thisOrThat');
   assert(/rather/.test(a.ctx.frame), 'B1 plan uses reason frame');
 }

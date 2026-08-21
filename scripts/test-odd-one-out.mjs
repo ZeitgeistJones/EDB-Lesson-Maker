@@ -66,6 +66,16 @@ function actRecipe(lesson, meta) {
   return (plan.assignments || []).find((a) => a.pageKey === 'activity') || null;
 }
 
+function actRecipeWithoutCoverageAdapt(lesson, meta) {
+  const adapt = W.VocabArt.adaptBoardVocabulary;
+  W.VocabArt.adaptBoardVocabulary = null;
+  try {
+    return actRecipe(lesson, meta);
+  } finally {
+    W.VocabArt.adaptBoardVocabulary = adapt;
+  }
+}
+
 // Bare mixed theme (no sentences): 3 food + 1 transport → derived oddOneOut
 const mixed = {
   title: 'Fruit Market Bus Trip',
@@ -261,10 +271,10 @@ const thinPic = {
   vocabulary: [
     { word: 'apple', emoji: '🍎' },
     { word: 'perseverance' },
-    { word: 'gratitude' },
+    { word: 'integrity' },
   ],
 };
-const thinAct = actRecipe(thinPic);
+const thinAct = actRecipeWithoutCoverageAdapt(thinPic);
 assert(thinAct && thinAct.recipeId === 'mysteryHints',
   `1 pictured bare → mysteryHints, got ${thinAct && thinAct.recipeId}`);
 

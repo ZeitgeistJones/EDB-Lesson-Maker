@@ -66,6 +66,16 @@ function actRecipe(lesson, meta) {
   return (plan.assignments || []).find((a) => a.pageKey === 'activity') || null;
 }
 
+function actRecipeWithoutCoverageAdapt(lesson, meta) {
+  const adapt = W.VocabArt.adaptBoardVocabulary;
+  W.VocabArt.adaptBoardVocabulary = null;
+  try {
+    return actRecipe(lesson, meta);
+  } finally {
+    W.VocabArt.adaptBoardVocabulary = adapt;
+  }
+}
+
 // Pictured sports bare — no shippable king; ≥4 pictured → oddOneOut (no fixSentence)
 const sports = {
   title: 'Playing Basketball with Friends',
@@ -83,7 +93,7 @@ const thinPic = {
   vocabulary: [
     { word: 'apple', emoji: '🍎' },
     { word: 'perseverance' },
-    { word: 'gratitude' },
+    { word: 'integrity' },
   ],
 };
 const thinArt = W.VocabArt.planFor(thinPic);
@@ -92,7 +102,7 @@ assert(thinMatchN >= 1 && thinMatchN < 4,
   `control: thinPic matchable in 1..3 (got ${thinMatchN})`);
 assert(!W.EdbActivities.canBuildFixSentence(thinPic),
   'control: bare thin cannot build fixSentence');
-const thinAct = actRecipe(thinPic);
+const thinAct = actRecipeWithoutCoverageAdapt(thinPic);
 assert(thinAct && thinAct.ctx && thinAct.ctx.targetWord,
   `mystery ctx has targetWord, got ${thinAct && thinAct.ctx && thinAct.ctx.targetWord}`);
 assert(thinAct && thinAct.recipeId === 'mysteryHints',
@@ -176,7 +186,7 @@ const withHints = {
     ],
   },
 };
-const fruitAct = actRecipe(withHints);
+const fruitAct = actRecipeWithoutCoverageAdapt(withHints);
 assert(fruitAct && fruitAct.recipeId === 'mysteryHints',
   `fruit pictured bare (no odd set) → mysteryHints, got ${fruitAct && fruitAct.recipeId}`);
 if (fruitAct && fruitAct.ctx && fruitAct.ctx.targetWord === 'apple') {
@@ -189,12 +199,12 @@ if (fruitAct && fruitAct.ctx && fruitAct.ctx.targetWord === 'apple') {
 // No pictured VocabArt rows → not mysteryHints (sortBins).
 const noArt = {
   title: 'Ideas About Ideas',
-  vocabulary: ['perseverance', 'gratitude', 'integrity', 'curiosity', 'resilience']
+  vocabulary: ['perseverance', 'integrity', 'curiosity', 'resilience']
     .map((word) => ({ word })),
 };
 const noArtPlan = W.VocabArt.planFor(noArt);
 assert((noArtPlan.matchable || []).length === 0, 'control: noArt lesson has 0 matchable');
-const noArtAct = actRecipe(noArt);
+const noArtAct = actRecipeWithoutCoverageAdapt(noArt);
 assert(!noArtAct || noArtAct.recipeId !== 'mysteryHints',
   `no pictured art must not be mysteryHints, got ${noArtAct && noArtAct.recipeId}`);
 assert(noArtAct && noArtAct.recipeId === 'sortBins',
