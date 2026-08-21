@@ -61,6 +61,13 @@
     reward: 1,
   };
 
+  /** Addressable packs reserved for named mechanics, never generic word picks. */
+  const GENERIC_BLOCKED_PACKS = new Set([
+    'hero-targets',
+    'story-cast',
+    'hide-reveal',
+  ]);
+
   let bank = null;
   let policy = null;
   let pending = null;
@@ -1142,6 +1149,7 @@
     const pool = bank.all.filter(
       (p) =>
         p.family === family &&
+        !GENERIC_BLOCKED_PACKS.has(p.pack) &&
         !exclude.has(p.key) &&
         !excludeBases.has(baseOfProp(p))
     );
@@ -1761,6 +1769,7 @@
     PROP_ALIASES,
     HOUSE_FAMILY,
     CHROME_ROLES,
+    GENERIC_BLOCKED_PACKS,
     DEFAULT_MIN_SCORE,
     MAX_PROP_H,
     MIN_PROP_H,

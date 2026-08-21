@@ -249,6 +249,9 @@ function candidateRecord(item, context, inventoryFile, sequence) {
     target_key: item.original_key || null,
     variant_of: item.variantOf || item.variant_of || null,
     registration_grade: item.registration_grade || context.registrationGrade || null,
+    ...(context.semanticAuthority
+      ? { semantic_authority: context.semanticAuthority }
+      : {}),
   };
 }
 
@@ -355,6 +358,7 @@ function collectRelationshipCandidates(file) {
         sourcePath: family.harvest_sheet,
         family: family.view_family_id,
         registrationGrade: family.registration_grade,
+        semanticAuthority: 'world-zoom-relationships',
       },
       file,
       sequence++
@@ -374,6 +378,7 @@ function collectRelationshipCandidates(file) {
         rootHint: ladders.harvest_root,
         sourcePath: ladders.harvest_root,
         family: familyId,
+        semanticAuthority: 'world-zoom-relationships',
       },
       file,
       sequence++
@@ -406,6 +411,7 @@ records.push(
 const precisionRank = { exact_file: 3, unique_filename: 2, family_sheet: 1, inventory_only: 0 };
 const recordRank = (record) =>
   (record.live && record.live.file_exists ? 100 : 0)
+  + (record.semantic_authority ? 10 : 0)
   + precisionRank[record.source.precision]
   + (record.states.includes('JUNK') ? -10 : 0);
 const byLogicalKey = new Map();

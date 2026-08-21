@@ -159,12 +159,21 @@
    * was whichever key happened to come first in the object, which is
    * arbitrary and changes silently.
    */
+  function isGenericScene(scene) {
+    if (!scene || scene.genericEligible === false) return false;
+    if (scene.category === 'builder-world' || scene.category === 'board-enabling') return false;
+    const tags = new Set((scene.tags || []).flatMap(norm));
+    if (tags.has('world-zoom') && tags.has('zoom-completion')) return false;
+    return true;
+  }
+
   async function rank(tags, category) {
     const m = await manifest();
     const want = new Set(expandTags(tags));
     const out = [];
 
     for (const [name, scene] of Object.entries(m.scenes)) {
+      if (!isGenericScene(scene)) continue;
       let score = 0;
       const sceneTags = new Set((scene.tags || []).flatMap(norm));
       const nameWords = new Set(norm(name));
@@ -831,6 +840,7 @@
   window.SceneBackgrounds = {
     manifest, rank, pickFor, planFor, loadPng, standOn, standRow, isStandRole,
     STAND_ROLES, rotate: flatOffset, moodsFor, BASE,
+    isGenericScene,
     setFor, isPlaceTopic, quietFlatCount, bgCoverage,
     topicHasBallFamily, topicIsSoccerPitch, flatChromeMotifs, filterChromeConflicts,
     conflictMotifsForTopic,

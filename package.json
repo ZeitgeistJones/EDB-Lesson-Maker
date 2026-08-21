@@ -38,6 +38,7 @@
     "assets:wiring-audit": "node scripts/audit-asset-wiring.mjs",
     "test:asset-wiring": "node scripts/audit-asset-wiring.mjs --check",
     "test:asset-wiring-proof": "node scripts/audit-asset-wiring.mjs --proof",
+    "test:asset-migration-retrieval": "node scripts/test-asset-migration-retrieval.mjs",
     "assets:prop-blobs": "node scripts/slice-blob-sheet.mjs",
     "assets:prop-blobs-import": "node scripts/import-blob-props.mjs",
     "assets:prop-qa": "node scripts/qa-props.mjs",

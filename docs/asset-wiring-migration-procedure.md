@@ -181,10 +181,13 @@ Rules are executable data in `scripts/lib/asset-wiring-rules.mjs`.
 - `world-zoom-completions` — verify-only specialized backgrounds.
 - `overview-worlds` — confirmed single scenes may become generic backgrounds.
 - `builder-worlds` — addressable sequence-specialized backgrounds.
-- `content-worlds` — confirmed single scenes may become generic backgrounds.
+- `content-worlds` — relationship-preserving reference-only family; companions,
+  worlds, and sheets need a dedicated inventory/importer before activation.
 - `kid-interest` — named black-field cells through stage/QA/merge.
-- `long-tail-props` — identity-clear, dock-sharp cells only.
-- `art-replacements` — vocab replacement route; never new `redo-*` identities.
+- `long-tail-props` — explicit mixed-stockpile HOLD (`no_wiring` / STOCKPILE
+  LOCK); no importer until an intentional unlock and prop/background split.
+- `art-replacements` — REVIEW_REQUIRED vocab replacement route; never new
+  `redo-*` identities and never overwrite without per-cell visual QA.
 - `aggressive-stockpile` — split mixed families before selecting an importer.
 - `board-enabling-multi-view` — reference-only relationship family.
 - `board-enabling-registered-states` — specialized hold.
@@ -206,7 +209,8 @@ Run audit, proof, manifest-lock, picker, and vocab tests. Stop if baseline fails
 ### Wave 1 — safe generic prop sheets
 
 - Remaining `kid-interest` families with explicit cell catalogs.
-- `long-tail-props` object/role-depth families that are identity-clear.
+- Do not run `long-tail-props`; its source-level STOCKPILE LOCK supersedes the
+  earlier candidate wording in this wave plan.
 - Prop-only slices of `aggressive-stockpile` after family separation.
 
 Each sheet: stage → QA → cull/metadata → merge dry-run → merge → tests.
@@ -220,7 +224,9 @@ Each sheet: stage → QA → cull/metadata → merge dry-run → merge → tests
 ### Wave 3 — single-scene backgrounds
 
 - Remaining `overview-worlds`.
-- Confirmed full-page `content-worlds`.
+- Do not bulk-import `content-worlds`; preserve coordinated
+  `companions/` + `worlds/` + `sheets/` families until a relationship-aware
+  inventory/importer exists.
 - Builder-world plates only with sequence metadata and specialized eligibility.
 
 Do not run a loose board-enabling sweep.

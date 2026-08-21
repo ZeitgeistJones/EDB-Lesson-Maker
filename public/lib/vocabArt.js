@@ -722,6 +722,10 @@
     const lastSeg = String(prop.key || '').split('-').pop();
     for (const t of tokens) {
       if (prop.key === t || lastSeg === t) return true;
+      // A complete multi-word slug is still an exact identity suffix:
+      // ring-light → ki-creator-ring-light. Keep single-token compound
+      // protection intact so brush still cannot match tool-paintbrush.
+      if (t.includes('-') && prop.key && prop.key.endsWith('-' + t)) return true;
       if (prop.identity && prop.identity.includes(t)) return true;
     }
     return false;
@@ -980,16 +984,24 @@
             propOk = propOkForMatch(prop);
           }
         } else {
-          prop = PB.resolve({
-            word: propWord,
-            family,
-            seed,
-            exclude: excludeNow,
-            minScore,
-            allowUnthemedIdentity: true,
-            preferredPacks,
-          });
-          propOk = propOkForMatch(prop);
+          // A semantically correct first hit can still be too small for the
+          // board (for example sports-surfboard at 110px short-side). Retry
+          // identity peers before declaring the word unpictured.
+          const rejectedKeys = [];
+          for (let attempt = 0; attempt < 4; attempt++) {
+            prop = PB.resolve({
+              word: propWord,
+              family,
+              seed,
+              exclude: excludeNow.concat(rejectedKeys),
+              minScore,
+              allowUnthemedIdentity: true,
+              preferredPacks,
+            });
+            propOk = propOkForMatch(prop);
+            if (propOk || !prop || !prop.key) break;
+            rejectedKeys.push(prop.key);
+          }
           // Fallback to original word only when preferred form found nothing
           if (!propOk && propWord !== word) {
             prop = PB.resolve({

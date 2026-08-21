@@ -168,13 +168,13 @@ export const FAMILY_RULES = Object.freeze([
   Object.freeze({
     id: 'content-worlds',
     pathIncludes: 'harvested/content-worlds/',
-    assetKind: 'background_scene',
-    route: 'background',
-    importers: ['scripts/import-background.mjs'],
-    genericEligibility: true,
-    preserve: ['world_family', 'category', 'groundY'],
-    defaultStates: ['RAW', 'REVIEW_REQUIRED'],
-    note: 'Only obvious full-page landscapes may enter 08_backgrounds.',
+    assetKind: 'coordinated_world_family',
+    route: 'reference_only',
+    importers: [],
+    genericEligibility: false,
+    preserve: ['world_family', 'world_role', 'companion_role', 'relationships', 'category', 'groundY'],
+    defaultStates: ['RAW', 'SPECIALIZED', 'REFERENCE_ONLY'],
+    note: 'Companions, worlds, and sheets are coordinated families. Preserve them together until a relationship-aware inventory/importer exists.',
   }),
   Object.freeze({
     id: 'board-enabling',
@@ -190,16 +190,13 @@ export const FAMILY_RULES = Object.freeze([
   Object.freeze({
     id: 'long-tail-props',
     pathIncludes: 'harvested/manus-long-tail-stockpile/',
-    assetKind: 'prop_sheet',
-    route: 'prop_sheet',
-    importers: [
-      'scripts/import-sheet.mjs',
-      'scripts/merge-staged-props.mjs',
-    ],
-    genericEligibility: true,
-    preserve: ['variantOf', 'pack', 'subject', 'decorative', 'dockSafe'],
-    defaultStates: ['RAW', 'REVIEW_REQUIRED'],
-    note: 'Only identity-clear, dock-sharp cells become generic PropBank rows.',
+    assetKind: 'mixed_stockpile',
+    route: 'specialized_hold',
+    importers: [],
+    genericEligibility: false,
+    preserve: ['family', 'sheet_type', 'variantOf', 'pack', 'subject', 'decorative', 'dockSafe'],
+    defaultStates: ['RAW', 'SPECIALIZED', 'HOLD'],
+    note: 'Explicit STOCKPILE LOCK/no_wiring source. Mixed prop grids and landscape sheets require an intentional unlock plus subtype rules.',
   }),
   Object.freeze({
     id: 'art-replacements',
@@ -247,7 +244,10 @@ export function normalizeRepoPath(value) {
 
 export function ruleForPath(value) {
   const normalized = normalizeRepoPath(value).toLowerCase();
-  return FAMILY_RULES.find((rule) => normalized.includes(rule.pathIncludes.toLowerCase()))
+  return FAMILY_RULES.find((rule) => {
+    const root = rule.pathIncludes.toLowerCase().replace(/\/+$/, '');
+    return normalized === root || normalized.includes(`${root}/`);
+  })
     || FALLBACK_RULE;
 }
 
@@ -262,6 +262,7 @@ export function statePriority(states) {
     'HOLD',
     'REFERENCE_ONLY',
     'REVIEW_REQUIRED',
+    'SPECIALIZED',
     'GENERATOR_ELIGIBLE',
     'ADDRESSABLE',
     'IMPORTED',
