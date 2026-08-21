@@ -88,3 +88,13 @@ Independent single-board optimization log.
 - ACTION: High: Introduce a topic-mapped city-route stage (map, landmarks, bus route) integrated with five tile actions for a visible payoff.
 - ACTION: Medium: Collapse chrome budget to a single primary task surface with minimal container chrome; keep five numbered rows as a coherent task surface.
 - ACTION: Low: If assets are updated, ensure consistent visual baseline and alignment across all frames and docks.
+
+## Loop status
+
+- STATUS: HOLD — three-topic generalization completed, but Manus did not issue a graduation verdict.
+- TOPICS: fruit-market (A1, 3 short frames) → game-day-training (A2, 4 longer frames + distractors) → city-transport (B1, 5 dense frames).
+- VERDICTS: R1 REVISE 38 → R2 REVISE 70 → R3 REVISE 59 (R3 scorecard returned zeros and a draft-quality response; treat the verdict as non-graduating, not as a reliable quality delta).
+- FINAL PRODUCER RESPONSE: added a visible numbered route/progress stage tied to all blanks, explicit final scene payoff, centered adaptive tile dock, concise tile contract, topic art, long-frame scaling, and filtering of unreadable title-length distractors.
+- LOCAL VERIFICATION: focused B1 preview renders five readable frames and a centered six-tile bank; `scripts/test-board-grammars.mjs` passes.
+- REMAINING P1: visible scene-change payoff on completion (topic-mapped stage, not text-only badge); same class of blocker as routeMission scene-first payoff.
+- DECISION: **PAUSE** — `ESCALATION_NEEDED` for shared scene-stage payoff renderer. Round budget used (3 topics). Producer chrome fixes (progress route, dock width) landed in commit cdefd0c1.

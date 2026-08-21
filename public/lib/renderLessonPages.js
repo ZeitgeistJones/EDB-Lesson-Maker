@@ -1832,40 +1832,60 @@
         color: '#065f46',
       }, esc((lesson && lesson.title) || 'Say it')));
       scene.appendChild(contract);
-      const artTray = el('div', {
+      const progress = el('div', {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '8px',
+        gap: '4px',
         marginLeft: 'auto',
         minWidth: '0',
       });
-      if (artRows.length) {
-        artRows.forEach((row) => {
-          if (row.artSrc) {
-            artTray.appendChild(el('img', {
-              width: rows >= 5 ? '38px' : '46px',
-              height: rows >= 5 ? '38px' : '46px',
-              objectFit: 'contain',
-              flexShrink: '0',
-            }));
-            artTray.lastChild.src = row.artSrc;
-            artTray.lastChild.alt = '';
-          } else {
-            artTray.appendChild(el('div', {
-              fontSize: rows >= 5 ? '28px' : '34px',
-              lineHeight: '1',
-              flexShrink: '0',
-            }, esc(row.glyph)));
-          }
-        });
+      const sceneArt = artRows[0];
+      if (sceneArt && sceneArt.artSrc) {
+        progress.appendChild(el('img', {
+          width: rows >= 5 ? '34px' : '40px',
+          height: rows >= 5 ? '34px' : '40px',
+          objectFit: 'contain',
+          flexShrink: '0',
+          marginRight: '3px',
+        }));
+        progress.lastChild.src = sceneArt.artSrc;
+        progress.lastChild.alt = '';
       } else {
-        artTray.appendChild(el('div', {
-          fontSize: rows >= 5 ? '28px' : '34px',
+        progress.appendChild(el('div', {
+          fontSize: rows >= 5 ? '24px' : '30px',
           lineHeight: '1',
-        }, themeEmoji((lesson && lesson.title) || '') || '💬'));
+          marginRight: '3px',
+        }, (sceneArt && sceneArt.glyph) || themeEmoji((lesson && lesson.title) || '') || '💬'));
       }
-      scene.appendChild(artTray);
+      for (let step = 1; step <= blanks; step++) {
+        const node = el('div', {
+          width: rows >= 5 ? '22px' : '26px',
+          height: rows >= 5 ? '22px' : '26px',
+          borderRadius: '50%',
+          border: '2px dashed #7c3aed',
+          background: '#ffffff',
+          color: '#6d28d9',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: rows >= 5 ? '12px' : '14px',
+          fontWeight: '900',
+          flexShrink: '0',
+        }, String(step));
+        node.dataset.frameProgressStep = String(step);
+        progress.appendChild(node);
+        if (step < blanks) {
+          progress.appendChild(el('div', {
+            width: rows >= 5 ? '12px' : '16px',
+            height: '3px',
+            borderRadius: '999px',
+            background: '#a78bfa',
+            flexShrink: '0',
+          }));
+        }
+      }
+      scene.appendChild(progress);
       const payoff = el('div', {
         padding: rows >= 5 ? '6px 10px' : '7px 12px',
         borderRadius: '12px',
