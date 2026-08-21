@@ -163,8 +163,14 @@ export async function runBoardReview(opts) {
     notes: opts.notes || '',
   });
 
-  const images = pickImages(dir);
-  const brief = buildReviewBrief(pass);
+  const images = pickImages(dir, {
+    maxImages: opts.maxImages,
+    pageCount: opts.pageCount,
+  });
+  // Single-board loops put the full BOARD-GRAMMAR brief in notes.
+  const brief = String(pass.notes || '').startsWith('MODE: SINGLE BOARD')
+    ? pass.notes
+    : buildReviewBrief(pass);
   const content = [{ type: 'text', text: brief }];
 
   for (const filePath of images) {

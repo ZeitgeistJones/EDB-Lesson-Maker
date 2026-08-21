@@ -134,6 +134,7 @@
     "test:story-integrity": "node scripts/test-story-integrity.cjs",
     "test:readiness-story": "node scripts/test-readiness-story-integrity.mjs",
     "manus:review": "node scripts/manus/review.mjs",
+    "manus:review-board": "node scripts/manus/review-single-board.mjs",
     "manus:dry": "node scripts/manus/review.mjs --dry-run",
     "manus:passoff": "node scripts/manus/write-passoff.mjs",
     "test:hero-theme": "node scripts/test-hero-theme.mjs",
