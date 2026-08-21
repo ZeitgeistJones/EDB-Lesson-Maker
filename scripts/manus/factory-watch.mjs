@@ -32,28 +32,32 @@ function a1QueueClear(st) {
 
 function startA2Factory() {
   if (a2Started) return;
-  a2Started = true;
   log("Starting A2 factory (--run --cefr=A2) in background");
-  const child = spawn(
-    process.execPath,
-    ["scripts/manus/lesson-factory.mjs", "--cefr=A2", "--run"],
-    {
-      cwd: ROOT,
-      env: {
-        ...process.env,
-        LESSON_FACTORY_MAX_CONCURRENT: process.env.LESSON_FACTORY_MAX_CONCURRENT || "5",
-        LESSON_FACTORY_AGENT_PROFILE: process.env.LESSON_FACTORY_AGENT_PROFILE || "manus-1.6",
-      },
-      stdio: ["ignore", "append", "append"],
-      detached: true,
-    },
-  );
   const out = path.join(ROOT, "tmp", "manus-lesson-factory", "a2-run.log");
   fs.mkdirSync(path.dirname(out), { recursive: true });
-  child.stdout?.on("data", (d) => fs.appendFileSync(out, d));
-  child.stderr?.on("data", (d) => fs.appendFileSync(out, d));
-  child.unref();
-  log(`A2 factory pid=${child.pid} log=${out}`);
+  try {
+    const child = spawn(
+      process.execPath,
+      ["scripts/manus/lesson-factory.mjs", "--cefr=A2", "--run"],
+      {
+        cwd: ROOT,
+        env: {
+          ...process.env,
+          LESSON_FACTORY_MAX_CONCURRENT: process.env.LESSON_FACTORY_MAX_CONCURRENT || "5",
+          LESSON_FACTORY_AGENT_PROFILE: process.env.LESSON_FACTORY_AGENT_PROFILE || "manus-1.6",
+        },
+        stdio: ["ignore", "pipe", "pipe"],
+        detached: true,
+      },
+    );
+    child.stdout?.on("data", (d) => fs.appendFileSync(out, d));
+    child.stderr?.on("data", (d) => fs.appendFileSync(out, d));
+    child.unref();
+    a2Started = true;
+    log(`A2 factory pid=${child.pid} log=${out}`);
+  } catch (err) {
+    log(`A2 factory launch failed: ${err.message}`);
+  }
 }
 
 function summarize(label, st) {
