@@ -88,3 +88,10 @@ Independent single-board optimization log.
 - ACTION: High|EvidenceBoard|Introduce causal-timeline solvability gate for timestamped evidence and ensure an explicit incident time is present
 - ACTION: Medium|Interaction|Replace or augment the lock-bar payoff with a material state reveal (e.g., a staged filing-to-peel transition)
 - ACTION: Low|Visual|Differentiate artifact visuals (source-form variety) to reduce worksheet smell and improve asset distinction
+
+### Producer fold after Round 3 (festival-power-outage worker)
+
+- FIXED (R2 weakest link): added an `evidenceRelationIntegrity` gate (S77) in `resolveEvidenceBoard` — any card labelled `contradicts`/`qualifies`/`alternative` must carry real opposition language (negation, "less likely", "another plausible cause", etc.) in `claimImpact`/`text`; cards that are only weaker/temporally-adjacent fail closed (recipe falls back rather than shipping a false counter-evidence label).
+- FIXED: tightened the `evidenceBoard` generator prompt (`api/generate-lesson.js`) to require an explicit opposition word in `claimImpact` for every non-`supports` card.
+- SCORE TREND: R1 41 → R2 60 → R3 63 (this run) / R3 51 (sibling `festival-sound-failure` run) — steady but sub-ship; relation-integrity fix holds, remaining gaps are the rank-contract/causal-timeline/material-payoff items above.
+- LOOP_STATUS: closing after 3 rounds per the established 2–3 round policy (see sibling `festival-sound-failure` fold above). No Round 4 requested; rank-contract gate, causal-timeline anchor, and material-payoff-state items are logged above as the next worker's starting backlog.

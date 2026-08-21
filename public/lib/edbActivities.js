@@ -372,6 +372,64 @@
     return matchableN > 0 && rowsN > 0 && matchableN < rowsN;
   }
 
+  // Concepts inside one set must still be distinguishable from pictures alone.
+  // These groups capture high-risk ESL near-synonyms whose isolated icons are
+  // routinely interchangeable (notes for music/song; blue water for sea/ocean).
+  const MATCH_DOCK_CONFUSABLE_GROUPS = Object.freeze([
+    Object.freeze(['music', 'song', 'melody', 'tune', 'sound', 'rhythm', 'beat']),
+    Object.freeze(['sea', 'ocean', 'water', 'wave']),
+    Object.freeze(['trip', 'travel', 'journey', 'tour']),
+  ]);
+
+  function matchDockMappingAudit(vocabArt) {
+    const rows = vocabArt && Array.isArray(vocabArt.matchable)
+      ? vocabArt.matchable.filter(Boolean)
+      : [];
+    const reasons = [];
+    const words = rows.map((row) => String(row.word || '').trim().toLowerCase());
+    const uniqueWords = new Set(words.filter(Boolean));
+    if (uniqueWords.size !== rows.length) reasons.push('duplicate-target-word');
+
+    const sourceKeys = rows.map((row) => String(
+      row.propKey || row.artSrc || (row.glyph ? `glyph:${row.glyph}` : '')
+    ).trim().toLowerCase());
+    if (sourceKeys.some((key) => !key)) reasons.push('missing-source-art');
+    if (new Set(sourceKeys.filter(Boolean)).size !== rows.length) {
+      reasons.push('duplicate-source-art');
+    }
+
+    MATCH_DOCK_CONFUSABLE_GROUPS.forEach((group) => {
+      const hits = words.filter((word) => group.includes(word));
+      if (hits.length > 1) reasons.push(`semantic-confusability:${hits.join('|')}`);
+    });
+
+    // A target nested inside another target ("market" / "fruit market") asks a
+    // child to infer category scope from art, not retrieve a clean word-picture
+    // association. Treat whole-token nesting as ambiguous; "camp"/"campfire"
+    // remains valid because it is not a separate token.
+    for (let i = 0; i < words.length; i += 1) {
+      const a = words[i];
+      if (!a) continue;
+      for (let j = i + 1; j < words.length; j += 1) {
+        const b = words[j];
+        if (!b) continue;
+        const aTokens = new Set(a.split(/\s+/));
+        const bTokens = new Set(b.split(/\s+/));
+        const aInsideB = aTokens.size < bTokens.size && [...aTokens].every((token) => bTokens.has(token));
+        const bInsideA = bTokens.size < aTokens.size && [...bTokens].every((token) => aTokens.has(token));
+        if (aInsideB || bInsideA) reasons.push(`semantic-nesting:${a}|${b}`);
+      }
+    }
+
+    return {
+      ok: rows.length >= 2 && reasons.length === 0,
+      count: rows.length,
+      reasons,
+      words,
+      sourceKeys,
+    };
+  }
+
   /**
    * Student-facing New Words instruction.
    * Matchable pictures start in the source dock and move onto word pads.
@@ -391,13 +449,13 @@
     }
     const PB = window.PropBank;
     const family = PB && PB.familyFor ? PB.familyFor(lesson) : null;
-    // Must match adaptBoardVocabulary: white pack icons count as pictured AND
-    // paint on New Words. Without allowPackFallback, adapt ships a full board
-    // then bake leaves blank word cards (museum "3 words, no pictures").
+    // Draggable source cards need transparent, silhouette-clean art. VocabArt's
+    // board path prefers keyed props, then curated glyphs; white pack plates may
+    // count for adaptation coverage but must not leak onto the interactive dock.
     return window.VocabArt.planFor(lesson, {
       family,
       seed: topicSeed || (lesson && lesson.title) || '',
-      allowPackFallback: true,
+      allowPackFallback: false,
     });
   }
 
@@ -6776,7 +6834,12 @@
    * vocabulary and use the adapted slice only for the remaining choices.
    */
   function expandFrameTileWords(lesson, words) {
-    const base = (words || []).map((w) => String(w || '').trim()).filter(Boolean);
+    const rawBase = (words || []).map((w) => String(w || '').trim()).filter(Boolean);
+    // Topic adaptation can inject title-sized phrases as picturable vocabulary.
+    // They make unusably tiny drag tiles and are poor distractors. Keep concise
+    // words/phrases here; an actually-required long fill is promoted below.
+    const conciseBase = rawBase.filter((w) => w.length <= 22 && w.split(/\s+/).length <= 3);
+    const base = conciseBase.length ? conciseBase : rawBase;
     if (!base.length) return base;
     const frames = boardFrames(lesson);
     const demand = {};
@@ -6936,12 +6999,13 @@
     // stay text-only on cards (no Gemini emoji / bullet pad).
     // Topic seed = lesson title (theme-rank fire-* vs farm-*); never pass rngSeed.
     const vocabArt = hasVocab ? planVocabArt(lesson, (lesson && lesson.title) || '') : { rows: [], matchable: [], dropped: [] };
-    const honestMatch = vocabArt.matchable.length > 0 && canHonestMatchDock(vocabArt.matchable.length);
+    const matchDockAudit = matchDockMappingAudit(vocabArt);
+    const honestMatch = matchDockAudit.ok && canHonestMatchDock(vocabArt.matchable.length);
     if (honestMatch) {
       assignments.push({
         pageKey: 'newWords',
         recipeId: 'matchDock',
-        ctx: { vocabArt },
+        ctx: { vocabArt, matchDockAudit },
       });
     }
 
@@ -7149,6 +7213,7 @@
       vocabAdapt: vocabAdapt || null,
       canHonestMatchDock: honestMatch,
       matchDockHint: honestMatch ? matchDockStudentHint(vocabArt) : null,
+      matchDockAudit,
     };
     if (window.BoardReadiness && window.BoardReadiness.assess) {
       planOut.readiness = window.BoardReadiness.assess(lesson, planOut);
@@ -7376,6 +7441,7 @@
       vocabArt: boardPlan.vocabArt || null,
       canHonestMatchDock: !!boardPlan.canHonestMatchDock,
       matchDockHint: boardPlan.matchDockHint || null,
+      matchDockAudit: boardPlan.matchDockAudit || null,
       dockDrops,
       readiness: boardPlan.readiness || null,
       // Back-compat slots
