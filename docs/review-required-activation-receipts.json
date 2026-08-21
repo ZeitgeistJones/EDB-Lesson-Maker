@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "scope": "Durable receipts for REVIEW_REQUIRED assets activated by real keying, merge, and visual QA",
+  "required_gates": ["C0", "C1", "C6", "C7", "C9", "C10", "VISUAL_QA"],
+  "receipts": [
+    {
+      "key": "silicone-mat",
+      "phase": "B",
+      "source_batch": "s4f5-role-detail-continue",
+      "source_sheet": null,
+      "source_cell": null,
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0_NOT_APPLICABLE_EXPLICIT_BLACK_FIELD", "C1", "C6", "C7", "C9", "C10", "VISUAL_QA"],
+      "evidence": "docs/review-required-resolution-phase-b-status.md"
+    },
+    {
+      "key": "hold-shelf-bin",
+      "phase": "B",
+      "source_batch": "s4f10-role-detail-continue",
+      "source_sheet": null,
+      "source_cell": null,
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0_NOT_APPLICABLE_EXPLICIT_BLACK_FIELD", "C1", "C6", "C7", "C9", "C10", "VISUAL_QA"],
+      "evidence": "docs/review-required-resolution-phase-b-status.md"
+    },
+    {
+      "key": "oven-mitt",
+      "phase": "C",
+      "source_batch": "s4f-role-detail-props",
+      "source_sheet": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4f-role-detail-props/sheets/01.png",
+      "source_cell": [0, 0],
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0", "C1", "C6", "C7", "C9_NOT_APPLICABLE_WHITE_FIELD", "C10_NOT_APPLICABLE_NON_PERSON", "VISUAL_QA"],
+      "evidence": "tmp/phase-c-merge/white-chef/sheet-qa.jpg"
+    },
+    {
+      "key": "piping-bag",
+      "phase": "C",
+      "source_batch": "s4f-role-detail-props",
+      "source_sheet": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4f-role-detail-props/sheets/01.png",
+      "source_cell": [0, 1],
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0", "C1", "C6", "C7", "C9_NOT_APPLICABLE_WHITE_FIELD", "C10_NOT_APPLICABLE_NON_PERSON", "VISUAL_QA"],
+      "evidence": "tmp/phase-c-merge/white-chef/sheet-qa.jpg"
+    },
+    {
+      "key": "tasting-spoon",
+      "phase": "C",
+      "source_batch": "s4f-role-detail-props",
+      "source_sheet": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4f-role-detail-props/sheets/01.png",
+      "source_cell": [0, 2],
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0", "C1", "C6", "C7", "C9_NOT_APPLICABLE_WHITE_FIELD", "C10_NOT_APPLICABLE_NON_PERSON", "VISUAL_QA"],
+      "evidence": "tmp/phase-c-merge/white-chef/sheet-qa.jpg"
+    },
+    {
+      "key": "cutting-board",
+      "phase": "C",
+      "source_batch": "s4f-role-detail-props",
+      "source_sheet": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4f-role-detail-props/sheets/01.png",
+      "source_cell": [1, 0],
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0", "C1", "C6", "C7", "C9_NOT_APPLICABLE_WHITE_FIELD", "C10_NOT_APPLICABLE_NON_PERSON", "VISUAL_QA"],
+      "evidence": "tmp/phase-c-merge/white-chef/sheet-qa.jpg"
+    },
+    {
+      "key": "steamer-basket",
+      "phase": "C",
+      "source_batch": "s4f-role-detail-props",
+      "source_sheet": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4f-role-detail-props/sheets/01.png",
+      "source_cell": [1, 1],
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0", "C1", "C6", "C7", "C9_NOT_APPLICABLE_WHITE_FIELD", "C10_NOT_APPLICABLE_NON_PERSON", "VISUAL_QA"],
+      "evidence": "tmp/phase-c-merge/white-chef/sheet-qa.jpg"
+    },
+    {
+      "key": "pastry-brush",
+      "phase": "C",
+      "source_batch": "s4f-role-detail-props",
+      "source_sheet": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4f-role-detail-props/sheets/01.png",
+      "source_cell": [1, 2],
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0", "C1", "C6", "C7", "C9_NOT_APPLICABLE_WHITE_FIELD", "C10_NOT_APPLICABLE_NON_PERSON", "VISUAL_QA"],
+      "evidence": "tmp/phase-c-merge/white-chef/sheet-qa.jpg"
+    },
+    {
+      "key": "kitchen-timer-blank",
+      "phase": "C",
+      "source_batch": "s4f-role-detail-props",
+      "source_sheet": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4f-role-detail-props/sheets/01.png",
+      "source_cell": [2, 0],
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0", "C1", "C6", "C7", "C9_NOT_APPLICABLE_WHITE_FIELD", "C10_NOT_APPLICABLE_NON_PERSON", "VISUAL_QA"],
+      "evidence": "tmp/phase-c-merge/white-chef/sheet-qa.jpg"
+    },
+    {
+      "key": "folded-apron",
+      "phase": "C",
+      "source_batch": "s4f-role-detail-props",
+      "source_sheet": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4f-role-detail-props/sheets/01.png",
+      "source_cell": [2, 2],
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0", "C1", "C6", "C7", "C9_NOT_APPLICABLE_WHITE_FIELD", "C10_NOT_APPLICABLE_NON_PERSON", "VISUAL_QA"],
+      "evidence": "tmp/phase-c-merge/white-chef/sheet-qa.jpg"
+    },
+    {
+      "key": "braille-slate",
+      "phase": "C",
+      "source_batch": "s4e-a11y-manipulatives",
+      "source_sheet": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4e-a11y-manipulatives/sheets/01.png",
+      "source_cell": [0, 1],
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0", "C1", "C6", "C7", "C9", "C10", "VISUAL_QA"],
+      "evidence": "tmp/phase-c-merge/black-a11y/sheet-qa.jpg"
+    },
+    {
+      "key": "braille-stylus",
+      "phase": "C",
+      "source_batch": "s4e-a11y-manipulatives",
+      "source_sheet": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4e-a11y-manipulatives/sheets/01.png",
+      "source_cell": [0, 2],
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0", "C1", "C6", "C7", "C9", "C10", "VISUAL_QA"],
+      "evidence": "tmp/phase-c-merge/black-a11y/sheet-qa.jpg"
+    },
+    {
+      "key": "hearing-aid",
+      "phase": "C",
+      "source_batch": "s4e-a11y-manipulatives",
+      "source_sheet": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4e-a11y-manipulatives/sheets/01.png",
+      "source_cell": [1, 0],
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0", "C1", "C6", "C7", "C9", "C10", "VISUAL_QA"],
+      "evidence": "tmp/phase-c-merge/black-a11y/sheet-qa.jpg"
+    },
+    {
+      "key": "cochlear-implant",
+      "phase": "C",
+      "source_batch": "s4e-a11y-manipulatives",
+      "source_sheet": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4e-a11y-manipulatives/sheets/01.png",
+      "source_cell": [1, 1],
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0", "C1", "C6", "C7", "C9", "C10", "VISUAL_QA"],
+      "evidence": "tmp/phase-c-merge/black-a11y/sheet-qa.jpg"
+    },
+    {
+      "key": "tactile-paving-tile",
+      "phase": "C",
+      "source_batch": "s4e-a11y-manipulatives",
+      "source_sheet": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4e-a11y-manipulatives/sheets/01.png",
+      "source_cell": [1, 2],
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0", "C1", "C6", "C7", "C9", "C10", "VISUAL_QA"],
+      "evidence": "tmp/phase-c-merge/black-a11y/sheet-qa.jpg"
+    },
+    {
+      "key": "hand-magnifier",
+      "phase": "C",
+      "source_batch": "s4e-a11y-manipulatives",
+      "source_sheet": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4e-a11y-manipulatives/sheets/01.png",
+      "source_cell": [2, 0],
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0", "C1", "C6", "C7", "C9", "C10", "VISUAL_QA"],
+      "evidence": "tmp/phase-c-merge/black-a11y/sheet-qa.jpg"
+    },
+    {
+      "key": "noise-reducing-headphones",
+      "phase": "C",
+      "source_batch": "s4e-a11y-manipulatives",
+      "source_sheet": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4e-a11y-manipulatives/sheets/01.png",
+      "source_cell": [2, 2],
+      "disposition": "GENERATOR_ELIGIBLE",
+      "passed_gates": ["C0", "C1", "C6", "C7", "C9", "C10", "VISUAL_QA"],
+      "evidence": "tmp/phase-c-merge/black-a11y/sheet-qa.jpg"
+    }
+  ]
+}

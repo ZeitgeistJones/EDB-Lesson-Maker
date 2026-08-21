@@ -75,6 +75,7 @@
 
   const EMPTY_POLICY = {
     version: 2,
+    specializedPacks: {},
     deny: [],
     subjectLock: {},
     never: {},
@@ -90,6 +91,10 @@
       : [];
     return {
       version: p.version == null ? 2 : p.version,
+      specializedPacks:
+        p.specializedPacks && typeof p.specializedPacks === 'object'
+          ? p.specializedPacks
+          : {},
       deny: [...new Set(deny)],
       subjectLock: p.subjectLock && typeof p.subjectLock === 'object' ? p.subjectLock : {},
       never: p.never && typeof p.never === 'object' ? p.never : {},
@@ -719,6 +724,35 @@
     return bank ? bank.all.slice() : [];
   }
 
+  /** True when a pack is exact-mechanic-only and must fail closed generically. */
+  function isSpecializedPack(pack) {
+    if (!pack) return false;
+    const key = String(pack).toLowerCase();
+    return GENERIC_BLOCKED_PACKS.has(key)
+      || !!(policy && policy.specializedPacks && policy.specializedPacks[key]);
+  }
+
+  /**
+   * Exact named-pack retrieval for story/action/state mechanics.
+   * Generic selectors never call this. Callers must name the pack, and may
+   * optionally narrow by exact key, keyPrefix, role, and exclude[].
+   */
+  function namedPack(pack, opts) {
+    const o = opts || {};
+    const packKey = String(pack || '').toLowerCase();
+    if (!bank || !packKey || !isSpecializedPack(packKey)) return [];
+    const exclude = new Set(o.exclude || []);
+    return bank.all
+      .filter((p) =>
+        membershipPacks(p).includes(packKey)
+        && (!o.key || p.key === String(o.key))
+        && (!o.keyPrefix || p.key.startsWith(String(o.keyPrefix)))
+        && (!o.role || p.role === o.role)
+        && !exclude.has(p.key)
+      )
+      .sort((a, b) => a.key.localeCompare(b.key));
+  }
+
   /** Manifest rows the alpha filter dropped — re-keying one puts it straight in play. */
   function skipped() {
     return bank ? bank.skipped.slice() : [];
@@ -1149,7 +1183,7 @@
     const pool = bank.all.filter(
       (p) =>
         p.family === family &&
-        !GENERIC_BLOCKED_PACKS.has(p.pack) &&
+        !isSpecializedPack(p.pack) &&
         !exclude.has(p.key) &&
         !excludeBases.has(baseOfProp(p))
     );
@@ -1289,6 +1323,7 @@
       (p) =>
         p.family === family &&
         p.role === role &&
+        !isSpecializedPack(p.pack) &&
         !exclude.has(p.key) &&
         !excludeBases.has(baseOfProp(p))
     );
@@ -1512,6 +1547,7 @@
     const decoOK = decorativePacksFor(lesson);
     const byPack = new Map();
     for (const p of pool) {
+      if (isSpecializedPack(p.pack)) continue;
       const packs = membershipPacks(p);
       if (!packs.length) continue;
       // Topic Identity: skip props that only match parent / forbidden substitutes
@@ -1739,6 +1775,7 @@
     ready,
     loaded,
     all,
+    namedPack,
     skipped,
     get,
     resolve,
@@ -1764,6 +1801,7 @@
     senseCorroborated,
     subjectLockEntry,
     identityHit,
+    isSpecializedPack,
     aliasFor,
     PROP_REQUESTS,
     PROP_ALIASES,

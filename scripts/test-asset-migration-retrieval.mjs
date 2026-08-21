@@ -105,7 +105,7 @@ function genericProp(word, title) {
 }
 
 function isSpecializedPack(prop) {
-  return !!(prop && ['hero-targets', 'story-cast', 'hide-reveal'].includes(prop.pack));
+  return !!(prop && W.PropBank.isSpecializedPack(prop.pack));
 }
 
 for (const sample of [
@@ -180,6 +180,13 @@ check(
   'STORY',
   storyRows.length >= 1 && W.StoryScene,
   `${storyRows.length} story-cast rows; StoryScene ${W.StoryScene ? 'loaded' : 'missing'}`
+);
+check(
+  'SPECIALIZED_PACK_SCHEMA',
+  ['action-poses', 'epistemic-mia', 'epistemic-leo', 'epistemic-two-shot', 'prop-view-state']
+    .every((pack) => W.PropBank.isSpecializedPack(pack))
+    && W.PropBank.namedPack('not-a-specialized-pack').length === 0,
+  'H/K2/K packs fail closed generically and require named retrieval'
 );
 
 const registered = relationships.k1_state_ladders_note || {};

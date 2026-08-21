@@ -47,6 +47,10 @@
  *   --clean-internal-gutters  also paint equal-pitch internal gutters. Off by
  *                default because real sheets often have inset/offset grids.
  *   --edge-inset paint band width in px for the pre-clean (default 24)
+ *   --field      auto | black | white (default auto). Auto detects each inset
+ *                panel and hard-blocks gradients/illustrated fields as C0.
+ *   --panel-inset share of each inferred panel trimmed before keying (default
+ *                0.075) so baked divider/card frames never become crop borders
  *   --threshold --size --margin --white --white-tol   forwarded to the keyer
  *
  * Manus 4x8 sheets bloom bright pixels into the outer frame and the inter-tile
@@ -257,18 +261,21 @@ try {
 }
 
 // --- Gutter-cuff pre-clean --------------------------------------------------
-// Paint pure black over the outer frame band so the keyer sees a clean field.
+// Paint the proven field colour over the outer frame band so the keyer sees a
+// clean edge. Auto mode never paints an ambiguous/gradient field: it leaves the
+// source untouched so import-prop can report C0 per panel instead of disguising
+// an unsupported sheet as a black-field sheet.
 // Older runs also painted equal-pitch internal gutters here, but that assumes a
 // universal grid origin/gutter and can cut through inset/offset source sheets
 // before the real slicer gets a chance to infer bounds. Keep internal cleaning
 // behind an explicit flag for known equal-pitch Manus packs only.
-async function preCleanSheet(srcPath, gr, gc, inset, cleanInternal) {
+async function preCleanSheet(srcPath, gr, gc, inset, cleanInternal, requestedField) {
   const dataUrl = `data:image/png;base64,${fs.readFileSync(srcPath).toString('base64')}`;
   const browser = await chromium.launch();
   try {
     const page = await browser.newPage();
     const b64 = await page.evaluate(
-      async ({ url, gr, gc, inset, cleanInternal }) => {
+      async ({ url, gr, gc, inset, cleanInternal, requestedField }) => {
         const img = new Image();
         img.src = url;
         await img.decode();
@@ -277,9 +284,42 @@ async function preCleanSheet(srcPath, gr, gc, inset, cleanInternal) {
         const c = document.createElement('canvas');
         c.width = W;
         c.height = H;
-        const ctx = c.getContext('2d');
+        const ctx = c.getContext('2d', { willReadFrequently: true });
         ctx.drawImage(img, 0, 0);
-        ctx.fillStyle = '#000000';
+        const sample = ctx.getImageData(0, 0, W, H).data;
+        const ring = Math.max(4, Math.round(Math.min(W, H) * 0.006));
+        let total = 0;
+        let black = 0;
+        let white = 0;
+        for (let y = 0; y < H; y++) {
+          const edgeRow = y < ring || y >= H - ring;
+          for (let x = 0; x < W; x++) {
+            if (!edgeRow && x >= ring && x < W - ring) continue;
+            const i = (y * W + x) * 4;
+            const lo = Math.min(sample[i], sample[i + 1], sample[i + 2]);
+            const hi = Math.max(sample[i], sample[i + 1], sample[i + 2]);
+            total++;
+            if (hi <= 12) black++;
+            if (lo >= 241) white++;
+          }
+        }
+        const blackPurity = black / Math.max(1, total);
+        const whitePurity = white / Math.max(1, total);
+        let field = requestedField;
+        if (field === 'auto') {
+          if (blackPurity >= 0.9) field = 'black';
+          else if (whitePurity >= 0.9) field = 'white';
+          else {
+            return {
+              cleaned: false,
+              field: 'unsupported',
+              blackPurity,
+              whitePurity,
+              b64: null,
+            };
+          }
+        }
+        ctx.fillStyle = field === 'white' ? '#ffffff' : '#000000';
         // Outer frame band.
         ctx.fillRect(0, 0, W, inset);
         ctx.fillRect(0, H - inset, W, inset);
@@ -297,13 +337,20 @@ async function preCleanSheet(srcPath, gr, gc, inset, cleanInternal) {
             ctx.fillRect(0, y - inset, W, 2 * inset);
           }
         }
-        return c.toDataURL('image/png').split(',')[1];
+        return {
+          cleaned: true,
+          field,
+          blackPurity,
+          whitePurity,
+          b64: c.toDataURL('image/png').split(',')[1],
+        };
       },
-      { url: dataUrl, gr, gc, inset, cleanInternal }
+      { url: dataUrl, gr, gc, inset, cleanInternal, requestedField }
     );
+    if (!b64.cleaned) return { path: srcPath, ...b64 };
     const cleanedPath = path.join(stageDir, `_edge-clean-${path.basename(srcPath)}`);
-    fs.writeFileSync(cleanedPath, Buffer.from(b64, 'base64'));
-    return cleanedPath;
+    fs.writeFileSync(cleanedPath, Buffer.from(b64.b64, 'base64'));
+    return { path: cleanedPath, ...b64 };
   } finally {
     await browser.close();
   }
@@ -312,11 +359,34 @@ async function preCleanSheet(srcPath, gr, gc, inset, cleanInternal) {
 const edgeClean = !flag('no-edge-clean');
 const edgeInset = Math.max(0, Math.round(Number(arg('edge-inset', '24'))));
 const cleanInternalGutters = flag('clean-internal-gutters');
+const requestedField = flag('white') ? 'white' : String(arg('field', 'auto')).toLowerCase();
+if (!['auto', 'black', 'white'].includes(requestedField)) {
+  console.error('--field must be auto, black, or white');
+  process.exit(1);
+}
 let keySheetPath = sheetPath;
 if (edgeClean && edgeInset > 0) {
   console.log(`Pre-cleaning frame band (${edgeInset}px cuff) before slicing${cleanInternalGutters ? ' plus equal-pitch internal gutters' : ''}...`);
-  keySheetPath = await preCleanSheet(sheetPath, rows, cols, edgeInset, cleanInternalGutters);
-  console.log(`Cleaned sheet written to ${path.relative(ROOT, keySheetPath)}\n`);
+  const cleaned = await preCleanSheet(
+    sheetPath,
+    rows,
+    cols,
+    edgeInset,
+    cleanInternalGutters,
+    requestedField
+  );
+  keySheetPath = cleaned.path;
+  if (cleaned.cleaned) {
+    console.log(
+      `Cleaned ${cleaned.field} field written to ${path.relative(ROOT, keySheetPath)} ` +
+      `(edge black ${(cleaned.blackPurity * 100).toFixed(1)}%, white ${(cleaned.whitePurity * 100).toFixed(1)}%)\n`
+    );
+  } else {
+    console.log(
+      `Field edge is non-uniform (black ${(cleaned.blackPurity * 100).toFixed(1)}%, ` +
+      `white ${(cleaned.whitePurity * 100).toFixed(1)}%); pre-clean skipped. C0 will fail closed per panel.\n`
+    );
+  }
 } else {
   console.log('Edge-clean disabled (--no-edge-clean) — keying the raw sheet.\n');
 }
@@ -338,11 +408,11 @@ if (flag('stage-all')) importArgs.push('--stage-all');
 if (rolesList.length) importArgs.push(`--roles=${rolesList.join(',')}`);
 if (scalesList.length) importArgs.push(`--scales=${scalesList.join(',')}`);
 if (anchorsList.length) importArgs.push(`--anchors=${anchorsList.join(',')}`);
-for (const pass of ['pack', 'threshold', 'size', 'margin', 'white-tol']) {
+for (const pass of ['pack', 'threshold', 'size', 'margin', 'white-tol', 'panel-inset']) {
   const v = arg(pass);
   if (v != null) importArgs.push(`--${pass}=${v}`);
 }
-if (flag('white')) importArgs.push('--white');
+importArgs.push(`--field=${requestedField}`);
 for (const pass of ['grid-bounds', 'min-filled-cells']) {
   const v = arg(pass);
   if (v != null) importArgs.push(`--${pass}=${v}`);

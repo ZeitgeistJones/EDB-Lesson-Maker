@@ -75,6 +75,25 @@ const vocabIndexPath = path.join(ROOT, 'public/assets/07_vocab-pack/index.json')
 const propsManifest = readJson(propsManifestPath);
 const backgroundsManifest = readJson(backgroundsManifestPath);
 const vocabIndex = readJson(vocabIndexPath);
+const resolutionPaths = [
+  path.join(DOCS, 'review-required-resolutions.json'),
+  path.join(DOCS, 'art-replacement-resolutions.json'),
+];
+const resolutionsByKey = new Map();
+for (const resolutionPath of resolutionPaths) {
+  const resolutionDoc = fs.existsSync(resolutionPath)
+    ? readJson(resolutionPath)
+    : { decisions: [] };
+  for (const decision of resolutionDoc.decisions || []) {
+    const key = String(decision?.key || '').trim().toLowerCase();
+    if (!key) throw new Error(`resolution in ${repoPath(resolutionPath)} has no key`);
+    if (resolutionsByKey.has(key)) throw new Error(`duplicate review-required resolution: ${key}`);
+    resolutionsByKey.set(key, {
+      ...decision,
+      resolution_source: repoPath(resolutionPath),
+    });
+  }
+}
 const props = propsManifest.props || {};
 const scenes = backgroundsManifest.scenes || {};
 const flats = backgroundsManifest.flats || {};
@@ -219,6 +238,22 @@ function candidateRecord(item, context, inventoryFile, sequence) {
     states.add('JUNK');
     states.delete('GENERATOR_ELIGIBLE');
   }
+  const resolution = resolutionsByKey.get(key.toLowerCase()) || null;
+  if (resolution) {
+    for (const state of resolution.remove_states || []) {
+      if (!ASSET_STATES.includes(state)) {
+        throw new Error(`Unknown resolution removal state ${state} for ${key}`);
+      }
+      states.delete(state);
+    }
+    states.delete('REVIEW_REQUIRED');
+    for (const state of resolution.states || []) {
+      if (!ASSET_STATES.includes(state)) {
+        throw new Error(`Unknown resolution state ${state} for ${key}`);
+      }
+      states.add(state);
+    }
+  }
 
   const family = String(
     item.family
@@ -249,6 +284,21 @@ function candidateRecord(item, context, inventoryFile, sequence) {
     target_key: item.original_key || null,
     variant_of: item.variantOf || item.variant_of || null,
     registration_grade: item.registration_grade || context.registrationGrade || null,
+    ...(resolution
+      ? {
+          resolution: {
+            intended_disposition: resolution.intended_disposition,
+            terminal_state: resolution.terminal_state,
+            pack: resolution.pack || null,
+            relationship_id: resolution.relationship_id || null,
+            activation_blocker: resolution.activation_blocker,
+            blocker_detail: resolution.blocker_detail,
+            activation_receipt: resolution.activation_receipt || null,
+            art_replacement: resolution.art_replacement || null,
+            source: resolution.resolution_source,
+          },
+        }
+      : {}),
     ...(context.semanticAuthority
       ? { semantic_authority: context.semanticAuthority }
       : {}),
@@ -423,6 +473,17 @@ for (const record of records) {
 records = [...byLogicalKey.values()].sort(
   (a, b) => a.rule.localeCompare(b.rule) || a.family.localeCompare(b.family) || a.key.localeCompare(b.key)
 );
+const appliedResolutionKeys = new Set(
+  records.filter((record) => record.resolution).map((record) => record.key.toLowerCase())
+);
+const missingResolutionKeys = [...resolutionsByKey.keys()].filter(
+  (key) => !appliedResolutionKeys.has(key)
+);
+if (missingResolutionKeys.length) {
+  throw new Error(
+    `Review-required resolutions do not match inventory keys: ${missingResolutionKeys.join(', ')}`
+  );
+}
 
 function countStates(rows) {
   const out = Object.fromEntries(ASSET_STATES.map((state) => [state, 0]));
@@ -684,6 +745,12 @@ const report = {
       vocab_entries: Object.keys(vocabIndex).length,
       live_rows_total: liveRows.length,
       missing_live_files: liveRows.filter((row) => !fs.existsSync(path.join(ROOT, row.file))).length,
+    },
+    resolution_overlay: {
+      sources: resolutionPaths.map(repoPath),
+      decisions: resolutionsByKey.size,
+      applied: appliedResolutionKeys.size,
+      fail_closed: true,
     },
   },
   estimate_reconciliation: {

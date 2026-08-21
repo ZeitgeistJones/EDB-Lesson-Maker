@@ -1,5 +1,44 @@
 {
   "version": 2,
+  "specializedPacks": {
+    "hero-targets": {
+      "route": "named-hero-target",
+      "atomic": true
+    },
+    "story-cast": {
+      "route": "named-story-cast",
+      "keyPrefix": "cast-"
+    },
+    "hide-reveal": {
+      "route": "named-state-pair",
+      "relationshipRequired": true
+    },
+    "action-poses": {
+      "route": "named-action-pose",
+      "keyPrefix": "pose-",
+      "relationshipRequired": false
+    },
+    "epistemic-mia": {
+      "route": "named-epistemic-pose",
+      "keyPrefix": "be-epi-mia-",
+      "relationshipRequired": true
+    },
+    "epistemic-leo": {
+      "route": "named-epistemic-pose",
+      "keyPrefix": "be-epi-leo-",
+      "relationshipRequired": true
+    },
+    "epistemic-two-shot": {
+      "route": "named-epistemic-two-shot",
+      "keyPrefix": "be-epi-2shot-",
+      "relationshipRequired": true,
+      "atomic": true
+    },
+    "prop-view-state": {
+      "route": "named-prop-relationship",
+      "relationshipRequired": true
+    }
+  },
   "deny": [
     "effort",
     "teamwork",

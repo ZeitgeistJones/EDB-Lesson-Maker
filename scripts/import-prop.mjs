@@ -65,13 +65,19 @@
  *                  SceneBackgrounds.standOn puts a piece's base on groundY,
  *                  which is wrong for anything hanging or floating.
  *   --threshold    channel-max value above which a pixel is object (default 24)
- *   --white        key a NEAR-WHITE background to transparent instead of black.
+ *   --field        black | white | auto (default black). auto is intended for
+ *                  contact sheets: each inset panel must prove a clean black or
+ *                  white border, otherwise C0 blocks it instead of guessing.
+ *   --white        legacy alias for --field=white.
  *                  The background is flood-filled inward from the border, so a
  *                  large INTERIOR white region — a chef hat, a bowl, a phone
  *                  screen — stays opaque instead of being punched into a hole,
  *                  which is the whole difference from a naive white threshold.
  *                  Framing gates (C2-C4) report but do not block in this mode,
  *                  because curated external packs are already-composed art.
+ *   --panel-inset  contact-sheet crop inset as a share of each panel's short
+ *                  side (default 0.075). Removes baked divider/card frames
+ *                  before C1; clear-gutter sheets keep subjects inside this.
  *   --white-tol    how far below 255 still counts as background white (default
  *                  14; corners of real packs sit near 253, not 255)
  *   --size         long edge of the output PNG (default 512)
@@ -169,10 +175,10 @@ function parseGridBounds(value) {
   return { x, y, width, height };
 }
 
-async function panelRects(page, src, rows, cols, threshold, manualBounds = null) {
+async function panelRects(page, src, rows, cols, threshold, manualBounds = null, panelInset = 0) {
   const dataUrl = `data:image/png;base64,${fs.readFileSync(src).toString('base64')}`;
   return page.evaluate(
-    async ({ url, T, rows: gr, cols: gc, manualBounds }) => {
+    async ({ url, T, rows: gr, cols: gc, manualBounds, panelInset }) => {
       const img = new Image();
       img.src = url;
       await img.decode();
@@ -323,19 +329,29 @@ async function panelRects(page, src, rows, cols, threshold, manualBounds = null)
           for (let yy = y; yy < y1; yy++) {
             for (let xx = x; xx < x + width; xx++) if (on(xx, yy)) active++;
           }
-          rects.push({ x, y, width, height, active, activeRatio: active / Math.max(1, width * height) });
+          const inset = Math.max(0, Math.round(Math.min(width, height) * panelInset));
+          const safeInset = Math.min(inset, Math.floor((width - 1) / 4), Math.floor((height - 1) / 4));
+          rects.push({
+            x: x + safeInset,
+            y: y + safeInset,
+            width: width - safeInset * 2,
+            height: height - safeInset * 2,
+            active,
+            activeRatio: active / Math.max(1, width * height),
+            dividerInset: safeInset,
+          });
         }
       }
       return { bounds, rects };
     },
-    { url: dataUrl, T: threshold, rows, cols, manualBounds }
+    { url: dataUrl, T: threshold, rows, cols, manualBounds, panelInset }
   );
 }
 
 async function cutout(page, src, opts, rect) {
   const dataUrl = `data:image/png;base64,${fs.readFileSync(src).toString('base64')}`;
   return page.evaluate(
-    async ({ url, T, SIZE, MARGIN, box, WHITE, WTOL }) => {
+    async ({ url, T, SIZE, MARGIN, box, FIELD, WTOL }) => {
       const img = new Image();
       img.src = url;
       await img.decode();
@@ -365,10 +381,44 @@ async function cutout(page, src, opts, rect) {
         val[p] = r > g ? (r > b ? r : b) : g > b ? g : b;
       }
 
-      // C1 — is the frame the expected clean field, or did we get an
-      // environment? Black mode wants a black border ring; white mode wants a
-      // near-white one. Either way the border should read as background.
+      // C0/C1 — identify and prove the panel field before deleting any pixels.
+      // auto mode deliberately supports only clean black or clean white. A
+      // gradient/illustrated field is not safely recoverable with threshold
+      // keying, so it returns an explicit C0 block instead of manufacturing a
+      // damaged cutout.
       const ring = Math.max(4, Math.round(Math.min(w, h) * 0.006));
+      const wthr = 255 - WTOL;
+      let ringTotal = 0;
+      let ringBlack = 0;
+      let ringWhite = 0;
+      for (let y = 0; y < h; y++) {
+        const edgeRow = y < ring || y >= h - ring;
+        for (let x = 0; x < w; x++) {
+          if (!edgeRow && x >= ring && x < w - ring) continue;
+          const p = y * w + x;
+          const i = p * 4;
+          ringTotal++;
+          if (val[p] <= 12) ringBlack++;
+          if (px[i] >= wthr && px[i + 1] >= wthr && px[i + 2] >= wthr) ringWhite++;
+        }
+      }
+      const ringBlackPurity = ringBlack / Math.max(1, ringTotal);
+      const ringWhitePurity = ringWhite / Math.max(1, ringTotal);
+      let fieldMode = FIELD;
+      if (fieldMode === 'auto') {
+        if (ringBlackPurity >= 0.9) fieldMode = 'black';
+        else if (ringWhitePurity >= 0.9) fieldMode = 'white';
+        else {
+          return {
+            unsupportedField: true,
+            ringBlackPurity,
+            ringWhitePurity,
+            panel: { width: w, height: h },
+            source: { width: img.width, height: img.height },
+          };
+        }
+      }
+      const whiteMode = fieldMode === 'white';
 
       // The object mask and the ring-purity number are the only two things that
       // differ between the two fields, so they branch here and the rest of the
@@ -410,39 +460,18 @@ async function cutout(page, src, opts, rect) {
       };
 
       let ringPurity;
-      if (WHITE) {
+      if (whiteMode) {
         // White is high on every channel, so test the channel MIN against a
         // tolerance below 255. A near-white background pixel has min >= wthr.
-        const wthr = 255 - WTOL;
         const isBg = (p) => {
           const i = p * 4;
           return px[i] >= wthr && px[i + 1] >= wthr && px[i + 2] >= wthr;
         };
         floodBgFromBorder(isBg);
 
-        let ringTotal = 0;
-        let ringBg = 0;
-        for (let y = 0; y < h; y++) {
-          const edgeRow = y < ring || y >= h - ring;
-          for (let x = 0; x < w; x++) {
-            if (!edgeRow && x >= ring && x < w - ring) continue;
-            ringTotal++;
-            if (isBg(y * w + x)) ringBg++;
-          }
-        }
-        ringPurity = ringBg / ringTotal;
+        ringPurity = ringWhitePurity;
       } else {
-        let ringTotal = 0;
-        let ringBlack = 0;
-        for (let y = 0; y < h; y++) {
-          const edgeRow = y < ring || y >= h - ring;
-          for (let x = 0; x < w; x++) {
-            if (!edgeRow && x >= ring && x < w - ring) continue;
-            ringTotal++;
-            if (val[y * w + x] <= 12) ringBlack++;
-          }
-        }
-        ringPurity = ringBlack / ringTotal;
+        ringPurity = ringBlackPurity;
         // Opposite predicate of white mode: near-black channel-max is background.
         // Flood from the border so sealed dark interiors stay opaque.
         floodBgFromBorder((p) => val[p] <= T);
@@ -515,7 +544,7 @@ async function cutout(page, src, opts, rect) {
       for (let p = 0; p < n; p++) {
         if (!inner[p]) continue;
         innerN++;
-        if (WHITE) {
+        if (whiteMode) {
           // White mode: how much of the deep interior is itself near-white. It
           // is legitimately preserved (a chef hat), but a high number is the
           // signal to eyeball the cutout for eaten white or a re-opened hole.
@@ -534,7 +563,7 @@ async function cutout(page, src, opts, rect) {
       // unkeyed sticker on ClassIn docks. Fail when opaque near-white dominates.
       let plateN = 0;
       let plateWhite = 0;
-      if (!WHITE) {
+      if (!whiteMode) {
         const wthr9 = 255 - Math.min(WTOL, 24);
         for (let p = 0; p < n; p++) {
           if (!mask[p]) continue;
@@ -604,7 +633,7 @@ async function cutout(page, src, opts, rect) {
       let core = erode(mask, 2);
       let coreN = 0;
       for (let p = 0; p < n; p++) if (core[p]) coreN++;
-      if (WHITE && coreN < Math.max(16, Math.round(n * 0.0002))) {
+      if (whiteMode && coreN < Math.max(16, Math.round(n * 0.0002))) {
         // White/light subjects such as doctor coats, chef clothes, snowmen and
         // goal nets can be mostly thin pale strokes. A two-pixel erosion may
         // leave no trusted colour seed, which then makes the legitimate white
@@ -790,6 +819,7 @@ async function cutout(page, src, opts, rect) {
         whitePlate,
         edgeRatio,
         bodyHue,
+        fieldMode,
       };
     },
     {
@@ -798,7 +828,7 @@ async function cutout(page, src, opts, rect) {
       SIZE: opts.size,
       MARGIN: opts.margin,
       box: rect || null,
-      WHITE: !!opts.white,
+      FIELD: opts.field,
       WTOL: opts.whiteTol,
     }
   );
@@ -1039,9 +1069,16 @@ async function main() {
     threshold: Number(arg('threshold', '24')),
     size: Number(arg('size', '512')),
     margin: Number(arg('margin', '0.08')),
-    white: flag('white'),
+    field: flag('white') ? 'white' : String(arg('field', 'black')).toLowerCase(),
     whiteTol: Number(arg('white-tol', '14')),
+    panelInset: Number(arg('panel-inset', sheet ? '0.075' : '0')),
   };
+  if (!['black', 'white', 'auto'].includes(opts.field)) {
+    throw new Error('--field must be black, white, or auto');
+  }
+  if (!Number.isFinite(opts.panelInset) || opts.panelInset < 0 || opts.panelInset >= 0.2) {
+    throw new Error('--panel-inset must be a number from 0 up to (but not including) 0.2');
+  }
 
   const manifestPath = path.join(ROOT, 'public', 'assets', '09_props', 'manifest.json');
   const jobs = [];
@@ -1141,7 +1178,17 @@ async function main() {
   const stageResults = [];
   try {
     // Found once for the whole sheet, so nine panels cost one scan.
-    const gridData = grid ? await panelRects(page, jobs[0].src, grid.rows, grid.cols, opts.threshold, parseGridBounds(arg('grid-bounds'))) : null;
+    const gridData = grid
+      ? await panelRects(
+          page,
+          jobs[0].src,
+          grid.rows,
+          grid.cols,
+          opts.threshold,
+          parseGridBounds(arg('grid-bounds')),
+          opts.panelInset
+        )
+      : null;
     const rects = gridData ? gridData.rects : null;
     if (rects && sheet) {
       const filledCells = rects.filter((b) => b.active > 0).length;
@@ -1153,7 +1200,7 @@ async function main() {
         `Grid bounds (${gridData.bounds.mode}): ${gridData.bounds.x1 - gridData.bounds.x0}x${gridData.bounds.y1 - gridData.bounds.y0}@${gridData.bounds.x0},${gridData.bounds.y0}`
       );
       console.log(
-        `Panels: ${rects.map((b) => `${b.width}x${b.height}@${b.x},${b.y} active=${b.active}`).join('  ')}\n`
+        `Panels: ${rects.map((b) => `${b.width}x${b.height}@${b.x},${b.y} inset=${b.dividerInset} active=${b.active}`).join('  ')}\n`
       );
       if (filledCells < minFilled) {
         throw new Error(
@@ -1165,6 +1212,27 @@ async function main() {
 
     for (const job of jobs) {
       const r = await cutout(page, job.src, opts, rects ? rects[job.cellIndex] : null);
+      if (r.unsupportedField) {
+        const reason =
+          `C0 unsupported/non-uniform field (black ${(r.ringBlackPurity * 100).toFixed(1)}%, ` +
+          `white ${(r.ringWhitePurity * 100).toFixed(1)}% of inset border)`;
+        console.log(`SKIP  ${job.name} — ${reason}`);
+        if (sheet) {
+          stageResults.push({
+            name: job.name,
+            cell: [job.row, job.col],
+            landed: false,
+            reason,
+            gates: [{ id: 'C0', ok: false, got: reason }],
+            failed: ['C0'],
+            fieldMode: 'unsupported',
+          });
+          process.exitCode = 1;
+          skipped++;
+          continue;
+        }
+        throw new Error(reason);
+      }
       if (r.empty) {
         if (!convert && !sheet) {
           console.log(`\nNothing above the black threshold in ${rel(job.src)} — is it an empty frame?`);
@@ -1181,7 +1249,7 @@ async function main() {
       }
 
       r.personSubject = looksLikePersonKey(job.name, manifest.props[job.name]);
-      const gates = opts.white ? gatesForWhite(r, job.components) : gatesFor(r, job.components);
+      const gates = r.fieldMode === 'white' ? gatesForWhite(r, job.components) : gatesFor(r, job.components);
       const failed = gates.filter((g) => !g.ok);
 
       if (convert) {
@@ -1227,7 +1295,7 @@ async function main() {
       console.log(`\n${sheet ? `— ${job.name} — ` : ''}${inDesc} in, ${r.out.width}x${r.out.height} out\n`);
       for (const g of gates) console.log(`  ${g.ok ? 'PASS' : 'FAIL'}  ${g.id}  ${g.what} — ${g.got}`);
 
-      if (opts.white && r.darkInside > 0.15) {
+      if (r.fieldMode === 'white' && r.darkInside > 0.15) {
         console.log(
           `  NOTE large interior near-white area (${pct(r.darkInside)}) — eyeball for eaten white or a re-opened hole`
         );
@@ -1237,7 +1305,7 @@ async function main() {
       // dirty-cutout gates; a sheet blocks on {C1,C6,C7} and auto-forces the
       // rest; a single fresh prop still blocks on every failed gate, exactly as
       // before.
-      const blockingFailed = opts.white
+      const blockingFailed = r.fieldMode === 'white'
         ? failed.filter((g) => WHITE_BLOCKING.has(g.id))
         : sheet
         ? failed.filter((g) => SHEET_BLOCKING.has(g.id))
@@ -1324,6 +1392,7 @@ async function main() {
           forced: blockingFailed.length > 0,
           gates: gates.map((g) => ({ id: g.id, ok: g.ok, got: g.got })),
           failed: failed.map((g) => g.id),
+          fieldMode: r.fieldMode,
           dest: path.relative(ROOT, job.dest).replace(/\\/g, '/'),
           row,
         });

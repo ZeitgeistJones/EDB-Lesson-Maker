@@ -244,6 +244,16 @@ async function main() {
     if (rowIn.stageFit) outRow.stageFit = rowIn.stageFit;
     if (rowIn.subject) outRow.subject = rowIn.subject;
     if (rowIn.variantOf) outRow.variantOf = rowIn.variantOf;
+    // Semantic relationships are not visual variants. Preserve the named
+    // family and edge metadata so K/K2/state packs can be retrieved without
+    // flattening a view, state, counterpart, or atomic two-shot into "-v2".
+    if (rowIn.relationshipId) outRow.relationshipId = rowIn.relationshipId;
+    if (rowIn.parentKey) outRow.parentKey = rowIn.parentKey;
+    if (rowIn.relationType) outRow.relationType = rowIn.relationType;
+    if (rowIn.view) outRow.view = rowIn.view;
+    if (rowIn.state) outRow.state = rowIn.state;
+    if (rowIn.counterpartKey) outRow.counterpartKey = rowIn.counterpartKey;
+    if (rowIn.atomicGroup) outRow.atomicGroup = rowIn.atomicGroup;
 
     const dest = path.join(OUT_DIR, outRow.file);
     if (dry) {

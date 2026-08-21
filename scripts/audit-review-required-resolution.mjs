@@ -1,5 +1,5 @@
 /**
- * Build the exact verified, unwired REVIEW_REQUIRED queue for Phase B.
+ * Build the exact verified, unwired REVIEW_REQUIRED queue after Phase C.
  *
  * This is accounting and policy only: it never imports pixels or mutates a
  * live asset manifest.
@@ -22,7 +22,11 @@ const OUTPUT = path.join(ROOT, 'docs/review-required-resolution-inventory.json')
 // per-family expectations below are the CURRENT baseline after those explained
 // moves, not the original Phase A snapshot. Each wave's movement is documented
 // in docs/review-required-resolution-phase-b-status.md and its commit.
-const EXPECTED_QUEUE = 1860;
+// Phase C resolves the six aggressive-stockpile families and all K2 families
+// into explicit fail-closed HOLD decisions with preserved semantic intent.
+// Only the 480 candidates that still require literal old/new comparison remain
+// genuinely REVIEW_REQUIRED.
+const EXPECTED_QUEUE = 480;
 const flag = (name) => process.argv.includes(`--${name}`);
 
 function readJson(file) {
@@ -273,16 +277,7 @@ const familyGroups = [...grouped.entries()].map(([id, rows]) => {
 }).sort((a, b) => a.rule.localeCompare(b.rule) || a.source_family.localeCompare(b.source_family));
 
 const familyExpected = {
-  'aggressive-stockpile::D': 180,
-  'aggressive-stockpile::E': 329,
-  'aggressive-stockpile::F': 274,
-  'aggressive-stockpile::H': 108,
-  'aggressive-stockpile::K': 108,
-  'aggressive-stockpile::P': 306,
   'art-replacements::art-replacements': 480,
-  'board-enabling::k2-mia': 30,
-  'board-enabling::k2-leo': 30,
-  'board-enabling::k2-2shot': 15,
 };
 const familyCounts = countBy(queue, (record) => `${record.rule}::${record.family}`);
 const representativeProof = Object.entries(familyExpected).map(([id, expected]) =>
@@ -299,10 +294,10 @@ for (const record of records.filter((row) => row.rule === 'art-replacements')) {
 
 const globalChecks = [
   proofRow('exact-review-required-queue', queue.length, EXPECTED_QUEUE, 'verified source + no live row'),
-  proofRow('review-state-total', reviewStateRows.length, 2225, 'current migration inventory'),
+  proofRow('review-state-total', reviewStateRows.length, 840, 'current migration inventory'),
   proofRow('excluded-inventory-only', excludedUnverified.length, 309, 'not in verified baseline'),
-  proofRow('excluded-already-addressable', excludedAddressable.length, 56, 'not unwired'),
-  proofRow('family-proof-count', representativeProof.length, 10, 'six aggressive + replacement + three K2'),
+  proofRow('excluded-already-addressable', excludedAddressable.length, 51, 'not unwired'),
+  proofRow('family-proof-count', representativeProof.length, 1, 'only replacement comparisons remain'),
   proofRow(
     'replacement-lineage-complete',
     records.filter((record) => record.rule === 'art-replacements' && record.target_key).length,
@@ -322,7 +317,7 @@ const proofPassed = [...globalChecks, ...representativeProof].every((row) => row
 const report = {
   schema_version: 1,
   generated_at: new Date().toISOString(),
-  scope: 'Exact verified-unwired REVIEW_REQUIRED queue and Phase B resolution policy',
+  scope: 'Exact verified-unwired REVIEW_REQUIRED queue after Phase C semantic resolution',
   source_inventory: 'docs/asset-wiring-migration-inventory.json',
   accounting: {
     review_state_total: reviewStateRows.length,
@@ -369,12 +364,8 @@ const report = {
   ],
   family_groups: familyGroups,
   sonnet_waves: [
-    { wave: 'R1', families: ['aggressive-stockpile::F'], default_lane: 'GENERATOR_ELIGIBLE', purpose: 'Prove the clean standalone prop path on role-detail tools.' },
-    { wave: 'R2', families: ['aggressive-stockpile::E', 'aggressive-stockpile::D'], default_lane: 'SPLIT', purpose: 'Separate generic objects from shells, fragments, and system parts without penalizing specificity.' },
-    { wave: 'R3', families: ['aggressive-stockpile::H', 'aggressive-stockpile::P'], default_lane: 'SPECIALIZED', purpose: 'Wire named action and character poses without generic-pool leakage.' },
-    { wave: 'R4', families: ['aggressive-stockpile::K'], default_lane: 'SPLIT', purpose: 'Record base/view/state lineage before generic versus specialized eligibility.' },
-    { wave: 'R5', families: ['board-enabling::k2-mia', 'board-enabling::k2-leo', 'board-enabling::k2-2shot'], default_lane: 'SPECIALIZED', purpose: 'Preserve epistemic semantics and coordinated two-shot registration.' },
-    { wave: 'R6', families: ['art-replacements::art-replacements'], default_lane: 'PER_CELL_REPLACEMENT', purpose: 'Compare candidate to original and record PASS/HOLD/JUNK before overwrite.' },
+    { wave: 'R1-R5', families: ['aggressive-stockpile::D/E/F/H/K/P', 'board-enabling::k2-*'], default_lane: 'RESOLVED_TO_ACTIVATED_OR_FAIL_CLOSED_HOLD', purpose: 'Semantic routes are durable; future pixel activation must use the field-aware keyer and QA receipts.' },
+    { wave: 'R6', families: ['art-replacements::art-replacements'], default_lane: 'PER_CELL_REPLACEMENT', purpose: 'Only genuine review queue: compare candidate to original and record evidence-backed PASS/HOLD/JUNK before overwrite.' },
   ],
   proof: {
     pass: proofPassed,

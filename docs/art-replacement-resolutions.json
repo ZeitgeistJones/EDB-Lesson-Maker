@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-21T02:36:15.110Z",
+  "source": "docs/art-replacement-review-decisions.json",
+  "policy": {
+    "PASS_REPLACE": "HOLD until the approved cell safely replaces original_key and passes retrieval validation.",
+    "HOLD_AMBIGUOUS": "HOLD with the reviewer note as the concrete unresolved question.",
+    "JUNK_CANDIDATE": "JUNK the candidate only; preserve the current live original.",
+    "SUPERSEDED_BY_APPROVED_LINEAGE": "REFERENCE_ONLY source evidence; preserve approved lineage and do not overwrite."
+  },
+  "accounting": {
+    "completed": 0,
+    "pending": 480,
+    "by_terminal_state": {
+      "HOLD": 0,
+      "JUNK": 0,
+      "REFERENCE_ONLY": 0
+    }
+  },
+  "decisions": []
+}
