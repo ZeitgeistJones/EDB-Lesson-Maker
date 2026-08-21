@@ -837,11 +837,15 @@
     ctx.fill();
 
     ctx.fillStyle = '#92400e';
-    ctx.font = '800 15px Poppins, sans-serif';
+    ctx.font = '800 13px Poppins, sans-serif';
     ctx.textBaseline = 'top';
-    ctx.fillText('MISSION RULE', 18, 14);
+    ctx.fillText('MISSION RULE', 16, 10);
 
-    const drawWrapped = (text, y, font, color, maxLines) => {
+    // Each block only draws if it still fits — a forward-only cursor that
+    // SKIPS rather than overlaps when `h` is short (fixes the Round 2/3 bake
+    // where CONDITION and MUST PACK text collided at small panel heights).
+    const drawWrapped = (text, y, font, color, maxLines, lineH, minSpaceNeeded) => {
+      if (y + minSpaceNeeded > h - 6) return y;
       ctx.font = font;
       ctx.fillStyle = color;
       const words = String(text || '').split(/\s+/).filter(Boolean);
@@ -849,7 +853,7 @@
       let line = '';
       words.forEach((word) => {
         const trial = line ? `${line} ${word}` : word;
-        if (ctx.measureText(trial).width <= w - 36) line = trial;
+        if (ctx.measureText(trial).width <= w - 32) line = trial;
         else {
           if (line) lines.push(line);
           line = word;
@@ -860,23 +864,27 @@
         const clipped = i === maxLines - 1 && lines.length > maxLines
           ? `${value.replace(/[.,;:]?$/, '')}…`
           : value;
-        ctx.fillText(clipped, 18, y + i * 22, w - 36);
+        ctx.fillText(clipped, 16, y + i * lineH, w - 32);
       });
-      return y + Math.min(lines.length, maxLines) * 22;
+      return y + Math.min(lines.length, maxLines) * lineH;
     };
 
-    let y = drawWrapped(mission, 42, '700 16px Poppins, sans-serif', '#422006', 2) + 8;
-    if (constraint) {
-      y = drawWrapped(`CONDITION: ${constraint}`, y, '700 14px Poppins, sans-serif', '#0f766e', 2) + 8;
-    }
+    let y = drawWrapped(mission, 26, '700 14px Poppins, sans-serif', '#422006', 2, 17, 17) + 5;
+    // MUST PACK is the deciding rule (topic-contract fidelity gate) — draw it
+    // before the softer CONDITION line so it never gets dropped for space.
     if (mustInclude.length) {
-      drawWrapped(
+      y = drawWrapped(
         `MUST PACK: ${mustInclude.join(', ')}`,
-        Math.min(y, h - 34),
-        '800 14px Poppins, sans-serif',
+        y,
+        '800 12px Poppins, sans-serif',
         '#b91c1c',
-        1
-      );
+        1,
+        15,
+        15
+      ) + 4;
+    }
+    if (constraint) {
+      drawWrapped(`CONDITION: ${constraint}`, y, '700 12px Poppins, sans-serif', '#0f766e', 1, 15, 15);
     }
     return c.toDataURL('image/png');
   }
@@ -972,21 +980,23 @@
     ctx.font = '800 12px Poppins, sans-serif';
     ctx.textBaseline = 'top';
     ctx.textAlign = 'left';
-    ctx.fillText('SAY IT', 14, 8);
-    ctx.font = '700 14px Poppins, sans-serif';
+    ctx.fillText('SAY IT', 14, 6);
+    ctx.font = '700 13px Poppins, sans-serif';
     ctx.fillStyle = '#1e1b4b';
-    ctx.fillText('“I pack ___ because ___.”', 14, 28, w - checkW - 26);
-    ctx.fillText('“I leave out ___ because ___.”', 14, 50, w - checkW - 26);
+    ctx.fillText('“I pack ___ because ___.”', 14, 24, w - checkW - 26);
+    ctx.fillText('“I leave out ___ because ___.”', 14, 43, w - checkW - 26);
+    const checkH = Math.min(h - 16, 48);
     ctx.strokeStyle = '#16a34a';
     ctx.lineWidth = 2;
-    ctx.strokeRect(w - checkW - 10, 12, checkW, h - 22);
+    ctx.strokeRect(w - checkW - 10, 8, checkW, checkH);
     ctx.fillStyle = '#16a34a';
-    ctx.font = '800 10px Poppins, sans-serif';
+    ctx.font = '800 9px Poppins, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('TEACHER', w - checkW / 2 - 10, 22);
-    ctx.fillText('CHECK', w - checkW / 2 - 10, 34);
-    ctx.font = '800 20px Poppins, sans-serif';
-    ctx.fillText('✓', w - checkW / 2 - 10, h / 2 + 12);
+    ctx.fillText('TEACHER', w - checkW / 2 - 10, 16);
+    ctx.fillText('CHECK', w - checkW / 2 - 10, 27);
+    ctx.font = '800 16px Poppins, sans-serif';
+    ctx.fillText('✓', w - checkW / 2 - 10, checkH - 12);
+    ctx.textAlign = 'left';
     return c.toDataURL('image/png');
   }
 
@@ -1020,9 +1030,9 @@
       { label: 'FILLING', dashed: false, filled: true, checked: false },
       { label: 'COMMITTED', dashed: false, filled: true, checked: true },
     ];
-    const boxSize = 26;
-    const rowY = 26;
-    const gap = Math.max(28, Math.floor((w - 24 - boxSize * 3) / 2));
+    const boxSize = 20;
+    const rowY = 20;
+    const gap = Math.max(20, Math.floor((w - 24 - boxSize * 3) / 2));
     let x = 12;
     stages.forEach((stage, i) => {
       if (stage.dashed) {
@@ -1037,27 +1047,30 @@
       }
       if (stage.checked) {
         ctx.fillStyle = '#ffffff';
-        ctx.font = '800 15px Poppins, sans-serif';
+        ctx.font = '800 12px Poppins, sans-serif';
         ctx.textAlign = 'center';
-        ctx.fillText('✓', x + boxSize / 2, rowY + boxSize / 2 + 5);
+        ctx.textBaseline = 'middle';
+        ctx.fillText('✓', x + boxSize / 2, rowY + boxSize / 2 + 1);
         ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
       }
-      ctx.fillStyle = '#334155';
-      ctx.font = '700 10px Poppins, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(stage.label, x + boxSize / 2, rowY + boxSize + 12);
-      ctx.textAlign = 'left';
       if (i < stages.length - 1) {
         ctx.fillStyle = '#0f766e';
-        ctx.font = '700 14px Poppins, sans-serif';
-        ctx.fillText('→', x + boxSize + Math.round(gap / 2) - 6, rowY + boxSize / 2 - 6);
+        ctx.font = '700 12px Poppins, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('→', x + boxSize + Math.round(gap / 2), rowY + boxSize / 2 + 1);
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'top';
       }
       x += boxSize + gap;
     });
+    ctx.fillStyle = '#64748b';
+    ctx.font = '700 9px Poppins, sans-serif';
+    ctx.fillText('EMPTY · FILLING · COMMITTED', 12, rowY + boxSize + 4);
     ctx.fillStyle = '#166534';
-    ctx.font = '800 12px Poppins, sans-serif';
-    ctx.textAlign = 'left';
-    ctx.fillText(`✓ ${String(payoff || 'Ready').slice(0, 40)}`, 12, h - 18);
+    ctx.font = '800 11px Poppins, sans-serif';
+    ctx.fillText(`✓ ${String(payoff || 'Ready').slice(0, 42)}`, 12, h - 18);
     return c.toDataURL('image/png');
   }
 
@@ -2629,10 +2642,10 @@
     // Left column: mission/condition card, then the reusable language frame,
     // then the three-state proof strip — stacked so the whole reference
     // column (rule + language + lifecycle) lives in one place.
-    const stackGap = 10;
-    const frameH = 78;
-    const ladderH = 74;
-    const missionH = Math.max(120, bay.h - frameH - ladderH - stackGap * 2);
+    const stackGap = 8;
+    const frameH = 62;
+    const ladderH = 78;
+    const missionH = Math.max(100, bay.h - frameH - ladderH - stackGap * 2);
     let colY = bay.y;
     L.place(page, {
       locked: true,
@@ -2774,6 +2787,7 @@
     if (!wantsRouteMission(lesson)) return null;
     const act = (lesson && lesson.activity) || {};
     const raw = act.routeMission && typeof act.routeMission === 'object' ? act.routeMission : {};
+    const explicit = raw === act.routeMission;
     let steps = uniqueTextItems(raw.steps, 5);
     if (steps.length < 3) {
       const storyPages = (lesson && lesson.story && Array.isArray(lesson.story.pages))
@@ -2795,14 +2809,28 @@
     const landmarks = authoredLandmarks.length === steps.length
       ? authoredLandmarks
       : steps.map(routeLandmarkLabel);
+    const orderEvidence = uniqueTextItems(raw.orderEvidence, 4);
+    const goal = String(raw.goal || (inferredGoal && inferredGoal[1]) || 'Goal').trim().slice(0, 30);
+    // Explicit route grammars fail closed unless they prove a unique sequence.
+    // One distinct landmark travels with each card; one dependency reason
+    // justifies every transition without leaking the answer onto empty pads.
+    if (explicit && (
+      !mission
+      || !namedMover
+      || !String(raw.goal || '').trim()
+      || !validAnswer
+      || authoredLandmarks.length !== steps.length
+      || orderEvidence.length !== steps.length - 1
+    )) return null;
     return {
       mission,
       mover: (namedMover || (inferredMover && inferredMover[1]) || 'Team').slice(0, 20),
-      goal: String(raw.goal || (inferredGoal && inferredGoal[1]) || 'Goal').trim().slice(0, 30),
+      goal,
       steps,
       landmarks,
+      orderEvidence,
       answerOrder: validAnswer ? answerOrder : steps.slice(),
-      source: raw === act.routeMission ? 'lesson' : 'story',
+      source: explicit ? 'lesson' : 'story',
     };
   }
 
@@ -2843,6 +2871,7 @@
         goal: ctx.goal || 'Goal',
         checkpoints: steps.length,
         persistent: true,
+        stateContract: ['empty', 'placed', 'revealed'],
       },
     });
     steps.forEach((_, i) => {
@@ -2876,7 +2905,9 @@
         answerOrder: ctx.answerOrder || steps,
         mover: ctx.mover || 'Team',
         goal: ctx.goal || 'Goal',
+        orderEvidence: ctx.orderEvidence || [],
         completionState: true,
+        preservesPlacedCards: true,
       },
     });
     L.place(page, {
@@ -2887,7 +2918,11 @@
       intentional: true,
       anchor: { x: bay.x + 32, y: keyY, w: bay.w - 64, h: keyH },
       role: 'routeAnswerCover',
-      meta: { covers: 'routeAnswer' },
+      meta: {
+        covers: 'routeAnswer',
+        revealAfter: 'placed',
+        preservesPlacedCards: true,
+      },
     });
     const cards = steps.map((text, index) => ({
       text,
@@ -2910,6 +2945,8 @@
     page.notes.push('routeSteps:' + steps.length);
     page.notes.push('routePersistentPath');
     page.notes.push('routeLandmarks:' + steps.length);
+    page.notes.push('routeOrderEvidence:' + ((ctx.orderEvidence && ctx.orderEvidence.length) || 0));
+    page.notes.push('routeStates:empty|placed|revealed');
   }
 
   function resolveTransformationLab(lesson) {
@@ -3114,9 +3151,16 @@
   }
 
   function evidenceConclusionCoverPng(w, h, count) {
+    const dots = Array.from({ length: count }, (_, i) =>
+      `<circle cx="${w - 24 - (count - 1 - i) * 18}" cy="${Math.round(h / 2)}" r="6" fill="#fff7ed" stroke="#fbbf24" stroke-width="2"/>`
+    ).join('');
     return evidenceSvg(w, h, `
-      <rect x="1.5" y="1.5" width="${w - 3}" height="${h - 3}" rx="10" fill="#f59e0b" stroke="#92400e" stroke-width="3"/>
-      <text x="${w / 2}" y="${Math.round(h / 2 + 5)}" text-anchor="middle" fill="#451a03" font-size="14" font-weight="800">FILE ALL ${count} CLUES IN ORDER  →  OPEN CONCLUSION</text>`);
+      <rect x="1.5" y="1.5" width="${w - 3}" height="${h - 3}" rx="10" fill="#172554" stroke="#f59e0b" stroke-width="3"/>
+      <path d="M17 19v-4a7 7 0 0 1 14 0v4" fill="none" stroke="#fbbf24" stroke-width="3"/>
+      <rect x="13" y="18" width="22" height="17" rx="4" fill="#f59e0b"/>
+      <text x="46" y="17" fill="#fbbf24" font-size="12" font-weight="800">SEALED VERDICT · 0/${count} FILED</text>
+      <text x="46" y="33" fill="#fff" font-size="10" font-weight="700">Fill the ranked pockets → peel this seal</text>
+      ${dots}`);
   }
 
   function evidenceCardPng(w, h, item) {
@@ -3131,7 +3175,9 @@
       <path d="M4 16 Q4 4 16 4 H${w - 16} Q${w - 4} 4 ${w - 4} 16 V30 H4Z" fill="${edge}"/>
       <text x="12" y="21" fill="#fff" font-size="10" font-weight="800">${evidenceXml(source.slice(0, 26))}</text>
       <text x="${w - 12}" y="21" text-anchor="end" fill="#fff" font-size="10" font-weight="800">${relationLabel}</text>
-      ${evidenceTextSvg(item.text, 12, 49, Math.max(22, Math.floor((w - 24) / 10)), 2, 18, 'fill="#1e293b" font-size="15" font-weight="800"')}
+      <rect x="8" y="35" width="${w - 16}" height="39" rx="7" fill="#f1f5f9" stroke="#64748b" stroke-dasharray="4 3"/>
+      <text x="14" y="46" fill="#475569" font-size="8" font-weight="800">SOURCE ARTIFACT</text>
+      ${evidenceTextSvg(`“${item.artifactExcerpt}”`, 14, 61, Math.max(24, Math.floor((w - 28) / 8)), 2, 13, 'fill="#0f172a" font-size="11" font-weight="800" font-family="Consolas,monospace"')}
       ${evidenceTextSvg(`SOURCE QUALITY: ${item.rationale}`, 12, h - 39, Math.max(32, Math.floor((w - 24) / 7)), 1, 13, 'fill="#475569" font-size="10" font-weight="700"')}
       ${evidenceTextSvg(`CLAIM IMPACT: ${item.claimImpact}`, 12, h - 21, Math.max(32, Math.floor((w - 24) / 7)), 2, 12, `fill="${edge}" font-size="10" font-weight="800"`)}`);
   }
@@ -3148,6 +3194,7 @@
       out.push({
         text,
         source: String(item.source || item.artifact || '').trim(),
+        artifactExcerpt: String(item.artifactExcerpt || '').trim(),
         rationale: String(item.rationale || item.why || '').trim(),
         relation: String(item.relation || '').trim().toLowerCase(),
         claimImpact: String(item.claimImpact || '').trim(),
@@ -3192,11 +3239,12 @@
     if (!claim || !conclusion || evidence.length < 3) return null;
     const relationTypes = new Set(['supports', 'contradicts', 'qualifies', 'alternative']);
     const completeCards = evidence.every((e) =>
-      e.source && e.rationale && e.claimImpact
+      e.source && e.artifactExcerpt && e.rationale && e.claimImpact
       && relationTypes.has(e.relation)
       && Number.isFinite(e.strength)
       && e.text.length <= 72
       && e.source.length <= 26
+      && e.artifactExcerpt.length <= 48
       && e.rationale.length <= 56
       && e.claimImpact.length <= 68
     );
@@ -3307,6 +3355,9 @@
         covers: 'conclusion',
         unlockAfter: evidence.length,
         requiredOrder: ctx.answerOrder || [],
+        lockedConclusion: true,
+        progressByFilledSlots: true,
+        progressSteps: evidence.length,
       },
     });
     const shuffled = pick(evidence, evidence.length, hashStr((lesson.title || '') + '|evidenceBoard'));
@@ -3324,6 +3375,7 @@
       meta: {
         text: item.text,
         source: item.source,
+        artifactExcerpt: item.artifactExcerpt,
         rationale: item.rationale,
         relation: item.relation,
         claimImpact: item.claimImpact,
@@ -3336,6 +3388,9 @@
     page.notes.push('evidenceCounterSemantics:true');
     page.notes.push('evidenceStrengthsDistinct:true');
     page.notes.push('evidenceSourcesComplete:true');
+    page.notes.push('evidenceArtifactsInspectable:true');
+    page.notes.push('evidenceLockedConclusion:true');
+    page.notes.push('evidenceProgressByFilledSlots:true');
     page.notes.push('evidenceTeacherCheck:' + ctx.teacherCheck);
   }
 

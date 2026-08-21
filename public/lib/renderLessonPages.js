@@ -1791,54 +1791,52 @@
         ? EA.expandFrameTileWords(lesson, baseWords)
         : baseWords;
       const extras = Math.max(0, tileWords.length - blanks);
-      const rule = el('div', {
-        display: 'inline-flex',
-        alignItems: 'center',
-        alignSelf: 'flex-start',
-        gap: '8px',
-        padding: '5px 12px',
-        marginBottom: '8px',
-        borderRadius: '999px',
-        background: 'rgba(124,58,237,0.12)',
-        color: '#5b21b6',
-        fontSize: '18px',
-        fontWeight: '800',
-        lineHeight: '1.2',
-        flexShrink: '0',
-      }, `RULE · 1 tile per blank · ${extras ? `${extras} extra ${extras === 1 ? 'choice' : 'choices'}` : 'use every tile'}`);
-      rule.dataset.frameTileRule = '1';
-      col.appendChild(rule);
-
-      // Give sentence completion a topic-world payoff instead of presenting only
-      // worksheet strips. Reuse already-approved vocab art; no new asset dependency.
+      // One compact world contract replaces a separate rule strip + decorative
+      // scene banner. The numbered sentence rows are visible progress steps and
+      // the final topic payoff is explicit before the learner starts.
       const artRows = (((boardPlan && boardPlan.vocabArt) || {}).rows || [])
         .filter((row) => row && (row.artSrc || row.glyph))
-        .slice(0, rows >= 5 ? 2 : 3);
+        .slice(0, 2);
       const scene = el('div', {
-        minHeight: rows >= 5 ? '48px' : '58px',
+        minHeight: rows >= 5 ? '46px' : '56px',
         marginBottom: rows >= 5 ? '6px' : '9px',
         padding: rows >= 5 ? '4px 14px' : '6px 16px',
         borderRadius: '16px',
-        background: 'linear-gradient(90deg, rgba(236,253,245,0.94), rgba(254,249,195,0.9))',
+        background: 'linear-gradient(90deg, rgba(237,233,254,0.96), rgba(236,253,245,0.96) 52%, rgba(254,249,195,0.94))',
         border: '2px solid rgba(5,150,105,0.3)',
         display: 'flex',
         alignItems: 'center',
-        gap: '12px',
+        gap: '14px',
         flexShrink: '0',
         overflow: 'hidden',
       });
       scene.dataset.frameSceneAnchor = '1';
-      scene.appendChild(el('div', {
-        fontSize: rows >= 5 ? '17px' : '19px',
+      scene.dataset.frameCompletionPayoff = String(blanks);
+      const contract = el('div', {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1px',
+        whiteSpace: 'nowrap',
+        flexShrink: '0',
+      });
+      const contractRule = el('div', {
+        fontSize: rows >= 5 ? '14px' : '16px',
+        fontWeight: '900',
+        color: '#6d28d9',
+      }, `1 TILE / BLANK · ${extras ? `${extras} EXTRA` : 'USE ALL'}`);
+      contractRule.dataset.frameTileRule = '1';
+      contract.appendChild(contractRule);
+      contract.appendChild(el('div', {
+        fontSize: rows >= 5 ? '14px' : '16px',
         fontWeight: '900',
         color: '#065f46',
-        whiteSpace: 'nowrap',
-      }, `BUILD THE SCENE · ${esc((lesson && lesson.title) || 'Say it')}`));
+      }, esc((lesson && lesson.title) || 'Say it')));
+      scene.appendChild(contract);
       const artTray = el('div', {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'flex-end',
-        gap: '10px',
+        justifyContent: 'center',
+        gap: '8px',
         marginLeft: 'auto',
         minWidth: '0',
       });
@@ -1868,6 +1866,20 @@
         }, themeEmoji((lesson && lesson.title) || '') || '💬'));
       }
       scene.appendChild(artTray);
+      const payoff = el('div', {
+        padding: rows >= 5 ? '6px 10px' : '7px 12px',
+        borderRadius: '12px',
+        background: '#047857',
+        color: '#ffffff',
+        fontSize: rows >= 5 ? '15px' : '17px',
+        fontWeight: '900',
+        lineHeight: '1.1',
+        whiteSpace: 'nowrap',
+        boxShadow: '0 2px 5px rgba(6,78,59,0.22)',
+        flexShrink: '0',
+      }, `FINISH ${blanks} → ${/\b(game|sport|team|coach|court)\b/i.test((lesson && lesson.title) || '') ? 'TEAM READY!' : 'SCENE READY!'}`);
+      payoff.dataset.framePayoff = '1';
+      scene.appendChild(payoff);
       col.appendChild(scene);
     }
     // Long B1 frames at 40px overflow the 590px board — shrink type + wrap.
@@ -2616,7 +2628,16 @@
       .map((v) => (typeof v === 'string' ? v : v && v.word))
       .filter(Boolean)
       .slice(0, 6);
-    const yesNoCue = items.some((item) => /\b(do you|does|did you|is it|are you|can you)\b/i.test(String(item.question || '')));
+    // True yes/no questions only — anchored at the start. The old \b test
+    // matched "do you" anywhere, so a WH-question like "What do you take
+    // camping?" also got the "Say: I like ___" frame bolted on, producing a
+    // non-sequitur (Manus R2 campsite: semantic mismatch between question and
+    // model-answer frame). A WH-opener always wins even if an aux follows it.
+    const yesNoCue = items.some((item) => {
+      const q = String(item.question || '').trim();
+      if (/^(what|where|when|why|who|which|how)\b/i.test(q)) return false;
+      return /^(do you|does (?:he|she|it)|did you|is (?:it|he|she|this|that)|are you|can you)\b/i.test(q);
+    });
     const productionCue = yesNoCue && boardWords.length
       ? `Answer out loud, then say a sentence with one of today’s words (${boardWords.slice(0, 4).join(', ')})`
       : 'Answer out loud first';
@@ -3024,9 +3045,9 @@
       halfTruthBoard: 'Read the claim. Look at the evidence. Drag TRUE, HALF TRUE, or FALSE onto a pad. Peel the answer.',
       sceneRepair: 'Spot it → move it → repair it → explain why.',
       capacityPack: `Pack exactly ${activityCtx.limit || 3}. Say: “I pack ___ because ___.” Then: “I leave out ___ because ___.”`,
-      routeMission: 'Arrange the mission steps from START to FINISH. Tell the route, then lift to reveal.',
+      routeMission: 'Arrange START to FINISH. Say: First… Next… Then… Finally… Lift to reveal.',
       transformationLab: 'Choose a cause. Put it in the middle. Say: I predict ___ because ___. Then peel the result.',
-      evidenceBoard: 'File every clue strongest to weakest. Use SOURCE QUALITY + CLAIM IMPACT to justify. Then open the conclusion.',
+      evidenceBoard: 'Inspect each SOURCE ARTIFACT. File clues strongest to weakest using SOURCE QUALITY + CLAIM IMPACT. Then peel the sealed verdict.',
       oddOneOut: oddRuleHint
         || "Find the odd one out. Drag it to Doesn't fit. Write why.",
       yesNoSort: oddRuleHint

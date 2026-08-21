@@ -64,3 +64,28 @@ Independent single-board optimization log.
 - ACTION: Medium|Bind each recap word to a specific, grammatically valid frame route
 - ACTION: Medium|Replace the unused/camouflaged word fund with a camping-appropriate target word or remove it from the set
 - ACTION: Low|Increase the payoff emphasis by enlarging a single final campsite moment and reducing chrome around the wrap
+
+### Systemic response (Sonnet R1 chrome pass — before Round 4 retest)
+
+- FIX: Payoff badge (`payoff.dataset.wrapPayoff`) now shows a topic-native hero image (via `titleCharmSrc(lesson)` — the same asset the title panel uses) with a small step-number chip overlaid, instead of a bare generic numeral in a plain circle. Falls back to the plain numeral when no charm asset exists for the topic.
+- REGENERATED: `tmp/title-wrap-topic-preview/wrap-dentist-lesson.jpg`, `tmp/title-wrap-topic-preview/wrap-fruit-market-lesson.jpg` (via new `scripts/preview-title-wrap-topic.cjs`).
+- RESULT: Round 4 retest (dentist) below scored 58, and the reviewer explicitly credited the topic-native badge as working ("Low: Maintain topic-native badge but integrate it into the finish area") rather than flagging it as missing. Remaining gaps are deeper: a visible payoff *bridge* from the exit-ticket action to the High Five zone (Blocking) and consolidating the four stacked slabs into one primary action panel (High) — left for the next round since they are layout/sequencing changes, not a badge-asset fix.
+
+## Round 4 — dentist-retest (A1)
+
+- BOARD_PATH: `tmp/manus-board-loops/wrap/round-02-dentist.jpg`
+- PACKET: `tmp/manus-board-loops/wrap/round-02-dentist`
+- TASK: https://manus.im/app/NUPsSfbgmMKRevxoYn5quK
+- MANUS_VERDICT: revise
+- SCORE: 58
+- POLISH (ppt_like_quality): 3.5
+- WEAKEST_LINK: SYSTEMIC — Payoff bridge and visual-contract for exit ticket (S78/S79); INSTANCE-SPECIFIC — Topic-native dentist image does not clearly anchor the target noun (dentist) at board scale
+- ESCALATION_HOMEWORK: Introduce a static-wrap proof contract for spoken exit tickets with one visible spatial payoff (finish line, path, gate, or prize) that directly links the learner’s spoken output to the reward.
+- STATUS: structured_ok
+
+### Blocking / next actions
+- ACTION: Blocking: Implement a visible payoff bridge from the exit ticket to the High Five zone (e.g., a finish path or finish line gate).
+- ACTION: High: Establish a single primary learner-action panel and clearly labeled optional supports to reduce visual clutter (rework the four stacked slabs).
+- ACTION: Medium: Replace the dentist recap art with an unmistakable dentist portrait; enlarge/clarify the recap tiles (dentist, tooth, smile) for legibility at projection scale.
+- ACTION: Low: Maintain topic-native badge but integrate it into the finish area as a prize/celebration object.
+- ACTION: Next Round Stress-Test: Use an A1 playground feelings wrap to stress generalization of the static-wrap payoff and ensure cross-topic applicability.

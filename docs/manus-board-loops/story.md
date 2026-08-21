@@ -51,3 +51,42 @@ Independent single-board optimization log.
 ### Blocking / next actions
 - ACTION: Blocking|Revise the central transfer beat to show a clear agent–object–recipient path for the verb ‘give/gives’: Mia holds the orange book and hands/reaches to Leo with visible recipient posture.
 - ACTION: High|Scene redesign|Transform the classroom scene into a cohesive, foreground-dominant transfer moment (Mia physically presents the book toward Leo; Leo’s hands are ready to receive).
+
+## Round 4 — classroom-book-transfer-fix (A1)
+
+- BOARD_PATH: `tmp/manus-board-loops/story/round-04-classroom-book-transfer-fix.jpg`
+- PACKET: `tmp/manus-board-loops/story/round-04-classroom-book-transfer-fix`
+- TASK: https://manus.im/app/nQkupsdCu6qWvrSWPytBZG
+- MANUS_VERDICT: fail
+- SCORE: 0
+- POLISH (ppt_like_quality): 0
+- WEAKEST_LINK: n/a
+- ESCALATION_HOMEWORK: None
+- STATUS: structured_ok
+- REVIEW_VALIDITY: **INVALID** — zero scores, blank weakest link, and no findings; not treated as a board verdict.
+
+### Blocking / next actions
+
+## Round 5 — classroom-book-transfer-verification (A1)
+
+- BOARD_PATH: `tmp/manus-board-loops/story/round-05-classroom-book-transfer-verification.jpg`
+- PACKET: `tmp/manus-board-loops/story/round-05-classroom-book-transfer-verification`
+- TASK: https://manus.im/app/TGVKPvqvPik2G3zv6t4wbh
+- MANUS_VERDICT: fail
+- SCORE: 0
+- POLISH (ppt_like_quality): 0
+- WEAKEST_LINK: n/a
+- ESCALATION_HOMEWORK: n/a
+- STATUS: structured_ok
+- REVIEW_VALIDITY: **INVALID RETRY** — repeated zero scores, blank weakest link, and no findings; Manus verification unavailable.
+
+### Blocking / next actions
+
+## Producer fold and graduation status
+
+- R1 (`friends-day`, valid `revise`, 70): replaced the thin illustration banner and concatenated four-beat transcript with one honest, scene-dominant beat.
+- R2 (`zoo-lion`, valid `revise`, 58): unified every story page into a roughly 70% illustration frame with narration inside the same frame; added explicit beat numbering.
+- R3 (`classroom-book-exchange`, valid `revise`, 48): accepted the transfer-action escalation. `exchange` now stages both actors with existing reach poses, places the item on the handoff path, and emits a five-field `storyActionContract`.
+- R4/R5: identical empty zero-score payloads. These are transport/output failures, not evidence-based `fail` verdicts.
+- LOCAL_GATE: `node scripts/test-story-board-grammar.mjs` passes home/family, zoo/hero, and classroom/exchange generalization with no StoryScene warnings.
+- FINAL_STATUS: **producer fixed; local generalization passed; external Manus graduation unconfirmed because both verification responses were invalid.**

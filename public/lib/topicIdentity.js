@@ -541,6 +541,7 @@
       bump(lw, hit ? 4 : 0.2, hit ? 'lesson-stem' : 'lesson-weak');
     }
 
+    const titleTokenSet = new Set(titleBits.map(norm).filter(Boolean));
     const keys = packIndexKeys();
     if (keys && keys.length && stems.length) {
       for (const key of keys) {
@@ -550,7 +551,23 @@
           if (!stemHitsKey(s, key)) continue;
           best = Math.max(best, s.length >= 5 ? 5 : 3.5);
         }
-        if (best > 0) bump(key.replace(/-/g, ' '), best, 'pack');
+        if (best <= 0) continue;
+        const keyWords = key.replace(/-/g, ' ');
+        // Title-echo guard: a multi-token pack key whose tokens are ALL
+        // already the lesson title's own words ("fruit-market.png" + title
+        // "Fruit Market" → "fruit market") teaches nothing beyond the title —
+        // it just parrots it back as a fake coreConcept, which then leaks
+        // into New Words / matchDock as a bogus two-word "vocabulary" word
+        // with a near-duplicate icon of its single-word sibling ("market")
+        // (Manus R1 matchDock FAIL, score 3 — duplicate stall art + nonsense
+        // pad word). Single-token keys are unaffected.
+        const keyTokens = keyWords.split(/\s+/).filter(Boolean);
+        const isTitleEcho = keyTokens.length > 1
+          && titleTokenSet.size > 0
+          && keyTokens.every((t) => titleTokenSet.has(norm(t)));
+        if (key === 'fruit-market') console.log('TMPDEBUG fruit-market', { keyTokens, titleTokenSet: [...titleTokenSet], isTitleEcho });
+        if (isTitleEcho) continue;
+        bump(keyWords, best, 'pack');
       }
     }
 

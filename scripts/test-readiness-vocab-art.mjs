@@ -480,6 +480,15 @@ const noVocabKit = W.BoardReadiness.assess(
 );
 assert(noVocabKit.status === 'draft', 'empty vocab → draft with kit gates on too');
 
+// Manus R1 matchDock FAIL: hypernym/title-echo fills must never become drag pads.
+const fruitLesson = JSON.parse(fs.readFileSync(path.join(ROOT, 'scripts/fixtures/fruit-market-lesson.json'), 'utf8'));
+W.VocabArt.adaptBoardVocabulary(JSON.parse(JSON.stringify(fruitLesson)), { seed: fruitLesson.title });
+const fruitArt = W.VocabArt.planFor(fruitLesson, { seed: fruitLesson.title, allowPackFallback: true });
+const fruitMatchWords = fruitArt.matchable.map((r) => String(r.word).toLowerCase());
+assert(!fruitMatchWords.includes('fruit'), 'fruit hypernym demoted from match dock');
+assert(!fruitMatchWords.includes('fruit market'), 'title-echo compound demoted from match dock');
+assert(fruitMatchWords.includes('apple') && fruitMatchWords.includes('banana'), 'hyponyms stay matchable');
+
 console.log('OK readiness+vocabArt reasons + matchDock hint + art floor + adapt', {
   partial: report.reasons,
   noDock: report2.reasons,

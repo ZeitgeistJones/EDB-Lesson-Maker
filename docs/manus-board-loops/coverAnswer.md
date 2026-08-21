@@ -25,3 +25,22 @@ Independent single-board optimization log.
 - ACTION: Medium: Add a visible reward cue on reveal (e.g., check, sparkles) to reinforce payoff.
 - ACTION: Medium: Enforce a single coherent local word set aligned with the cover scene (e.g., apples/bananas/carrots in a market scene) to improve Vocab-Frame alignment.
 - ACTION: 3. Child-curiosity test integrated prompts (describe what a child would notice, want to interact with, and what currently hurts premium feel)
+
+## Round 2 — campsite (A1)
+
+- BOARD_PATH: `tmp/manus-board-loops/coverAnswer/round-02-campsite.jpg`
+- PACKET: `tmp/manus-board-loops/coverAnswer/round-02-campsite`
+- TASK: https://manus.im/app/KVmtz93uq52K2QGB2FBVAJ
+- MANUS_VERDICT: pass
+- SCORE: 5
+- POLISH (ppt_like_quality): 5
+- WEAKEST_LINK: INSTANCE-SPECIFIC | Camping-specific vocabulary binding | The current state binds a question about camping to a frame (I like ___) that cannot naturally answer What do you take camping?, causing semantic misalignment and open-answer evaluation confusion.
+- ESCALATION_HOMEWORK: Propose one buildable generalisation challenge focused on semantic binding and stateful reveal logic for coverAnswer boards, escalating from current campsite topic to a contrasting Topic: Abstract process or indoor/outdoor swap with open-ended prompts. Provide a concrete generator/prompt and gate change for acceptance or decline.
+- STATUS: structured_ok
+
+### Blocking / next actions
+- ACTION: Blocking: reinforce tangible peel affordance with reinforced lift cue and guaranteed payoff on reveal.
+- ACTION: High: align question/response frame and model answer so they semantically bind to the same target vocabulary (e.g., replace “I like ___” with a campsite-appropriate frame like “I take ___ camping.”)
+- ACTION: Medium: collapse worksheet-like note area and tighten the 3-beat contract so the flow Say → Peel → Compare feels like a cooperative classroom task, not a form-filling exercise.
+- ACTION: Low: introduce a topic-rich campsite vignette that supports target nouns (tent, backpack, campfire, sleeping bag) without leaking the model answer.
+- ACTION: Blocking: implement a one-job layout rule that keeps the interaction cluster compact and visually premium.

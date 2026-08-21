@@ -203,9 +203,15 @@ const LESSON_SCHEMA = {
               description:
                 'One short concrete landmark/tool label per step, paired to that movable card. Never print these in order on empty checkpoints.',
             },
+            orderEvidence: {
+              type: 'array',
+              items: { type: 'string' },
+              description:
+                'One short dependency reason per transition (steps.length - 1) proving why the next action cannot reasonably come earlier.',
+            },
             answerOrder: { type: 'array', items: { type: 'string' } },
           },
-          required: ['mission', 'mover', 'goal', 'steps', 'landmarks', 'answerOrder'],
+          required: ['mission', 'mover', 'goal', 'steps', 'landmarks', 'orderEvidence', 'answerOrder'],
         },
         transformationLab: {
           type: 'object',
@@ -237,6 +243,11 @@ const LESSON_SCHEMA = {
                     maxLength: 26,
                     description: 'Short visible source artifact, e.g. Water sensor, Keeper log, Witness interview.',
                   },
+                  artifactExcerpt: {
+                    type: 'string',
+                    maxLength: 48,
+                    description: 'Literal inspectable fragment from that source, such as a timestamped log line, short quote, measurement, or image annotation.',
+                  },
                   relation: {
                     type: 'string',
                     enum: ['supports', 'contradicts', 'qualifies', 'alternative'],
@@ -253,7 +264,7 @@ const LESSON_SCHEMA = {
                   },
                   strength: { type: 'number' },
                 },
-                required: ['text', 'source', 'relation', 'rationale', 'claimImpact', 'strength'],
+                required: ['text', 'source', 'artifactExcerpt', 'relation', 'rationale', 'claimImpact', 'strength'],
               },
             },
             conclusion: { type: 'string' },
@@ -572,9 +583,9 @@ ENGAGING ACTIVITY GRAMMAR (optional — choose AT MOST ONE complete grammar; omi
 - Do not default to identify/match/sort. Prefer a visible action that changes the board and leaves a useful record.
 - capacityPack (A1–B1): a real mission, 3–6 short picturable options, integer limit 1–4, and options.length > limit. Add one short observable constraint (weather, route, budget, task, or audience), a 2–3 word containerLabel, a short topic-specific payoff describing what the full pack unlocks, and 1–2 mustInclude entries copied exactly from options whose need follows from that constraint. Include clearly useful and clearly excludable choices. The learner packs exactly the limit and explains exclusions; never hide the deciding rule in teacher-only metadata.
 - When using capacityPack, make activity.title name its world or goal (for example "Rainy-night camp" or "Space video kit"), not generic "Pack the mission". Mission, constraint, containerLabel, mustInclude, and options must all describe that same world.
-- routeMission (A1–B1): name one mover (person, team, animal, or vehicle), one short visible goal/destination, and write 3–5 short, materially ordered actions that carry that mover from a real START to that FINISH. steps are the movable cards; answerOrder contains those exact strings in correct order. landmarks must have exactly one short concrete visual label paired to each movable step card (for example radio, flag trail, footbridge, rescue boat); the producer keeps empty checkpoints neutral so the ordered landmarks never leak the answer. Each action must advance or prepare the route state; do not use disconnected facts, labels, or actions that could happen in any order.
+- routeMission (A1–B1): name one mover (person, team, animal, or vehicle), one short visible goal/destination, and write 3–5 short, materially ordered actions that carry that mover from a real START to that FINISH. steps are the movable cards; answerOrder contains those exact strings in correct order. landmarks must have exactly one distinct short concrete visual label paired to each movable step card (for example radio, flag trail, footbridge, rescue boat); the producer keeps empty checkpoints neutral so the ordered landmarks never leak the answer. orderEvidence must contain exactly steps.length - 1 short dependency reasons proving why each next action cannot reasonably happen earlier (for example "You need a ticket before entering the gate"). Reject disconnected facts, duplicate landmarks, and actions that could happen in any order.
 - transformationLab (A2–B2): a concrete before state, 2–4 plausible cause choices in mixed order, one correctChange copied exactly from changes, and a concrete after consequence that follows specifically from that cause. The learner must be able to predict the after state and justify it with because before reveal; do not write a magic/instant simulation or make the correct answer consistently first. B2 should reason about cause, trade-off, or condition — not just use longer labels.
-- evidenceBoard (B1–B2 only): one debatable claim, 3–4 concise evidence objects with distinct strength numbers, a visible source artifact, relation, source-quality rationale, claimImpact, and a grounded conclusion. relation meanings are strict: supports strengthens the claim; contradicts cannot comfortably be true with the claim; qualifies narrows the claim or exposes a real limit; alternative offers another plausible cause. Include at least one supports clue and at least one contradicts/qualifies/alternative clue. NEVER mark a clue as counter-evidence merely because it is weaker, earlier, later, temporally adjacent, or incomplete — those describe strength or timing, not a challenge to the claim. For every contradicts/qualifies/alternative clue, claimImpact MUST contain an explicit opposition word (not, cannot, isn't, unlikely, contradicts, undermines, rules out, instead of, however) that states the actual logical effect on the claim; a clue whose claimImpact only says it is weaker/older/later than the other evidence will be rejected by the renderer. Evidence must come from the lesson/story, not invented outside facts. reasoningFrame must let learners compare source reliability/relevance; teacherCheck asks one observable source-quality question.
+- evidenceBoard (B1–B2 only): one debatable claim, 3–4 concise evidence objects with distinct strength numbers, a source label, literal artifactExcerpt (timestamped log fragment, quote, measurement, or image annotation), relation, source-quality rationale, claimImpact, and a grounded conclusion. relation meanings are strict: supports strengthens the claim; contradicts cannot comfortably be true with the claim; qualifies narrows the claim or exposes a real limit; alternative offers another plausible cause. Include at least one supports clue and at least one contradicts/qualifies/alternative clue. Strength measures reliability + relevance, NOT whether a clue supports the claim: counter-evidence may be strongest and supporting evidence may be weak. NEVER mark a clue as counter-evidence merely because it is weaker, earlier, later, temporally adjacent, or incomplete. claimImpact must explicitly state the logical effect: opposition for contradicts, a real limit for qualifies, or another plausible cause/explanation for alternative. Evidence and artifact excerpts must come from the lesson/story, not invented outside facts. reasoningFrame must let learners compare source reliability/relevance; teacherCheck asks one observable source-quality question.
 - halfTruth (A2–B2): claim + 2–4 visible evidence words + true/half/false verdict + why. Use when precision matters, not as disguised multiple choice.
 - sceneRepair (A1–B1): one funny or consequential wrong item placed on purpose, one clearly better replacement, and optional distractors. Wrong/correct must be visibly and semantically different.
 - silhouetteGate (A1–A2): use boardArchetype plus mysteryHints only for a concrete pictured noun with three staged hints. Pre-A1 keeps the TPR action path.

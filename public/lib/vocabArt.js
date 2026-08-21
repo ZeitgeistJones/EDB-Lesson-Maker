@@ -1192,6 +1192,9 @@
     // Match dock honesty: never ship two pads that look like the same picture
     // (ball + basketball → two basketballs; apple + fruit → same pack PNG).
     demoteVisualTwinMatchables(rows);
+    // Hypernym/title-echo fills can land via separate injection paths with
+    // distinct art keys — demote them even when visualTwinKey differs.
+    demoteJunkMatchables(rows, lesson);
 
     const matchable = rows.filter((r) => r.matchable);
     const dropped = rows.filter((r) => !r.matchable);
@@ -1240,6 +1243,20 @@
     });
   }
 
+  /** Demote hypernym/title-echo words that slipped into matchable via fill. */
+  function demoteJunkMatchables(rows, lesson) {
+    const allWords = (rows || []).map((r) => String((r && r.word) || '').toLowerCase()).filter(Boolean);
+    (rows || []).forEach((row) => {
+      if (!row || !row.matchable) return;
+      const w = String(row.word || '').toLowerCase();
+      const others = allWords.filter((x) => x !== w);
+      if (isJunkFillWord(w, others, lesson)) {
+        row.matchable = false;
+        row.reason = (row.reason ? row.reason + ';' : '') + 'junk-fill';
+      }
+    });
+  }
+
   window.VocabArt = {
     MAX_BOARD_VOCAB,
     MIN_BOARD_VOCAB,
@@ -1259,5 +1276,7 @@
     slug,
     visualTwinKey,
     demoteVisualTwinMatchables,
+    demoteJunkMatchables,
+    isJunkFillWord,
   };
 })();

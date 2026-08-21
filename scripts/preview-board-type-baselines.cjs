@@ -204,7 +204,7 @@ const FRAME_VARIANTS = {
         { word: 'whistle', sentence: 'When our team is ready to begin, the coach blows the whistle.' },
       ],
       sentenceFrames: [
-        'When practice begins, the coach calls our ____ together.',
+        'Before the game begins, we start our ____ with a careful warm-up.',
         'Before I shoot, I pass the ____ to my teammate.',
         'Before the game begins, everyone walks onto the ____.',
         'During practice, the ____ helps everyone improve.',
@@ -224,11 +224,11 @@ const FRAME_VARIANTS = {
         { word: 'helmet', sentence: 'Whenever I cycle across town, I always wear a helmet.' },
       ],
       sentenceFrames: [
-        'When it rains, I take the ____ instead of walking.',
-        'For a short journey, I usually ride my ____.',
-        'To avoid the busy roads, our family travels by ____.',
-        'Before leaving home, I check the ____ for the safest route.',
-        'Whenever I cycle across town, I always wear a ____.',
+        'When heavy rain makes walking difficult, I take the ____ across town.',
+        'Before leaving home, I plan each part of my ____ carefully.',
+        'To reach the museum without a car, we travel across ____ by bus.',
+        'On the transport map, the safest route is marked in ____.',
+        'After getting off the train, we walk ____ the bridge together.',
       ],
     },
   },
@@ -279,6 +279,19 @@ const FRAME_VARIANTS = {
 };
 const frameVariantId = cliArg('variant', 'fruit-market');
 const frameVariant = FRAME_VARIANTS[frameVariantId] || FRAME_VARIANTS['fruit-market'];
+if (cliArg('only', '') === 'frameTiles') {
+  console.log('FRAME_VARIANT', frameVariantId, frameVariant.lesson.title, frameVariant.level);
+}
+
+const MATCH_DOCK_VARIANTS = {
+  'fruit-market': { lesson: fruit, level: 'A1' },
+  zoo: { lesson: zooPhonics, level: 'A1' },
+};
+const matchDockVariantId = cliArg('variant', 'fruit-market');
+const matchDockVariant = MATCH_DOCK_VARIANTS[matchDockVariantId] || MATCH_DOCK_VARIANTS['fruit-market'];
+if (cliArg('only', '') === 'matchDock') {
+  console.log('MATCH_DOCK_VARIANT', matchDockVariantId, matchDockVariant.lesson.title, matchDockVariant.level);
+}
 
 const ROUTE_MISSION_VARIANTS = {
   'school-trip': {
@@ -291,6 +304,11 @@ const ROUTE_MISSION_VARIANTS = {
       goal: 'Bus',
       steps: ['Check the plan', 'Pack the bag', 'Walk to the stop', 'Get on the bus'],
       landmarks: ['Plan', 'Bag', 'Bus stop', 'Bus'],
+      orderEvidence: [
+        'The plan tells Mia what to pack.',
+        'Mia must pack before leaving for the stop.',
+        'Mia must reach the stop before boarding the bus.',
+      ],
       answerOrder: ['Check the plan', 'Pack the bag', 'Walk to the stop', 'Get on the bus'],
     },
   },
@@ -304,6 +322,11 @@ const ROUTE_MISSION_VARIANTS = {
       goal: 'Rescue boat',
       steps: ['Take the radio', 'Follow the flags', 'Cross the footbridge', 'Reach the rescue boat'],
       landmarks: ['Radio', 'Flag trail', 'Footbridge', 'Rescue boat'],
+      orderEvidence: [
+        'Kai needs the radio before leaving the hut.',
+        'The flags lead Kai to the footbridge.',
+        'Kai must cross the bridge to reach the boat.',
+      ],
       answerOrder: ['Take the radio', 'Follow the flags', 'Cross the footbridge', 'Reach the rescue boat'],
     },
   },
@@ -317,6 +340,11 @@ const ROUTE_MISSION_VARIANTS = {
       goal: 'Roller coaster',
       steps: ['Check the park map', 'Buy a ride ticket', 'Enter the blue gate', 'Join the coaster line'],
       landmarks: ['Park map', 'Ride ticket', 'Blue gate', 'Coaster line'],
+      orderEvidence: [
+        'The map shows where to buy the right ticket.',
+        'Zoe needs a ticket before entering the ride gate.',
+        'Zoe must enter the gate before joining the coaster line.',
+      ],
       answerOrder: ['Check the park map', 'Buy a ride ticket', 'Enter the blue gate', 'Join the coaster line'],
     },
   },
@@ -330,6 +358,12 @@ const ROUTE_MISSION_VARIANTS = {
       goal: 'Safe campfire',
       steps: ['Choose a clear fire ring', 'Fill the safety bucket', 'Build a small wood stack', 'Light it with an adult', 'Put out every ember'],
       landmarks: ['Fire ring', 'Safety bucket', 'Wood stack', 'Campfire', 'Cold embers'],
+      orderEvidence: [
+        'The team must choose a safe ring before preparing equipment.',
+        'The safety bucket must be ready before the wood is built.',
+        'The wood stack must be built before an adult lights it.',
+        'The fire must burn before the team can put out every ember.',
+      ],
       answerOrder: ['Choose a clear fire ring', 'Fill the safety bucket', 'Build a small wood stack', 'Light it with an adult', 'Put out every ember'],
     },
   },
@@ -366,7 +400,7 @@ const ALL_CASES = [
     meta: { level: storyLevel, duration: storyDuration },
   },
   { id: 'wrap', pageKey: 'wrap', expected: 'wrap', pageFormat: true, lesson: fruit, meta: { level: 'A1', duration: 30 } },
-  { id: 'matchDock', pageKey: 'newWords', expected: 'matchDock', lesson: fruit, meta: { level: 'A1', duration: 30 } },
+  { id: 'matchDock', pageKey: 'newWords', expected: 'matchDock', lesson: matchDockVariant.lesson, meta: { level: matchDockVariant.level, duration: 30 } },
   { id: 'frameTiles', pageKey: 'frames', expected: 'frameTiles', lesson: frameVariant.lesson, meta: { level: frameVariant.level, duration: 30 } },
   { id: 'phonicsSoundBoxes', pageKey: 'phonics', expected: 'phonicsSoundBoxes', lesson: zooPhonics, meta: { level: 'A1', duration: 30, phonics: 'on' }, force: true },
   { id: 'coverAnswer', pageKey: 'speaking:0', expected: 'coverAnswer', lesson: fruit, meta: { level: 'A1', duration: 30 } },
@@ -474,6 +508,7 @@ const ALL_CASES = [
         {
           text: 'Water was found in the tripped power box.',
           source: 'Electrician report',
+          artifactExcerpt: '19:42 — breaker tripped; water inside box',
           relation: 'supports',
           rationale: 'Direct expert inspection.',
           claimImpact: 'Water in the failed circuit supports rain.',
@@ -482,22 +517,25 @@ const ALL_CASES = [
         {
           text: 'Heavy rain began 10 minutes before failure.',
           source: 'Weather station',
+          artifactExcerpt: '19:32 — heavy rain began',
           relation: 'supports',
           rationale: 'Automatic timing.',
           claimImpact: 'Rain timing supports, but cannot prove cause.',
-          strength: 3,
+          strength: 2,
         },
         {
           text: 'A heat alarm appeared before the rain began.',
           source: 'Sound-desk log',
+          artifactExcerpt: '19:29 — AMPLIFIER HEAT ALARM',
           relation: 'alternative',
           rationale: 'Automatic timestamp.',
           claimImpact: 'Another plausible cause is overheating.',
-          strength: 2,
+          strength: 3,
         },
         {
           text: 'A witness remembers the power-box cover closed.',
           source: 'Witness interview',
+          artifactExcerpt: '"The power-box cover looked closed."',
           relation: 'qualifies',
           rationale: 'Memory may be wrong.',
           claimImpact: 'Closed cover makes rain less likely.',

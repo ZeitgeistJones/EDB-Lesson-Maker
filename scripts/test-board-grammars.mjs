@@ -172,6 +172,10 @@ const cases = [
       goal: 'Bus',
       steps: ['Check the plan', 'Pack the bag', 'Get on the bus'],
       landmarks: ['Plan', 'Bag', 'Bus'],
+      orderEvidence: [
+        'You must check the plan before packing the right bag.',
+        'You must pack the bag before getting on the bus.',
+      ],
       answerOrder: ['Check the plan', 'Pack the bag', 'Get on the bus'],
     },
     roles: ['routeMissionBrief', 'routePath', 'routeStep', 'routeTile', 'routeAnswerCover'],
@@ -197,6 +201,7 @@ const cases = [
         {
           text: 'The next bus arrives in three minutes.',
           source: 'Live bus tracker',
+          artifactExcerpt: '08:12 — Route 5 arrives in 3 min',
           relation: 'supports',
           rationale: 'It is current, direct timing evidence.',
           claimImpact: 'A bus arriving soon makes the bus a practical choice.',
@@ -205,6 +210,7 @@ const cases = [
         {
           text: 'The bus stop is beside the school gate.',
           source: 'School route map',
+          artifactExcerpt: 'Stop S4 — School Gate',
           relation: 'supports',
           rationale: 'It clearly shows the route is convenient.',
           claimImpact: 'A stop at the gate strengthens the convenience claim.',
@@ -213,13 +219,14 @@ const cases = [
         {
           text: 'Roadworks may delay buses by fifteen minutes.',
           source: 'Traffic alert',
+          artifactExcerpt: '08:05 — delays up to 15 minutes',
           relation: 'qualifies',
           rationale: 'It is an official current alert.',
           claimImpact: 'A long delay limits the claim that the bus is best today.',
-          strength: 1,
+          strength: 4,
         },
       ],
-      conclusion: 'The bus is probably best, but the roadworks make the decision less certain.',
+      conclusion: 'The official delay alert is strongest, so the bus may not be best today.',
     },
     roles: [
       'evidenceCaseFile',
@@ -281,6 +288,10 @@ for (const c of cases) {
     const completion = page.locked.find((piece) => piece.role === 'routeAnswer');
     assert.equal(completion?.meta?.completionState, true,
       'routeMission peek must reveal an explicit completed route state');
+    assert.equal(completion?.meta?.orderEvidence?.length, 2,
+      'routeMission reveal must retain dependency evidence for every transition');
+    assert.deepEqual(Array.from(pathPiece?.meta?.stateContract || []), ['empty', 'placed', 'revealed'],
+      'routeMission must declare empty, placed, and revealed interaction states');
     const routeTiles = page.unlocked.filter((piece) => piece.role === 'routeTile');
     assert(routeTiles.every((piece) =>
       piece.kind === 'image' && piece.meta?.visualAnchor && piece.meta?.landmark
@@ -314,15 +325,23 @@ for (const c of cases) {
   if (c.id === 'evidenceBoard') {
     const cards = page.unlocked.filter((piece) => piece.role === 'evidenceCard');
     assert(cards.every((piece) =>
-      piece.meta?.source && piece.meta?.rationale && piece.meta?.claimImpact
+      piece.meta?.source && piece.meta?.artifactExcerpt
+      && piece.meta?.rationale && piece.meta?.claimImpact
       && ['supports', 'contradicts', 'qualifies', 'alternative'].includes(piece.meta?.relation)
     ), 'evidenceBoard cards must expose source, relation, source quality, and claim impact');
     assert(cards.some((piece) => piece.meta?.relation !== 'supports'),
       'evidenceBoard must include counter-evidence');
+    const strongest = cards.slice().sort((a, b) => b.meta.strength - a.meta.strength)[0];
+    assert.notEqual(strongest.meta.relation, 'supports',
+      'evidenceBoard strength must be independent of support/counter direction');
     assert(page.notes.includes('evidenceStrengthsDistinct:true'),
       'evidenceBoard must mark honest distinct strength ranks');
     assert(page.notes.includes('evidenceSourcesComplete:true'),
       'evidenceBoard must mark complete source artifacts');
+    assert(page.notes.includes('evidenceArtifactsInspectable:true'),
+      'evidenceBoard must mark literal source excerpts as inspectable');
+    assert(page.notes.includes('evidenceLockedConclusion:true'),
+      'evidenceBoard must expose a sealed conclusion artifact');
     assert(page.notes.includes('evidenceCounterSemantics:true'),
       'evidenceBoard must mark the strict counter-relation contract');
   }
@@ -372,6 +391,21 @@ assert.notEqual(
   'capacityPack must fail closed when its deciding constraint is hidden'
 );
 
+const invalidRoute = lesson('Ambiguous route', 'routeMission', 'routeMission', {
+  mission: 'Help Mia visit three places.',
+  mover: 'Mia',
+  goal: 'Park',
+  steps: ['See the fountain', 'See the trees', 'See the gate'],
+  landmarks: ['Fountain', 'Trees', 'Gate'],
+  answerOrder: ['See the fountain', 'See the trees', 'See the gate'],
+  orderEvidence: [],
+});
+assert.notEqual(
+  activityFor(invalidRoute).assignment.recipeId,
+  'routeMission',
+  'routeMission must reject actions with no dependency evidence'
+);
+
 const invalidTransform = lesson('Invalid transform', 'transformationLab', 'transformationLab', {
   question: 'What changes?',
   before: 'It is warm.',
@@ -402,6 +436,7 @@ const vagueCounterEvidence = lesson('Vague counter relation', 'evidenceBoard', '
     {
       text: 'The bus arrives soon.',
       source: 'Tracker',
+      artifactExcerpt: 'Route 5 — 3 min',
       relation: 'supports',
       rationale: 'It is current.',
       claimImpact: 'A short wait supports the claim.',
@@ -410,6 +445,7 @@ const vagueCounterEvidence = lesson('Vague counter relation', 'evidenceBoard', '
     {
       text: 'The stop is nearby.',
       source: 'Route map',
+      artifactExcerpt: 'Stop S4 — School Gate',
       relation: 'supports',
       rationale: 'It is official.',
       claimImpact: 'A nearby stop supports convenience.',
@@ -418,6 +454,7 @@ const vagueCounterEvidence = lesson('Vague counter relation', 'evidenceBoard', '
     {
       text: 'It rained earlier.',
       source: 'Weather note',
+      artifactExcerpt: '07:50 — light rain',
       relation: 'challenges',
       rationale: 'It is current.',
       claimImpact: 'This is merely adjacent, not genuine counter-evidence.',

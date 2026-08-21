@@ -59,3 +59,29 @@ Independent single-board optimization log.
 - ACTION: High | Hook to payoff | Replace hook with a concrete, observable prompt tied to the visible world (e.g., 'What can you find at the campsite?').
 - ACTION: Medium | Scene integration | Add a cohesive environmental layer that links ground/horizon with the world panel to avoid a pasted-dashboard feel.
 - ACTION: Medium | Asset enrichment | Introduce additional campsite assets (campfire, backpack) to anchor the vocabulary set and reinforce the camping theme.
+
+### Systemic response (Sonnet R1 chrome pass — before Round 4 retest)
+
+- FIX: World panel resized from a fixed 430×430 centered box to a full-height ~45%-width split composition (`world.dataset.titleWorld`), so the topic hero/cues panel is a real half-page split, not a decoration floating on empty canvas.
+- FIX: Hero image / topic-cue bubbles scaled up to fill the larger panel (charm image, primary cue, secondary cues, and their labels all enlarged proportionally).
+- FIX: `grammarAimLine()` now anchors the named grammar family (kept for teacher legibility — whole-lesson reviews require it explicit) to one concrete, verbatim child-facing example pulled straight from the lesson's own sentence frames, e.g. `practise purpose / hygiene routines — like "I go to the dentist to ___."` instead of the label alone.
+- REGENERATED: `tmp/title-wrap-topic-preview/title-dentist-lesson.jpg`, `tmp/title-wrap-topic-preview/title-fruit-market-lesson.jpg` (via new `scripts/preview-title-wrap-topic.cjs`, kept separate from the shared `preview-board-type-baselines.cjs` used by other board loops).
+- RESULT: Round 4 retest (dentist) below scored 55 (up from 0 pre-fix at an earlier dentist pass) with the grammar-label ask downgraded from Blocking to Medium. Remaining gap: reviewer still wants the hero to read as one integrated clinic *scene* rather than a hero image + separate detached cue icons — that is a deeper asset/composition change left for the next round, not a quick chrome fix.
+
+## Round 4 — dentist-retest (A1)
+
+- BOARD_PATH: `tmp/manus-board-loops/title/round-02-dentist.jpg`
+- PACKET: `tmp/manus-board-loops/title/round-02-dentist`
+- TASK: https://manus.im/app/hpEJesvkaJbPQPCw9ofY4q
+- MANUS_VERDICT: revise
+- SCORE: 55
+- POLISH (ppt_like_quality): 0
+- WEAKEST_LINK: SYSTEMIC|Opening / title boards|The hero/world density remains insufficient: a large hero panel with detached icons does not establish aScene/world; the label-to-asset mapping is still fragile (dentist label paired with a dental mirror).
+- ESCALATION_HOMEWORK: Exactly ONE escalating generalization challenge as a buildable spec that stresses the PRODUCER (a new topic, a new page type, a harder CEFR level, or a multi-round activity), escalating relative to what has already passed. Phrase as a proposal the human can accept or decline — not an auto-build.
+- STATUS: structured_ok
+
+### Blocking / next actions
+- ACTION: Blocking|Phase 2 producer fix: Replace dentist iconography with a clear dentist in a clinic setting to align label-to-asset mapping; Scene-density: convert the right-hand panel from detached icons to an integrated clinic scene with embedded cues.
+- ACTION: High|Phase 2 producer fix: Replace the abstract grammar label with a concrete, child-facing frame embedded in the scene (e.g., Say it: I go to the dentist to ___).
+- ACTION: Medium|Phase 2 producer fix: Reduce chrome clutter (chrome budget) by consolidating header, aims, and hero treatments into a single cohesive decorative system.
+- ACTION: Low|Phase 2 producer fix: Tighten the Lime accent usage or remove it entirely to avoid visual misreadings and preserve visual hierarchy.
