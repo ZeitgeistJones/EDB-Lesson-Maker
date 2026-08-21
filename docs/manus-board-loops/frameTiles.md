@@ -48,3 +48,25 @@ Independent single-board optimization log.
 - ACTION: Medium: Revisit distractor set for stronger semantic/pragmatic compatibility with the four blanks to avoid near-plausible but incorrect completions.
 - ACTION: Low: Revise header hierarchy to reduce chrome and allow the scene/world surface to dominate the composition; ensure the world anchor reads as the task context rather than decoration.
 - ACTION: Optional polish: add a progress/reward cue (e.g., “Team ready!” state) after all blanks are filled to enhance perceived payoff and motivation.
+
+## Round 2 — game-day-training (A2)
+
+- BOARD_PATH: `tmp/manus-board-loops/frameTiles/round-02-game-day-training.jpg`
+- PACKET: `tmp/manus-board-loops/frameTiles/round-02-game-day-training`
+- TASK: https://manus.im/app/XVjzcrvGGHv5trUeXUwNVq
+- MANUS_VERDICT: revise
+- SCORE: 62
+- POLISH (ppt_like_quality): 3
+- WEAKEST_LINK: SYSTEMIC - frameTiles action-payoff gate: The current render lacks initial/correct-placement/completed-state payoff and a scene-stage that meaningfully anchors the activity; improvement requires a visible, earned payoff tied to a coherent scene-world rather than a worksheet-like sequence.
+- ESCALATION_HOMEWORK: challenge: Propose a single buildable generalisation that escalates the frameTiles grammar to a 5-frame board with 6–8 tiles, including 1–2 distractors, and a scene-stage payoff that reveals a visible game-state after each correct placement and a final completion state; ensure the payoff is non-textual or scene-based to reinforce action→payoff. rationale: This extends the current grammar to a longer sequence and stronger world-building, testing generalisation across topics and frame counts. producer_response: ACCEPT.
+- STATUS: structured_ok
+
+### Blocking / next actions
+- BLOCK: B1: FrameTiles lacks a coherent, scene-integrated stage; no observable initial-state, correct-placement state, or completion payoff evidenced on render.
+- BLOCK: B1: Scene anchor remains decorative rather than establishing game-day world with context and payoff.
+- BLOCK: B1: Tile-bank/layout imbalance: four long frame strips stacked above a left-aligned, underutilized lower-right quadrant reduces visual focus and mediates engagement.
+- BLOCK: B1: Worksheet-smell risk persists due to a predominantly text-and-box interaction without a compelling, play-driven payoff visible to learners.
+- ACTION: Blocking | FrameTiles: Implement a robust action-payoff state contract with initial-state, correct-placement state, and completed-state payoff; require visible, non-answer-leaking progression in the scene.
+- ACTION: High | Scene anchor: Replace the decorative scene strip with a coherent game-day scene-stage that anchors the frames and provides contextual cues (players, coach, court, ball, whistle).
+- ACTION: Medium | Adaptive layout: Make frame-density responsive to frame count and word length rather than fixed presets; reflow the tile dock and frame blocks accordingly.
+- ACTION: Low | Dock balance: Center/integrate the word tile dock to avoid large unused quadrants and improve visual weight distribution.

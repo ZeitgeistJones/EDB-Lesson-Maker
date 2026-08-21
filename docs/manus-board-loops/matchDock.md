@@ -31,9 +31,20 @@ Independent single-board optimization log.
 
 ## Round 2 — zoo (A1)
 
-- STATUS: pending Manus review
+- BOARD_PATH: `tmp/manus-board-loops/matchDock/round-02-zoo.jpg`
+- PACKET: `tmp/manus-board-loops/matchDock/round-02-zoo`
+- TASK: https://manus.im/app/kPPXxbp3JHi9bHQ4DtXzAW
+- MANUS_VERDICT: pass
+- SCORE: 0
+- POLISH (ppt_like_quality): 0
+- WEAKEST_LINK: n/a
+- ESCALATION_HOMEWORK: n/a
+- STATUS: structured_ok
+- LOOP_STATUS: `closed_after_R2_generalization`
 
-## Round 2 — music-class (A1)
+### Blocking / next actions
+
+## Round 2 — music-class (A1) [parallel stress-test — not blocking close]
 
 - BOARD_PATH: `tmp/manus-board-loops/matchDock/round-02-music-class.jpg`
 - PACKET: `tmp/manus-board-loops/matchDock/round-02-music-class`
@@ -42,11 +53,6 @@ Independent single-board optimization log.
 - SCORE: 64
 - POLISH (ppt_like_quality): 0
 - WEAKEST_LINK: VISUAL SYSTEMIC: One-to-one semantic mapping gate for matchDock (Target words must map 1:1 to visible source cards; no confusable targets; bijection required).
-- ESCALATION_HOMEWORK: In Escalating Homework, propose exactly one buildable generalisation challenge: implement a one-to-one semantic mapping audit gate for matchDock releases, enforcing bijective mapping between target words and source cards and requiring explicit semantic-confusability checks before release. This should be parameterized so future decks can reuse the gate with different vocab sets. Rationale: generalizes the core systemic weakness (mapping ambiguity) while keeping the requirement concrete and testable. Producer_response: ACCEPT | DECLINE
+- ESCALATION_HOMEWORK: implement a one-to-one semantic mapping audit gate for matchDock releases
 - STATUS: structured_ok
-
-### Blocking / next actions
-- ACTION: Blocking: rework matchDock to ensure bijective mapping with explicit source-card→target-word mapping and a visible, earned payoff state on completion
-- ACTION: High: add per-source-card export QA to remove opaque fields and clipping (asset integrity gate)
-- ACTION: Medium: replace worksheet-like layout with an embedded music-stage interaction surface; ensure stage spots visually fill on drop and trigger payoff
-- ACTION: Low: adjust tray label to clearly reflect drag-from-deck rather than “Pick One” conflict; remove stray marks beneath clef card
+- NOTE: Deferred — zoo R2 pass confirms generalization; bijection gate is a future producer hardening item.

@@ -1368,7 +1368,7 @@
         letterSpacing: '1.4px',
         color: '#5b21b6',
         textTransform: 'uppercase',
-      }, 'Picture deck · pick one'));
+      }, 'Picture deck · drag one'));
       sourceTray.appendChild(el('div', {
         position: 'absolute',
         left: '22px',

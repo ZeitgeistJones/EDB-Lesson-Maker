@@ -133,6 +133,38 @@ assert(/to its word/i.test(fullHint), 'student hint names the destination word p
 assert(/say the word/i.test(fullHint), 'student hint includes retrieval aloud');
 assert(!/not every word/i.test(partialHint), 'student hint must not announce missing pictures');
 
+const clearMapping = W.EdbActivities.matchDockMappingAudit({
+  matchable: [
+    { word: 'dog', glyph: '🐶' },
+    { word: 'cat', glyph: '🐱' },
+  ],
+});
+assert(clearMapping.ok, 'mapping audit accepts unique, concrete word-picture pairs');
+
+const ambiguousMapping = W.EdbActivities.matchDockMappingAudit({
+  matchable: [
+    { word: 'music', glyph: '🎵' },
+    { word: 'song', glyph: '🎶' },
+  ],
+});
+assert(!ambiguousMapping.ok, 'mapping audit rejects semantically confusable targets');
+assert(
+  ambiguousMapping.reasons.some((reason) => /semantic-confusability/.test(reason)),
+  'mapping audit reports semantic confusability'
+);
+
+const duplicateSourceMapping = W.EdbActivities.matchDockMappingAudit({
+  matchable: [
+    { word: 'sea', artSrc: '/same-wave.png' },
+    { word: 'ocean', artSrc: '/same-wave.png' },
+  ],
+});
+assert(!duplicateSourceMapping.ok, 'mapping audit rejects duplicate source art');
+assert(
+  duplicateSourceMapping.reasons.includes('duplicate-source-art'),
+  'mapping audit reports duplicate source art'
+);
+
 // Art floor: Ready needs ≥5/6 teachable art (was 50%).
 assert(Math.abs(W.BoardReadiness.VOCAB_ART_FLOOR - 5 / 6) < 1e-9, 'VOCAB_ART_FLOOR is 5/6');
 const floorPct = Math.ceil(W.BoardReadiness.VOCAB_ART_FLOOR * 100);

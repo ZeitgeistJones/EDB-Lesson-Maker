@@ -7486,6 +7486,7 @@
     boardVocabCount,
     matchDockSize,
     matchDockIsPartial,
+    matchDockMappingAudit,
     matchDockStudentHint,
     solidPng,
     slotGhostPng,

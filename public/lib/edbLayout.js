@@ -56,7 +56,11 @@
       header:    { x: 48, y: 36,  w: 1184, h: 50, noOverlap: true },
       bodyText:  { x: 48, y: 100, w: 1184, h: 400, noOverlap: true },
       artSafe:   { x: 1000, y: 420, w: 230, h: 140, noOverlap: false },
-      dock:      { x: 48, y: 500, w: 900, h: 70, noOverlap: false },
+      // Full board width — a 900px dock left a bare ~300px quadrant on the
+      // lower right next to a full-width frame stack (Manus frameTiles R2
+      // "dock balance" action). placeDockRow still centers the tile row
+      // inside this wider zone, so fewer tiles just get more breathing room.
+      dock:      { x: 48, y: 500, w: 1184, h: 70, noOverlap: false },
       targetBay: { x: 48, y: 100, w: 1184, h: 380, noOverlap: false },
       rewardPocket: { x: 1100, y: 36, w: 140, h: 60, noOverlap: false },
     },
