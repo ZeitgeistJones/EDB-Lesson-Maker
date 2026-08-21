@@ -1,5 +1,7 @@
 # Board-Type Review Roster
 
+**Manus review/remediation contract:** [`manus-board-remediation-contract.md`](./manus-board-remediation-contract.md) — single-board grammar loops, SYSTEMIC vs INSTANCE-SPECIFIC findings, 9/10 remediation packages, and two-topic graduation bar.
+
 Regenerate all representatives with:
 
 `npm run preview:board-grammars`
