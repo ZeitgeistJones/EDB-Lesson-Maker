@@ -125,6 +125,33 @@
     'story-env-airport-counter': 0.14,
   };
 
+  /**
+   * Existing reusable environments that may complete an otherwise isolated
+   * character/prop composition. Keep specific places before broad cues.
+   */
+  const ENV_CUE_RULES = [
+    { re: /\bbedroom\b/i, key: 'story-env-bedroom' },
+    { re: /\bcloset|wardrobe\b/i, key: 'story-env-closet' },
+    { re: /\bhotel|lobby\b/i, key: 'story-env-hotel-lobby' },
+    { re: /\bairport|check-?in|passport\s+counter\b/i, key: 'story-env-airport-counter' },
+    { re: /\bbus\s+stop\b/i, key: 'story-env-bus-stop' },
+    { re: /\bon\s+the\s+bus|bus\s+interior\b/i, key: 'story-env-bus-interior' },
+    { re: /\btrain\s+platform|train\s+station\b/i, key: 'story-env-train-platform' },
+    { re: /\bon\s+the\s+train|train\s+interior\b/i, key: 'story-env-train-interior' },
+    { re: /\bclinic|doctor|hospital|dentist\b/i, key: 'story-env-clinic' },
+    { re: /\bclassroom|school|lesson\b/i, key: 'story-env-classroom' },
+    { re: /\bhome|house|family|living\s+room\b/i, key: 'story-env-home' },
+    { re: /\bsoccer|football|pitch\b/i, key: 'story-env-soccer-field' },
+    { re: /\bbasketball|hoop|court\b/i, key: 'story-env-basketball-court' },
+    { re: /\bpool|swimming\s+pool\b/i, key: 'story-env-pool-edge' },
+    { re: /\bocean|sea|underwater|aquarium\b/i, key: 'story-env-ocean' },
+    { re: /\bwoods|forest|camp|camping\b/i, key: 'story-env-woods' },
+    { re: /\bconstruction|building\s+site\b/i, key: 'story-env-construction' },
+    { re: /\bzoo|lion|giraffe|zebra|elephant|monkey\b/i, key: 'story-env-zoo' },
+    { re: /\bpasture|farm|cow|sheep|horse\b/i, key: 'story-env-pasture' },
+    { re: /\bgrass|field|park|outdoor\b/i, key: 'story-env-grass-field' },
+  ];
+
   const TEMPLATES = {
     charObject: {
       paintOrder: ['ground', 'actor', 'object'],
@@ -242,6 +269,16 @@
     return 'backdrop';
   }
 
+  function environmentKeyForCue(cue, propGet) {
+    const text = String(cue || '');
+    if (!text) return null;
+    for (const rule of ENV_CUE_RULES) {
+      if (!rule.re.test(text)) continue;
+      if (!propGet || propGet(rule.key)) return rule.key;
+    }
+    return null;
+  }
+
   /** Poses we stock as reusable cast plates (not every English verb). */
   const POSES = [
     'idle', 'hold', 'walk', 'talk', 'sit', 'listen', 'reach',
@@ -337,6 +374,9 @@
     'pull', 'pulls', 'dance', 'dances', 'sleep', 'sleeps', 'write', 'writes',
     'mix', 'mixes', 'lift', 'lifts', 'score', 'scores', 'pass', 'passes',
   ];
+  const TRANSFER_VERBS = new Set([
+    'give', 'gives', 'gave', 'hand', 'hands', 'share', 'shares', 'show', 'shows',
+  ]);
 
   function clamp(n, a, b) {
     return Math.max(a, Math.min(b, n));
@@ -440,6 +480,51 @@
       return { ok: true, pose: chosenPose };
     }
     return { ok: !chosenPose || chosenPose === mapped || mapped === 'idle', pose: mapped };
+  }
+
+  /**
+   * Static contract for transfer predicates. This is semantic and geometric:
+   * a transfer requires two engaged actors and an item visibly between them.
+   */
+  function storyActionContract(scene, fills, layers) {
+    const verb = String(scene && (scene.actionVerb || scene.verb) || '').toLowerCase().trim();
+    if (!TRANSFER_VERBS.has(verb)) return null;
+    const giverFill = fills && fills.giver;
+    const receiverFill = fills && fills.receiver;
+    const giver = (layers || []).find((layer) => layer.slot === 'giver');
+    const receiver = (layers || []).find((layer) => layer.slot === 'receiver');
+    const item = (layers || []).find((layer) => layer.slot === 'item');
+    const giverPose = String(giverFill && giverFill.pose || '').toLowerCase();
+    const receiverPose = String(receiverFill && receiverFill.pose || '').toLowerCase();
+    const giverFacing = String(giverFill && giverFill.facing || 'right').toLowerCase();
+    const receiverFacing = String(receiverFill && receiverFill.facing || 'left').toLowerCase();
+    const itemCenter = item ? item.x + item.w / 2 : NaN;
+    const giverCenter = giver ? giver.x + giver.w / 2 : NaN;
+    const receiverCenter = receiver ? receiver.x + receiver.w / 2 : NaN;
+
+    const contract = {
+      kind: 'transfer',
+      verb,
+      agent_contact: !!giver && !!item && /^(reach|hold|give|show)$/.test(giverPose),
+      object_path:
+        !!giver &&
+        !!receiver &&
+        !!item &&
+        itemCenter > Math.min(giverCenter, receiverCenter) &&
+        itemCenter < Math.max(giverCenter, receiverCenter),
+      recipient_state: !!receiver && /^(reach|catch|hold)$/.test(receiverPose),
+      mutual_attention: !!giver && !!receiver && giverFacing === 'right' && receiverFacing === 'left',
+      payoff_state:
+        !!receiverFill &&
+        ['happy', 'worried'].includes(String(receiverFill.emotion || '').toLowerCase()),
+    };
+    contract.ok =
+      contract.agent_contact &&
+      contract.object_path &&
+      contract.recipient_state &&
+      contract.mutual_attention &&
+      contract.payoff_state;
+    return contract;
   }
 
   function placeInSlot(slotName, slotDef, fill, stageW, stageH, propGet, propSrc, z) {
@@ -582,7 +667,16 @@
       if (!check.ok) warnings.push(check.reason || `verb "${verb}" pose mismatch`);
     }
 
-    const fills = (scene && scene.slots) || {};
+    let fills = (scene && scene.slots) || {};
+    const transferVerb = TRANSFER_VERBS.has(String(verb || '').toLowerCase().trim());
+    if (templateId === 'exchange' && transferVerb) {
+      // Generic hold plates do not show a transfer. Reuse existing reach plates
+      // on both sides so hands, eyeline, and object path form one readable beat.
+      fills = Object.assign({}, fills, {
+        giver: Object.assign({}, fills.giver || {}, { pose: 'reach', facing: 'right' }),
+        receiver: Object.assign({}, fills.receiver || {}, { pose: 'reach', facing: 'left' }),
+      });
+    }
     const propGet = o.propGet || (window.PropBank && window.PropBank.get.bind(window.PropBank));
     const propSrc =
       o.propSrc ||
@@ -626,6 +720,30 @@
         });
       }
     }
+    if (templateId === 'exchange' && transferVerb) {
+      Object.assign(slots.giver, {
+        x: 0.03,
+        y: 0.08,
+        w: 0.5,
+        h: 0.86,
+        facing: 'right',
+      });
+      Object.assign(slots.receiver, {
+        x: 0.47,
+        y: 0.08,
+        w: 0.5,
+        h: 0.86,
+        facing: 'left',
+      });
+      Object.assign(slots.item, {
+        x: 0.38,
+        y: 0.35,
+        w: 0.24,
+        h: 0.24,
+        scaleClass: 'held',
+        anchor: 'center',
+      });
+    }
 
     // Remap locationActivity when fill is a story-env key: bigger place + actors inside it.
     let activeEnvMode = null;
@@ -663,6 +781,35 @@
     const layers = [];
     let z = 0;
     let envLayer = null;
+    const hasBoundEnvironment = Object.keys(fills).some((slotName) => {
+      const key = resolvePropKey(fills[slotName]);
+      return /^story-env-/i.test(String(key || ''));
+    });
+    const ambientKey = hasBoundEnvironment
+      ? null
+      : String(
+          o.environmentKey ||
+          (scene && scene.environmentKey) ||
+          ''
+        ).trim();
+    if (ambientKey && /^story-env-/i.test(ambientKey)) {
+      const ambient = placeInSlot(
+        'environment',
+        { x: 0, y: 0, w: 1, h: 1, scaleClass: 'envBackdrop', anchor: 'bottom' },
+        { propKey: ambientKey, scaleClass: 'envBackdrop', envMode: 'backdrop' },
+        stageW,
+        stageH,
+        propGet,
+        propSrc,
+        1
+      );
+      if (ambient) {
+        layers.push(ambient);
+        envLayer = ambient;
+        activeEnvMode = 'backdrop';
+        z = 1;
+      }
+    }
     for (const slotName of tpl.paintOrder) {
       const slotDef = slots[slotName];
       const fill = fills[slotName];
@@ -709,7 +856,22 @@
       }
     }
 
-    return { templateId, layers, stageW, stageH, warnings };
+    const actionContract = storyActionContract(scene, fills, layers);
+    if (actionContract && !actionContract.ok) {
+      const failed = Object.keys(actionContract)
+        .filter((key) => key !== 'kind' && key !== 'verb' && key !== 'ok' && actionContract[key] === false);
+      warnings.push(`story action contract failed: ${failed.join(', ')}`);
+    }
+
+    return {
+      templateId,
+      layers,
+      stageW,
+      stageH,
+      environmentKey: envLayer ? envLayer.key : null,
+      storyActionContract: actionContract,
+      warnings,
+    };
   }
 
   function supportedTemplates() {
@@ -725,15 +887,19 @@
     ENV_ACTOR_SLOTS,
     ENV_FG_APRON,
     ENV_FG_BY_KEY,
+    ENV_CUE_RULES,
     ACTOR_FLOOR_Y,
     ACTOR_FEET_Y,
     POSES,
     VERB_TO_POSE,
     NEEDS_DEDICATED_POSE,
+    TRANSFER_VERBS,
     compose,
     resolveCastKey,
     poseForVerb,
     inferEnvMode,
+    environmentKeyForCue,
+    storyActionContract,
     supportedTemplates,
   };
 })();

@@ -91,7 +91,27 @@
   function speakingCoverRect() {
     // Below the Q1 chrome card (header + hint + one question line). Keep in sync
     // with edbLayout speaking.targetBay when bumping type sizes.
-    return { x: 88, y: 240, w: 720, h: 72 };
+    return { x: 88, y: 240, w: 720, h: 132 };
+  }
+
+  /**
+   * Inset flap rect for the peel-able cover *inside* the model-answer card
+   * (speakingCoverRect). Leaves a ribbon header strip always visible above
+   * it and a margin on the sides/bottom so the white card reads as a card
+   * the flap sits ON, not a same-size button (Manus R1: "generic yellow
+   * button with no overlap onto the model-answer card").
+   */
+  function speakingFlapRect(bay) {
+    const b = bay || speakingCoverRect();
+    const ribbon = 34;
+    const insetX = 36;
+    const insetBottom = 14;
+    return {
+      x: b.x + insetX,
+      y: b.y + ribbon,
+      w: Math.max(120, b.w - insetX * 2),
+      h: Math.max(40, b.h - ribbon - insetBottom),
+    };
   }
 
   /** Drop lowest-priority extras until unique pageKeys ≤ maxKeys. */
@@ -354,12 +374,12 @@
 
   /**
    * Student-facing New Words instruction.
-   * Pictures sit beside each word (side-by-side cards) — never a side collage bin.
+   * Matchable pictures start in the source dock and move onto word pads.
    * Always kid copy — never announce missing art ("not every word has a picture").
    * Partial coverage stays on BoardReadiness / admin Draft reasons only.
    */
   function matchDockStudentHint(_vocabArt) {
-    return 'Say each word. Look at the picture beside it.';
+    return 'Drag each picture to its word. Say the word, then check.';
   }
 
   /** Plan VocabArt once (throws if VocabIcons cold/errored).
@@ -398,7 +418,11 @@
     return Math.min(max, n);
   }
 
-  /** Board story pages: collapse short multi-page stories into one fuller beat. */
+  /**
+   * Board story pages: a 30-minute board keeps one honest illustrated beat.
+   * Never concatenate several beats while retaining only the first beat's
+   * StoryScene; that creates prose describing characters/props not on stage.
+   */
   function storyPagesForBoard(lesson, meta) {
     const raw = (lesson.story && lesson.story.pages) || [];
     const count = storyPageCount(lesson, meta);
@@ -410,10 +434,12 @@
       const first = raw[0] || {};
       return [{
         heading: first.heading || (lesson.story && lesson.story.title) || 'Story',
-        text: raw.map((p) => p && p.text).filter(Boolean).join(' '),
+        text: first.text || 'Read together.',
         visualTheme: first.visualTheme,
-        visualCaption: first.visualCaption || (raw[1] && raw[1].visualCaption) || '',
+        visualCaption: first.visualCaption || '',
         storyScene: first.storyScene || null,
+        _sourceIndex: 0,
+        _collapsedFrom: raw.length,
       }];
     }
     return raw.slice(0, count);
@@ -528,6 +554,189 @@
     return data;
   }
 
+  /** Scene-first plate for sceneRepair: context must dominate, not a worksheet slot. */
+  function sceneRepairStagePng(w, h, label, cue) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const hay = `${label || ''} ${cue || ''}`.toLowerCase();
+    const market = /\b(fruit|market|basket|stall|shop)\b/.test(hay);
+    const camp = /\b(camp|campfire|tent|forest|hike)\b/.test(hay);
+    const beach = /\b(beach|surf|ocean|sea|wave)\b/.test(hay);
+    const cafe = /\b(cafe|restaurant|table|kitchen|dinner|lunch)\b/.test(hay);
+    const sport = /\b(sport|kit|gym|football|soccer|basketball)\b/.test(hay);
+    const targetX = Math.round(w * 0.76);
+    const groundY = Math.round(h * 0.61);
+
+    const rounded = (x, y, rw, rh, r, fill, stroke) => {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + rw, y, x + rw, y + rh, r);
+      ctx.arcTo(x + rw, y + rh, x, y + rh, r);
+      ctx.arcTo(x, y + rh, x, y, r);
+      ctx.arcTo(x, y, x + rw, y, r);
+      ctx.closePath();
+      ctx.fillStyle = fill;
+      ctx.fill();
+      if (stroke) {
+        ctx.strokeStyle = stroke;
+        ctx.lineWidth = 3;
+        ctx.stroke();
+      }
+    };
+
+    rounded(1, 1, w - 2, h - 2, 18, camp ? '#dbeafe' : '#ecfeff', '#0f766e');
+    ctx.fillStyle = camp ? '#172554' : beach ? '#7dd3fc' : '#cffafe';
+    ctx.fillRect(4, 4, w - 8, groundY - 4);
+    ctx.fillStyle = camp ? '#14532d' : beach ? '#fde68a' : market ? '#fef3c7' : cafe ? '#fed7aa' : sport ? '#bbf7d0' : '#e2e8f0';
+    ctx.fillRect(4, groundY, w - 8, h - groundY - 4);
+
+    if (market) {
+      ctx.fillStyle = '#9f1239';
+      ctx.fillRect(34, 34, Math.round(w * 0.47), 24);
+      const stripeW = Math.round(w * 0.47 / 6);
+      for (let i = 0; i < 6; i += 2) {
+        ctx.fillStyle = '#fff7ed';
+        ctx.fillRect(34 + i * stripeW, 34, stripeW, 46);
+      }
+      ctx.fillStyle = '#7c2d12';
+      ctx.fillRect(46, 78, 16, groundY - 78);
+      ctx.fillRect(Math.round(w * 0.47), 78, 16, groundY - 78);
+      ctx.fillStyle = '#b45309';
+      ctx.fillRect(58, groundY - 36, Math.round(w * 0.38), 52);
+      ctx.fillStyle = '#fb923c';
+      ctx.fillRect(82, groundY - 22, 82, 24);
+      ctx.fillStyle = '#84cc16';
+      ctx.fillRect(180, groundY - 22, 82, 24);
+      ctx.fillStyle = '#ef4444';
+      ctx.fillRect(278, groundY - 22, 82, 24);
+      ctx.strokeStyle = '#92400e';
+      ctx.lineWidth = 8;
+      ctx.beginPath();
+      ctx.ellipse(targetX, groundY + 30, 88, 48, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    } else if (camp) {
+      ctx.fillStyle = '#fef3c7';
+      for (const star of [[70, 34], [150, 64], [250, 30], [350, 72]]) {
+        ctx.beginPath();
+        ctx.ellipse(star[0], star[1], 4, 4, 0, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.fillStyle = '#166534';
+      for (const x of [70, 160, 290, 410]) {
+        ctx.beginPath();
+        ctx.moveTo(x, groundY);
+        ctx.lineTo(x + 42, 48);
+        ctx.lineTo(x + 84, groundY);
+        ctx.closePath();
+        ctx.fill();
+      }
+      ctx.fillStyle = '#f97316';
+      ctx.beginPath();
+      ctx.moveTo(targetX, groundY + 50);
+      ctx.lineTo(targetX - 30, groundY + 96);
+      ctx.lineTo(targetX + 30, groundY + 96);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = '#78350f';
+      ctx.lineWidth = 9;
+      ctx.beginPath();
+      ctx.moveTo(targetX - 56, groundY + 100);
+      ctx.lineTo(targetX + 56, groundY + 76);
+      ctx.moveTo(targetX - 56, groundY + 76);
+      ctx.lineTo(targetX + 56, groundY + 100);
+      ctx.stroke();
+    } else if (beach) {
+      ctx.fillStyle = '#0284c7';
+      ctx.fillRect(4, Math.round(h * 0.42), w - 8, Math.round(h * 0.2));
+      ctx.strokeStyle = '#f8fafc';
+      ctx.lineWidth = 6;
+      for (let x = 20; x < w; x += 90) {
+        ctx.beginPath();
+        ctx.moveTo(x, Math.round(h * 0.49));
+        ctx.lineTo(x + 36, Math.round(h * 0.45));
+        ctx.lineTo(x + 72, Math.round(h * 0.49));
+        ctx.stroke();
+      }
+      ctx.fillStyle = '#facc15';
+      ctx.beginPath();
+      ctx.ellipse(100, 66, 36, 36, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#0f766e';
+      ctx.lineWidth = 7;
+      ctx.beginPath();
+      ctx.ellipse(targetX, groundY + 43, 78, 25, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    } else if (cafe) {
+      ctx.fillStyle = '#fff7ed';
+      ctx.fillRect(44, 34, Math.round(w * 0.42), groundY - 48);
+      ctx.strokeStyle = '#78350f';
+      ctx.lineWidth = 10;
+      ctx.strokeRect(44, 34, Math.round(w * 0.42), groundY - 48);
+      ctx.fillStyle = '#7dd3fc';
+      ctx.fillRect(58, 48, Math.round(w * 0.18), groundY - 76);
+      ctx.fillRect(Math.round(w * 0.25), 48, Math.round(w * 0.18), groundY - 76);
+      ctx.fillStyle = '#92400e';
+      ctx.fillRect(Math.round(w * 0.14), groundY - 10, Math.round(w * 0.72), 46);
+      ctx.fillRect(Math.round(w * 0.22), groundY + 30, 18, h - groundY - 34);
+      ctx.fillRect(Math.round(w * 0.76), groundY + 30, 18, h - groundY - 34);
+      ctx.fillStyle = '#f8fafc';
+      ctx.beginPath();
+      ctx.ellipse(targetX, groundY + 15, 82, 32, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#64748b';
+      ctx.lineWidth = 4;
+      ctx.stroke();
+    } else if (sport) {
+      ctx.strokeStyle = '#f8fafc';
+      ctx.lineWidth = 5;
+      ctx.strokeRect(34, 32, Math.round(w * 0.5), groundY - 50);
+      ctx.beginPath();
+      ctx.moveTo(Math.round(w * 0.28), 32);
+      ctx.lineTo(Math.round(w * 0.28), groundY - 18);
+      ctx.stroke();
+      ctx.fillStyle = '#475569';
+      ctx.fillRect(Math.round(w * 0.62), groundY - 18, Math.round(w * 0.28), 48);
+    } else {
+      ctx.fillStyle = '#f8fafc';
+      ctx.fillRect(52, 36, Math.round(w * 0.42), groundY - 52);
+      ctx.fillStyle = '#0f766e';
+      ctx.fillRect(72, 58, Math.round(w * 0.36), 18);
+      ctx.fillRect(72, 104, Math.round(w * 0.36), 18);
+      ctx.fillStyle = '#a16207';
+      ctx.fillRect(Math.round(w * 0.64), groundY - 10, Math.round(w * 0.24), 48);
+    }
+
+    rounded(24, 14, Math.min(330, Math.round(w * 0.35)), 40, 12, 'rgba(15,23,42,0.88)');
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '800 20px Poppins, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(String(label || 'Repair this scene').slice(0, 30), 42, 34, Math.min(290, w * 0.3));
+
+    rounded(24, h - 54, Math.min(430, Math.round(w * 0.42)), 38, 12, 'rgba(255,255,255,0.94)', '#0f766e');
+    ctx.fillStyle = '#134e4a';
+    ctx.font = '700 17px Poppins, sans-serif';
+    ctx.fillText('Say: The ___ does not fit. The ___ fits.', 42, h - 35, Math.min(390, w * 0.37));
+    return c.toDataURL('image/png');
+  }
+
+  function sceneRepairTargetPng(w, h) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = 'rgba(255,255,255,0.58)';
+    ctx.beginPath();
+    ctx.ellipse(w / 2, h / 2, w / 2 - 7, h / 2 - 7, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#dc2626';
+    ctx.lineWidth = 6;
+    ctx.setLineDash([11, 8]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    return c.toDataURL('image/png');
+  }
+
   /** Cream sticky with wrapped hint copy (1–2 lines) for mysteryHints. */
   function hintStickyPng(w, h, text) {
     const c = document.createElement('canvas');
@@ -588,18 +797,534 @@
     return c.toDataURL('image/png');
   }
 
+  function capacityPocketPng(w, h) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const r = 14;
+    ctx.strokeStyle = '#5eead4';
+    ctx.lineWidth = 3;
+    ctx.setLineDash([8, 6]);
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.beginPath();
+    ctx.moveTo(r, 4); ctx.arcTo(w - 4, 4, w - 4, h - 4, r);
+    ctx.arcTo(w - 4, h - 4, 4, h - 4, r); ctx.arcTo(4, h - 4, 4, 4, r);
+    ctx.arcTo(4, 4, w - 4, 4, r); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#0f766e';
+    ctx.font = '800 15px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('PACK HERE', w / 2, h / 2);
+    return c.toDataURL('image/png');
+  }
+
+  /**
+   * Visible mission condition; hidden mustInclude metadata is not teachable.
+   * Drawn as a tinted zone (no own border) so it reads as one section of the
+   * shared `capacitySceneShellPng` environment, not a floating worksheet box.
+   */
+  function capacityConstraintPng(w, h, mission, constraint, mustInclude) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const r = 18;
+    ctx.fillStyle = 'rgba(255,251,235,0.55)';
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(w, 0, w, h, r); ctx.arcTo(w, h, 0, h, r);
+    ctx.arcTo(0, h, 0, 0, r); ctx.arcTo(0, 0, w, 0, r); ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle = '#92400e';
+    ctx.font = '800 15px Poppins, sans-serif';
+    ctx.textBaseline = 'top';
+    ctx.fillText('MISSION RULE', 18, 14);
+
+    const drawWrapped = (text, y, font, color, maxLines) => {
+      ctx.font = font;
+      ctx.fillStyle = color;
+      const words = String(text || '').split(/\s+/).filter(Boolean);
+      const lines = [];
+      let line = '';
+      words.forEach((word) => {
+        const trial = line ? `${line} ${word}` : word;
+        if (ctx.measureText(trial).width <= w - 36) line = trial;
+        else {
+          if (line) lines.push(line);
+          line = word;
+        }
+      });
+      if (line) lines.push(line);
+      lines.slice(0, maxLines).forEach((value, i) => {
+        const clipped = i === maxLines - 1 && lines.length > maxLines
+          ? `${value.replace(/[.,;:]?$/, '')}…`
+          : value;
+        ctx.fillText(clipped, 18, y + i * 22, w - 36);
+      });
+      return y + Math.min(lines.length, maxLines) * 22;
+    };
+
+    let y = drawWrapped(mission, 42, '700 16px Poppins, sans-serif', '#422006', 2) + 8;
+    if (constraint) {
+      y = drawWrapped(`CONDITION: ${constraint}`, y, '700 14px Poppins, sans-serif', '#0f766e', 2) + 8;
+    }
+    if (mustInclude.length) {
+      drawWrapped(
+        `MUST PACK: ${mustInclude.join(', ')}`,
+        Math.min(y, h - 34),
+        '800 14px Poppins, sans-serif',
+        '#b91c1c',
+        1
+      );
+    }
+    return c.toDataURL('image/png');
+  }
+
+  /**
+   * Topic-labelled pack header (bag handle + fill count). No own border/fill —
+   * sits on the shared `capacitySceneShellPng` so mission + pack read as one
+   * environment. The payoff lives in `capacityPayoffBannerPng`, not buried in
+   * a small footer line here.
+   */
+  function capacityContainerPng(w, h, label, limit) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const handleW = Math.min(180, Math.floor(w * 0.28));
+    ctx.strokeStyle = '#0f766e';
+    ctx.lineWidth = 8;
+    ctx.beginPath();
+    ctx.moveTo(w / 2 - handleW / 2, 30);
+    ctx.lineTo(w / 2 - handleW / 2, 14);
+    ctx.lineTo(w / 2 + handleW / 2, 14);
+    ctx.lineTo(w / 2 + handleW / 2, 30);
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(204,251,241,0.5)';
+    ctx.beginPath();
+    ctx.moveTo(0, 26); ctx.lineTo(w, 26); ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = '#115e59';
+    ctx.font = '800 15px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(
+      `${String(label || 'MISSION PACK').toUpperCase()}  •  FILL ${limit} POCKETS`,
+      w / 2,
+      47,
+      w - 36
+    );
+    return c.toDataURL('image/png');
+  }
+
+  /**
+   * One integrated scene shell that hosts the mission card, the pack, and the
+   * dock as a single environment (Manus R2/R3: "replace generic panel
+   * scaffolding with a scene-anchor" / "scene-integrated container"). A single
+   * outer border + background replaces the old two-disconnected-boxes look;
+   * `dividerX` draws a soft seam between the mission side and the pack side
+   * without breaking the shared frame.
+   */
+  function capacitySceneShellPng(w, h, dividerX) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const r = 26;
+    ctx.fillStyle = 'rgba(240,253,250,0.96)';
+    ctx.strokeStyle = '#0f766e';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(w, 0, w, h, r); ctx.arcTo(w, h, 0, h, r);
+    ctx.arcTo(0, h, 0, 0, r); ctx.arcTo(0, 0, w, 0, r); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    if (dividerX && dividerX > 8 && dividerX < w - 8) {
+      ctx.strokeStyle = 'rgba(15,118,110,0.35)';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([7, 7]);
+      ctx.beginPath();
+      ctx.moveTo(dividerX, 18);
+      ctx.lineTo(dividerX, h - 18);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    return c.toDataURL('image/png');
+  }
+
+  /**
+   * Two reusable inclusion/exclusion frames rendered ON the board (not only in
+   * the teacher's spoken hint), plus a visible teacher-confirmation check —
+   * Manus R3 B3: language scaffolding must be concrete and observable.
+   */
+  function capacityLanguageFramePng(w, h) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const r = 14;
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.strokeStyle = '#7c3aed';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(w, 0, w, h, r); ctx.arcTo(w, h, 0, h, r);
+    ctx.arcTo(0, h, 0, 0, r); ctx.arcTo(0, 0, w, 0, r); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    const checkW = 58;
+    ctx.fillStyle = '#5b21b6';
+    ctx.font = '800 12px Poppins, sans-serif';
+    ctx.textBaseline = 'top';
+    ctx.textAlign = 'left';
+    ctx.fillText('SAY IT', 14, 8);
+    ctx.font = '700 14px Poppins, sans-serif';
+    ctx.fillStyle = '#1e1b4b';
+    ctx.fillText('“I pack ___ because ___.”', 14, 28, w - checkW - 26);
+    ctx.fillText('“I leave out ___ because ___.”', 14, 50, w - checkW - 26);
+    ctx.strokeStyle = '#16a34a';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(w - checkW - 10, 12, checkW, h - 22);
+    ctx.fillStyle = '#16a34a';
+    ctx.font = '800 10px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('TEACHER', w - checkW / 2 - 10, 22);
+    ctx.fillText('CHECK', w - checkW / 2 - 10, 34);
+    ctx.font = '800 20px Poppins, sans-serif';
+    ctx.fillText('✓', w - checkW / 2 - 10, h / 2 + 12);
+    return c.toDataURL('image/png');
+  }
+
+  /**
+   * Three-stage proof of the interaction lifecycle inside the SAME static
+   * bake Manus reviews (one JPG per round — see review-single-board.mjs).
+   * Manus R3 B1: "render three distinct states (empty, filled, committed)
+   * with ... a visible, topic-relevant payoff outcome." Each stage is a small
+   * honest icon (dashed = open, solid = placed, checked = locked), so the
+   * lifecycle is provable without faking the live interactive pockets.
+   */
+  function capacityStateLadderPng(w, h, payoff) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const r = 12;
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.strokeStyle = '#0f766e';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(w, 0, w, h, r); ctx.arcTo(w, h, 0, h, r);
+    ctx.arcTo(0, h, 0, 0, r); ctx.arcTo(0, 0, w, 0, r); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#115e59';
+    ctx.font = '800 11px Poppins, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText('PACK STATES', 12, 6);
+    const stages = [
+      { label: 'EMPTY', dashed: true, filled: false, checked: false },
+      { label: 'FILLING', dashed: false, filled: true, checked: false },
+      { label: 'COMMITTED', dashed: false, filled: true, checked: true },
+    ];
+    const boxSize = 26;
+    const rowY = 26;
+    const gap = Math.max(28, Math.floor((w - 24 - boxSize * 3) / 2));
+    let x = 12;
+    stages.forEach((stage, i) => {
+      if (stage.dashed) {
+        ctx.setLineDash([4, 4]);
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(x, rowY, boxSize, boxSize);
+        ctx.setLineDash([]);
+      } else {
+        ctx.fillStyle = stage.checked ? '#16a34a' : '#5eead4';
+        ctx.fillRect(x, rowY, boxSize, boxSize);
+      }
+      if (stage.checked) {
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '800 15px Poppins, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('✓', x + boxSize / 2, rowY + boxSize / 2 + 5);
+        ctx.textAlign = 'left';
+      }
+      ctx.fillStyle = '#334155';
+      ctx.font = '700 10px Poppins, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(stage.label, x + boxSize / 2, rowY + boxSize + 12);
+      ctx.textAlign = 'left';
+      if (i < stages.length - 1) {
+        ctx.fillStyle = '#0f766e';
+        ctx.font = '700 14px Poppins, sans-serif';
+        ctx.fillText('→', x + boxSize + Math.round(gap / 2) - 6, rowY + boxSize / 2 - 6);
+      }
+      x += boxSize + gap;
+    });
+    ctx.fillStyle = '#166534';
+    ctx.font = '800 12px Poppins, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText(`✓ ${String(payoff || 'Ready').slice(0, 40)}`, 12, h - 18);
+    return c.toDataURL('image/png');
+  }
+
+  /** Persistent, always-visible outcome banner — the payoff is never buried in a footer line. */
+  function capacityPayoffBannerPng(w, h, payoff) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const r = 10;
+    ctx.fillStyle = '#ecfdf5';
+    ctx.strokeStyle = '#16a34a';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(w, 0, w, h, r); ctx.arcTo(w, h, 0, h, r);
+    ctx.arcTo(0, h, 0, 0, r); ctx.arcTo(0, 0, w, 0, r); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#166534';
+    ctx.font = '800 14px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(
+      `PACK FULL + 2 REASONS  →  ${String(payoff || 'READY').toUpperCase()}`,
+      w / 2,
+      h / 2,
+      w - 24
+    );
+    return c.toDataURL('image/png');
+  }
+
+  /** Persistent connected route behind movable cards (survives the completed state). */
+  function routePathPng(w, h, count, mover, goal) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const n = Math.max(3, Math.min(5, Number(count) || 3));
+    const gap = 14;
+    const slotW = Math.floor((w - gap * (n - 1)) / n);
+    const y = Math.round(h * 0.78);
+    const centers = Array.from({ length: n }, (_, i) => (
+      Math.round(slotW / 2 + i * (slotW + gap))
+    ));
+
+    // A bold path remains visible between cards after learners fill every stop.
+    ctx.beginPath();
+    ctx.moveTo(centers[0], y);
+    centers.slice(1).forEach((x) => ctx.lineTo(x, y));
+    ctx.strokeStyle = 'rgba(15, 118, 110, 0.22)';
+    ctx.lineWidth = 18;
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(centers[0], y);
+    centers.slice(1).forEach((x) => ctx.lineTo(x, y));
+    ctx.strokeStyle = '#0f766e';
+    ctx.lineWidth = 8;
+    ctx.stroke();
+
+    // Direction arrows make order visible without leaking which card comes next.
+    for (let i = 0; i < centers.length - 1; i++) {
+      const x = Math.round((centers[i] + centers[i + 1]) / 2);
+      ctx.fillStyle = '#f59e0b';
+      ctx.beginPath();
+      ctx.moveTo(x + 9, y);
+      ctx.lineTo(x - 8, y - 9);
+      ctx.lineTo(x - 8, y + 9);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    const safeMover = String(mover || 'TEAM').trim().slice(0, 18).toUpperCase() || 'TEAM';
+    const safeGoal = String(goal || 'GOAL').trim().slice(0, 24).toUpperCase() || 'GOAL';
+    // The mover and finish object are visible scene actors, not only text labels.
+    ctx.font = '18px "Segoe UI Emoji", sans-serif';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#0f172a';
+    ctx.textAlign = 'left';
+    ctx.fillText('🚶', 2, 12);
+    ctx.font = '800 15px Poppins, sans-serif';
+    ctx.fillText(`START · ${safeMover}`, 26, 12, Math.max(80, slotW - 30));
+    ctx.font = '18px "Segoe UI Emoji", sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(routeStepGlyph(safeGoal), w - 2, 12);
+    ctx.font = '800 15px Poppins, sans-serif';
+    ctx.fillText(`FINISH · ${safeGoal}`, w - 26, 12, Math.max(80, slotW - 30));
+    return c.toDataURL('image/png');
+  }
+
+  function routeCheckpointPng(w, h, n) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const r = 16;
+    ctx.fillStyle = 'rgba(255,255,255,0.78)';
+    ctx.beginPath();
+    ctx.moveTo(r, 2); ctx.arcTo(w - 2, 2, w - 2, h - 2, r);
+    ctx.arcTo(w - 2, h - 2, 2, h - 2, r);
+    ctx.arcTo(2, h - 2, 2, 2, r); ctx.arcTo(2, 2, w - 2, 2, r);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = '#0f766e';
+    ctx.lineWidth = 3;
+    ctx.setLineDash([10, 7]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    // Neutral checkpoint chrome stays visible after a card lands without
+    // printing the answer-bearing landmark order onto the empty route.
+    ctx.fillStyle = '#ccfbf1';
+    ctx.fillRect(3, 3, w - 6, 34);
+    ctx.fillStyle = '#0f766e';
+    ctx.beginPath();
+    ctx.ellipse(22, 20, 15, 15, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '800 15px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(String(n), 22, 20);
+    ctx.fillStyle = '#0f172a';
+    ctx.font = '800 13px Poppins, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText(`CHECKPOINT ${n}`, 46, 20, w - 54);
+    ctx.fillStyle = '#64748b';
+    ctx.font = '700 11px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('DROP STEP HERE', w / 2, h - 12, w - 24);
+    return c.toDataURL('image/png');
+  }
+
+  function routePeekPng(w, h) {
+    return solidPng(w, h, '#facc15', 'LIFT TO REVEAL ROUTE', '#422006');
+  }
+
+  function routeLandmarkLabel(step) {
+    const text = String(step || '').trim();
+    const stripped = text.replace(
+      /^(?:check|take|pack|walk\s+to|follow|cross|reach|buy|enter|join|choose|fill|build|light|put\s+out|get\s+on)\s+(?:the\s+)?/i,
+      ''
+    ).trim();
+    return (stripped || text || 'checkpoint').slice(0, 30);
+  }
+
+  function routeStepGlyph(text) {
+    const value = String(text || '').toLowerCase();
+    const cues = [
+      [/\b(map|plan|check)\b/, '🗺'],
+      [/\b(radio|call|phone)\b/, '📻'],
+      [/\b(flag|sign|marker)\b/, '⚑'],
+      [/\b(bridge|cross)\b/, '🌉'],
+      [/\b(boat|sail)\b/, '⛵'],
+      [/\b(bus|coach)\b/, '🚌'],
+      [/\b(roller coaster|coaster|ride)\b/, '🎢'],
+      [/\b(gate|entrance)\b/, '🚪'],
+      [/\b(line|queue)\b/, '👥'],
+      [/\b(bag|pack)\b/, '🎒'],
+      [/\b(walk|follow|go|reach|enter|join)\b/, '👣'],
+      [/\b(ticket|pass)\b/, '🎟'],
+      [/\b(bucket|water|put out)\b/, '🪣'],
+      [/\b(wood|stack|build)\b/, '🪵'],
+      [/\b(fire|light|ember)\b/, '🔥'],
+    ];
+    const hit = cues.find(([re]) => re.test(value));
+    return hit ? hit[1] : '➜';
+  }
+
+  function routeTilePng(w, h, text, landmark) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const r = 14;
+    ctx.fillStyle = '#facc15';
+    ctx.beginPath();
+    ctx.moveTo(r, 1); ctx.arcTo(w - 1, 1, w - 1, h - 1, r);
+    ctx.arcTo(w - 1, h - 1, 1, h - 1, r);
+    ctx.arcTo(1, h - 1, 1, 1, r); ctx.arcTo(1, 1, w - 1, 1, r);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = '#fff7cc';
+    ctx.beginPath();
+    ctx.ellipse(32, h / 2, 23, 23, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#0f172a';
+    ctx.font = '28px "Segoe UI Emoji", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(routeStepGlyph(landmark || text), 32, h / 2);
+    ctx.font = `800 ${String(text || '').length > 22 ? 15 : 17}px Poppins, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.fillText(String(text || ''), 62 + (w - 66) / 2, h / 2, w - 74);
+    return c.toDataURL('image/png');
+  }
+
+  function routeAnswerPng(w, h, mover, goal, answer) {
+    const arrived = `${String(mover || 'Team').toUpperCase()} ARRIVED AT ${String(goal || 'GOAL').toUpperCase()}`;
+    return solidPng(w, h, '#dcfce7', `✓ ${arrived} · ${String(answer || '')}`.slice(0, 130), '#166534');
+  }
+
   function stickyPng(w, h) {
     // Dark ink on bright yellow — never white-on-pale (was unreadable on
     // terracotta / dawn flats when a light cover prop replaced this).
     return solidPng(w, h, '#facc15', 'Peek?', '#422006');
   }
 
+  /**
+   * Peel-able flap for coverAnswer, drawn INSET inside the model-answer card
+   * (speakingFlapRect) rather than the same size as the card. A tilt, a drop
+   * shadow, and a folded top-right dog-ear sell "tangible note stuck onto a
+   * bigger card" instead of a flat same-size button (Manus R1 weakest link).
+   */
+  function peelFlapPng(w, h) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const pad = Math.max(6, Math.round(Math.min(w, h) * 0.09));
+    const fw = Math.max(20, w - pad * 2);
+    const fh = Math.max(20, h - pad * 2);
+    const r = Math.min(16, fh * 0.22);
+
+    ctx.save();
+    ctx.translate(w / 2, h / 2);
+    ctx.rotate(-0.035); // ~2° tilt — hand-placed sticky note, not a flat button
+    ctx.translate(-fw / 2, -fh / 2);
+
+    // Drop shadow reads as "lifted above the card underneath it".
+    ctx.save();
+    ctx.shadowColor = 'rgba(15, 23, 42, 0.35)';
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetX = 3;
+    ctx.shadowOffsetY = 6;
+    ctx.fillStyle = '#fbbf24';
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(fw, 0, fw, fh, r); ctx.arcTo(fw, fh, 0, fh, r);
+    ctx.arcTo(0, fh, 0, 0, r); ctx.arcTo(0, 0, fw, 0, r); ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+
+    // Folded top-right dog-ear — the peel affordance a child can spot.
+    const fold = Math.min(fw, fh) * 0.3;
+    ctx.beginPath();
+    ctx.moveTo(fw - fold, 0);
+    ctx.lineTo(fw, 0);
+    ctx.lineTo(fw, fold);
+    ctx.closePath();
+    ctx.fillStyle = '#fde68a';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(120, 53, 15, 0.35)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(fw - fold, 0);
+    ctx.lineTo(fw, fold);
+    ctx.stroke();
+
+    ctx.fillStyle = '#78350f';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const big = Math.max(15, Math.floor(fh * 0.28));
+    const small = Math.max(11, Math.floor(fh * 0.18));
+    ctx.font = `800 ${big}px Poppins, sans-serif`;
+    ctx.fillText('☝ PEEL HERE', fw / 2, fh * 0.4);
+    ctx.font = `700 ${small}px Poppins, sans-serif`;
+    ctx.fillText('to compare your answer', fw / 2, fh * 0.72, fw - 20);
+    ctx.restore();
+    return c.toDataURL('image/png');
+  }
+
   // ── Recipes ─────────────────────────────────────────────────────
 
   function matchDock(lesson, page, layout, ctx) {
-    // New Words shows picture beside each word on the card (makeVocab).
-    // Do NOT dump icons into a side "Remember / Picture bin" collage — that
-    // was the Sports-and-Games layout miss (word list left, white-plate dock right).
+    const L = layout || window.EdbLayout;
     const art = (ctx && ctx.vocabArt)
       || (lesson && lesson._vocabArt)
       || null;
@@ -607,9 +1332,45 @@
     if (!rows.length) return;
     const size = matchDockSize(rows.length);
     if (!size) return; // caller should fall back to text-only cards
+
+    // Keep the source deck genuinely unsolved: pictures are draggable, unlabeled,
+    // and shuffled independently from the numbered word pads painted by makeVocab.
+    // The same VocabArt row supplies both the source image and destination word,
+    // preserving a strict 1:1 association across every topic.
+    const shuffled = pick(rows, rows.length, hashStr((lesson && lesson.title) || 'matchDock') ^ 0x6d617463);
+    const pieces = shuffled.map((row) => {
+      const meta = {
+        word: row.word,
+        artSrc: row.artSrc || null,
+        artTier: row.tier || null,
+      };
+      if (row.propKey) meta.propKey = row.propKey;
+      if (row.artSrc) {
+        return {
+          kind: 'image',
+          asset: row.artSrc,
+          role: 'matchPiece',
+          meta,
+        };
+      }
+      return {
+        kind: 'emoji',
+        emoji: row.glyph || '★',
+        role: 'matchPiece',
+        meta,
+      };
+    });
+    L.placeDockRow(page, pieces, {
+      w: size.w,
+      h: size.h,
+      cols: size.cols,
+      noShrink: true,
+    });
+
     page.notes.push('recipe:matchDock');
-    page.notes.push('recipe:matchDockInline');
+    page.notes.push('recipe:matchDockPads');
     page.notes.push('recipe:matchDockNoCaptions');
+    page.notes.push('recipe:matchDockCompletionReward');
     if (art && art.dropped && art.dropped.length) {
       page.notes.push('matchDockDropped:' + art.dropped.length);
     }
@@ -825,18 +1586,19 @@
     const L = layout || window.EdbLayout;
     const q = ctx?.speakingItem;
     if (!q) return;
-    // Sticky covers targetBay — painted sample band uses the same rect
-    const coverRect = L.zoneRect(page, 'targetBay') || speakingCoverRect();
-    // Always use the painted Peek sticky for speaking covers. Cover props are
-    // often pale flaps with no readable label; white/cream art under ink-policy
-    // white chrome made "Let's Talk" / Peek impossible to read on Board PNGs.
+    // Model-answer card fills targetBay (painted by the DOM ribbon+card in
+    // renderLessonPages); the flap sits INSET inside that card so it reads
+    // as a peel-able note stuck onto a bigger card, not a same-size button
+    // (Manus R1 fruit-market weakest link).
+    const bay = L.zoneRect(page, 'targetBay') || speakingCoverRect();
+    const flapRect = speakingFlapRect(bay);
     L.place(page, {
       locked: false,
       kind: 'image',
-      asset: stickyPng(coverRect.w, coverRect.h),
-      w: coverRect.w, h: coverRect.h,
+      asset: peelFlapPng(flapRect.w, flapRect.h),
+      w: flapRect.w, h: flapRect.h,
       intentional: true,
-      anchor: coverRect,
+      anchor: flapRect,
       role: 'answerCover',
       meta: {
         sample: q.sampleAnswer,
@@ -1575,10 +2337,10 @@
       const correctWord = String(raw.correctWord || raw.correct || '').trim();
       const slotLabel = String(raw.slotLabel || raw.label || 'This place').trim();
       if (wrongWord && correctWord && wrongWord.toLowerCase() !== correctWord.toLowerCase()) {
-        const dockWords = [correctWord, wrongWord]
-          .concat(Array.isArray(raw.distractors) ? raw.distractors : [])
-          .map((w) => String(w || '').trim())
-          .filter(Boolean);
+        // A one-hole repair must have one defensible replacement. Topic-near
+        // distractors (banana/grape for a fruit basket) made several answers
+        // equally valid and collapsed diagnosis into a guessing worksheet.
+        const dockWords = [correctWord, wrongWord];
         const uniq = [];
         const seen = new Set();
         dockWords.forEach((w) => {
@@ -1597,6 +2359,8 @@
           rows,
           source: 'lesson',
           authoredWrongness: true,
+          sceneCue: String(raw.sceneCue || raw.scene || lesson.title || slotLabel).trim(),
+          ignoredDistractors: Array.isArray(raw.distractors) ? raw.distractors.length : 0,
         };
       }
     }
@@ -1616,6 +2380,7 @@
       source: 'derived-authored-set',
       authoredWrongness: true,
       themeCue: oddSet.themeCue || null,
+      sceneCue: oddSet.themeCue || lesson.title || '',
     };
   }
 
@@ -1628,62 +2393,50 @@
     const wrongWord = ctx && ctx.wrongWord ? String(ctx.wrongWord).trim() : '';
     const correctWord = ctx && ctx.correctWord ? String(ctx.correctWord).trim() : '';
     const slotLabel = (ctx && ctx.slotLabel) || 'This place';
-    const options = (ctx && Array.isArray(ctx.options) ? ctx.options : [])
+    // One-hole repair needs exactly one defensible replacement. ctx.options can
+    // carry up to 4 resolver candidates (derived odd-one-out majority pool) —
+    // slicing that blindly picks whichever two came first, not the actual
+    // wrongWord/correctWord pair, and doubles up the dock. Build the pair from
+    // the already-resolved words instead so the dock never has more than one
+    // repair piece (Manus: "no unique defensible replacement").
+    const options = [correctWord, wrongWord]
       .map((w) => String(w || '').trim())
-      .filter(Boolean)
-      .slice(0, 4);
+      .filter(Boolean);
     const rows = (ctx && Array.isArray(ctx.rows) ? ctx.rows : []).slice(0, 4);
     if (!wrongWord || !correctWord || options.length < 2) return;
 
     const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
-    const frameH = 44;
+    const sceneCue = (ctx && (ctx.sceneCue || ctx.themeCue)) || (lesson && lesson.title) || slotLabel;
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: solidPng(
-        bay.w - 48,
-        frameH,
-        '#7f1d1d',
-        'FIND THE MISTAKE — the board put one wrong piece on purpose',
-        '#fff'
-      ),
-      w: bay.w - 48,
-      h: frameH,
+      asset: sceneRepairStagePng(bay.w, bay.h, slotLabel, sceneCue),
+      w: bay.w,
+      h: bay.h,
       intentional: true,
-      anchor: { x: bay.x + 24, y: bay.y + 6, w: bay.w - 48, h: frameH },
-      role: 'sceneRepairFrame',
-      meta: { authoredWrongness: true },
+      anchor: { x: bay.x, y: bay.y, w: bay.w, h: bay.h },
+      role: 'sceneRepairStage',
+      meta: { authoredWrongness: true, label: slotLabel, sceneCue },
     });
 
-    const slotW = Math.min(280, bay.w - 80);
-    const slotH = Math.min(200, bay.h - frameH - 70);
-    const slotX = bay.x + Math.round((bay.w - slotW) / 2);
-    const slotY = bay.y + frameH + 16;
+    const targetSize = Math.min(154, bay.h - 44);
+    const targetX = bay.x + Math.round(bay.w * 0.76) - Math.round(targetSize / 2);
+    const targetY = bay.y + Math.round(bay.h * 0.49) - Math.round(targetSize / 2);
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: solidPng(slotW, 36, '#fef3c7', slotLabel, '#78350f'),
-      w: slotW, h: 36,
+      asset: sceneRepairTargetPng(targetSize, targetSize),
+      w: targetSize, h: targetSize,
       intentional: true,
-      anchor: { x: slotX, y: slotY, w: slotW, h: 36 },
-      role: 'sceneRepairSlotLabel',
-      meta: { label: slotLabel },
-    });
-    L.place(page, {
-      locked: true,
-      kind: 'image',
-      asset: solidPng(slotW, slotH - 40, '#fff7ed', '', '#78350f'),
-      w: slotW, h: slotH - 40,
-      intentional: true,
-      anchor: { x: slotX, y: slotY + 40, w: slotW, h: slotH - 40 },
-      role: 'sceneRepairSlot',
+      anchor: { x: targetX, y: targetY, w: targetSize, h: targetSize },
+      role: 'sceneRepairDestination',
       meta: { label: slotLabel, correctWord, wrongWord },
     });
 
     const wrongRow = findMatchableRow(wrongWord, rows) || { word: wrongWord };
-    const pieceSize = Math.min(110, slotW - 48, slotH - 72);
-    const px = slotX + Math.round((slotW - pieceSize) / 2);
-    const py = slotY + 48 + Math.round(((slotH - 48) - pieceSize) / 2);
+    const pieceSize = Math.min(118, targetSize - 30);
+    const px = targetX + Math.round((targetSize - pieceSize) / 2);
+    const py = targetY + Math.round((targetSize - pieceSize) / 2);
     const wrongMeta = {
       word: wrongWord,
       authoredWrong: true,
@@ -1715,24 +2468,33 @@
       });
     }
 
-    const writeH = 40;
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: solidPng(
-        bay.w - 64,
-        writeH,
-        '#ffffff',
-        'Fix: move the wrong piece out. Put a better fit in.',
-        '#334155'
-      ),
-      w: bay.w - 64,
-      h: writeH,
+      asset: solidPng(104, 30, '#dc2626', 'MOVE ME', '#ffffff'),
+      w: 104,
+      h: 30,
       intentional: true,
-      anchor: { x: bay.x + 32, y: bay.y + bay.h - writeH, w: bay.w - 64, h: writeH },
-      role: 'sceneRepairHint',
+      anchor: { x: targetX + targetSize - 90, y: targetY - 8, w: 104, h: 30 },
+      role: 'sceneRepairMoveCue',
+      meta: { marks: wrongWord },
+    });
+
+    const dock = L.zoneRect(page, 'dock');
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: solidPng(240, 34, '#0f766e', 'YOUR REPAIR PIECE', '#ffffff'),
+      w: 240,
+      h: 34,
+      intentional: true,
+      anchor: { x: dock.x + 16, y: dock.y + 4, w: 240, h: 34 },
+      role: 'sceneRepairDockLabel',
       meta: { correctWord, wrongWord },
     });
+    // Reserve a labeled top band inside the activity dock.
+    page.zones.dock.y += 36;
+    page.zones.dock.h -= 36;
 
     const dockPieces = options.map((word) => {
       const row = findMatchableRow(word, rows) || { word };
@@ -1751,10 +2513,12 @@
     }).filter(Boolean);
 
     if (dockPieces.length) {
-      L.placeDockRow(page, dockPieces, { w: 110, h: 110 });
+      L.placeDockRow(page, dockPieces, { w: 126, h: 100, noShrink: true });
     }
 
     page.notes.push('recipe:sceneRepair');
+    page.notes.push('recipe:sceneRepairSceneFirst');
+    page.notes.push('sceneRepairUniqueFit:1');
     page.notes.push('authoredWrongness:' + wrongWord);
     page.notes.push('sceneRepairCorrect:' + correctWord);
   }
@@ -1777,6 +2541,7 @@
     if (!wantsCapacityPack(lesson)) return null;
     const act = (lesson && lesson.activity) || {};
     const raw = act.capacityPack && typeof act.capacityPack === 'object' ? act.capacityPack : {};
+    const explicit = raw === act.capacityPack;
     const fallback = vocabList(lesson).map((v) => v && v.word);
     const options = uniqueTextItems(
       Array.isArray(raw.options) && raw.options.length ? raw.options : fallback,
@@ -1794,18 +2559,37 @@
       Number.isFinite(requested) ? Math.round(requested) : 3
     ));
     if (options.length <= limit) return null;
+    const mission = String(raw.mission || act.prompt || '').trim();
+    const constraint = String(raw.constraint || '').trim();
+    const containerLabel = String(raw.containerLabel || '').trim().slice(0, 28);
+    const payoff = String(raw.payoff || '').trim().slice(0, 60);
+    const rawMustInclude = uniqueTextItems(raw.mustInclude, limit);
+    const optionSet = new Set(options.map((word) => word.toLowerCase()));
+    const mustInclude = rawMustInclude
+      .filter((word) => optionSet.has(word.toLowerCase()));
+    // Explicit authored packs fail closed if their deciding rule would be hidden
+    // or if required items do not exist in the visible choice set.
+    if (explicit && (
+      !mission
+      || !constraint
+      || !containerLabel
+      || !payoff
+      || !rawMustInclude.length
+      || mustInclude.length !== rawMustInclude.length
+    )) return null;
     const rows = options.map((word) =>
       findMatchableRow(word, picturedMatchableRows(vocabArt)) || { word }
     );
-    const optionSet = new Set(options.map((word) => word.toLowerCase()));
     return {
-      mission: String(raw.mission || act.prompt || 'Choose only what the mission needs.').trim(),
+      mission: mission || 'Choose only what the mission needs.',
+      constraint,
+      containerLabel: containerLabel || 'Mission pack',
+      payoff: payoff || 'Ready for the mission',
       limit,
       options,
       rows,
-      mustInclude: uniqueTextItems(raw.mustInclude, limit)
-        .filter((word) => optionSet.has(word.toLowerCase())),
-      source: raw === act.capacityPack ? 'lesson' : 'derived',
+      mustInclude,
+      source: explicit ? 'lesson' : 'derived',
     };
   }
 
@@ -1820,72 +2604,170 @@
     if (options.length <= limit) return;
     const rows = (ctx && Array.isArray(ctx.rows) ? ctx.rows : []);
     const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
-    const titleH = 42;
-    const footerH = 34;
+    const mustInclude = uniqueTextItems(ctx && ctx.mustInclude, limit);
+    const payoff = String(ctx.payoff || 'Ready for the mission');
+    const panelGap = 18;
+    const constraintW = Math.max(260, Math.min(330, Math.floor(bay.w * 0.28)));
+    const packX = bay.x + constraintW + panelGap;
+    const packW = bay.w - constraintW - panelGap;
+    const packY = bay.y;
+    const packH = bay.h;
+
+    // One shared environment behind mission + pack (Manus R2/R3: scene-integrated
+    // container, not two disconnected floating panels).
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: capacitySceneShellPng(bay.w, bay.h, constraintW + Math.round(panelGap / 2)),
+      w: bay.w, h: bay.h,
+      intentional: true,
+      anchor: { x: bay.x, y: bay.y, w: bay.w, h: bay.h },
+      role: 'capacityScene',
+      meta: { integrated: true },
+    });
+
+    // Left column: mission/condition card, then the reusable language frame,
+    // then the three-state proof strip — stacked so the whole reference
+    // column (rule + language + lifecycle) lives in one place.
+    const stackGap = 10;
+    const frameH = 78;
+    const ladderH = 74;
+    const missionH = Math.max(120, bay.h - frameH - ladderH - stackGap * 2);
+    let colY = bay.y;
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: capacityConstraintPng(
+        constraintW,
+        missionH,
+        String(ctx.mission || '').slice(0, 110),
+        String(ctx.constraint || '').slice(0, 100),
+        mustInclude
+      ),
+      w: constraintW, h: missionH,
+      intentional: true,
+      anchor: { x: bay.x, y: colY, w: constraintW, h: missionH },
+      role: 'capacityMission',
+      meta: {
+        mission: ctx.mission || '',
+        constraint: ctx.constraint || '',
+        mustInclude,
+        limit,
+      },
+    });
+    colY += missionH + stackGap;
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: capacityLanguageFramePng(constraintW, frameH),
+      w: constraintW, h: frameH,
+      intentional: true,
+      anchor: { x: bay.x, y: colY, w: constraintW, h: frameH },
+      role: 'capacityLanguageFrame',
+      meta: {
+        includeFrame: 'I pack ___ because ___.',
+        excludeFrame: 'I leave out ___ because ___.',
+        teacherCheck: true,
+      },
+    });
+    colY += frameH + stackGap;
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: capacityStateLadderPng(constraintW, ladderH, payoff),
+      w: constraintW, h: ladderH,
+      intentional: true,
+      anchor: { x: bay.x, y: colY, w: constraintW, h: ladderH },
+      role: 'capacityStateLadder',
+      meta: { states: ['empty', 'filling', 'committed'], payoff },
+    });
+
+    // Right column: pack header, pockets (no ordinal meaning — position never
+    // changes the outcome), then a persistent payoff banner.
+    const headerH = 56;
+    const payoffH = 44;
+    const packGap = 12;
+    const pocketsY = packY + headerH + packGap;
+    const pocketsH = packH - headerH - payoffH - packGap * 2;
+    const packPad = 20;
     const slotGap = 18;
-    const slotW = Math.min(220, Math.floor((bay.w - 64 - slotGap * (limit - 1)) / limit));
-    const slotH = Math.max(92, bay.h - titleH - footerH - 28);
+    const slotW = Math.floor((packW - packPad * 2 - slotGap * (limit - 1)) / limit);
     const totalW = slotW * limit + slotGap * (limit - 1);
-    const startX = bay.x + Math.round((bay.w - totalW) / 2);
+    const startX = packX + Math.round((packW - totalW) / 2);
 
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: hintStickyPng(bay.w - 48, titleH, `MISSION: ${String(ctx.mission || '').slice(0, 90)}`),
-      w: bay.w - 48, h: titleH,
+      asset: capacityContainerPng(packW, headerH, String(ctx.containerLabel || 'Mission pack'), limit),
+      w: packW, h: headerH,
       intentional: true,
-      anchor: { x: bay.x + 24, y: bay.y + 4, w: bay.w - 48, h: titleH },
-      role: 'capacityMission',
-      meta: { mission: ctx.mission || '', limit },
+      anchor: { x: packX, y: packY, w: packW, h: headerH },
+      role: 'capacityContainer',
+      meta: {
+        label: ctx.containerLabel || 'Mission pack',
+        payoff,
+        limit,
+      },
     });
     for (let i = 0; i < limit; i++) {
       L.place(page, {
         locked: true,
         kind: 'image',
-        asset: slotGhostPng(slotW, slotH, i + 1),
-        w: slotW, h: slotH,
+        asset: capacityPocketPng(slotW, pocketsH),
+        w: slotW, h: pocketsH,
         intentional: true,
         anchor: {
           x: startX + i * (slotW + slotGap),
-          y: bay.y + titleH + 12,
+          y: pocketsY,
           w: slotW,
-          h: slotH,
+          h: pocketsH,
         },
         role: 'capacitySlot',
-        meta: { slot: i + 1, limit },
+        // `slot` is a stable placement key only — position carries no scoring
+        // meaning (Manus R3 B2). Never render it as a visible ordinal.
+        meta: { slot: i + 1, limit, ordered: false },
       });
     }
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: solidPng(bay.w - 80, footerH, '#ecfeff', `PACK EXACTLY ${limit} — explain every choice`, '#0f766e'),
-      w: bay.w - 80, h: footerH,
+      asset: capacityPayoffBannerPng(packW, payoffH, payoff),
+      w: packW, h: payoffH,
       intentional: true,
-      anchor: {
-        x: bay.x + 40,
-        y: bay.y + bay.h - footerH,
-        w: bay.w - 80,
-        h: footerH,
-      },
-      role: 'capacityRule',
-      meta: { limit },
+      anchor: { x: packX, y: packY + packH - payoffH, w: packW, h: payoffH },
+      role: 'capacityPayoff',
+      meta: { payoff },
     });
 
     const pieces = options.map((word) => {
       const row = findMatchableRow(word, rows) || { word };
       const meta = {
         word,
-        required: (ctx.mustInclude || []).some((x) => String(x).toLowerCase() === word.toLowerCase()),
+        required: mustInclude.some((x) => String(x).toLowerCase() === word.toLowerCase()),
+        captionChip: true,
       };
       if (row.propKey) meta.propKey = row.propKey;
-      if (row.artSrc) {
-        return { kind: 'image', asset: row.artSrc, text: word, role: 'capacityChoice', meta };
-      }
-      return { kind: 'tile', text: word, role: 'capacityChoice', meta };
+      if (row.artSrc) meta.artSrc = row.artSrc;
+      return {
+        kind: 'image',
+        asset: row.artSrc || null,
+        emoji: row.glyph || null,
+        label: word,
+        role: 'capacityChoice',
+        meta,
+      };
     });
-    L.placeDockRow(page, pieces, { w: 150, h: 72, noShrink: true });
+    // Every choice card shares one size (art or emoji fallback alike) so the
+    // dock reads as one consistent asset treatment, not a mixed worksheet row.
+    L.placeDockRow(page, pieces, { w: 132, h: 104, noShrink: true });
     page.notes.push('recipe:capacityPack');
     page.notes.push('capacityLimit:' + limit);
+    page.notes.push('capacityConstraintVisible:' + !!(ctx.constraint || mustInclude.length));
+    page.notes.push('capacitySceneIntegrated:true');
+    page.notes.push('capacityStatesModeled:true');
+    page.notes.push('capacityLanguageFrameVisible:true');
+    page.notes.push('capacityPayoffVisible:true');
+    page.notes.push('capacityOrdinalFree:true');
   }
 
   function resolveRouteMission(lesson) {
@@ -1903,9 +2785,22 @@
     const answerOrder = uniqueTextItems(raw.answerOrder, 5);
     const validAnswer = answerOrder.length === steps.length
       && answerOrder.every((s) => steps.some((x) => x.toLowerCase() === s.toLowerCase()));
+    const mission = String(raw.mission || act.prompt || 'Arrange the steps to reach the goal.').trim();
+    const namedMover = String(raw.mover || '').trim();
+    const inferredMover = mission.match(/\b(?:help|guide|lead)\s+([A-Z][A-Za-z'-]{1,20})\b/i);
+    const inferredGoal = mission.match(
+      /\b(?:to|reach)\s+(?:the\s+)?([A-Za-z][A-Za-z' -]{1,30}?)(?:\s+(?:on|before|after)\b|[.!]|$)/i
+    );
+    const authoredLandmarks = uniqueTextItems(raw.landmarks, 5);
+    const landmarks = authoredLandmarks.length === steps.length
+      ? authoredLandmarks
+      : steps.map(routeLandmarkLabel);
     return {
-      mission: String(raw.mission || act.prompt || 'Arrange the steps to reach the goal.').trim(),
+      mission,
+      mover: (namedMover || (inferredMover && inferredMover[1]) || 'Team').slice(0, 20),
+      goal: String(raw.goal || (inferredGoal && inferredGoal[1]) || 'Goal').trim().slice(0, 30),
       steps,
+      landmarks,
       answerOrder: validAnswer ? answerOrder : steps.slice(),
       source: raw === act.routeMission ? 'lesson' : 'story',
     };
@@ -1921,9 +2816,9 @@
     const keyH = 34;
     const padGap = 14;
     const padW = Math.floor((bay.w - 72 - padGap * (steps.length - 1)) / steps.length);
-    const padH = Math.max(82, bay.h - missionH - keyH - 30);
+    const padH = Math.max(82, bay.h - missionH - keyH - 40);
     const startX = bay.x + 36;
-    const padY = bay.y + missionH + 12;
+    const padY = bay.y + missionH + 28;
 
     L.place(page, {
       locked: true,
@@ -1935,16 +2830,36 @@
       role: 'routeMissionBrief',
       meta: { mission: ctx.mission || '' },
     });
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: routePathPng(bay.w - 72, padH + 24, steps.length, ctx.mover, ctx.goal),
+      w: bay.w - 72, h: padH + 24,
+      intentional: true,
+      anchor: { x: startX, y: padY - 24, w: bay.w - 72, h: padH + 24 },
+      role: 'routePath',
+      meta: {
+        mover: ctx.mover || 'Team',
+        goal: ctx.goal || 'Goal',
+        checkpoints: steps.length,
+        persistent: true,
+      },
+    });
     steps.forEach((_, i) => {
       L.place(page, {
         locked: true,
         kind: 'image',
-        asset: slotGhostPng(padW, padH, i + 1),
+        asset: routeCheckpointPng(padW, padH, i + 1),
         w: padW, h: padH,
         intentional: true,
         anchor: { x: startX + i * (padW + padGap), y: padY, w: padW, h: padH },
         role: 'routeStep',
-        meta: { step: i + 1, start: i === 0, finish: i === steps.length - 1 },
+        meta: {
+          step: i + 1,
+          start: i === 0,
+          finish: i === steps.length - 1,
+          routeSegment: i === steps.length - 1 ? `${i + 1}->goal` : `${i + 1}->${i + 2}`,
+        },
       });
     });
     const answer = (ctx.answerOrder || steps).join(' → ');
@@ -1952,32 +2867,49 @@
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: solidPng(bay.w - 64, keyH, '#dcfce7', answer.slice(0, 110), '#166534'),
+      asset: routeAnswerPng(bay.w - 64, keyH, ctx.mover, ctx.goal, answer),
       w: bay.w - 64, h: keyH,
       intentional: true,
       anchor: { x: bay.x + 32, y: keyY, w: bay.w - 64, h: keyH },
       role: 'routeAnswer',
-      meta: { answerOrder: ctx.answerOrder || steps },
+      meta: {
+        answerOrder: ctx.answerOrder || steps,
+        mover: ctx.mover || 'Team',
+        goal: ctx.goal || 'Goal',
+        completionState: true,
+      },
     });
     L.place(page, {
       locked: false,
       kind: 'image',
-      asset: stickyPng(bay.w - 64, keyH),
+      asset: routePeekPng(bay.w - 64, keyH),
       w: bay.w - 64, h: keyH,
       intentional: true,
       anchor: { x: bay.x + 32, y: keyY, w: bay.w - 64, h: keyH },
       role: 'routeAnswerCover',
       meta: { covers: 'routeAnswer' },
     });
-    const shuffled = pick(steps, steps.length, hashStr((lesson.title || '') + '|routeMission'));
-    L.placeDockRow(page, shuffled.map((text) => ({
-      kind: 'tile',
+    const cards = steps.map((text, index) => ({
       text,
+      landmark: (ctx.landmarks && ctx.landmarks[index]) || routeLandmarkLabel(text),
+    }));
+    const shuffled = pick(cards, cards.length, hashStr((lesson.title || '') + '|routeMission'));
+    const tileW = Math.max(150, Math.min(220, Math.floor(1120 / steps.length)));
+    L.placeDockRow(page, shuffled.map((card) => ({
+      kind: 'image',
+      asset: routeTilePng(tileW, 64, card.text, card.landmark),
+      text: card.text,
       role: 'routeTile',
-      meta: { text },
-    })), { w: Math.max(150, Math.min(220, Math.floor(1120 / steps.length))), h: 68 });
+      meta: {
+        text: card.text,
+        landmark: card.landmark,
+        visualAnchor: routeStepGlyph(card.landmark || card.text),
+      },
+    })), { w: tileW, h: 64 });
     page.notes.push('recipe:routeMission');
     page.notes.push('routeSteps:' + steps.length);
+    page.notes.push('routePersistentPath');
+    page.notes.push('routeLandmarks:' + steps.length);
   }
 
   function resolveTransformationLab(lesson) {
@@ -1990,6 +2922,7 @@
     const changes = uniqueTextItems(raw.changes || raw.changeOptions, 4);
     const correctChange = String(raw.correctChange || '').trim();
     if (!before || !after || changes.length < 2 || !correctChange) return null;
+    if (before.toLowerCase() === after.toLowerCase()) return null;
     if (!changes.some((x) => x.toLowerCase() === correctChange.toLowerCase())) return null;
     return {
       before,
@@ -2007,28 +2940,44 @@
     const changes = uniqueTextItems(ctx && ctx.changes, 4);
     if (!ctx || !ctx.before || !ctx.after || changes.length < 2) return;
     const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
-    const questionH = 40;
+    const predictionFrame = 'I predict ___ because ___.';
+    const question = String(ctx.question || 'Which cause makes the result happen?').trim();
+    const questionH = 54;
     const labelH = 34;
     const cardGap = 18;
     const cardW = Math.floor((bay.w - 72 - cardGap * 2) / 3);
     const cardH = Math.max(94, bay.h - questionH - labelH - 22);
     const y = bay.y + questionH + labelH + 10;
     const labels = [
-      { text: 'BEFORE', color: '#1d4ed8' },
-      { text: 'CHANGE', color: '#7c3aed' },
-      { text: 'AFTER', color: '#047857' },
+      { text: '1 · BEFORE →', phase: 'before', color: '#1d4ed8' },
+      { text: '2 · CAUSE →', phase: 'cause', color: '#7c3aed' },
+      { text: '3 · RESULT', phase: 'result', color: '#047857' },
     ];
     const cards = [String(ctx.before), '', String(ctx.after)];
+    const answerKey = String(ctx.correctChange).toLowerCase();
+    const sourceStartsWithAnswer = changes[0].toLowerCase() === answerKey;
+    const dockChanges = pick(
+      changes,
+      changes.length,
+      hashStr(`${lesson && lesson.title || ''}|${ctx.before}|transformationLab`)
+    );
+    if (sourceStartsWithAnswer && dockChanges[0].toLowerCase() === answerKey) {
+      dockChanges.push(dockChanges.shift());
+    }
 
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: hintStickyPng(bay.w - 48, questionH, String(ctx.question || '').slice(0, 90)),
+      asset: hintStickyPng(
+        bay.w - 48,
+        questionH,
+        `${question} · PREDICT: ${predictionFrame}`.slice(0, 150)
+      ),
       w: bay.w - 48, h: questionH,
       intentional: true,
       anchor: { x: bay.x + 24, y: bay.y + 4, w: bay.w - 48, h: questionH },
       role: 'transformationQuestion',
-      meta: { question: ctx.question || '' },
+      meta: { question, predictionFrame },
     });
     labels.forEach((label, i) => {
       const x = bay.x + 24 + i * (cardW + cardGap);
@@ -2040,34 +2989,34 @@
         intentional: true,
         anchor: { x, y: bay.y + questionH + 8, w: cardW, h: labelH },
         role: 'transformationLabel',
-        meta: { phase: label.text.toLowerCase() },
+        meta: { phase: label.phase },
       });
       L.place(page, {
         locked: true,
         kind: 'image',
         asset: cards[i]
           ? hintStickyPng(cardW, cardH, cards[i])
-          : slotGhostPng(cardW, cardH, '?'),
+          : slotGhostPng(cardW, cardH, 'DROP CAUSE'),
         w: cardW, h: cardH,
         intentional: true,
         anchor: { x, y, w: cardW, h: cardH },
         role: i === 1 ? 'transformationChangeSlot' : 'transformationState',
-        meta: { phase: labels[i].text.toLowerCase(), text: cards[i] },
+        meta: { phase: labels[i].phase, text: cards[i] },
       });
       if (i === 2) {
         L.place(page, {
           locked: false,
           kind: 'image',
-          asset: solidPng(cardW, cardH, '#0f766e', 'PEEL RESULT', '#fff'),
+          asset: solidPng(cardW, cardH, '#0f766e', 'PREDICT • THEN PEEL', '#fff'),
           w: cardW, h: cardH,
           intentional: true,
           anchor: { x, y, w: cardW, h: cardH },
           role: 'transformationResultCover',
-          meta: { covers: ctx.after },
+          meta: { covers: ctx.after, requiresPrediction: true },
         });
       }
     });
-    L.placeDockRow(page, changes.map((text) => ({
+    L.placeDockRow(page, dockChanges.map((text) => ({
       kind: 'tile',
       text,
       role: 'transformationChange',
@@ -2075,23 +3024,161 @@
     })), { w: 190, h: 68 });
     page.notes.push('recipe:transformationLab');
     page.notes.push('transformationAnswer:' + ctx.correctChange);
+    page.notes.push('transformationPredictBeforePeel');
+  }
+
+  function evidenceXml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function evidenceSvg(w, h, body) {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+      <style>text{font-family:Poppins,Arial,sans-serif}</style>${body}</svg>`;
+    return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+  }
+
+  function evidenceTextSvg(text, x, y, maxChars, maxLines, lineH, attrs) {
+    const words = String(text || '').trim().split(/\s+/).filter(Boolean);
+    const lines = [];
+    let line = '';
+    for (const word of words) {
+      const next = line ? `${line} ${word}` : word;
+      if (line && next.length > maxChars) {
+        lines.push(line);
+        line = word;
+        if (lines.length >= maxLines) break;
+      } else {
+        line = next;
+      }
+    }
+    if (line && lines.length < maxLines) lines.push(line);
+    if (lines.join(' ').length < words.join(' ').length && lines.length) {
+      lines[lines.length - 1] = `${lines[lines.length - 1].replace(/[.,;:!?]?$/, '')}…`;
+    }
+    return `<text x="${x}" y="${y}" ${attrs || ''}>${lines.map((ln, i) =>
+      `<tspan x="${x}" dy="${i ? lineH : 0}">${evidenceXml(ln)}</tspan>`
+    ).join('')}</text>`;
+  }
+
+  function evidenceCaseFilePng(w, h) {
+    const rules = Array.from({ length: 6 }, (_, i) =>
+      `<line x1="16" y1="${48 + i * 28}" x2="${w - 16}" y2="${48 + i * 28}" stroke="#8b5e34" opacity=".18" stroke-width="2"/>`
+    ).join('');
+    return evidenceSvg(w, h, `
+      <rect x="2" y="10" width="${w - 4}" height="${h - 12}" rx="18" fill="#f5e6bd" stroke="#8b5e34" stroke-width="3"/>
+      <rect x="24" y="1" width="204" height="34" rx="10" fill="#d6a85f" stroke="#8b5e34" stroke-width="3"/>
+      <text x="42" y="23" fill="#3f2d20" font-size="14" font-weight="800">CONFIDENTIAL CASE FILE</text>${rules}`);
+  }
+
+  function evidenceClaimPng(w, h, claim) {
+    return evidenceSvg(w, h, `
+      <rect x="1" y="1" width="${w - 2}" height="${h - 2}" rx="12" fill="#172554" stroke="#0f172a" stroke-width="2"/>
+      <text x="16" y="14" fill="#fbbf24" font-size="11" font-weight="800">CLAIM TO TEST</text>
+      ${evidenceTextSvg(claim, 16, 34, Math.max(28, Math.floor(w / 9)), 1, 16, 'fill="#fff" font-size="15" font-weight="700"')}`);
+  }
+
+  function evidenceReasoningFramePng(w, h, frame) {
+    return evidenceSvg(w, h, `
+      <rect x="1" y="1" width="${w - 2}" height="${h - 2}" rx="12" fill="#fffdf5" stroke="#0f766e" stroke-width="2"/>
+      <text x="12" y="14" fill="#0f766e" font-size="11" font-weight="800">SAY WHY</text>
+      ${evidenceTextSvg(frame, 12, 31, Math.max(24, Math.floor(w / 9)), 2, 13, 'fill="#134e4a" font-size="12" font-weight="700"')}`);
+  }
+
+  function evidencePocketPng(w, h, rank, count) {
+    const labels = count === 3
+      ? ['1 · STRONGEST', '2 · SOLID', '3 · WEAKEST']
+      : ['1 · STRONGEST', '2 · STRONG', '3 · LIMITED', '4 · WEAKEST'];
+    const cues = count === 3
+      ? ['reliable + relevant', 'useful, with limits', 'least convincing']
+      : ['reliable + relevant', 'clear support', 'some limits', 'least convincing'];
+    const colors = ['#0f766e', '#2563eb', '#d97706', '#be123c'];
+    const color = colors[Math.min(rank - 1, colors.length - 1)];
+    return evidenceSvg(w, h, `
+      <rect x="1.5" y="1.5" width="${w - 3}" height="${h - 3}" rx="14" fill="#fffaf0" stroke="${color}" stroke-width="3"/>
+      <path d="M3 15 Q3 3 15 3 H${w - 15} Q${w - 3} 3 ${w - 3} 15 V31 H3Z" fill="${color}"/>
+      <text x="${w / 2}" y="21" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">${labels[rank - 1]}</text>
+      <text x="${w / 2}" y="48" text-anchor="middle" fill="#475569" font-size="12" font-weight="700">${cues[rank - 1]}</text>
+      <rect x="10" y="59" width="${w - 20}" height="${h - 69}" rx="8" fill="none" stroke="${color}" stroke-width="2" stroke-dasharray="7 5"/>
+      <text x="${w / 2}" y="83" text-anchor="middle" fill="#64748b" font-size="11" font-weight="800">FILE CLUE HERE</text>`);
+  }
+
+  function evidenceConclusionPng(w, h, conclusion) {
+    return evidenceSvg(w, h, `
+      <rect x="1" y="1" width="${w - 2}" height="${h - 2}" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+      <text x="14" y="${Math.round(h / 2 + 5)}" fill="#1e3a8a" font-size="11" font-weight="800">CONCLUSION</text>
+      ${evidenceTextSvg(conclusion, 112, Math.round(h / 2 + 5), Math.max(40, Math.floor((w - 126) / 8)), 1, 15, 'fill="#1e3a8a" font-size="14" font-weight="700"')}`);
+  }
+
+  function evidenceConclusionCoverPng(w, h, count) {
+    return evidenceSvg(w, h, `
+      <rect x="1.5" y="1.5" width="${w - 3}" height="${h - 3}" rx="10" fill="#f59e0b" stroke="#92400e" stroke-width="3"/>
+      <text x="${w / 2}" y="${Math.round(h / 2 + 5)}" text-anchor="middle" fill="#451a03" font-size="14" font-weight="800">FILE ALL ${count} CLUES IN ORDER  →  OPEN CONCLUSION</text>`);
+  }
+
+  function evidenceCardPng(w, h, item) {
+    const challenges = item.relation !== 'supports';
+    const edge = challenges ? '#be123c' : '#0f766e';
+    const source = `SOURCE · ${String(item.source || '').toUpperCase()}`;
+    const relationLabel = item.relation === 'alternative'
+      ? 'ALTERNATIVE'
+      : String(item.relation || '').toUpperCase();
+    return evidenceSvg(w, h, `
+      <rect x="2" y="2" width="${w - 4}" height="${h - 4}" rx="14" fill="#fffef7" stroke="${edge}" stroke-width="3"/>
+      <path d="M4 16 Q4 4 16 4 H${w - 16} Q${w - 4} 4 ${w - 4} 16 V30 H4Z" fill="${edge}"/>
+      <text x="12" y="21" fill="#fff" font-size="10" font-weight="800">${evidenceXml(source.slice(0, 26))}</text>
+      <text x="${w - 12}" y="21" text-anchor="end" fill="#fff" font-size="10" font-weight="800">${relationLabel}</text>
+      ${evidenceTextSvg(item.text, 12, 49, Math.max(22, Math.floor((w - 24) / 10)), 2, 18, 'fill="#1e293b" font-size="15" font-weight="800"')}
+      ${evidenceTextSvg(`SOURCE QUALITY: ${item.rationale}`, 12, h - 39, Math.max(32, Math.floor((w - 24) / 7)), 1, 13, 'fill="#475569" font-size="10" font-weight="700"')}
+      ${evidenceTextSvg(`CLAIM IMPACT: ${item.claimImpact}`, 12, h - 21, Math.max(32, Math.floor((w - 24) / 7)), 2, 12, `fill="${edge}" font-size="10" font-weight="800"`)}`);
   }
 
   function normalizeEvidenceItems(raw) {
     const out = [];
     const seen = new Set();
     for (const item of Array.isArray(raw) ? raw : []) {
-      const text = String(typeof item === 'string' ? item : item && item.text || '').trim();
+      if (!item || typeof item !== 'object') continue;
+      const text = String(item.text || item.fact || '').trim();
       const key = text.toLowerCase();
       if (!text || seen.has(key)) continue;
       seen.add(key);
       out.push({
         text,
-        strength: typeof item === 'object' && item ? Number(item.strength) || null : null,
+        source: String(item.source || item.artifact || '').trim(),
+        rationale: String(item.rationale || item.why || '').trim(),
+        relation: String(item.relation || '').trim().toLowerCase(),
+        claimImpact: String(item.claimImpact || '').trim(),
+        strength: Number.isFinite(Number(item.strength)) ? Number(item.strength) : null,
       });
       if (out.length >= 4) break;
     }
     return out;
+  }
+
+  // S77 — evidence-relation integrity (Manus 8Eqp5k evidenceBoard R2, 60/100).
+  // A contradicts/qualifies/alternative card must genuinely oppose the claim.
+  // "Weaker source" or "happened earlier/later" describes strength or timing,
+  // not a challenge — Manus flagged that as a false counter-evidence label.
+  const EVIDENCE_OPPOSITION_RE =
+    /\b(not|isn'?t|can'?t|cannot|doesn'?t|didn'?t|wasn'?t|weren'?t|unlikely|false|contrary|conflicts?|disputes?|undermin\w*|contradicts?|rules? out|instead of|rather than|however|no evidence|does not hold|breaks down|fails? to)\b/i;
+  const EVIDENCE_QUALIFY_RE =
+    /\b(but|only|limit\w*|less likely|less certain|uncertain|depends?|unless|may|might|not always|despite|partly|sometimes)\b/i;
+  const EVIDENCE_ALTERNATIVE_RE =
+    /\b(another|alternative|other|different)\b.{0,24}\b(cause|explanation|reason|possibility)\b|\binstead\b/i;
+  function evidenceRelationIntegrity(evidence) {
+    return evidence.every((e) => {
+      if (e.relation === 'supports') return true;
+      const blob = `${e.claimImpact || ''} ${e.text || ''}`;
+      if (e.relation === 'contradicts') return EVIDENCE_OPPOSITION_RE.test(blob);
+      if (e.relation === 'qualifies') {
+        return EVIDENCE_OPPOSITION_RE.test(blob) || EVIDENCE_QUALIFY_RE.test(blob);
+      }
+      if (e.relation === 'alternative') return EVIDENCE_ALTERNATIVE_RE.test(blob);
+      return false;
+    });
   }
 
   function resolveEvidenceBoard(lesson) {
@@ -2103,87 +3190,153 @@
     const conclusion = String(raw.conclusion || '').trim();
     const evidence = normalizeEvidenceItems(raw.evidence);
     if (!claim || !conclusion || evidence.length < 3) return null;
-    const explicitStrength = evidence.every((e) => Number.isFinite(e.strength));
-    const ordered = explicitStrength
-      ? evidence.slice().sort((a, b) => b.strength - a.strength)
-      : evidence.slice();
+    const relationTypes = new Set(['supports', 'contradicts', 'qualifies', 'alternative']);
+    const completeCards = evidence.every((e) =>
+      e.source && e.rationale && e.claimImpact
+      && relationTypes.has(e.relation)
+      && Number.isFinite(e.strength)
+      && e.text.length <= 72
+      && e.source.length <= 26
+      && e.rationale.length <= 56
+      && e.claimImpact.length <= 68
+    );
+    const strengths = evidence.map((e) => e.strength);
+    const distinctStrengths = new Set(strengths).size === evidence.length;
+    const hasSupport = evidence.some((e) => e.relation === 'supports');
+    const hasCounter = evidence.some((e) => e.relation !== 'supports');
+    if (!completeCards || !distinctStrengths || !hasSupport || !hasCounter) return null;
+    if (!evidenceRelationIntegrity(evidence)) return null;
+    const ordered = evidence.slice().sort((a, b) => b.strength - a.strength);
     return {
       claim,
       conclusion,
       evidence,
       answerOrder: ordered.map((e) => e.text),
+      reasoningFrame: String(
+        raw.reasoningFrame || 'I rank ___ first because its source is more reliable and relevant than ___.'
+      ).trim(),
+      teacherCheck: String(
+        raw.teacherCheck || 'Ask: Which source is most reliable, and which clue challenges the claim?'
+      ).trim(),
       source: 'lesson',
     };
   }
 
-  /** Build a ranked case file; the completed board remembers the argument. */
+  /** Build a tangible case file; ranking creates a visible evidence hierarchy. */
   function evidenceBoard(lesson, page, layout, ctx) {
     const L = layout || window.EdbLayout;
     const evidence = normalizeEvidenceItems(ctx && ctx.evidence);
     if (!ctx || !ctx.claim || !ctx.conclusion || evidence.length < 3) return;
     const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
-    const claimH = 42;
-    const keyH = 34;
-    const gap = 14;
-    const slotW = Math.floor((bay.w - 72 - gap * (evidence.length - 1)) / evidence.length);
-    const slotH = Math.max(86, bay.h - claimH - keyH - 26);
-    const y = bay.y + claimH + 10;
+    const sidePad = 18;
+    const gap = 12;
+    const topH = 54;
+    const slotY = bay.y + 64;
+    const slotH = 100;
+    const keyH = 42;
+    const keyY = bay.y + bay.h - keyH - 8;
+    const slotW = Math.floor((bay.w - sidePad * 2 - gap * (evidence.length - 1)) / evidence.length);
+    const claimW = Math.floor((bay.w - sidePad * 2 - gap) * 0.62);
+    const frameW = bay.w - sidePad * 2 - gap - claimW;
 
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: hintStickyPng(bay.w - 48, claimH, `CASE: ${String(ctx.claim).slice(0, 90)}`),
-      w: bay.w - 48, h: claimH,
+      asset: evidenceCaseFilePng(bay.w, bay.h),
+      w: bay.w, h: bay.h,
       intentional: true,
-      anchor: { x: bay.x + 24, y: bay.y + 4, w: bay.w - 48, h: claimH },
+      anchor: { x: bay.x, y: bay.y, w: bay.w, h: bay.h },
+      role: 'evidenceCaseFile',
+      meta: { teacherCheck: ctx.teacherCheck || '' },
+    });
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: evidenceClaimPng(claimW, topH, ctx.claim),
+      w: claimW, h: topH,
+      intentional: true,
+      anchor: { x: bay.x + sidePad, y: bay.y + 4, w: claimW, h: topH },
       role: 'evidenceClaim',
       meta: { claim: ctx.claim },
+    });
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: evidenceReasoningFramePng(frameW, topH, ctx.reasoningFrame),
+      w: frameW, h: topH,
+      intentional: true,
+      anchor: { x: bay.x + sidePad + claimW + gap, y: bay.y + 4, w: frameW, h: topH },
+      role: 'evidenceReasoningFrame',
+      meta: { frame: ctx.reasoningFrame, teacherCheck: ctx.teacherCheck },
     });
     evidence.forEach((_, i) => {
       L.place(page, {
         locked: true,
         kind: 'image',
-        asset: slotGhostPng(slotW, slotH, i + 1),
+        asset: evidencePocketPng(slotW, slotH, i + 1, evidence.length),
         w: slotW, h: slotH,
         intentional: true,
-        anchor: { x: bay.x + 36 + i * (slotW + gap), y, w: slotW, h: slotH },
+        anchor: { x: bay.x + sidePad + i * (slotW + gap), y: slotY, w: slotW, h: slotH },
         role: 'evidenceRankSlot',
-        meta: { rank: i + 1, label: i === 0 ? 'strongest' : 'supporting' },
+        meta: {
+          rank: i + 1,
+          label: i === 0 ? 'strongest' : i === evidence.length - 1 ? 'weakest' : 'supporting',
+          answerText: (ctx.answerOrder || [])[i] || '',
+        },
       });
     });
-    const keyY = bay.y + bay.h - keyH;
     L.place(page, {
       locked: true,
       kind: 'image',
-      asset: solidPng(bay.w - 64, keyH, '#e0f2fe', String(ctx.conclusion).slice(0, 100), '#075985'),
-      w: bay.w - 64, h: keyH,
+      asset: evidenceConclusionPng(bay.w - sidePad * 2, keyH, ctx.conclusion),
+      w: bay.w - sidePad * 2, h: keyH,
       intentional: true,
-      anchor: { x: bay.x + 32, y: keyY, w: bay.w - 64, h: keyH },
+      anchor: { x: bay.x + sidePad, y: keyY, w: bay.w - sidePad * 2, h: keyH },
       role: 'evidenceConclusion',
       meta: { conclusion: ctx.conclusion, answerOrder: ctx.answerOrder || [] },
     });
     L.place(page, {
       locked: false,
       kind: 'image',
-      asset: stickyPng(bay.w - 64, keyH),
-      w: bay.w - 64, h: keyH,
+      asset: evidenceConclusionCoverPng(bay.w - sidePad * 2, keyH, evidence.length),
+      w: bay.w - sidePad * 2, h: keyH,
       intentional: true,
-      anchor: { x: bay.x + 32, y: keyY, w: bay.w - 64, h: keyH },
+      anchor: { x: bay.x + sidePad, y: keyY, w: bay.w - sidePad * 2, h: keyH },
       role: 'evidenceConclusionCover',
-      meta: { covers: 'conclusion' },
+      meta: {
+        covers: 'conclusion',
+        unlockAfter: evidence.length,
+        requiredOrder: ctx.answerOrder || [],
+      },
     });
     const shuffled = pick(evidence, evidence.length, hashStr((lesson.title || '') + '|evidenceBoard'));
     const dock = L.zoneRect(page, 'dock');
-    const cardW = Math.max(180, Math.min(270, Math.floor(((dock && dock.w) || 1184) / evidence.length) - 18));
+    const dockGap = 14;
+    const cardW = Math.max(230, Math.min(340, Math.floor(
+      (((dock && dock.w) || 1184) - dockGap * (evidence.length - 1)) / evidence.length
+    )));
+    const cardH = 126;
     L.placeDockRow(page, shuffled.map((item) => ({
       kind: 'image',
-      asset: hintStickyPng(cardW, 70, item.text),
+      asset: evidenceCardPng(cardW, cardH, item),
       text: item.text,
       role: 'evidenceCard',
-      meta: { text: item.text, strength: item.strength },
-    })), { w: cardW, h: 70 });
+      meta: {
+        text: item.text,
+        source: item.source,
+        rationale: item.rationale,
+        relation: item.relation,
+        claimImpact: item.claimImpact,
+        strength: item.strength,
+      },
+    })), { w: cardW, h: cardH, noShrink: true });
     page.notes.push('recipe:evidenceBoard');
     page.notes.push('evidenceCount:' + evidence.length);
+    page.notes.push('evidenceCounterCount:' + evidence.filter((e) => e.relation !== 'supports').length);
+    page.notes.push('evidenceCounterSemantics:true');
+    page.notes.push('evidenceStrengthsDistinct:true');
+    page.notes.push('evidenceSourcesComplete:true');
+    page.notes.push('evidenceTeacherCheck:' + ctx.teacherCheck);
   }
 
   function resolveRequestedBoardGrammar(lesson, vocabArt) {
@@ -4863,6 +6016,10 @@
     else if (kit && kit.pack === 'space') prefer = ROLEPLAY_DOCK_SPACE;
     else if (kit && kit.pack === 'music') prefer = ROLEPLAY_DOCK_MUSIC;
 
+    // A king tray is a roleplay kit, not a prop-bank dump. Keep themed docks to
+    // one readable dozen; excess kit top-up caused silent drops and tiny tools.
+    if (prefer && !face && !feelings) targetCount = Math.min(targetCount, prefer.length, 12);
+
     if (prefer) {
       for (const key of prefer) {
         if (out.length >= targetCount) break;
@@ -5498,10 +6655,18 @@
       meta: { word: w },
     })), { w: tileW, h: tileH });
     page.notes.push('recipe:frameTiles');
+    page.notes.push('recipe:frameTileWords:' + tileWords.join('|'));
     page.notes.push('frameBlanks:' + blanks);
     page.notes.push('frameTiles:' + n);
     // More holes than tiles means a student runs out of words mid-frame.
     if (blanks > n) page.notes.push('frameBlanksExceedTiles:' + (blanks - n));
+    // Interaction-state contract (Manus frameTiles R1 action 4) — states are
+    // rendered by shape/position, never color alone, since ClassIn hand boards
+    // have no live scoring: empty=dashed crosshair pad, draggable=raised
+    // shadowed tile (tileToPng), placed=tile visually covers the pad, teacher
+    // confirms/retries by eye (numbered badge lets the teacher call a frame by
+    // number without re-reading the whole sentence).
+    page.notes.push('frameStates:empty-dashed-target|draggable-raised-tile|placed-covers-pad|teacher-confirms-by-eye');
   }
 
   /**
@@ -5513,9 +6678,13 @@
   function intendedFrameFill(frame, lesson) {
     const f = String(frame || '');
     if (!/_{2,}/.test(f)) return null;
-    const vocab = vocabList(lesson);
+    // Match against the full lesson vocabulary. The adapted board slice may
+    // legitimately omit a text-only word even though a generated frame still
+    // requires it; frameTiles then promotes that answer into its own tile bank.
+    const vocab = ((lesson && lesson.vocabulary) || [])
+      .filter((v) => v && (typeof v === 'string' ? v : (v.word || v.emoji)));
     const words = vocab
-      .map((v) => String((v && v.word) || '').trim())
+      .map((v) => String(typeof v === 'string' ? v : (v && v.word) || '').trim())
       .filter(Boolean);
     if (!words.length) return null;
     const norm = (s) => String(s).toLowerCase().replace(/_{2,}/g, '____').replace(/\s+/g, ' ').trim();
@@ -5543,22 +6712,42 @@
     return best;
   }
 
-  /** One tile per word, plus extras when the same fill is intended for 2+ blanks. */
+  /**
+   * Required frame answers first, then taught-board distractors. VocabArt may
+   * adapt the pictured New Words slice and remove a text-only answer (for
+   * example "whistle" while a frame still says "blows the ____"). frameTiles
+   * needs no picture bank, so preserve exact intended fills from the full lesson
+   * vocabulary and use the adapted slice only for the remaining choices.
+   */
   function expandFrameTileWords(lesson, words) {
     const base = (words || []).map((w) => String(w || '').trim()).filter(Boolean);
     if (!base.length) return base;
     const frames = boardFrames(lesson);
     const demand = {};
+    const required = [];
     frames.forEach((frame) => {
       const fill = intendedFrameFill(frame, lesson);
       if (!fill) return;
       const key = fill.toLowerCase();
       demand[key] = (demand[key] || 0) + 1;
+      if (!required.some((w) => w.toLowerCase() === key)) required.push(fill);
     });
+    const pool = [
+      ...required,
+      ...base.filter((w) => !required.some((need) => need.toLowerCase() === w.toLowerCase())),
+    ];
+    // Keep the bank no larger than the board vocabulary ceiling unless repeated
+    // answers genuinely require extra physical tiles.
+    const requiredTileCount = required.reduce(
+      (n, w) => n + Math.max(1, demand[w.toLowerCase()] || 1),
+      0
+    );
+    const limit = Math.max(base.length, requiredTileCount);
     const out = [];
-    base.forEach((w) => {
+    pool.forEach((w) => {
+      if (out.length >= limit) return;
       const need = Math.max(1, demand[String(w).toLowerCase()] || 1);
-      for (let i = 0; i < need; i++) out.push(w);
+      for (let i = 0; i < need && out.length < limit; i++) out.push(w);
     });
     return out;
   }
@@ -6151,6 +7340,7 @@
     buildBoardPlan,
     pageTypeForKey,
     speakingCoverRect,
+    speakingFlapRect,
     speakingChunks,
     findHeroProp,
     MAX_STORY_PAGES,
@@ -6178,6 +7368,7 @@
     solidPng,
     slotGhostPng,
     stickyPng,
+    peelFlapPng,
     pickMysteryTarget,
     resolveMysteryHints,
     hintNamesAnswer,

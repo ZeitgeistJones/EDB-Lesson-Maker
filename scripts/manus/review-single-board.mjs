@@ -106,7 +106,10 @@ async function main() {
   );
   fs.mkdirSync(packetDir, { recursive: true });
 
-  const stagedName = `board-${boardType}.jpg`;
+  // The shared packet picker intentionally accepts board-order filenames only.
+  // Keep the single board in that grammar so it cannot be mistaken for an
+  // unrelated image artifact in the packet directory.
+  const stagedName = `page-00-${slug(boardType)}.jpg`;
   const stagedPath = path.join(packetDir, stagedName);
   fs.copyFileSync(boardAbs, stagedPath);
   // Keep a durable compare copy outside the Manus packet naming.

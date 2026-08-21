@@ -43,6 +43,10 @@ function fakeCanvas() {
     closePath() {},
     fill() {},
     stroke() {},
+    save() {},
+    restore() {},
+    translate() {},
+    rotate() {},
     setLineDash() {},
     fillRect() {},
     strokeRect() {},
@@ -125,25 +129,49 @@ function activityFor(input, meta = { level: 'B1', duration: 30 }) {
 
 const cases = [
   {
+    id: 'sceneRepair',
+    payloadKey: 'sceneRepair',
+    payload: {
+      slotLabel: 'Fruit market basket',
+      wrongWord: 'carrot',
+      correctWord: 'apple',
+      distractors: ['banana', 'milk'],
+    },
+    roles: [
+      'sceneRepairStage',
+      'sceneRepairDestination',
+      'sceneRepairWrong',
+      'sceneRepairDockLabel',
+      'sceneRepairPart',
+    ],
+    singleRepair: true,
+  },
+  {
     id: 'capacityPack',
     payloadKey: 'capacityPack',
     payload: {
       mission: 'Pack exactly three useful things for a school trip.',
+      constraint: 'The bus leaves early and you must record one new fact.',
+      containerLabel: 'Trip pack',
+      payoff: 'Ready to report',
       limit: 3,
       options: ['book', 'milk', 'apple', 'banana', 'bus'],
       mustInclude: ['book'],
     },
-    roles: ['capacityMission', 'capacitySlot', 'capacityChoice'],
+    roles: ['capacityMission', 'capacityContainer', 'capacitySlot', 'capacityChoice'],
   },
   {
     id: 'routeMission',
     payloadKey: 'routeMission',
     payload: {
       mission: 'Help Mia reach the bus.',
+      mover: 'Mia',
+      goal: 'Bus',
       steps: ['Check the plan', 'Pack the bag', 'Get on the bus'],
+      landmarks: ['Plan', 'Bag', 'Bus'],
       answerOrder: ['Check the plan', 'Pack the bag', 'Get on the bus'],
     },
-    roles: ['routeMissionBrief', 'routeStep', 'routeTile', 'routeAnswerCover'],
+    roles: ['routeMissionBrief', 'routePath', 'routeStep', 'routeTile', 'routeAnswerCover'],
   },
   {
     id: 'transformationLab',
@@ -163,13 +191,41 @@ const cases = [
     payload: {
       claim: 'The bus is the best way to reach school today.',
       evidence: [
-        { text: 'The road is open.', strength: 2 },
-        { text: 'The bus stops beside the school.', strength: 3 },
-        { text: 'It is raining hard.', strength: 1 },
+        {
+          text: 'The next bus arrives in three minutes.',
+          source: 'Live bus tracker',
+          relation: 'supports',
+          rationale: 'It is current, direct timing evidence.',
+          claimImpact: 'A bus arriving soon makes the bus a practical choice.',
+          strength: 3,
+        },
+        {
+          text: 'The bus stop is beside the school gate.',
+          source: 'School route map',
+          relation: 'supports',
+          rationale: 'It clearly shows the route is convenient.',
+          claimImpact: 'A stop at the gate strengthens the convenience claim.',
+          strength: 2,
+        },
+        {
+          text: 'Roadworks may delay buses by fifteen minutes.',
+          source: 'Traffic alert',
+          relation: 'qualifies',
+          rationale: 'It is an official current alert.',
+          claimImpact: 'A long delay limits the claim that the bus is best today.',
+          strength: 1,
+        },
       ],
-      conclusion: 'The bus is practical because it stops beside the school.',
+      conclusion: 'The bus is probably best, but the roadworks make the decision less certain.',
     },
-    roles: ['evidenceClaim', 'evidenceRankSlot', 'evidenceCard', 'evidenceConclusionCover'],
+    roles: [
+      'evidenceCaseFile',
+      'evidenceClaim',
+      'evidenceReasoningFrame',
+      'evidenceRankSlot',
+      'evidenceCard',
+      'evidenceConclusionCover',
+    ],
   },
 ];
 
@@ -183,21 +239,80 @@ for (const c of cases) {
     assert(roles.has(role), `${c.id} must render ${role}`);
   }
   const choiceRoles = new Set([
+    'sceneRepairPart',
     'capacityChoice',
     'routeTile',
     'transformationChange',
     'evidenceCard',
   ]);
   const choices = page.unlocked.filter((piece) => choiceRoles.has(piece.role));
-  assert(choices.length >= 2, `${c.id} must expose multiple meaningful choices`);
+  if (c.singleRepair) {
+    assert.equal(choices.length, 1, 'sceneRepair must expose exactly one defensible replacement');
+    assert.equal(choices[0].meta && choices[0].meta.word, c.payload.correctWord,
+      'sceneRepair dock must contain only the authored correct replacement');
+    const stage = page.locked.find((piece) => piece.role === 'sceneRepairStage');
+    assert(stage && stage.w >= 1000 && stage.h >= 200,
+      'sceneRepair must render a scene-first stage across the activity bay');
+    assert(page.notes.includes('sceneRepairUniqueFit:1'),
+      'sceneRepair must mark the one-hole/one-fit contract');
+  } else {
+    assert(choices.length >= 2, `${c.id} must expose multiple meaningful choices`);
+  }
   assert(choices.every((piece) => piece.w >= 64 && piece.h >= 64),
     `${c.id} choice pieces must meet the 64px grab floor`);
+  if (c.id === 'routeMission') {
+    const pathPiece = page.locked.find((piece) => piece.role === 'routePath');
+    assert.equal(pathPiece?.meta?.persistent, true,
+      'routeMission must retain a connected route after cards are placed');
+    assert.equal(pathPiece?.meta?.mover, 'Mia',
+      'routeMission must name the mover on the visible route');
+    assert.equal(pathPiece?.meta?.goal, 'Bus',
+      'routeMission must name the destination at FINISH');
+    const checkpoints = page.locked.filter((piece) => piece.role === 'routeStep');
+    assert(checkpoints[0]?.meta?.start, 'routeMission must mark START');
+    assert(checkpoints.at(-1)?.meta?.finish, 'routeMission must mark FINISH');
+    assert(checkpoints.every((piece) => !piece.meta?.landmark),
+      'empty route checkpoints must not leak the ordered landmark answers');
+    assert(checkpoints.every((piece) => piece.meta?.routeSegment),
+      'every route checkpoint must map to a persistent route segment');
+    const completion = page.locked.find((piece) => piece.role === 'routeAnswer');
+    assert.equal(completion?.meta?.completionState, true,
+      'routeMission peek must reveal an explicit completed route state');
+    const routeTiles = page.unlocked.filter((piece) => piece.role === 'routeTile');
+    assert(routeTiles.every((piece) =>
+      piece.kind === 'image' && piece.meta?.visualAnchor && piece.meta?.landmark
+    ), 'routeMission cards must carry concrete visual anchors');
+    assert.equal(
+      Array.from(routeTiles, (piece) => piece.meta.landmark).sort().join('|'),
+      ['Plan', 'Bag', 'Bus'].sort().join('|'),
+      'routeMission must preserve one landmark on each shuffled step card'
+    );
+  }
+  if (c.id === 'evidenceBoard') {
+    const cards = page.unlocked.filter((piece) => piece.role === 'evidenceCard');
+    assert(cards.every((piece) =>
+      piece.meta?.source && piece.meta?.rationale && piece.meta?.claimImpact
+      && ['supports', 'contradicts', 'qualifies', 'alternative'].includes(piece.meta?.relation)
+    ), 'evidenceBoard cards must expose source, relation, source quality, and claim impact');
+    assert(cards.some((piece) => piece.meta?.relation !== 'supports'),
+      'evidenceBoard must include counter-evidence');
+    assert(page.notes.includes('evidenceStrengthsDistinct:true'),
+      'evidenceBoard must mark honest distinct strength ranks');
+    assert(page.notes.includes('evidenceSourcesComplete:true'),
+      'evidenceBoard must mark complete source artifacts');
+    assert(page.notes.includes('evidenceCounterSemantics:true'),
+      'evidenceBoard must mark the strict counter-relation contract');
+  }
 }
 
 const lunchCapacity = lesson('Choose Food for Lunch', 'capacityPack', 'capacityPack', {
   mission: 'Pack two foods for lunch.',
+  constraint: 'Lunch must include one drink.',
+  containerLabel: 'Lunch bag',
+  payoff: 'Ready to eat',
   limit: 2,
   options: ['apple', 'banana', 'carrot', 'milk'],
+  mustInclude: ['milk'],
 });
 assert.equal(
   activityFor(lunchCapacity, { level: 'A1', duration: 30 }).assignment.recipeId,
@@ -207,13 +322,31 @@ assert.equal(
 
 const invalidCapacity = lesson('Invalid capacity', 'capacityPack', 'capacityPack', {
   mission: 'Pack everything.',
+  constraint: 'Take every item.',
+  containerLabel: 'Bag',
+  payoff: 'Ready to go',
   limit: 3,
   options: ['apple', 'banana', 'carrot'],
+  mustInclude: [],
 });
 assert.notEqual(
   activityFor(invalidCapacity).assignment.recipeId,
   'capacityPack',
   'capacityPack must fail closed when options do not exceed the limit'
+);
+
+const hiddenRuleCapacity = lesson('Hidden rule', 'capacityPack', 'capacityPack', {
+  mission: 'Pack two things.',
+  containerLabel: 'Trip bag',
+  payoff: 'Ready to go',
+  limit: 2,
+  options: ['apple', 'book', 'pencil'],
+  mustInclude: ['book'],
+});
+assert.notEqual(
+  activityFor(hiddenRuleCapacity).assignment.recipeId,
+  'capacityPack',
+  'capacityPack must fail closed when its deciding constraint is hidden'
 );
 
 const invalidTransform = lesson('Invalid transform', 'transformationLab', 'transformationLab', {
@@ -238,6 +371,42 @@ assert.notEqual(
   activityFor(invalidEvidence).assignment.recipeId,
   'evidenceBoard',
   'evidenceBoard requires at least three evidence cards'
+);
+
+const vagueCounterEvidence = lesson('Vague counter relation', 'evidenceBoard', 'evidenceBoard', {
+  claim: 'The bus is best.',
+  evidence: [
+    {
+      text: 'The bus arrives soon.',
+      source: 'Tracker',
+      relation: 'supports',
+      rationale: 'It is current.',
+      claimImpact: 'A short wait supports the claim.',
+      strength: 3,
+    },
+    {
+      text: 'The stop is nearby.',
+      source: 'Route map',
+      relation: 'supports',
+      rationale: 'It is official.',
+      claimImpact: 'A nearby stop supports convenience.',
+      strength: 2,
+    },
+    {
+      text: 'It rained earlier.',
+      source: 'Weather note',
+      relation: 'challenges',
+      rationale: 'It is current.',
+      claimImpact: 'This is merely adjacent, not genuine counter-evidence.',
+      strength: 1,
+    },
+  ],
+  conclusion: 'The evidence is mixed.',
+});
+assert.notEqual(
+  activityFor(vagueCounterEvidence).assignment.recipeId,
+  'evidenceBoard',
+  'evidenceBoard must reject the vague challenges label in favor of an explicit logical relation'
 );
 
 const ordinaryKing = JSON.parse(

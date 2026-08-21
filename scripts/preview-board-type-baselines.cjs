@@ -4,6 +4,9 @@
  *   tmp/board-type-baselines/<BOARD_TYPE_ID>.jpg
  *   tmp/board-type-baselines/contact.jpg
  *   tmp/board-type-baselines/report.json
+ *
+ * Focused stress test:
+ *   node scripts/preview-board-type-baselines.cjs --only=capacityPack --variant=camping
  */
 const fs = require('fs');
 const path = require('path');
@@ -13,12 +16,24 @@ const { chromium } = require('playwright');
 const ROOT = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'tmp', 'board-type-baselines');
 
+function arg(name, fallback = '') {
+  const prefix = `--${name}=`;
+  const hit = process.argv.find((value) => value.startsWith(prefix));
+  return hit ? hit.slice(prefix.length) : fallback;
+}
+
 function fixture(name) {
   return JSON.parse(fs.readFileSync(path.join(ROOT, 'scripts', 'fixtures', name), 'utf8'));
 }
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
+}
+
+function cliArg(name, fallback = '') {
+  const prefix = `--${name}=`;
+  const found = process.argv.find((value) => value.startsWith(prefix));
+  return found ? found.slice(prefix.length) : fallback;
 }
 
 function withActivity(input, boardArchetype, payloadKey, payload, title, prompt) {
@@ -70,7 +85,258 @@ const sportsBare = fixture('basketball-bare-lesson.json');
 const snackCoat = fixture('snack-coat-day-lesson.json');
 const twoPets = fixture('two-pets-choice-lesson.json');
 const mysteryApple = fixture('mystery-apple-lesson.json');
+const storyScenes = fixture(arg('story-fixture', 'story-scene-templates-4-lesson.json'));
+const storyPageKey = arg('story-page', 'story0');
+const storyLevel = arg('story-level', 'A1');
+const storyDuration = Number(arg('story-duration', '30')) || 30;
 const base = compactLesson('School Trip Mission', ['book', 'apple', 'banana', 'milk', 'bus', 'pencil']);
+const CAPACITY_VARIANTS = {
+  'school-trip': {
+    title: 'School Trip Mission',
+    vocabulary: ['book', 'apple', 'banana', 'milk', 'bus', 'pencil'],
+    payload: {
+      mission: 'Choose three useful things for the school trip.',
+      constraint: 'The bus leaves early and you must record one new fact.',
+      containerLabel: 'Trip pack',
+      payoff: 'Ready to report a new fact',
+      limit: 3,
+      options: ['book', 'apple', 'banana', 'milk', 'pencil'],
+      mustInclude: ['pencil'],
+    },
+  },
+  camping: {
+    title: 'Rainy Night Camp',
+    vocabulary: ['tent', 'flashlight', 'water', 'map', 'coat', 'ball'],
+    payload: {
+      mission: 'Choose three things for a safe rainy-night camp.',
+      constraint: 'Rain is coming and you will set up after dark.',
+      containerLabel: 'Camp pack',
+      payoff: 'Ready for a safe night',
+      limit: 3,
+      options: ['tent', 'flashlight', 'water', 'map', 'coat', 'ball'],
+      mustInclude: ['tent', 'flashlight'],
+    },
+  },
+  'creator-kit': {
+    title: 'Space Video Creator Kit',
+    vocabulary: ['camera', 'microphone', 'tripod', 'light', 'laptop', 'paintbrush'],
+    payload: {
+      mission: 'Choose four tools to film a space-news video.',
+      constraint: 'The video must have clear pictures and sound.',
+      containerLabel: 'Creator kit',
+      payoff: 'Ready to record',
+      limit: 4,
+      options: ['camera', 'microphone', 'tripod', 'light', 'laptop', 'paintbrush'],
+      mustInclude: ['camera', 'microphone'],
+    },
+  },
+};
+const capacityVariantId = cliArg('variant', 'school-trip');
+const capacityVariant = CAPACITY_VARIANTS[capacityVariantId] || CAPACITY_VARIANTS['school-trip'];
+const capacityLesson = compactLesson(capacityVariant.title, capacityVariant.vocabulary);
+
+const SCENE_REPAIR_VARIANTS = {
+  'fruit-market': {
+    title: 'Fruit Market Repair',
+    level: 'A1',
+    vocabulary: ['apple', 'banana', 'carrot', 'grape', 'basket', 'market'],
+    payload: {
+      slotLabel: 'Fruit market basket',
+      sceneCue: 'fruit market stall',
+      wrongWord: 'carrot',
+      correctWord: 'apple',
+    },
+    activityTitle: 'Fix the fruit stall',
+  },
+  camping: {
+    title: 'Camping Repair',
+    level: 'A1',
+    vocabulary: ['tent', 'campfire', 'wood', 'flashlight', 'ice cream', 'boots'],
+    payload: {
+      slotLabel: 'Campfire',
+      sceneCue: 'night camping forest',
+      wrongWord: 'ice cream',
+      correctWord: 'wood',
+    },
+    activityTitle: 'Fix the campsite',
+  },
+  restaurant: {
+    title: 'Restaurant Repair',
+    level: 'A2',
+    vocabulary: ['table', 'plate', 'fork', 'menu', 'surfboard', 'water'],
+    payload: {
+      slotLabel: 'Restaurant table',
+      sceneCue: 'indoor cafe dinner table',
+      wrongWord: 'surfboard',
+      correctWord: 'fork',
+    },
+    activityTitle: 'Fix the table',
+  },
+  surfing: {
+    title: 'Beach Repair',
+    level: 'A2',
+    vocabulary: ['beach', 'wave', 'surfboard', 'towel', 'fork', 'sun'],
+    payload: {
+      slotLabel: 'Surf beach',
+      sceneCue: 'sunny beach ocean waves',
+      wrongWord: 'fork',
+      correctWord: 'surfboard',
+    },
+    activityTitle: 'Fix the beach',
+  },
+};
+const sceneVariantId = cliArg('variant', 'fruit-market');
+const sceneVariant = SCENE_REPAIR_VARIANTS[sceneVariantId] || SCENE_REPAIR_VARIANTS['fruit-market'];
+const sceneLesson = compactLesson(sceneVariant.title, sceneVariant.vocabulary);
+
+const FRAME_VARIANTS = {
+  'fruit-market': { lesson: fruit, level: 'A1' },
+  'game-day': {
+    level: 'A2',
+    lesson: {
+      ...compactLesson('Game Day Training', ['ball', 'team', 'score', 'court', 'coach', 'whistle']),
+      vocabulary: [
+        { word: 'ball', sentence: 'Before I shoot, I pass the ball to my teammate.' },
+        { word: 'team', sentence: 'Our team works together until the final whistle.' },
+        { word: 'score', sentence: 'After we make a basket, our team adds one point to the score.' },
+        { word: 'court', sentence: 'We move into position on the court.' },
+        { word: 'coach', sentence: 'During practice, the coach helps everyone improve.' },
+        { word: 'whistle', sentence: 'When our team is ready to begin, the coach blows the whistle.' },
+      ],
+      sentenceFrames: [
+        'When our team is ready to begin, the coach blows the ____.',
+        'Before I shoot, I pass the ____ to my teammate.',
+        'After we make a basket, our team adds one point to the ____.',
+        'During practice, the ____ helps everyone improve.',
+      ],
+    },
+  },
+  'city-transport': {
+    level: 'B1',
+    lesson: {
+      ...compactLesson('A Greener Journey Across Town', ['bus', 'bike', 'train', 'map', 'ticket', 'helmet']),
+      vocabulary: [
+        { word: 'bus', sentence: 'When it rains, I take the bus instead of walking.' },
+        { word: 'bike', sentence: 'For a short journey, I usually ride my bike.' },
+        { word: 'train', sentence: 'To avoid the busy roads, our family travels by train.' },
+        { word: 'map', sentence: 'Before leaving home, I check the map for the safest route.' },
+        { word: 'ticket', sentence: 'At the station, I keep my ticket ready for inspection.' },
+        { word: 'helmet', sentence: 'Whenever I cycle across town, I always wear a helmet.' },
+      ],
+      sentenceFrames: [
+        'When it rains, I take the ____ instead of walking.',
+        'For a short journey, I usually ride my ____.',
+        'To avoid the busy roads, our family travels by ____.',
+        'Before leaving home, I check the ____ for the safest route.',
+        'Whenever I cycle across town, I always wear a ____.',
+      ],
+    },
+  },
+  'camping-weather': {
+    level: 'A2',
+    lesson: {
+      ...compactLesson('Camping Weather Challenge', ['coat', 'tent', 'flashlight', 'boots', 'map', 'water', 'backpack']),
+      vocabulary: [
+        { word: 'coat', sentence: 'Before the rain starts, I put the coat inside my backpack.' },
+        { word: 'tent', sentence: 'We sleep safely inside the tent.' },
+        { word: 'flashlight', sentence: 'At the dark campsite, I use the flashlight to see the path.' },
+        { word: 'boots', sentence: 'If my feet get wet, I change into dry boots.' },
+        { word: 'map', sentence: 'To find our camping place safely, I check the map.' },
+        { word: 'water', sentence: 'I carry water on the hike.' },
+        { word: 'backpack', sentence: 'My backpack keeps our things dry.' },
+      ],
+      sentenceFrames: [
+        'Before the rain starts, I put the ____ inside my backpack.',
+        'At the dark campsite, I use the ____ to see the path.',
+        'If my feet get wet, I change into dry ____.',
+        'To find our camping place safely, I check the ____.',
+      ],
+    },
+  },
+  'eco-school': {
+    level: 'B1',
+    lesson: {
+      ...compactLesson('Our Greener School Plan', ['reuse', 'bottle', 'compost', 'paper', 'electricity', 'garden', 'plastic', 'teamwork']),
+      vocabulary: [
+        { word: 'reuse', sentence: 'Instead of throwing useful materials away, we reuse them.' },
+        { word: 'bottle', sentence: 'At lunch, I refill my bottle instead of buying another drink.' },
+        { word: 'compost', sentence: 'After lunch, we put fruit scraps into the compost.' },
+        { word: 'paper', sentence: 'When only one side is used, we save the paper for drawing.' },
+        { word: 'electricity', sentence: 'Before leaving the classroom, we save electricity.' },
+        { word: 'garden', sentence: 'To make the playground greener, our class plants a garden.' },
+        { word: 'plastic', sentence: 'Our class tries to use less plastic each week.' },
+        { word: 'teamwork', sentence: 'A greener school depends on teamwork.' },
+      ],
+      sentenceFrames: [
+        'Instead of throwing useful materials away, we ____ them.',
+        'At lunch, I refill my ____ instead of buying another drink.',
+        'After lunch, we put fruit scraps into the ____.',
+        'Before leaving the classroom, we save ____.',
+        'A greener school depends on ____.',
+      ],
+    },
+  },
+};
+const frameVariantId = cliArg('variant', 'fruit-market');
+const frameVariant = FRAME_VARIANTS[frameVariantId] || FRAME_VARIANTS['fruit-market'];
+
+const ROUTE_MISSION_VARIANTS = {
+  'school-trip': {
+    title: 'School Trip Mission',
+    level: 'A2',
+    vocabulary: ['book', 'bag', 'bus', 'pencil'],
+    payload: {
+      mission: 'Help Mia reach the bus on time.',
+      mover: 'Mia',
+      goal: 'Bus',
+      steps: ['Check the plan', 'Pack the bag', 'Walk to the stop', 'Get on the bus'],
+      landmarks: ['Plan', 'Bag', 'Bus stop', 'Bus'],
+      answerOrder: ['Check the plan', 'Pack the bag', 'Walk to the stop', 'Get on the bus'],
+    },
+  },
+  beach: {
+    title: 'Beach Rescue Route',
+    level: 'A2',
+    vocabulary: ['radio', 'flag', 'bridge', 'boat'],
+    payload: {
+      mission: 'Guide Kai from the beach hut to the rescue boat.',
+      mover: 'Kai',
+      goal: 'Rescue boat',
+      steps: ['Take the radio', 'Follow the flags', 'Cross the footbridge', 'Reach the rescue boat'],
+      landmarks: ['Radio', 'Flag trail', 'Footbridge', 'Rescue boat'],
+      answerOrder: ['Take the radio', 'Follow the flags', 'Cross the footbridge', 'Reach the rescue boat'],
+    },
+  },
+  'amusement-park': {
+    title: 'Roller-Coaster Route',
+    level: 'A2',
+    vocabulary: ['map', 'ticket', 'gate', 'roller coaster'],
+    payload: {
+      mission: 'Help Zoe reach the roller coaster before the ride starts.',
+      mover: 'Zoe',
+      goal: 'Roller coaster',
+      steps: ['Check the park map', 'Buy a ride ticket', 'Enter the blue gate', 'Join the coaster line'],
+      landmarks: ['Park map', 'Ride ticket', 'Blue gate', 'Coaster line'],
+      answerOrder: ['Check the park map', 'Buy a ride ticket', 'Enter the blue gate', 'Join the coaster line'],
+    },
+  },
+  camping: {
+    title: 'Campfire Safety Route',
+    level: 'B1',
+    vocabulary: ['bucket', 'water', 'fire', 'tent'],
+    payload: {
+      mission: 'Lead Team Pine from a cold campsite to a safe campfire.',
+      mover: 'Team Pine',
+      goal: 'Safe campfire',
+      steps: ['Choose a clear fire ring', 'Fill the safety bucket', 'Build a small wood stack', 'Light it with an adult', 'Put out every ember'],
+      landmarks: ['Fire ring', 'Safety bucket', 'Wood stack', 'Campfire', 'Cold embers'],
+      answerOrder: ['Choose a clear fire ring', 'Fill the safety bucket', 'Build a small wood stack', 'Light it with an adult', 'Put out every ember'],
+    },
+  },
+};
+const routeVariantId = cliArg('variant', 'school-trip');
+const routeVariant = ROUTE_MISSION_VARIANTS[routeVariantId] || ROUTE_MISSION_VARIANTS['school-trip'];
+const routeLesson = compactLesson(routeVariant.title, routeVariant.vocabulary);
 
 const fixLesson = compactLesson('Daily Routine Grammar', ['school', 'book', 'pencil', 'bus']);
 fixLesson.activity = {
@@ -88,12 +354,20 @@ fixLesson.activity = {
 const preA1 = compactLesson('Action Time', ['jump', 'sit', 'wave', 'point']);
 preA1.activity = { title: 'Listen, Point, Do', prompt: 'Listen and do the action.', templates: [] };
 
-const CASES = [
+const ALL_CASES = [
   // Existing lesson chrome (not activity recipes) — first/last impression for Manus.
   { id: 'title', pageKey: 'title', expected: 'title', pageFormat: true, lesson: fruit, meta: { level: 'A1', duration: 30 } },
+  {
+    id: 'story',
+    pageKey: storyPageKey,
+    expected: 'story',
+    pageFormat: true,
+    lesson: storyScenes,
+    meta: { level: storyLevel, duration: storyDuration },
+  },
   { id: 'wrap', pageKey: 'wrap', expected: 'wrap', pageFormat: true, lesson: fruit, meta: { level: 'A1', duration: 30 } },
   { id: 'matchDock', pageKey: 'newWords', expected: 'matchDock', lesson: fruit, meta: { level: 'A1', duration: 30 } },
-  { id: 'frameTiles', pageKey: 'frames', expected: 'frameTiles', lesson: fruit, meta: { level: 'A1', duration: 30 } },
+  { id: 'frameTiles', pageKey: 'frames', expected: 'frameTiles', lesson: frameVariant.lesson, meta: { level: frameVariant.level, duration: 30 } },
   { id: 'phonicsSoundBoxes', pageKey: 'phonics', expected: 'phonicsSoundBoxes', lesson: zooPhonics, meta: { level: 'A1', duration: 30, phonics: 'on' }, force: true },
   { id: 'coverAnswer', pageKey: 'speaking:0', expected: 'coverAnswer', lesson: fruit, meta: { level: 'A1', duration: 30 } },
   { id: 'preA1TprChoice', pageKey: 'activity', expected: 'preA1TprChoice', lesson: preA1, meta: { level: 'Pre-A1', duration: 30, phonics: 'off' } },
@@ -125,13 +399,14 @@ const CASES = [
     id: 'sceneRepair',
     pageKey: 'activity',
     expected: 'sceneRepair',
-    lesson: withActivity(fruit, 'sceneRepair', 'sceneRepair', {
-      slotLabel: 'Fruit basket',
-      wrongWord: 'carrot',
-      correctWord: 'apple',
-      distractors: ['banana', 'grape'],
-    }, 'Find the mistake'),
-    meta: { level: 'A1', duration: 30 },
+    lesson: withActivity(
+      sceneLesson,
+      'sceneRepair',
+      'sceneRepair',
+      sceneVariant.payload,
+      sceneVariant.activityTitle
+    ),
+    meta: { level: sceneVariant.level, duration: 30 },
   },
   { id: 'oddOneOut', pageKey: 'activity', expected: 'oddOneOut', lesson: sportsBare, meta: { level: 'A2', duration: 30 }, force: true },
   { id: 'yesNoSort', pageKey: 'activity', expected: 'yesNoSort', lesson: snackCoat, meta: { level: 'A2', duration: 30 }, force: true },
@@ -150,24 +425,27 @@ const CASES = [
     id: 'capacityPack',
     pageKey: 'activity',
     expected: 'capacityPack',
-    lesson: withActivity(base, 'capacityPack', 'capacityPack', {
-      mission: 'Pack exactly three useful things for the school trip.',
-      limit: 3,
-      options: ['book', 'apple', 'banana', 'milk', 'pencil'],
-      mustInclude: ['book'],
-    }, 'Pack the mission'),
+    lesson: withActivity(
+      capacityLesson,
+      'capacityPack',
+      'capacityPack',
+      capacityVariant.payload,
+      capacityVariant.title
+    ),
     meta: { level: 'A2', duration: 30 },
   },
   {
     id: 'routeMission',
     pageKey: 'activity',
     expected: 'routeMission',
-    lesson: withActivity(base, 'routeMission', 'routeMission', {
-      mission: 'Help Mia reach the bus on time.',
-      steps: ['Check the plan', 'Pack the bag', 'Walk to the stop', 'Get on the bus'],
-      answerOrder: ['Check the plan', 'Pack the bag', 'Walk to the stop', 'Get on the bus'],
-    }, 'Route mission'),
-    meta: { level: 'A2', duration: 30 },
+    lesson: withActivity(
+      routeLesson,
+      'routeMission',
+      'routeMission',
+      routeVariant.payload,
+      'Route mission'
+    ),
+    meta: { level: routeVariant.level, duration: 30 },
   },
   {
     id: 'transformationLab',
@@ -186,18 +464,55 @@ const CASES = [
     id: 'evidenceBoard',
     pageKey: 'activity',
     expected: 'evidenceBoard',
-    lesson: withActivity(base, 'evidenceBoard', 'evidenceBoard', {
-      claim: 'The bus is the best way to reach school today.',
+    lesson: withActivity(
+      compactLesson('Festival Sound Mystery', ['festival', 'stage', 'rain', 'camera', 'power', 'speaker']),
+      'evidenceBoard',
+      'evidenceBoard',
+      {
+      claim: 'Rain caused the main-stage sound failure.',
       evidence: [
-        { text: 'The bus stops beside the school.', strength: 3 },
-        { text: 'It is raining hard.', strength: 2 },
-        { text: 'The road is open.', strength: 1 },
+        {
+          text: 'Water was found in the tripped power box.',
+          source: 'Electrician report',
+          relation: 'supports',
+          rationale: 'Direct expert inspection.',
+          claimImpact: 'Water in the failed circuit supports rain.',
+          strength: 4,
+        },
+        {
+          text: 'Heavy rain began 10 minutes before failure.',
+          source: 'Weather station',
+          relation: 'supports',
+          rationale: 'Automatic timing.',
+          claimImpact: 'Rain timing supports, but cannot prove cause.',
+          strength: 3,
+        },
+        {
+          text: 'A heat alarm appeared before the rain began.',
+          source: 'Sound-desk log',
+          relation: 'alternative',
+          rationale: 'Automatic timestamp.',
+          claimImpact: 'Another plausible cause is overheating.',
+          strength: 2,
+        },
+        {
+          text: 'A witness remembers the power-box cover closed.',
+          source: 'Witness interview',
+          relation: 'qualifies',
+          rationale: 'Memory may be wrong.',
+          claimImpact: 'Closed cover makes rain less likely.',
+          strength: 1,
+        },
       ],
-      conclusion: 'The bus is practical because it stops beside the school.',
-    }, 'Evidence board'),
+      conclusion: 'Rain is the leading cause, but the heat alarm means overheating remains plausible.',
+      reasoningFrame: 'I rank ___ above ___ because its source is more direct, reliable, and relevant.',
+      teacherCheck: 'Ask which clue proves cause most directly and which offers a real alternative.',
+    }, 'Festival case file'),
     meta: { level: 'B2', duration: 30 },
   },
 ];
+const onlyId = cliArg('only', '');
+const CASES = onlyId ? ALL_CASES.filter((item) => item.id === onlyId) : ALL_CASES;
 
 function servePublic() {
   return new Promise((resolve) => {
@@ -230,6 +545,11 @@ function servePublic() {
 
 async function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
+  const only = arg('only', '').trim();
+  const artifactTag = arg('tag', '').trim().replace(/[^a-z0-9-]+/gi, '-').replace(/^-|-$/g, '');
+  const artifactSuffix = artifactTag ? `-${artifactTag}` : '';
+  const selectedCases = only ? CASES.filter((c) => c.id === only) : CASES;
+  if (!selectedCases.length) throw new Error(`Unknown board baseline id: ${only}`);
   const server = await servePublic();
   const port = server.address().port;
   const browser = await chromium.launch();
@@ -242,7 +562,7 @@ async function main() {
 
   const results = [];
   const contactRows = [];
-  for (const c of CASES) {
+  for (const c of selectedCases) {
     const row = await page.evaluate(async ({ lesson, meta, pageKey, expected, force, id, pageFormat }) => {
       await window.PropBank.ready();
       await window.VocabIcons.ready();
@@ -356,7 +676,9 @@ async function main() {
         dataUrl: canvases[idx].toDataURL('image/jpeg', 0.9),
         locked: (layoutPage.locked || []).length,
         unlocked: (layoutPage.unlocked || []).length,
-        notes: (layoutPage.notes || []).filter((n) => /recipe:|Limit:|Steps:|Count:|Target:/i.test(String(n))),
+        notes: (layoutPage.notes || []).filter((n) => /recipe:|Limit:|Steps:|Count:|Target:|Correct:|Wrong|authoredWrongness/i.test(String(n))),
+        pieces: [...(layoutPage.locked || []), ...(layoutPage.unlocked || [])]
+          .map((p) => ({ role: p.role, word: p.meta && p.meta.word, kind: p.kind })),
       };
     }, Object.assign({}, c, { pageFormat: !!c.pageFormat }));
 
@@ -365,7 +687,7 @@ async function main() {
       console.error('FAIL', c.id, row.actual, row.error);
       continue;
     }
-    const outPath = path.join(OUT_DIR, `${c.id}.jpg`);
+    const outPath = path.join(OUT_DIR, `${c.id}${artifactSuffix}.jpg`);
     fs.writeFileSync(outPath, Buffer.from(row.dataUrl.split(',')[1], 'base64'));
     const result = {
       id: c.id,
@@ -376,6 +698,7 @@ async function main() {
       locked: row.locked,
       unlocked: row.unlocked,
       notes: row.notes,
+      pieces: row.pieces,
       path: path.relative(ROOT, outPath).replace(/\\/g, '/'),
     };
     results.push(result);
@@ -383,11 +706,14 @@ async function main() {
     console.log('OK', c.id, result.path, row.forced ? '(forced fallback baseline)' : '');
   }
 
-  const reportPath = path.join(OUT_DIR, 'report.json');
+  const reportPath = path.join(
+    OUT_DIR,
+    only ? `report-${only}${artifactSuffix}.json` : `report${artifactSuffix}.json`
+  );
   fs.writeFileSync(reportPath, JSON.stringify({
     generatedAt: new Date().toISOString(),
     count: results.filter((r) => r.ok).length,
-    expectedCount: CASES.length,
+    expectedCount: selectedCases.length,
     results,
   }, null, 2));
 
@@ -398,19 +724,23 @@ async function main() {
     .card{background:#fff;padding:10px;border-radius:12px;box-shadow:0 2px 8px #64748b44}
     .label{font-size:20px;font-weight:800;color:#1e293b;margin:0 0 8px}
     img{display:block;width:620px;height:auto;border:1px solid #cbd5e1}
-  </style></head><body><h1>Board Type Baselines — ${contactRows.length}/${CASES.length}</h1>
+  </style></head><body><h1>Board Type Baselines — ${contactRows.length}/${selectedCases.length}</h1>
   <div class="grid">${contactRows.map((row) =>
     `<div class="card"><div class="label">${row.id}${row.forced ? ' · fallback' : ''}</div><img src="${row.dataUrl}"></div>`
   ).join('')}</div></body></html>`;
   await page.setViewportSize({ width: 1330, height: 900 });
   await page.setContent(contactHtml, { waitUntil: 'load' });
-  await page.screenshot({ path: path.join(OUT_DIR, 'contact.jpg'), fullPage: true, type: 'jpeg', quality: 88 });
+  const contactPath = path.join(
+    OUT_DIR,
+    only ? `contact-${only}${artifactSuffix}.jpg` : `contact${artifactSuffix}.jpg`
+  );
+  await page.screenshot({ path: contactPath, fullPage: true, type: 'jpeg', quality: 88 });
 
   await browser.close();
   server.close();
   const failed = results.filter((r) => !r.ok);
   console.log('Wrote', path.relative(ROOT, reportPath), `(${results.length - failed.length}/${CASES.length})`);
-  console.log('Wrote', path.relative(ROOT, path.join(OUT_DIR, 'contact.jpg')));
+  console.log('Wrote', path.relative(ROOT, contactPath));
   if (failed.length) process.exit(1);
 }
 

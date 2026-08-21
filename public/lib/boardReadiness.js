@@ -186,6 +186,92 @@
   }
 
   /**
+   * heroProp semantic contract: the rendered king, planned king, topic resolver,
+   * dock family, and learner sentence frame must all tell the same story.
+   * Returns null for pre-render plan() calls; buildBoardPlan() reruns readiness
+   * after pages exist, so Download approval always receives the strict result.
+   */
+  function heroStageContract(lesson, boardPlan, act) {
+    if (!act || act.recipeId !== 'heroProp' || !boardPlan || !Array.isArray(boardPlan.pages)) {
+      return null;
+    }
+    const page = boardPlan.pages.find((p) => p && p.pageKey === 'activity');
+    if (!page) return null;
+    const pieces = [...(page.locked || []), ...(page.unlocked || [])];
+    const stage = pieces.find((p) => p && (p.role === 'stageHero' || (p.meta && p.meta.stageKing)));
+    const dock = pieces.filter((p) => p && p.role === 'dockPiece');
+    const heroKey = String((stage && stage.meta && stage.meta.propKey) || '');
+    const plannedKey = String((act.ctx && act.ctx.hero && act.ctx.hero.key) || '');
+    const resolved = window.EdbActivities && typeof window.EdbActivities.findHeroProp === 'function'
+      ? window.EdbActivities.findHeroProp(lesson)
+      : null;
+    const canonicalKey = String((resolved && resolved.key) || '');
+    const dockKeys = dock.map((p) => String((p.meta && p.meta.propKey) || '')).filter(Boolean);
+    const isTarget = /^hero-/.test(heroKey);
+    const minDock = isTarget ? 3 : 6;
+    const cue = [
+      lesson && lesson.title,
+      lesson && lesson.activity && lesson.activity.title,
+      lesson && lesson.activity && lesson.activity.prompt,
+      ...((lesson && lesson.vocabulary) || []).map((v) => (typeof v === 'string' ? v : v && v.word)),
+    ].filter(Boolean).join(' ');
+    const LT = window.LessonTraits;
+    const hint = LT && typeof LT.kingHintFor === 'function'
+      ? LT.kingHintFor(cue.toLowerCase(), { heroKey })
+      : '';
+    const languageScaffold = !LT || (/_{3,}/.test(hint) && /\bthen\b/i.test(hint));
+
+    let family = null;
+    if (heroKey === 'dental-kid-open-mouth') {
+      family = /^(toothbrush-prop|toothpaste-tube|floss-pick|dental-|cavity-tooth|healthy-tooth|food-(?:lollipop|cookie|wrapped-candy-pink)|apple|plastic-cup|milk-carton|reward-star-dental|dentist-character)$/;
+    } else if (heroKey === 'face-blank') {
+      family = /^(face-|hair-|feeling-)/;
+    } else if (heroKey === 'trampoline') {
+      family = /^(gym-mat|sports-cone|water-bottle|whistle|stopwatch|jump-rope)$/;
+    } else if (heroKey === 'fire-truck') {
+      family = /^fire-/;
+    } else if (heroKey === 'tent') {
+      family = /^camp-/;
+    } else if (/^bath-(?:bathtub|sink)$/.test(heroKey)) {
+      family = /^bath-/;
+    } else if (heroKey === 'hospital-bed') {
+      family = /^(hospital-|aid-)/;
+    } else if (heroKey === 'playground-slide') {
+      family = /^(park-|playground-)/;
+    } else if (heroKey === 'cafe-counter-stage') {
+      family = /^cafe-/;
+    } else if (heroKey === 'farm-barn') {
+      family = /^farm-/;
+    } else if (heroKey === 'aquarium-tank') {
+      family = /^(aquarium-|aq-)/;
+    } else if (heroKey === 'construction-tower-crane') {
+      family = /^construction-/;
+    } else if (heroKey === 'dollhouse-cutaway') {
+      family = /^dh-/;
+    } else if (heroKey === 'castle-wall-gate') {
+      family = /^castle-/;
+    }
+    const offFamily = family ? dockKeys.filter((key) => !family.test(key)) : [];
+    const reasons = [];
+    if (!heroKey) reasons.push('no rendered stage hero');
+    if (!plannedKey || plannedKey !== heroKey) reasons.push('planned hero does not match rendered stage');
+    if (canonicalKey && canonicalKey !== heroKey) reasons.push('lesson topic resolves to a different hero');
+    if (dockKeys.length < minDock) reasons.push(`only ${dockKeys.length}/${minDock} visible roleplay tools`);
+    if (offFamily.length) reasons.push(`off-topic dock tools: ${offFamily.slice(0, 3).join(', ')}`);
+    if (!languageScaffold) reasons.push('missing action-to-language sentence frame');
+    return {
+      ok: reasons.length === 0,
+      heroKey,
+      plannedKey,
+      canonicalKey,
+      dockKeys,
+      minDock,
+      languageScaffold,
+      reasons,
+    };
+  }
+
+  /**
    * @param {object} lesson
    * @param {object} [boardPlan] from EdbActivities.buildBoardPlan / plan
    * @param {object} [opts]
@@ -206,6 +292,10 @@
     const activityRecipe = act ? act.recipeId : null;
     const hasVocab = vocabArt.total > 0;
     const matchAssign = assignments.find((a) => a.pageKey === 'newWords' && a.recipeId === 'matchDock');
+    const heroContract = heroStageContract(lesson, boardPlan, act);
+    if (heroContract && !heroContract.ok) {
+      reasons.push(`heroProp semantic contract failed — ${heroContract.reasons.join('; ')}.`);
+    }
 
     // Generate may return 7 (30min) / 12 (60min); board + PDF teach the adapted
     // slice (4–6 words — see the boardCount policy in vocabArt.js).
@@ -486,6 +576,7 @@
           }
         : { adapted: false, boardCount: ceil, generated: fullWords.length, shortened: false },
       activityRecipe,
+      heroContract,
       bg,
       topicBrief: topicBrief
         ? {
@@ -533,6 +624,7 @@
     assess,
     vocabArtHits,
     summaryLine,
+    heroStageContract,
     VOCAB_ART_FLOOR,
     KIT_REASON_RE,
     maxBoardVocab,

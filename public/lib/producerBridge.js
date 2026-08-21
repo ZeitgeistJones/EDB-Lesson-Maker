@@ -117,6 +117,15 @@
     if (/\b(badminton|racket|shuttlecock|shuttle|court)\b/i.test(text)) return null;
     if (hasAny(text, ZOO_WORDS) && !/\bfeed(?:ing)?\s+(?:the\s+)?(hippo|monster|bird)\b/i.test(text)) return null;
 
+    // Narrow convenience intents must never outrank a resolved topic king.
+    // "smile" in a dentist lesson used to pin face-blank before findHeroProp
+    // could select the open-mouth patient. The topic resolver owns that choice.
+    const LT = window.LessonTraits;
+    const theme = LT && typeof LT.resolveTheme === 'function'
+      ? LT.resolveTheme(lesson)
+      : null;
+    if (theme && theme.heroKey && theme.heroKey !== 'face-blank') return null;
+
     if (hasAny(text, FACE_WORDS)) {
       return { key: 'face-blank', mechanic: 'customize', reason: 'face-feature practice' };
     }
@@ -129,7 +138,11 @@
   function activateHeroIntent(lesson) {
     if (!lesson || typeof lesson !== 'object') return;
     const intent = semanticHeroIntent(lesson);
-    if (!intent || !propGet(intent.key)) return;
+    if (!intent || !propGet(intent.key)) {
+      delete lesson._heroPropIntent;
+      if (lesson.activity && lesson.activity.heroProp) delete lesson.activity.heroProp;
+      return;
+    }
     lesson._heroPropIntent = intent;
     if (!lesson.activity || typeof lesson.activity !== 'object') lesson.activity = {};
     lesson.activity.heroProp = { key: intent.key, mechanic: intent.mechanic };

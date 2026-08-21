@@ -51,6 +51,49 @@ if (!kit || kit.pack !== 'castle' || !kit.hero || kit.hero.key !== 'castle-wall-
   process.exit(1);
 }
 
+// heroProp approval must verify the rendered hero, dock family, and language frame.
+sandbox.window.EdbActivities = {
+  findHeroProp: () => kit.hero,
+};
+sandbox.window.LessonTraits = {
+  kingHintFor: () => 'Build the castle. Then say: I put the ___ on the castle.',
+};
+const castleDock = [
+  'castle-flag-red',
+  'castle-crown',
+  'castle-shield',
+  'castle-sword',
+  'castle-key',
+  'castle-door-wood',
+].map((propKey) => ({ role: 'dockPiece', meta: { propKey } }));
+const contractPlan = {
+  pages: [{
+    pageKey: 'activity',
+    locked: [],
+    unlocked: [
+      { role: 'stageHero', meta: { propKey: 'castle-wall-gate', stageKing: true } },
+      ...castleDock,
+    ],
+  }],
+};
+const contractAct = {
+  pageKey: 'activity',
+  recipeId: 'heroProp',
+  ctx: { hero: kit.hero },
+};
+const contract = sandbox.window.BoardReadiness.heroStageContract(lesson, contractPlan, contractAct);
+if (!contract || !contract.ok) {
+  console.error('FAIL aligned heroProp contract', contract);
+  process.exit(1);
+}
+const driftPlan = JSON.parse(JSON.stringify(contractPlan));
+driftPlan.pages[0].unlocked[1].meta.propKey = 'camp-flashlight';
+const drift = sandbox.window.BoardReadiness.heroStageContract(lesson, driftPlan, contractAct);
+if (!drift || drift.ok || !drift.reasons.some((r) => /off-topic dock/i.test(r))) {
+  console.error('FAIL heroProp contract must reject semantic drift', drift);
+  process.exit(1);
+}
+
 if (kit.ready) {
   // Sharp docks restored — full ready path.
   if (kit.dockCount < 6) {

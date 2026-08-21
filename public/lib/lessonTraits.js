@@ -64,29 +64,82 @@
   // King-stage instruction copy, keyed by resolved king type. `default` is the
   // sane fallback (unknown lessons read exactly as before).
   const KING_HINTS = {
-    default: 'Drag the pieces onto the stage. Then say or write one sentence about your idea.',
+    default: 'Build the world with the pieces. Then point and say: I put the ___ ___.',
     feelings: '<b>Round 1:</b> drag a feeling face onto the blank face; write or say how it feels.<br><b>Round 2:</b> your partner reads the face, names the feeling, then answers with If I felt ____, I would ____.',
     face: 'Drag eyes, nose, mouth, and hair onto the face. Then say: My friend has ___',
-    dental: 'Drag tools onto the patient. Then say what you used and why.',
-    hospital: 'Drag tools onto the patient. Then say what you used and why.',
-    castle: 'Drag pieces onto the castle. Then say what you built.',
-    trampoline: 'Drag pieces onto the trampoline. Then say your bounce plan.',
-    music: 'Drag musicians onto the stage. Then write or say your symphony idea in 1–2 sentences.',
-    beach: 'Drag beach things onto the sandcastle. Then say what you find or bring.',
-    chest: 'Drag treasure into the chest. Then say what you found.',
-    backpack: 'Drag things into the backpack. Then say what you packed.',
-    pizza: 'Drag toppings onto the pizza. Then say what you made.',
-    mouth: 'Drag food into the mouth. Then say what it ate.',
-    fridge: 'Drag food into the fridge. Then say what you put away.',
-    putIn: 'Drag things inside. Then say what you put in.',
-    oven: 'Drag food into the oven. Then say what you baked.',
-    laundry: 'Drag clothes into the basket. Then say what you washed.',
-    fort: 'Drag things into the fort. Then say what you brought.',
+    dental: 'Help the patient. Drag a tool to the mouth. Then say: I use the ___ to ___.',
+    hospital: 'Help the patient. Drag a tool to the bed. Then say: I use the ___ to ___.',
+    castle: 'Build the castle with the pieces. Then say: I put the ___ on the castle.',
+    trampoline: 'Make a safe bounce scene. Then say: I use the ___ to ___.',
+    music: 'Build the concert on the stage. Then say: The ___ plays ___.',
+    beach: 'Build the beach world. Then say: I put the ___ by the sandcastle.',
+    fire: 'Build the fire-rescue scene. Then say: I use the ___ to ___.',
+    camp: 'Build the campsite around the tent. Then say: I put the ___ by the tent.',
+    bathroom: 'Build the wash-up scene. Then say: I use the ___ to ___.',
+    playground: 'Build the playground. Then say: I put the ___ by the slide.',
+    cafe: 'Build the cafe counter. Then say: I put the ___ on the counter.',
+    farm: 'Build the farmyard. Then say: I put the ___ by the barn.',
+    aquarium: 'Build the aquarium. Then say: I put the ___ in the tank.',
+    construction: 'Build the construction site. Then say: I use the ___ to ___.',
+    dollhouse: 'Build the rooms. Then say: I put the ___ in the ___ room.',
+    chest: 'Drag treasure into the chest. Then say: I found a ___.',
+    backpack: 'Drag things into the backpack. Then say: I packed the ___.',
+    pizza: 'Drag toppings onto the pizza. Then say: I made a ___ pizza.',
+    mouth: 'Drag food into the mouth. Then say: It ate the ___.',
+    fridge: 'Drag food into the fridge. Then say: I put away the ___.',
+    putIn: 'Drag things inside. Then say: I put the ___ inside.',
+    oven: 'Drag food into the oven. Then say: I baked the ___.',
+    laundry: 'Drag clothes into the basket. Then say: I washed the ___.',
+    fort: 'Drag things into the fort. Then say: I brought the ___.',
+  };
+
+  const KING_MISSIONS = {
+    default: 'Build the World!',
+    feelings: 'Show a Feeling!',
+    face: 'Make a Face!',
+    dental: 'Help the Dentist!',
+    hospital: 'Help the Patient!',
+    castle: 'Build the Castle!',
+    trampoline: 'Plan a Safe Bounce!',
+    music: 'Build the Concert!',
+    beach: 'Build the Beach World!',
+    fire: 'Build the Rescue Scene!',
+    camp: 'Build the Campsite!',
+    bathroom: 'Build the Wash-Up Scene!',
+    playground: 'Build the Playground!',
+    cafe: 'Build the Cafe!',
+    farm: 'Build the Farmyard!',
+    aquarium: 'Build the Aquarium!',
+    construction: 'Build the Work Site!',
+    dollhouse: 'Build the Rooms!',
+    chest: 'Fill the Treasure Chest!',
+    backpack: 'Pack the Backpack!',
+    pizza: 'Make the Food!',
+    mouth: 'Feed the Character!',
+    fridge: 'Stock the Fridge!',
+    putIn: 'Fill the Scene!',
+    oven: 'Bake the Food!',
+    laundry: 'Pack the Laundry!',
+    fort: 'Build the Fort!',
   };
 
   // Play-surface kings: hint from the actual hero key so "backpack" vocab on a
   // camping tent lesson cannot steal the chest/backpack copy.
   const HERO_KEY_HINTS = {
+    'dental-kid-open-mouth': 'dental',
+    'hospital-bed': 'hospital',
+    'castle-wall-gate': 'castle',
+    'trampoline': 'trampoline',
+    'fire-truck': 'fire',
+    'tent': 'camp',
+    'bath-bathtub': 'bathroom',
+    'bath-sink': 'bathroom',
+    'playground-slide': 'playground',
+    'cafe-counter-stage': 'cafe',
+    'farm-barn': 'farm',
+    'aquarium-tank': 'aquarium',
+    'construction-tower-crane': 'construction',
+    'dollhouse-cutaway': 'dollhouse',
     'hero-chest-open': 'chest',
     'hero-backpack-open': 'backpack',
     'hero-pizza-base': 'pizza',
@@ -554,6 +607,21 @@
     return KING_HINTS[kingTypeFor(cue, opts)];
   }
 
+  function kingMissionFor(cue, opts) {
+    const heroKey = opts && opts.heroKey;
+    const feelingsKing = opts && opts.feelingsKing != null
+      ? !!opts.feelingsKing
+      : isFeelingsCue(cue);
+    const faceKing = opts && opts.faceKing != null
+      ? !!opts.faceKing
+      : (!feelingsKing && isFaceCue(cue));
+    const cueType = kingTypeFor(cue, { feelingsKing, faceKing });
+    const heroType = heroKey && HERO_KEY_HINTS[heroKey];
+    // face-blank serves two jobs; the lesson cue decides feelings vs make-a-face.
+    const type = heroKey === 'face-blank' ? cueType : (heroType || cueType);
+    return KING_MISSIONS[type] || KING_MISSIONS.default;
+  }
+
   // Lesson-level resolver. Returns the trait bundle the render spine reads, with
   // a sane default (musicTitle:false) so unknown lessons behave as the fallback.
   function traitsFor(lesson) {
@@ -568,6 +636,7 @@
   window.LessonTraits = {
     RE,
     KING_HINTS,
+    KING_MISSIONS,
     KING_TYPE_RULES,
     THEME_NONE,
     CHARM_BAN_SPORTS,
@@ -580,5 +649,6 @@
     isFaceCue,
     kingTypeFor,
     kingHintFor,
+    kingMissionFor,
   };
 })();
