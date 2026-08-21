@@ -15,6 +15,7 @@
  *   LESSON_FACTORY_AGENT_PROFILE (default manus-1.6)
  */
 import fs from 'fs';
+import { execSync } from 'child_process';
 import path from 'path';
 import {
   ROOT,
@@ -131,8 +132,29 @@ function saveStatus(status) {
     total_pages_complete: pages,
   };
   fs.mkdirSync(path.dirname(STATUS_JSON), { recursive: true });
-  fs.writeFileSync(STATUS_JSON, JSON.stringify(status, null, 2));
-  writeStatusMd(status);
+  const payload = JSON.stringify(status, null, 2);
+  const tmpPath = `${STATUS_JSON}.${process.pid}.tmp`;
+  let lastErr = null;
+  for (let attempt = 0; attempt < 8; attempt += 1) {
+    try {
+      fs.writeFileSync(tmpPath, payload);
+      try {
+        fs.renameSync(tmpPath, STATUS_JSON);
+      } catch {
+        fs.copyFileSync(tmpPath, STATUS_JSON);
+        fs.unlinkSync(tmpPath);
+      }
+      writeStatusMd(status);
+      return;
+    } catch (err) {
+      lastErr = err;
+      try {
+        if (fs.existsSync(tmpPath)) fs.unlinkSync(tmpPath);
+      } catch {}
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 150 * (attempt + 1));
+    }
+  }
+  throw lastErr || new Error(`Failed to write ${STATUS_JSON}`);
 }
 
 function writeStatusMd(status) {
