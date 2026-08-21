@@ -54,6 +54,93 @@ const POLL_MS = 20_000;
 const UNIT_TIMEOUT_MS = 6 * 60 * 60 * 1000; // 6h per unit session
 const LOOP_SLEEP_MS = 30_000;
 
+const FACTORY_LOCK_DIR = path.join(ROOT, 'tmp', 'manus-lesson-factory');
+const FACTORY_RUN_LOCK = path.join(FACTORY_LOCK_DIR, 'factory-run.lock');
+
+function isPidAlive(pid) {
+  if (!pid || pid <= 0) return false;
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function readFactoryRunLock() {
+  if (!fs.existsSync(FACTORY_RUN_LOCK)) return null;
+  try {
+    return JSON.parse(fs.readFileSync(FACTORY_RUN_LOCK, 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+function acquireFactoryRunLock() {
+  fs.mkdirSync(FACTORY_LOCK_DIR, { recursive: true });
+  const existing = readFactoryRunLock();
+  if (existing && existing.pid !== process.pid && isPidAlive(existing.pid)) {
+    console.error(
+      '[run] Another lesson-factory is already running (pid=' + existing.pid + ', started=' + (existing.started_at || '?') + '). Exiting.',
+    );
+    process.exit(0);
+  }
+  const payload = { pid: process.pid, started_at: nowIso(), argv: process.argv.slice(2) };
+  fs.writeFileSync(FACTORY_RUN_LOCK, JSON.stringify(payload, null, 2));
+  const release = () => {
+    try {
+      const cur = readFactoryRunLock();
+      if (cur && cur.pid === process.pid) fs.unlinkSync(FACTORY_RUN_LOCK);
+    } catch {}
+  };
+  process.on('exit', release);
+  process.on('SIGINT', () => {
+    release();
+    process.exit(130);
+  });
+  process.on('SIGTERM', () => {
+    release();
+    process.exit(143);
+  });
+}
+
+async function manusTaskPhase(taskId) {
+  if (!taskId) return 'missing';
+  try {
+    const snap = await listMessages(taskId, { order: 'desc', limit: 30, allowMissing: true });
+    const st = latestAgentStatus(snap.messages || []);
+    return st?.agent_status || 'unknown';
+  } catch (err) {
+    if (err.code === 'WAITING') return 'waiting';
+    return 'unknown';
+  }
+}
+
+function unitHasUsableDeliverables(unitNum) {
+  const root = unitDir(unitNum);
+  if (!fs.existsSync(root)) return false;
+  for (let n = 1; n <= 5; n += 1) {
+    const lessonPath = path.join(root, 'lesson-' + String(n).padStart(2, '0'));
+    const pdf = path.join(lessonPath, 'lesson.pdf');
+    if (fs.existsSync(pdf) && fs.statSync(pdf).size > 5000) return true;
+    const pagesDir = path.join(lessonPath, 'pages');
+    if (fs.existsSync(pagesDir)) {
+      const imgs = fs.readdirSync(pagesDir).filter((f) => /\.(png|jpe?g|webp)$/i.test(f));
+      if (imgs.length >= 8) return true;
+    }
+  }
+  const rawDir = path.join(root, 'raw-downloads');
+  if (fs.existsSync(rawDir)) {
+    const any = walkFiles(rawDir).some(
+      (f) =>
+        (/lesson[-_ ]?0?[1-5].*\.pdf$/i.test(path.basename(f)) && fs.statSync(f).size > 5000) ||
+        (/page/i.test(path.basename(f)) && /\.(png|jpe?g|webp)$/i.test(f)),
+    );
+    if (any) return true;
+  }
+  return false;
+}
+
 function argFlag(name) {
   return process.argv.includes(`--${name}`);
 }
@@ -943,21 +1030,54 @@ async function fillCapacity(status, briefs) {
   let launched = 0;
   for (const unitRec of queue) {
     if (slots <= 0) break;
-    if (unitRec.status === 'RETRY_NEEDED') {
-      // Only relaunch if no prior task or explicitly failed incomplete — prefer NEW task for now
+
+    if (unitRec.manus_task_id && unitRec.status === 'RUNNING') {
+      console.log(`[fire] Unit ${unitRec.unit} already RUNNING task=${unitRec.manus_task_id}; skip createTask`);
+      continue;
+    }
+
+    if (unitRec.status === 'RETRY_NEEDED' && unitRec.manus_task_id) {
+      const phase = await manusTaskPhase(unitRec.manus_task_id);
+      if (phase === 'running' || phase === 'pending' || phase === 'waiting') {
+        console.log(
+          `[fire] Unit ${unitRec.unit} RETRY_NEEDED but task ${unitRec.manus_task_id} still ${phase}; resume poll`,
+        );
+        unitRec.status = 'RUNNING';
+        unitRec.error = unitRec.error || `Resuming existing Manus task (${phase})`;
+        saveStatus(status);
+        continue;
+      }
+      if (unitHasUsableDeliverables(unitRec.unit)) {
+        console.log(
+          `[fire] Unit ${unitRec.unit} RETRY_NEEDED but local deliverables exist; skip new task (harvest via poll)`,
+        );
+        unitRec.status = 'RUNNING';
+        saveStatus(status);
+        continue;
+      }
       unitRec.retries = (unitRec.retries || 0) + 1;
       if (unitRec.retries > 2) {
         unitRec.status = 'FAILED';
         saveStatus(status);
         continue;
       }
+      console.log(
+        `[fire] Unit ${unitRec.unit} prior task ${unitRec.manus_task_id} inactive (${phase}); new Manus session`,
+      );
       unitRec.manus_task_id = null;
+      unitRec.manus_task_url = null;
+    } else if (unitRec.status === 'RETRY_NEEDED') {
+      unitRec.retries = (unitRec.retries || 0) + 1;
+      if (unitRec.retries > 2) {
+        unitRec.status = 'FAILED';
+        saveStatus(status);
+        continue;
+      }
     }
     try {
       await launchUnit(status, briefs, unitRec);
       launched += 1;
       slots -= 1;
-      // Gentle spacing to avoid burst 429s
       await new Promise((r) => setTimeout(r, 4000));
     } catch (err) {
       console.error(`[fire] Unit ${unitRec.unit} failed: ${err.message}`);
@@ -1011,6 +1131,7 @@ function initFactory() {
 }
 
 async function runFactory() {
+  acquireFactoryRunLock();
   const briefs = loadBriefs();
   let status = initFactory();
   console.log(`[run] max_concurrent=${MAX_CONCURRENT} profile=${AGENT_PROFILE}`);

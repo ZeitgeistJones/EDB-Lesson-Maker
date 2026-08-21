@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Overnight watch: log A1/A2 factory JSON; start A2 --run when A1 queue clear.
  * Read-only on A1 while lesson-factory.mjs --run is already active (no poll-once).
  */
@@ -78,6 +78,45 @@ async function tick() {
   }
 }
 
+
+const WATCH_LOCK = path.join(ROOT, "tmp", "manus-lesson-factory", "factory-watch.lock");
+
+function isPidAlive(pid) {
+  if (!pid || pid <= 0) return false;
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function acquireWatchLock() {
+  fs.mkdirSync(path.dirname(WATCH_LOCK), { recursive: true });
+  if (fs.existsSync(WATCH_LOCK)) {
+    try {
+      const existing = JSON.parse(fs.readFileSync(WATCH_LOCK, "utf8"));
+      if (existing.pid !== process.pid && isPidAlive(existing.pid)) {
+        console.error(`[watch] Another factory-watch is running (pid=${existing.pid}). Exiting.`);
+        process.exit(0);
+      }
+    } catch {}
+  }
+  fs.writeFileSync(
+    WATCH_LOCK,
+    JSON.stringify({ pid: process.pid, started_at: new Date().toISOString() }, null, 2),
+  );
+  const release = () => {
+    try {
+      const cur = JSON.parse(fs.readFileSync(WATCH_LOCK, "utf8"));
+      if (cur.pid === process.pid) fs.unlinkSync(WATCH_LOCK);
+    } catch {}
+  };
+  process.on("exit", release);
+  process.on("SIGINT", () => { release(); process.exit(130); });
+  process.on("SIGTERM", () => { release(); process.exit(143); });
+}
+acquireWatchLock();
 log("factory-watch started");
 await tick();
 setInterval(tick, POLL_MS);
