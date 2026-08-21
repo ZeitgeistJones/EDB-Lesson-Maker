@@ -1,0 +1,85 @@
+{
+  "unit": 17,
+  "slug": "camping-outdoors",
+  "title": "Camping Outdoors",
+  "world": "forest campsite",
+  "communicative_goal": "Talk about camping gear, nature, and outdoor actions.",
+  "recycled_language": [
+    "I need",
+    "let's",
+    "where is",
+    "it's"
+  ],
+  "new_language_focus": [
+    "tent",
+    "fire",
+    "tree",
+    "river",
+    "flashlight",
+    "Let's set up the ___",
+    "Be careful!"
+  ],
+  "unit_end_capability": "Learner can pack camping gear and give simple outdoor instructions.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Camp gear",
+      "vocab": [
+        "tent",
+        "sleeping bag",
+        "flashlight",
+        "backpack"
+      ],
+      "target_language": "I need a tent/flashlight…",
+      "objective": "Pack camping equipment."
+    },
+    {
+      "n": 2,
+      "topic": "Nature walk",
+      "vocab": [
+        "tree",
+        "river",
+        "rock",
+        "bird",
+        "path"
+      ],
+      "target_language": "Look! A ___! / Let's walk to the river.",
+      "objective": "Name nature items on a trail."
+    },
+    {
+      "n": 3,
+      "topic": "Set up camp",
+      "vocab": [
+        "set up",
+        "put",
+        "open",
+        "light"
+      ],
+      "target_language": "Set up the tent. / Light the fire.",
+      "objective": "Follow camping setup instructions."
+    },
+    {
+      "n": 4,
+      "topic": "Night sounds mystery",
+      "vocab": [
+        "listen",
+        "what is it",
+        "safe",
+        "scared"
+      ],
+      "target_language": "What's that? / It's OK. We're safe.",
+      "objective": "Solve a gentle night-sounds mystery."
+    },
+    {
+      "n": 5,
+      "topic": "Campfire stories",
+      "vocab": [
+        "story",
+        "friend",
+        "happy"
+      ],
+      "target_language": "I like camping. First we ___, then we ___.",
+      "objective": "Retell the camping day sequence."
+    }
+  ]
+}

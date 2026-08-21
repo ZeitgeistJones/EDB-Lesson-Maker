@@ -1,0 +1,22 @@
+{
+  "cefr": "A1",
+  "unit": 1,
+  "lesson": 1,
+  "curriculum_position": "A1-U01-L01",
+  "unit_title": "Hello, Friends!",
+  "topic": "Hello and goodbye",
+  "target_vocabulary": [
+    "hello",
+    "hi",
+    "goodbye",
+    "bye",
+    "friend"
+  ],
+  "target_language": "Hello! / Hi! / Goodbye! / Bye!",
+  "objective": "Greet and leave politely in a classroom welcome scene.",
+  "page_count_expected": 10,
+  "page_count_found": 0,
+  "manus_task_id": "gnKut97HTtzqf97mzrv3JW",
+  "manus_task_url": "https://manus.im/app/gnKut97HTtzqf97mzrv3JW",
+  "preserved_at": "2026-08-21T06:47:56.620Z"
+}

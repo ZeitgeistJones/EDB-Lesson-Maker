@@ -1,0 +1,86 @@
+{
+  "unit": 18,
+  "slug": "hobbies-makers",
+  "title": "Hobbies & Makers",
+  "world": "craft table / creator studio",
+  "communicative_goal": "Talk about hobbies, crafts, and making things.",
+  "recycled_language": [
+    "I like",
+    "I can",
+    "I want",
+    "let's"
+  ],
+  "new_language_focus": [
+    "draw",
+    "make",
+    "build",
+    "slime",
+    "video",
+    "I make ___",
+    "Look at my ___!"
+  ],
+  "unit_end_capability": "Learner can say hobbies and present something they made.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "My hobbies",
+      "vocab": [
+        "draw",
+        "read",
+        "play games",
+        "make slime",
+        "ride a bike"
+      ],
+      "target_language": "I like to draw/read…",
+      "objective": "Name common kid hobbies."
+    },
+    {
+      "n": 2,
+      "topic": "Maker table",
+      "vocab": [
+        "paper",
+        "glue",
+        "scissors",
+        "stickers",
+        "box"
+      ],
+      "target_language": "I need glue/paper. / Let's make a ___.",
+      "objective": "Request craft materials."
+    },
+    {
+      "n": 3,
+      "topic": "Build it!",
+      "vocab": [
+        "build",
+        "put on",
+        "cut",
+        "stick"
+      ],
+      "target_language": "Cut the ___. Stick it on. Build it!",
+      "objective": "Follow a make-and-build sequence."
+    },
+    {
+      "n": 4,
+      "topic": "Make a mini video",
+      "vocab": [
+        "camera",
+        "action",
+        "smile",
+        "again"
+      ],
+      "target_language": "Smile! Action! / Look at my video!",
+      "objective": "Roleplay making a short kid video."
+    },
+    {
+      "n": 5,
+      "topic": "Show your creation",
+      "vocab": [
+        "made",
+        "proud",
+        "share"
+      ],
+      "target_language": "I made a ___. I like it!",
+      "objective": "Present a finished craft/creation."
+    }
+  ]
+}

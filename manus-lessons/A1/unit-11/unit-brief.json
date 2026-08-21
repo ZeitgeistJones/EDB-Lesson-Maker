@@ -1,0 +1,84 @@
+{
+  "unit": 11,
+  "slug": "sports-play",
+  "title": "Sports & Play",
+  "world": "playground / sports field",
+  "communicative_goal": "Name sports/games and say what you can / like to play.",
+  "recycled_language": [
+    "I like",
+    "let's",
+    "I can"
+  ],
+  "new_language_focus": [
+    "soccer",
+    "basketball",
+    "swim",
+    "run",
+    "jump",
+    "I can ___",
+    "I play ___"
+  ],
+  "unit_end_capability": "Learner can say sports they play and simple abilities.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Sports day",
+      "vocab": [
+        "soccer",
+        "basketball",
+        "tennis",
+        "swim"
+      ],
+      "target_language": "I play soccer/basketball…",
+      "objective": "Name sports and match to equipment."
+    },
+    {
+      "n": 2,
+      "topic": "I can…",
+      "vocab": [
+        "run",
+        "jump",
+        "kick",
+        "throw",
+        "catch"
+      ],
+      "target_language": "I can run/jump. / I can't ___ yet.",
+      "objective": "Talk about basic physical abilities."
+    },
+    {
+      "n": 3,
+      "topic": "Playground fun",
+      "vocab": [
+        "slide",
+        "swing",
+        "climb",
+        "ball"
+      ],
+      "target_language": "Let's play on the ___! / Throw the ball!",
+      "objective": "Use playground action language."
+    },
+    {
+      "n": 4,
+      "topic": "Team challenge",
+      "vocab": [
+        "team",
+        "win",
+        "try",
+        "help"
+      ],
+      "target_language": "We can ___! / Help me, please!",
+      "objective": "Cooperate in a simple sports mission."
+    },
+    {
+      "n": 5,
+      "topic": "Champion show",
+      "vocab": [
+        "favorite sport",
+        "can",
+        "play"
+      ],
+      "target_language": "My favorite sport is ___. I can ___.",
+      "objective": "Present a favorite sport and one ability."
+    }
+  ]
+}

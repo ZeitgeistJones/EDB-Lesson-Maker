@@ -1,0 +1,86 @@
+{
+  "unit": 5,
+  "slug": "school-day",
+  "title": "School Day",
+  "world": "colorful classroom / school bag",
+  "communicative_goal": "Name school things and say what you have / need.",
+  "recycled_language": [
+    "I have",
+    "this is",
+    "where is"
+  ],
+  "new_language_focus": [
+    "pencil",
+    "book",
+    "bag",
+    "eraser",
+    "ruler",
+    "I need a ___",
+    "What's this?"
+  ],
+  "unit_end_capability": "Learner can name school items and say I have/need a ___.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "What's in my bag?",
+      "vocab": [
+        "bag",
+        "pencil",
+        "book",
+        "eraser",
+        "ruler"
+      ],
+      "target_language": "What's this? — It's a ___.",
+      "objective": "Unpack a school bag and name items."
+    },
+    {
+      "n": 2,
+      "topic": "I have / I need",
+      "vocab": [
+        "have",
+        "need",
+        "pencil",
+        "book"
+      ],
+      "target_language": "I have a ___. / I need a ___.",
+      "objective": "Contrast have vs need while packing for class."
+    },
+    {
+      "n": 3,
+      "topic": "Classroom treasure hunt",
+      "vocab": [
+        "desk",
+        "chair",
+        "board",
+        "door",
+        "window"
+      ],
+      "target_language": "Where is the ___? — It's here.",
+      "objective": "Locate classroom objects with route/search play."
+    },
+    {
+      "n": 4,
+      "topic": "Share please",
+      "vocab": [
+        "please",
+        "thank you",
+        "here you are",
+        "share"
+      ],
+      "target_language": "Can I have a ___? — Here you are. Thank you.",
+      "objective": "Practice classroom politeness exchanges."
+    },
+    {
+      "n": 5,
+      "topic": "Ready for school",
+      "vocab": [
+        "bag",
+        "pencil",
+        "book",
+        "ready"
+      ],
+      "target_language": "I have a ___. I'm ready!",
+      "objective": "Pack a complete bag and announce readiness."
+    }
+  ]
+}

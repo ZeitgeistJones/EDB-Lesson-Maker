@@ -1,0 +1,83 @@
+{
+  "unit": 8,
+  "slug": "my-home",
+  "title": "My Home",
+  "world": "dollhouse / cozy apartment",
+  "communicative_goal": "Name rooms and furniture; say where things are.",
+  "recycled_language": [
+    "where is",
+    "this is",
+    "I have"
+  ],
+  "new_language_focus": [
+    "kitchen",
+    "bedroom",
+    "bathroom",
+    "living room",
+    "table",
+    "bed",
+    "The ___ is in the ___"
+  ],
+  "unit_end_capability": "Learner can name rooms and locate objects in the home.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Rooms of the house",
+      "vocab": [
+        "kitchen",
+        "bedroom",
+        "bathroom",
+        "living room"
+      ],
+      "target_language": "This is the kitchen/bedroom…",
+      "objective": "Tour rooms of a house."
+    },
+    {
+      "n": 2,
+      "topic": "Furniture",
+      "vocab": [
+        "table",
+        "chair",
+        "bed",
+        "sofa",
+        "lamp"
+      ],
+      "target_language": "It's a table/bed…",
+      "objective": "Name furniture items."
+    },
+    {
+      "n": 3,
+      "topic": "Where is it?",
+      "vocab": [
+        "in",
+        "on",
+        "under"
+      ],
+      "target_language": "The book is on the table. / It's under the bed.",
+      "objective": "Use basic prepositions of place at home."
+    },
+    {
+      "n": 4,
+      "topic": "Messy room fix",
+      "vocab": [
+        "clean",
+        "put",
+        "toy",
+        "clothes"
+      ],
+      "target_language": "Put the ___ on/in the ___.",
+      "objective": "Repair a messy bedroom with place language."
+    },
+    {
+      "n": 5,
+      "topic": "Home tour",
+      "vocab": [
+        "room",
+        "this is",
+        "my home"
+      ],
+      "target_language": "This is my ___. The ___ is in the ___.",
+      "objective": "Give a short home tour presentation."
+    }
+  ]
+}

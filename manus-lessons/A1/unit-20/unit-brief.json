@@ -1,0 +1,84 @@
+{
+  "unit": 20,
+  "slug": "helpers-and-jobs",
+  "title": "Helpers & Jobs",
+  "world": "community helpers town",
+  "communicative_goal": "Name community helpers and say what they do.",
+  "recycled_language": [
+    "this is",
+    "I can",
+    "help",
+    "where"
+  ],
+  "new_language_focus": [
+    "doctor",
+    "teacher",
+    "firefighter",
+    "police officer",
+    "chef",
+    "He/She is a ___",
+    "He/She can help"
+  ],
+  "unit_end_capability": "Learner can name jobs and say who helps in a situation.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Who helps?",
+      "vocab": [
+        "doctor",
+        "teacher",
+        "firefighter",
+        "police officer",
+        "chef"
+      ],
+      "target_language": "He/She is a doctor/teacher…",
+      "objective": "Identify community helpers."
+    },
+    {
+      "n": 2,
+      "topic": "What do they do?",
+      "vocab": [
+        "help",
+        "teach",
+        "cook",
+        "drive",
+        "save"
+      ],
+      "target_language": "A teacher teaches. / A chef cooks.",
+      "objective": "Match jobs to simple actions."
+    },
+    {
+      "n": 3,
+      "topic": "Call for help",
+      "vocab": [
+        "need help",
+        "please help",
+        "thank you"
+      ],
+      "target_language": "I need help! / Please help me.",
+      "objective": "Use help language in problem scenes."
+    },
+    {
+      "n": 4,
+      "topic": "Job day mission",
+      "vocab": [
+        "who",
+        "can help",
+        "problem"
+      ],
+      "target_language": "Who can help? — The firefighter can help!",
+      "objective": "Choose the right helper for scenarios."
+    },
+    {
+      "n": 5,
+      "topic": "When I grow up",
+      "vocab": [
+        "want to be",
+        "job",
+        "help"
+      ],
+      "target_language": "I want to be a ___. I can help!",
+      "objective": "Share a future helper identity."
+    }
+  ]
+}

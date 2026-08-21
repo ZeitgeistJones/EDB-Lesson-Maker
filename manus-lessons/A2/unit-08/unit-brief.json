@@ -1,0 +1,75 @@
+{
+  "unit": 8,
+  "slug": "past-questions",
+  "title": "Past Questions",
+  "world": "detective desk",
+  "communicative_goal": "Ask Did you...? and answer with short past answers.",
+  "recycled_language": [
+    "did",
+    "yesterday"
+  ],
+  "new_language_focus": [
+    "Did you",
+    "Yes, I did",
+    "No, I didn't",
+    "What did"
+  ],
+  "unit_end_capability": "Learner can ask/answer Did you ___?",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Did you play?",
+      "vocab": [
+        "Did you",
+        "play",
+        "watch"
+      ],
+      "target_language": "Did you play? — Yes, I did. / No, I didn't.",
+      "objective": "Yes/no past questions."
+    },
+    {
+      "n": 2,
+      "topic": "What did you eat?",
+      "vocab": [
+        "What did",
+        "eat",
+        "drink"
+      ],
+      "target_language": "What did you eat? — I ate ___.",
+      "objective": "Wh- past questions."
+    },
+    {
+      "n": 3,
+      "topic": "Mystery clues",
+      "vocab": [
+        "find",
+        "see",
+        "hear"
+      ],
+      "target_language": "Did you see ___? / I heard ___.",
+      "objective": "Solve clues with past Q&A."
+    },
+    {
+      "n": 4,
+      "topic": "Interview time",
+      "vocab": [
+        "ask",
+        "answer",
+        "partner"
+      ],
+      "target_language": "Did you ___ yesterday?",
+      "objective": "Interview a partner."
+    },
+    {
+      "n": 5,
+      "topic": "Case closed",
+      "vocab": [
+        "first",
+        "then",
+        "finally"
+      ],
+      "target_language": "First I asked ___. Then I found ___.",
+      "objective": "Present a solved mystery."
+    }
+  ]
+}

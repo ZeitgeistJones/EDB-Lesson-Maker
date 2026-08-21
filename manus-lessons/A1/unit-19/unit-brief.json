@@ -1,0 +1,85 @@
+{
+  "unit": 19,
+  "slug": "adventure-park",
+  "title": "Adventure Park",
+  "world": "amusement park day",
+  "communicative_goal": "Navigate rides, tickets, feelings, and choices at a park.",
+  "recycled_language": [
+    "I want",
+    "let's go",
+    "I'm happy",
+    "how much"
+  ],
+  "new_language_focus": [
+    "ticket",
+    "ride",
+    "queue",
+    "exciting",
+    "scary",
+    "I'm excited",
+    "Which ride?"
+  ],
+  "unit_end_capability": "Learner can choose rides and express excitement/fear politely.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Park map",
+      "vocab": [
+        "ride",
+        "ticket",
+        "map",
+        "gate",
+        "food stand"
+      ],
+      "target_language": "This is the ___ ride. / Let's buy tickets.",
+      "objective": "Orient to park places and tickets."
+    },
+    {
+      "n": 2,
+      "topic": "Which ride?",
+      "vocab": [
+        "roller coaster",
+        "carousel",
+        "bumper cars",
+        "ferris wheel"
+      ],
+      "target_language": "Which ride? — I want the ___!",
+      "objective": "Choose rides with preference language."
+    },
+    {
+      "n": 3,
+      "topic": "Excited or scared?",
+      "vocab": [
+        "excited",
+        "scared",
+        "fun",
+        "wait"
+      ],
+      "target_language": "I'm excited! / I'm a little scared.",
+      "objective": "Express feelings before rides."
+    },
+    {
+      "n": 4,
+      "topic": "Lost buddy rescue",
+      "vocab": [
+        "lost",
+        "help",
+        "find",
+        "meet"
+      ],
+      "target_language": "Where is my friend? / Let's meet at the gate.",
+      "objective": "Solve a gentle lost-buddy problem."
+    },
+    {
+      "n": 5,
+      "topic": "Best day ever",
+      "vocab": [
+        "favorite ride",
+        "photo",
+        "happy"
+      ],
+      "target_language": "My favorite ride is the ___. What a fun day!",
+      "objective": "Review the park day with a photo-board payoff."
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "unit": 5,
+  "slug": "going-to-plans",
+  "title": "Going To Plans",
+  "world": "calendar wall",
+  "communicative_goal": "Talk about near-future plans with going to.",
+  "recycled_language": [
+    "tomorrow",
+    "next"
+  ],
+  "new_language_focus": [
+    "going to",
+    "visit",
+    "make",
+    "learn"
+  ],
+  "unit_end_capability": "Learner can say I'm going to ___ tomorrow.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Tomorrow plans",
+      "vocab": [
+        "tomorrow",
+        "going to"
+      ],
+      "target_language": "I'm going to play soccer tomorrow.",
+      "objective": "Match calendar icons to plans."
+    },
+    {
+      "n": 2,
+      "topic": "Weekend plans",
+      "vocab": [
+        "visit",
+        "grandma",
+        "beach"
+      ],
+      "target_language": "We are going to visit ___.",
+      "objective": "Plan a family weekend."
+    },
+    {
+      "n": 3,
+      "topic": "Project time",
+      "vocab": [
+        "make",
+        "build",
+        "draw"
+      ],
+      "target_language": "I'm going to make a ___.",
+      "objective": "Choose a maker project plan."
+    },
+    {
+      "n": 4,
+      "topic": "Party prep",
+      "vocab": [
+        "buy",
+        "cook",
+        "invite"
+      ],
+      "target_language": "I'm going to buy ___. / She's going to cook ___.",
+      "objective": "Coordinate a party prep list."
+    },
+    {
+      "n": 5,
+      "topic": "Plan poster",
+      "vocab": [
+        "going to",
+        "because"
+      ],
+      "target_language": "Next week I'm going to ___. I'm excited because ___.",
+      "objective": "Present a plan poster."
+    }
+  ]
+}

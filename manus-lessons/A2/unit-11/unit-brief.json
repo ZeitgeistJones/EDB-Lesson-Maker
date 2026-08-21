@@ -1,0 +1,74 @@
+{
+  "unit": 11,
+  "slug": "story-sequence",
+  "title": "Story Sequence",
+  "world": "storyboard studio",
+  "communicative_goal": "Narrate stories with first, then, next, finally.",
+  "recycled_language": [
+    "went",
+    "saw"
+  ],
+  "new_language_focus": [
+    "first",
+    "then",
+    "next",
+    "finally",
+    "suddenly"
+  ],
+  "unit_end_capability": "Learner can retell with sequence markers.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "First...",
+      "vocab": [
+        "first",
+        "start",
+        "begin"
+      ],
+      "target_language": "First, the hero woke up.",
+      "objective": "Open stories with first."
+    },
+    {
+      "n": 2,
+      "topic": "Then and next",
+      "vocab": [
+        "then",
+        "next",
+        "after that"
+      ],
+      "target_language": "Then they went to ___. Next, ___ happened.",
+      "objective": "Chain events."
+    },
+    {
+      "n": 3,
+      "topic": "Suddenly!",
+      "vocab": [
+        "suddenly",
+        "surprise"
+      ],
+      "target_language": "Suddenly, a ___ appeared!",
+      "objective": "Add a twist moment."
+    },
+    {
+      "n": 4,
+      "topic": "Finally",
+      "vocab": [
+        "finally",
+        "end",
+        "happy"
+      ],
+      "target_language": "Finally, they found the treasure.",
+      "objective": "Close stories well."
+    },
+    {
+      "n": 5,
+      "topic": "My comic",
+      "vocab": [
+        "first",
+        "finally"
+      ],
+      "target_language": "First ___. Then ___. Finally ___.",
+      "objective": "Publish a four-panel comic story."
+    }
+  ]
+}

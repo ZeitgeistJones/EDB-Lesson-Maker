@@ -1,0 +1,83 @@
+{
+  "unit": 13,
+  "slug": "weather-wear",
+  "title": "Weather Wear",
+  "world": "weather station / outdoor gear closet",
+  "communicative_goal": "Describe weather and choose appropriate clothes.",
+  "recycled_language": [
+    "I'm wearing",
+    "I need",
+    "let's go"
+  ],
+  "new_language_focus": [
+    "sunny",
+    "rainy",
+    "cloudy",
+    "windy",
+    "cold",
+    "hot",
+    "It's ___ today",
+    "Take a ___"
+  ],
+  "unit_end_capability": "Learner can say today's weather and choose gear.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "What's the weather?",
+      "vocab": [
+        "sunny",
+        "rainy",
+        "cloudy",
+        "windy"
+      ],
+      "target_language": "It's sunny/rainy today.",
+      "objective": "Identify weather types."
+    },
+    {
+      "n": 2,
+      "topic": "Hot and cold",
+      "vocab": [
+        "hot",
+        "cold",
+        "warm",
+        "cool"
+      ],
+      "target_language": "It's hot/cold. / I'm hot/cold.",
+      "objective": "Talk about temperature feelings."
+    },
+    {
+      "n": 3,
+      "topic": "What should I wear?",
+      "vocab": [
+        "coat",
+        "umbrella",
+        "hat",
+        "sunglasses"
+      ],
+      "target_language": "It's rainy — take an umbrella. / Wear a coat.",
+      "objective": "Match clothes/gear to weather."
+    },
+    {
+      "n": 4,
+      "topic": "Weather forecast mission",
+      "vocab": [
+        "today",
+        "tomorrow",
+        "weather"
+      ],
+      "target_language": "Today it's ___. Tomorrow it's ___.",
+      "objective": "Read a simple two-day forecast board."
+    },
+    {
+      "n": 5,
+      "topic": "Pack for the day",
+      "vocab": [
+        "pack",
+        "weather",
+        "ready"
+      ],
+      "target_language": "It's ___. I need a ___. I'm ready!",
+      "objective": "Pack weather gear and announce readiness."
+    }
+  ]
+}

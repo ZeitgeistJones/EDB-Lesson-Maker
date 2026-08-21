@@ -1,0 +1,81 @@
+{
+  "unit": 1,
+  "slug": "yesterday-fun",
+  "title": "Yesterday Fun",
+  "world": "playground memory album",
+  "communicative_goal": "Talk about what you did yesterday using past simple regular verbs.",
+  "recycled_language": [
+    "I like",
+    "play",
+    "with"
+  ],
+  "new_language_focus": [
+    "yesterday",
+    "played",
+    "walked",
+    "helped",
+    "watched"
+  ],
+  "unit_end_capability": "Learner can say I played/walked/watched yesterday.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "What did you do?",
+      "vocab": [
+        "yesterday",
+        "play",
+        "walk",
+        "watch"
+      ],
+      "target_language": "I played. / I walked. / I watched.",
+      "objective": "Name simple past actions from picture prompts."
+    },
+    {
+      "n": 2,
+      "topic": "After school",
+      "vocab": [
+        "helped",
+        "cleaned",
+        "cooked",
+        "studied"
+      ],
+      "target_language": "I helped my mom. / I studied English.",
+      "objective": "Describe after-school activities in the past."
+    },
+    {
+      "n": 3,
+      "topic": "Park day story",
+      "vocab": [
+        "kicked",
+        "jumped",
+        "laughed",
+        "played"
+      ],
+      "target_language": "We played soccer. / We laughed.",
+      "objective": "Follow a short story with regular past verbs."
+    },
+    {
+      "n": 4,
+      "topic": "My album",
+      "vocab": [
+        "visited",
+        "painted",
+        "started"
+      ],
+      "target_language": "Yesterday I visited ___. / I painted a ___.",
+      "objective": "Build a personal yesterday album with captions."
+    },
+    {
+      "n": 5,
+      "topic": "Tell your day",
+      "vocab": [
+        "yesterday",
+        "first",
+        "then",
+        "finally"
+      ],
+      "target_language": "Yesterday I ___. Then I ___. Finally I ___.",
+      "objective": "Retell yesterday with sequence words."
+    }
+  ]
+}

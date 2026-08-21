@@ -1,0 +1,84 @@
+{
+  "unit": 3,
+  "slug": "my-family",
+  "title": "My Family",
+  "world": "family house photo wall",
+  "communicative_goal": "Name family members and say who people are.",
+  "recycled_language": [
+    "this is",
+    "my name is",
+    "I like"
+  ],
+  "new_language_focus": [
+    "mom",
+    "dad",
+    "brother",
+    "sister",
+    "grandma",
+    "grandpa",
+    "This is my ___"
+  ],
+  "unit_end_capability": "Learner can introduce family members with This is my ___.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Mom and dad",
+      "vocab": [
+        "mom",
+        "dad",
+        "family",
+        "home"
+      ],
+      "target_language": "This is my mom/dad.",
+      "objective": "Identify and introduce parents."
+    },
+    {
+      "n": 2,
+      "topic": "Brother and sister",
+      "vocab": [
+        "brother",
+        "sister",
+        "baby",
+        "big"
+      ],
+      "target_language": "This is my brother/sister.",
+      "objective": "Talk about siblings with photo-match play."
+    },
+    {
+      "n": 3,
+      "topic": "Grandma and grandpa",
+      "vocab": [
+        "grandma",
+        "grandpa",
+        "visit"
+      ],
+      "target_language": "This is my grandma/grandpa.",
+      "objective": "Introduce grandparents in a weekend-visit scene."
+    },
+    {
+      "n": 4,
+      "topic": "Who is this?",
+      "vocab": [
+        "who",
+        "this",
+        "family"
+      ],
+      "target_language": "Who is this? — This is my ___.",
+      "objective": "Ask and answer identity questions about family photos."
+    },
+    {
+      "n": 5,
+      "topic": "Family tree party",
+      "vocab": [
+        "mom",
+        "dad",
+        "brother",
+        "sister",
+        "grandma",
+        "grandpa"
+      ],
+      "target_language": "This is my ___. I love my family.",
+      "objective": "Build and present a simple family tree board."
+    }
+  ]
+}

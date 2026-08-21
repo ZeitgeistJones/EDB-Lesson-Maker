@@ -1,0 +1,84 @@
+{
+  "unit": 4,
+  "slug": "pet-pals",
+  "title": "Pet Pals",
+  "world": "pet cafe / pet shop adventure",
+  "communicative_goal": "Name common pets and say what they are / what you have.",
+  "recycled_language": [
+    "I like",
+    "this is",
+    "my"
+  ],
+  "new_language_focus": [
+    "dog",
+    "cat",
+    "fish",
+    "bird",
+    "rabbit",
+    "I have a ___",
+    "It's a ___"
+  ],
+  "unit_end_capability": "Learner can name pets and say I have a ___ / It's a ___.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Meet the pets",
+      "vocab": [
+        "dog",
+        "cat",
+        "fish",
+        "bird",
+        "rabbit"
+      ],
+      "target_language": "It's a dog/cat/fish…",
+      "objective": "Identify five pets in a pet-shop discovery walk."
+    },
+    {
+      "n": 2,
+      "topic": "I have a pet",
+      "vocab": [
+        "have",
+        "pet",
+        "dog",
+        "cat"
+      ],
+      "target_language": "I have a ___. / I don't have a ___.",
+      "objective": "Say ownership of pets with yes/no sorting."
+    },
+    {
+      "n": 3,
+      "topic": "Pet care",
+      "vocab": [
+        "feed",
+        "walk",
+        "water",
+        "play"
+      ],
+      "target_language": "I feed my ___. / Let's walk the dog.",
+      "objective": "Use simple action phrases for pet care."
+    },
+    {
+      "n": 4,
+      "topic": "Lost pet mystery",
+      "vocab": [
+        "where",
+        "look",
+        "find",
+        "pet"
+      ],
+      "target_language": "Where is my ___? / Look! It's here!",
+      "objective": "Search-and-find story recycling pet names."
+    },
+    {
+      "n": 5,
+      "topic": "Pet show",
+      "vocab": [
+        "my pet",
+        "cute",
+        "like"
+      ],
+      "target_language": "This is my ___. I like my ___.",
+      "objective": "Present a favorite pet in a mini pet-show."
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "unit": 7,
+  "slug": "yummy-food",
+  "title": "Yummy Food",
+  "world": "kitchen / picnic / snack bar",
+  "communicative_goal": "Name foods and express like/want for snacks and meals.",
+  "recycled_language": [
+    "I like",
+    "I don't like",
+    "I have"
+  ],
+  "new_language_focus": [
+    "apple",
+    "banana",
+    "bread",
+    "milk",
+    "juice",
+    "I want ___",
+    "I'm hungry"
+  ],
+  "unit_end_capability": "Learner can order/request simple food with I want / I like.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Fruit friends",
+      "vocab": [
+        "apple",
+        "banana",
+        "orange",
+        "grape"
+      ],
+      "target_language": "It's an apple. / I like bananas.",
+      "objective": "Name fruits and state likes."
+    },
+    {
+      "n": 2,
+      "topic": "Snack time",
+      "vocab": [
+        "bread",
+        "cookie",
+        "cheese",
+        "yogurt"
+      ],
+      "target_language": "I want a ___. / I'm hungry.",
+      "objective": "Request snacks with want + hunger phrase."
+    },
+    {
+      "n": 3,
+      "topic": "Drinks",
+      "vocab": [
+        "water",
+        "milk",
+        "juice",
+        "tea"
+      ],
+      "target_language": "I want water/milk/juice, please.",
+      "objective": "Choose and request drinks politely."
+    },
+    {
+      "n": 4,
+      "topic": "Picnic packing",
+      "vocab": [
+        "pack",
+        "basket",
+        "sandwich",
+        "fruit"
+      ],
+      "target_language": "Put the ___ in the basket. / We need ___.",
+      "objective": "Pack a picnic recycling food vocabulary."
+    },
+    {
+      "n": 5,
+      "topic": "Food truck order",
+      "vocab": [
+        "want",
+        "please",
+        "thank you"
+      ],
+      "target_language": "I want a ___ and ___ , please.",
+      "objective": "Place a two-item order at a kid food truck."
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "unit": 17,
+  "slug": "talent-show",
+  "title": "Talent Show",
+  "world": "school stage",
+  "communicative_goal": "Can/could lightly plus comparatives for talents.",
+  "recycled_language": [
+    "can",
+    "better"
+  ],
+  "new_language_focus": [
+    "could",
+    "when I was",
+    "practice",
+    "audience"
+  ],
+  "unit_end_capability": "Learner can say I can/could ___ and compare talents.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "I can...",
+      "vocab": [
+        "sing",
+        "dance",
+        "juggle"
+      ],
+      "target_language": "I can sing. / Can you dance?",
+      "objective": "Name talents with can."
+    },
+    {
+      "n": 2,
+      "topic": "When I was little",
+      "vocab": [
+        "could",
+        "couldn't"
+      ],
+      "target_language": "When I was five, I couldn't ride a bike.",
+      "objective": "Could for past ability."
+    },
+    {
+      "n": 3,
+      "topic": "Practice makes...",
+      "vocab": [
+        "practice",
+        "better",
+        "every day"
+      ],
+      "target_language": "I practice every day. I'm better now.",
+      "objective": "Link practice to comparatives."
+    },
+    {
+      "n": 4,
+      "topic": "Audition day",
+      "vocab": [
+        "nervous",
+        "brave",
+        "try"
+      ],
+      "target_language": "I was nervous but I tried.",
+      "objective": "Tell an audition story."
+    },
+    {
+      "n": 5,
+      "topic": "Show time",
+      "vocab": [
+        "audience",
+        "applause"
+      ],
+      "target_language": "We can ___. We are better than yesterday!",
+      "objective": "Perform a talent intro."
+    }
+  ]
+}

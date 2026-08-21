@@ -1,0 +1,85 @@
+{
+  "unit": 6,
+  "slug": "colors-and-clothes",
+  "title": "Colors & Clothes",
+  "world": "wardrobe / fashion show",
+  "communicative_goal": "Name colors and clothes; say what someone is wearing.",
+  "recycled_language": [
+    "I like",
+    "this is",
+    "I have"
+  ],
+  "new_language_focus": [
+    "red",
+    "blue",
+    "green",
+    "yellow",
+    "shirt",
+    "pants",
+    "shoes",
+    "hat",
+    "I'm wearing ___"
+  ],
+  "unit_end_capability": "Learner can describe clothes with color + item.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Rainbow colors",
+      "vocab": [
+        "red",
+        "blue",
+        "green",
+        "yellow",
+        "orange",
+        "purple"
+      ],
+      "target_language": "It's red/blue… / What color is it?",
+      "objective": "Name core colors with paint-and-sort play."
+    },
+    {
+      "n": 2,
+      "topic": "Clothes closet",
+      "vocab": [
+        "shirt",
+        "pants",
+        "shoes",
+        "hat",
+        "socks"
+      ],
+      "target_language": "It's a shirt/hat…",
+      "objective": "Identify clothing items in a closet scene."
+    },
+    {
+      "n": 3,
+      "topic": "Color + clothes",
+      "vocab": [
+        "red shirt",
+        "blue shoes",
+        "green hat"
+      ],
+      "target_language": "I have a red shirt. / It's a blue hat.",
+      "objective": "Combine color + noun for clothing."
+    },
+    {
+      "n": 4,
+      "topic": "What are you wearing?",
+      "vocab": [
+        "wearing",
+        "today"
+      ],
+      "target_language": "I'm wearing a ___ ___ .",
+      "objective": "Describe today's outfit."
+    },
+    {
+      "n": 5,
+      "topic": "Mini fashion show",
+      "vocab": [
+        "wear",
+        "color",
+        "cool"
+      ],
+      "target_language": "She's wearing a ___ ___. / He's wearing…",
+      "objective": "Comment on outfits in a kid fashion-show payoff."
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "unit": 2,
+  "slug": "last-weekend",
+  "title": "Last Weekend",
+  "world": "weekend adventure map",
+  "communicative_goal": "Use common irregular past verbs for a weekend story.",
+  "recycled_language": [
+    "yesterday",
+    "I played"
+  ],
+  "new_language_focus": [
+    "went",
+    "had",
+    "saw",
+    "ate",
+    "made"
+  ],
+  "unit_end_capability": "Learner can say I went/had/saw on the weekend.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Where did you go?",
+      "vocab": [
+        "went",
+        "park",
+        "zoo",
+        "store"
+      ],
+      "target_language": "I went to the ___.",
+      "objective": "Match places to went sentences."
+    },
+    {
+      "n": 2,
+      "topic": "What did you have?",
+      "vocab": [
+        "had",
+        "fun",
+        "lunch",
+        "party"
+      ],
+      "target_language": "I had fun. / I had pizza.",
+      "objective": "Talk about experiences with had."
+    },
+    {
+      "n": 3,
+      "topic": "What did you see?",
+      "vocab": [
+        "saw",
+        "movie",
+        "friend",
+        "rainbow"
+      ],
+      "target_language": "I saw a ___. / Did you see ___?",
+      "objective": "Ask and answer with saw."
+    },
+    {
+      "n": 4,
+      "topic": "Weekend food",
+      "vocab": [
+        "ate",
+        "breakfast",
+        "snack",
+        "made"
+      ],
+      "target_language": "I ate ___. / I made a ___.",
+      "objective": "Describe food with ate/made."
+    },
+    {
+      "n": 5,
+      "topic": "Weekend map",
+      "vocab": [
+        "went",
+        "saw",
+        "had",
+        "ate"
+      ],
+      "target_language": "On Saturday I went ___. On Sunday I saw ___.",
+      "objective": "Present a two-day weekend map."
+    }
+  ]
+}

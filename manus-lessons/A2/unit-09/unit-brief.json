@@ -1,0 +1,75 @@
+{
+  "unit": 9,
+  "slug": "feel-should",
+  "title": "Feel Better",
+  "world": "clinic comic",
+  "communicative_goal": "Talk about feelings and light should/shouldn't advice.",
+  "recycled_language": [
+    "feel",
+    "sick",
+    "tired"
+  ],
+  "new_language_focus": [
+    "should",
+    "shouldn't",
+    "rest",
+    "drink water"
+  ],
+  "unit_end_capability": "Learner can say You should ___ / shouldn't ___.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "How do you feel?",
+      "vocab": [
+        "headache",
+        "fever",
+        "cough"
+      ],
+      "target_language": "I feel sick. / I have a headache.",
+      "objective": "Name symptoms."
+    },
+    {
+      "n": 2,
+      "topic": "You should rest",
+      "vocab": [
+        "should",
+        "rest",
+        "sleep"
+      ],
+      "target_language": "You should rest.",
+      "objective": "Give gentle advice."
+    },
+    {
+      "n": 3,
+      "topic": "You shouldn't...",
+      "vocab": [
+        "shouldn't",
+        "run",
+        "eat candy"
+      ],
+      "target_language": "You shouldn't eat too much candy.",
+      "objective": "Advice for health habits."
+    },
+    {
+      "n": 4,
+      "topic": "Care package",
+      "vocab": [
+        "get well",
+        "card",
+        "soup"
+      ],
+      "target_language": "Let's make a get-well card.",
+      "objective": "Create a care mission."
+    },
+    {
+      "n": 5,
+      "topic": "Healthy day",
+      "vocab": [
+        "should",
+        "because"
+      ],
+      "target_language": "You should ___ because ___.",
+      "objective": "Plan a healthy day routine."
+    }
+  ]
+}

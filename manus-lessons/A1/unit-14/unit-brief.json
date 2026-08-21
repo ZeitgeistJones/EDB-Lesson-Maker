@@ -1,0 +1,85 @@
+{
+  "unit": 14,
+  "slug": "shopping-fun",
+  "title": "Shopping Fun",
+  "world": "toy shop / supermarket",
+  "communicative_goal": "Shop with simple prices, wants, and polite requests.",
+  "recycled_language": [
+    "I want",
+    "please",
+    "thank you",
+    "I like"
+  ],
+  "new_language_focus": [
+    "how much",
+    "buy",
+    "pay",
+    "cheap",
+    "It's ___ dollars",
+    "Can I have ___?"
+  ],
+  "unit_end_capability": "Learner can buy something with How much? and Can I have…?",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "At the shop",
+      "vocab": [
+        "shop",
+        "buy",
+        "sell",
+        "toy",
+        "cart"
+      ],
+      "target_language": "I want to buy a ___.",
+      "objective": "Enter a shop and state a purchase want."
+    },
+    {
+      "n": 2,
+      "topic": "How much?",
+      "vocab": [
+        "how much",
+        "dollar",
+        "price",
+        "one",
+        "two",
+        "three"
+      ],
+      "target_language": "How much is it? — It's ___ dollars.",
+      "objective": "Ask and say simple prices."
+    },
+    {
+      "n": 3,
+      "topic": "Can I have…?",
+      "vocab": [
+        "can I have",
+        "please",
+        "here you are"
+      ],
+      "target_language": "Can I have a ___, please? — Here you are.",
+      "objective": "Practice shop request dialogues."
+    },
+    {
+      "n": 4,
+      "topic": "Shopping list mission",
+      "vocab": [
+        "list",
+        "find",
+        "put",
+        "pay"
+      ],
+      "target_language": "I need ___. Put it in the cart.",
+      "objective": "Complete a shopping list scavenger hunt."
+    },
+    {
+      "n": 5,
+      "topic": "Checkout champion",
+      "vocab": [
+        "pay",
+        "thank you",
+        "goodbye"
+      ],
+      "target_language": "How much? … Here you are. Thank you. Goodbye!",
+      "objective": "Run a full mini checkout roleplay."
+    }
+  ]
+}

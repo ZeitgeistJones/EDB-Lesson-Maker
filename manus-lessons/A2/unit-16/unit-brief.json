@@ -1,0 +1,75 @@
+{
+  "unit": 16,
+  "slug": "treasure-hunt",
+  "title": "Treasure Hunt",
+  "world": "island map",
+  "communicative_goal": "Directions plus past discovery language.",
+  "recycled_language": [
+    "turn left",
+    "went"
+  ],
+  "new_language_focus": [
+    "found",
+    "looked",
+    "dug",
+    "north",
+    "south"
+  ],
+  "unit_end_capability": "Learner can give directions and say We found ___.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Map skills",
+      "vocab": [
+        "map",
+        "key",
+        "path"
+      ],
+      "target_language": "Go straight. Turn left.",
+      "objective": "Review directions on a map."
+    },
+    {
+      "n": 2,
+      "topic": "We looked...",
+      "vocab": [
+        "looked",
+        "under",
+        "rock"
+      ],
+      "target_language": "We looked under the rock.",
+      "objective": "Search actions in past."
+    },
+    {
+      "n": 3,
+      "topic": "We found...",
+      "vocab": [
+        "found",
+        "key",
+        "clue"
+      ],
+      "target_language": "We found a clue!",
+      "objective": "Celebrate discoveries."
+    },
+    {
+      "n": 4,
+      "topic": "Team roles",
+      "vocab": [
+        "leader",
+        "helper",
+        "recorder"
+      ],
+      "target_language": "You go north. I will dig.",
+      "objective": "Assign roles on a hunt."
+    },
+    {
+      "n": 5,
+      "topic": "Treasure story",
+      "vocab": [
+        "finally",
+        "shared"
+      ],
+      "target_language": "Finally we found ___. We shared it.",
+      "objective": "Retell the hunt."
+    }
+  ]
+}

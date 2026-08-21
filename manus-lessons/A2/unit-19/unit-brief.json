@@ -1,0 +1,75 @@
+{
+  "unit": 19,
+  "slug": "community-fixers",
+  "title": "Community Fixers",
+  "world": "neighborhood repair day",
+  "communicative_goal": "Past problems solved with should and teamwork.",
+  "recycled_language": [
+    "should",
+    "help"
+  ],
+  "new_language_focus": [
+    "broken",
+    "fixed",
+    "together",
+    "problem"
+  ],
+  "unit_end_capability": "Learner can describe a problem and how we fixed it.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Something broke",
+      "vocab": [
+        "broken",
+        "bench",
+        "sign"
+      ],
+      "target_language": "The bench was broken.",
+      "objective": "Spot community problems."
+    },
+    {
+      "n": 2,
+      "topic": "We should fix it",
+      "vocab": [
+        "should",
+        "tools",
+        "paint"
+      ],
+      "target_language": "We should fix the sign.",
+      "objective": "Plan fixes."
+    },
+    {
+      "n": 3,
+      "topic": "We worked together",
+      "vocab": [
+        "together",
+        "team",
+        "shared"
+      ],
+      "target_language": "We worked together.",
+      "objective": "Teamwork language."
+    },
+    {
+      "n": 4,
+      "topic": "Before and after",
+      "vocab": [
+        "before",
+        "after",
+        "better"
+      ],
+      "target_language": "Before it was ___. After it is ___.",
+      "objective": "Compare results."
+    },
+    {
+      "n": 5,
+      "topic": "Fixers report",
+      "vocab": [
+        "fixed",
+        "because",
+        "proud"
+      ],
+      "target_language": "We fixed ___ because ___. We feel proud.",
+      "objective": "Report a project."
+    }
+  ]
+}

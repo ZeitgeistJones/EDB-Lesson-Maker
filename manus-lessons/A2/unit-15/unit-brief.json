@@ -1,0 +1,74 @@
+{
+  "unit": 15,
+  "slug": "weather-ahead",
+  "title": "Weather Ahead",
+  "world": "news weather desk",
+  "communicative_goal": "Future weather with going to and weather words.",
+  "recycled_language": [
+    "going to",
+    "rain"
+  ],
+  "new_language_focus": [
+    "cloudy",
+    "storm",
+    "sunny",
+    "windy",
+    "forecast"
+  ],
+  "unit_end_capability": "Learner can say It's going to ___ tomorrow.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Weather words",
+      "vocab": [
+        "storm",
+        "rainbow",
+        "lightning"
+      ],
+      "target_language": "It's stormy. / It's sunny.",
+      "objective": "Review weather adjectives."
+    },
+    {
+      "n": 2,
+      "topic": "Tomorrow's forecast",
+      "vocab": [
+        "going to rain",
+        "going to snow"
+      ],
+      "target_language": "It's going to rain tomorrow.",
+      "objective": "Predict weather."
+    },
+    {
+      "n": 3,
+      "topic": "Pack your bag",
+      "vocab": [
+        "umbrella",
+        "jacket",
+        "sunscreen"
+      ],
+      "target_language": "Take an umbrella because it's going to rain.",
+      "objective": "Match gear to forecast."
+    },
+    {
+      "n": 4,
+      "topic": "Plan change",
+      "vocab": [
+        "change",
+        "instead",
+        "indoor"
+      ],
+      "target_language": "We can't go outside. Let's ___ instead.",
+      "objective": "Adapt plans to weather."
+    },
+    {
+      "n": 5,
+      "topic": "Weather report",
+      "vocab": [
+        "reporter",
+        "map"
+      ],
+      "target_language": "On Saturday it's going to ___. On Sunday ___.",
+      "objective": "Present a weekend forecast."
+    }
+  ]
+}

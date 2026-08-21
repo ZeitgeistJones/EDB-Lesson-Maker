@@ -1,0 +1,4 @@
+QUALITY SELF-RATING: 9.1 / 10
+WHAT WAS REUSED: Established the Sunbeam School palette, rounded navy frame, four-character model sheet, Pip mascot, progress dots, action-chip treatment, and production-proof footer.
+WHAT REQUIRED CUSTOM WORK: Arrival/home-time split scene, greeting-versus-farewell door sort, bell route, wave circle, welcome-mat pair challenge, and wave-parade payoff.
+WHAT BECAME FASTER: The first lesson established named scene helpers, reusable character poses, task-panel spacing, and exact-board export naming for the following lessons.

@@ -1,0 +1,80 @@
+{
+  "unit": 1,
+  "slug": "hello-friends",
+  "title": "Hello, Friends!",
+  "world": "classroom welcome / first-day friends",
+  "communicative_goal": "Greet, introduce yourself, ask and say names, say goodbye.",
+  "recycled_language": [],
+  "new_language_focus": [
+    "hello",
+    "hi",
+    "my name is",
+    "what's your name",
+    "goodbye",
+    "nice to meet you"
+  ],
+  "unit_end_capability": "Learner can greet a peer, say their name, ask a peer's name, and say goodbye.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Hello and goodbye",
+      "vocab": [
+        "hello",
+        "hi",
+        "goodbye",
+        "bye",
+        "friend"
+      ],
+      "target_language": "Hello! / Hi! / Goodbye! / Bye!",
+      "objective": "Greet and leave politely in a classroom welcome scene."
+    },
+    {
+      "n": 2,
+      "topic": "My name is…",
+      "vocab": [
+        "name",
+        "I",
+        "am",
+        "my"
+      ],
+      "target_language": "My name is ___. / I'm ___.",
+      "objective": "Introduce yourself with a clear name sentence."
+    },
+    {
+      "n": 3,
+      "topic": "What's your name?",
+      "vocab": [
+        "what",
+        "your",
+        "name",
+        "ask"
+      ],
+      "target_language": "What's your name? — My name is ___.",
+      "objective": "Ask and answer name questions with a partner."
+    },
+    {
+      "n": 4,
+      "topic": "Nice to meet you",
+      "vocab": [
+        "nice",
+        "meet",
+        "you",
+        "too"
+      ],
+      "target_language": "Nice to meet you. / Nice to meet you, too.",
+      "objective": "Use meeting language in a short friend-introduction story."
+    },
+    {
+      "n": 5,
+      "topic": "Meet the class",
+      "vocab": [
+        "hello",
+        "name",
+        "friend",
+        "goodbye"
+      ],
+      "target_language": "Hello, I'm ___. What's your name? Nice to meet you. Goodbye!",
+      "objective": "Integrate greeting + name + goodbye in a class party mission."
+    }
+  ]
+}

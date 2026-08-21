@@ -1,0 +1,1517 @@
+{
+  "cefr": "A2",
+  "pages_per_lesson": 10,
+  "lessons_per_unit": 5,
+  "quality_benchmark": "A Day at the Beach (~9/10 visual/product/pedagogy)",
+  "units": [
+    {
+      "unit": 1,
+      "slug": "yesterday-fun",
+      "title": "Yesterday Fun",
+      "world": "playground memory album",
+      "communicative_goal": "Talk about what you did yesterday using past simple regular verbs.",
+      "recycled_language": [
+        "I like",
+        "play",
+        "with"
+      ],
+      "new_language_focus": [
+        "yesterday",
+        "played",
+        "walked",
+        "helped",
+        "watched"
+      ],
+      "unit_end_capability": "Learner can say I played/walked/watched yesterday.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "What did you do?",
+          "vocab": [
+            "yesterday",
+            "play",
+            "walk",
+            "watch"
+          ],
+          "target_language": "I played. / I walked. / I watched.",
+          "objective": "Name simple past actions from picture prompts."
+        },
+        {
+          "n": 2,
+          "topic": "After school",
+          "vocab": [
+            "helped",
+            "cleaned",
+            "cooked",
+            "studied"
+          ],
+          "target_language": "I helped my mom. / I studied English.",
+          "objective": "Describe after-school activities in the past."
+        },
+        {
+          "n": 3,
+          "topic": "Park day story",
+          "vocab": [
+            "kicked",
+            "jumped",
+            "laughed",
+            "played"
+          ],
+          "target_language": "We played soccer. / We laughed.",
+          "objective": "Follow a short story with regular past verbs."
+        },
+        {
+          "n": 4,
+          "topic": "My album",
+          "vocab": [
+            "visited",
+            "painted",
+            "started"
+          ],
+          "target_language": "Yesterday I visited ___. / I painted a ___.",
+          "objective": "Build a personal yesterday album with captions."
+        },
+        {
+          "n": 5,
+          "topic": "Tell your day",
+          "vocab": [
+            "yesterday",
+            "first",
+            "then",
+            "finally"
+          ],
+          "target_language": "Yesterday I ___. Then I ___. Finally I ___.",
+          "objective": "Retell yesterday with sequence words."
+        }
+      ]
+    },
+    {
+      "unit": 2,
+      "slug": "last-weekend",
+      "title": "Last Weekend",
+      "world": "weekend adventure map",
+      "communicative_goal": "Use common irregular past verbs for a weekend story.",
+      "recycled_language": [
+        "yesterday",
+        "I played"
+      ],
+      "new_language_focus": [
+        "went",
+        "had",
+        "saw",
+        "ate",
+        "made"
+      ],
+      "unit_end_capability": "Learner can say I went/had/saw on the weekend.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Where did you go?",
+          "vocab": [
+            "went",
+            "park",
+            "zoo",
+            "store"
+          ],
+          "target_language": "I went to the ___.",
+          "objective": "Match places to went sentences."
+        },
+        {
+          "n": 2,
+          "topic": "What did you have?",
+          "vocab": [
+            "had",
+            "fun",
+            "lunch",
+            "party"
+          ],
+          "target_language": "I had fun. / I had pizza.",
+          "objective": "Talk about experiences with had."
+        },
+        {
+          "n": 3,
+          "topic": "What did you see?",
+          "vocab": [
+            "saw",
+            "movie",
+            "friend",
+            "rainbow"
+          ],
+          "target_language": "I saw a ___. / Did you see ___?",
+          "objective": "Ask and answer with saw."
+        },
+        {
+          "n": 4,
+          "topic": "Weekend food",
+          "vocab": [
+            "ate",
+            "breakfast",
+            "snack",
+            "made"
+          ],
+          "target_language": "I ate ___. / I made a ___.",
+          "objective": "Describe food with ate/made."
+        },
+        {
+          "n": 5,
+          "topic": "Weekend map",
+          "vocab": [
+            "went",
+            "saw",
+            "had",
+            "ate"
+          ],
+          "target_language": "On Saturday I went ___. On Sunday I saw ___.",
+          "objective": "Present a two-day weekend map."
+        }
+      ]
+    },
+    {
+      "unit": 3,
+      "slug": "compare-champs",
+      "title": "Compare Champs",
+      "world": "sports stats board",
+      "communicative_goal": "Compare people and things with comparatives.",
+      "recycled_language": [
+        "big",
+        "small",
+        "fast"
+      ],
+      "new_language_focus": [
+        "bigger",
+        "smaller",
+        "faster",
+        "than",
+        "better"
+      ],
+      "unit_end_capability": "Learner can compare with ___-er than.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Bigger or smaller?",
+          "vocab": [
+            "bigger",
+            "smaller",
+            "than"
+          ],
+          "target_language": "The elephant is bigger than the cat.",
+          "objective": "Compare size with animals."
+        },
+        {
+          "n": 2,
+          "topic": "Faster runners",
+          "vocab": [
+            "faster",
+            "slower",
+            "runner"
+          ],
+          "target_language": "Tom is faster than Sam.",
+          "objective": "Compare speed in a race scene."
+        },
+        {
+          "n": 3,
+          "topic": "Better at...",
+          "vocab": [
+            "better",
+            "worse",
+            "at"
+          ],
+          "target_language": "She is better at math than me.",
+          "objective": "Compare skills lightly."
+        },
+        {
+          "n": 4,
+          "topic": "Pick the champ",
+          "vocab": [
+            "stronger",
+            "taller",
+            "younger"
+          ],
+          "target_language": "Who is taller? ___ is taller than ___.",
+          "objective": "Vote using comparatives."
+        },
+        {
+          "n": 5,
+          "topic": "Champion card",
+          "vocab": [
+            "than",
+            "because"
+          ],
+          "target_language": "My hero is ___ because they are ___ than ___.",
+          "objective": "Present a favorite with reasons."
+        }
+      ]
+    },
+    {
+      "unit": 4,
+      "slug": "best-ever",
+      "title": "Best Ever!",
+      "world": "award show stage",
+      "communicative_goal": "Use superlatives lightly for favorites.",
+      "recycled_language": [
+        "better",
+        "than"
+      ],
+      "new_language_focus": [
+        "the best",
+        "the biggest",
+        "the fastest",
+        "favorite"
+      ],
+      "unit_end_capability": "Learner can say the best/biggest/fastest.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "The biggest",
+          "vocab": [
+            "biggest",
+            "smallest",
+            "in"
+          ],
+          "target_language": "It is the biggest ___ in the world.",
+          "objective": "Explore size superlatives."
+        },
+        {
+          "n": 2,
+          "topic": "The fastest",
+          "vocab": [
+            "fastest",
+            "slowest",
+            "race"
+          ],
+          "target_language": "He is the fastest runner.",
+          "objective": "Award fastest characters."
+        },
+        {
+          "n": 3,
+          "topic": "Best food",
+          "vocab": [
+            "best",
+            "worst",
+            "tasty"
+          ],
+          "target_language": "This is the best pizza!",
+          "objective": "Rank foods with opinion language."
+        },
+        {
+          "n": 4,
+          "topic": "Class awards",
+          "vocab": [
+            "funniest",
+            "kindest",
+            "cleverest"
+          ],
+          "target_language": "She is the kindest friend.",
+          "objective": "Give gentle class superlative awards."
+        },
+        {
+          "n": 5,
+          "topic": "My best day",
+          "vocab": [
+            "best",
+            "because",
+            "ever"
+          ],
+          "target_language": "The best day was ___ because ___.",
+          "objective": "Tell a best-day story."
+        }
+      ]
+    },
+    {
+      "unit": 5,
+      "slug": "going-to-plans",
+      "title": "Going To Plans",
+      "world": "calendar wall",
+      "communicative_goal": "Talk about near-future plans with going to.",
+      "recycled_language": [
+        "tomorrow",
+        "next"
+      ],
+      "new_language_focus": [
+        "going to",
+        "visit",
+        "make",
+        "learn"
+      ],
+      "unit_end_capability": "Learner can say I'm going to ___ tomorrow.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Tomorrow plans",
+          "vocab": [
+            "tomorrow",
+            "going to"
+          ],
+          "target_language": "I'm going to play soccer tomorrow.",
+          "objective": "Match calendar icons to plans."
+        },
+        {
+          "n": 2,
+          "topic": "Weekend plans",
+          "vocab": [
+            "visit",
+            "grandma",
+            "beach"
+          ],
+          "target_language": "We are going to visit ___.",
+          "objective": "Plan a family weekend."
+        },
+        {
+          "n": 3,
+          "topic": "Project time",
+          "vocab": [
+            "make",
+            "build",
+            "draw"
+          ],
+          "target_language": "I'm going to make a ___.",
+          "objective": "Choose a maker project plan."
+        },
+        {
+          "n": 4,
+          "topic": "Party prep",
+          "vocab": [
+            "buy",
+            "cook",
+            "invite"
+          ],
+          "target_language": "I'm going to buy ___. / She's going to cook ___.",
+          "objective": "Coordinate a party prep list."
+        },
+        {
+          "n": 5,
+          "topic": "Plan poster",
+          "vocab": [
+            "going to",
+            "because"
+          ],
+          "target_language": "Next week I'm going to ___. I'm excited because ___.",
+          "objective": "Present a plan poster."
+        }
+      ]
+    },
+    {
+      "unit": 6,
+      "slug": "count-much",
+      "title": "Count & Much",
+      "world": "kitchen market",
+      "communicative_goal": "Contrast countable and uncountable nouns lightly.",
+      "recycled_language": [
+        "some",
+        "a",
+        "apple"
+      ],
+      "new_language_focus": [
+        "many",
+        "much",
+        "some",
+        "a bottle of",
+        "a bag of"
+      ],
+      "unit_end_capability": "Learner can use many/much/some with food.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Many apples",
+          "vocab": [
+            "many",
+            "apples",
+            "bananas"
+          ],
+          "target_language": "How many apples? — There are many.",
+          "objective": "Count countable snacks."
+        },
+        {
+          "n": 2,
+          "topic": "Much water",
+          "vocab": [
+            "much",
+            "water",
+            "milk",
+            "juice"
+          ],
+          "target_language": "How much water? — Not much.",
+          "objective": "Talk about liquids."
+        },
+        {
+          "n": 3,
+          "topic": "Some or a?",
+          "vocab": [
+            "some",
+            "rice",
+            "bread",
+            "egg"
+          ],
+          "target_language": "Some rice / an egg / a sandwich",
+          "objective": "Sort some vs a/an."
+        },
+        {
+          "n": 4,
+          "topic": "Shopping list",
+          "vocab": [
+            "bottle of",
+            "bag of",
+            "box of"
+          ],
+          "target_language": "A bottle of juice / a bag of rice",
+          "objective": "Write a mixed shopping list."
+        },
+        {
+          "n": 5,
+          "topic": "Picnic pack",
+          "vocab": [
+            "many",
+            "much",
+            "some"
+          ],
+          "target_language": "We need many ___. We don't need much ___.",
+          "objective": "Pack a picnic with quantities."
+        }
+      ]
+    },
+    {
+      "unit": 7,
+      "slug": "think-prefer",
+      "title": "Think & Prefer",
+      "world": "café chat booth",
+      "communicative_goal": "Give simple opinions and preferences.",
+      "recycled_language": [
+        "I like",
+        "better"
+      ],
+      "new_language_focus": [
+        "I think",
+        "I prefer",
+        "because",
+        "delicious"
+      ],
+      "unit_end_capability": "Learner can say I think/prefer ___ because ___.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "I think...",
+          "vocab": [
+            "think",
+            "fun",
+            "boring",
+            "cool"
+          ],
+          "target_language": "I think this game is fun.",
+          "objective": "Rate activities with think."
+        },
+        {
+          "n": 2,
+          "topic": "I prefer...",
+          "vocab": [
+            "prefer",
+            "pizza",
+            "pasta"
+          ],
+          "target_language": "I prefer pizza to pasta.",
+          "objective": "Compare preferences."
+        },
+        {
+          "n": 3,
+          "topic": "Because...",
+          "vocab": [
+            "because",
+            "tasty",
+            "easy",
+            "scary"
+          ],
+          "target_language": "I like ___ because it is ___.",
+          "objective": "Give short reasons."
+        },
+        {
+          "n": 4,
+          "topic": "Debate club",
+          "vocab": [
+            "agree",
+            "disagree",
+            "maybe"
+          ],
+          "target_language": "I agree. / I disagree. / Maybe.",
+          "objective": "Practice polite disagreement."
+        },
+        {
+          "n": 5,
+          "topic": "Review show",
+          "vocab": [
+            "think",
+            "prefer",
+            "because"
+          ],
+          "target_language": "I think ___. I prefer ___. Because ___.",
+          "objective": "Record a mini review."
+        }
+      ]
+    },
+    {
+      "unit": 8,
+      "slug": "past-questions",
+      "title": "Past Questions",
+      "world": "detective desk",
+      "communicative_goal": "Ask Did you...? and answer with short past answers.",
+      "recycled_language": [
+        "did",
+        "yesterday"
+      ],
+      "new_language_focus": [
+        "Did you",
+        "Yes, I did",
+        "No, I didn't",
+        "What did"
+      ],
+      "unit_end_capability": "Learner can ask/answer Did you ___?",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Did you play?",
+          "vocab": [
+            "Did you",
+            "play",
+            "watch"
+          ],
+          "target_language": "Did you play? — Yes, I did. / No, I didn't.",
+          "objective": "Yes/no past questions."
+        },
+        {
+          "n": 2,
+          "topic": "What did you eat?",
+          "vocab": [
+            "What did",
+            "eat",
+            "drink"
+          ],
+          "target_language": "What did you eat? — I ate ___.",
+          "objective": "Wh- past questions."
+        },
+        {
+          "n": 3,
+          "topic": "Mystery clues",
+          "vocab": [
+            "find",
+            "see",
+            "hear"
+          ],
+          "target_language": "Did you see ___? / I heard ___.",
+          "objective": "Solve clues with past Q&A."
+        },
+        {
+          "n": 4,
+          "topic": "Interview time",
+          "vocab": [
+            "ask",
+            "answer",
+            "partner"
+          ],
+          "target_language": "Did you ___ yesterday?",
+          "objective": "Interview a partner."
+        },
+        {
+          "n": 5,
+          "topic": "Case closed",
+          "vocab": [
+            "first",
+            "then",
+            "finally"
+          ],
+          "target_language": "First I asked ___. Then I found ___.",
+          "objective": "Present a solved mystery."
+        }
+      ]
+    },
+    {
+      "unit": 9,
+      "slug": "feel-should",
+      "title": "Feel Better",
+      "world": "clinic comic",
+      "communicative_goal": "Talk about feelings and light should/shouldn't advice.",
+      "recycled_language": [
+        "feel",
+        "sick",
+        "tired"
+      ],
+      "new_language_focus": [
+        "should",
+        "shouldn't",
+        "rest",
+        "drink water"
+      ],
+      "unit_end_capability": "Learner can say You should ___ / shouldn't ___.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "How do you feel?",
+          "vocab": [
+            "headache",
+            "fever",
+            "cough"
+          ],
+          "target_language": "I feel sick. / I have a headache.",
+          "objective": "Name symptoms."
+        },
+        {
+          "n": 2,
+          "topic": "You should rest",
+          "vocab": [
+            "should",
+            "rest",
+            "sleep"
+          ],
+          "target_language": "You should rest.",
+          "objective": "Give gentle advice."
+        },
+        {
+          "n": 3,
+          "topic": "You shouldn't...",
+          "vocab": [
+            "shouldn't",
+            "run",
+            "eat candy"
+          ],
+          "target_language": "You shouldn't eat too much candy.",
+          "objective": "Advice for health habits."
+        },
+        {
+          "n": 4,
+          "topic": "Care package",
+          "vocab": [
+            "get well",
+            "card",
+            "soup"
+          ],
+          "target_language": "Let's make a get-well card.",
+          "objective": "Create a care mission."
+        },
+        {
+          "n": 5,
+          "topic": "Healthy day",
+          "vocab": [
+            "should",
+            "because"
+          ],
+          "target_language": "You should ___ because ___.",
+          "objective": "Plan a healthy day routine."
+        }
+      ]
+    },
+    {
+      "unit": 10,
+      "slug": "travel-tales",
+      "title": "Travel Tales",
+      "world": "airport story gate",
+      "communicative_goal": "Describe a past trip with there was/were and travel verbs.",
+      "recycled_language": [
+        "went",
+        "saw"
+      ],
+      "new_language_focus": [
+        "airport",
+        "ticket",
+        "there was",
+        "there were"
+      ],
+      "unit_end_capability": "Learner can describe a trip with there was/were.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "At the airport",
+          "vocab": [
+            "passport",
+            "gate",
+            "luggage"
+          ],
+          "target_language": "We went to the airport.",
+          "objective": "Airport vocabulary in past context."
+        },
+        {
+          "n": 2,
+          "topic": "There was...",
+          "vocab": [
+            "there was",
+            "hotel",
+            "pool"
+          ],
+          "target_language": "There was a big pool.",
+          "objective": "Use there was with singular."
+        },
+        {
+          "n": 3,
+          "topic": "There were...",
+          "vocab": [
+            "there were",
+            "mountains",
+            "shops"
+          ],
+          "target_language": "There were many shops.",
+          "objective": "Use there were with plural."
+        },
+        {
+          "n": 4,
+          "topic": "Trip problems",
+          "vocab": [
+            "lost",
+            "late",
+            "help"
+          ],
+          "target_language": "There was a problem. We asked for help.",
+          "objective": "Solve a travel problem story."
+        },
+        {
+          "n": 5,
+          "topic": "Postcard home",
+          "vocab": [
+            "visited",
+            "favorite",
+            "photo"
+          ],
+          "target_language": "We visited ___. There were ___.",
+          "objective": "Write a trip postcard."
+        }
+      ]
+    },
+    {
+      "unit": 11,
+      "slug": "story-sequence",
+      "title": "Story Sequence",
+      "world": "storyboard studio",
+      "communicative_goal": "Narrate stories with first, then, next, finally.",
+      "recycled_language": [
+        "went",
+        "saw"
+      ],
+      "new_language_focus": [
+        "first",
+        "then",
+        "next",
+        "finally",
+        "suddenly"
+      ],
+      "unit_end_capability": "Learner can retell with sequence markers.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "First...",
+          "vocab": [
+            "first",
+            "start",
+            "begin"
+          ],
+          "target_language": "First, the hero woke up.",
+          "objective": "Open stories with first."
+        },
+        {
+          "n": 2,
+          "topic": "Then and next",
+          "vocab": [
+            "then",
+            "next",
+            "after that"
+          ],
+          "target_language": "Then they went to ___. Next, ___ happened.",
+          "objective": "Chain events."
+        },
+        {
+          "n": 3,
+          "topic": "Suddenly!",
+          "vocab": [
+            "suddenly",
+            "surprise"
+          ],
+          "target_language": "Suddenly, a ___ appeared!",
+          "objective": "Add a twist moment."
+        },
+        {
+          "n": 4,
+          "topic": "Finally",
+          "vocab": [
+            "finally",
+            "end",
+            "happy"
+          ],
+          "target_language": "Finally, they found the treasure.",
+          "objective": "Close stories well."
+        },
+        {
+          "n": 5,
+          "topic": "My comic",
+          "vocab": [
+            "first",
+            "finally"
+          ],
+          "target_language": "First ___. Then ___. Finally ___.",
+          "objective": "Publish a four-panel comic story."
+        }
+      ]
+    },
+    {
+      "unit": 12,
+      "slug": "movie-night",
+      "title": "Movie Night",
+      "world": "home cinema",
+      "communicative_goal": "Combine past narrative and opinions about films.",
+      "recycled_language": [
+        "watched",
+        "think"
+      ],
+      "new_language_focus": [
+        "movie",
+        "character",
+        "scary",
+        "funny",
+        "boring"
+      ],
+      "unit_end_capability": "Learner can say I watched... It was...",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Pick a movie",
+          "vocab": [
+            "action",
+            "cartoon",
+            "comedy"
+          ],
+          "target_language": "Let's watch a ___.",
+          "objective": "Choose genres."
+        },
+        {
+          "n": 2,
+          "topic": "I watched...",
+          "vocab": [
+            "watched",
+            "last night"
+          ],
+          "target_language": "I watched ___ last night.",
+          "objective": "Say what you watched."
+        },
+        {
+          "n": 3,
+          "topic": "It was...",
+          "vocab": [
+            "funny",
+            "exciting",
+            "scary"
+          ],
+          "target_language": "It was funny/exciting.",
+          "objective": "Describe movies with adjectives."
+        },
+        {
+          "n": 4,
+          "topic": "Favorite character",
+          "vocab": [
+            "character",
+            "hero",
+            "villain"
+          ],
+          "target_language": "My favorite character is ___.",
+          "objective": "Talk about characters."
+        },
+        {
+          "n": 5,
+          "topic": "Movie review",
+          "vocab": [
+            "think",
+            "because",
+            "star rating"
+          ],
+          "target_language": "I think it was ___ because ___.",
+          "objective": "Write a kid movie review."
+        }
+      ]
+    },
+    {
+      "unit": 13,
+      "slug": "cooking-show",
+      "title": "Cooking Show",
+      "world": "TV kitchen set",
+      "communicative_goal": "Follow recipes with imperatives and some/any.",
+      "recycled_language": [
+        "make",
+        "some"
+      ],
+      "new_language_focus": [
+        "mix",
+        "add",
+        "cut",
+        "any",
+        "some"
+      ],
+      "unit_end_capability": "Learner can follow Mix/Add/Cut instructions.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Kitchen verbs",
+          "vocab": [
+            "mix",
+            "stir",
+            "pour"
+          ],
+          "target_language": "Mix the ___. / Stir slowly.",
+          "objective": "Learn cooking imperatives."
+        },
+        {
+          "n": 2,
+          "topic": "Some ingredients",
+          "vocab": [
+            "some",
+            "flour",
+            "sugar"
+          ],
+          "target_language": "Add some ___.",
+          "objective": "Use some with ingredients."
+        },
+        {
+          "n": 3,
+          "topic": "Any questions?",
+          "vocab": [
+            "any",
+            "salt",
+            "pepper"
+          ],
+          "target_language": "Do we have any ___?",
+          "objective": "Ask about ingredients."
+        },
+        {
+          "n": 4,
+          "topic": "Recipe steps",
+          "vocab": [
+            "first",
+            "next",
+            "then"
+          ],
+          "target_language": "First, cut ___. Next, mix ___.",
+          "objective": "Sequence a recipe."
+        },
+        {
+          "n": 5,
+          "topic": "Cook-off",
+          "vocab": [
+            "delicious",
+            "team"
+          ],
+          "target_language": "Our dish is delicious because ___.",
+          "objective": "Present a finished dish."
+        }
+      ]
+    },
+    {
+      "unit": 14,
+      "slug": "dream-room",
+      "title": "Dream Room",
+      "world": "design studio",
+      "communicative_goal": "Describe rooms with there was/were and prepositions.",
+      "recycled_language": [
+        "there is",
+        "in"
+      ],
+      "new_language_focus": [
+        "there was",
+        "there were",
+        "between",
+        "behind"
+      ],
+      "unit_end_capability": "Learner can describe a room with there was/were.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "My room",
+          "vocab": [
+            "bed",
+            "desk",
+            "lamp"
+          ],
+          "target_language": "There is a bed. / There are books.",
+          "objective": "Present tense room scan."
+        },
+        {
+          "n": 2,
+          "topic": "Old photo",
+          "vocab": [
+            "there was",
+            "there were"
+          ],
+          "target_language": "There was a small desk.",
+          "objective": "Past room description."
+        },
+        {
+          "n": 3,
+          "topic": "Where was it?",
+          "vocab": [
+            "behind",
+            "under",
+            "next to"
+          ],
+          "target_language": "The cat was behind the sofa.",
+          "objective": "Prepositions in past."
+        },
+        {
+          "n": 4,
+          "topic": "Redesign",
+          "vocab": [
+            "move",
+            "add",
+            "remove"
+          ],
+          "target_language": "Let's move the ___. / Add a ___.",
+          "objective": "Plan a room makeover."
+        },
+        {
+          "n": 5,
+          "topic": "Dream room tour",
+          "vocab": [
+            "favorite",
+            "because"
+          ],
+          "target_language": "In my dream room there is ___. There are ___.",
+          "objective": "Tour a dream room."
+        }
+      ]
+    },
+    {
+      "unit": 15,
+      "slug": "weather-ahead",
+      "title": "Weather Ahead",
+      "world": "news weather desk",
+      "communicative_goal": "Future weather with going to and weather words.",
+      "recycled_language": [
+        "going to",
+        "rain"
+      ],
+      "new_language_focus": [
+        "cloudy",
+        "storm",
+        "sunny",
+        "windy",
+        "forecast"
+      ],
+      "unit_end_capability": "Learner can say It's going to ___ tomorrow.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Weather words",
+          "vocab": [
+            "storm",
+            "rainbow",
+            "lightning"
+          ],
+          "target_language": "It's stormy. / It's sunny.",
+          "objective": "Review weather adjectives."
+        },
+        {
+          "n": 2,
+          "topic": "Tomorrow's forecast",
+          "vocab": [
+            "going to rain",
+            "going to snow"
+          ],
+          "target_language": "It's going to rain tomorrow.",
+          "objective": "Predict weather."
+        },
+        {
+          "n": 3,
+          "topic": "Pack your bag",
+          "vocab": [
+            "umbrella",
+            "jacket",
+            "sunscreen"
+          ],
+          "target_language": "Take an umbrella because it's going to rain.",
+          "objective": "Match gear to forecast."
+        },
+        {
+          "n": 4,
+          "topic": "Plan change",
+          "vocab": [
+            "change",
+            "instead",
+            "indoor"
+          ],
+          "target_language": "We can't go outside. Let's ___ instead.",
+          "objective": "Adapt plans to weather."
+        },
+        {
+          "n": 5,
+          "topic": "Weather report",
+          "vocab": [
+            "reporter",
+            "map"
+          ],
+          "target_language": "On Saturday it's going to ___. On Sunday ___.",
+          "objective": "Present a weekend forecast."
+        }
+      ]
+    },
+    {
+      "unit": 16,
+      "slug": "treasure-hunt",
+      "title": "Treasure Hunt",
+      "world": "island map",
+      "communicative_goal": "Directions plus past discovery language.",
+      "recycled_language": [
+        "turn left",
+        "went"
+      ],
+      "new_language_focus": [
+        "found",
+        "looked",
+        "dug",
+        "north",
+        "south"
+      ],
+      "unit_end_capability": "Learner can give directions and say We found ___.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Map skills",
+          "vocab": [
+            "map",
+            "key",
+            "path"
+          ],
+          "target_language": "Go straight. Turn left.",
+          "objective": "Review directions on a map."
+        },
+        {
+          "n": 2,
+          "topic": "We looked...",
+          "vocab": [
+            "looked",
+            "under",
+            "rock"
+          ],
+          "target_language": "We looked under the rock.",
+          "objective": "Search actions in past."
+        },
+        {
+          "n": 3,
+          "topic": "We found...",
+          "vocab": [
+            "found",
+            "key",
+            "clue"
+          ],
+          "target_language": "We found a clue!",
+          "objective": "Celebrate discoveries."
+        },
+        {
+          "n": 4,
+          "topic": "Team roles",
+          "vocab": [
+            "leader",
+            "helper",
+            "recorder"
+          ],
+          "target_language": "You go north. I will dig.",
+          "objective": "Assign roles on a hunt."
+        },
+        {
+          "n": 5,
+          "topic": "Treasure story",
+          "vocab": [
+            "finally",
+            "shared"
+          ],
+          "target_language": "Finally we found ___. We shared it.",
+          "objective": "Retell the hunt."
+        }
+      ]
+    },
+    {
+      "unit": 17,
+      "slug": "talent-show",
+      "title": "Talent Show",
+      "world": "school stage",
+      "communicative_goal": "Can/could lightly plus comparatives for talents.",
+      "recycled_language": [
+        "can",
+        "better"
+      ],
+      "new_language_focus": [
+        "could",
+        "when I was",
+        "practice",
+        "audience"
+      ],
+      "unit_end_capability": "Learner can say I can/could ___ and compare talents.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "I can...",
+          "vocab": [
+            "sing",
+            "dance",
+            "juggle"
+          ],
+          "target_language": "I can sing. / Can you dance?",
+          "objective": "Name talents with can."
+        },
+        {
+          "n": 2,
+          "topic": "When I was little",
+          "vocab": [
+            "could",
+            "couldn't"
+          ],
+          "target_language": "When I was five, I couldn't ride a bike.",
+          "objective": "Could for past ability."
+        },
+        {
+          "n": 3,
+          "topic": "Practice makes...",
+          "vocab": [
+            "practice",
+            "better",
+            "every day"
+          ],
+          "target_language": "I practice every day. I'm better now.",
+          "objective": "Link practice to comparatives."
+        },
+        {
+          "n": 4,
+          "topic": "Audition day",
+          "vocab": [
+            "nervous",
+            "brave",
+            "try"
+          ],
+          "target_language": "I was nervous but I tried.",
+          "objective": "Tell an audition story."
+        },
+        {
+          "n": 5,
+          "topic": "Show time",
+          "vocab": [
+            "audience",
+            "applause"
+          ],
+          "target_language": "We can ___. We are better than yesterday!",
+          "objective": "Perform a talent intro."
+        }
+      ]
+    },
+    {
+      "unit": 18,
+      "slug": "time-capsule",
+      "title": "Time Capsule",
+      "world": "museum future box",
+      "communicative_goal": "Mix past memories and future plans.",
+      "recycled_language": [
+        "going to",
+        "went"
+      ],
+      "new_language_focus": [
+        "remember",
+        "future",
+        "hope",
+        "will (learn)"
+      ],
+      "unit_end_capability": "Learner can mix I went... and I'm going to...",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Remember when",
+          "vocab": [
+            "remember",
+            "last year"
+          ],
+          "target_language": "I remember when we went to ___.",
+          "objective": "Share a memory."
+        },
+        {
+          "n": 2,
+          "topic": "In the future",
+          "vocab": [
+            "hope",
+            "learn",
+            "visit"
+          ],
+          "target_language": "I hope to visit ___.",
+          "objective": "Light hope/wish language."
+        },
+        {
+          "n": 3,
+          "topic": "Capsule items",
+          "vocab": [
+            "photo",
+            "letter",
+            "toy"
+          ],
+          "target_language": "I put a ___ in the capsule.",
+          "objective": "Choose capsule objects."
+        },
+        {
+          "n": 4,
+          "topic": "Open in 10 years",
+          "vocab": [
+            "message",
+            "dear future me"
+          ],
+          "target_language": "Dear future me, I am going to ___.",
+          "objective": "Write a future letter."
+        },
+        {
+          "n": 5,
+          "topic": "Capsule ceremony",
+          "vocab": [
+            "past",
+            "future"
+          ],
+          "target_language": "Last year I ___. Next year I'm going to ___.",
+          "objective": "Present past + future blend."
+        }
+      ]
+    },
+    {
+      "unit": 19,
+      "slug": "community-fixers",
+      "title": "Community Fixers",
+      "world": "neighborhood repair day",
+      "communicative_goal": "Past problems solved with should and teamwork.",
+      "recycled_language": [
+        "should",
+        "help"
+      ],
+      "new_language_focus": [
+        "broken",
+        "fixed",
+        "together",
+        "problem"
+      ],
+      "unit_end_capability": "Learner can describe a problem and how we fixed it.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Something broke",
+          "vocab": [
+            "broken",
+            "bench",
+            "sign"
+          ],
+          "target_language": "The bench was broken.",
+          "objective": "Spot community problems."
+        },
+        {
+          "n": 2,
+          "topic": "We should fix it",
+          "vocab": [
+            "should",
+            "tools",
+            "paint"
+          ],
+          "target_language": "We should fix the sign.",
+          "objective": "Plan fixes."
+        },
+        {
+          "n": 3,
+          "topic": "We worked together",
+          "vocab": [
+            "together",
+            "team",
+            "shared"
+          ],
+          "target_language": "We worked together.",
+          "objective": "Teamwork language."
+        },
+        {
+          "n": 4,
+          "topic": "Before and after",
+          "vocab": [
+            "before",
+            "after",
+            "better"
+          ],
+          "target_language": "Before it was ___. After it is ___.",
+          "objective": "Compare results."
+        },
+        {
+          "n": 5,
+          "topic": "Fixers report",
+          "vocab": [
+            "fixed",
+            "because",
+            "proud"
+          ],
+          "target_language": "We fixed ___ because ___. We feel proud.",
+          "objective": "Report a project."
+        }
+      ]
+    },
+    {
+      "unit": 20,
+      "slug": "a2-celebration",
+      "title": "A2 Celebration",
+      "world": "festival grounds",
+      "communicative_goal": "Review A2 threads across a party mission.",
+      "recycled_language": [
+        "past",
+        "going to",
+        "think"
+      ],
+      "new_language_focus": [
+        "review",
+        "celebrate",
+        "invite",
+        "thank you"
+      ],
+      "unit_end_capability": "Learner can use mixed A2 language in a party scenario.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Invitations",
+          "vocab": [
+            "invite",
+            "going to come",
+            "party"
+          ],
+          "target_language": "I'm going to have a party. Can you come?",
+          "objective": "Send invitations."
+        },
+        {
+          "n": 2,
+          "topic": "What we did last time",
+          "vocab": [
+            "last time",
+            "played",
+            "ate"
+          ],
+          "target_language": "Last time we played ___.",
+          "objective": "Recall a past event."
+        },
+        {
+          "n": 3,
+          "topic": "Better party plans",
+          "vocab": [
+            "better",
+            "more",
+            "should"
+          ],
+          "target_language": "This party should be better. We need more ___.",
+          "objective": "Improve plans with comparatives/should."
+        },
+        {
+          "n": 4,
+          "topic": "Prep teams",
+          "vocab": [
+            "some",
+            "many",
+            "make"
+          ],
+          "target_language": "Team A makes ___. Team B buys many ___.",
+          "objective": "Coordinate prep."
+        },
+        {
+          "n": 5,
+          "topic": "Celebration show",
+          "vocab": [
+            "thank you",
+            "favorite",
+            "next time"
+          ],
+          "target_language": "Thank you! My favorite part was ___. Next time I'm going to ___.",
+          "objective": "Close the A2 arc with a celebration."
+        }
+      ]
+    }
+  ]
+}

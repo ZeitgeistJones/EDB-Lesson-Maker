@@ -1,0 +1,76 @@
+{
+  "unit": 3,
+  "slug": "compare-champs",
+  "title": "Compare Champs",
+  "world": "sports stats board",
+  "communicative_goal": "Compare people and things with comparatives.",
+  "recycled_language": [
+    "big",
+    "small",
+    "fast"
+  ],
+  "new_language_focus": [
+    "bigger",
+    "smaller",
+    "faster",
+    "than",
+    "better"
+  ],
+  "unit_end_capability": "Learner can compare with ___-er than.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Bigger or smaller?",
+      "vocab": [
+        "bigger",
+        "smaller",
+        "than"
+      ],
+      "target_language": "The elephant is bigger than the cat.",
+      "objective": "Compare size with animals."
+    },
+    {
+      "n": 2,
+      "topic": "Faster runners",
+      "vocab": [
+        "faster",
+        "slower",
+        "runner"
+      ],
+      "target_language": "Tom is faster than Sam.",
+      "objective": "Compare speed in a race scene."
+    },
+    {
+      "n": 3,
+      "topic": "Better at...",
+      "vocab": [
+        "better",
+        "worse",
+        "at"
+      ],
+      "target_language": "She is better at math than me.",
+      "objective": "Compare skills lightly."
+    },
+    {
+      "n": 4,
+      "topic": "Pick the champ",
+      "vocab": [
+        "stronger",
+        "taller",
+        "younger"
+      ],
+      "target_language": "Who is taller? ___ is taller than ___.",
+      "objective": "Vote using comparatives."
+    },
+    {
+      "n": 5,
+      "topic": "Champion card",
+      "vocab": [
+        "than",
+        "because"
+      ],
+      "target_language": "My hero is ___ because they are ___ than ___.",
+      "objective": "Present a favorite with reasons."
+    }
+  ]
+}

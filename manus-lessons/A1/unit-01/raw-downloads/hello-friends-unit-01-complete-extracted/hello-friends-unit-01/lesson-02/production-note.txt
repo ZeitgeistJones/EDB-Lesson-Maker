@@ -1,0 +1,4 @@
+QUALITY SELF-RATING: 9.2 / 10
+WHAT WAS REUSED: The approved visual system, character models, objective ribbon, task-panel grammar, school-room scene, title-safe ribbon, and clean rounded name-token spec.
+WHAT REQUIRED CUSTOM WORK: Lost-name-tag mystery, sentence ribbon, I am → I’m transformation, mirror model, tag workshop, photo booth, welcome line, and name gallery.
+WHAT BECAME FASTER: Lesson 1’s verified layout components and title-safe scene treatment were reused without rework; the lesson-specific work concentrated on name sentences and personal-tag production.

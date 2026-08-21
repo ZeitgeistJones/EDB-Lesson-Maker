@@ -1,0 +1,83 @@
+{
+  "unit": 10,
+  "slug": "town-and-places",
+  "title": "Town & Places",
+  "world": "friendly town map",
+  "communicative_goal": "Name town places and say where you go / want to go.",
+  "recycled_language": [
+    "I want",
+    "where is",
+    "let's"
+  ],
+  "new_language_focus": [
+    "park",
+    "shop",
+    "school",
+    "library",
+    "hospital",
+    "Let's go to the ___",
+    "Where's the ___?"
+  ],
+  "unit_end_capability": "Learner can name places and propose going somewhere.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Town map",
+      "vocab": [
+        "park",
+        "shop",
+        "school",
+        "library",
+        "hospital"
+      ],
+      "target_language": "This is the park/shop…",
+      "objective": "Label places on a town map."
+    },
+    {
+      "n": 2,
+      "topic": "Where's the…?",
+      "vocab": [
+        "where",
+        "next to",
+        "across from"
+      ],
+      "target_language": "Where's the ___? — It's next to the ___.",
+      "objective": "Ask for places with simple location phrases."
+    },
+    {
+      "n": 3,
+      "topic": "Let's go!",
+      "vocab": [
+        "go",
+        "park",
+        "shop",
+        "library"
+      ],
+      "target_language": "Let's go to the ___!",
+      "objective": "Suggest destinations with friends."
+    },
+    {
+      "n": 4,
+      "topic": "Errand mission",
+      "vocab": [
+        "need",
+        "buy",
+        "book",
+        "food"
+      ],
+      "target_language": "I need to go to the ___.",
+      "objective": "Complete a multi-stop errand route."
+    },
+    {
+      "n": 5,
+      "topic": "My town tour",
+      "vocab": [
+        "favorite place",
+        "park",
+        "shop"
+      ],
+      "target_language": "My favorite place is the ___. Let's go!",
+      "objective": "Present a favorite town place."
+    }
+  ]
+}

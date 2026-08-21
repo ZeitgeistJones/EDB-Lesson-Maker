@@ -1,0 +1,83 @@
+{
+  "unit": 15,
+  "slug": "transport-go",
+  "title": "Transport & Go!",
+  "world": "city transport hub",
+  "communicative_goal": "Name transport and say how you go places.",
+  "recycled_language": [
+    "let's go",
+    "where",
+    "I want"
+  ],
+  "new_language_focus": [
+    "bus",
+    "train",
+    "car",
+    "bike",
+    "plane",
+    "I go by ___",
+    "Get on / Get off"
+  ],
+  "unit_end_capability": "Learner can say how they travel to places.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Vehicles",
+      "vocab": [
+        "bus",
+        "train",
+        "car",
+        "bike",
+        "plane"
+      ],
+      "target_language": "It's a bus/train…",
+      "objective": "Identify transport vehicles."
+    },
+    {
+      "n": 2,
+      "topic": "I go by…",
+      "vocab": [
+        "go by",
+        "to school",
+        "to the park"
+      ],
+      "target_language": "I go to school by bus. / I go by bike.",
+      "objective": "Say travel methods to destinations."
+    },
+    {
+      "n": 3,
+      "topic": "Get on, get off",
+      "vocab": [
+        "get on",
+        "get off",
+        "stop",
+        "ticket"
+      ],
+      "target_language": "Get on the bus! / Get off here!",
+      "objective": "Use boarding language on a pretend bus."
+    },
+    {
+      "n": 4,
+      "topic": "Lost ticket adventure",
+      "vocab": [
+        "ticket",
+        "help",
+        "find",
+        "hurry"
+      ],
+      "target_language": "Where is my ticket? / Help me, please!",
+      "objective": "Solve a transport problem story."
+    },
+    {
+      "n": 5,
+      "topic": "Trip planner",
+      "vocab": [
+        "go",
+        "by",
+        "favorite"
+      ],
+      "target_language": "I go to the ___ by ___.",
+      "objective": "Plan and present a simple trip."
+    }
+  ]
+}

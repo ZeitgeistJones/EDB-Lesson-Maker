@@ -1,0 +1,77 @@
+{
+  "unit": 7,
+  "slug": "think-prefer",
+  "title": "Think & Prefer",
+  "world": "café chat booth",
+  "communicative_goal": "Give simple opinions and preferences.",
+  "recycled_language": [
+    "I like",
+    "better"
+  ],
+  "new_language_focus": [
+    "I think",
+    "I prefer",
+    "because",
+    "delicious"
+  ],
+  "unit_end_capability": "Learner can say I think/prefer ___ because ___.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "I think...",
+      "vocab": [
+        "think",
+        "fun",
+        "boring",
+        "cool"
+      ],
+      "target_language": "I think this game is fun.",
+      "objective": "Rate activities with think."
+    },
+    {
+      "n": 2,
+      "topic": "I prefer...",
+      "vocab": [
+        "prefer",
+        "pizza",
+        "pasta"
+      ],
+      "target_language": "I prefer pizza to pasta.",
+      "objective": "Compare preferences."
+    },
+    {
+      "n": 3,
+      "topic": "Because...",
+      "vocab": [
+        "because",
+        "tasty",
+        "easy",
+        "scary"
+      ],
+      "target_language": "I like ___ because it is ___.",
+      "objective": "Give short reasons."
+    },
+    {
+      "n": 4,
+      "topic": "Debate club",
+      "vocab": [
+        "agree",
+        "disagree",
+        "maybe"
+      ],
+      "target_language": "I agree. / I disagree. / Maybe.",
+      "objective": "Practice polite disagreement."
+    },
+    {
+      "n": 5,
+      "topic": "Review show",
+      "vocab": [
+        "think",
+        "prefer",
+        "because"
+      ],
+      "target_language": "I think ___. I prefer ___. Because ___.",
+      "objective": "Record a mini review."
+    }
+  ]
+}

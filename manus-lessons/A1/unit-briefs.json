@@ -1,0 +1,948 @@
+{
+  "cefr": "A1",
+  "pages_per_lesson": 10,
+  "lessons_per_unit": 5,
+  "quality_benchmark": "A Day at the Beach (~9/10 visual/product/pedagogy)",
+  "units": [
+    {
+      "unit": 1,
+      "slug": "hello-friends",
+      "title": "Hello, Friends!",
+      "world": "classroom welcome / first-day friends",
+      "communicative_goal": "Greet, introduce yourself, ask and say names, say goodbye.",
+      "recycled_language": [],
+      "new_language_focus": ["hello", "hi", "my name is", "what's your name", "goodbye", "nice to meet you"],
+      "unit_end_capability": "Learner can greet a peer, say their name, ask a peer's name, and say goodbye.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Hello and goodbye",
+          "vocab": ["hello", "hi", "goodbye", "bye", "friend"],
+          "target_language": "Hello! / Hi! / Goodbye! / Bye!",
+          "objective": "Greet and leave politely in a classroom welcome scene."
+        },
+        {
+          "n": 2,
+          "topic": "My name is…",
+          "vocab": ["name", "I", "am", "my"],
+          "target_language": "My name is ___. / I'm ___.",
+          "objective": "Introduce yourself with a clear name sentence."
+        },
+        {
+          "n": 3,
+          "topic": "What's your name?",
+          "vocab": ["what", "your", "name", "ask"],
+          "target_language": "What's your name? — My name is ___.",
+          "objective": "Ask and answer name questions with a partner."
+        },
+        {
+          "n": 4,
+          "topic": "Nice to meet you",
+          "vocab": ["nice", "meet", "you", "too"],
+          "target_language": "Nice to meet you. / Nice to meet you, too.",
+          "objective": "Use meeting language in a short friend-introduction story."
+        },
+        {
+          "n": 5,
+          "topic": "Meet the class",
+          "vocab": ["hello", "name", "friend", "goodbye"],
+          "target_language": "Hello, I'm ___. What's your name? Nice to meet you. Goodbye!",
+          "objective": "Integrate greeting + name + goodbye in a class party mission."
+        }
+      ]
+    },
+    {
+      "unit": 2,
+      "slug": "all-about-me",
+      "title": "All About Me",
+      "world": "kid identity card / selfie studio",
+      "communicative_goal": "Say age, feelings, likes; present a simple 'about me' card.",
+      "recycled_language": ["hello", "my name is", "what's your name"],
+      "new_language_focus": ["I am ___ years old", "I am happy/sad/tired", "I like ___"],
+      "unit_end_capability": "Learner can say name, age, a feeling, and one like.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "How old are you?",
+          "vocab": ["years old", "one", "two", "three", "four", "five", "six", "seven", "eight"],
+          "target_language": "I am ___ years old. / How old are you?",
+          "objective": "Ask and say ages with birthday-cake visuals."
+        },
+        {
+          "n": 2,
+          "topic": "How are you?",
+          "vocab": ["happy", "sad", "tired", "hungry", "great"],
+          "target_language": "How are you? — I'm happy/sad/tired.",
+          "objective": "Express basic feelings with face cards and buddy check."
+        },
+        {
+          "n": 3,
+          "topic": "I like…",
+          "vocab": ["like", "don't like", "pizza", "dogs", "games", "music"],
+          "target_language": "I like ___. / I don't like ___.",
+          "objective": "State likes and dislikes with picture choice."
+        },
+        {
+          "n": 4,
+          "topic": "My selfie card",
+          "vocab": ["name", "age", "feel", "like"],
+          "target_language": "I'm ___. I'm ___ years old. I'm ___. I like ___.",
+          "objective": "Build a personal 'about me' card with recycled language."
+        },
+        {
+          "n": 5,
+          "topic": "Show and tell",
+          "vocab": ["this is me", "like", "happy"],
+          "target_language": "Hi, I'm ___. I'm ___ years old. I like ___.",
+          "objective": "Present the about-me card to a partner / class."
+        }
+      ]
+    },
+    {
+      "unit": 3,
+      "slug": "my-family",
+      "title": "My Family",
+      "world": "family house photo wall",
+      "communicative_goal": "Name family members and say who people are.",
+      "recycled_language": ["this is", "my name is", "I like"],
+      "new_language_focus": ["mom", "dad", "brother", "sister", "grandma", "grandpa", "This is my ___"],
+      "unit_end_capability": "Learner can introduce family members with This is my ___.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Mom and dad",
+          "vocab": ["mom", "dad", "family", "home"],
+          "target_language": "This is my mom/dad.",
+          "objective": "Identify and introduce parents."
+        },
+        {
+          "n": 2,
+          "topic": "Brother and sister",
+          "vocab": ["brother", "sister", "baby", "big"],
+          "target_language": "This is my brother/sister.",
+          "objective": "Talk about siblings with photo-match play."
+        },
+        {
+          "n": 3,
+          "topic": "Grandma and grandpa",
+          "vocab": ["grandma", "grandpa", "visit"],
+          "target_language": "This is my grandma/grandpa.",
+          "objective": "Introduce grandparents in a weekend-visit scene."
+        },
+        {
+          "n": 4,
+          "topic": "Who is this?",
+          "vocab": ["who", "this", "family"],
+          "target_language": "Who is this? — This is my ___.",
+          "objective": "Ask and answer identity questions about family photos."
+        },
+        {
+          "n": 5,
+          "topic": "Family tree party",
+          "vocab": ["mom", "dad", "brother", "sister", "grandma", "grandpa"],
+          "target_language": "This is my ___. I love my family.",
+          "objective": "Build and present a simple family tree board."
+        }
+      ]
+    },
+    {
+      "unit": 4,
+      "slug": "pet-pals",
+      "title": "Pet Pals",
+      "world": "pet cafe / pet shop adventure",
+      "communicative_goal": "Name common pets and say what they are / what you have.",
+      "recycled_language": ["I like", "this is", "my"],
+      "new_language_focus": ["dog", "cat", "fish", "bird", "rabbit", "I have a ___", "It's a ___"],
+      "unit_end_capability": "Learner can name pets and say I have a ___ / It's a ___.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Meet the pets",
+          "vocab": ["dog", "cat", "fish", "bird", "rabbit"],
+          "target_language": "It's a dog/cat/fish…",
+          "objective": "Identify five pets in a pet-shop discovery walk."
+        },
+        {
+          "n": 2,
+          "topic": "I have a pet",
+          "vocab": ["have", "pet", "dog", "cat"],
+          "target_language": "I have a ___. / I don't have a ___.",
+          "objective": "Say ownership of pets with yes/no sorting."
+        },
+        {
+          "n": 3,
+          "topic": "Pet care",
+          "vocab": ["feed", "walk", "water", "play"],
+          "target_language": "I feed my ___. / Let's walk the dog.",
+          "objective": "Use simple action phrases for pet care."
+        },
+        {
+          "n": 4,
+          "topic": "Lost pet mystery",
+          "vocab": ["where", "look", "find", "pet"],
+          "target_language": "Where is my ___? / Look! It's here!",
+          "objective": "Search-and-find story recycling pet names."
+        },
+        {
+          "n": 5,
+          "topic": "Pet show",
+          "vocab": ["my pet", "cute", "like"],
+          "target_language": "This is my ___. I like my ___.",
+          "objective": "Present a favorite pet in a mini pet-show."
+        }
+      ]
+    },
+    {
+      "unit": 5,
+      "slug": "school-day",
+      "title": "School Day",
+      "world": "colorful classroom / school bag",
+      "communicative_goal": "Name school things and say what you have / need.",
+      "recycled_language": ["I have", "this is", "where is"],
+      "new_language_focus": ["pencil", "book", "bag", "eraser", "ruler", "I need a ___", "What's this?"],
+      "unit_end_capability": "Learner can name school items and say I have/need a ___.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "What's in my bag?",
+          "vocab": ["bag", "pencil", "book", "eraser", "ruler"],
+          "target_language": "What's this? — It's a ___.",
+          "objective": "Unpack a school bag and name items."
+        },
+        {
+          "n": 2,
+          "topic": "I have / I need",
+          "vocab": ["have", "need", "pencil", "book"],
+          "target_language": "I have a ___. / I need a ___.",
+          "objective": "Contrast have vs need while packing for class."
+        },
+        {
+          "n": 3,
+          "topic": "Classroom treasure hunt",
+          "vocab": ["desk", "chair", "board", "door", "window"],
+          "target_language": "Where is the ___? — It's here.",
+          "objective": "Locate classroom objects with route/search play."
+        },
+        {
+          "n": 4,
+          "topic": "Share please",
+          "vocab": ["please", "thank you", "here you are", "share"],
+          "target_language": "Can I have a ___? — Here you are. Thank you.",
+          "objective": "Practice classroom politeness exchanges."
+        },
+        {
+          "n": 5,
+          "topic": "Ready for school",
+          "vocab": ["bag", "pencil", "book", "ready"],
+          "target_language": "I have a ___. I'm ready!",
+          "objective": "Pack a complete bag and announce readiness."
+        }
+      ]
+    },
+    {
+      "unit": 6,
+      "slug": "colors-and-clothes",
+      "title": "Colors & Clothes",
+      "world": "wardrobe / fashion show",
+      "communicative_goal": "Name colors and clothes; say what someone is wearing.",
+      "recycled_language": ["I like", "this is", "I have"],
+      "new_language_focus": ["red", "blue", "green", "yellow", "shirt", "pants", "shoes", "hat", "I'm wearing ___"],
+      "unit_end_capability": "Learner can describe clothes with color + item.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Rainbow colors",
+          "vocab": ["red", "blue", "green", "yellow", "orange", "purple"],
+          "target_language": "It's red/blue… / What color is it?",
+          "objective": "Name core colors with paint-and-sort play."
+        },
+        {
+          "n": 2,
+          "topic": "Clothes closet",
+          "vocab": ["shirt", "pants", "shoes", "hat", "socks"],
+          "target_language": "It's a shirt/hat…",
+          "objective": "Identify clothing items in a closet scene."
+        },
+        {
+          "n": 3,
+          "topic": "Color + clothes",
+          "vocab": ["red shirt", "blue shoes", "green hat"],
+          "target_language": "I have a red shirt. / It's a blue hat.",
+          "objective": "Combine color + noun for clothing."
+        },
+        {
+          "n": 4,
+          "topic": "What are you wearing?",
+          "vocab": ["wearing", "today"],
+          "target_language": "I'm wearing a ___ ___ .",
+          "objective": "Describe today's outfit."
+        },
+        {
+          "n": 5,
+          "topic": "Mini fashion show",
+          "vocab": ["wear", "color", "cool"],
+          "target_language": "She's wearing a ___ ___. / He's wearing…",
+          "objective": "Comment on outfits in a kid fashion-show payoff."
+        }
+      ]
+    },
+    {
+      "unit": 7,
+      "slug": "yummy-food",
+      "title": "Yummy Food",
+      "world": "kitchen / picnic / snack bar",
+      "communicative_goal": "Name foods and express like/want for snacks and meals.",
+      "recycled_language": ["I like", "I don't like", "I have"],
+      "new_language_focus": ["apple", "banana", "bread", "milk", "juice", "I want ___", "I'm hungry"],
+      "unit_end_capability": "Learner can order/request simple food with I want / I like.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Fruit friends",
+          "vocab": ["apple", "banana", "orange", "grape"],
+          "target_language": "It's an apple. / I like bananas.",
+          "objective": "Name fruits and state likes."
+        },
+        {
+          "n": 2,
+          "topic": "Snack time",
+          "vocab": ["bread", "cookie", "cheese", "yogurt"],
+          "target_language": "I want a ___. / I'm hungry.",
+          "objective": "Request snacks with want + hunger phrase."
+        },
+        {
+          "n": 3,
+          "topic": "Drinks",
+          "vocab": ["water", "milk", "juice", "tea"],
+          "target_language": "I want water/milk/juice, please.",
+          "objective": "Choose and request drinks politely."
+        },
+        {
+          "n": 4,
+          "topic": "Picnic packing",
+          "vocab": ["pack", "basket", "sandwich", "fruit"],
+          "target_language": "Put the ___ in the basket. / We need ___.",
+          "objective": "Pack a picnic recycling food vocabulary."
+        },
+        {
+          "n": 5,
+          "topic": "Food truck order",
+          "vocab": ["want", "please", "thank you"],
+          "target_language": "I want a ___ and ___ , please.",
+          "objective": "Place a two-item order at a kid food truck."
+        }
+      ]
+    },
+    {
+      "unit": 8,
+      "slug": "my-home",
+      "title": "My Home",
+      "world": "dollhouse / cozy apartment",
+      "communicative_goal": "Name rooms and furniture; say where things are.",
+      "recycled_language": ["where is", "this is", "I have"],
+      "new_language_focus": ["kitchen", "bedroom", "bathroom", "living room", "table", "bed", "The ___ is in the ___"],
+      "unit_end_capability": "Learner can name rooms and locate objects in the home.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Rooms of the house",
+          "vocab": ["kitchen", "bedroom", "bathroom", "living room"],
+          "target_language": "This is the kitchen/bedroom…",
+          "objective": "Tour rooms of a house."
+        },
+        {
+          "n": 2,
+          "topic": "Furniture",
+          "vocab": ["table", "chair", "bed", "sofa", "lamp"],
+          "target_language": "It's a table/bed…",
+          "objective": "Name furniture items."
+        },
+        {
+          "n": 3,
+          "topic": "Where is it?",
+          "vocab": ["in", "on", "under"],
+          "target_language": "The book is on the table. / It's under the bed.",
+          "objective": "Use basic prepositions of place at home."
+        },
+        {
+          "n": 4,
+          "topic": "Messy room fix",
+          "vocab": ["clean", "put", "toy", "clothes"],
+          "target_language": "Put the ___ on/in the ___.",
+          "objective": "Repair a messy bedroom with place language."
+        },
+        {
+          "n": 5,
+          "topic": "Home tour",
+          "vocab": ["room", "this is", "my home"],
+          "target_language": "This is my ___. The ___ is in the ___.",
+          "objective": "Give a short home tour presentation."
+        }
+      ]
+    },
+    {
+      "unit": 9,
+      "slug": "daily-routines",
+      "title": "Daily Routines",
+      "world": "day-in-the-life comic strip",
+      "communicative_goal": "Talk about simple daily actions with present simple.",
+      "recycled_language": ["I like", "I have", "morning"],
+      "new_language_focus": ["wake up", "eat breakfast", "go to school", "play", "go to bed", "I ___ every day"],
+      "unit_end_capability": "Learner can sequence a simple daily routine.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Morning time",
+          "vocab": ["wake up", "wash", "eat breakfast", "brush teeth"],
+          "target_language": "I wake up. / I eat breakfast.",
+          "objective": "Describe morning actions in order."
+        },
+        {
+          "n": 2,
+          "topic": "School and play",
+          "vocab": ["go to school", "study", "play", "read"],
+          "target_language": "I go to school. / I play.",
+          "objective": "Talk about daytime activities."
+        },
+        {
+          "n": 3,
+          "topic": "Evening wind-down",
+          "vocab": ["eat dinner", "take a bath", "go to bed"],
+          "target_language": "I eat dinner. / I go to bed.",
+          "objective": "Describe evening routine."
+        },
+        {
+          "n": 4,
+          "topic": "First, then, next",
+          "vocab": ["first", "then", "next", "finally"],
+          "target_language": "First I ___. Then I ___.",
+          "objective": "Sequence routine steps with connectors."
+        },
+        {
+          "n": 5,
+          "topic": "My day comic",
+          "vocab": ["morning", "afternoon", "night"],
+          "target_language": "Every day I ___, then I ___.",
+          "objective": "Build and retell a personal day comic."
+        }
+      ]
+    },
+    {
+      "unit": 10,
+      "slug": "town-and-places",
+      "title": "Town & Places",
+      "world": "friendly town map",
+      "communicative_goal": "Name town places and say where you go / want to go.",
+      "recycled_language": ["I want", "where is", "let's"],
+      "new_language_focus": ["park", "shop", "school", "library", "hospital", "Let's go to the ___", "Where's the ___?"],
+      "unit_end_capability": "Learner can name places and propose going somewhere.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Town map",
+          "vocab": ["park", "shop", "school", "library", "hospital"],
+          "target_language": "This is the park/shop…",
+          "objective": "Label places on a town map."
+        },
+        {
+          "n": 2,
+          "topic": "Where's the…?",
+          "vocab": ["where", "next to", "across from"],
+          "target_language": "Where's the ___? — It's next to the ___.",
+          "objective": "Ask for places with simple location phrases."
+        },
+        {
+          "n": 3,
+          "topic": "Let's go!",
+          "vocab": ["go", "park", "shop", "library"],
+          "target_language": "Let's go to the ___!",
+          "objective": "Suggest destinations with friends."
+        },
+        {
+          "n": 4,
+          "topic": "Errand mission",
+          "vocab": ["need", "buy", "book", "food"],
+          "target_language": "I need to go to the ___.",
+          "objective": "Complete a multi-stop errand route."
+        },
+        {
+          "n": 5,
+          "topic": "My town tour",
+          "vocab": ["favorite place", "park", "shop"],
+          "target_language": "My favorite place is the ___. Let's go!",
+          "objective": "Present a favorite town place."
+        }
+      ]
+    },
+    {
+      "unit": 11,
+      "slug": "sports-play",
+      "title": "Sports & Play",
+      "world": "playground / sports field",
+      "communicative_goal": "Name sports/games and say what you can / like to play.",
+      "recycled_language": ["I like", "let's", "I can"],
+      "new_language_focus": ["soccer", "basketball", "swim", "run", "jump", "I can ___", "I play ___"],
+      "unit_end_capability": "Learner can say sports they play and simple abilities.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Sports day",
+          "vocab": ["soccer", "basketball", "tennis", "swim"],
+          "target_language": "I play soccer/basketball…",
+          "objective": "Name sports and match to equipment."
+        },
+        {
+          "n": 2,
+          "topic": "I can…",
+          "vocab": ["run", "jump", "kick", "throw", "catch"],
+          "target_language": "I can run/jump. / I can't ___ yet.",
+          "objective": "Talk about basic physical abilities."
+        },
+        {
+          "n": 3,
+          "topic": "Playground fun",
+          "vocab": ["slide", "swing", "climb", "ball"],
+          "target_language": "Let's play on the ___! / Throw the ball!",
+          "objective": "Use playground action language."
+        },
+        {
+          "n": 4,
+          "topic": "Team challenge",
+          "vocab": ["team", "win", "try", "help"],
+          "target_language": "We can ___! / Help me, please!",
+          "objective": "Cooperate in a simple sports mission."
+        },
+        {
+          "n": 5,
+          "topic": "Champion show",
+          "vocab": ["favorite sport", "can", "play"],
+          "target_language": "My favorite sport is ___. I can ___.",
+          "objective": "Present a favorite sport and one ability."
+        }
+      ]
+    },
+    {
+      "unit": 12,
+      "slug": "music-makers",
+      "title": "Music Makers",
+      "world": "band room / music video set",
+      "communicative_goal": "Name instruments and talk about music preferences and making music.",
+      "recycled_language": ["I like", "I can", "this is"],
+      "new_language_focus": ["piano", "guitar", "drums", "sing", "dance", "I play the ___", "Listen!"],
+      "unit_end_capability": "Learner can name instruments and say I play / I like music.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Instruments",
+          "vocab": ["piano", "guitar", "drums", "flute"],
+          "target_language": "It's a piano/guitar…",
+          "objective": "Identify instruments in a band room."
+        },
+        {
+          "n": 2,
+          "topic": "I play / I sing",
+          "vocab": ["play", "sing", "dance", "listen"],
+          "target_language": "I play the ___. / I sing. / I dance.",
+          "objective": "Talk about music actions."
+        },
+        {
+          "n": 3,
+          "topic": "Loud or soft",
+          "vocab": ["loud", "soft", "fast", "slow"],
+          "target_language": "Play loud/soft. / It's fast/slow.",
+          "objective": "Describe music with simple adjectives."
+        },
+        {
+          "n": 4,
+          "topic": "Band practice",
+          "vocab": ["together", "start", "stop", "again"],
+          "target_language": "Let's play together! / Start! Stop!",
+          "objective": "Coordinate a pretend band rehearsal."
+        },
+        {
+          "n": 5,
+          "topic": "Music video",
+          "vocab": ["favorite song", "dance", "sing"],
+          "target_language": "I like this song. I can sing/dance!",
+          "objective": "Create a simple music-video performance payoff."
+        }
+      ]
+    },
+    {
+      "unit": 13,
+      "slug": "weather-wear",
+      "title": "Weather Wear",
+      "world": "weather station / outdoor gear closet",
+      "communicative_goal": "Describe weather and choose appropriate clothes.",
+      "recycled_language": ["I'm wearing", "I need", "let's go"],
+      "new_language_focus": ["sunny", "rainy", "cloudy", "windy", "cold", "hot", "It's ___ today", "Take a ___"],
+      "unit_end_capability": "Learner can say today's weather and choose gear.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "What's the weather?",
+          "vocab": ["sunny", "rainy", "cloudy", "windy"],
+          "target_language": "It's sunny/rainy today.",
+          "objective": "Identify weather types."
+        },
+        {
+          "n": 2,
+          "topic": "Hot and cold",
+          "vocab": ["hot", "cold", "warm", "cool"],
+          "target_language": "It's hot/cold. / I'm hot/cold.",
+          "objective": "Talk about temperature feelings."
+        },
+        {
+          "n": 3,
+          "topic": "What should I wear?",
+          "vocab": ["coat", "umbrella", "hat", "sunglasses"],
+          "target_language": "It's rainy — take an umbrella. / Wear a coat.",
+          "objective": "Match clothes/gear to weather."
+        },
+        {
+          "n": 4,
+          "topic": "Weather forecast mission",
+          "vocab": ["today", "tomorrow", "weather"],
+          "target_language": "Today it's ___. Tomorrow it's ___.",
+          "objective": "Read a simple two-day forecast board."
+        },
+        {
+          "n": 5,
+          "topic": "Pack for the day",
+          "vocab": ["pack", "weather", "ready"],
+          "target_language": "It's ___. I need a ___. I'm ready!",
+          "objective": "Pack weather gear and announce readiness."
+        }
+      ]
+    },
+    {
+      "unit": 14,
+      "slug": "shopping-fun",
+      "title": "Shopping Fun",
+      "world": "toy shop / supermarket",
+      "communicative_goal": "Shop with simple prices, wants, and polite requests.",
+      "recycled_language": ["I want", "please", "thank you", "I like"],
+      "new_language_focus": ["how much", "buy", "pay", "cheap", "It's ___ dollars", "Can I have ___?"],
+      "unit_end_capability": "Learner can buy something with How much? and Can I have…?",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "At the shop",
+          "vocab": ["shop", "buy", "sell", "toy", "cart"],
+          "target_language": "I want to buy a ___.",
+          "objective": "Enter a shop and state a purchase want."
+        },
+        {
+          "n": 2,
+          "topic": "How much?",
+          "vocab": ["how much", "dollar", "price", "one", "two", "three"],
+          "target_language": "How much is it? — It's ___ dollars.",
+          "objective": "Ask and say simple prices."
+        },
+        {
+          "n": 3,
+          "topic": "Can I have…?",
+          "vocab": ["can I have", "please", "here you are"],
+          "target_language": "Can I have a ___, please? — Here you are.",
+          "objective": "Practice shop request dialogues."
+        },
+        {
+          "n": 4,
+          "topic": "Shopping list mission",
+          "vocab": ["list", "find", "put", "pay"],
+          "target_language": "I need ___. Put it in the cart.",
+          "objective": "Complete a shopping list scavenger hunt."
+        },
+        {
+          "n": 5,
+          "topic": "Checkout champion",
+          "vocab": ["pay", "thank you", "goodbye"],
+          "target_language": "How much? … Here you are. Thank you. Goodbye!",
+          "objective": "Run a full mini checkout roleplay."
+        }
+      ]
+    },
+    {
+      "unit": 15,
+      "slug": "transport-go",
+      "title": "Transport & Go!",
+      "world": "city transport hub",
+      "communicative_goal": "Name transport and say how you go places.",
+      "recycled_language": ["let's go", "where", "I want"],
+      "new_language_focus": ["bus", "train", "car", "bike", "plane", "I go by ___", "Get on / Get off"],
+      "unit_end_capability": "Learner can say how they travel to places.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Vehicles",
+          "vocab": ["bus", "train", "car", "bike", "plane"],
+          "target_language": "It's a bus/train…",
+          "objective": "Identify transport vehicles."
+        },
+        {
+          "n": 2,
+          "topic": "I go by…",
+          "vocab": ["go by", "to school", "to the park"],
+          "target_language": "I go to school by bus. / I go by bike.",
+          "objective": "Say travel methods to destinations."
+        },
+        {
+          "n": 3,
+          "topic": "Get on, get off",
+          "vocab": ["get on", "get off", "stop", "ticket"],
+          "target_language": "Get on the bus! / Get off here!",
+          "objective": "Use boarding language on a pretend bus."
+        },
+        {
+          "n": 4,
+          "topic": "Lost ticket adventure",
+          "vocab": ["ticket", "help", "find", "hurry"],
+          "target_language": "Where is my ticket? / Help me, please!",
+          "objective": "Solve a transport problem story."
+        },
+        {
+          "n": 5,
+          "topic": "Trip planner",
+          "vocab": ["go", "by", "favorite"],
+          "target_language": "I go to the ___ by ___.",
+          "objective": "Plan and present a simple trip."
+        }
+      ]
+    },
+    {
+      "unit": 16,
+      "slug": "animals-zoo",
+      "title": "Animals at the Zoo",
+      "world": "zoo adventure day",
+      "communicative_goal": "Name zoo animals and describe simple actions/abilities.",
+      "recycled_language": ["I like", "I can", "where is", "it's a"],
+      "new_language_focus": ["lion", "elephant", "monkey", "giraffe", "penguin", "It can ___", "It is big/small"],
+      "unit_end_capability": "Learner can name zoo animals and say It can ___ / It is ___.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Zoo tickets",
+          "vocab": ["lion", "elephant", "monkey", "giraffe", "penguin"],
+          "target_language": "It's a lion/elephant…",
+          "objective": "Meet zoo animals at the gate."
+        },
+        {
+          "n": 2,
+          "topic": "Big and small",
+          "vocab": ["big", "small", "tall", "fast", "slow"],
+          "target_language": "The elephant is big. / The penguin is small.",
+          "objective": "Describe animals with adjectives."
+        },
+        {
+          "n": 3,
+          "topic": "Animals can…",
+          "vocab": ["run", "swim", "fly", "climb", "jump"],
+          "target_language": "It can swim/fly/climb.",
+          "objective": "Match animals to abilities."
+        },
+        {
+          "n": 4,
+          "topic": "Feeding time",
+          "vocab": ["hungry", "eat", "feed", "careful"],
+          "target_language": "The ___ is hungry. Feed the ___!",
+          "objective": "Complete a feeding-time mission."
+        },
+        {
+          "n": 5,
+          "topic": "Favorite animal",
+          "vocab": ["favorite", "because", "cool"],
+          "target_language": "My favorite animal is the ___. It can ___.",
+          "objective": "Present a favorite zoo animal."
+        }
+      ]
+    },
+    {
+      "unit": 17,
+      "slug": "camping-outdoors",
+      "title": "Camping Outdoors",
+      "world": "forest campsite",
+      "communicative_goal": "Talk about camping gear, nature, and outdoor actions.",
+      "recycled_language": ["I need", "let's", "where is", "it's"],
+      "new_language_focus": ["tent", "fire", "tree", "river", "flashlight", "Let's set up the ___", "Be careful!"],
+      "unit_end_capability": "Learner can pack camping gear and give simple outdoor instructions.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Camp gear",
+          "vocab": ["tent", "sleeping bag", "flashlight", "backpack"],
+          "target_language": "I need a tent/flashlight…",
+          "objective": "Pack camping equipment."
+        },
+        {
+          "n": 2,
+          "topic": "Nature walk",
+          "vocab": ["tree", "river", "rock", "bird", "path"],
+          "target_language": "Look! A ___! / Let's walk to the river.",
+          "objective": "Name nature items on a trail."
+        },
+        {
+          "n": 3,
+          "topic": "Set up camp",
+          "vocab": ["set up", "put", "open", "light"],
+          "target_language": "Set up the tent. / Light the fire.",
+          "objective": "Follow camping setup instructions."
+        },
+        {
+          "n": 4,
+          "topic": "Night sounds mystery",
+          "vocab": ["listen", "what is it", "safe", "scared"],
+          "target_language": "What's that? / It's OK. We're safe.",
+          "objective": "Solve a gentle night-sounds mystery."
+        },
+        {
+          "n": 5,
+          "topic": "Campfire stories",
+          "vocab": ["story", "friend", "happy"],
+          "target_language": "I like camping. First we ___, then we ___.",
+          "objective": "Retell the camping day sequence."
+        }
+      ]
+    },
+    {
+      "unit": 18,
+      "slug": "hobbies-makers",
+      "title": "Hobbies & Makers",
+      "world": "craft table / creator studio",
+      "communicative_goal": "Talk about hobbies, crafts, and making things.",
+      "recycled_language": ["I like", "I can", "I want", "let's"],
+      "new_language_focus": ["draw", "make", "build", "slime", "video", "I make ___", "Look at my ___!"],
+      "unit_end_capability": "Learner can say hobbies and present something they made.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "My hobbies",
+          "vocab": ["draw", "read", "play games", "make slime", "ride a bike"],
+          "target_language": "I like to draw/read…",
+          "objective": "Name common kid hobbies."
+        },
+        {
+          "n": 2,
+          "topic": "Maker table",
+          "vocab": ["paper", "glue", "scissors", "stickers", "box"],
+          "target_language": "I need glue/paper. / Let's make a ___.",
+          "objective": "Request craft materials."
+        },
+        {
+          "n": 3,
+          "topic": "Build it!",
+          "vocab": ["build", "put on", "cut", "stick"],
+          "target_language": "Cut the ___. Stick it on. Build it!",
+          "objective": "Follow a make-and-build sequence."
+        },
+        {
+          "n": 4,
+          "topic": "Make a mini video",
+          "vocab": ["camera", "action", "smile", "again"],
+          "target_language": "Smile! Action! / Look at my video!",
+          "objective": "Roleplay making a short kid video."
+        },
+        {
+          "n": 5,
+          "topic": "Show your creation",
+          "vocab": ["made", "proud", "share"],
+          "target_language": "I made a ___. I like it!",
+          "objective": "Present a finished craft/creation."
+        }
+      ]
+    },
+    {
+      "unit": 19,
+      "slug": "adventure-park",
+      "title": "Adventure Park",
+      "world": "amusement park day",
+      "communicative_goal": "Navigate rides, tickets, feelings, and choices at a park.",
+      "recycled_language": ["I want", "let's go", "I'm happy", "how much"],
+      "new_language_focus": ["ticket", "ride", "queue", "exciting", "scary", "I'm excited", "Which ride?"],
+      "unit_end_capability": "Learner can choose rides and express excitement/fear politely.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Park map",
+          "vocab": ["ride", "ticket", "map", "gate", "food stand"],
+          "target_language": "This is the ___ ride. / Let's buy tickets.",
+          "objective": "Orient to park places and tickets."
+        },
+        {
+          "n": 2,
+          "topic": "Which ride?",
+          "vocab": ["roller coaster", "carousel", "bumper cars", "ferris wheel"],
+          "target_language": "Which ride? — I want the ___!",
+          "objective": "Choose rides with preference language."
+        },
+        {
+          "n": 3,
+          "topic": "Excited or scared?",
+          "vocab": ["excited", "scared", "fun", "wait"],
+          "target_language": "I'm excited! / I'm a little scared.",
+          "objective": "Express feelings before rides."
+        },
+        {
+          "n": 4,
+          "topic": "Lost buddy rescue",
+          "vocab": ["lost", "help", "find", "meet"],
+          "target_language": "Where is my friend? / Let's meet at the gate.",
+          "objective": "Solve a gentle lost-buddy problem."
+        },
+        {
+          "n": 5,
+          "topic": "Best day ever",
+          "vocab": ["favorite ride", "photo", "happy"],
+          "target_language": "My favorite ride is the ___. What a fun day!",
+          "objective": "Review the park day with a photo-board payoff."
+        }
+      ]
+    },
+    {
+      "unit": 20,
+      "slug": "helpers-and-jobs",
+      "title": "Helpers & Jobs",
+      "world": "community helpers town",
+      "communicative_goal": "Name community helpers and say what they do.",
+      "recycled_language": ["this is", "I can", "help", "where"],
+      "new_language_focus": ["doctor", "teacher", "firefighter", "police officer", "chef", "He/She is a ___", "He/She can help"],
+      "unit_end_capability": "Learner can name jobs and say who helps in a situation.",
+      "lessons": [
+        {
+          "n": 1,
+          "topic": "Who helps?",
+          "vocab": ["doctor", "teacher", "firefighter", "police officer", "chef"],
+          "target_language": "He/She is a doctor/teacher…",
+          "objective": "Identify community helpers."
+        },
+        {
+          "n": 2,
+          "topic": "What do they do?",
+          "vocab": ["help", "teach", "cook", "drive", "save"],
+          "target_language": "A teacher teaches. / A chef cooks.",
+          "objective": "Match jobs to simple actions."
+        },
+        {
+          "n": 3,
+          "topic": "Call for help",
+          "vocab": ["need help", "please help", "thank you"],
+          "target_language": "I need help! / Please help me.",
+          "objective": "Use help language in problem scenes."
+        },
+        {
+          "n": 4,
+          "topic": "Job day mission",
+          "vocab": ["who", "can help", "problem"],
+          "target_language": "Who can help? — The firefighter can help!",
+          "objective": "Choose the right helper for scenarios."
+        },
+        {
+          "n": 5,
+          "topic": "When I grow up",
+          "vocab": ["want to be", "job", "help"],
+          "target_language": "I want to be a ___. I can help!",
+          "objective": "Share a future helper identity."
+        }
+      ]
+    }
+  ]
+}

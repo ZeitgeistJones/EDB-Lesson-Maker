@@ -1,0 +1,72 @@
+{
+  "unit": 18,
+  "slug": "time-capsule",
+  "title": "Time Capsule",
+  "world": "museum future box",
+  "communicative_goal": "Mix past memories and future plans.",
+  "recycled_language": [
+    "going to",
+    "went"
+  ],
+  "new_language_focus": [
+    "remember",
+    "future",
+    "hope",
+    "will (learn)"
+  ],
+  "unit_end_capability": "Learner can mix I went... and I'm going to...",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Remember when",
+      "vocab": [
+        "remember",
+        "last year"
+      ],
+      "target_language": "I remember when we went to ___.",
+      "objective": "Share a memory."
+    },
+    {
+      "n": 2,
+      "topic": "In the future",
+      "vocab": [
+        "hope",
+        "learn",
+        "visit"
+      ],
+      "target_language": "I hope to visit ___.",
+      "objective": "Light hope/wish language."
+    },
+    {
+      "n": 3,
+      "topic": "Capsule items",
+      "vocab": [
+        "photo",
+        "letter",
+        "toy"
+      ],
+      "target_language": "I put a ___ in the capsule.",
+      "objective": "Choose capsule objects."
+    },
+    {
+      "n": 4,
+      "topic": "Open in 10 years",
+      "vocab": [
+        "message",
+        "dear future me"
+      ],
+      "target_language": "Dear future me, I am going to ___.",
+      "objective": "Write a future letter."
+    },
+    {
+      "n": 5,
+      "topic": "Capsule ceremony",
+      "vocab": [
+        "past",
+        "future"
+      ],
+      "target_language": "Last year I ___. Next year I'm going to ___.",
+      "objective": "Present past + future blend."
+    }
+  ]
+}

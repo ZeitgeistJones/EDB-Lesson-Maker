@@ -1,0 +1,75 @@
+{
+  "unit": 10,
+  "slug": "travel-tales",
+  "title": "Travel Tales",
+  "world": "airport story gate",
+  "communicative_goal": "Describe a past trip with there was/were and travel verbs.",
+  "recycled_language": [
+    "went",
+    "saw"
+  ],
+  "new_language_focus": [
+    "airport",
+    "ticket",
+    "there was",
+    "there were"
+  ],
+  "unit_end_capability": "Learner can describe a trip with there was/were.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "At the airport",
+      "vocab": [
+        "passport",
+        "gate",
+        "luggage"
+      ],
+      "target_language": "We went to the airport.",
+      "objective": "Airport vocabulary in past context."
+    },
+    {
+      "n": 2,
+      "topic": "There was...",
+      "vocab": [
+        "there was",
+        "hotel",
+        "pool"
+      ],
+      "target_language": "There was a big pool.",
+      "objective": "Use there was with singular."
+    },
+    {
+      "n": 3,
+      "topic": "There were...",
+      "vocab": [
+        "there were",
+        "mountains",
+        "shops"
+      ],
+      "target_language": "There were many shops.",
+      "objective": "Use there were with plural."
+    },
+    {
+      "n": 4,
+      "topic": "Trip problems",
+      "vocab": [
+        "lost",
+        "late",
+        "help"
+      ],
+      "target_language": "There was a problem. We asked for help.",
+      "objective": "Solve a travel problem story."
+    },
+    {
+      "n": 5,
+      "topic": "Postcard home",
+      "vocab": [
+        "visited",
+        "favorite",
+        "photo"
+      ],
+      "target_language": "We visited ___. There were ___.",
+      "objective": "Write a trip postcard."
+    }
+  ]
+}

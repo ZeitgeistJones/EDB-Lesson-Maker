@@ -1,0 +1,21 @@
+{
+  "cefr": "A1",
+  "unit": 1,
+  "lesson": 5,
+  "curriculum_position": "A1-U01-L05",
+  "unit_title": "Hello, Friends!",
+  "topic": "Meet the class",
+  "target_vocabulary": [
+    "hello",
+    "name",
+    "friend",
+    "goodbye"
+  ],
+  "target_language": "Hello, I'm ___. What's your name? Nice to meet you. Goodbye!",
+  "objective": "Integrate greeting + name + goodbye in a class party mission.",
+  "page_count_expected": 10,
+  "page_count_found": 0,
+  "manus_task_id": "gnKut97HTtzqf97mzrv3JW",
+  "manus_task_url": "https://manus.im/app/gnKut97HTtzqf97mzrv3JW",
+  "preserved_at": "2026-08-21T06:47:56.630Z"
+}

@@ -1,0 +1,73 @@
+{
+  "unit": 14,
+  "slug": "dream-room",
+  "title": "Dream Room",
+  "world": "design studio",
+  "communicative_goal": "Describe rooms with there was/were and prepositions.",
+  "recycled_language": [
+    "there is",
+    "in"
+  ],
+  "new_language_focus": [
+    "there was",
+    "there were",
+    "between",
+    "behind"
+  ],
+  "unit_end_capability": "Learner can describe a room with there was/were.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "My room",
+      "vocab": [
+        "bed",
+        "desk",
+        "lamp"
+      ],
+      "target_language": "There is a bed. / There are books.",
+      "objective": "Present tense room scan."
+    },
+    {
+      "n": 2,
+      "topic": "Old photo",
+      "vocab": [
+        "there was",
+        "there were"
+      ],
+      "target_language": "There was a small desk.",
+      "objective": "Past room description."
+    },
+    {
+      "n": 3,
+      "topic": "Where was it?",
+      "vocab": [
+        "behind",
+        "under",
+        "next to"
+      ],
+      "target_language": "The cat was behind the sofa.",
+      "objective": "Prepositions in past."
+    },
+    {
+      "n": 4,
+      "topic": "Redesign",
+      "vocab": [
+        "move",
+        "add",
+        "remove"
+      ],
+      "target_language": "Let's move the ___. / Add a ___.",
+      "objective": "Plan a room makeover."
+    },
+    {
+      "n": 5,
+      "topic": "Dream room tour",
+      "vocab": [
+        "favorite",
+        "because"
+      ],
+      "target_language": "In my dream room there is ___. There are ___.",
+      "objective": "Tour a dream room."
+    }
+  ]
+}

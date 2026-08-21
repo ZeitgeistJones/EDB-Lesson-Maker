@@ -1,0 +1,75 @@
+{
+  "unit": 12,
+  "slug": "movie-night",
+  "title": "Movie Night",
+  "world": "home cinema",
+  "communicative_goal": "Combine past narrative and opinions about films.",
+  "recycled_language": [
+    "watched",
+    "think"
+  ],
+  "new_language_focus": [
+    "movie",
+    "character",
+    "scary",
+    "funny",
+    "boring"
+  ],
+  "unit_end_capability": "Learner can say I watched... It was...",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Pick a movie",
+      "vocab": [
+        "action",
+        "cartoon",
+        "comedy"
+      ],
+      "target_language": "Let's watch a ___.",
+      "objective": "Choose genres."
+    },
+    {
+      "n": 2,
+      "topic": "I watched...",
+      "vocab": [
+        "watched",
+        "last night"
+      ],
+      "target_language": "I watched ___ last night.",
+      "objective": "Say what you watched."
+    },
+    {
+      "n": 3,
+      "topic": "It was...",
+      "vocab": [
+        "funny",
+        "exciting",
+        "scary"
+      ],
+      "target_language": "It was funny/exciting.",
+      "objective": "Describe movies with adjectives."
+    },
+    {
+      "n": 4,
+      "topic": "Favorite character",
+      "vocab": [
+        "character",
+        "hero",
+        "villain"
+      ],
+      "target_language": "My favorite character is ___.",
+      "objective": "Talk about characters."
+    },
+    {
+      "n": 5,
+      "topic": "Movie review",
+      "vocab": [
+        "think",
+        "because",
+        "star rating"
+      ],
+      "target_language": "I think it was ___ because ___.",
+      "objective": "Write a kid movie review."
+    }
+  ]
+}

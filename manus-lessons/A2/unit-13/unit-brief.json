@@ -1,0 +1,75 @@
+{
+  "unit": 13,
+  "slug": "cooking-show",
+  "title": "Cooking Show",
+  "world": "TV kitchen set",
+  "communicative_goal": "Follow recipes with imperatives and some/any.",
+  "recycled_language": [
+    "make",
+    "some"
+  ],
+  "new_language_focus": [
+    "mix",
+    "add",
+    "cut",
+    "any",
+    "some"
+  ],
+  "unit_end_capability": "Learner can follow Mix/Add/Cut instructions.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Kitchen verbs",
+      "vocab": [
+        "mix",
+        "stir",
+        "pour"
+      ],
+      "target_language": "Mix the ___. / Stir slowly.",
+      "objective": "Learn cooking imperatives."
+    },
+    {
+      "n": 2,
+      "topic": "Some ingredients",
+      "vocab": [
+        "some",
+        "flour",
+        "sugar"
+      ],
+      "target_language": "Add some ___.",
+      "objective": "Use some with ingredients."
+    },
+    {
+      "n": 3,
+      "topic": "Any questions?",
+      "vocab": [
+        "any",
+        "salt",
+        "pepper"
+      ],
+      "target_language": "Do we have any ___?",
+      "objective": "Ask about ingredients."
+    },
+    {
+      "n": 4,
+      "topic": "Recipe steps",
+      "vocab": [
+        "first",
+        "next",
+        "then"
+      ],
+      "target_language": "First, cut ___. Next, mix ___.",
+      "objective": "Sequence a recipe."
+    },
+    {
+      "n": 5,
+      "topic": "Cook-off",
+      "vocab": [
+        "delicious",
+        "team"
+      ],
+      "target_language": "Our dish is delicious because ___.",
+      "objective": "Present a finished dish."
+    }
+  ]
+}

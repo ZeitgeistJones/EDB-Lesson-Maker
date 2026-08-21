@@ -1,0 +1,87 @@
+{
+  "unit": 16,
+  "slug": "animals-zoo",
+  "title": "Animals at the Zoo",
+  "world": "zoo adventure day",
+  "communicative_goal": "Name zoo animals and describe simple actions/abilities.",
+  "recycled_language": [
+    "I like",
+    "I can",
+    "where is",
+    "it's a"
+  ],
+  "new_language_focus": [
+    "lion",
+    "elephant",
+    "monkey",
+    "giraffe",
+    "penguin",
+    "It can ___",
+    "It is big/small"
+  ],
+  "unit_end_capability": "Learner can name zoo animals and say It can ___ / It is ___.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Zoo tickets",
+      "vocab": [
+        "lion",
+        "elephant",
+        "monkey",
+        "giraffe",
+        "penguin"
+      ],
+      "target_language": "It's a lion/elephant…",
+      "objective": "Meet zoo animals at the gate."
+    },
+    {
+      "n": 2,
+      "topic": "Big and small",
+      "vocab": [
+        "big",
+        "small",
+        "tall",
+        "fast",
+        "slow"
+      ],
+      "target_language": "The elephant is big. / The penguin is small.",
+      "objective": "Describe animals with adjectives."
+    },
+    {
+      "n": 3,
+      "topic": "Animals can…",
+      "vocab": [
+        "run",
+        "swim",
+        "fly",
+        "climb",
+        "jump"
+      ],
+      "target_language": "It can swim/fly/climb.",
+      "objective": "Match animals to abilities."
+    },
+    {
+      "n": 4,
+      "topic": "Feeding time",
+      "vocab": [
+        "hungry",
+        "eat",
+        "feed",
+        "careful"
+      ],
+      "target_language": "The ___ is hungry. Feed the ___!",
+      "objective": "Complete a feeding-time mission."
+    },
+    {
+      "n": 5,
+      "topic": "Favorite animal",
+      "vocab": [
+        "favorite",
+        "because",
+        "cool"
+      ],
+      "target_language": "My favorite animal is the ___. It can ___.",
+      "objective": "Present a favorite zoo animal."
+    }
+  ]
+}

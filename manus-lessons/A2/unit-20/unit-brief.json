@@ -1,0 +1,76 @@
+{
+  "unit": 20,
+  "slug": "a2-celebration",
+  "title": "A2 Celebration",
+  "world": "festival grounds",
+  "communicative_goal": "Review A2 threads across a party mission.",
+  "recycled_language": [
+    "past",
+    "going to",
+    "think"
+  ],
+  "new_language_focus": [
+    "review",
+    "celebrate",
+    "invite",
+    "thank you"
+  ],
+  "unit_end_capability": "Learner can use mixed A2 language in a party scenario.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Invitations",
+      "vocab": [
+        "invite",
+        "going to come",
+        "party"
+      ],
+      "target_language": "I'm going to have a party. Can you come?",
+      "objective": "Send invitations."
+    },
+    {
+      "n": 2,
+      "topic": "What we did last time",
+      "vocab": [
+        "last time",
+        "played",
+        "ate"
+      ],
+      "target_language": "Last time we played ___.",
+      "objective": "Recall a past event."
+    },
+    {
+      "n": 3,
+      "topic": "Better party plans",
+      "vocab": [
+        "better",
+        "more",
+        "should"
+      ],
+      "target_language": "This party should be better. We need more ___.",
+      "objective": "Improve plans with comparatives/should."
+    },
+    {
+      "n": 4,
+      "topic": "Prep teams",
+      "vocab": [
+        "some",
+        "many",
+        "make"
+      ],
+      "target_language": "Team A makes ___. Team B buys many ___.",
+      "objective": "Coordinate prep."
+    },
+    {
+      "n": 5,
+      "topic": "Celebration show",
+      "vocab": [
+        "thank you",
+        "favorite",
+        "next time"
+      ],
+      "target_language": "Thank you! My favorite part was ___. Next time I'm going to ___.",
+      "objective": "Close the A2 arc with a celebration."
+    }
+  ]
+}

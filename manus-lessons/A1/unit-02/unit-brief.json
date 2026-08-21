@@ -1,0 +1,87 @@
+{
+  "unit": 2,
+  "slug": "all-about-me",
+  "title": "All About Me",
+  "world": "kid identity card / selfie studio",
+  "communicative_goal": "Say age, feelings, likes; present a simple 'about me' card.",
+  "recycled_language": [
+    "hello",
+    "my name is",
+    "what's your name"
+  ],
+  "new_language_focus": [
+    "I am ___ years old",
+    "I am happy/sad/tired",
+    "I like ___"
+  ],
+  "unit_end_capability": "Learner can say name, age, a feeling, and one like.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "How old are you?",
+      "vocab": [
+        "years old",
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight"
+      ],
+      "target_language": "I am ___ years old. / How old are you?",
+      "objective": "Ask and say ages with birthday-cake visuals."
+    },
+    {
+      "n": 2,
+      "topic": "How are you?",
+      "vocab": [
+        "happy",
+        "sad",
+        "tired",
+        "hungry",
+        "great"
+      ],
+      "target_language": "How are you? — I'm happy/sad/tired.",
+      "objective": "Express basic feelings with face cards and buddy check."
+    },
+    {
+      "n": 3,
+      "topic": "I like…",
+      "vocab": [
+        "like",
+        "don't like",
+        "pizza",
+        "dogs",
+        "games",
+        "music"
+      ],
+      "target_language": "I like ___. / I don't like ___.",
+      "objective": "State likes and dislikes with picture choice."
+    },
+    {
+      "n": 4,
+      "topic": "My selfie card",
+      "vocab": [
+        "name",
+        "age",
+        "feel",
+        "like"
+      ],
+      "target_language": "I'm ___. I'm ___ years old. I'm ___. I like ___.",
+      "objective": "Build a personal 'about me' card with recycled language."
+    },
+    {
+      "n": 5,
+      "topic": "Show and tell",
+      "vocab": [
+        "this is me",
+        "like",
+        "happy"
+      ],
+      "target_language": "Hi, I'm ___. I'm ___ years old. I like ___.",
+      "objective": "Present the about-me card to a partner / class."
+    }
+  ]
+}

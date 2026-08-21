@@ -1,0 +1,81 @@
+{
+  "unit": 9,
+  "slug": "daily-routines",
+  "title": "Daily Routines",
+  "world": "day-in-the-life comic strip",
+  "communicative_goal": "Talk about simple daily actions with present simple.",
+  "recycled_language": [
+    "I like",
+    "I have",
+    "morning"
+  ],
+  "new_language_focus": [
+    "wake up",
+    "eat breakfast",
+    "go to school",
+    "play",
+    "go to bed",
+    "I ___ every day"
+  ],
+  "unit_end_capability": "Learner can sequence a simple daily routine.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Morning time",
+      "vocab": [
+        "wake up",
+        "wash",
+        "eat breakfast",
+        "brush teeth"
+      ],
+      "target_language": "I wake up. / I eat breakfast.",
+      "objective": "Describe morning actions in order."
+    },
+    {
+      "n": 2,
+      "topic": "School and play",
+      "vocab": [
+        "go to school",
+        "study",
+        "play",
+        "read"
+      ],
+      "target_language": "I go to school. / I play.",
+      "objective": "Talk about daytime activities."
+    },
+    {
+      "n": 3,
+      "topic": "Evening wind-down",
+      "vocab": [
+        "eat dinner",
+        "take a bath",
+        "go to bed"
+      ],
+      "target_language": "I eat dinner. / I go to bed.",
+      "objective": "Describe evening routine."
+    },
+    {
+      "n": 4,
+      "topic": "First, then, next",
+      "vocab": [
+        "first",
+        "then",
+        "next",
+        "finally"
+      ],
+      "target_language": "First I ___. Then I ___.",
+      "objective": "Sequence routine steps with connectors."
+    },
+    {
+      "n": 5,
+      "topic": "My day comic",
+      "vocab": [
+        "morning",
+        "afternoon",
+        "night"
+      ],
+      "target_language": "Every day I ___, then I ___.",
+      "objective": "Build and retell a personal day comic."
+    }
+  ]
+}

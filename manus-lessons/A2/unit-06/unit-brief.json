@@ -1,0 +1,79 @@
+{
+  "unit": 6,
+  "slug": "count-much",
+  "title": "Count & Much",
+  "world": "kitchen market",
+  "communicative_goal": "Contrast countable and uncountable nouns lightly.",
+  "recycled_language": [
+    "some",
+    "a",
+    "apple"
+  ],
+  "new_language_focus": [
+    "many",
+    "much",
+    "some",
+    "a bottle of",
+    "a bag of"
+  ],
+  "unit_end_capability": "Learner can use many/much/some with food.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "Many apples",
+      "vocab": [
+        "many",
+        "apples",
+        "bananas"
+      ],
+      "target_language": "How many apples? — There are many.",
+      "objective": "Count countable snacks."
+    },
+    {
+      "n": 2,
+      "topic": "Much water",
+      "vocab": [
+        "much",
+        "water",
+        "milk",
+        "juice"
+      ],
+      "target_language": "How much water? — Not much.",
+      "objective": "Talk about liquids."
+    },
+    {
+      "n": 3,
+      "topic": "Some or a?",
+      "vocab": [
+        "some",
+        "rice",
+        "bread",
+        "egg"
+      ],
+      "target_language": "Some rice / an egg / a sandwich",
+      "objective": "Sort some vs a/an."
+    },
+    {
+      "n": 4,
+      "topic": "Shopping list",
+      "vocab": [
+        "bottle of",
+        "bag of",
+        "box of"
+      ],
+      "target_language": "A bottle of juice / a bag of rice",
+      "objective": "Write a mixed shopping list."
+    },
+    {
+      "n": 5,
+      "topic": "Picnic pack",
+      "vocab": [
+        "many",
+        "much",
+        "some"
+      ],
+      "target_language": "We need many ___. We don't need much ___.",
+      "objective": "Pack a picnic with quantities."
+    }
+  ]
+}

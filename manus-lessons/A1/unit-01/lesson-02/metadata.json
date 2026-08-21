@@ -1,0 +1,21 @@
+{
+  "cefr": "A1",
+  "unit": 1,
+  "lesson": 2,
+  "curriculum_position": "A1-U01-L02",
+  "unit_title": "Hello, Friends!",
+  "topic": "My name is…",
+  "target_vocabulary": [
+    "name",
+    "I",
+    "am",
+    "my"
+  ],
+  "target_language": "My name is ___. / I'm ___.",
+  "objective": "Introduce yourself with a clear name sentence.",
+  "page_count_expected": 10,
+  "page_count_found": 0,
+  "manus_task_id": "gnKut97HTtzqf97mzrv3JW",
+  "manus_task_url": "https://manus.im/app/gnKut97HTtzqf97mzrv3JW",
+  "preserved_at": "2026-08-21T06:47:56.622Z"
+}

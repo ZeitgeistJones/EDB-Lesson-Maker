@@ -1,0 +1,75 @@
+{
+  "unit": 4,
+  "slug": "best-ever",
+  "title": "Best Ever!",
+  "world": "award show stage",
+  "communicative_goal": "Use superlatives lightly for favorites.",
+  "recycled_language": [
+    "better",
+    "than"
+  ],
+  "new_language_focus": [
+    "the best",
+    "the biggest",
+    "the fastest",
+    "favorite"
+  ],
+  "unit_end_capability": "Learner can say the best/biggest/fastest.",
+  "lessons": [
+    {
+      "n": 1,
+      "topic": "The biggest",
+      "vocab": [
+        "biggest",
+        "smallest",
+        "in"
+      ],
+      "target_language": "It is the biggest ___ in the world.",
+      "objective": "Explore size superlatives."
+    },
+    {
+      "n": 2,
+      "topic": "The fastest",
+      "vocab": [
+        "fastest",
+        "slowest",
+        "race"
+      ],
+      "target_language": "He is the fastest runner.",
+      "objective": "Award fastest characters."
+    },
+    {
+      "n": 3,
+      "topic": "Best food",
+      "vocab": [
+        "best",
+        "worst",
+        "tasty"
+      ],
+      "target_language": "This is the best pizza!",
+      "objective": "Rank foods with opinion language."
+    },
+    {
+      "n": 4,
+      "topic": "Class awards",
+      "vocab": [
+        "funniest",
+        "kindest",
+        "cleverest"
+      ],
+      "target_language": "She is the kindest friend.",
+      "objective": "Give gentle class superlative awards."
+    },
+    {
+      "n": 5,
+      "topic": "My best day",
+      "vocab": [
+        "best",
+        "because",
+        "ever"
+      ],
+      "target_language": "The best day was ___ because ___.",
+      "objective": "Tell a best-day story."
+    }
+  ]
+}
