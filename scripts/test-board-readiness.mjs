@@ -65,11 +65,16 @@ const castleDock = [
   'castle-sword',
   'castle-key',
   'castle-door-wood',
-].map((propKey) => ({ role: 'dockPiece', meta: { propKey } }));
+].map((propKey) => ({ role: 'dockPiece', asset: `assets/09_props/${propKey}.png`, meta: { propKey } }));
 const contractPlan = {
   pages: [{
     pageKey: 'activity',
-    locked: [],
+    locked: [
+      { role: 'dropPad', asset: 'pad.png', meta: { snapIndex: 1 } },
+      { role: 'dropPad', asset: 'pad.png', meta: { snapIndex: 2 } },
+      { role: 'heroStateLadder', asset: 'ladder.png', meta: { payoff: 'CASTLE READY' } },
+      { role: 'heroPayoff', asset: 'payoff.png', meta: { payoff: 'CASTLE READY' } },
+    ],
     unlocked: [
       { role: 'stageHero', meta: { propKey: 'castle-wall-gate', stageKing: true } },
       ...castleDock,
@@ -93,6 +98,19 @@ if (!drift || drift.ok || !drift.reasons.some((r) => /off-topic dock/i.test(r)))
   console.error('FAIL heroProp contract must reject semantic drift', drift);
   process.exit(1);
 }
+
+const promisedHint = {
+  kingHintFor: () => 'Drag eyes, nose, and hair onto the face. Then say: I add the ___.',
+};
+sandbox.window.LessonTraits = promisedHint;
+const ghostEyes = sandbox.window.BoardReadiness.heroStageContract(lesson, contractPlan, contractAct);
+if (!ghostEyes || ghostEyes.ok || !ghostEyes.reasons.some((r) => /promised noun/i.test(r))) {
+  console.error('FAIL heroProp contract must reject promised nouns with no dock source', ghostEyes);
+  process.exit(1);
+}
+sandbox.window.LessonTraits = {
+  kingHintFor: () => 'Build the castle. Then say: I put the ___ on the castle.',
+};
 
 if (kit.ready) {
   // Sharp docks restored — full ready path.

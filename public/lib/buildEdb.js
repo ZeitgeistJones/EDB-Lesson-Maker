@@ -509,6 +509,51 @@ function captionedArtPng(artBytes, label, w, h) {
   });
 }
 
+/** White card + cyan grab ring so match pictures read as movable, not decor. */
+function withMatchGrabHalo(artBytes, w, h) {
+  const width = Math.max(64, w || 96);
+  const height = Math.max(64, h || 96);
+  const c = document.createElement('canvas');
+  c.width = width;
+  c.height = height;
+  const ctx = c.getContext('2d');
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      ctx.save();
+      ctx.shadowColor = 'rgba(15,23,42,0.28)';
+      ctx.shadowBlur = 8;
+      ctx.shadowOffsetY = 4;
+      ctx.fillStyle = '#ffffff';
+      const r = 14;
+      ctx.beginPath();
+      ctx.moveTo(r, 4);
+      ctx.arcTo(width - 4, 4, width - 4, height - 4, r);
+      ctx.arcTo(width - 4, height - 4, 4, height - 4, r);
+      ctx.arcTo(4, height - 4, 4, 4, r);
+      ctx.arcTo(4, 4, width - 4, 4, r);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+      ctx.strokeStyle = '#22d3ee';
+      ctx.setLineDash([5, 4]);
+      ctx.lineWidth = 2;
+      ctx.strokeRect(7, 7, width - 14, height - 14);
+      const inset = 10;
+      const nw = img.naturalWidth || width;
+      const nh = img.naturalHeight || height;
+      const box = Math.min(width - inset * 2, height - inset * 2);
+      const scale = Math.min(box / nw, box / nh);
+      const dw = nw * scale;
+      const dh = nh * scale;
+      ctx.drawImage(img, (width - dw) / 2, (height - dh) / 2, dw, dh);
+      canvasToPng(c).then(resolve, () => resolve(artBytes));
+    };
+    img.onerror = () => resolve(artBytes);
+    img.src = pngBytesToDataUrl(artBytes);
+  });
+}
+
 /** Planned artSrc → wordArt → curated emoji → text tile. Never bullet / role label. */
 async function pieceToPng(piece, ctx) {
   const word = piece.meta && piece.meta.word;
@@ -529,7 +574,7 @@ async function pieceToPng(piece, ctx) {
       if (wantCaption && (piece.label || word)) {
         return captionedArtPng(png, piece.label || word, piece.w, piece.h);
       }
-      return png;
+      return isMatchIcon ? withMatchGrabHalo(png, piece.w, piece.h) : png;
     }
     if (mustHaveArt) {
       throw new Error('pieceToPng: missing artSrc file for ' + (word || artSrc));

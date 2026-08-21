@@ -585,8 +585,10 @@
     return (lesson.vocabulary || []).slice(0, boardVocabCeil(lesson));
   }
 
-  function normalizeLesson(lesson) {
+  function normalizeLesson(lesson, meta) {
     if (!lesson || typeof lesson !== 'object') return lesson || {};
+    if (meta && meta.level) lesson.level = meta.level;
+    else if (!lesson.level && meta && meta.cefr) lesson.level = meta.cefr;
     if (!lesson.story || typeof lesson.story !== 'object') lesson.story = {};
     const story = lesson.story;
 
@@ -632,6 +634,17 @@
       window.StoryIntegrity.repairLesson(lesson);
     }
 
+    // Mass-noun / weak vocab-sentence repair (beach "a sand", empty cards, meta
+    // "We use X when we talk about…" filler from ProducerQuality realign).
+    if (window.NounArticles) {
+      if (typeof window.NounArticles.repairLessonVocabulary === 'function') {
+        window.NounArticles.repairLessonVocabulary(lesson);
+      }
+      if (typeof window.NounArticles.repairLessonTextFields === 'function') {
+        window.NounArticles.repairLessonTextFields(lesson);
+      }
+    }
+
     // a/an honesty — bare "a ____" with apple/orange in the bank teaches "a apple"
     // (Manus UX fruit bP5y). Rewrite frames + activity templates to a/an (or the
     // single correct article) before chrome / frameTiles ship.
@@ -647,6 +660,7 @@
   /**
    * Rewrite bare a/an blanks when taught vocab would force a wrong article.
    * Mixed bank → "a/an ____"; all-vowel → "an"; all-consonant → "a".
+   * Mass/plural-only banks → drop indefinite ("I see ____" / "I see the ____").
    */
   function articleSafeFrames(lesson) {
     if (!lesson || typeof lesson !== 'object') return lesson;
@@ -655,13 +669,20 @@
       .map((w) => String(w || '').trim())
       .filter(Boolean);
     if (!words.length) return lesson;
-    const hasAn = words.some(needsAnArticle);
-    const hasA = words.some((w) => !needsAnArticle(w));
+    const NA = window.NounArticles;
+    const countable = words.filter((w) => !(NA && typeof NA.takesIndefinite === 'function') || NA.takesIndefinite(w));
+    const massOrPluralOnly = countable.length === 0;
+    const hasAn = countable.some(needsAnArticle);
+    const hasA = countable.some((w) => !needsAnArticle(w));
     const rewrite = (raw) => {
       let s = String(raw || '');
       if (!s) return s;
-      // Already dual-form — leave alone.
       if (/\ba\/an\s+(_{2,}|\.{3}|…)/i.test(s)) return s;
+      if (massOrPluralOnly) {
+        // "I see a ____" → "I see the ____" (safe for sand/water/shoes).
+        s = s.replace(/\b(an|a)\s+(_{2,}|\.{3}|…)/gi, 'the $2');
+        return s;
+      }
       if (hasAn && hasA) {
         s = s.replace(/\b(an|a)\s+(_{2,}|\.{3}|…)/gi, 'a/an $2');
       } else if (hasAn) {
@@ -689,7 +710,7 @@
    *  Story place art belongs in `[data-story-art]` panels, not as page scenes.
    *  Variety = rotating flats; thin place sets may borrow one house cool mid-panel. */
   function buildSectionList(lesson, meta) {
-    lesson = normalizeLesson(lesson);
+    lesson = normalizeLesson(lesson, meta);
     if (window.ProducerBridge && typeof window.ProducerBridge.normalize === 'function') {
       window.ProducerBridge.normalize(lesson, meta || {});
     }
@@ -1214,6 +1235,31 @@
     return p;
   }
 
+  /**
+   * B1+ warm-up write-in starter must follow the question, not a global feelings frame.
+   * Volcano "What landscape…?" must not force "I feel ____ because ____."
+   */
+  function warmUpWriteStarter(lesson, meta) {
+    const q = String((lesson && lesson.warmUp && lesson.warmUp.question) || '');
+    const title = String((lesson && lesson.title) || '');
+    const blob = `${q} ${title}`.toLowerCase();
+    if (/\b(feel|feeling|feelings|emotion|mood|worried|scared|shy|proud)\b/.test(blob)) {
+      return 'Try: I feel ____ because ____.';
+    }
+    if (/\b(would you|why or why not|agree|opinion)\b/.test(blob)) {
+      return 'Try: I would / I would not because ____.';
+    }
+    if (/\b(visit|visited|landscape|place|see|saw|where|travel)\b/.test(blob)) {
+      return 'Try: I visited ____. I saw ____.';
+    }
+    if (/\b(should|must|important|because)\b/.test(blob)) {
+      return 'Try: I think ____ because ____.';
+    }
+    const level = String((meta && meta.level) || (lesson && lesson.level) || '').toLowerCase();
+    if (level === 'b1' || level === 'b2') return 'Try: I think ____ because ____.';
+    return 'Try: I ____.';
+  }
+
   function makeWarmUp(lesson, boardPlan, meta) {
     const outline = window.ColoringOutlines
       ? window.ColoringOutlines.forLesson(lesson, meta)
@@ -1299,9 +1345,10 @@
       // B1+: big write-in stage. Never print sampleAnswer on the student board
       // (Manus / honesty — teacher samples bias kids). Keep sampleAnswer in JSON
       // for teacher scripts / PDF notes only.
+      const starter = warmUpWriteStarter(lesson, meta);
       const writeIn = card(
         `<div style="font-size:28px;font-weight:700;color:#64748b;margin-bottom:14px;text-align:center">Write or say your answer here</div>
-         <div data-warm-starter="1" style="font-size:26px;font-weight:800;color:#1e3a8a;background:#eff6ff;border:2px dashed #93c5fd;border-radius:14px;padding:12px 20px;margin:0 8% 18px;text-align:center">Try: I feel ____ because ____.</div>
+         <div data-warm-starter="1" style="font-size:26px;font-weight:800;color:#1e3a8a;background:#eff6ff;border:2px dashed #93c5fd;border-radius:14px;padding:12px 20px;margin:0 8% 18px;text-align:center">${esc(starter)}</div>
          <div style="border-bottom:3px dashed #cbd5e1;height:52px;margin:12px 8% 0"></div>
          <div style="border-bottom:3px dashed #cbd5e1;height:52px;margin:20px 8% 0"></div>
          <div style="border-bottom:3px dashed #cbd5e1;height:52px;margin:20px 8% 0"></div>`,
@@ -3743,7 +3790,7 @@
 
   async function render(lesson, meta, boardPlan) {
     _renderMeta = meta || {};
-    lesson = normalizeLesson(lesson);
+    lesson = normalizeLesson(lesson, meta);
     if (window.ProducerBridge && typeof window.ProducerBridge.normalize === 'function') {
       window.ProducerBridge.normalize(lesson, meta || {});
     }

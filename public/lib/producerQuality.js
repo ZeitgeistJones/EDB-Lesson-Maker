@@ -565,7 +565,7 @@
     };
   }
 
-  function pushVocabWord(words, seen, families, w, brief, target, preferNewFamily) {
+  function pushVocabWord(words, seen, families, w, brief, target, preferNewFamily, lesson) {
     if (words.length >= target) return false;
     const raw = String(w || '').trim();
     if (!raw) return false;
@@ -580,11 +580,31 @@
     }
     seen.add(n);
     if (fam) families.add(fam);
+    const prior = ((lesson && lesson.vocabulary) || []).find((v) => {
+      const pw = typeof v === 'string' ? v : v && v.word;
+      return norm(pw) === n;
+    });
+    const priorSentence = prior && typeof prior === 'object'
+      ? String(prior.sentence || prior.example || '').trim()
+      : '';
+    const NA = window.NounArticles;
+    let sentence = priorSentence;
+    if (
+      !sentence
+      || (NA && typeof NA.isWeakExampleSentence === 'function' && NA.isWeakExampleSentence(sentence, raw))
+    ) {
+      sentence = NA && typeof NA.exampleSentence === 'function'
+        ? NA.exampleSentence(raw, brief.topicLabel)
+        : `I see ${/^[aeiou]/i.test(raw) ? 'an' : 'a'} ${raw}.`;
+    }
+    if (NA && typeof NA.repairIndefiniteMass === 'function') {
+      sentence = NA.repairIndefiniteMass(sentence);
+    }
     words.push({
       word: raw,
-      definition: `A word for ${brief.topicLabel || 'this topic'}.`,
-      example: `We use “${raw}” when we talk about ${brief.topicLabel || 'the topic'}.`,
-      sentence: `We use “${raw}” when we talk about ${brief.topicLabel || 'the topic'}.`,
+      definition: (prior && prior.definition) || `A word for ${brief.topicLabel || 'this topic'}.`,
+      example: sentence,
+      sentence,
     });
     return true;
   }
@@ -645,12 +665,12 @@
     const seen = new Set();
     const families = new Set();
     for (const w of pool) {
-      pushVocabWord(words, seen, families, w, brief, target, true);
+      pushVocabWord(words, seen, families, w, brief, target, true, lesson);
       if (words.length >= target) break;
     }
     if (words.length < target) {
       for (const w of pool) {
-        pushVocabWord(words, seen, families, w, brief, target, false);
+        pushVocabWord(words, seen, families, w, brief, target, false, lesson);
         if (words.length >= target) break;
       }
     }
@@ -690,7 +710,12 @@
         heading: existing.heading || `${c0}`,
         text: keepAuthored || hasCorePair
           ? rawText
-          : `We learn about ${topic}. First we see a ${c0}. Then we find the ${c1}. We also talk about ${c2}.`,
+          : (() => {
+            const NA = window.NounArticles;
+            const np0 = NA && NA.nounPhrase ? NA.nounPhrase(c0) : `a ${c0}`;
+            const np1 = NA && NA.nounPhrase ? NA.nounPhrase(c1, { prefer: 'the' }) : `the ${c1}`;
+            return `We learn about ${topic}. First we see ${np0}. Then we find ${np1}. We also talk about ${c2}.`;
+          })(),
         visualTheme: existing.visualTheme || topic,
         visualCaption: existing.visualCaption || `${c0} — ${topic}`,
       });
@@ -775,12 +800,35 @@
       }
     }
 
-    const words = vocabWords(lesson).map((w) => ({
-      word: w,
-      definition: `A word for ${brief.topicLabel || 'this topic'}.`,
-      example: `We use “${w}” when we talk about ${brief.topicLabel || 'the topic'}.`,
-      sentence: `We use “${w}” when we talk about ${brief.topicLabel || 'the topic'}.`,
-    }));
+    function makeEntry(word) {
+      const prior = (lesson.vocabulary || []).find((v) => {
+        const pw = typeof v === 'string' ? v : v && v.word;
+        return norm(pw) === norm(word);
+      });
+      const NA = window.NounArticles;
+      let sentence = prior && typeof prior === 'object'
+        ? String(prior.sentence || prior.example || '').trim()
+        : '';
+      if (
+        !sentence
+        || (NA && typeof NA.isWeakExampleSentence === 'function' && NA.isWeakExampleSentence(sentence, word))
+      ) {
+        sentence = NA && typeof NA.exampleSentence === 'function'
+          ? NA.exampleSentence(word, brief.topicLabel)
+          : `I see ${/^[aeiou]/i.test(String(word)) ? 'an' : 'a'} ${word}.`;
+      }
+      if (NA && typeof NA.repairIndefiniteMass === 'function') {
+        sentence = NA.repairIndefiniteMass(sentence);
+      }
+      return {
+        word,
+        definition: (prior && prior.definition) || `A word for ${brief.topicLabel || 'this topic'}.`,
+        example: sentence,
+        sentence,
+      };
+    }
+
+    const words = vocabWords(lesson).map((w) => makeEntry(w));
     const seen = new Set(words.map((w) => norm(w.word)));
 
     function displaceFor(concept) {
@@ -811,12 +859,7 @@
           best = i;
         }
       }
-      const entry = {
-        word: concept,
-        definition: `A word for ${brief.topicLabel || 'this topic'}.`,
-        example: `We use “${concept}” when we talk about ${brief.topicLabel || 'the topic'}.`,
-        sentence: `We use “${concept}” when we talk about ${brief.topicLabel || 'the topic'}.`,
-      };
+      const entry = makeEntry(concept);
       if (best >= 0) {
         seen.delete(norm(words[best].word));
         words[best] = entry;

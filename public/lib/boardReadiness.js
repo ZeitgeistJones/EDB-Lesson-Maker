@@ -186,6 +186,20 @@
   }
 
   /**
+   * Nouns the instruction explicitly tells the learner to drag
+   * ("Drag eyes, nose, and hair onto…"). Generic words (tool/part/piece)
+   * are not promises — those are filled by whatever the dock actually shipped.
+   */
+  function promisedDockNouns(hint) {
+    const text = String(hint || '');
+    const m = text.match(/drag\s+(.+?)\s+(?:onto|to|on|into|by|around|inside)/i);
+    if (!m) return [];
+    return m[1].split(/,| and | or /i)
+      .map((s) => s.replace(/^(a|an|the)\s+/i, '').trim().toLowerCase())
+      .filter((s) => s && !/^(tool|tools|part|parts|piece|pieces|thing|things|food|item|items|treasure|topping|musician|clothes)$/.test(s));
+  }
+
+  /**
    * heroProp semantic contract: the rendered king, planned king, topic resolver,
    * dock family, and learner sentence frame must all tell the same story.
    * Returns null for pre-render plan() calls; buildBoardPlan() reruns readiness
@@ -219,7 +233,15 @@
     const hint = LT && typeof LT.kingHintFor === 'function'
       ? LT.kingHintFor(cue.toLowerCase(), { heroKey })
       : '';
-    const languageScaffold = !LT || (/_{3,}/.test(hint) && /\bthen\b/i.test(hint));
+    // Article + blank keeps singular/plural/mass nouns grammatical
+    // ("I add the nose/eyes/hair") — bare "has ___" failed Manus R2.
+    const feelingsHint = /if i felt/i.test(hint);
+    const languageScaffold = !LT || (
+      /_{3,}/.test(hint)
+      && /\bthen\b/i.test(hint)
+      && (feelingsHint || /\b(?:the|a|an)\s+_{3,}/i.test(hint))
+    );
+    const promised = promisedDockNouns(hint);
 
     let family = null;
     if (heroKey === 'dental-kid-open-mouth') {
@@ -252,6 +274,19 @@
       family = /^castle-/;
     }
     const offFamily = family ? dockKeys.filter((key) => !family.test(key)) : [];
+    const dockBlob = [
+      ...dockKeys,
+      ...dock.map((p) => String((p.meta && p.meta.sayNoun) || '')),
+    ].join(' ').toLowerCase();
+    const missingPromised = promised.filter((noun) => {
+      const stem = String(noun || '').replace(/s$/, '');
+      if (!stem) return false;
+      return !dockBlob.includes(stem);
+    });
+    const ghosts = dock.filter((p) => !p.asset);
+    const snapPads = pieces.filter((p) => p && (p.role === 'dropPad' || p.role === 'heroSnap'));
+    const stateLadder = pieces.some((p) => p && p.role === 'heroStateLadder');
+    const payoff = pieces.some((p) => p && (p.role === 'heroPayoff' || p.role === 'heroPayoffCover'));
     const reasons = [];
     if (!heroKey) reasons.push('no rendered stage hero');
     if (!plannedKey || plannedKey !== heroKey) reasons.push('planned hero does not match rendered stage');
@@ -259,6 +294,16 @@
     if (dockKeys.length < minDock) reasons.push(`only ${dockKeys.length}/${minDock} visible roleplay tools`);
     if (offFamily.length) reasons.push(`off-topic dock tools: ${offFamily.slice(0, 3).join(', ')}`);
     if (!languageScaffold) reasons.push('missing action-to-language sentence frame');
+    if (ghosts.length) reasons.push(`${ghosts.length} ghost dock source(s) with no PNG`);
+    if (missingPromised.length) {
+      reasons.push(`promised noun has no dock-safe source: ${missingPromised.slice(0, 3).join(', ')}`);
+    }
+    const feelingsBoard = /\b(feeling|feelings|emotion|emotions|mood)\b/i.test(cue);
+    if (!feelingsBoard) {
+      if (snapPads.length < 2) reasons.push('missing snap landing pads on the king');
+      if (!stateLadder) reasons.push('missing drag→snap→payoff state ladder');
+      if (!payoff) reasons.push('missing visible payoff badge');
+    }
     return {
       ok: reasons.length === 0,
       heroKey,
@@ -625,6 +670,7 @@
     vocabArtHits,
     summaryLine,
     heroStageContract,
+    promisedDockNouns,
     VOCAB_ART_FLOOR,
     KIT_REASON_RE,
     maxBoardVocab,

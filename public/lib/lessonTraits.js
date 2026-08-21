@@ -64,33 +64,35 @@
   // King-stage instruction copy, keyed by resolved king type. `default` is the
   // sane fallback (unknown lessons read exactly as before).
   const KING_HINTS = {
-    default: 'Build the world with the pieces. Then point and say: I put the ___ ___.',
+    default: 'Drag a piece onto the stage. Then say: I put the ___.',
     feelings: '<b>Round 1:</b> drag a feeling face onto the blank face; write or say how it feels.<br><b>Round 2:</b> your partner reads the face, names the feeling, then answers with If I felt ____, I would ____.',
-    face: 'Drag eyes, nose, mouth, and hair onto the face. Then say: My friend has ___',
-    dental: 'Help the patient. Drag a tool to the mouth. Then say: I use the ___ to ___.',
-    hospital: 'Help the patient. Drag a tool to the bed. Then say: I use the ___ to ___.',
-    castle: 'Build the castle with the pieces. Then say: I put the ___ on the castle.',
-    trampoline: 'Make a safe bounce scene. Then say: I use the ___ to ___.',
-    music: 'Build the concert on the stage. Then say: The ___ plays ___.',
-    beach: 'Build the beach world. Then say: I put the ___ by the sandcastle.',
-    fire: 'Build the fire-rescue scene. Then say: I use the ___ to ___.',
-    camp: 'Build the campsite around the tent. Then say: I put the ___ by the tent.',
-    bathroom: 'Build the wash-up scene. Then say: I use the ___ to ___.',
-    playground: 'Build the playground. Then say: I put the ___ by the slide.',
-    cafe: 'Build the cafe counter. Then say: I put the ___ on the counter.',
-    farm: 'Build the farmyard. Then say: I put the ___ by the barn.',
-    aquarium: 'Build the aquarium. Then say: I put the ___ in the tank.',
-    construction: 'Build the construction site. Then say: I use the ___ to ___.',
-    dollhouse: 'Build the rooms. Then say: I put the ___ in the ___ room.',
-    chest: 'Drag treasure into the chest. Then say: I found a ___.',
-    backpack: 'Drag things into the backpack. Then say: I packed the ___.',
-    pizza: 'Drag toppings onto the pizza. Then say: I made a ___ pizza.',
+    // Never name a part the dock cannot ship (ghost eyes). "the ___" is A1-safe
+    // for singular, plural, and mass nouns (a nose / the eyes / the hair).
+    face: 'Drag a part onto the face. Then say: I add the ___.',
+    dental: 'Drag a tool onto the mouth. Then say: I use the ___.',
+    hospital: 'Drag a tool onto the bed. Then say: I use the ___.',
+    castle: 'Drag a piece onto the castle. Then say: I put the ___.',
+    trampoline: 'Drag a tool onto the trampoline. Then say: I use the ___.',
+    music: 'Drag a musician onto the stage. Then say: I hear the ___.',
+    beach: 'Drag a piece onto the sand. Then say: I put the ___.',
+    fire: 'Drag a tool onto the truck. Then say: I use the ___.',
+    camp: 'Drag a thing by the tent. Then say: I put the ___.',
+    bathroom: 'Drag a tool onto the bath. Then say: I use the ___.',
+    playground: 'Drag a thing by the slide. Then say: I put the ___.',
+    cafe: 'Drag food onto the counter. Then say: I put the ___.',
+    farm: 'Drag a thing by the barn. Then say: I put the ___.',
+    aquarium: 'Drag a thing into the tank. Then say: I put the ___.',
+    construction: 'Drag a tool onto the site. Then say: I use the ___.',
+    dollhouse: 'Drag a thing into a room. Then say: I put the ___.',
+    chest: 'Drag treasure into the chest. Then say: I found the ___.',
+    backpack: 'Drag a thing into the backpack. Then say: I packed the ___.',
+    pizza: 'Drag a topping onto the food. Then say: I add the ___.',
     mouth: 'Drag food into the mouth. Then say: It ate the ___.',
-    fridge: 'Drag food into the fridge. Then say: I put away the ___.',
-    putIn: 'Drag things inside. Then say: I put the ___ inside.',
+    fridge: 'Drag food into the fridge. Then say: I put the ___.',
+    putIn: 'Drag a thing inside. Then say: I put the ___.',
     oven: 'Drag food into the oven. Then say: I baked the ___.',
     laundry: 'Drag clothes into the basket. Then say: I washed the ___.',
-    fort: 'Drag things into the fort. Then say: I brought the ___.',
+    fort: 'Drag a thing into the fort. Then say: I brought the ___.',
   };
 
   const KING_MISSIONS = {
@@ -121,6 +123,36 @@
     oven: 'Bake the Food!',
     laundry: 'Pack the Laundry!',
     fort: 'Build the Fort!',
+  };
+
+  const KING_PAYOFFS = {
+    default: 'WORLD READY',
+    feelings: 'FEELING NAMED',
+    face: 'FACE DONE',
+    dental: 'SMILE READY',
+    hospital: 'PATIENT READY',
+    castle: 'CASTLE READY',
+    trampoline: 'BOUNCE READY',
+    music: 'CONCERT READY',
+    beach: 'BEACH READY',
+    fire: 'RESCUE READY',
+    camp: 'CAMP READY',
+    bathroom: 'WASH READY',
+    playground: 'PLAY READY',
+    cafe: 'ORDER READY',
+    farm: 'FARM READY',
+    aquarium: 'TANK READY',
+    construction: 'SITE READY',
+    dollhouse: 'ROOMS READY',
+    chest: 'CHEST FULL',
+    backpack: 'BAG PACKED',
+    pizza: 'FOOD READY',
+    mouth: 'FED',
+    fridge: 'FRIDGE STOCKED',
+    putIn: 'FILLED',
+    oven: 'BAKED',
+    laundry: 'WASHED',
+    fort: 'FORT READY',
   };
 
   // Play-surface kings: hint from the actual hero key so "backpack" vocab on a
@@ -622,6 +654,20 @@
     return KING_MISSIONS[type] || KING_MISSIONS.default;
   }
 
+  function kingPayoffFor(cue, opts) {
+    const heroKey = opts && opts.heroKey;
+    const feelingsKing = opts && opts.feelingsKing != null
+      ? !!opts.feelingsKing
+      : isFeelingsCue(cue);
+    const faceKing = opts && opts.faceKing != null
+      ? !!opts.faceKing
+      : (!feelingsKing && isFaceCue(cue));
+    const cueType = kingTypeFor(cue, { feelingsKing, faceKing });
+    const heroType = heroKey && HERO_KEY_HINTS[heroKey];
+    const type = heroKey === 'face-blank' ? cueType : (heroType || cueType);
+    return KING_PAYOFFS[type] || KING_PAYOFFS.default;
+  }
+
   // Lesson-level resolver. Returns the trait bundle the render spine reads, with
   // a sane default (musicTitle:false) so unknown lessons behave as the fallback.
   function traitsFor(lesson) {
@@ -637,6 +683,7 @@
     RE,
     KING_HINTS,
     KING_MISSIONS,
+    KING_PAYOFFS,
     KING_TYPE_RULES,
     THEME_NONE,
     CHARM_BAN_SPORTS,
@@ -650,5 +697,6 @@
     kingTypeFor,
     kingHintFor,
     kingMissionFor,
+    kingPayoffFor,
   };
 })();

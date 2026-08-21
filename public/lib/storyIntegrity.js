@@ -184,6 +184,9 @@
     if (out.length >= MIN_COMPREHENSION) return { questions: out, padded: 0 };
     if (!String(blob || '').trim()) return { questions: out, padded: 0 };
 
+    const level = String((lesson && (lesson.level || lesson._level)) || '').toLowerCase();
+    const babyPadsOk = !level || level === 'a1' || level === 'pre-a1';
+
     const used = new Set(out.map((q) => normQ(q && q.question)));
     const tryAdd = (question, sampleAnswer) => {
       if (out.length >= MIN_COMPREHENSION) return;
@@ -201,19 +204,43 @@
     });
     vocabInStory.sort((a, b) => b.length - a.length || a.localeCompare(b));
 
-    vocabInStory.forEach((noun) => {
-      const article = /^[aeiou]/.test(noun) ? 'an' : 'a';
-      tryAdd(`Do I see ${article} ${noun}?`, 'Yes.');
-      tryAdd(`Is there ${article} ${noun}?`, 'Yes.');
-    });
+    // "Do I see a ___?" is A1 starter scaffolding — never pad B1/B2 volcano-style
+    // lessons with kindergarten recall after integrity drops weak model Qs.
+    if (babyPadsOk) {
+      vocabInStory.forEach((noun) => {
+        const NA = (typeof globalThis !== 'undefined' && globalThis.NounArticles)
+          || (typeof window !== 'undefined' && window.NounArticles)
+          || null;
+        if (NA && typeof NA.doISeeNoun === 'function') {
+          tryAdd(NA.doISeeNoun(noun), 'Yes.');
+          tryAdd(NA.isThereNoun(noun), 'Yes.');
+        } else {
+          const article = /^[aeiou]/.test(noun) ? 'an' : 'a';
+          tryAdd(`Do I see ${article} ${noun}?`, 'Yes.');
+          tryAdd(`Is there ${article} ${noun}?`, 'Yes.');
+        }
+      });
 
-    if (vocabInStory.length >= 2) {
-      const a = vocabInStory[0];
-      const b = vocabInStory[1];
-      tryAdd(
-        `What two things are in the story?`,
-        `A ${a} and a ${b}.`
-      );
+      if (vocabInStory.length >= 2) {
+        const a = vocabInStory[0];
+        const b = vocabInStory[1];
+        const NA = (typeof globalThis !== 'undefined' && globalThis.NounArticles)
+          || (typeof window !== 'undefined' && window.NounArticles)
+          || null;
+        const npA = NA && NA.nounPhrase ? NA.nounPhrase(a) : (`a ${a}`);
+        const npB = NA && NA.nounPhrase ? NA.nounPhrase(b) : (`a ${b}`);
+        const sample = `${npA.charAt(0).toUpperCase()}${npA.slice(1)} and ${npB}.`;
+        tryAdd(`What two things are in the story?`, sample);
+      }
+    } else if (vocabInStory.length) {
+      const n0 = vocabInStory[0];
+      tryAdd(`What does the story say about ${n0}?`, `It mentions ${n0}.`);
+      if (vocabInStory.length >= 2) {
+        tryAdd(
+          `Which detail about ${vocabInStory[1]} matters in the story?`,
+          `The story talks about ${vocabInStory[1]}.`
+        );
+      }
     }
 
     // Safe opinion pads — always grounded via OPINION_RE.
@@ -285,6 +312,7 @@
       '- Emit ≥2 grounded comprehension questions (one literal recall + one detail/outcome or opinion). A single-Q page fails the board floor even if the Q is honest.',
       '- sampleAnswer must also stay consistent with the story body.',
       '- story.pages[].visualTheme must name THIS lesson\'s place (circus→circus, dentist→dental, basketball→sports) — never a default park/school/kitchen when the topic is elsewhere.',
+      '- ARTICLES / COUNTABILITY: never write "a sand", "a water", "a rice", "a music" — mass nouns take bare or "the/some", not indefinite a/an. Plurals (shoes, eyes) also never take a/an.',
     ].join('\n');
   }
 

@@ -128,8 +128,8 @@ const fullArt = {
 assert(W.EdbActivities.matchDockIsPartial(fullArt) === false, 'full set not partial');
 const fullHint = W.EdbActivities.matchDockStudentHint(fullArt);
 assert(partialHint === fullHint, 'student hint identical whether partial or full');
-assert(/drag each picture/i.test(fullHint), 'student hint names the draggable picture source');
-assert(/to its word/i.test(fullHint), 'student hint names the destination word pad');
+assert(/park each picture/i.test(fullHint), 'student hint names the draggable picture source');
+assert(/on its word/i.test(fullHint), 'student hint names the destination word pad');
 assert(/say the word/i.test(fullHint), 'student hint includes retrieval aloud');
 assert(!/not every word/i.test(partialHint), 'student hint must not announce missing pictures');
 
@@ -178,6 +178,37 @@ const musicWorld = W.EdbActivities.matchDockWorldTheme({
 });
 assert(musicWorld.id === 'music', 'matchDock chooses the music-stage world');
 assert(/BAND READY/.test(musicWorld.payoff), 'music world has a topic payoff');
+
+const beachWorld = W.EdbActivities.matchDockWorldTheme({
+  title: 'Beach Day Find',
+  vocabulary: [{ word: 'shell' }, { word: 'crab' }, { word: 'umbrella' }],
+});
+assert(beachWorld.id === 'beach', 'matchDock chooses the beach world');
+assert(/Park each picture/.test(beachWorld.metaphor), 'beach world uses one dock metaphor');
+assert(typeof W.EdbActivities.matchDockWorldScenePng === 'function', 'matchDock paints a topic scene');
+assert(typeof W.EdbActivities.matchDockWaxSealPng === 'function', 'matchDock paints a wax seal');
+const starterRects = W.EdbActivities.matchDockThreeStateRects(false);
+const solvedRects = W.EdbActivities.matchDockThreeStateRects(true);
+assert(starterRects.seal.x !== solvedRects.seal.x, 'solved seal moves off the reward');
+assert(starterRects.reward.w > starterRects.seal.w, 'locked seal is smaller so the reward peeks');
+
+const takeBind = W.EdbActivities.coverAnswerBind(
+  { question: 'What do you take camping?', sampleAnswer: 'I take a tent.' },
+  { vocabulary: [{ word: 'tent' }, { word: 'backpack' }] }
+);
+assert(takeBind.ok, 'coverAnswerBind accepts take + I take');
+assert(takeBind.intent === 'wh-take', 'coverAnswerBind classifies take questions');
+assert(/I take/.test(takeBind.frame), 'coverAnswerBind does not bolt I like onto take');
+const likeOnTake = W.EdbActivities.coverAnswerBind(
+  { question: 'What do you take camping?', sampleAnswer: 'I like a tent.' },
+  { vocabulary: [{ word: 'tent' }] }
+);
+assert(!likeOnTake.ok, 'coverAnswerBind rejects I like sample on a take question');
+const weatherBind = W.EdbActivities.coverAnswerBind(
+  { question: 'What weather do you like?', sampleAnswer: 'I like sunny days.' },
+  { vocabulary: [{ word: 'sunny' }, { word: 'rainy' }] }
+);
+assert(weatherBind.ok && weatherBind.intent === 'wh-like', 'coverAnswerBind keeps I like on like-questions');
 
 // Art floor: Ready needs ≥5/6 teachable art (was 50%).
 assert(Math.abs(W.BoardReadiness.VOCAB_ART_FLOOR - 5 / 6) < 1e-9, 'VOCAB_ART_FLOOR is 5/6');

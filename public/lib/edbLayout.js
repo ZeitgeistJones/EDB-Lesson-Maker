@@ -54,14 +54,16 @@
     },
     frames: {
       header:    { x: 48, y: 36,  w: 1184, h: 50, noOverlap: true },
-      bodyText:  { x: 48, y: 100, w: 1184, h: 400, noOverlap: true },
-      artSafe:   { x: 1000, y: 420, w: 230, h: 140, noOverlap: false },
+      // Topic-mapped scene stage (Manus frameTiles: action→payoff gate).
+      sceneStage:{ x: 48, y: 92,  w: 1184, h: 148, noOverlap: true },
+      bodyText:  { x: 48, y: 248, w: 1184, h: 238, noOverlap: true },
+      artSafe:   { x: 1000, y: 420, w: 230, h: 70, noOverlap: false },
       // Full board width — a 900px dock left a bare ~300px quadrant on the
       // lower right next to a full-width frame stack (Manus frameTiles R2
       // "dock balance" action). placeDockRow still centers the tile row
       // inside this wider zone, so fewer tiles just get more breathing room.
       dock:      { x: 48, y: 500, w: 1184, h: 70, noOverlap: false },
-      targetBay: { x: 48, y: 100, w: 1184, h: 380, noOverlap: false },
+      targetBay: { x: 48, y: 248, w: 1184, h: 238, noOverlap: true },
       rewardPocket: { x: 1100, y: 36, w: 140, h: 60, noOverlap: false },
     },
     story: {
@@ -98,7 +100,7 @@
       // Taller than a single text line on purpose — this bay now hosts a
       // "Model Answer" card (ribbon header always visible + peel flap over
       // the sample text), not a bare button. See coverAnswer() R1 Manus fix.
-      targetBay: { x: 88, y: 240, w: 720, h: 132, noOverlap: false },
+      targetBay: { x: 72, y: 206, w: 780, h: 156, noOverlap: false },
       rewardPocket: { x: 1100, y: 36, w: 140, h: 80, noOverlap: false },
     },
     activity: {
