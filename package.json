@@ -144,6 +144,8 @@
     "test:yes-no-sort": "node scripts/test-yes-no-sort.mjs",
     "test:odd-one-out": "node scripts/test-odd-one-out.mjs",
     "test:fix-sentence": "node scripts/test-fix-sentence.mjs",
+    "test:board-grammars": "node scripts/test-board-grammars.mjs",
+    "preview:board-grammars": "node scripts/preview-board-type-baselines.cjs",
     "preview:odd-one-out": "node scripts/preview-odd-one-out.cjs",
     "preview:fix-sentence": "node scripts/preview-fix-sentence.cjs",
     "test:theme-lock": "node scripts/test-theme-lock.mjs",

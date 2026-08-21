@@ -1201,6 +1201,53 @@
     );
   }
 
+  function wantsCapacityPack(lesson) {
+    const id = boardArchetypeId(lesson);
+    if (id === 'capacitypack' || id === 'capacity-pack' || id === 'packandcheck') return true;
+    const act = lesson && lesson.activity;
+    if (act && act.capacityPack && typeof act.capacityPack === 'object') return true;
+    return /\b(pack exactly|limited pack|capacity challenge|pack and check)\b/i.test(archetypeCueBlob(lesson));
+  }
+
+  function wantsRouteMission(lesson) {
+    const id = boardArchetypeId(lesson);
+    if (id === 'routemission' || id === 'route-mission' || id === 'missionroute') return true;
+    const act = lesson && lesson.activity;
+    if (act && act.routeMission && typeof act.routeMission === 'object') return true;
+    return /\b(route mission|plan the route|mission path|steps to the goal)\b/i.test(archetypeCueBlob(lesson));
+  }
+
+  function wantsTransformationLab(lesson) {
+    const id = boardArchetypeId(lesson);
+    if (id === 'transformationlab' || id === 'transformation-lab' || id === 'causeeffectlab') return true;
+    const act = lesson && lesson.activity;
+    if (act && act.transformationLab && typeof act.transformationLab === 'object') return true;
+    return /\b(transformation lab|make it change|cause and effect|what changes it)\b/i.test(archetypeCueBlob(lesson));
+  }
+
+  function wantsEvidenceBoard(lesson) {
+    const id = boardArchetypeId(lesson);
+    if (id === 'evidenceboard' || id === 'evidence-board' || id === 'casefile') return true;
+    const act = lesson && lesson.activity;
+    if (act && act.evidenceBoard && typeof act.evidenceBoard === 'object') return true;
+    return /\b(evidence board|case file|rank the clues|strongest evidence)\b/i.test(archetypeCueBlob(lesson));
+  }
+
+  function hasExplicitBoardGrammar(lesson) {
+    const act = lesson && lesson.activity;
+    if (!act || typeof act !== 'object') return false;
+    if (boardArchetypeId(lesson)) return true;
+    if (String(act.mysteryMode || '').toLowerCase() === 'silhouette') return true;
+    return [
+      'halfTruth',
+      'sceneRepair',
+      'capacityPack',
+      'routeMission',
+      'transformationLab',
+      'evidenceBoard',
+    ].some((key) => act[key] && typeof act[key] === 'object');
+  }
+
   function resolveSilhouetteGate(lesson, vocabArt) {
     if (!wantsSilhouetteGate(lesson)) return null;
     const row = pickMysteryTarget(vocabArt);
@@ -1710,6 +1757,447 @@
     page.notes.push('recipe:sceneRepair');
     page.notes.push('authoredWrongness:' + wrongWord);
     page.notes.push('sceneRepairCorrect:' + correctWord);
+  }
+
+  function uniqueTextItems(items, max) {
+    const out = [];
+    const seen = new Set();
+    for (const item of items || []) {
+      const text = String(item || '').trim();
+      const key = text.toLowerCase();
+      if (!text || seen.has(key)) continue;
+      seen.add(key);
+      out.push(text);
+      if (out.length >= max) break;
+    }
+    return out;
+  }
+
+  function resolveCapacityPack(lesson, vocabArt) {
+    if (!wantsCapacityPack(lesson)) return null;
+    const act = (lesson && lesson.activity) || {};
+    const raw = act.capacityPack && typeof act.capacityPack === 'object' ? act.capacityPack : {};
+    const fallback = vocabList(lesson).map((v) => v && v.word);
+    const options = uniqueTextItems(
+      Array.isArray(raw.options) && raw.options.length ? raw.options : fallback,
+      6
+    );
+    if (options.length < 3) return null;
+    const requested = Number(raw.limit);
+    if (Number.isFinite(requested)
+      && (requested < 1 || requested > 4 || Math.round(requested) >= options.length)) {
+      return null;
+    }
+    const limit = Math.max(1, Math.min(
+      4,
+      options.length - 1,
+      Number.isFinite(requested) ? Math.round(requested) : 3
+    ));
+    if (options.length <= limit) return null;
+    const rows = options.map((word) =>
+      findMatchableRow(word, picturedMatchableRows(vocabArt)) || { word }
+    );
+    const optionSet = new Set(options.map((word) => word.toLowerCase()));
+    return {
+      mission: String(raw.mission || act.prompt || 'Choose only what the mission needs.').trim(),
+      limit,
+      options,
+      rows,
+      mustInclude: uniqueTextItems(raw.mustInclude, limit)
+        .filter((word) => optionSet.has(word.toLowerCase())),
+      source: raw === act.capacityPack ? 'lesson' : 'derived',
+    };
+  }
+
+  /**
+   * A visible limited container: the learner must commit to exactly N large
+   * pieces. The filled slots become the board's persistent decision record.
+   */
+  function capacityPack(lesson, page, layout, ctx) {
+    const L = layout || window.EdbLayout;
+    const options = uniqueTextItems(ctx && ctx.options, 6);
+    const limit = Math.max(1, Math.min(4, Number(ctx && ctx.limit) || 3));
+    if (options.length <= limit) return;
+    const rows = (ctx && Array.isArray(ctx.rows) ? ctx.rows : []);
+    const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
+    const titleH = 42;
+    const footerH = 34;
+    const slotGap = 18;
+    const slotW = Math.min(220, Math.floor((bay.w - 64 - slotGap * (limit - 1)) / limit));
+    const slotH = Math.max(92, bay.h - titleH - footerH - 28);
+    const totalW = slotW * limit + slotGap * (limit - 1);
+    const startX = bay.x + Math.round((bay.w - totalW) / 2);
+
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: hintStickyPng(bay.w - 48, titleH, `MISSION: ${String(ctx.mission || '').slice(0, 90)}`),
+      w: bay.w - 48, h: titleH,
+      intentional: true,
+      anchor: { x: bay.x + 24, y: bay.y + 4, w: bay.w - 48, h: titleH },
+      role: 'capacityMission',
+      meta: { mission: ctx.mission || '', limit },
+    });
+    for (let i = 0; i < limit; i++) {
+      L.place(page, {
+        locked: true,
+        kind: 'image',
+        asset: slotGhostPng(slotW, slotH, i + 1),
+        w: slotW, h: slotH,
+        intentional: true,
+        anchor: {
+          x: startX + i * (slotW + slotGap),
+          y: bay.y + titleH + 12,
+          w: slotW,
+          h: slotH,
+        },
+        role: 'capacitySlot',
+        meta: { slot: i + 1, limit },
+      });
+    }
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: solidPng(bay.w - 80, footerH, '#ecfeff', `PACK EXACTLY ${limit} — explain every choice`, '#0f766e'),
+      w: bay.w - 80, h: footerH,
+      intentional: true,
+      anchor: {
+        x: bay.x + 40,
+        y: bay.y + bay.h - footerH,
+        w: bay.w - 80,
+        h: footerH,
+      },
+      role: 'capacityRule',
+      meta: { limit },
+    });
+
+    const pieces = options.map((word) => {
+      const row = findMatchableRow(word, rows) || { word };
+      const meta = {
+        word,
+        required: (ctx.mustInclude || []).some((x) => String(x).toLowerCase() === word.toLowerCase()),
+      };
+      if (row.propKey) meta.propKey = row.propKey;
+      if (row.artSrc) {
+        return { kind: 'image', asset: row.artSrc, text: word, role: 'capacityChoice', meta };
+      }
+      return { kind: 'tile', text: word, role: 'capacityChoice', meta };
+    });
+    L.placeDockRow(page, pieces, { w: 150, h: 72, noShrink: true });
+    page.notes.push('recipe:capacityPack');
+    page.notes.push('capacityLimit:' + limit);
+  }
+
+  function resolveRouteMission(lesson) {
+    if (!wantsRouteMission(lesson)) return null;
+    const act = (lesson && lesson.activity) || {};
+    const raw = act.routeMission && typeof act.routeMission === 'object' ? act.routeMission : {};
+    let steps = uniqueTextItems(raw.steps, 5);
+    if (steps.length < 3) {
+      const storyPages = (lesson && lesson.story && Array.isArray(lesson.story.pages))
+        ? lesson.story.pages
+        : [];
+      steps = uniqueTextItems(storyPages.map((p) => p && (p.heading || p.text)), 5);
+    }
+    if (steps.length < 3) return null;
+    const answerOrder = uniqueTextItems(raw.answerOrder, 5);
+    const validAnswer = answerOrder.length === steps.length
+      && answerOrder.every((s) => steps.some((x) => x.toLowerCase() === s.toLowerCase()));
+    return {
+      mission: String(raw.mission || act.prompt || 'Arrange the steps to reach the goal.').trim(),
+      steps,
+      answerOrder: validAnswer ? answerOrder : steps.slice(),
+      source: raw === act.routeMission ? 'lesson' : 'story',
+    };
+  }
+
+  /** Arrange mission steps on a visible start-to-finish path. */
+  function routeMission(lesson, page, layout, ctx) {
+    const L = layout || window.EdbLayout;
+    const steps = uniqueTextItems(ctx && ctx.steps, 5);
+    if (steps.length < 3) return;
+    const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
+    const missionH = 42;
+    const keyH = 34;
+    const padGap = 14;
+    const padW = Math.floor((bay.w - 72 - padGap * (steps.length - 1)) / steps.length);
+    const padH = Math.max(82, bay.h - missionH - keyH - 30);
+    const startX = bay.x + 36;
+    const padY = bay.y + missionH + 12;
+
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: hintStickyPng(bay.w - 48, missionH, `MISSION: ${String(ctx.mission || '').slice(0, 90)}`),
+      w: bay.w - 48, h: missionH,
+      intentional: true,
+      anchor: { x: bay.x + 24, y: bay.y + 4, w: bay.w - 48, h: missionH },
+      role: 'routeMissionBrief',
+      meta: { mission: ctx.mission || '' },
+    });
+    steps.forEach((_, i) => {
+      L.place(page, {
+        locked: true,
+        kind: 'image',
+        asset: slotGhostPng(padW, padH, i + 1),
+        w: padW, h: padH,
+        intentional: true,
+        anchor: { x: startX + i * (padW + padGap), y: padY, w: padW, h: padH },
+        role: 'routeStep',
+        meta: { step: i + 1, start: i === 0, finish: i === steps.length - 1 },
+      });
+    });
+    const answer = (ctx.answerOrder || steps).join(' → ');
+    const keyY = bay.y + bay.h - keyH;
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: solidPng(bay.w - 64, keyH, '#dcfce7', answer.slice(0, 110), '#166534'),
+      w: bay.w - 64, h: keyH,
+      intentional: true,
+      anchor: { x: bay.x + 32, y: keyY, w: bay.w - 64, h: keyH },
+      role: 'routeAnswer',
+      meta: { answerOrder: ctx.answerOrder || steps },
+    });
+    L.place(page, {
+      locked: false,
+      kind: 'image',
+      asset: stickyPng(bay.w - 64, keyH),
+      w: bay.w - 64, h: keyH,
+      intentional: true,
+      anchor: { x: bay.x + 32, y: keyY, w: bay.w - 64, h: keyH },
+      role: 'routeAnswerCover',
+      meta: { covers: 'routeAnswer' },
+    });
+    const shuffled = pick(steps, steps.length, hashStr((lesson.title || '') + '|routeMission'));
+    L.placeDockRow(page, shuffled.map((text) => ({
+      kind: 'tile',
+      text,
+      role: 'routeTile',
+      meta: { text },
+    })), { w: Math.max(150, Math.min(220, Math.floor(1120 / steps.length))), h: 68 });
+    page.notes.push('recipe:routeMission');
+    page.notes.push('routeSteps:' + steps.length);
+  }
+
+  function resolveTransformationLab(lesson) {
+    if (!wantsTransformationLab(lesson)) return null;
+    const act = (lesson && lesson.activity) || {};
+    const raw = act.transformationLab;
+    if (!raw || typeof raw !== 'object') return null;
+    const before = String(raw.before || '').trim();
+    const after = String(raw.after || raw.result || '').trim();
+    const changes = uniqueTextItems(raw.changes || raw.changeOptions, 4);
+    const correctChange = String(raw.correctChange || '').trim();
+    if (!before || !after || changes.length < 2 || !correctChange) return null;
+    if (!changes.some((x) => x.toLowerCase() === correctChange.toLowerCase())) return null;
+    return {
+      before,
+      after,
+      changes,
+      correctChange,
+      question: String(raw.question || act.prompt || 'Which change makes the result happen?').trim(),
+      source: 'lesson',
+    };
+  }
+
+  /** Choose a change, place it between BEFORE and AFTER, then peel the result. */
+  function transformationLab(lesson, page, layout, ctx) {
+    const L = layout || window.EdbLayout;
+    const changes = uniqueTextItems(ctx && ctx.changes, 4);
+    if (!ctx || !ctx.before || !ctx.after || changes.length < 2) return;
+    const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
+    const questionH = 40;
+    const labelH = 34;
+    const cardGap = 18;
+    const cardW = Math.floor((bay.w - 72 - cardGap * 2) / 3);
+    const cardH = Math.max(94, bay.h - questionH - labelH - 22);
+    const y = bay.y + questionH + labelH + 10;
+    const labels = [
+      { text: 'BEFORE', color: '#1d4ed8' },
+      { text: 'CHANGE', color: '#7c3aed' },
+      { text: 'AFTER', color: '#047857' },
+    ];
+    const cards = [String(ctx.before), '', String(ctx.after)];
+
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: hintStickyPng(bay.w - 48, questionH, String(ctx.question || '').slice(0, 90)),
+      w: bay.w - 48, h: questionH,
+      intentional: true,
+      anchor: { x: bay.x + 24, y: bay.y + 4, w: bay.w - 48, h: questionH },
+      role: 'transformationQuestion',
+      meta: { question: ctx.question || '' },
+    });
+    labels.forEach((label, i) => {
+      const x = bay.x + 24 + i * (cardW + cardGap);
+      L.place(page, {
+        locked: true,
+        kind: 'image',
+        asset: solidPng(cardW, labelH, label.color, label.text, '#fff'),
+        w: cardW, h: labelH,
+        intentional: true,
+        anchor: { x, y: bay.y + questionH + 8, w: cardW, h: labelH },
+        role: 'transformationLabel',
+        meta: { phase: label.text.toLowerCase() },
+      });
+      L.place(page, {
+        locked: true,
+        kind: 'image',
+        asset: cards[i]
+          ? hintStickyPng(cardW, cardH, cards[i])
+          : slotGhostPng(cardW, cardH, '?'),
+        w: cardW, h: cardH,
+        intentional: true,
+        anchor: { x, y, w: cardW, h: cardH },
+        role: i === 1 ? 'transformationChangeSlot' : 'transformationState',
+        meta: { phase: labels[i].text.toLowerCase(), text: cards[i] },
+      });
+      if (i === 2) {
+        L.place(page, {
+          locked: false,
+          kind: 'image',
+          asset: solidPng(cardW, cardH, '#0f766e', 'PEEL RESULT', '#fff'),
+          w: cardW, h: cardH,
+          intentional: true,
+          anchor: { x, y, w: cardW, h: cardH },
+          role: 'transformationResultCover',
+          meta: { covers: ctx.after },
+        });
+      }
+    });
+    L.placeDockRow(page, changes.map((text) => ({
+      kind: 'tile',
+      text,
+      role: 'transformationChange',
+      meta: { text, correct: text.toLowerCase() === String(ctx.correctChange).toLowerCase() },
+    })), { w: 190, h: 68 });
+    page.notes.push('recipe:transformationLab');
+    page.notes.push('transformationAnswer:' + ctx.correctChange);
+  }
+
+  function normalizeEvidenceItems(raw) {
+    const out = [];
+    const seen = new Set();
+    for (const item of Array.isArray(raw) ? raw : []) {
+      const text = String(typeof item === 'string' ? item : item && item.text || '').trim();
+      const key = text.toLowerCase();
+      if (!text || seen.has(key)) continue;
+      seen.add(key);
+      out.push({
+        text,
+        strength: typeof item === 'object' && item ? Number(item.strength) || null : null,
+      });
+      if (out.length >= 4) break;
+    }
+    return out;
+  }
+
+  function resolveEvidenceBoard(lesson) {
+    if (!wantsEvidenceBoard(lesson)) return null;
+    const act = (lesson && lesson.activity) || {};
+    const raw = act.evidenceBoard;
+    if (!raw || typeof raw !== 'object') return null;
+    const claim = String(raw.claim || raw.question || '').trim();
+    const conclusion = String(raw.conclusion || '').trim();
+    const evidence = normalizeEvidenceItems(raw.evidence);
+    if (!claim || !conclusion || evidence.length < 3) return null;
+    const explicitStrength = evidence.every((e) => Number.isFinite(e.strength));
+    const ordered = explicitStrength
+      ? evidence.slice().sort((a, b) => b.strength - a.strength)
+      : evidence.slice();
+    return {
+      claim,
+      conclusion,
+      evidence,
+      answerOrder: ordered.map((e) => e.text),
+      source: 'lesson',
+    };
+  }
+
+  /** Build a ranked case file; the completed board remembers the argument. */
+  function evidenceBoard(lesson, page, layout, ctx) {
+    const L = layout || window.EdbLayout;
+    const evidence = normalizeEvidenceItems(ctx && ctx.evidence);
+    if (!ctx || !ctx.claim || !ctx.conclusion || evidence.length < 3) return;
+    const bay = L.zoneRect(page, 'targetBay') || L.zoneRect(page, 'artSafe');
+    const claimH = 42;
+    const keyH = 34;
+    const gap = 14;
+    const slotW = Math.floor((bay.w - 72 - gap * (evidence.length - 1)) / evidence.length);
+    const slotH = Math.max(86, bay.h - claimH - keyH - 26);
+    const y = bay.y + claimH + 10;
+
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: hintStickyPng(bay.w - 48, claimH, `CASE: ${String(ctx.claim).slice(0, 90)}`),
+      w: bay.w - 48, h: claimH,
+      intentional: true,
+      anchor: { x: bay.x + 24, y: bay.y + 4, w: bay.w - 48, h: claimH },
+      role: 'evidenceClaim',
+      meta: { claim: ctx.claim },
+    });
+    evidence.forEach((_, i) => {
+      L.place(page, {
+        locked: true,
+        kind: 'image',
+        asset: slotGhostPng(slotW, slotH, i + 1),
+        w: slotW, h: slotH,
+        intentional: true,
+        anchor: { x: bay.x + 36 + i * (slotW + gap), y, w: slotW, h: slotH },
+        role: 'evidenceRankSlot',
+        meta: { rank: i + 1, label: i === 0 ? 'strongest' : 'supporting' },
+      });
+    });
+    const keyY = bay.y + bay.h - keyH;
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: solidPng(bay.w - 64, keyH, '#e0f2fe', String(ctx.conclusion).slice(0, 100), '#075985'),
+      w: bay.w - 64, h: keyH,
+      intentional: true,
+      anchor: { x: bay.x + 32, y: keyY, w: bay.w - 64, h: keyH },
+      role: 'evidenceConclusion',
+      meta: { conclusion: ctx.conclusion, answerOrder: ctx.answerOrder || [] },
+    });
+    L.place(page, {
+      locked: false,
+      kind: 'image',
+      asset: stickyPng(bay.w - 64, keyH),
+      w: bay.w - 64, h: keyH,
+      intentional: true,
+      anchor: { x: bay.x + 32, y: keyY, w: bay.w - 64, h: keyH },
+      role: 'evidenceConclusionCover',
+      meta: { covers: 'conclusion' },
+    });
+    const shuffled = pick(evidence, evidence.length, hashStr((lesson.title || '') + '|evidenceBoard'));
+    const dock = L.zoneRect(page, 'dock');
+    const cardW = Math.max(180, Math.min(270, Math.floor(((dock && dock.w) || 1184) / evidence.length) - 18));
+    L.placeDockRow(page, shuffled.map((item) => ({
+      kind: 'image',
+      asset: hintStickyPng(cardW, 70, item.text),
+      text: item.text,
+      role: 'evidenceCard',
+      meta: { text: item.text, strength: item.strength },
+    })), { w: cardW, h: 70 });
+    page.notes.push('recipe:evidenceBoard');
+    page.notes.push('evidenceCount:' + evidence.length);
+  }
+
+  function resolveRequestedBoardGrammar(lesson, vocabArt) {
+    const candidates = [
+      ['capacityPack', resolveCapacityPack(lesson, vocabArt)],
+      ['routeMission', resolveRouteMission(lesson)],
+      ['transformationLab', resolveTransformationLab(lesson)],
+      ['evidenceBoard', resolveEvidenceBoard(lesson)],
+      ['silhouetteGate', resolveSilhouetteGate(lesson, vocabArt)],
+      ['halfTruthBoard', resolveHalfTruth(lesson, vocabArt)],
+      ['sceneRepair', resolveSceneRepair(lesson, vocabArt)],
+    ];
+    const hit = candidates.find((row) => row[1]);
+    return hit ? { recipeId: hit[0], ctx: hit[1] } : null;
   }
 
   /** Pictured VocabArt rows kids can drag (artSrc / glyph / propKey). */
@@ -5089,6 +5577,10 @@
     silhouetteGate,
     halfTruthBoard,
     sceneRepair,
+    capacityPack,
+    routeMission,
+    transformationLab,
+    evidenceBoard,
     oddOneOut,
     yesNoSort,
     thisOrThat,
@@ -5244,6 +5736,18 @@
         ctx: { actions },
       });
     } else if (hasVocab) {
+      const requestedGrammar = resolveRequestedBoardGrammar(lesson, vocabArt);
+      const explicitGrammar = hasExplicitBoardGrammar(lesson);
+      // An authored grammar is the lesson designer's one job for this board.
+      // It must beat an incidental hero-kit match; narrow title cues still yield
+      // to a proven king and are considered only if no king ships.
+      if (explicitGrammar && requestedGrammar) {
+        assignments.push({
+          pageKey: 'activity',
+          recipeId: requestedGrammar.recipeId,
+          ctx: requestedGrammar.ctx,
+        });
+      } else {
       // Activity — curated stage (feelings/face/dental) or pack kit → king stage.
       // Always resolve via findHeroProp so "Round 1" cannot keep a false-ready
       // castle kit ahead of face-blank (S43).
@@ -5262,27 +5766,13 @@
           ctx: { hero, kit: kitMatchesHero ? kit : null },
         });
       } else {
-        // Board-archetype prototypes (opt-in / narrow cue only — never spray).
-        const silSet = resolveSilhouetteGate(lesson, vocabArt);
-        const halfSet = resolveHalfTruth(lesson, vocabArt);
-        const repairSet = resolveSceneRepair(lesson, vocabArt);
-        if (silSet) {
+        // Requested board grammar by narrow cue (explicit payloads were handled
+        // above). Never spray a complex grammar without valid content.
+        if (requestedGrammar) {
           assignments.push({
             pageKey: 'activity',
-            recipeId: 'silhouetteGate',
-            ctx: silSet,
-          });
-        } else if (halfSet) {
-          assignments.push({
-            pageKey: 'activity',
-            recipeId: 'halfTruthBoard',
-            ctx: halfSet,
-          });
-        } else if (repairSet) {
-          assignments.push({
-            pageKey: 'activity',
-            recipeId: 'sceneRepair',
-            ctx: repairSet,
+            recipeId: requestedGrammar.recipeId,
+            ctx: requestedGrammar.ctx,
           });
         } else {
         // Soft-gated hero lost — plan order for non-king activity:
@@ -5401,6 +5891,7 @@
         }
         }
       }
+      }
     }
 
     const planOut = {
@@ -5453,6 +5944,7 @@
     const RECIPE_OWNS_ART = {
       buildScene: 1, dressUp: 1, sortBins: 1, heroProp: 1, mysteryHints: 1,
       silhouetteGate: 1, halfTruthBoard: 1, sceneRepair: 1,
+      capacityPack: 1, routeMission: 1, transformationLab: 1, evidenceBoard: 1,
       oddOneOut: 1, yesNoSort: 1, thisOrThat: 1, fixSentence: 1,
     };
     const activityRecipe = (boardPlan.assignments || []).find((a) => a.pageKey === 'activity');
@@ -5717,9 +6209,19 @@
     resolveSilhouetteGate,
     resolveHalfTruth,
     resolveSceneRepair,
+    resolveCapacityPack,
+    resolveRouteMission,
+    resolveTransformationLab,
+    resolveEvidenceBoard,
+    resolveRequestedBoardGrammar,
     wantsSilhouetteGate,
     wantsHalfTruth,
     wantsSceneRepair,
+    wantsCapacityPack,
+    wantsRouteMission,
+    wantsTransformationLab,
+    wantsEvidenceBoard,
+    hasExplicitBoardGrammar,
     boardArchetypeId,
     silhouetteGatePng,
   };

@@ -2507,6 +2507,7 @@
       || 'Say each word. Look at the picture beside it.';
     const actAssign = (boardPlan && boardPlan.assignments || [])
       .find((a) => a && a.pageKey === 'activity');
+    const activityCtx = (actAssign && actAssign.ctx) || {};
     const oddRuleHint = actAssign && actAssign.ctx && actAssign.ctx.ruleHint
       ? String(actAssign.ctx.ruleHint).trim()
       : '';
@@ -2519,6 +2520,10 @@
       silhouetteGate: 'Guess from the mystery shape. Peel hints if you need help. Then say the word.',
       halfTruthBoard: 'Read the claim. Look at the evidence. Drag TRUE, HALF TRUE, or FALSE onto a pad. Peel the answer.',
       sceneRepair: 'The board put one wrong piece on purpose. Move it out. Put a better fit in. Say why.',
+      capacityPack: `Pack exactly ${activityCtx.limit || 3} pieces. Every choice must help the mission. Explain what you leave out.`,
+      routeMission: 'Arrange the mission steps from START to FINISH. Tell the route, then peel the answer.',
+      transformationLab: 'Choose the change that causes the result. Put it in the middle, predict, then peel.',
+      evidenceBoard: 'Investigate the claim. Rank the evidence from strongest to weakest, then peel the conclusion.',
       oddOneOut: oddRuleHint
         || "Find the odd one out. Drag it to Doesn't fit. Write why.",
       yesNoSort: oddRuleHint
@@ -2546,6 +2551,22 @@
         ? (lesson.activity?.title && !/match/i.test(lesson.activity.title)
           ? lesson.activity.title
           : 'Find the mistake')
+      : actRecipe === 'capacityPack'
+        ? (lesson.activity?.title && !/match/i.test(lesson.activity.title)
+          ? lesson.activity.title
+          : 'Pack the mission')
+      : actRecipe === 'routeMission'
+        ? (lesson.activity?.title && !/match/i.test(lesson.activity.title)
+          ? lesson.activity.title
+          : 'Route mission')
+      : actRecipe === 'transformationLab'
+        ? (lesson.activity?.title && !/match/i.test(lesson.activity.title)
+          ? lesson.activity.title
+          : 'Transformation lab')
+      : actRecipe === 'evidenceBoard'
+        ? (lesson.activity?.title && !/match/i.test(lesson.activity.title)
+          ? lesson.activity.title
+          : 'Evidence board')
       : actRecipe === 'oddOneOut'
         ? (lesson.activity?.title && !/match/i.test(lesson.activity.title)
           ? lesson.activity.title
@@ -2575,6 +2596,8 @@
       || actRecipe === 'buildScene' || actRecipe === 'matchDock'
       || actRecipe === 'mysteryHints' || actRecipe === 'silhouetteGate'
       || actRecipe === 'halfTruthBoard' || actRecipe === 'sceneRepair'
+      || actRecipe === 'capacityPack' || actRecipe === 'routeMission'
+      || actRecipe === 'transformationLab' || actRecipe === 'evidenceBoard'
       || actRecipe === 'oddOneOut'
       || actRecipe === 'yesNoSort'
       || actRecipe === 'thisOrThat'

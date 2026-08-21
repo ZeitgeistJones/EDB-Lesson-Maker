@@ -133,6 +133,96 @@ const LESSON_SCHEMA = {
         title: { type: 'string' },
         prompt: { type: 'string' },
         templates: { type: 'array', items: { type: 'string' } },
+        boardArchetype: {
+          type: 'string',
+          enum: [
+            'silhouetteGate',
+            'halfTruth',
+            'sceneRepair',
+            'capacityPack',
+            'routeMission',
+            'transformationLab',
+            'evidenceBoard',
+          ],
+          description:
+            'Optional single activity grammar. Use only when its matching payload below is complete; otherwise omit.',
+        },
+        halfTruth: {
+          type: 'object',
+          properties: {
+            claim: { type: 'string' },
+            verdict: { type: 'string', enum: ['true', 'half', 'false'] },
+            why: { type: 'string' },
+            evidence: { type: 'array', items: { type: 'string' } },
+          },
+          required: ['claim', 'verdict', 'evidence'],
+        },
+        sceneRepair: {
+          type: 'object',
+          properties: {
+            slotLabel: { type: 'string' },
+            wrongWord: { type: 'string' },
+            correctWord: { type: 'string' },
+            distractors: { type: 'array', items: { type: 'string' } },
+          },
+          required: ['slotLabel', 'wrongWord', 'correctWord'],
+        },
+        capacityPack: {
+          type: 'object',
+          description:
+            'A limited-pack mission: learner chooses exactly limit items, so options must outnumber the limit.',
+          properties: {
+            mission: { type: 'string' },
+            limit: { type: 'number' },
+            options: { type: 'array', items: { type: 'string' } },
+            mustInclude: { type: 'array', items: { type: 'string' } },
+          },
+          required: ['mission', 'limit', 'options'],
+        },
+        routeMission: {
+          type: 'object',
+          description: 'A 3–5 step mission whose steps can be arranged from start to finish.',
+          properties: {
+            mission: { type: 'string' },
+            steps: { type: 'array', items: { type: 'string' } },
+            answerOrder: { type: 'array', items: { type: 'string' } },
+          },
+          required: ['mission', 'steps', 'answerOrder'],
+        },
+        transformationLab: {
+          type: 'object',
+          description:
+            'A visible before → chosen change → revealed after cause-and-effect board.',
+          properties: {
+            question: { type: 'string' },
+            before: { type: 'string' },
+            changes: { type: 'array', items: { type: 'string' } },
+            correctChange: { type: 'string' },
+            after: { type: 'string' },
+          },
+          required: ['question', 'before', 'changes', 'correctChange', 'after'],
+        },
+        evidenceBoard: {
+          type: 'object',
+          description:
+            'A B1–B2 case file: learner ranks 3–4 short evidence cards before revealing a conclusion.',
+          properties: {
+            claim: { type: 'string' },
+            evidence: {
+              type: 'array',
+              items: {
+                type: 'object',
+                properties: {
+                  text: { type: 'string' },
+                  strength: { type: 'number' },
+                },
+                required: ['text', 'strength'],
+              },
+            },
+            conclusion: { type: 'string' },
+          },
+          required: ['claim', 'evidence', 'conclusion'],
+        },
         mysteryHints: {
           type: 'array',
           items: { type: 'string' },
@@ -438,6 +528,17 @@ CEFR grammar for sentenceFrames:
 - EVERY blank must be completable by at least one vocabulary word as a grammatical fit (do NOT write "until I ___." when the bank is mostly nouns; rewrite the frame or include a verb in the bank). Grammar aim on the title must match the frames actually shipped (sequencing vs conditional vs opinion).
 - a/an honesty: never write bare "a ____" or "an ____" when the vocab bank mixes vowel- and consonant-initial nouns (that teaches "a apple"). Prefer "a/an ____", "the ____", or plural "____s". Same rule for activity.templates.
 - Speech-cue honesty: never end a frame with says/said/asks/told ____ unless a board vocab tile is itself a short speech word (hi/yes/go/stop) or a quoted phrase. Prefer action frames like "The coach blows the ____." / "I hear the ____." that a noun tile completes idiomatically.
+
+ENGAGING ACTIVITY GRAMMAR (optional — choose AT MOST ONE complete grammar; omit boardArchetype and all payloads when none fits naturally):
+- Do not default to identify/match/sort. Prefer a visible action that changes the board and leaves a useful record.
+- capacityPack (A1–B1): a real mission, 3–6 short options, integer limit 1–4, and options.length > limit. The learner packs exactly the limit and explains exclusions.
+- routeMission (A1–B1): 3–5 short, materially ordered steps. steps are the movable cards; answerOrder contains those exact strings in correct order. Do not use for facts with no real sequence.
+- transformationLab (A2–B2): a concrete before state, 2–4 possible changes, one correctChange copied exactly from changes, and a visible after consequence. B2 should reason about cause, trade-off, or condition — not just use longer labels.
+- evidenceBoard (B1–B2 only): one debatable claim, 3–4 concise evidence objects with distinct strength numbers, and a grounded conclusion. Evidence must come from the lesson/story, not invented outside facts.
+- halfTruth (A2–B2): claim + 2–4 visible evidence words + true/half/false verdict + why. Use when precision matters, not as disguised multiple choice.
+- sceneRepair (A1–B1): one funny or consequential wrong item placed on purpose, one clearly better replacement, and optional distractors. Wrong/correct must be visibly and semantically different.
+- silhouetteGate (A1–A2): use boardArchetype plus mysteryHints only for a concrete pictured noun with three staged hints. Pre-A1 keeps the TPR action path.
+- One job per board. Never emit two of halfTruth, sceneRepair, capacityPack, routeMission, transformationLab, evidenceBoard on the same activity.
 
 activity.fixSentence (optional; preferred non-king activity when you can write one clean single-error sentence):
 - sentence: one short CEFR-safe line for ${safeLevel} with EXACTLY one wrong word already in it (e.g. "She go to school." or "I see a banana." when the lesson word is apple).
