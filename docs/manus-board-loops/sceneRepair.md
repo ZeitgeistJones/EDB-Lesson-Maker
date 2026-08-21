@@ -87,13 +87,58 @@ Low: Simplify header chrome; move timing chip out of the central scene,”],
 ## Loop status — 7/10 contract
 
 - GRADUATION: two consecutive Manus rounds on DIFFERENT topics with Visual/Product Polish ≥ 7/10 (score≥70 or overall≥3.5) AND no P0 failures. Remediation packets optional — do not wait.
-- LAST SCORES: R1 fruit-market polish 2 / score 3; R2 camping polish 0 then 3 / score 2 then 63. Not graduated.
-- R3 TOPIC: restaurant (A2) — rotated from camping.
+- LAST SCORED: R1 fruit-market polish 2 / score 3; R2 camping polish 3 / score 63. Not graduated.
+- R3 TOPIC: restaurant (A2). Local bake is ready; three Manus tasks early-stopped with no structured score (CNcCJJLe, PXUM5SyB, 2v5XUH7u). Retrying on max profile.
 - LOCAL_GATE: `scripts/test-board-grammars.mjs` green. Bake: `tmp/board-type-baselines/sceneRepair-r3-restaurant.jpg`.
-- LOCAL JUDGMENT: MOVE ME now sits on the surfboard (was a P0: cue sat on the plate). AFTER is hidden under a full peel. Semantic tuple + in-scene dock + broken starter hold.
-- NEXT: send Manus R3 restaurant; fold critique into producer if polish < 7 or any P0.
+- LOCAL JUDGMENT: MOVE ME sits on the surfboard. AFTER hidden under a full peel. Semantic tuple + in-scene dock + broken starter hold. No P0 on local inspect.
+- NEXT: land a structured R3 score; if polish < 7, fold next_actions into the producer and rotate topic.
 
 ### CHANGES_MADE before R3 (producer, not one-off art)
 - `public/lib/edbActivities.js` — semantic tuple gate; starter world paints BROKEN (empty place-setting hole / cold fire / empty basket); large AFTER of the same place hidden until peel; terrain-tinted in-scene repair pocket; MOVE ME locked to the wrong piece, not the destination.
 - `public/lib/renderLessonPages.js` — sceneRepair-only compact header; worksheet hint strip removed so the painted world is the hero.
 - `scripts/test-board-grammars.mjs` — asserts broken-world starter, AFTER peel size, MOVE ME on the wrong piece, unique fit, in-scene dock.
+
+## Round 3 — restaurant (A2)
+
+- BOARD_PATH: `tmp/manus-board-loops/sceneRepair/round-03-restaurant.jpg`
+- PACKET: `tmp/manus-board-loops/sceneRepair/round-03-restaurant`
+- TASK: https://manus.im/app/CNcCJJLe68upMwaVYMSY44
+- MANUS_VERDICT: n/a
+- SCORE: n/a
+- POLISH (ppt_like_quality): n/a
+- WEAKEST_LINK: n/a
+- ESCALATION_HOMEWORK: n/a
+- STATUS: needs_attention
+- REVIEW_VALIDITY: ok
+
+### Blocking / next actions
+
+## Round 3 — restaurant (A2)
+
+- BOARD_PATH: `tmp/manus-board-loops/sceneRepair/round-03-restaurant.jpg`
+- PACKET: `tmp/manus-board-loops/sceneRepair/round-03-restaurant`
+- TASK: https://manus.im/app/PXUM5SyBvSkWNBaUn9uMxK
+- MANUS_VERDICT: n/a
+- SCORE: n/a
+- POLISH (ppt_like_quality): n/a
+- WEAKEST_LINK: n/a
+- ESCALATION_HOMEWORK: n/a
+- STATUS: needs_attention
+- REVIEW_VALIDITY: ok
+
+### Blocking / next actions
+
+## Round 3 — restaurant (A2)
+
+- BOARD_PATH: `tmp/manus-board-loops/sceneRepair/round-03-restaurant.jpg`
+- PACKET: `tmp/manus-board-loops/sceneRepair/round-03-restaurant`
+- TASK: https://manus.im/app/2v5XUH7udZ5YLJGD8ikj8A
+- MANUS_VERDICT: n/a
+- SCORE: n/a
+- POLISH (ppt_like_quality): n/a
+- WEAKEST_LINK: n/a
+- ESCALATION_HOMEWORK: n/a
+- STATUS: needs_attention
+- REVIEW_VALIDITY: ok
+
+### Blocking / next actions
