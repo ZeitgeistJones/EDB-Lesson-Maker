@@ -164,35 +164,63 @@ const LESSON_SCHEMA = {
             wrongWord: { type: 'string' },
             correctWord: { type: 'string' },
             distractors: { type: 'array', items: { type: 'string' } },
+            sceneCue: { type: 'string' },
+            snapTarget: { type: 'string' },
+            spokenFrame: { type: 'string' },
+            successVisual: { type: 'string' },
           },
           required: ['slotLabel', 'wrongWord', 'correctWord'],
         },
         capacityPack: {
           type: 'object',
           description:
-            'A limited-pack mission: learner chooses exactly limit items, so options must outnumber the limit.',
+            'A limited-pack mission with a visible condition: learner chooses exactly limit items, so options must outnumber the limit.',
           properties: {
             mission: { type: 'string' },
+            constraint: { type: 'string' },
+            containerLabel: { type: 'string' },
+            payoff: { type: 'string' },
             limit: { type: 'number' },
             options: { type: 'array', items: { type: 'string' } },
             mustInclude: { type: 'array', items: { type: 'string' } },
           },
-          required: ['mission', 'limit', 'options'],
+          required: ['mission', 'constraint', 'containerLabel', 'payoff', 'limit', 'options', 'mustInclude'],
         },
         routeMission: {
           type: 'object',
-          description: 'A 3–5 step mission whose steps can be arranged from start to finish.',
+          description:
+            'A 3–5 step mission with a named mover and materially ordered actions that create a real start-to-finish route.',
           properties: {
             mission: { type: 'string' },
+            mover: {
+              type: 'string',
+              description: 'Short visible name for the person, team, animal, or vehicle moving along the route.',
+            },
+            goal: {
+              type: 'string',
+              description: 'Short visible destination label shown at FINISH.',
+            },
             steps: { type: 'array', items: { type: 'string' } },
+            landmarks: {
+              type: 'array',
+              items: { type: 'string' },
+              description:
+                'One short concrete landmark/tool label per step, paired to that movable card. Never print these in order on empty checkpoints.',
+            },
+            orderEvidence: {
+              type: 'array',
+              items: { type: 'string' },
+              description:
+                'One short dependency reason per transition (steps.length - 1) proving why the next action cannot reasonably come earlier.',
+            },
             answerOrder: { type: 'array', items: { type: 'string' } },
           },
-          required: ['mission', 'steps', 'answerOrder'],
+          required: ['mission', 'mover', 'goal', 'steps', 'landmarks', 'orderEvidence', 'answerOrder'],
         },
         transformationLab: {
           type: 'object',
           description:
-            'A visible before → chosen change → revealed after cause-and-effect board.',
+            'A visible before → chosen cause → predicted and revealed result board. The correct cause must coherently produce the after state.',
           properties: {
             question: { type: 'string' },
             before: { type: 'string' },
@@ -205,7 +233,7 @@ const LESSON_SCHEMA = {
         evidenceBoard: {
           type: 'object',
           description:
-            'A B1–B2 case file: learner ranks 3–4 short evidence cards before revealing a conclusion.',
+            'A B1–B2 case file: learner ranks 3–4 sourced clues before revealing a grounded conclusion.',
           properties: {
             claim: { type: 'string' },
             evidence: {
@@ -213,13 +241,45 @@ const LESSON_SCHEMA = {
               items: {
                 type: 'object',
                 properties: {
-                  text: { type: 'string' },
+                  text: { type: 'string', maxLength: 72 },
+                  source: {
+                    type: 'string',
+                    maxLength: 26,
+                    description: 'Short visible source artifact, e.g. Water sensor, Keeper log, Witness interview.',
+                  },
+                  artifactExcerpt: {
+                    type: 'string',
+                    maxLength: 48,
+                    description: 'Literal inspectable fragment from that source, such as a timestamped log line, short quote, measurement, or image annotation.',
+                  },
+                  relation: {
+                    type: 'string',
+                    enum: ['supports', 'contradicts', 'qualifies', 'alternative'],
+                  },
+                  rationale: {
+                    type: 'string',
+                    maxLength: 56,
+                    description: 'Short reason this source is more or less reliable/relevant to the claim.',
+                  },
+                  claimImpact: {
+                    type: 'string',
+                    maxLength: 68,
+                    description: 'Short explanation of exactly how this clue strengthens, contradicts, limits, or offers an alternative to the claim.',
+                  },
                   strength: { type: 'number' },
                 },
-                required: ['text', 'strength'],
+                required: ['text', 'source', 'artifactExcerpt', 'relation', 'rationale', 'claimImpact', 'strength'],
               },
             },
             conclusion: { type: 'string' },
+            incidentTime: {
+              type: 'string',
+              maxLength: 12,
+              description:
+                'Required when any artifactExcerpt contains a clock time (HH:MM). Names the incident moment every timestamped clue relates to.',
+            },
+            reasoningFrame: { type: 'string' },
+            teacherCheck: { type: 'string' },
           },
           required: ['claim', 'evidence', 'conclusion'],
         },
@@ -482,6 +542,8 @@ module.exports = async (req, res) => {
 Generate ${Math.max(5, counts.vocab - 1)}–${counts.vocab} vocabulary items, 4 sentenceFrames, ${counts.questions} speakingQuestions, 4 activity templates, 3 reviewSentences.
 The ClassIn board and teacher PDF teach at most 6 vocabulary items (art-preferred order at bake — put concrete picturable words early; extras may appear in speaking/story but will not get board cards unless promoted by coverage adapt).
 Every vocabulary item MUST include a short example sentence using that word (In Sentences page is omitted when sentences are missing — bare word lists are not teachable on that page).
+Example sentences must be real ESL lines kids can say (e.g. "The sand is warm." / "I find a shell.") — NEVER meta lines like "We use 'sand' when we talk about the beach", and NEVER truncate mid-phrase.
+ARTICLES: mass nouns (sand, water, rice, milk, music, hair…) never take indefinite a/an ("a sand" is illegal). Use "the sand" / "sand" / "some milk". Countable singulars use a/an correctly (a shell, an apple).
 Story text must use every board vocabulary word at least once across story pages (aim-coverage — Manus: words that only appear as match labels never reach production).
 Every sentenceFrame MUST contain a literal "___" blank (Frames page is omitted when there are no blanks).
 
@@ -531,12 +593,13 @@ CEFR grammar for sentenceFrames:
 
 ENGAGING ACTIVITY GRAMMAR (optional — choose AT MOST ONE complete grammar; omit boardArchetype and all payloads when none fits naturally):
 - Do not default to identify/match/sort. Prefer a visible action that changes the board and leaves a useful record.
-- capacityPack (A1–B1): a real mission, 3–6 short options, integer limit 1–4, and options.length > limit. The learner packs exactly the limit and explains exclusions.
-- routeMission (A1–B1): 3–5 short, materially ordered steps. steps are the movable cards; answerOrder contains those exact strings in correct order. Do not use for facts with no real sequence.
-- transformationLab (A2–B2): a concrete before state, 2–4 possible changes, one correctChange copied exactly from changes, and a visible after consequence. B2 should reason about cause, trade-off, or condition — not just use longer labels.
-- evidenceBoard (B1–B2 only): one debatable claim, 3–4 concise evidence objects with distinct strength numbers, and a grounded conclusion. Evidence must come from the lesson/story, not invented outside facts.
+- capacityPack (A1–B1): a real mission, 3–6 short picturable options, integer limit 1–4, and options.length > limit. Add one short observable constraint (weather, route, budget, task, or audience), a 2–3 word containerLabel, a short topic-specific payoff describing what the full pack unlocks, and 1–2 mustInclude entries copied exactly from options whose need follows from that constraint. Include clearly useful and clearly excludable choices. The learner packs exactly the limit and explains exclusions; never hide the deciding rule in teacher-only metadata.
+- When using capacityPack, make activity.title name its world or goal (for example "Rainy-night camp" or "Space video kit"), not generic "Pack the mission". Mission, constraint, containerLabel, mustInclude, and options must all describe that same world.
+- routeMission (A1–B1): name one mover (person, team, animal, or vehicle), one short visible goal/destination, and write 3–5 short, materially ordered actions that carry that mover from a real START to that FINISH. steps are the movable cards; answerOrder contains those exact strings in correct order. landmarks must have exactly one distinct short concrete visual label paired to each movable step card (for example radio, flag trail, footbridge, rescue boat); the producer keeps empty checkpoints neutral so the ordered landmarks never leak the answer. orderEvidence must contain exactly steps.length - 1 short dependency reasons proving why each next action cannot reasonably happen earlier (for example "You need a ticket before entering the gate"). Reject disconnected facts, duplicate landmarks, and actions that could happen in any order.
+- transformationLab (A2–B2): a concrete picturable before state (a plant, room, lunch, ice cream, wet clothes — something a child can see change), 2–4 plausible cause choices in mixed order, one correctChange copied exactly from changes, and a concrete after consequence that follows specifically from that cause. before and after must name the same visible subject in two different observable states (drooping vs tall, messy vs tidy, melting vs firm). The learner must predict the after state and justify it with because before reveal; do not write a magic/instant simulation or make the correct answer consistently first. B2 should reason about cause, trade-off, or condition — not just use longer labels.
+- evidenceBoard (B1–B2 only): one debatable claim, 3–4 concise evidence objects with distinct strength numbers, a source label, literal artifactExcerpt (timestamped log fragment, quote, measurement, or image annotation), relation, source-quality rationale, claimImpact, and a grounded conclusion. relation meanings are strict: supports strengthens the claim; contradicts cannot comfortably be true with the claim; qualifies narrows the claim or exposes a real limit; alternative offers another plausible cause. Include at least one supports clue and at least one contradicts/qualifies/alternative clue. Strength measures reliability + relevance, NOT whether a clue supports the claim: counter-evidence may be strongest and supporting evidence may be weak. NEVER mark a clue as counter-evidence merely because it is weaker, earlier, later, temporally adjacent, or incomplete. claimImpact must explicitly state the logical effect: opposition for contradicts, a real limit for qualifies, or another plausible cause/explanation for alternative. When any artifactExcerpt contains a clock time (HH:MM), also emit incidentTime naming the key incident moment every timestamped clue relates to. Evidence and artifact excerpts must come from the lesson/story, not invented outside facts. reasoningFrame must let learners compare source reliability/relevance; teacherCheck asks one observable source-quality question.
 - halfTruth (A2–B2): claim + 2–4 visible evidence words + true/half/false verdict + why. Use when precision matters, not as disguised multiple choice.
-- sceneRepair (A1–B1): one funny or consequential wrong item placed on purpose, one clearly better replacement, and optional distractors. Wrong/correct must be visibly and semantically different.
+- sceneRepair (A1–B1): one funny or consequential wrong item placed on purpose, one clearly better replacement, and optional distractors. Wrong/correct must be visibly and semantically different. Emit one semantic tuple for the SAME repair event: slotLabel (named location), wrongWord, correctWord, snapTarget (where the replacement lands in the scene), spokenFrame (The ___ does not fit. The ___ fits.), and successVisual (the repaired world, e.g. campfire glows / table is ready). All six fields must describe one event — never a detached card that does not repair the named place.
 - silhouetteGate (A1–A2): use boardArchetype plus mysteryHints only for a concrete pictured noun with three staged hints. Pre-A1 keeps the TPR action path.
 - One job per board. Never emit two of halfTruth, sceneRepair, capacityPack, routeMission, transformationLab, evidenceBoard on the same activity.
 

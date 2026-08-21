@@ -128,9 +128,87 @@ const fullArt = {
 assert(W.EdbActivities.matchDockIsPartial(fullArt) === false, 'full set not partial');
 const fullHint = W.EdbActivities.matchDockStudentHint(fullArt);
 assert(partialHint === fullHint, 'student hint identical whether partial or full');
-assert(/picture beside/i.test(fullHint), 'student hint names picture beside word');
-assert(!/Drag each picture/i.test(fullHint), 'student hint must not ask drag-to-pad (inline layout)');
+assert(/park each picture/i.test(fullHint), 'student hint names the draggable picture source');
+assert(/on its word/i.test(fullHint), 'student hint names the destination word pad');
+assert(/say the word/i.test(fullHint), 'student hint includes retrieval aloud');
 assert(!/not every word/i.test(partialHint), 'student hint must not announce missing pictures');
+
+const clearMapping = W.EdbActivities.matchDockMappingAudit({
+  matchable: [
+    { word: 'dog', glyph: '🐶' },
+    { word: 'cat', glyph: '🐱' },
+  ],
+});
+assert(clearMapping.ok, 'mapping audit accepts unique, concrete word-picture pairs');
+
+const ambiguousMapping = W.EdbActivities.matchDockMappingAudit({
+  matchable: [
+    { word: 'music', glyph: '🎵' },
+    { word: 'song', glyph: '🎶' },
+  ],
+});
+assert(!ambiguousMapping.ok, 'mapping audit rejects semantically confusable targets');
+assert(
+  ambiguousMapping.reasons.some((reason) => /semantic-confusability/.test(reason)),
+  'mapping audit reports semantic confusability'
+);
+
+const duplicateSourceMapping = W.EdbActivities.matchDockMappingAudit({
+  matchable: [
+    { word: 'sea', artSrc: '/same-wave.png' },
+    { word: 'ocean', artSrc: '/same-wave.png' },
+  ],
+});
+assert(!duplicateSourceMapping.ok, 'mapping audit rejects duplicate source art');
+assert(
+  duplicateSourceMapping.reasons.includes('duplicate-source-art'),
+  'mapping audit reports duplicate source art'
+);
+
+const campWorld = W.EdbActivities.matchDockWorldTheme({
+  title: 'Campsite Fun',
+  vocabulary: [{ word: 'tent' }, { word: 'campfire' }, { word: 'backpack' }],
+});
+assert(campWorld.id === 'camp', 'matchDock chooses the campsite world');
+assert(/CAMP READY/.test(campWorld.payoff), 'campsite world has a topic payoff');
+
+const musicWorld = W.EdbActivities.matchDockWorldTheme({
+  title: 'Music Class',
+  vocabulary: [{ word: 'piano' }, { word: 'drum' }],
+});
+assert(musicWorld.id === 'music', 'matchDock chooses the music-stage world');
+assert(/BAND READY/.test(musicWorld.payoff), 'music world has a topic payoff');
+
+const beachWorld = W.EdbActivities.matchDockWorldTheme({
+  title: 'Beach Day Find',
+  vocabulary: [{ word: 'shell' }, { word: 'crab' }, { word: 'umbrella' }],
+});
+assert(beachWorld.id === 'beach', 'matchDock chooses the beach world');
+assert(/Park each picture/.test(beachWorld.metaphor), 'beach world uses one dock metaphor');
+assert(typeof W.EdbActivities.matchDockWorldScenePng === 'function', 'matchDock paints a topic scene');
+assert(typeof W.EdbActivities.matchDockWaxSealPng === 'function', 'matchDock paints a wax seal');
+const starterRects = W.EdbActivities.matchDockThreeStateRects(false);
+const solvedRects = W.EdbActivities.matchDockThreeStateRects(true);
+assert(starterRects.seal.x !== solvedRects.seal.x, 'solved seal moves off the reward');
+assert(starterRects.reward.w > starterRects.seal.w, 'locked seal is smaller so the reward peeks');
+
+const takeBind = W.EdbActivities.coverAnswerBind(
+  { question: 'What do you take camping?', sampleAnswer: 'I take a tent.' },
+  { vocabulary: [{ word: 'tent' }, { word: 'backpack' }] }
+);
+assert(takeBind.ok, 'coverAnswerBind accepts take + I take');
+assert(takeBind.intent === 'wh-take', 'coverAnswerBind classifies take questions');
+assert(/I take/.test(takeBind.frame), 'coverAnswerBind does not bolt I like onto take');
+const likeOnTake = W.EdbActivities.coverAnswerBind(
+  { question: 'What do you take camping?', sampleAnswer: 'I like a tent.' },
+  { vocabulary: [{ word: 'tent' }] }
+);
+assert(!likeOnTake.ok, 'coverAnswerBind rejects I like sample on a take question');
+const weatherBind = W.EdbActivities.coverAnswerBind(
+  { question: 'What weather do you like?', sampleAnswer: 'I like sunny days.' },
+  { vocabulary: [{ word: 'sunny' }, { word: 'rainy' }] }
+);
+assert(weatherBind.ok && weatherBind.intent === 'wh-like', 'coverAnswerBind keeps I like on like-questions');
 
 // Art floor: Ready needs ≥5/6 teachable art (was 50%).
 assert(Math.abs(W.BoardReadiness.VOCAB_ART_FLOOR - 5 / 6) < 1e-9, 'VOCAB_ART_FLOOR is 5/6');
@@ -478,6 +556,15 @@ const noVocabKit = W.BoardReadiness.assess(
   W.EdbActivities.plan(noVocab2, { level: 'B1', duration: 30 })
 );
 assert(noVocabKit.status === 'draft', 'empty vocab → draft with kit gates on too');
+
+// Manus R1 matchDock FAIL: hypernym/title-echo fills must never become drag pads.
+const fruitLesson = JSON.parse(fs.readFileSync(path.join(ROOT, 'scripts/fixtures/fruit-market-lesson.json'), 'utf8'));
+W.VocabArt.adaptBoardVocabulary(JSON.parse(JSON.stringify(fruitLesson)), { seed: fruitLesson.title });
+const fruitArt = W.VocabArt.planFor(fruitLesson, { seed: fruitLesson.title, allowPackFallback: true });
+const fruitMatchWords = fruitArt.matchable.map((r) => String(r.word).toLowerCase());
+assert(!fruitMatchWords.includes('fruit'), 'fruit hypernym demoted from match dock');
+assert(!fruitMatchWords.includes('fruit market'), 'title-echo compound demoted from match dock');
+assert(fruitMatchWords.includes('apple') && fruitMatchWords.includes('banana'), 'hyponyms stay matchable');
 
 console.log('OK readiness+vocabArt reasons + matchDock hint + art floor + adapt', {
   partial: report.reasons,

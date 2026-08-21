@@ -54,10 +54,16 @@
     },
     frames: {
       header:    { x: 48, y: 36,  w: 1184, h: 50, noOverlap: true },
-      bodyText:  { x: 48, y: 100, w: 1184, h: 400, noOverlap: true },
-      artSafe:   { x: 1000, y: 420, w: 230, h: 140, noOverlap: false },
-      dock:      { x: 48, y: 500, w: 900, h: 70, noOverlap: false },
-      targetBay: { x: 48, y: 100, w: 1184, h: 380, noOverlap: false },
+      // Topic-mapped scene stage (Manus frameTiles: action→payoff gate).
+      sceneStage:{ x: 48, y: 92,  w: 1184, h: 148, noOverlap: true },
+      bodyText:  { x: 48, y: 248, w: 1184, h: 238, noOverlap: true },
+      artSafe:   { x: 1000, y: 420, w: 230, h: 70, noOverlap: false },
+      // Full board width — a 900px dock left a bare ~300px quadrant on the
+      // lower right next to a full-width frame stack (Manus frameTiles R2
+      // "dock balance" action). placeDockRow still centers the tile row
+      // inside this wider zone, so fewer tiles just get more breathing room.
+      dock:      { x: 48, y: 500, w: 1184, h: 70, noOverlap: false },
+      targetBay: { x: 48, y: 248, w: 1184, h: 238, noOverlap: true },
       rewardPocket: { x: 1100, y: 36, w: 140, h: 60, noOverlap: false },
     },
     story: {
@@ -90,8 +96,11 @@
       bodyText:  { x: 48, y: 100, w: 1184, h: 120, noOverlap: true },
       artSafe:   { x: 1060, y: 140, w: 180, h: 220, noOverlap: false },
       dock:      { x: 48, y: 500, w: 1184, h: 70, noOverlap: false },
-      // Must match EdbActivities.speakingCoverRect / painted sample band
-      targetBay: { x: 88, y: 240, w: 720, h: 72, noOverlap: false },
+      // Must match EdbActivities.speakingCoverRect / painted sample band.
+      // Taller than a single text line on purpose — this bay now hosts a
+      // "Model Answer" card (ribbon header always visible + peel flap over
+      // the sample text), not a bare button. See coverAnswer() R1 Manus fix.
+      targetBay: { x: 72, y: 206, w: 780, h: 156, noOverlap: false },
       rewardPocket: { x: 1100, y: 36, w: 140, h: 80, noOverlap: false },
     },
     activity: {
@@ -104,13 +113,14 @@
       targetBay: { x: 48, y: 190, w: 1184, h: 220, noOverlap: false },
       rewardPocket: { x: 1100, y: 36, w: 140, h: 80, noOverlap: false },
     },
-    // King EDB stage: hero bleeds to page top; 2-row dock of roleplay tools below
+    // King EDB stage: hero owns the upper world; a taller bottom tray preserves
+    // 64px grab width for thin real tools (toothbrush, floss pick, instruments).
     heroStage: {
       header:    { x: 48, y: 8,   w: 420, h: 56, noOverlap: false },
       bodyText:  { x: 48, y: 52,  w: 400, h: 28, noOverlap: false },
-      artSafe:   { x: 0,  y: 0,   w: 1280, h: 440, noOverlap: false },
-      dock:      { x: 16, y: 430, w: 1248, h: 150, noOverlap: false },
-      targetBay: { x: 120, y: 20, w: 1040, h: 410, noOverlap: false },
+      artSafe:   { x: 0,  y: 0,   w: 1280, h: 400, noOverlap: false },
+      dock:      { x: 16, y: 390, w: 1248, h: 190, noOverlap: false },
+      targetBay: { x: 120, y: 20, w: 1040, h: 370, noOverlap: false },
       rewardPocket: { x: 1120, y: 8, w: 140, h: 48, noOverlap: false },
     },
     wrap: {

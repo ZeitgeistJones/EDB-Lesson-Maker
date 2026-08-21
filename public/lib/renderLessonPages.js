@@ -391,10 +391,12 @@
       const first = raw[0] || {};
       return [{
         heading: first.heading || (lesson.story && lesson.story.title) || 'Story',
-        text: raw.map((p) => p && p.text).filter(Boolean).join(' '),
+        text: first.text || 'Read together.',
         visualTheme: first.visualTheme,
         visualCaption: first.visualCaption || '',
         storyScene: first.storyScene || null,
+        _sourceIndex: 0,
+        _collapsedFrom: raw.length,
       }];
     }
     return raw.slice(0, count);
@@ -421,10 +423,13 @@
 
   function header(text, color, opts) {
     const timing = opts && opts.timing;
+    const compact = !!(opts && opts.compact);
     const t = tokens();
-    const titleType = t ? t.type.title : { fontSize: '40px', fontWeight: '800', lineHeight: '1.1' };
+    const titleType = compact
+      ? { fontSize: '26px', fontWeight: '800', lineHeight: '1.1' }
+      : (t ? t.type.title : { fontSize: '40px', fontWeight: '800', lineHeight: '1.1' });
     const gap = t ? t.space.space_sm + 'px' : '12px';
-    const mb = t ? t.space.space_md + 'px' : '16px';
+    const mb = compact ? '4px' : (t ? t.space.space_md + 'px' : '16px');
     const accent = color || (t ? t.colors.accent_primary : '#17827C');
     const row = el('div', {
       display: 'flex',
@@ -580,8 +585,10 @@
     return (lesson.vocabulary || []).slice(0, boardVocabCeil(lesson));
   }
 
-  function normalizeLesson(lesson) {
+  function normalizeLesson(lesson, meta) {
     if (!lesson || typeof lesson !== 'object') return lesson || {};
+    if (meta && meta.level) lesson.level = meta.level;
+    else if (!lesson.level && meta && meta.cefr) lesson.level = meta.cefr;
     if (!lesson.story || typeof lesson.story !== 'object') lesson.story = {};
     const story = lesson.story;
 
@@ -627,6 +634,17 @@
       window.StoryIntegrity.repairLesson(lesson);
     }
 
+    // Mass-noun / weak vocab-sentence repair (beach "a sand", empty cards, meta
+    // "We use X when we talk about…" filler from ProducerQuality realign).
+    if (window.NounArticles) {
+      if (typeof window.NounArticles.repairLessonVocabulary === 'function') {
+        window.NounArticles.repairLessonVocabulary(lesson);
+      }
+      if (typeof window.NounArticles.repairLessonTextFields === 'function') {
+        window.NounArticles.repairLessonTextFields(lesson);
+      }
+    }
+
     // a/an honesty — bare "a ____" with apple/orange in the bank teaches "a apple"
     // (Manus UX fruit bP5y). Rewrite frames + activity templates to a/an (or the
     // single correct article) before chrome / frameTiles ship.
@@ -642,6 +660,7 @@
   /**
    * Rewrite bare a/an blanks when taught vocab would force a wrong article.
    * Mixed bank → "a/an ____"; all-vowel → "an"; all-consonant → "a".
+   * Mass/plural-only banks → drop indefinite ("I see ____" / "I see the ____").
    */
   function articleSafeFrames(lesson) {
     if (!lesson || typeof lesson !== 'object') return lesson;
@@ -650,13 +669,20 @@
       .map((w) => String(w || '').trim())
       .filter(Boolean);
     if (!words.length) return lesson;
-    const hasAn = words.some(needsAnArticle);
-    const hasA = words.some((w) => !needsAnArticle(w));
+    const NA = window.NounArticles;
+    const countable = words.filter((w) => !(NA && typeof NA.takesIndefinite === 'function') || NA.takesIndefinite(w));
+    const massOrPluralOnly = countable.length === 0;
+    const hasAn = countable.some(needsAnArticle);
+    const hasA = countable.some((w) => !needsAnArticle(w));
     const rewrite = (raw) => {
       let s = String(raw || '');
       if (!s) return s;
-      // Already dual-form — leave alone.
       if (/\ba\/an\s+(_{2,}|\.{3}|…)/i.test(s)) return s;
+      if (massOrPluralOnly) {
+        // "I see a ____" → "I see the ____" (safe for sand/water/shoes).
+        s = s.replace(/\b(an|a)\s+(_{2,}|\.{3}|…)/gi, 'the $2');
+        return s;
+      }
       if (hasAn && hasA) {
         s = s.replace(/\b(an|a)\s+(_{2,}|\.{3}|…)/gi, 'a/an $2');
       } else if (hasAn) {
@@ -684,7 +710,7 @@
    *  Story place art belongs in `[data-story-art]` panels, not as page scenes.
    *  Variety = rotating flats; thin place sets may borrow one house cool mid-panel. */
   function buildSectionList(lesson, meta) {
-    lesson = normalizeLesson(lesson);
+    lesson = normalizeLesson(lesson, meta);
     if (window.ProducerBridge && typeof window.ProducerBridge.normalize === 'function') {
       window.ProducerBridge.normalize(lesson, meta || {});
     }
@@ -891,21 +917,112 @@
     return null;
   }
 
+  /**
+   * Small, verified topic cues for the lesson bookends. These are decorative
+   * previews, not draggable activity pieces, and fail closed when pack art is
+   * unavailable.
+   */
+  function chromeTopicCues(lesson, limit, opts) {
+    const VI = window.VocabIcons;
+    const PB = window.PropBank;
+    const pathFor = VI && typeof VI.pathForSync === 'function'
+      ? VI.pathForSync.bind(VI)
+      : null;
+    const tableau = !!(opts && opts.tableau);
+    const preferProp = tableau || !!(opts && opts.preferPropCutout);
+    if (!pathFor && !(PB && typeof PB.byWord === 'function')) return [];
+    const seen = new Set();
+    let words = boardVocabList(lesson)
+      .map((v) => (typeof v === 'string' ? v : v && v.word))
+      .filter(Boolean);
+    if (opts && opts.preferExact && typeof VI.matchKindSync === 'function') {
+      words = words
+        .map((word, index) => ({ word, index, exact: VI.matchKindSync(word) === 'exact' }))
+        .sort((a, b) => Number(b.exact) - Number(a.exact) || a.index - b.index)
+        .map((entry) => entry.word);
+    }
+    if (opts && opts.reverse) words.reverse();
+    const LT = window.LessonTraits;
+    const theme = LT && typeof LT.resolveTheme === 'function' ? LT.resolveTheme(lesson) : null;
+    const pool = PB && typeof PB.all === 'function' ? PB.all() : [];
+    const cueSrcForWord = (word) => {
+      if (PB && typeof PB.byWord === 'function' && pool.length && preferProp) {
+        const prop = PB.byWord(pool, {
+          word,
+          seed: [lesson.title || '', ...(lesson.vocabulary || []).map((v) => v.word || v)].join(' '),
+          tags: theme && theme.packs ? theme.packs : [],
+          preferredPacks: theme && theme.packs ? theme.packs : [],
+          allowUnthemedIdentity: true,
+        });
+        const sharp = prop && prop.path && prop.dockSafe !== false
+          && typeof PB.isDockSharp === 'function' && PB.isDockSharp(prop);
+        if (sharp) return prop.path;
+      }
+      if (tableau) return null;
+      return pathFor ? pathFor(word) : null;
+    };
+    return words
+      .map((word) => ({ word: String(word), src: cueSrcForWord(word) }))
+      .filter((cue) => {
+        if (!cue.src || seen.has(cue.src)) return false;
+        seen.add(cue.src);
+        return true;
+      })
+      .slice(0, Math.max(1, Number(limit) || 3));
+  }
+
+  /** Child-readable hook tied to the visible topic-tableau cues (Manus title-loop). */
+  function titleWorldHook(lesson, cues, topicName) {
+    const topic = String(topicName || lesson.topic || '').trim();
+    if (topic) {
+      const place = /\b(at|in|on|the)\b/i.test(topic) ? topic : `at ${topic}`;
+      return `What can you find ${place}?`;
+    }
+    if (cues.length >= 2) {
+      const names = cues.slice(0, 3).map((c) => c.word);
+      if (names.length === 2) return `Can you spot the ${names[0]} and ${names[1]}?`;
+      return `Can you spot the ${names.slice(0, -1).join(', ')}, and ${names[names.length - 1]}?`;
+    }
+    return 'Look closely — what do you notice?';
+  }
+
   function makeTitle(lesson, meta, boardPlan) {
     const p = pageShell(THEME_COLORS.title, {
       reserveDock: hasRecipe(boardPlan, 'title'), pageType: 'title',
     });
     p.style.display = 'flex';
     p.style.flexDirection = 'row';
-    p.style.alignItems = 'center';
-    p.style.gap = '28px';
+    // Stretch (not center) so the topic-world panel below can claim full page
+    // height — Manus title-loop R1: the hero read as a small decorative box on
+    // a mostly empty canvas; it needs a true split composition, not a centered
+    // circle floating in whitespace.
+    p.style.alignItems = 'stretch';
+    p.style.gap = '34px';
 
     const copy = el('div', {
       flex: '1',
       minWidth: '0',
       position: 'relative',
       zIndex: '1',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
     });
+    copy.appendChild(el('div', {
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '8px',
+      color: '#0f766e',
+      background: 'rgba(255,255,255,0.84)',
+      border: '1px solid rgba(15,118,110,0.24)',
+      borderRadius: '999px',
+      padding: '7px 14px',
+      fontSize: '15px',
+      fontWeight: '800',
+      letterSpacing: '1.4px',
+      textTransform: 'uppercase',
+      marginBottom: '14px',
+    }, 'Today’s adventure'));
     // Board-taught vocab only (match dock / sentences = adapted board ceil) — Manus S30:
     // aims must not advertise words that never appear on New Words.
     const aimWords = boardVocabList(lesson)
@@ -917,22 +1034,35 @@
     }, lesson.title || 'Lesson');
     title.dataset.ink = 'heading';
     copy.appendChild(title);
+    const topicName = String(lesson.topic || '')
+      .replace(/[.!?]+$/g, '')
+      .trim();
+    const cuesEarly = chromeTopicCues(lesson, 3, { tableau: true });
+    const anticipation = el('div', {
+      color: '#0f766e',
+      fontSize: '27px',
+      fontWeight: '800',
+      lineHeight: '1.25',
+      marginTop: '12px',
+      maxWidth: '600px',
+    }, titleWorldHook(lesson, cuesEarly, topicName));
+    anticipation.dataset.titleAnticipation = '1';
+    copy.appendChild(anticipation);
     const metaLine = el('div', {
-      color: '#334155', fontSize: '24px', marginTop: '16px', fontStyle: 'italic',
+      color: '#475569', fontSize: '20px', marginTop: '10px', fontWeight: '700',
     }, `${meta.level || ''}  ·  ${meta.duration || ''}-minute lesson`);
     metaLine.dataset.ink = 'hint';
     copy.appendChild(metaLine);
     let aims = null;
     let grammarAim = null;
     const aimsPanel = el('div', {
-      marginTop: '16px',
-      maxWidth: '560px',
-      padding: '14px 18px',
-      borderRadius: '14px',
-      // Darker slab + lighter ink so aims/grammar read on a projector (was a
-      // faint grey box + #cbd5e1 grammar line — barely legible). S55 guards this.
-      background: 'rgba(15,23,42,0.82)',
+      marginTop: '10px',
+      maxWidth: '610px',
+      padding: '8px 14px',
+      borderRadius: '12px',
+      background: 'rgba(15,23,42,0.72)',
       backdropFilter: 'blur(6px)',
+      boxShadow: '0 10px 24px rgba(15,23,42,0.12)',
     });
     aimsPanel.dataset.aimsPanel = '1';
     if (aimWords.length) {
@@ -946,7 +1076,7 @@
         ? `to talk and read ${about}`
         : `to talk ${about}`;
       aims = el('div', {
-        color: '#f8fafc', fontSize: '24px', fontWeight: '700',
+        color: '#f8fafc', fontSize: '17px', fontWeight: '700',
         lineHeight: '1.35',
       }, `Aims: use ${aimWords.join(', ')} ${aimClause}.`);
       // NOT data-ink: this text lives on the dark frosted aims slab and must stay
@@ -957,7 +1087,7 @@
     }
     if ((lesson.sentenceFrames || []).length) {
       grammarAim = el('div', {
-        color: '#f1f5f9', fontSize: '24px', marginTop: aimWords.length ? '8px' : '0',
+        color: '#f1f5f9', fontSize: '16px', marginTop: aimWords.length ? '5px' : '0',
         fontWeight: '700', lineHeight: '1.35',
       }, `Grammar aim: ${grammarAimLine(lesson.sentenceFrames)}`);
       // NOT data-ink — see aims note above; keep light on the dark slab (S55).
@@ -967,25 +1097,167 @@
     if (aims || grammarAim) copy.appendChild(aimsPanel);
     p.appendChild(copy);
 
-    const charmSrc = titleCharmSrc(lesson);
-    if (charmSrc) {
-      // Dark terrace scenes: light title ink so copy stays readable.
-      title.style.color = '#fff';
-      title.style.textShadow = '0 2px 16px rgba(15,23,42,0.55)';
-      metaLine.style.color = '#e2e8f0';
-      p.appendChild(img(charmSrc, {
-        position: 'relative',
-        width: '400px',
-        height: '400px',
-        flexShrink: '0',
-        zIndex: '1',
+    // A single object cannot prove a social/relational headline ("Dentists are
+    // nice", "Friends can help"). Use the honest multi-cue preview unless the
+    // lesson has a real topic noun or a non-claim title.
+    const claimLikeTitle = /\b(?:am|is|are|can|should|must|help|helps)\b/i
+      .test(String(lesson.title || ''));
+    const charmSrc = claimLikeTitle && !String(lesson.topic || '').trim()
+      ? null
+      : titleCharmSrc(lesson);
+    const cues = cuesEarly.length ? cuesEarly : chromeTopicCues(lesson, 3, { tableau: true });
+    const tableauReady = cues.length >= 3;
+    const world = el('div', {
+      position: 'relative',
+      width: '45%',
+      height: '100%',
+      flexShrink: '0',
+      zIndex: '1',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'stretch',
+      boxSizing: 'border-box',
+      borderRadius: '34px',
+      border: '2px solid rgba(255,255,255,0.76)',
+      boxShadow: '0 24px 60px rgba(15,23,42,0.18)',
+      overflow: 'hidden',
+    });
+    world.dataset.titleWorld = '1';
+    world.dataset.titleTableau = '1';
+    world.appendChild(el('div', {
+      position: 'absolute',
+      inset: '0',
+      background: 'linear-gradient(180deg, #bae6fd 0%, #e0f2fe 42%, #fef3c7 78%, #d97706 100%)',
+    }));
+    world.appendChild(el('div', {
+      position: 'absolute',
+      left: '0',
+      right: '0',
+      bottom: '0',
+      height: '38%',
+      background: 'linear-gradient(180deg, rgba(180,83,9,0.08) 0%, rgba(120,53,15,0.32) 100%)',
+      borderTop: '3px solid rgba(255,255,255,0.42)',
+    }));
+    world.appendChild(el('div', {
+      position: 'absolute',
+      left: '6%',
+      right: '6%',
+      bottom: '37%',
+      height: '4px',
+      background: 'rgba(255,255,255,0.55)',
+      borderRadius: '999px',
+    }));
+    const scene = el('div', {
+      position: 'relative',
+      flex: '1',
+      minHeight: '0',
+      zIndex: '2',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-end',
+      alignItems: 'center',
+      padding: '12px 16px 18px',
+      boxSizing: 'border-box',
+    });
+    // When three sharp cutouts land, they ARE the tableau — skip the separate
+    // hero so the scene reads as one ground plane, not catalogue + dock.
+    if (charmSrc && !tableauReady) {
+      scene.appendChild(img(charmSrc, {
+        position: 'absolute',
+        left: '50%',
+        top: '10%',
+        transform: 'translateX(-50%)',
+        width: '78%',
+        height: '68%',
+        maxWidth: '360px',
+        maxHeight: '280px',
         objectFit: 'contain',
-        background: 'transparent',
+        zIndex: '0',
+        filter: 'drop-shadow(0 16px 28px rgba(15,23,42,0.16))',
       }));
     }
+    if (cues.length) {
+      const cueRow = el('div', {
+        position: 'relative',
+        zIndex: '1',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+        gap: tableauReady ? '6px' : '12px',
+      });
+      const sizes = tableauReady ? [118, 142, 118] : [92, 108, 92];
+      cues.forEach((cue, index) => {
+        const center = cues.length >= 3 && index === 1;
+        const anchor = el('div', {
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          flex: center ? '1.2' : '1',
+          maxWidth: center ? '168px' : '138px',
+        });
+        anchor.dataset.titleCueAnchor = cue.word;
+        anchor.appendChild(img(cue.src, {
+          position: 'relative',
+          width: `${sizes[index] || 100}px`,
+          height: `${Math.round((sizes[index] || 100) * 0.92)}px`,
+          objectFit: 'contain',
+          marginBottom: '4px',
+          filter: 'drop-shadow(0 10px 16px rgba(15,23,42,0.22))',
+        }));
+        anchor.appendChild(el('div', {
+          color: '#0f172a',
+          background: 'rgba(255,255,255,0.88)',
+          borderRadius: '999px',
+          padding: '5px 12px',
+          fontSize: center ? '16px' : '14px',
+          fontWeight: '800',
+          textAlign: 'center',
+          boxShadow: '0 4px 10px rgba(15,23,42,0.12)',
+        }, esc(cue.word)));
+        cueRow.appendChild(anchor);
+      });
+      scene.appendChild(cueRow);
+    } else if (charmSrc) {
+      scene.appendChild(img(charmSrc, {
+        position: 'relative',
+        width: '82%',
+        height: '72%',
+        maxWidth: '360px',
+        objectFit: 'contain',
+        filter: 'drop-shadow(0 16px 28px rgba(15,23,42,0.16))',
+      }));
+    }
+    world.appendChild(scene);
+    p.appendChild(world);
 
     drawDebugZones(p, 'title');
     return p;
+  }
+
+  /**
+   * B1+ warm-up write-in starter must follow the question, not a global feelings frame.
+   * Volcano "What landscape…?" must not force "I feel ____ because ____."
+   */
+  function warmUpWriteStarter(lesson, meta) {
+    const q = String((lesson && lesson.warmUp && lesson.warmUp.question) || '');
+    const title = String((lesson && lesson.title) || '');
+    const blob = `${q} ${title}`.toLowerCase();
+    if (/\b(feel|feeling|feelings|emotion|mood|worried|scared|shy|proud)\b/.test(blob)) {
+      return 'Try: I feel ____ because ____.';
+    }
+    if (/\b(would you|why or why not|agree|opinion)\b/.test(blob)) {
+      return 'Try: I would / I would not because ____.';
+    }
+    if (/\b(visit|visited|landscape|place|see|saw|where|travel)\b/.test(blob)) {
+      return 'Try: I visited ____. I saw ____.';
+    }
+    if (/\b(should|must|important|because)\b/.test(blob)) {
+      return 'Try: I think ____ because ____.';
+    }
+    const level = String((meta && meta.level) || (lesson && lesson.level) || '').toLowerCase();
+    if (level === 'b1' || level === 'b2') return 'Try: I think ____ because ____.';
+    return 'Try: I ____.';
   }
 
   function makeWarmUp(lesson, boardPlan, meta) {
@@ -1073,9 +1345,10 @@
       // B1+: big write-in stage. Never print sampleAnswer on the student board
       // (Manus / honesty — teacher samples bias kids). Keep sampleAnswer in JSON
       // for teacher scripts / PDF notes only.
+      const starter = warmUpWriteStarter(lesson, meta);
       const writeIn = card(
         `<div style="font-size:28px;font-weight:700;color:#64748b;margin-bottom:14px;text-align:center">Write or say your answer here</div>
-         <div data-warm-starter="1" style="font-size:26px;font-weight:800;color:#1e3a8a;background:#eff6ff;border:2px dashed #93c5fd;border-radius:14px;padding:12px 20px;margin:0 8% 18px;text-align:center">Try: I feel ____ because ____.</div>
+         <div data-warm-starter="1" style="font-size:26px;font-weight:800;color:#1e3a8a;background:#eff6ff;border:2px dashed #93c5fd;border-radius:14px;padding:12px 20px;margin:0 8% 18px;text-align:center">${esc(starter)}</div>
          <div style="border-bottom:3px dashed #cbd5e1;height:52px;margin:12px 8% 0"></div>
          <div style="border-bottom:3px dashed #cbd5e1;height:52px;margin:20px 8% 0"></div>
          <div style="border-bottom:3px dashed #cbd5e1;height:52px;margin:20px 8% 0"></div>`,
@@ -1104,10 +1377,10 @@
 
   async function makeVocab(lesson, boardPlan) {
     const hasArtPlan = hasRecipe(boardPlan, 'newWords');
-    // Picture BESIDE each word (full-width cards) — never word-list + side
-    // "Remember / Picture bin" collage (Sports-and-Games contact sheet miss).
+    // Interactive matchDock uses an unsolved picture deck + destination word pads.
+    // Text-only fallback keeps the full-width cards below.
     const p = pageShell(THEME_COLORS.vocab, {
-      reserveDock: false, pageType: 'vocab',
+      reserveDock: hasArtPlan, pageType: 'vocab',
     });
     p.style.display = 'flex';
     p.style.flexDirection = 'column';
@@ -1117,12 +1390,171 @@
     const matchHint = hasArtPlan
       ? ((boardPlan && boardPlan.matchDockHint)
         || (EA && EA.matchDockStudentHint && EA.matchDockStudentHint(art))
-        || 'Say each word. Look at the picture beside it.')
+        || 'Drag each picture to its word. Say the word, then check.')
       : 'Say each word together.';
     p.appendChild(hint(matchHint, { flexShrink: '0' }));
     const words = boardVocabList(lesson);
     const rowByWord = new Map();
     ((art && art.rows) || []).forEach((r) => rowByWord.set(r.word, r));
+
+    if (hasArtPlan && art && Array.isArray(art.matchable) && art.matchable.length) {
+      const wordByKey = new Map(
+        words.map((v) => [String((v && v.word) || '').toLowerCase(), v])
+      );
+      const padWords = art.matchable.map((row) =>
+        wordByKey.get(String((row && row.word) || '').toLowerCase()) || { word: row.word }
+      );
+      const n = padWords.length;
+      const cols = n <= 3 ? 1 : 2;
+      const rowsN = Math.max(1, Math.ceil(n / cols));
+      const world = (EA && EA.matchDockWorldTheme && EA.matchDockWorldTheme(lesson)) || {
+        id: 'discovery',
+        title: 'Word trail',
+        icon: '⭐',
+        payoff: 'WORD MASTER!',
+        scene: '✨  ⭐  ✨',
+        metaphor: 'Park each picture on its word',
+        home: 'spot',
+        ink: '#6b21a8',
+        stageBackground: 'linear-gradient(145deg, rgba(255,255,255,.82), rgba(237,233,254,.88))',
+      };
+      const solved = !!(boardPlan && boardPlan.matchDockState === 'solved');
+      const sceneSrc = EA && EA.matchDockWorldScenePng
+        ? EA.matchDockWorldScenePng(640, 430, world)
+        : '';
+      const plateSrc = EA && EA.matchDockPadPlatePng
+        ? EA.matchDockPadPlatePng(300, 110, world.ink)
+        : '';
+
+      // Source tray is themed to the same world so the deck is not a purple
+      // worksheet bin parked next to a place scene.
+      const sourceTray = el('div', {
+        position: 'absolute',
+        left: '704px',
+        top: '118px',
+        width: '452px',
+        height: '356px',
+        borderRadius: '30px',
+        border: '3px solid rgba(15,23,42,0.18)',
+        background: world.stageBackground || 'linear-gradient(160deg, rgba(254,243,199,0.94), rgba(186,230,253,0.88))',
+        boxShadow: '0 14px 34px rgba(15,23,42,0.14), inset 0 0 0 8px rgba(255,255,255,0.36)',
+        zIndex: '0',
+        pointerEvents: 'none',
+      });
+      sourceTray.dataset.matchSourceTray = '1';
+      sourceTray.appendChild(el('div', {
+        position: 'absolute',
+        left: '24px',
+        top: '14px',
+        fontSize: '20px',
+        fontWeight: '900',
+        letterSpacing: '1.4px',
+        color: world.ink || '#5b21b6',
+        textTransform: 'uppercase',
+      }, 'Picture deck · grab one'));
+      sourceTray.appendChild(el('div', {
+        position: 'absolute',
+        left: '22px',
+        right: '22px',
+        top: '54px',
+        bottom: '20px',
+        borderRadius: '22px',
+        border: '2px dashed rgba(15,23,42,0.22)',
+        background: 'radial-gradient(circle at 20% 18%, rgba(255,255,255,0.78) 0 5px, transparent 6px), radial-gradient(circle at 82% 76%, rgba(255,255,255,0.72) 0 7px, transparent 8px)',
+      }));
+      p.appendChild(sourceTray);
+
+      const targetStage = el('div', {
+        width: '640px',
+        flex: '1',
+        minHeight: '0',
+        marginTop: '2px',
+        padding: '58px 14px 14px',
+        boxSizing: 'border-box',
+        borderRadius: '28px',
+        background: sceneSrc
+          ? `url(${sceneSrc}) center / cover no-repeat`
+          : (world.stageBackground || '#ecfdf5'),
+        border: '2px solid rgba(15,23,42,0.16)',
+        display: 'grid',
+        gridTemplateColumns: cols === 1 ? '1fr' : '1fr 1fr',
+        gridTemplateRows: `repeat(${rowsN}, 1fr)`,
+        gap: '10px 12px',
+        position: 'relative',
+        zIndex: '1',
+        overflow: 'hidden',
+      });
+      targetStage.dataset.matchTargetStage = '1';
+      targetStage.dataset.matchWorld = world.id;
+      targetStage.dataset.matchState = solved ? 'solved' : 'starter';
+      targetStage.appendChild(el('div', {
+        position: 'absolute',
+        left: '16px',
+        top: '12px',
+        zIndex: '2',
+        padding: '5px 12px',
+        borderRadius: '999px',
+        background: 'rgba(255,251,235,0.94)',
+        border: '2px solid rgba(15,23,42,0.16)',
+        fontSize: '15px',
+        fontWeight: '900',
+        color: world.ink || '#172554',
+        letterSpacing: '0.4px',
+      }, esc(world.metaphor || 'Park each picture on its word')));
+
+      padWords.forEach((v, i) => {
+        const word = String((v && v.word) || '');
+        const row = rowByWord.get(word);
+        const pad = el('div', {
+          minHeight: '0',
+          padding: '8px 12px',
+          boxSizing: 'border-box',
+          borderRadius: '18px',
+          background: plateSrc
+            ? `url(${plateSrc}) center / 100% 100% no-repeat`
+            : 'rgba(255,251,235,0.92)',
+          border: plateSrc ? '0' : `3px solid ${world.ink || '#3f6212'}`,
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          width: cols === 1 ? '78%' : '100%',
+          justifySelf: cols === 1 ? (i % 2 ? 'end' : 'start') : 'stretch',
+          position: 'relative',
+          zIndex: '1',
+          transform: `rotate(${i % 3 === 0 ? '-0.6' : i % 3 === 1 ? '0.5' : '-0.15'}deg)`,
+        });
+        pad.dataset.matchPad = '1';
+        pad.dataset.matchWord = word;
+        pad.appendChild(el('div', {
+          width: '36px',
+          height: '36px',
+          flex: '0 0 36px',
+          borderRadius: '50%',
+          background: world.ink || '#3f6212',
+          color: '#ffffff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '18px',
+          fontWeight: '900',
+        }, String(i + 1)));
+        const artHtml = solved && row && row.artSrc
+          ? `<img src="${esc(row.artSrc)}" alt="" style="width:44px;height:44px;object-fit:contain;flex-shrink:0">`
+          : '';
+        pad.appendChild(el('div', {
+          minWidth: '0',
+          flex: '1',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+        }, `${artHtml}<div style="font-size:${n <= 4 ? 34 : 28}px;font-weight:900;line-height:1.05;color:#172554;overflow-wrap:anywhere">${esc(word)}</div>`));
+        targetStage.appendChild(pad);
+      });
+      p.appendChild(targetStage);
+      drawDebugZones(p, 'vocab');
+      return p;
+    }
+
     // Shortened boards must still fill the page. cols=2 + ceil(n/2) rows leaves
     // a dead cell whenever n is odd — N=5 was six cells for five cards. The odd
     // card spans both columns instead, so 4 and 5 both fill edge to edge.
@@ -1339,15 +1771,26 @@
     // Draggable word tiles live in the dock (frameTiles recipe) — reserve the
     // footer so the frame stack never sits on top of them.
     const interactive = hasRecipe(boardPlan, 'frames');
+    const EA = window.EdbActivities;
     const p = pageShell(THEME_COLORS.vocab, { pageType: 'frames', reserveDock: interactive });
     const col = chromeColumn(p);
     col.appendChild(header('Sentence Frames', '#7c3aed', { timing: timingChip(6) }));
-    // "fill the blank" (singular) was wrong — Frame 3 has TWO blanks (S60/Judge A).
-    col.appendChild(hint(interactive
-      ? 'Listen and say each frame first. Then drag a word into each blank and read it out loud.'
-      : 'Listen and say each frame first. Then fill the blanks and write your sentence.', {
-      marginBottom: '8px', flexShrink: '0',
-    }));
+    if (interactive) {
+      // Scene stage is an EDB PNG from frameTiles (NOW→DONE payoff) — reserve
+      // vertical space so frame rows sit below the world canvas, not under it.
+      col.appendChild(el('div', {
+        flexShrink: '0',
+        height: '142px',
+        marginBottom: '4px',
+      }));
+      col.appendChild(hint('Drag one tile into each blank. Say every sentence.', {
+        marginBottom: '6px', flexShrink: '0', fontSize: '18px',
+      }));
+    } else {
+      col.appendChild(hint('Listen and say each frame first. Then fill the blanks and write your sentence.', {
+        marginBottom: '8px', flexShrink: '0',
+      }));
+    }
     // Word bank — reinforces the taught vocab and scaffolds open frames like
     // "I would feel ___ if someone ___." (two blanks, no cue). It restates the
     // words that are ON New Words, so it is not answer-leaking — it is the same
@@ -1393,9 +1836,8 @@
     // are gap-fills — stuffing a feelings conditional there is dishonest (S31).
     // Use boardFrames (shared with frameTiles) — was hard slice(0,3) while generate
     // ships 4 and boardFrames allows up to 5 → lonely under-filled pages.
-    const EA0 = window.EdbActivities;
-    const frames = (EA0 && typeof EA0.boardFrames === 'function')
-      ? EA0.boardFrames(lesson)
+    const frames = (EA && typeof EA.boardFrames === 'function')
+      ? EA.boardFrames(lesson)
       : (lesson.sentenceFrames || []).slice(0, 5).map((f) => String(f || ''));
     const frameStrings = frames.slice();
     const framesAreConditional = frameStrings.some((f) => /\bif\b/i.test(f) && /\bwould\b/i.test(f));
@@ -1445,6 +1887,36 @@
     const rows = Math.max(1, frames.length);
     const lens = frames.map((f) => String(f || '').length);
     const longest = Math.max(0, ...lens);
+    if (interactive) {
+      const blanks = EA && typeof EA.frameBlankCount === 'function'
+        ? EA.frameBlankCount(lesson)
+        : frames.reduce((n, f) => n + ((String(f).match(/_{2,}/g) || []).length), 0);
+      const baseWords = boardVocabList(lesson)
+        .map((v) => String(typeof v === 'string' ? v : (v && v.word) || '').trim())
+        .filter(Boolean);
+      const tileWords = EA && typeof EA.expandFrameTileWords === 'function'
+        ? EA.expandFrameTileWords(lesson, baseWords)
+        : baseWords;
+      const extras = Math.max(0, tileWords.length - blanks);
+      const contract = el('div', {
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '8px',
+        marginBottom: rows >= 5 ? '4px' : '6px',
+        flexShrink: '0',
+      });
+      contract.dataset.frameTileRule = '1';
+      contract.appendChild(el('div', {
+        fontSize: rows >= 5 ? '13px' : '14px',
+        fontWeight: '900',
+        color: '#6d28d9',
+        padding: '4px 10px',
+        borderRadius: '999px',
+        background: '#f5f3ff',
+        border: '1px solid #ddd6fe',
+      }, `1 tile / blank · ${extras ? `${extras} extra` : 'use all'}`));
+      col.appendChild(contract);
+    }
     // Long B1 frames at 40px overflow the 590px board — shrink type + wrap.
     // 4–5 frames: denser type so the page fills instead of 3 lonely bars.
     const fontPx = Math.max(
@@ -1476,7 +1948,6 @@
     body.dataset.framesBody = '1';
     // Blank runs become numbered drop pads sized to hold a dock tile. Segments
     // come from EdbActivities so the pad count and the tile count cannot drift.
-    const EA = window.EdbActivities;
     let padNo = 0;
     const frameHtml = (f) => {
       if (!interactive || !EA || typeof EA.frameSegments !== 'function') return esc(f);
@@ -1485,7 +1956,11 @@
         padNo += 1;
         // inline-block keeps the pad on the text baseline so a wrapped B1 frame
         // does not push the pad onto a line of its own.
-        return `<span data-frame-blank="${padNo}" style="display:inline-block;vertical-align:middle;min-width:${Math.round(fontPx * 4.2)}px;height:${Math.round(fontPx * 1.5)}px;margin:0 4px;border:3px dashed #94a3b8;border-radius:10px;background:rgba(148,163,184,0.14)"></span>`;
+        // Empty-target state cue: dashed shape + a faint crosshair glyph (never
+        // the answer word) so "drop here" reads by shape, not color alone — the
+        // filled tile visually covers this glyph once placed, so "placed" needs
+        // no separate art (Manus frameTiles R1 action 4).
+        return `<span data-frame-blank="${padNo}" style="display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;min-width:${Math.round(fontPx * 4.2)}px;height:${Math.round(fontPx * 1.5)}px;margin:0 4px;border:3px dashed #94a3b8;border-radius:10px;background:rgba(148,163,184,0.14)"><span aria-hidden="true" style="font-size:${Math.round(fontPx * 0.7)}px;color:rgba(100,116,139,0.45);line-height:1">⌖</span></span>`;
       }).join('');
     };
     frames.forEach((f, i) => {
@@ -1496,11 +1971,11 @@
         ? ''
         : `<div style="border-bottom:3px dashed #94a3b8;flex:${dense ? '0 0 10px' : '1'};min-height:${dense ? 10 : 18}px;width:100%"></div>`;
       body.appendChild(card(
-        `<div style="font-size:22px;font-weight:700;color:#64748b;margin-bottom:${dense ? 2 : 6}px;flex-shrink:0">Frame ${i + 1}</div>
-         <div data-frame-text style="font-size:${fontPx}px;font-weight:800;color:#1e293b;line-height:${FRAME_LINE_HEIGHT};padding-bottom:0.18em;margin-bottom:${dense ? 2 : 8}px;flex-shrink:0;overflow:visible;word-break:break-word">${frameHtml(f)}</div>
+        `<div style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#ede9fe;color:#6d28d9;font-size:17px;font-weight:900">${i + 1}</div>
+         <div data-frame-text style="font-size:${fontPx}px;font-weight:800;color:#1e293b;line-height:${FRAME_LINE_HEIGHT};padding:0.12em 0 0.18em 34px;margin-bottom:${dense ? 2 : 8}px;flex-shrink:0;overflow:visible;word-break:break-word">${frameHtml(f)}</div>
          ${writeStrip}`,
         {
-          padding: dense ? '10px 14px' : '14px 22px',
+          padding: dense ? '8px 12px' : '10px 16px',
           marginBottom: '0',
           height: '100%',
           minHeight: '0',
@@ -1508,6 +1983,7 @@
           flexDirection: 'column',
           justifyContent: interactive ? 'center' : 'flex-start',
           boxSizing: 'border-box',
+          position: 'relative',
           overflow: 'visible',
         }
       ));
@@ -1775,13 +2251,35 @@
    * the caption chip so red caption text bleeds through alpha props.
    * Prefer composable StoryScene when page.storyScene is set.
    */
+  function storyEnvironmentKey(lesson, page) {
+    if (!window.StoryScene || typeof window.StoryScene.environmentKeyForCue !== 'function') {
+      return null;
+    }
+    const cue = [
+      page && page.visualTheme,
+      page && page.visualCaption,
+      page && page.heading,
+      page && page.text,
+      lesson && lesson.title,
+    ].filter(Boolean).join(' ');
+    return window.StoryScene.environmentKeyForCue(
+      cue,
+      (key) => window.PropBank && window.PropBank.get ? window.PropBank.get(key) : null
+    );
+  }
+
   function fillStoryArtSlot(slot, lesson, page, bigEmoji) {
     slot.innerHTML = '';
     // Keep dataset.storyArt as the numeric page index for applyStoryArt —
     // never overwrite it with 'none' / delete it (that breaks StoryArt swaps).
 
     if (page && page.storyScene && window.StoryScene && window.PropBank) {
-      const composed = fillStorySceneStage(slot, page.storyScene, bigEmoji);
+      const composed = fillStorySceneStage(
+        slot,
+        page.storyScene,
+        bigEmoji,
+        storyEnvironmentKey(lesson, page)
+      );
       if (composed) return composed;
     }
 
@@ -1857,7 +2355,7 @@
   }
 
   /** Layer PropBank cutouts into the story art slot using StoryScene templates. */
-  function fillStorySceneStage(slot, storyScene, bigEmoji) {
+  function fillStorySceneStage(slot, storyScene, bigEmoji, environmentKey) {
     const stageW = bigEmoji ? 480 : 1000;
     const stageH = bigEmoji ? 380 : 120;
     const result = window.StoryScene.compose(storyScene, {
@@ -1868,6 +2366,7 @@
         const p = prop || window.PropBank.get(k);
         return p && p.path ? p.path : null;
       },
+      environmentKey,
     });
     if (!result.layers.length) return null;
 
@@ -1877,22 +2376,105 @@
     } else {
       delete slot.dataset.storySceneWarn;
     }
+    if (result.storyActionContract) {
+      slot.dataset.storyActionContract = JSON.stringify(result.storyActionContract);
+    } else {
+      delete slot.dataset.storyActionContract;
+    }
     delete slot.dataset.storyProp;
     delete slot.dataset.storyArtFallback;
 
     const stage = el('div', {
       flex: '1',
-      minHeight: bigEmoji ? '240px' : '100px',
+      minHeight: bigEmoji ? '100%' : '100px',
       width: '100%',
       position: 'relative',
       zIndex: '1',
       overflow: 'hidden',
-      borderRadius: '14px',
-      background: 'rgba(255,255,255,0.35)',
+      borderRadius: '0',
+      background: 'transparent',
       boxSizing: 'border-box',
     });
     stage.dataset.storySceneStage = '1';
     for (const layer of result.layers) {
+      const origin = layer.slot === 'item' || (layer.scaleClass === 'held')
+        ? 'center center'
+        : 'center bottom';
+      // envFg is a window onto the same env pixels — never a second cover crop
+      // (that reprinted sofa/desk bands under the actors).
+      if (layer.isEnvFg && layer.envSrc) {
+        const wrap = document.createElement('div');
+        wrap.dataset.storyLayer = layer.slot || 'envFg';
+        wrap.dataset.propKey = layer.key || '';
+        if (layer.scaleClass) wrap.dataset.scaleClass = layer.scaleClass;
+        Object.assign(wrap.style, {
+          position: 'absolute',
+          left: `${(100 * layer.x) / stageW}%`,
+          top: `${(100 * layer.y) / stageH}%`,
+          width: `${(100 * layer.w) / stageW}%`,
+          height: `${(100 * layer.h) / stageH}%`,
+          overflow: 'hidden',
+          pointerEvents: 'none',
+          zIndex: String(layer.z || 1),
+        });
+        const img = document.createElement('img');
+        img.src = layer.src;
+        img.alt = '';
+        const src = layer.envSrc;
+        Object.assign(img.style, {
+          position: 'absolute',
+          left: `${(100 * (src.x - layer.x)) / Math.max(layer.w, 1)}%`,
+          top: `${(100 * (src.y - layer.y)) / Math.max(layer.h, 1)}%`,
+          width: `${(100 * src.w) / Math.max(layer.w, 1)}%`,
+          height: `${(100 * src.h) / Math.max(layer.h, 1)}%`,
+          objectFit: src.objectFit || 'cover',
+          objectPosition: src.objectPosition || 'center bottom',
+          pointerEvents: 'none',
+          transform: layer.flip ? 'scaleX(-1)' : 'none',
+          transformOrigin: 'center bottom',
+        });
+        wrap.appendChild(img);
+        stage.appendChild(wrap);
+        continue;
+      }
+      const isCast = /^cast-/.test(String(layer.key || ''));
+      // Some story-cast plates still carry a contact-sheet bar on the top edge
+      // (R6 soccer / picnic black hairline). Crop it; keep the feet.
+      if (isCast) {
+        const wrap = document.createElement('div');
+        wrap.dataset.storyLayer = layer.slot || '';
+        wrap.dataset.propKey = layer.key || '';
+        if (layer.scaleClass) wrap.dataset.scaleClass = layer.scaleClass;
+        const cropTop = 0.08;
+        Object.assign(wrap.style, {
+          position: 'absolute',
+          left: `${(100 * layer.x) / stageW}%`,
+          top: `${(100 * (layer.y + layer.h * cropTop)) / stageH}%`,
+          width: `${(100 * layer.w) / stageW}%`,
+          height: `${(100 * layer.h * (1 - cropTop)) / stageH}%`,
+          overflow: 'hidden',
+          pointerEvents: 'none',
+          zIndex: String(layer.z || 1),
+        });
+        const img = document.createElement('img');
+        img.src = layer.src;
+        img.alt = '';
+        Object.assign(img.style, {
+          position: 'absolute',
+          left: '0',
+          top: `${-100 * cropTop / (1 - cropTop)}%`,
+          width: '100%',
+          height: `${100 / (1 - cropTop)}%`,
+          objectFit: 'contain',
+          objectPosition: 'bottom center',
+          pointerEvents: 'none',
+          transform: layer.flip ? 'scaleX(-1)' : 'none',
+          transformOrigin: 'center bottom',
+        });
+        wrap.appendChild(img);
+        stage.appendChild(wrap);
+        continue;
+      }
       const img = document.createElement('img');
       img.src = layer.src;
       img.alt = '';
@@ -1900,9 +2482,6 @@
       img.dataset.propKey = layer.key || '';
       if (layer.scaleClass) img.dataset.scaleClass = layer.scaleClass;
       if (layer.envMode) img.dataset.envMode = layer.envMode;
-      const origin = layer.slot === 'item' || (layer.scaleClass === 'held')
-        ? 'center center'
-        : 'center bottom';
       Object.assign(img.style, {
         position: 'absolute',
         left: `${(100 * layer.x) / stageW}%`,
@@ -1923,6 +2502,8 @@
       type: 'scene',
       templateId: result.templateId,
       layerCount: result.layers.length,
+      environmentKey: result.environmentKey || null,
+      actionContract: result.storyActionContract || null,
       warnings: result.warnings || [],
     };
   }
@@ -1935,13 +2516,13 @@
       background: '#ffffff',
       color: '#1e293b',
       borderRadius: '12px',
-      padding: o.compact ? '8px 12px' : '10px 14px',
-      fontSize: '22px',
+      padding: o.compact ? '8px 12px' : (o.padding || '10px 14px'),
+      fontSize: o.fontSize || '22px',
       fontWeight: '700',
-      textAlign: 'center',
+      textAlign: o.textAlign || 'center',
       width: '100%',
       boxSizing: 'border-box',
-      lineHeight: '1.3',
+      lineHeight: o.lineHeight || '1.3',
       boxShadow: '0 4px 12px rgba(15,23,42,0.08)',
       flexShrink: '0',
       marginTop: o.marginTop || '0',
@@ -1962,17 +2543,28 @@
       position: 'relative', zIndex: '1',
       display: 'flex', flexDirection: 'column', height: '100%', boxSizing: 'border-box',
     });
+    const totalBeats = Math.max(1, Number(opts && opts.total) || 1);
     const title = index === 0
       ? `Story: ${lesson.story?.title || 'Let\'s Read!'}`
-      : `Story (cont.): ${page?.heading || ''}`;
+      : `Story · ${index + 1}/${totalBeats}`;
     const titleEl = header(title, '#c2410c', { timing: timingChip(4) });
     titleEl.style.textShadow = '0 1px 0 #fff, 0 2px 10px rgba(255,255,255,0.85)';
-    titleEl.style.position = 'relative';
-    titleEl.style.zIndex = '2';
-    content.appendChild(titleEl);
+    titleEl.style.position = 'absolute';
+    titleEl.style.left = '10px';
+    titleEl.style.right = '10px';
+    titleEl.style.top = '8px';
+    titleEl.style.zIndex = '6';
+    titleEl.style.margin = '0';
+    titleEl.style.background = 'rgba(255,255,255,0.82)';
+    titleEl.style.borderRadius = '12px';
+    titleEl.style.padding = '6px 12px';
+    titleEl.style.boxSizing = 'border-box';
 
     const storyText = String(page?.text || '');
     const solo = !!(opts && opts.solo);
+    const sourceIndex = Number.isFinite(Number(page && page._sourceIndex))
+      ? Number(page._sourceIndex)
+      : index;
     // Fit type to the board — solo+banner used to ship 56px and clip mid-clause
     // ("…he loves to") behind overflow:hidden (clubs board-preview miss).
     function storyBodyFontPx(text, isSolo) {
@@ -1993,88 +2585,53 @@
     }
     const textSize = storyBodyFontPx(storyText, solo);
 
-    if (solo) {
-      const caption = page?.visualCaption || page?.visualTheme;
-      if (caption) {
-        content.appendChild(storyCaptionChip(caption, { compact: true, marginBottom: '10px' }));
-      }
-      // Banner slot for realtime story art (separate from the reading card).
-      const banner = el('div', {
-        height: '140px',
-        flexShrink: '0',
-        borderRadius: '16px',
-        marginBottom: '10px',
-        overflow: 'hidden',
-        background: 'linear-gradient(200deg, #fff7ed, #fdba74)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '10px',
-        boxSizing: 'border-box',
-      });
-      banner.dataset.storyArt = String(index);
-      banner.dataset.storyArtMode = 'banner';
-      fillStoryArtSlot(banner, lesson, page, false);
-      content.appendChild(banner);
-      // One flowing paragraph — fill the card; bigger type when there is room.
-      // Story body ink is near-black + heavier weight so it never washes out on the
-      // light card (S62 / Judge B: medium-gray body read as low contrast projected).
-      const text = card(
-        `<div data-story-body style="font-size:${textSize}px;line-height:1.4;color:#0f172a;font-weight:700;width:100%;overflow-wrap:anywhere">${esc(storyText)}</div>`,
-        {
-          flex: '1',
-          marginBottom: '0',
-          marginTop: '4px',
-          minHeight: '0',
-          padding: '20px 28px',
-          display: 'flex',
-          alignItems: 'flex-start',
-          overflow: 'auto',
-        }
-      );
-      content.appendChild(text);
-    } else {
-      const layout = el('div', {
-        display: 'flex', gap: '24px', alignItems: 'stretch', flex: '1',
-      });
-      // Manus PPT-like: keep prop card on the same side across story beats
-      // (alternating L/R reads as layout thrash, not intentional variety).
-      // A1 story meaning rides on the illustration — give the stage ~half the
-      // content width (was 300px / ~25%). Short reading cards still stay clear.
-      const side = el('div', {
-        width: '520px', flexShrink: '0', borderRadius: '18px',
-        background: 'linear-gradient(200deg, #fff7ed, #fdba74)',
-        minHeight: '240px', display: 'flex', flexDirection: 'column',
-        alignItems: 'center', justifyContent: 'flex-start', padding: '10px',
-        boxSizing: 'border-box',
-        overflow: 'hidden',
-        position: 'relative',
-        gap: '8px',
-      });
-      side.dataset.storyArt = String(index);
-      side.dataset.storyArtMode = 'side';
-      side.dataset.storySide = 'left';
-      fillStoryArtSlot(side, lesson, page, true);
-      side.appendChild(storyCaptionChip(
-        page?.visualCaption || page?.visualTheme || 'Scene',
-        { marginTop: '0' }
-      ));
-
-      const text = card(
-        `<div data-story-body style="font-size:${textSize}px;line-height:1.45;color:#0f172a;font-weight:700">${esc(storyText)}</div>`,
-        {
-          flex: '1',
-          marginBottom: '0',
-          minHeight: storyText.length <= 100 ? '0' : '320px',
-          padding: storyText.length <= 100 ? '48px 40px' : '36px 32px',
-          display: 'flex',
-          alignItems: storyText.length <= 100 ? 'flex-start' : 'center',
-        }
-      );
-      layout.appendChild(side);
-      layout.appendChild(text);
-      content.appendChild(layout);
-    }
+    // Full-bleed illustrated beat (R6 Manus: no pale tray). Header + narration
+    // sit on the scene as overlays.
+    const moment = el('div', {
+      flex: '1 1 0%',
+      minHeight: '400px',
+      borderRadius: '0',
+      overflow: 'hidden',
+      background: '#86b6d6',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'stretch',
+      justifyContent: 'stretch',
+      gap: '0',
+      padding: '0',
+      boxSizing: 'border-box',
+      position: 'absolute',
+      left: '0',
+      top: '0',
+      right: '0',
+      bottom: '0',
+    });
+    moment.dataset.storyArt = String(sourceIndex);
+    moment.dataset.storyArtMode = 'side';
+    moment.dataset.storyMoment = '1';
+    fillStoryArtSlot(moment, lesson, page, true);
+    const narration = storyCaptionChip(storyText || 'Read together.', {
+      fontSize: `${textSize}px`,
+      lineHeight: '1.35',
+      padding: storyText.length <= 120 ? '12px 20px' : '10px 16px',
+      textAlign: 'left',
+    });
+    Object.assign(narration.style, {
+      position: 'absolute',
+      left: '18px',
+      right: '18px',
+      bottom: '14px',
+      width: 'auto',
+      marginTop: '0',
+      zIndex: '8',
+      background: 'rgba(255,255,255,0.94)',
+    });
+    narration.dataset.storyBody = '1';
+    narration.dataset.storyNarration = '1';
+    narration.dataset.storyOverlay = '1';
+    moment.appendChild(narration);
+    content.appendChild(moment);
+    content.appendChild(titleEl);
     p.appendChild(content);
     drawDebugZones(p, 'story');
     return p;
@@ -2202,19 +2759,55 @@
       .map((v) => (typeof v === 'string' ? v : v && v.word))
       .filter(Boolean)
       .slice(0, 6);
-    const yesNoCue = items.some((item) => /\b(do you|does|did you|is it|are you|can you)\b/i.test(String(item.question || '')));
-    const productionCue = yesNoCue && boardWords.length
-      ? `Answer out loud, then say a sentence with one of today’s words (${boardWords.slice(0, 4).join(', ')})`
+    const EA = window.EdbActivities;
+    const firstBind = EA && EA.coverAnswerBind
+      ? EA.coverAnswerBind(items[0] || {}, lesson)
+      : null;
+    const productionCue = firstBind && firstBind.frame
+      ? `Say: ${firstBind.frame.replace(/___/g, '____')}`
       : 'Answer out loud first';
     const sub = totalPages > 1
       ? `Part ${pageIndex + 1} of ${totalPages}`
       : productionCue;
-    col.appendChild(hint(sub + (covered ? ' — peel the sticky after the first answer' : ''), {
-      fontSize: '22px', marginBottom: '12px', flexShrink: '0',
+    col.appendChild(hint(sub, {
+      fontSize: '22px', marginBottom: covered ? '6px' : '12px', flexShrink: '0',
     }));
-    // Blank only — never prefill boardWords[0] (models *I like ball*).
-    const speakFrameHtml = (yesNoCue && boardWords.length)
-      ? `<div style="font-size:22px;font-weight:800;color:#14532d;line-height:1.3;margin-bottom:10px">Say: I like <span style="border-bottom:3px solid #86efac;padding:0 18px;min-width:4ch;display:inline-block">&nbsp;</span>. · Use one of today’s words.</div>`
+    // Three-beat contract (Manus R1 fruit-market fix): SAY → PEEL → COMPARE.
+    // Replaces the buried "peel the sticky after the first answer" hint
+    // clause with a visible stepper a child can follow without the teacher
+    // explaining it first.
+    if (covered) {
+      const stepChip = (n, label) => el('span', {
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '4px',
+        padding: '4px 12px',
+        borderRadius: '999px',
+        fontSize: '15px',
+        fontWeight: '800',
+        color: '#15803d',
+        background: '#f0fdf4',
+        border: '1.5px solid #86efac',
+        flexShrink: '0',
+      }, `${n} · ${label}`);
+      const stepArrow = () => el('span', {
+        color: '#86efac', fontWeight: '800', fontSize: '16px', flexShrink: '0',
+      }, '→');
+      const stepper = el('div', {
+        display: 'flex', alignItems: 'center', gap: '8px',
+        marginBottom: '10px', flexShrink: '0',
+      });
+      stepper.appendChild(stepChip(1, 'SAY'));
+      stepper.appendChild(stepArrow());
+      stepper.appendChild(stepChip(2, 'PEEL'));
+      stepper.appendChild(stepArrow());
+      stepper.appendChild(stepChip(3, 'COMPARE'));
+      col.appendChild(stepper);
+    }
+    // Bound frame only — never bolt "I like ___" onto a take/wear/where question.
+    const boundFrame = firstBind && firstBind.frame ? firstBind.frame : '';
+    const speakFrameHtml = boundFrame
+      ? `<div style="font-size:20px;font-weight:800;color:#14532d;line-height:1.3">Say: ${esc(boundFrame.replace(/_{2,}/g, '____'))}</div>`
       : '';
 
     // Covered pages keep a short Q1 card so the Peek sticky (fixed bay) doesn't
@@ -2229,8 +2822,13 @@
         qCard.dataset.writeInStage = '1';
         col.appendChild(qCard);
         if (showSticky) {
+          // Keep in sync with EdbActivities.speakingFlapRect ribbon height —
+          // the flap piece (drawn on top in the canvas pass) sits below this
+          // ribbon so "MODEL ANSWER" stays visible pre-peel (Manus R1: card
+          // read as a bare button with no reveal contrast).
+          const RIBBON_H = 34;
           const r = (window.EdbActivities && window.EdbActivities.speakingCoverRect())
-            || { x: 88, y: 240, w: 720, h: 72 };
+            || { x: 72, y: 206, w: 780, h: 156 };
           p.appendChild(el('div', {
             position: 'absolute',
             left: r.x + 'px',
@@ -2240,45 +2838,58 @@
             boxSizing: 'border-box',
             background: '#ffffff',
             backgroundColor: '#ffffff',
-            borderRadius: '14px',
-            padding: '10px 16px',
+            borderRadius: '16px',
             display: 'flex',
             flexDirection: 'column',
+            zIndex: '2',
+            boxShadow: '0 4px 14px rgba(15,23,42,0.12)',
+            border: '2px solid #bbf7d0',
+            overflow: 'hidden',
+          }));
+          const modelCard = p.lastChild;
+          modelCard.appendChild(el('div', {
+            height: RIBBON_H + 'px',
+            flexShrink: '0',
+            display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '4px',
-            zIndex: '2',
-            boxShadow: 'none',
-            border: '2px solid #bbf7d0',
-          }));
-          // Label lives INSIDE the sticky — an absolute hint under the bay
-          // used to paint over Q2 (clubs PDF "Sample answer" overlap).
-          const sticky = p.lastChild;
-          sticky.appendChild(el('div', {
-            fontSize: '22px',
-            fontWeight: '700',
+            gap: '6px',
+            background: '#dcfce7',
+            borderBottom: '2px solid #bbf7d0',
+            fontSize: '16px',
+            fontWeight: '800',
             color: '#166534',
-            lineHeight: '1.2',
-          }, 'Sample answer'));
-          sticky.appendChild(el('div', {
+            letterSpacing: '0.02em',
+          }, '✓ MODEL ANSWER'));
+          const answerZone = el('div', {
+            flex: '1 1 0%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '4px 18px',
+          });
+          answerZone.appendChild(el('div', {
             fontSize: '22px',
             fontStyle: 'italic',
             color: '#166534',
             textAlign: 'center',
             lineHeight: '1.25',
           }, esc(item.sampleAnswer || '')));
-          col.appendChild(el('div', { height: Math.max(96, r.h + 16) + 'px', marginBottom: '8px', flexShrink: '0' }));
+          modelCard.appendChild(answerZone);
+          col.appendChild(el('div', { height: Math.max(88, r.h + 8) + 'px', marginBottom: '6px', flexShrink: '0' }));
         }
       });
-      // Production frame sits in Notes (below Peek bay) so it never trips H3.
       const notes = card(
-        `${speakFrameHtml}<div style="font-size:22px;font-weight:700;color:#64748b;margin-bottom:10px;flex-shrink:0">Notes / more answers</div>
-         <div style="border:2px dashed #86efac;border-radius:14px;flex:1;min-height:120px;background:#f0fdf4;background-color:#f0fdf4"></div>`,
+        `${speakFrameHtml}<div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:8px">
+           <span style="font-size:18px;font-weight:800;color:#166534">3 · Compare:</span>
+           <span style="font-size:16px;font-weight:800;color:#166534;background:#dcfce7;border:1.5px solid #86efac;border-radius:999px;padding:3px 12px">Same ✓</span>
+           <span style="font-size:16px;font-weight:700;color:#78350f;background:#fef3c7;border:1.5px solid #fde68a;border-radius:999px;padding:3px 12px">Different — try again</span>
+         </div>`,
         {
-          flex: '1 1 0%',
+          flex: '0 0 auto',
           marginBottom: '0',
-          minHeight: '180px',
-          padding: '16px 20px',
+          minHeight: '0',
+          padding: '10px 16px',
           display: 'flex',
           flexDirection: 'column',
           boxSizing: 'border-box',
@@ -2287,6 +2898,27 @@
       notes.dataset.writeInStage = '1';
       if (speakFrameHtml) notes.dataset.speakFrame = '1';
       col.appendChild(notes);
+      const vignetteSrc = EA && EA.coverAnswerWorldPng
+        ? EA.coverAnswerWorldPng(200, 240, lesson || {})
+        : '';
+      if (vignetteSrc) {
+        const vignette = el('div', {
+          position: 'absolute',
+          right: '36px',
+          top: '168px',
+          width: '200px',
+          height: '240px',
+          borderRadius: '22px',
+          overflow: 'hidden',
+          border: '3px solid rgba(15,23,42,0.16)',
+          boxShadow: '0 10px 22px rgba(15,23,42,0.12)',
+          zIndex: '1',
+          pointerEvents: 'none',
+          background: `url(${vignetteSrc}) center / cover no-repeat`,
+        });
+        vignette.dataset.coverWorld = '1';
+        p.appendChild(vignette);
+      }
     } else {
       if (speakFrameHtml) {
         const frameChip = card(speakFrameHtml, {
@@ -2346,6 +2978,37 @@
         && (window.LessonTraits
           ? window.LessonTraits.isFaceCue(faceCueStr)
           : /face|hair|eyes|make.?a.?face/i.test(faceCueStr));
+      const actAssign = (boardPlan.assignments || []).find((a) => a.pageKey === 'activity');
+      const actHeroKey = actAssign && actAssign.ctx && actAssign.ctx.hero && actAssign.ctx.hero.key;
+      const kingMission = window.LessonTraits && window.LessonTraits.kingMissionFor
+        ? window.LessonTraits.kingMissionFor(faceCueStr, { heroKey: actHeroKey })
+        : (lesson.activity?.title || 'Build the World!');
+      // One integrated tray makes the source area obvious without turning the
+      // king page into a worksheet. Board pieces render above this quiet plate.
+      const kingDockTray = el('div', {
+        position: 'absolute',
+        left: '14px',
+        right: '14px',
+        bottom: '8px',
+        height: '184px',
+        zIndex: '1',
+        borderRadius: '22px',
+        border: '2px solid rgba(148,163,184,0.42)',
+        background: 'rgba(248,250,252,0.72)',
+        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.92), 0 5px 18px rgba(15,23,42,0.08)',
+      });
+      kingDockTray.dataset.kingDockTray = '1';
+      kingDockTray.appendChild(el('div', {
+        position: 'absolute',
+        left: '16px',
+        top: '6px',
+        fontSize: '13px',
+        fontWeight: '800',
+        letterSpacing: '0.8px',
+        color: '#475569',
+        textTransform: 'uppercase',
+      }, 'Tool tray'));
+      p.appendChild(kingDockTray);
       // Ink-tagged so applyInkPolicy can lift contrast on busy scene BGs (Manus).
       // Timing chip required on king/activity headers too (Manus S29 / gate hole).
       const kingRow = el('div', {
@@ -2360,10 +3023,10 @@
       });
       const kingTitle = el('div', {
         color: '#0f172a',
-        fontSize: '22px',
+        fontSize: '20px',
         fontWeight: '800',
         lineHeight: '1.2',
-      }, esc(lesson.activity?.title || 'Your Turn!'));
+      }, esc(kingMission));
       kingTitle.dataset.ink = 'heading';
       kingRow.appendChild(kingTitle);
       const kingTiming = el('div', {
@@ -2398,10 +3061,6 @@
       // new topic is a row, not another else-if. feelings/face still decided here
       // (they depend on plan state, not just the cue) and passed in. Inline cascade
       // kept as the identical fallback when the registry script is absent.
-      const actHeroKey = (() => {
-        const actAssign = (boardPlan.assignments || []).find((a) => a.pageKey === 'activity');
-        return actAssign && actAssign.ctx && actAssign.ctx.hero && actAssign.ctx.hero.key;
-      })();
       let kingHint = window.LessonTraits
         ? window.LessonTraits.kingHintFor(kingCue, { feelingsKing, faceKing, heroKey: actHeroKey })
         : 'Drag the pieces onto the stage. Then say or write one sentence about your idea.';
@@ -2413,10 +3072,10 @@
           // names the feeling; there is nothing hidden to "guess" (round-2 Judge A).
           kingHint = '<b>Round 1:</b> drag a feeling face onto the blank face; write or say how it feels.<br><b>Round 2:</b> your partner reads the face, names the feeling, then answers with If I felt ____, I would ____.';
         } else if (faceKing) {
-          kingHint = 'Drag eyes, nose, mouth, and hair onto the face. Then say: My friend has ___';
+          kingHint = 'Drag a part onto the face. Then say: I add the ___.';
         } else if (/\b(dentist|dental|tooth|teeth|cavity|floss)\b/.test(kingCue)
           || /\b(doctor|clinic|hospital|nurse|medical|checkup|diagnosis)\b/.test(kingCue)) {
-          kingHint = 'Drag tools onto the patient. Then say what you used and why.';
+          kingHint = 'Drag a tool onto the mouth. Then say: I use the ___.';
         } else if (/\b(castle|knight|dragon|royal|fortress|portcullis)\b/.test(kingCue)) {
           kingHint = 'Drag pieces onto the castle. Then say what you built.';
         } else if (/\b(trampoline|bounce|backflip)\b/.test(kingCue)) {
@@ -2434,25 +3093,80 @@
       // keep the hint card above the prop so teachers can still read the cue.
       const kingHintEl = hint(kingHint, {
         textAlign: 'left',
-        fontSize: '24px',
-        lineHeight: '1.45',
-        maxWidth: '420px',
-        marginBottom: '12px',
-        background: 'rgba(248,250,252,0.96)',
-        border: '1px solid rgba(148,163,184,0.65)',
-        borderRadius: '14px',
-        padding: '16px 20px',
-        boxShadow: '0 2px 8px rgba(15,23,42,0.10)',
+        fontSize: '18px',
+        lineHeight: '1.3',
+        maxWidth: '360px',
+        marginBottom: '8px',
+        background: 'rgba(248,250,252,0.94)',
+        border: '1px solid rgba(148,163,184,0.55)',
+        borderRadius: '12px',
+        padding: '8px 12px',
+        boxShadow: '0 2px 8px rgba(15,23,42,0.08)',
         color: '#0f172a',
         position: 'relative',
         zIndex: '4',
       });
       kingHintEl.dataset.kingHintCard = '1';
       p.appendChild(kingHintEl);
+      const actPage = (boardPlan.pages || []).find((pg) => pg && pg.pageKey === 'activity');
+      const dockNouns = [...((actPage && actPage.locked) || []), ...((actPage && actPage.unlocked) || [])]
+        .filter((piece) => piece && piece.role === 'dockPiece')
+        .map((piece) => {
+          if (piece.meta && piece.meta.sayNoun) return String(piece.meta.sayNoun);
+          return window.EdbActivities && typeof window.EdbActivities.sayNounFromKey === 'function'
+            ? window.EdbActivities.sayNounFromKey(piece.meta && piece.meta.propKey)
+            : '';
+        })
+        .filter(Boolean);
+      const frameMatch = String(kingHint || '').match(/((?:I|It|The)\s[^.]{0,40}_{3,}[^.]{0,24})/i);
+      const sayFrame = frameMatch ? frameMatch[1].trim() : 'I put the ___.';
+      const examples = [...new Set(dockNouns)].slice(0, 2).map((noun) =>
+        sayFrame.replace(/_{3,}/g, noun)
+      );
+      if (examples.length) {
+        const sayRow = el('div', {
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '6px',
+          maxWidth: '420px',
+          position: 'relative',
+          zIndex: '4',
+          marginBottom: '8px',
+        });
+        examples.forEach((line) => {
+          sayRow.appendChild(el('div', {
+            fontSize: '16px',
+            fontWeight: '800',
+            color: '#0f766a',
+            background: 'rgba(240,253,250,0.96)',
+            border: '1px solid rgba(13,148,136,0.45)',
+            borderRadius: '999px',
+            padding: '4px 10px',
+            lineHeight: '1.2',
+          }, esc(line)));
+        });
+        p.appendChild(sayRow);
+      }
+      const kingPayoff = el('div', {
+        position: 'absolute',
+        right: '22px',
+        top: '16px',
+        zIndex: '4',
+        color: '#0f766a',
+        background: 'rgba(240,253,250,0.94)',
+        border: '2px solid rgba(13,148,136,0.5)',
+        borderRadius: '999px',
+        padding: '8px 15px',
+        fontSize: '18px',
+        fontWeight: '900',
+        letterSpacing: '0.8px',
+        boxShadow: '0 4px 14px rgba(15,23,42,0.10)',
+      }, 'BUILD → POINT → SAY');
+      kingPayoff.dataset.kingPayoff = '1';
+      p.appendChild(kingPayoff);
       // Write strip whenever the hint asks write/say — music skipKing (S39) and
       // feelings Lab on face-blank (Manus kS8Er B1). Feelings: flow under the
       // hint card so absolute strip cannot cover Round 1/2 text (layout collide).
-      const actAssign = (boardPlan.assignments || []).find((a) => a.pageKey === 'activity');
       const skipKing = !!(actAssign && actAssign.ctx && actAssign.ctx.skipKing);
       if ((skipKing || feelingsKing) && /write or say|say or write/i.test(kingHint)) {
         const strip = el('div', feelingsKing ? {
@@ -2519,11 +3233,13 @@
       mysteryHints: 'Guess the word. Peel a hint if you need help.',
       silhouetteGate: 'Guess from the mystery shape. Peel hints if you need help. Then say the word.',
       halfTruthBoard: 'Read the claim. Look at the evidence. Drag TRUE, HALF TRUE, or FALSE onto a pad. Peel the answer.',
-      sceneRepair: 'The board put one wrong piece on purpose. Move it out. Put a better fit in. Say why.',
-      capacityPack: `Pack exactly ${activityCtx.limit || 3} pieces. Every choice must help the mission. Explain what you leave out.`,
-      routeMission: 'Arrange the mission steps from START to FINISH. Tell the route, then peel the answer.',
-      transformationLab: 'Choose the change that causes the result. Put it in the middle, predict, then peel.',
-      evidenceBoard: 'Investigate the claim. Rank the evidence from strongest to weakest, then peel the conclusion.',
+      sceneRepair: 'Spot it → move it → repair it → explain why.',
+      capacityPack: `Pack exactly ${activityCtx.limit || 3}. Say: “I pack ___ because ___.” Then: “I leave out ___ because ___.”`,
+      routeMission: 'Arrange START to FINISH. Say: First… Next… Then… Finally… Lift to reveal.',
+      transformationLab: activityCtx.question
+        ? `${String(activityCtx.question).trim()} Say: I predict ___ because ___. Then peel.`
+        : 'Drop a cause. Say: I predict ___ because ___. Then peel.',
+      evidenceBoard: 'Inspect each SOURCE ARTIFACT. File clues strongest to weakest using SOURCE QUALITY + CLAIM IMPACT. Then peel the sealed verdict.',
       oddOneOut: oddRuleHint
         || "Find the odd one out. Drag it to Doesn't fit. Write why.",
       yesNoSort: oddRuleHint
@@ -2584,10 +3300,16 @@
           ? lesson.activity.title
           : 'Fix the sentence')
       : (lesson.activity?.title || 'Your Turn!');
-    p.appendChild(header(activityTitle, '#4338ca', { timing: timingChip(10) }));
-    p.appendChild(hint(esc(recipeHint || lesson.activity?.prompt || 'Work with a partner.'), {
-      textAlign: 'left', lineHeight: '1.35', maxWidth: interactive ? '680px' : '100%',
-    }));
+    if (actRecipe === 'sceneRepair') {
+      // Scene-first: keep a thin title + far-right timing chip. Instruction
+      // and spoken frame live in the painted world (Manus R1/R2 header chrome).
+      p.appendChild(header(activityTitle, '#0f766e', { timing: timingChip(10), compact: true }));
+    } else {
+      p.appendChild(header(activityTitle, '#4338ca', { timing: timingChip(10) }));
+      p.appendChild(hint(esc(recipeHint || lesson.activity?.prompt || 'Work with a partner.'), {
+        textAlign: 'left', lineHeight: '1.35', maxWidth: interactive ? '680px' : '100%',
+      }));
+    }
     // Recipes that own the play surface (sortBins / dressUp / buildScene /
     // matchDock / mysteryHints / oddOneOut / yesNoSort / thisOrThat / fixSentence)
     // already fill targetBay+dock — stacking frame templates on top reads as a
@@ -2657,6 +3379,17 @@
     // Never default to opinion/planning when frames don't support it
     // (Manus soccer S3G4 / fruit Y737 / gym D4PH).
     if (!bits.length) bits.push('the sentence frames on this page');
+    // Title-loop R1: the label alone ("first conditional (If…, I will…)") reads
+    // as producer jargon to a 7-year-old. Keep the named grammar family (whole-
+    // lesson reviews want it explicit for teacher legibility) but anchor it with
+    // one concrete, child-facing example pulled straight from a real frame.
+    const example = list
+      .map((f) => f.trim())
+      .filter(Boolean)[0];
+    if (example) {
+      const clean = example.replace(/_{2,}/g, '___').replace(/[.!?]+$/, '');
+      return `practise ${bits.join(' + ')} — like “${clean}.”`;
+    }
     return `practise ${bits.join(' + ')}.`;
   }
 
@@ -2665,69 +3398,316 @@
     const p = pageShell(THEME_COLORS.wrap, {
       reserveDock: interactive, pageType: 'wrap',
     });
-    // Timing chip for ≥45 min pacing completeness (Manus 3Uc8 Soft High).
+    p.style.display = 'flex';
+    p.style.flexDirection = 'column';
     p.appendChild(header('Wrap Up', '#f8fafc', { timing: timingChip(3) }));
-    p.appendChild(el('div', {
-      color: '#f8fafc', fontSize: '56px', fontWeight: '800', textAlign: 'center', marginTop: '8px',
-    }, 'Great Job!'));
-    const aims = boardVocabList(lesson)
+    const aimWords = boardVocabList(lesson)
       .map((v) => (typeof v === 'string' ? v : v && v.word))
-      .filter(Boolean)
-      .join(', ');
-    if (aims) {
-      const aimsLine = el('div', {
-        color: '#e2e8f0', fontSize: '22px', textAlign: 'center', margin: '8px 40px 12px', fontWeight: '700',
-        lineHeight: '1.35',
-      }, `Today we used: ${aims}`);
-      aimsLine.dataset.wrapAims = '1';
-      p.appendChild(aimsLine);
-    }
-    p.appendChild(el('div', {
-      color: '#fbbf24', fontSize: '24px', textAlign: 'center', margin: '8px 0 8px', fontWeight: '600',
-    }, 'Exit ticket — say them together'));
-    // Peer check must sit ABOVE review cards so it stays on the 590px board
-    // (Manus gate_hole: peer line was in DOM but clipped under overflowing cards).
-    const peer = el('div', {
-      color: '#fde68a', fontSize: '22px', textAlign: 'center', margin: '0 40px 12px',
-      fontWeight: '700', lineHeight: '1.35',
-      background: 'rgba(15,23,42,0.55)',
-      borderRadius: '12px',
-      padding: '8px 14px',
-    }, aims
-      ? `Peer check: tell a partner a sentence with one of today’s words (${aims}).`
-      : 'Peer check: tell a partner one word or sentence they used well.');
-    peer.dataset.wrapPeer = '1';
-    p.appendChild(peer);
+      .filter(Boolean);
+    const aims = aimWords.join(', ');
+    const cues = chromeTopicCues(lesson, 3, { preferExact: true, tableau: true });
     const review = (lesson.reviewSentences || []).slice(0, 3);
-    review.forEach((s) => {
-      p.appendChild(card(
-        `<div style="font-size:24px;text-align:center;font-weight:700;line-height:1.3;color:#0f172a">${esc(s)}</div>`,
-        { maxWidth: '900px', margin: '0 auto 8px', padding: '12px 18px' }
-      ));
-    });
-    // Manus B3: exit must recycle all board-taught words, not only 3 sentences.
     const exitHay = review.join(' ').toLowerCase();
+    const irregularPlural = {
+      child: 'children',
+      foot: 'feet',
+      mouse: 'mice',
+      person: 'people',
+      tooth: 'teeth',
+    };
     const exitMissing = boardVocabList(lesson)
       .map((v) => (typeof v === 'string' ? v : v && v.word))
       .filter(Boolean)
       .filter((w) => {
-        const escW = String(w).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        // "score" must match "scores" in review lines (exit recycle honesty).
-        return !new RegExp(`\\b${escW}(s|es)?\\b`, 'i').test(exitHay);
+        const word = String(w).toLowerCase();
+        const forms = [word, `${word}s`, `${word}es`, irregularPlural[word]]
+          .filter(Boolean)
+          .map((form) => form.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+        return !new RegExp(`\\b(?:${forms.join('|')})\\b`, 'i').test(exitHay);
       });
-    if (exitMissing.length) {
-      const also = card(
-        `<div style="font-size:22px;text-align:center;font-weight:700;line-height:1.3;color:#0f172a">Also say: ${esc(exitMissing.join(' · '))}</div>`,
-        { maxWidth: '900px', margin: '0 auto 8px', padding: '10px 16px' }
-      );
-      also.dataset.wrapExitAlso = '1';
-      p.appendChild(also);
+    const content = el('div', {
+      flex: '1',
+      minHeight: '0',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '10px',
+      position: 'relative',
+      zIndex: '1',
+      boxSizing: 'border-box',
+      padding: '16px',
+      borderRadius: '28px',
+      border: '3px solid #fbbf24',
+      background: 'linear-gradient(112deg, rgba(248,250,252,0.98) 0%, rgba(248,250,252,0.98) 58%, rgba(15,118,110,0.96) 58%, rgba(13,148,136,0.92) 100%)',
+      boxShadow: '0 22px 48px rgba(2,6,23,0.28)',
+    });
+    const mainRow = el('div', {
+      flex: '1',
+      minHeight: '0',
+      display: 'flex',
+      alignItems: 'stretch',
+      gap: '8px',
+    });
+    // Single primary learner-action panel — Manus wrap-loop Phase 2: one proof
+    // action plus optional supports, not four stacked worksheet slabs.
+    const action = el('div', {
+      flex: '1',
+      minWidth: '0',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      boxSizing: 'border-box',
+      padding: '14px 18px',
+      borderRadius: '22px',
+      background: 'rgba(255,255,255,0.96)',
+      border: '2px solid #e2e8f0',
+      boxShadow: '0 10px 24px rgba(15,23,42,0.08)',
+    });
+    action.dataset.wrapAction = '1';
+    action.appendChild(el('div', {
+      color: '#b45309',
+      fontSize: '16px',
+      fontWeight: '900',
+      letterSpacing: '1.6px',
+      textTransform: 'uppercase',
+      textAlign: 'center',
+    }, 'Exit ticket · say it out loud'));
+    const peer = el('div', {
+      color: '#0f172a',
+      fontSize: '24px',
+      textAlign: 'center',
+      margin: '10px 6px 12px',
+      fontWeight: '800',
+      lineHeight: '1.28',
+    }, aims
+      ? 'Tell a partner one sentence using a word from today.'
+      : 'Tell a partner one word or sentence you used well today.');
+    peer.dataset.wrapPeer = '1';
+    action.appendChild(peer);
+    if (review[0]) {
+      action.appendChild(el('div', {
+        color: '#334155',
+        fontSize: '18px',
+        textAlign: 'center',
+        fontWeight: '700',
+        lineHeight: '1.35',
+        marginBottom: exitMissing.length ? '8px' : '12px',
+        padding: '0 8px',
+      }, `Try: “${esc(review[0])}”`));
     }
+    if (exitMissing.length) {
+      const boost = el('div', {
+        color: '#92400e',
+        fontSize: '16px',
+        textAlign: 'center',
+        fontWeight: '800',
+        lineHeight: '1.3',
+        marginBottom: '12px',
+        padding: '8px 12px',
+        borderRadius: '12px',
+        background: '#fef3c7',
+        border: '1px solid #fde68a',
+      }, `Also say: ${esc(exitMissing.join(' · '))}`);
+      boost.dataset.wrapExitAlso = '1';
+      action.appendChild(boost);
+    }
+    const proof = el('div', {
+      color: '#0f766e',
+      background: '#ccfbf1',
+      border: '2px dashed #2dd4bf',
+      borderRadius: '16px',
+      padding: '12px 16px',
+      fontSize: '22px',
+      fontWeight: '900',
+      textAlign: 'center',
+      letterSpacing: '0.2px',
+    }, 'Say it → cross the finish line');
+    proof.dataset.wrapProof = '1';
+
+    mainRow.appendChild(action);
+
+    const payoff = el('div', {
+      width: '290px',
+      flexShrink: '0',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      boxSizing: 'border-box',
+      padding: '8px 10px',
+    });
+    payoff.dataset.wrapPayoff = '1';
+    const wrapCharmSrc = titleCharmSrc(lesson);
+    const badge = el('div', {
+      position: 'relative',
+      width: '88px',
+      height: '88px',
+      borderRadius: '50%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: '#134e4a',
+      background: wrapCharmSrc ? '#fff' : '#fef3c7',
+      border: '7px solid rgba(255,255,255,0.85)',
+      boxShadow: '0 12px 28px rgba(2,6,23,0.24)',
+      fontSize: '44px',
+      fontWeight: '900',
+      lineHeight: '1',
+      overflow: 'hidden',
+    });
+    if (wrapCharmSrc) {
+      badge.appendChild(img(wrapCharmSrc, {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+      }));
+      badge.appendChild(el('div', {
+        position: 'absolute',
+        right: '-4px',
+        bottom: '-4px',
+        width: '30px',
+        height: '30px',
+        borderRadius: '50%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: '#134e4a',
+        background: '#fef3c7',
+        border: '3px solid #fff',
+        fontSize: '16px',
+        fontWeight: '900',
+      }, '✓'));
+    } else {
+      badge.appendChild(document.createTextNode('✓'));
+    }
+    payoff.appendChild(badge);
+    payoff.appendChild(el('div', {
+      color: '#fff',
+      fontSize: '38px',
+      fontWeight: '900',
+      textAlign: 'center',
+      lineHeight: '1.05',
+      marginTop: '10px',
+    }, 'High Five!'));
+    payoff.appendChild(el('div', {
+      color: '#ccfbf1',
+      fontSize: '17px',
+      fontWeight: '800',
+      textAlign: 'center',
+      marginTop: '4px',
+      letterSpacing: '0.3px',
+    }, 'Unlocked after your sentence'));
+    payoff.dataset.wrapPayoffState = 'post-speech';
+    if (cues.length) {
+      const cueRow = el('div', {
+        display: 'flex',
+        justifyContent: 'center',
+        gap: '8px',
+        marginTop: '12px',
+      });
+      cues.forEach((cue) => {
+        const cueBubble = el('div', {
+          width: '82px',
+          height: '88px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '18px',
+          background: 'rgba(255,255,255,0.94)',
+          boxShadow: '0 8px 18px rgba(2,6,23,0.18)',
+        });
+        cueBubble.appendChild(img(cue.src, {
+          position: 'relative',
+          width: '52px',
+          height: '52px',
+          objectFit: 'contain',
+          filter: 'drop-shadow(0 4px 8px rgba(15,23,42,0.12))',
+        }));
+        cueBubble.appendChild(el('div', {
+          color: '#0f172a',
+          fontSize: '12px',
+          fontWeight: '900',
+          lineHeight: '1.1',
+          textAlign: 'center',
+          marginTop: '3px',
+          maxWidth: '74px',
+        }, esc(cue.word)));
+        cueRow.appendChild(cueBubble);
+      });
+      payoff.appendChild(cueRow);
+    }
+    if (aims) {
+      const aimsLine = el('div', {
+        color: '#ecfeff',
+        fontSize: '14px',
+        textAlign: 'center',
+        marginTop: '9px',
+        fontWeight: '700',
+        lineHeight: '1.3',
+      }, `Today we used: ${aims}`);
+      aimsLine.dataset.wrapAims = '1';
+      payoff.appendChild(aimsLine);
+    }
+    mainRow.appendChild(payoff);
+    content.appendChild(mainRow);
+
+    const bridgeRow = el('div', {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '8px',
+      flexShrink: '0',
+    });
+    bridgeRow.dataset.wrapBridge = '1';
+    const proofCol = el('div', { flex: '1', minWidth: '0' });
+    proofCol.appendChild(proof);
+    bridgeRow.appendChild(proofCol);
+    const laneWrap = el('div', {
+      flex: '0 0 140px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '6px',
+    });
+    const lane = el('div', {
+      flex: '1',
+      height: '10px',
+      borderRadius: '999px',
+      background: 'repeating-linear-gradient(90deg, #fbbf24 0 12px, transparent 12px 20px)',
+      boxShadow: 'inset 0 0 0 2px rgba(255,255,255,0.55)',
+    });
+    lane.dataset.wrapBridgeLane = '1';
+    laneWrap.appendChild(lane);
+    laneWrap.appendChild(el('div', {
+      width: '48px',
+      height: '30px',
+      borderRadius: '6px 6px 0 0',
+      border: '3px solid #fff',
+      borderBottom: 'none',
+      background: 'repeating-linear-gradient(90deg, #0f172a 0 7px, #fff 7px 14px)',
+      boxShadow: '0 4px 10px rgba(2,6,23,0.2)',
+      flexShrink: '0',
+    }));
+    bridgeRow.appendChild(laneWrap);
+    const payoffAnchor = el('div', {
+      width: '290px',
+      flexShrink: '0',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: '#fff',
+      fontSize: '13px',
+      fontWeight: '900',
+      letterSpacing: '0.6px',
+      textTransform: 'uppercase',
+    }, '→ High Five');
+    bridgeRow.appendChild(payoffAnchor);
+    content.appendChild(bridgeRow);
+    p.appendChild(content);
     p.appendChild(img('assets/04_decoration-ui/confetti.svg', {
-      left: '40px', bottom: '36px', width: '110px', height: '110px',
+      left: '18px', bottom: '12px', width: '104px', height: '104px', opacity: '0.72',
     }));
     p.appendChild(img('assets/04_decoration-ui/confetti.svg', {
-      right: '40px', bottom: '36px', width: '110px', height: '110px',
+      right: '18px', top: '18px', width: '104px', height: '104px', opacity: '0.72',
     }));
     drawDebugZones(p, 'wrap');
     return p;
@@ -2810,7 +3790,7 @@
 
   async function render(lesson, meta, boardPlan) {
     _renderMeta = meta || {};
-    lesson = normalizeLesson(lesson);
+    lesson = normalizeLesson(lesson, meta);
     if (window.ProducerBridge && typeof window.ProducerBridge.normalize === 'function') {
       window.ProducerBridge.normalize(lesson, meta || {});
     }
@@ -2862,7 +3842,10 @@
     } else {
       const solo = boardStories.length === 1;
       boardStories.forEach((sp, i) => {
-        push(makeStoryPage(lesson, sp, i, boardPlan, { solo }), 'story' + i);
+        push(makeStoryPage(lesson, sp, i, boardPlan, {
+          solo,
+          total: boardStories.length,
+        }), 'story' + i);
       });
     }
 

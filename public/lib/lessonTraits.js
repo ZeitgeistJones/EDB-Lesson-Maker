@@ -64,29 +64,114 @@
   // King-stage instruction copy, keyed by resolved king type. `default` is the
   // sane fallback (unknown lessons read exactly as before).
   const KING_HINTS = {
-    default: 'Drag the pieces onto the stage. Then say or write one sentence about your idea.',
+    default: 'Drag a piece onto the stage. Then say: I put the ___.',
     feelings: '<b>Round 1:</b> drag a feeling face onto the blank face; write or say how it feels.<br><b>Round 2:</b> your partner reads the face, names the feeling, then answers with If I felt ____, I would ____.',
-    face: 'Drag eyes, nose, mouth, and hair onto the face. Then say: My friend has ___',
-    dental: 'Drag tools onto the patient. Then say what you used and why.',
-    hospital: 'Drag tools onto the patient. Then say what you used and why.',
-    castle: 'Drag pieces onto the castle. Then say what you built.',
-    trampoline: 'Drag pieces onto the trampoline. Then say your bounce plan.',
-    music: 'Drag musicians onto the stage. Then write or say your symphony idea in 1–2 sentences.',
-    beach: 'Drag beach things onto the sandcastle. Then say what you find or bring.',
-    chest: 'Drag treasure into the chest. Then say what you found.',
-    backpack: 'Drag things into the backpack. Then say what you packed.',
-    pizza: 'Drag toppings onto the pizza. Then say what you made.',
-    mouth: 'Drag food into the mouth. Then say what it ate.',
-    fridge: 'Drag food into the fridge. Then say what you put away.',
-    putIn: 'Drag things inside. Then say what you put in.',
-    oven: 'Drag food into the oven. Then say what you baked.',
-    laundry: 'Drag clothes into the basket. Then say what you washed.',
-    fort: 'Drag things into the fort. Then say what you brought.',
+    // Never name a part the dock cannot ship (ghost eyes). "the ___" is A1-safe
+    // for singular, plural, and mass nouns (a nose / the eyes / the hair).
+    face: 'Drag a part onto the face. Then say: I add the ___.',
+    dental: 'Drag a tool onto the mouth. Then say: I use the ___.',
+    hospital: 'Drag a tool onto the bed. Then say: I use the ___.',
+    castle: 'Drag a piece onto the castle. Then say: I put the ___.',
+    trampoline: 'Drag a tool onto the trampoline. Then say: I use the ___.',
+    music: 'Drag a musician onto the stage. Then say: I hear the ___.',
+    beach: 'Drag a piece onto the sand. Then say: I put the ___.',
+    fire: 'Drag a tool onto the truck. Then say: I use the ___.',
+    camp: 'Drag a thing by the tent. Then say: I put the ___.',
+    bathroom: 'Drag a tool onto the bath. Then say: I use the ___.',
+    playground: 'Drag a thing by the slide. Then say: I put the ___.',
+    cafe: 'Drag food onto the counter. Then say: I put the ___.',
+    farm: 'Drag a thing by the barn. Then say: I put the ___.',
+    aquarium: 'Drag a thing into the tank. Then say: I put the ___.',
+    construction: 'Drag a tool onto the site. Then say: I use the ___.',
+    dollhouse: 'Drag a thing into a room. Then say: I put the ___.',
+    chest: 'Drag treasure into the chest. Then say: I found the ___.',
+    backpack: 'Drag a thing into the backpack. Then say: I packed the ___.',
+    pizza: 'Drag a topping onto the food. Then say: I add the ___.',
+    mouth: 'Drag food into the mouth. Then say: It ate the ___.',
+    fridge: 'Drag food into the fridge. Then say: I put the ___.',
+    putIn: 'Drag a thing inside. Then say: I put the ___.',
+    oven: 'Drag food into the oven. Then say: I baked the ___.',
+    laundry: 'Drag clothes into the basket. Then say: I washed the ___.',
+    fort: 'Drag a thing into the fort. Then say: I brought the ___.',
+  };
+
+  const KING_MISSIONS = {
+    default: 'Build the World!',
+    feelings: 'Show a Feeling!',
+    face: 'Make a Face!',
+    dental: 'Help the Dentist!',
+    hospital: 'Help the Patient!',
+    castle: 'Build the Castle!',
+    trampoline: 'Plan a Safe Bounce!',
+    music: 'Build the Concert!',
+    beach: 'Build the Beach World!',
+    fire: 'Build the Rescue Scene!',
+    camp: 'Build the Campsite!',
+    bathroom: 'Build the Wash-Up Scene!',
+    playground: 'Build the Playground!',
+    cafe: 'Build the Cafe!',
+    farm: 'Build the Farmyard!',
+    aquarium: 'Build the Aquarium!',
+    construction: 'Build the Work Site!',
+    dollhouse: 'Build the Rooms!',
+    chest: 'Fill the Treasure Chest!',
+    backpack: 'Pack the Backpack!',
+    pizza: 'Make the Food!',
+    mouth: 'Feed the Character!',
+    fridge: 'Stock the Fridge!',
+    putIn: 'Fill the Scene!',
+    oven: 'Bake the Food!',
+    laundry: 'Pack the Laundry!',
+    fort: 'Build the Fort!',
+  };
+
+  const KING_PAYOFFS = {
+    default: 'WORLD READY',
+    feelings: 'FEELING NAMED',
+    face: 'FACE DONE',
+    dental: 'SMILE READY',
+    hospital: 'PATIENT READY',
+    castle: 'CASTLE READY',
+    trampoline: 'BOUNCE READY',
+    music: 'CONCERT READY',
+    beach: 'BEACH READY',
+    fire: 'RESCUE READY',
+    camp: 'CAMP READY',
+    bathroom: 'WASH READY',
+    playground: 'PLAY READY',
+    cafe: 'ORDER READY',
+    farm: 'FARM READY',
+    aquarium: 'TANK READY',
+    construction: 'SITE READY',
+    dollhouse: 'ROOMS READY',
+    chest: 'CHEST FULL',
+    backpack: 'BAG PACKED',
+    pizza: 'FOOD READY',
+    mouth: 'FED',
+    fridge: 'FRIDGE STOCKED',
+    putIn: 'FILLED',
+    oven: 'BAKED',
+    laundry: 'WASHED',
+    fort: 'FORT READY',
   };
 
   // Play-surface kings: hint from the actual hero key so "backpack" vocab on a
   // camping tent lesson cannot steal the chest/backpack copy.
   const HERO_KEY_HINTS = {
+    'dental-kid-open-mouth': 'dental',
+    'hospital-bed': 'hospital',
+    'castle-wall-gate': 'castle',
+    'trampoline': 'trampoline',
+    'fire-truck': 'fire',
+    'tent': 'camp',
+    'bath-bathtub': 'bathroom',
+    'bath-sink': 'bathroom',
+    'playground-slide': 'playground',
+    'cafe-counter-stage': 'cafe',
+    'farm-barn': 'farm',
+    'aquarium-tank': 'aquarium',
+    'construction-tower-crane': 'construction',
+    'dollhouse-cutaway': 'dollhouse',
     'hero-chest-open': 'chest',
     'hero-backpack-open': 'backpack',
     'hero-pizza-base': 'pizza',
@@ -554,6 +639,35 @@
     return KING_HINTS[kingTypeFor(cue, opts)];
   }
 
+  function kingMissionFor(cue, opts) {
+    const heroKey = opts && opts.heroKey;
+    const feelingsKing = opts && opts.feelingsKing != null
+      ? !!opts.feelingsKing
+      : isFeelingsCue(cue);
+    const faceKing = opts && opts.faceKing != null
+      ? !!opts.faceKing
+      : (!feelingsKing && isFaceCue(cue));
+    const cueType = kingTypeFor(cue, { feelingsKing, faceKing });
+    const heroType = heroKey && HERO_KEY_HINTS[heroKey];
+    // face-blank serves two jobs; the lesson cue decides feelings vs make-a-face.
+    const type = heroKey === 'face-blank' ? cueType : (heroType || cueType);
+    return KING_MISSIONS[type] || KING_MISSIONS.default;
+  }
+
+  function kingPayoffFor(cue, opts) {
+    const heroKey = opts && opts.heroKey;
+    const feelingsKing = opts && opts.feelingsKing != null
+      ? !!opts.feelingsKing
+      : isFeelingsCue(cue);
+    const faceKing = opts && opts.faceKing != null
+      ? !!opts.faceKing
+      : (!feelingsKing && isFaceCue(cue));
+    const cueType = kingTypeFor(cue, { feelingsKing, faceKing });
+    const heroType = heroKey && HERO_KEY_HINTS[heroKey];
+    const type = heroKey === 'face-blank' ? cueType : (heroType || cueType);
+    return KING_PAYOFFS[type] || KING_PAYOFFS.default;
+  }
+
   // Lesson-level resolver. Returns the trait bundle the render spine reads, with
   // a sane default (musicTitle:false) so unknown lessons behave as the fallback.
   function traitsFor(lesson) {
@@ -568,6 +682,8 @@
   window.LessonTraits = {
     RE,
     KING_HINTS,
+    KING_MISSIONS,
+    KING_PAYOFFS,
     KING_TYPE_RULES,
     THEME_NONE,
     CHARM_BAN_SPORTS,
@@ -580,5 +696,7 @@
     isFaceCue,
     kingTypeFor,
     kingHintFor,
+    kingMissionFor,
+    kingPayoffFor,
   };
 })();

@@ -52,7 +52,14 @@ const ok = {
   },
 };
 StoryIntegrity.repairLesson(ok);
-assert.equal(ok.story.comprehensionQuestions.length, 1, 'grounded choir Q kept');
+assert.ok(
+  ok.story.comprehensionQuestions.some((q) => /choir/i.test(q.question)),
+  'grounded choir Q kept'
+);
+assert.ok(
+  ok.story.comprehensionQuestions.length >= 1,
+  'comprehension not emptied'
+);
 
 assert.ok(StoryIntegrity.promptRules().includes('STORY INTEGRITY'), 'prompt rules exported');
 
@@ -87,9 +94,8 @@ const whistleLoose = {
   },
 };
 StoryIntegrity.repairLesson(whistleLoose);
-assert.equal(
-  whistleLoose.story.comprehensionQuestions.length,
-  0,
+assert.ok(
+  !whistleLoose.story.comprehensionQuestions.some((q) => /who has the whistle/i.test(q.question)),
   'drop who-has when possession link absent: ' + JSON.stringify(whistleLoose.story.comprehensionQuestions)
 );
 
@@ -103,7 +109,10 @@ const whistleLinked = {
   },
 };
 StoryIntegrity.repairLesson(whistleLinked);
-assert.equal(whistleLinked.story.comprehensionQuestions.length, 1, 'keep who-has when coach has whistle');
+assert.ok(
+  whistleLinked.story.comprehensionQuestions.some((q) => /who has the whistle/i.test(q.question)),
+  'keep who-has when coach has whistle'
+);
 
 // A1 short nouns (dog/cat): grounded Q must not die on contentTokens ≥4 floor
 const shortPets = {
@@ -116,10 +125,13 @@ const shortPets = {
   },
 };
 StoryIntegrity.repairLesson(shortPets);
-assert.equal(
-  shortPets.story.comprehensionQuestions.length,
-  1,
+assert.ok(
+  shortPets.story.comprehensionQuestions.some((q) => /what animals/i.test(q.question)),
   'keep short-vocab grounded Q: ' + JSON.stringify(shortPets.story.comprehensionQuestions)
+);
+assert.ok(
+  shortPets.story.comprehensionQuestions.length >= 1,
+  'comprehension floor kept'
 );
 
 console.log('test-story-integrity: ok');

@@ -27,29 +27,34 @@ function fileFetch(url) {
 }
 
 function fakeCanvas() {
-  return {
-    width: 0,
-    height: 0,
-    getContext: () => ({
+  const ctx = new Proxy(
+    {
       fillStyle: '',
       strokeStyle: '',
       lineWidth: 0,
       font: '',
       textAlign: '',
       textBaseline: '',
-      beginPath() {},
-      moveTo() {},
-      lineTo() {},
-      arcTo() {},
-      closePath() {},
-      fill() {},
-      stroke() {},
-      setLineDash() {},
-      fillRect() {},
-      strokeRect() {},
-      fillText() {},
+      globalAlpha: 1,
+      createRadialGradient: () => ({ addColorStop() {} }),
+      createLinearGradient: () => ({ addColorStop() {} }),
       measureText: (text) => ({ width: String(text || '').length * 12 }),
-    }),
+    },
+    {
+      get(target, prop) {
+        if (prop in target) return target[prop];
+        return () => target;
+      },
+      set(target, prop, value) {
+        target[prop] = value;
+        return true;
+      },
+    },
+  );
+  return {
+    width: 0,
+    height: 0,
+    getContext: () => ctx,
     toDataURL: () => 'data:image/png;base64,AA==',
   };
 }
@@ -69,6 +74,7 @@ for (const rel of [
   'public/lib/vocabArt.js',
   'public/lib/lessonTraits.js',
   'public/lib/storyScene.js',
+  'public/lib/nounArticles.js',
   'public/lib/producerBridge.js',
   'public/lib/edbLayout.js',
   'public/lib/edbActivities.js',

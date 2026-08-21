@@ -254,7 +254,13 @@ async function glyphToPng(glyph, px = 128) {
   return canvasToPng(c);
 }
 
-/** Draw a rounded word tile — used for sentence-building activities. */
+/**
+ * Draw a rounded word tile — used for sentence-building activities.
+ * Raised (shadow + darker base edge) so it reads as a liftable/draggable
+ * piece at a glance, distinct from the flat dashed drop pad it targets —
+ * an interaction-state cue that survives grayscale/color-blind viewing
+ * (Manus frameTiles R1 action 4: states need shape, not just color).
+ */
 async function tileToPng(text, {
   w = 186, h = 54, bg = '#F5C518', fg = '#1E2A38', size = 24,
 } = {}) {
@@ -262,13 +268,27 @@ async function tileToPng(text, {
   c.width = w; c.height = h;
   const ctx = c.getContext('2d');
   const r = 9;
-  ctx.beginPath();
-  ctx.moveTo(r, 0); ctx.lineTo(w - r, 0); ctx.quadraticCurveTo(w, 0, w, r);
-  ctx.lineTo(w, h - r); ctx.quadraticCurveTo(w, h, w - r, h);
-  ctx.lineTo(r, h); ctx.quadraticCurveTo(0, h, 0, h - r);
-  ctx.lineTo(0, r); ctx.quadraticCurveTo(0, 0, r, 0);
-  ctx.closePath();
+  const tilePath = () => {
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.lineTo(w - r, 0); ctx.quadraticCurveTo(w, 0, w, r);
+    ctx.lineTo(w, h - r); ctx.quadraticCurveTo(w, h, w - r, h);
+    ctx.lineTo(r, h); ctx.quadraticCurveTo(0, h, 0, h - r);
+    ctx.lineTo(0, r); ctx.quadraticCurveTo(0, 0, r, 0);
+    ctx.closePath();
+  };
+  // Drop shadow first (own path pass) so it never bleeds onto the border/text.
+  ctx.save();
+  ctx.shadowColor = 'rgba(15,23,42,0.32)';
+  ctx.shadowBlur = Math.max(3, Math.round(h * 0.12));
+  ctx.shadowOffsetY = Math.max(2, Math.round(h * 0.07));
+  tilePath();
   ctx.fillStyle = bg; ctx.fill();
+  ctx.restore();
+  // Darker base edge reads as a bevel (liftable) without relying on the shadow alone.
+  tilePath();
+  ctx.lineWidth = Math.max(1.5, Math.round(h * 0.035));
+  ctx.strokeStyle = 'rgba(15,23,42,0.22)';
+  ctx.stroke();
   ctx.fillStyle = fg;
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
   // Shrink type until the word fits — "toothbrush" on a 140px sort card
@@ -489,6 +509,51 @@ function captionedArtPng(artBytes, label, w, h) {
   });
 }
 
+/** White card + cyan grab ring so match pictures read as movable, not decor. */
+function withMatchGrabHalo(artBytes, w, h) {
+  const width = Math.max(64, w || 96);
+  const height = Math.max(64, h || 96);
+  const c = document.createElement('canvas');
+  c.width = width;
+  c.height = height;
+  const ctx = c.getContext('2d');
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      ctx.save();
+      ctx.shadowColor = 'rgba(15,23,42,0.28)';
+      ctx.shadowBlur = 8;
+      ctx.shadowOffsetY = 4;
+      ctx.fillStyle = '#ffffff';
+      const r = 14;
+      ctx.beginPath();
+      ctx.moveTo(r, 4);
+      ctx.arcTo(width - 4, 4, width - 4, height - 4, r);
+      ctx.arcTo(width - 4, height - 4, 4, height - 4, r);
+      ctx.arcTo(4, height - 4, 4, 4, r);
+      ctx.arcTo(4, 4, width - 4, 4, r);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+      ctx.strokeStyle = '#22d3ee';
+      ctx.setLineDash([5, 4]);
+      ctx.lineWidth = 2;
+      ctx.strokeRect(7, 7, width - 14, height - 14);
+      const inset = 10;
+      const nw = img.naturalWidth || width;
+      const nh = img.naturalHeight || height;
+      const box = Math.min(width - inset * 2, height - inset * 2);
+      const scale = Math.min(box / nw, box / nh);
+      const dw = nw * scale;
+      const dh = nh * scale;
+      ctx.drawImage(img, (width - dw) / 2, (height - dh) / 2, dw, dh);
+      canvasToPng(c).then(resolve, () => resolve(artBytes));
+    };
+    img.onerror = () => resolve(artBytes);
+    img.src = pngBytesToDataUrl(artBytes);
+  });
+}
+
 /** Planned artSrc → wordArt → curated emoji → text tile. Never bullet / role label. */
 async function pieceToPng(piece, ctx) {
   const word = piece.meta && piece.meta.word;
@@ -509,7 +574,7 @@ async function pieceToPng(piece, ctx) {
       if (wantCaption && (piece.label || word)) {
         return captionedArtPng(png, piece.label || word, piece.w, piece.h);
       }
-      return png;
+      return isMatchIcon ? withMatchGrabHalo(png, piece.w, piece.h) : png;
     }
     if (mustHaveArt) {
       throw new Error('pieceToPng: missing artSrc file for ' + (word || artSrc));
