@@ -90,3 +90,4 @@ Independent single-board optimization log.
 - R4/R5: identical empty zero-score payloads. These are transport/output failures, not evidence-based `fail` verdicts.
 - LOCAL_GATE: `node scripts/test-story-board-grammar.mjs` passes home/family, zoo/hero, and classroom/exchange generalization with no StoryScene warnings.
 - FINAL_STATUS: **producer fixed; local generalization passed; external Manus graduation unconfirmed because both verification responses were invalid.**
+- DECISION: **HOLD** — no further systemic edits until Manus transport is healthy. One verification Manus call allowed when sole owner confirms packet pipeline; otherwise treat as `NEAR_DONE` with invalid R4/R5.
