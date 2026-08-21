@@ -17,7 +17,12 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const INPUT = path.join(ROOT, 'docs/asset-wiring-migration-inventory.json');
 const ART_INPUT = path.join(ROOT, 'docs/art-replacements-stockpile-inventory.json');
 const OUTPUT = path.join(ROOT, 'docs/review-required-resolution-inventory.json');
-const EXPECTED_QUEUE = 1862;
+// Phase A baseline was 1862. Phase B (Sonnet 5) legitimately moves keys out of
+// this queue wave by wave via real merges/dispositions; EXPECTED_QUEUE and the
+// per-family expectations below are the CURRENT baseline after those explained
+// moves, not the original Phase A snapshot. Each wave's movement is documented
+// in docs/review-required-resolution-phase-b-status.md and its commit.
+const EXPECTED_QUEUE = 1860;
 const flag = (name) => process.argv.includes(`--${name}`);
 
 function readJson(file) {
@@ -270,7 +275,7 @@ const familyGroups = [...grouped.entries()].map(([id, rows]) => {
 const familyExpected = {
   'aggressive-stockpile::D': 180,
   'aggressive-stockpile::E': 329,
-  'aggressive-stockpile::F': 276,
+  'aggressive-stockpile::F': 274,
   'aggressive-stockpile::H': 108,
   'aggressive-stockpile::K': 108,
   'aggressive-stockpile::P': 306,
@@ -296,7 +301,7 @@ const globalChecks = [
   proofRow('exact-review-required-queue', queue.length, EXPECTED_QUEUE, 'verified source + no live row'),
   proofRow('review-state-total', reviewStateRows.length, 2225, 'current migration inventory'),
   proofRow('excluded-inventory-only', excludedUnverified.length, 309, 'not in verified baseline'),
-  proofRow('excluded-already-addressable', excludedAddressable.length, 54, 'not unwired'),
+  proofRow('excluded-already-addressable', excludedAddressable.length, 56, 'not unwired'),
   proofRow('family-proof-count', representativeProof.length, 10, 'six aggressive + replacement + three K2'),
   proofRow(
     'replacement-lineage-complete',

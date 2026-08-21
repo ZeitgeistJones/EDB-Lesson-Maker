@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-21T01:22:48.077Z",
+  "generated_at": "2026-08-21T01:52:59.198Z",
   "scope": "Exact verified-unwired REVIEW_REQUIRED queue and Phase B resolution policy",
   "source_inventory": "docs/asset-wiring-migration-inventory.json",
   "accounting": {
     "review_state_total": 2225,
     "less_inventory_only_unverified": 309,
-    "less_already_addressable": 54,
-    "review_required_verified_unwired": 1862,
-    "equation": "2225 - 309 - 54 = 1862"
+    "less_already_addressable": 56,
+    "review_required_verified_unwired": 1860,
+    "equation": "2225 - 309 - 56 = 1860"
   },
   "top_level_reasons": [
     {
       "reason": "AGGRESSIVE_MIXED_ROUTE_AND_CELL_QA",
-      "count": 1307,
+      "count": 1305,
       "evidence": "Source inventories are stockpile-only/no_wiring and mix generic props, named poses, views, states, fragments, and system parts."
     },
     {
@@ -34,7 +34,7 @@
     "COORDINATED_CAST_RELATIONSHIP_AND_CELL_QA": 15,
     "EPISTEMIC_POSE_NAMED_ROUTE_AND_CELL_QA": 60,
     "REPLACEMENT_CELL_QA_AND_COLLISION_DECISION": 480,
-    "ROLE_DETAIL_PROP_CELL_QA": 276,
+    "ROLE_DETAIL_PROP_CELL_QA": 274,
     "STORY_DRESSING_SPLIT_AND_CELL_QA": 180,
     "VIEW_STATE_LINEAGE_AND_CELL_QA": 108
   },
@@ -144,7 +144,7 @@
       "rule": "aggressive-stockpile",
       "source_family": "F",
       "family_type": "role-detail-props",
-      "count": 276,
+      "count": 274,
       "reason_code": "ROLE_DETAIL_PROP_CELL_QA",
       "semantic_lane": "GENERATOR_ELIGIBLE",
       "family_rule_resolution": "FAMILY_ROUTE_PLUS_SHEET_QA",
@@ -414,8 +414,8 @@
       {
         "id": "exact-review-required-queue",
         "pass": true,
-        "actual": 1862,
-        "expected": 1862,
+        "actual": 1860,
+        "expected": 1860,
         "evidence": "verified source + no live row"
       },
       {
@@ -435,8 +435,8 @@
       {
         "id": "excluded-already-addressable",
         "pass": true,
-        "actual": 54,
-        "expected": 54,
+        "actual": 56,
+        "expected": 56,
         "evidence": "not unwired"
       },
       {
@@ -456,8 +456,8 @@
       {
         "id": "all-records-have-policy",
         "pass": true,
-        "actual": 1862,
-        "expected": 1862,
+        "actual": 1860,
+        "expected": 1860,
         "evidence": "reason and lane assigned"
       },
       {
@@ -486,8 +486,8 @@
       {
         "id": "aggressive-stockpile::F",
         "pass": true,
-        "actual": 276,
-        "expected": 276,
+        "actual": 274,
+        "expected": 274,
         "evidence": "role-detail-props"
       },
       {
@@ -10707,22 +10707,6 @@
       "registration_grade": null
     },
     {
-      "key": "hold-shelf-bin",
-      "source_inventory_id": "docs/aggressive-stockpile-s4-inventory.json#688",
-      "source_path": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4f10-role-detail-continue/sheets",
-      "rule": "aggressive-stockpile",
-      "source_family": "F",
-      "family_type": "role-detail-props",
-      "reason_code": "ROLE_DETAIL_PROP_CELL_QA",
-      "semantic_lane": "GENERATOR_ELIGIBLE",
-      "family_rule_resolution": "FAMILY_ROUTE_PLUS_SHEET_QA",
-      "relationship_policy": "Retain useful variants with variantOf; do not merge distinct tools merely because they share a profession.",
-      "target_key": null,
-      "source_reason_codes": [],
-      "variant_of": null,
-      "registration_grade": null
-    },
-    {
       "key": "hose-clamp",
       "source_inventory_id": "docs/aggressive-stockpile-s4-inventory.json#562",
       "source_path": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4f8-role-detail-continue/sheets",
@@ -12406,22 +12390,6 @@
       "key": "serving-tray",
       "source_inventory_id": "docs/aggressive-stockpile-s4-inventory.json#119",
       "source_path": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4f2-role-detail-more/sheets",
-      "rule": "aggressive-stockpile",
-      "source_family": "F",
-      "family_type": "role-detail-props",
-      "reason_code": "ROLE_DETAIL_PROP_CELL_QA",
-      "semantic_lane": "GENERATOR_ELIGIBLE",
-      "family_rule_resolution": "FAMILY_ROUTE_PLUS_SHEET_QA",
-      "relationship_policy": "Retain useful variants with variantOf; do not merge distinct tools merely because they share a profession.",
-      "target_key": null,
-      "source_reason_codes": [],
-      "variant_of": null,
-      "registration_grade": null
-    },
-    {
-      "key": "silicone-mat",
-      "source_inventory_id": "docs/aggressive-stockpile-s4-inventory.json#345",
-      "source_path": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4f5-role-detail-continue/sheets",
       "rule": "aggressive-stockpile",
       "source_family": "F",
       "family_type": "role-detail-props",

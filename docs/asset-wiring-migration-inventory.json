@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-21T00:26:39.757Z",
+  "generated_at": "2026-08-21T01:50:50.843Z",
   "scope": "Phase A harvested asset wiring audit and representative proof",
   "architecture": {
     "wired_definition": {
@@ -13,22 +13,22 @@
       "harvested_path": "Inventory family -> rule -> existing importer -> manifest/index -> selector eligibility or explicit exception."
     },
     "live_counts": {
-      "props": 7219,
+      "props": 7221,
       "background_scenes": 261,
       "background_flats": 128,
       "vocab_entries": 6742,
-      "live_rows_total": 14350,
+      "live_rows_total": 14352,
       "missing_live_files": 0
     }
   },
   "estimate_reconciliation": {
     "user_estimated_unwired": 5100,
     "inventoried_logical_assets": 3236,
-    "estimated_unwired": 3154,
-    "verified_unwired": 2845,
+    "estimated_unwired": 3152,
+    "verified_unwired": 2843,
     "unverified_unwired": 309,
-    "already_addressable_from_inventories": 82,
-    "delta_user_estimate_to_verified": -2255,
+    "already_addressable_from_inventories": 84,
+    "delta_user_estimate_to_verified": -2257,
     "discrepancy_explanation": [
       "The ~5,100 figure is a planning estimate, while verified_unwired counts unique logical inventory keys with surviving source evidence and no exact live address.",
       "One harvested PNG is often a 3x3, 4x4, 4x8, or mixed contact sheet, so PNG file counts and logical asset counts are intentionally different.",
@@ -56,8 +56,8 @@
     ],
     "counts": {
       "RAW": 2927,
-      "IMPORTED": 82,
-      "ADDRESSABLE": 82,
+      "IMPORTED": 84,
+      "ADDRESSABLE": 84,
       "GENERATOR_ELIGIBLE": 0,
       "SPECIALIZED": 2447,
       "REFERENCE_ONLY": 12,
@@ -845,8 +845,8 @@
       "asset_kind": "mixed_stockpile",
       "logical_assets": 328,
       "source_verified": 328,
-      "imported": 52,
-      "addressable": 52,
+      "imported": 54,
+      "addressable": 54,
       "generator_eligible": 0,
       "hold": 0,
       "junk": 0
@@ -24633,9 +24633,15 @@
         "precision": "family_sheet",
         "path": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4f10-role-detail-continue/sheets"
       },
-      "live": null,
+      "live": {
+        "bank": "09_props",
+        "file": "public/assets/09_props/img/hold-shelf-bin.png",
+        "file_exists": true
+      },
       "states": [
         "RAW",
+        "IMPORTED",
+        "ADDRESSABLE",
         "SPECIALIZED",
         "REVIEW_REQUIRED"
       ],
@@ -27951,9 +27957,15 @@
         "precision": "family_sheet",
         "path": "harvested/manus-aggressive-stockpile/s4-roles-a11y/s4f5-role-detail-continue/sheets"
       },
-      "live": null,
+      "live": {
+        "bank": "09_props",
+        "file": "public/assets/09_props/img/silicone-mat.png",
+        "file_exists": true
+      },
       "states": [
         "RAW",
+        "IMPORTED",
+        "ADDRESSABLE",
         "SPECIALIZED",
         "REVIEW_REQUIRED"
       ],
