@@ -80,6 +80,18 @@ function compactLesson(title, vocabulary) {
 
 const fruit = fixture('fruit-market-lesson.json');
 const dentist = fixture('dentist-lesson.json');
+const faceHeroLesson = compactLesson('Make a Face', ['face', 'eyes', 'nose', 'mouth', 'hair', 'smile']);
+faceHeroLesson.activity = {
+  title: 'Make a Face',
+  prompt: 'Drag eyes, nose, mouth, and hair onto the blank face.',
+  templates: ['My face has ____ eyes.', 'I give my face ____ hair.', 'My face can ____.'],
+};
+const HERO_PROP_VARIANTS = {
+  dentist: { lesson: dentist, level: 'A1' },
+  face: { lesson: faceHeroLesson, level: 'A1' },
+};
+const heroPropVariantId = cliArg('variant', 'dentist');
+const heroPropVariant = HERO_PROP_VARIANTS[heroPropVariantId] || HERO_PROP_VARIANTS['dentist'];
 const zooPhonics = fixture('zoo-phonics-lesson.json');
 const sportsBare = fixture('basketball-bare-lesson.json');
 const snackCoat = fixture('snack-coat-day-lesson.json');
@@ -405,7 +417,7 @@ const ALL_CASES = [
   { id: 'phonicsSoundBoxes', pageKey: 'phonics', expected: 'phonicsSoundBoxes', lesson: zooPhonics, meta: { level: 'A1', duration: 30, phonics: 'on' }, force: true },
   { id: 'coverAnswer', pageKey: 'speaking:0', expected: 'coverAnswer', lesson: fruit, meta: { level: 'A1', duration: 30 } },
   { id: 'preA1TprChoice', pageKey: 'activity', expected: 'preA1TprChoice', lesson: preA1, meta: { level: 'Pre-A1', duration: 30, phonics: 'off' } },
-  { id: 'heroProp', pageKey: 'activity', expected: 'heroProp', lesson: dentist, meta: { level: 'A1', duration: 30 } },
+  { id: 'heroProp', pageKey: 'activity', expected: 'heroProp', lesson: heroPropVariant.lesson, meta: { level: heroPropVariant.level, duration: 30 } },
   {
     id: 'silhouetteGate',
     pageKey: 'activity',

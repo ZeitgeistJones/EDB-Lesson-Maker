@@ -88,15 +88,7 @@ Independent single-board optimization log.
 
 ## Loop status
 
-- STATUS: `NEAR_DONE` — chrome pass landed (split world panel, child-facing grammar example, camping R3 score 72).
-- TOPICS: fruit-market (A1) → dentist (A1) → camping (A1); round budget used (3 topics + 1 retest).
+- STATUS: `NEAR_DONE` — chrome pass landed (split world panel, enlarged hero/cues, child-facing grammar example). Round budget exhausted (fruit → dentist → camping + dentist retest).
 - VALID VERDICTS: R1 REVISE 3 → R2 REVISE 0 (invalid) → R3 REVISE 72 → R4 retest REVISE 55.
-- REMAINING P1: integrated topic tableau — hero + cues must read as one cohesive scene, not detached icons on a split panel; requires shared scene-composition architecture or topic-specific world assets, not another chrome tweak.
-- DECISION: **PAUSE** — `ESCALATION_NEEDED` for Phase 2 scene integration. No further Manus rounds this phase.
-
-## Loop status
-
-- STATUS: `NEAR_DONE` — chrome pass landed (split world panel, enlarged hero/cues, child-facing grammar example). Round budget exhausted (fruit → dentist → camping).
-- BEST VALID SCORE: camping R3 `revise` 72.
-- P1 (documented, not auto-built): integrated topic tableau — hero panel must read as one cohesive scene with embedded cues, not hero image + detached icon chips; label-to-asset mapping still fragile (e.g. dentist label on dental mirror).
-- ESCALATION_NEEDED: Phase 2 requires shared scene-composition architecture (multi-asset tableau layout, not another chrome resize). Pause external Manus rounds until that redesign is scoped.
+- P1 (documented, not auto-built): integrated topic tableau — hero + cues must read as one cohesive scene, not detached icons; label-to-asset mapping still fragile (e.g. dentist label on dental mirror).
+- DECISION: **PAUSE** — `ESCALATION_NEEDED` for Phase 2 scene-composition architecture. No further Manus rounds this phase.

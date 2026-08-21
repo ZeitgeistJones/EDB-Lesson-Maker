@@ -430,6 +430,84 @@
     };
   }
 
+  function matchDockWorldTheme(lesson) {
+    const blob = [
+      lesson && lesson.title,
+      lesson && lesson.activity && lesson.activity.title,
+      ...(((lesson && lesson.vocabulary) || []).map((v) =>
+        typeof v === 'string' ? v : v && v.word
+      )),
+    ].filter(Boolean).join(' ').toLowerCase();
+    if (/\b(camp|camping|campsite|tent|campfire|backpack|flashlight)\b/.test(blob)) {
+      return {
+        id: 'camp',
+        title: 'Camp trail',
+        icon: '🔥',
+        payoff: 'CAMP READY!',
+        scene: '🌲  ⛺  🔥',
+        stageBackground: 'linear-gradient(180deg, rgba(186,230,253,.92) 0 48%, rgba(187,247,208,.94) 49% 100%)',
+      };
+    }
+    if (/\b(music|song|sing|piano|drum|dance|band|concert)\b/.test(blob)) {
+      return {
+        id: 'music',
+        title: 'Music stage',
+        icon: '🎵',
+        payoff: 'BAND READY!',
+        scene: '🎤  🎹  🎶',
+        stageBackground: 'linear-gradient(145deg, rgba(254,226,226,.94), rgba(237,233,254,.94))',
+      };
+    }
+    if (/\b(zoo|animal|pet|dog|cat|lion|tiger|elephant|monkey)\b/.test(blob)) {
+      return {
+        id: 'animals',
+        title: 'Animal trail',
+        icon: '🐾',
+        payoff: 'ZOO EXPERT!',
+        scene: '🌿  🐾  🌳',
+        stageBackground: 'linear-gradient(180deg, rgba(220,252,231,.94), rgba(254,249,195,.92))',
+      };
+    }
+    if (/\b(beach|ocean|sea|shell|sand|wave|island)\b/.test(blob)) {
+      return {
+        id: 'beach',
+        title: 'Beach trail',
+        icon: '🐚',
+        payoff: 'BEACH READY!',
+        scene: '☀️  🏖️  🐚',
+        stageBackground: 'linear-gradient(180deg, rgba(186,230,253,.94) 0 52%, rgba(254,240,138,.92) 53% 100%)',
+      };
+    }
+    if (/\b(farm|barn|tractor|cow|pig|chicken|horse|sheep)\b/.test(blob)) {
+      return {
+        id: 'farm',
+        title: 'Farm trail',
+        icon: '🌾',
+        payoff: 'FARM READY!',
+        scene: '☀️  🚜  🌾',
+        stageBackground: 'linear-gradient(180deg, rgba(219,234,254,.94) 0 46%, rgba(217,249,157,.94) 47% 100%)',
+      };
+    }
+    if (/\b(fruit|market|food|shop|bakery|vegetable|snack)\b/.test(blob)) {
+      return {
+        id: 'market',
+        title: 'Market trail',
+        icon: '🧺',
+        payoff: 'MARKET OPEN!',
+        scene: '☀️  🧺  🏪',
+        stageBackground: 'linear-gradient(180deg, rgba(254,243,199,.94), rgba(220,252,231,.94))',
+      };
+    }
+    return {
+      id: 'discovery',
+      title: 'Word trail',
+      icon: '⭐',
+      payoff: 'WORD MASTER!',
+      scene: '✨  ⭐  ✨',
+      stageBackground: 'linear-gradient(145deg, rgba(255,255,255,.82), rgba(237,233,254,.88))',
+    };
+  }
+
   /**
    * Student-facing New Words instruction.
    * Matchable pictures start in the source dock and move onto word pads.
@@ -1438,10 +1516,46 @@
       noShrink: true,
     });
 
+    // Manual two-state payoff: the teacher/learner moves the yellow seal only
+    // after every picture is on a pad, revealing a topic-linked completion state.
+    // This works in ordinary EDB movement semantics—no runtime scripting needed.
+    const world = matchDockWorldTheme(lesson);
+    const rewardRect = { x: 930, y: 18, w: 300, h: 56 };
+    L.place(page, {
+      locked: true,
+      kind: 'image',
+      asset: solidPng(rewardRect.w, rewardRect.h, '#dcfce7', `${world.icon} ${world.payoff}`, '#166534'),
+      w: rewardRect.w,
+      h: rewardRect.h,
+      intentional: true,
+      anchor: rewardRect,
+      role: 'matchReward',
+      meta: { world: world.id, payoff: world.payoff, revealedAfter: rows.length },
+    });
+    L.place(page, {
+      locked: false,
+      kind: 'image',
+      asset: solidPng(rewardRect.w, rewardRect.h, '#facc15', `MATCH ALL ${rows.length} · PEEL TO REVEAL`, '#78350f'),
+      w: rewardRect.w,
+      h: rewardRect.h,
+      intentional: true,
+      anchor: rewardRect,
+      role: 'matchRewardCover',
+      meta: {
+        world: world.id,
+        unlockAfter: rows.length,
+        preservesPlacedCards: true,
+        covers: 'matchReward',
+      },
+    });
+
     page.notes.push('recipe:matchDock');
     page.notes.push('recipe:matchDockPads');
     page.notes.push('recipe:matchDockNoCaptions');
     page.notes.push('recipe:matchDockCompletionReward');
+    page.notes.push('recipe:matchDockTopicWorld:' + world.id);
+    page.notes.push('recipe:matchDockTwoStatePayoff');
+    page.notes.push('matchDockFit:' + rows.length + 'x' + size.w + 'x' + size.h);
     if (art && art.dropped && art.dropped.length) {
       page.notes.push('matchDockDropped:' + art.dropped.length);
     }
@@ -3007,6 +3121,208 @@
     page.notes.push('routeStates:empty|placed|revealed');
   }
 
+  /**
+   * Scene-anchored BEFORE/RESULT card. Manus R2 (garden-watering, 80/revise):
+   * plain hintStickyPng text cards gave no visible focal object, so the
+   * transformation had nothing to ground BEFORE against or pay off at RESULT.
+   * Draw a small topic-detected hero whose posture/color visibly differs by
+   * phase, so the peel reveals an auditable state change, not just new text.
+   */
+  function transformationScenePng(w, h, phase, text, hay) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const after = phase === 'after';
+    const plant = /\b(plant|leaf|leaves|garden|soil|root|sprout|wilt|droop|flower|tree|grow)\b/.test(hay);
+    const cold = /\b(ice|cold|cool|freeze|frozen|fridge|snow|lunch|fresh|food|melt)\b/.test(hay);
+    const heat = /\b(fire|flame|burn|metal|rust|hot|sun|warm)\b/.test(hay) && !cold;
+    const rain = /\b(rain|storm|cloud|weather|umbrella|wet|dry)\b/.test(hay);
+
+    const rounded = (x, y, rw, rh, r, fill, stroke) => {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + rw, y, x + rw, y + rh, r);
+      ctx.arcTo(x + rw, y + rh, x, y + rh, r);
+      ctx.arcTo(x, y + rh, x, y, r);
+      ctx.arcTo(x, y, x + rw, y, r);
+      ctx.closePath();
+      ctx.fillStyle = fill;
+      ctx.fill();
+      if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = 3; ctx.stroke(); }
+    };
+
+    const bg = after ? '#ecfdf5' : '#fff7ed';
+    const edge = after ? '#047857' : '#b45309';
+    rounded(1, 1, w - 2, h - 2, 16, bg, edge);
+
+    const cx = Math.round(w / 2);
+    const heroTop = 14;
+    const heroBottom = Math.round(h * 0.62);
+    const heroCy = Math.round((heroTop + heroBottom) / 2);
+
+    if (plant) {
+      ctx.strokeStyle = after ? '#15803d' : '#a16207';
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.moveTo(cx, heroBottom);
+      ctx.lineTo(cx, heroTop + 20);
+      ctx.stroke();
+      const leafPairs = 2;
+      for (let i = 0; i < leafPairs; i++) {
+        const ly = heroTop + 20 + i * 22;
+        const droop = after ? -8 : 18;
+        [-1, 1].forEach((side) => {
+          ctx.strokeStyle = after ? '#22c55e' : '#84a06b';
+          ctx.lineWidth = 5;
+          ctx.beginPath();
+          ctx.moveTo(cx, ly);
+          ctx.quadraticCurveTo(cx + side * 26, ly + droop - 4, cx + side * 40, ly + droop);
+          ctx.stroke();
+        });
+      }
+      if (after) {
+        ctx.fillStyle = '#f472b6';
+        ctx.beginPath();
+        ctx.ellipse(cx, heroTop + 10, 9, 9, 0, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    } else if (cold) {
+      rounded(cx - 34, heroCy - 22, 68, 44, 10, '#f8fafc', '#64748b');
+      if (after) {
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 3;
+        [-18, 0, 18].forEach((dx) => {
+          ctx.beginPath();
+          ctx.moveTo(cx + dx, heroCy - 26);
+          ctx.lineTo(cx + dx, heroCy - 14);
+          ctx.moveTo(cx + dx - 6, heroCy - 24);
+          ctx.lineTo(cx + dx + 6, heroCy -16);
+          ctx.moveTo(cx + dx - 6, heroCy - 16);
+          ctx.lineTo(cx + dx + 6, heroCy - 24);
+          ctx.stroke();
+        });
+      } else {
+        ctx.strokeStyle = '#f97316';
+        ctx.lineWidth = 3;
+        [-18, 0, 18].forEach((dx) => {
+          ctx.beginPath();
+          ctx.moveTo(cx + dx, heroCy - 30);
+          ctx.quadraticCurveTo(cx + dx - 6, heroCy - 20, cx + dx, heroCy - 12);
+          ctx.stroke();
+        });
+      }
+    } else if (heat) {
+      ctx.fillStyle = after ? '#38bdf8' : '#ef4444';
+      const flameH = after ? 24 : 40;
+      ctx.beginPath();
+      ctx.moveTo(cx, heroBottom - 6);
+      ctx.quadraticCurveTo(cx - 20, heroBottom - flameH, cx, heroCy - flameH);
+      ctx.quadraticCurveTo(cx + 20, heroBottom - flameH, cx, heroBottom - 6);
+      ctx.fill();
+    } else if (rain) {
+      ctx.fillStyle = after ? '#fde68a' : '#94a3b8';
+      ctx.beginPath();
+      ctx.ellipse(cx, heroCy, 34, 20, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = after ? '#f59e0b' : '#475569';
+      ctx.lineWidth = 3;
+      if (after) {
+        for (let a = 0; a < 8; a++) {
+          const ang = (a / 8) * Math.PI * 2;
+          ctx.beginPath();
+          ctx.moveTo(cx + Math.cos(ang) * 40, heroCy + Math.sin(ang) * 40);
+          ctx.lineTo(cx + Math.cos(ang) * 50, heroCy + Math.sin(ang) * 50);
+          ctx.stroke();
+        }
+      } else {
+        for (const dx of [-14, 4, 20]) {
+          ctx.beginPath();
+          ctx.moveTo(cx + dx, heroCy + 22);
+          ctx.lineTo(cx + dx - 4, heroCy + 34);
+          ctx.stroke();
+        }
+      }
+    } else {
+      // Generic mood fallback: a face whose expression flips before/after.
+      ctx.fillStyle = after ? '#fde68a' : '#e2e8f0';
+      ctx.beginPath();
+      ctx.ellipse(cx, heroCy, 30, 30, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#1f2937';
+      ctx.beginPath();
+      ctx.ellipse(cx - 11, heroCy - 7, 4, 4, 0, 0, Math.PI * 2);
+      ctx.ellipse(cx + 11, heroCy - 7, 4, 4, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#1f2937';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      if (after) ctx.arc(cx, heroCy + 6, 12, 0.15 * Math.PI, 0.85 * Math.PI);
+      else ctx.arc(cx, heroCy + 18, 12, 1.15 * Math.PI, 1.85 * Math.PI);
+      ctx.stroke();
+    }
+
+    rounded(6, h - 6 - Math.max(0, h * 0.36), w - 12, Math.max(0, h * 0.36), 10, 'rgba(255,255,255,0.92)', edge);
+    ctx.fillStyle = '#0f172a';
+    ctx.font = '700 15px Poppins, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    const words = String(text || '').split(/\s+/).filter(Boolean);
+    let line = '';
+    const lines = [];
+    words.forEach((word) => {
+      const trial = line ? `${line} ${word}` : word;
+      if (ctx.measureText(trial).width <= w - 32) line = trial;
+      else { if (line) lines.push(line); line = word; }
+    });
+    if (line) lines.push(line);
+    lines.slice(0, 3).forEach((ln, i) => {
+      ctx.fillText(ln, 16, h - Math.max(0, h * 0.36) + 6 + i * 20, w - 32);
+    });
+    return c.toDataURL('image/png');
+  }
+
+  /** Cause tile with a grab-handle affordance (Manus R2: tiles read as plain text buttons). */
+  function transformationCauseTilePng(w, h, text) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    const r = 14;
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.arcTo(w, 0, w, h, r); ctx.arcTo(w, h, 0, h, r);
+    ctx.arcTo(0, h, 0, 0, r); ctx.arcTo(0, 0, w, 0, r); ctx.closePath();
+    ctx.fillStyle = '#facc15';
+    ctx.fill();
+    ctx.strokeStyle = '#92400e';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    // Grab-handle dots signal "this is draggable" beyond plain text.
+    ctx.fillStyle = 'rgba(120,53,15,0.55)';
+    for (let row = 0; row < 2; row++) {
+      for (let col = 0; col < 3; col++) {
+        ctx.beginPath();
+        ctx.ellipse(10 + col * 7, 11 + row * 7, 2, 2, 0, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    ctx.fillStyle = '#422006';
+    ctx.font = '700 16px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const words = String(text || '').split(/\s+/).filter(Boolean);
+    let line = '';
+    const lines = [];
+    words.forEach((word) => {
+      const trial = line ? `${line} ${word}` : word;
+      if (ctx.measureText(trial).width <= w - 24) line = trial;
+      else { if (line) lines.push(line); line = word; }
+    });
+    if (line) lines.push(line);
+    const lineH = 19;
+    const startY = h / 2 - ((lines.length - 1) * lineH) / 2;
+    lines.slice(0, 3).forEach((ln, i) => ctx.fillText(ln, w / 2, startY + i * lineH, w - 24));
+    return c.toDataURL('image/png');
+  }
+
   function resolveTransformationLab(lesson) {
     if (!wantsTransformationLab(lesson)) return null;
     const act = (lesson && lesson.activity) || {};
@@ -3059,6 +3375,7 @@
     if (sourceStartsWithAnswer && dockChanges[0].toLowerCase() === answerKey) {
       dockChanges.push(dockChanges.shift());
     }
+    const sceneHay = `${(lesson && lesson.title) || ''} ${ctx.before} ${ctx.after}`.toLowerCase();
 
     L.place(page, {
       locked: true,
@@ -3090,13 +3407,13 @@
         locked: true,
         kind: 'image',
         asset: cards[i]
-          ? hintStickyPng(cardW, cardH, cards[i])
+          ? transformationScenePng(cardW, cardH, i === 0 ? 'before' : 'after', cards[i], sceneHay)
           : slotGhostPng(cardW, cardH, 'DROP CAUSE'),
         w: cardW, h: cardH,
         intentional: true,
         anchor: { x, y, w: cardW, h: cardH },
         role: i === 1 ? 'transformationChangeSlot' : 'transformationState',
-        meta: { phase: labels[i].phase, text: cards[i] },
+        meta: { phase: labels[i].phase, text: cards[i], sceneGrounded: !!cards[i] },
       });
       if (i === 2) {
         L.place(page, {
@@ -3112,14 +3429,17 @@
       }
     });
     L.placeDockRow(page, dockChanges.map((text) => ({
-      kind: 'tile',
+      kind: 'image',
+      asset: transformationCauseTilePng(190, 68, text),
       text,
       role: 'transformationChange',
       meta: { text, correct: text.toLowerCase() === String(ctx.correctChange).toLowerCase() },
-    })), { w: 190, h: 68 });
+    })), { w: 190, h: 68, noShrink: true });
     page.notes.push('recipe:transformationLab');
     page.notes.push('transformationAnswer:' + ctx.correctChange);
     page.notes.push('transformationPredictBeforePeel');
+    page.notes.push('transformationSceneGrounded:true');
+    page.notes.push('transformationCauseTilesVisual:true');
   }
 
   function evidenceXml(value) {
@@ -7487,6 +7807,7 @@
     matchDockSize,
     matchDockIsPartial,
     matchDockMappingAudit,
+    matchDockWorldTheme,
     matchDockStudentHint,
     solidPng,
     slotGhostPng,

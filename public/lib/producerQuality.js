@@ -83,6 +83,45 @@
     return w;
   }
 
+  // Words that describe a SETTING (backdrop the scene happens in) rather than
+  // a discrete object a child can point at and match. Letting these leak into
+  // primary vocabulary is exactly what produced the matchDock R1 fail (score 3,
+  // weakest link ANTI-INFLATION): "market" got picked as a "matchable" word,
+  // rendered as a generic building/stall icon indistinguishable from its
+  // neighbors, and displaced a real object word (lemon/grape) that had a
+  // clean, honest icon.
+  const SCENE_SETTING_WORDS = new Set([
+    'market', 'farm', 'zoo', 'park', 'school', 'store', 'shop', 'kitchen',
+    'garden', 'forest', 'beach', 'playground', 'classroom', 'city', 'town',
+    'village', 'mall', 'restaurant', 'library', 'museum', 'airport',
+    'station', 'hospital', 'office', 'house', 'room', 'street', 'stall',
+    'market place', 'marketplace',
+  ]);
+
+  // Bare category umbrellas ("fruit" next to apple/banana") — same trap as
+  // vocabArt.js's isJunkFillWord, duplicated here because setVocabFromCore /
+  // alignVocabWithLaterContent write lesson.vocabulary directly and never
+  // route through vocabArt's adaptation pass.
+  const GENERIC_CATEGORY_WORDS = new Set([
+    'fruit', 'fruits', 'vegetable', 'vegetables', 'animal', 'animals', 'food',
+    'foods', 'toy', 'toys', 'vehicle', 'vehicles', 'pet', 'pets', 'shape',
+    'shapes', 'color', 'colors', 'colour', 'colours',
+  ]);
+
+  /**
+   * A candidate is filler — not worth a matchDock/newWords slot — when it's a
+   * scene/setting noun or a bare category umbrella AND the pool already has
+   * at least a couple of concrete object words to teach instead. Never blocks
+   * the word when it's genuinely the ONLY vocabulary the lesson has (a lesson
+   * that is actually *about* "the market" as its one taught word is fine).
+   */
+  function isSceneOrCategoryFiller(word, poolConcreteCount) {
+    const w = norm(word);
+    if (!w) return false;
+    if (poolConcreteCount < 2) return false;
+    return SCENE_SETTING_WORDS.has(w) || GENERIC_CATEGORY_WORDS.has(w);
+  }
+
   function distinctFamilies(words) {
     const fams = new Set();
     for (const w of words) {
@@ -324,6 +363,11 @@
     for (const c of candidates) {
       if (!c || c.length < 3) continue;
       if (boardSet.has(c) || [...boardSet].some((b) => b.includes(c) || c.includes(b))) continue;
+      // A scene/setting noun or bare category umbrella ("market", "fruit")
+      // dominating the story text doesn't mean the vocab is misaligned — the
+      // story is set IN that scene, it doesn't need to be taught AS a word
+      // when the board already teaches enough concrete objects.
+      if (isSceneOrCategoryFiller(c, board.length)) continue;
       const re = new RegExp('\\b' + c.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'g');
       const hits = (blob.match(re) || []).length;
       if (hits >= 2) missing.push({ concept: c, hits });
@@ -553,12 +597,20 @@
     const weak = new Set((brief.weakSubstitutes || []).map(norm));
     const forbidden = new Set((brief.forbiddenSubstitutes || []).map(norm));
 
+    const lessonWordList = vocabWords(lesson);
+    const concreteLessonWordCount = lessonWordList.filter(
+      (w) => !isSceneOrCategoryFiller(w, 2)
+    ).length;
+
     function acceptable(w) {
       const n = norm(w);
       if (!n || n.length < 2) return false;
       if (forbidden.has(n)) return false;
       if (parents.has(n)) return false;
       if (weak.has(n) && !(brief.coreConcepts || []).some((c) => norm(c) === n)) return false;
+      // Never let a scene/setting noun or bare category umbrella (market,
+      // fruit) crowd out a lesson's own concrete, matchable words.
+      if (isSceneOrCategoryFiller(n, concreteLessonWordCount)) return false;
       return true;
     }
 
@@ -733,6 +785,11 @@
 
     function displaceFor(concept) {
       if (seen.has(concept) || parents.has(concept)) return false;
+      // A scene/setting noun or bare category umbrella showing up a lot in
+      // the story text ("market", "fruit") is expected — the story is ABOUT
+      // that setting — but it must not evict a concrete taught object just
+      // because it's mentioned more often than that object was.
+      if (isSceneOrCategoryFiller(concept, words.length)) return false;
       // Prefer replacing parent filler, then words with 0 later hits, then
       // lowest-ranked core (comb/smoker before bee/hive).
       let best = -1;

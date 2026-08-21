@@ -149,12 +149,5 @@ Independent single-board optimization log.
 ### Final decision (sole-owner, 2026-08-21)
 
 - STATUS: `NEAR_DONE` — mechanics honest (persistent path, mover/start/goal, checkpoints, card anchors, completion reveal); three valid Manus REVISE at 62 across school-trip → beach-rescue → campfire-safety.
-- REMAINING P0: scene-first mover-to-finish visual payoff — illustrated start world, visible mover travel, finish tableau. This crosses routeMission + shared scene-shell architecture; not a bounded single-grammar patch.
+- P0 REMAINING: scene-first mover-to-finish visual payoff — illustrated start world, visible mover travel, finish tableau. Crosses routeMission into shared scene-shell architecture; not a bounded single-grammar patch.
 - DECISION: **PAUSE** — `ESCALATION_NEEDED` for shared scene-first mission renderer. Round budget used (3 topics). No fourth Manus topic this phase.
-
-## Final loop decision
-
-- STATUS: `ESCALATION_NEEDED` — round budget exhausted (school trip → beach rescue → campfire safety; all valid `revise` 62).
-- LANDED: persistent path, mover/start/goal, neutral checkpoints, card-bound anchors, shuffled cards, arrived-state reveal, narration scaffold, topic-binding gates.
-- P0 REMAINING: scene-first mover-to-finish visual payoff — illustrated start world, visible mover travel, finish tableau. This crosses routeMission into shared scene-shell architecture (topic backdrop + character token + finish state), not a bounded single-grammar patch.
-- DECISION: PAUSE external Manus rounds. Do not burn a fourth topic until scene-shell contract is designed for reuse across routeMission (and likely story/frameTiles cousins).

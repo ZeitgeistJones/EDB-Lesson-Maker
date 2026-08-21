@@ -92,15 +92,7 @@ Independent single-board optimization log.
 
 ## Loop status
 
-- STATUS: `NEAR_DONE` — topic-native payoff badge landed; camping R3 polish 4; dentist retest 58.
-- TOPICS: fruit-market (A1) → dentist (A1) → camping (A1); round budget used (3 topics + 1 retest).
-- VALID VERDICTS: R1 REVISE 0 → R2 REVISE 58 → R3 REVISE 52 (polish 4) → R4 retest REVISE 58.
-- REMAINING P1: observable post-speech payoff — exit-ticket action must visibly bridge to High Five / finish-line state; requires layout/sequencing redesign, not badge chrome.
-- DECISION: **PAUSE** — `ESCALATION_NEEDED` for static-wrap proof contract (spatial payoff bridge). No further Manus rounds this phase.
-
-## Loop status
-
-- STATUS: `NEAR_DONE` — topic-native payoff badge landed; gating and finish-line copy improved across fruit → dentist → camping. Round budget exhausted.
-- BEST VALID SCORE: camping R3 `revise` 52 (polish 4); dentist R4 retest `revise` 58 (polish 3.5).
-- P1 (documented, not auto-built): observable post-speech payoff — exit-ticket action must visibly bridge to the High Five / celebration zone (finish path, gate, or lit state change), not a static label.
-- ESCALATION_NEEDED: payoff bridge + single primary action panel require layout/sequencing redesign beyond badge chrome. Pause external Manus rounds until scoped.
+- STATUS: `NEAR_DONE` — topic-native payoff badge landed; gating improved across fruit → dentist → camping. Round budget exhausted (3 topics + dentist retest).
+- VALID VERDICTS: R1 REVISE 0 → R2 REVISE 58 → R3 REVISE 52 (polish 4) → R4 retest REVISE 58 (polish 3.5).
+- P1 (documented, not auto-built): observable post-speech payoff — exit-ticket action must visibly bridge to High Five / finish-line state (finish path, gate, or lit change), not a static label.
+- DECISION: **PAUSE** — `ESCALATION_NEEDED` for static-wrap proof contract (spatial payoff bridge + single primary action panel). No further Manus rounds this phase.
