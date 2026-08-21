@@ -15,6 +15,8 @@ covered by the existing recipe tests.
 
 | BOARD_TYPE | REPRESENTATIVE_BOARD_PATH | KNOWN_WEAKNESS | WHAT_MANUS_SHOULD_SCRUTINIZE |
 |---|---|---|---|
+| `title` | `tmp/board-type-baselines/title.jpg` | can feel like a template aims slide | first impression, hierarchy, existing art/charm use, dead space, age fit, whether the opener creates interest |
+| `wrap` | `tmp/board-type-baselines/wrap.jpg` | can feel like a generic “Great Job!” ending | last impression, visual polish, hierarchy, confetti/art use, dead space, age fit, whether the closer feels like a satisfying ending |
 | `matchDock` | `tmp/board-type-baselines/matchDock.jpg` | retrieval support, not deep play | picture-word honesty and card readability |
 | `frameTiles` | `tmp/board-type-baselines/frameTiles.jpg` | can feel worksheet-like | blank fit, tile count, readable frames |
 | `phonicsSoundBoxes` | `tmp/board-type-baselines/phonicsSoundBoxes.jpg` | grapheme scope only | sound-box count and tile grab size |
@@ -36,6 +38,32 @@ covered by the existing recipe tests.
 | `evidenceBoard` | `tmp/board-type-baselines/evidenceBoard.jpg` | evidence strength is authored | legibility, ranking purpose, grounded conclusion |
 
 ## Review descriptors
+
+### `title`
+
+- BOARD_TYPE_ID: `title`
+- NAME: Lesson Title Opener
+- CORE_PLAY_GRAMMAR: orient to the lesson before play begins
+- LEARNER_JOB: see the topic, aims, and tone of the lesson
+- WHAT_CHANGES: nothing interactive — this is the opening impression card
+- WHAT_IS_REVEALED: title, level/duration, aims / grammar aims, optional title charm art
+- ASSET_REQUIREMENTS: existing title background + optional title-charm / kit art already in estate
+- CEFR_RANGE: Pre-A1–B2 (lesson chrome)
+- KNOWN_WEAKNESSES: can read as a generic template aims slide; charm art is topic-dependent
+- REPRESENTATIVE_BOARD_PATH: `tmp/board-type-baselines/title.jpg`
+
+### `wrap`
+
+- BOARD_TYPE_ID: `wrap`
+- NAME: Wrap-Up / Completion Closer
+- CORE_PLAY_GRAMMAR: close the lesson with review language and an exit ticket
+- LEARNER_JOB: celebrate, recycle today’s words, say an exit ticket with a partner
+- WHAT_CHANGES: review cards and peer-check remain as the closing state
+- WHAT_IS_REVEALED: “Great Job!”, today’s words, exit-ticket sentences, peer check
+- ASSET_REQUIREMENTS: existing wrap background + decoration confetti already in estate
+- CEFR_RANGE: Pre-A1–B2 (lesson chrome)
+- KNOWN_WEAKNESSES: can feel like a stock completion card; denser review text can crowd polish
+- REPRESENTATIVE_BOARD_PATH: `tmp/board-type-baselines/wrap.jpg`
 
 ### `matchDock`
 

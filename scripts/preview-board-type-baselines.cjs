@@ -89,6 +89,9 @@ const preA1 = compactLesson('Action Time', ['jump', 'sit', 'wave', 'point']);
 preA1.activity = { title: 'Listen, Point, Do', prompt: 'Listen and do the action.', templates: [] };
 
 const CASES = [
+  // Existing lesson chrome (not activity recipes) — first/last impression for Manus.
+  { id: 'title', pageKey: 'title', expected: 'title', pageFormat: true, lesson: fruit, meta: { level: 'A1', duration: 30 } },
+  { id: 'wrap', pageKey: 'wrap', expected: 'wrap', pageFormat: true, lesson: fruit, meta: { level: 'A1', duration: 30 } },
   { id: 'matchDock', pageKey: 'newWords', expected: 'matchDock', lesson: fruit, meta: { level: 'A1', duration: 30 } },
   { id: 'frameTiles', pageKey: 'frames', expected: 'frameTiles', lesson: fruit, meta: { level: 'A1', duration: 30 } },
   { id: 'phonicsSoundBoxes', pageKey: 'phonics', expected: 'phonicsSoundBoxes', lesson: zooPhonics, meta: { level: 'A1', duration: 30, phonics: 'on' }, force: true },
@@ -240,10 +243,33 @@ async function main() {
   const results = [];
   const contactRows = [];
   for (const c of CASES) {
-    const row = await page.evaluate(async ({ lesson, meta, pageKey, expected, force, id }) => {
+    const row = await page.evaluate(async ({ lesson, meta, pageKey, expected, force, id, pageFormat }) => {
       await window.PropBank.ready();
       await window.VocabIcons.ready();
       const boardPlan = window.EdbActivities.buildBoardPlan(lesson, meta);
+
+      // Title / wrap are existing page formats, not interaction recipes.
+      if (pageFormat) {
+        await window.LessonPages.attachBgPicks(lesson, meta, boardPlan);
+        const canvases = await window.BoardPreview.renderCanvases(lesson, meta, boardPlan);
+        const idx = boardPlan.pages.findIndex((p) => p.pageKey === pageKey);
+        if (idx < 0 || !canvases[idx]) {
+          return { ok: false, id, expected, actual: null, error: `missing page-format canvas for ${pageKey}` };
+        }
+        const layoutPage = boardPlan.pages[idx];
+        return {
+          ok: true,
+          id,
+          recipeId: expected,
+          pageKey,
+          forced: false,
+          dataUrl: canvases[idx].toDataURL('image/jpeg', 0.9),
+          locked: (layoutPage.locked || []).length,
+          unlocked: (layoutPage.unlocked || []).length,
+          notes: [`pageFormat:${expected}`],
+        };
+      }
+
       let assignment = (boardPlan.assignments || []).find((a) => a.pageKey === pageKey);
       let forced = false;
 
@@ -332,7 +358,7 @@ async function main() {
         unlocked: (layoutPage.unlocked || []).length,
         notes: (layoutPage.notes || []).filter((n) => /recipe:|Limit:|Steps:|Count:|Target:/i.test(String(n))),
       };
-    }, c);
+    }, Object.assign({}, c, { pageFormat: !!c.pageFormat }));
 
     if (!row.ok) {
       results.push(row);
